@@ -24,6 +24,9 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
+> [!NOTE]
+> **Retired packages**: The following SDK v1 pipeline packages are being retired: azureml-train-core, azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, and azureml-pipeline-steps.
+
 In this article, you learn how to version and track Azure Machine Learning datasets for reproducibility. Dataset versioning bookmarks specific states of your data, so that you can apply a specific version of the dataset for future experiments.
 
 You might want to version your Azure Machine Learning resources in these typical scenarios:
@@ -33,7 +36,7 @@ You might want to version your Azure Machine Learning resources in these typical
 
 ## Prerequisites
 
-- The [Azure Machine Learning SDK for Python](/python/api/overview/azure/ml/install). This SDK includes the [azureml-datasets](/python/api/azureml-core/azureml.core.dataset) package
+- The [Azure Machine Learning SDK for Python](/python/api/overview/azure/ml/install). This SDK includes the [azureml-datasets](/python/api/azureml-core/azureml.core.dataset) package, which is part of SDK v1. For dataset versioning scenarios in SDK v2, see [Working with data in Azure Machine Learning](/azure/machine-learning/how-to-read-write-data-v2) and [Data in Azure Machine Learning](/azure/machine-learning/concept-data).
 
 - An [Azure Machine Learning workspace](../concept-workspace.md). [Create a new workspace](../quickstart-create-resources.md), or retrieve an existing workspace with this code sample:
 
@@ -112,6 +115,9 @@ dataset2.register(workspace = workspace,
 ```
 
 ## Version an ML pipeline output dataset
+
+> [!CAUTION]
+> The v1 pipeline packages (azureml.pipeline.*) used in this section are retired after June 30, 2026 and may stop working. For the recommended migration path, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
 
 You can use a dataset as the input and output of each [ML pipeline](../concept-ml-pipelines.md) step. When you rerun pipelines, the output of each pipeline step is registered as a new dataset version.
 

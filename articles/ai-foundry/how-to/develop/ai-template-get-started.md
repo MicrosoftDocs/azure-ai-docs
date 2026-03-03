@@ -1,7 +1,8 @@
 ---
 title: How to get started with an AI template
 titleSuffix: Microsoft Foundry
-description: This article provides instructions on how to use an AI template to get started with Microsoft Foundry.
+description: Find, explore, and deploy AI solution templates from the Foundry portal to accelerate your development.
+keywords: ai templates, solution accelerators, foundry templates, code samples
 ms.service: azure-ai-foundry
 ms.custom:
   - dev-focus
@@ -20,13 +21,9 @@ monikerRange: foundry-classic || foundry
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Find, explore, and deploy AI solution templates from the Foundry portal.
+In this article, you find, explore, and deploy AI solution templates from the Foundry portal.
 
-Streamline your code-first development with prebuilt, task-specific Azure AI templates. These ready-to-use, customizable templates help you skip setup, reduce friction, and deliver value faster with trusted, scalable infrastructure. Built on insights from over 2,000 customer engagements, AI solution templates significantly reduce time from concept to production at scale.
-
-AI solution templates include customizable code samples, pre-integrated Azure services, and GitHub-hosted quick-start guides. Development teams can focus on outcomes instead of setup, building solutions for popular use cases like live voice agents, release management, and data unification.
-
-These templates harness the power of multi-agent, agentic AI, enabling you to automate workflows, optimize operations, reduce costs, and make faster, data-driven decisions.
+AI solution templates are prebuilt, task-specific templates that include customizable code samples, preintegrated Azure services, and GitHub-hosted quick-start guides. Use templates to skip boilerplate setup and focus on building solutions for use cases like voice agents, release management, and data unification.
 
 > [!IMPORTANT]
 > Starter templates, manifests, code samples, and other resources made available by Microsoft or its partners ("samples") are designed to assist in accelerating development of agents and AI solutions for specific scenarios. Review all provided resources and carefully test output behavior in the context of your use case. AI responses might be inaccurate and AI actions should be monitored with human oversight. Learn more in the transparency documents for [Agent Service](../../responsible-ai/agents/transparency-note.md) and [Agent Framework](https://github.com/microsoft/agent-framework/blob/main/TRANSPARENCY_FAQ.md).  
@@ -86,16 +83,6 @@ Available templates:
 - A [Foundry project](../create-projects.md).
 ::: moniker-end
 
-## Benefits of AI solution templates
-
-AI templates in Microsoft Foundry provide:
-
-* **Faster time-to-value**: Skip boilerplate code and infrastructure setup to move from concept to production quickly.
-* **Reduced engineering overhead**: Preintegrated Azure services eliminate deployment friction.
-* **Trusted infrastructure**: Build with confidence on Microsoft's secure, scalable AI platform.
-* **Modular and interoperable foundation**: Scale solutions efficiently across your organization.
-* **Best practices built-in**: Leverage proven patterns and frameworks from thousands of customer engagements.
-
 ## Start with a sample application
 
 ::: moniker range="foundry-classic"
@@ -135,10 +122,27 @@ Instructions vary by sample, but most include how to:
 
 The README also includes information about the application, such as the use case, architecture, and pricing information.
 
-## Deploy templates quickly
+## Deploy and customize templates
 
-By using the quick-deploy options, you can launch any Foundry template in minutes. These architectures and implementations are customizable while staying Well-Architected Framework (WAF) aligned by using Azure Verified Modules. Use tools such as PSRule and TFlint to test that your modified implementation is production-ready.
+Most templates support quick-deploy options that launch in minutes. These architectures and implementations are customizable while staying [Well-Architected Framework](/azure/well-architected/) aligned by using [Azure Verified Modules](/azure/azure-resource-manager/bicep/azure-verified-modules). Use tools such as [PSRule](https://aka.ms/ps-rule) and [TFLint](https://github.com/terraform-linters/tflint) to test that your modified implementation is production-ready.
 
-## Next step
+After you deploy, verify that the application is running:
+
+1. Open the deployment URL shown in the terminal output.
+1. Confirm the application loads and responds to your input.
+
+## Benefits of AI solution templates
+
+AI templates in Microsoft Foundry provide:
+
+* **Faster time-to-value**: Skip boilerplate code and infrastructure setup to move from concept to production quickly.
+* **Reduced engineering overhead**: Preintegrated Azure services eliminate deployment friction.
+* **Trusted infrastructure**: Build with confidence on Microsoft's secure, scalable AI platform.
+* **Modular and interoperable foundation**: Scale solutions efficiently across your organization.
+* **Best practices built-in**: Use proven patterns and frameworks for production-ready solutions.
+
+## Related content
 
 - [Quickstart: Get started with Foundry](../../quickstarts/get-started-code.md)
+- [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)
+- [What is Microsoft Foundry?](../../what-is-foundry.md)

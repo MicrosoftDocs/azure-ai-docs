@@ -13,6 +13,7 @@ ms.author: mbullwin
 recommendations: false
 zone_pivot_groups: structured-outputs
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Structured outputs
@@ -39,7 +40,7 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ::: zone-end
 
-## Supported schemas and limitations
+## JSON Schema support and limitations
 
 Azure OpenAI structured outputs support the same subset of the [JSON Schema](https://json-schema.org/docs) as OpenAI.
 

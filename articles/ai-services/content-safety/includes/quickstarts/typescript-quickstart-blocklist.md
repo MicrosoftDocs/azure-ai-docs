@@ -8,9 +8,10 @@ ms.custom:
 ms.topic: include
 ms.date: 07/16/2025
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
-[Reference documentation](https://www.npmjs.com/package/@azure-rest/ai-content-safety/v/1.0.0) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentsafety/ai-content-safety-rest) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/js/1.0.0) |
+[Reference documentation](https://learn.microsoft.com/javascript/api/@azure-rest/ai-content-safety?view=azure-node-latest) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentsafety/ai-content-safety-rest) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/js/1.0.0) |
 
 
 ## Prerequisites
@@ -98,6 +99,9 @@ ms.author: pafarley
 ## Create and use a blocklist
 
 Create a new file in your `src` directory, `index.ts` and paste in the following code.
+
+> [!NOTE]
+> After you edit a blocklist, it can take a few minutes before text analysis reflects the changes. If you don't see matches right away, retry the analyze call after a short delay.
 
 ```typescript
 import ContentSafetyClient, { 

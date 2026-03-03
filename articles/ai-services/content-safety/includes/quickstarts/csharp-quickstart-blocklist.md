@@ -7,6 +7,7 @@ ms.custom:
 ms.topic: include
 ms.date: 02/22/2025
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [Reference documentation](/dotnet/api/overview/azure/ai.contentsafety-readme) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentsafety/Azure.AI.ContentSafety) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.ContentSafety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/dotnet/1.0.0)
@@ -57,7 +58,7 @@ Build succeeded.
 
 ### Install the client SDK
 
-Within the application directory, install the Computer Vision client SDK for .NET with the following command:
+Within the application directory, install the Azure AI Content Safety client SDK for .NET with the following command:
 
 ```dotnet
 dotnet add package Azure.AI.ContentSafety

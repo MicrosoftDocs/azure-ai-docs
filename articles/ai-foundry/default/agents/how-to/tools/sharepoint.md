@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/26/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -35,9 +35,11 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 ### Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -51,8 +53,8 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
   - **C#**: Install the `Azure.AI.Projects` NuGet package (prerelease)
   - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
 - Environment variables configured:
-  - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
-  - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
+  - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
+  - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
   - `SHAREPOINT_PROJECT_CONNECTION_ID`: Your SharePoint connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`
   - For REST samples: `API_VERSION`, `AGENT_TOKEN`
 - See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#get-ready-to-code) for additional authentication setup details.
@@ -87,7 +89,9 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential
+    ) as project_client,
 ):
     print("Connected to project.")
     
@@ -120,7 +124,7 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
-    SharepointAgentTool,
+    SharepointPreviewTool,
     SharepointGroundingToolParameters,
     ToolProjectConnection,
 )
@@ -129,7 +133,9 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(
+        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential
+    ) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
     # Get connection ID from connection name
@@ -138,7 +144,7 @@ with (
     )
     print(f"SharePoint connection ID: {sharepoint_connection.id}")
 
-    sharepoint_tool = SharepointAgentTool(
+    sharepoint_tool = SharepointPreviewTool(
         sharepoint_grounding_preview=SharepointGroundingToolParameters(
             project_connections=[
                 ToolProjectConnection(project_connection_id=sharepoint_connection.id)
@@ -149,7 +155,7 @@ with (
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="""You are a helpful agent that can use SharePoint tools to assist users. 
             Use the available SharePoint tools to answer questions and perform tasks.""",
             tools=[sharepoint_tool],
@@ -160,9 +166,9 @@ with (
     # Send initial request that will trigger the SharePoint tool
     stream_response = openai_client.responses.create(
         stream=True,
-      tool_choice="required",
+        tool_choice="required",
         input="Please summarize the last meeting notes stored in SharePoint.",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:
@@ -235,7 +241,7 @@ Before running the full sample, verify your SharePoint connection exists:
 using Azure.AI.Projects;
 using Azure.Identity;
 
-var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
 var sharepointConnectionName = System.Environment.GetEnvironmentVariable("SHAREPOINT_PROJECT_CONNECTION_NAME");
 
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
@@ -274,8 +280,8 @@ using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
 // Create an agent client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
 var sharepointConnectionName = System.Environment.GetEnvironmentVariable("SHAREPOINT_PROJECT_CONNECTION_NAME");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
@@ -365,11 +371,11 @@ The following sample demonstrates how to create an Agent that uses the SharePoin
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-  "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+  "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
   "input": "Please summarize the last meeting notes stored in SharePoint.",
   "tool_choice": "required",
   "tools": [
@@ -444,7 +450,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const sharepointConnectionName = process.env["SHAREPOINT_PROJECT_CONNECTION_NAME"] || "<sharepoint connection name>";
 
 async function verifyConnection(): Promise<void> {
@@ -479,8 +485,8 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["AZURE_AI_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const sharepointConnectionName =
   process.env["SHAREPOINT_PROJECT_CONNECTION_NAME"] || "<sharepoint connection name>";
 
@@ -617,6 +623,7 @@ SharePoint agent sample completed!
 - You can add only one SharePoint tool per agent.
 - The underlying Microsoft 365 Copilot Retrieval API returns text extracts. Retrieval from nontextual content, including images and charts, isn't supported.
 - For semantic and hybrid retrieval, the Microsoft 365 Copilot Retrieval API supports `.doc`, `.docx`, `.pptx`, `.pdf`, `.aspx`, and `.one` file types. For details, see the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+- The SharePoint tool doesn't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, but the SharePoint tool requires user identity passthrough (On-Behalf-Of).
 
 ## Setup
 

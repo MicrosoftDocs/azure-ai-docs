@@ -1,13 +1,13 @@
 ---
 title: Use web search tool in Foundry Agent Service
 titleSuffix: Microsoft Foundry
-description: Learn how to use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Get code examples for Python, C#, JavaScript, and REST API.
+description: Use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Includes code examples.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -33,9 +33,13 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 
 ### Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
+
+Java SDK samples are not yet available.
 
 ## Prerequisites
 
@@ -43,8 +47,8 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 - The latest prerelease package. See the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true#install-and-authenticate) for details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Environment variables configured:
-  - `AZURE_AI_PROJECT_ENDPOINT` (or `PROJECT_ENDPOINT`): Your Foundry project endpoint URL.
-  - `AZURE_AI_MODEL_DEPLOYMENT_NAME` (or `MODEL_DEPLOYMENT_NAME`): Your model deployment name.
+  - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
+  - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
 
 ## Code examples
 
@@ -63,39 +67,43 @@ from dotenv import load_dotenv
 
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, WebSearchPreviewTool, ApproximateLocation
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    WebSearchTool,
+    WebSearchApproximateLocation,
+)
 
 load_dotenv()
 
-project_client = AIProjectClient(
-  endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
-openai_client = project_client.get_openai_client()
-
-with project_client:
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant that can search the web",
             tools=[
-          WebSearchPreviewTool(
-            user_location=ApproximateLocation(country="GB", city="London", region="London")
-          )
+                WebSearchTool(
+                    user_location=WebSearchApproximateLocation(
+                        country="GB", city="London", region="London"
+                    )
+                )
             ],
         ),
         description="Agent for web search.",
     )
-
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
     stream_response = openai_client.responses.create(
         stream=True,
         tool_choice="required",
         input="What is today's date and weather in Seattle?",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
     for event in stream_response:
@@ -116,6 +124,10 @@ with project_client:
         elif event.type == "response.completed":
             print(f"\nFollow-up completed!")
             print(f"Full response: {event.response.output_text}")
+
+    print("\nCleaning up...")
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 :::zone-end
 
@@ -127,8 +139,8 @@ In this example, you use the agent to perform the web search in the given locati
 
 ```csharp
 // Create project client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
 // Create an agent capable of using Web search and set the location to "London" in the WebSearchToolLocation.
@@ -180,7 +192,7 @@ The following example shows how to create a response by using an agent that has 
 
 ```bash
 curl --request POST \
-  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{
@@ -239,8 +251,8 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 
 export async function main(): Promise<void> {
   // Create AI Project client

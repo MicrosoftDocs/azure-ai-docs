@@ -33,7 +33,7 @@ Before you begin, you need:
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/)
 * A [Microsoft Foundry project](../../../default/tutorials/quickstart-create-foundry-resources.md) with:
   * An Azure OpenAI model deployment (for example `gpt-5`)
-    * This example uses `gpt-5`, you may need to use another model (such as `gpt-4.1`) depending on your [quotas and limits](../../../agents/quotas-limits.md#quotas-and-limits-for-models).
+    * This example uses `gpt-5`, you may need to use another model (such as `gpt-4.1`) depending on your [quotas and limits](../concepts/limits-quotas-regions.md#quotas-and-limits-for-models).
   * (Optional) An [MCP tool](../how-to/tools/model-context-protocol.md), if you have one you want to use.
 * An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later

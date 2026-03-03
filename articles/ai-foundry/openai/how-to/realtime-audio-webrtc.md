@@ -45,6 +45,7 @@ You can access the GPT real-time models for global deployments in the [East US 2
 - `gpt-realtime` (version 2025-08-28)
 - `gpt-realtime-mini` (version 2025-10-06)
 - `gpt-realtime-mini-2025-12-15` (version 2025-12-15)
+- `gpt-realtime-1.5-2026-02-23` (version 2026-02-23)
 
 You should use API version `2025-08-28` in the URL for the Realtime API. The API version is included in the sessions URL.
 
@@ -65,7 +66,7 @@ Before you can use GPT real-time audio, you need:
 :::moniker range="foundry"
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource - [Create a Microsoft Foundry resource](/azure/ai-services/multi-service-resource?pivots=azportal) in one of the [supported regions](#supported-models).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article.
+- A deployment of a GPT realtime model in a supported region as described in the [supported models](#supported-models) section in this article.
     - In the Foundry portal, load your project. Select **Build** in the upper-right menu, then select the **Models** tab on the left pane, and select **Deploy a base model**. Search for the model you want, and select **Deploy** on the model page.
 :::moniker-end
 
@@ -73,7 +74,7 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- A deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, `gpt-realtime-mini`, or `gpt-realtime-mini-2025-12-15` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in the Foundry portal.
+- A deployment of a GPT realtime model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in the Foundry portal.
 :::moniker-end
 
 ## Set up WebRTC
@@ -95,7 +96,7 @@ Other options:
 
 The key to generating an ephemeral token is the REST API using 
 
-```
+```text
 url = https://{your azure resource}.openai.azure.com/openai/v1/realtime/client_secrets
 ```
 
@@ -103,7 +104,21 @@ You use this URL with either an api-key or Microsoft Entra ID token. This reques
 
 Here's some sample python code for a token service. The web browser application can call this service by using the /token endpoint to retrieve an ephemeral token. This sample code uses the DefaultAzureCredential to authenticate to the RealtimeAPI generating ephemeral tokens.
 
-```
+> [!NOTE]
+> Replace placeholder values in the code samples:
+> - `<your azure resource>` or `<YOUR AZURE RESOURCE>` - Your Azure OpenAI resource name
+> - `<your model deployment name>` or `<YOUR MODEL DEPLOYMENT NAME>` - Your realtime model deployment name
+
+The session configuration includes:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `session.type` | Yes | Must be `realtime` |
+| `session.model` | Yes | Your model deployment name |
+| `session.instructions` | No | System prompt for the assistant |
+| `session.audio.output.voice` | No | Voice for audio output: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, or `verse` |
+
+```python
 from flask import Flask, jsonify
 
 import os
@@ -238,15 +253,14 @@ if __name__ == '__main__':
 
 Your browser application calls your token service to get the token and then initiates a webRTC connection with the RealtimeAPI. To initiate the webRTC connection, use the following URL with the ephemeral token for authentication.
 
+```text
+https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
 ```
- https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
- ```
 
 Once connected, the browser application sends text over the data channel and audio over the media channel. Here's a sample HTML document to get you started.
 
-```
-html
-    <!DOCTYPE html>
+```html
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -473,13 +487,26 @@ In the sample, we use the query parameter webrtcfilter=on. This query parameter 
 * response.output_audio_transcript.delta
 * response.output_audio_transcript.done
 
+> [!TIP]
+> For the complete list of Realtime API events, see the [API reference](../realtime-audio-reference.md#server-events).
+
+When the connection succeeds, you should see these console messages:
+- `✅ RTCPeerConnection created`
+- `✅ Microphone access granted`
+- `✅ Data channel is open`
+- `🎵 Audio playback started`
+
+If the AI responds, you'll see `response.output_audio_transcript.done` events with the transcribed response.
+
+**Reference:** [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection), [Realtime API events](../realtime-audio-reference.md)
+
 ### Step 3 (optional): Create a websocket observer/controller
 
 If you proxy the session negotiation through your service application, you can parse the Location header that's returned and use it to create a websocket connection to the WebRTC call. This connection can record the WebRTC call and even control it by issuing session.update events and other commands directly.
 
 Here's an updated version of the token_service shown earlier, now with a /connect endpoint that you can use to both get the ephemeral token and negotiate the session initiation. It also includes a websocket connection that listens to the WebRTC session. 
 
-```
+```python
 from flask import Flask, jsonify, request
 #from flask_cors import CORS
 
@@ -838,10 +865,9 @@ if __name__ == '__main__':
 
 The associated browser changes are shown here. 
 
-```
-html
-    <!DOCTYPE html>
-    <html lang="en">
+```html
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1149,6 +1175,31 @@ html
     </body>
 </html>
 ```
+
+**Reference:** [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential), [Flask documentation](https://flask.palletsprojects.com/)
+
+## Troubleshooting
+
+### Authentication errors
+
+- **401 Unauthorized**: Verify your API key or Microsoft Entra ID token is valid. Ensure the identity has the **Cognitive Services User** role assigned on the Azure OpenAI resource.
+- **403 Forbidden**: Check that your resource is deployed in a supported region (East US 2 or Sweden Central).
+
+### Connection errors
+
+- **WebRTC connection failed**: Ensure your browser supports WebRTC and allows microphone access. Check that you're using HTTPS (required for `getUserMedia`).
+- **Data channel not opening**: Check the browser console for ICE connection state errors. Verify the ephemeral token hasn't expired.
+- **SDP exchange failed**: Verify the WebRTC endpoint URL is correct and the ephemeral token is valid.
+
+### Model errors
+
+- **Model not found**: Verify your deployment name matches exactly (case-sensitive). Ensure you've deployed a realtime model (`gpt-4o-realtime-preview`, `gpt-realtime`, etc.).
+- **Quota exceeded**: Check your Azure OpenAI quota in the Azure portal. Realtime API has separate quota from chat completions.
+
+### Audio issues
+
+- **No audio output**: Check that `audioElement.autoplay = true` is set and browser autoplay policies aren't blocking playback. Try clicking the page first to enable audio.
+- **Poor audio quality**: WebRTC automatically adjusts for network conditions. Check your network connection and try reducing other network traffic.
 
 ## Related content
 

@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 02/11/2026
 author: ssalgadodev
 ms.author: ssalgado
 monikerRange: 'foundry-classic || foundry'
@@ -15,7 +15,7 @@ monikerRange: 'foundry-classic || foundry'
 
 # Deploy a fine-tuned model for inferencing
 
-Once your model is fine-tuned, you can deploy the model and can use it in your own application.
+Once your model is fine-tuned, you can deploy the model and use it in your own application.
 
 When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Microsoft Foundry at no cost until you're ready to use them.
 
@@ -25,8 +25,8 @@ Azure OpenAI provides choices of deployment types for fine-tuned models on the h
 
 ## [Portal](#tab/portal)
 
-> [!IMPROTANT]
-> To deploy models, you need to be assigned as `Azure AI owner` role or any role with `Microsfot.CognitiveServices/accounts/deployments/write" action.
+> [!IMPORTANT]
+> To deploy models, you need to be assigned the `Azure AI Owner` role or any role with the `Microsoft.CognitiveServices/accounts/deployments/write` action.
 
 To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
 
@@ -36,7 +36,7 @@ The **Deploy model** dialog box opens. In the dialog box, enter your **Deploymen
 
 You can monitor the progress of your deployment on the **Deployments** pane in Foundry portal.
 
-The UI does not support cross region deployment, while Python SDK or REST supports.
+The portal doesn't support cross-region deployment. Use the Python SDK or REST API instead.
 
 
 ## [Python](#tab/python)
@@ -80,22 +80,22 @@ print(r.json())
 
 ```
 
-|variable      | Definition|
-|--------------|-----------|
+| Variable      | Definition |
+|--------------|------------|
 | token        | There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account#az-account-get-access-token()). You can use this token as your temporary authorization token for API testing. We recommend storing this in a new environment variable. |
 | subscription | The subscription ID for the associated Azure OpenAI resource. |
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
-| model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that is referenced in your code when making chat completion calls. |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It looks like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You need to add that value to the deploy_data json. Alternatively, you can deploy a checkpoint by passing the checkpoint ID, which appears in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d`. |
 
 ### Cross region deployment
 
 Fine-tuning supports deploying a fine-tuned model to a different region than where the model was originally fine-tuned. You can also deploy to a different subscription/region.
 
-The only limitations are that the new region must also support fine-tuning and when deploying cross subscription the account generating the authorization token for the deployment must have access to both the source and destination subscriptions.
+The only limitations are that the new region must also support fine-tuning, and when deploying cross subscription, the account generating the authorization token for the deployment must have access to both the source and destination subscriptions.
 
-Below is an example of deploying a model that was fine-tuned in one subscription/region to another.
+The following example deploys a model that was fine-tuned in one subscription/region to another.
 
 ```python
 import json
@@ -218,14 +218,14 @@ curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resource
 }'
 ```
 
-|variable      | Definition|
-|--------------|-----------|
+| Variable      | Definition |
+|--------------|------------|
 | token        | There are multiple ways to generate an authorization token. The easiest method for initial testing is to launch the Cloud Shell from the [Azure portal](https://portal.azure.com). Then run [`az account get-access-token`](/cli/azure/account#az-account-get-access-token()). You can use this token as your temporary authorization token for API testing. We recommend storing this in a new environment variable. |
 | subscription | The subscription ID for the associated Azure OpenAI resource. |
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
-| model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that is referenced in your code when making chat completion calls. |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It looks like `gpt-4.1-mini-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You need to add that value to the deploy_data json. Alternatively, you can deploy a checkpoint by passing the checkpoint ID, which appears in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d`. |
 
 
 ### Cross region deployment
@@ -399,10 +399,12 @@ Global standard deployments are available from all Azure OpenAI regions for the 
 
 Developer deployments are available from all Azure OpenAI regions for the following models:
 
-* GPT-4.1
-* GPT-4.1-mini
-* GPT-4.1-nano
-* o4-mini
+| Models        | Availability       |
+|---------------|--------------------|
+| o4-mini       | All regions        |
+| GPT-4.1       | All regions        |
+| GPT-4.1-mini  | All regions        |
+| GPT-4.1-nano  | All regions        |
 
 
 ### Provisioned Throughput

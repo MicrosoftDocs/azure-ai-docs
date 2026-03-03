@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how query-time enforcement of Microsoft Purview sensitivity labels ensures secure document retrieval in Azure AI Search for indexes containing label metadata.  
 ms.service: azure-ai-search  
 ms.topic: concept-article  
-ms.date: 11/18/2025  
+ms.date: 01/28/2026
 author: gmndrg  
 ms.author: gimondra  
 ---
@@ -40,7 +40,6 @@ Before you can query a sensitivity-label-enabled index, the following conditions
 - [Microsoft Entra Guest users](/entra/external-id/b2b-quickstart-add-guest-users-portal) and cross-tenant queries aren't supported.  
 - [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs are unsupported for Purview-enabled indexes.  
 - If label evaluation fails (for example, Purview APIs are temporarily unavailable), the service returns **5xx** and does **not** return a partial or unfiltered result set.  
-- [ACL-based security filters](search-query-access-control-rbac-enforcement.md) aren't supported alongside sensitivity label functionality at this time. Don't enable both at the same time. Once combined usage is supported, it will be documented accordingly. 
 - The system evaluates labels only as they existed at the time of the last indexer run; recent label changes may not be reflected until the next scheduled reindex.
 
 

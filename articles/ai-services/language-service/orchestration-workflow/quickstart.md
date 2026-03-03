@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 01/09/2026
+ms.date: 02/03/2026
 ms.author: lajanuar
 ms.custom: language-service-clu, mode-other
 zone_pivot_groups: foundry-rest-api

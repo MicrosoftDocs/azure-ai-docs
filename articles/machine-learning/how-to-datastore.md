@@ -28,7 +28,8 @@ In this article, you learn how to connect to Azure data storage services by usin
 - A Machine Learning workspace.
 
 > [!NOTE]
-> Machine Learning datastores *don't* create the underlying storage account resources. Instead, they link an *existing* storage account for Machine Learning use. You don't need Machine Learning datastores. If you have access to the underlying data, you can use storage URIs directly.
+> Machine Learning datastores don't create the underlying storage account resources. Instead, they link an existing storage account for Machine Learning use.
+> Each datastore type (Azure Blob, ADLS Gen2, Azure Files, OneLake) is created independently. The order of sections in this article doesn’t represent a required sequence of steps.
 
 ## Create an Azure Blob datastore
 

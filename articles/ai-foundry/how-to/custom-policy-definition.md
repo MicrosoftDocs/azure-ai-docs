@@ -6,7 +6,7 @@ author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/05/2026
+ms.date: 02/24/2026
 ms.reviewer: deeikele
 ms.custom: dev-focus
 #customer intent: As an admin, I want to enable self-service resource management while staying compliant with security and compliance requirements.
@@ -30,6 +30,7 @@ By using custom policies, you can:
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
+- The **Resource Policy Contributor** role (least privilege) or **Owner** role at the scope where you create and assign the policy definition.
 
 For more information, see [What is Azure Policy?](/azure/governance/policy/overview)
 
@@ -42,16 +43,53 @@ For more information, see [What is Azure Policy?](/azure/governance/policy/overv
 1. **Define a new policy**
    - In the **Authoring** section, select **Definitions** > **+ Policy definition**.
    - Provide:
-     - **Definition location**: Subscription or management group.
+     - **Definition location**: Subscription (applies to resources in a single subscription) or management group (applies across multiple subscriptions).
      - **Name**: A unique name (for example, `Deny-Unapproved-Connections`).
      - **Description**: Explain the purpose (for example, “Restrict Foundry connections to approved categories”).
      - **Category**: Use an existing category or create one such as `AI Governance`.
 
 1. **Add policy rule**
-   - Enter the rule in [JSON format](/azure/governance/policy/concepts/definition-structure-policy-rule). For example, to allow only approved connection categories:
+   - Enter the rule in [JSON format](/azure/governance/policy/concepts/definition-structure-policy-rule). For example, the following policy restricts Foundry connections to approved categories:
 
-  :::code language="json" source="~/foundry-samples-main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json"
-  :::
+      ```json
+      {
+        "mode": "All",
+        "policyRule": {
+          "if": {
+            "allOf": [
+              {
+                "field": "type",
+                "in": [
+                  "Microsoft.CognitiveServices/accounts/connections",
+                  "Microsoft.CognitiveServices/accounts/projects/connections"
+                ]
+              },
+              {
+                "field": "Microsoft.CognitiveServices/accounts/connections/category",
+                "notIn": "[parameters('allowedCategories')]"
+              }
+            ]
+          },
+          "then": {
+            "effect": "Deny"
+          }
+        },
+        "parameters": {
+          "allowedCategories": {
+            "type": "Array",
+            "metadata": {
+              "displayName": "Allowed connection categories",
+              "description": "List of connection categories approved for use"
+            }
+          }
+        }
+      }
+      ```
+
+      For a complete, ready-to-use version of this policy, see the full sample:
+
+      :::code language="json" source="~/foundry-samples-main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json"
+      :::
 
   This policy denies creation of Foundry connections when the connection `category` isn't in the `allowedCategories` parameter. It applies to both `Microsoft.CognitiveServices/accounts/connections` and `Microsoft.CognitiveServices/accounts/projects/connections`.
 
@@ -100,3 +138,4 @@ This library includes JSON templates for common scenarios.
 - If you can't create or assign a policy definition, confirm you have the required role at the scope you're using.
 - If a connection isn't blocked as expected, confirm the policy assignment scope includes the target resource.
 - If a policy blocks more resources than expected, review the `allowedCategories` value used in the assignment.
+- Policy evaluation can take up to 30 minutes after assignment. To force immediate evaluation, run `az policy state trigger-scan --resource-group <resource-group-name>`.

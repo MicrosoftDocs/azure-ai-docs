@@ -6,6 +6,7 @@ ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: structured-outputs
+ai-usage: ai-assisted
 ---
 
 ## Getting started
@@ -15,13 +16,12 @@ zone_pivot_groups: structured-outputs
 You can use [`Pydantic`](https://docs.pydantic.dev/latest/) to define object schemas in Python. Depending on what version of the [OpenAI](https://pypi.org/project/openai/) and [`Pydantic` libraries](https://pypi.org/project/pydantic/) you're running you might need to upgrade to a newer version. These examples were tested against `openai 1.42.0` and `pydantic 2.8.2`.
 
 ```cmd
-pip install openai pydantic --upgrade
+pip install openai pydantic azure-identity --upgrade
 ```
 
 If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Microsoft Foundry Models with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
-import os
 from pydantic import BaseModel
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -187,8 +187,7 @@ Structured Outputs for function calling can be enabled with a single parameter, 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 ```python
-from enum import Enum
-from typing import Union
+import openai
 from pydantic import BaseModel
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -224,8 +223,7 @@ print(response.model_dump_json(indent=2))
 # [Python (key-based auth)](#tab/python)
 
 ```python
-from enum import Enum
-from typing import Union
+import os
 from pydantic import BaseModel
 import openai
 from openai import OpenAI

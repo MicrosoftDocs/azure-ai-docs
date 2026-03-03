@@ -1,16 +1,16 @@
 ---
 title: Connect OpenAPI tools to Microsoft Foundry agents
 titleSuffix: Microsoft Foundry
-description: Connect OpenAPI 3.0 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication. Integrate external APIs with your AI agents today.
+description: Connect OpenAPI 3.0 tools to Microsoft Foundry agents using API key, managed identity, or anonymous authentication to integrate external APIs.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-openapi-function-new
 ---
@@ -23,9 +23,14 @@ Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 specifi
 
 ### Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ | ✔️ | ✔️ |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+
+> [!NOTE]
+> For Java, use the `com.azure:azure-ai-agents` package for OpenAPI agent tools. The `com.azure:azure-ai-projects` package doesn't currently expose OpenAPI agent tool types.
 
 ## Prerequisites
 
@@ -40,13 +45,14 @@ Before you begin, make sure you have:
   - Python: `azure-ai-projects` (latest prerelease version)
   - C#: `Azure.AI.Projects.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
+  - Java: `com.azure:azure-ai-agents`
 
 ### Environment variables
 
 | Variable | Description |
 | --- | --- |
-| `AZURE_AI_PROJECT_ENDPOINT` | Your Foundry project endpoint URL (not the external OpenAPI service endpoint). |
-| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Your deployed model name. |
+| `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint URL (not the external OpenAPI service endpoint). |
+| `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your deployed model name. |
 | `OPENAPI_PROJECT_CONNECTION_NAME` | (For API key auth) Your project connection name for the OpenAPI service. |
 
 - OpenAPI 3.0 specification file that meets these requirements:
@@ -58,7 +64,7 @@ Before you begin, make sure you have:
 - For API key/token authentication: a project connection configured with your API key or token. See [Add a new connection to your project](../../../../how-to/connections-add.md).
 
 > [!NOTE]
-> The `AZURE_AI_PROJECT_ENDPOINT` value refers to your Microsoft Foundry project endpoint, not the external OpenAPI service endpoint. You can find this endpoint in the Microsoft Foundry portal under your project’s Overview page. This endpoint is required to authenticate the agent service and is separate from any OpenAPI endpoints defined in your specification file.
+> The `FOUNDRY_PROJECT_ENDPOINT` value refers to your Microsoft Foundry project endpoint, not the external OpenAPI service endpoint. You can find this endpoint in the Microsoft Foundry portal under your project’s Overview page. This endpoint is required to authenticate the agent service and is separate from any OpenAPI endpoints defined in your specification file.
 
 ## Understand limitations
 
@@ -79,7 +85,8 @@ Before you begin, make sure you have:
 > 1. A project connection configured with the matching key name and value.
 > 
 > Without these configurations, the API key isn't included in requests. For detailed setup instructions, see the [Authenticate with API key](#authenticate-with-api-key) section.
-> You can also use token-based authentication (for example, a Bearer token) by storing the token in a project connection.
+>
+> You can also use token-based authentication (for example, a Bearer token) by storing the token in a project connection. For Bearer token auth, create a **Custom keys** connection with key set to `Authorization` and value set to `Bearer <token>` (replace `<token>` with your actual token). The word `Bearer` followed by a space must be included in the value. For details, see [Set up a Bearer token connection](#set-up-a-bearer-token-connection).
 
 :::zone pivot="python"
 ### Quick verification
@@ -95,7 +102,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
 with DefaultAzureCredential() as credential, \
      AIProjectClient(endpoint=endpoint, credential=credential) as project_client:
@@ -111,13 +118,19 @@ If this command runs without errors, you're ready to create an agent with OpenAP
 import os
 import jsonref
 from dotenv import load_dotenv
+from typing import Any, cast
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    OpenApiTool,
+    OpenApiFunctionDefinition,
+    OpenApiAnonymousAuthDetails,
+)
 
 load_dotenv()
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
 with (
     DefaultAzureCredential() as credential,
@@ -128,20 +141,17 @@ with (
     weather_asset_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../assets/weather_openapi.json"))
 
     with open(weather_asset_file_path, "r") as f:
-        openapi_weather = jsonref.loads(f.read())
+        openapi_weather = cast(dict[str, Any], jsonref.loads(f.read()))
 
-
-    # Initialize agent OpenApi tool using the read in OpenAPI spec
-    weather_tool = {
-        "type": "openapi",
-        "openapi":{
-            "name": "weather",
-            "spec": openapi_weather,
-            "auth": {
-                "type": "anonymous"
-            },
-        }
-    }
+    # Initialize agent OpenAPI tool using the read in OpenAPI spec
+    weather_tool = OpenApiTool(
+        openapi=OpenApiFunctionDefinition(
+            name="get_weather",
+            spec=openapi_weather,
+            description="Retrieve weather information for a location.",
+            auth=OpenApiAnonymousAuthDetails(),
+        )
+    )
 
     # If you want to use key-based authentication
     # IMPORTANT: Your OpenAPI spec must include securitySchemes and security sections
@@ -158,6 +168,22 @@ with (
     #   },
     #   "security": [{"apiKeyHeader": []}]
     # }
+    #
+    # For Bearer token authentication, use this securitySchemes structure instead:
+    # {
+    #   "components": {
+    #     "securitySchemes": {
+    #       "bearerAuth": {
+    #         "type": "apiKey",
+    #         "name": "Authorization",
+    #         "in": "header"
+    #       }
+    #     }
+    #   },
+    #   "security": [{"bearerAuth": []}]
+    # }
+    # Then set connection key = "Authorization" and value = "Bearer <token>"
+    # The word "Bearer" followed by a space MUST be included in the value.
     
     openapi_connection = project_client.connections.get(os.environ["OPENAPI_PROJECT_CONNECTION_NAME"])
     connection_id = openapi_connection.id
@@ -169,46 +195,45 @@ with (
             "name": "TOOL_NAME",
             "spec": SPEC_NAME,  # Must include securitySchemes and security sections
             "auth": {
-                  "type": "project_connection",
-                  "security_scheme": {
-                      "project_connection_id": connection_id              
-                  }              
+                "type": "project_connection",
+                "security_scheme": {
+                    "project_connection_id": connection_id
+                }
             },
         }
     }
 
     # If you want to use Managed Identity authentication
     openapi_mi_auth_tool={
-      "type": "openapi",
-      "openapi":{
-          "name": "TOOL_NAME",
-          "description": "",
-          "spec": SPEC_NAME,
-          "auth": {
-              "type": "managed_identity",
-              "security_scheme": {
-                  "audience": ""  #audience to the service, such as https://ai.azure.com     
-              }              
-              },
-      }
-  }
+        "type": "openapi",
+        "openapi":{
+            "name": "TOOL_NAME",
+            "description": "",
+            "spec": SPEC_NAME,
+            "auth": {
+                "type": "managed_identity",
+                "security_scheme": {
+                    "audience": ""  #audience to the service, such as https://ai.azure.com
+                }
+            },
+        }
+    }
 
     agent = project_client.agents.create_version(
-        agent_name="MyAgent23",
+        agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant.",
             tools=[weather_tool],
         ),
-        description="You are a helpful assistant.",
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
     response = openai_client.responses.create(
         input="What's the weather in Seattle?",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
-    print(f"Response created: {response.output_text}")
+    print(f"Agent response: {response.output_text}")
 
     print("\nCleaning up...")
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
@@ -227,7 +252,7 @@ This example creates an agent with an OpenAPI tool that calls the wttr.in weathe
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 - Local file: `weather_openapi.json` (OpenAPI specification)
 
 ### Expected output
@@ -268,8 +293,8 @@ class OpenAPIDemo
     public static void Main()
     {
         // First, create an agent client and read the environment variables, which will be used in the next steps.
-        var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-        var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+        var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
         AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
         // Create an Agent with `OpenAPIAgentTool` and anonymous authentication.
@@ -317,7 +342,7 @@ This C# example creates an agent with an OpenAPI tool that retrieves weather inf
 
 ### Required inputs
 
-- Environment variables: `PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 - Local file: `Assets/weather_openapi.json` (OpenAPI specification)
 
 ### Expected output
@@ -352,8 +377,8 @@ class OpenAPIConnectedDemo
     public static void Main()
     {
         // First, we need to create agent client and read the environment variables, which will be used in the next steps.
-        var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-        var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+        var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
         AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
         // Create an Agent with `OpenAPIAgentTool` and authentication by project connection security scheme.
@@ -418,7 +443,7 @@ This C# example demonstrates using an OpenAPI tool with API key authentication t
 
 ### Required inputs
 
-- Environment variables: `PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 - Local file: `Assets/tripadvisor_openapi.json`
 - Project connection: `tripadvisor` with valid API key configured
 
@@ -440,6 +465,141 @@ Here are 5 top hotels in Paris, France:
 
 :::zone-end
 
+:::zone pivot="java"
+
+## Create a Java agent with OpenAPI tool capabilities
+
+This Java example creates an agent with an OpenAPI tool by using `com.azure:azure-ai-agents` and a local OpenAPI 3.0 spec file. The sample uses anonymous authentication and calls a public API endpoint.
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.AgentsServiceVersion;
+import com.azure.ai.agents.ConversationsClient;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.OpenApiAgentTool;
+import com.azure.ai.agents.models.OpenApiAnonymousAuthDetails;
+import com.azure.ai.agents.models.OpenApiFunctionDefinition;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.json.JsonProviders;
+import com.azure.json.JsonReader;
+import com.openai.models.conversations.Conversation;
+import com.openai.models.conversations.items.ItemCreateParams;
+import com.openai.models.responses.EasyInputMessage;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+
+public class OpenApiAgentJavaSample {
+    public static void main(String[] args) throws Exception {
+        String endpoint = System.getenv("FOUNDRY_PROJECT_ENDPOINT");
+        if (endpoint == null || endpoint.isBlank()) {
+            endpoint = System.getenv("PROJECT_ENDPOINT");
+        }
+
+        String model = System.getenv("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        if (model == null || model.isBlank()) {
+            model = System.getenv("MODEL_DEPLOYMENT_NAME");
+        }
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .endpoint(endpoint)
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .serviceVersion(AgentsServiceVersion.V2025_11_15_PREVIEW);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+        ConversationsClient conversationsClient = builder.buildConversationsClient();
+
+        JsonReader reader = JsonProviders.createReader(Files.readAllBytes(Path.of("openapi_spec.json")));
+        BinaryData spec = reader.getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped()));
+
+        OpenApiFunctionDefinition toolDefinition = new OpenApiFunctionDefinition(
+            "httpbin_get",
+            spec,
+            new OpenApiAnonymousAuthDetails())
+            .setDescription("Get request metadata from an OpenAPI endpoint.");
+
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+            .setInstructions("Use the OpenAPI tool for HTTP request metadata.")
+            .setTools(Arrays.asList(new OpenApiAgentTool(toolDefinition)));
+
+        AgentVersionDetails agentVersion = agentsClient.createAgentVersion("openapiValidationAgentJava", agentDefinition);
+        System.out.println("Agent: " + agentVersion.getName() + ", version: " + agentVersion.getVersion());
+
+        Conversation conversation = conversationsClient.getConversationService().create();
+        conversationsClient.getConversationService().items().create(
+            ItemCreateParams.builder()
+                .conversationId(conversation.id())
+                .addItem(EasyInputMessage.builder()
+                    .role(EasyInputMessage.Role.USER)
+                    .content("Use the OpenAPI tool and summarize the returned URL and origin in one sentence.")
+                    .build())
+                .build());
+
+        try {
+            AgentReference agentReference = new AgentReference(agentVersion.getName()).setVersion(agentVersion.getVersion());
+            ResponseCreateParams.Builder options = ResponseCreateParams.builder().maxOutputTokens(300L);
+            Response response = responsesClient.createWithAgentConversation(agentReference, conversation.id(), options);
+
+            String text = response.output().stream()
+                .filter(item -> item.isMessage())
+                .map(item -> item.asMessage().content()
+                    .get(item.asMessage().content().size() - 1)
+                    .asOutputText()
+                    .text())
+                .reduce((first, second) -> second)
+                .orElse("<no message output>");
+
+            System.out.println("Status: " + response.status().map(Object::toString).orElse("unknown"));
+            System.out.println("Response: " + text);
+        } finally {
+            agentsClient.deleteAgentVersion(agentVersion.getName(), agentVersion.getVersion());
+            System.out.println("Agent deleted");
+        }
+    }
+}
+```
+
+### What this code does
+
+This Java example creates an agent with an OpenAPI tool and runs a conversation-scoped response:
+
+1. Loads the OpenAPI specification from `openapi_spec.json`.
+1. Creates an agent version with `OpenApiAgentTool`.
+1. Creates a conversation and adds a user message.
+1. Creates a response by passing `AgentReference` and conversation ID.
+1. Cleans up by deleting the agent version.
+
+### Required inputs
+
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT` (or `PROJECT_ENDPOINT`) and `FOUNDRY_MODEL_DEPLOYMENT_NAME` (or `MODEL_DEPLOYMENT_NAME`)
+- Local file: `openapi_spec.json` (OpenAPI 3.0 specification)
+
+### Expected output
+
+```console
+Agent: openapiValidationAgentJava, version: 1
+Status: completed
+Response: The API response reports URL ... and origin ...
+Agent deleted
+```
+
+### Common errors
+
+- `Invalid OpenAPI specification`: Parse the OpenAPI JSON into an object before passing it to `OpenApiFunctionDefinition`.
+- `Invalid conversation id`: Create a conversation and pass `conversation.id()` to `createWithAgentConversation`.
+- `AuthenticationFailedException`: Verify `DefaultAzureCredential` can get a token for your signed-in account.
+
+:::zone-end
+
 :::zone pivot="rest"
 The following examples show how to call an OpenAPI tool by using the REST API.
 
@@ -447,11 +607,11 @@ The following examples show how to call an OpenAPI tool by using the REST API.
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   --header "Authorization: Bearer $AGENT_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
-    "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
     "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
     "tools": [
       {
@@ -514,11 +674,11 @@ curl --request POST \
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   --header "Authorization: Bearer $AGENT_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
-    "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
     "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
     "tools": [
       {
@@ -598,11 +758,11 @@ curl --request POST \
 
 ```bash
 curl --request POST \
-  --url "$AZURE_AI_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION" \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
   --header "Authorization: Bearer $AGENT_TOKEN" \
   --header "Content-Type: application/json" \
   --data '{
-    "model": "'$AZURE_AI_MODEL_DEPLOYMENT_NAME'",
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
     "input": "Use the OpenAPI tool to get the weather in Seattle, WA today.",
     "tools": [
       {
@@ -677,7 +837,7 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `API_VERSION`, `AGENT_TOKEN`, `AZURE_AI_MODEL_DEPLOYMENT_NAME`.
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`.
 - For API key auth: `WEATHER_APP_PROJECT_CONNECTION_ID`.
 - For managed identity auth: `MANAGED_IDENTITY_AUDIENCE`.
 - Inline OpenAPI specification in request body.
@@ -714,13 +874,13 @@ This REST API example shows how to call an OpenAPI tool with different authentic
 
 ## Create an agent with OpenAPI tool capabilities
 
-The following TypeScript code example demonstrates how to create an AI agent with OpenAPI tool capabilities by using the `OpenApiAgentTool` and synchronous Azure AI Projects client. The agent can call external APIs defined by OpenAPI specifications. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApi.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript code example demonstrates how to create an AI agent with OpenAPI tool capabilities by using the `OpenApiTool` and synchronous Azure AI Projects client. The agent can call external APIs defined by OpenAPI specifications. For a JavaScript version of this example, see the [sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentOpenApi.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import {
   AIProjectClient,
-  OpenApiAgentTool,
+  OpenApiTool,
   OpenApiFunctionDefinition,
   OpenApiAnonymousAuthDetails,
 } from "@azure/ai-projects";
@@ -728,8 +888,8 @@ import * as fs from "fs";
 import * as path from "path";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const weatherSpecPath = path.resolve(__dirname, "../assets", "weather_openapi.json");
 
 function loadOpenApiSpec(specPath: string): unknown {
@@ -745,7 +905,7 @@ function loadOpenApiSpec(specPath: string): unknown {
   }
 }
 
-function createWeatherTool(spec: unknown): OpenApiAgentTool {
+function createWeatherTool(spec: unknown): OpenApiTool {
   const auth: OpenApiAnonymousAuthDetails = { type: "anonymous" };
   const definition: OpenApiFunctionDefinition = {
     name: "get_weather",
@@ -849,7 +1009,7 @@ This TypeScript example creates an agent with an OpenAPI tool for weather data b
 
 ## Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`
 - Local file: `../assets/weather_openapi.json` (OpenAPI specification)
 
 ### Expected output
@@ -887,7 +1047,7 @@ The following TypeScript code example demonstrates how to create an AI agent tha
 import { DefaultAzureCredential } from "@azure/identity";
 import {
   AIProjectClient,
-  OpenApiAgentTool,
+  OpenApiTool,
   OpenApiFunctionDefinition,
   OpenApiProjectConnectionAuthDetails,
 } from "@azure/ai-projects";
@@ -895,8 +1055,8 @@ import * as fs from "fs";
 import * as path from "path";
 import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const tripAdvisorProjectConnectionId =
   process.env["TRIPADVISOR_PROJECT_CONNECTION_ID"] || "<tripadvisor project connection id>";
 const tripAdvisorSpecPath = path.resolve(__dirname, "../assets", "tripadvisor_openapi.json");
@@ -914,7 +1074,7 @@ function loadOpenApiSpec(specPath: string): unknown {
   }
 }
 
-function createTripAdvisorTool(spec: unknown): OpenApiAgentTool {
+function createTripAdvisorTool(spec: unknown): OpenApiTool {
   const auth: OpenApiProjectConnectionAuthDetails = {
     type: "project_connection",
     security_scheme: {
@@ -1026,7 +1186,7 @@ This TypeScript example demonstrates using an OpenAPI tool with API key authenti
 
 ### Required inputs
 
-- Environment variables: `AZURE_AI_PROJECT_ENDPOINT`, `MODEL_DEPLOYMENT_NAME`, `TRIPADVISOR_PROJECT_CONNECTION_ID`
+- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `TRIPADVISOR_PROJECT_CONNECTION_ID`
 - Local file: `../assets/tripadvisor_openapi.json`
 - Project connection configured with TripAdvisor API key
 
@@ -1119,6 +1279,53 @@ By using API key authentication, you can authenticate your OpenAPI spec by using
       - value: YOUR_API_KEY
 1. After you create a connection, you can use it through the SDK or REST API. Use the tabs at the top of this article to see code examples.
 
+## Set up a Bearer token connection
+
+You can use token-based authentication (for example, a Bearer token) with the same `project_connection` auth type used for API keys. The key difference is how you configure both the OpenAPI spec and the project connection.
+
+Your OpenAPI spec will look like this:
+```json
+  BearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+```
+
+You need to:
+1. Update your OpenAPI spec `securitySchemes` to use `Authorization` as the header name:
+
+   ```json
+   "securitySchemes": {
+       "bearerAuth": {
+           "type": "apiKey",
+           "name": "Authorization",
+           "in": "header"
+       }
+   }
+   ```
+
+1. Add a `security` section that references the scheme:
+
+   ```json
+   "security": [
+       {
+           "bearerAuth": []
+       }
+   ]
+   ```
+
+1. Create a **Custom keys** connection in your Foundry project:
+   1. Go to the [Foundry portal](https://ai.azure.com/nextgen?cid=learnDocs) and open your project.
+   1. Create or select a connection that stores the secret. See [Add a new connection to your project](../../../../how-to/connections-add.md).
+   1. Enter the following values:
+      - **key**: `Authorization` (must match the `name` field in your `securitySchemes`)
+      - **value**: `Bearer <token>` (replace `<token>` with your actual token)
+
+   > [!IMPORTANT]
+   > The value must include the word `Bearer` followed by a space before the token. For example: `Bearer eyJhbGciOiJSUzI1NiIs...`. If you omit `Bearer `, the API receives a raw token without the required authorization scheme prefix, and the request fails.
+
+1. After you create the connection, use it with the `project_connection` auth type in your code, the same way you would for API key authentication. The connection ID uses the same format: `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
+
 ## Authenticate by using managed identity (Microsoft Entra ID)
 
 [Microsoft Entra ID](/entra/fundamentals/what-is-entra) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security to your APIs without needing to use API keys. When you set up managed identity authentication, the agent authenticates through the Foundry tool it uses.
@@ -1154,6 +1361,7 @@ To set up authentication by using Managed Identity:
 | Tool returns unexpected response format. | Response schema not defined in OpenAPI spec. | Add response schemas to your OpenAPI spec for better model understanding. |
 | `operationId` validation error. | Invalid characters in `operationId`. | Use only letters, `-`, and `_` in `operationId` values. Remove numbers and special characters. |
 | Connection not found error. | Connection name or ID mismatch. | Verify `OPENAPI_PROJECT_CONNECTION_NAME` matches the connection name in your Foundry project. |
+| Bearer token not sent correctly. | Connection value missing `Bearer ` prefix. | Set the connection value to `Bearer <token>` (with the word `Bearer` and a space before the token). Verify the OpenAPI spec `securitySchemes` uses `"name": "Authorization"`. |
 
 ## Choose an authentication method
 

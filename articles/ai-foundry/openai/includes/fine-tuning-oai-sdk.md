@@ -20,7 +20,7 @@ ms.custom:
 - You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - You need the following Python libraries: `os`, `json`, `requests`, `openai`.
 - You need the OpenAI Python library.
-- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine tune) models, only AI Owners may deploy them.
+- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them.
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../how-to/role-based-access-control.md).  
 
 ### Supported models

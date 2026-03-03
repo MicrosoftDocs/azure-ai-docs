@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: This article provides conceptual overview of the AI Red Teaming Agent.
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 02/25/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -161,7 +161,7 @@ The AI Red Teaming Agent currently supported red teaming Foundry agents with Azu
 | Connected Agent tool calls              | Not Supported |
 | Computer Use tool calls                  | Not Supported |
 
-For a comprehensive list of tools, see [Tools](../agents/how-to/tools/overview.md).
+For a comprehensive list of tools, see [Tools](../agents/how-to/tools-classic/overview.md).
 
 ::: moniker-end
 

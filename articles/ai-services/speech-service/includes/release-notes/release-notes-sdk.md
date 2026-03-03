@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 9/24/2025
+ms.date: 02/26/2026
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
@@ -10,6 +10,42 @@ ms.reviewer: pafarley
 
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.48.2: 2026-February release
+
+> [!IMPORTANT]
+> This release includes a critical fix for Certificate Revocation List (CRL) partitioning on Linux and Android. If you use either platform with CRL checking enabled, upgrade to 1.48.2 before July 1, 2026. For details, see [CRL compatibility update](../../migrate-to-sdk-1-48-2.md).
+
+#### Bug fixes:
+  * Fixed CRL cache key logic on Linux and Android to correctly handle partitioned CRLs. The SDK now uses both the issuer name and the CRL distribution point as the cache key, preventing `X509_V_ERR_DIFFERENT_CRL_SCOPE` (error 44) failures when connecting across Azure regions or after certificate rotation.
+  * Fixed potential connection failures after certificate rotation on Linux and Android when CRL checking is enabled.
+
+### Speech SDK 1.48.1: 2026-February release
+
+Notes on target platform support:
+ * Android x86 support will be dropped after this release.
+   
+#### New features:
+  * Disabled CRL checks by default on Linux and Android.
+  * Enhanced network error handling and logging.
+  * Optimized the construction time of large phrase lists.
+  * **Java:** Added support for speech synthesis input text streaming.
+  * **Java:** Improved JNI memory management.
+  * **JavaScript:** Recognition Latency Metrics - Recognition results now include SpeechServiceResponse_RecognitionLatencyMs property measuring end-to-end latency from audio input to result.
+   * **JavaScript:** Stop Timeout for Recognizers - New Recognizer_StopTimeoutMs property enables timeout protection for stopContinuousRecognitionAsync(). When set, if the service doesn't complete within the specified time, the
+  operation cancels immediately rather than waiting indefinitely.
+   * **JavaScript:** Avatar Scene Configuration - New AvatarSceneConfig class allows configuring avatar zoom, position (X/Y), rotation (X/Y/Z), and amplitude. Scene can be updated at runtime via AvatarSynthesizer.updateSceneAsync().
+#### Bug fixes:
+  * Fixed a crash in dictation mode when logging is enabled.
+  * Fixed CRL related memory leaks in the network stack.
+  * Fixed performance counters data sometimes missing in embedded speech recognition.
+  * Fixed silence length mapping to punctuation in embedded speech synthesis.
+  * Fixed word boundary caching in hybrid speech synthesis.
+  * **JavaScript:** Auto source language detection now accepts blank/empty "from" language parameter.
+  * **JavaScript:** Added @azure/core-auth as SDK dependency for improved Azure identity integration.
+  
+#### Samples:
+**Java, Python:** Updated versions of multiple dependencies to address security vulnerabilities.
 
 ### Speech SDK 1.47: 2025-November release
 > [!IMPORTANT]
@@ -59,13 +95,13 @@ ms.reviewer: pafarley
   * [JavaScript] Fixed an issue where `fromHost` did not work with Docker container service. 
 
 #### Samples
-  * Updated samples to demonstrate the usage of `AzureKeyCredential` and `AAD token credential` authentications. 
+  * Updated samples to demonstrate the usage of `AzureKeyCredential` and `Microsoft Entra ID token credential` authentications. 
   * [JavaScript, Python] Updated samples to use `fromEndpoint`. 
 
 ### Speech SDK 1.45: 2025-July release
 
 #### New features:
-  * Added support for setting the phrase list grammar weight. (Currently only effects embedded scenarios)
+  * Added support for setting the phrase list grammar weight.
   * Added more specific file opening error codes.
   * Updated Unicode path support so that SDK Windows DLLs can be located under non-ASCII paths.
   * Updated descriptions of segmentation strategy properties to align with the service logic.
@@ -78,7 +114,7 @@ ms.reviewer: pafarley
   * Fixed custom domain resolution not working with Node.js v22 or newer.
 
 #### Samples
-  * [Java] Added sample code to demonstrate AAD token credential authentication.
+  * [Java] Added sample code to demonstrate Microsoft Entra ID token credential authentication.
 
 ### Speech SDK 1.44.1: Patch release
 
@@ -157,11 +193,11 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
   * Updated TranslationRecognizer to use V2 endpoints by default.
     * This moves control parameters from the URL to in-channel messages when using a V2 endpoint.
     * Behavior change: The default language returned for "zh" is now "zh-CN" instead of "zh-hans"
-  * Added property ids for SpeechSynthesis_FrameTimeoutInterval and SpeechSynthesis_RtfTimeoutThreshold.
+  * Added property IDs for SpeechSynthesis_FrameTimeoutInterval and SpeechSynthesis_RtfTimeoutThreshold.
   * Optimized the number of times the SDK reconnects for long running recognitions.
   * [C++, Python] Added support for specifying the style and temperature in text streaming requests.
-  * [C#] Added support for automatic AAD token refresh when using FromEndpoint to construct a config object.
-    * This adds a dependency from the Speech SDK to the Azure.Core nuget package.
+  * [C#] Added support for automatic Microsoft Entra ID token refresh when using FromEndpoint to construct a config object.
+    * This adds a dependency from the Speech SDK to the Azure.Core NuGet package.
     * The Speech SDK can now accept TokenCredential derived objects for authentication when using:
       * SpeechRecognizer
       * TranslationRecognizer
@@ -185,7 +221,7 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
   * [C#] Added a scenario sample for a multi-tier speech recognition application.
     * Demonstrates a methodology for audio replay and reconnection from an edge device to a middle tier service that 
 then forwards audio to the Speech Service via the Speech SDK
-  * [C#] Updated samples to use automatic AAD token refresh.
+  * [C#] Updated samples to use automatic Microsoft Entra ID token refresh.
   * [Python] Added samples for new diagnostics APIs.
   * [Unity] Added instructions for installing the new Azure.Core dependency.
 
@@ -264,7 +300,7 @@ We added text to speech avatar code samples for [Android](https://github.com/Azu
 *  Added support for pitch, rate, and volume setting in input text streaming in speech synthesis.
 *  Added support for personal voice input text streaming by introducing `PersonalVoiceSynthesisRequest` in speech synthesis. This API is in preview and subject to change in future versions.
 *  Added support for diarization of intermediate results when `ConversationTranscriber` is used.
-*  Removed CentOS/RHEL 7 support due to [CentOS 7 EOL](https://www.redhat.com/topics/linux/centos-linux-eol) and [the end of RHEL 7 Maintenance Support 2](https://access.redhat.com/product-life-cycles?product=Red%20Hat%20Enterprise%20Linux,OpenShift%20Container%20Platform%204).
+*  Removed CentOS/RHEL 7 support due to [CentOS 7 end of support](https://www.redhat.com/topics/linux/centos-linux-eol) and [the end of RHEL 7 Maintenance Support 2](https://access.redhat.com/product-life-cycles?product=Red%20Hat%20Enterprise%20Linux,OpenShift%20Container%20Platform%204).
 *  Use of embedded speech models now requires a model license instead of a model key. If you're an existing embedded speech customer and want to upgrade, please contact your support person at Microsoft for details on model updates.
 
 #### Bug fixes
@@ -1200,7 +1236,7 @@ Stay healthy!
 - Linux: Added support for .NET Core C# on Linux ARM32 and Arm64. Read more [here](../../speech-sdk.md?tabs=linux).
 - C#, C++: Added `UtteranceId` in `ConversationTranscriptionResult`, a consistent ID across all the intermediates and final speech recognition result. Details for [C#](/dotnet/api/microsoft.cognitiveservices.speech.transcription.conversationtranscriptionresult), [C++](/cpp/cognitive-services/speech/transcription-conversationtranscriptionresult).
 - Python: Added support for `Language ID`. See speech_sample.py in [GitHub repo](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/python/console).
-- Windows: Added compressed audio input format support on Windows platform for all the win32 console applications. Details [here](../../how-to-use-codec-compressed-audio-input-streams.md).
+- Windows: Added compressed audio input format support on Windows platform for all the Win32 console applications. Details [here](../../how-to-use-codec-compressed-audio-input-streams.md).
 - JavaScript: Support speech synthesis (text to speech) in NodeJS. Learn more [here](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/javascript/node/text-to-speech).
 - JavaScript: Add new APIs to enable inspection of all send and received messages. Learn more [here](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/javascript).
 

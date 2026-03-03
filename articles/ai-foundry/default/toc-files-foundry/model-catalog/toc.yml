@@ -41,10 +41,8 @@ items:
   items:
   - name: Image generation
     href: ../../../openai/how-to/dall-e.md
-  - name: Image generation quickstart
-    href: ../../../openai/dall-e-quickstart.md
   - name: Video generation
-    href: ../../../openai/video-generation-quickstart.md
+    href: ../../../openai/concepts/video-generation.md
   - name: Vision-enabled chats
     href: ../../../openai/how-to/gpt-with-vision.md
   - name: Image prompt engineering techniques
@@ -63,6 +61,8 @@ items:
     href: ../../../openai/how-to/realtime-audio-websockets.md
   - name: Realtime API via SIP
     href: ../../../openai/how-to/realtime-audio-sip.md
+  - name: Realtime API migration from Preview to GA
+    href: ../../../openai/how-to/realtime-audio-preview-api-migration-guide.md
   - name: Speech to text with Whisper
     href: ../../../openai/whisper-quickstart.md
 

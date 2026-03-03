@@ -5,7 +5,7 @@ description: "Deploy Anthropic's Claude models in Microsoft Foundry to integrate
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 02/17/2026
 ms.custom: ignite-2024, dev-focus, pilot-ai-workflow-jan-2026 
 author: msakande
 ms.author: mopeakande
@@ -35,7 +35,7 @@ Claude models in Foundry include:
 | Model family | Models |
 |--|--|
 | Claude Opus | `claude-opus-4-6` (preview), `claude-opus-4-5` (preview), `claude-opus-4-1` (preview)|
-| Claude Sonnet | `claude-sonnet-4-5` (preview)|
+| Claude Sonnet | `claude-sonnet-4-6` (preview), `claude-sonnet-4-5` (preview)|
 | Claude Haiku | `claude-haiku-4-5` (preview)|
 
 To learn more about the individual models, see [Available Claude models](#available-claude-models).
@@ -69,12 +69,17 @@ After you deploy a Claude model, interact with it to generate text responses:
 
 ### Send messages with authentication
 
-The following examples show how to send requests to Claude Sonnet 4.5 using Microsoft Entra ID or API key authentication. To work with your deployed model, you need:
+The following examples show how to send requests to Claude Sonnet 4.6 using Microsoft Entra ID or API key authentication. To work with your deployed model, you need:
 
 - Your base URL, which is of the form `https://<resource name>.services.ai.azure.com/anthropic`.
 - Your target URI from your deployment details, which is of the form `https://<resource name>.services.ai.azure.com/anthropic/v1/messages`.
 - Microsoft Entra ID for keyless authentication or your deployment's API key for API authentication.
 - Deployment name you chose during deployment creation. This name can be different from the model ID.
+
+> [!NOTE]
+> The `thinking` parameter supports types: `enabled` and `disabled`. For, Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level.
+>
+> The `effort` parameter, which controls the quality/cost tradeoff for responses, supports effort levels: `low`, `medium`, and `high`. For Opus 4.6 and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
 
 # [Python](#tab/python)
 
@@ -112,7 +117,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
     
     baseURL = "https://<resource-name>.services.ai.azure.com/anthropic" # Your base URL. Replace <resource-name> with your resource name
-    deploymentName = "claude-sonnet-4-5" # Replace with your deployment name
+    deploymentName = "claude-sonnet-4-6" # Replace with your deployment name
     
     # Create token provider for Entra ID authentication
     tokenProvider = get_bearer_token_provider(
@@ -129,15 +134,19 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     message = client.messages.create(
         model=deploymentName,
         messages=[
-            {"role": "user", "content": "What is the capital/major city of France?"}
+            {"role": "user", "content": "What are 3 things to visit in Seattle?"}
         ],
-        max_tokens=1024,
+        max_tokens=1048,
+        temperature=1,
+        thinking={"type":"adaptive"},
+        output_config={"effort": "max"},
+        stream=False
     )
     
     print(message.content)
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+    **Expected output:** A JSON response containing the model's text completion with three Seattle recommendations.
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
@@ -160,7 +169,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     from anthropic import AnthropicFoundry
     
     baseURL = "https://<resource-name>.services.ai.azure.com/anthropic" # Your base URL. Replace <resource-name> with your resource name
-    deploymentName = "claude-sonnet-4-5" # Replace with your deployment name
+    deploymentName = "claude-sonnet-4-6" # Replace with your deployment name
     apiKey = "YOUR_API_KEY" # Replace YOUR_API_KEY with your API key
     
     # Create client with API key authentication
@@ -173,15 +182,19 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     message = client.messages.create(
         model=deploymentName,
         messages=[
-            {"role": "user", "content": "What is the capital/major city of France?"}
+            {"role": "user", "content": "What are 3 things to visit in Seattle?"}
         ],
-        max_tokens=1024,
+        max_tokens=1048,
+        temperature=1,
+        thinking={"type":"adaptive"},
+        output_config={"effort": "max"},
+        stream=False
     )
     
     print(message.content)
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+    **Expected output:** A JSON response containing the model's text completion with three Seattle recommendations.
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks)
 
@@ -235,7 +248,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     import { getBearerTokenProvider, DefaultAzureCredential } from "@azure/identity";
     
     const baseURL = "https://<resource-name>.services.ai.azure.com/anthropic"; // Your base URL. Replace <resource-name> with your resource name
-    const deploymentName = "claude-sonnet-4-5" // Replace with your deployment name
+    const deploymentName = "claude-sonnet-4-6" // Replace with your deployment name
     
     // Create token provider for Entra ID authentication
     const tokenProvider = getBearerTokenProvider(
@@ -252,13 +265,17 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     // Send request
     const message = await client.messages.create({
         model: deploymentName,
-        messages: [{ role: "user", content: "What is the capital/major city of France?" }],
-        max_tokens: 1024,
+        messages: [{ role: "user", content: "What are 3 things to visit in Seattle?" }],
+        max_tokens: 1048,
+        temperature: 1,
+        thinking: {"type": "adaptive"},
+        output_config: {"effort": "max"},
+        stream: false
     });
     console.log(message);
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+    **Expected output:** A JSON response containing the model's text completion with three Seattle recommendations.
 
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks), [DefaultAzureCredential](/javascript/api/@azure/identity/defaultazurecredential)
 
@@ -294,7 +311,7 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     import AnthropicFoundry from '@anthropic-ai/foundry-sdk';
     
     const baseURL = "https://<resource-name>.services.ai.azure.com/anthropic"; // Your base URL. Replace <resource-name> with your resource name
-    const deploymentName = "claude-sonnet-4-5" // Replace with your deployment name
+    const deploymentName = "claude-sonnet-4-6" // Replace with your deployment name
     const apiKey = "<your-api-key>"; // Your API key
     
     // Create client with API key
@@ -307,13 +324,17 @@ For Messages API endpoints, use your base URL and API key to authenticate agains
     // Send request
     const message = await client.messages.create({
         model: deploymentName,
-        messages: [{ role: "user", content: "What is the capital/major city of France?" }],
-        max_tokens: 1024,
+        messages: [{ role: "user", content: "What are 3 things to visit in Seattle?" }],
+        max_tokens: 1048,
+        temperature: 1,
+        thinking: {"type": "adaptive"},
+        output_config: {"effort": "max"},
+        stream: false
     });
     console.log(message);
     ```
 
-    **Expected output:** A JSON response with the model's text completion in `message.content`, such as `"The capital/major city of France is Paris."`
+    **Expected output:** A JSON response containing the model's text completion with three Seattle recommendations.
 
     **Reference:** [AnthropicFoundry SDK](https://docs.claude.com/en/api/client-sdks)
 
@@ -357,15 +378,18 @@ If you configure the resource with Microsoft Entra ID support, pass your token i
       -d '{
         "messages": [
           {
-            "role": "system", "content": "You are a helpful assistant."
+            "role": "user", "content": "You are a helpful assistant."
           },
           {
             "role": "user", "content": "What are 3 things to visit in Seattle?"
           }
         ],
-        "max_tokens": 1000,
-        "temperature": 0.7,
-        "model": "claude-sonnet-4-5"
+        "max_tokens": 1048,
+        "temperature": 1,
+        "model": "claude-sonnet-4-6",
+        "thinking": {"type":"adaptive"},
+        "output_config": {"effort": "max"},
+        "stream": false
         }'
     ```
 
@@ -407,15 +431,18 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
       -d '{
         "messages": [
           {
-            "role": "system", "content": "You are a helpful assistant."
+            "role": "user", "content": "You are a helpful assistant."
           },
           {
             "role": "user", "content": "What are 3 things to visit in Seattle?"
           }
         ],
-        "max_tokens": 1000,
-        "temperature": 0.7,
-        "model": "claude-sonnet-4-5"
+        "max_tokens": 1048,
+        "temperature": 1,
+        "model": "claude-sonnet-4-6",
+        "thinking": {"type":"adaptive"},
+        "output_config": {"effort": "max"},
+        "stream": false
         }'
     ```
 
@@ -427,7 +454,7 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ## Available Claude models
 
-Foundry supports Claude Opus 4.6, Claude Opus 4.5, Claude Opus 4.1, Claude Sonnet 4.5, and Claude Haiku 4.5 models through global standard deployment. These models have key capabilities:
+Foundry supports Claude Opus 4.6, Claude Opus 4.5, Claude Opus 4.1, Claude Sonnet 4.6, Claude Sonnet 4.5, and Claude Haiku 4.5 models through global standard deployment. These models have key capabilities:
 
 - **Extended thinking**: Enhanced reasoning for complex tasks.
 - **Image and text input**: Strong vision for analyzing charts, graphs, technical diagrams, reports, and other visual assets.
@@ -437,7 +464,7 @@ For more details about the model capabilities, see [capabilities of Claude model
 
 ### Claude Opus 4.6 (preview)
 
-Claude Opus 4.6 is the latest version of Anthropic's most intelligent model, and the world's best model for coding, enterprise agents, and professional work.  With a 1M token context window (beta) and 128K max output, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
+Claude Opus 4.6 is the latest version of Anthropic's most intelligent model, and the world's best model for coding, enterprise agents, and professional work.  With a **1M token context window (beta) and 128K max output**, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
 
 ### Claude Opus 4.5 (preview)
 
@@ -447,6 +474,10 @@ Claude Opus 4.5 is an industry leader in coding, agents, computer use, and enter
 
 Claude Opus 4.1 is an industry leader for coding. It delivers sustained performance on long-running tasks that require focused effort and thousands of steps, significantly expanding what AI agents can solve.
 
+### Claude Sonnet 4.6 (preview)
+
+Claude Sonnet 4.6 delivers frontier intelligence at scale—built for coding, agents, and enterprise workflows. With a **1M token context window (beta) and 128K max output**, Sonnet 4.6 is ideal for coding, agents, office tasks, financial analysis, cybersecurity, and computer use.
+ 
 ### Claude Sonnet 4.5 (preview)
 
 Claude Sonnet 4.5 is a highly capable model designed for building real-world agents and handling complex, long-horizon tasks. It offers a strong balance of speed and cost for high-volume use cases. Sonnet 4.5 also provides advanced accuracy for computer use, enabling developers to direct Claude to use computers the way people do.
@@ -467,7 +498,16 @@ Some of the **Core capabilities** that Foundry supports are:
 - **Agent skills:** Extend Claude's capabilities with skills.
 - **Citations:** Ground Claude's responses in source documents.
 - **Context editing:** Automatically manage conversation context with configurable strategies.
-- **Extended thinking:** Enhanced reasoning capabilities for complex tasks.
+- **Extended thinking:** Enhanced reasoning capabilities for complex tasks available with all Claude models. 
+
+    > [!TIP]
+    > The `thinking` parameter supports types: `enabled` and `disabled`. For, Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level.
+
+- **Effort:** Ability to control the quality/cost tradeoff for responses.
+
+    > [!TIP]
+    > The `effort` parameter supports effort levels: `low`, `medium`, and `high`. For Opus 4.6 and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
+
 - **PDF support:** Process and analyze text and visual content from PDF documents.
 - **Prompt caching:** Provide Claude with more background knowledge and example outputs to reduce costs and latency.
 
@@ -494,9 +534,10 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 | Model        |   Deployment type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
 |:------------------|:----------------|:--------------|:--------------|:-----------|:-----------|
-| claude-opus-4-6   | [Global Standard](../concepts/deployment-types.md#global-standard)  | 0        | 0    | 2,000      | 2,000,000     |
+| claude-opus-4-6   | [Global Standard](../concepts/deployment-types.md#global-standard)  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-5   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-1   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
+| claude-sonnet-4-6 | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-sonnet-4-5 | Global Standard  |0        | 0    | 4,000      | 2,000,000  |
 | claude-haiku-4-5  | Global Standard  |0        | 0    | 4,000      | 4,000,000  |
 
@@ -528,7 +569,7 @@ When using Claude models in Foundry, consider these responsible AI practices:
 
 ::: moniker-end
 
-- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
+- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 4.6](https://www.anthropic.com/claude-sonnet-4-6-system-card), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
 
 ## Best practices
 
@@ -541,6 +582,7 @@ Choose the appropriate Claude model based on your specific requirements:
 - **Claude Opus 4.6**: Most intelligent model for building agents, coding, and enterprise workflows.
 - **Claude Opus 4.5**: Best performance across coding, agents, computer use, and enterprise workflows.
 - **Claude Opus 4.1**: Complex reasoning and enterprise applications.
+- **Claude Sonnet 4.6**: Frontier intelligence at scale for coding, agents, and most use cases.
 - **Claude Sonnet 4.5**: Balanced performance and capabilities, production workflows.
 - **Claude Haiku 4.5**: Speed and cost optimization, high-volume processing.
 

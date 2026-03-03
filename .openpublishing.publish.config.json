@@ -125,7 +125,13 @@
     {
       "path_to_root": "foundry-samples-main",
       "url": "https://github.com/microsoft-foundry/foundry-samples",
-      "branch": "main",
+      "branch": "temp-fix",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "foundry-samples-temp-fix",
+      "url": "https://github.com/microsoft-foundry/foundry-samples",
+      "branch": "temp-fix",
       "branch_mapping": {}
     },
     {

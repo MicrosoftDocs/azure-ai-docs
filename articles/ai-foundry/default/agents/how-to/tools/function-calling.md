@@ -1,13 +1,13 @@
 ---
 title: Use function calling with Microsoft Foundry agents
 titleSuffix: Microsoft Foundry
-description: Use function calling to extend Microsoft Foundry agents with custom functions. Define tools with Python, C#, or REST and return outputs to the agent.
+description: Use function calling to extend Microsoft Foundry agents with custom functions. Define tools with Python, C#, TypeScript, or REST and return outputs to the agent.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 02/20/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -26,9 +26,14 @@ You can run agents with function tools in the Microsoft Foundry portal. However,
 
 ## Usage support
 
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
+
+> [!NOTE]
+> The Java SDK does not currently support function calling with the new agent APIs (`azure-ai-projects` package). Java support is available for the classic agent APIs only. For Java function calling examples with classic agents, see the [classic agent documentation](../../../../agents/how-to/tools-classic/function-calling.md).
 
 ## Prerequisites
 
@@ -36,7 +41,12 @@ Before you start, make sure you have:
 
 - A [basic or standard agent environment](../../../../agents/environment-setup.md).
 - A Foundry project and a deployed model.
-- The latest prerelease SDK package for your language (`azure-ai-projects>=2.0.0b1` for Python, `Azure.AI.Projects.OpenAI` prerelease for .NET). For installation and authentication steps, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
+- The latest prerelease SDK package for your language:
+  - Python: `azure-ai-projects>=2.0.0b4`
+  - .NET: `Azure.AI.Projects.OpenAI` (prerelease)
+  - TypeScript: `@azure/ai-projects` (latest beta)
+  
+  For installation and authentication steps, see the [quickstart](../../../../quickstarts/get-started-code.md?view=foundry&preserve-view=true).
 
 ### Environment variables
 
@@ -44,9 +54,10 @@ Each language uses different environment variable names. Use one set consistentl
 
 | Language | Project endpoint | Model deployment name |
 | --- | --- | --- |
-| Python | `AZURE_AI_PROJECT_ENDPOINT` | `AZURE_AI_MODEL_DEPLOYMENT_NAME` |
-| C# | `FOUNDRY_PROJECT_ENDPOINT` | `MODEL_DEPLOYMENT_NAME` |
-| REST API | `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` | (use the request body field) |
+| Python | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
+| C# | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
+| TypeScript | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
+| REST API | `FOUNDRY_PROJECT_ENDPOINT` | (use the request body field) |
 
 > [!TIP]
 > If you use `DefaultAzureCredential`, sign in by using `az login` before running the samples.
@@ -66,7 +77,7 @@ load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"], credential=credential) as project_client,
+    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
 ):
     print("Connected to project.")
 ```
@@ -99,55 +110,53 @@ from openai.types.responses.response_input_param import FunctionCallOutput, Resp
 
 load_dotenv()
 
-# Define a function tool for the model to use
-func_tool = FunctionTool(
-    name="get_horoscope",
-    parameters={
-        "type": "object",
-        "properties": {
-            "sign": {
-                "type": "string",
-                "description": "An astrological sign like Taurus or Aquarius",
-            },
-        },
-        "required": ["sign"],
-        "additionalProperties": False,
-    },
-    description="Get today's horoscope for an astrological sign.",
-    strict=True,
-)
-
-tools: list[Tool] = [func_tool]
-
 
 def get_horoscope(sign: str) -> str:
     """Generate a horoscope for the given astrological sign."""
     return f"{sign}: Next Tuesday you will befriend a baby otter."
 
 
-project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
 
-with project_client:
+    # Define a function tool for the model to use
+    func_tool = FunctionTool(
+        name="get_horoscope",
+        parameters={
+            "type": "object",
+            "properties": {
+                "sign": {
+                    "type": "string",
+                    "description": "An astrological sign like Taurus or Aquarius",
+                },
+            },
+            "required": ["sign"],
+            "additionalProperties": False,
+        },
+        description="Get today's horoscope for an astrological sign.",
+        strict=True,
+    )
+
+    tools: list[Tool] = [func_tool]
 
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant that can use function tools.",
             tools=tools,
         ),
     )
 
-    openai_client = project_client.get_openai_client()
-
     # Prompt the model with tools defined
     response = openai_client.responses.create(
         input="What is my horoscope? I am an Aquarius.",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
     print(f"Response output: {response.output_text}")
 
@@ -174,8 +183,14 @@ with project_client:
     response = openai_client.responses.create(
         input=input_list,
         previous_response_id=response.id,
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
+
+    print(f"Agent response: {response.output_text}")
+
+    print("\nCleaning up...")
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
 ```
 
 ### Expected output
@@ -321,7 +336,7 @@ class FunctionCallingDemo
     {
         // Create project client and read the environment variables that will be used in the next steps.
         var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-        var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+        var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
         AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
         // Create an agent version with the defined functions as tools.
         PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
@@ -395,27 +410,25 @@ There are two ways to use function calling in Foundry Agent Service.
 Set the following environment variables before running the examples:
 
 ```bash
-export AGENT_TOKEN=$(az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken -o tsv)
-export API_VERSION="2025-11-15-preview"
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
 ```
 
 ## Define a function for your agent to call
 
 Start by defining a function for your agent to call. When you create a function for an agent to call, describe its structure and any required parameters in a docstring. For example functions, see the other SDK languages.
 
-## Create an agent version
+## Create an agent
 
 ```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/agents?api-version=v1" \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
   -d '{
-        "description": "Test agent version with function calling",
-    "metadata": { "env": "test", "owner": "user" },
+    "name": "<AGENT_NAME>-function-calling",
+    "description": "Agent with function calling",
     "definition": {
       "kind": "prompt",
-      "model": {{model}},
+      "model": "<MODEL_DEPLOYMENT>",
       "instructions": "You are a helpful agent.",
       "tools": [
         {
@@ -439,51 +452,40 @@ curl --request POST \
 ## Create a conversation
 
 ```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/conversations?api-version=$API_VERSION \
-  -H "Authorization: Bearer $AGENT_TOKEN" \
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/conversations" \
   -H "Content-Type: application/json" \
-  -d ''
-```
-
-## Create a response
-
-```bash
-curl --request POST \
-  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H "Content-Type: application/json" \
   -d '{
-    "model": {{model}},
-    "conversation": {{conversation.id}},
-    "input": [{
+    "items": [
+      {
         "type": "message",
         "role": "user",
         "content": [
-            {
-                "type": "input_text",
-                "text": "What's the weather in Dar es Salaam, Tanzania?"
-            }
+          {
+            "type": "input_text",
+            "text": "What'\''s the weather in Dar es Salaam, Tanzania?"
+          }
         ]
-    }],
-    "tools": [
-      {
-        "type": "function",
-        "name": "getCurrentWeather",
-        "description": "Get the current weather in a location",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "location": {"type": "string", "description": "The city and state e.g. San Francisco, CA"},
-            "unit": {"type": "string", "enum": ["c", "f"]}
-          },
-          "required": ["location"]
-        }
       }
-    ],
-    "stream": true
-  }
-'
+    ]
+  }'
+```
+
+Save the returned conversation ID (`conv_xyz...`) for the next step.
+
+## Create a response
+
+Replace `<CONVERSATION_ID>` with the ID from the previous step.
+
+```bash
+curl -X POST "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -d '{
+    "agent": {"type": "agent_reference", "name": "<AGENT_NAME>-function-calling"},
+    "conversation": "<CONVERSATION_ID>",
+    "input": []
+  }'
 ```
 
 ### Expected output
@@ -505,7 +507,164 @@ The response contains a function call item that you need to process:
 
 After you process the function call and provide the output back to the agent, the final response includes the weather information in natural language.
 
-::: zone-end
+:::zone-end
+
+:::zone pivot="typescript"
+
+Use the following code sample to create an agent with function tools, handle function calls from the model, and provide function results to get the final response.
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
+
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+
+/**
+ * Define a function tool for the model to use
+ */
+const funcTool = {
+  type: "function" as const,
+  name: "get_horoscope",
+  description: "Get today's horoscope for an astrological sign.",
+  strict: true,
+  parameters: {
+    type: "object",
+    properties: {
+      sign: {
+        type: "string",
+        description: "An astrological sign like Taurus or Aquarius",
+      },
+    },
+    required: ["sign"],
+    additionalProperties: false,
+  },
+};
+
+/**
+ * Generate a horoscope for the given astrological sign.
+ */
+function getHoroscope(sign: string): string {
+  return `${sign}: Next Tuesday you will befriend a baby otter.`;
+}
+
+export async function main(): Promise<void> {
+  // Create AI Project client
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = await project.getOpenAIClient();
+
+  // Create agent with function tools
+  console.log("Creating agent with function tools...");
+  const agent = await project.agents.createVersion("function-tool-agent", {
+    kind: "prompt",
+    model: deploymentName,
+    instructions: "You are a helpful assistant that can use function tools.",
+    tools: [funcTool],
+  });
+  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+
+  // Prompt the model with tools defined
+  console.log("\nGenerating initial response...");
+  const response = await openAIClient.responses.create(
+    {
+      input: [
+        {
+          type: "message",
+          role: "user",
+          content: "What is my horoscope? I am an Aquarius.",
+        },
+      ],
+    },
+    {
+      body: { agent: { name: agent.name, type: "agent_reference" } },
+    },
+  );
+  console.log(`Response output: ${response.output_text}`);
+
+  // Process function calls
+  const inputList: Array<{
+    type: "function_call_output";
+    call_id: string;
+    output: string;
+  }> = [];
+
+  for (const item of response.output) {
+    if (item.type === "function_call") {
+      if (item.name === "get_horoscope") {
+        // Parse the function arguments
+        const args = JSON.parse(item.arguments);
+
+        // Execute the function logic for get_horoscope
+        const horoscope = getHoroscope(args.sign);
+
+        // Provide function call results to the model
+        inputList.push({
+          type: "function_call_output",
+          call_id: item.call_id,
+          output: JSON.stringify({ horoscope }),
+        });
+      }
+    }
+  }
+
+  console.log("\nFinal input:");
+  console.log(JSON.stringify(inputList, null, 2));
+
+  // Submit function results to get final response
+  const finalResponse = await openAIClient.responses.create(
+    {
+      input: inputList,
+      previous_response_id: response.id,
+    },
+    {
+      body: { agent: { name: agent.name, type: "agent_reference" } },
+    },
+  );
+
+  // The model should be able to give a response!
+  console.log("\nFinal output:");
+  console.log(finalResponse.output_text);
+
+  // Clean up
+  console.log("\nCleaning up resources...");
+  await project.agents.deleteVersion(agent.name, agent.version);
+  console.log("Agent deleted");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+### Expected output
+
+The following example shows the expected output:
+
+```console
+Creating agent with function tools...
+Agent created (id: <agent-id>, name: function-tool-agent, version: <version>)
+
+Generating initial response...
+Response output: 
+
+Final input:
+[
+  {
+    "type": "function_call_output",
+    "call_id": "call_abc123",
+    "output": "{\"horoscope\":\"Aquarius: Next Tuesday you will befriend a baby otter.\"}"
+  }
+]
+
+Final output:
+Your horoscope for Aquarius: Next Tuesday you will befriend a baby otter.
+
+Cleaning up resources...
+Agent deleted
+```
+
+:::zone-end
 
 ## Verify function calling works
 
@@ -540,10 +699,21 @@ If you use tracing in Microsoft Foundry, confirm the tool invocation occurred. F
 
 ## Clean up resources
 
-When you finish testing, delete the resources you created to avoid ongoing costs:
+When you finish testing, delete the resources you created to avoid ongoing costs.
 
-- Delete the agent version.
-- Delete conversations created for testing.
+Delete the agent:
+
+```bash
+curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-function-calling?api-version=v1" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
+
+Delete the conversation:
+
+```bash
+curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/conversations/<CONVERSATION_ID>" \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
 
 ## Related content
 
