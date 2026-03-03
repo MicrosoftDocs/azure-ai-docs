@@ -62,13 +62,9 @@ The following code sample shows how to create an agent with the file search tool
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
-
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import FileSearchTool, PromptAgentDefinition
 from azure.identity import DefaultAzureCredential
-
-load_dotenv()
 
 # Load the file to be indexed for search.
 asset_file_path = (Path(__file__).parent / "../assets/product_info.md").resolve()
@@ -81,19 +77,16 @@ with (
   ) as project_client,
   project_client.get_openai_client() as openai_client,
 ):
-  print("Creating vector store...")
+  # Create vector store and upload file
   vector_store = openai_client.vector_stores.create(name="ProductInfoStore")
-  print(f"Vector store created (id: {vector_store.id})")
 
-  print("Uploading file to vector store...")
   with asset_file_path.open("rb") as file_handle:
     vector_store_file = openai_client.vector_stores.files.upload_and_poll(
       vector_store_id=vector_store.id,
       file=file_handle,
     )
-  print(f"File uploaded to vector store (id: {vector_store_file.id})")
 
-  print("Creating agent with the file search tool...")
+  # Create agent with file search tool
   agent = project_client.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
@@ -106,16 +99,10 @@ with (
     ),
     description="File search agent for product information queries.",
   )
-  print(
-    "Agent created "
-    f"(id: {agent.id}, name: {agent.name}, version: {agent.version})"
-  )
 
-  print("Creating conversation...")
+  # Create conversation and generate response
   conversation = openai_client.conversations.create()
-  print(f"Created conversation (id: {conversation.id})")
 
-  print("Creating response...")
   response = openai_client.responses.create(
     conversation=conversation.id,
     input="Tell me about Contoso products",
@@ -123,7 +110,7 @@ with (
   )
   print(response.output_text)
 
-  print("Cleaning up...")
+  # Clean up resources
   project_client.agents.delete_version(
     agent_name=agent.name,
     agent_version=agent.version,
@@ -136,17 +123,7 @@ with (
 The following output comes from the preceding code sample:
 
 ```console
-Creating vector store...
-Vector store created (id: vs_abc123)
-Uploading file to vector store...
-File uploaded to vector store (id: file-xyz789)
-Creating agent with the file search tool...
-Agent created (id: agent_001, name: MyAgent, version: 1)
-Creating conversation...
-Created conversation (id: conv_456)
-Creating response...
 [Response text grounded in your uploaded document content]
-Cleaning up...
 ```
 
 ### References
@@ -370,7 +347,6 @@ import { AIProjectClient } from "@azure/ai-projects";
 import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
-import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
@@ -385,21 +361,15 @@ export async function main(): Promise<void> {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
 
-  // Create vector store for file search
-  console.log("Creating vector store...");
+  // Create vector store and upload file
   const vectorStore = await openAIClient.vectorStores.create({
     name: "ProductInfoStore",
   });
-  console.log(`Vector store created (id: ${vectorStore.id})`);
 
-  // Upload file to vector store
-  console.log("\nUploading file to vector store...");
   const fileStream = fs.createReadStream(assetFilePath);
   const file = await openAIClient.vectorStores.files.uploadAndPoll(vectorStore.id, fileStream);
-  console.log(`File uploaded to vector store (id: ${file.id})`);
 
   // Create agent with file search tool
-  console.log("\nCreating agent with file search tool...");
   const agent = await project.agents.createVersion("agent-file-search", {
     kind: "prompt",
     model: deploymentName,
@@ -411,15 +381,10 @@ export async function main(): Promise<void> {
       },
     ],
   });
-  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
-  // Create a conversation for the agent interaction
-  console.log("\nCreating conversation...");
+  // Create conversation and generate response
   const conversation = await openAIClient.conversations.create();
-  console.log(`Created conversation (id: ${conversation.id})`);
 
-  // Send a query to search through the uploaded file
-  console.log("\nGenerating response...");
   const response = await openAIClient.responses.create(
     {
       conversation: conversation.id,
@@ -429,15 +394,11 @@ export async function main(): Promise<void> {
       body: { agent: { name: agent.name, type: "agent_reference" } },
     },
   );
-  console.log(`Response: ${response.output_text}`);
+  console.log(response.output_text);
 
-  // Clean up
-  console.log("\nCleaning up resources...");
+  // Clean up resources
   await project.agents.deleteVersion(agent.name, agent.version);
-  console.log("Agent deleted");
-
   await openAIClient.vectorStores.delete(vectorStore.id);
-  console.log("Vector store deleted");
 }
 
 main().catch((err) => {
@@ -448,13 +409,7 @@ main().catch((err) => {
 ### Expected output
 
 ```output
-Vector store created: vs_<id>
-File uploaded: file-<id>
-Agent created: <agent-name> (version 1)
-Stream response created with ID: resp_<id>
-The uploaded document contains information about ...
-Agent deleted
-Vector store deleted
+[Response text grounded in your uploaded document content]
 ```
 
 ### References
@@ -467,12 +422,6 @@ Vector store deleted
 :::zone pivot="java"
 
 ## Use file search in a Java agent
-
-Set the following environment variables:
-
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
-- `VECTOR_STORE_ID` — The ID of the vector store to search.
 
 Add the dependency to your `pom.xml`:
 

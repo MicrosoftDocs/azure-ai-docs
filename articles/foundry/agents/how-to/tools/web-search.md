@@ -58,8 +58,6 @@ The following example shows how to set up the AI Project client by using the Azu
 
 ```python
 import os
-from dotenv import load_dotenv
-
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -68,8 +66,6 @@ from azure.ai.projects.models import (
     WebSearchApproximateLocation,
 )
 
-load_dotenv()
-
 endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
 with (
@@ -77,6 +73,7 @@ with (
     AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
     project_client.get_openai_client() as openai_client,
 ):
+    # Create an agent with the web search tool
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
@@ -94,6 +91,7 @@ with (
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
+    # Send a query and stream the response
     stream_response = openai_client.responses.create(
         stream=True,
         tool_choice="required",
@@ -101,6 +99,7 @@ with (
         extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
+    # Process streaming events
     for event in stream_response:
         if event.type == "response.created":
             print(f"Follow-up response created with ID: {event.response.id}")
@@ -120,7 +119,6 @@ with (
             print(f"\nFollow-up completed!")
             print(f"Full response: {event.response.output_text}")
 
-    print("\nCleaning up...")
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
     print("Agent deleted")
 ```
@@ -134,8 +132,6 @@ URL Citation: https://example.com/source
 
 Follow-up completed!
 Full response: Based on current data ...
-
-Cleaning up...
 Agent deleted
 ```
 
@@ -269,17 +265,14 @@ The following TypeScript example demonstrates how to create an agent with the we
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint= process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 
 export async function main(): Promise<void> {
   // Create AI Project client
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
-
-  console.log("Creating agent with web search tool...");
 
   // Create Agent with web search tool
   const agent = await project.agents.createVersion("agent-web-search", {
@@ -302,10 +295,8 @@ export async function main(): Promise<void> {
 
   // Create a conversation for the agent interaction
   const conversation = await openAIClient.conversations.create();
-  console.log(`Created conversation (id: ${conversation.id})`);
 
   // Send a query to search the web
-  console.log("\nSending web search query...");
   const response = await openAIClient.responses.create(
     {
       conversation: conversation.id,
@@ -318,14 +309,10 @@ export async function main(): Promise<void> {
   console.log(`Response: ${response.output_text}`);
 
   // Clean up resources
-  console.log("\nCleaning up resources...");
   await openAIClient.conversations.delete(conversation.id);
-  console.log("Conversation deleted");
 
   await project.agents.deleteVersion(agent.name, agent.version);
   console.log("Agent deleted");
-
-  console.log("\nWeb search sample completed!");
 }
 
 main().catch((err) => {
@@ -338,15 +325,9 @@ main().catch((err) => {
 The following example shows the expected output when running the TypeScript code:
 
 ```console
-Creating agent with web search tool...
 Agent created (id: 12345, name: agent-web-search, version: 1)
-Created conversation (id: 67890)
-Sending web search query...
 Response: The agent returns a grounded response that includes citations.
-Cleaning up resources...
-Conversation deleted
 Agent deleted
-Web search sample completed!
 ```
 :::zone-end
 
@@ -354,12 +335,7 @@ Web search sample completed!
 
 ## Use web search in a Java agent
 
-Set the following environment variables:
-
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
-
-Add the dependency to your `pom.xml`:
+Add the dependencyto your `pom.xml`:
 
 ```xml
 <dependency>

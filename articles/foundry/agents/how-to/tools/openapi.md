@@ -87,35 +87,12 @@ Before you begin, make sure you have:
 > You can also use token-based authentication (for example, a Bearer token) by storing the token in a project connection. For Bearer token auth, create a **Custom keys** connection with key set to `Authorization` and value set to `Bearer <token>` (replace `<token>` with your actual token). The word `Bearer` followed by a space must be included in the value. For details, see [Set up a Bearer token connection](#set-up-a-bearer-token-connection).
 
 :::zone pivot="python"
-### Quick verification
-
-First, verify your environment is configured correctly:
-
-```python
-# Verify authentication and project connection
-import os
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from dotenv import load_dotenv
-
-load_dotenv()
-
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
-
-with DefaultAzureCredential() as credential, \
-     AIProjectClient(endpoint=endpoint, credential=credential) as project_client:
-    print(f"Successfully connected to project")
-```
-
-If this command runs without errors, you're ready to create an agent with OpenAPI tools.
 
 ### Complete example
 
 ```python
-# Import required libraries
 import os
 import jsonref
-from dotenv import load_dotenv
 from typing import Any, cast
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -125,8 +102,6 @@ from azure.ai.projects.models import (
     OpenApiFunctionDefinition,
     OpenApiAnonymousAuthDetails,
 )
-
-load_dotenv()
 
 endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
@@ -185,7 +160,6 @@ with (
     
     openapi_connection = project_client.connections.get(os.environ["OPENAPI_PROJECT_CONNECTION_NAME"])
     connection_id = openapi_connection.id
-    print(f"OpenAPI connection ID: {connection_id}")
 
     openapi_key_auth_tool={
         "type": "openapi",
@@ -225,17 +199,14 @@ with (
             tools=[weather_tool],
         ),
     )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
-
     response = openai_client.responses.create(
         input="What's the weather in Seattle?",
         extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
-    print(f"Agent response: {response.output_text}")
+    print(response.output_text)
 
-    print("\nCleaning up...")
+    # Clean up resources
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
 ```
 
 ### What this code does
@@ -884,7 +855,6 @@ import {
 } from "@azure/ai-projects";
 import * as fs from "fs";
 import * as path from "path";
-import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
@@ -919,14 +889,12 @@ function createWeatherTool(spec: unknown): OpenApiTool {
 }
 
 export async function main(): Promise<void> {
-  console.log("Loading OpenAPI specifications from assets directory...");
   const weatherSpec = loadOpenApiSpec(weatherSpecPath);
 
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
 
-  console.log("Creating agent with OpenAPI tool...");
-
+  // Create an agent with the OpenAPI weather tool
   const agent = await project.agents.createVersion("MyOpenApiAgent", {
     kind: "prompt",
     model: deploymentName,
@@ -934,9 +902,8 @@ export async function main(): Promise<void> {
       "You are a helpful assistant that can call external APIs defined by OpenAPI specs to answer user questions.",
     tools: [createWeatherTool(weatherSpec)],
   });
-  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
-  console.log("\nSending request to OpenAPI-enabled agent with streaming...");
+  // Send a request and stream the response
   const streamResponse = await openAIClient.responses.create(
     {
       input:
@@ -953,40 +920,15 @@ export async function main(): Promise<void> {
 
   // Process the streaming response
   for await (const event of streamResponse) {
-    if (event.type === "response.created") {
-      console.log(`Follow-up response created with ID: ${event.response.id}`);
-    } else if (event.type === "response.output_text.delta") {
+    if (event.type === "response.output_text.delta") {
       process.stdout.write(event.delta);
     } else if (event.type === "response.output_text.done") {
-      console.log("\n\nFollow-up response done!");
-    } else if (event.type === "response.output_item.done") {
-      const item = event.item as any;
-      if (item.type === "message") {
-        const content = item.content?.[item.content.length - 1];
-        if (content?.type === "output_text" && content.annotations) {
-          for (const annotation of content.annotations) {
-            if (annotation.type === "url_citation") {
-              console.log(
-                `URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
-              );
-            }
-          }
-        }
-      } else if (item.type === "tool_call") {
-        console.log(`Tool call completed: ${item.name ?? "unknown"}`);
-      }
-    } else if (event.type === "response.completed") {
-      console.log("\nFollow-up completed!");
+      console.log("\n");
     }
   }
 
-  // Clean up resources by deleting the agent version
-  // This prevents accumulation of unused resources in your project
-  console.log("\nCleaning up resources...");
+  // Clean up resources
   await project.agents.deleteVersion(agent.name, agent.version);
-  console.log("Agent deleted");
-
-  console.log("\nOpenAPI agent sample completed!");
 }
 
 main().catch((err) => {
@@ -1051,7 +993,6 @@ import {
 } from "@azure/ai-projects";
 import * as fs from "fs";
 import * as path from "path";
-import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
@@ -1095,14 +1036,12 @@ function createTripAdvisorTool(spec: unknown): OpenApiTool {
 }
 
 export async function main(): Promise<void> {
-  console.log("Loading TripAdvisor OpenAPI specification from assets directory...");
   const tripAdvisorSpec = loadOpenApiSpec(tripAdvisorSpecPath);
 
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
 
-  console.log("Creating agent with OpenAPI project-connection tool...");
-
+  // Create an agent with the OpenAPI project-connection tool
   const agent = await project.agents.createVersion("MyOpenApiConnectionAgent", {
     kind: "prompt",
     model: deploymentName,
@@ -1110,9 +1049,8 @@ export async function main(): Promise<void> {
       "You are a travel assistant that consults the TripAdvisor Content API via project connection to answer user questions about locations.",
     tools: [createTripAdvisorTool(tripAdvisorSpec)],
   });
-  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
-  console.log("\nSending request to TripAdvisor OpenAPI agent with streaming...");
+  // Send a request and stream the response
   const streamResponse = await openAIClient.responses.create(
     {
       input:
@@ -1129,40 +1067,15 @@ export async function main(): Promise<void> {
 
   // Process the streaming response
   for await (const event of streamResponse) {
-    if (event.type === "response.created") {
-      console.log(`Follow-up response created with ID: ${event.response.id}`);
-    } else if (event.type === "response.output_text.delta") {
+    if (event.type === "response.output_text.delta") {
       process.stdout.write(event.delta);
     } else if (event.type === "response.output_text.done") {
-      console.log("\n\nFollow-up response done!");
-    } else if (event.type === "response.output_item.done") {
-      const item = event.item as any;
-      if (item.type === "message") {
-        const content = item.content?.[item.content.length - 1];
-        if (content?.type === "output_text" && content.annotations) {
-          for (const annotation of content.annotations) {
-            if (annotation.type === "url_citation") {
-              console.log(
-                `URL Citation: ${annotation.url}, Start index: ${annotation.start_index}, End index: ${annotation.end_index}`,
-              );
-            }
-          }
-        }
-      } else if (item.type === "tool_call") {
-        console.log(`Tool call completed: ${item.name ?? "unknown"}`);
-      }
-    } else if (event.type === "response.completed") {
-      console.log("\nFollow-up completed!");
+      console.log("\n");
     }
   }
 
-  // Clean up resources by deleting the agent version
-  // This prevents accumulation of unused resources in your project
-  console.log("\nCleaning up resources...");
+  // Clean up resources
   await project.agents.deleteVersion(agent.name, agent.version);
-  console.log("Agent deleted");
-
-  console.log("\nTripAdvisor OpenAPI agent sample completed!");
 }
 
 main().catch((err) => {

@@ -103,43 +103,15 @@ Install the Python dependencies by using `uv sync` or `pip install`. Finally, ru
 
 :::zone pivot="python"
 
-### Quick verification
-
-Before running the full sample, verify your authentication and project connection:
-
-```python
-import os
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from dotenv import load_dotenv
-
-load_dotenv()
-
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-):
-    print("Connected to project.")
-    # List connections to verify MCP connection exists
-    connections = project_client.connections.list()
-    for conn in connections:
-        print(f"  Connection: {conn.name} (type: {conn.type})")
-```
-
-If this code runs without errors, your credentials and project endpoint are configured correctly.
-
 ### Code example
 
 The following Python sample shows how to create an agent with a custom code interpreter MCP tool:
 
 ```python
 import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, MCPTool
-
-load_dotenv()
 
 endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
@@ -264,7 +236,6 @@ The following TypeScript sample shows how to create an agent with a custom code 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";

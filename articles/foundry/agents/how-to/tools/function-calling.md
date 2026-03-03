@@ -58,26 +58,6 @@ Each language uses different environment variable names. Use one set consistentl
 > [!TIP]
 > If you use `DefaultAzureCredential`, sign in by using `az login` before running the samples.
 
-### Quick verification
-
-If you're not sure your authentication and endpoint are set up correctly, run the following snippet first.
-
-```python
-import os
-
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from dotenv import load_dotenv
-
-load_dotenv()
-
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-):
-    print("Connected to project.")
-```
-
 ## Create an agent with function tools
 
 Function calling follows this pattern:
@@ -88,9 +68,6 @@ Function calling follows this pattern:
 1. **Execute and return** — Your app runs the function and submits the output back to the agent.
 1. **Get the final response** — The agent uses your function output to complete its response.
 
-> [!NOTE]
-> You need the latest SDK package. The .NET and Java SDKs are currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
-
 :::zone pivot="python"
 
 Use the following code sample to create an agent, handle a function call, and return tool output back to the agent.
@@ -98,13 +75,10 @@ Use the following code sample to create an agent, handle a function call, and re
 ```python
 import os
 import json
-from dotenv import load_dotenv
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, Tool, FunctionTool
 from azure.identity import DefaultAzureCredential
 from openai.types.responses.response_input_param import FunctionCallOutput, ResponseInputParam
-
-load_dotenv()
 
 def get_horoscope(sign: str) -> str:
     """Generate a horoscope for the given astrological sign."""
@@ -152,7 +126,6 @@ with (
         input="What is my horoscope? I am an Aquarius.",
         extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
-    print(f"Response output: {response.output_text}")
 
     input_list: ResponseInputParam = []
     # Process function calls
@@ -171,9 +144,7 @@ with (
                     )
                 )
 
-    print("Final input:")
-    print(input_list)
-
+    # Submit function results and get the final response
     response = openai_client.responses.create(
         input=input_list,
         previous_response_id=response.id,
@@ -182,9 +153,8 @@ with (
 
     print(f"Agent response: {response.output_text}")
 
-    print("\nCleaning up...")
+    # Clean up resources
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
 ```
 
 ### Expected output
@@ -192,9 +162,7 @@ with (
 The following example shows the expected output:
 
 ```console
-Response output: 
-Final input:
-[FunctionCallOutput(type='function_call_output', call_id='call_abc123', output='{"horoscope": "Aquarius: Next Tuesday you will befriend a baby otter."}')]
+Agent response: Your horoscope for Aquarius: Next Tuesday you will befriend a baby otter.
 ```
 
 :::zone-end
@@ -538,9 +506,8 @@ Use the following code sample to create an agent with function tools, handle fun
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint= process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 
 /**
@@ -577,17 +544,14 @@ export async function main(): Promise<void> {
   const openAIClient = await project.getOpenAIClient();
 
   // Create agent with function tools
-  console.log("Creating agent with function tools...");
   const agent = await project.agents.createVersion("function-tool-agent", {
     kind: "prompt",
     model: deploymentName,
     instructions: "You are a helpful assistant that can use function tools.",
     tools: [funcTool],
   });
-  console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   // Prompt the model with tools defined
-  console.log("\nGenerating initial response...");
   const response = await openAIClient.responses.create(
     {
       input: [
@@ -630,9 +594,6 @@ export async function main(): Promise<void> {
     }
   }
 
-  console.log("\nFinal input:");
-  console.log(JSON.stringify(inputList, null, 2));
-
   // Submit function results to get final response
   const finalResponse = await openAIClient.responses.create(
     {
@@ -644,14 +605,11 @@ export async function main(): Promise<void> {
     },
   );
 
-  // The model should be able to give a response!
-  console.log("\nFinal output:");
+  // Print the final response
   console.log(finalResponse.output_text);
 
   // Clean up
-  console.log("\nCleaning up resources...");
   await project.agents.deleteVersion(agent.name, agent.version);
-  console.log("Agent deleted");
 }
 
 main().catch((err) => {
@@ -664,26 +622,8 @@ main().catch((err) => {
 The following example shows the expected output:
 
 ```console
-Creating agent with function tools...
-Agent created (id: <agent-id>, name: function-tool-agent, version: <version>)
-
-Generating initial response...
 Response output: 
-
-Final input:
-[
-  {
-    "type": "function_call_output",
-    "call_id": "call_abc123",
-    "output": "{\"horoscope\":\"Aquarius: Next Tuesday you will befriend a baby otter.\"}"
-  }
-]
-
-Final output:
 Your horoscope for Aquarius: Next Tuesday you will befriend a baby otter.
-
-Cleaning up resources...
-Agent deleted
 ```
 
 :::zone-end

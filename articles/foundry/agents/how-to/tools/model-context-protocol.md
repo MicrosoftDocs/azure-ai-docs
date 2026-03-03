@@ -90,56 +90,15 @@ Use the following code sample to create an agent and call the function. The .NET
 
 :::zone pivot="python"
 
-### Quick verification
-
-Before running the full sample, verify your project connection (optional, for authenticated MCP servers):
-
-```python
-import os
-
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from dotenv import load_dotenv
-
-load_dotenv()
-
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-):
-    print("Connected to project.")
-    
-    # Verify MCP connection exists (optional - only needed for authenticated servers)
-    connection_name = os.environ.get("MCP_PROJECT_CONNECTION_NAME")
-    if connection_name:
-        try:
-            conn = project_client.connections.get(connection_name)
-            print(f"MCP connection verified: {conn.name}")
-        except Exception as e:
-            print(f"MCP connection '{connection_name}' not found: {e}")
-    else:
-        print("MCP_PROJECT_CONNECTION_NAME not set (optional for unauthenticated servers).")
-        print("Available connections:")
-        for conn in project_client.connections.list():
-            print(f"  - {conn.name}")
-```
-
-If this code runs without errors, your credentials are configured correctly. For authenticated MCP servers, ensure your connection exists.
-
-### Full sample
-
 The following example shows how to use the GitHub MCP server as a tool for an agent.
 
 ```python
 import os
 import json
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, MCPTool, Tool
 from openai.types.responses.response_input_param import McpApprovalResponse, ResponseInputParam
-
-load_dotenv()
 
 endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
@@ -204,9 +163,6 @@ with (
                 )
             )
 
-    print("Final input:")
-    print(input_list)
-
     # Send the approval response back to continue the agent's work
     # This allows the MCP tool to access the GitHub repository and complete the original request
     response = openai_client.responses.create(
@@ -230,8 +186,6 @@ The following example shows the expected output when you run the sample:
 ```console
 Agent created (id: <agent-id>, name: MyAgent7, version: 1)
 Created conversation (id: <conversation-id>)
-Final input:
-[McpApprovalResponse(type='mcp_approval_response', approve=True, approval_request_id='<approval-request-id>')]
 Response: Your GitHub username is "example-username".
 Agent deleted
 ```
@@ -328,49 +282,6 @@ organized by service and includes guidelines for contributing new specifications
 ```
 
 ## Create an agent with the MCP tool using project connection authentication
-
-### Quick verification
-
-Before running the full sample, verify your project connection (optional, for authenticated MCP servers):
-
-```csharp
-using Azure.AI.Projects;
-using Azure.Identity;
-
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var mcpConnectionName = System.Environment.GetEnvironmentVariable("MCP_PROJECT_CONNECTION_NAME");
-
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-
-Console.WriteLine("Connected to project.");
-
-// Verify MCP connection exists (optional - only needed for authenticated servers)
-if (!string.IsNullOrEmpty(mcpConnectionName))
-{
-    try
-    {
-        AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: mcpConnectionName);
-        Console.WriteLine($"MCP connection verified: {conn.Name}");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"MCP connection '{mcpConnectionName}' not found: {ex.Message}");
-    }
-}
-else
-{
-    Console.WriteLine("MCP_PROJECT_CONNECTION_NAME not set (optional for unauthenticated servers).");
-    Console.WriteLine("Available connections:");
-    foreach (var conn in projectClient.Connections.GetConnections())
-    {
-        Console.WriteLine($"  - {conn.Name}");
-    }
-}
-```
-
-If this code runs without errors, your credentials are configured correctly. For authenticated MCP servers, ensure your connection exists.
-
-### Full sample
 
 In this example, you learn how to authenticate to the GitHub MCP server and use it as a tool for an agent. The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample20_MCP_Connection.md) in the Azure SDK for .NET repository on GitHub.
 
@@ -491,7 +402,6 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import OpenAI from "openai";
 import * as readline from "readline";
-import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
@@ -643,46 +553,6 @@ MCP sample completed!
 
 ## Create an agent with the MCP tool using project connection authentication
 
-### Quick verification
-
-Before running the full sample, verify your project connection (optional, for authenticated MCP servers):
-
-```typescript
-import { DefaultAzureCredential } from "@azure/identity";
-import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
-
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const mcpConnectionName = process.env["MCP_PROJECT_CONNECTION_NAME"] || "";
-
-async function verifyConnection(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  console.log("Connected to project.");
-
-  // Verify MCP connection exists (optional - only needed for authenticated servers)
-  if (mcpConnectionName) {
-    try {
-      const conn = await project.connections.get(mcpConnectionName);
-      console.log(`MCP connection verified: ${conn.name}`);
-    } catch (error) {
-      console.log(`MCP connection '${mcpConnectionName}' not found: ${error}`);
-    }
-  } else {
-    console.log("MCP_PROJECT_CONNECTION_NAME not set (optional for unauthenticated servers).");
-    console.log("Available connections:");
-    for await (const conn of project.connections.list()) {
-      console.log(`  - ${conn.name}`);
-    }
-  }
-}
-
-verifyConnection().catch(console.error);
-```
-
-If this code runs without errors, your credentials are configured correctly. For authenticated MCP servers, ensure your connection exists.
-
-### Full sample
-
 The following TypeScript sample demonstrates how to create an agent with MCP tool capabilities using project connection authentication, send requests that trigger MCP approval workflows, handle approval requests, and clean up resources. For a JavaScript version, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentMcpConnectionAuth.js) on the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
@@ -690,7 +560,6 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import OpenAI from "openai";
 import * as readline from "readline";
-import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";

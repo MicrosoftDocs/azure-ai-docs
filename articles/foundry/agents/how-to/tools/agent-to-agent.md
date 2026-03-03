@@ -75,42 +75,6 @@ Store your connection name in the `A2A_PROJECT_CONNECTION_NAME` environment vari
 - **Python/C#/TypeScript**: Call `project.connections.get(connection_name)` to get the connection object, then access `connection.id`.
 - **REST API**: Include the connection ID in the `project_connection_id` field of the A2A tool definition.
 
-## Verify your connection
-
-Before running the full sample, confirm your environment setup is correct. This verification script checks that your credentials work and the A2A connection exists in your project.
-
-```python
-import os
-
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from dotenv import load_dotenv
-
-load_dotenv()
-
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-):
-    print("Connected to project.")
-    
-    # Verify A2A connection exists
-    connection_name = os.environ.get("A2A_PROJECT_CONNECTION_NAME")
-    if connection_name:
-        try:
-            conn = project_client.connections.get(connection_name)
-            print(f"A2A connection verified: {conn.name}")
-        except Exception as e:
-            print(f"A2A connection '{connection_name}' not found: {e}")
-    else:
-        # List available connections to help find the right one
-        print("A2A_PROJECT_CONNECTION_NAME not set. Available connections:")
-        for conn in project_client.connections.list():
-            print(f"  - {conn.name}")
-```
-
-If this code runs without errors, your credentials and A2A connection are configured correctly.
-
 ## Code example
 
 > [!NOTE]
@@ -121,15 +85,12 @@ If this code runs without errors, your credentials and A2A connection are config
 
 ```python
 import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
     A2APreviewTool,
 )
-
-load_dotenv()
 
 endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
@@ -181,9 +142,8 @@ with (
             print(f"\nFollow-up completed!")
             print(f"Full response: {event.response.output_text}")
 
-    print("\nCleaning up...")
+    # Clean up the created agent version
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
 ```
 
 ### Expected output
@@ -479,18 +439,14 @@ This sample demonstrates how to create an AI agent with A2A capabilities by usin
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import * as readline from "readline";
-import "dotenv/config";
 
-// Load environment variables
-const projectEndpoint = process.env.FOUNDRY_PROJECT_ENDPOINT || "<project endpoint>";
+const projectEndpoint= process.env.FOUNDRY_PROJECT_ENDPOINT || "<project endpoint>";
 const deploymentName = process.env.FOUNDRY_MODEL_DEPLOYMENT_NAME || "<model deployment name>";
 const a2aConnectionName = process.env.A2A_PROJECT_CONNECTION_NAME || "<a2a connection name>";
 
 export async function main(): Promise<void> {
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
-
-  console.log("Creating agent with A2A tool...");
 
   // Get the A2A connection by name to retrieve its ID
   const a2aConnection = await project.connections.get(a2aConnectionName);
@@ -523,8 +479,8 @@ export async function main(): Promise<void> {
     });
   });
 
-  console.log("\nSending request to A2A agent with streaming...");
-  const streamResponse = await openAIClient.responses.create(
+  // Send request and stream the response
+  const streamResponse= await openAIClient.responses.create(
     {
       input: userInput,
       stream: true,
@@ -559,13 +515,8 @@ export async function main(): Promise<void> {
     }
   }
 
-  // Clean up resources by deleting the agent version
-  // This prevents accumulation of unused resources in your project
-  console.log("\nCleaning up resources...");
+  // Clean up the created agent version
   await project.agents.deleteVersion(agent.name, agent.version);
-  console.log("Agent deleted");
-
-  console.log("\nAgent-to-Agent sample completed!");
 }
 
 main().catch((err) => {

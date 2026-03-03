@@ -69,7 +69,7 @@ Before you begin, make sure you have:
 For Python examples, install the required packages:
 
 ```bash
-pip install azure-ai-projects python-dotenv
+pip install azure-ai-projects
 ```
 
 The .NET and Java SDKs are currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
@@ -130,7 +130,6 @@ The following Python example demonstrates how to create an AI agent with browser
 ```python
 import os
 import json
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -139,8 +138,6 @@ from azure.ai.projects.models import (
     BrowserAutomationToolParameters,
     BrowserAutomationToolConnectionParameters,
 )
-
-load_dotenv()
 
 endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
@@ -383,9 +380,7 @@ The following TypeScript sample demonstrates how to create an agent with Browser
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
-
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const projectEndpoint= process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 const browserAutomationProjectConnectionId =
   process.env["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"] ||
@@ -616,7 +611,7 @@ This tool uses a Playwright workspace resource to run browser sessions. Review t
 
 - **Workspace not found**: Verify your `FOUNDRY_PROJECT_ENDPOINT` uses the correct format: `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`. Don't use the legacy Azure ML endpoint format.
 - **Unexpected keyword argument errors**: Ensure you're using the latest version of `azure-ai-projects`. Run `pip install azure-ai-projects --pre --upgrade` to update.
-- **Import errors**: Install all required packages: `pip install azure-ai-projects python-dotenv`.
+- **Import errors**: Install all required packages: `pip install azure-ai-projects`.
 
 :::zone-end
 

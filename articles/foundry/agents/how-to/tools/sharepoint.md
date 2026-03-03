@@ -73,52 +73,10 @@ If you need to create a SharePoint connection for your project, see [Add a new c
 
 :::zone pivot="python"
 
-### Quick verification
-
-Before running the full sample, verify your SharePoint connection exists:
+The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site.
 
 ```python
 import os
-
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from dotenv import load_dotenv
-
-load_dotenv()
-
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(
-        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential
-    ) as project_client,
-):
-    print("Connected to project.")
-    
-    # Verify SharePoint connection exists
-    connection_name = os.environ.get("SHAREPOINT_PROJECT_CONNECTION_NAME")
-    if connection_name:
-        try:
-            conn = project_client.connections.get(connection_name)
-            print(f"SharePoint connection verified: {conn.name}")
-            print(f"Connection ID: {conn.id}")
-        except Exception as e:
-            print(f"SharePoint connection '{connection_name}' not found: {e}")
-    else:
-        # List available connections to help find the right one
-        print("SHAREPOINT_PROJECT_CONNECTION_NAME not set. Available connections:")
-        for conn in project_client.connections.list():
-            print(f"  - {conn.name}")
-```
-
-If this code runs without errors, your credentials and SharePoint connection are configured correctly.
-
-### Full sample
-
-The following sample demonstrates how to create an Agent that uses the SharePoint tool to ground responses with content from a SharePoint site.
-
-```python
-import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -127,8 +85,6 @@ from azure.ai.projects.models import (
     SharepointGroundingToolParameters,
     ToolProjectConnection,
 )
-
-load_dotenv()
 
 with (
     DefaultAzureCredential() as credential,
@@ -141,9 +97,9 @@ with (
     sharepoint_connection = project_client.connections.get(
         os.environ["SHAREPOINT_PROJECT_CONNECTION_NAME"],
     )
-    print(f"SharePoint connection ID: {sharepoint_connection.id}")
 
-    sharepoint_tool = SharepointPreviewTool(
+    # Configure SharePoint tool with the project connection
+    sharepoint_tool= SharepointPreviewTool(
         sharepoint_grounding_preview=SharepointGroundingToolParameters(
             project_connections=[
                 ToolProjectConnection(project_connection_id=sharepoint_connection.id)
@@ -194,17 +150,6 @@ with (
             print(f"Full response: {event.response.output_text}")
 ```
 
-### What this code does
-
-This example creates an agent with SharePoint grounding capabilities and processes a streaming response:
-
-1. **Initialize the project client** by using your Foundry project endpoint and Azure credentials.
-1. **Configure the SharePoint tool** with your project connection to enable access to SharePoint content.
-1. **Create the agent** with instructions and the SharePoint tool attached.
-1. **Send a query** asking the agent to summarize meeting notes from SharePoint.
-1. **Process the streaming response** to display the agent's answer in real-time.
-1. **Extract URL citations** from the response annotations showing which SharePoint documents were referenced.
-
 ### Expected output
 
 When you run this code, you see output similar to:
@@ -232,43 +177,7 @@ Full response: Based on the meeting notes from your SharePoint site, the last me
 
 :::zone pivot="csharp"
 
-### Quick verification
-
-Before running the full sample, verify your SharePoint connection exists:
-
-```csharp
-using Azure.AI.Projects;
-using Azure.Identity;
-
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var sharepointConnectionName = System.Environment.GetEnvironmentVariable("SHAREPOINT_PROJECT_CONNECTION_NAME");
-
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-
-// Verify SharePoint connection exists
-try
-{
-    AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: sharepointConnectionName);
-    Console.WriteLine($"SharePoint connection verified: {conn.Name}");
-    Console.WriteLine($"Connection ID: {conn.Id}");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"SharePoint connection '{sharepointConnectionName}' not found: {ex.Message}");
-    // List available connections
-    Console.WriteLine("Available connections:");
-    foreach (var conn in projectClient.Connections.GetConnections())
-    {
-        Console.WriteLine($"  - {conn.Name}");
-    }
-}
-```
-
-If this code runs without errors, your credentials and SharePoint connection are configured correctly.
-
-### Full sample
-
-The following sample demonstrates how to create an Agent that uses the SharePoint tool to ground responses with content from a SharePoint site. This example uses synchronous methods for simplicity. For an asynchronous version, refer to the [SharePoint agent sample documentation](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample24_Sharepoint.md) on the Azure SDK for .NET GitHub repository.
+The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site. This example uses synchronous methods for simplicity. For an asynchronous version, refer to the [SharePoint agent sample documentation](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample24_Sharepoint.md) on the Azure SDK for .NET GitHub repository.
 
 To enable your Agent to access SharePoint, use `SharepointAgentTool`.
 
@@ -339,18 +248,6 @@ Console.WriteLine($"{response.GetOutputText()}{annotation}");
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
-### What this code does
-
-This example demonstrates SharePoint grounding with synchronous methods:
-
-1. **Create a project client** using your Foundry project endpoint
-1. **Retrieve the SharePoint connection** by name from your project's connections
-1. **Configure the SharePoint tool** with the connection ID
-1. **Create an agent** with the SharePoint tool to enable document access
-1. **Create a response** asking about the Contoso whistleblower policy
-1. **Format and display the response** with a helper method that extracts URL citations from annotations
-1. **Clean up** by deleting the agent version
-
 ### Expected output
 
 When you run this code, you see output similar to:
@@ -398,17 +295,6 @@ curl --request POST \
 }'
 ```
 
-### What this code does
-
-This REST API call creates a response with SharePoint grounding:
-
-1. **Sends a POST request** to the `/openai/responses` endpoint
-2. **Authenticates** using a bearer token for your agent
-3. **Specifies the model** deployment to use for generating responses
-4. **Includes the user's query** asking for meeting notes from SharePoint
-5. **Configures the SharePoint tool** with your project connection ID to enable document retrieval
-6. **Returns a JSON response** with the agent's answer and citations to source documents
-
 ### Expected output
 
 The API returns a JSON response with the agent's answer and citation information:
@@ -446,49 +332,11 @@ The API returns a JSON response with the agent's answer and citation information
 
 :::zone pivot="typescript"
 
-### Quick verification
-
-Before running the full sample, verify your SharePoint connection exists:
+This sample demonstrates how to create an AI agent with SharePoint capabilities. The agent can search SharePoint content and provide responses with relevant information from SharePoint sites. For a JavaScript version, refer to the [SharePoint agent sample documentation](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentSharepoint.js) in the Azure SDK for JavaScript GitHub repository.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
-
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const sharepointConnectionName = process.env["SHAREPOINT_PROJECT_CONNECTION_NAME"] || "<sharepoint connection name>";
-
-async function verifyConnection(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  console.log("Connected to project.");
-
-  try {
-    const conn = await project.connections.get(sharepointConnectionName);
-    console.log(`SharePoint connection verified: ${conn.name}`);
-    console.log(`Connection ID: ${conn.id}`);
-  } catch (error) {
-    console.log(`SharePoint connection '${sharepointConnectionName}' not found: ${error}`);
-    // List available connections
-    console.log("Available connections:");
-    for await (const conn of project.connections.list()) {
-      console.log(`  - ${conn.name}`);
-    }
-  }
-}
-
-verifyConnection().catch(console.error);
-```
-
-If this code runs without errors, your credentials and SharePoint connection are configured correctly.
-
-### Full sample
-
-This sample demonstrates how to create an AI agent with SharePoint capabilities using the `SharepointAgentTool` and synchronous Azure AI Projects client. The agent can search SharePoint content and provide responses with relevant information from SharePoint sites. For a JavaScript version of this sample, refer to the [SharePoint agent sample documentation](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentSharepoint.js) in the Azure SDK for JavaScript GitHub repository.
-
-```typescript
-import { DefaultAzureCredential } from "@azure/identity";
-import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
 
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
 const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
@@ -501,10 +349,8 @@ export async function main(): Promise<void> {
 
   // Get connection ID from connection name
   const sharepointConnection = await project.connections.get(sharepointConnectionName);
-  console.log(`SharePoint connection ID: ${sharepointConnection.id}`);
 
-  console.log("Creating agent with SharePoint tool...");
-
+  // Create agent with SharePoint tool
   const agent = await project.agents.createVersion("MyAgent", {
     kind: "prompt",
     model: deploymentName,
@@ -527,8 +373,7 @@ export async function main(): Promise<void> {
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   // Send initial request that will trigger the SharePoint tool
-  console.log("\nSending request to SharePoint agent with streaming...");
-  const streamResponse = await openAIClient.responses.create(
+  const streamResponse= await openAIClient.responses.create(
     {
       input: "Please summarize the last meeting notes stored in SharePoint.",
       stream: true,
@@ -570,31 +415,14 @@ export async function main(): Promise<void> {
     }
   }
 
-  // Clean up resources by deleting the agent version
-  // This prevents accumulation of unused resources in your project
-  console.log("\nCleaning up resources...");
+  // Clean up resources
   await project.agents.deleteVersion(agent.name, agent.version);
-  console.log("Agent deleted");
-
-  console.log("\nSharePoint agent sample completed!");
 }
 
 main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
 ```
-
-### What this code does
-
-This TypeScript example demonstrates the complete agent lifecycle with SharePoint:
-
-1. **Initialize the project client** with your Foundry endpoint and Azure credentials.
-1. **Get the OpenAI client** for creating responses.
-1. **Create an agent** with SharePoint tool configuration using your project connection ID.
-1. **Send a streaming request** asking the agent to summarize meeting notes.
-1. **Process streaming events** to display the response as it's generated.
-1. **Extract and display URL citations** from response annotations.
-1. **Clean up resources** by deleting the agent version after completion.
 
 ### Expected output
 

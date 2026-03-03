@@ -82,48 +82,8 @@ Ground your Foundry agent's responses in your proprietary content by connecting 
 
 :::zone pivot="python"
 
-### Quick verification
-
-Before running the full sample, verify your Azure AI Search connection exists:
-
 ```python
 import os
-
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from dotenv import load_dotenv
-
-load_dotenv()
-
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-):
-    print("Connected to project.")
-    
-    # Verify Azure AI Search connection exists
-    connection_name = os.environ.get("AZURE_AI_SEARCH_CONNECTION_NAME")
-    if connection_name:
-        try:
-            conn = project_client.connections.get(connection_name)
-            print(f"Azure AI Search connection verified: {conn.name}")
-            print(f"Connection ID: {conn.id}")
-        except Exception as e:
-            print(f"Azure AI Search connection '{connection_name}' not found: {e}")
-    else:
-        # List available connections to help find the right one
-        print("AZURE_AI_SEARCH_CONNECTION_NAME not set. Available connections:")
-        for conn in project_client.connections.list():
-            print(f"  - {conn.name}")
-```
-
-If this code runs without errors, your credentials and Azure AI Search connection are configured correctly.
-
-### Full sample
-
-```python
-import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -134,8 +94,6 @@ from azure.ai.projects.models import (
     AzureAISearchQueryType,
 )
 
-load_dotenv()
-
 endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
 
 with (
@@ -144,10 +102,11 @@ with (
     project_client.get_openai_client() as openai_client,
 ):
 
+    # Resolve the connection ID from the connection name
     azs_connection = project_client.connections.get(os.environ["AZURE_AI_SEARCH_CONNECTION_NAME"])
     connection_id = azs_connection.id
-    print(f"Azure AI Search connection ID: {connection_id}")
 
+    # Create an agent with the Azure AI Search tool
     agent = project_client.agents.create_version(
         agent_name="MyAgent",
         definition=PromptAgentDefinition(
@@ -172,11 +131,13 @@ with (
     )
     print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
+    # Prompt user for a question to send to the agent
     user_input = input(
         """Enter your question for the AI Search agent available in the index
         (e.g., 'Tell me about the mental health services available from Premera'): \n"""
     )
 
+    # Stream the response from the agent
     stream_response = openai_client.responses.create(
         stream=True,
         tool_choice="required",
@@ -184,13 +145,10 @@ with (
         extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
     )
 
+    # Process the streaming response and print citations
     for event in stream_response:
-        if event.type == "response.created":
-            print(f"Follow-up response created with ID: {event.response.id}")
-        elif event.type == "response.output_text.delta":
-            print(f"Delta: {event.delta}")
-        elif event.type == "response.text.done":
-            print(f"\nFollow-up response done!")
+        if event.type == "response.output_text.delta":
+            print(event.delta, end="")
         elif event.type == "response.output_item.done":
             if event.item.type == "message":
                 item = event.item
@@ -204,10 +162,9 @@ with (
                                 f"End index: {annotation.end_index}"
                             )
         elif event.type == "response.completed":
-            print(f"\nFollow-up completed!")
-            print(f"Full response: {event.response.output_text}")
+            print(f"\nFull response: {event.response.output_text}")
 
-    print("\nCleaning up...")
+    # Clean up resources
     project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
     print("Agent deleted")
 ```
@@ -218,40 +175,6 @@ The agent queries the search index and returns a response with inline citations.
 :::zone-end
 
 :::zone pivot="csharp"
-
-### Quick verification
-
-Before running the full sample, verify your Azure AI Search connection exists:
-
-```csharp
-using Azure.AI.Projects;
-using Azure.Identity;
-
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
-
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-
-// Verify Azure AI Search connection exists
-try
-{
-    AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
-    Console.WriteLine($"Azure AI Search connection verified: {conn.Name}");
-    Console.WriteLine($"Connection ID: {conn.Id}");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Azure AI Search connection '{aiSearchConnectionName}' not found: {ex.Message}");
-    // List available connections
-    Console.WriteLine("Available connections:");
-    foreach (var conn in projectClient.Connections.GetConnections())
-    {
-        Console.WriteLine($"  - {conn.Name}");
-    }
-}
-```
-
-If this code runs without errors, your credentials and Azure AI Search connection are configured correctly.
 
 ### Full sample
 
@@ -473,50 +396,12 @@ The API returns a JSON response containing the agent's answer about mental healt
 
 :::zone pivot="typescript"
 
-### Quick verification
-
-Before running the full sample, verify your Azure AI Search connection exists:
-
-```typescript
-import { DefaultAzureCredential } from "@azure/identity";
-import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
-
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const aiSearchConnectionName = process.env["AZURE_AI_SEARCH_CONNECTION_NAME"] || "<ai search connection name>";
-
-async function verifyConnection(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  console.log("Connected to project.");
-
-  try {
-    const conn = await project.connections.get(aiSearchConnectionName);
-    console.log(`Azure AI Search connection verified: ${conn.name}`);
-    console.log(`Connection ID: ${conn.id}`);
-  } catch (error) {
-    console.log(`Azure AI Search connection '${aiSearchConnectionName}' not found: ${error}`);
-    // List available connections
-    console.log("Available connections:");
-    for await (const conn of project.connections.list()) {
-      console.log(`  - ${conn.name}`);
-    }
-  }
-}
-
-verifyConnection().catch(console.error);
-```
-
-If this code runs without errors, your credentials and Azure AI Search connection are configured correctly.
-
-### Full sample
-
 This sample demonstrates how to create an AI agent with Azure AI Search capabilities by using the `AzureAISearchAgentTool` and synchronous Azure AI Projects client. The agent can search indexed content and provide responses with citations from search results.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import * as readline from "readline";
-import "dotenv/config";
 
 // Load environment variables
 const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
@@ -531,9 +416,6 @@ export async function main(): Promise<void> {
 
   // Get connection ID from connection name
   const aiSearchConnection = await project.connections.get(aiSearchConnectionName);
-  console.log(`Azure AI Search connection ID: ${aiSearchConnection.id}`);
-
-  console.log("Creating agent with Azure AI Search tool...");
 
   // Define Azure AI Search tool that searches indexed content
   const agent = await project.agents.createVersion("MyAISearchAgent", {
@@ -574,7 +456,7 @@ export async function main(): Promise<void> {
     );
   });
 
-  console.log("\nSending request to AI Search agent with streaming...");
+  // Stream the response from the agent
   const streamResponse = await openAIClient.responses.create(
     {
       input: userInput,
@@ -588,14 +470,10 @@ export async function main(): Promise<void> {
     },
   );
 
-  // Process the streaming response
+  // Process the streaming response and print citations
   for await (const event of streamResponse) {
-    if (event.type === "response.created") {
-      console.log(`Follow-up response created with ID: ${event.response.id}`);
-    } else if (event.type === "response.output_text.delta") {
+    if (event.type === "response.output_text.delta") {
       process.stdout.write(event.delta);
-    } else if (event.type === "response.output_text.done") {
-      console.log("\n\nFollow-up response done!");
     } else if (event.type === "response.output_item.done") {
       if (event.item.type === "message") {
         const item = event.item;
@@ -613,17 +491,13 @@ export async function main(): Promise<void> {
         }
       }
     } else if (event.type === "response.completed") {
-      console.log("\nFollow-up completed!");
+      console.log("\nResponse completed.");
     }
   }
 
-  // Clean up resources by deleting the agent version
-  // This prevents accumulation of unused resources in your project
-  console.log("\nCleaning up resources...");
+  // Clean up resources
   await project.agents.deleteVersion(agent.name, agent.version);
   console.log("Agent deleted");
-
-  console.log("\nAzure AI Search agent sample completed!");
 }
 
 main().catch((err) => {
@@ -882,11 +756,8 @@ If you use the REST or TypeScript sample, you need the project connection ID.
 
 ```python
 import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-
-load_dotenv()
 
 project_client = AIProjectClient(
   endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],

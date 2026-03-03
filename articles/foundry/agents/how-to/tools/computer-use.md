@@ -37,7 +37,7 @@ This guide shows how to integrate the computer use tool into an application loop
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - The latest SDK package:
-  - **Python**: `azure-ai-projects`, `python-dotenv`
+  - **Python**: `azure-ai-projects`
   - **C#/.NET**: `Azure.AI.Agents.Persistent` (prerelease)
   - **TypeScript**: `@azure/ai-projects`, `@azure/identity`
   - **Java**: `azure-ai-agents` (prerelease)
@@ -52,30 +52,6 @@ Set these environment variables before running the samples:
 | --- | --- |
 | `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint URL. |
 | `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your `computer-use-preview` model deployment name. |
-
-### Quick verification
-
-Verify your authentication and project connection before running the full samples:
-
-```python
-import os
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from dotenv import load_dotenv
-
-load_dotenv()
-
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-):
-    print("Connected to project.")
-    # Verify you can access the OpenAI client
-    openai_client = project_client.get_openai_client()
-    print("OpenAI client ready.")
-```
-
-If this code runs without errors, your credentials and project endpoint are configured correctly.
 
 ## Run the maintained SDK samples (recommended)
 
@@ -110,7 +86,6 @@ The following code sample demonstrates how to create an agent version with the c
 
 ```python
 import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, ComputerUsePreviewTool
@@ -122,8 +97,6 @@ from computer_use_util import (
     handle_computer_action_and_take_screenshot,
     print_final_output,
 )
-
-load_dotenv()
 
 """Main function to demonstrate Computer Use Agent functionality."""
 # Initialize state machine
@@ -162,7 +135,7 @@ with project_client:
         ),
         description="Computer automation agent with screen interaction capabilities.",
     )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+    print(f"Agent created (id: {agent.id}, name: {agent.name})")
 ```
 
 ### One iteration for the tool to process the screenshot and take the next step
@@ -171,7 +144,6 @@ with project_client:
     openai_client = project_client.get_openai_client()
 
     # Initial request with screenshot - start with Bing search page
-    print("Starting computer automation session (initial screenshot: cua_browser_search.png)...")
     response = openai_client.responses.create(
         input=[
             {
@@ -194,6 +166,7 @@ with project_client:
     )
 
     print(f"Initial response received (ID: {response.id})")
+
 ```
 
 ### Perform multiple iterations
@@ -225,12 +198,8 @@ while True:
     action = computer_call.action
     call_id = computer_call.call_id
 
-    print(f"Processing computer call (ID: {call_id})")
-
     # Handle the action and get the screenshot info
     screenshot_info, current_state = handle_computer_action_and_take_screenshot(action, current_state, screenshots)
-
-    print(f"Sending action result back to agent (using {screenshot_info['filename']})...")
 
     # Regular response with just the screenshot
     response = openai_client.responses.create(
@@ -249,7 +218,7 @@ while True:
         truncation="auto",
     )
 
-    print(f"Follow-up response received (ID: {response.id})")
+    print(f"Iteration {iteration}: response received (ID: {response.id})")
 ```
 
 ### Clean up
@@ -486,7 +455,6 @@ The following TypeScript code sample demonstrates how to create an agent version
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
 import {
   SearchState,
   loadScreenshotAssets,
