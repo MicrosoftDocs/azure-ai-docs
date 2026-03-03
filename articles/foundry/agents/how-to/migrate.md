@@ -117,8 +117,7 @@ const openAIClient = await projectClient
 ```java
 import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.identity
-    .DefaultAzureCredentialBuilder;
+import com.azure.identity.DefaultAzureCredentialBuilder;
 
 AgentsClient agentsClient =
     new AgentsClientBuilder()
@@ -187,8 +186,8 @@ The following examples compare thread creation (previous) with conversation crea
 
 ```python
 thread = client.agents.threads.create( 
-     messages=[{"role": "user", "content": "Tell me a one line funny story about unicorns"}], 
-     metadata={"agent": "my-awesome-agent"}, 
+     messages=[{"role": "user", "content": "Tell me a one line funny story about unicorns"}], 
+     metadata={"agent": "my-awesome-agent"}, 
 ) 
 ```
 
@@ -484,13 +483,13 @@ The following examples compare how you invoke agent logic. The previous approach
 thread_id = "thread_abcd1234" 
 assistant_id = "asst_efgh5678" 
 run = project_client.agents.runs.create( 
-  thread_id=thread_id,  
-  agent_id=assistant_id, 
-  additional_instructions="Please address the user as Jane Doe. The user has a premium account" 
+  thread_id=thread_id,  
+  agent_id=assistant_id, 
+  additional_instructions="Please address the user as Jane Doe. The user has a premium account" 
 ) 
 while run.status in ("queued", "in_progress"): 
-  time.sleep(1) 
-  run = project_client.agents.runs.get(thread_id=thread_id, run_id=run.id) 
+  time.sleep(1) 
+  run = project_client.agents.runs.get(thread_id=thread_id, run_id=run.id) 
 ```
 
 # [C#](#tab/csharp)
@@ -770,9 +769,9 @@ If you use the `client.agents.create_agent()` method from earlier SDK versions, 
 ```python
 agent = client.agents.create_agent( 
     model="gpt-4.1", 
-    name="my-agent",  # Name of the agent 
-    instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.",  # Instructions for the agent 
-    tools=code_interpreter.definitions,  # Attach the tool 
+    name="my-agent",  # Name of the agent 
+    instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.",  # Instructions for the agent 
+    tools=code_interpreter.definitions,  # Attach the tool 
 ) 
 ```
 
@@ -905,10 +904,8 @@ const agent =
 # [Java](#tab/java)
 
 ```java
-import com.azure.ai.agents.models
-    .PromptAgentDefinition;
-import com.azure.ai.agents.models
-    .CodeInterpreterToolDefinition;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.CodeInterpreterToolDefinition;
 
 PromptAgentDefinition definition =
     new PromptAgentDefinition("gpt-4.1");
@@ -1139,10 +1136,8 @@ const agent =
 # [Java](#tab/java)
 
 ```java
-import com.azure.ai.agents.models
-    .PromptAgentDefinition;
-import com.azure.ai.agents.models
-    .CodeInterpreterToolDefinition;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.CodeInterpreterToolDefinition;
 
 PromptAgentDefinition definition =
     new PromptAgentDefinition("gpt-4.1");
@@ -1171,25 +1166,25 @@ The following example shows a complete before-and-after comparison. Notice that 
 
 ```python
 agent = project_client.agents.create_agent( 
-    model="gpt-4.1", 
-    name="my-agent", 
-    instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.",  # Instructions for the agent 
-    tools=[{"type": "code_interpreter"}] 
+    model="gpt-4.1", 
+    name="my-agent", 
+    instructions="You politely help with math questions. Use the Code Interpreter tool when asked to visualize numbers.",  # Instructions for the agent 
+    tools=[{"type": "code_interpreter"}] 
 ) 
 thread = project_client.agents.threads.create() 
 message = project_client.agents.messages.create( 
-    thread_id=thread.id, 
-    role="user",  # Role of the message sender 
-    content="Hi, Agent! Draw a graph for a line with a rate of change of 4 and y-intercept of 9.",  # Message content 
+    thread_id=thread.id, 
+    role="user",  # Role of the message sender 
+    content="Hi, Agent! Draw a graph for a line with a rate of change of 4 and y-intercept of 9.",  # Message content 
 ) 
 run = project_client.agents.runs.create_and_process( 
-    thread_id=thread.id, 
-    agent_id=agent.id, 
-    additional_instructions="Please address the user as Jane Doe. The user has a premium account", 
+    thread_id=thread.id, 
+    agent_id=agent.id, 
+    additional_instructions="Please address the user as Jane Doe. The user has a premium account", 
 ) 
 messages = project_client.agents.messages.list(thread_id=thread.id) 
 for message in messages: 
-    print(f"Role: {message.role}, Content: {message.content}") 
+    print(f"Role: {message.role}, Content: {message.content}") 
 ```
 
 # [C#](#tab/csharp)
@@ -1520,10 +1515,8 @@ const response =
 # [Java](#tab/java)
 
 ```java
-import com.azure.ai.agents.models
-    .PromptAgentDefinition;
-import com.azure.ai.agents.models
-    .CodeInterpreterToolDefinition;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.CodeInterpreterToolDefinition;
 
 PromptAgentDefinition definition =
     new PromptAgentDefinition("gpt-4.1");
