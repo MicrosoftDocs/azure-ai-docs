@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.date: 03/03/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents
+ms.custom: azure-ai-agents, doc-kit-assisted
 zone_pivot_groups: selection-azure-function-tool
 ai-usage: ai-assisted
 ---
