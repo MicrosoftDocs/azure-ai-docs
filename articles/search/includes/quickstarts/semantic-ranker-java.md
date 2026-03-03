@@ -8,11 +8,9 @@ ms.date: 03/02/2026
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use the [Azure AI Search Java SDK](https://search.maven.org/artifact/com.azure/azure-search-documents) client library to add [semantic ranking](../../semantic-search-overview.md) to an existing search index.
+In this quickstart, you use the [Azure AI Search client library for Java](/java/api/overview/azure/search-documents-readme) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and run semantic queries.
 
-In Azure AI Search, semantic ranking is query-side functionality that uses machine reading comprehension from Microsoft to rescore search results, promoting the most semantically relevant matches to the top of the list. Depending on the content and query, semantic ranking can [significantly improve search relevance](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167) with minimal developer effort.
-
-You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for text that's informational or descriptive.
+Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for text that's informational or descriptive.
 
 > [!TIP]
 > Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-semantic-ranking) on GitHub.
@@ -23,7 +21,7 @@ You can add a semantic configuration to an existing index with no rebuild requir
 
 + An [Azure AI Search service](../../search-create-service-portal.md) with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [index](../../search-how-to-create-search-index.md) with descriptive text fields that are attributed as `searchable` and `retrievable`. This quickstart assumes the [hotels-sample-index](../../search-get-started-portal.md).
++ An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample](../../search-get-started-portal.md) index.
 
 + [Java 21 (LTS)](/java/openjdk/install) and [Maven](https://maven.apache.org/download.cgi).
 
@@ -222,7 +220,7 @@ Key takeaways:
 
 ### Update the index with a semantic configuration
 
-The `UpdateIndexSettings.java` class adds a semantic configuration to the existing `hotels-sample-index` index. No search documents are deleted by this operation and your index is still operational after the configuration is added.
+The `UpdateIndexSettings.java` class adds a semantic configuration to the existing `hotels-sample` index. No search documents are deleted by this operation and your index is still operational after the configuration is added.
 
 ```java
 import com.azure.search.documents.indexes

@@ -20,4 +20,4 @@ To configure the recommended role-based access:
     + **Search Index Data Reader**
 
 > [!NOTE]
-> Unlike other quickstarts that create and load an index, this quickstart assumes an existing index with data, so you don't need the **Search Index Data Contributor** role.
+> Unlike other quickstarts that create and load an index, this quickstart assumes an existing index that already contains data, so you don't need the **Search Index Data Contributor** role.

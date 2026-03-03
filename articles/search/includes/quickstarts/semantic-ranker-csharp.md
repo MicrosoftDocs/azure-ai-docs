@@ -10,11 +10,9 @@ ms.date: 03/02/2026
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index.
+In this quickstart, you use the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and run semantic queries.
 
-In Azure AI Search, semantic ranking is query-side functionality that uses machine reading comprehension from Microsoft to rescore search results, promoting the most semantically relevant matches to the top of the list. Depending on the content and query, semantic ranking can [significantly improve search relevance](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167) with minimal developer effort.
-
-You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for text that's informational or descriptive.
+Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for text that's informational or descriptive.
 
 > [!TIP]
 > Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-ranking) on GitHub.
@@ -25,7 +23,7 @@ You can add a semantic configuration to an existing index with no rebuild requir
 
 + An [Azure AI Search service](../../search-create-service-portal.md) with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [index](../../search-how-to-create-search-index.md) with descriptive text fields that are attributed as `searchable` and `retrievable`. This quickstart assumes the [hotels-sample-index](../../search-get-started-portal.md).
++ An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample](../../search-get-started-portal.md) index.
 
 + [.NET 9](https://dotnet.microsoft.com/download) or later.
 
@@ -80,7 +78,7 @@ You can add a semantic configuration to an existing index with no rebuild requir
     dotnet run --project BuildIndex
     ```
 
-1. Run the second project to query the index.
+1. Run the second project to query the index. Press **Enter** between queries to see the progression from simple query to semantic query with captions and answers.
 
     ```console
     dotnet run --project QueryIndex
@@ -88,17 +86,17 @@ You can add a semantic configuration to an existing index with no rebuild requir
 
 ### Output
 
-The first project updates the hotels-sample-index with a semantic configuration. Output includes confirmation of the semantic configuration.
+The first project updates the hotels-sample index with a semantic configuration. Output includes confirmation of the semantic configuration.
 
 ```output
-Here's a list of all indexes on the search service. You should see hotels-sample-index:
-hotels-sample-index
+Here's a list of all indexes on the search service. You should see hotels-sample:
+hotels-sample
 
 Added new semantic configuration 'semantic-config' to the index definition.
 Index updated successfully.
 Here is the revised index definition:
 {
-  "Name": "hotels-sample-index",
+  "Name": "hotels-sample",
   ...
   "SemanticSearch": {
     "DefaultConfigurationName": "semantic-config",

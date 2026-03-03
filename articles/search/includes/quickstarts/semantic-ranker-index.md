@@ -7,17 +7,17 @@ ms.topic: include
 ms.date: 03/02/2026
 ---
 
-This quickstart modifies an existing index to include a semantic configuration. We recommend the hotels-sample-index, which you can create in minutes using an Azure portal wizard.
+This quickstart modifies an existing index to include a semantic configuration. We recommend the hotels-sample index, which you can create in minutes using an Azure portal wizard.
 
 To use a different index, replace the index name, field names in the semantic configuration, and field names in query `select` statements throughout the sample code. Your index should contain descriptive text fields that are attributed as `searchable` and `retrievable`.
 
-To review and query the hotels-sample-index before semantic ranking:
+To review and query the hotels-sample index before semantic ranking:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
 1. From the left pane, select **Search management** > **Indexes**.
 
-1. Select **hotels-sample-index**.
+1. Select **hotels-sample**.
 
 1. Select **Semantic configurations** to verify the index doesn't have a semantic configuration.
 

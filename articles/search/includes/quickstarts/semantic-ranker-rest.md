@@ -8,11 +8,9 @@ ms.date: 03/02/2026
 ai-usage: ai-assisted
 ---
 
-In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index.
+In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and run semantic queries.
 
-In Azure AI Search, semantic ranking is query-side functionality that uses machine reading comprehension from Microsoft to rescore search results, promoting the most semantically relevant matches to the top of the list. Depending on the content and query, semantic ranking can [significantly improve search relevance](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167) with minimal developer effort.
-
-You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for text that's informational or descriptive.
+Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for text that's informational or descriptive.
 
 > [!TIP]
 > Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-ranking) on GitHub.
@@ -23,7 +21,7 @@ You can add a semantic configuration to an existing index with no rebuild requir
 
 + An [Azure AI Search service](../../search-create-service-portal.md) with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [index](../../search-how-to-create-search-index.md) with descriptive text fields that are attributed as `searchable` and `retrievable`. This quickstart assumes the [hotels-sample-index](../../search-get-started-portal.md).
++ An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample](../../search-get-started-portal.md) index.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
@@ -92,9 +90,9 @@ Send each request in sequence to see the full progression from index verificatio
     Authorization: Bearer {{personalAccessToken}}
     ```
 
-   Output is a list of indexes. You should see `hotels-sample-index` in the list.
+   Output is a list of indexes. You should see `hotels-sample` in the list.
 
-1. **Update the index with a semantic configuration.** In the same file, send the PUT request. This request provides the full `hotels-sample-index` schema plus the semantic configuration.
+1. **Update the index with a semantic configuration.** In the same file, send the PUT request. This request provides the full `hotels-sample` schema plus the semantic configuration.
 
    Output is an `HTTP 200 Success` status with the updated index schema.
 
@@ -102,7 +100,7 @@ Send each request in sequence to see the full progression from index verificatio
 
     ```http
     POST {{searchUrl}}/indexes
-        /hotels-sample-index/docs/search
+        /hotels-sample/docs/search
         ?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{personalAccessToken}}
@@ -123,7 +121,7 @@ Send each request in sequence to see the full progression from index verificatio
 
     ```http
     POST {{searchUrl}}/indexes
-        /hotels-sample-index/docs/search
+        /hotels-sample/docs/search
         ?api-version=2025-09-01  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{personalAccessToken}}
