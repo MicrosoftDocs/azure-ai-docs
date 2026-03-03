@@ -479,15 +479,9 @@ This Java example creates an agent with an OpenAPI tool by using `com.azure:azur
 ```java
 import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.AgentsServiceVersion;
 import com.azure.ai.agents.ConversationsClient;
 import com.azure.ai.agents.ResponsesClient;
-import com.azure.ai.agents.models.AgentReference;
-import com.azure.ai.agents.models.AgentVersionDetails;
-import com.azure.ai.agents.models.OpenApiAgentTool;
-import com.azure.ai.agents.models.OpenApiAnonymousAuthDetails;
-import com.azure.ai.agents.models.OpenApiFunctionDefinition;
-import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.*;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
@@ -510,8 +504,7 @@ public class OpenApiAgentJavaSample {
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .endpoint(endpoint)
-            .credential(new DefaultAzureCredentialBuilder().build())
-            .serviceVersion(AgentsServiceVersion.V2025_11_15_PREVIEW); // Pin to the preview API version supported by azure-ai-agents 2.0.0-beta.1
+            .credential(new DefaultAzureCredentialBuilder().build());
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();

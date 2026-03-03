@@ -441,13 +441,7 @@ Add the dependency to your `pom.xml`:
 import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
-import com.azure.ai.agents.models.AgentReference;
-import com.azure.ai.agents.models.AgentVersionDetails;
-import com.azure.ai.agents.models.ImageGenTool;
-import com.azure.ai.agents.models.ImageGenToolModel;
-import com.azure.ai.agents.models.ImageGenToolQuality;
-import com.azure.ai.agents.models.ImageGenToolSize;
-import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.*;
 import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
