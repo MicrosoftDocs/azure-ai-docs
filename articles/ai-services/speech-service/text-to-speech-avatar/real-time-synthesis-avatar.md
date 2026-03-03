@@ -342,6 +342,7 @@ Find text to speech avatar code samples in the Speech SDK GitHub repository. The
     - [Android](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/avatar)
     - [iOS](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios/avatar)
 - **Voice Live**
+    - [Python](https://github.com/microsoft-foundry/voicelive-samples/tree/main/python/voice-live-avatar)
     - [Node.js](https://github.com/azure-ai-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar)
 
 ## Next steps
