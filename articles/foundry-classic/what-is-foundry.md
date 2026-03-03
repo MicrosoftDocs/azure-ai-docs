@@ -70,25 +70,25 @@ The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-project
 
 ## Types of projects
 
-Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](../foundry/includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](../foundry/../foundry/includes/fdp-project-name.md)]**. In most cases, you want to use a [!INCLUDE [fdp-project-name](../foundry/../foundry/includes/fdp-project-name.md)].
+Microsoft Foundry (classic) supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](../foundry/includes/fdp-project-name.md)]**. In most cases, you want to use a [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)].
 
 - [!INCLUDE [fdp-description](includes/fdp-description.md)]
 
 - [!INCLUDE [hub-description](includes/hub-description.md)]
 
-- To understand how the newer [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](../foundry/includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#new-foundry-projects-overview).
+- To understand how the newer [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#new-foundry-projects-overview).
 
 ### Which type of project do I need?
 
 - In general, you should use a [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)] if you're looking to build agents or work with models.
-- Use a [!INCLUDE [hub-project-name](../foundry/includes/hub-project-name.md)] when you need features that aren't available in a [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)]. See the following table for more on feature availability.
+- Use a [!INCLUDE [hub-project-name](includes/hub-project-name.md)] when you need features that aren't available in a [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)]. See the following table for more on feature availability.
 
 > [!NOTE]
-> New agents and model-centric capabilities are only available on [!INCLUDE [fdp-project-name](../foundry/../foundry/includes/fdp-project-name.md)]s, including access to the Foundry API and Foundry Agent Service in general availability. To migrate your [!INCLUDE [hub-project-name](../foundry/includes/hub-project-name.md)] to a [!INCLUDE [fdp-project-name](../foundry/../foundry/includes/fdp-project-name.md)], see [Migrate from hub-based to Foundry projects](how-to/migrate-project.md).
+> New agents and model-centric capabilities are only available on [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)]s, including access to the Foundry API and Foundry Agent Service in general availability. To migrate your [!INCLUDE [hub-project-name](includes/hub-project-name.md)] to a [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)], see [Migrate from hub-based to Foundry projects](how-to/migrate-project.md).
 
 This table summarizes features available in the two project types:  
 
-| Capability | [!INCLUDE [fdp](../foundry/includes/fdp-project-name.md)] | [!INCLUDE[hub](../foundry/includes/hub-project-name.md)] |
+| Capability | [!INCLUDE [fdp](../foundry/includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
 | Agents | ✅ (GA) | ✅ (Preview only) |
 | Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
@@ -118,14 +118,14 @@ Here are some of the ways to identify your project type:
 * From the **breadcrumb navigation** section
 
     * A [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)] displays **(Foundry)** on the second line
-    * A [!INCLUDE [hub-project-name](../foundry/includes/hub-project-name.md)] displays **(Hub)** on the second line
+    * A [!INCLUDE [hub-project-name](includes/hub-project-name.md)] displays **(Hub)** on the second line
 
     :::image type="content" source="media/how-to/projects/breadcrumb.png" alt-text="Screenshot shows both a Foundry and hub-based project in the breadcrumb navigation.":::
 
 * From the **All resources** page
 
     * A [!INCLUDE [fdp-project-name](../foundry/includes/fdp-project-name.md)] displays **(Foundry)** as the parent resource
-    * A [!INCLUDE [hub-project-name](../foundry/includes/hub-project-name.md)] displays **(Hub)** as the parent resource
+    * A [!INCLUDE [hub-project-name](includes/hub-project-name.md)] displays **(Hub)** as the parent resource
 
     :::image type="content" source="media/how-to/projects/all-resources.png" alt-text="Screenshot shows both a Foundry and hub-based project in the All Resources page.":::
 

@@ -33,7 +33,7 @@ In this article, you identify cost spikes, switch to a cost-efficient model, and
 
 - The Ask AI agent enabled in your Foundry project. The Ask AI agent is available in preview on the toolbar of the Foundry portal. If you don't see it, verify that your project is in a [supported region](overview.md) and that your administrator hasn't disabled the feature.
 
-- An evaluation dataset that represents your agent's typical workload. Use this dataset to compare model performance after switching models. To create an evaluation dataset, see [Evaluate your generative AI application with the Azure AI Evaluation SDK](../../foundry-classic/how-to/develop/evaluate-sdk.md).
+- An evaluation dataset that represents your agent's typical workload. Use this dataset to compare model performance after switching models.
 
 ## Detect cost increases
 

@@ -584,6 +584,9 @@ items:
     href: migrate-to-custom-voice-api.md
   - name: Migrate from retired intent recognition
     href: migrate-intent-recognition.md    
+  - name: SDK 1.48.2 CRL compatibility update
+    href: migrate-to-sdk-1-48-2.md
+    displayName: migrate,migration,CRL,certificate,Linux,Android
 - name: Responsible AI
   items:
     - name: Speech to text

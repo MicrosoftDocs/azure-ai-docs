@@ -105,8 +105,6 @@ productDirectory:
       links:
         - url: ../ai-services/speech-service/index.yml
           text: Speech
-        - url: ../ai-services/computer-vision/index.yml
-          text: Vision
         - url: ../ai-services/translator/index.yml
           text: Translator
         - url: ../ai-services/language-service/index.yml
@@ -115,6 +113,8 @@ productDirectory:
           text: Document Intelligence
         - url: ../ai-services/content-understanding/index.yml
           text: Content Understanding
+        - url: ../ai-services/computer-vision/overview-identity.md
+          text: Face
     # Card
     - title: Azure Machine Learning
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure-machine-learning.png
@@ -180,8 +180,6 @@ additionalContent:
               url: /agent-framework/
             - text: Document Intelligence
               url: ../ai-services/document-intelligence/index.yml
-            - text: Face
-              url: ../ai-services/computer-vision/overview-identity.md
             - text: Vision
               url: ../ai-services/computer-vision/index.yml
             - text: Immersive Reader

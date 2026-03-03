@@ -25,11 +25,11 @@ To create an account and project in Foundry, follow these steps:
 
 1. Use the Agent getting started creation flow for the fastest experience. Click **Create an agent**.
 
-    :::image type="content" source="../media\quickstart\foundry-landing-page.png" alt-text="A screenshot of the Foundry portal." lightbox="../media\quickstart\foundry-landing-page.png":::
+    :::image type="content" source="../media/quickstart/foundry-landing-page.png" alt-text="A screenshot of the Foundry portal." lightbox="../media/quickstart/foundry-landing-page.png":::
 
 1. Enter a name for the project. If you want to customize the default values, select **Advanced options**.
 
-    :::image type="content" source="../media\quickstart\create-project.png" alt-text="A screenshot of the advanced options for creating a project." lightbox="../media\quickstart\create-project.png":::
+    :::image type="content" source="../media/quickstart/create-project.png" alt-text="A screenshot of the advanced options for creating a project." lightbox="../media/quickstart/create-project.png":::
 
 1. Select **Create**.
 
@@ -40,7 +40,7 @@ To create an account and project in Foundry, follow these steps:
 
 1. Once complete, you will land directly in the agent playground and you can start creating agents. You can give your agent instructions on what to do and how to do it. For example: *"You are a helpful agent that can answer questions about geography."* Then you can start chatting with your agent.
 
-    :::image type="content" source="../media\quickstart\agent-playground.png" alt-text="Screenshot of the agent playground." lightbox="../media\quickstart\agent-playground.png":::
+    :::image type="content" source="../media/quickstart/agent-playground.png" alt-text="Screenshot of the agent playground." lightbox="../media/quickstart/agent-playground.png":::
 
     > [!NOTE]
     > If you are getting permission error when trying to configure or create agents ensure you have the **Azure AI User** on the project.
