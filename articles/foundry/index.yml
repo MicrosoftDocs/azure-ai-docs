@@ -1,12 +1,12 @@
 ### YamlMime:Hub
 
 title: Microsoft Foundry documentation
-summary: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
+summary: The AI app and agent factory - build, optimize, and govern AI apps and agents at scale.
 brand: azure
 
 metadata:
   title: Microsoft Foundry documentation
-  description: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
+  description: The AI app and agent factory - build, optimize, and govern AI apps and agents at scale.
   author: sdgilley
   ms.author: sgilley
   manager: mcleans
@@ -49,7 +49,7 @@ productDirectory:
         - url: /azure/developer/ai/intelligent-app-templates
           text: Start with an AI template
     # Card
-    - title: Microsoft Foundry Models
+    - title: Foundry Models
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/azure-foundry-models.png
       links:
         - url: ./foundry-models/concepts/models-sold-directly-by-azure.md
@@ -75,7 +75,7 @@ productDirectory:
         - url: ./concepts/ai-red-teaming-agent.md
           text: AI Red Teaming Agent (preview)
     # Card
-    - title: Protect and govern
+    - title: Foundry Control Plane
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry-control-plane-protect-govern.svg
       links:
         - url: responsible-use-of-ai-overview.md
