@@ -10,7 +10,7 @@ ms.author: pafarley
 #Customer intent: As a developer, I want to understand the Azure AI Speech SDK CRL compatibility change and take the required mitigation steps.
 ---
 
-# Azure AI Speech SDK: Certificate Revocation List (CRL) Compatibility Update
+# Azure AI Speech SDK: Certificate Revocation List (CRL) compatibility update
 
 > [!IMPORTANT]
 > **Effective date:** July 1, 2026. Action is required before this date to avoid service disruption on Linux and Android platforms.
@@ -48,10 +48,10 @@ The impact of the CRL partitioning change depends on whether your application co
 
 Use this quick decision guide:
 
-1. **Does your app connect to Azure Speech cloud endpoints (STT or TTS)?**
+- **Does your app connect to Azure Speech cloud endpoints (STT or TTS)?**
    - **No** → You use embedded-only speech. **No action needed.**
    - **Yes** → Continue to step 2.
-1. **Does your app also use embedded speech as a fallback?**
+- **Does your app also use embedded speech as a fallback?**
    - **Yes** → You have a hybrid deployment. Cloud features can fail after certificate renewal, but embedded fallback continues to work. **Action required** for cloud features.
    - **No** → You have a cloud-only deployment. **Speech calls can fail** after certificate renewal with no fallback. **Action required.**
 
@@ -69,9 +69,9 @@ Determine which caching scenario applies to you:
 
 The SDK persists CRL data to disk using the system temp directory (`$TMPDIR` or `$TMP`). A stale CRL partition entry in the disk cache can cause persistent connection failures that survive application restarts. To resolve this:
 
-1. Follow [Option 1: Upgrade to SDK 1.48.2+](#option-1-upgrade-to-sdk-version-1482-or-later-recommended) (recommended), or
-1. Follow [Option 2: Disable CRL checking](#option-2-disable-crl-checking).
-1. If you can't upgrade before the deadline, use the [temporary workaround](#temporary-workaround-clear-the-crl-disk-cache) to clear the CRL disk cache and reduce the duration of impact.
+- Follow [Option 1: Upgrade to SDK 1.48.2+](#option-1-upgrade-to-sdk-version-1482-or-later-recommended) (recommended), or
+- Follow [Option 2: Disable CRL checking](#option-2-disable-crl-checking).
+- If you can't upgrade before the deadline, use the [temporary workaround](#temporary-workaround-clear-the-crl-disk-cache) to clear the CRL disk cache and reduce the duration of impact.
 
 #### CRL disk caching not enabled
 
