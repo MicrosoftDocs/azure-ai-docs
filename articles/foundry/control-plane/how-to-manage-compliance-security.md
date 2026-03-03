@@ -6,7 +6,7 @@ author: s-polly
 ms.author: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/23/2026
+ms.date: 03/02/2026
 ai-usage: ai-assisted
 ms.custom: dev-focus
 
@@ -25,7 +25,7 @@ Use the compliance workspace tabs to reach the right surface quickly.
 | **Policies** | **Operate** > **Compliance** > **Policies** | Review guardrail policies, check compliance, and create or edit enforcement rules. |
 | **Assets** | **Operate** > **Compliance** > **Assets** | Inspect individual model deployments, view policy violations, and jump to remediation. |
 | **Guardrails** | **Operate** > **Compliance** > **Guardrails** | Compare guardrail configurations across deployments and spot coverage gaps. |
-| **Security** | **Operate** > **Compliance** > **Security** | Review Defender for Cloud recommendations and manage Microsoft Purview enablement. |
+| **Security posture** | **Operate** > **Compliance** > **Security posture** | Review Defender for Cloud recommendations and manage Microsoft Purview enablement. |
 
 ## Prerequisites
 
@@ -40,6 +40,23 @@ Use the compliance workspace tabs to reach the right surface quickly.
   - **To configure Microsoft Purview integration**: You need the Azure AI Account Owner role.
 
 [!INCLUDE [capability-new-portal](../includes/capability-new-portal.md)]
+
+## AI risks and defense-in-depth overview
+
+Building AI workloads introduces unique security challenges. Key risks include:
+
+- **Prompt injection**: Malicious inputs crafted to manipulate model behavior or bypass safety controls.
+- **Sensitive data leakage**: Models inadvertently exposing confidential information in responses.
+- **Model misuse**: Unauthorized or abusive use of AI capabilities that violates organizational policies.
+
+Microsoft Foundry, Defender for Cloud, and Microsoft Purview address these risks in combination:
+
+- **Foundry guardrails**: Content filters, prompt shields, and abuse detection protect managed inference endpoints at the model layer.
+- **Defender for Cloud**: Security posture recommendations identify misconfigurations, and threat protection for Foundry Tools detects jailbreak and user input attacks.
+- **Microsoft Purview**: Auditing, sensitive information type (SIT) classification, and Data Security Posture Management (DSPM) for AI provide visibility and governance over prompt and response data.
+
+> [!NOTE]
+> Microsoft Purview Data Security Policies require Microsoft Entra ID user-context tokens to attach policies to user interactions.
 
 ## Create, review, and manage guardrail policies
 
@@ -141,11 +158,13 @@ Here's how you can do this task:
 
 Defender for Cloud provides security posture gaps and recommendations for remediation. Your security posture represents the overall security status of your Azure resources, including potential vulnerabilities, misconfigurations, and recommended improvements. Defender assesses your resources and workloads against built-in and custom security standards.
 
-To get security posture recommendations from Defender for Cloud, [enable it on your Azure subscription](/azure/defender-for-cloud/connect-azure-subscription). To get threat protection alerts for jailbreak attacks based on risk detection in Foundry for user input attacks, [enable threat protection for Foundry Tools](/azure/defender-for-cloud/ai-onboarding). Jailbreak attacks attempt to bypass AI safety measures by using carefully crafted prompts. Foundry detects these attack patterns in user input.  
+To get security posture recommendations from Defender for Cloud, [enable it on your Azure subscription](/azure/defender-for-cloud/connect-azure-subscription). To get threat protection alerts for jailbreak attacks based on risk detection in Foundry for user input attacks, [enable threat protection for Foundry Tools](/azure/defender-for-cloud/ai-onboarding). Jailbreak attacks attempt to bypass AI safety measures by using carefully crafted prompts. Foundry detects these attack patterns in user input.
+
+Recommendations and alerts cover AI workloads built on Foundry's managed inference endpoints. Detections for jailbreak and prompt attacks appear as Defender alerts and can be correlated with Microsoft Purview Audit records of AI interactions to support investigation and governance.
 
 To review Defender security recommendations, follow these steps:
 
-1. In the compliance workspace, select the **Security** tab.
+1. In the compliance workspace, select the **Security posture** tab.
 
 1. [Enable Defender for Cloud](/azure/defender-for-cloud/connect-azure-subscription) for your subscription if you need to do so.
 
@@ -167,13 +186,13 @@ By enabling Microsoft Purview on your Azure subscription, you can access, proces
 
 This capability helps your organization manage and monitor AI-generated data in alignment with enterprise policies and regulatory requirements. Keep these considerations in mind:
 
-- Microsoft Purview Data Security Policies for Foundry Services interactions are supported for API calls that use Microsoft Entra ID authentication with a user-context token, or for API calls that explicitly include user context. To learn more, see [AzureUserSecurityContext](../openai/latest.md#azureusersecuritycontext). For all other authentication scenarios, user interactions captured in Microsoft Purview appear only in Microsoft Purview Audit and AI interactions with classifications within DSPM for the AI activity explorer.
+- Microsoft Purview Data Security Policies apply to interactions that use Microsoft Entra ID user-context authentication against Foundry's managed inference endpoint (`/chat/completions`). To learn more, see [AzureUserSecurityContext](../openai/latest.md#azureusersecuritycontext).
+
+- For all other authentication scenarios, user interactions are visible in Microsoft Purview Audit and DSPM for AI activity explorer classifications, but aren't enforced by data security policies.
 
 - Microsoft Purview Audit is included as part of the Microsoft Purview license for Foundry services. For setup of data security policies in Microsoft Purview by your enterprise security admins, billing is based on [pay-as-you-go](https://azure.microsoft.com/pricing/details/purview/) meters.
 
 - Integration with Microsoft Purview for the preceding features in Foundry doesn't yet support network isolation.
-
-- Integration with Microsoft Purview is currently available for calls made through the Microsoft Foundry inference endpoint (aka OpenAI-compatible chat completions API or /chat/completions endpoint). Every model deployed through Foundry's managed inference stack is covered by Purview.
 
 This feature requires a Microsoft Purview license in the tenant. To learn about Microsoft Purview, see [Microsoft Purview data security and compliance protections for generative AI apps](/purview/ai-microsoft-purview).
 
