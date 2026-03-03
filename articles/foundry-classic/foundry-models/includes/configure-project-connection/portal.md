@@ -9,7 +9,7 @@ ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
 
-[!INCLUDE [Header](../../../../foundry/foundry-models/includes/configure-project-connection/intro.md)]
+[!INCLUDE [Header](intro.md)]
 
 * An AI project resource.
 

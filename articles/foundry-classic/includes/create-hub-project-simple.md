@@ -14,7 +14,7 @@ ms.custom: include, build-2024, ignite-2024
  
 1. [!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
 
-1. [!INCLUDE [create-project-access](../../foundry/includes/create-project-access.md)]
+1. [!INCLUDE [create-project-access](create-project-access.md)]
 
 1. Select **AI hub resource**, then select **Next**.
 1. Enter a name for the project.

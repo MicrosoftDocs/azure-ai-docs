@@ -13,7 +13,7 @@ ms.reviewer: fasantia
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-[!INCLUDE [intro](../../../../foundry/foundry-models/includes/use-structured-outputs/intro.md)]
+[!INCLUDE [intro](intro.md)]
 
 [!INCLUDE [how-to-prerequisites-python](../../../../foundry/foundry-models/includes/how-to-prerequisites-python.md)]
 

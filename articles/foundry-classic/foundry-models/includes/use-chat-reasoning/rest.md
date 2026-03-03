@@ -14,7 +14,7 @@ reviewer: balapv
 
 This article explains how to use the reasoning capabilities of chat completions models deployed in Microsoft Foundry Models.
 
-[!INCLUDE [about-reasoning](../../../../foundry/foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
+[!INCLUDE [about-reasoning](about-reasoning.md)]
 
 ## Prerequisites
 

@@ -25,7 +25,7 @@ The following list describes typical scenarios where structured outputs are usef
 
 To use structured outputs with chat completions models in your application, you need:
 
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
+[!INCLUDE [how-to-prerequisites](../../../../foundry/foundry-models/includes/how-to-prerequisites.md)]
 
 * A chat completions model deployment with JSON and structured outputs support. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md).
 

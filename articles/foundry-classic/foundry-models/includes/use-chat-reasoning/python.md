@@ -14,7 +14,7 @@ reviewer: balapv
 
 This article explains how to use the reasoning capabilities of chat completions models deployed in Microsoft Foundry Models.
 
-[!INCLUDE [about-reasoning](../../../../foundry/foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
+[!INCLUDE [about-reasoning](about-reasoning.md)]
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites](../../../../foundry/foundry-models/includes/how-to-prerequisites.md)]
 
-[!INCLUDE [how-to-prerequisites-openai-python](../../../../foundry/foundry-models/includes/how-to-prerequisites-openai-python.md)]
+[!INCLUDE [how-to-prerequisites-openai-python](../how-to-prerequisites-openai-python.md)]
 
 * A model with reasoning capabilities model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
