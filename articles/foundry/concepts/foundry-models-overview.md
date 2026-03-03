@@ -247,5 +247,6 @@ AI models evolve fast, and when a new version or a new model with updated capabi
  
 ## Related content
 
-- [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md)
 - [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md)
+- [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md)
+
