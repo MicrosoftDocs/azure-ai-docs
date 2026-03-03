@@ -1075,6 +1075,7 @@ Assistant assistant =
 
 ```python
 from azure.ai.projects.models import (
+    CodeInterpreterTool,
     PromptAgentDefinition,
 )
 
@@ -1088,6 +1089,7 @@ agent = project.agents.create_version(
             "Interpreter tool when asked to "
             "visualize numbers."
         ),
+        tools=[CodeInterpreterTool()],
     ),
 )
 ```
@@ -1106,6 +1108,10 @@ var agent = await projectClient.Agents
                     + "questions. Use the Code "
                     + "Interpreter tool when asked "
                     + "to visualize numbers.",
+                Tools =
+                {
+                    new CodeInterpreterToolDefinition()
+                },
             }));
 ```
 
@@ -1123,6 +1129,9 @@ const agent =
                 + "questions. Use the Code "
                 + "Interpreter tool when asked "
                 + "to visualize numbers.",
+            tools: [
+                { type: "code_interpreter" },
+            ],
         }
     );
 ```
@@ -1132,6 +1141,8 @@ const agent =
 ```java
 import com.azure.ai.agents.models
     .PromptAgentDefinition;
+import com.azure.ai.agents.models
+    .CodeInterpreterToolDefinition;
 
 PromptAgentDefinition definition =
     new PromptAgentDefinition("gpt-4.1");
@@ -1139,6 +1150,8 @@ definition.setInstructions(
     "You politely help with math questions. "
     + "Use the Code Interpreter tool when "
     + "asked to visualize numbers.");
+definition.setTools(Arrays.asList(
+    new CodeInterpreterToolDefinition()));
 
 var agent = agentsClient.createAgentVersion(
     "my-agent", definition);
