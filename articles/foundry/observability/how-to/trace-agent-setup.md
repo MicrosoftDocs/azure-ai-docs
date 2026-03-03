@@ -35,7 +35,7 @@ Foundry stores traces in [Azure Application Insights](/azure/azure-monitor/app/a
    - To connect an existing resource, select the resource and then select **Connect**.
    - To create a new resource, select **Create new** and complete the wizard.
 
-:::image type="content" source="../../media/observability/tracing/traces-connect.png" alt-text="Screenshot of the the Agents tab showing traces and the connect button." lightbox="../../media/observability/tracing/traces-connect.pn":::
+:::image type="content" source="../../media/observability/tracing/traces-connect.png" alt-text="Screenshot of the the Agents tab showing traces and the connect button." lightbox="../../media/observability/tracing/traces-connect.png":::
 
    A confirmation message appears when the connection succeeds.
 
