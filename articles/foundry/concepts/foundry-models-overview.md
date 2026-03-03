@@ -186,6 +186,12 @@ Models that are available for serverless deployments are offered by the model pr
 
 :::image type="content" source="../../foundry-classic/media/explore/model-publisher-cycle.png" alt-text="Diagram that shows the model publisher service cycle for serverless deployments of Microsoft Foundry Models." lightbox="../../foundry-classic/media/explore/model-publisher-cycle.png":::
 
+### Serverless deployment types
+
+The serverless deployment option for Foundry Models offers two main deployment categories: standard (pay-per-token) and provisioned (reserved capacity). Within each category, you can choose global, data zone, or regional processing based on your compliance requirements. 
+
+The available serverless deployment types include: Global Standard, Global Provisioned, Global Batch, Data Zone Standard, Data Zone Provisioned, Data Zone Batch, Standard, Regional Provisioned, and Developer. To learn more about these deployment types and how to choose the right one for your use, see [Deployment types for Microsoft Foundry Models](../foundry-models/concepts/deployment-types.md)
+
 ### Billing for serverless deployments
 
 The discovery, subscription, and consumption experience for models deployed as serverless deployments is in Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is available during deployment.
