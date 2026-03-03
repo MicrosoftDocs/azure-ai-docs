@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn how to use Speech service with an Azure Virtual Network service endpoint.
 ---
@@ -56,7 +56,7 @@ You need to add all virtual networks that are allowed access via the service end
    > [!NOTE]
    > To use Virtual Network service endpoints, you need to select the **Selected Networks and Private Endpoints** network security option. No other options are supported. If your scenario requires the **All networks** option, consider using [private endpoints](speech-services-private-link.md), which support all three network security options.
 
-5. Select **Add existing virtual network** or **Add new virtual network** and provide the required parameters. Select **Add** for an existing virtual network or **Create** for a new one. If you add an existing virtual network, the `Microsoft.CognitiveServices` service endpoint is automatically enabled for the selected subnets. This operation can take up to 15 minutes. Also, see the note at the beginning of this section.
+1. Select **Add existing virtual network** or **Add new virtual network** and provide the required parameters. Select **Add** for an existing virtual network or **Create** for a new one. If you add an existing virtual network, the `Microsoft.CognitiveServices` service endpoint is automatically enabled for the selected subnets. This operation can take up to 15 minutes. Also, see the note at the beginning of this section.
 
 ### Enabling service endpoint for an existing virtual network 
 
@@ -71,7 +71,7 @@ As described in the previous section, when you configure a virtual network as *a
 
 ## Adjust existing applications and solutions
 
-a Foundry resource for Speech that has a custom domain enabled interacts with the Speech service in a different way. This is true for a custom-domain-enabled Speech resource regardless of whether service endpoints are configured. Information in this section applies to both scenarios.
+A Foundry resource for Speech that has a custom domain enabled interacts with the Speech service in a different way. This is true for a custom-domain-enabled Speech resource regardless of whether service endpoints are configured. Information in this section applies to both scenarios.
 
 ### Use a Foundry resource for Speech that has a custom domain name and allowed virtual networks 
 

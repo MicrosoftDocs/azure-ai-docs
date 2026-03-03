@@ -30,7 +30,7 @@ This article gives only the Foundry-specific pointers you need. All procedural d
 > Network security perimeter support for Microsoft Foundry is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Review the [limitations and considerations](#review-limitations-and-considerations) before you start.
 
 [!INCLUDE [uses-fdp-only](../includes/uses-fdp-only.md)]
-:::image type="content" source="../media/how-to/network/network-security-perimeter-diagram.png" alt-text="Diagram that shows a Foundry resource inside a network security perimeter boundary, with inbound rules filtering external traffic and outbound rules controlling egress to external services." lightbox="../media/how-to/network/network-security-perimeter-diagram.png":::
+:::image type="content" source="../../foundry/media/how-to/network/network-security-perimeter-diagram.png" alt-text="Diagram that shows a Foundry resource inside a network security perimeter boundary, with inbound rules filtering external traffic and outbound rules controlling egress to external services." lightbox="../../foundry/media/how-to/network/network-security-perimeter-diagram.png":::
 
 The diagram shows a Foundry resource inside an NSP boundary. Inbound access rules filter traffic from external sources, and outbound access rules control egress to services outside the perimeter.
 

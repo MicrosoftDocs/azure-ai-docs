@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to add user consent to the personal voice project.
 ---
@@ -23,7 +23,7 @@ To add user consent to the personal voice project, you provide the prerecorded c
 
 You need an audio recording of the user speaking the consent statement.
 
-You can get the consent statement text for each locale from the text to speech GitHub repository. See [verbal-statement-all-locales.txt](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt) for the consent statement. Below is a sample for the `en-US` locale:
+You can get the consent statement text for each locale from the text to speech GitHub repository. See [verbal-statement-all-locales.txt](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt) for the consent statement. The following example is for the `en-US` locale:
 
 ```
 "I [state your first and last name] am aware that recordings of my voice will be used by [state the name of the company] to create and use a synthetic version of my voice."
@@ -31,7 +31,7 @@ You can get the consent statement text for each locale from the text to speech G
 
 ### Supported audio formats for consent audio
 
-See the table below for the supported formats for consent audio files:
+See the following table for the supported formats for consent audio files:
 
 | Format | Sample rate                  | Bit rate                    | Bit depth|
 |------------|--------------------------|-------------------------|----------|

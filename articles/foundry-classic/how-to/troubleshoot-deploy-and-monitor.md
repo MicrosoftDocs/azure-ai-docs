@@ -24,7 +24,7 @@ author: msakande
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 This article provides instructions on how to troubleshoot your deployments and monitors in Microsoft Foundry portal. 
 

@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](../../../foundry/responsible-ai/includes/non-english-translation.md)]
 
 > [!NOTE]
 > The requirements described below apply only to customers using Azure OpenAI in Microsoft Foundry Models ("Azure OpenAI") and other Covered Products with configurable Metaprompts or other safety systems ("Configurable GAI Services"). They do not apply to customers using other Covered Products including Copilots with safety systems that are fixed. The only Configurable GAI Services are Microsoft Copilot Studio and GitHub Copilot; the Universal Required Mitigations do not apply to these offerings, but service-specific mitigations apply instead.  

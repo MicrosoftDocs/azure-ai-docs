@@ -22,7 +22,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 Monitoring is available for agents in a [standard agent setup](../concepts/standard-agent-setup.md).
 
-[!INCLUDE [Feature preview](../../openai/includes/preview-feature.md)]
+[!INCLUDE [Feature preview](../../../foundry/openai/includes/preview-feature.md)]
 
 > [!IMPORTANT]
 > Monitoring support is currently limited to Microsoft Foundry hubs. Foundry projects aren't supported.
@@ -49,7 +49,7 @@ Foundry Agent Service provides out-of-the-box dashboards. There are two key dash
 
 To access the monitoring dashboards, sign in to the [Azure portal](https://portal.azure.com), select your Agent Service resource, and then select **Monitoring** > **Metrics**.
 
-:::image type="content" source="../media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-the-box dashboards for a resource in the Azure portal." lightbox="../media/monitoring/dashboard.png" border="false":::
+:::image type="content" source="../../../foundry/agents/media/monitoring/dashboard.png" alt-text="Screenshot that shows out-of-the-box dashboards for a resource in the Azure portal." lightbox="../../../foundry/agents/media/monitoring/dashboard.png" border="false":::
 
 ## Data collection and routing in Azure Monitor
 

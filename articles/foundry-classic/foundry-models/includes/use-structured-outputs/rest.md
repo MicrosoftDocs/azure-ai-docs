@@ -190,7 +190,7 @@ You can use structured outputs with multi-modal models to extract information fr
 
 Let's consider the following chart:
 
-:::image type="content" source="../../media/use-structured-outputs/example-graph-treecover.png" alt-text="An example image showing a chart with the annual loss in thousand square kilometers of global tree cover across different climate zones." lightbox="../../media/use-structured-outputs/example-graph-treecover.png":::
+:::image type="content" source="../../../../foundry/foundry-models/media/use-structured-outputs/example-graph-treecover.png" alt-text="An example image showing a chart with the annual loss in thousand square kilometers of global tree cover across different climate zones." lightbox="../../../../foundry/foundry-models/media/use-structured-outputs/example-graph-treecover.png":::
 
 We can define a generic schema that can be used to encode the information contained in the chart and then use it for further analysis.
 

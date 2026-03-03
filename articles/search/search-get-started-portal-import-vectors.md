@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 02/26/2026
+ms.date: 03/02/2026
 ---
 
 # Quickstart: Vector search in the Azure portal
@@ -25,9 +25,7 @@ This quickstart uses text-based PDFs and simple images from the [azure-search-sa
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](search-create-service-portal.md). We recommend the Basic tier or higher.
-
-+ [Role-based access](#role-based-access) and a managed identity enabled on the search service.
++ An [Azure AI Search service](search-create-service-portal.md). We recommend the Basic tier or higher for managed identity support and higher limits.
 
 + A [supported data source](#supported-data-sources).
 
@@ -56,11 +54,11 @@ The portal supports the following embedding models for integrated vectorization.
 | [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) | For text:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> |
 | [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) <sup>3, 4</sup> | For text:<ul><li>text-embedding-ada-002</li><li>text-embedding-3-small</li><li>text-embedding-3-large</li></ul> |
 
-<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. Currently, the wizard requires your search service and multi-service account to be in the [same supported region for the Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md#supported-regions), even when using keyless connections.
+<sup>1</sup> For billing purposes, you must [attach your multi-service account](cognitive-search-attach-cognitive-services.md) to your Azure AI Search skillset. The wizard requires your search service and multi-service account to be in the [same supported region for the Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md#supported-regions).
 
-<sup>2</sup> To use this model in the wizard, you must provision it as a serverless API deployment. You can use [use the Azure CLI](vector-search-integrated-vectorization-ai-studio.md#deploy-an-embedding-model-as-a-serverless-deployment) to provision the serverless deployment.
+<sup>2</sup> The wizard only supports serverless API deployments for this model. You can use [use the Azure CLI](vector-search-integrated-vectorization-ai-studio.md#deploy-an-embedding-model-as-a-serverless-deployment) to provision the serverless deployment.
 
-<sup>3</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
+<sup>3</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the Azure portal, this subdomain was automatically generated during resource setup.
 
 <sup>4</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
 
@@ -70,15 +68,21 @@ For this quickstart, all of the preceding resources must have public access enab
 
 If private endpoints are already present and you can't disable them, the alternative option is to run the respective end-to-end flow from a script or program on a virtual machine. The virtual machine must be on the same virtual network as the private endpoint. Here's a [Python code sample](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/integrated-vectorization) for integrated vectorization. The same [GitHub repo](https://github.com/Azure/azure-search-vector-samples/tree/main) has samples in other programming languages.
 
-### Role-based access
+## Configure access
 
-You can use Microsoft Entra ID with role assignments or key-based authentication with full-access connection strings. For Azure AI Search connections to other resources, we recommend role assignments. This quickstart assumes roles.
+Before you begin, make sure you have permissions to access content and operations. This quickstart uses Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, use [key-based authentication](search-security-api-keys.md) instead.
 
-Free search services support role-based connections to Azure AI Search. However, they don't support managed identities on outbound connections to Azure Storage or Azure Vision. This lack of support requires key-based authentication on connections between free search services and other Azure resources. For more secure connections, use the Basic tier or higher, and then enable roles and configure a managed identity.
+Configure the [required roles](#required-roles) and [conditional roles](#conditional-roles) identified in this section.
 
-To configure the recommended role-based access:
+### Required roles
 
-1. On your search service, [enable roles](search-security-enable-roles.md) and [configure a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
+Azure AI Search provides the vector search pipeline. Configure access for yourself and your search service to read data, run the pipeline, and interact with other Azure resources.
+
+On your Azure AI Search service:
+
+1. [Enable role-based access](search-security-enable-roles.md).
+
+1. [Configure a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 1. [Assign the following roles](search-security-rbac.md) to yourself.
 
@@ -88,18 +92,64 @@ To configure the recommended role-based access:
 
    + **Search Index Data Reader**
 
-1. On your data source and embedding model provider, create role assignments that allow your search service to access data and models. See [Prepare sample data](#prepare-sample-data) and [Prepare embedding models](#prepare-embedding-model).
+### Conditional roles
+
+The following tabs cover all wizard-compatible resources for vector search. Select only the tabs that apply to your chosen [data source](#supported-data-sources) and [embedding model](#supported-embedding-models).
+
+### [**Azure Storage**](#tab/storage-access)
+
+Azure Blob Storage and Azure Data Lake Storage Gen2 require your search service to have read access to storage containers.
+
+On your Azure Storage account:
+
++ Assign **Storage Blob Data Reader** to the managed identity of your search service.
+
+### [**Microsoft OneLake**](#tab/onelake-access)
+
+Microsoft OneLake requires your search service to have contributor access to the workspace.
+
+On your OneLake workspace:
+
+1. In the upper-right corner, select **Manage access**.
+
+1. Select **Add people or groups**.
+
+1. Enter the name of your search service. For example, if the URL is `https://my-demo-service.search.windows.net`, the service name is `my-demo-service`.
+
+1. Select a role. The default is **Viewer**, but you need **Contributor** to pull data into a search index.
+
+### [**Azure OpenAI**](#tab/aoai-access)
+
+Azure OpenAI provides embedding models for text vectorization. Your search service requires access to call the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
+
+On your Azure OpenAI resource:
+
++ Assign **Cognitive Services OpenAI User** to the managed identity of your search service.
+
+### [**Microsoft Foundry**](#tab/foundry-access)
 
 > [!NOTE]
-> If you can't progress through the wizard because options aren't available (for example, you can't select a data source or an embedding model), revisit the role assignments. Error messages indicate that models or deployments don't exist, when the real cause is that the search service doesn't have permission to access them.
+> If you're using a hub-based project, skip this step. Hub-based projects support API keys instead of managed identities for authentication.
 
-### Check for space
+The Microsoft Foundry model catalog provides embedding models for text vectorization. Your search service requires access to call the [AML skill](cognitive-search-aml-skill.md).
 
-If you're starting with the free service, you're limited to three indexes, data sources, skillsets, and indexers. Basic limits you to 15. This quickstart creates one of each object, so make sure you have room for extra items before you begin.
+On the parent resource of your Microsoft Foundry project:
+
++ Assign **Azure AI Project Manager** to the managed identity of your search service.
+
+### [**Azure AI multi-service**](#tab/vision-access)
+
+An Azure AI multi-service account provides access to multiple Azure services, including Azure Vision for multimodal embeddings. Your search service requires access to call the [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
+
+On your multi-service account:
+
++ Assign **Cognitive Services User** to the managed identity of your search service.
+
+---
 
 ## Prepare sample data
 
-In this section, you use a [supported data source](#supported-data-sources) to prepare sample data. Before you proceed, make sure you completed the prerequisites for [role-based access](#role-based-access).
+In this section, you prepare sample data for your chosen [data source](#supported-data-sources).
 
 ### [Azure Blob Storage](#tab/blob-storage)
 
@@ -108,18 +158,6 @@ In this section, you use a [supported data source](#supported-data-sources) to p
 1. From the left pane, select **Data storage** > **Containers**.
 
 1. Create a container, and then upload the [health-plan PDF documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) used for this quickstart.
-
-1. To assign roles:
-
-   1. From the left pane, select **Access Control (IAM)**.
-
-   1. Select **Add** > **Add role assignment**.
-
-   1. Under **Job function roles**, select **Storage Blob Data Reader**, and then select **Next**.
-
-   1. Under **Members**, select **Managed identity**, and then select **Select members**.
-
-   1. Select your subscription and the managed identity of your search service.
 
 1. (Optional) Synchronize deletions in your container with deletions in the search index. To configure your indexer for deletion detection:
 
@@ -135,18 +173,6 @@ In this section, you use a [supported data source](#supported-data-sources) to p
 
 1. Create a container, and then upload the [health-plan PDF documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) used for this quickstart.
 
-1. To assign roles:
-
-   1. From the left pane, select **Access Control (IAM)**.
-
-   1. Select **Add** > **Add role assignment**.
-
-   1. Under **Job function roles**, select **Storage Blob Data Reader**, and then select **Next**.
-
-   1. Under **Members**, select **Managed identity**, and then select **Select members**.
-
-   1. Select your subscription and the managed identity of your search service.
-
 1. (Optional) Synchronize deletions in your container with deletions in the search index. To configure your indexer for deletion detection:
 
    1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account.  If you're using [native soft delete](search-how-to-index-azure-blob-changed-deleted.md#native-blob-soft-delete), the next step isn't required.
@@ -158,16 +184,6 @@ In this section, you use a [supported data source](#supported-data-sources) to p
 1. Sign in to [Power BI](https://powerbi.com/) and [create a workspace](/fabric/data-engineering/tutorial-lakehouse-get-started).
 
 1. From the left pane, select your new workspace.
-
-1. To assign roles to your workspace:
-
-   1. In the upper-right corner, select **Manage access**.
-
-   1. Select **Add people or groups**.
-
-   1. Enter the name of your search service. For example, if the URL is `https://my-demo-service.search.windows.net`, the service name is `my-demo-service`.
-
-   1. Select a role. The default is **Viewer**, but you need **Contributor** to pull data into a search index.
 
 1. To create a lakehouse and upload the sample data:
 
@@ -188,79 +204,10 @@ In this section, you use a [supported data source](#supported-data-sources) to p
 
 ## Prepare embedding model
 
-In this section, you deploy a [supported embedding model](#supported-embedding-models) for later use in this quickstart. Before you proceed, make sure you completed the prerequisites for [role-based access](#role-based-access).
+> [!NOTE]
+> If you're using Azure Vision, skip this step. The multimodal embeddings are built into your multi-service account and don't require model deployment.
 
-### [Azure OpenAI](#tab/aoai)
-
-The wizard supports several embedding models. Internally, the wizard calls the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) to connect to Azure OpenAI.
-
-1. To assign roles:
-
-   1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure OpenAI resource.
-
-   1. From the left pane, select **Access control (IAM)**.
-
-   1. Select **Add** > **Add role assignment**.
-
-   1. Under **Job function roles**, select **Cognitive Services OpenAI User**, and then select **Next**.
-
-   1. Under **Members**, select **Managed identity**, and then select **Select members**.
-
-   1. Select your subscription and the managed identity of your search service.
-
-1. To deploy an embedding model:
-
-   1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource.
-
-   1. Deploy a [supported embedding model](#supported-embedding-models).
-
-### [Microsoft Foundry](#tab/foundry)
-
-The wizard supports several embedding models in the Foundry model catalog. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the model catalog.
-
-To complete these steps, you must have a [Foundry project](/azure/ai-foundry/how-to/create-projects) or [Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects). If you're using a hub-based project, skip the role assignment step. Hub-based projects support API keys instead of managed identities for authentication.
-
-1. To assign roles:
-
-   1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Microsoft Foundry resource.
-
-   1. From the left pane, select **Access control (IAM)**.
-
-   1. Select **Add** > **Add role assignment**.
-
-   1. Under **Job function roles**, select **Azure AI Project Manager**, and then select **Next**.
-
-   1. Under **Members**, select **Managed identity**, and then select **Select members**.
-
-   1. Select your subscription and the managed identity of your search service.
-
-1. To deploy an embedding model:
-
-   1. Sign in to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
-
-   1. Deploy a [supported embedding model](#supported-embedding-models).
-
-### [Azure Vision](#tab/vision)
-
-The wizard supports text and image retrieval through the Azure Vision multimodal embeddings APIs, which are built into your Azure AI multi-service account. Internally, the wizard calls the [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to make the connection.
-
-No model deployment is required, so you only need to assign roles to your search service identity.
-
-To assign roles:
-
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your multi-service account.
-
-1. From the left pane, select **Access control (IAM)**.
-
-1. Select **Add** > **Add role assignment**.
-
-1. Under **Job function roles**, select **Cognitive Services User**, and then select **Next**.
-
-1. Under **Members**, select **Managed identity**, and then select **Select members**.
-
-1. Select your subscription and the managed identity of your search service.
-
----
+The wizard supports several embedding models from Azure OpenAI and the Microsoft Foundry model catalog. To deploy the models required for your chosen [embedding model](#supported-embedding-models), see [Deploy Microsoft Foundry Models in the Foundry portal](/azure/ai-foundry/how-to/deploy-models-openai).
 
 ## Start the wizard
 

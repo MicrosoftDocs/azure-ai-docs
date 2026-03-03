@@ -7,11 +7,12 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.reviewer: travisw
 zone_pivot_groups: programming-languages-set-thirteen
 ms.devlang: cpp
 ms.custom: devx-track-csharp, devx-track-extended-java
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn how to monitor and control service connections with the Speech SDK so that I can manage connections to the Speech service.
 ---
 
@@ -105,7 +106,7 @@ connection.disconnected.addEventListener((s, connectionEventArgs) -> {
 Some important notes on the behavior when manually modifying connection state:
 
 - Trying to connect when already connected doesn't generate an error. Monitor the `Connected` and `Disconnected` events if you want to know the current state of the connection.
-- A failure to connect that originates from a problem that has no involvement with the Speech service--such as attempting to do so from an invalid state--results in an error as appropriate to the programming language. Failures that require network resolution--such as authentication failures--doesn't result in an error but instead generate a `Canceled` event on the top-level object the `Connection` was created from.
+- A failure to connect that originates from a problem that has no involvement with the Speech service—such as attempting to do so from an invalid state—results in an error as appropriate to the programming language. Failures that require network resolution—such as authentication failures—don't result in an error but instead generate a `Canceled` event on the top-level object the `Connection` was created from.
 - Manually disconnecting from the Speech service during an ongoing interaction results in a connection error and loss of data for that interaction. Connection errors are surfaced on the appropriate top-level object's `Canceled` event.
 
 ::: zone pivot="programming-language-csharp"

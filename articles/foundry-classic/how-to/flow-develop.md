@@ -21,7 +21,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 Prompt flow is a development tool designed to streamline the entire development cycle of AI applications powered by Large Language Models (LLMs). Prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying your AI applications.
 
@@ -57,7 +57,7 @@ To create a prompt flow from the gallery in Foundry portal:
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-[!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+[!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
 1. Select your project.
 1. If you're in the Management center, select **Go to project** to return to your project.
 1. From the collapsible left menu, select **Prompt flow**.

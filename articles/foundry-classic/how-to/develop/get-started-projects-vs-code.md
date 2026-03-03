@@ -24,7 +24,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 In this article, learn how to install and use the [Microsoft Foundry](../../what-is-foundry.md) for Visual Studio Code extension. Create projects, deploy models from the Foundry model catalog, and interact with model playgrounds from within VS Code.
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 ## Prerequisites
 
@@ -69,7 +69,7 @@ After you install the extension, sign in to your Azure subscription and open a F
 
 > [!NOTE]
 > For a full list of features available in the extension, use the Command Palette. Select <kbd>F1</kbd> to open the command palette and search **Foundry**. The following screenshot shows some of the available commands.
->     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png" alt-text="Screenshot of the VS Code command palette showing available Foundry commands such as Open Model Catalog and Open Playground." lightbox="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png":::
+>     :::image type="content" source="../../../foundry/media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png" alt-text="Screenshot of the VS Code command palette showing available Foundry commands such as Open Model Catalog and Open Playground." lightbox="../../../foundry/media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png":::
 
 ### Sign in to your resources
 
@@ -91,7 +91,7 @@ Sign in to your Azure subscription so the extension can access your Foundry proj
 
 The Foundry extension organizes your workspace into three main sections.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/initial-view.png" alt-text="Screenshot of the Foundry extension interface showing the Resources, Tools, and Help and Feedback sections.":::
+:::image type="content" source="../../../foundry/media/how-to/get-started-projects-vs-code/initial-view.png" alt-text="Screenshot of the Foundry extension interface showing the Resources, Tools, and Help and Feedback sections.":::
 
 | Section | What it contains | When to use it |
 | ------- | --------------- | -------------- |
@@ -159,7 +159,7 @@ Use the command palette to open the model catalog without navigating the extensi
 
 1. The **Model Catalog** page opens.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/display-model-catalog.png" alt-text="Screenshot of the Model Catalog page in VS Code showing model cards with filters for publisher and model type." lightbox="../../media/how-to/get-started-projects-vs-code/display-model-catalog.png":::
+    :::image type="content" source="../../../foundry/media/how-to/get-started-projects-vs-code/display-model-catalog.png" alt-text="Screenshot of the Model Catalog page in VS Code showing model cards with filters for publisher and model type." lightbox="../../../foundry/media/how-to/get-started-projects-vs-code/display-model-catalog.png":::
 
 1. Filter the **Model Catalog** by **Hosted by**, **Publisher**, **Feature**, or **Model type** using the dropdowns at the top of the page. Select the **Fine-Tuning Support** toggle to filter models that support fine-tuning.
 
@@ -234,7 +234,7 @@ Generate a starter code file for your deployed model to accelerate application d
 
 The following screenshot shows a generated Python sample that makes a synchronous call to the responses API:
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/sample-code-file.png" alt-text="Screenshot of a generated Python sample code file showing a synchronous responses API call in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/sample-code-file.png":::
+:::image type="content" source="../../../foundry/media/how-to/get-started-projects-vs-code/sample-code-file.png" alt-text="Screenshot of a generated Python sample code file showing a synchronous responses API call in VS Code." lightbox="../../../foundry/media/how-to/get-started-projects-vs-code/sample-code-file.png":::
 
 ### Interact with models in the playground
 

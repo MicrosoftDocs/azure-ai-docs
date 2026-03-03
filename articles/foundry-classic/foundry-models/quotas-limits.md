@@ -74,7 +74,7 @@ The Usage Limit determines the level of usage above which customers might see la
 
 ## Request increases to the default limits
 
-[!INCLUDE [quota-increase-request](../openai/includes/quota-increase-request.md)]
+[!INCLUDE [quota-increase-request](../../foundry/openai/includes/quota-increase-request.md)]
 
 ## General best practices to stay within rate limits
 

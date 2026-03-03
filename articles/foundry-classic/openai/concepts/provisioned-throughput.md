@@ -181,7 +181,7 @@ For provisioned deployments, we use a variation of the leaky bucket algorithm to
 > [!NOTE]
 > Calls are accepted until utilization reaches 100%. Bursts just over 100% might be permitted in short periods, but over time, your traffic is capped at 100% utilization.
 
-:::image type="content" source="../media/provisioned/utilization.jpg" alt-text="Diagram of the leaky bucket algorithm for provisioned throughput utilization showing how incoming requests add to utilization while capacity drains based on deployed PTU count." lightbox="../media/provisioned/utilization.jpg":::
+:::image type="content" source="../../../foundry/openai/media/provisioned/utilization.jpg" alt-text="Diagram of the leaky bucket algorithm for provisioned throughput utilization showing how incoming requests add to utilization while capacity drains based on deployed PTU count." lightbox="../../../foundry/openai/media/provisioned/utilization.jpg":::
 
 #### Concurrent call limits
 
@@ -221,6 +221,7 @@ This section lists Foundry Models that support the provisioned throughput capabi
 | **Azure DeepSeek** | DeepSeek-R1      | ✅                 |                       |                      |                   |
 |                    | DeepSeek-V3-0324 | ✅                 |                       |                      |                   |
 |                    | DeepSeek-R1-0528 | ✅                 |                       |                      |                   |
+| **Meta Llama**     | Llama-3.3-70B-Instruct | ✅                 |                       |                      |                   |
 
 ### Region availability for provisioned throughput capability
 
@@ -228,19 +229,19 @@ This section lists Foundry Models that support the provisioned throughput capabi
 
 #### Global provisioned throughput model availability
 
-[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+[!INCLUDE [Provisioned Managed Global](../../../foundry/openai/includes/model-matrix/provisioned-global.md)]
 
 # [Data Zone Provisioned Throughput](#tab/datazone-provisioned-managed)
 
 #### Data zone provisioned throughput model availability
 
-[!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
+[!INCLUDE [Global data zone provisioned managed](../../../foundry/openai/includes/model-matrix/datazone-provisioned-managed.md)]
 
 # [Regional Provisioned Throughput](#tab/provisioned)
 
 #### Regional provisioned throughput deployment model availability
 
-[!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
+[!INCLUDE [Provisioned](../../../foundry/openai/includes/model-matrix/provisioned-models.md)]
 
 ---
 

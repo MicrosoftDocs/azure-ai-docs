@@ -5,11 +5,12 @@ description: Use these tips to optimize your cost when you build machine learnin
 ms.reviewer: None
 author: s-polly
 ms.author: scottpolly
-ms.custom: subject-cost-optimization
+ms.custom: subject-cost-optimization, dev-focus
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 09/05/2024
+ms.date: 03/01/2026
+ai-usage: ai-assisted
 #customer intent: As a data scientist or engineer, I want to optimize my cost for training learning modules.
 ---
 
@@ -65,7 +66,7 @@ You can configure AmlCompute clusters for your changing workload requirements by
 - The Azure portal
 - The [AmlCompute SDK class](/python/api/azure-ai-ml/azure.ai.ml.entities.amlcompute)
 - [AmlCompute CLI](/cli/azure/ml/compute#az-ml-compute-create)
-- [REST APIs](https://github.com/Azure/azure-rest-api-specs/tree/master/specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable).
+- [REST APIs](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable).
 
 ## Configure managed online endpoints for autoscaling
 
@@ -100,13 +101,13 @@ In some cases, you should configure your training runs to limit their duration o
 
 Here are a few options that you have:
 
-- Define a parameter called `max_run_duration_seconds` in your RunConfiguration to control the maximum duration a run can extend to on the compute you choose, either local or remote cloud compute.
-- For *hyperparameter tuning*, define an early termination policy from a Bandit policy, a Median stopping policy, or a Truncation selection policy. To further control hyperparameter sweeps, use parameters such as `max_total_runs` or `max_duration_minutes`. For more information, see [Specify early termination policy](how-to-tune-hyperparameters.md#early-termination).
-- For automated machine learning, set similar termination policies using the  `enable_early_stopping` flag. You can also use properties such as `iteration_timeout_minutes` and `experiment_timeout_minutes` to control the maximum duration of a job or for the entire experiment. For more information, see [Exit criteria](how-to-configure-auto-train.md#exit-criteria).
+- Set the `timeout` property in your command job's `limits` configuration to control the maximum duration a run can extend to on the compute you choose, either local or remote cloud compute.
+- For *hyperparameter tuning*, define an early termination policy from a Bandit policy, a Median stopping policy, or a Truncation selection policy. To further control hyperparameter sweeps, use parameters such as `max_total_trials` or `timeout`. For more information, see [Specify early termination policy](how-to-tune-hyperparameters.md#early-termination).
+- For automated machine learning, set similar termination policies using the `enable_early_termination` flag. You can also use properties such as `trial_timeout_minutes` and `timeout_minutes` to control the maximum duration of a trial or for the entire experiment. For more information, see [Exit criteria](how-to-configure-auto-train.md#exit-criteria).
 
 ## <a id="low-pri-vm"></a>Use low-priority virtual machines
 
-Azure allows you to use excess unused capacity as Low-Priority VMs across virtual machine scale sets, Batch, and the Machine Learning service. These allocations are preemptible but come at a reduced price compared to dedicated VMs. In general, we recommend that you use Low-Priority VMs for Batch workloads. You should also use them where interruptions are recoverable either through resubmits for Batch Inferencing or through restarts for deep learning training with checkpointing.
+Azure allows you to use excess unused capacity as Low-Priority VMs across virtual machine scale sets, Batch, and the Machine Learning service. These allocations are preemptible but come at a reduced price compared to dedicated VMs. In general, Low-Priority VMs are recommended for Batch workloads. You should also use them where interruptions are recoverable either through resubmits for Batch Inferencing or through restarts for deep learning training with checkpointing.
 
 Low-Priority VMs have a single quota separate from the dedicated quota value, which is by VM family. For more information about more about AmlCompute quotas, see [Manage and increase quotas ](how-to-manage-quotas.md).
 
@@ -123,7 +124,7 @@ When you create a [compute instance](concept-compute-instance.md), the VM stays 
 
 Another way to save money on compute resources is Azure Reserved VM Instance. With this offering, you commit to one-year or three-year terms. These discounts range up to 72% of the Standard prices and are applied directly to your monthly Azure bill.
 
-Azure Machine Learning Compute supports reserved instances inherently. If you purchase a one-year or three-year reserved instance, we automatically apply discount against your Azure Machine Learning managed compute.
+Azure Machine Learning Compute supports reserved instances inherently. If you purchase a one-year or three-year reserved instance, the discount is automatically applied to your Azure Machine Learning managed compute.
 
 ## Parallelize training
 

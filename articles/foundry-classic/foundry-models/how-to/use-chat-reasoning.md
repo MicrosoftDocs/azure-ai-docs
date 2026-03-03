@@ -17,31 +17,31 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [python](../../foundry-models/includes/use-chat-reasoning/python.md)]
+[!INCLUDE [python](../includes/use-chat-reasoning/python.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [javascript](../../foundry-models/includes/use-chat-reasoning/javascript.md)]
+[!INCLUDE [javascript](../includes/use-chat-reasoning/javascript.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [java](../../foundry-models/includes/use-chat-reasoning/java.md)]
+[!INCLUDE [java](../includes/use-chat-reasoning/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [csharp](../../foundry-models/includes/use-chat-reasoning/csharp.md)]
+[!INCLUDE [csharp](../includes/use-chat-reasoning/csharp.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [rest](../../foundry-models/includes/use-chat-reasoning/rest.md)]
+[!INCLUDE [rest](../includes/use-chat-reasoning/rest.md)]
 ::: zone-end
 
 ## Related content

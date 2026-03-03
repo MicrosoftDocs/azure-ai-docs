@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 # Customer intent: As a developer, I want to learn how to record custom voice samples.
 ---
@@ -71,13 +71,13 @@ We provide [sample scripts in the 'General', 'Chat' and 'Customer Service' domai
 
 ### Script selection criteria
 
-Below are some general guidelines that you can follow to create a good corpus (recorded audio samples) for professional voice fine-tuning.
+The following are some general guidelines that you can follow to create a good corpus (recorded audio samples) for professional voice fine-tuning.
 
 -  For most use cases, sentences are recommended to be between 2 and 15 seconds long, containing 5 to 30 words for Latin-based languages or 4 to 80 words for non-Latin languages. Aim to balance your script to include a variety of sentence types and lengths. Ensure your script does not include any duplicate sentences.<br>
    
    If your use case requires a high emphasis on questions, exclamations, or a mix of particularly long and short sentences, it is recommended to include a good portion of sentences as questions or exclamations, along with very short phrases and longer phrases up to 20 seconds in length.
    
-   For how to balance the different sentence types, refer to the following table:
+   For how to balance the different sentence types, see the following table:
    
    | Sentence types | Coverage |
    | :--------- | :--------------------------- |
@@ -107,7 +107,7 @@ Below are some general guidelines that you can follow to create a good corpus (r
 
 - Make sure the sentence is clean. Generally, don't include too many nonstandard words like numbers or abbreviations as they're hard to read. Some applications might require the reading of many numbers or acronyms. In these cases, you can include these words, but normalize them in their spoken form.
 
-   Below are some best practices for example:
+   The following are some best practices:
     - For lines with abbreviations, instead of "BTW", write "by the way".
     - For lines with digits, instead of "911", write "nine one one".
     - For lines with acronyms, instead of "ABC",  write "A B C".
@@ -210,7 +210,7 @@ To achieve high-quality training results, follow the following requirements duri
 
 - No wrong pronunciation
 
-You can refer to below specification to prepare for the audio samples as best practice.
+You can refer to the following specification to prepare the audio samples as a best practice.
 
 | Property | Value |
 | :--------- | :--------------------------- |
@@ -243,11 +243,11 @@ For high-quality training results, avoiding audio errors is highly recommended. 
 
 - The silent parts of the recording aren't clean; you can hear sounds such as ambient noise, mouth noise and echo.
 
-  For example, below audio contains the environment noise between speeches.
+  For example, the following audio contains the environment noise between speeches.
 
    ![environment noise](media/custom-voice/environment-noise.png)
 
-   Below sample contains signs of DC offset or echo.
+   The following sample contains signs of DC offset or echo.
 
    ![DC offset or echo](media/custom-voice/dc-offset-noise.png)
 

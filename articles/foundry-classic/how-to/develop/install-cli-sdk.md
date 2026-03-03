@@ -33,7 +33,7 @@ In this article, you install language runtimes, Azure CLI, Azure Developer CLI, 
 > When your environment is ready, continue to the [quickstart](../../quickstarts/get-started-code.md) for those instructions.
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../../foundry/includes/azure-subscription.md)]
 - Download, install, and configure Visual Studio Code, or the IDE of your choice. For more information, see [Download Visual Studio Code](https://code.visualstudio.com/Download).
 - To create and manage Foundry resources, one of the following Azure RBAC roles 
   - **Azure AI Project Manager** (for managing Foundry projects)
@@ -49,7 +49,7 @@ In this article, you install language runtimes, Azure CLI, Azure Developer CLI, 
 
 In Visual Studio Code, create a new folder for your project. Open a terminal window in that folder.
 
-[!INCLUDE [Install Python](../../includes/install-python.md)]
+[!INCLUDE [Install Python](../../../foundry/includes/install-python.md)]
 
 ### Install the Python extension for Visual Studio Code
 
@@ -61,7 +61,7 @@ The Python extension for Visual Studio Code supports Python with IntelliSense, d
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [Install Java](../../includes/install-java.md)]
+[!INCLUDE [Install Java](../../../foundry/includes/install-java.md)]
 
 ### Install the Visual Studio Code Extension Pack for Java
 
@@ -79,13 +79,13 @@ Install [Node.js](https://nodejs.org/) (version 18 or later is recommended).
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [install-csharp](../../includes/install-csharp.md)]
+[!INCLUDE [install-csharp](../../../foundry/includes/install-csharp.md)]
 
 ::: zone-end
 
 ##  Install the Azure CLI and sign in 
 
-[!INCLUDE [Install the Azure CLI](../../includes/install-cli.md)]
+[!INCLUDE [Install the Azure CLI](../../../foundry/includes/install-cli.md)]
 
 Keep this terminal open to run scripts after signing in.
 

@@ -34,7 +34,7 @@ In this article, you learn how to create and manage a compute instance in Foundr
 
 To create a compute instance in Foundry portal:
 
-1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
 1. Select your project. If you don't have a project already, first create one.
 1. Select **Management center** in the left pane. You might have to scroll to find it.
 1. Under the **Hub** heading, select **Computes**. 
