@@ -1,19 +1,19 @@
 ---
-title: Microsoft Foundry general availability overview
+title: New Microsoft Foundry portal general availability overview
 titleSuffix: Microsoft Foundry
 description: Learn what general availability means for Microsoft Foundry, including GA scope, supported scenarios, feature readiness, and migration guidance.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: shwinne
-ms.date: 02/27/2026
+ms.date: 03/03/2026
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ai-usage: ai-assisted
 ---
 
-# Microsoft Foundry general availability overview
+# New Microsoft Foundry portal general availability overview
 
-Microsoft Foundry is now generally available (GA). This milestone marks a shift from pilot-focused usage to secure, reliable, enterprise-ready production usage for core scenarios.
+The new Microsoft Foundry portal is now generally available (GA). This milestone marks a shift from pilot-focused usage to secure, reliable, enterprise-ready production usage for core scenarios.
 
 Foundry is designed for teams that need to build, deploy, and operate AI systems at scale, with governance, security, and operational controls integrated throughout the lifecycle. Foundry unifies the end-to-end lifecycle across **Discover**, **Build**, and **Operate** so teams can move faster without trading off reliability, compliance, or operational rigor.
 
@@ -37,7 +37,7 @@ Before you standardize on GA features for production, make sure you:
 
 ## What GA means for customers
 
-At GA, Microsoft Foundry provides:
+At GA, the new Microsoft Foundry portal provides:
 
 - **Production-ready core platform** with validated end-to-end core scenarios.
 - **Enterprise capabilities** such as RBAC, audit logs, compliance controls, monitoring, alerting, virtual network integration, and API keys.
@@ -102,7 +102,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 
 ## Unsupported at GA
 
-The following items are out of scope at GA for the new Foundry experience and require the classic portal:
+The following items are out of scope at GA for the new Foundry portal and require the classic portal:
 
 - AOAI resource kind or other singular-capability kinds in the new Foundry experience.
 - Assistant creation and authoring in the new Foundry experience.
@@ -118,11 +118,11 @@ The following items are out of scope at GA for the new Foundry experience and re
 
 ### What does general availability mean for Microsoft Foundry?
 
-GA means Foundry is supported for production use for defined core scenarios in Foundry projects, with validated end-to-end experiences, enterprise support readiness, and operational reliability.
+GA means the new Foundry portal is supported for production use for defined core scenarios in Foundry projects, with validated end-to-end experiences, enterprise support readiness, and operational reliability.
 
 ### Which projects are supported at GA?
 
-At GA, the new Foundry experience supports Foundry projects with end-to-end coverage for core scenarios. Other resource types can continue in Foundry Classic where needed.
+At GA, the new Foundry experience supports Foundry projects with end-to-end coverage for core scenarios. Other resource types can continue in the Foundry (classic) portal where needed.
 
 ### Are all Foundry features GA?
 
