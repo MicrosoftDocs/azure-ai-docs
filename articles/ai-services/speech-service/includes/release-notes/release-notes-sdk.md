@@ -83,7 +83,7 @@ Notes on target platform support:
   * Retired the content assessment functionality in pronunciation assessment.
   * Updated Android OpenSSL to 3.0.17.
   * Added a size limit to the telemetry queue in order to prevent growth in memory usage. 
-  * Added a timeout guard for cache reading in TTS in order to prevents potential IO hangs. 
+  * Added a timeout guard for cache reading in TTS in order to prevent potential IO hangs. 
   * Added configurable properties to control URL redirection cache behavior. 
   * [C#] Added support for **EventSource** based logging.
   * [Python] Added support for *AzureKeyCredential* authentication. 
@@ -1294,7 +1294,7 @@ Stay healthy!
 - Multi-device conversation: connect multiple devices to the same speech or text-based conversation, and optionally translate messages sent between them. Learn more in [this article](../../multi-device-conversation.md).
 - Keyword recognition support added for Android `.aar` package and added support for x86 and x64 flavors.
 - Objective-C: `SendMessage` and `SetMessageProperty` methods added to `Connection` object. See documentation [here](/objectivec/cognitive-services/speech/spxconnection).
-- TTS C++ api now supports `std::wstring` as synthesis text input, removing the need to convert a wstring to string before passing it to the SDK. See details [here](/cpp/cognitive-services/speech/speechsynthesizer#speaktextasync).
+- TTS C++ API now supports `std::wstring` as synthesis text input, removing the need to convert a wstring to string before passing it to the SDK. See details [here](/cpp/cognitive-services/speech/speechsynthesizer#speaktextasync).
 - C#: [Language ID](../../language-identification.md?pivots=programming-language-csharp) and [source language config](../../how-to-recognize-speech.md) are now available.
 - JavaScript: Added a feature to `Connection` object to pass through custom messages from the Speech service as callback `receivedServiceMessage`.
 - JavaScript: Added support for `FromHost API` to ease use with on-premises containers and sovereign clouds. See documentation [here](../../speech-container-howto.md).
