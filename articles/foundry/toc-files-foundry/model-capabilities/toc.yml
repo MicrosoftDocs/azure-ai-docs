@@ -93,7 +93,7 @@ items:
     href: ../../openai/concepts/prompt-transformation.md
   - name: Video generation (preview)
     href: ../../openai/concepts/video-generation.md
-  - name: Video translation (preview)
+  - name: Video translation
     href: ../../../ai-services/speech-service/video-translation-get-started.md?context=/azure/foundry/context/context
 
 # Development Tools
