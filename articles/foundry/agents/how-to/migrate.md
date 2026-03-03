@@ -86,7 +86,7 @@ The following table compares agent tools available in classic agents and the new
 | --- | --- | --- |
 | Agent to Agent (A2A) | No | Yes (Public Preview) |
 | Azure AI Search | Yes (GA) | Yes (GA) |
-| Azure Functions | Yes (GA) | No |
+| Azure Functions | Yes (GA) | Yes (GA) |
 | Browser Automation | Yes (Public Preview) | Yes (Public Preview) |
 | Code Interpreter | Yes (GA) | Yes (GA) |
 | Computer Use | Yes (Public Preview) | Yes (Public Preview) |
