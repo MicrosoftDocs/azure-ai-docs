@@ -24,7 +24,7 @@ ai-usage: ai-assisted
 - An existing hub-based project
 - **Azure role**: **Owner** role on the subscription or resource group to create resources and projects and assign roles to the new project.
 
-This guide helps existing customers with [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s to access the latest platform capabilities.
+This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s to access the latest platform capabilities.
 
 Microsoft Foundry is transitioning to a unified platform as a service, replacing the previous resource model that required management of multiple Azure services. As AI workloads grow more complex, the [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]:
 
@@ -60,11 +60,11 @@ New capabilities include:
 - **Projects are now child resources**; they might be assigned their own admin controls like Azure RBAC, but by default share common settings from their parent resource. This principle aims to take IT admins out of the day-to-day loop. Once security, resource connectivity and governance are established at the resource level, as developer you can create your own project as a folder to organize your work.
 
 > [!IMPORTANT]
-> Foundry projects feature set aren't yet on full parity with [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]s. For an up-to-date view on supported features, see [this support matrix](../what-is-foundry.md#types-of-projects).
+> Foundry projects feature set aren't yet on full parity with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s. For an up-to-date view on supported features, see [this support matrix](../what-is-foundry.md#types-of-projects).
 
 ## How to switch to Foundry project
 
-Create new [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s in the Foundry models resource from your [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]. This process allows the new projects to access work originally done in the [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]
+Create new [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s in the Foundry models resource from your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. This process allows the new projects to access work originally done in the [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
 
 :::image type="content" source="../media/migrate-project/upgrade.svg" alt-text="Screenshot shows the upgrade path from hub-based to Foundry project types.":::
 
@@ -80,9 +80,9 @@ Create new [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.
 
 - Preview Agent state (messages, threads, files) — You can recreate your agent by using code in your new project
 - Open-source model deployments — Foundry projects don't currently support these
-- Hub project access — [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]s don't have access to any of the new projects created on the Foundry models resource
+- Hub project access — [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s don't have access to any of the new projects created on the Foundry models resource
 
-In the following sections, you learn how to move from [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]s to [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s:
+In the following sections, you learn how to move from [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s to [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s:
 
 1. [Locate your existing Foundry resource](#1-locate-your-existing-foundry-resource)
 1. [Create a new [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]](#2-create-your-new-project) on the AI resource.
@@ -101,7 +101,7 @@ Most Foundry users already have a Foundry (formerly called AI Services) resource
 
 # [Foundry portal](#tab/azure-ai-foundry)
 
-1.  In [Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)].
+1.  In [Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 1.  In the left pane, select **Management center**.
 1.  Select **Connected resources** under the **Hub** section.
 1.  Find the **Foundry models** connection, and select the link to view its details.
@@ -117,7 +117,7 @@ Most Foundry users already have a Foundry (formerly called AI Services) resource
 
 # [Azure portal](#tab/azure)
 
-1.  In [Azure portal](https://portal.azure.com), select the resource group that contains your [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)].
+1.  In [Azure portal](https://portal.azure.com), select the resource group that contains your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 1.  Locate your resource with the 'Foundry' resource type. 
 
     :::image type="content" source="../media/migrate-project/resource-azure-portal.png" alt-text="Screenshot of Foundry resource in Azure portal.":::
@@ -181,11 +181,11 @@ You're now ready to start building agents in general availability and with the l
 
 ## (Optional) Recreate connections
 
-If your [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)] used connections to access tools, data sources, or models, you can recreate those connections on your Foundry resource, without the use of a hub.
+If your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] used connections to access tools, data sources, or models, you can recreate those connections on your Foundry resource, without the use of a hub.
 
 # [Foundry portal](#tab/azure-ai-foundry)
 
- In the **Management center**, [add any connections](./connections-add.md) to tools and data you used before in your initial [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)].
+ In the **Management center**, [add any connections](./connections-add.md) to tools and data you used before in your initial [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
 # [Azure portal](#tab/azure)
 
@@ -226,17 +226,17 @@ For more information, see the [SDK migration guide](https://github.com/Azure/azu
 
 ## (Optional) Clean up hub-based projects
 
-If you no longer need access to your [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]s, delete them from your Azure subscription.
+If you no longer need access to your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s, delete them from your Azure subscription.
 
-You might want to keep hubs and [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]s in your subscription for some reasons:
+You might want to keep hubs and [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s in your subscription for some reasons:
 
 - Access to select features that aren't supported yet in [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s. See [this support matrix](../what-is-foundry.md#types-of-projects).
 
-- Use cases that focus on custom machine learning model training. A [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)] is built on the Azure Machine Learning stack and stays accessible through Azure Machine Learning Studio, CLI, or SDK.
+- Use cases that focus on custom machine learning model training. A [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] is built on the Azure Machine Learning stack and stays accessible through Azure Machine Learning Studio, CLI, or SDK.
 
 # [Foundry portal](#tab/azure-ai-foundry)
 
-1. In [Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)]. 
+1. In [Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. 
 
 1. Select **Management center**.
 1. Select **Overview** under the **Hub** section.
@@ -247,7 +247,7 @@ You might want to keep hubs and [!INCLUDE [hub-project-name](../../foundry/inclu
 
 # [Azure portal](#tab/azure)
 
-1. In [Azure portal](https://portal.azure.com), select the resource group that contains your [!INCLUDE [hub-project-name](../../foundry/includes/hub-project-name.md)].
+1. In [Azure portal](https://portal.azure.com), select the resource group that contains your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 1. Select the link for the **Azure AI hub** resource.
 1. Select **Delete** to delete the hub and all its associated projects.
 
