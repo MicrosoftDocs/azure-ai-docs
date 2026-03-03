@@ -1,16 +1,18 @@
 ---
 title: Integrate Azure Functions with Foundry Agents
 titleSuffix: Microsoft Foundry
-description: Build custom agent tools with Azure Functions using queue-based integration. Step-by-step guide with REST examples for Foundry agents.
+description: Build custom agent tools with Azure Functions using queue-based integration. Step-by-step guide with code examples for Foundry agents.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 03/03/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents
+zone_pivot_groups: selection-azure-function-tool
+ai-usage: ai-assisted
 ---
 
 # Use Azure Functions with Foundry Agent Service
@@ -24,6 +26,14 @@ Functions offer several hosting plans. The [Flex Consumption plan](/azure/azure-
 - Scale-to-zero serverless hosting with consumption-based pricing.
 - Identity-based access to resources in Azure, including resources within virtual networks.
 - Declarative data source connections through [input/output bindings](/azure/azure-functions/functions-triggers-bindings).
+
+## Usage support
+
+✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+
+| Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ |
 
 ## Prerequisites
 
@@ -41,7 +51,405 @@ Functions offer several hosting plans. The [Flex Consumption plan](/azure/azure-
 
 The following code samples demonstrate how to define an Azure Function tool that gets weather information for a specified location by using queue-based integration.
 
-## Create an agent version
+:::zone pivot="python"
+
+### Install the package
+
+Install the Azure AI Projects client library:
+
+```bash
+pip install azure-ai-projects azure-identity
+```
+
+### Define the tool and create an agent
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    AzureFunctionBinding,
+    AzureFunctionDefinition,
+    AzureFunctionStorageQueue,
+    AzureFunctionDefinitionFunction,
+    AzureFunctionTool,
+    PromptAgentDefinition,
+)
+
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
+    project_client.get_openai_client() as openai_client,
+):
+    tool = AzureFunctionTool(
+        azure_function=AzureFunctionDefinition(
+            input_binding=AzureFunctionBinding(
+                storage_queue=AzureFunctionStorageQueue(
+                    queue_name=os.environ["STORAGE_INPUT_QUEUE_NAME"],
+                    queue_service_endpoint=os.environ["STORAGE_QUEUE_SERVICE_ENDPOINT"],
+                )
+            ),
+            output_binding=AzureFunctionBinding(
+                storage_queue=AzureFunctionStorageQueue(
+                    queue_name=os.environ["STORAGE_OUTPUT_QUEUE_NAME"],
+                    queue_service_endpoint=os.environ["STORAGE_QUEUE_SERVICE_ENDPOINT"],
+                )
+            ),
+            function=AzureFunctionDefinitionFunction(
+                name="GetWeather",
+                description="Get the weather in a location.",
+                parameters={
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "type": "string",
+                            "description": "The location to look up.",
+                        }
+                    },
+                },
+            ),
+        )
+    )
+
+    agent = project_client.agents.create_version(
+        agent_name="azure-function-agent-get-weather",
+        definition=PromptAgentDefinition(
+            model=os.environ["MODEL_DEPLOYMENT_NAME"],
+            instructions="You are a helpful support agent. Answer the user's questions to the best of your ability.",
+            tools=[tool],
+        ),
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
+
+### Create a response
+
+```python
+    response = openai_client.responses.create(
+        input="What is the weather in Seattle, WA?",
+        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+    )
+
+    print(f"Response: {response.output_text}")
+```
+
+### Clean up
+
+```python
+    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    print("Agent deleted")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+### Install the packages
+
+Install the Azure AI Projects client libraries:
+
+```dotnetcli
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Projects.OpenAI --prerelease
+dotnet add package Azure.Identity
+```
+
+### Define the tool and create an agent
+
+```csharp
+using System;
+using System.Text.Json;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
+
+var projectEndpoint = Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var storageQueueUri = Environment.GetEnvironmentVariable("STORAGE_QUEUE_URI");
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+AzureFunctionDefinitionFunction functionDefinition = new(
+    name: "GetWeather",
+    parameters: BinaryData.FromObjectAsJson(
+        new
+        {
+            Type = "object",
+            Properties = new
+            {
+                location = new
+                {
+                    Type = "string",
+                    Description = "The location to look up.",
+                }
+            }
+        },
+        new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
+    )
+)
+{
+    Description = "Get the weather in a location.",
+};
+
+AzureFunctionTool azureFnTool = new(
+    new AzureFunctionDefinition(
+        function: functionDefinition,
+        inputBinding: new AzureFunctionBinding(
+            new AzureFunctionStorageQueue(
+                queueServiceEndpoint: storageQueueUri,
+                queueName: "input")),
+        outputBinding: new AzureFunctionBinding(
+            new AzureFunctionStorageQueue(
+                queueServiceEndpoint: storageQueueUri,
+                queueName: "output"))
+    )
+);
+
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "You are a helpful support agent. Answer the user's questions "
+        + "to the best of your ability.",
+    Tools = { azureFnTool },
+};
+
+AgentVersion agentVersion = await projectClient.Agents.CreateAgentVersionAsync(
+    agentName: "azure-function-agent-get-weather",
+    options: new(agentDefinition));
+Console.WriteLine($"Agent created (id: {agentVersion.Id}, name: {agentVersion.Name}, "
+    + $"version: {agentVersion.Version})");
+```
+
+### Create a response
+
+```csharp
+ProjectResponsesClient responseClient =
+    projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+
+CreateResponseOptions responseOptions = new()
+{
+    InputItems =
+    {
+        ResponseItem.CreateUserMessageItem("What is the weather in Seattle, WA?")
+    },
+};
+
+ResponseResult response = await responseClient.CreateResponseAsync(responseOptions);
+Console.WriteLine(response.GetOutputText());
+```
+
+### Clean up
+
+```csharp
+await projectClient.Agents.DeleteAgentVersionAsync(
+    agentName: agentVersion.Name,
+    agentVersion: agentVersion.Version);
+Console.WriteLine("Agent deleted");
+```
+
+:::zone-end
+
+:::zone pivot="java"
+
+### Install the package
+
+Add the Azure AI Agents dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>1.0.0-beta.1</version>
+</dependency>
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-identity</artifactId>
+</dependency>
+```
+
+### Define the tool and create an agent
+
+```java
+import com.azure.ai.agents.*;
+import com.azure.ai.agents.models.*;
+import com.azure.core.util.BinaryData;
+import com.azure.core.util.Configuration;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.*;
+
+String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
+String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
+String storageQueueUri = Configuration.getGlobalConfiguration().get("STORAGE_QUEUE_URI");
+
+AgentsClientBuilder builder = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(endpoint)
+    .serviceVersion(AgentsServiceVersion.getLatest());
+
+AgentsClient agentsClient = builder.buildAgentsClient();
+ResponsesClient responsesClient = builder.buildResponsesClient();
+
+// Define the function parameters
+Map<String, BinaryData> parameters = new HashMap<>();
+parameters.put("type", BinaryData.fromString("\"object\""));
+parameters.put("properties", BinaryData.fromString(
+    "{\"location\": {\"type\": \"string\", "
+    + "\"description\": \"The location to look up.\"}}"));
+
+AzureFunctionDefinitionFunction function =
+    new AzureFunctionDefinitionFunction("GetWeather", parameters)
+        .setDescription("Get the weather in a location.");
+
+AzureFunctionTool azureFnTool = new AzureFunctionTool(
+    new AzureFunctionDefinition(
+        function,
+        new AzureFunctionBinding(
+            new AzureFunctionStorageQueue(storageQueueUri, "input")),
+        new AzureFunctionBinding(
+            new AzureFunctionStorageQueue(storageQueueUri, "output"))
+    )
+);
+
+PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+    .setInstructions("You are a helpful support agent. Answer the user's "
+        + "questions to the best of your ability.")
+    .setTools(Collections.singletonList(azureFnTool));
+
+AgentVersionDetails agent = agentsClient.createAgentVersion(
+    "azure-function-agent-get-weather", agentDefinition);
+System.out.printf("Agent created (id: %s, name: %s, version: %s)%n",
+    agent.getId(), agent.getName(), agent.getVersion());
+```
+
+### Create a response
+
+```java
+AgentReference agentReference = new AgentReference(agent.getName())
+    .setVersion(agent.getVersion());
+
+Response response = responsesClient.createWithAgent(
+    agentReference,
+    ResponseCreateParams.builder()
+        .input("What is the weather in Seattle, WA?"));
+
+System.out.println("Response: " + response.output());
+```
+
+### Clean up
+
+```java
+agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+System.out.println("Agent deleted");
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+### Install the packages
+
+Install the Azure AI Projects client library:
+
+```bash
+npm install @azure/ai-projects @azure/identity
+```
+
+### Define the tool and create an agent
+
+```typescript
+import { AIProjectClient } from "@azure/ai-projects";
+import { DefaultAzureCredential } from "@azure/identity";
+import "dotenv/config";
+
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "";
+const storageQueueEndpoint = process.env["STORAGE_QUEUE_SERVICE_ENDPOINT"] || "";
+const inputQueueName = process.env["STORAGE_INPUT_QUEUE_NAME"] || "input";
+const outputQueueName = process.env["STORAGE_OUTPUT_QUEUE_NAME"] || "output";
+
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+const openAIClient = project.getOpenAIClient();
+
+const agent = await project.agents.createVersion(
+  "azure-function-agent-get-weather",
+  {
+    kind: "prompt",
+    model: deploymentName,
+    instructions:
+      "You are a helpful support agent. Answer the user's questions to the best of your ability.",
+    tools: [
+      {
+        type: "azure_function",
+        azure_function: {
+          function: {
+            name: "GetWeather",
+            description: "Get the weather in a location.",
+            parameters: {
+              type: "object",
+              properties: {
+                location: {
+                  type: "string",
+                  description: "The location to look up.",
+                },
+              },
+            },
+          },
+          input_binding: {
+            type: "storage_queue",
+            storage_queue: {
+              queue_service_endpoint: storageQueueEndpoint,
+              queue_name: inputQueueName,
+            },
+          },
+          output_binding: {
+            type: "storage_queue",
+            storage_queue: {
+              queue_service_endpoint: storageQueueEndpoint,
+              queue_name: outputQueueName,
+            },
+          },
+        },
+      },
+    ],
+  },
+);
+console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
+```
+
+### Create a response
+
+```typescript
+const response = await openAIClient.responses.create(
+  {
+    input: "What is the weather in Seattle, WA?",
+  },
+  {
+    body: {
+      agent: { name: agent.name, type: "agent_reference" },
+    },
+  },
+);
+console.log(`Response: ${response.output_text}`);
+```
+
+### Clean up
+
+```typescript
+await project.agents.deleteVersion(agent.name, agent.version);
+console.log("Agent deleted");
+```
+
+:::zone-end
+
+:::zone pivot="rest"
+
+### Create an agent version
 
 Create an agent version by using the Azure Function tool definition.
 
@@ -92,7 +500,7 @@ curl --request POST \
   }'
 ```
 
-## Create a response
+### Create a response
 
 Create a response that uses the agent version to get weather information.
 
@@ -109,6 +517,8 @@ curl --request POST \
     }
   }'
 ```
+
+:::zone-end
 
 ## When to use Azure Functions vs function calling
 
