@@ -88,7 +88,7 @@ This approach simplifies application configuration. Instead of managing multiple
 ### Install the SDK
 
 > [!NOTE]
-> This article applies to a **[!INCLUDE [fdp](../../../foundry/includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../../foundry/includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
+> This article applies to a **[!INCLUDE [fdp](../../../foundry/includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
 
 > [!NOTE]
 > **SDK versions:** The 2.x preview SDK targets the new Foundry portal and API. The 1.x GA SDK targets Foundry classic. Make sure the samples you follow match your installed package.

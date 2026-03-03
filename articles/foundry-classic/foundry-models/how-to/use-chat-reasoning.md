@@ -21,27 +21,27 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [python](../../../foundry/foundry-models/includes/use-chat-reasoning/python.md)]
+[!INCLUDE [python](../includes/use-chat-reasoning/python.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [javascript](../../../foundry/foundry-models/includes/use-chat-reasoning/javascript.md)]
+[!INCLUDE [javascript](../includes/use-chat-reasoning/javascript.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [java](../../../foundry/foundry-models/includes/use-chat-reasoning/java.md)]
+[!INCLUDE [java](../includes/use-chat-reasoning/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [csharp](../../../foundry/foundry-models/includes/use-chat-reasoning/csharp.md)]
+[!INCLUDE [csharp](../includes/use-chat-reasoning/csharp.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [rest](../../../foundry/foundry-models/includes/use-chat-reasoning/rest.md)]
+[!INCLUDE [rest](../includes/use-chat-reasoning/rest.md)]
 ::: zone-end
 
 ## Related content

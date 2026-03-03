@@ -29,7 +29,7 @@ ai-usage: ai-assisted
 > [!TIP]
 > An alternate Foundry project-focused version is available: [How to configure a private link for Microsoft Foundry projects](configure-private-link.md).
 
-When you use a [!INCLUDE [hub-projects](../../foundry/includes/hub-project-name.md)], consider two network isolation aspects:
+When you use a [!INCLUDE [hub-projects](../includes/hub-project-name.md)], consider two network isolation aspects:
 
 - **Network isolation to access a Foundry hub**: This article focuses on this aspect. It describes how to establish a private connection to your hub and its default resources by using a private link.
 - **Network isolation of computing resources in your hub and projects**: This aspect includes compute instances, serverless, and managed online endpoints. For more information, see the [Configure managed networks for Foundry hubs](configure-managed-network.md) article.

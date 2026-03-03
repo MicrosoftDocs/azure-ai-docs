@@ -118,14 +118,14 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 At deployment retirement, inference and deployment return error responses.
 
-| Model            | Version     | Training retirement date   | Deployment retirement date        |
-| -----------------|-------------|----------------------------|-----------------------------------|
-| `gpt-4o`         | 2024-08-06  | No earlier than 2026-09-31<sup>1</sup> | 2027-03-31 |
-| `gpt-4o-mini`    | 2024-07-18  | No earlier than 2026-09-31<sup>1</sup> | 2027-03-31 |
-| `gpt-4.1`        | 2025-04-14  | Base model retirement  | One year after training retirement |
-| `gpt-4.1-mini`   | 2025-04-14  | Base model retirement  | One year after training retirement |
-| `gpt-4.1-nano`   | 2025-04-14  | Base model retirement  | One year after training retirement |
-| `o4-mini`        | 2025-04-16  | Base model retirement  | One year after training retirement |
+| Model            | Version     | Training retirement date | Deployment retirement date |
+| -----------------|-------------|--------------------------|----------------------------|
+| `gpt-4o`         | 2024-08-06  | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
+| `gpt-4o-mini`    | 2024-07-18  | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
+| `gpt-4.1`        | 2025-04-14  | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| `gpt-4.1-mini`   | 2025-04-14  | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| `gpt-4.1-nano`   | 2025-04-14  | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| `o4-mini`        | 2025-04-16  | Base model retirement | One year after training retirement |
 
 <sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 

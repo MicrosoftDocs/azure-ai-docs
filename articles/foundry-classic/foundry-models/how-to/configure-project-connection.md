@@ -19,15 +19,15 @@ reviewer: santiagxf
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 ::: zone pivot="ai-foundry-portal"
-[!INCLUDE [portal](../../../foundry/foundry-models/includes/configure-project-connection/portal.md)]
+[!INCLUDE [portal](../includes/configure-project-connection/portal.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](../../../foundry/foundry-models/includes/configure-project-connection/cli.md)]
+[!INCLUDE [cli](../includes/configure-project-connection/cli.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-bicep"
-[!INCLUDE [bicep](../../../foundry/foundry-models/includes/configure-project-connection/bicep.md)]
+[!INCLUDE [bicep](../includes/configure-project-connection/bicep.md)]
 ::: zone-end
 
 ## Next steps
