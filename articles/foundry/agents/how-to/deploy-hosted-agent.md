@@ -237,19 +237,21 @@ az rest --method put `
 ### Create the hosted agent
 
 ```python
-import os
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord, AgentProtocol
 from azure.identity import DefaultAzureCredential
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+# Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
 
-client = AIProjectClient(
-    endpoint=endpoint,
+# Create project client
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential()
 )
 
-agent = client.agents.create_version(
+# Create a hosted agent version
+agent = project.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
         container_protocol_versions=[ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")],
@@ -257,8 +259,8 @@ agent = client.agents.create_version(
         memory="2Gi",
         image="your-registry.azurecr.io/your-image:tag",
         environment_variables={
-            "AZURE_AI_PROJECT_ENDPOINT": endpoint,
-            "MODEL_NAME": "gpt-4.1"
+            "AZURE_AI_PROJECT_ENDPOINT": PROJECT_ENDPOINT,
+            "MODEL_NAME": "gpt-5-mini"
         }
     )
 )
@@ -280,7 +282,10 @@ Key parameters:
 Include tools when creating the agent:
 
 ```python
-agent = client.agents.create_version(
+import os
+
+# Create a hosted agent version with tools
+agent = project.agents.create_version(
     agent_name="my-agent",
     definition=HostedAgentDefinition(
         container_protocol_versions=[ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")],
@@ -292,8 +297,8 @@ agent = client.agents.create_version(
             {"type": "mcp", "project_connection_id": os.environ["GITHUB_CONNECTION_ID"]}
         ],
         environment_variables={
-            "AZURE_AI_PROJECT_ENDPOINT": endpoint,
-            "MODEL_NAME": "gpt-4.1"
+            "AZURE_AI_PROJECT_ENDPOINT": PROJECT_ENDPOINT,
+            "MODEL_NAME": "gpt-5-mini"
         }
     )
 )
@@ -319,7 +324,7 @@ azd down
 ### SDK cleanup
 
 ```python
-client.agents.delete_version(agent_name="my-agent", agent_version=agent.version)
+project.agents.delete_version(agent_name="my-agent", agent_version=agent.version)
 ```
 
 ## Troubleshooting

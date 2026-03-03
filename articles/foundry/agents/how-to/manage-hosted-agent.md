@@ -162,7 +162,7 @@ az cognitiveservices agent delete \
 ### Delete using the SDK
 
 ```python
-client.agents.delete_version(agent_name="my-agent", agent_version="1")
+project.agents.delete_version(agent_name="my-agent", agent_version="1")
 ```
 
 ## List and view agents
@@ -213,26 +213,30 @@ Timeouts:
 Test your running agent using the SDK:
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-agent_name = os.environ["AZURE_AI_AGENT_NAME"]
+# Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_agent_name"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as client,
-    client.get_openai_client() as openai_client,
-):
-    agent = client.agents.get(agent_name=agent_name)
-    
-    response = openai_client.responses.create(
-        input=[{"role": "user", "content": "Hello! What can you help me with?"}],
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}}
-    )
-    
-    print(f"Response: {response.output_text}")
+# Create project and OpenAI clients
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Get agent details
+agent = project.agents.get(agent_name=AGENT_NAME)
+
+# Chat with the hosted agent
+response = openai.responses.create(
+    input=[{"role": "user", "content": "Hello! What can you help me with?"}],
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}}
+)
+
+print(f"Response: {response.output_text}")
 ```
 
 You can also test agents in the agent playground UI in the Foundry portal.

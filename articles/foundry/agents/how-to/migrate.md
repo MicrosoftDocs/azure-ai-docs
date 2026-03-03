@@ -71,15 +71,17 @@ The following code initializes the clients used throughout this guide:
 # [Python](#tab/python)
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-project_client = AIProjectClient(
-    endpoint=os.environ["PROJECT_ENDPOINT"],
+# Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
-openai_client = project_client.get_openai_client()
+openai = project.get_openai_client()
 ```
 
 # [C#](#tab/csharp)
@@ -130,7 +132,7 @@ AgentsClient agentsClient =
 
 ---
 
-Use `project_client` for agent creation and versioning. Use `openai_client` (or the equivalent in your language) for conversations and responses.
+Use `project` for agent creation and versioning. Use `openai` (or the equivalent in your language) for conversations and responses.
 
 ### Key benefits
 
@@ -169,7 +171,7 @@ The following table summarizes the main API changes between the previous and cur
 | Assistants / agents | Agents (new) | Support for enterprise-ready prompt, workflow, and hosted agents with stateful context by default for any Foundry model. |
 
 > [!IMPORTANT]
-> In the new API, the conversations and responses APIs use the **OpenAI client** (or its language equivalent). In Python, call `project_client.get_openai_client()`. In C#, use `projectClient.OpenAI.GetProjectResponsesClientForAgent()`. In JavaScript, call `projectClient.getOpenAIClient()`. In Java, use `AgentsClientBuilder` to build a `ResponsesClient`. Agent creation and versioning remain on the **project client**. The examples in each section show which client to use.
+> In the new API, the conversations and responses APIs use the **OpenAI client** (or its language equivalent). In Python, call `project.get_openai_client()`. In C#, use `projectClient.OpenAI.GetProjectResponsesClientForAgent()`. In JavaScript, call `projectClient.getOpenAIClient()`. In Java, use `AgentsClientBuilder` to build a `ResponsesClient`. Agent creation and versioning remain on the **project client**. The examples in each section show which client to use.
 
 ## Migrate threads to conversations
 
@@ -177,7 +179,7 @@ Threads stored messages on the server side. A conversation can store items, incl
 
 ### Requests
 
-The following examples compare thread creation (previous) with conversation creation (current). The current approach uses the OpenAI client obtained from `project_client.get_openai_client()`.
+The following examples compare thread creation (previous) with conversation creation (current). The current approach uses the OpenAI client obtained from `project.get_openai_client()`.
 
 **Previous - threads**
 
@@ -252,7 +254,7 @@ AgentThread thread =
 # [Python](#tab/python)
 
 ```python
-conversation = openai_client.conversations.create(
+conversation = openai.conversations.create(
     items=[
         {
             "type": "message",
@@ -409,7 +411,7 @@ ThreadMessage message =
 # [Python](#tab/python)
 
 ```python
-openai_client.conversations.items.create(
+openai.conversations.items.create(
     conversation_id=conversation.id,
     items=[
         {
@@ -558,7 +560,7 @@ while (RunStatus.QUEUED
 ```python
 conversation_id = "conv_11112222AAAABBBB"
 
-response = openai_client.responses.create(
+response = openai.responses.create(
     input="Hi, Agent! Draw a graph for a line "
           "with a slope of 4 and "
           "y-intercept of 9.",
@@ -843,7 +845,7 @@ from azure.ai.projects.models import (
     PromptAgentDefinition,
 )
 
-agent = project_client.agents.create_version(
+agent = project.agents.create_version(
     agent_name="my-agent",
     definition=PromptAgentDefinition(
         model="gpt-4.1",
@@ -1076,7 +1078,7 @@ from azure.ai.projects.models import (
     PromptAgentDefinition,
 )
 
-agent = project_client.agents.create_version(
+agent = project.agents.create_version(
     agent_name="my-agent",
     definition=PromptAgentDefinition(
         model="gpt-4.1",
@@ -1148,7 +1150,7 @@ var agent = agentsClient.createAgentVersion(
 
 A [migration tool](https://aka.ms/agent/migrate/tool) is available on GitHub to help automate the migration of your agents and assistants. The tool migrates code constructs such as agent definitions, thread creation, message creation, and run creation. It doesn't migrate state data like past runs, threads, or messages. After migration, you can run the new code, and any new state data is created in the updated format.
 
-The following example shows a complete before-and-after comparison. Notice that the current code uses both `project_client` for agent creation and `openai_client` for conversations and responses. 
+The following example shows a complete before-and-after comparison. Notice that the current code uses both `project` for agent creation and `openai` for conversations and responses. 
 
 **Previous**
 
@@ -1366,50 +1368,52 @@ from azure.ai.projects.models import (
     PromptAgentDefinition,
 )
 
-with project_client.get_openai_client() \
-        as openai_client:
-    agent = project_client.agents.create_version(
-        agent_name="my-agent",
-        definition=PromptAgentDefinition(
-            model="gpt-4.1",
-            instructions=(
-                "You politely help with math "
-                "questions. Use the Code "
-                "Interpreter tool when asked "
-                "to visualize numbers."
+# Create the agent
+agent = project.agents.create_version(
+    agent_name="my-agent",
+    definition=PromptAgentDefinition(
+        model="gpt-4.1",
+        instructions=(
+            "You politely help with math "
+            "questions. Use the Code "
+            "Interpreter tool when asked "
+            "to visualize numbers."
+        ),
+        tools=[CodeInterpreterTool()],
+    ),
+)
+
+# Create a conversation with initial message
+conversation = openai.conversations.create(
+    items=[
+        {
+            "type": "message",
+            "role": "user",
+            "content": (
+                "Hi, Agent! Draw a graph "
+                "for a line with a rate "
+                "of change of 4 and "
+                "y-intercept of 9."
             ),
-            tools=[CodeInterpreterTool()],
-        ),
-    )
-    conversation = \
-        openai_client.conversations.create(
-            items=[
-                {
-                    "type": "message",
-                    "role": "user",
-                    "content": (
-                        "Hi, Agent! Draw a graph "
-                        "for a line with a rate "
-                        "of change of 4 and "
-                        "y-intercept of 9."
-                    ),
-                }
-            ],
-        )
-    response = openai_client.responses.create(
-        conversation=conversation.id,
-        extra_body={
-            "agent_reference": {
-                "name": agent.name,
-                "type": "agent_reference",
-            }
-        },
-        input=(
-            "Please address the user as "
-            "Jane Doe. The user has a "
-            "premium account"
-        ),
-    )
+        }
+    ],
+)
+
+# Send a response with the agent
+response = openai.responses.create(
+    conversation=conversation.id,
+    extra_body={
+        "agent_reference": {
+            "name": agent.name,
+            "type": "agent_reference",
+        }
+    },
+    input=(
+        "Please address the user as "
+        "Jane Doe. The user has a "
+        "premium account"
+    ),
+)
 ```
 
 # [C#](#tab/csharp)
@@ -1555,7 +1559,7 @@ After you migrate your code, confirm that everything works correctly:
 
 | Symptom | Cause | Resolution |
 | --------- | ------- | ------------ |
-| **Python**: `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project_client.get_openai_client()` to obtain the OpenAI client, then call `openai_client.conversations.create()`. |
+| **Python**: `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project.get_openai_client()` to obtain the OpenAI client, then call `openai.conversations.create()`. |
 | **C#**: `Azure.AI.Projects.OpenAI` namespace not found | The `Azure.AI.Projects.OpenAI` NuGet package is missing. | Install `Azure.AI.Projects.OpenAI` alongside `Azure.AI.Projects`. Both packages are required. |
 | **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects@2.0.0-beta.5` or later: `npm install @azure/ai-projects@2.0.0-beta.5`. |
 | **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.0.0-beta.2` to your `pom.xml` dependencies. |

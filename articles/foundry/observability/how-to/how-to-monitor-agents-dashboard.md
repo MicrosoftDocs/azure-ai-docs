@@ -82,14 +82,10 @@ To access Monitor settings, select the gear icon on the **Monitor** tab. The fol
 Use the Python SDK to set up continuous evaluation rules for agent responses. This section requires Python 3.10 or later.
 
 ```bash
-pip install "azure-ai-projects>=2.0.0b4" --pre python-dotenv
+pip install --pre "azure-ai-projects>=2.0.0b4" azure-identity
 ```
 
-Set these environment variables with your own values:
-
-- `AZURE_AI_PROJECT_ENDPOINT`: The Foundry project endpoint, as found on the project overview page in the Foundry portal.
-- `AZURE_AI_AGENT_NAME`: The name of the agent to use for evaluation.
-- `AZURE_AI_MODEL_DEPLOYMENT_NAME`: The deployment name of the model.
+Replace the placeholder values in the code samples with your own Foundry project endpoint, agent name, and model deployment name.
 
 ### Assign permissions for continuous evaluation
 
@@ -103,31 +99,32 @@ To enable continuous evaluation rules, assign the project managed identity the *
 ### Create an agent
 
 ```python
-import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     PromptAgentDefinition,
 )
 
-load_dotenv()
+# Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_agent_name"
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+# Create project and OpenAI clients
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
-    agent = project_client.agents.create_version(
-        agent_name=os.environ["AZURE_AI_AGENT_NAME"],
-        definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant that answers general questions",
-        ),
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+# Create an agent version
+agent = project.agents.create_version(
+    agent_name=AGENT_NAME,
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant that answers general questions",
+    ),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 ```
 
 References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
@@ -148,14 +145,14 @@ data_source_config = {"type": "azure_ai_source", "scenario": "responses"}
 testing_criteria = [
     {"type": "azure_ai_evaluator", "name": "violence_detection", "evaluator_name": "builtin.violence"}
 ]
-eval_object = openai_client.evals.create(
+eval_object = openai.evals.create(
     name="Continuous Evaluation",
     data_source_config=data_source_config,  # type: ignore
     testing_criteria=testing_criteria,  # type: ignore
 )
 print(f"Evaluation created (id: {eval_object.id}, name: {eval_object.name})")
 
-continuous_eval_rule = project_client.evaluation_rules.create_or_update(
+continuous_eval_rule = project.evaluation_rules.create_or_update(
     id="my-continuous-eval-rule",
     evaluation_rule=EvaluationRule(
         display_name="My Continuous Eval Rule",
@@ -184,7 +181,7 @@ If the setup is successful, the evaluation-related charts display scores for you
 You can also list recent evaluation runs and open the report URL:
 
 ```python
-eval_run_list = openai_client.evals.runs.list(
+eval_run_list = openai.evals.runs.list(
     eval_id=eval_object.id,
     order="desc",
     limit=10,
