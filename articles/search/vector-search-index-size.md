@@ -233,3 +233,4 @@ Most of this article provides information about the size of vectors in memory. F
 
 + [Vector search in Azure AI Search](vector-search-overview.md)
 + [Choose an approach for optimizing vector storage and processing](vector-search-how-to-configure-compression-storage.md)
++ [Troubleshoot storage and metric discrepancies](troubleshoot-storage-metrics.md)

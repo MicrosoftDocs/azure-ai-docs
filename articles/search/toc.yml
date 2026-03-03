@@ -639,7 +639,7 @@ items:
     - name: Monitor indexer-based indexing
       href: search-monitor-indexers.md
     - name: Troubleshoot storage metrics
-      href: troubleshoot-storage-metric-discrepancies.md
+      href: troubleshoot-storage-metrics.md
   - name: Visualize resource logs
     href: search-monitor-logs-powerbi.md
   - name: Analyze search performance
