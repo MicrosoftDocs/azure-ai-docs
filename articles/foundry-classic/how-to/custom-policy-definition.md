@@ -29,8 +29,8 @@ By using custom policies, you can:
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
+- [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
+- [!INCLUDE [rbac-assign-roles](../../foundry/includes/rbac-assign-roles.md)]
 - The **Resource Policy Contributor** role (least privilege) or **Owner** role at the scope where you create and assign the policy definition.
 
 For more information, see [What is Azure Policy?](/azure/governance/policy/overview)

@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 The management center is part of the Microsoft Foundry portal that streamlines governance and management activities. From the management center, you can manage:
 
 - Foundry hubs and [!INCLUDE [hub](../includes/hub-project-name.md)]s
-- Azure AI [!INCLUDE [FDP](../includes/fdp-project-name.md)]s
+- Azure AI [!INCLUDE [FDP](../../foundry/includes/fdp-project-name.md)]s
 - Quotas for models and virtual machines (VMs)
 
     > [!NOTE]
@@ -35,11 +35,11 @@ To access the management center, sign in to [Foundry](https://ai.azure.com/?cid=
 
 ## Manage Foundry projects
 
-Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use **All resources** to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the **Project** section (Project = Foundry project) of the left menu to manage and create individual [!INCLUDE [FDP](../includes/fdp-project-name.md)]s on the Foundry resource.
+Use the management center to create and configure [!INCLUDE [FDP](../../foundry/includes/fdp-project-name.md)]s. Use **All resources** to view all [!INCLUDE [FDP](../../foundry/includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the **Project** section (Project = Foundry project) of the left menu to manage and create individual [!INCLUDE [FDP](../../foundry/includes/fdp-project-name.md)]s on the Foundry resource.
 
 :::image type="content" source="../media/management-center/project-management.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/project-management.png":::
 
-For more information, see [Create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](../how-to/create-projects.md).
+For more information, see [Create a [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]](../how-to/create-projects.md).
 
 ### Manage Foundry hubs and hub-based projects
 

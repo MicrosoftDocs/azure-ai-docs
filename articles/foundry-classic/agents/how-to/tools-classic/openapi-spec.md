@@ -69,7 +69,7 @@ By using API key authentication, you can authenticate your OpenAPI spec through 
 
     1. Go to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left navigation pane.
 
-       :::image type="content" source="../../media\tools\bing\project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media\tools\bing\project-settings-button.png":::
+       :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
 
     1. Select **Connected resources** under the AI project in the left navigation pane.
     1. Select **+ new connection** in the settings page.
@@ -77,11 +77,11 @@ By using API key authentication, you can authenticate your OpenAPI spec through 
        >[!NOTE]
        > If you regenerate the API key at a later date, you need to update the connection with the new key.
         
-       :::image type="content" source="../../media\tools\bing\project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media\tools\bing\project-connections.png":::
+       :::image type="content" source="../../media/tools/bing/project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media/tools/bing/project-connections.png":::
 
    1. Select **custom keys** in **other resource types**.
     
-      :::image type="content" source="../../media\tools\bing\api-key-connection.png" alt-text="A screenshot of the custom keys selection for the AI project." lightbox="../../media\tools\bing\api-key-connection.png":::
+      :::image type="content" source="../../media/tools/bing/api-key-connection.png" alt-text="A screenshot of the custom keys selection for the AI project." lightbox="../../media/tools/bing/api-key-connection.png":::
     
    1. Enter the following information
       - key: `name` field of your security scheme. In this example, it should be `x-api-key`
@@ -119,14 +119,14 @@ To set up authentication by using Managed Identity:
 
 1. Make sure your Foundry resource has a system assigned managed identity enabled.
 
-    :::image type="content" source="../../media\tools\managed-identity-portal.png" alt-text="A screenshot showing the managed identity selector in the Azure portal." lightbox="../../media\tools\managed-identity-portal.png":::
+    :::image type="content" source="../../../../foundry/agents/media/tools/managed-identity-portal.png" alt-text="A screenshot showing the managed identity selector in the Azure portal." lightbox="../../../../foundry/agents/media/tools/managed-identity-portal.png":::
 
 1. Create a resource for the service you want to connect to through OpenAPI spec.
 1. Assign the proper access to the resource.
     1. Select **Access Control** for your resource.
     1. Select **Add** and then **add role assignment** at the top of the screen.
 
-        :::image type="content" source="../../media\tools\role-assignment-portal.png" alt-text="A screenshot showing the role assignment selector in the Azure portal." lightbox="../../media\tools\role-assignment-portal.png":::
+        :::image type="content" source="../../../../foundry/agents/media/tools/role-assignment-portal.png" alt-text="A screenshot showing the role assignment selector in the Azure portal." lightbox="../../../../foundry/agents/media/tools/role-assignment-portal.png":::
         
     1. Select the proper role assignment needed. Usually, it requires at least the *READER* role. Then select **Next**.
     1. Select **Managed identity** and then select **select members**.

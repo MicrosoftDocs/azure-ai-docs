@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 02/24/2026
+ms.date: 02/27/2026
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026
@@ -19,7 +19,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
 > - Microsoft: `MAI-DS-R1`, `model-router`
 > - Mistral: `mistral-document-ai-2512`, `mistral-document-ai-2505`, `Mistral-Large-3`
-> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`
+> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`, `grok-4.1-fast-non-reasoning`
 > 
 > To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. 
 
@@ -399,7 +399,7 @@ All deployments can perform the exact same inference operations, but the billing
 
 ### Global Standard model availability
 
-[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
+[!INCLUDE [Standard Global](../../../foundry/openai/includes/model-matrix/standard-global.md)]
 
 > [!NOTE]
 > `o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
@@ -408,19 +408,19 @@ All deployments can perform the exact same inference operations, but the billing
 
 ### Global Provisioned managed model availability
 
-[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
+[!INCLUDE [Provisioned Managed Global](../../../foundry/openai/includes/model-matrix/provisioned-global.md)]
 
 # [Global Batch](#tab/global-batch)
 
 ### Global Batch model availability
 
-[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
+[!INCLUDE [Global batch](../../../foundry/openai/includes/model-matrix/global-batch.md)]
 
 # [Data Zone Standard](#tab/datazone-standard)
 
 ### Data Zone Standard model availability
 
-[!INCLUDE [Data zone standard](../includes/model-matrix/datazone-standard.md)]
+[!INCLUDE [Data zone standard](../../../foundry/openai/includes/model-matrix/datazone-standard.md)]
 
 > [!NOTE]
 > `o1-mini` is currently available to all customers for Global Standard deployment.
@@ -431,19 +431,19 @@ All deployments can perform the exact same inference operations, but the billing
 
 ### Data Zone Provisioned managed model availability
 
-[!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
+[!INCLUDE [Global data zone provisioned managed](../../../foundry/openai/includes/model-matrix/datazone-provisioned-managed.md)]
 
 # [Data Zone Batch](#tab/datazone-batch)
 
 ### Data Zone Batch model availability
 
-[!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
+[!INCLUDE [Data zone batch](../../../foundry/openai/includes/model-matrix/global-batch-datazone.md)]
 
 # [Standard](#tab/standard)
 
 ### Standard deployment model availability
 
-[!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
+[!INCLUDE [Standard Models](../../../foundry/openai/includes/model-matrix/standard-models.md)]
 
 > [!NOTE]
 > `o1-mini` is currently available to all customers for Global Standard deployment.
@@ -454,7 +454,7 @@ All deployments can perform the exact same inference operations, but the billing
 
 ### Provisioned deployment model availability
 
-[!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
+[!INCLUDE [Provisioned](../../../foundry/openai/includes/model-matrix/provisioned-models.md)]
 
 > [!NOTE]
 > The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only.
@@ -499,7 +499,7 @@ These models can be used only with Embedding API requests.
 
 ## Fine-tuning models
 
-[!INCLUDE [Fine-tune models](../includes/fine-tune-models.md)]
+[!INCLUDE [Fine-tune models](../../../foundry/openai/includes/fine-tune-models.md)]
 
 ## Assistants (preview)
 

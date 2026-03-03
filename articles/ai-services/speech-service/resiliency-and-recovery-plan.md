@@ -7,8 +7,9 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 #Customer intent: As a developer, I want to learn how to back up and recover speech customer resources.
+ai-usage: ai-assisted
 ---
 
 # Back up and recover speech customer resources
@@ -42,7 +43,7 @@ Follow these steps to configure your client to monitor for errors:
 
 1.  Find the [list of regionally available endpoints in our documentation](./rest-speech-to-text.md).
 2.  Select a primary and one or more secondary/backup regions from the list.
-3. From Azure portal, create Speech service resources for each region.
+3. From the Azure portal, create Speech service resources for each region.
     -  If you have set a specific quota, you might also consider setting the same quota in the backup regions. See details in [Speech service Quotas and Limits](./speech-services-quotas-and-limits.md).
 
 4.  Each region has its own STS token service. For the primary region and any backup regions your client configuration file needs to know the:

@@ -22,7 +22,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 The prompt flow Python tool provides customized code snippets as self-contained executable nodes. You can quickly create Python tools, edit code, and verify results.
 

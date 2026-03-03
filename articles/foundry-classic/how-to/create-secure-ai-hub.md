@@ -30,7 +30,7 @@ You can secure your [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 - **RBAC requirements**: You must have the **Owner** or **Contributor** role on your Azure subscription or resource group to create a hub and configure network settings. To use a private endpoint, you also need **Network Contributor** or **Owner** permissions on the Azure Virtual Network.
 - An Azure Virtual Network that you use to securely connect to Azure services. For example, you might use [Azure Bastion](/azure/bastion/bastion-overview), [VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways), or [ExpressRoute](/azure/expressroute/expressroute-introduction) to connect to the Azure Virtual Network from your on-premises network. If you don't have an Azure Virtual Network, you can create one by following the instructions in [Create a virtual network](/azure/virtual-network/quick-create-portal).
 

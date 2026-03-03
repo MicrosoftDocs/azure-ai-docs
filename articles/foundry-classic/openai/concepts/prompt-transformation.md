@@ -50,7 +50,7 @@ The following table shows an example prompt and the difference in generated imag
 
 | **Example text prompt** | **Example generated image without prompt transformation** | **Example generated image with prompt transformation** |
 |---|---|---|
-|"Watercolor painting of the Seattle skyline" | ![Screenshot of a simple watercolor painting of the Seattle skyline with minimal detail.](../media/how-to/generated-seattle.png) | ![Screenshot of a detailed watercolor painting of the Seattle skyline with richer colors and more architectural detail.](../media/how-to/generated-seattle-prompt-transformed.png) |
+|"Watercolor painting of the Seattle skyline" | ![Screenshot of a simple watercolor painting of the Seattle skyline with minimal detail.](../../../foundry/openai/media/how-to/generated-seattle.png) | ![Screenshot of a detailed watercolor painting of the Seattle skyline with richer colors and more architectural detail.](../../../foundry/openai/media/how-to/generated-seattle-prompt-transformed.png) |
 
 ## Why is prompt transformation needed?
 

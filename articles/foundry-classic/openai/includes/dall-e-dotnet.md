@@ -62,7 +62,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ### Retrieve resource information
 
-[!INCLUDE [resource authentication](resource-authentication.md)]
+[!INCLUDE [resource authentication](../../../foundry/openai/includes/resource-authentication.md)]
 
 ### Run the quickstart
 

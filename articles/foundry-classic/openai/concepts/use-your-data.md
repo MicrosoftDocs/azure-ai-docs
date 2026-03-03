@@ -363,7 +363,7 @@ When you add your MongoDB Atlas data source, you can specify data fields to prop
 
 After you connect Azure OpenAI to your data, you can deploy it using the **Deploy to** button in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-:::image type="content" source="../media/use-your-data/deploy-model.png" alt-text="A screenshot showing the model deployment button in Foundry portal." lightbox="../media/use-your-data/deploy-model.png":::
+:::image type="content" source="../../../foundry/openai/media/use-your-data/deploy-model.png" alt-text="A screenshot showing the model deployment button in Foundry portal." lightbox="../../../foundry/openai/media/use-your-data/deploy-model.png":::
 
 This gives you multiple options for deploying your solution.
 

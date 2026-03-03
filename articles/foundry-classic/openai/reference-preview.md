@@ -28,7 +28,7 @@ The rest of the article covers the `2025-04-01-preview` preview release of the A
 
 If you're looking for documentation on the latest GA API release, refer to the [latest GA data plane inference API](./latest.md)
 
-[!INCLUDE [API surfaces](./includes/api-versions/latest-inference-preview.md)]
+[!INCLUDE [API surfaces](../../foundry/openai/includes/api-versions/latest-inference-preview.md)]
 
 ## Next steps
 

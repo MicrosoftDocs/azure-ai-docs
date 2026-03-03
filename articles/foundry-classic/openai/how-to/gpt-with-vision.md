@@ -34,19 +34,19 @@ Get started using images in your chats with Azure OpenAI in Microsoft Foundry Mo
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Foundry portal quickstart](../includes/gpt-v-studio.md)]
+[!INCLUDE [Foundry portal quickstart](../../../foundry/openai/includes/gpt-v-studio.md)]
 
 ::: zone-end
 
 ::: zone pivot="rest-api"
 
-[!INCLUDE [REST API quickstart](../includes/gpt-v-rest.md)]
+[!INCLUDE [REST API quickstart](../../../foundry/openai/includes/gpt-v-rest.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [Python quickstart](../includes/gpt-v-python.md)]
+[!INCLUDE [Python quickstart](../../../foundry/openai/includes/gpt-v-python.md)]
 
 ::: zone-end
 
@@ -64,7 +64,7 @@ Get started using images in your chats with Azure OpenAI in Microsoft Foundry Mo
 
 ::: zone pivot="programming-language-dotnet"
 
-[!INCLUDE [.NET quickstart](../includes/gpt-v-dotnet.md)]
+[!INCLUDE [.NET quickstart](../../../foundry/openai/includes/gpt-v-dotnet.md)]
 
 ::: zone-end
 

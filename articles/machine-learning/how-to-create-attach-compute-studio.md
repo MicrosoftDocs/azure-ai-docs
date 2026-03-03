@@ -8,7 +8,7 @@ ms.author: scottpolly
 ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: compute
-ms.date: 09/17/2024
+ms.date: 02/28/2026
 ms.topic: how-to
 ms.custom: build-2023, FY25Q1-Linter
 # customer intent: As a professional data scientist, I want to manage compute resources for model training and deployment in Azure Machine Learning studio.
@@ -16,9 +16,9 @@ ms.custom: build-2023, FY25Q1-Linter
 
 # Manage compute resources for model training and deployment in studio
 
-In this article, learn how to manage the compute resources you use for model training and deployment in Azure Machine studio. 
+In this article, learn how to manage the compute resources you use for model training and deployment in Azure Machine Learning studio. 
 
-With Azure Machine Learning, you can train your model on various resources or environments, collectively referred to as _compute targets_). A compute target can be a local machine or a cloud resource, such as an Azure Machine Learning Compute, Azure HDInsight, or a remote virtual machine. 
+With Azure Machine Learning, you can train your model on various resources or environments, collectively referred to as _compute targets_. A compute target can be a local machine or a cloud resource, such as an Azure Machine Learning compute cluster, an Azure Machine Learning compute instance, or a remote virtual machine. 
 
 You can also use [serverless compute](./how-to-use-serverless-compute.md) as a compute target. There's nothing for you to manage when you use serverless compute.
 
@@ -41,7 +41,7 @@ To see all compute targets for your workspace, use the following steps:
 
 ## Create compute instance and clusters
 
-You can create compute instances and compute clusters in your workspace, using the Azure Machine Learning SDK, CLI, or studio:
+You can create compute instances and compute clusters in your workspace, using the Azure Machine Learning SDK (v2), CLI (v2), or studio:
 
 * [Compute instance](how-to-create-compute-instance.md)
 * [Compute cluster](how-to-create-attach-compute-cluster.md)

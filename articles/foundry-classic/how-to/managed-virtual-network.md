@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 This article explains how to set up a managed virtual network for your Foundry resource. Managed virtual network streamlines and automates network isolation for your Foundry resource by provisioning a Microsoft‑managed virtual network that secures the Agents service underlying compute within your Foundry projects. When enabled, Agents outbound network traffic is secured by this managed network boundary, and the isolation mode you choose governs all the traffic. You can create the required private endpoints to dependent Azure services and apply the necessary network rules, giving you a secure default without requiring you to build or maintain your own virtual network. This managed network restricts what your Agents can access, helping prevent data exfiltration while still allowing connectivity to approved Azure resources. 
 
@@ -27,7 +27,7 @@ Before continuing, consider the [limitations](#limitations) of the offering and 
 
 When you enable managed virtual network isolation, you create a managed virtual network for the Foundry account. Any new Agent you build in your projects automatically uses the managed virtual network for outbound traffic. The managed virtual network can use private endpoints for Azure resources that your Agents use, such as Azure Storage, Azure Cosmos DB, and Azure AI Search. 
 
-:::image type="content" source="media/managed-virtual-network/diagram-managed-network.png" alt-text="Diagram of managed virtual network configuration." lightbox="media/managed-virtual-network/diagram-managed-network.png":::
+:::image type="content" source="../../foundry/how-to/media/managed-virtual-network/diagram-managed-network.png" alt-text="Diagram of managed virtual network configuration." lightbox="../../foundry/how-to/media/managed-virtual-network/diagram-managed-network.png":::
 
 > [!NOTE]
 > The diagrams in this article represent logical connectivity only. Managed private endpoints in a Foundry managed virtual network do not create customer-visible network interfaces (NICs). All private endpoint connectivity is fully managed by Microsoft and abstracted from the customer’s virtual network resources.
@@ -42,11 +42,11 @@ Two different configuration modes exist for outbound traffic from the managed vi
 
 The following architecture diagram shows a managed network in `allow internet outbound` mode. 
 
-:::image type="content" source="media/managed-virtual-network/diagram-allow-internet-outbound-managed-network.png" alt-text="Diagram of managed virtual network configuration in allow internet outbound mode." lightbox="media/managed-virtual-network/diagram-allow-internet-outbound-managed-network.png":::
+:::image type="content" source="../../foundry/how-to/media/managed-virtual-network/diagram-allow-internet-outbound-managed-network.png" alt-text="Diagram of managed virtual network configuration in allow internet outbound mode." lightbox="../../foundry/how-to/media/managed-virtual-network/diagram-allow-internet-outbound-managed-network.png":::
 
 The following architecture diagram shows a managed network in `allow only approved outbound` mode. 
 
-:::image type="content" source="media/managed-virtual-network/diagram-allow-only-approved-outbound-managed-network.png" alt-text="Diagram of managed virtual network configuration in allow only approved outbound mode." lightbox="media/managed-virtual-network/diagram-allow-only-approved-outbound-managed-network.png":::
+:::image type="content" source="../../foundry/how-to/media/managed-virtual-network/diagram-allow-only-approved-outbound-managed-network.png" alt-text="Diagram of managed virtual network configuration in allow only approved outbound mode." lightbox="../../foundry/how-to/media/managed-virtual-network/diagram-allow-only-approved-outbound-managed-network.png":::
 
 After you configure a managed virtual network Foundry to allow internet outbound, you can't reconfigure the resource to disabled. Similarly, after you configure a managed virtual network resource to allow only approved outbound, you can't reconfigure the resource to allow internet outbound.
 

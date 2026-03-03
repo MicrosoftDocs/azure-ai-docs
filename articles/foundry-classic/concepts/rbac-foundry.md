@@ -96,7 +96,7 @@ Use the following table and diagram to see the permissions allowed for each buil
 |**Contributor**|✔|✔|||✔|✔|
 |**Reader**|||||✔||
 
-:::image type="content" source="../media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../media/how-to/network/detailed-rbac-diagram.png":::
+:::image type="content" source="../../foundry/media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../../foundry/media/how-to/network/detailed-rbac-diagram.png":::
  
 For more on built-in roles in Azure and Foundry, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles). To learn more about conditional delegation used in the Azure AI Account Owner and Azure AI Project Manager role, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal).
 

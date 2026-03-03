@@ -6,7 +6,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/08/2025
+ms.date: 02/27/2026
 ms.update-cycle: 180-days
 ms.custom:
   - devx-track-csharp
@@ -15,10 +15,10 @@ ms.custom:
 
 # Extract text and information from images by using AI enrichment
 
-Images often contain useful information that's relevant in search scenarios. Azure AI Search doesn't query image content in real time, but you can extract information about an image during indexing and make that content searchable. To represent images in a search index, you can use these approaches:
+Images often contain useful information that's relevant in search scenarios. Azure AI Search doesn't query image content in real time, but you can extract information about an image during indexing and make that content searchable. To represent image content in a search index, you can use these approaches:
 
 + [Vectorize images](search-get-started-portal-image-search.md) to represent visual content as a searchable vector.
-+ [Verbalize images](cognitive-search-skill-genai-prompt.md) using the GenAI Prompt skill that sends a verbalization request to a chat completion model to describe the image.
++ [Verbalize images](cognitive-search-skill-genai-prompt.md) using the GenAI Prompt skill that sends a verbalization request to an LLM chat completion model to describe the image.
 + [Analyze images](cognitive-search-skill-image-analysis.md) using an image analysis skill to generate a text representation of an image, such as *dandelion* for a photo of a dandelion, or the color *yellow*. You can also extract metadata about the image, such as its size.
 + [Use OCR](cognitive-search-skill-ocr.md) to extract text and from photos or pictures, such as the word *STOP* in a stop sign.
 

@@ -20,7 +20,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 Monitoring applications that you deploy to production is an essential part of the generative AI application lifecycle. Changes in data and consumer behavior can influence your application over time. These changes can result in outdated systems that negatively affect business outcomes. Such systems expose organizations to compliance, economic, and reputation risks.
 
@@ -110,7 +110,7 @@ In this section, you learn how to deploy your prompt flow with inferencing data 
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
 1. If you're not already in your project, select it.
    [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 

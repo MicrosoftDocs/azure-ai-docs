@@ -1,13 +1,14 @@
 ---
 title: Detect liveness in faces
-description: In this Tutorial, you learn how to Detect liveness in faces, using both server-side code and a client-side mobile application.
+description: In this tutorial, you learn how to detect liveness in faces, using both server-side code and a client-side mobile application.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: tutorial
-ms.date: 11/21/2025
+ms.date: 03/02/2026
+ai-usage: ai-assisted
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 

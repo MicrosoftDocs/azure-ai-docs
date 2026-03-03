@@ -7,7 +7,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: faq
-  ms.date: 08/07/2025
+  ms.date: 02/25/2026
   ms.author: pafarley
 title: Text to speech FAQ
 summary: |
@@ -28,7 +28,7 @@ sections:
       - question: |
           How would we disclose to the end user that the voice is a synthetic voice?
         answer: |
-          We recommend that every user should follow our [code of conduct](/azure/ai-foundry/responsible-use-of-ai-overview) when using the text to speech capability. There are several ways to disclose the synthetic nature of the voice including implicit and explicit byline. Refer to [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines).
+          We recommend that every user should follow our [code of conduct](/azure/ai-foundry/responsible-use-of-ai-overview) when using the text to speech capability. There are several ways to disclose the synthetic nature of the voice including implicit and explicit byline. See [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines).
       - question: |
           How can I reduce the latency for my voice app?
         answer: |
@@ -42,7 +42,7 @@ sections:
         answer: |
           Adjusting the emphasis is supported for some voices depending on the locale. See the [emphasis tag](speech-synthesis-markup-voice.md#adjust-emphasis).
       - question: |
-          Can we have multiple strength for each emotion, like sad, slightly sad, and so on, in?
+          Can we have multiple strengths for each emotion, like sad, slightly sad, and so on?
         answer: |
           Adjusting the style degree is supported for some voices depending on the locale. See the [mstts:express-as tag](speech-synthesis-markup-voice.md#use-speaking-styles-and-roles).
       - question: |
@@ -100,7 +100,7 @@ sections:
       - question: |
           Can we limit the number of trainings using Azure Policy or other features? Or is there any way to avoid false training?
         answer: |
-          If you want to limit the permission to training, you can limit the user roles and access. Refer to [Role-based access control for Speech resources](role-based-access-control.md).
+          If you want to limit the permission to training, you can limit the user roles and access. See [Role-based access control for Speech resources](role-based-access-control.md).
       - question: |
           Ca Microsoft add a mechanism to prevent unauthorized use or misuse of our voice when it's created?
         answer: |
