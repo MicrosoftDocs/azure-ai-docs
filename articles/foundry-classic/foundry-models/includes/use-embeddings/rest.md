@@ -22,7 +22,7 @@ This article explains how to use embeddings API with models deployed in Microsof
 
 To use embedding models in your application, you need:
 
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
+[!INCLUDE [how-to-prerequisites](../../../../foundry/foundry-models/includes/how-to-prerequisites.md)]
 
 * An embeddings model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 

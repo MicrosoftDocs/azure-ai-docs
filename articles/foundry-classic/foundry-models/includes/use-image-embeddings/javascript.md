@@ -22,9 +22,9 @@ This article explains how to use image embeddings API with Microsoft Foundry Mod
 
 To use embedding models in your application, you need:
 
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
+[!INCLUDE [how-to-prerequisites](../../../../foundry/foundry-models/includes/how-to-prerequisites.md)]
 
-[!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
+[!INCLUDE [how-to-prerequisites-javascript](../../../../foundry/foundry-models/includes/how-to-prerequisites-javascript.md)]
 
 * An image embeddings model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 

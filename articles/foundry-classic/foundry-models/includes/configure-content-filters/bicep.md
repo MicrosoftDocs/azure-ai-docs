@@ -96,4 +96,4 @@ zone_pivot_groups: azure-ai-models-deployment
         --parameters accountName=$ACCOUNT_NAME raiPolicyName=$RAI_POLICY_NAME modelName=$MODEL_NAME modelVersion=$VERSION modelPublisherFormat=$PROVIDER
     ```
 
-[!INCLUDE [code](code.md)]
+[!INCLUDE [code](../../../../foundry/foundry-models/includes/configure-content-filters/code.md)]

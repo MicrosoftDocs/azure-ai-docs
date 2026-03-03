@@ -22,9 +22,9 @@ This article explains how to use embeddings API with models deployed in Microsof
 
 To use embedding models in your application, you need:
 
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
+[!INCLUDE [how-to-prerequisites](../../../../foundry/foundry-models/includes/how-to-prerequisites.md)]
 
-[!INCLUDE [how-to-prerequisites-java](../how-to-prerequisites-java.md)]
+[!INCLUDE [how-to-prerequisites-java](../../../../foundry/foundry-models/includes/how-to-prerequisites-java.md)]
 
 * Import the following namespace:
   

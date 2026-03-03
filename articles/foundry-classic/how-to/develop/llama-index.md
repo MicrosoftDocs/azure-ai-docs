@@ -74,7 +74,7 @@ To run this tutorial, you need:
 ## Configure the environment
 
 <!-- ::: moniker range="foundry-classic" -->
-[!INCLUDE [set-endpoint](../../../foundry/includes/set-endpoint.md)]
+[!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
 <!-- ::: moniker-end
 
 -->

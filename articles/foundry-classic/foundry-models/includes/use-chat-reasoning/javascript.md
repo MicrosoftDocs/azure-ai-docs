@@ -14,15 +14,15 @@ reviewer: balapv
 
 This article explains how to use the reasoning capabilities of chat completions models deployed in Microsoft Foundry Models.
 
-[!INCLUDE [about-reasoning](about-reasoning.md)]
+[!INCLUDE [about-reasoning](../../../../foundry/foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
 
 ## Prerequisites
 
 To complete this tutorial, you need:
 
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
+[!INCLUDE [how-to-prerequisites](../../../../foundry/foundry-models/includes/how-to-prerequisites.md)]
 
-[!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
+[!INCLUDE [how-to-prerequisites-javascript](../../../../foundry/foundry-models/includes/how-to-prerequisites-javascript.md)]
 
 * A model with reasoning capabilities model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
@@ -51,7 +51,7 @@ const client = ModelClient(
 );
 ```
 
-[!INCLUDE [best-practices](best-practices.md)]
+[!INCLUDE [best-practices](../../../../foundry/foundry-models/includes/use-chat-reasoning/best-practices.md)]
 
 ### Create a chat completion request
 
