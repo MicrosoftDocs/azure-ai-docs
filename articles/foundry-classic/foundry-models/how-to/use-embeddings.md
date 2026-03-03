@@ -21,27 +21,27 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [python](../../../foundry/foundry-models/includes/use-embeddings/python.md)]
+[!INCLUDE [python](../includes/use-embeddings/python.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [javascript](../../../foundry/foundry-models/includes/use-embeddings/javascript.md)]
+[!INCLUDE [javascript](../includes/use-embeddings/javascript.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [java](../../../foundry/foundry-models/includes/use-embeddings/java.md)]
+[!INCLUDE [java](../includes/use-embeddings/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [csharp](../../../foundry/foundry-models/includes/use-embeddings/csharp.md)]
+[!INCLUDE [csharp](../includes/use-embeddings/csharp.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [rest](../../../foundry/foundry-models/includes/use-embeddings/rest.md)]
+[!INCLUDE [rest](../includes/use-embeddings/rest.md)]
 ::: zone-end
 
 ## Related content

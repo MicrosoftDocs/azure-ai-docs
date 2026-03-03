@@ -42,7 +42,7 @@ If you completed other tutorials or quickstarts, you might have already created 
 
 ## Create a hub-based project
 
-[!INCLUDE [create-hub-project-simple](../../foundry/includes/create-hub-project-simple.md)]
+[!INCLUDE [create-hub-project-simple](../includes/create-hub-project-simple.md)]
 
 ## Deploy models
 

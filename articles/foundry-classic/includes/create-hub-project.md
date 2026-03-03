@@ -10,7 +10,7 @@ ms.date: 01/03/2025
 ms.custom: include, build-2024, ignite-2024
 ---
 
-[!INCLUDE [create-hub-project-simple](../../foundry/includes/create-hub-project-simple.md)]
+[!INCLUDE [create-hub-project-simple](create-hub-project-simple.md)]
 
 Or, if you want to customize a new hub, follow the steps in the next section before you select **Create**.
 
