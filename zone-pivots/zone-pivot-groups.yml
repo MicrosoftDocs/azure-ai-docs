@@ -147,6 +147,8 @@ groups:
     title: Node.js
   - id: programming-language-python
     title: Python
+  - id: programming-language-csharp
+    title: C#
   - id: programming-language-android
     title: Android
   - id: programming-language-ios
@@ -1689,25 +1691,6 @@ groups:
     title: Python
   - id: programming-language-rest
     title: REST
-- id: search-quickstart-full-text
-# Owner: haileytapia
-  title: Usage methods
-  prompt: Choose a usage method
-  pivots:
-  - id: csharp
-    title: C#
-  - id: java
-    title: Java
-  - id: javascript
-    title: JavaScript
-  - id: powershell
-    title: PowerShell
-  - id: python
-    title: Python
-  - id: rest
-    title: REST
-  - id: typescript
-    title: TypeScript
 - id: azure-portal-and-cli
 # Owner: Larryfr
   title: Portal and CLI
@@ -1778,77 +1761,6 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-# Owner: haileytapia
-- id: search-get-started-agentic-retrieval
-  title: Programming languages
-  prompt: Choose a usage method
-  pivots:
-  - id: programming-language-csharp
-    title: C#
-  - id: programming-language-java
-    title: Java
-  - id: programming-language-javascript
-    title: JavaScript
-  - id: programming-language-python
-    title: Python
-  - id: programming-language-typescript
-    title: TypeScript
-  - id: programming-language-rest
-    title: REST
-# Owner: haileytapia
-- id: search-get-started-vector-search
-  title: Programming languages
-  prompt: Choose a usage method
-  pivots:
-  - id: dotnet
-    title: C#
-  - id: java
-    title: Java
-  - id: javascript
-    title: JavaScript
-  - id: python
-    title: Python
-  - id: rest
-    title: REST
-  - id: typescript
-    title: TypeScript
-# Owner: haileytapia
-- id: search-get-started-semantic
-  title: Programming languages
-  prompt: Choose a usage method
-  pivots:
-  - id: csharp
-    title: C#
-  - id: java
-    title: Java
-  - id: javascript
-    title: JavaScript
-  - id: python
-    title: Python
-  - id: rest
-    title: REST
-  - id: typescript
-    title: TypeScript
-# Owner: haileytapia
-- id: search-how-to-manage-index
-  title: Usage methods
-  prompt: Choose a usage method
-  pivots:
-  - id: azure-portal
-    title: Azure portal
-  - id: rest
-    title: REST APIs
-  - id: azure-sdks
-    title: Azure SDKs
-# Owner: haileytapia
-- id: search-get-started-rbac
-  title: Usage methods
-  prompt: Choose a usage method
-  pivots:
-  - id: python
-    title: Python
-  - id: rest
-    title: REST
 # Owner: heidist
 - id: tutorial-create-skillset
   title: Usage methods
@@ -1885,17 +1797,6 @@ groups:
     title: Python
   - id: csharp
     title: C#
-# Owner: haileytapia
-- id: agentic-retrieval-pivots
-  title: Agentic retrieval pivots
-  prompt: Choose a usage method
-  pivots:
-  - id: python
-    title: Python
-  - id: rest
-    title: REST
-  - id: csharp
-    title: C#
 # Owner: pafarley
 - id: fast-transcription-quickstart
   title: Programming languages
@@ -1918,3 +1819,70 @@ groups:
     title: Python
   - id: programming-language-java
     title: Java
+# Owner: haileytapia
+- id: search-portal-sdks-rest
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: azure-portal
+    title: Azure portal
+  - id: rest
+    title: REST APIs
+  - id: azure-sdks
+    title: Azure SDKs
+# Owner: haileytapia
+- id: search-sdks-rest
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: csharp
+    title: C#
+  - id: java
+    title: Java
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
+  - id: typescript
+    title: TypeScript
+  - id: rest
+    title: REST
+# Owner: haileytapia
+- id: search-sdks-rest-powershell
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: csharp
+    title: C#
+  - id: java
+    title: Java
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
+  - id: typescript
+    title: TypeScript
+  - id: rest
+    title: REST
+  - id: powershell
+    title: PowerShell
+# Owner: haileytapia
+- id: search-python-rest
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
+# Owner: haileytapia
+- id: search-csharp-python-rest
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: csharp
+    title: C#
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
