@@ -12,7 +12,7 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 ms.date: 03/04/2026
-zone_pivot_groups: search-get-started-semantic
+zone_pivot_groups: search-sdks-rest
 ---
 
 # Quickstart: Semantic ranking
@@ -23,15 +23,15 @@ zone_pivot_groups: search-get-started-semantic
 
 ::: zone-end
 
-::: zone pivot="javascript"
-
-[!INCLUDE [JavaScript quickstart](includes/quickstarts/semantic-ranker-javascript.md)]
-
-::: zone-end
-
 ::: zone pivot="java"
 
 [!INCLUDE [Java quickstart](includes/quickstarts/semantic-ranker-java.md)]
+
+::: zone-end
+
+::: zone pivot="javascript"
+
+[!INCLUDE [JavaScript quickstart](includes/quickstarts/semantic-ranker-javascript.md)]
 
 ::: zone-end
 
@@ -41,15 +41,15 @@ zone_pivot_groups: search-get-started-semantic
 
 ::: zone-end
 
-::: zone pivot="rest"
-
-[!INCLUDE [REST quickstart](includes/quickstarts/semantic-ranker-rest.md)]
-
-::: zone-end
-
 ::: zone pivot="typescript"
 
 [!INCLUDE [TypeScript quickstart](includes/quickstarts/semantic-ranker-typescript.md)]
+
+::: zone-end
+
+::: zone pivot="rest"
+
+[!INCLUDE [REST quickstart](includes/quickstarts/semantic-ranker-rest.md)]
 
 ::: zone-end
 

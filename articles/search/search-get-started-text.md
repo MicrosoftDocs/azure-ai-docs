@@ -14,7 +14,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-zone_pivot_groups: search-quickstart-full-text
+zone_pivot_groups: search-sdks-rest-powershell
 ms.date: 02/02/2026
 ---
 
@@ -50,15 +50,15 @@ ms.date: 02/02/2026
 
 ::: zone-end
 
-::: zone pivot="rest"
-
-[!INCLUDE [REST quickstart](includes/quickstarts/full-text-rest.md)]
-
-::: zone-end
-
 ::: zone pivot="typescript"
 
 [!INCLUDE [TypeScript quickstart](includes/quickstarts/full-text-typescript.md)]
+
+::: zone-end
+
+::: zone pivot="rest"
+
+[!INCLUDE [REST quickstart](includes/quickstarts/full-text-rest.md)]
 
 ::: zone-end
 

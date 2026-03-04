@@ -11,14 +11,14 @@ ms.custom:
 ms.topic: quickstart
 ms.date: 01/14/2026
 ai-usage: ai-assisted
-zone_pivot_groups: search-get-started-vector-search
+zone_pivot_groups: search-sdks-rest
 ---
 
 # Quickstart: Vector search
 
-::: zone pivot="python"
+::: zone pivot="csharp"
 
-[!INCLUDE [Python quickstart](includes/quickstarts/search-get-started-vector-python.md)]
+[!INCLUDE [.NET quickstart](includes/quickstarts/search-get-started-vector-dotnet.md)]
 
 ::: zone-end
 
@@ -34,15 +34,15 @@ zone_pivot_groups: search-get-started-vector-search
 
 ::: zone-end
 
-::: zone pivot="typescript"
+::: zone pivot="python"
 
-[!INCLUDE [TypeScript quickstart](includes/quickstarts/search-get-started-vector-typescript.md)]
+[!INCLUDE [Python quickstart](includes/quickstarts/search-get-started-vector-python.md)]
 
 ::: zone-end
 
-::: zone pivot="dotnet"
+::: zone pivot="typescript"
 
-[!INCLUDE [.NET quickstart](includes/quickstarts/search-get-started-vector-dotnet.md)]
+[!INCLUDE [TypeScript quickstart](includes/quickstarts/search-get-started-vector-typescript.md)]
 
 ::: zone-end
 

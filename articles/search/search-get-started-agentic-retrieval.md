@@ -9,33 +9,33 @@ ms.topic: quickstart
 ms.date: 02/23/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
-zone_pivot_groups: search-get-started-agentic-retrieval
+zone_pivot_groups: search-sdks-rest
 # Customer intent: I want to learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations. The knowledge base should retrieve relevant information from a knowledge source that points to an Azure AI Search index and use an Azure OpenAI LLM to synthesize answers.
 ---
 
 # Quickstart: Agentic retrieval
 
-::: zone pivot="programming-language-csharp"
+::: zone pivot="csharp"
 [!INCLUDE [C# quickstart](includes/quickstarts/agentic-retrieval-csharp.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
+::: zone pivot="java"
 [!INCLUDE [Java quickstart](includes/quickstarts/agentic-retrieval-java.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-javascript"
+::: zone pivot="javascript"
 [!INCLUDE [JavaScript quickstart](includes/quickstarts/agentic-retrieval-javascript.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-python"
+::: zone pivot="python"
 [!INCLUDE [Python quickstart](includes/quickstarts/agentic-retrieval-python.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-typescript"
+::: zone pivot="typescript"
 [!INCLUDE [TypeScript quickstart](includes/quickstarts/agentic-retrieval-typescript.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-rest"
+::: zone pivot="rest"
 [!INCLUDE [REST quickstart](includes/quickstarts/agentic-retrieval-rest.md)]
 ::: zone-end
 
