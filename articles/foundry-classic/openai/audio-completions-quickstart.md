@@ -1,6 +1,6 @@
 ---
-title: "Quickstart - Get started with Azure OpenAI audio generation (classic)"
-description: "Get started with audio generation using Azure OpenAI. (classic)"
+title: "Quickstart - Get started with Azure OpenAI audio generation (Classic)"
+description: "Get started with audio generation using Azure OpenAI. (Classic)"
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -17,7 +17,7 @@ recommendations: false
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Quickstart: Get started with Azure OpenAI audio generation (classic)
+# Quickstart: Get started with Azure OpenAI audio generation (Classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
@@ -61,7 +61,11 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Troubleshooting
 
 > [!NOTE]
-> When using `gpt-4o-audio-preview` for chat completions with the audio modality and `stream` is set to true the only supported audio format is pcm16.
+> When using `gpt-4o-audio-preview` for chat completions with the audio modality and `stream` is set to true, the only supported audio format is pcm16.
+
+### Audio duration limit for transcription
+
+Maximum duration of input audio for transcription is one hour (3,600 seconds). Service returns an error for longer audio inputs.
 
 ### Authentication errors
 
