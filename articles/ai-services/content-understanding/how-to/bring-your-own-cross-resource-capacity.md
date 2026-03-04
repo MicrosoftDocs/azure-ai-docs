@@ -62,29 +62,28 @@ Connect your model resource from the management center of your Content Understan
 
 1. Open your Content Understanding resource in the Azure portal.
 1. Select **Go to Azure AI Foundry portal**.
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/go-to-foundry-portal.png" alt-text="Screenshot of selecting Go to Azure AI Foundry portal from the Content Understanding resource.":::
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/foundry-resource-overview-go-to-foundry-portal-button.png" alt-text="Screenshot of the Foundry resource overview page with Go to Foundry portal highlighted.":::
 1. Open **Management center**.
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/foundry-overview-open-management-center.png" alt-text="Screenshot of the Foundry overview page with Open in management center highlighted.":::
 1. Select **Connected resources**.
 
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connected-resources-page-with-new-connection-button.png" alt-text="Screenshot of the Connected resources page with the New connection button.":::
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/manage-connected-resources-connected-resources-button.png" alt-text="Screenshot of the Management center navigation with Connected resources highlighted.":::
 
 1. Select **New connection**.
 
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/select-resource-type-dialog.png" alt-text="Screenshot of the resource type selection dialog after selecting New connection.":::
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/foundry-project-overview-open-in-management-center-new-connection-button.png" alt-text="Screenshot of the Manage connected resources page with New connection highlighted.":::
 
 1. Select **Azure OpenAI** or **Microsoft Foundry**.
 
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/browse-resources-in-connection-dialog.png" alt-text="Screenshot of browsing resources in the connection dialog.":::
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/add-connection-external-assets-select-azure-openai-or-microsoft-foundry.png" alt-text="Screenshot of the Add a connection to external assets dialog with Azure OpenAI and Microsoft Foundry highlighted.":::
 
 1. Search for and select your resource.
 
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/search-and-select-resource.png" alt-text="Screenshot of searching for and selecting the target resource for the connection.":::
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connect-microsoft-foundry-resource-search-select-and-add-connection.png" alt-text="Screenshot of the Connect a Microsoft Foundry resource dialog with resource search and Add connection controls.":::
 
 1. Select an authentication type, and then select **Add connection**.
 
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/select-authentication-and-add-connection.png" alt-text="Screenshot of selecting an authentication type and then selecting Add connection.":::
-
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connection-in-progress.png" alt-text="Screenshot of the connection workflow while the connection request is being processed.":::
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connect-microsoft-foundry-resource-connecting-status.png" alt-text="Screenshot of the Connect a Microsoft Foundry resource dialog showing Connecting status.":::
 
 After the operation completes, the connection appears in **Connected resources**.
 
@@ -132,7 +131,7 @@ Test your setup by running the REST quickstart with your configured resource.
 
 If the quickstart request succeeds, your Content Understanding resource is using the connected cross-resource capacity.
 
-:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connected-resource-listed.png" alt-text="Screenshot showing the connected resource listed in Connected resources after setup.":::
+:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/manage-connected-resources-resource-added.png" alt-text="Screenshot showing the connected resource listed in Connected resources after setup.":::
 
 ## Related content
 
