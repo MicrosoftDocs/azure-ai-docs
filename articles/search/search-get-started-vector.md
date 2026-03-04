@@ -11,44 +11,44 @@ ms.custom:
 ms.topic: quickstart
 ms.date: 01/14/2026
 ai-usage: ai-assisted
-zone_pivot_groups: search-get-started-vector-search
+zone_pivot_groups: search-sdks-rest
 ---
 
 # Quickstart: Vector search
 
-::: zone pivot="python"
+::: zone pivot="csharp"
 
-[!INCLUDE [Python quickstart](includes/quickstarts/search-get-started-vector-python.md)]
+[!INCLUDE [C#](includes/quickstarts/search-get-started-vector-csharp.md)]
 
 ::: zone-end
 
 ::: zone pivot="java"
 
-[!INCLUDE [Java quickstart](includes/quickstarts/search-get-started-vector-java.md)]
+[!INCLUDE [Java](includes/quickstarts/search-get-started-vector-java.md)]
 
 ::: zone-end
 
 ::: zone pivot="javascript"
 
-[!INCLUDE [JavaScript quickstart](includes/quickstarts/search-get-started-vector-javascript.md)]
+[!INCLUDE [JavaScript](includes/quickstarts/search-get-started-vector-javascript.md)]
+
+::: zone-end
+
+::: zone pivot="python"
+
+[!INCLUDE [Python](includes/quickstarts/search-get-started-vector-python.md)]
 
 ::: zone-end
 
 ::: zone pivot="typescript"
 
-[!INCLUDE [TypeScript quickstart](includes/quickstarts/search-get-started-vector-typescript.md)]
-
-::: zone-end
-
-::: zone pivot="dotnet"
-
-[!INCLUDE [.NET quickstart](includes/quickstarts/search-get-started-vector-dotnet.md)]
+[!INCLUDE [TypeScript](includes/quickstarts/search-get-started-vector-typescript.md)]
 
 ::: zone-end
 
 ::: zone pivot="rest"
 
-[!INCLUDE [REST quickstart](includes/quickstarts/search-get-started-vector-rest.md)]
+[!INCLUDE [REST](includes/quickstarts/search-get-started-vector-rest.md)]
 
 ::: zone-end
 

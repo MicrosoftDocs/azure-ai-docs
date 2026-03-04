@@ -24,7 +24,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md) in any [region that provides agentic retrieval](../../search-region-support.md).
++ An [Azure AI Search service](../../search-create-service-portal.md) in any [region that provides agentic retrieval](../../search-region-support.md). This quickstart requires the Basic tier or higher for managed identity support.
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
@@ -69,7 +69,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
    ```
 
-1. Replace the placeholder value for `@token` with the access token from the previous step.
+1. Replace the placeholder value for `@token` with the token from the previous step.
 
 ## Run the code
 
