@@ -22,43 +22,43 @@ ms.date: 02/02/2026
 
 ::: zone pivot="csharp"
 
-[!INCLUDE [C# quickstart](includes/quickstarts/full-text-csharp.md)]
+[!INCLUDE [C#](includes/quickstarts/full-text-csharp.md)]
 
 ::: zone-end
 
 ::: zone pivot="java"
 
-[!INCLUDE [Java quickstart](includes/quickstarts/full-text-java.md)]
+[!INCLUDE [Java](includes/quickstarts/full-text-java.md)]
 
 ::: zone-end
 
 ::: zone pivot="javascript"
 
-[!INCLUDE [JavaScript quickstart](includes/quickstarts/full-text-javascript.md)]
+[!INCLUDE [JavaScript](includes/quickstarts/full-text-javascript.md)]
 
 ::: zone-end
 
 ::: zone pivot="python"
 
-[!INCLUDE [Python SDK quickstart](includes/quickstarts/full-text-python.md)]
+[!INCLUDE [Python](includes/quickstarts/full-text-python.md)]
 
 ::: zone-end
 
 ::: zone pivot="typescript"
 
-[!INCLUDE [TypeScript quickstart](includes/quickstarts/full-text-typescript.md)]
+[!INCLUDE [TypeScript](includes/quickstarts/full-text-typescript.md)]
 
 ::: zone-end
 
 ::: zone pivot="rest"
 
-[!INCLUDE [REST quickstart](includes/quickstarts/full-text-rest.md)]
+[!INCLUDE [REST](includes/quickstarts/full-text-rest.md)]
 
 ::: zone-end
 
 ::: zone pivot="powershell"
 
-[!INCLUDE [PowerShell quickstart](includes/quickstarts/full-text-powershell.md)]
+[!INCLUDE [PowerShell](includes/quickstarts/full-text-powershell.md)]
 
 ::: zone-end
 

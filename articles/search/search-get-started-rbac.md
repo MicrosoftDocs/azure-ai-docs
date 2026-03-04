@@ -14,13 +14,13 @@ zone_pivot_groups: search-python-rest
 
 ::: zone pivot="python"
 
-[!INCLUDE [Python quickstart](includes/quickstarts/search-get-started-rbac-python.md)]
+[!INCLUDE [Python](includes/quickstarts/search-get-started-rbac-python.md)]
 
 ::: zone-end
 
 ::: zone pivot="rest"
 
-[!INCLUDE [REST quickstart](includes/quickstarts/search-get-started-rbac-rest.md)]
+[!INCLUDE [REST](includes/quickstarts/search-get-started-rbac-rest.md)]
 
 ::: zone-end
 

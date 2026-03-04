@@ -16,27 +16,27 @@ zone_pivot_groups: search-sdks-rest
 # Quickstart: Agentic retrieval
 
 ::: zone pivot="csharp"
-[!INCLUDE [C# quickstart](includes/quickstarts/agentic-retrieval-csharp.md)]
+[!INCLUDE [C#](includes/quickstarts/agentic-retrieval-csharp.md)]
 ::: zone-end
 
 ::: zone pivot="java"
-[!INCLUDE [Java quickstart](includes/quickstarts/agentic-retrieval-java.md)]
+[!INCLUDE [Java](includes/quickstarts/agentic-retrieval-java.md)]
 ::: zone-end
 
 ::: zone pivot="javascript"
-[!INCLUDE [JavaScript quickstart](includes/quickstarts/agentic-retrieval-javascript.md)]
+[!INCLUDE [JavaScript](includes/quickstarts/agentic-retrieval-javascript.md)]
 ::: zone-end
 
 ::: zone pivot="python"
-[!INCLUDE [Python quickstart](includes/quickstarts/agentic-retrieval-python.md)]
+[!INCLUDE [Python](includes/quickstarts/agentic-retrieval-python.md)]
 ::: zone-end
 
 ::: zone pivot="typescript"
-[!INCLUDE [TypeScript quickstart](includes/quickstarts/agentic-retrieval-typescript.md)]
+[!INCLUDE [TypeScript](includes/quickstarts/agentic-retrieval-typescript.md)]
 ::: zone-end
 
 ::: zone pivot="rest"
-[!INCLUDE [REST quickstart](includes/quickstarts/agentic-retrieval-rest.md)]
+[!INCLUDE [REST](includes/quickstarts/agentic-retrieval-rest.md)]
 ::: zone-end
 
 ## Related content
