@@ -21,7 +21,7 @@ To review and query the hotels-sample index before semantic ranking:
 
 1. Select **Semantic configurations** to view any existing configurations. If you enabled semantic ranking during the wizard creation flow, there should be a default configuration.
 
-   :::image type="content" source="../../media/search-get-started-semantic/default-semantic-configuration.png" alt-text="Screenshot of the default semantic configuration in the Azure portal." lightbox="media/search-get-started-semantic/default-semantic-configuration.png":::
+   :::image type="content" source="../../media/search-get-started-semantic/default-semantic-configuration.png" alt-text="Screenshot of the default semantic configuration in the Azure portal." lightbox="../../media/search-get-started-semantic/default-semantic-configuration.png":::
 
 1. Select **Search explorer**, and then select **View** > **JSON view**.
 

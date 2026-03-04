@@ -193,7 +193,7 @@ To finish the wizard:
 
 ### Add or change index fields
 
-On the **Fields** tab, you can create a field by selecting **Add field** and specifying a name, supported data source, and attributes.
+On the **Fields** tab, you can create a field by selecting **Add field** and specifying a name, supported data type, and attributes.
 
 Changing existing fields is more difficult. Existing fields have a physical representation in the search index, so they aren't modifiable, not even in code. To fundamentally change an existing field, you must create a new field to replace the original. You can add other constructs, such as scoring profiles and a semantic configuration, to an index at any time.
 

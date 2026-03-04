@@ -10,7 +10,7 @@ ai-usage: ai-assisted
 
 In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and query the index.
 
-Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement.  Semantic ranking is most effective for informational or descriptive text.
+Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for informational or descriptive text.
 
 > [!TIP]
 > Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-ranking) on GitHub.
@@ -185,11 +185,11 @@ The `Return semantic answers in the query` request returns an extractive answer 
 
 Now that you've run the code, let's break down the key steps:
 
-1. [Variables and authentication](#variables-and-authentication)
+1. [Configuration and authentication](#configuration-and-authentication)
 1. [Update the index with a semantic configuration](#update-the-index-with-a-semantic-configuration)
 1. [Query the index](#query-the-index)
 
-### Variables and authentication
+### Configuration and authentication
 
 Both `.rest` files define variables at the top for reuse across all requests.
 
@@ -248,7 +248,7 @@ Key takeaways:
 
 ### Query the index
 
-The requests in `semantic-query.md` progress from a simple keyword search to semantic ranking with captions and answers. All queries are POST requests to the [Documents - Search Post](/rest/api/searchservice/documents/search-post) (REST API).
+The requests in `semantic-query.rest` progress from a simple keyword search to semantic ranking with captions and answers. All queries are POST requests to the [Documents - Search Post](/rest/api/searchservice/documents/search-post) (REST API).
 
 #### Simple query
 
@@ -322,8 +322,7 @@ The query and the indexed content must be closely aligned for an answer to be re
 ```json
 {
     "search":
-        "what's a good hotel for people "
-        "who like to read",
+        "what's a good hotel for people who like to read",
     "select":
         "HotelId, HotelName, Description",
     "count": true,

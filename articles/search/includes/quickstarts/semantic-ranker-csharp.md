@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 In this quickstart, you use the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and query the index.
 
-Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement.  Semantic ranking is most effective for informational or descriptive text.
+Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for informational or descriptive text.
 
 > [!TIP]
 > Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-ranking) on GitHub.
@@ -189,8 +189,25 @@ Extractive Answers:
 
 Now that you've run the code, let's break down the key steps:
 
+1. [Configuration and authentication](#configuration-and-authentication)
 1. [Update the index with a semantic configuration](#update-the-index-with-a-semantic-configuration)
 1. [Query the index](#query-the-index)
+
+### Configuration and authentication
+
+Both projects share the same configuration pattern. The `Program.cs` files define the search endpoint and use `DefaultAzureCredential` for keyless authentication.
+
+```csharp
+var endpoint = new Uri("PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE");
+var credential = new DefaultAzureCredential();
+var indexClient = new SearchIndexClient(endpoint, credential);
+```
+
+Key takeaways:
+
++ `DefaultAzureCredential` provides keyless authentication using Microsoft Entra ID. It chains multiple credential types, including the Azure CLI credential from `az login`.
++ `SearchIndexClient` manages index-level operations, such as updating the index schema.
++ `SearchClient` handles document-level operations, such as querying the index.
 
 ### Update the index with a semantic configuration
 

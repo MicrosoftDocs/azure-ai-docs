@@ -115,8 +115,8 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
     node -r dotenv/config dist/searchSemanticHybrid.js
     ```
 
-> [!NOTE]
-> These commands run `.js` files from the `dist` folder because you previously transpiled from TypeScript to JavaScript with `npm run build`.
+    > [!NOTE]
+    > These commands run `.js` files from the `dist` folder because you previously transpiled from TypeScript to JavaScript with `npm run build`.
 
 ### Output
 

@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 In this quickstart, you use the [Azure AI Search client library for JavaScript](/javascript/api/overview/azure/search-documents-readme) (compatible with TypeScript) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and query the index.
 
-Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement.  Semantic ranking is most effective for informational or descriptive text.
+Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for informational or descriptive text.
 
 > [!TIP]
 > Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-ts) on GitHub.
@@ -122,8 +122,8 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
     node -r dotenv/config dist/semanticAnswer.js
     ```
 
-> [!NOTE]
-> These commands run `.js` files from the `dist` folder because you previously transpiled from TypeScript to JavaScript with `npm run build`.
+    > [!NOTE]
+    > These commands run `.js` files from the `dist` folder because you previously transpiled from TypeScript to JavaScript with `npm run build`.
 
 ### Output
 
