@@ -32,4 +32,4 @@ This article walks you through getting started with chat completions models. To 
 - For the token-counting example, install tiktoken: `pip install tiktoken`.
 - If you use API keys, set `AZURE_OPENAI_API_KEY` (or `OPENAI_API_KEY`).
 
-[!INCLUDE [Chat Completions](../includes/chat-completion-python.md)]
+[!INCLUDE [chat-completion-python](../../../foundry/openai/includes/chat-completion-python.md)]
