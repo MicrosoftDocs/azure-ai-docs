@@ -66,37 +66,28 @@ Connect your model resource from the management center of your Content Understan
 1. Open **Management center**.
   :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/foundry-overview-open-management-center.png" alt-text="Screenshot of the Foundry overview page with Open in management center highlighted.":::
 1. Select **Connected resources**.
-
   :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/manage-connected-resources-connected-resources-button.png" alt-text="Screenshot of the Management center navigation with Connected resources highlighted.":::
-
 1. Select **New connection**.
-
   :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/foundry-project-overview-open-in-management-center-new-connection-button.png" alt-text="Screenshot of the Manage connected resources page with New connection highlighted.":::
-
 1. Select **Azure OpenAI** or **Microsoft Foundry**.
-
   :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/add-connection-external-assets-select-azure-openai-or-microsoft-foundry.png" alt-text="Screenshot of the Add a connection to external assets dialog with Azure OpenAI and Microsoft Foundry highlighted.":::
-
 1. Search for and select your resource.
-
   :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connect-microsoft-foundry-resource-search-select-and-add-connection.png" alt-text="Screenshot of the Connect a Microsoft Foundry resource dialog with resource search and Add connection controls.":::
-
 1. Select an authentication type, and then select **Add connection**.
 
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connect-microsoft-foundry-resource-connecting-status.png" alt-text="Screenshot of the Connect a Microsoft Foundry resource dialog showing Connecting status.":::
+   Authentication details:
 
-After the operation completes, the connection appears in **Connected resources**.
+   - **API key**: Content Understanding uses the API key from the connected resource.
+     - The connected resource must allow API key authentication.
+     - If API key authentication is disabled on the connected resource, requests fail.
+   - **Microsoft Entra ID**: Content Understanding uses the managed identity of the Content Understanding resource.
+     - Enable managed identity on the Content Understanding resource.
+     - Grant the managed identity access to the connected resource, such as **Cognitive Services User**.
 
-## Choose an authentication method
+   :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connect-microsoft-foundry-resource-connecting-status.png" alt-text="Screenshot of the Connect a Microsoft Foundry resource dialog showing Connecting status.":::
 
-You can authenticate the connected resource with an API key or with Microsoft Entra ID.
-
-- **API key**: Content Understanding uses the API key from the connected resource.
-  - The connected resource must allow API key authentication.
-  - If API key authentication is disabled on the connected resource, requests fail.
-- **Microsoft Entra ID**: Content Understanding uses the managed identity of the Content Understanding resource.
-  - Enable managed identity on the Content Understanding resource.
-  - Grant the managed identity access to the connected resource, such as **Cognitive Services User**.
+   After the operation completes, the connection appears in **Connected resources**.
+   :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/manage-connected-resources-resource-added.png" alt-text="Screenshot showing the connected resource listed in Connected resources after setup.":::
 
 ## Set default deployments for cross-resource usage
 
@@ -130,8 +121,6 @@ Test your setup by running the REST quickstart with your configured resource.
 1. Confirm the operation succeeds by checking [Get analyze result](../quickstart/use-rest-api.md#get-analyze-result) and verifying `status` is `Succeeded`.
 
 If the quickstart request succeeds, your Content Understanding resource is using the connected cross-resource capacity.
-
-:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/manage-connected-resources-resource-added.png" alt-text="Screenshot showing the connected resource listed in Connected resources after setup.":::
 
 ## Related content
 
