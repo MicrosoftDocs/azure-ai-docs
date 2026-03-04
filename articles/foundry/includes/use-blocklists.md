@@ -11,8 +11,6 @@ ms.custom: include
 
 ---
 
-[!INCLUDE [version-banner](./version-banner.md)]
-
 ## Create a blocklist
 
 Go to [Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation. Select the **Create a custom blocklist** link, and follow the instructions.

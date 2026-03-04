@@ -51,8 +51,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 
 ### [Portal](#tab/portal)
 
-1. Sign in to the [Microsoft Foundry (new) portal](../../what-is-foundry.md#microsoft-foundry-portals).
-
+1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 1. Create a project or select an existing project.
 
 1. From the top menu, select **Build**.
