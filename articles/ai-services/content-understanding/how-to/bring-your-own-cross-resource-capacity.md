@@ -62,28 +62,29 @@ Connect your model resource from the management center of your Content Understan
 
 1. Open your Content Understanding resource in the Azure portal.
 1. Select **Go to Azure AI Foundry portal**.
-
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/open-foundry-portal-from-content-understanding-resource.png" alt-text="Screenshot of selecting Go to Azure AI Foundry portal from the Content Understanding resource.":::
-
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/go-to-foundry-portal.png" alt-text="Screenshot of selecting Go to Azure AI Foundry portal from the Content Understanding resource.":::
 1. Open **Management center**.
-
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/open-management-center.png" alt-text="Screenshot of opening Management center in the Azure AI Foundry portal.":::
-
 1. Select **Connected resources**.
 
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/open-connected-resources.png" alt-text="Screenshot of the Connected resources page in Management center.":::
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connected-resources-page-with-new-connection-button.png" alt-text="Screenshot of the Connected resources page with the New connection button.":::
 
 1. Select **New connection**.
 
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/select-new-connection.png" alt-text="Screenshot of selecting New connection in Connected resources.":::
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/select-resource-type-dialog.png" alt-text="Screenshot of the resource type selection dialog after selecting New connection.":::
 
 1. Select **Azure OpenAI** or **Microsoft Foundry**.
 
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/browse-resources-in-connection-dialog.png" alt-text="Screenshot of browsing resources in the connection dialog.":::
+
 1. Search for and select your resource.
 
-  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/search-and-select-target-resource.png" alt-text="Screenshot of searching for and selecting the target resource for the connection.":::
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/search-and-select-resource.png" alt-text="Screenshot of searching for and selecting the target resource for the connection.":::
 
 1. Select an authentication type, and then select **Add connection**.
+
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/select-authentication-and-add-connection.png" alt-text="Screenshot of selecting an authentication type and then selecting Add connection.":::
+
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connection-in-progress.png" alt-text="Screenshot of the connection workflow while the connection request is being processed.":::
 
 After the operation completes, the connection appears in **Connected resources**.
 
@@ -121,10 +122,6 @@ Content-Type: application/json
 }
 ```
 
-:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/find-connection-name-in-connected-resources.png" alt-text="Screenshot of finding the connection name in Connected resources.":::
-
-:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/find-deployment-name-in-models-endpoints.png" alt-text="Screenshot of finding deployment names in Models plus endpoints.":::
-
 ## Verify the configuration
 
 Test your setup by running the REST quickstart with your configured resource.
@@ -135,7 +132,7 @@ Test your setup by running the REST quickstart with your configured resource.
 
 If the quickstart request succeeds, your Content Understanding resource is using the connected cross-resource capacity.
 
-:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/verify-cross-resource-configuration-success.png" alt-text="Screenshot of a successful setup result after applying defaults.":::
+:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connected-resource-listed.png" alt-text="Screenshot showing the connected resource listed in Connected resources after setup.":::
 
 ## Related content
 
