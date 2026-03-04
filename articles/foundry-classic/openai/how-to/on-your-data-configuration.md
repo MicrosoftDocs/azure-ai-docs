@@ -326,4 +326,4 @@ You can now integrate [Microsoft Defender for Cloud](/azure/defender-for-cloud/d
 
 Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9EXzLewuFRArQPJzR1tntlURThQR0hYU1MyRVRNODNMV1hBOUEzVlk3NC4u) to apply for access.
 
-:::image type="content" source="..\media\use-your-data\defender.png" alt-text="A screenshot showing Microsoft Defender for Cloud." lightbox="..\media\use-your-data\defender.png":::
+:::image type="content" source="../media/use-your-data/defender.png" alt-text="A screenshot showing Microsoft Defender for Cloud." lightbox="../media/use-your-data/defender.png":::
