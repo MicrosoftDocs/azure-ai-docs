@@ -29,7 +29,7 @@ The rest of the article covers the GA release of the Azure OpenAI data plane inf
 
 If you're looking for documentation on the latest preview API release, refer to the [latest preview data plane inference API](./reference-preview.md)
 
-[!INCLUDE [API surfaces](./includes/api-versions/latest-inference.md)]
+[!INCLUDE [API surfaces](../../foundry/openai/includes/api-versions/latest-inference.md)]
 
 ## Next steps
 

@@ -28,19 +28,19 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 ::: zone pivot="programming-language-dotnet"
 
-[!INCLUDE [C#](./includes/language-overview/dotnet.md)]
+[!INCLUDE [C#](../../foundry/openai/includes/language-overview/dotnet.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-go"
 
-[!INCLUDE [Go](./includes/language-overview/go.md)]
+[!INCLUDE [Go](../../foundry/openai/includes/language-overview/go.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [Java](./includes/language-overview/java.md)]
+[!INCLUDE [Java](../../foundry/openai/includes/language-overview/java.md)]
 
 ::: zone-end
 

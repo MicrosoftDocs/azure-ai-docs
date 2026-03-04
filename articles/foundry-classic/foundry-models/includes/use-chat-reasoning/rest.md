@@ -68,7 +68,7 @@ Authorization: Bearer <token>
 
 Using Microsoft Entra ID may require additional configuration in your resource to grant access. Learn how to [configure key-less authentication with Microsoft Entra ID](../../how-to/configure-entra-id.md).
 
-[!INCLUDE [best-practices](best-practices.md)]
+[!INCLUDE [best-practices](../../../../foundry/foundry-models/includes/use-chat-reasoning/best-practices.md)]
 
 ### Create a chat completion request
 

@@ -108,28 +108,35 @@ Tools are supported by the following models.
 | Model | agent2agent | Azure AI Search | Browser Automation | Code Interpreter | Computer Use | Fabric Data Agent | File Search | Function | Grounding Bing Custom | Grounding Bing Search | Image Generation | MCP | OpenAPI | SharePoint | Web Search |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | gpt-5 | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| gpt-5-mini | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| gpt-5-nano | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| gpt-5-chat | No | No | No | No | No | No | Yes | No | No | No | No | No | No | No | No |
-| gpt-5-pro | Yes | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| o4-mini | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| o3 | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| o3-mini | Yes | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
-| o1 | Yes | Yes | Yes | No | No | Yes | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
+| gpt-5-mini | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No | No |
+| gpt-5-nano | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No | No |
+| gpt-5-chat | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No | No |
+| gpt-5-pro | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No | No |
+| gpt-5.1 | No | Yes | No | Yes | No | Yes | Yes | Yes | No | Yes | No | Yes | Yes | Yes | Yes |
+| gpt-5.2 | No | Yes | No | Yes | No | Yes | Yes | Yes | No | Yes | No | Yes | Yes | Yes | Yes |
+| o4-mini | Yes | No | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | No | Yes | No | Yes | Yes |
+| o3 | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | No | No | Yes | Yes | No | Yes |
+| o3-mini | Yes | No | Yes | Yes | No | Yes | Yes | No | Yes | Yes | No | No | No | No | No |
+| o1 | No | Yes | Yes | Yes | No | No | Yes | Yes | Yes | No | No | Yes | No | Yes | Yes |
 | computer-use-preview | No | No | No | No | Yes | No | No | No | No | No | No | No | No | No | No |
-| gpt-4.1 | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| gpt-4.1-mini | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| gpt-4.1-nano | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| gpt-4o | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| gpt-4o-mini | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| gpt-4.1 | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
+| gpt-4.1-mini | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
+| gpt-4.1-nano | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
+| gpt-4o | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
+| gpt-4o-mini | Yes | No | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
 | gpt-image-1 | No | No | No | No | No | No | No | No | No | No | Yes | No | No | No | No |
-| DeepSeek-V3.0324 | No | Limited | No | Yes | No | Limited | Yes | Yes | Limited | Limited | No | Limited | No | Limited | No |
-| DeepSeek-V3.1 | No | Limited | No | Yes | No | Limited | No | No | Limited | Limited | No | Limited | No | Limited | No |
+| claude-sonnet-4-5 | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | No | No | Yes | Yes | Yes | No |
+| claude-opus-4-1 | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | No | No | No | Yes | Yes | No |
+| claude-haiku-4-5 | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | No | No | No | Yes | Yes | No |
+| DeepSeek-V3.0324 | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
+| DeepSeek-V3.1 | No | No | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
 | Llama-3.3-70B-Instruct | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No | No |
-| Llama-4-Maverick-178-128E-Instr | No | Limited | No | No | No | Limited | Yes | Yes | Limited | Limited | No | Limited | No | Limited | No |
-| grok-3-mini | No | Limited | No | No | No | Limited | No | Yes | Limited | Limited | No | Limited | No | Limited | No |
-| grok-4-fast-non-reasoning | No | Limited | No | No | No | Limited | No | Yes | Limited | Limited | No | Limited | No | Limited | No |
-| grok-4-fast-reasoning | No | Limited | No | No | No | Limited | No | Yes | Limited | Limited | No | Limited | No | Limited | No |
+| Llama-4-Maverick-17B-128E-Instr | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No | No |
+| MAI-DS-R1 | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No | No | Yes | No | No | No |
+| grok-3 | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
+| grok-3-mini | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No | No |
+| grok-4-fast-non-reasoning | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No | No | No |
+| grok-4-fast-reasoning | No | No | Yes | Yes | No | No | Yes | Yes | Yes | No | No | Yes | No | No | No |
 
 ## Troubleshooting
 

@@ -114,7 +114,7 @@ Supporting content is information that the model can utilize to influence the ou
 
 The techniques in this section will teach you strategies for increasing the accuracy and grounding of responses you generate with a Large Language Model (LLM). It is, however, important to remember that even when using prompt engineering effectively you still need to validate the responses the models generate. Just because a carefully crafted prompt worked well for a particular scenario doesn't necessarily mean it will generalize more broadly to certain use cases. Understanding the [limitations of LLMs](/azure/ai-foundry/responsible-ai/openai/transparency-note#limitations), is just as important as understanding how to leverage their strengths.
 
-[!INCLUDE [Prompt Chat Completion](../includes/prompt-chat-completion.md)]
+[!INCLUDE [Prompt Chat Completion](../../../foundry/openai/includes/prompt-chat-completion.md)]
 
 ## Best practices
 
@@ -128,7 +128,7 @@ The techniques in this section will teach you strategies for increasing the accu
 
 While the input size increases with each new generation of GPT models, there will continue to be scenarios that provide more data than the model can handle. GPT models break words into "tokens." While common multi-syllable words are often a single token, less common words are broken in syllables. Tokens can sometimes be counter-intuitive, as shown by the example below which demonstrates token boundaries for different date formats. In this case, spelling out the entire month is more space efficient than a fully numeric date. 
 
-:::image type="content" source="../media/prompt-engineering/space-efficiency.png" alt-text="Screenshot of a string of text with highlighted colors delineating token boundaries." lightbox="../media/prompt-engineering/space-efficiency.png":::
+:::image type="content" source="../../../foundry/openai/media/prompt-engineering/space-efficiency.png" alt-text="Screenshot of a string of text with highlighted colors delineating token boundaries." lightbox="../../../foundry/openai/media/prompt-engineering/space-efficiency.png":::
 
 Given this limited space, it's important to use it as efficiently as possible.
 - Tables – As shown in the examples in the previous section, GPT models can understand tabular formatted data quite easily. This can be a space efficient way to include data, rather than preceding every field with name (such as with JSON). 

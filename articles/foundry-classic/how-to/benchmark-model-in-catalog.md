@@ -29,7 +29,7 @@ Analyze and compare models using:
 - [Trade-off charts](#trade-off-charts) to visually compare model performance across two metrics, such as quality versus cost
 - [Leaderboards by scenario](#view-leaderboards-by-scenario) to find the most relevant benchmark leaderboard for your specific scenario
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 ## Prerequisites
 
