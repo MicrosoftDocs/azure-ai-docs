@@ -49,7 +49,7 @@ Provide a dataset for the evaluation. You can upload your own dataset or synthet
 - **Synthetic dataset generation**: Generate a synthetic dataset when you don't have test data. Specify the resource, the number of rows, and a prompt that describes the data to generate. You can also upload files to improve relevance.
 
 > [!NOTE]
-> Synthetic data generation isn't available in all regions. For supported regions, see [Foundry Agent Service supported regions](../agents/concepts/limits-quotas-regions.md#supported-regions).
+> Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](https://aka.ms/aoai/responsesapi/availability).
 
 ### Configure testing criteria
 
