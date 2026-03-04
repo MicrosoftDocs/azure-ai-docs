@@ -7,10 +7,9 @@ ms.topic: how-to
 ms.date: 03/04/2026
 author: laujan
 ms.author: davevoutila
-ms.custom:
-  * build-aifnd
 ai-usage: ai-assisted
 ---
+
 <!-- markdownlint-disable MD025 -->
 # Import custom models into Microsoft Foundry (preview)
 

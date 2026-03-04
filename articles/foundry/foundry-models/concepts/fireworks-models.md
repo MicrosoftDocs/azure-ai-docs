@@ -9,8 +9,6 @@ ms.date: 03/03/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: conceptual
-ms.custom:
-  * build-aifnd
 ai-usage: ai-assisted
 ---
 
