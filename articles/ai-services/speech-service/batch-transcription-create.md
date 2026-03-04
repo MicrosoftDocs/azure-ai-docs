@@ -253,6 +253,38 @@ To use a custom speech model for batch transcription, you need the model's URI. 
 
 Batch transcription requests for expired models fail with a 4xx error. Set the `model` property to a base model or custom model that isn't expired. Otherwise don't include the `model` property to always use the latest base model. For more information, see [Choose a model](./custom-speech-overview.md#choose-your-model) and [Custom speech model lifecycle](how-to-custom-speech-model-and-endpoint-lifecycle.md).
 
+
+## Language identification
+
+To identify languages with Batch transcription REST API, use `languageIdentification` property in the body of your [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit) request.
+
+> [!WARNING]
+> Batch transcription only supports language identification for default base models. If both language identification and a custom model are specified in the transcription request, the service falls back to use the base models for the specified candidate languages. This might result in unexpected recognition results.
+>
+> If your speech to text scenario requires both language identification and custom models, use real-time speech to text instead of batch transcription.
+
+The following example shows the usage of the `languageIdentification` property with four candidate languages. For more information about request properties, see [Create a batch transcription](batch-transcription-create.md#request-configuration-options).
+
+```json
+{
+    <...>
+    
+    "properties": {
+    <...>
+    
+        "languageIdentification": {
+            "candidateLocales": [
+            "en-US",
+            "ja-JP",
+            "zh-CN",
+            "hi-IN"
+            ]
+        },	
+        <...>
+    }
+}
+```
+
 ## Use a Whisper model
 
 Azure Speech in Foundry Tools supports OpenAI's Whisper model by using the batch transcription API. You can use the Whisper model for batch transcription.
