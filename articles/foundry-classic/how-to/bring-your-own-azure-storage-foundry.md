@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 Microsoft Foundry brings Agents, Azure OpenAI, Speech, and Language services together under one unified resource type. Bring-your-own-storage (BYOS) lets you route data produced by these capabilities to an Azure Storage account that you own and govern. The configuration patterns align with (and provide backwards compatibility to) earlier standalone Speech and Language resource types.
 
@@ -33,7 +33,7 @@ This article shows you how to connect your storage to Foundry by using two overa
 
 Before connecting your storage, ensure you have:
 
-[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+[!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 
 1. An [Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal) in the same subscription (Blob Storage supported) with the following configuration:
    - `allowSharedKeyAccess` set to `true`

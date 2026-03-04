@@ -56,7 +56,7 @@ After you assign the role-based access control (RBAC) roles, go back to the Logi
 
 1. Select **Add an action**, and then search for **Agent Service**.
 
-    :::image type="content" source="../media\triggers\connectors.png" alt-text="Screenshot of actions added to a workflow." lightbox="../media\triggers\connectors.png":::
+    :::image type="content" source="../media/triggers/connectors.png" alt-text="Screenshot of actions added to a workflow." lightbox="../media/triggers/connectors.png":::
 
 1. Depending on your use case, choose the actions that you need.
 
@@ -125,7 +125,7 @@ To configure the **Create Run** connector, select it and provide the following i
 
 * **The ID of the Thread to Create a message for** (required): The ID of the thread that you created. Select the function icon to select the **id** parameter from your previous **Create Thread** connector output.
 
-  :::image type="content" source="../media\triggers\create-run.png" alt-text="Screenshot of the Create Run connector." lightbox="../media\triggers\create-run.png":::
+  :::image type="content" source="../media/triggers/create-run.png" alt-text="Screenshot of the Create Run connector." lightbox="../media/triggers/create-run.png":::
 
 * **Assistant_id** (required): The ID of the agent that you created.
 
@@ -170,6 +170,6 @@ To get a response, you need a custom function to retrieve the exact response bod
 
     `body('List_Messages')['data'][0]['content'][0]['text']['value']`
 
-    :::image type="content" source="../media\triggers\get-response.png" alt-text="Screenshot that shows the Compose connector." lightbox="../media\triggers\get-response.png":::
+    :::image type="content" source="../media/triggers/get-response.png" alt-text="Screenshot that shows the Compose connector." lightbox="../media/triggers/get-response.png":::
 
 1. Add other connectors if necessary. To check the status of your runs, select **Run** > **Run history**. You can also view the details of your runs and threads in the [Foundry portal](../../how-to/develop/trace-agents-sdk.md#view-traces-in-the-foundry-portal).

@@ -51,31 +51,31 @@ The following table shows the main differences between the two SDKs:
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [Python](../includes/model-inference-migration/python.md)]
+[!INCLUDE [Python](../../foundry/includes/model-inference-migration/python.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-dotnet"
 
-[!INCLUDE [C#](../includes/model-inference-migration/csharp.md)]
+[!INCLUDE [C#](../../foundry/includes/model-inference-migration/csharp.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [JavaScript](../includes/model-inference-migration/javascript.md)]
+[!INCLUDE [JavaScript](../../foundry/includes/model-inference-migration/javascript.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [Java](../includes/model-inference-migration/java.md)]
+[!INCLUDE [Java](../../foundry/includes/model-inference-migration/java.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-go"
 
-[!INCLUDE [Go](../includes/model-inference-migration/go.md)]
+[!INCLUDE [Go](../../foundry/includes/model-inference-migration/go.md)]
 
 ::: zone-end
 

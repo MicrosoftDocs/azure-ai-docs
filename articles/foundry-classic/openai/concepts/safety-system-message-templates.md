@@ -57,15 +57,15 @@ The following table contains examples of recommended system message components y
 The following steps show how to use safety system messages in [Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to Foundry and navigate to Azure OpenAI and the Chat playground.
-    :::image type="content" source="../media/navigate-chat-playground.png" alt-text="Screenshot of Foundry portal showing the Chat playground entry point for Azure OpenAI.":::
+    :::image type="content" source="../../../foundry/openai/media/navigate-chat-playground.png" alt-text="Screenshot of Foundry portal showing the Chat playground entry point for Azure OpenAI.":::
 1. Navigate to the default safety system messages integrated in the studio.
-    :::image type="content" source="../media/navigate-system-message.png" alt-text="Screenshot of Foundry portal showing where to open the system message and safety system message settings.":::
+    :::image type="content" source="../../../foundry/openai/media/navigate-system-message.png" alt-text="Screenshot of Foundry portal showing where to open the system message and safety system message settings.":::
 1. Select the system messages that are applicable to your scenario. 
-    :::image type="content" source="../media/select-system-message.png" alt-text="Screenshot of Foundry portal showing a list of available safety system message templates to select.":::
+    :::image type="content" source="../../../foundry/openai/media/select-system-message.png" alt-text="Screenshot of Foundry portal showing a list of available safety system message templates to select.":::
 1. Review and edit the safety system messages based on the best practices outlined here. 
-    :::image type="content" source="../media/review-system-message.png" alt-text="Screenshot of Foundry portal showing an editable safety system message text area.":::
+    :::image type="content" source="../../../foundry/openai/media/review-system-message.png" alt-text="Screenshot of Foundry portal showing an editable safety system message text area.":::
 1. Apply changes and evaluate your system. 
-    :::image type="content" source="../media/apply-system-message.png" alt-text="Screenshot of Foundry portal showing how to apply changes and run a test in the Chat playground.":::
+    :::image type="content" source="../../../foundry/openai/media/apply-system-message.png" alt-text="Screenshot of Foundry portal showing how to apply changes and run a test in the Chat playground.":::
 
 > [!NOTE]
 > If you’re using a safety system message that isn’t built in by default, copy the component you need and paste it into either the safety system message section or the system message section. Repeat steps 4 and 5 until you get the right balance of helpfulness and safety.
