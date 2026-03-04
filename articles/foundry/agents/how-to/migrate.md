@@ -4,7 +4,7 @@ description: "Learn how to migrate from the Assistants API and classic agents to
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -28,7 +28,7 @@ Foundry Agent Service provides an upgraded developer experience for building int
 # [Python](#tab/python)
 
 ```bash
-pip install "azure-ai-projects>=2.0.0b4" --pre
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 # [C#](#tab/csharp)
@@ -1567,7 +1567,7 @@ After you migrate your code, confirm that everything works correctly:
 | **C#**: `Azure.AI.Projects.OpenAI` namespace not found | The `Azure.AI.Projects.OpenAI` NuGet package is missing. | Install `Azure.AI.Projects.OpenAI` alongside `Azure.AI.Projects`. Both packages are required. |
 | **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects@2.0.0-beta.5` or later: `npm install @azure/ai-projects@2.0.0-beta.5`. |
 | **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.0.0-beta.2` to your `pom.xml` dependencies. |
-| `create_agent()` is deprecated | Earlier SDK versions used `create_agent()`. | Replace with `create_version()` (Python/JS) or `CreateAgentVersionAsync()` (C#) or `createAgentVersion()` (Java) and pass a `PromptAgentDefinition` object. |
+| `create_agent()` is removed | Earlier SDK versions used `create_agent()`, which was removed in v2.0.0. | Replace with `create_version()` (Python/JS) or `CreateAgentVersionAsync()` (C#) or `createAgentVersion()` (Java) and pass a `PromptAgentDefinition` object. |
 | Old thread data isn't available | The migration tool doesn't migrate state data (past runs, threads, or messages). | Start new conversations after migration. Historical data remains accessible through the previous API until it's deprecated. |
 | `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](../../../foundry-classic/how-to/deploy-models-serverless-availability.md). |
 

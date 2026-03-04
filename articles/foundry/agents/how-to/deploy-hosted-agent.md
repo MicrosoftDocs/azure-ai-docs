@@ -3,7 +3,7 @@ title: "Deploy a hosted agent"
 description: "Deploy your containerized agent code to Foundry Agent Service using the Azure Developer CLI or Python SDK."
 author: aahill
 ms.author: aahi
-ms.date: 02/19/2026
+ms.date: 03/04/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -163,10 +163,10 @@ Use the SDK for programmatic deployments or CI/CD integration.
 
 * A container image in [Azure Container Registry](/azure/container-registry/container-registry-get-started-portal)
 * User Access Administrator or Owner permissions on the container registry
-* Azure AI Projects SDK version 2.0.0b4 or later
+* Azure AI Projects SDK version 2.0.0 or later
 
     ```bash
-    pip install --pre "azure-ai-projects>=2.0.0b4" azure-identity
+    pip install "azure-ai-projects>=2.0.0" azure-identity
     ```
 
 ### Build and push your container image
@@ -247,7 +247,8 @@ PROJECT_ENDPOINT = "your_project_endpoint"
 # Create project client
 project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
-    credential=DefaultAzureCredential()
+    credential=DefaultAzureCredential(),
+    allow_preview=True,
 )
 
 # Create a hosted agent version

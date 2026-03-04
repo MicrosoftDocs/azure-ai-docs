@@ -3,7 +3,7 @@ title: "Manage hosted agent lifecycle"
 description: "Start, stop, update, and delete hosted agent deployments using the Azure CLI or Python SDK."
 author: aahill
 ms.author: aahi
-ms.date: 02/19/2026
+ms.date: 03/04/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -224,6 +224,7 @@ AGENT_NAME = "your_agent_name"
 project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
+    allow_preview=True,
 )
 openai = project.get_openai_client()
 
@@ -262,7 +263,7 @@ You can also test agents in the agent playground UI in the Foundry portal.
 
 - **Forgetting ACR permissions**: The project's managed identity needs explicit pull access to the container registry
 - **Incorrect platform version for docker images**: Always specify `--platform linux/amd64` when doing docker build yourself 
-- **Wrong SDK version**: Hosted agents require `azure-ai-projects>=2.0.0b4`
+- **Wrong SDK version**: Hosted agents require `azure-ai-projects>=2.0.0`
 - **Missing capability host**: Create an account-level capability host before deploying. See [Deploy a hosted agent](deploy-hosted-agent.md#create-an-account-level-capability-host)
 - **Publishing identity mismatch**: After publishing, the agent uses a different identity. Reassign RBAC permissions
 
