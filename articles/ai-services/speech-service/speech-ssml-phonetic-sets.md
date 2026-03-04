@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.reviewer: jiajzhan
 #Customer intent: As a developer, I want to learn about the phonetic alphabets used in Speech service.
 ---

@@ -370,7 +370,6 @@
             "redirect_url": "/azure/search/search-what-is-data-import",
             "redirect_document_id": true
         },
-
         {
             "source_path_from_root": "/articles/search/search-get-started-management-api.md",
             "redirect_url": "/rest/api/searchmanagement/",
@@ -427,24 +426,24 @@
             "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/articles/search/tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md",
-            "redirect_url": "/azure/search/tutorial-document-extraction-multimodal-embeddings",
-            "redirect_document_id": true
+            "source_path_from_root": "/articles/search/tutorial-document-extraction-multimodal-embeddings.md",
+            "redirect_url": "/azure/search/tutorial-multimodal",
+            "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/articles/search/tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md",
-            "redirect_url": "/azure/search/tutorial-document-extraction-image-verbalization",
-            "redirect_document_id": true
+            "source_path_from_root": "/articles/search/tutorial-document-extraction-image-verbalization.md",
+            "redirect_url": "/azure/search/tutorial-multimodal",
+            "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/articles/search/tutorial-multimodal-index-embeddings-skill.md",
-            "redirect_url": "/azure/search/tutorial-document-layout-multimodal-embeddings",
-            "redirect_document_id": true
+            "source_path_from_root": "/articles/search/tutorial-document-layout-multimodal-embeddings.md",
+            "redirect_url": "/azure/search/tutorial-multimodal",
+            "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/articles/search/tutorial-multimodal-index-image-verbalization-skill.md",
-            "redirect_url": "/azure/search/tutorial-document-layout-image-verbalization",
-            "redirect_document_id": true
+            "source_path_from_root": "/articles/search/tutorial-document-layout-image-verbalization.md",
+            "redirect_url": "/azure/search/tutorial-multimodal",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/search-get-started-rest.md",
@@ -649,6 +648,11 @@
         {
             "source_path_from_root": "/articles/search/keyless-connections.md",
             "redirect_url": "/azure/search/search-security-rbac-client-code",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-security-overview.md",
+            "redirect_url": "/azure/search/search-security-built-in",
             "redirect_document_id": true
         }
     ]

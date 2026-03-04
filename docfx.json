@@ -66,7 +66,7 @@
       {
         "group": "grp-machine-learningv1",
         "src": "articles/machine-learning/v-fake",
-        "dest": "./machine-learning/v1",        
+        "dest": "./machine-learning/v1",
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -92,7 +92,6 @@
           "**/obj/**"
         ]
       },
-
       {
         "group": "grp-foundry-default",
         "src": "articles/ai-foundry/default",
@@ -208,7 +207,7 @@
           "**/obj/**"
         ]
       },
-            {
+      {
         "group": "grp-foundry-classic",
         "src": "articles/ai-foundry",
         "dest": "./ai-foundry/",
@@ -257,7 +256,7 @@
         "moniker_range": "azureml-api-1",
         "dest": "destmachinelearningv1"
       },
-        "grp-foundry-classic": {
+      "grp-foundry-classic": {
         "moniker_range": "foundry-classic || foundry",
         "dest": "destfoundryclassic"
       },
@@ -519,8 +518,8 @@
         "articles/ai-services/language-service/sentiment-opinion-mining/*.yml": "365-days",
         "articles/ai-services/language-service/custom-text-classification/*.md": "365-days",
         "articles/ai-services/language-service/custom-text-classification/*.yml": "365-days",
-        "articles/ai-services/language-service/custom-language-understanding/*.md": "365-days",
-        "articles/ai-services/language-service/custom-language-understanding/*.yml": "365-days",
+        "articles/ai-services/language-service/conversational-language-understanding/*.md": "365-days",
+        "articles/ai-services/language-service/conversational-language-understanding/*.yml": "365-days",
         "articles/ai-services/language-service/question-answering/*.md": "365-days",
         "articles/ai-services/language-service/question-answering/*.yml": "365-days",
         "articles/ai-services/language-service/orchestration-workflow/*.md": "365-days",
@@ -571,8 +570,8 @@
         "articles/machine-learning/component-reference/*.yml": "365-days",
         "articles/machine-learning/component-reference-v2/*.md": "365-days",
         "articles/machine-learning/component-reference-v2/*.yml": "365-days",
-        "articles/open-datasets/**/*.md": "365-days", 
-        "articles/open-datasets/**/*.yml": "365-days", 
+        "articles/open-datasets/**/*.md": "365-days",
+        "articles/open-datasets/**/*.yml": "365-days",
         "articles/machine-learning/v1/*.md": "1095-days"
       },
       "ms.custom": {
@@ -588,7 +587,9 @@
         "articles/ai-services/content-moderator/**/*.md": "azure-ai-content-moderator",
         "articles/ai-services/language-service/**/*.md": "azure-ai-language",
         "articles/ai-services/anomaly-detector/**/*.md": "azure-ai-anomaly-detector",
-        "articles/ai-services/custom-vision-service/**/*.md": "azure-ai-custom-vision"
+        "articles/ai-services/custom-vision-service/**/*.md": "azure-ai-custom-vision",
+        "articles/foundry/**/*.md": "azure-ai-foundry",
+        "articles/foundry-classic/**/*.md": "azure-ai-foundry"
       },
       "monikerRange": {
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
@@ -614,7 +615,9 @@
         "articles/ai-services/LUIS/*.yml": "Azure",
         "articles/machine-learning/*.md": "Azure Machine Learning",
         "articles/open-datasets/**/*.md": "Azure Open Datasets",
-        "articles/open-datasets/**/*.yml": "Azure Open Datasets"
+        "articles/open-datasets/**/*.yml": "Azure Open Datasets",
+        "articles/foundry/**/*.md": "Microsoft Foundry",
+        "articles/foundry-classic/**/*.md": "Microsoft Foundry (classic)"
       }
     },
     "overwrite": [],

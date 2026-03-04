@@ -245,7 +245,7 @@ Azure provides a [monitoring platform](monitor-azure-cognitive-search.md) that i
 
 ### Secure access to vector data
 
-Azure AI Search implements data encryption, private connections for no-internet scenarios, and role assignments for secure access through Microsoft Entra ID. For more information about enterprise security features, see [Security in Azure AI Search](search-security-overview.md).
+Azure AI Search implements data encryption, private connections for no-internet scenarios, and role assignments for secure access through Microsoft Entra ID. For more information about enterprise security features, see [Data, privacy, and built-in protections](search-security-built-in.md).
 
 ## Related content
 

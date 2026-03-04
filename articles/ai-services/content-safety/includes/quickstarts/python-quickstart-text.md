@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Analyze text content with Python"
 description: In this quickstart, get started using the Azure AI Content Safety Python SDK to analyze text content for objectionable material.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: include
 ms.date: 05/03/2023
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 [Reference documentation](https://pypi.org/project/azure-ai-contentsafety/) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentsafety/azure-ai-contentsafety) | [Package (PyPI)](https://pypi.org/project/azure-ai-contentsafety/) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/python/1.0.0) |

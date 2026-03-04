@@ -9,7 +9,7 @@ ms.date: 06/12/2025
 ms.author: mbullwin
 ---
 
-[Reference documentation](/java/api/overview/azure/ai-metricsadvisor-readme) | [Library source code](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/metricsadvisor/ai-metrics-advisor/README.md) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-metrics-advisor) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/metricsadvisor/ai-metrics-advisor/samples/v1/javascript)
+[Reference documentation](/java/api/overview/azure/ai-metricsadvisor-readme) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-metrics-advisor) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk)
 
 > [!IMPORTANT]
 > Microsoft recommends that you use the most secure authentication flow available. Some of the authentication flows described in this article require a very high degree of trust in the application, and carries risks that are not present in other more secure flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
@@ -22,7 +22,7 @@ ms.author: mbullwin
 * Your own SQL database with time series data.
   
 > [!TIP]
-> * You can find JavaScript Metrics Advisor samples on [GitHub](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/metricsadvisor/ai-metrics-advisor/samples/v1/javascript).
+> * You can find JavaScript Metrics Advisor samples on [GitHub](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk).
 > * It may take 10 to 30 minutes for your Metrics Advisor resource to deploy a service instance for you to use. Select **Go to resource** once it successfully deploys. After deployment, you can start using your Metrics Advisor instance with both the web portal and REST API. 
 > * You can find the URL for the REST API in Azure portal, in the **Overview** section of your resource. It will look like this:
 > * `https://<instance-name>.cognitiveservices.azure.com/`

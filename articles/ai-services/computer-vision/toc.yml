@@ -6,8 +6,6 @@ items:
   items:
   - name: What is Azure Vision?
     href: overview.md
-  - name: Vision Studio
-    href: overview-vision-studio.md
   - name: Language support
     href: language-support.md
   - name: Pricing
@@ -20,9 +18,7 @@ items:
   items:
   - name: Generate alt text for images
     href: use-case-alt-text.md
-  - name: Verify a user
-    href: use-case-identity-verification.md
-- name: Image Analysis
+- name: Image Analysis (legacy)
   items:
   - name: Image Analysis overview
     href: overview-image-analysis.md
@@ -182,120 +178,6 @@ items:
       href: /cli/azure/cognitiveservices#az_cognitiveservices_list
     - name: Azure PowerShell
       href: /powershell/module/az.cognitiveservices/
-- name: Face
-  items:
-  - name: Face overview
-    href: overview-identity.md
-  - name: Quotas and limits
-    href: identity-quotas-limits.md
-  - name: Pricing
-    href: https://azure.microsoft.com/pricing/details/cognitive-services/face-api
-  - name: Face quickstart
-    href: quickstarts-sdk/identity-client-library.md
-  
-  - name: Concepts
-    items:
-    - name: Face detection, attributes, and input data
-      href: concept-face-detection.md
-    - name: Face recognition
-      href: concept-face-recognition.md
-    - name: Face recognition data structures
-      href: concept-face-recognition-data-structures.md
-    - name: Face liveness detection
-      href: concept-face-liveness-detection.md
-    - name: Face liveness abuse monitoring
-      href: concept-liveness-abuse-monitoring.md
-  
-  - name: How-to guides
-    items:
-    - name: Face detection, landmarks, and attributes
-      items:
-      - name: Detect and analyze faces
-        href: how-to/identity-detect-faces.md
-      - name: Specify a face detection model version
-        href: how-to/specify-detection-model.md
-      - name: Use the HeadPose attribute
-        href: how-to/use-headpose.md
-    - name: Face recognition (limited access)
-      items:
-      - name: Specify a face recognition model version
-        href: how-to/specify-recognition-model.md
-      - name: Add faces to a PersonGroup
-        href: how-to/add-faces.md
-      - name: Use the PersonDirectory structure (preview)
-        href: how-to/use-persondirectory.md
-      - name: Scale to handle more enrolled users
-        href: how-to/use-large-scale.md
-      - name: Find similar faces
-        href: how-to/find-similar-faces.md
-    - name: Service management
-      items:
-      - name: Mitigate latency and improve performance
-        href: how-to/mitigate-latency.md
-      - name: Use limited access tokens
-        href: how-to/identity-access-token.md
-      - name: Use customer-managed keys
-        href: identity-encrypt-data-at-rest.md
-      - name: Use liveness detection with network isolation (preview)
-        href: how-to/liveness-use-network-isolation.md
-  - name: Tutorials
-    items:
-    - name: Detect liveness in faces
-      href: Tutorials/liveness.md
-    - name: Add users to a Face identification app
-      href: Tutorials/build-enrollment-app.md
-    - name: Face liveness quick link (preview)
-      href: Tutorials/liveness-quick-link.md
-  - name: Samples
-    href: https://aka.ms/FaceSamples
-
-  - name: Responsible use of AI
-    items:
-    - name: Transparency notes
-      items:
-      - name: Face use cases
-        href: ../../ai-foundry/responsible-ai/face/transparency-note.md
-      - name: Characteristics and limitations
-        href: ../../ai-foundry/responsible-ai/face/characteristics-and-limitations.md
-    - name: Integration and responsible use
-      href: ../../ai-foundry/responsible-ai/face/guidance-integration-responsible-use.md
-    - name: Best practices for enrolling users
-      href: enrollment-overview.md
-    - name: Code of conduct
-      href: /legal/ai-code-of-conduct?context=/azure/ai-services/computer-vision/context/context
-    - name: Data privacy and security
-      href: ../../ai-foundry/responsible-ai/face/data-privacy-security.md
-    - name: Limited Access features
-      href: ../../ai-foundry/responsible-ai/computer-vision/limited-access-identity.md
-    - name: Shared responsibility for face liveness detection
-      href: liveness-detection-shared-responsibility.md
-
-  - name: Reference
-    items:
-    - name: Server-side
-      items:
-      - name: Face REST API
-        href: identity-api-reference.md
-      - name: Face API error codes
-        href: reference-face-error-codes.md
-      - name: .NET
-        href: https://aka.ms/azsdk-csharp-face-ref
-      - name: Java
-        href: https://aka.ms/azsdk-java-face-ref
-      - name: Node.js
-        href: https://aka.ms/azsdk-javascript-face-ref
-      - name: Python
-        href: https://aka.ms/azsdk-python-face-ref
-    - name: Client-side
-      items:
-      - name: Kotlin (Android)
-        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
-      - name: Swift (iOS)
-        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
-      - name: JavaScript (Web)
-        href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
-      - name: Understand the liveness versions
-        href: sdk/understand-the-liveness-sdk-versions.md
 - name: Optical character recognition (OCR) (legacy)
   items:
   - name: OCR overview
@@ -369,14 +251,12 @@ items:
     - name: Azure PowerShell
       href: /powershell/module/az.cognitiveservices/
 
-- name: How-to guides
+- name: Enterprise readiness
   items:
-  - name: Enterprise readiness
-    items:
-    - name: Set up Virtual Networks
-      href: ../cognitive-services-virtual-networks.md?context=%2fazure%2fcognitive-services%2fcomputer-vision%2fcontext%2fcontext
-    - name: Use Microsoft Entra authentication
-      href: ../authentication.md?tabs=powershell%3fcontext%3d%2fazure%2fcognitive-services%2fcomputer-vision%2fcontext%2fcontext
+  - name: Set up Virtual Networks
+    href: ../cognitive-services-virtual-networks.md?context=%2fazure%2fcognitive-services%2fcomputer-vision%2fcontext%2fcontext
+  - name: Use Microsoft Entra authentication
+    href: ../authentication.md?tabs=powershell%3fcontext%3d%2fazure%2fcognitive-services%2fcomputer-vision%2fcontext%2fcontext
 - name: Resources
   items: 
   - name: Enterprise readiness

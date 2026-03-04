@@ -95,7 +95,7 @@ Azure provides several mechanisms to monitor liveness detection sessions and mit
 
 ## Report abuse
 
-If Azure AI Face API doesn't detect a presentation attack instrument that you believe should be detected as spoof, [create an Azure support request](/azure/ai-services/cognitive-services-support-options?context=/azure/ai-services/computer-vision/context/context).
+If Azure Face API doesn't detect a presentation attack instrument that you believe should be detected as spoof, [create an Azure support request](/azure/ai-services/cognitive-services-support-options?context=/azure/ai-services/computer-vision/context/context).
 
 The support request should include:
 - Type of spoofing material presented.

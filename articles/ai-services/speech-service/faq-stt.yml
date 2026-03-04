@@ -7,7 +7,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: faq
-  ms.date: 08/07/2025
+  ms.date: 02/25/2026
   ms.author: pafarley
 title: Speech to text FAQ
 summary: |
@@ -20,7 +20,7 @@ sections:
       - question: |
           What is the difference between a base model and a custom speech to text model?
         answer: |
-          A baseline speech to text model is trained with Microsoft-owned data and is already deployed in the cloud. You can create and use a custom model to better fit an environment that has specific ambient noise or language. Factory floors, cars, or noisy streets would require an adapted acoustic model. Topics such as biology, physics, radiology, product names, and custom acronyms would require an adapted language model. If you want to train a custom model, you should start with related text to improve the recognition of special terms and phrases.
+          A base speech to text model is trained with Microsoft-owned data and is already deployed in the cloud. You can create and use a custom model to better fit an environment that has specific ambient noise or language. Factory floors, cars, or noisy streets would require an adapted acoustic model. Topics such as biology, physics, radiology, product names, and custom acronyms would require an adapted language model. If you want to train a custom model, you should start with related text to improve the recognition of special terms and phrases.
 
       - question: |
           Where do I start if I want to use a base model?
@@ -52,14 +52,14 @@ sections:
       - question: |
           I get several results for each phrase with the detailed output format. Which one should I use?
         answer: |
-          Always take the first result, even if another result ("N-Best") might have a higher confidence value. Speech service considers the first result to be the best. The result can also be an empty string if no speech was recognized.
+          Always take the first result, even if another result ("N-Best") might have a higher confidence value. The Speech service considers the first result to be the best. The result can also be an empty string if no speech was recognized.
 
           The other results are likely worse and might not have full capitalization and punctuation applied. These results are most useful in special scenarios, such as giving users the option to pick corrections from a list or handling incorrectly recognized commands.
 
       - question: |
           Why are there multiple base models?
         answer: |
-          You can choose from more than one base model in Speech service. Each model name contains the date when it was added. When you start training a custom model, use the most recent model to get the best accuracy. Older base models are still available for some time after a new model is made available. You can continue using the model that you worked with until it's retired (see [Model and endpoint lifecycle](./how-to-custom-speech-model-and-endpoint-lifecycle.md)). We still recommend that you switch to the latest base model for better accuracy.
+          You can choose from more than one base model in the Speech service. Each model name contains the date when it was added. When you start training a custom model, use the most recent model to get the best accuracy. Older base models are still available for some time after a new model is made available. You can continue using the model that you worked with until it's retired (see [Model and endpoint lifecycle](./how-to-custom-speech-model-and-endpoint-lifecycle.md)). We still recommend that you switch to the latest base model for better accuracy.
 
       - question: |
           Can I update my existing model (model stacking)?
@@ -90,9 +90,9 @@ sections:
       - question: |
           Are my requests logged?
         answer: |
-          By default, requests aren't logged (neither audio nor transcription). If necessary, you can select the **Log content from this endpoint** option when you [create a custom endpoint](how-to-custom-speech-deploy-model.md#add-a-deployment-endpoint). You can also enable audio logging in the [Speech SDK](how-to-use-logging.md) on a per-request basis, without having to create a custom endpoint. In both cases, audio and recognition results of requests will be stored in secure storage. Subscriptions that use Microsoft-owned storage are available for 30 days.
+          By default, requests aren't logged (neither audio nor transcription). If necessary, you can select the **Log content from this endpoint** option when you [create a custom endpoint](how-to-custom-speech-deploy-model.md#add-a-deployment-endpoint). You can also enable audio logging in the [Speech SDK](how-to-use-logging.md) on a per-request basis, without having to create a custom endpoint. In both cases, audio and recognition results of requests are stored in secure storage. Subscriptions that use Microsoft-owned storage are available for 30 days.
 
-          You can export the logged files on the deployment page in Speech Studio if you use a custom endpoint with **Log content from this endpoint** enabled. If audio logging is enabled via the SDK, call the API to access the files. You can also use API to [delete the logs](/rest/api/speechtotext/endpoints/delete-base-model-log) anytime.
+          You can export the logged files on the deployment page in Speech Studio if you use a custom endpoint with **Log content from this endpoint** enabled. If audio logging is enabled via the SDK, call the API to access the files. You can also use the API to [delete the logs](/rest/api/speechtotext/endpoints/delete-base-model-log) anytime.
 
       - question: |
           Are my requests throttled?
@@ -155,7 +155,7 @@ sections:
         answer: |
           Training a model with audio data can be a lengthy process. Depending on the amount of data, it can take several days to create a custom model. If it can't be finished within one week, the service might abort the training operation and report the model as failed.
 
-          In general, Speech service processes approximately 10 hours of audio data per day in regions that have dedicated hardware. Training with text only is faster and ordinarily finishes within minutes.
+          In general, the Speech service processes approximately 10 hours of audio data per day in regions that have dedicated hardware. Training with text only is faster and ordinarily finishes within minutes.
 
           Use one of the regions where dedicated hardware is available for training. The Speech service uses up to 100 hours of audio for training in these regions.
 
@@ -195,9 +195,9 @@ sections:
         answer: |
           The recognized text is generated based on the audio input, the reference text, the `EnableMiscue` configuration and the assessment mode.
 
-          In **scripted assessment**, there are two modes, single-shot and continuous, and the behavior differs slightly. In single-shot mode, if `EnableMiscue` is set to `false`, the system forces the recognized text to match the reference text. When `EnableMiscue` is `true`, only the words present in the reference text are considered as recognized results from the audio input. Continuous mode does not support the `EnableMiscue` option and behaves similarly to single-shot mode with `EnableMiscue` set to `true`. Differences between recognized and reference text might occur due to factors such as pronunciation variations, background noise, or limitations in the speech recognition model.
+          In **scripted assessment**, there are two modes, single-shot and continuous, and the behavior differs slightly. In single-shot mode, if `EnableMiscue` is set to `false`, the system forces the recognized text to match the reference text. When `EnableMiscue` is `true`, only the words present in the reference text are considered as recognized results from the audio input. Continuous mode doesn't support the `EnableMiscue` option and behaves similarly to single-shot mode with `EnableMiscue` set to `true`. Differences between recognized and reference text might occur due to factors such as pronunciation variations, background noise, or limitations in the speech recognition model.
 
-          In **unscripted assessment**, the recognized text is generated solely from the audio input without any reference text, which can lead to discrepancies between the recognized text and the intended content. In these cases, the recognized text reflects what the system interprets from the audio and may not always align with the expected message. If you notice significant differences, review the audio quality and speaker clarity, or consider using Azure Speech-to-Text to transcribe the audio first. You can then use that transcription as the reference text for a more accurate assessment.
+          In **unscripted assessment**, the recognized text is generated solely from the audio input without any reference text, which can lead to discrepancies between the recognized text and the intended content. In these cases, the recognized text reflects what the system interprets from the audio and might not always align with the expected message. If you notice significant differences, review the audio quality and speaker clarity, or consider using Azure Speech-to-Text to transcribe the audio first. You can then use that transcription as the reference text for a more accurate assessment.
 
 additionalContent: |
 

@@ -25,6 +25,9 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
+> [!NOTE]
+> **Retired packages**: The following SDK v1 pipeline packages are being retired: azureml-train-core, azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, and azureml-pipeline-steps. For v2 pipelines, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
+
 This article describes how to share a machine learning pipeline with your colleagues or customers.
 
 Machine learning pipelines are reusable workflows for machine learning tasks. One benefit of pipelines is increased collaboration. You can also version pipelines to enable customers to use the current model while you're working on a new version. 
@@ -372,6 +375,9 @@ You can enable it again by using `p.enable()`. For more information, see the [Pu
 
 ## Next steps
 
+> [!NOTE]
+> These are SDK v1 packages; see the deprecation notice at the top of this article.
+
 - Use [these Jupyter notebooks on GitHub](https://aka.ms/aml-pipeline-readme) to further explore machine learning pipelines.
 - See the SDK reference for the [azureml-pipelines-core](/python/api/azureml-pipeline-core/azureml.pipeline.core) package and the [azureml-pipelines-steps](/python/api/azureml-pipeline-steps/azureml.pipeline.steps) package.
-- For tips on debugging and troubleshooting pipelines, see [How to debug pipelines](how-to-debug-pipelines.md) .
+- For tips on debugging and troubleshooting pipelines, see [How to debug pipelines](how-to-debug-pipelines.md).

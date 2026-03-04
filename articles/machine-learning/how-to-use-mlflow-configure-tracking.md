@@ -8,10 +8,11 @@ ms.author: scottpolly
 ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 12/29/2025
+ms.date: 02/12/2026
 ms.topic: how-to
-ms.custom: mlflow, cliv2, devplatv2
+ms.custom: mlflow, cliv2, devplatv2, dev-focus
 ms.devlang: azurecli
+ai-usage: ai-assisted
 # customer intent: As a developer, I want to see how to configure MLflow so that I can run MLflow training routines in Azure Machine Learning.
 ---
 
@@ -24,9 +25,11 @@ Azure Machine Learning workspaces are MLflow-compatible, which means they can ac
 However, if you work outside Azure Machine Learning, you need to configure MLflow to point to the workspace. Affected environments include your local machine, Azure Synapse Analytics, and Azure Databricks.
 
 > [!IMPORTANT]
-> When you use Azure compute infrastructure, you don't have to configure the tracking URI. It's automatically configured for you. Environments that have automatic configuration include Azure Machine Learning notebooks, Jupyter notebooks that are hosted on Azure Machine Learning compute instances, and jobs that run on Azure Machine Learning compute clusters.
+> When you use Azure compute infrastructure, you don't need to configure the tracking URI. It's automatically configured for you. Environments that have automatic configuration include Azure Machine Learning notebooks, Jupyter notebooks that are hosted on Azure Machine Learning compute instances, and jobs that run on Azure Machine Learning compute clusters.
 
 ## Prerequisites
+
+- Python 3.10 or later.
 
 - The MLflow SDK `mlflow` package and the Azure Machine Learning `azureml-mlflow` plugin for MLflow. You can use the following command to install this software:
 
@@ -57,15 +60,15 @@ By default, the Azure Machine Learning plugin for MLflow performs interactive au
 
 The authentication process tries the following methods, one after another, until one succeeds:
 
-1. **Environment**: Account information that's specified via environment variables is read and used for authentication.
-1. **Managed identity**: If the application is deployed to an Azure host with a managed identity enabled, the managed identity is used for authentication.
-1. **Azure CLI**: If you use the Azure CLI `az login` command to sign in, your credentials are used for authentication.
-1. **Azure PowerShell**: If you use the Azure PowerShell `Connect-AzAccount` command to sign in, your credentials are used for authentication.
-1. **Interactive browser**: The user is interactively authenticated via the default browser.
+1. **Environment**: The process reads account information from environment variables and uses it for authentication.
+1. **Managed identity**: If the application is deployed to an Azure host with a managed identity enabled, the process uses the managed identity for authentication.
+1. **Azure CLI**: If you use the Azure CLI `az login` command to sign in, the process uses your credentials for authentication.
+1. **Azure PowerShell**: If you use the Azure PowerShell `Connect-AzAccount` command to sign in, the process uses your credentials for authentication.
+1. **Interactive browser**: The user is interactively authenticated through the default browser.
 
 [!INCLUDE [mlflow-configure-auth](includes/machine-learning-mlflow-configure-auth.md)]
 
-If you'd rather use a certificate than a secret, you can configure the following environment variables:
+If you want to use a certificate instead of a secret, you can configure the following environment variables:
 
 - Set `AZURE_CLIENT_CERTIFICATE_PATH` to the path of a file that contains the certificate and private key pair in Privacy-Enhanced Mail (PEM) or Public-Key Cryptography Standards 12 (PKCS #12) format.
 - Set `AZURE_CLIENT_CERTIFICATE_PASSWORD` to the password of the certificate file, if it uses a password.
@@ -83,9 +86,9 @@ Some [default roles](how-to-assign-roles.md#default-roles) like AzureML Data Sci
 
 To see how to grant access to your workspace to a service principal that you create or to your user account, see [Grant access](/azure/role-based-access-control/quickstart-assign-role-user-portal#grant-access).
 
-### Troubleshoot authentication issues
+### Troubleshoot authentication problems
 
-MLflow tries to authenticate to Azure Machine Learning on the first operation that interacts with the service, like `mlflow.set_experiment()` or `mlflow.start_run()`. If you experience issues or unexpected authentication prompts during the process, you can increase the logging level to get more details about the error:
+MLflow tries to authenticate to Azure Machine Learning on the first operation that interacts with the service, like `mlflow.set_experiment()` or `mlflow.start_run()`. If you experience problems or unexpected authentication prompts during the process, you can increase the logging level to get more details about the error:
 
 ```python
 import logging
@@ -95,7 +98,7 @@ logging.getLogger("azure").setLevel(logging.DEBUG)
 
 ## Set experiment name (optional)
 
-All MLflow runs are logged to the active experiment. By default, runs are logged to an experiment named `Default` that's automatically created. You can configure the experiment that's used for tracking.
+All MLflow runs log to the active experiment. By default, runs log to an experiment named `Default` that's automatically created. You can configure the experiment that's used for tracking.
 
 > [!TIP]
 >
@@ -151,7 +154,7 @@ The current cloud has the value `IsActive` set to `True`.
 
 ## Related content
 
-Now that your environment is connected to your workspace in Azure Machine Learning, you can start to work with it.
+After you connect your environment to your workspace in Azure Machine Learning, you can start working with it.
 
 - [Track experiments and models with MLflow](how-to-use-mlflow-cli-runs.md)
 - [Manage models registry in Azure Machine Learning with MLflow](how-to-manage-models-mlflow.md)

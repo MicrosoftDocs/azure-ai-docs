@@ -7,7 +7,8 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 02/21/2025
+ms.date: 03/02/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 ms.custom: sfi-image-nochange
 
@@ -53,7 +54,7 @@ In your storage account overview, find the **Settings** section in the left hand
 
 Create a CORS rule by setting the **Allowed Origins** field to `https://portal.vision.cognitive.azure.com`.
 
-In the Allowed Methods field, select the `GET` checkbox to allow an authenticated request from a different domain. In the **Max age** field, enter the value `9999`, and click **Save**. 
+In the Allowed Methods field, select the `GET` checkbox to allow an authenticated request from a different domain. In the **Max age** field, enter the value `9999`, and select **Save**. 
 
 [Learn more about CORS support for Azure Storage](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services).
 
@@ -66,4 +67,3 @@ This allows Vision Studio to access images in your blob storage container to ext
 ## Upload images in Vision Studio
 
 In the **Search photos with image retrieval** section in Vision Studio, select the storage account that you configured with the CORS rule. Select the container in which your images are stored. If you don't have a container, you can create one and upload the images from your local device. If you have updated the CORS rules on the storage account, refresh the Blob container or Video files on container sections.
-

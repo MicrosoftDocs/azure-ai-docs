@@ -78,7 +78,7 @@ If you authenticate with API keys, treat keys as secrets:
 
 ### Limitations
 
-Some Foundry configurations restrict which MCP servers you can use. For example, network-secured Foundry projects can require publicly accessible MCP servers. For details, see [Connect to Model Context Protocol servers (preview)](../../../ai-foundry/default/agents/how-to/tools/model-context-protocol.md).
+Some Foundry configurations restrict which MCP servers you can use. For example, network-secured Foundry projects can require publicly accessible MCP servers. For details, see [Connect to Model Context Protocol servers (preview)](../../../foundry/agents/how-to/tools/model-context-protocol.md).
 
 ## Azure Language intent routing agent (preview)
 
@@ -205,5 +205,5 @@ To verify the connection is working, send a test message to the agent. If the ag
 
 * [Configure Azure resources for Foundry](configure-azure-resources.md)
 * [Create and deploy a CQA agent](../question-answering/how-to/deploy-agent.md)
-* [Connect to Model Context Protocol servers (preview)](../../../ai-foundry/default/agents/how-to/tools/model-context-protocol.md)
+* [Connect to Model Context Protocol servers (preview)](../../../foundry/agents/how-to/tools/model-context-protocol.md)
 

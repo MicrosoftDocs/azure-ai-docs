@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 02/23/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -15,385 +15,77 @@ In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview
 
 A *knowledge base* orchestrates agentic retrieval by decomposing complex queries into subqueries, running the subqueries against one or more *knowledge sources*, and returning results with metadata. By default, the knowledge base outputs raw content from your sources, but this quickstart uses the answer synthesis output mode for natural-language answer generation.
 
-Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
+Although you can use your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book.
 
 > [!TIP]
-> Want to get started right away? See the [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) GitHub repository.
+> Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) on GitHub.
 
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md) in any [region that provides agentic retrieval](../../search-region-support.md).
++ An [Azure AI Search service](../../search-create-service-portal.md) in any [region that provides agentic retrieval](../../search-region-support.md). This quickstart requires the Basic tier or higher for managed identity support.
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
-+ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. You can use any `text-embedding` model, such as `text-embedding-3-large`.
+
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. You can use any [supported LLM](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models), such as `gpt-5-mini`.
+
++ [.NET 8](https://dotnet.microsoft.com/download/dotnet/8.0) or later.
 
 + [Visual Studio Code](https://code.visualstudio.com/download).
 
-[!INCLUDE [Setup](./agentic-retrieval-setup.md)]
++ [Git](https://git-scm.com/downloads) to clone the sample repository.
+
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
+
+[!INCLUDE [agentic retrieval setup](agentic-retrieval-setup.md)]
 
 ## Set up the environment
 
-To set up the console application for this quickstart:
+1. Use Git to clone the sample repository.
 
-1. Create a folder named `quickstart-agentic-retrieval` to contain the application.
-
-1. Open the folder in Visual Studio Code.
-
-1. Select **Terminal** > **New Terminal**, and then run the following command to create a console application.
-
-    ```console
-    dotnet new console
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
     ```
 
-1. Install the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search.documents-readme).
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-    ```console
-    dotnet add package Azure.Search.Documents --version 11.8.0-beta.1
+    ```bash
+    cd azure-search-dotnet-samples/quickstart-agentic-retrieval
+    code .
     ```
 
-1. Install the `dotenv.net` package to load environment variables from a `.env` file.
+1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
 
-    ```console
-    dotnet add package dotenv.net
+1. Rename `sample.env` to `.env`.
+
+    ```bash
+    mv sample.env .env
     ```
 
-1. For keyless authentication with Microsoft Entra ID, install the [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) package.
+1. Install the dependencies.
 
-    ```console
-    dotnet add package Azure.Identity
+    ```bash
+    dotnet restore AgenticRetrievalQuickstart.csproj
     ```
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
+    When the restore completes, verify that no errors appear in the output.
 
-    ```console
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
+
+    ```bash
     az login
     ```
 
 ## Run the code
 
-To create and run the agentic retrieval pipeline:
+Run the application to create an index, upload documents, configure a knowledge source and knowledge base, and run agentic retrieval queries.
 
-1. Create a file named `.env` in the `quickstart-agentic-retrieval` folder.
-
-1. Paste the following environment variables into the `.env` file.
-
-    ```
-    SEARCH_ENDPOINT = PUT-YOUR-SEARCH-SERVICE-URL-HERE
-    AOAI_ENDPOINT = PUT-YOUR-AOAI-FOUNDRY-URL-HERE
-    ```
-
-1. Set `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` to the values you obtained in [Get endpoints](#get-endpoints).
-
-1. Paste the following code into the `Program.cs` file.
-
-    ```csharp
-    using dotenv.net;
-    using System.Text.Json;
-    using Azure.Identity;
-    using Azure.Search.Documents;
-    using Azure.Search.Documents.Indexes;
-    using Azure.Search.Documents.Indexes.Models;
-    using Azure.Search.Documents.KnowledgeBases;
-    using Azure.Search.Documents.KnowledgeBases.Models;
-    
-    namespace AzureSearch.Quickstart
-    {
-        class Program
-        {
-            static async Task Main(string[] args)
-            {
-                // Load environment variables from the .env file
-                // Ensure your .env file is in the same directory with the required variables
-                DotEnv.Load();
-    
-                string searchEndpoint = Environment.GetEnvironmentVariable("SEARCH_ENDPOINT")
-                    ?? throw new InvalidOperationException("SEARCH_ENDPOINT isn't set.");
-                string aoaiEndpoint = Environment.GetEnvironmentVariable("AOAI_ENDPOINT")
-                    ?? throw new InvalidOperationException("AOAI_ENDPOINT isn't set.");
-    
-                string aoaiEmbeddingModel = "text-embedding-3-large";
-                string aoaiEmbeddingDeployment = "text-embedding-3-large";
-                string aoaiGptModel = "gpt-5-mini";
-                string aoaiGptDeployment = "gpt-5-mini";
-    
-                string indexName = "earth-at-night";
-                string knowledgeSourceName = "earth-knowledge-source";
-                string knowledgeBaseName = "earth-knowledge-base";
-    
-                var credential = new DefaultAzureCredential();
-    
-                // Define fields for the index
-                var fields = new List<SearchField>
-                {
-                    new SimpleField("id", SearchFieldDataType.String) { IsKey = true, IsFilterable = true, IsSortable = true, IsFacetable = true },
-                    new SearchField("page_chunk", SearchFieldDataType.String) { IsFilterable = false, IsSortable = false, IsFacetable = false },
-                    new SearchField("page_embedding_text_3_large", SearchFieldDataType.Collection(SearchFieldDataType.Single)) { VectorSearchDimensions = 3072, VectorSearchProfileName = "hnsw_text_3_large" },
-                    new SimpleField("page_number", SearchFieldDataType.Int32) { IsFilterable = true, IsSortable = true, IsFacetable = true }
-                };
-    
-                // Define a vectorizer
-                var vectorizer = new AzureOpenAIVectorizer(vectorizerName: "azure_openai_text_3_large")
-                {
-                    Parameters = new AzureOpenAIVectorizerParameters
-                    {
-                        ResourceUri = new Uri(aoaiEndpoint),
-                        DeploymentName = aoaiEmbeddingDeployment,
-                        ModelName = aoaiEmbeddingModel
-                    }
-                };
-    
-                // Define a vector search profile and algorithm
-                var vectorSearch = new VectorSearch()
-                {
-                    Profiles =
-                    {
-                        new VectorSearchProfile(
-                            name: "hnsw_text_3_large",
-                            algorithmConfigurationName: "alg"
-                        )
-                        {
-                            VectorizerName = "azure_openai_text_3_large"
-                        }
-                    },
-                    Algorithms =
-                    {
-                        new HnswAlgorithmConfiguration(name: "alg")
-                    },
-                    Vectorizers =
-                    {
-                        vectorizer
-                    }
-                };
-    
-                // Define a semantic configuration
-                var semanticConfig = new SemanticConfiguration(
-                    name: "semantic_config",
-                    prioritizedFields: new SemanticPrioritizedFields
-                    {
-                        ContentFields = { new SemanticField("page_chunk") }
-                    }
-                );
-    
-                var semanticSearch = new SemanticSearch()
-                {
-                    DefaultConfigurationName = "semantic_config",
-                    Configurations = { semanticConfig }
-                };
-    
-                // Create the index
-                var index = new SearchIndex(indexName)
-                {
-                    Fields = fields,
-                    VectorSearch = vectorSearch,
-                    SemanticSearch = semanticSearch
-                };
-    
-                // Create the index client, deleting and recreating the index if it exists
-                var indexClient = new SearchIndexClient(new Uri(searchEndpoint), credential);
-                await indexClient.CreateOrUpdateIndexAsync(index);
-                Console.WriteLine($"Index '{indexName}' created or updated successfully.");
-    
-                // Upload sample documents from the GitHub URL
-                string url = "https://raw.githubusercontent.com/Azure-Samples/azure-search-sample-data/refs/heads/main/nasa-e-book/earth-at-night-json/documents.json";
-                var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                var json = await response.Content.ReadAsStringAsync();
-                var documents = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(json);
-                var searchClient = new SearchClient(new Uri(searchEndpoint), indexName, credential);
-                var searchIndexingBufferedSender = new SearchIndexingBufferedSender<Dictionary<string, object>>(
-                    searchClient,
-                    new SearchIndexingBufferedSenderOptions<Dictionary<string, object>>
-                    {
-                        KeyFieldAccessor = doc => doc["id"].ToString(),
-                    }
-                );
-
-                await searchIndexingBufferedSender.UploadDocumentsAsync(documents);
-                await searchIndexingBufferedSender.FlushAsync();
-                Console.WriteLine($"Documents uploaded to index '{indexName}' successfully.");
-    
-                // Create a knowledge source
-                var indexKnowledgeSource = new SearchIndexKnowledgeSource(
-                    name: knowledgeSourceName,
-                    searchIndexParameters: new SearchIndexKnowledgeSourceParameters(searchIndexName: indexName)
-                    {
-                        SourceDataFields = { new SearchIndexFieldReference(name: "id"), new SearchIndexFieldReference(name: "page_chunk"), new SearchIndexFieldReference(name: "page_number") }
-                    }
-                );
-    
-                await indexClient.CreateOrUpdateKnowledgeSourceAsync(indexKnowledgeSource);
-                Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated successfully.");
-    
-                // Create a knowledge base
-                var openAiParameters = new AzureOpenAIVectorizerParameters
-                {
-                    ResourceUri = new Uri(aoaiEndpoint),
-                    DeploymentName = aoaiGptDeployment,
-                    ModelName = aoaiGptModel
-                };
-    
-                var model = new KnowledgeBaseAzureOpenAIModel(azureOpenAIParameters: openAiParameters);
-    
-                var knowledgeBase = new KnowledgeBase(
-                    name: knowledgeBaseName,
-                    knowledgeSources: new KnowledgeSourceReference[] { new KnowledgeSourceReference(knowledgeSourceName) }
-                )
-                {
-                    RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort(),
-                    AnswerInstructions = "Provide a two sentence concise and informative answer based on the retrieved documents.",
-                    Models = { model }
-                };
-    
-                await indexClient.CreateOrUpdateKnowledgeBaseAsync(knowledgeBase);
-                Console.WriteLine($"Knowledge base '{knowledgeBaseName}' created or updated successfully.");
-    
-                // Set up messages
-                string instructions = @"A Q&A agent that can answer questions about the Earth at night.
-                If you don't have the answer, respond with ""I don't know"".";
-
-                var messages = new List<Dictionary<string, string>>
-                {
-                    new Dictionary<string, string>
-                    {
-                        { "role", "system" },
-                        { "content", instructions }
-                    }
-                };
-    
-                // Run agentic retrieval
-                var baseClient = new KnowledgeBaseRetrievalClient(
-                    endpoint: new Uri(searchEndpoint),
-                    knowledgeBaseName: knowledgeBaseName,
-                    tokenCredential: new DefaultAzureCredential()
-                );
-
-                string query = @"Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?";
-
-                messages.Add(new Dictionary<string, string>
-                {
-                    { "role", "user" },
-                    { "content", query }
-                });
-
-                Console.WriteLine($"Running the query...{query}");
-                var retrievalRequest = new KnowledgeBaseRetrievalRequest();
-                foreach (Dictionary<string, string> message in messages) {
-                    if (message["role"] != "system") {
-                        retrievalRequest.Messages.Add(new KnowledgeBaseMessage(content: new[] { new KnowledgeBaseMessageTextContent(message["content"]) }) { Role = message["role"] });
-                    }
-                }
-                retrievalRequest.RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort();
-                var retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
-    
-                messages.Add(new Dictionary<string, string>
-                {
-                    { "role", "assistant" },
-                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
-                });
-    
-                // Print the response, activity, and references
-                Console.WriteLine("Response:");
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
-    
-                Console.WriteLine("Activity:");
-                foreach (var activity in retrievalResult.Value.Activity)
-                {
-                    Console.WriteLine($"Activity Type: {activity.GetType().Name}");
-                    string activityJson = JsonSerializer.Serialize(
-                        activity,
-                        activity.GetType(),
-                        new JsonSerializerOptions { WriteIndented = true }
-                    );
-                    Console.WriteLine(activityJson);
-                }
-    
-                Console.WriteLine("References:");
-                foreach (var reference in retrievalResult.Value.References)
-                {
-                    Console.WriteLine($"Reference Type: {reference.GetType().Name}");
-                    string referenceJson = JsonSerializer.Serialize(
-                        reference,
-                        reference.GetType(),
-                        new JsonSerializerOptions { WriteIndented = true }
-                    );
-                    Console.WriteLine(referenceJson);
-                }
-    
-                // Continue the conversation
-                string nextQuery = "How do I find lava at night?";
-                Console.WriteLine($"Continue the conversation with this query: {nextQuery}");
-                messages.Add(new Dictionary<string, string>
-                {
-                    { "role", "user" },
-                    { "content", nextQuery }
-                });
-    
-                retrievalRequest = new KnowledgeBaseRetrievalRequest();
-                foreach (Dictionary<string, string> message in messages) {
-                    if (message["role"] != "system") {
-                        retrievalRequest.Messages.Add(new KnowledgeBaseMessage(content: new[] { new KnowledgeBaseMessageTextContent(message["content"]) }) { Role = message["role"] });
-                    }
-                }
-                retrievalRequest.RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort();
-                retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
-    
-                messages.Add(new Dictionary<string, string>
-                {
-                    { "role", "assistant" },
-                    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
-                });
-    
-                // Print the new response, activity, and references
-                Console.WriteLine("Response:");
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
-    
-                Console.WriteLine("Activity:");
-                foreach (var activity in retrievalResult.Value.Activity)
-                {
-                    Console.WriteLine($"Activity Type: {activity.GetType().Name}");
-                    string activityJson = JsonSerializer.Serialize(
-                        activity,
-                        activity.GetType(),
-                        new JsonSerializerOptions { WriteIndented = true }
-                    );
-                    Console.WriteLine(activityJson);
-                }
-    
-                Console.WriteLine("References:");
-                foreach (var reference in retrievalResult.Value.References)
-                {
-                    Console.WriteLine($"Reference Type: {reference.GetType().Name}");
-                    string referenceJson = JsonSerializer.Serialize(
-                        reference,
-                        reference.GetType(),
-                        new JsonSerializerOptions { WriteIndented = true }
-                    );
-                    Console.WriteLine(referenceJson);
-                }
-    
-                // Clean up resources
-                await indexClient.DeleteKnowledgeBaseAsync(knowledgeBaseName);
-                Console.WriteLine($"Knowledge base '{knowledgeBaseName}' deleted successfully.");
-    
-                await indexClient.DeleteKnowledgeSourceAsync(knowledgeSourceName);
-                Console.WriteLine($"Knowledge source '{knowledgeSourceName}' deleted successfully.");
-    
-                await indexClient.DeleteIndexAsync(indexName);
-                Console.WriteLine($"Index '{indexName}' deleted successfully.");
-            }
-        }
-    }
-    ```
-
-1. Build and run the application.
-
-    ```console
-    dotnet run
-    ```
+```bash
+dotnet run --project AgenticRetrievalQuickstart.csproj
+```
 
 ### Output
 
@@ -404,91 +96,56 @@ Index 'earth-at-night' created or updated successfully.
 Documents uploaded to index 'earth-at-night' successfully.
 Knowledge source 'earth-knowledge-source' created or updated successfully.
 Knowledge base 'earth-knowledge-base' created or updated successfully.
+Running the query...Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown? Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
 Response:
-Suburban belts show larger December brightening because holiday displays concentrate in suburbs and outskirts where there is more yard space and many single‑family homes [ref_id:5], while urban cores—already having higher absolute light levels—tend to show smaller relative increases (central areas typically brighten ~20–30%) [ref_id:8][ref_id:5]. Phoenix’s nighttime street grid is sharply visible because the metropolitan area is laid out on a regular, continuously lit grid with bright commercial and industrial nodes along major corridors like Grand Avenue [ref_id:0][ref_id:3], whereas long interstate stretches between Midwestern cities cross sparsely populated or rural regions with far fewer continuous roadside lights and so appear comparatively dim [ref_id:8].
+Suburban belts brighten more (in relative terms) in December because holiday lighting is concentrated in yards and single-family suburbs where extra decorative lights add a large percentage increase over baseline residential lighting, whereas dense urban cores already have high absolute light levels so the same added holiday lights produce a smaller relative change [ref_id:6][ref_id:2]. The documents note suburbs and outskirts show the biggest holiday increases and central urban areas show smaller percent increases (20-30% in cores, larger in suburbs) linked to available yard space and prevalence of single-family homes [ref_id:6][ref_id:2]. Phoenix's street grid appears very sharp from space because the city's regular, closely spaced north-south/east-west street lighting and bright nodes at intersections and commercial strips produce a strong, high-contrast patterned signal (grid and major corridors like Grand Avenue), while long Midwestern interstates are comparatively dim because roadway lighting is more sparse and continuous between cities and navigable rivers/long highways lack the dense, closely spaced light sources that produce visible nodes and grid patterns at night [ref_id:3][ref_id:7]. In addition, the Black Marble processing accounts for atmospheric, lunar, snow/seasonal and stray-light effects and isolates artificial emissions, so concentrated urban lighting (as in Phoenix) stands out more in the corrected radiance product than dispersed or spaced sources like isolated stretches of interstate or sparsely lit rivers and plains [ref_id:1][ref_id:4][ref_id:7].
 Activity:
 Activity Type: KnowledgeBaseModelQueryPlanningActivityRecord
 {
-  "InputTokens": 1350,
-  "OutputTokens": 1314,
+  "InputTokens": 1489,
+  "OutputTokens": 326,
   "Id": 0,
-  "ElapsedMs": 14162,
+  "ElapsedMs": 4558,
   "Error": null
 }
 Activity Type: KnowledgeBaseSearchIndexActivityRecord
 {
   "SearchIndexArguments": {
-    "Search": "Causes of December brightening in satellite nightlights: why suburban belts show larger relative December brightening than urban cores (roles of holiday residential lighting, snow albedo, urban heat island, commercial lighting patterns)",
+    "Search": "December brightening suburban belts vs urban cores light pollution causes seasonal variation \"December brightening\" satellite night lights",
     "Filter": null,
-    "SourceDataFields": [],
+    "SourceDataFields": [
+      {
+        "Name": "page_chunk"
+      },
+      {
+        "Name": "id"
+      },
+      {
+        "Name": "page_number"
+      }
+    ],
     "SearchFields": [],
-    "SemanticConfigurationName": null
+    "SemanticConfigurationName": "semantic_config"
   },
   "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-11-05T21:56:26.747+00:00",
-  "Count": 19,
+  "QueryTime": "2026-02-24T14:59:41.536+00:00",
+  "Count": 21,
   "Id": 1,
-  "ElapsedMs": 537,
+  "ElapsedMs": 623,
   "Error": null
 }
-Activity Type: KnowledgeBaseSearchIndexActivityRecord
-{
-  "SearchIndexArguments": {
-    "Search": "Why is Phoenix\u0019s nighttime street grid so sharply visible from space? (effects of streetlight density, luminaire type/aiming, spacing, urban grid layout, traffic vs roadway lighting)",
-    "Filter": null,
-    "SourceDataFields": [],
-    "SearchFields": [],
-    "SemanticConfigurationName": null
-  },
-  "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-11-05T21:56:27.182+00:00",
-  "Count": 7,
-  "Id": 2,
-  "ElapsedMs": 434,
-  "Error": null
-}
-Activity Type: KnowledgeBaseSearchIndexActivityRecord
-{
-  "SearchIndexArguments": {
-    "Search": "How do satellite nightlight sensor characteristics (VIIRS DNB, DMSP-OLS) \u2014 spatial resolution, dynamic range, saturation, blooming \u2014 affect observed brightness and structure of urban cores, suburbs, and long interstate stretches?",
-    "Filter": null,
-    "SourceDataFields": [],
-    "SearchFields": [],
-    "SemanticConfigurationName": null
-  },
-  "KnowledgeSourceName": "earth-knowledge-source",
-  "QueryTime": "2025-11-05T21:56:27.786+00:00",
-  "Count": 23,
-  "Id": 3,
-  "ElapsedMs": 604,
-  "Error": null
-}
-Activity Type: KnowledgeBaseAgenticReasoningActivityRecord
-{
-  "ReasoningTokens": 70232,
-  "RetrievalReasoningEffort": {},
-  "Id": 4,
-  "ElapsedMs": null,
-  "Error": null
-}
-Activity Type: KnowledgeBaseModelAnswerSynthesisActivityRecord
-{
-  "InputTokens": 7467,
-  "OutputTokens": 1710,
-  "Id": 5,
-  "ElapsedMs": 26663,
-  "Error": null
-}
-Results:
+... // Trimmed for brevity
+References:
 Reference Type: KnowledgeBaseSearchIndexReference
 {
-  "DocKey": "earth_at_night_508_page_104_verbalized",
+  "DocKey": "earth_at_night_508_page_105_verbalized",
   "Id": "0",
   "ActivitySource": 2,
   "SourceData": {},
-  "RerankerScore": 2.6344998
+  "RerankerScore": 2.7294974
 }
 ... // Trimmed for brevity
+Continue the conversation with this query: How do I find lava at night?
 Response:
 ... // Trimmed for brevity
 Activity:
@@ -501,6 +158,8 @@ Index 'earth-at-night' deleted successfully.
 ```
 
 ## Understand the code
+
+[!INCLUDE [understand code note](../understand-code-note.md)]
 
 Now that you've run the code, let's break down the key steps:
 
@@ -734,7 +393,7 @@ var retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
 messages.Add(new Dictionary<string, string>
 {
     { "role", "assistant" },
-    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
+    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
 });
 ```
 
@@ -753,7 +412,7 @@ The following code displays the response, activity, and references from the retr
 ```csharp
 // Print the response, activity, and references
 Console.WriteLine("Response:");
-Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
+Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
 
 Console.WriteLine("Activity:");
 foreach (var activity in retrievalResult.Value.Activity)
@@ -804,7 +463,7 @@ retrievalResult = await baseClient.RetrieveAsync(retrievalRequest);
 messages.Add(new Dictionary<string, string>
 {
     { "role", "assistant" },
-    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text }
+    { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text }
 });
 ```
 
@@ -815,7 +474,7 @@ The following code displays the new response, activity, and references from the 
 ```csharp
 // Print the new response, activity, and references
 Console.WriteLine("Response:");
-Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent).Text);
+Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text);
 
 Console.WriteLine("Activity:");
 foreach (var activity in retrievalResult.Value.Activity)
@@ -846,7 +505,7 @@ foreach (var reference in retrievalResult.Value.References)
 
 [!INCLUDE [clean up resources (paid)](../resource-cleanup-paid.md)]
 
-Otherwise, the following code from `Program.cs` deleted the objects you created in this quickstart.
+Otherwise, the following code from `program.cs` deleted the objects you created in this quickstart.
 
 ### Delete the knowledge base
 

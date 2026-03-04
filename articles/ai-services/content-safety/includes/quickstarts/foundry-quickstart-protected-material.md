@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Use protected material detection"
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
 ms.date: 04/10/2025
-ms.author: pafarley
+ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 
@@ -28,7 +28,7 @@ Follow these steps to use the Content Safety **try it out** page:
 > [!NOTE]
 > Labels and navigation might vary across portal updates. If you don't see **Guardrails + controls**, look for the Content Safety **Try it out** experience in your project.
 
-:::image type="content" source="/azure/ai-foundry/media/content-safety/try-it-out.png" alt-text="Screenshot of the try it out page for Guardrails & controls.":::
+:::image type="content" source="/azure/foundry/media/content-safety/try-it-out.png" alt-text="Screenshot of the try it out page for Guardrails & controls.":::
 
 
 ## Use Protected material detection

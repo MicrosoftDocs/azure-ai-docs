@@ -1,0 +1,13 @@
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+  - name: Microsoft Foundry
+    tocHref: /azure/foundry/
+    topicHref: /azure/foundry/index
+  - name: Microsoft Foundry
+    tocHref: /azure/ai-services/
+    topicHref: /azure/foundry/index
+  - name: Microsoft Foundry
+    tocHref: /azure/foundry-models/
+    topicHref: /azure/foundry/index
