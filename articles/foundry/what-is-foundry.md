@@ -23,7 +23,7 @@ keywords:
 
 # What is Microsoft Foundry?
 
-**Currently viewing:** :::image type="icon" source="media/yes-icon.svg" border="false"::: **Foundry** - [Switch to Foundry (classic)](../foundry-classic/what-is-foundry.md)
+**Currently viewing:** :::image type="icon" source="media/yes-icon.svg" border="false"::: **Foundry** - [Switch to Foundry (classic) portal documentation](../foundry-classic/what-is-foundry.md)
 
 **Microsoft Foundry** is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
 
