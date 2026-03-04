@@ -42,7 +42,7 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 Install the Foundry SDK and set up authentication:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0b1" azure-identity
+pip install "azure-ai-projects>=2.0.0" azure-identity
 ```
 
 Create the project client. The following code samples assume you run them in this context:

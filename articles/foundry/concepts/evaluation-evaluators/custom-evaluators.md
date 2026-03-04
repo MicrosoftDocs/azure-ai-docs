@@ -144,7 +144,7 @@ Both `deployment_name` and `threshold` are required as initialization parameters
 Install the SDK and set up your client:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0b1" azure-identity openai
+pip install "azure-ai-projects>=2.0.0" azure-identity openai
 ```
 
 ```python
@@ -183,7 +183,7 @@ client = project_client.get_openai_client()
 Pass the `grade()` function as a string in the `code_text` field. Define the `data_schema` to declare the input fields your function expects, and the `metrics` to describe the score your function returns. Code-based evaluators use the `continuous` metric type with a range of 0.0 to 1.0.
 
 ```python
-code_evaluator = project_client.evaluators.create_version(
+code_evaluator = project_client.beta.evaluators.create_version(
     name="response_length_scorer",
     evaluator_version={
         "name": "response_length_scorer",
@@ -245,7 +245,7 @@ For a complete example, see the [code-based evaluator Python SDK sample](https:/
 Pass the judge prompt in the `prompt_text` field. Define the `data_schema` to declare the input fields your prompt expects, and the `metrics` to describe the scoring method and range. The `init_parameters` declare the model deployment and threshold the evaluator needs at runtime.
 
 ```python
-prompt_evaluator = project_client.evaluators.create_version(
+prompt_evaluator = project_client.beta.evaluators.create_version(
     name="friendliness_evaluator",
     evaluator_version={
         "name": "friendliness_evaluator",
