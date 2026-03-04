@@ -6,7 +6,7 @@ ms.custom:
   - ignite-2023
   - dev-focus
 ms.topic: include
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 ai-usage: ai-assisted
 ---
 
@@ -82,15 +82,93 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 ## Run the code
 
+1. Run the `Install packages and set variables` cells to install the required packages and load environment variables.
+
+1. Run the remaining cells sequentially to add a semantic configuration and query the index.
+
 ### Output
 
-Output from the first cell is the name of the index, list of fields, and a statement indicating whether a semantic configuration exists. For the purposes of this quickstart, the message should say "No semantic configuration exists for this index".
+The output of the `Get the index definition` cell is the name of the index, its fields, and any existing semantic configurations.
 
-Output from the semantic configuration cell shows the configuration you just added.
+```output
+Index name: hotels-sample
+Number of fields: 23
+Field: HotelId, Type: Edm.String, Searchable: True
+Field: HotelName, Type: Edm.String, Searchable: True
+Field: Description, Type: Edm.String, Searchable: True
+Field: Description_fr, Type: Edm.String, Searchable: True
+Field: Category, Type: Edm.String, Searchable: True
+Field: Tags, Type: Collection(Edm.String), Searchable: True
+// Trimmed for brevity
+Semantic config: hotels-sample-semantic-configuration
+Title field: HotelName
+```
 
-Output from the semantic query cell consists of 13 documents, ordered by the `"@search.reranker_score"`.
+The output of the `Add a semantic configuration to the index` cell lists all semantic configurations on the index, including the one the code added, followed by a success message.
 
-Output from the captions cell includes a new caption element alongside search fields. Captions are the most relevant passages in a result. If your index includes larger text, a caption is helpful for extracting the most interesting sentences.
+```output
+Semantic configurations:
+----------------------------------------
+  Configuration: hotels-sample-semantic-configuration
+    Title field: HotelName
+    Keywords fields: Category
+    Content fields: Description
+
+  Configuration: semantic-config
+    Title field: HotelName
+    Keywords fields: Tags
+    Content fields: Description
+
+✅ Semantic configuration successfully added!
+```
+
+The output of the `Run a term query` cell returns all matching documents ordered by BM25 score. This baseline query doesn't use semantic ranking.
+
+```output
+5.360838
+4
+Sublime Palace Hotel
+Description: Sublime Cliff Hotel is located in the heart of the
+historic center of Sublime in an extremely vibrant and lively area
+within short walking distance to the sites and landmarks of the city
+and is surrounded by the extraordinary beauty of churches, buildings,
+shops and monuments. Sublime Cliff is part of a lovingly restored
+19th century resort, updated for every modern convenience.
+4.691083
+2
+Old Century Hotel
+Description: The hotel is situated in a nineteenth century plaza,
+which has been expanded and renovated to the highest architectural
+standards to create a modern, functional and first-class hotel in
+which art and unique historical elements coexist with the most
+modern comforts. The hotel also regularly hosts events like wine
+tastings, beer dinners, and live music.
+// Trimmed for brevity
+```
+
+The output of the `Run a semantic query` cell returns all matching documents ordered by the semantic re-ranker score.
+
+```output
+2.613231658935547
+24
+Uptown Chic Hotel
+Description: Chic hotel near the city. High-rise hotel in downtown,
+within walking distance to theaters, art galleries, restaurants and
+shops. Visit Seattle Art Museum by day, and then head over to
+Benaroya Hall to catch the evening's concert performance.
+2.271434783935547
+2
+Old Century Hotel
+Description: The hotel is situated in a nineteenth century plaza,
+which has been expanded and renovated to the highest architectural
+standards to create a modern, functional and first-class hotel in
+which art and unique historical elements coexist with the most
+modern comforts. The hotel also regularly hosts events like wine
+tastings, beer dinners, and live music.
+// Trimmed for brevity
+```
+
+The output of the `Return captions` cell adds a caption element with hit highlighting alongside search fields. Captions are the most relevant passages in a result. If your index includes larger text, captions help extract the most interesting sentences.
 
 ```output
 2.613231658935547
@@ -105,9 +183,10 @@ within walking distance to<em> theaters, </em>art galleries,
 restaurants and shops. Visit<em> Seattle Art Museum </em>by day, and
 then head over to<em> Benaroya Hall </em>to catch the evening's
 concert performance.
+// Trimmed for brevity
 ```
 
-Output from the answers cell includes a semantic answer (verbatim content) pulled from one of the results that best matches the question.
+The output of the `Return semantic answers` cell includes a semantic answer pulled from one of the results that best matches the question, followed by search results with captions.
 
 ```output
 Semantic Answer: Nature is Home on the beach. Explore the shore by
@@ -130,7 +209,7 @@ Now that you've run the code, let's break down the key steps:
 
 ### Configuration and authentication
 
-The first cell loads environment variables and creates a `DefaultAzureCredential` for authentication.
+The `Install packages and set variables` cell loads environment variables and creates a `DefaultAzureCredential` for authentication.
 
 ```python
 from dotenv import load_dotenv
@@ -150,12 +229,11 @@ index_name = os.getenv(
 Key takeaways:
 
 + `DefaultAzureCredential` provides keyless authentication using Microsoft Entra ID. It chains multiple credential types, including the Azure CLI credential from `az login`.
-
 + Environment variables are loaded from the `.env` file using `python-dotenv`.
 
 ### Update the index with a semantic configuration
 
-This code adds a semantic configuration to the existing `hotels-sample` index. No search documents are deleted by this operation and your index is still operational after the configuration is added.
+The `Add a semantic configuration to the index` cell adds a semantic configuration to the existing `hotels-sample` index. This operation doesn't delete any search documents, and your index remains operational after the configuration is added.
 
 ```python
 from azure.search.documents.indexes.models import (
@@ -193,14 +271,42 @@ result = index_client.create_or_update_index(existing_index)
 Key takeaways:
 
 + A semantic configuration specifies the fields used for semantic ranking. `title_field` sets the document title, `content_fields` sets the main content, and `keywords_fields` sets the keyword or tag fields.
-
 + You create the configuration with `SemanticConfiguration` and its associated `SemanticPrioritizedFields` model, and then append it to the existing index.
-
 + `create_or_update_index` pushes the updated schema to the search service without rebuilding the index or deleting documents.
 
 ### Query the index
 
-Once the index has a semantic configuration, you can run queries that include semantic parameters. This code shows the minimum requirement for invoking semantic ranking.
+The query cells run four queries in sequence: a baseline keyword search followed by three semantic ranking variations with increasing functionality.
+
+#### Term query (baseline)
+
+The `Run a term query` cell runs a keyword search using BM25 scoring. This baseline query doesn't use semantic ranking and serves as a comparison point.
+
+```python
+from azure.search.documents import SearchClient
+
+search_client = SearchClient(
+    endpoint=search_endpoint,
+    index_name=index_name,
+    credential=credential
+)
+
+results = search_client.search(
+    query_type='simple',
+    search_text="walking distance to live music",
+    select='HotelId,HotelName,Description',
+    include_total_count=True
+)
+```
+
+Key takeaways:
+
++ `query_type='simple'` specifies a keyword search using BM25 scoring.
++ The `@search.score` in results indicates the BM25 relevance score.
+
+#### Semantic query (no captions, no answers)
+
+The `Run a semantic query` cell shows the minimum requirement for invoking semantic ranking.
 
 ```python
 from azure.search.documents import SearchClient
@@ -223,14 +329,12 @@ results = search_client.search(
 Key takeaways:
 
 + `query_type='semantic'` enables semantic ranking on the query.
-
 + `semantic_configuration_name` specifies which semantic configuration to use.
-
 + The `@search.reranker_score` in results indicates semantic relevance (higher is better).
 
-#### Extractive captions
+#### Semantic query with captions
 
-This code adds captions to extract portions of the text and apply hit highlighting to the important terms and phrases.
+The `Return captions` cell adds captions to extract the most relevant passages from each result, with hit highlighting applied to the important terms and phrases.
 
 ```python
 results = search_client.search(
@@ -252,14 +356,13 @@ for result in results:
 Key takeaways:
 
 + `query_caption='extractive'` enables extractive captions from the content fields.
-
 + Captions surface the most relevant passages and add `<em>` tags around important terms.
 
-#### Semantic answers
+#### Semantic query with answers
 
-This code returns semantic answers for question-like queries. Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it doesn't include composed content like what you might expect from a chat completion model. If the semantic answer isn't useful for your scenario, you can omit `query_answer` from your code.
+The `Return semantic answers` cell adds semantic answers. This query uses a question as the search text because semantic answers work best when the query is phrased as a question. The answer is a verbatim passage extracted from your index, not a composed response from a chat completion model.
 
-To produce a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. For demonstration purposes, the question in this example is designed to get a response so that you can see the syntax.
+The query and the indexed content must be closely aligned for an answer to be returned. If no candidate meets the confidence threshold, the response doesn't include an answer. This example uses a question that's known to produce a result so that you can see the syntax. If answers aren't useful for your scenario, omit `query_answer` from your code. For composed answers, consider a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
 
 ```python
 results = search_client.search(
@@ -284,9 +387,5 @@ for answer in semantic_answers:
 Key takeaways:
 
 + `query_answer="extractive"` enables extractive answers for question-like queries.
-
 + Answers are verbatim content extracted from your index, not generated text.
-
 + `results.get_answers()` retrieves the answer objects separately from the search results.
-
-+ For composed answers, consider [RAG patterns](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).

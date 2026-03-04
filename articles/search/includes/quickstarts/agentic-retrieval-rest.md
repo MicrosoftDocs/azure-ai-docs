@@ -69,7 +69,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
    ```
 
-1. Replace the placeholder value for `@token` with the access token from the previous step.
+1. Replace the placeholder value for `@token` with the token from the previous step.
 
 ## Run the code
 

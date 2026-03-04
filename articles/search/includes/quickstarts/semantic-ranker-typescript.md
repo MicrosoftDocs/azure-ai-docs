@@ -6,7 +6,7 @@ ms.custom:
   - ignite-2023
   - dev-focus
 ms.topic: include
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 ai-usage: ai-assisted
 ---
 
@@ -98,15 +98,11 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
     node -r dotenv/config dist/getIndexSettings.js
     ```
 
-   Output is the name of the index, list of fields, and a statement indicating whether a semantic configuration exists. For the purposes of this quickstart, the message should say "No semantic configuration exists for this index".
-
 1. Update the index with a semantic configuration.
 
     ```bash
     node -r dotenv/config dist/updateIndexSettings.js
     ```
-
-   Output is the semantic configuration you just added.
 
 1. Run a semantic query.
 
@@ -114,15 +110,11 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
     node -r dotenv/config dist/semanticQuery.js
     ```
 
-   Output consists of 13 documents, ordered by the reranker score.
-
 1. Run a semantic query with captions.
 
     ```bash
     node -r dotenv/config dist/semanticQueryReturnCaptions.js
     ```
-
-   Output includes a new caption element alongside search fields.
 
 1. Run a semantic query with answers.
 
@@ -130,36 +122,107 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
     node -r dotenv/config dist/semanticAnswer.js
     ```
 
+> [!NOTE]
+> These commands run `.js` files from the `dist` folder because you previously transpiled from TypeScript to JavaScript with `npm run build`.
+
 ### Output
 
-Output from the captions query includes extractive captions with hit highlighting. Captions are the most relevant passages in a result. If your index includes larger text, a caption is helpful for extracting the most interesting sentences.
+The `getIndexSettings.js` script returns the index name, field count, field details with type and searchable status, and any existing semantic configurations.
+
+```output
+Index name: hotels-sample
+Number of fields: 23
+Field: HotelId, Type: Edm.String, Searchable: true
+Field: HotelName, Type: Edm.String, Searchable: true
+Field: Description, Type: Edm.String, Searchable: true
+// Trimmed for brevity
+Semantic ranking configurations: 1
+Configuration name: hotels-sample-semantic-configuration
+Title field: undefined
+```
+
+The `updateIndexSettings.js` script returns all semantic configurations, including the one you added.
+
+```output
+Semantic configurations:
+----------------------------------------
+Configuration name: hotels-sample-semantic-configuration
+Title field: undefined
+Keywords fields:
+Content fields: AzureSearch_DocumentKey
+----------------------------------------
+Configuration name: semantic-config
+Title field: HotelName
+Keywords fields: Tags
+Content fields: Description
+----------------------------------------
+Semantic configuration updated successfully.
+```
+
+The `semanticQuery.js` script returns results ordered by the reranker score.
+
+```output
+Search result #1:
+  Re-ranker Score: 2.613231658935547
+  HotelId: 24
+  HotelName: Uptown Chic Hotel
+  Description: Chic hotel near the city. High-rise hotel in downtown,
+  within walking distance to theaters, art galleries, restaurants and
+  shops. Visit Seattle Art Museum by day, and then head over to
+  Benaroya Hall to catch the evening's concert performance.
+
+Search result #2:
+  Re-ranker Score: 2.271434783935547
+  HotelId: 2
+  HotelName: Old Century Hotel
+  Description: The hotel is situated in a nineteenth century plaza...
+  // Trimmed for brevity
+```
+
+The `semanticQueryReturnCaptions.js` script returns extractive captions with hit highlighting. Captions are the most relevant passages in a result.
 
 ```output
 Search result #1:
   Re-ranker Score: 2.613231658935547
   HotelName: Uptown Chic Hotel
-  Description: Chic hotel near the city. High-rise hotel in
-  downtown, within walking distance to theaters, art galleries,
-  restaurants and shops. Visit Seattle Art Museum by day, and then
-  head over to Benaroya Hall to catch the evening's concert
-  performance.
+  Description: Chic hotel near the city. High-rise hotel in downtown,
+  within walking distance to theaters, art galleries, restaurants and
+  shops. Visit Seattle Art Museum by day, and then head over to
+  Benaroya Hall to catch the evening's concert performance.
 
-  Caption with highlights: Chic hotel near the city. High-rise
-  hotel in downtown, within walking distance to<em> theaters,
-  </em>art galleries, restaurants and shops. Visit<em> Seattle Art
-  Museum </em>by day, and then head over to<em> Benaroya Hall
-  </em>to catch the evening's concert performance.
+  Caption with highlights: Chic hotel near the city. High-rise hotel
+  in downtown, within walking distance to<em> theaters, </em>art
+  galleries, restaurants and shops. Visit<em> Seattle Art Museum
+  </em>by day, and then head over to<em> Benaroya Hall </em>to catch
+  the evening's concert performance.
+------------------------------------------------------------
+Search result #2:
+  Re-ranker Score: 2.271434783935547
+  HotelName: Old Century Hotel
+  // Trimmed for brevity
 ```
 
-Output from the answers query includes a semantic answer (verbatim content) pulled from one of the results that best matches the question.
+The `semanticAnswer.js` script returns a semantic answer (verbatim content) pulled from the result that best matches the question.
 
 ```output
+Semantic answer result #1:
 Semantic Answer: Nature is Home on the beach. Explore the shore by
 day, and then come home to our shared living space to relax around
 a stone fireplace, sip something warm, and explore the<em> library
 </em>by night. Save up to 30 percent. Valid Now through the end of
 the year. Restrictions and blackouts may apply.
 Semantic Answer Score: 0.9829999804496765
+
+Search Results:
+
+Search result #1:
+2.124817371368408
+Stay-Kay City Hotel
+This classic hotel is fully-refurbished and ideally located on the
+main commercial artery of the city in the heart of New York...
+Caption: This classic hotel is<em> fully-refurbished </em>and
+ideally located on the main commercial artery of the city...
+// Trimmed for brevity
 ```
 
 ## Understand the code
@@ -204,14 +267,12 @@ export interface HotelDocument {
 Key takeaways:
 
 + `DefaultAzureCredential` provides keyless authentication using Microsoft Entra ID. It chains multiple credential types, including the Azure CLI credential from `az login`.
-
 + The `HotelDocument` interface provides compile-time type checking for search results, ensuring type-safe access to document fields.
-
 + Environment variables are loaded from the `.env` file using `dotenv`.
 
 ### Update the index with a semantic configuration
 
-The `updateIndexSettings.ts` file adds a semantic configuration to the existing `hotels-sample` index. No search documents are deleted by this operation and your index is still operational after the configuration is added. TypeScript type annotations ensure the configuration matches the expected schema.
+The `updateIndexSettings.ts` file adds a semantic configuration to the existing `hotels-sample` index. This operation doesn't delete any search documents, and your index remains operational after the configuration is added. TypeScript type annotations ensure the configuration matches the expected schema.
 
 ```typescript
 import {
@@ -263,14 +324,16 @@ await indexClient.createOrUpdateIndex(existingIndex);
 Key takeaways:
 
 + TypeScript types like `SemanticPrioritizedFields`, `SemanticConfiguration`, and `SemanticField` provide compile-time validation for the configuration structure.
-
 + `titleField` sets the document title, `contentFields` sets the main content, and `keywordsFields` sets the keyword or tag fields.
-
 + `createOrUpdateIndex` pushes the updated schema to the search service without rebuilding the index or deleting documents.
 
 ### Query the index
 
-Once the index has a semantic configuration, you can run queries that include semantic parameters. This code shows the minimum requirement for invoking semantic ranking with type-safe results.
+The query scripts run three queries in sequence, progressing from a basic semantic search to semantic ranking with captions and answers.
+
+#### Semantic query (no captions, no answers)
+
+The `semanticQuery.ts` script shows the minimum requirement for invoking semantic ranking with type-safe results.
 
 ```typescript
 import { SearchClient }
@@ -304,14 +367,12 @@ const results = await searchClient.search(
 Key takeaways:
 
 + `SearchClient<HotelDocument>` provides type-safe access to document fields in results, with autocomplete for field names in `select` and `result.document`.
-
 + `queryType: "semantic"` enables semantic ranking on the query.
-
 + `semanticSearchOptions.configurationName` specifies which semantic configuration to use.
 
-#### Extractive captions
+#### Semantic query with captions
 
-This code adds captions to extract portions of the text and apply hit highlighting to the important terms and phrases.
+The `semanticQueryReturnCaptions.ts` script adds captions to extract the most relevant passages from each result, with hit highlighting applied to the important terms and phrases.
 
 ```typescript
 const results = await searchClient.search(
@@ -348,14 +409,13 @@ for await (const result of results.results) {
 Key takeaways:
 
 + `captions.captionType: "extractive"` enables extractive captions from the content fields.
-
 + Captions surface the most relevant passages and add `<em>` tags around important terms.
 
-#### Semantic answers
+#### Semantic query with answers
 
-This code returns semantic answers for question-like queries. Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it doesn't include composed content like what you might expect from a chat completion model. If the semantic answer isn't useful for your scenario, you can omit `answers` from your code.
+The `semanticAnswer.ts` script adds semantic answers. It uses a question as the search text because semantic answers work best when the query is phrased as a question. The answer is a verbatim passage extracted from your index, not a composed response from a chat completion model.
 
-To produce a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. For demonstration purposes, the question in this example is designed to get a response so that you can see the syntax.
+The query and the indexed content must be closely aligned for an answer to be returned. If no candidate meets the confidence threshold, the response doesn't include an answer. This example uses a question that's known to produce a result so that you can see the syntax. If answers aren't useful for your scenario, omit `answers` from your code. For composed answers, consider a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
 
 ```typescript
 const results = await searchClient.search(
@@ -399,9 +459,5 @@ for (const answer of semanticAnswers || []) {
 Key takeaways:
 
 + `answers.answerType: "extractive"` enables extractive answers for question-like queries.
-
 + Answers are verbatim content extracted from your index, not generated text.
-
 + `results.answers` retrieves the answer objects separately from the search results.
-
-+ For composed answers, consider [RAG patterns](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).

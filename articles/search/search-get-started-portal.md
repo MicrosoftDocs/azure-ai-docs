@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 ms.custom:
   - mode-ui
   - ignite-2023
@@ -151,13 +151,7 @@ To configure the index for the query examples in this quickstart:
 
 ### Skip advanced settings
 
-The wizard offers advanced settings for semantic ranking and index scheduling, which are beyond the scope of this quickstart.
-
-To skip advanced settings:
-
-1. Deselect the **Enable semantic ranker** checkbox.
-
-1. Select **Next**.
+The wizard offers advanced settings for semantic ranking and index scheduling, which are beyond the scope of this quickstart. Skip this step by selecting **Next**.
 
 ## Finish the wizard
 

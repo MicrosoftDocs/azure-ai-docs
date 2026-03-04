@@ -4,7 +4,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom: devx-track-java
 ms.topic: include
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 ai-usage: ai-assisted
 ---
 
@@ -108,7 +108,7 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 ### Output
 
-Output from `GetIndexSettings` is the name of the index, its fields, and the semantic configurations. Before adding a new configuration, the index has only the default one.
+The output of `GetIndexSettings.java` is the name of the index, its fields, and its semantic configurations. Before you add a new configuration, the index has only the default one.
 
 ```output
 Index name: hotels-sample
@@ -121,7 +121,7 @@ Semantic search configurations: 1
 Configuration name: hotels-sample-semantic-configuration
 ```
 
-Output from `UpdateIndexSettings` lists all semantic configurations on the index, including the one the code added, followed by a success message.
+The output of `UpdateIndexSettings.java` lists all semantic configurations on the index, including the one the code added, followed by a success message.
 
 ```output
 // Trimmed for brevity
@@ -133,7 +133,7 @@ Content fields: Description
 Semantic configuration updated successfully.
 ```
 
-Output from `SemanticQuery` returns all matching documents, ordered by the reranker score. The first few results are shown here.
+The output of `SemanticQuery.java` returns all matching documents ordered by the semantic ranking re-ranker score.
 
 ```output
 Search result #1:
@@ -156,7 +156,7 @@ Search result #3:
 // Trimmed for brevity
 ```
 
-Output from `SemanticQueryWithCaptions` adds a caption element with hit highlighting alongside search fields. Captions are the most relevant passages in a result. If your index includes larger text, captions help extract the most interesting sentences.
+The output of `SemanticQueryWithCaptions.java` adds a caption element with hit highlighting alongside search fields. Captions are the most relevant passages in a result. If your index includes larger text, captions help extract the most interesting sentences.
 
 ```output
 Search result #1:
@@ -176,7 +176,7 @@ Search result #2:
 // Trimmed for brevity
 ```
 
-Output from `SemanticAnswer` includes a semantic answer pulled from one of the results that best matches the question, followed by search results with captions.
+The output of `SemanticAnswer.java` includes a semantic answer pulled from one of the results that best matches the question, followed by search results with captions.
 
 ```output
 Semantic answer result #1:
@@ -257,14 +257,12 @@ public class SearchConfig {
 Key takeaways:
 
 + `DefaultAzureCredential` provides keyless authentication using Microsoft Entra ID. It chains multiple credential types, including the Azure CLI credential from `az login`.
-
 + Properties are loaded from the `application.properties` file in the classpath.
-
 + Static fields (`SEARCH_ENDPOINT`, `INDEX_NAME`, `SEMANTIC_CONFIG_NAME`, `CREDENTIAL`) are shared across all classes in the project.
 
 ### Update the index with a semantic configuration
 
-The `UpdateIndexSettings.java` class adds a semantic configuration to the existing `hotels-sample` index. No search documents are deleted by this operation and your index is still operational after the configuration is added.
+The `UpdateIndexSettings.java` class adds a semantic configuration to the existing `hotels-sample` index. This operation doesn't delete any search documents, and your index remains operational after the configuration is added.
 
 ```java
 import com.azure.search.documents.indexes
@@ -328,14 +326,16 @@ indexClient.createOrUpdateIndex(existingIndex);
 Key takeaways:
 
 + `SemanticPrioritizedFields` defines which fields the semantic ranker evaluates. `setTitleField` sets the document title, `setContentFields` sets the main content, and `setKeywordsFields` sets the keyword or tag fields.
-
-+ `SemanticConfiguration` pairs a name with the prioritized fields, identifying which semantic config to use at query time.
-
++ `SemanticConfiguration` pairs a name with the prioritized fields, identifying which semantic configuration to use at query time.
 + `createOrUpdateIndex` pushes the updated schema to the search service without rebuilding the index or deleting documents.
 
 ### Query the index
 
-Once the index has a semantic configuration, you can run queries that include semantic parameters. This code shows the minimum requirement for invoking semantic ranking.
+The following three classes query the index in sequence, progressing from a basic semantic search to semantic ranking with captions and answers.
+
+#### Semantic query (no captions, no answers)
+
+The first query adds semantic ranking with no captions or answers. The `SemanticQuery.java` class shows the minimum requirement for invoking semantic ranking.
 
 ```java
 import com.azure.search.documents
@@ -385,14 +385,12 @@ for (SearchResult result : results) {
 Key takeaways:
 
 + `QueryType.SEMANTIC` enables semantic ranking on the query.
-
 + `setSemanticConfigurationName` specifies which semantic configuration to use.
-
 + `SearchPagedIterable` provides an iterable over the reranked results. Each `SearchResult` contains a `getSemanticSearch()` accessor for the reranker score.
 
-#### Extractive captions
+#### Semantic query with captions
 
-This code adds captions to extract portions of the text and apply hit highlighting to the important terms and phrases.
+The `SemanticQueryWithCaptions.java` class adds captions to extract the most relevant passages from each result, with hit highlighting applied to the important terms and phrases.
 
 ```java
 import com.azure.search.documents.models
@@ -437,16 +435,14 @@ for (SearchResult result : results) {
 Key takeaways:
 
 + `QueryCaption(QueryCaptionType.EXTRACTIVE)` enables extractive captions from the content fields.
-
 + `setHighlightEnabled(true)` adds `<em>` tags around important terms in captions.
-
 + Each `SearchResult` provides `getQueryCaptions()` on the semantic search accessor.
 
-#### Semantic answers
+#### Semantic query with answers
 
-This code returns semantic answers for question-like queries. Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it doesn't include composed content like what you might expect from a chat completion model. If the semantic answer isn't useful for your scenario, you can omit `setQueryAnswer` from your code.
+The `SemanticAnswer.java` class adds semantic answers. This class uses a question as the search text because semantic answers work best when the query is phrased as a question. The answer is a verbatim passage extracted from your index, not a composed response from a chat completion model.
 
-To produce a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. For demonstration purposes, the question in this example is designed to get a response so that you can see the syntax.
+The query and the indexed content must be closely aligned for an answer to be returned. If no candidate meets the confidence threshold, the response doesn't include an answer. This example uses a question that's known to produce a result so that you can see the syntax. If answers aren't useful for your scenario, omit `setQueryAnswer` from your code. For composed answers, consider a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
 
 ```java
 import com.azure.search.documents.models
@@ -499,9 +495,5 @@ for (QueryAnswerResult answer :
 Key takeaways:
 
 + `QueryAnswer(QueryAnswerType.EXTRACTIVE)` enables extractive answers for question-like queries.
-
 + Answers are verbatim content extracted from your index, not generated text.
-
 + `results.getSemanticResults().getQueryAnswers()` retrieves the answer objects separately from the search results.
-
-+ For composed answers, consider [RAG patterns](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).

@@ -6,7 +6,7 @@ ms.custom:
   - ignite-2023
   - dev-focus
 ms.topic: include
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 ai-usage: ai-assisted
 ---
 
@@ -331,9 +331,9 @@ Key takeaways:
 
 #### Semantic query with answers
 
-The final query adds semantic answers. This query uses a different search string (`searchText2`) — a question rather than a keyword phrase — because semantic answers work best when the input resembles a question. The answer is extracted verbatim from your content, not composed like what you might expect from a chat completion model.
+The final query adds semantic answers. This query uses a different search string (`searchText2`) because semantic answers work best when the query is phrased as a question. The answer is a verbatim passage extracted from your index, not a composed response from a chat completion model.
 
-The question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. The question in this example is designed to get a response so that you can see the syntax. If answers aren't useful for your scenario, omit `QueryAnswer` from your code. For composed answers, consider [RAG patterns](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
+The query and the indexed content must be closely aligned for an answer to be returned. If no candidate meets the confidence threshold, the response doesn't include an answer. This example uses a question that's known to produce a result so that you can see the syntax. If answers aren't useful for your scenario, omit `QueryAnswer` from your code. For composed answers, consider a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
 
 ```csharp
 var answersOptions = new SearchOptions
