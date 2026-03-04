@@ -38,18 +38,18 @@ The following table shows SDK and setup support. ✔️ (GA) indicates general a
 ## Prerequisites
 
 - An Azure subscription with an active Foundry project.
-- A model deployment (for example, gpt-4) in your Foundry project.
+- A model deployment (for example, `gpt-5-mini`) in your Foundry project.
 - Required Azure role: On the Foundry resource, **Contributor** or **Owner** for management and **Azure AI User** for building an agent.
 - SDK installation:
   - Python (GA): `pip install "azure-ai-projects>=2.0.0"`
   - C# (Preview): `Azure.AI.Projects` prerelease NuGet package
   - TypeScript (GA): `@azure/ai-projects` npm package
   - Java (Preview): `com.azure:azure-ai-agents:2.0.0-beta.1` Maven dependency
-- Environment variables configured:
-  - `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
-  - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
-  - `A2A_PROJECT_CONNECTION_NAME`: Your A2A connection name (created in the Foundry portal).
-  - `A2A_BASE_URI` (optional): The base URI for the A2A endpoint.
+- Values to update in code:
+  - Project endpoint URL (for example, `https://<resource>.ai.azure.com/api/projects/<project>`).
+  - Model deployment name (for example, `gpt-5-mini`).
+  - A2A connection name (created in the Foundry portal).
+  - A2A base URI (optional, only needed for non-`RemoteA2A` connections).
 - An A2A connection configured in your Foundry project. For connection setup and REST examples, see [Create an A2A connection](#create-an-a2a-connection).
 
 ## Create an A2A connection
@@ -70,7 +70,7 @@ For details about supported authentication approaches, see [Agent2Agent (A2A) au
 
 ### Get the connection identifier for code
 
-Store your connection name in the `A2A_PROJECT_CONNECTION_NAME` environment variable. Your code uses this name to retrieve the full connection ID at runtime:
+Use your connection name in code. Your code uses this name to retrieve the full connection ID at runtime:
 
 - **Python/C#/TypeScript**: Call `project.connections.get(connection_name)` to get the connection object, then access `connection.id`.
 - **REST API**: Include the connection ID in the `project_connection_id` field of the A2A tool definition.
@@ -84,7 +84,6 @@ Store your connection name in the `A2A_PROJECT_CONNECTION_NAME` environment vari
 ## Create an agent with the A2A tool
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -92,25 +91,25 @@ from azure.ai.projects.models import (
     A2APreviewTool,
 )
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+PROJECT_ENDPOINT = "https://<resource>.ai.azure.com/api/projects/<project>"
+A2A_CONNECTION_NAME = "my-a2a-connection"
+AGENT_NAME = "my-agent"
 
 with (
     DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
+    AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential) as project,
+    project.get_openai_client() as openai,
 ):
-    a2a_connection = project_client.connections.get(
-        os.environ["A2A_PROJECT_CONNECTION_NAME"],
-    )
+    a2a_connection = project.connections.get(A2A_CONNECTION_NAME)
 
     tool = A2APreviewTool(
         project_connection_id=a2a_connection.id,
     )
 
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
+    agent = project.agents.create_version(
+        agent_name=AGENT_NAME,
         definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
+            model="gpt-5-mini",
             instructions="You are a helpful assistant.",
             tools=[tool],
         ),
@@ -119,7 +118,7 @@ with (
 
     user_input = input("Enter your question (e.g., 'What can the secondary agent do?'): \n")
 
-    stream_response = openai_client.responses.create(
+    stream_response = openai.responses.create(
         stream=True,
         tool_choice="required",
         input=user_input,
@@ -143,7 +142,7 @@ with (
             print(f"Full response: {event.response.output_text}")
 
     # Clean up the created agent version
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+    project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 ```
 
 ### Expected output
@@ -163,11 +162,9 @@ using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
-// Create an Agent client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var a2aConnectionName = System.Environment.GetEnvironmentVariable("A2A_PROJECT_CONNECTION_NAME");
-var a2aBaseUri = System.Environment.GetEnvironmentVariable("A2A_BASE_URI");
+var projectEndpoint = "https://<resource>.ai.azure.com/api/projects/<project>";
+var a2aConnectionName = "my-a2a-connection";
+var a2aBaseUri = "https://<a2a-endpoint>"; // Optional for non-RemoteA2A connections.
 
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
@@ -179,15 +176,15 @@ A2APreviewTool a2aTool = new()
 };
 if (!string.Equals(a2aConnection.Type.ToString(), "RemoteA2A"))
 {
-    if (a2aBaseUri is null)
+  if (string.IsNullOrWhiteSpace(a2aBaseUri))
     {
-        throw new InvalidOperationException($"The connection {a2aConnection.Name} is of {a2aConnection.Type.ToString()} type and does not carry the A2A service base URI. Please provide this value through A2A_BASE_URI environment variable.");
+    throw new InvalidOperationException($"The connection {a2aConnection.Name} is of {a2aConnection.Type.ToString()} type and does not carry the A2A service base URI. Set a2aBaseUri before running this sample.");
     }
     // Provide the service endpoint as a baseUri parameter
     // if the connection is not of a RemoteA2A type.
     a2aTool.BaseUri = new Uri(a2aBaseUri);
 }
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { a2aTool }
@@ -400,16 +397,18 @@ curl --request PUT \
 
 Get an access token:
 
-```bash
-export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```azurecli
+az account get-access-token --scope https://ai.azure.com/.default --query accessToken -o tsv
 ```
+
+Use that token as `{{agent_token}}` in the request.
 
 ### Create an agent version with the A2A tool
 
 ```bash
 curl --request POST \
-  --url $FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=v1 \\
-  -H "Authorization: Bearer $AGENT_TOKEN" \
+  --url '{{project_endpoint}}/agents/{{agent_name}}/versions?api-version=v1' \
+  -H 'Authorization: Bearer {{agent_token}}' \
   -H 'Content-Type: application/json' \
   -d '{
   "description": "Test agent version description",
@@ -440,21 +439,20 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import * as readline from "readline";
 
-const projectEndpoint= process.env.FOUNDRY_PROJECT_ENDPOINT || "<project endpoint>";
-const deploymentName = process.env.FOUNDRY_MODEL_DEPLOYMENT_NAME || "<model deployment name>";
-const a2aConnectionName = process.env.A2A_PROJECT_CONNECTION_NAME || "<a2a connection name>";
+const PROJECT_ENDPOINT = "https://<resource>.ai.azure.com/api/projects/<project>";
+const A2A_CONNECTION_NAME = "my-a2a-connection";
 
 export async function main(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
   const openAIClient = await project.getOpenAIClient();
 
   // Get the A2A connection by name to retrieve its ID
-  const a2aConnection = await project.connections.get(a2aConnectionName);
+  const a2aConnection = await project.connections.get(A2A_CONNECTION_NAME);
 
   // Create the agent with A2A tool
   const agent = await project.agents.createVersion("MyA2AAgent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "You are a helpful assistant.",
     // Define A2A tool for agent-to-agent communication
     tools: [
@@ -533,11 +531,11 @@ The console displays streamed response text as the A2A agent processes the reque
 
 ## Use agent-to-agent communication in Java
 
-Set the following environment variables:
+Update these values in the sample:
 
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
-- `A2A_PROJECT_CONNECTION_ID` — The ID of the A2A connection in your Foundry project.
+- `projectEndpoint` — Your project endpoint.
+- `model` — A deployed model name.
+- `a2aConnectionId` — The ID of the A2A connection in your Foundry project.
 
 Add the dependency to your `pom.xml`:
 
@@ -559,7 +557,6 @@ import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.A2APreviewTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -568,13 +565,12 @@ import java.util.Collections;
 
 public class AgentToAgentExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-        String a2aConnectionId = Configuration.getGlobalConfiguration().get("A2A_PROJECT_CONNECTION_ID");
+    String projectEndpoint = "https://<resource>.ai.azure.com/api/projects/<project>";
+    String a2aConnectionId = "<a2a-connection-id>";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(endpoint);
+      .endpoint(projectEndpoint);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -584,7 +580,7 @@ public class AgentToAgentExample {
             .setProjectConnectionId(a2aConnectionId);
 
         // Create agent with agent-to-agent tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a coordinator agent that can communicate with other agents.")
             .setTools(Collections.singletonList(a2aTool));
 
@@ -618,7 +614,7 @@ public class AgentToAgentExample {
 | Agent doesn't invoke the A2A tool | Agent definition doesn't include A2A tool configuration | Confirm your agent definition includes the A2A tool and that you configured the connection. If you're using responses, confirm you're not forcing a different tool. |
 | Agent doesn't invoke the A2A tool | Prompt doesn't require remote agent | Update your prompt to require calling the remote agent, or remove conflicting tool choice settings. |
 | Authentication failures (401 or 403) | Connection authentication type mismatch | Confirm the connection's authentication type matches your endpoint requirements. For key-based auth, confirm the credential name matches what the endpoint expects (`x-api-key` or `Authorization`). |
-| SDK sample can't find the connection | Environment variable mismatch | Confirm `A2A_PROJECT_CONNECTION_NAME` matches the connection name in Foundry. |
+| SDK sample can't find the connection | Connection name mismatch | Confirm the connection name in code matches the connection name in Foundry. |
 | Network or TLS errors | Endpoint unreachable or invalid certificate | Confirm the endpoint is publicly reachable and uses a valid TLS certificate. Check firewall rules and proxy settings. |
 | Remote agent returns unexpected response | Response format incompatibility | Confirm the remote agent follows A2A protocol specifications. Check that response content types match expected formats. |
 | Connection timeout | Remote agent slow to respond | Increase timeout settings or verify the remote agent's performance. Consider implementing retry logic with exponential backoff. |
