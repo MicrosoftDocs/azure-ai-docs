@@ -51,7 +51,7 @@ Understanding the distinction between these categories helps you choose the righ
  
 ## Models sold directly by Azure 
  
-These models are hosted and sold by Microsoft under Microsoft Product Terms. Microsoft has evaluated these models, and they're deeply integrated into Azure's AI ecosystem. The models come from a variety of providers and offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade service level agreements (SLAs).
+Also referred to as *Azure Direct models* or *Direct from Azure models*, these models are hosted and sold by Microsoft under Microsoft Product Terms. Microsoft has evaluated these models, and they're deeply integrated into Azure's AI ecosystem. The models come from a variety of providers and offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade service level agreements (SLAs).
  
 Characteristics of models sold directly by Azure: 
 
@@ -206,11 +206,11 @@ The available serverless deployment types include: Global Standard, Global Provi
 
 ### Billing for serverless deployments
 
-The discovery, subscription, and consumption experience for models deployed via MaaS is in Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is provided during deployment.
+The discovery, subscription, and consumption experience for models deployed as serverless deployments is in Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is available during deployment.
 
-Models from non-Microsoft providers are billed through Azure Marketplace, in accordance with the [Microsoft Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms).
+Foundry Models from partners and community are billed through Azure Marketplace, in accordance with the [Microsoft Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms).
 
-Models from Microsoft are billed via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but they aren't subject to Azure service terms. Use of these models is subject to the provided license terms.  
+Foundry Models sold directly by Azure are billed via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but they aren't subject to Azure service terms. Use of these models is subject to the provided license terms.  
 
 ### Fine-tuning models
 
