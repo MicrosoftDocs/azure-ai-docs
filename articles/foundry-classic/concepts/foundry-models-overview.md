@@ -63,7 +63,7 @@ Characteristics of models sold directly by Azure:
 
 Some of these models also offer fungible provisioned throughput, meaning you can flexibly use your quota and reservations across any of these models. To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry (classic)](../responsible-ai/openai/data-privacy.md).
 
-## Models from Partners and Community
+## Models from partners and community
 
 These models constitute the vast majority of the Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations. Examples of models from Partners and community are the family of large language models developed by **Anthropic** and **Open models from the Hugging Face hub**. 
 
@@ -84,7 +84,7 @@ Characteristics of models from partners and community:
 Models from partners and community are deployable using *managed compute* or *serverless deployment* options. The model provider selects how the models are deployable. To learn about the deployment types available under the serverless deployment option, see [Deployment types for Microsoft Foundry Models (classic)](../foundry-models/concepts/deployment-types.md).
    
 
-### Requesting a model to be included in the model catalog
+### Request a model to be included in the model catalog
 
 Request that we add a model to the model catalog right from the model catalog page in the Foundry portal.
 
@@ -99,7 +99,7 @@ When selecting which Foundry Models to use, consider the following:
 * **Support expectations**: Models sold directly by Azure come with robust Microsoft-provided support and maintenance. Partner and community models are supported by their providers, with varying levels of SLA and support structures. 
 * **Innovation and specialization**: Models from partners and community offer rapid access to specialized innovations and niche capabilities, often developed by leading research labs and emerging AI providers.
 
-## Overview of Model Catalog capabilities
+## Overview of model catalog capabilities
 
 The model catalog in Foundry portal is the hub for discovering and using a wide range of models to build generative AI applications. The model catalog features hundreds of models across model providers like Azure OpenAI, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
 
@@ -186,7 +186,7 @@ The [Azure AI Content Safety](../../ai-services/content-safety/overview.md) serv
 
 For reference integration with Azure AI Content Safety for Llama 2, see [this notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/inference/text-generation/llama-safe-online-deployment.ipynb). Or use the **Content Safety (Text)** tool in prompt flow to pass responses from the model to Azure AI Content Safety for screening. You're billed separately for such use, as described in [Azure AI Content Safety pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/).
 
-## Serverless deployment
+## Serverless deployments
 
 Serverless deployments provide a way to consume Foundry Models as APIs without hosting them on your subscription. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the setup experience.
 
@@ -216,7 +216,7 @@ Models from Microsoft are billed via Azure meters as First Party Consumption Ser
 
 Certain models also support fine-tuning. For these models, you can use managed compute or serverless deployments fine-tuning to tailor the models by using data that you provide. For more information, see [Fine-tune models with Microsoft Foundry (classic)](../concepts/fine-tuning-overview.md).
 
-### RAG with models deployed as serverless API deployments
+### RAG with models deployed as serverless deployments
 
 In the Foundry portal, use vector indexes and retrieval-augmented generation (RAG) with models deployed via serverless deployments to generate embeddings and inferencing based on custom data. These embeddings and inferencing can then generate answers specific to your use case. For more information, see [Build and consume vector indexes in Microsoft Foundry portal (classic)](../how-to/index-add.md).
 
