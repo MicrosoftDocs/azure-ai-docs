@@ -4,13 +4,12 @@ description: Learn how to import and register your own custom models in Microsof
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 02/24/2026
-author: voutilad
+ms.date: 03/03/2026
+author: laujan
 ms.author: davevoutila
 ai-usage: ai-assisted
-monikerRange: 'foundry'
 ---
-
+<!-- markdownlint-disable MD025 -->
 # Import custom models into Microsoft Foundry (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
@@ -19,9 +18,9 @@ In this article, you learn how to import and register your own custom models in 
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
-- A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource).
-- [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (azd)
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+* A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource).
+* [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (azd)
 
 ## Model prerequisites
 
@@ -73,6 +72,6 @@ Custom models must also include the following files:
 
 ## Related content
 
-- [Deploy Foundry Models in the portal](deploy-foundry-models.md)
-- [Deploy Foundry Models using code](create-model-deployments.md)
-- [Deployment types](../concepts/deployment-types.md)
+* [Deploy Foundry Models in the portal](../how-to/deploy-foundry-models.md)
+* [Deploy Foundry Models using code](create-model-deployments.md)
+* [Deployment types](../concepts/deployment-types.md)

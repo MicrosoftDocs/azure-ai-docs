@@ -8,13 +8,13 @@ items:
   href: ../../foundry-models/concepts/model-versions.md
 - name: Marketplace configuration for partner models
   href: ../../foundry-models/how-to/configure-marketplace.md
-- name: fireworks-models.md
+- name: Fireworks models (preview)
   href: ../../foundry-models/concepts/fireworks-models.md
-  
+
 # Model Selection and Management
 - name: Model selection and management
   items:
-  - name: GPT-5 vs GPT-4.1  
+  - name: GPT-5 vs GPT-4.1
     href: ../../foundry-models/how-to/model-choice-guide.md
   - name: Automatic model updates
     href: ../../openai/how-to/working-with-models.md
@@ -52,7 +52,7 @@ items:
 
 # Audio Models
 - name: Audio models
-  items: 
+  items:
   - name: Realtime API for speech and audio
     href: ../../openai/how-to/realtime-audio.md
   - name: Realtime API for speech and audio quickstart
