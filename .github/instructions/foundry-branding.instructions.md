@@ -5,7 +5,7 @@ applyTo: '*/articles/ai-foundry/**/*.md'
 
 # Branding instructions for Foundry documentation
 
-Your role is to ensure that all references to Microsoft Foundry, its components, and related services are accurate and consistent with official branding guidelines.
+Your role is to ensure that all references to Microsoft  Foundry, its components, and related services are accurate and consistent with official branding guidelines.
 
 ## First-mention vs. subsequent-mention patterns
 
@@ -29,7 +29,6 @@ When referencing individual AI services, use the pattern "Azure [Service] in Fou
 | Azure AI Speech | Azure Speech in Foundry Tools | Speech |
 | Azure AI Language | Azure Language in Foundry Tools | Language |
 | Azure AI Vision | Azure Vision in Foundry Tools | Vision |
-| Azure AI Face | Azure Face in Foundry Tools | Azure Face |
 | Azure AI Document Intelligence | Azure Document Intelligence in Foundry Tools | Document Intelligence |
 | Azure AI Form Recognizer | Azure Document Intelligence in Foundry Tools | Document Intelligence |
 | Azure AI Translator | Azure Translator in Foundry Tools | Translator |
