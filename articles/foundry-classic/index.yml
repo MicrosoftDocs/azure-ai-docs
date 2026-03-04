@@ -1,12 +1,10 @@
 ### YamlMime:Landing
 
 title: Microsoft Foundry (classic) documentation
-summary: Use the Microsoft Foundry (classic) portal for legacy hub-based project workflows and management of resources outside a project. For net-new implementations, use Microsoft Foundry (new) for the latest project experience and capabilities.
-
+summary: Use the Microsoft Foundry (classic) portal for legacy hub-based project workflows and management of resources outside a project.
 metadata:
   title: Microsoft Foundry Classic documentation
-  description: Use Microsoft Foundry (classic) for legacy hub-based project workflows and management of resources outside a project. For net-new implementations, use Microsoft Foundry (new) for the latest project experience and capabilities.
-  author: sdgilley
+  description: Use Microsoft Foundry (classic) for legacy hub-based project workflows and management of resources outside a project.
   ms.author: sgilley
   manager: mcleans
   ms.date: 02/11/2026
