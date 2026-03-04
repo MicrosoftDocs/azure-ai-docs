@@ -39,7 +39,7 @@ This guide shows how to integrate the computer use tool into an application loop
 - The latest SDK package:
   - **Python**: `azure-ai-projects`
   - **C#/.NET**: `Azure.AI.Agents.Persistent` (prerelease)
-  - **TypeScript**: `@azure/ai-projects`, `@azure/identity`
+  - **TypeScript**: `@azure/ai-projects`
   - **Java**: `azure-ai-agents` (prerelease)
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
 - A virtual machine or sandboxed environment for safe testing. Don't run on machines with access to sensitive data.
