@@ -8,7 +8,7 @@ ms.custom:
   - ai-learning-hub
   - classic-and-new
 ms.topic: concept-article
-ms.date: 03/03/2026
+ms.date: 03/04/2026
 ms.reviewer: rasavage
 reviewer: rsavage2
 ms.author: mopeakande
@@ -70,6 +70,9 @@ Anthropic includes the Claude family of state-of-the-art large language models t
 
 Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [How to deploy and infer with a managed compute deployment (classic)](../../foundry-classic/how-to/deploy-models-managed.md).
 
+> [!IMPORTANT]
+> To work with models that are deployable on managed computes, such as Hugging Face models, use a hub-based project in the Foundry portal (classic). To learn more about the available Foundry portals, see [What is Microsoft Foundry?](../what-is-foundry.md).
+
 Characteristics of models from partners and community:
 * Developed and supported by external partners and community contributors 
 * Diverse range of specialized models catering to niche or broad use cases 
@@ -106,13 +109,6 @@ Some of the **filters** available in the model catalog are:
 * **Industry**: Filter for the models that are trained on industry-specific dataset.
 * **Capabilities**: Filter for unique model features like reasoning and tool calling.
 * **Inference tasks**: Filter models based on the inference task type.
-<!-- * **Fine-tune tasks**: you can filter models based on the fine-tune task type.
-* **Licenses**: you can filter models based on the license type.
-* **Deployment options**: you can filter for the models that support a specific deployment options.
-  * **serverless API**: this option allows you to pay per API call.
-  * **Provisioned**: best suited for real-time scoring for large consistent volume.
-  * **Batch**: best suited for cost-optimized batch jobs, and not latency. No playground support is provided for the batch deployment.
-  * **Managed compute**: this option allows you to deploy a model on an Azure virtual machine. You will be billed for hosting and inferencing. -->
 
 Some of the details available in the **model card** are:
 
@@ -126,9 +122,9 @@ Some of the details available in the **model card** are:
 
 The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md). To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md).
 
-The deployment options and features available for each model vary, as described in the following table:
-
 ### Capabilities of model deployment options
+
+The deployment options and features available for each model vary, as described in the following table:
 
 Features | Managed compute | Serverless deployment
 --|--|--
@@ -142,6 +138,9 @@ Network isolation | [Configure a managed network for Microsoft Foundry hubs (cla
 ## Managed compute
 
 The capability to deploy models as managed compute builds on platform capabilities of Azure Machine Learning to enable seamless integration of the wide collection of models in the model catalog across the entire life cycle of large language model (LLM) operations.
+
+> [!IMPORTANT]
+> To work with models that are deployable on managed computes, use a hub-based project in the Foundry portal (classic). To learn more about the available Foundry portals, see [What is Microsoft Foundry?](../what-is-foundry.md).
 
 :::image type="content" source="../../foundry-classic/media/explore/llmops-life-cycle.png" alt-text="Diagram that shows the life cycle of large language model (LLM) operations with managed compute." lightbox="../../foundry-classic/media/explore/llmops-life-cycle.png":::
 
@@ -190,7 +189,7 @@ Models that are available for serverless deployments are offered by the model pr
 
 The serverless deployment option for Foundry Models offers two main deployment categories: standard (pay-per-token) and provisioned (reserved capacity). Within each category, you can choose global, data zone, or regional processing based on your compliance requirements. 
 
-The available serverless deployment types include: Global Standard, Global Provisioned, Global Batch, Data Zone Standard, Data Zone Provisioned, Data Zone Batch, Standard, Regional Provisioned, and Developer. To learn more about these deployment types and how to choose the right one for your use, see [Deployment types for Microsoft Foundry Models](../foundry-models/concepts/deployment-types.md)
+The available serverless deployment types include: Global Standard, Global Provisioned, Global Batch, Data Zone Standard, Data Zone Provisioned, Data Zone Batch, Standard, Regional Provisioned, and Developer. To learn more about these deployment types and how to choose the right one for your use, see [Deployment types for Microsoft Foundry Models](../foundry-models/concepts/deployment-types.md).
 
 ### Billing for serverless deployments
 
@@ -198,7 +197,7 @@ The discovery, subscription, and consumption experience for models deployed as s
 
 Models from non-Microsoft providers are billed through Azure Marketplace, in accordance with the [Microsoft Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms).
 
-Models from Microsoft are billed via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but they aren't subject to Azure service terms. Use of these models is subject to the license terms provided.  
+Models from Microsoft are billed via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but they aren't subject to Azure service terms. Use of these models is subject to the provided license terms. 
 
 ### Fine-tuning models
 
