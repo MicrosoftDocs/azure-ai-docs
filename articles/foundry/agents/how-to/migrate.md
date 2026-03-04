@@ -29,7 +29,6 @@ Foundry Agent Service provides an upgraded developer experience for building int
 
 ```bash
 pip install "azure-ai-projects>=2.0.0b4" --pre
-pip install azure-identity
 ```
 
 # [C#](#tab/csharp)
@@ -126,7 +125,7 @@ AgentsClient agentsClient =
                 .build())
         .endpoint(System.getenv(
             "PROJECT_ENDPOINT"))
-        .buildClient();
+        .buildAgentsClient();
 ```
 
 ---
@@ -312,12 +311,12 @@ ResponsesClient responsesClient =
             "PROJECT_ENDPOINT"))
         .buildResponsesClient();
 
-CreateResponseOptions options =
-    new CreateResponseOptions(
-        "Tell me a one line funny "
-        + "story about unicorns");
-Response result =
-    responsesClient.createResponse(options);
+AgentReference agentRef = new AgentReference("my-agent");
+
+Response result = responsesClient.createWithAgent(
+    agentRef,
+    ResponseCreateParams.builder()
+        .input("Tell me a one line funny story about unicorns"));
 ```
 
 ---
@@ -455,14 +454,13 @@ await openAIClient.conversations.items.create(
 
 ```java
 // In Java, send follow-up input directly
-// through the responses client.
-CreateResponseOptions followUpOptions =
-    new CreateResponseOptions(
-        "Follow-up question "
-        + "about the same topic");
-Response followUp =
-    responsesClient.createResponse(
-        followUpOptions);
+AgentReference agentRef = new AgentReference("my-agent");
+
+Response result = responsesClient.createWithAgent(
+    agentRef,
+    ResponseCreateParams.builder()
+        .input("Follow-up question "
+        + "about the same topic"));
 ```
 
 ---
@@ -613,14 +611,14 @@ const response =
 # [Java](#tab/java)
 
 ```java
-CreateResponseOptions options =
-    new CreateResponseOptions(
-        "Hi, Agent! Draw a graph for a line "
-        + "with a slope of 4 and "
-        + "y-intercept of 9.");
+AgentReference agentRef = new AgentReference("my-agent");
 
-Response result =
-    responsesClient.createResponse(options);
+Response result = responsesClient.createWithAgent(
+    agentRef,
+    ResponseCreateParams.builder()
+        .input("Hi, Agent! Draw a graph for a line "
+        + "with a slope of 4 and "
+        + "y-intercept of 9."));
 ```
 
 ---
@@ -905,7 +903,7 @@ const agent =
 
 ```java
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.ai.agents.models.CodeInterpreterToolDefinition;
+import com.azure.ai.agents.models.CodeInterpreterTool;
 
 PromptAgentDefinition definition =
     new PromptAgentDefinition("gpt-4.1");
@@ -914,7 +912,7 @@ definition.setInstructions(
     + "Use the Code Interpreter tool when "
     + "asked to visualize numbers.");
 definition.setTools(Arrays.asList(
-    new CodeInterpreterToolDefinition()));
+    new CodeInterpreterTool()));
 
 var agent = agentsClient.createAgentVersion(
     "my-agent", definition);
@@ -1137,7 +1135,7 @@ const agent =
 
 ```java
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.ai.agents.models.CodeInterpreterToolDefinition;
+import com.azure.ai.agents.models.CodeInterpreterTool;
 
 PromptAgentDefinition definition =
     new PromptAgentDefinition("gpt-4.1");
@@ -1146,7 +1144,7 @@ definition.setInstructions(
     + "Use the Code Interpreter tool when "
     + "asked to visualize numbers.");
 definition.setTools(Arrays.asList(
-    new CodeInterpreterToolDefinition()));
+    new CodeInterpreterTool()));
 
 var agent = agentsClient.createAgentVersion(
     "my-agent", definition);
@@ -1516,7 +1514,7 @@ const response =
 
 ```java
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.ai.agents.models.CodeInterpreterToolDefinition;
+import com.azure.ai.agents.models.CodeInterpreterTool;
 
 PromptAgentDefinition definition =
     new PromptAgentDefinition("gpt-4.1");
@@ -1525,7 +1523,7 @@ definition.setInstructions(
     + "Use the Code Interpreter tool when "
     + "asked to visualize numbers.");
 definition.setTools(Arrays.asList(
-    new CodeInterpreterToolDefinition()));
+    new CodeInterpreterTool()));
 
 var agent = agentsClient.createAgentVersion(
     "my-agent", definition);
@@ -1539,16 +1537,16 @@ ResponsesClient responsesClient =
             "PROJECT_ENDPOINT"))
         .buildResponsesClient();
 
-CreateResponseOptions options =
-    new CreateResponseOptions(
-        "Hi, Agent! Draw a graph for a line "
+AgentReference agentRef = new AgentReference("my-agent");
+
+Response result = responsesClient.createWithAgent(
+    agentRef,
+    ResponseCreateParams.builder()
+        .input("Hi, Agent! Draw a graph for a line "
         + "with a rate of change of 4 and "
         + "y-intercept of 9. Please address "
         + "the user as Jane Doe. The user "
-        + "has a premium account");
-
-Response result =
-    responsesClient.createResponse(options);
+        + "has a premium account"));
 ```
 
 ---

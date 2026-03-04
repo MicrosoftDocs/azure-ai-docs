@@ -5,7 +5,7 @@ description: "Learn how to monitor operational metrics, token usage, latency, an
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sonalimalik
-ms.date: 01/08/2026
+ms.date: 03/04/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026 
@@ -82,7 +82,7 @@ To access Monitor settings, select the gear icon on the **Monitor** tab. The fol
 Use the Python SDK to set up continuous evaluation rules for agent responses. This section requires Python 3.10 or later.
 
 ```bash
-pip install --pre "azure-ai-projects>=2.0.0b4" azure-identity
+pip install --pre "azure-ai-projects>=2.0.0b4"
 ```
 
 Replace the placeholder values in the code samples with your own Foundry project endpoint, agent name, and model deployment name.
