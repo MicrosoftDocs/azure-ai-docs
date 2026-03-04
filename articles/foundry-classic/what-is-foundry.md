@@ -24,7 +24,8 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # What is Microsoft Foundry? (classic)
 
-[!INCLUDE [classic-banner](includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic)** - [Switch to Foundry](../foundry/what-is-foundry.md)
+
 
 This article covers the **Foundry (classic)** portal and APIs. For the current platform experience, see [What is Microsoft Foundry?](../foundry/what-is-foundry.md).
 
