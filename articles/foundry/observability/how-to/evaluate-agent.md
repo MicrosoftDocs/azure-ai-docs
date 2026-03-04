@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As an AI developer, I want to evaluate my agent so that I ensure quality and safety before and after deployment.
 ---
 
-# Evaluate your AI agents (preview)
+# Evaluate your AI agents
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds, such as an 85% task adherence passing rate, before releasing it to users.
