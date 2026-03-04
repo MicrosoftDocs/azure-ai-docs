@@ -62,28 +62,28 @@ Connect your model resource from the management center of your Content Understan
 
 1. Open your Content Understanding resource in the Azure portal.
 1. Select **Go to Azure AI Foundry portal**.
+
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/open-foundry-portal-from-content-understanding-resource.png" alt-text="Screenshot of selecting Go to Azure AI Foundry portal from the Content Understanding resource.":::
+
 1. Open **Management center**.
+
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/open-management-center.png" alt-text="Screenshot of opening Management center in the Azure AI Foundry portal.":::
+
 1. Select **Connected resources**.
+
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/open-connected-resources.png" alt-text="Screenshot of the Connected resources page in Management center.":::
+
 1. Select **New connection**.
+
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/select-new-connection.png" alt-text="Screenshot of selecting New connection in Connected resources.":::
+
 1. Select **Azure OpenAI** or **Microsoft Foundry**.
+
 1. Search for and select your resource.
+
+  :::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/search-and-select-target-resource.png" alt-text="Screenshot of searching for and selecting the target resource for the connection.":::
+
 1. Select an authentication type, and then select **Add connection**.
-
-:::image type="content" source="../media/how-to/byoc-cross-resource/connected-resources-entry-point.png" alt-text="Screenshot of the connected resources entry point in management center.":::
-
-This screenshot shows where to open **Connected resources** from the management center.
-
-:::image type="content" source="../media/how-to/byoc-cross-resource/new-connection-action.png" alt-text="Screenshot of the New connection action in Connected resources.":::
-
-This screenshot shows the **New connection** action used to add an external model resource.
-
-:::image type="content" source="../media/how-to/byoc-cross-resource/select-connection-resource-type.png" alt-text="Screenshot of selecting Azure OpenAI or Foundry as the connection type.":::
-
-This screenshot shows the resource-type selection step for **Azure OpenAI** or **Microsoft Foundry**.
-
-:::image type="content" source="../media/how-to/byoc-cross-resource/select-target-resource.png" alt-text="Screenshot of selecting a target resource for the connection.":::
-
-This screenshot shows selecting the target resource that provides your model deployments.
 
 After the operation completes, the connection appears in **Connected resources**.
 
@@ -97,10 +97,6 @@ You can authenticate the connected resource with an API key or with Microsoft En
 - **Microsoft Entra ID**: Content Understanding uses the managed identity of the Content Understanding resource.
   - Enable managed identity on the Content Understanding resource.
   - Grant the managed identity access to the connected resource, such as **Cognitive Services User**.
-
-:::image type="content" source="../media/how-to/byoc-cross-resource/choose-authentication-method.png" alt-text="Screenshot of authentication options when creating a connected resource.":::
-
-This screenshot shows the authentication method choices available when creating the connection.
 
 ## Set default deployments for cross-resource usage
 
@@ -125,13 +121,9 @@ Content-Type: application/json
 }
 ```
 
-:::image type="content" source="../media/how-to/byoc-cross-resource/connection-details-for-deployment-mapping.png" alt-text="Screenshot of connection details used to map deployment names.":::
+:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/find-connection-name-in-connected-resources.png" alt-text="Screenshot of finding the connection name in Connected resources.":::
 
-This screenshot shows where to find the connection name used in the `{ConnectionName}/{DeploymentName}` format.
-
-:::image type="content" source="../media/how-to/byoc-cross-resource/model-deployments-in-connected-resource.png" alt-text="Screenshot of model deployment names in the connected resource.":::
-
-This screenshot shows where to find deployment names in the connected resource.
+:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/find-deployment-name-in-models-endpoints.png" alt-text="Screenshot of finding deployment names in Models plus endpoints.":::
 
 ## Verify the configuration
 
@@ -143,9 +135,7 @@ Test your setup by running the REST quickstart with your configured resource.
 
 If the quickstart request succeeds, your Content Understanding resource is using the connected cross-resource capacity.
 
-:::image type="content" source="../media/how-to/byoc-cross-resource/cross-resource-configuration-success.png" alt-text="Screenshot of a successful setup result after applying defaults.":::
-
-This screenshot shows a successful outcome after the cross-resource defaults are configured.
+:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/verify-cross-resource-configuration-success.png" alt-text="Screenshot of a successful setup result after applying defaults.":::
 
 ## Related content
 
