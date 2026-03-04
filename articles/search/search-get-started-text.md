@@ -38,12 +38,6 @@ ms.date: 02/02/2026
 
 ::: zone-end
 
-::: zone pivot="powershell"
-
-[!INCLUDE [PowerShell quickstart](includes/quickstarts/full-text-powershell.md)]
-
-::: zone-end
-
 ::: zone pivot="python"
 
 [!INCLUDE [Python SDK quickstart](includes/quickstarts/full-text-python.md)]
@@ -59,6 +53,12 @@ ms.date: 02/02/2026
 ::: zone pivot="rest"
 
 [!INCLUDE [REST quickstart](includes/quickstarts/full-text-rest.md)]
+
+::: zone-end
+
+::: zone pivot="powershell"
+
+[!INCLUDE [PowerShell quickstart](includes/quickstarts/full-text-powershell.md)]
 
 ::: zone-end
 

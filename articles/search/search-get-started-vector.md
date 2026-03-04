@@ -18,7 +18,7 @@ zone_pivot_groups: search-sdks-rest
 
 ::: zone pivot="csharp"
 
-[!INCLUDE [.NET quickstart](includes/quickstarts/search-get-started-vector-dotnet.md)]
+[!INCLUDE [C# quickstart](includes/quickstarts/search-get-started-vector-csharp.md)]
 
 ::: zone-end
 
