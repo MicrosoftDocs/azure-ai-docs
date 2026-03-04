@@ -17,7 +17,7 @@ Make sure you install the correct preview/prerelease version of the packages as 
 1. Install these packages, including the preview version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** (preview).
 
     ```
-    pip install --pre "azure-ai-projects>=2.0.0b4"
+    pip install azure-ai-projects>=2.0.0
     pip install python-dotenv
     ```
 

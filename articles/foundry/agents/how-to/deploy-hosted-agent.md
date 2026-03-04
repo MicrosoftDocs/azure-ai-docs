@@ -166,7 +166,7 @@ Use the SDK for programmatic deployments or CI/CD integration.
 * Azure AI Projects SDK version 2.0.0 or later
 
     ```bash
-    pip install "azure-ai-projects>=2.0.0" azure-identity
+    pip install "azure-ai-projects>=2.0.0"
     ```
 
 ### Build and push your container image
