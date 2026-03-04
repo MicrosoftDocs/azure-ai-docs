@@ -159,7 +159,7 @@ new UserChatMessage("Who were the founders of Microsoft?")
 
 For some scenarios, you might want to give more instructions to the model to define guardrails for what the model is able to do.
 
-```
+```csharp
 new SystemChatMessage(@"Assistant is an intelligent chatbot designed to help users answer their tax related questions.
 Instructions:
 - Only answer questions related to taxes.
@@ -171,7 +171,7 @@ new UserChatMessage("When are my taxes due?")
 
 You can also include relevant data or information in the system message to give the model extra context for the conversation. If you need to include only a small amount of information, you can hard code it in the system message. If you have a large amount of data that the model should be aware of, you can use [embeddings](../tutorials/embeddings.md?tabs=command-line) or a product like [Azure AI Search](https://techcommunity.microsoft.com/t5/ai-applied-ai-blog/revolutionize-your-enterprise-data-with-chatgpt-next-gen-apps-w/ba-p/3762087) to retrieve the most relevant information at query time.
 
-```
+```csharp
 new SystemChatMessage(@"Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI in Microsoft Foundry Models. Only answer questions using the context below and if you're not sure of an answer, you can say 'I don't know'.
 
 Context:
@@ -185,7 +185,7 @@ new UserChatMessage("What is Azure OpenAI?")
 
 You can also give few-shot examples to the model. You can include a series of messages between the user and the assistant in the prompt as few-shot examples. By using these examples, you can seed answers to common questions to prime the model or teach particular behaviors to the model.
 
-```
+```csharp
 new SystemChatMessage("Assistant is an intelligent chatbot designed to help users answer their tax related questions."),
 new UserChatMessage("When do I need to file my taxes by?"),
 new AssistantChatMessage("In 2023, you will need to file your taxes by April 18th. The date falls after the usual April 15th deadline because April 15th falls on a Saturday in 2023. For more details, see https://www.irs.gov/filing/individuals/when-to-file."),
@@ -199,7 +199,7 @@ The Chat Completion API is designed to work with multi-turn conversations, but i
 
 For example, for an entity extraction scenario, you might use the following prompt:
 
-```
+```csharp
 new SystemChatMessage(@"You are an assistant designed to extract entities from text. Users will paste in a string of text and you will respond with entities you've extracted from the text as a JSON object. Here's an example of your output format:
 {
    ""name"": """",
