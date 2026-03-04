@@ -180,3 +180,133 @@ Detailed phrases:
   [22480ms - 25920ms]: This audio is provided by samplefiles.com.
 ```
 
+## Request configuration options
+
+Use `TranscriptionOptions` to customize transcription behavior. The following sections describe each supported configuration and show how to apply it.
+
+### Multi-language detection
+
+Pass multiple locale candidates to `locales` to enable language identification across languages. The service detects which language is spoken and labels each phrase with the detected locale. Omit `locales` entirely to let the service auto-detect all languages without a candidate list.
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.transcription import TranscriptionClient
+from azure.ai.transcription.models import TranscriptionContent, TranscriptionOptions
+
+client = TranscriptionClient(
+    endpoint=endpoint, credential=AzureKeyCredential(api_key)
+)
+
+with open(audio_file_path, "rb") as audio_file:
+    # Provide candidate locales — the service selects the best match per phrase
+    options = TranscriptionOptions(locales=["en-US", "es-ES", "fr-FR", "de-DE"])
+    result = client.transcribe(TranscriptionContent(definition=options, audio=audio_file))
+
+    for phrase in result.phrases:
+        locale = phrase.locale if phrase.locale else "detected"
+        print(f"[{locale}] {phrase.text}")
+```
+
+Reference: [`TranscriptionOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions)
+
+### Speaker diarization
+
+Diarization detects and labels different speakers in a single audio channel. Create a `TranscriptionDiarizationOptions` object with the maximum expected number of speakers (2–35) and pass it to `TranscriptionOptions`. Each phrase in the result includes a `speaker` identifier.
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.transcription import TranscriptionClient
+from azure.ai.transcription.models import (
+    TranscriptionContent,
+    TranscriptionOptions,
+    TranscriptionDiarizationOptions,
+)
+
+client = TranscriptionClient(
+    endpoint=endpoint, credential=AzureKeyCredential(api_key)
+)
+
+with open(audio_file_path, "rb") as audio_file:
+    diarization_options = TranscriptionDiarizationOptions(
+        max_speakers=5  # Hint for maximum number of speakers (2-35)
+    )
+    options = TranscriptionOptions(
+        locales=["en-US"], diarization_options=diarization_options
+    )
+    result = client.transcribe(TranscriptionContent(definition=options, audio=audio_file))
+
+    for phrase in result.phrases:
+        speaker = phrase.speaker if phrase.speaker is not None else "Unknown"
+        print(f"Speaker {speaker} [{phrase.offset_milliseconds}ms]: {phrase.text}")
+```
+
+> [!NOTE]
+> Diarization is only supported on single-channel (mono) audio. If your audio
+> is stereo, don't set the `channels` property to `[0, 1]` when diarization
+> is enabled.
+
+Reference: [`TranscriptionDiarizationOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptiondiarizationoptions), [`TranscriptionOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions)
+
+### Phrase list
+
+A phrase list boosts recognition accuracy for domain-specific terms, proper nouns, and uncommon words. Set `biasing_weight` between `1.0` and `20.0` to control how strongly the phrases are favored (higher values increase the bias).
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.transcription import TranscriptionClient
+from azure.ai.transcription.models import (
+    TranscriptionContent,
+    TranscriptionOptions,
+    PhraseListProperties,
+)
+
+client = TranscriptionClient(
+    endpoint=endpoint, credential=AzureKeyCredential(api_key)
+)
+
+with open(audio_file_path, "rb") as audio_file:
+    phrase_list = PhraseListProperties(
+        phrases=["Contoso", "Jessie", "Rehaan"],
+        biasing_weight=5.0,  # Weight between 1.0 and 20.0
+    )
+    options = TranscriptionOptions(locales=["en-US"], phrase_list=phrase_list)
+    result = client.transcribe(TranscriptionContent(definition=options, audio=audio_file))
+
+    print(result.combined_phrases[0].text)
+```
+
+For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md#implement-phrase-list-in-fast-transcription).
+
+Reference: [`PhraseListProperties`](/python/api/azure-ai-transcription/azure.ai.transcription.models.phraselistproperties), [`TranscriptionOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions)
+
+### Profanity filtering
+
+Control how profanity appears in transcription output using the `profanity_filter_mode` parameter. The following modes are available:
+
+| Mode | Behavior |
+|------|----------|
+| `"None"` | Profanity passes through unchanged. |
+| `"Masked"` | Profanity is replaced with asterisks (default). |
+| `"Removed"` | Profanity is removed from the output entirely. |
+| `"Tags"` | Profanity is wrapped in `<profanity>` XML tags. |
+
+```python
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.transcription import TranscriptionClient
+from azure.ai.transcription.models import TranscriptionContent, TranscriptionOptions
+
+client = TranscriptionClient(
+    endpoint=endpoint, credential=AzureKeyCredential(api_key)
+)
+
+with open(audio_file_path, "rb") as audio_file:
+    options = TranscriptionOptions(
+        locales=["en-US"],
+        profanity_filter_mode="Masked"  # Options: "None", "Removed", "Masked", "Tags"
+    )
+    result = client.transcribe(TranscriptionContent(definition=options, audio=audio_file))
+
+    print(result.combined_phrases[0].text)
+```
+
+Reference: [`TranscriptionOptions`](/python/api/azure-ai-transcription/azure.ai.transcription.models.transcriptionoptions)
