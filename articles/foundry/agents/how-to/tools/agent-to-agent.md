@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -41,7 +41,7 @@ The following table shows SDK and setup support. ✔️ (GA) indicates general a
 - A model deployment (for example, gpt-4) in your Foundry project.
 - Required Azure role: On the Foundry resource, **Contributor** or **Owner** for management and **Azure AI User** for building an agent.
 - SDK installation:
-  - Python (GA): `pip install azure-ai-projects[agents]`
+  - Python (GA): `pip install "azure-ai-projects>=2.0.0"`
   - C# (Preview): `Azure.AI.Projects` prerelease NuGet package
   - TypeScript (GA): `@azure/ai-projects` npm package
   - Java (Preview): `com.azure:azure-ai-agents:2.0.0-beta.1` Maven dependency

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -69,7 +69,7 @@ Before you begin, make sure you have:
 For Python examples, install the required packages:
 
 ```bash
-pip install azure-ai-projects
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 The .NET and Java SDKs are currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
@@ -610,8 +610,8 @@ This tool uses a Playwright workspace resource to run browser sessions. Review t
 ### Python SDK errors
 
 - **Workspace not found**: Verify your `FOUNDRY_PROJECT_ENDPOINT` uses the correct format: `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`. Don't use the legacy Azure ML endpoint format.
-- **Unexpected keyword argument errors**: Ensure you're using the latest version of `azure-ai-projects`. Run `pip install azure-ai-projects --pre --upgrade` to update.
-- **Import errors**: Install all required packages: `pip install azure-ai-projects`.
+- **Unexpected keyword argument errors**: Ensure you're using the latest version of `azure-ai-projects`. Run `pip install "azure-ai-projects>=2.0.0" --upgrade` to update.
+- **Import errors**: Install all required packages: `pip install "azure-ai-projects>=2.0.0"`.
 
 :::zone-end
 

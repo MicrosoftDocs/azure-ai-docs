@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026
@@ -56,7 +56,7 @@ The following Python sample shows how to create an agent with the code interpret
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, CodeInterpreterTool, CodeInterpreterContainerAuto
+from azure.ai.projects.models import PromptAgentDefinition, CodeInterpreterTool, AutoCodeInterpreterToolParam
 
 # Load the CSV file to be processed
 asset_file_path = os.path.abspath(
@@ -80,7 +80,7 @@ with (
         definition=PromptAgentDefinition(
             model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
             instructions="You are a helpful assistant.",
-            tools=[CodeInterpreterTool(container=CodeInterpreterContainerAuto(file_ids=[file.id]))],
+            tools=[CodeInterpreterTool(container=AutoCodeInterpreterToolParam(file_ids=[file.id]))],
         ),
         description="Code interpreter agent for data analysis and visualization.",
     )

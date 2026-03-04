@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -35,7 +35,7 @@ Ground your Foundry agent's responses in your proprietary content by connecting 
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - Install the SDK package for your preferred language. C# and Java require the prerelease version. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
-  - **Python**: `pip install azure-ai-projects`
+  - **Python**: `pip install "azure-ai-projects>=2.0.0"`
   - **C#**: Install the `Azure.AI.Projects` NuGet package (prerelease)
   - **JavaScript/TypeScript**: `npm install @azure/ai-projects`
   - **Java**: Add the `com.azure:azure-ai-agents:2.0.0-beta.1` dependency to your `pom.xml`

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -47,7 +47,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 - Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
 - Developers and end users have at least `READ` access to the SharePoint site.
 - The required SDK package installed:
-  - **Python**: `pip install azure-ai-projects`
+  - **Python**: `pip install "azure-ai-projects>=2.0.0"`
   - **C# (Preview)**: Install the `Azure.AI.Projects` NuGet package (prerelease)
   - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
   - **Java (Preview)**: Add `com.azure:azure-ai-agents:2.0.0-beta.1` to your `pom.xml`
