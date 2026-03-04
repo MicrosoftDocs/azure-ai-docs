@@ -26,34 +26,29 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](includes/classic-banner.md)]
 
-**Microsoft Foundry** is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
-
-Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
-
-> [!TIP]
-> Azure AI Foundry is now Microsoft Foundry. Screenshots appearing throughout this documentation are in the process of being updated.
->
+This article covers the **Foundry (classic)** portal and APIs. For the current platform experience, see [What is Microsoft Foundry?](../foundry/what-is-foundry.md).
 
 [!INCLUDE [foundry-portals](includes/foundry-portals.md)]
 
+## What changed
+
+[!INCLUDE [previous-current](../foundry/includes/previous-current.md)]
+
 ## Microsoft Foundry (classic)
 
-[!INCLUDE [classic-link](includes/classic-link.md)] (classic) is designed for developers to:
+[!INCLUDE [classic-link](includes/classic-link.md)] (classic) supports hub-based projects, Foundry projects, and Azure OpenAI resources. Use the classic portal when you need features not yet available in the current portal, such as prompt flow or managed compute model deployments.
 
-- Build generative AI applications and AI agents on an enterprise-grade platform.
-- Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
-- Collaborate with a team for the full life-cycle of application development.
-- Work across model providers with a consistent API contract.
+## Foundry (classic) portal
 
-With Microsoft Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Microsoft Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
+The [Foundry (classic) portal](https://ai.azure.com) provides access to all resource types, including hub-based projects, Foundry projects, and Azure OpenAI resources. To use the classic portal, turn off the **New Foundry** toggle in the portal banner.
 
-## Work in a Foundry project
+### Work in a Foundry project
 
 A Foundry project is where you do most of your development work. You can work with your project in the Foundry portal, or use the SDK in your preferred development environment.
 
  Foundry projects provide developers with self-serve capabilities to independently create new environments for exploring ideas and building prototypes, while managing data in isolation. Projects act as secure units of isolation and collaboration where agents share file storage, thread storage (conversation history), and search indexes. You can also bring your own Azure resources for compliance and control over sensitive data.
 
-## Disable preview features
+### Disable preview features
 
 Use your organization controls to limit production environments to general availability supported capabilities, and validate current feature status before rollout decisions. For role-based control guidance, see [Disable preview features by using role-based access control](./concepts/disable-preview-features-with-rbac.md). For tag-based suppression in the Foundry portal, see [Hide preview features with Azure tags](./how-to/disable-preview-features.md).
 
