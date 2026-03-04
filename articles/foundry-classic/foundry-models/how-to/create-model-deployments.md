@@ -23,7 +23,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 In this article, you learn how to add a new model deployment to a Foundry Models endpoint. The deployment is available for inference in your Foundry resource when you specify the deployment name in your requests.
 
@@ -237,7 +237,7 @@ The files for this example are in:
 cd azureai-model-inference-bicep/infra
 ```
 
-[!INCLUDE [rbac](../includes/configure-marketplace/rbac.md)]
+[!INCLUDE [rbac](../../../foundry/foundry-models/includes/configure-marketplace/rbac.md)]
 ## Add the model
 
 1. Use the template `ai-services-deployment-template.bicep` to describe model deployments:

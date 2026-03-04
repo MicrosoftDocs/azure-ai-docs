@@ -68,7 +68,7 @@ Use the Azure portal to [create a resource](./create-resource.md) in a region 
 
 Once you have verified your quota, you can create a deployment. Navigate to Foundry model catalog to discover the models with provisioned deployment options. 
 
-1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../foundry/includes/classic-sign-in.md)]
 1. Choose the subscription that was enabled for provisioned deployments & select the desired resource in a region where you have the quota. 
 1. You can select models by filtering **Direct from Azure** in the model collections filter. Those are models held and served by Azure directly and support provisioned throughput deployment option. 
 1. Select the model that you want to deploy and check the model details in the model card.
@@ -211,7 +211,7 @@ PTU deployment utilization = (PTUs consumed in the time period) / (PTUs deployed
 
 You can find the utilization measure in the Azure-Monitor section for your resource. To access the monitoring dashboards sign-in to [https://portal.azure.com](https://portal.azure.com), go to your Azure OpenAI resource and select the Metrics page from the left nav. On the metrics page, select the 'Provisioned-managed utilization V2' metric. If you have more than one deployment in the resource, you should also split the values by each deployment by selecting the 'Apply Splitting' button.
 
-:::image type="content" source="../media/provisioned/azure-monitor-utilization.jpg" alt-text="Screenshot of the provisioned managed utilization on the resource's metrics blade in the Azure portal." lightbox="../media/provisioned/azure-monitor-utilization.jpg":::
+:::image type="content" source="../../../foundry/openai/media/provisioned/azure-monitor-utilization.jpg" alt-text="Screenshot of the provisioned managed utilization on the resource's metrics blade in the Azure portal." lightbox="../../../foundry/openai/media/provisioned/azure-monitor-utilization.jpg":::
 
 For more information about monitoring your deployments, see the [Monitoring Azure OpenAI](./monitor-openai.md) page.
 

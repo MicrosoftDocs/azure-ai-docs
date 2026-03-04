@@ -36,16 +36,16 @@ If your organization requires customized Azure configurations like alternative n
 
 ## Prerequisites
 
-* [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+* [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 
-* [!INCLUDE [rbac-create](../includes/rbac-create.md)]
+* [!INCLUDE [rbac-create](../../foundry/includes/rbac-create.md)]
 
     If you lack this role, request your subscription administrator to [create a Foundry resource](../../ai-services/multi-service-resource.md) and then skip to [Create multiple projects on the same resource](#create-multiple-projects-on-the-same-resource).
 * Use the following tabs to select the method you want to use to create a Foundry project:
 
     # [Foundry portal](#tab/foundry)
     
-    - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+    - [!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
     
     # [Python SDK](#tab/python)
     

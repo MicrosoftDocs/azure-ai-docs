@@ -15,7 +15,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 * The **Deploy models to Azure AI model inference service** feature is turned on.
 
-   :::image type="content" source="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Deploy models to Azure AI model inference service feature in Microsoft Foundry portal." lightbox="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
+   :::image type="content" source="../../../../foundry/foundry-models/media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Deploy models to Azure AI model inference service feature in Microsoft Foundry portal." lightbox="../../../../foundry/foundry-models/media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
 
 ## Add a connection
 
@@ -37,7 +37,7 @@ You can create a connection to a Foundry Tools resource using the following step
 
 8. Return to the project's landing page to continue and now select the new created connection. Refresh the page if it doesn't show up immediately. 
 
-   :::image type="content" source="../../media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="Screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../../media/quickstart-ai-project/overview-endpoint-and-key.png":::
+   :::image type="content" source="../../../../foundry/foundry-models/media/quickstart-ai-project/overview-endpoint-and-key.png" alt-text="Screenshot of the landing page for the project, highlighting the location of the connected resource and the associated inference endpoint." lightbox="../../../../foundry/foundry-models/media/quickstart-ai-project/overview-endpoint-and-key.png":::
 
 ## See model deployments in the connected resource
 
@@ -49,7 +49,7 @@ You can see the model deployments available in the connected resource by followi
 
 3. The page displays the model deployments available to your, grouped by connection name. Locate the connection you have just created, which should be of type **Foundry Tools**.
 
-   :::image type="content" source="../../media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../../media/quickstart-ai-project/endpoints-ai-services-connection.png":::
+   :::image type="content" source="../../../../foundry/foundry-models/media/quickstart-ai-project/endpoints-ai-services-connection.png" alt-text="Screenshot showing the list of models available under a given connection." lightbox="../../../../foundry/foundry-models/media/quickstart-ai-project/endpoints-ai-services-connection.png":::
 
 4. Select any model deployment you want to inspect.
 

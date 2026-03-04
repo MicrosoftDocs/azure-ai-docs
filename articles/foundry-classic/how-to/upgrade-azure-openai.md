@@ -75,7 +75,7 @@ You can complete the upgrade through the Foundry (classic) portal, Azure portal,
 
 # [Foundry portal](#tab/portal)
 
-1. [!INCLUDE [classic-sign-in](../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../foundry/includes/classic-sign-in.md)]
 1. Select your Azure OpenAI resource.
 1. On the overview page, find the banner **Want to try the latest industry models and Agents?** and select **Get started**.
 1. Enter a name for your first project. A project is a folder to organize your work in Foundry. Your first 'default' project is backward compatible with your previous work in Azure OpenAI.
@@ -92,7 +92,7 @@ You can use this project in either the Foundry (classic) or the Foundry (new) po
 1. On the overview page, locate the banner "Want to try the latest industry models and Agents?" and select **Get Started**.
 1. Confirm to start the upgrade.
 
-:::image type="content" source="../media/upgrade-azure-openai/azure-portal-upgrade.png" alt-text="Screenshot shows how to upgrade in Azure portal." lightbox="../media/upgrade-azure-openai/azure-portal-upgrade.png":::
+:::image type="content" source="../../foundry/media/upgrade-azure-openai/azure-portal-upgrade.png" alt-text="Screenshot shows how to upgrade in Azure portal." lightbox="../../foundry/media/upgrade-azure-openai/azure-portal-upgrade.png":::
 
 **Success**: The upgrade completes, and you're returned to your resource overview page. Your resource type is now **Foundry** (previously **Azure OpenAI**). All existing configurations, endpoints, and API keys remain the same.
 
@@ -240,7 +240,7 @@ Then, use either the Foundry (classic) portal, Azure portal, or an ARM template 
 1. On your resource overview page, find the rollback option.
 1. Select **Rollback**.
 
-:::image type="content" source="../media/upgrade-azure-openai/rollback.png" alt-text="Screenshot shows the rollback option in the Foundry portal." lightbox="../media/upgrade-azure-openai/rollback.png":::
+:::image type="content" source="../../foundry/media/upgrade-azure-openai/rollback.png" alt-text="Screenshot shows the rollback option in the Foundry portal." lightbox="../../foundry/media/upgrade-azure-openai/rollback.png":::
 
 # [Azure portal](#tab/azportal)
 
@@ -248,7 +248,7 @@ Then, use either the Foundry (classic) portal, Azure portal, or an ARM template 
 1. Select your Foundry resource.
 1. On the overview page, select **rollback upgrade**.
 
-:::image type="content" source="../media/upgrade-azure-openai/rollback-azure-portal.png" alt-text="Screenshot shows how to roll back in Azure portal." lightbox="../media/upgrade-azure-openai/rollback-azure-portal.png":::
+:::image type="content" source="../../foundry/media/upgrade-azure-openai/rollback-azure-portal.png" alt-text="Screenshot shows how to roll back in Azure portal." lightbox="../../foundry/media/upgrade-azure-openai/rollback-azure-portal.png":::
 
 # [Azure Bicep](#tab/bicep)
 

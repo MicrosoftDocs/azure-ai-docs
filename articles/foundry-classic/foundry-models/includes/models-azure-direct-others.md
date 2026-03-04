@@ -168,6 +168,7 @@ xAI's Grok models in Foundry Models include a diverse set of reasoning and non-r
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
+| [grok-4.1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text, image (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
 | [grok-4.1-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text, image (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
 | [grok-4](https://ai.azure.com/explore/models/grok-4/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
 | [grok-4-fast-reasoning](https://ai.azure.com/explore/models/grok-4-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text, image (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions) <br> - Data zone standard (US)  | Foundry, Hub-based |
@@ -191,19 +192,19 @@ All deployments perform the same inference operations, but the billing, scale, a
 
 ### Global Standard model availability
 
-[!INCLUDE [global-standard](model-matrix/global-standard.md)]
+[!INCLUDE [global-standard](../../../foundry/foundry-models/includes/model-matrix/global-standard.md)]
 
 # [Global Provisioned managed](#tab/global-ptum)
 
 ### Global Provisioned managed model availability
 
-[!INCLUDE [global-provisioned-managed](model-matrix/global-provisioned-managed.md)]
+[!INCLUDE [global-provisioned-managed](../../../foundry/foundry-models/includes/model-matrix/global-provisioned-managed.md)]
 
 # [Data Zone Standard](#tab/data-zone-standard)
 
 ### Data Zone Standard model availability
 
-[!INCLUDE [data-zone-standard](model-matrix/data-zone-standard.md)]
+[!INCLUDE [data-zone-standard](../../../foundry/foundry-models/includes/model-matrix/data-zone-standard.md)]
 
 ---
 

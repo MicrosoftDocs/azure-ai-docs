@@ -24,9 +24,9 @@ ai-usage: ai-assisted
 - An existing hub-based project
 - **Azure role**: **Owner** role on the subscription or resource group to create resources and projects and assign roles to the new project.
 
-This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s to access the latest platform capabilities.
+This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s to access the latest platform capabilities.
 
-Microsoft Foundry is transitioning to a unified platform as a service, replacing the previous resource model that required management of multiple Azure services. As AI workloads grow more complex, the [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]:
+Microsoft Foundry is transitioning to a unified platform as a service, replacing the previous resource model that required management of multiple Azure services. As AI workloads grow more complex, the [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]:
 
 - Simplifies platform setup and governance
 - Enhances workflows that span multiple models and Foundry tools
@@ -64,7 +64,7 @@ New capabilities include:
 
 ## How to switch to Foundry project
 
-Create new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s in the Foundry models resource from your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. This process allows the new projects to access work originally done in the [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
+Create new [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s in the Foundry models resource from your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. This process allows the new projects to access work originally done in the [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
 
 :::image type="content" source="../media/migrate-project/upgrade.svg" alt-text="Screenshot shows the upgrade path from hub-based to Foundry project types.":::
 
@@ -82,10 +82,10 @@ Create new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s in th
 - Open-source model deployments — Foundry projects don't currently support these
 - Hub project access — [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s don't have access to any of the new projects created on the Foundry models resource
 
-In the following sections, you learn how to move from [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s to [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s:
+In the following sections, you learn how to move from [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s to [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s:
 
 1. [Locate your existing Foundry resource](#1-locate-your-existing-foundry-resource)
-1. [Create a new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](#2-create-your-new-project) on the AI resource.
+1. [Create a new [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]](#2-create-your-new-project) on the AI resource.
 
 After you create your new project, you might want to:
 
@@ -144,7 +144,7 @@ You can create a new project in one of two ways:
 
     1. In the left pane, select **Management center** to manage the Foundry resource.
     1. Select **Overview** under the **Resource** section.
-    1. Select **New project** to create a project in this resource.  This action creates a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)].
+    1. Select **New project** to create a project in this resource.  This action creates a [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)].
     
         :::image type="content" source="../media/migrate-project/create-project.png" alt-text="Screenshot of creating a project in management center.":::
     
@@ -230,7 +230,7 @@ If you no longer need access to your [!INCLUDE [hub-project-name](../includes/hu
 
 You might want to keep hubs and [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s in your subscription for some reasons:
 
-- Access to select features that aren't supported yet in [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s. See [this support matrix](../what-is-foundry.md#types-of-projects).
+- Access to select features that aren't supported yet in [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]s. See [this support matrix](../what-is-foundry.md#types-of-projects).
 
 - Use cases that focus on custom machine learning model training. A [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] is built on the Azure Machine Learning stack and stays accessible through Azure Machine Learning Studio, CLI, or SDK.
 

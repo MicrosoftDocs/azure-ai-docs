@@ -44,7 +44,7 @@ A Foundry resource provides unified access to models, agents, and tools. This ar
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../../foundry/includes/azure-subscription.md)]
 
 - Have one of the following Azure RBAC roles to create and manage Foundry resources:
   - **Azure AI User** (least-privilege role for development)
@@ -88,7 +88,7 @@ This approach simplifies application configuration. Instead of managing multiple
 ### Install the SDK
 
 > [!NOTE]
-> This article applies to a **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
+> This article applies to a **[!INCLUDE [fdp](../../../foundry/includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
 
 > [!NOTE]
 > **SDK versions:** The 2.x preview SDK targets the new Foundry portal and API. The 1.x GA SDK targets Foundry classic. Make sure the samples you follow match your installed package.
@@ -138,7 +138,7 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 The [Azure AI Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 Add these packages to your installation for Foundry classic projects.
 
@@ -399,7 +399,7 @@ For more information, see [Azure OpenAI supported programming languages](/azure/
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
 ```java
@@ -561,33 +561,33 @@ For Speech and Translation Foundry Tools, use the endpoints in the following tab
 The following sections include quickstart links for the Foundry Tools SDKs and reference information.
 
 <!-- ::: zone pivot="programming-language-cpp"
-[!INCLUDE [C++ include](../../includes/sdk/cpp.md)]
+[!INCLUDE [C++ include](../../../foundry/includes/sdk/cpp.md)]
 ::: zone-end -->
 
 ::: zone pivot="programming-language-csharp"
-[!INCLUDE [C# include](../../includes/sdk/csharp.md)]
+[!INCLUDE [C# include](../../../foundry/includes/sdk/csharp.md)]
 ::: zone-end
 
 <!-- ::: zone pivot="programming-language-go"
-[!INCLUDE [Go include](../../includes/sdk/go.md)]
+[!INCLUDE [Go include](../../../foundry/includes/sdk/go.md)]
 ::: zone-end -->
 
 ::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](../../includes/sdk/java.md)]
+[!INCLUDE [Java include](../../../foundry/includes/sdk/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](../../includes/sdk/javascript.md)]
+[!INCLUDE [JavaScript include](../../../foundry/includes/sdk/javascript.md)]
 ::: zone-end
 
 <!-- ::: zone pivot="programming-language-objectivec"
-[!INCLUDE [ObjectiveC include](../../includes/sdk/objective-c.md)]
+[!INCLUDE [ObjectiveC include](../../../foundry/includes/sdk/objective-c.md)]
 ::: zone-end -->
 
 ::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./../../includes/sdk/python.md)]
+[!INCLUDE [Python include](../../../foundry/includes/sdk/python.md)]
 ::: zone-end
 
 <!-- ::: zone pivot="programming-language-swift"
-[!INCLUDE [Swift include](../../includes/sdk/swift.md)]
+[!INCLUDE [Swift include](../../../foundry/includes/sdk/swift.md)]
 ::: zone-end -->

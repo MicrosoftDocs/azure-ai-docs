@@ -57,7 +57,7 @@ Or it can be multiple lines with structured rules and formatting requirements.
 
 In chat-based APIs, you send a set of messages that include roles such as **system**, **user**, and **assistant**. The system message typically appears first and acts as the highest-level set of instructions for the conversation.
 
-![Diagram that shows how a system message and a user prompt influence the model response, with a safety stack applying guardrails.](../media/concepts/system-message-flow.svg)
+![Diagram that shows how a system message and a user prompt influence the model response, with a safety stack applying guardrails.](../../../foundry/openai/media/concepts/system-message-flow.svg)
 
 System messages are most effective when you:
 

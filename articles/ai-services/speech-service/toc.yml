@@ -91,6 +91,8 @@ items:
         href: how-to-recognize-speech.md
       - name: Get speech recognition results
         href: get-speech-recognition-results.md
+      - name: Language identification
+        href: language-identification.md
       - name: Real-time diarization quickstart
         href: get-started-stt-diarization.md
     - name: Fast transcription API
@@ -140,8 +142,6 @@ items:
     - name: Pronunciation Assessment
       href: how-to-pronunciation-assessment.md
       displayName: pronounce, language learn, assess pron, scripted, unscripted
-    - name: Language identification
-      href: language-identification.md
     - name: Improve recognition with phrase list
       href: improve-accuracy-phrase-list.md
     - name: Display text formatting
@@ -297,6 +297,8 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
+    - name: Speech Transcription SDK
+      href: transcription-sdk.md
     - name: LLM speech REST API reference
       href: /rest/api/speechtotext/transcriptions/transcribe
 - name: Voice Live
@@ -582,6 +584,9 @@ items:
     href: migrate-to-custom-voice-api.md
   - name: Migrate from retired intent recognition
     href: migrate-intent-recognition.md    
+  - name: SDK 1.48.2 CRL compatibility update
+    href: migrate-to-sdk-1-48-2.md
+    displayName: migrate,migration,CRL,certificate,Linux,Android
 - name: Responsible AI
   items:
     - name: Speech to text

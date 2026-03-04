@@ -39,7 +39,7 @@ A safety system message is a system message that adds explicit boundaries and re
 
 Safety system messages complement your safety stack and can be used alongside model selection and training, grounding, Azure AI Content Safety classifiers, and UX/UI mitigations. Learn more about [Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
 
-![Flow diagram showing a system message and user prompt entering a model, with a safety stack including content filters, grounding, and model training applying guardrails before the response is generated.](../media/concepts/system-message-flow.svg)
+![Flow diagram showing a system message and user prompt entering a model, with a safety stack including content filters, grounding, and model training applying guardrails before the response is generated.](../../../foundry/openai/media/concepts/system-message-flow.svg)
 
 ## Key components of a system message
 

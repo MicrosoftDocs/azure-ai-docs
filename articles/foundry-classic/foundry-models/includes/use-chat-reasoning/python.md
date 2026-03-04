@@ -96,7 +96,7 @@ client = ChatCompletionsClient(
 ```
 ---
 
-[!INCLUDE [best-practices](best-practices.md)]
+[!INCLUDE [best-practices](../../../../foundry/foundry-models/includes/use-chat-reasoning/best-practices.md)]
 
 ### Create a chat completion request
 

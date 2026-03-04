@@ -23,7 +23,7 @@ author: sdgilley
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) template to create a hub for [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). A template makes it easy to create resources as a single, coordinated operation. A Bicep template is a text document that defines the resources needed for a deployment. It might also specify deployment parameters. You use parameters to provide input values when using the template.
 
@@ -39,7 +39,7 @@ You can find the template used in this article at [https://github.com/Azure/azur
 
 ## Prerequisites
 
-[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+[!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 
 - **RBAC requirements**: You must have the **Owner** or **Contributor** role on your Azure subscription or resource group to deploy a hub and create resources. If you're deploying to an existing resource group, ensure you have at least **Contributor** permissions.
 - A copy of the template files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aifoundry-basics` directory.
