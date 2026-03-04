@@ -63,6 +63,10 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 > [!NOTE]
 > When using `gpt-4o-audio-preview` for chat completions with the audio modality and `stream` is set to true the only supported audio format is pcm16.
 
+### Audio duration limit for transcription
+
+Maximum duration of input audio for transcription is one hour (3,600 seconds). Service returns an error for longer audio inputs.
+
 ### Authentication errors
 
 If you receive a 401 or 403 error:
