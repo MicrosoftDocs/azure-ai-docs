@@ -795,7 +795,7 @@ For a complete runnable example, see [sample_agent_response_evaluation.py](https
 
 ## Synthetic data evaluation (preview)
 
-Generate synthetic test queries, send them to a deployed model or Foundry agent, and evaluate the responses using the `azure_ai_synthetic_data_gen_preview` data source type. Use this scenario when you don't have a test dataset — the service generates queries based on a prompt you provide (or from the agent's instructions), runs them against your target, and evaluates the responses.
+Generate synthetic test queries, send them to a deployed model or Foundry agent, and evaluate the responses using the `azure_ai_synthetic_data_gen_preview` data source type. Use this scenario when you don't have a test dataset — the service generates queries based on a prompt you provide (and/or from the agent's instructions), runs them against your target, and evaluates the responses.
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
@@ -811,11 +811,11 @@ Generate synthetic test queries, send them to a deployed model or Foundry agent,
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `samples_count` | Yes | Number of synthetic test queries to generate. |
-| `model_deployment_name` | Yes | Model deployment to use for generating synthetic queries. |
+| `samples_count` | Yes | Maximum number of synthetic test queries to generate. |
+| `model_deployment_name` | Yes | Model deployment to use for generating synthetic queries. Only models with Responses API capability are supported. For availability, see [Responses API region availability](https://aka.ms/aoai/responsesapi/availability). |
 | `prompt` | No | Instructions describing the type of queries to generate. Optional when the agent target has instructions configured. |
 | `output_dataset_name` | No | Name for the output dataset where generated queries are stored. If not provided, the service generates a name automatically. |
-| `sources` | No | Seed data files (by file ID) to improve relevance of generated queries. |
+| `sources` | No | Seed data files (by file ID) to improve relevance of generated queries. Currently only one file is supported. |
 
 ### Set up evaluators and data mappings
 
@@ -1009,7 +1009,7 @@ curl --request POST \
 
 ---
 
-To poll for completion and interpret results, see [Get results](#get-results).
+To poll for completion and interpret results, see [Get results](#get-results). The response includes an `output_dataset_id` property that contains the ID of the generated dataset, which you can use to retrieve or reuse the synthetic data.
 
 ## Get results
 
