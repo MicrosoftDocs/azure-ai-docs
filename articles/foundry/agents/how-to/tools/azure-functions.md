@@ -37,7 +37,7 @@ Functions offer several hosting plans. The [Flex Consumption plan](/azure/azure-
 
 ## Prerequisites
 
-- The latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
+- The Azure AI Projects client library for Python (`azure-ai-projects>=2.0.0`). See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
 - [Azure Functions Core Tools v4.x](/azure/azure-functions/functions-run-local)
 - [A deployed agent with the standard setup](../../environment-setup.md#choose-your-setup)
 
@@ -58,7 +58,7 @@ The following code samples demonstrate how to define an Azure Function tool that
 Install the Azure AI Projects client library:
 
 ```bash
-pip install azure-ai-projects azure-identity
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 ### Define the tool and create an agent
