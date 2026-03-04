@@ -95,22 +95,29 @@ pip install \
   langgraph \
   langchain-openai \
   azure-identity \
+  python-dotenv \
   rich
 ```
 
 #### LangChain v1: Configure environment
 
-- `APPLICATION_INSIGHTS_CONNECTION_STRING`: Azure Monitor Application Insights connection string for tracing. Set this environment variable before running the sample.
-- `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_DEPLOYMENT`, `AZURE_OPENAI_VERSION`: Defined as named constants in the code. Update them with your values.
+- `APPLICATION_INSIGHTS_CONNECTION_STRING`: Azure Monitor Application Insights connection string for tracing.
+- `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint URL.
+- `AZURE_OPENAI_CHAT_DEPLOYMENT`: The chat model deployment name.
+- `AZURE_OPENAI_VERSION`: API version, for example `2024-08-01-preview`.
 - The SDK resolves Azure credentials using `DefaultAzureCredential`, which supports environment variables, managed identity, and VS Code sign-in.
+
+Store these values in a `.env` file for local development.
 
 #### LangChain v1: Tracer setup
 
 ```python
+from dotenv import load_dotenv
 import os
 from langchain_azure_ai.callbacks.tracers import AzureAIOpenTelemetryTracer
 
-# Create tracer for Azure Monitor Application Insights
+load_dotenv(override=True)
+
 azure_tracer = AzureAIOpenTelemetryTracer(
     connection_string=os.environ.get("APPLICATION_INSIGHTS_CONNECTION_STRING"),
     enable_content_recording=True,
@@ -124,24 +131,19 @@ tracers = [azure_tracer]
 #### LangChain v1: Model setup (Azure OpenAI)
 
 ```python
+import os
 import azure.identity
 from langchain_openai import AzureChatOpenAI
 
-AZURE_OPENAI_ENDPOINT = "your_azure_openai_endpoint"
-AZURE_OPENAI_DEPLOYMENT = "your_deployment_name"
-AZURE_OPENAI_VERSION = "2024-08-01-preview"
-
-# Authenticate with Microsoft Entra ID
 token_provider = azure.identity.get_bearer_token_provider(
     azure.identity.DefaultAzureCredential(),
     "https://cognitiveservices.azure.com/.default",
 )
 
-# Configure Azure OpenAI model
 model = AzureChatOpenAI(
-    azure_endpoint=AZURE_OPENAI_ENDPOINT,
-    azure_deployment=AZURE_OPENAI_DEPLOYMENT,
-    openai_api_version=AZURE_OPENAI_VERSION,
+    azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
+    azure_deployment=os.environ.get("AZURE_OPENAI_CHAT_DEPLOYMENT"),
+    openai_api_version=os.environ.get("AZURE_OPENAI_VERSION"),
     azure_ad_token_provider=token_provider,
 )
 ```
@@ -182,21 +184,21 @@ def get_weather(city: str) -> str:
 #### LangChain v1: Use runtime context and define a user-info tool
 
 ```python
+from langgraph.runtime import get_runtime
 from langchain_core.runnables import RunnableConfig
 
 @tool
 def get_user_info(config: RunnableConfig) -> str:
     """Retrieve user information based on user ID."""
-    user_id = config.get("configurable", {}).get(
-        "user_id", "default"
-    )
+    runtime = get_runtime(UserContext)
+    user_id = runtime.context.user_id
     return USER_LOCATION[user_id]
 ```
 
 #### LangChain v1: Create the agent
 
 ```python
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 from dataclasses import dataclass
 
@@ -207,7 +209,7 @@ class WeatherResponse:
 
 checkpointer = InMemorySaver()
 
-agent = create_react_agent(
+agent = create_agent(
     model=model,
     prompt=system_prompt,
     tools=[get_user_info, get_weather],
@@ -271,24 +273,31 @@ pip install \
   langgraph>=1.0.0 \
   langchain>=1.0.0 \
   langchain-openai \
-  azure-identity
+  azure-identity \
+  python-dotenv
 ```
 
 #### LangGraph: Configure environment
 
-- `APPLICATION_INSIGHTS_CONNECTION_STRING`: Azure Monitor Application Insights connection string for tracing. Set this environment variable before running the sample.
-- `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_DEPLOYMENT`, `AZURE_OPENAI_VERSION`: Defined as named constants in the code. Update them with your values.
+- `APPLICATION_INSIGHTS_CONNECTION_STRING`: Azure Monitor Application Insights connection string for tracing.
+- `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint URL.
+- `AZURE_OPENAI_CHAT_DEPLOYMENT`: The chat model deployment name.
+- `AZURE_OPENAI_VERSION`: API version, for example `2024-08-01-preview`.
+
+Store these values in a `.env` file for local development.
 
 #### LangGraph tracer setup
 
 ```python
 import os
+from dotenv import load_dotenv
 from langchain_azure_ai.callbacks.tracers import AzureAIOpenTelemetryTracer
 
-# Create tracer for Azure Monitor Application Insights
+load_dotenv(override=True)
+
 azure_tracer = AzureAIOpenTelemetryTracer(
     connection_string=os.environ.get("APPLICATION_INSIGHTS_CONNECTION_STRING"),
-    enable_content_recording=True,
+    enable_content_recording=os.getenv("OTEL_RECORD_CONTENT", "true").lower() == "true",
     name="Music Player Agent",
 )
 ```
@@ -316,24 +325,19 @@ tools = [play_song_on_apple, play_song_on_spotify]
 #### LangGraph: Model setup (Azure OpenAI)
 
 ```python
+import os
 import azure.identity
 from langchain_openai import AzureChatOpenAI
 
-AZURE_OPENAI_ENDPOINT = "your_azure_openai_endpoint"
-AZURE_OPENAI_DEPLOYMENT = "your_deployment_name"
-AZURE_OPENAI_VERSION = "2024-08-01-preview"
-
-# Authenticate with Microsoft Entra ID
 token_provider = azure.identity.get_bearer_token_provider(
     azure.identity.DefaultAzureCredential(),
     "https://cognitiveservices.azure.com/.default",
 )
 
-# Configure Azure OpenAI model with tools
 model = AzureChatOpenAI(
-    azure_endpoint=AZURE_OPENAI_ENDPOINT,
-    azure_deployment=AZURE_OPENAI_DEPLOYMENT,
-    openai_api_version=AZURE_OPENAI_VERSION,
+    azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
+    azure_deployment=os.environ.get("AZURE_OPENAI_CHAT_DEPLOYMENT"),
+    openai_api_version=os.environ.get("AZURE_OPENAI_VERSION"),
     azure_ad_token_provider=token_provider,
 ).bind_tools(tools, parallel_tool_calls=False)
 ```
@@ -414,14 +418,17 @@ This minimal setup shows how to enable Azure AI tracing in a LangChain 0.3 appli
 pip install \
   "langchain>=0.3,<0.4" \
   langchain-openai \
-  langchain-azure-ai
+  langchain-azure-ai \
+  python-dotenv
 ```
 
 #### LangChain 0.3: Configure environment
 
-- `APPLICATION_INSIGHTS_CONNECTION_STRING`: Application Insights connection string for tracing. To find this value, open your Application Insights resource in the Azure portal, select **Overview**, and copy the **Connection String**. Set this environment variable before running the sample.
-- `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_DEPLOYMENT`, `AZURE_OPENAI_VERSION`: Defined as named constants in the code. Update them with your values.
-- `AZURE_OPENAI_API_KEY`: Azure OpenAI API key. Set this environment variable before running the sample.
+- `APPLICATION_INSIGHTS_CONNECTION_STRING`: Application Insights connection string for tracing. To find this value, open your Application Insights resource in the Azure portal, select **Overview**, and copy the **Connection String**.
+- `AZURE_OPENAI_ENDPOINT`: Azure OpenAI endpoint URL.
+- `AZURE_OPENAI_CHAT_DEPLOYMENT`: Chat model deployment name.
+- `AZURE_OPENAI_VERSION`: API version, for example `2024-08-01-preview`.
+- `AZURE_OPENAI_API_KEY`: Azure OpenAI API key.
 
 > [!NOTE]
 > This sample uses API key authentication for simplicity. For production workloads, use `DefaultAzureCredential` with `get_bearer_token_provider` as shown in the LangChain v1 and LangGraph samples.
@@ -430,14 +437,13 @@ pip install \
 
 ```python
 import os
+from dotenv import load_dotenv
 from langchain_azure_ai.callbacks.tracers import AzureAIOpenTelemetryTracer
 from langchain_openai import AzureChatOpenAI
 
-AZURE_OPENAI_ENDPOINT = "your_azure_openai_endpoint"
-AZURE_OPENAI_DEPLOYMENT = "your_deployment_name"
-AZURE_OPENAI_VERSION = "2024-08-01-preview"
+load_dotenv(override=True)
 
-# Create tracer for Azure Monitor Application Insights
+# Tracer: emits spans conforming to updated OTel spec
 azure_tracer = AzureAIOpenTelemetryTracer(
     connection_string=os.environ.get("APPLICATION_INSIGHTS_CONNECTION_STRING"),
     enable_content_recording=True,
@@ -446,12 +452,12 @@ azure_tracer = AzureAIOpenTelemetryTracer(
 )
 tracers = [azure_tracer]
 
-# Configure Azure OpenAI model with tracing callbacks
+# Model: Azure OpenAI with callbacks for tracing
 llm = AzureChatOpenAI(
-    azure_deployment=AZURE_OPENAI_DEPLOYMENT,
+    azure_deployment=os.environ.get("AZURE_OPENAI_CHAT_DEPLOYMENT"),
     api_key=os.environ.get("AZURE_OPENAI_API_KEY"),
-    azure_endpoint=AZURE_OPENAI_ENDPOINT,
-    api_version=AZURE_OPENAI_VERSION,
+    azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
+    api_version=os.environ.get("AZURE_OPENAI_VERSION"),
     temperature=0.2,
     callbacks=tracers,
 )
@@ -477,10 +483,9 @@ from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
 
-# Configure OpenTelemetry service resource
-SERVICE_NAME = "openai-agents-app"
+# Configure tracer provider + exporter
 resource = Resource.create({
-    "service.name": SERVICE_NAME,
+    "service.name": os.getenv("OTEL_SERVICE_NAME", "openai-agents-app"),
 })
 provider = TracerProvider(resource=resource)
 

@@ -6,7 +6,7 @@ ai-usage: ai-assisted
 author: yanchen-ms
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 03/04/2026
+ms.date: 01/20/2026
 ms.topic: how-to
 ms.custom: pilot-ai-workflow-jan-2026
 ---
@@ -60,7 +60,7 @@ Start with server-side traces. Foundry logs traces for common agent and workflow
 Install OpenTelemetry and the Azure SDK tracing plugin using:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0" opentelemetry-sdk azure-core-tracing-opentelemetry
+pip install azure-ai-projects azure-identity opentelemetry-sdk azure-core-tracing-opentelemetry
 ```
 
 > [!IMPORTANT]
