@@ -520,6 +520,67 @@ curl --request POST \
 
 :::zone-end
 
+## Write the Azure Function
+
+The code samples in this article show how to define the Azure Function tool on the agent side, but you also need to write the Azure Function that processes the queue messages. The function receives input from the input queue, runs your custom logic, and returns a result through the output queue.
+
+The following Python example shows how to write a queue-triggered Azure Function that gets weather information for a location. The function parses the incoming message, extracts the function arguments, and returns a response with a `CorrelationId` that the agent uses to match the result to the original request.
+
+```python
+import azure.functions as func
+import logging
+import json
+
+app = func.FunctionApp()
+
+# Queue trigger receives agent tool calls from the input queue
+# and returns results through the output queue binding
+@app.queue_trigger(
+    arg_name="msg",
+    queue_name="get-weather-input-queue",
+    connection="STORAGE_CONNECTION",
+)
+@app.queue_output(
+    arg_name="outputQueue",
+    queue_name="get-weather-output-queue",
+    connection="STORAGE_CONNECTION",
+)
+def queue_trigger(
+    msg: func.QueueMessage, outputQueue: func.Out[str]
+):
+    try:
+        # Parse the incoming message from the agent
+        messagepayload = json.loads(
+            msg.get_body().decode("utf-8")
+        )
+        logging.info("Received: %s", json.dumps(messagepayload))
+
+        # Extract the function arguments
+        function_args = messagepayload.get("function_args", {})
+        location = function_args.get("location")
+
+        # Run your custom logic (replace with real API calls)
+        weather_result = (
+            f"Weather is {len(location)} degrees "
+            f"and sunny in {location}"
+        )
+
+        # Return result with the CorrelationId from the request
+        response_message = {
+            "Value": weather_result,
+            "CorrelationId": messagepayload["CorrelationId"],
+        }
+        outputQueue.set(json.dumps(response_message))
+
+    except Exception as e:
+        logging.error("Error processing message: %s", e)
+```
+
+> [!IMPORTANT]
+> The response message must include the `CorrelationId` from the original message. The agent uses this value to match the function output to the correct tool call.
+
+For the full sample, see [Azure Functions weather sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/tools/get_weather_func_app.py) in the Azure SDK for Python repository.
+
 ## When to use Azure Functions vs function calling
 
 While [function calling](function-calling.md) enables you to define tools that run in-process with your agent code, hosting custom tools on Azure Functions provides extra enterprise capabilities when you need:
