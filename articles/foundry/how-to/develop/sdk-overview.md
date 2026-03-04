@@ -93,7 +93,7 @@ This approach simplifies application configuration. Instead of managing multiple
 | 2.x (GA) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0`  |
 | 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    |
 
-The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 Run this command to install the preview packages for Foundry projects.
 ```bash

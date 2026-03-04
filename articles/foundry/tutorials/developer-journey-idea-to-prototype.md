@@ -527,7 +527,7 @@ This evaluation framework demonstrates:
 The code breaks down into the following main sections:
 
 1. [Configure the evaluation](#configure-the-evaluation).
-1. [Run the batch evaluation](#run-the-cloud-evaluation).
+1. [Run the batch evaluation](#run-the-batch-evaluation).
 1. [Retrieve evaluation results](#retrieve-evaluation-results).
 
 > [!TIP]
