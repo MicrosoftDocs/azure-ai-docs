@@ -397,6 +397,21 @@ print(f"Status: {run.status}")
 print(f"Report: {run.report_url}")
 ```
 
+#### Clean up resources
+
+Delete a custom evaluator version and the evaluation when you no longer need them:
+
+```python
+# Delete the custom evaluator version
+project_client.beta.evaluators.delete_version(
+    name="response_length_scorer",
+    version=code_evaluator.version,
+)
+
+# Delete the evaluation
+client.evals.delete(eval_id=eval_object.id)
+```
+
 For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md).
 
 For additional examples including listing, updating, and deleting evaluators, see the [evaluator catalog management Python SDK sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog.py).
