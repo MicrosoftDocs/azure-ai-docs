@@ -36,7 +36,7 @@ This article covers the **Foundry (classic)** portal and APIs. For the current p
 
 ## Microsoft Foundry (classic)
 
-[!INCLUDE [classic-link](includes/classic-link.md)] (classic) supports hub-based projects, Foundry projects, and Azure OpenAI resources. Use the classic portal when you need features not yet available in the current portal, such as prompt flow or managed compute model deployments.
+[!INCLUDE [classic-link](../foundry/includes/classic-link.md)] (classic) supports hub-based projects, Foundry projects, and Azure OpenAI resources. Use the classic portal when you need features not yet available in the current portal, such as prompt flow or managed compute model deployments.
 
 ## Foundry (classic) portal
 
