@@ -9,7 +9,7 @@ ms.reviewer: seramasu
 reviewer: rsethur
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 01/30/2026
+ms.date: 03/04/2026
 ms.custom:
   - dev-focus
   - classic-and-new
@@ -29,8 +29,6 @@ This article describes how to manage traffic with spillover for provisioned depl
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 
 - A provisioned managed deployment and a standard deployment in the same Azure OpenAI resource
-
-- The data processing level of your standard deployment must match your provisioned deployment. For example, use a global provisioned deployment with a global standard spillover deployment.
 
 - Azure CLI installed for REST API examples, or access to the Foundry portal
 
