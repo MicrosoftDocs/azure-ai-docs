@@ -188,7 +188,9 @@ from azure.ai.projects import AIProjectClient
 project_client = AIProjectClient(
   endpoint="https://<resource-name>.services.ai.azure.com/api/projects/<project-name>",
   credential=DefaultAzureCredential())
-```**Create an OpenAI-compatible client from your project:**
+```
+
+**Create an OpenAI-compatible client from your project:**
 
 ```python
 with project_client.get_openai_client() as openai_client:

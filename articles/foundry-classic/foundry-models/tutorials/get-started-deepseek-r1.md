@@ -120,7 +120,7 @@ The following code examples demonstrate how to:
 
 **Expected output:** A JSON response containing the model's answer, reasoning process (within `<think>` tags), token usage statistics (prompt tokens, completion tokens, total tokens), and model information.
 
-[!INCLUDE [code-create-chat-client-request](../../foundry-models/includes/code-create-chat-client-request.md)]
+[!INCLUDE [code-create-chat-client-request](../../../foundry/foundry-models/includes/code-create-chat-client-request.md)]
 
 > [!TIP]
 > After running the code, you should see a JSON response that includes `choices[0].message.content` with the model's answer. If the model generates reasoning, the response contains content wrapped in `<think>...</think>` tags followed by the final answer.
@@ -183,7 +183,7 @@ Usage:
 - [Python re module documentation](https://docs.python.org/3/library/re.html)
 - [ChatCompletion object reference](https://github.com/openai/openai-python/blob/main/src/openai/types/chat/chat_completion.py)
 
-[!INCLUDE [best-practices](../../foundry-models/includes/use-chat-reasoning/best-practices.md)]
+[!INCLUDE [best-practices](../../../foundry/foundry-models/includes/use-chat-reasoning/best-practices.md)]
 
 ### Parameters
 

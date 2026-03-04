@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]  
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 The AI application lifecycle requires robust evaluation frameworks to ensure AI systems deliver accurate, relevant, and reliable outputs. Without rigorous assessment, AI systems risk generating responses that are inaccurate, inconsistent, poorly grounded, or potentially harmful. Observability enables teams to measure and improve both the quality and safety of AI outputs throughout the development lifecycle—from model selection through production monitoring.
 
@@ -59,7 +59,7 @@ For a complete list of built-in evaluators, see [Built-in evaluators reference](
 
 Evaluators integrate into each stage of the AI lifecycle to ensure reliability, safety, and effectiveness.
 
-:::image type="content" source="../media/evaluations/lifecycle.png" alt-text="Diagram of AI application lifecycle, showing model selection, building an AI application, and operationalizing." lightbox="../media/evaluations/lifecycle.png":::
+:::image type="content" source="../../foundry/media/evaluations/lifecycle.png" alt-text="Diagram of AI application lifecycle, showing model selection, building an AI application, and operationalizing." lightbox="../../foundry/media/evaluations/lifecycle.png":::
 
 ## The three stages of AI application lifecycle evaluation
 
@@ -73,7 +73,7 @@ Select the right foundation model by comparing quality, task performance, ethica
 
 Before deployment, thorough testing ensures your AI agent or application is production-ready. This stage validates performance through evaluation datasets, identifies edge cases, assesses robustness, and measures key metrics including task adherence, groundedness, relevance, and safety. For building production-ready agents with multi-turn conversations, tool calling, and state management, see [Foundry Agent Service](../agents/overview.md).
 
-:::image type="content" source="../media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of Pre-production evaluation for models and applications with the six steps." lightbox="../media/evaluations/evaluation-models-diagram.png ":::
+:::image type="content" source="../../foundry/media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of Pre-production evaluation for models and applications with the six steps." lightbox="../../foundry/media/evaluations/evaluation-models-diagram.png ":::
 
 **Evaluation tools and approaches:**
 

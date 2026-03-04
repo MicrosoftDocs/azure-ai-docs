@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 Configure bring-your-own-storage (BYOS) for Speech and Language capabilities in a Foundry resource by setting the `userOwnedStorage` binding at creation time. This binding routes Speech and Language data to your Azure Storage account while maintaining backward compatibility with earlier standalone resource patterns.
 
@@ -28,7 +28,7 @@ Configure bring-your-own-storage (BYOS) for Speech and Language capabilities in 
 
 ## Prerequisites
 
-[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+[!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
 
 - An Azure Storage account (Blob) in a region supported by your Foundry resource.
 - **Resource group permissions**: `Owner` or `Contributor` role on the resource group containing the Foundry resource.

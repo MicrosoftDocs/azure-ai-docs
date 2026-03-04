@@ -12,9 +12,9 @@ ms.topic: include
 
 When you apply content filtering to your model deployment, the service can intercept requests based on the inputs and outputs. If a content filter triggers, the service returns a 400 error code with a description of the rule that triggered the error.
 
-[!INCLUDE [code-create-chat-client](../code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../../../foundry/foundry-models/includes/code-create-chat-client.md)]
 
-[!INCLUDE [code-manage-content-filtering](../code-manage-content-filtering.md)]
+[!INCLUDE [code-manage-content-filtering](../../../../foundry/foundry-models/includes/code-manage-content-filtering.md)]
 
 ## Follow best practices
 

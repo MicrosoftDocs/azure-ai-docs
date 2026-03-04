@@ -10,7 +10,7 @@ ms.date: 1/21/2025
 
 [Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Library source code](https://github.com/openai/openai-node?azure-portal=true) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
 
-[!INCLUDE [Audio completions introduction](audio-completions-intro.md)]
+[!INCLUDE [Audio completions introduction](../../../foundry/openai/includes/audio-completions-intro.md)]
 
 ## Prerequisites
 
@@ -63,7 +63,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-[!INCLUDE [resource authentication](resource-authentication.md)]
+[!INCLUDE [resource authentication](../../../foundry/openai/includes/resource-authentication.md)]
 
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 

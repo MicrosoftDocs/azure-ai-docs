@@ -36,7 +36,7 @@ Within the Azure AI product family, you can use these [Azure resource providers]
 
 For many scenarios, the Foundry resource is the recommended starting point. Foundry resources share the Microsoft.CognitiveServices provider namespace with services such as Azure OpenAI, Azure Speech, Azure Vision, and Azure Language. This shared provider namespace helps align management APIs, access control patterns, networking, and policy behavior across related AI resources.
 
-[!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
+[!INCLUDE [Resource provider kinds](../../foundry/includes/resource-provider-kinds.md)]
 
 Resource types under the same provider namespaces share the same management APIs, and use similar [Azure Role Based Access Control](/azure/role-based-access-control/overview) actions, networking configurations, and aliases for Azure Policy configuration. If you're upgrading from Azure OpenAI to Foundry, your existing custom Azure policies and Azure Role Based Access Control actions continue to apply.
 

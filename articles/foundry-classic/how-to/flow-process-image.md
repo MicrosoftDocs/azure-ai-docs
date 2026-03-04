@@ -19,7 +19,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 Multimodal Large Language Models (LLMs) can process and interpret diverse forms of data inputs. These models elevate the capabilities of language-only systems. Among the various data types, images are important for many real-world applications. Incorporating image data into AI systems provides an essential layer of visual understanding. 
 

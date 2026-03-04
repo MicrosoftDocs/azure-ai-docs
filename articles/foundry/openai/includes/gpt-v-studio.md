@@ -25,7 +25,7 @@ Use this article to get started using [Microsoft Foundry](https://ai.azure.com/?
 
 You need an image to complete this quickstart. You can use this sample image or any other image you have available.
 
-:::image type="content" source="/azure/ai-foundry/media/quickstarts/multimodal-vision/car-accident.png" alt-text="Photo of a car accident that can be used to complete the quickstart." lightbox="/azure/ai-foundry/media/quickstarts/multimodal-vision/car-accident.png":::
+:::image type="content" source="/azure/foundry/media/quickstarts/multimodal-vision/car-accident.png" alt-text="Photo of a car accident that can be used to complete the quickstart." lightbox="/azure/foundry/media/quickstarts/multimodal-vision/car-accident.png":::
 
 ## Go to Foundry
 

@@ -27,7 +27,7 @@ When you deploy a model in Microsoft Foundry, you choose a deployment type that 
 
 The service offers two main categories: *standard* (pay-per-token) and *provisioned* (reserved capacity). Within each category, you can choose global, data zone, or regional processing based on your compliance requirements.
 
-:::image type="content" source="../media/add-model-deployments/models-deploy-deployment-type.png" alt-text="Screenshot of the Foundry portal deployment dialog showing the deployment type selection box with Global Standard selected." lightbox="../media/add-model-deployments/models-deploy-deployment-type.png":::
+:::image type="content" source="../../../foundry/foundry-models/media/add-model-deployments/models-deploy-deployment-type.png" alt-text="Screenshot of the Foundry portal deployment dialog showing the deployment type selection box with Global Standard selected." lightbox="../../../foundry/foundry-models/media/add-model-deployments/models-deploy-deployment-type.png":::
 
 > [!IMPORTANT]
 > **Data residency for all deployment types**: Data stored at rest remains in the designated Azure geography. However, inferencing data is processed as follows:

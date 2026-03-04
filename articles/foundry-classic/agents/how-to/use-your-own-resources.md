@@ -39,7 +39,7 @@ Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry p
 If you want to continue using your hub-based project and connection string, you need to: 
 * Use the connection string for your project located under **Connection string** in the overview of your project. 
 
-    :::image type="content" source="../../media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="A screenshot showing the legacy connection string for a hub-based project.":::
+    :::image type="content" source="../../../foundry/media/quickstarts/azure-ai-sdk/connection-string.png" alt-text="A screenshot showing the legacy connection string for a hub-based project.":::
 
 * Use one of the previous versions of the SDK and the associated sample code:
     * [C#](https://github.com/Azure/azure-sdk-for-net/tree/feature/azure-ai-agents/sdk/ai/Azure.AI.Projects/samples): `1.0.0-beta.2` or earlier

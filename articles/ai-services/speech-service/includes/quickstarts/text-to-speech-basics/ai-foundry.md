@@ -36,7 +36,7 @@ Try text to speech in the Foundry portal by following these steps:
 
 #### [Foundry (classic) portal](#tab/classic-foundry)
 
-1. [!INCLUDE [classic-sign-in](../../../../../foundry-classic/includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../../../foundry/includes/classic-sign-in.md)]
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
 1. Select **Voice gallery**.
