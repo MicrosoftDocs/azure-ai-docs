@@ -15,7 +15,7 @@ author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# Run evaluations in the cloud by using the Microsoft Foundry SDK
+# Run evaluations from the SDK
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset. 
