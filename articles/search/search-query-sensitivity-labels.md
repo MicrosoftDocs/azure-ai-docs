@@ -27,7 +27,7 @@ This article explains how query-time sensitivity label enforcement works and how
 
 - Both the Azure AI Search service and the user issuing the query must be in the same Microsoft Entra tenant.
 
-- Use the [2025-11-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview SDK package to query the index.
+- REST API version 2025-11-01-preview or an equivalent preview SDK package to query the index.
 
 - Authenticate queries using [Azure role-based access control (RBAC)](search-security-rbac.md), not API keys. When Purview sensitivity labels are enabled, API key access is restricted to index schema retrieval.
 

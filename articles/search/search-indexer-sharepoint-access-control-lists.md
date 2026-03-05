@@ -1,7 +1,7 @@
 ---
 title: Use a SharePoint Indexer to Ingest Permission Metadata
 titleSuffix: Azure AI Search
-description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) from SharePoint in Microsoft 365 files.
+description: Learn how to configure an Azure AI Search indexer for ingesting access control lists (ACLs) from SharePoint in Microsoft 365 files.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 03/05/2026
@@ -13,7 +13,7 @@ ms.author: gimondra
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-This article explains how to ingest an Access Control List (ACL) alongside other content from SharePoint in Microsoft 365 using an Azure AI Search indexer. Permissions from SharePoint are preserved as permission metadata for each indexed document. When users query an index containing content from SharePoint, their search results consist of only those documents for which they have permission to access.
+This article explains how to ingest an access control list (ACL) alongside other content from SharePoint in Microsoft 365 using an Azure AI Search indexer. Permissions from SharePoint are preserved as permission metadata for each indexed document. When users query an index containing content from SharePoint, their search results consist of only those documents for which they have permission to access.
 
 :::image type="content" source="media/search-indexer-sharepoint-access-control-lists/security-trimmed-rag-sharepoint.png" alt-text="Architecture diagram showing a security-trimmed RAG solution where a SharePoint indexer ingests documents and ACL permission metadata from a SharePoint site, stores them in an Azure AI Search index, and a RAG orchestrator filters query results so each user retrieves only documents they're authorized to access." lightbox="media/search-indexer-sharepoint-access-control-lists/security-trimmed-rag-sharepoint.png":::
 
@@ -30,7 +30,7 @@ This article explains how to ingest an Access Control List (ACL) alongside other
 
 + Configure [application permissions](search-how-to-index-sharepoint-online.md#step-2-decide-which-permissions-the-indexer-requires) with `Files.Read.All` and `Sites.FullControl.All` (or `Sites.Selected` instead of `Sites.FullControl.All`) to index only the content and permissions of specific sites. Then, grant the application full control permissions for those selected sites.
 
-+ REST API version 2025-11-01-preview or preview SDK packages.
++ REST API version 2025-11-01-preview or an equivalent preview SDK package.
 
 ## Limitations
 

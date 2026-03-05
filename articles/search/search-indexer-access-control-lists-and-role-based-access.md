@@ -1,7 +1,7 @@
 ---  
 title: Use ADLS Gen2 Indexer to Ingest Permission Metadata
 titleSuffix: Azure AI Search  
-description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata on Azure Data Lake Storage (ADLS) Gen2 blobs.
+description: Learn how to configure an Azure AI Search indexer for ingesting access control lists (ACLs) and Azure Role-Based Access (RBAC) metadata on Azure Data Lake Storage (ADLS) Gen2 blobs.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 03/05/2026  
@@ -29,11 +29,11 @@ This article explains how to configure an ADLS Gen2 indexer or ADLS Gen2 blob kn
 
 + ADLS Gen2 blobs in a hierarchical namespace, with user permissions granted through ACLs or roles.
 
-+ 2025-05-01-preview REST API or later for indexer permission ingestion. 2025-11-01-preview for knowledge source support. Use the latest preview REST API or a preview SDK package that supports [permission filters](search-query-access-control-rbac-enforcement.md).
++ REST API version 2025-05-01-preview or later for indexer permission ingestion. REST API version 2025-11-01-preview for knowledge source support. Use the latest preview REST API or a preview SDK package that supports [permission filters](search-query-access-control-rbac-enforcement.md).
 
 ## Limitations
 
-+ Azure portal doesn't support this feature.
++ The Azure portal doesn't support this feature.
 
 + [ADLS Gen2 limits on role assignments and ACL entries](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries) apply.
 
@@ -60,7 +60,7 @@ This section compares document-level access control features between ADLS Gen2 a
 | [RBAC](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) | Coarse-grained access at container level | Yes | AI Search honors RBAC for access to all documents in the entire container. |
 | [ABAC](/azure/storage/blobs/data-lake-storage-access-control-model#attribute-based-access-control-azure-abac) | Attribute-based conditions on top of RBAC | No | AI Search doesn't evaluate ABAC conditions for document-level access. |
 | [ACL](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) | Fine-grained permissions at directory/file (document) level  | Yes | AI Search uses document-level ACLs for [permission filters](./search-query-access-control-rbac-enforcement.md). |
-| [Security Groups](/azure/storage/blobs/data-lake-storage-access-control-model#security-groups) | Group-based permission assignments  | Yes  | Supported if security groups are mapped inside the document-level ACL. |
+| [Security groups](/azure/storage/blobs/data-lake-storage-access-control-model#security-groups) | Group-based permission assignments  | Yes  | Supported if security groups are mapped inside the document-level ACL. |
 
 At query time, Azure AI Search evaluates container-level RBAC first and then checks document-level ACL entries. Access is granted if any mechanism permits it.
 

@@ -1,7 +1,7 @@
 ---
-title: Use Azure AI Search Indexers to Ingest Microsoft Purview Sensitivity Labels  
+title: Use an Azure AI Search Indexer to Ingest Microsoft Purview Sensitivity Labels  
 titleSuffix: Azure AI Search  
-description: Learn how to configure Azure AI Search indexers to ingest Microsoft Purview sensitivity labels from supported data sources for document-level security enforcement.  
+description: Learn how to configure an Azure AI Search indexer to ingest Microsoft Purview sensitivity labels from supported data sources for document-level security enforcement.  
 ms.service: azure-ai-search  
 ms.topic: how-to  
 ms.date: 03/05/2026  
@@ -9,7 +9,7 @@ author: gmndrg
 ms.author: gimondra  
 ---
 
-# Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels and enforce document-level security
+# Use an Azure AI Search indexer to ingest Microsoft Purview sensitivity labels and enforce document-level security
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -32,19 +32,19 @@ This functionality is available for the following data sources:
 
 + [Global Administrator](/entra/identity/role-based-access-control/permissions-reference#global-administrator) or [Privileged Role Administrator](/entra/identity/role-based-access-control/permissions-reference#privileged-role-administrator) roles in your Microsoft Entra tenant are required to grant the search service access to Purview APIs and sensitivity labels.
 
-+ Both the Azure AI Search service and end users querying the content must be in the same Microsoft Entra tenant.
++ Both the Azure AI Search service and the user issuing the query must be in the same Microsoft Entra tenant.
 
 + Source documents must use file types that are both [supported by Purview sensitivity labels](/purview/sensitivity-labels-sharepoint-onedrive-files#supported-file-types) and [supported by Azure AI Search indexers](search-how-to-index-azure-blob-storage.md#supported-document-formats).
 
-+ REST API version 2025-11-01-preview or preview SDK packages.
++ REST API version 2025-11-01-preview or an equivalent preview SDK package.
 
 ## Limitations
 
 + Available in all Azure AI Search regions except West US 2.
 
-+ Azure portal doesn't support this feature.
++ The Azure portal doesn't support this feature.
 
-+ [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs aren't supported for Purview-enabled indexes.
++ [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs aren't supported for Purview-enabled indexes, as they can't yet enforce label-based access control.
 
 + [Guest accounts](/entra/external-id/b2b-quickstart-add-guest-users-portal) and cross-tenant queries aren't supported.
 
