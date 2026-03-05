@@ -8,9 +8,10 @@ ms.subservice: core
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: deeikele
-ms.date: 03/08/2022
+ms.date: 03/05/2026
 ms.topic: how-to
-ms.custom: UpdateFrequency5, fasttrack-edit, sdkv1, devx-track-python
+ms.custom: UpdateFrequency5, fasttrack-edit, sdkv1, devx-track-python, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Manage Azure Machine Learning workspaces with the Python SDK (v1)
@@ -21,7 +22,7 @@ ms.custom: UpdateFrequency5, fasttrack-edit, sdkv1, devx-track-python
 
 In this article, you create, view, and delete [**Azure Machine Learning workspaces**](../concept-workspace.md) for [Azure Machine Learning](../overview-what-is-azure-machine-learning.md), using the [SDK for Python](/python/api/overview/azure/ml/).  
 
-As your needs change or requirements for automation increase you can also manage workspaces [using the CLI](reference-azure-machine-learning-cli.md),  or [via the VS Code extension](../how-to-setup-vs-code.md).
+As your needs change or requirements for automation increase, you can also manage workspaces [using the CLI v2](/azure/machine-learning/how-to-manage-workspace-cli) or [via the VS Code extension](../how-to-setup-vs-code.md).
 
 ## Prerequisites
 
@@ -106,7 +107,7 @@ If you have problems in accessing your subscription, see [Set up authentication 
 > For more information on using a private endpoint and virtual network with your workspace, see [Network isolation and privacy](../how-to-network-security-overview.md).
 
 
-The Azure Machine Learning Python SDK provides the [PrivateEndpointConfig](/python/api/azureml-core/azureml.core.privateendpointconfig) class, which can be used with [Workspace.create()](/python/api/azureml-core/azureml.core.workspace.workspace#create-name--auth-none--subscription-id-none--resource-group-none--location-none--create-resource-group-true--sku--basic---tags-none--friendly-name-none--storage-account-none--key-vault-none--app-insights-none--container-registry-none--adb-workspace-none--cmk-keyvault-none--resource-cmk-uri-none--hbi-workspace-false--default-cpu-compute-target-none--default-gpu-compute-target-none--private-endpoint-config-none--private-endpoint-auto-approval-true--exist-ok-false--show-output-true-) to create a workspace with a private endpoint. This class requires an existing virtual network.
+The Azure Machine Learning Python SDK provides the [PrivateEndpointConfig](/python/api/azureml-core/azureml.core.private_endpoint.privateendpointconfig?view=azure-ml-py) class, which can be used with [Workspace.create()](/python/api/azureml-core/azureml.core.workspace.workspace?view=azure-ml-py) to create a workspace with a private endpoint. This class requires an existing virtual network.
 
 
 ### Advanced
@@ -136,15 +137,15 @@ Use `cmk_keyvault` and `resource_cmk_uri` to specify the customer managed key.
 
 ```python
 from azureml.core import Workspace
-   ws = Workspace.create(name='myworkspace',
-               subscription_id='<azure-subscription-id>',
-               resource_group='myresourcegroup',
-               create_resource_group=True,
-               location='eastus2'
-               cmk_keyvault='subscriptions/<azure-subscription-id>/resourcegroups/myresourcegroup/providers/microsoft.keyvault/vaults/<keyvault-name>', 
-               resource_cmk_uri='<key-identifier>'
-               )
 
+ws = Workspace.create(name='myworkspace',
+            subscription_id='<azure-subscription-id>',
+            resource_group='myresourcegroup',
+            create_resource_group=True,
+            location='eastus2',
+            cmk_keyvault='subscriptions/<azure-subscription-id>/resourcegroups/myresourcegroup/providers/microsoft.keyvault/vaults/<keyvault-name>',
+            resource_cmk_uri='<key-identifier>'
+            )
 ```
 
 ### Download a configuration file
