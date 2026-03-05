@@ -29,9 +29,18 @@ keywords:
 
 Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
 
-If you're using the classic portal, see [What is Microsoft Foundry? (classic)](../foundry-classic/what-is-foundry.md).
+> [!TIP]
+> * Coming from Azure OpenAI? You can upgrade your Azure OpenAI resource to a Foundry resource while preserving your endpoint, API keys, and existing state. See [Upgrade from Azure OpenAI to Microsoft Foundry](./how-to/upgrade-azure-openai.md).
+> * Using hub-based projects? Hub-based projects are accessible in the [Foundry (classic) portal](../foundry-classic/what-is-foundry.md). New investments are focused on Foundry projects in the new portal.
 
 [!INCLUDE [previous-current](includes/previous-current.md)]
+
+## Who is Foundry for?
+
+Microsoft Foundry serves three primary audiences:
+* Application developers building AI-powered products with agents, models, and tools. Start with the [quickstart](./quickstarts/get-started-code.md)
+* ML engineers and data scientists who [fine-tune models](./openai/concepts/fine-tuning-considerations.md), [run evaluations](./observability/concepts/trace-agent-concept.md), and [manage model deployments](./foundry-models/how-to/monitor-models.md). 
+* IT administrators and platform engineers who govern AI resources, enforce policies, and manage access across teams. See [security](./concepts/architecture.md#security-driven-separation-of-concerns) and governance and [Foundry Control Plane](./control-plane/overview.md).
 
 ## Key capabilities
 
