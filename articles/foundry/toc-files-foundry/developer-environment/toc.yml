@@ -15,7 +15,7 @@ items:
   href: ../../concepts/concept-playgrounds.md
 - name: Develop with LangChain and LangGraph
   items:
-  - name: Compose solutions with LangGraph and the Agent Service
+  - name: Use LangGraph with the Agent Service
     href: ../../how-to/develop/langchain-azure-ai-agents.md
 
 # Agent Tools
