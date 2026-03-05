@@ -1,16 +1,16 @@
 ---
-title: "Use langchain-azure-ai with Foundry Agent Service"
-description: "Learn how to build practical LangGraph and LangChain applications by using langchain-azure-ai with Foundry Agent Service."
+title: Use LangGraph with the Agent Service
+description: "Learn how to build practical LangGraph and LangChain applications with Foundry Agent Service."
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 03/04/2026
-ms.author: johalexander
-author: ms-johnalex
-ms.reviewer: santiagxf
+ms.author: sgilley
+author: sdgilley
+ms.reviewer: fasanti
 ms.custom:
   - classic-and-new
 ai-usage: ai-assisted
-# customer intent: As a developer, I want to use langchain-azure-ai with Foundry Agent Service so that I can build practical intelligent applications with LangGraph and LangChain.
+# customer intent: As a developer, I want to use langchain-azure-ai with Foundry Agent Service so that I can build practical intelligent applications with LangGraph and LangChain and the Agent Service.
 ---
 
 # Use Foundry Agent Service with LangGraph
@@ -23,7 +23,7 @@ loop approvals, and tracing.
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
-- A Microsoft Foundry project in the new Foundry experience.
+- A [Foundry project](../create-projects.md).
 - A deployed chat model (for example, `gpt-4.1`) in your project.
 - Python 3.10 or later.
 - Azure CLI signed in (`az login`) so `DefaultAzureCredential` can authenticate.
