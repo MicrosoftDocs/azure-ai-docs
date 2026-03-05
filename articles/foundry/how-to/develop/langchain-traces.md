@@ -82,9 +82,15 @@ enables tracing for LangGraph nodes. Use `agent_id` parameter to set the attribu
 `gen_ai.agent.id` when invoking agents. The `name` parameter sets the
 OpenTelemetry tracer name.
 
-You can also sink traces to a specific Azure Application Insights resource by specifying the
-parameter `connection_string` in the constructor or by configuring the environment
-variable `APPLICATION_INSIGHTS_CONNECTION_STRING`.
+The tracer supports common controls for production workflows:
+
+- Pass `connection_string` to target a specific Application Insights resource or by configuring
+  the environment variable `APPLICATION_INSIGHTS_CONNECTION_STRING`.
+- Set `trace_all_langgraph_nodes=True` to trace all nodes by default.
+- Use node metadata like `otel_trace: True` or `otel_trace: False` to include
+  or skip specific nodes.
+- Use `message_keys` and `message_paths` when your messages are nested under a
+  custom state shape, for example `chat_history`.
 
 Reference:
 - [AzureAIOpenTelemetryTracer](https://python.langchain.com/api_reference/azure_ai/callbacks/langchain_azure_ai.callbacks.tracers.inference_tracing.AzureAIOpenTelemetryTracer.html)
@@ -223,19 +229,6 @@ tracing, and emits `invoke_agent` and model/tool spans into the same trace.
 Reference:
 - [LangGraph](https://langchain-ai.github.io/langgraph/)
 - [OpenTelemetry](https://opentelemetry.io/docs/)
-
-## Control tracing behavior
-
-The tracer supports common controls for production workflows:
-
-- Pass `connection_string` to target a specific Application Insights resource.
-- Pass `project_endpoint` and `credential` to resolve the telemetry endpoint
-  from your Foundry project.
-- Set `trace_all_langgraph_nodes=True` to trace all nodes by default.
-- Use node metadata like `otel_trace: True` or `otel_trace: False` to include
-  or skip specific nodes.
-- Use `message_keys` and `message_paths` when your messages are nested under a
-  custom state shape, for example `chat_history`.
 
 ## Understand trace structure
 
