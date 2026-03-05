@@ -33,7 +33,7 @@ loop approvals, and tracing.
 Install the package `langchain-azure-ai` to use Microsoft Foundry capabilities in LangGraph and LangChain.
 
 ```bash
-pip install langchain-azure-ai[tools,opentelemetry,v2] azure-identity
+pip install langchain-azure-ai[tools,opentelemetry] azure-identity
 ```
 
 > [!TIP]
