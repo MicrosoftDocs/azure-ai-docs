@@ -8,7 +8,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
-ms.date: 03/02/2026
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-image-generation
@@ -333,7 +333,7 @@ const imageDeploymentName =
 export async function main(): Promise<void> {
   // Create AI Project client
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = await project.getOpenAIClient();
+  const openAIClient = project.getOpenAIClient();
 
   // Create Agent with image generation tool
   const agent = await project.agents.createVersion("agent-image-generation", {

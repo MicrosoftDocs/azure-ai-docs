@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -892,7 +892,7 @@ export async function main(): Promise<void> {
   const weatherSpec = loadOpenApiSpec(weatherSpecPath);
 
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = await project.getOpenAIClient();
+  const openAIClient = project.getOpenAIClient();
 
   // Create an agent with the OpenAPI weather tool
   const agent = await project.agents.createVersion("MyOpenApiAgent", {
@@ -1039,7 +1039,7 @@ export async function main(): Promise<void> {
   const tripAdvisorSpec = loadOpenApiSpec(tripAdvisorSpecPath);
 
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = await project.getOpenAIClient();
+  const openAIClient = project.getOpenAIClient();
 
   // Create an agent with the OpenAPI project-connection tool
   const agent = await project.agents.createVersion("MyOpenApiConnectionAgent", {

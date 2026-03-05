@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/04/2026
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
@@ -444,7 +444,7 @@ const A2A_CONNECTION_NAME = "my-a2a-connection";
 
 export async function main(): Promise<void> {
   const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-  const openAIClient = await project.getOpenAIClient();
+  const openAIClient = project.getOpenAIClient();
 
   // Get the A2A connection by name to retrieve its ID
   const a2aConnection = await project.connections.get(A2A_CONNECTION_NAME);
