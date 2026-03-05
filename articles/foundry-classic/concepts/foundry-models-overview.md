@@ -44,10 +44,10 @@ Understanding the distinction between these categories helps you choose the righ
 > [!NOTE]
 > For all models, Customers remain responsible for:
 >
-> - complying with the law in their use of any model or system
-> - reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation
-> - selecting an appropriate model for their use case
-> - implementing appropriate measures (including use of Azure AI Content Safety) to ensure customers' use of the Foundry Tools complies with the Acceptable Use Policy in Microsoft's Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
+> - Complying with the law in their use of any model or system
+> - Reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation
+> - Selecting an appropriate model for their use case
+> - Implementing appropriate measures (including use of Azure AI Content Safety) to ensure customers' use of the Foundry Tools complies with the Acceptable Use Policy in Microsoft's Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
  
 ## Models sold directly by Azure 
  
