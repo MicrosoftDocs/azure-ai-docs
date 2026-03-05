@@ -14,7 +14,7 @@ author: sdgilley
 ai-usage: ai-assisted
 ---
 
-# Develop applications with LangChain and Microsoft Foundry (classic)
+# Develop applications with models and LangChain in Microsoft Foundry (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -61,8 +61,11 @@ To run this tutorial, you need:
 * Install the Foundry integration:
 
     ```bash
-    pip install -U langchain-azure-ai
+    pip install -U langchain-azure-ai[v1]
     ```
+
+> [!TIP]
+> Installing `langchain-azure-ai[v1]` uses `azure-ai-projects<2.0`.
 
 ## Configure the environment
 
@@ -85,17 +88,17 @@ Create a client to connect to the chat model by using the `AzureAIChatCompletion
 - [Model Inference API overview](../../../ai-foundry/model-inference/overview.md)
 
 > [!CAUTION]
-> **Breaking change:** The `model_name` parameter is renamed to `model` in version `0.1.3`.
+> Class `langchain_azure_ai.chat_models.inference.AzureAIChatCompletionsModel` is deprecated. Use `langchain_azure_ai.chat_models.openai.AzureAIChatCompletionsModel` instead which uses OpenAI responses API.
 
 If your endpoint supports Microsoft Entra ID, use the following code to create the client:
 
 ```python
 import os
 from azure.identity import DefaultAzureCredential
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain_azure_ai.chat_models.inference import AzureAIChatCompletionsModel
 
 model = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint=os.environ["AZURE_AI_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredential(),
     model="Mistral-Large-3",
 )
@@ -110,10 +113,10 @@ If you plan to use asynchronous calls, use the asynchronous version of the crede
 from azure.identity.aio import (
     DefaultAzureCredential as DefaultAzureCredentialAsync,
 )
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain_azure_ai.chat_models.inference import AzureAIChatCompletionsModel
 
 model = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint=os.environ["AZURE_AI_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredentialAsync(),
     model="Mistral-Large-3",
 )
@@ -123,11 +126,11 @@ If your endpoint serves a single model (for example, serverless API deployments)
 
 ```python
 import os
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain_azure_ai.chat_models.inference import AzureAIChatCompletionsModel
 
 model = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
+    endpoint=os.environ["AZURE_AI_INFERENCE_ENDPOINT"],
+    credential=os.environ["AZURE_AI_CREDENTIAL"],
 )
 ```
 
@@ -286,7 +289,7 @@ When you use Azure OpenAI models with the `langchain-azure-ai` package, use the 
 
 ```python
 import os
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain_azure_ai.chat_models.inference import AzureAIChatCompletionsModel
 
 llm = AzureAIChatCompletionsModel(
     endpoint="https://<resource>.openai.azure.com/openai/v1",

@@ -16,7 +16,7 @@ items:
 - name: Develop with LangChain and LangGraph
   items:
   - name: Get started with LangChain and LangGraph in Foundry
-    href: ../../how-to/develop/langchain-azure.md
+    href: ../../how-to/develop/langchain.md
   - name: Use the Agent Service with LangGraph
     href: ../../how-to/develop/langchain-agents.md
   - name: Use Foundry Memory with LangChain and LangGraph

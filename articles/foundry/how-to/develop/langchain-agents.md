@@ -9,6 +9,7 @@ author: sdgilley
 ms.reviewer: fasanti
 ms.custom:
   - classic-and-new
+  - dev-focus
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to use langchain-azure-ai with Foundry Agent Service so that I can build practical intelligent applications with LangGraph and LangChain and the Agent Service.
 ---
@@ -55,7 +56,10 @@ The factory creates LangGraph-compatible nodes that run through Agent Service an
 with LangGraph. 
 
 Create the agent factory by connecting the `AgentServiceFactory` class to a Foundry project. All agents you create through this factory are managed
-within the project and visible in the Foundry portal.
+within the project and visible in the Foundry portal (new).
+
+> [!NOTE]
+> **Migrating from Foundry classic:** Agents created with `langchain_azure_ai.agents.v1.AgentServiceFactory` are only visible in the Foundry portal (classic).
 
 ```python
 import os
@@ -63,7 +67,7 @@ import os
 from langchain_core.messages import HumanMessage
 
 from azure.identity import DefaultAzureCredential
-from langchain_azure_ai.agents.v2 import AgentServiceFactory
+from langchain_azure_ai.agents import AgentServiceFactory
 from langchain_azure_ai.utils.agents import pretty_print
 
 factory = AgentServiceFactory(
