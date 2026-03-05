@@ -107,7 +107,7 @@ If you have problems in accessing your subscription, see [Set up authentication 
 > For more information on using a private endpoint and virtual network with your workspace, see [Network isolation and privacy](../how-to-network-security-overview.md).
 
 
-The Azure Machine Learning Python SDK provides the [PrivateEndpointConfig](/python/api/azureml-core/azureml.core.private_endpoint.privateendpointconfig?view=azure-ml-py) class, which can be used with [Workspace.create()](/python/api/azureml-core/azureml.core.workspace.workspace?view=azure-ml-py) to create a workspace with a private endpoint. This class requires an existing virtual network.
+The Azure Machine Learning Python SDK provides the [PrivateEndpointConfig](/python/api/azureml-core/azureml.core.private_endpoint.privateendpointconfig?view=azure-ml-py&preserve-view=true) class, which can be used with [Workspace.create()](/python/api/azureml-core/azureml.core.workspace.workspace?view=azure-ml-py&preserve-view=true) to create a workspace with a private endpoint. This class requires an existing virtual network.
 
 
 ### Advanced
