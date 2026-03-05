@@ -17,8 +17,8 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup> | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `gpt-5-chat` | 2025-08-07 | `Preview` | n/a | 2026-03-01 | `gpt-5.2-chat` |
-| `gpt-5-chat` | 2025-10-03 | `Preview` | n/a | 2026-03-01 | `gpt-5.2-chat` |
+| `gpt-5-chat` | 2025-08-07 | `Preview` | n/a | 2026-04-15 | `gpt-5.2-chat` |
+| `gpt-5-chat` | 2025-10-03 | `Preview` | n/a | 2026-04-15 | `gpt-5.2-chat` |
 | `gpt-4o` | 2024-05-13 | `Generally Available` | 2025-05-13 | Standard deployment type retires on **2026-03-31**, with auto-upgrades scheduled to start on **2026-03-09**. For other deployment types, including ALL Provisioned, Global Standard, and Data Zone Standard, the retirement date has been moved to **2026-10-01**. | `gpt-5.1` |
 | `gpt-4o` | 2024-08-06 | `Generally Available` | 2025-08-06 | Standard deployment type retires on **2026-03-31**, with auto-upgrades scheduled to start on **2026-03-09**. For other deployment types, including ALL Provisioned, Global Standard, and Data Zone Standard, the retirement date has been moved to **2026-10-01**. | `gpt-5.1` |
 | `gpt-4o` | 2024-11-20 | `Generally Available` | 2025-11-20 | 2026-10-01 | `gpt-5.1` |
@@ -80,8 +80,8 @@ ms.custom: references_regions, build-2025
 
 | Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
-| `dall-e-3` | 3 | `Generally Available` | n/a | 2026-03-04 | `gpt-image-1-mini` |
-| `gpt-image-1` | 2025-04-15 | `Preview` | n/a | No earlier than 2026-03-31 | `gpt-image-1-mini` |
+| `dall-e-3` | 3 | `Generally Available` | n/a | 2026-03-04 | `gpt-image-1.5` |
+| `gpt-image-1` | 2025-04-15 | `Preview` | n/a | No earlier than 2026-03-31 | `gpt-image-1.5` |
 | `gpt-image-1-mini` | 2025-10-06 | `Generally Available` | 2026-10-06 | 2027-04-07 |  |
 | `sora` | 2025-05-02 | `Preview` | n/a | No earlier than 2026-02-28 | `sora-2` |
 | `gpt-image-1.5`    | 2025-12-16   | `Preview`    | n/a | No earlier than 2026-12-16 |  |
@@ -118,14 +118,14 @@ Unless explicitly stated, training retires no earlier than the base model retire
 
 At deployment retirement, inference and deployment return error responses.
 
-| Model            | Version     | Training retirement date   | Deployment retirement date        |
-| -----------------|-------------|----------------------------|-----------------------------------|
-| `gpt-4o`         | 2024-08-06  | No earlier than 2026-09-31<sup>1</sup> | 2027-03-31 |
-| `gpt-4o-mini`    | 2024-07-18  | No earlier than 2026-09-31<sup>1</sup> | 2027-03-31 |
-| `gpt-4.1`        | 2025-04-14  | Base model retirement  | One year after training retirement |
-| `gpt-4.1-mini`   | 2025-04-14  | Base model retirement  | One year after training retirement |
-| `gpt-4.1-nano`   | 2025-04-14  | Base model retirement  | One year after training retirement |
-| `o4-mini`        | 2025-04-16  | Base model retirement  | One year after training retirement |
+| Model            | Version     | Training retirement date | Deployment retirement date |
+| -----------------|-------------|--------------------------|----------------------------|
+| `gpt-4o`         | 2024-08-06  | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
+| `gpt-4o-mini`    | 2024-07-18  | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
+| `gpt-4.1`        | 2025-04-14  | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| `gpt-4.1-mini`   | 2025-04-14  | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| `gpt-4.1-nano`   | 2025-04-14  | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| `o4-mini`        | 2025-04-16  | Base model retirement | One year after training retirement |
 
 <sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 

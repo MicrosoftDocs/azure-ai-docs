@@ -25,7 +25,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 > [!TIP]
 > An alternate hub-focused article is available: [Customer-managed keys for hub projects](hub-encryption-keys-portal.md).
 
-Customer-managed key (CMK) encryption in [!INCLUDE [classic-link](../includes/classic-link.md)] gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
+Customer-managed key (CMK) encryption in [!INCLUDE [classic-link](../../foundry/includes/classic-link.md)] gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
 
 Microsoft Foundry provides robust encryption capabilities, including the ability to use CMKs stored in Key Vault to help secure your sensitive data. CMK encryption applies to data at rest stored in the Foundry resource's associated storage accounts, including project artifacts, uploaded files, and evaluation data.
 

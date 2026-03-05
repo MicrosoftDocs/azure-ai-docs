@@ -19,7 +19,7 @@ ms.update-cycle: 180-days
 
 The prompt flow Rerank tool improves the search quality of relevant documents given a query for retrieval-augment generation (RAG) in prompt flow. This tool works best with the [Index Look up tool](index-lookup-tool.md) as a ranker after the initial retrieval.
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 ## Prerequisites
 

@@ -24,7 +24,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 > [!TIP]
 > An alternate hub-scoped connections article is available: [Create and manage connections (Hubs)](hub-connections-add.md).
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 In this article, you learn how to add a new connection in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 

@@ -6,7 +6,7 @@ ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - build-2024
   - hub-only
-ms.topic: article
+ms.topic: concept-article
 ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
@@ -19,7 +19,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 By using the prompt flow Azure OpenAI GPT-4 Turbo with Vision tool, you can use your Azure OpenAI GPT-4 Turbo with Vision model deployment to analyze images and provide textual responses to questions about them.
 

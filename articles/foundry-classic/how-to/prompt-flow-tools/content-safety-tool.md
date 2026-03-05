@@ -20,7 +20,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 The prompt flow Content Safety tool enables you to use Azure AI Content Safety in Microsoft Foundry portal.
 
@@ -32,7 +32,7 @@ Azure AI Content Safety is a content moderation service that helps detect harmfu
 
 To create an Azure Content Safety connection:
 
-1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../foundry/includes/classic-sign-in.md)]
 1. Go to **Project settings** > **Connections**.
 1. Select **+ New connection**.
 1. Complete all steps in the **Create a new connection** dialog. You can use a Foundry hub or Azure AI Content Safety resource. Use a hub that supports multiple Foundry Tools.

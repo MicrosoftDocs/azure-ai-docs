@@ -28,7 +28,7 @@ The rest of the article covers the preview release of the Azure OpenAI data plan
 
 If you're looking for documentation on the latest GA API release, refer to the [latest GA data plane inference API](./latest.md)
 
-[!INCLUDE [API surfaces](./includes/api-versions/latest-authoring.md)]
+[!INCLUDE [API surfaces](../../foundry/openai/includes/api-versions/latest-authoring.md)]
 
 ## Next steps
 

@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
-ms.date: 02/23/2026
+ms.date: 03/05/2026
 ms.author: mopeakande
 manager: nitinme
 author: msakande
@@ -112,12 +112,6 @@ The following tables list the timelines for models that are on track for retirem
 | [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | [Llama-4-Maverick-17B-128E-Instruct-FP8](https://ai.azure.com/explore/models/Llama-4-Maverick-17B-128E-Instruct-FP8/version/1/registry/azureml-meta/?cid=learnDocs), [Llama-4-Scout-17B-16E-Instruct](https://ai.azure.com/explore/models/Llama-4-Scout-17B-16E-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) |
 | [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | [Llama-4-Maverick-17B-128E-Instruct-FP8](https://ai.azure.com/explore/models/Llama-4-Maverick-17B-128E-Instruct-FP8/version/1/registry/azureml-meta/?cid=learnDocs), [Llama-4-Scout-17B-16E-Instruct](https://ai.azure.com/explore/models/Llama-4-Scout-17B-16E-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) |
 
-#### Microsoft
-
-| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml/?cid=learnDocs) | January 16, 2026 | January 27, 2026 | February 27, 2026 | Any DeepSeek model available in the Model catalog |
-
 #### Moonshot AI
 
 | Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
@@ -187,6 +181,7 @@ The following models were retired at 00:00:00 UTC on the specified dates and are
 
 | Model | Retirement date | Suggested replacement model |
 |-------|-----------------------|-----------------------------|
+| MAI-DS-R1 | February 27, 2026 | Any DeepSeek model available in the Model catalog |
 | Phi-3-medium-4k-instruct | August 30, 2025 | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs) |
 | Phi-3-medium-128k-instruct | August 30, 2025 | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml/?cid=learnDocs) |
 | Phi-3-mini-4k-instruct | August 30, 2025 | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml/?cid=learnDocs) |

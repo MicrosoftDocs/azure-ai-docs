@@ -33,6 +33,10 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 [!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-api/csharp.md)]
 ::: zone-end
 
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript quickstart](./includes/quickstarts/voice-live-api/javascript.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-java"
 [!INCLUDE [Java quickstart](./includes/quickstarts/voice-live-api/java.md)]
 ::: zone-end

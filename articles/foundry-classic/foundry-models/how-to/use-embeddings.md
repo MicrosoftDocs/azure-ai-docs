@@ -17,31 +17,31 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [python](../../foundry-models/includes/use-embeddings/python.md)]
+[!INCLUDE [python](../includes/use-embeddings/python.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [javascript](../../foundry-models/includes/use-embeddings/javascript.md)]
+[!INCLUDE [javascript](../includes/use-embeddings/javascript.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [java](../../foundry-models/includes/use-embeddings/java.md)]
+[!INCLUDE [java](../includes/use-embeddings/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [csharp](../../foundry-models/includes/use-embeddings/csharp.md)]
+[!INCLUDE [csharp](../includes/use-embeddings/csharp.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [rest](../../foundry-models/includes/use-embeddings/rest.md)]
+[!INCLUDE [rest](../includes/use-embeddings/rest.md)]
 ::: zone-end
 
 ## Related content

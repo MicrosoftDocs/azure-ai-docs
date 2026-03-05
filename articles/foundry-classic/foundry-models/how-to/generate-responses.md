@@ -32,7 +32,7 @@ To use the Responses API with deployed models in your application, you need:
 
 - Your Foundry project's endpoint URL, which is of the form `https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME`.
 
-- A deployment of a Foundry Model, such as the `MAI-DS-R1` model used in this article. If you don't have a deployment already, see [Add and configure Foundry Models](create-model-deployments.md) to a model deployment to your resource.
+- A deployment of a Foundry Model, such as the `DeepSeek-V3.1` model used in this article. If you don't have a deployment already, see [Add and configure Foundry Models](create-model-deployments.md) to a model deployment to your resource.
 
 ### Use the AI model starter kit
 
@@ -75,7 +75,7 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
     )   
    
     response = client.responses.create(
-        model="MAI-DS-R1", # Replace with your deployment name, not the model ID 
+        model="DeepSeek-V3.1", # Replace with your deployment name, not the model ID 
         input="What are the top 3 benefits of cloud computing? Be concise.",
         max_output_tokens=500,
     )
@@ -99,7 +99,7 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
     using OpenAI;
     using OpenAI.Responses;
 
-    var deploymentName = "MAIDSR1"; // Replace with your deployment name, not the model ID 
+    var deploymentName = "DeepSeek-V3.1"; // Replace with your deployment name, not the model ID 
     var project_endpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME";
 
     // Get EntraID token for keyless auth
@@ -150,7 +150,7 @@ Use the code in this section to make Responses API calls for Foundry Models. In 
 
     async function main() {
         const projectEndpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME";
-        const deploymentName = "MAI-DS-R1"; // Replace with your deployment name, not the model ID 
+        const deploymentName = "DeepSeek-V3.1"; // Replace with your deployment name, not the model ID 
 
         const baseURL = projectEndpoint.replace(/\/+$/, "") + "/openai/v1";
         const token = await getToken();
@@ -209,7 +209,7 @@ Authentication with Microsoft Entra ID requires some initial setup. First, insta
     public class Sample {
         public static void main(String[] args) {
             String endpoint = "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME";
-            String deploymentName = "MAI-DS-R1"; // Replace with your deployment name, not the model ID
+            String deploymentName = "DeepSeek-V3.1"; // Replace with your deployment name, not the model ID
             
             // Get EntraID token for keyless auth
             var credential = new DefaultAzureCredentialBuilder().build();
@@ -259,7 +259,7 @@ import (
 
 func main() {
     projectEndpoint := "https://YOUR-RESOURCE-NAME.services.ai.azure.com/api/projects/YOUR_PROJECT_NAME"
-    deploymentName := "MAI-DS-R1" // Replace with your deployment name, not the model ID
+    deploymentName := "DeepSeek-V3.1" // Replace with your deployment name, not the model ID
 
     ctx := context.Background()
 
@@ -305,7 +305,7 @@ A selection of Foundry Models are supported for use with the Responses API.
 ### List of supported models
 
 This section lists some of the Foundry Models that are supported for use with the Responses API. For the Azure OpenAI models that are supported, see [Available Azure OpenAI models](../../agents/concepts/model-region-support.md#available-models).
-[!INCLUDE [agent-service-models-support-list](../../agents/includes/agent-service-models-support-list.md)]
+[!INCLUDE [agent-service-models-support-list](../../../foundry/agents/includes/agent-service-models-support-list.md)]
 
 ## Troubleshoot common errors
 

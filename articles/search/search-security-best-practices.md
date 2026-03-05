@@ -10,6 +10,7 @@ ms.update-cycle: 180-days
 ms.topic: how-to
 ms.date: 02/24/2026
 ai-usage: ai-assisted
+ms.custom: horz-security
 ---
 
 # Secure an Azure AI Search service

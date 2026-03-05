@@ -47,7 +47,7 @@ You can use the shared quota pool for testing inferencing for Foundry Models fro
 
 ## View and request quotas in Foundry portal
 
-Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../includes/fdp-project-name.md)]s in the same subscription.
+Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../../foundry/includes/fdp-project-name.md)]s in the same subscription.
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 

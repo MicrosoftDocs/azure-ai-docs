@@ -6,10 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.custom: UpdateFrequency5, deploy
+ms.custom: UpdateFrequency5, deploy, dev-focus
 ms.author: scottpolly
 author: s-polly
-ms.date: 04/22/2021
+ms.date: 03/05/2026
+ai-usage: ai-assisted
 ---
 
 # Deploy a model locally
@@ -45,13 +46,13 @@ An example notebook that demonstrates local deployments is included on your comp
 
     ![Screenshot of the running local service port](./media/how-to-deploy-local-container-notebook-vm/deploy-local-service-port.png)
 
-1. To test the service from a compute instance, use the `https://localhost:<local_service.port>` URL. To test from a remote client, get the public URL of the service running on the compute instance. The public URL can be determined use the following formula; 
-    * Notebook VM: `https://<vm_name>-<local_service_port>.<azure_region_of_workspace>.notebooks.azureml.net/score`. 
-    * Compute instance: `https://<vm_name>-<local_service_port>.<azure_region_of_workspace>.instances.azureml.net/score`. 
+1. To test the service from a compute instance, use the `https://localhost:<local_service.port>` URL. To test from a remote client, get the public URL of the service running on the compute instance. The public URL can be determined using the following formula:
 
-    For example, 
-    * Notebook VM: `https://vm-name-6789.northcentralus.notebooks.azureml.net/score` 
-    * Compute instance: `https://vm-name-6789.northcentralus.instances.azureml.net/score`
+    `https://<vm_name>-<local_service_port>.<azure_region_of_workspace>.instances.azureml.net/score`
+
+    For example:
+
+    `https://vm-name-6789.northcentralus.instances.azureml.net/score`
 
 ## Test the service
 
@@ -84,8 +85,7 @@ test_sample = json.dumps({'data': [
 test_sample = bytes(test_sample,encoding = 'utf8')
 
 # Replace with the URL for your compute instance, as determined from the previous section
-service_url = "https://vm-name-6789.northcentralus.notebooks.azureml.net/score"
-# for a compute instance, the url would be https://vm-name-6789.northcentralus.instances.azureml.net/score
+service_url = "https://vm-name-6789.northcentralus.instances.azureml.net/score"
 resp = requests.post(service_url, test_sample, headers=headers)
 print("prediction:", resp.text)
 ```

@@ -23,7 +23,7 @@ author: ms-johnalex
 
 [Foundry Agent Service](../../agents/overview.md) lets you build, configure, and deploy agents without leaving Visual Studio Code (VS Code). In this article, you create an agent by using the designer, add tools, test the agent in the playground, generate sample code, and clean up resources when you're done.
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 ## Prerequisites
 

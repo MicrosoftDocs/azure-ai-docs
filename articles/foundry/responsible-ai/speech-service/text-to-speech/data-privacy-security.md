@@ -70,7 +70,7 @@ The following diagram illustrates how your data is processed for synthesis with 
 
 :::image type="content" source="media\text-to-speech-avatar-data-process.png" alt-text="A diagram of the text to speech avatar data flow.":::
 
-### Video translation (preview)
+### Video translation
 
 The diagram below illustrates how your data is processed with video translation. Customer uploads video as the input for video translation, dialogue audio is extracted and speech to text will transcribe the audio into text content. Then the text content will be translated to the target language content and, using text to speech capability, the translated audio will be merged with original video content as video output.
 

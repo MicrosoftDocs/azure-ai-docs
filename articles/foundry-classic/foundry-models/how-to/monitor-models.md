@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [Feature preview](../../foundry-models/includes/feature-preview.md)]
+[!INCLUDE [Feature preview](../../../foundry/foundry-models/includes/feature-preview.md)]
 
 This article explains how to use Azure Monitor metrics and logs to track availability, performance, and usage for model deployments in Foundry Models. Azure Monitor automatically collects and aggregates metrics and logs from your Foundry Models deployments, so you can view real-time performance data and set up alerts for issues.
 
@@ -64,7 +64,7 @@ You can view metrics within the Foundry portal. To view them, follow these steps
 
 1. You can access an overview of common metrics that might be of interest. For cost-related metrics, select the **Azure Cost Management** link, which provides access to detailed post-consumption cost metrics in the **Cost analysis** section located in the Azure portal.
 
-    :::image type="content" source="../media/monitor-models/deployment-metrics.png" alt-text="Screenshot showing the metrics displayed for model deployments in Foundry portal." lightbox="../media/monitor-models/deployment-metrics.png":::
+    :::image type="content" source="../../../foundry/foundry-models/media/monitor-models/deployment-metrics.png" alt-text="Screenshot showing the metrics displayed for model deployments in Foundry portal." lightbox="../../../foundry/foundry-models/media/monitor-models/deployment-metrics.png":::
 
     Cost data in the Azure portal displays actual post-consumption charges for model consumption, including other AI resources within Foundry. For a full list of AI resources, see [Build with customizable APIs and models](https://azure.microsoft.com/products/ai-services#tabs-pill-bar-oc14f0_tab0). There's approximately a five- hour delay from the billing event to when it can be viewed in Azure portal cost analysis.
 
@@ -75,7 +75,7 @@ You can view metrics within the Foundry portal. To view them, follow these steps
 
 1. You can view and analyze metrics with Azure Monitor [metrics explorer](#metrics-explorer) to further slice and filter your model deployment metrics.
 
-    :::image type="content" source="../media/monitor-models/deployment-metrics-azmonitor.png" alt-text="Screenshot showing the option to open model deployment metrics in Azure Monitor." lightbox="../media/monitor-models/deployment-metrics-azmonitor.png":::
+    :::image type="content" source="../../../foundry/foundry-models/media/monitor-models/deployment-metrics-azmonitor.png" alt-text="Screenshot showing the option to open model deployment metrics in Azure Monitor." lightbox="../../../foundry/foundry-models/media/monitor-models/deployment-metrics-azmonitor.png":::
 
 #### Metrics explorer
 
@@ -93,7 +93,7 @@ To use Azure Monitor, follow these steps:
 
 1. The metrics explorer appears. Select the [metrics](#metrics-reference) that you want to explore. The following example shows the number of requests made to the model deployments in the resource.
 
-    :::image type="content" source="../media/monitor-models/azmon-add-metric.png" alt-text="Screenshot showing how to add a new metric to the chart." lightbox="../media/monitor-models/azmon-add-metric.png":::
+    :::image type="content" source="../../../foundry/foundry-models/media/monitor-models/azmon-add-metric.png" alt-text="Screenshot showing how to add a new metric to the chart." lightbox="../../../foundry/foundry-models/media/monitor-models/azmon-add-metric.png":::
 
     > [!IMPORTANT]
     > Metrics in the **Azure OpenAI** category contain metrics for Azure OpenAI models in the resource. The **Models** category contains all the models available in the resource, including Azure OpenAI, DeepSeek, and Phi. We recommend switching to this new set of metrics.
@@ -102,11 +102,11 @@ To use Azure Monitor, follow these steps:
 
 1. If you need, you can filter metrics by any of their available dimensions.
 
-    :::image type="content" source="../media/monitor-models/azmon-add-filter.png" alt-text="Screenshot showing how to apply a filter to a metric." lightbox="../media/monitor-models/azmon-add-filter.png":::
+    :::image type="content" source="../../../foundry/foundry-models/media/monitor-models/azmon-add-filter.png" alt-text="Screenshot showing how to apply a filter to a metric." lightbox="../../../foundry/foundry-models/media/monitor-models/azmon-add-filter.png":::
 
 1. It's useful to break down specific metrics by some of the dimensions. The following example shows how to break down the number of requests made to the resource by model by using the option **Add splitting**:
 
-    :::image type="content" source="../media/monitor-models/azmon-add-splitting.png" alt-text="Screenshot showing how to split the metric by a given dimension." lightbox="../media/monitor-models/azmon-add-splitting.png":::
+    :::image type="content" source="../../../foundry/foundry-models/media/monitor-models/azmon-add-splitting.png" alt-text="Screenshot showing how to split the metric by a given dimension." lightbox="../../../foundry/foundry-models/media/monitor-models/azmon-add-splitting.png":::
 
 1. You can save your dashboards at any time to avoid having to configure them each time.
 
@@ -167,7 +167,7 @@ For more information about all available log categories, see [Azure Monitor reso
 
 All of the metrics are exportable with diagnostic settings in Azure Monitor. To analyze logs and metrics data with Azure Monitor Log Analytics queries, you can configure diagnostic settings for your Foundry Tools resource. Perform this operation on each resource.
 
-:::image type="content" source="../media/monitor-models/azmon-diagnostic.png" alt-text="Screenshot showing how to configure diagnostic logging in a resource.png":::
+:::image type="content" source="../../../foundry/foundry-models/media/monitor-models/azmon-diagnostic.png" alt-text="Screenshot showing how to configure diagnostic logging in a resource.png":::
 
 To configure diagnostic settings for your Foundry resource:
 

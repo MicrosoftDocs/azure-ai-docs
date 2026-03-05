@@ -55,7 +55,7 @@ Key use cases include:
 
 ### Global batch model availability
 
-[!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
+[!INCLUDE [Global batch](../../../foundry/openai/includes/model-matrix/global-batch.md)]
 
 Registration is required for access to `gpt-5` and `o3`. For more information, see the [reasoning models guide](./reasoning.md).
 
@@ -63,7 +63,7 @@ Registration is required for access to `gpt-5` and `o3`. For more information, s
 
 ### Data zone batch model availability
 
-[!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
+[!INCLUDE [Data zone batch](../../../foundry/openai/includes/model-matrix/global-batch-datazone.md)]
 
 Registration is required for access to `gpt-5` and `o3`. For more information, see the [reasoning models guide](./reasoning.md).
 

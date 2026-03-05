@@ -5,7 +5,7 @@ description: "Learn how to publish agents in Microsoft Foundry, configure authen
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 02/13/2026
+ms.date: 03/03/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -455,10 +455,3 @@ Use the following tables when you construct REST API requests or need to underst
 
 > [!div class="nextstepaction"]
 > [Manage agents at scale](../../control-plane/how-to-manage-agents.md)
-
-> [!div class="nextstepaction"]
-> [Prepare your development environment](../../how-to/develop/install-cli-sdk.md)
-
-> [!div class="nextstepaction"]
-> [Get started with the SDK](../../quickstarts/get-started-code.md)
-

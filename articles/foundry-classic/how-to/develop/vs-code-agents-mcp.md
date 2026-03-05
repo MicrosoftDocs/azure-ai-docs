@@ -27,7 +27,7 @@ After you [build an agent in Agent Service](./vs-code-agents.md) by using the Vi
 - Access up-to-date information from your APIs and services.
 - Retrieve relevant context to enhance the quality of responses from your AI models.
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 ## Prerequisites
 

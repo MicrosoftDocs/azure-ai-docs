@@ -36,7 +36,7 @@ In this quickstart, you try real-time speech to text in [Microsoft Foundry](http
 
 #### [Foundry (classic) portal](#tab/classic-foundry)
 
-1. [!INCLUDE [classic-sign-in](../../../../../foundry-classic/includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../../../foundry/includes/classic-sign-in.md)]
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
     :::image type="content" source="../../../../../ai-services/media/ai-foundry/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="../../../../../ai-services/media/ai-foundry/azure-ai-services-playgrounds.png":::

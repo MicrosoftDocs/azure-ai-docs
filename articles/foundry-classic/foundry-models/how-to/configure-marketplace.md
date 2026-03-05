@@ -32,7 +32,7 @@ Certain Microsoft Foundry Models are offered directly by the model provider thro
 
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 
-[!INCLUDE [marketplace-rbac](../../foundry-models/includes/configure-marketplace/rbac.md)]
+[!INCLUDE [marketplace-rbac](../../../foundry/foundry-models/includes/configure-marketplace/rbac.md)]
 
 ## Country/region availability
 

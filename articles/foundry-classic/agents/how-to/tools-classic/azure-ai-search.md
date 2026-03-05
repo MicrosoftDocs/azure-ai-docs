@@ -6,11 +6,12 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/15/2025
+ms.date: 03/04/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: aahi
-ms.custom: azure-ai-agents
+ms.custom: azure-ai-agents, doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 # Azure AI Search tool (classic)
@@ -51,6 +52,8 @@ This article describes how to set up the Azure AI Search tool, including creatin
   
 + A Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
 
++ If you disabled public network access on your Azure AI Search resource, configure the connection to use managed identity (keyless authentication) instead of an API key. API key-based connections can't reach a search service that has public network access disabled.
+
 + Your Azure AI Search resource and Foundry Agent need to be in the same tenant.
 
 ## Setup
@@ -77,7 +80,7 @@ Select the tab for your desired authentication method.
     
     1. Make a note of the URL, which should look like `https://my-service.search.windows.net`.
 
-        :::image type="content" source="../../media/tools/ai-search\connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search\connection-endpoint.png":::
+        :::image type="content" source="../../../../foundry/agents/media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../../../foundry/agents/media/tools/ai-search/connection-endpoint.png":::
 
 1. To get the API key:
 
@@ -85,7 +88,7 @@ Select the tab for your desired authentication method.
 
     1. Select **Both** to enable both key-based and keyless authentication, which is recommended for most scenarios.
 
-        :::image type="content" source="../../media/tools/ai-search\azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search\azure-portal.png":::
+        :::image type="content" source="../../../../foundry/agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../../foundry/agents/media/tools/ai-search/azure-portal.png":::
 
     1. Make a note of one of the keys under **Manage admin keys**.
 
@@ -99,7 +102,7 @@ Select the tab for your desired authentication method.
     
     1. Make a note of the URL, which should look like `https://my-service.search.windows.net`.
 
-        :::image type="content" source="../../media/tools/ai-search\connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../media/tools/ai-search\connection-endpoint.png":::
+        :::image type="content" source="../../../../foundry/agents/media/tools/ai-search/connection-endpoint.png" alt-text="A screenshot of an AI Search resource Overview tab in the Azure portal." lightbox="../../../../foundry/agents/media/tools/ai-search/connection-endpoint.png":::
 
 1. To enable RBAC:
 
@@ -107,7 +110,7 @@ Select the tab for your desired authentication method.
 
     1. Select **Both** to enable both key-based and keyless authentication, which is recommended for most scenarios.
 
-        :::image type="content" source="../../media/tools/ai-search\azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../media/tools/ai-search\azure-portal.png":::
+        :::image type="content" source="../../../../foundry/agents/media/tools/ai-search/azure-portal.png" alt-text="A screenshot of an AI Search resource Keys tab in the Azure portal." lightbox="../../../../foundry/agents/media/tools/ai-search/azure-portal.png":::
 
 1. To assign the necessary roles:
 

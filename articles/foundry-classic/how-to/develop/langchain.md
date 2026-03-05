@@ -21,7 +21,7 @@ ai-usage: ai-assisted
 LangChain is a developer ecosystem that makes it easier to build reasoning applications. It includes multiple components, and most of them can be used independently, so you can pick and choose the pieces you need.
 
 <!-- ::: moniker range="foundry-classic" -->
-You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] with LangChain in two ways:
+You can use models deployed to [!INCLUDE [classic-link](../../../foundry/includes/classic-link.md)] with LangChain in two ways:
 <!-- ::: moniker-end
 
 -->
@@ -35,7 +35,7 @@ This tutorial shows how to use the `langchain-azure-ai` package with LangChain u
 
 To run this tutorial, you need:
 
-* [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+* [!INCLUDE [azure-subscription](../../../foundry/includes/azure-subscription.md)]
 
 <!-- :::moniker range="foundry-classic" -->
 * Required role: 
@@ -68,7 +68,7 @@ To run this tutorial, you need:
 <!-- ::: moniker-end -->
 
 <!-- ::: moniker range="foundry"
-[!INCLUDE [set-endpoint](../../../foundry/includes/set-endpoint.md)]
+[!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
 ::: moniker-end -->
 
 Create a client to connect to the chat model by using the `AzureAIChatCompletionsModel` class.
