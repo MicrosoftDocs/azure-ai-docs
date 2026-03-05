@@ -21,7 +21,7 @@ recommendations: false
 
 AI Assistants are effective at understanding user requests and generating responses, but they can't interact with your business systems on their own. For your assistant to complete real-world tasks such as manage data in customer databases, submit orders, send notifications, or trigger complex business processes, you need a way to execute these actions when the assistant needs to do so.
 
-[Azure Logic Apps](/azure/logic-apps/logic-apps-overview) is an integration platform that lets you build automated workflows by using a visual designer. Rather than write custom backend code for each integration, you create logic app workflows by using a low-code interface that provides 1,400+ connectors for Azure, Microsoft, and non-Microsoft services, systems, apps, and data sources.
+[Azure Logic Apps](/azure/logic-apps/logic-apps-overview) is an integration platform that lets you build automated workflows by using a visual designer. Rather than write custom backend code for each integration, you create logic app workflows by using a low-code interface that provides 1,400+ *connectors* for Azure, Microsoft, and non-Microsoft services, systems, apps, and data sources.
 
 When you expose a logic app workflow as a function, your assistant can choose when to run the workflow, based on conversation context and user requests. With so many available integration points, your assistant can interact with nearly any business system or service your organization uses. This pattern provides a practical way to automate multistep tasks and integrate assistant conversations with your enterprise infrastructure. You also avoid building and maintaining custom APIs for every business task your assistant needs to perform. Azure Logic Apps handles authentication, retries, error handling, and monitoring for you, letting you focus on defining the workflow logic, rather than infrastructure concerns.
 
@@ -47,7 +47,7 @@ This guide shows how to create and set up a Consumption logic app workflow to ac
   | Trigger schema | A JSON schema that describes the expected inputs for the trigger. To enter or define this schema, follow these steps in [Create a logic app resource and workflow](#create-logic-app-workflow). <br><br>Foundry automatically imports the schema as the function definition. For more information, see [**Request** trigger](/azure/connectors/connectors-native-reqres?tabs=consumption#add-request-trigger). |
   | [**Response** action](/azure/connectors/connectors-native-reqres?tabs=consumption#add-a-response-action) | The workflow must always end with this action, which returns the response to Foundry when the workflow completes. |
 
-  Workflows that meet these requirements should eligible for calling as functions from AI Assistants in Microsoft Foundry. Workflows can contain any other actions from the [1,400+ connectors gallery](/connectors/), including runtime-native, built-in operations, that implement the logic for your business scenario.
+  You can use logic app workflows that meet these requirements as functions that AI Assistants can call in Foundry. To implement your business logic or use case, workflows can contain any other actions from the [connectors gallery](/azure/connectors/introduction). For example, you can connect to many Azure, Microsoft, and non-Microsoft services or systems such as SAP, Salesforce, Oracle, and more. You can also connect to SaaS applications or in-house applications hosted in virtual networks. When you use these capabilities with AI Assistants, you can quickly bring in your data for Intelligent Insights powered by Azure OpenAI.
 
   If you don't have existing workflows, follow these high-level steps to create them:
 
@@ -149,16 +149,6 @@ To bring a logic app resource and workflow into Foundry for function calling thr
 
    The portal returns you to the **Assistants playground** page. In the **Functions** section, the successfully imported logic app workflow now appears as a function that your assistant can call, based on the user prompt.
 
-   Based on the Swagger for the logic app workflow, the function specification is generated, and the schema and description are based on what you set up in the request trigger.
-
-1. To view the function specification, next to the function, from the ellipses menu (...), select **Manage**.
-
-   :::image type="content" source="../media/how-to/assistants/logic-apps/edit-function-trigger.png" alt-text="Screenshot shows the newly imported logic app function and the Manage button selected." lightbox="../media/how-to/assistants/logic-apps/edit-function-trigger.png":::
-
-   The following screenshot shows a sample function specification for the example function:
-
-   :::image type="content" source="../media/how-to/assistants/logic-apps/view-function-specification.png" alt-text="Screenshot shows the function specification." lightbox="../media/how-to/assistants/logic-apps/view-function-specification.png":::
-
 ## 3: Test the logic app function
 
 To check that the imported logic app function works as expected, follow these steps:
@@ -175,28 +165,43 @@ To check that the imported logic app function works as expected, follow these st
 
 ## FAQ
 
-**What are Logic App connectors?**
+### What happens when you import and invoke a logic app as a function?
 
-Azure Logic Apps has connectors to hundreds of line-of-business (LOB) applications and databases including but not limited to: SAP, Salesforce, Oracle, SQL, and more. You can also connect to SaaS applications or your in-house applications hosted in virtual networks. These out of box connectors provide operations to send and receive data in multiple formats. Leveraging these capabilities with Azure OpenAI assistants, you should be able to quickly bring your data for Intelligent Insights powered by Azure OpenAI.
+Azure Logic Apps publishes an OpenAPI 2.0 definition (swagger) for workflows with a **Request** trigger, based on [workflow annotations](/rest/api/logic/workflows/list-swagger). Foundry uses this swagger file to generate a function specification and populate the function definition that the AI Assistant requires. The trigger schema and description are based on what you set up in the **Request** trigger. You can edit the swagger by updating your workflow.
 
-**What happens when a Logic Apps is imported in Foundry  and invoked**
+To view the function specification in Foundry, follow these steps:
 
-The Logic Apps swagger file is used to populate function definitions. Azure Logic App publishes an OpenAPI 2.0 definition (swagger) for workflows with a request trigger based on [annotations on the workflow](/rest/api/logic/workflows/list-swagger). Users are able to modify the content of this swagger by updating their workflow. Foundry uses this to generate the function definitions that the Assistant requires.  
+1. On the **Assistants playground** page, in the **Setup** section, go to the **Functions** section.
 
-**How does authentication from Foundry to Logic Apps work?**
+1. Next to the function, from the ellipses menu (...), select **Manage**.
 
-Logic Apps supports two primary types of authentications to invoke a request trigger.
+   :::image type="content" source="../media/how-to/assistants/logic-apps/edit-function-trigger.png" alt-text="Screenshot shows the newly imported logic app function and the Manage button selected." lightbox="../media/how-to/assistants/logic-apps/edit-function-trigger.png":::
 
-* Shared Access Signature (SAS) based authentication.
-    
-    Users can obtain a callback URL containing a SAS using the [list callback URL](/rest/api/logic/workflows/list-callback-url) API. Logic Apps also supports using multiple keys and rotating them as needed. Logic Apps also supports creating SAS URLs with a specified validity period. For more information, see the [Logic Apps documentation](/azure/logic-apps/logic-apps-securing-a-logic-app#generate-shared-access-signatures-sas).
+   The following screenshot shows a sample function specification for the example function:
 
-* Microsoft Entra ID-based OAuth base authentication policy.
+   :::image type="content" source="../media/how-to/assistants/logic-apps/view-function-specification.png" alt-text="Screenshot shows the function specification." lightbox="../media/how-to/assistants/logic-apps/view-function-specification.png":::
 
-    Logic Apps also supports authentication trigger invocations with Microsoft Entra ID OAuth, where you can specify authentication policies to be used in validating OAuth tokens. For more information, see the [Logic Apps documentation](/azure/logic-apps/logic-apps-securing-a-logic-app#generate-shared-access-signatures-sas).
+### How does authentication from Foundry to Azure Logic Apps work?
 
-When Azure OpenAI Assistants require invoking a Logic App as part of function calling, Foundry will retrieve the callback URL with the SAS to invoke the workflow. 
+Azure Logic Apps supports the following types of authentication for inbound calls to the **Request** trigger in a logic app workflow from Foundry:
 
-## See also
+- Shared Access Signature (SAS) based authentication
 
-* [Learn more about Assistants](../concepts/assistants.md)
+  When an AI Assistant calls a function that runs a logic app workflow, Foundry sends a request to the *callback URL* in the workflow's **Request** trigger. You can get this callback URL, which includes an SAS, by using [Workflows - List callback Url](/rest/api/logic/workflows/list-callback-url) from the REST API for Azure Logic Apps.
+
+  For SAS authentication, Azure Logic Apps also supports the following:
+
+  - Create SAS URLs with a specified validity period.
+  - Using multiple keys and rotating them as needed.
+
+  For more information, see [Generate a Shared Access Signature (SAS) key or token](/azure/logic-apps/logic-apps-securing-a-logic-app#generate-shared-access-signatures-sas).
+
+- Microsoft Entra ID-based OAuth authentication policy
+
+  Azure Logic Apps supports authentication for calls to request triggers by using OAuth with Microsoft Entra ID. You can specify authentication policies to use when validating OAuth tokens. For more information, see [Enable OAuth 2.0 with Microsoft Entra ID in Azure Logic Apps](/azure/logic-apps/logic-apps-securing-a-logic-app?tabs=azure-portal#enable-oauth-20-with-microsoft-entra-id).
+
+For more information about authentication and security for inbound calls to request-based triggers in Azure Logic Apps, see [Access for inbound calls to request-based triggers](/azure/logic-apps/logic-apps-securing-a-logic-app?tabs=azure-portal#access-for-inbound-calls-to-request-based-triggers).
+
+## Related content
+
+- [Learn more about Assistants](../concepts/assistants.md)
