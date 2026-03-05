@@ -157,7 +157,7 @@ Use the [Create or Update Index (REST API)](/rest/api/searchservice/indexes/crea
 ```http
 PUT /indexes?api-version=2025-09-01
 {
-    "name":"hotels-sample-index",
+    "name":"hotels-sample",
     "fields":[
         {
             "name":"description",
