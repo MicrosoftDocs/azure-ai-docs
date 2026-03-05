@@ -1,144 +1,207 @@
 ---
-title: "How to use Assistants with Logic apps (classic)"
-description: "Learn how to create helpful AI Assistants with Logic apps. (classic)"
-services: cognitive-services
+title: Run Logic App Workflows from AI Assistants
+description: Run logic app workflows as functions from AI assistants in Microsoft Foundry (classic). Connect to 1,400+ services and systems without extra code.
+services: cognitive-services, azure-logic-apps
 manager: nitinme
+author: aahill
+ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/24/2025
-author: aahill
-ms.author: aahi
+ms.date: 03/04/2026
 recommendations: false
+#Customer intent: As an AI integration developer who works with Microsoft Foundry and Azure Logic Apps, I want to run logic app workflows that perform automation and integration tasks as functions from AI assistants in Foundry.
 ---
 
-# Call Azure Logic apps as functions using Azure OpenAI Assistants (classic) 
+# Run logic app workflows as functions from AI assistants in Microsoft Foundry (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 
-[Azure Logic Apps](https://azure.microsoft.com/products/logic-apps) is an integration platform in Azure that allows you to build applications and automation workflows with low code tools enabling developer productivity and faster time to market. By using the visual designer and selecting from hundreds of prebuilt connectors, you can quickly build a workflow that integrates and manages your apps, data, services, and systems.
+In Foundry, you can extend AI assistants to interact with your business or enterprise systems and to complete real-world tasks. On their own, AI assistants can't manage data in customer databases, submit orders, send notifications, or trigger complex business processes when they need to do so.
 
-Azure Logic Apps is fully managed by Microsoft Azure, which frees you from worrying about hosting, scaling, managing, monitoring, and maintaining solutions built with these services. When you use these capabilities to create [serverless](/azure/logic-apps/logic-apps-overview) apps and solutions, you can just focus on the business logic and functionality. These services automatically scale to meet your needs, make automation workflows faster, and help you build robust cloud apps using little to no code.
+[Azure Logic Apps](/azure/logic-apps/logic-apps-overview) is an integration platform that you can use to build automated workflows by using a visual designer. Rather than writing custom backend code for each integration, create logic app workflows by using a low-code interface where you can use 1,400+ *connectors* to access Azure, Microsoft, and non-Microsoft services, systems, apps, and data sources.
 
-## Function calling on Azure Logic Apps through the Assistants Playground 
+When you expose a logic app workflow as a callable function, your assistant can choose when to run the workflow based on chat conversation context and user prompts. With so many available integration points, your assistant can interact with nearly any business system or service your organization uses. This pattern provides a practical way to automate multistep tasks and integrate assistant conversations with your enterprise infrastructure. You don't need to build and maintain custom APIs for every business task that your assistant needs to perform. Azure Logic Apps handles authentication, retries, error handling, and monitoring, so you can focus on workflow logic rather than infrastructure.
 
-To accelerate and simplify the creation of intelligent applications, we are now enabling the ability to call Logic Apps workflows through function calling in Azure OpenAI Assistants.
+This guide shows how to create and set up a Consumption logic app workflow that accepts inputs from your AI assistant and import the workflow as a callable function for your AI assistant in Foundry.
 
-The Assistants playground enumerates and lists all the workflows in your subscription that are eligible for function calling. Here are the requirements for these workflows:
+## Prerequisites
 
-* [Consumption Logic Apps](/azure/logic-apps/quickstart-create-example-consumption-workflow): Currently we only support consumption workflows.
-* [Request trigger](/azure/connectors/connectors-native-reqres?tabs=consumption): Function calling requires a REST-based API. Logic Apps with a request trigger provides a REST endpoint. Therefore only workflows with a request trigger are supported for function calling.
-* Schema: The workflows you want to use for function calling should have a JSON schema describing the inputs and expected outputs. Using Logic Apps you can streamline and provide schema in the trigger, which would be automatically imported as a function definition.
+- An Azure account and subscription. [Get a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-If you already have workflows with above three requirements, you should be able to use them in Microsoft Foundry and invoke them via user prompts.
-If you do not have existing workflows, you can follow the steps in this article to create them. There are two primary steps:
-1. [Create a Logic App on Azure portal](#create-logic-apps-workflows-for-function-calling).
-2. [Import your Logic Apps workflows as a function in the Assistants Playground](#import-your-logic-apps-workflows-as-functions).
+- A [Microsoft Foundry project](/azure/foundry-classic/how-to/create-projects?tabs=foundry).
 
-## Create Logic Apps workflows for function calling
+  This project organizes your work and saves the state while you build your AI apps and solutions.
 
-Here are the steps to create a new Logic Apps workflow for function calling.
+- A [Consumption logic app resource and workflow](/azure/logic-apps/quickstart-create-example-consumption-workflow) that meets the following requirements:
 
-1. In the Azure portal search box, enter **logic apps**, and select **Logic apps**.
-1. On the Logic apps page toolbar, select **Add**.
-1. On the Create Logic App page, first select the Plan type for your logic app resource. That way, only the options for that plan type appear.
-1. In the **Plan** section, for the Plan type, select **Consumption** to view only the consumption logic app resource settings.
-1. Provide the following information for your logic app resource: Subscription, Resource Group, Logic App name, and Region.
-1. When you're ready, select **Review + Create**.
-1. On the validation page that appears, confirm all the provided information, and select **Create**.
-1. After Azure successfully deploys your logic app resource, select **Go to resource**. Or, find and select your logic app resource by typing the name in the Azure search box.
-1. Open the Logic Apps workflow in designer. Select Development Tools + Logic app designer. This opens your empty workflow in designer. Or you select Blank Logic App from templates
-1. Now you're ready to add one more step in the workflow. A workflow always starts with a single trigger, which specifies the condition to meet before running any subsequent actions in the workflow.
-1. Your workflow is required to have a Request trigger to generate a REST endpoint, and a response action to return the response to Foundry when this workflow is invoked.
-1. Add a trigger [(Request)](/azure/connectors/connectors-native-reqres?tabs=consumption)
+  | Requirement | Description |
+  |-------------|-------------|
+  | Hosting option | Uses the Consumption hosting option. |
+  | Azure subscription | Uses the same subscription as your Foundry project. |
+  | Azure resource group | Uses the same resource group as your Foundry project. |
+  | [**Request** trigger](/azure/connectors/connectors-native-reqres?tabs=consumption#add-request-trigger) | The operation that specifies the conditions to meet before running any subsequent actions in the workflow. The default trigger name is **When an HTTP request is received**. <br><br>Function calling requires a REST-based API. The **Request** trigger provides a REST endpoint that a service or system can call to run the workflow. So, for function calling, you can use only workflows that start with the **Request** trigger. |
+  | Trigger description | This description helps the AI assistant choose the appropriate function in Foundry. To enter this description, follow these steps in [Create a logic app resource and workflow](#create-logic-app-workflow). |
+  | Trigger schema | A JSON schema that describes the expected inputs for the trigger. To enter or define this schema, follow these steps in [Create a logic app resource and workflow](#create-logic-app-workflow). <br><br>Foundry automatically imports the schema as the function definition. For more information, see [**Request** trigger](/azure/connectors/connectors-native-reqres?tabs=consumption#add-request-trigger). |
+  | [**Response** action](/azure/connectors/connectors-native-reqres?tabs=consumption#add-a-response-action) | The workflow must always end with this action, which returns the response to Foundry when the workflow completes. |
 
-    Select **Add a trigger** and then search for request trigger. Select the **When an HTTP request is received** operation.
+  You can use logic app workflows that meet these requirements as functions that AI assistants can call in Foundry. To implement your business logic or use case, workflows can contain any other actions from the [connectors gallery](/azure/connectors/introduction). For example, you can connect to many Azure, Microsoft, and non-Microsoft services or systems, such as SAP, Salesforce, Oracle, and so on. You can also connect to SaaS applications or in-house applications hosted in virtual networks. When you use these capabilities with AI assistants, you can quickly bring in your data for Intelligent Insights powered by Azure OpenAI.
 
-    :::image type="content" source="../media/how-to/assistants/logic-apps/create-logic-app-1.png" alt-text="A screenshot showing the Logic Apps designer." lightbox="../media/how-to/assistants/logic-apps/create-logic-app-1.png":::
+  If you don't have existing workflows, follow these high-level steps to create them:
 
-    Provide the JSON schema for the request. If you do not have the schema use the option to generate schema.
+  1. [Create a logic app resource and workflow in the Azure portal](#create-logic-app-workflow).
+  1. [Import your logic app workflow as a function in the Assistants playground](#import-logic-app-workflow).
 
-    :::image type="content" source="../media/how-to/assistants/logic-apps/create-logic-app-2.png" alt-text="A screenshot showing the option to provide a JSON schema." lightbox="../media/how-to/assistants/logic-apps/create-logic-app-2.png":::
+<a id="create-logic-app-workflow"></a>
 
-    Here is an example of the request schema. You can add a description for your workflow in the comment box. This is imported by Foundry as the function description.
-    
-    :::image type="content" source="../media/how-to/assistants/logic-apps/create-logic-app-3.png" alt-text="A screenshot showing an example request schema." lightbox="../media/how-to/assistants/logic-apps/create-logic-app-3.png":::
+## 1: Create a logic app resource
 
-    Save the workflow. This will generate the REST endpoint for the workflow.
+To create a logic app resource and workflow for function calling, follow these steps:
 
-    :::image type="content" source="../media/how-to/assistants/logic-apps/create-logic-app-4.png" alt-text="A screenshot showing the REST endpoint." lightbox="../media/how-to/assistants/logic-apps/create-logic-app-4.png":::
+1. In the [Azure portal](https://portal.azure.com), create a Consumption logic app resource by following these [general steps](/azure/logic-apps/quickstart-create-example-consumption-workflow#create-a-consumption-logic-app-resource). After you open the workflow designer, return to this section.
 
-1. Depending on the business use case, you can now add one or more steps/actions in this workflow. For example, using the MSN weather connector to get the weather forecast for the current location.
+1. On the designer, add the [**Request** trigger named **When an HTTP request is received**](/azure/connectors/connectors-native-reqres?tabs=consumption#add-request-trigger) by following these [general steps](/azure/logic-apps/add-trigger-action-workflow#add-trigger).
 
-    :::image type="content" source="../media/how-to/assistants/logic-apps/create-logic-app-5.png" alt-text="A screenshot showing the MSN weather connector." lightbox="../media/how-to/assistants/logic-apps/create-logic-app-5.png":::
+1. Select the **Request** trigger to open the information pane and follow these steps:
 
-    In the action to **get forecast for today**, we are using the **location** property that was passed to this workflow as an input.
+   1. On the information pane, change the trigger name to reflect the function's task, for example: `Function - Get weather forecast for today`
 
-    :::image type="content" source="../media/how-to/assistants/logic-apps/create-logic-app-6.png" alt-text="A screenshot showing the location property." lightbox="../media/how-to/assistants/logic-apps/create-logic-app-6.png":::
+   1. Provide the following trigger information:
 
-1. Configure the [response](/azure/connectors/connectors-native-reqres#add-a-response-action). The workflow needs to return the response back to Foundry. This is done using Response action.
+   | Parameter | Description |
+   |-----------|-------------|
+   | **Description** | Enter a useful description about the task that the workflow performs, for example: <br><br>`This trigger and workflow gets the weather forecast for today from MSN Weather`. |
+   | **Request Body JSON Schema** | Enter a JSON schema that specifies the expected inputs. <br><br>If you don't have a schema, select **Use sample payload to generate schema**, provide sample input, and select **Done**. |
 
-    :::image type="content" source="../media/how-to/assistants/logic-apps/create-logic-app-7.png" alt-text="A screenshot showing the response action." lightbox="../media/how-to/assistants/logic-apps/create-logic-app-7.png":::
+   The following image shows an example trigger with a task-relevant name, description, and schema:
 
-     In the response action, you can pick the output from any of the prior steps. You can optionally also provide a JSON schema if you want to return the output in a specific format.
-    
-    :::image type="content" source="../media/how-to/assistants/logic-apps/create-logic-app-7.png" alt-text="A screenshot showing the comment box to specify a JSON schema." lightbox="../media/how-to/assistants/logic-apps/create-logic-app-7.png":::
+   :::image type="content" source="../media/how-to/assistants/logic-apps/request-trigger.png" alt-text="Screenshot that shows the Azure portal, Consumption workflow designer, and Request trigger with example name, description, and schema." lightbox="../media/how-to/assistants/logic-apps/request-trigger.png":::
 
-1. The workflow is now ready. In Foundry, you can import this function using the **Add function** feature in the Assistants playground.
+1. On the designer toolbar, select **Save** to save the workflow.
 
-## Import your Logic Apps workflows as functions
+   When you save a **Request** trigger for the first time, the designer generates the **HTTP URL** for the trigger's REST endpoint.
 
-Here are the steps to import your Logic Apps workflows as function in the Assistants playground in Foundry:
+   :::image type="content" source="../media/how-to/assistants/logic-apps/rest-endpoint-url.png" alt-text="Screenshot that shows the Request trigger and HTTP URL for the REST endpoint." lightbox="../media/how-to/assistants/logic-apps/rest-endpoint-url.png":::
 
-1. In Foundry, select **Playgrounds** from the left pane, and then **Assistants playground**. Select an existing Assistant or create a new one. After you have configured the assistant with a name and instructions, you are ready to add a function. Select **+ Add function**. 
+1. Based on your business use case or logic, add one or more actions in this workflow.
 
-    :::image type="content" source="../media/how-to/assistants/logic-apps/assistants-playground-add-function.png" alt-text="A screenshot showing the Assistant playground with the add function button." lightbox="../media/how-to/assistants/logic-apps/assistants-playground-add-function.png":::
+   For example, to get today's weather forecast for the current location, add an action from the **MSN Weather** connector. This example uses the **Get forecast for today** action.
 
-1. The **Add function** option opens a screen with two tabs. Navigate to the tab for Logic Apps to browse your workflows with a request trigger. Select the workflow from list and select **Save**.  
+   :::image type="content" source="../media/how-to/assistants/logic-apps/msn-weather-connector-actions.png" alt-text="Screenshot that shows actions available in the MSN Weather connector." lightbox="../media/how-to/assistants/logic-apps/msn-weather-connector-actions.png":::
 
-    > [!NOTE]
-    > This list only shows the consumption SKU workflows and with a request trigger.
+1. In the action information pane for the **Get forecast for today** action, follow these steps:
 
-    :::image type="content" source="../media/how-to/assistants/logic-apps/import-logic-apps.png" alt-text="A screenshot showing the menu for adding functions." lightbox="../media/how-to/assistants/logic-apps/import-logic-apps.png":::
+   1. Select inside the **Location** parameter. When the input options appear (lightning icon and function icon), select the dynamic content list option (lightning icon).
 
-You have now successfully imported your workflow and it is ready to be invoked. The function specification is generated based on the logic apps workflow swagger and includes the schema and description based on what you configured in the request trigger action.
+      The dynamic content list lets you select outputs from preceding operations in the workflow. In this case, you want the location value that passed through the trigger to the workflow.
 
-:::image type="content" source="../media/how-to/assistants/logic-apps/edit-function.png" alt-text="A screenshot showing the imported workflow." lightbox="../media/how-to/assistants/logic-apps/edit-function.png":::
+   1. From the dynamic content list, under trigger section named **Function - Get weather forecast for today**, select **Location**, for example:
 
-The workflow now will be invoked by the Azure OpenAI Assistants based on the user prompt. Below is an example where the workflow is invoked automatically based on user prompt to get the weather.
+      :::image type="content" source="../media/how-to/assistants/logic-apps/location-dynamic-content-list.png" alt-text="Screenshot that shows the action named Get forecast for today and the dynamic content list with the Location trigger output selected." lightbox="../media/how-to/assistants/logic-apps/location-dynamic-content-list.png":::
 
-:::image type="content" source="../media/how-to/assistants/logic-apps/playground-weather-example.png" alt-text="A screenshot showing a weather prompt example." lightbox="../media/how-to/assistants/logic-apps/playground-weather-example.png":::
+      The action now looks like the following example:
 
-You can confirm the invocation by looking at the logs as well as your [workflow run history](/azure/logic-apps/monitor-logic-apps?tabs=consumption.md#review-workflow-run-history).
+      :::image type="content" source="../media/how-to/assistants/logic-apps/location-output-added.png" alt-text="Screenshot that shows the action named Get forecast for today and with the resolved Location trigger output." lightbox="../media/how-to/assistants/logic-apps/location-output-added.png":::
 
-:::image type="content" source="../media/how-to/assistants/logic-apps/example-log.png" alt-text="A screenshot showing a logging example." lightbox="../media/how-to/assistants/logic-apps/example-log.png":::
+1. On the designer, add the [**Response** action](/azure/connectors/connectors-native-reqres?tabs=consumption#add-a-response-action) by following these [general steps](/azure/logic-apps/add-trigger-action-workflow#add-action).
 
-## FAQ 
+   The workflow returns a response to Foundry by using the **Response** action.
 
-**What are Logic App connectors?**
+1. From the dynamic content list, optionally select any prior operation outputs to return to Foundry. Or, you can provide a JSON schema to return the output in a specific format.
 
-Azure Logic Apps has connectors to hundreds of line-of-business (LOB) applications and databases including but not limited to: SAP, Salesforce, Oracle, SQL, and more. You can also connect to SaaS applications or your in-house applications hosted in virtual networks. These out of box connectors provide operations to send and receive data in multiple formats. Leveraging these capabilities with Azure OpenAI assistants, you should be able to quickly bring your data for Intelligent Insights powered by Azure OpenAI.
+   :::image type="content" source="../media/how-to/assistants/logic-apps/response-action.png" alt-text="Screenshot that shows Response action with optional operation outputs or JSON schema to return to Foundry." lightbox="../media/how-to/assistants/logic-apps/response-action.png":::
 
-**What happens when a Logic Apps is imported in Foundry  and invoked**
+1. On the designer toolbar, select **Save** to save the workflow.
 
-The Logic Apps swagger file is used to populate function definitions. Azure Logic App publishes an OpenAPI 2.0 definition (swagger) for workflows with a request trigger based on [annotations on the workflow](/rest/api/logic/workflows/list-swagger). Users are able to modify the content of this swagger by updating their workflow. Foundry uses this to generate the function definitions that the Assistant requires.  
+   Your workflow is now ready to import into Foundry.
 
-**How does authentication from Foundry to Logic Apps work?**
+<a id="import-logic-app-workflow"></a>
 
-Logic Apps supports two primary types of authentications to invoke a request trigger.
+## 2: Import the logic app resource as a function
 
-* Shared Access Signature (SAS) based authentication.
-    
-    Users can obtain a callback URL containing a SAS using the [list callback URL](/rest/api/logic/workflows/list-callback-url) API. Logic Apps also supports using multiple keys and rotating them as needed. Logic Apps also supports creating SAS URLs with a specified validity period. For more information, see the [Logic Apps documentation](/azure/logic-apps/logic-apps-securing-a-logic-app#generate-shared-access-signatures-sas).
+To bring a logic app resource and workflow into Foundry for function calling through the Assistants playground, follow these steps:
 
-* Microsoft Entra ID-based OAuth base authentication policy.
+1. In the [Foundry portal (classic)](https://ai.azure.com/), open your Foundry project.
 
-    Logic Apps also supports authentication trigger invocations with Microsoft Entra ID OAuth, where you can specify authentication policies to be used in validating OAuth tokens. For more information, see the [Logic Apps documentation](/azure/logic-apps/logic-apps-securing-a-logic-app#generate-shared-access-signatures-sas).
+1. On the project sidebar, select **Playgrounds**. Scroll down and select **Try the Assistants playground**. 
 
-When Azure OpenAI Assistants require invoking a Logic App as part of function calling, Foundry will retrieve the callback URL with the SAS to invoke the workflow. 
+1. On the **Assistants playground** page, open an existing assistant or create a new one.
 
-## See also
+1. In the **Setup** section, expand **Tools**. Next to **Functions**, select **+ Add function**, for example:
 
-* [Learn more about Assistants](../concepts/assistants.md)
+   :::image type="content" source="../media/how-to/assistants/logic-apps/assistants-playground-add-function.png" alt-text="Screenshot that shows Foundry portal (classic) with project, assistants playground, and Add function selected." lightbox="../media/how-to/assistants/logic-apps/assistants-playground-add-function.png":::
+
+1. On the **Add a custom function trigger** screen, select the **Logic Apps** tab, for example:
+
+   :::image type="content" source="../media/how-to/assistants/logic-apps/select-logic-apps.png" alt-text="Screenshot that shows Logic Apps tab selected." lightbox="../media/how-to/assistants/logic-apps/select-logic-apps.png":::
+
+1. On the **Add logic app function** screen, from the logic apps list, select a logic app:
+
+   > [!NOTE]
+   >
+   > The list shows only logic apps with workflows that meet the [requirements for function calling](#prerequisites).
+
+   :::image type="content" source="../media/how-to/assistants/logic-apps/add-logic-app-function.png" alt-text="Screenshot that shows logic apps list with logic app selected for function calling." lightbox="../media/how-to/assistants/logic-apps/add-logic-app-function.png":::
+
+1. When you finish, select **Save**.
+
+   The portal returns you to the **Assistants playground** page. In the **Functions** section, the successfully imported logic app workflow now appears as a function that your assistant can call, based on the user prompt.
+
+## 3: Test the logic app function
+
+To confirm that the imported logic app function works as expected, follow these steps:
+
+1. On the **Assistants playground** page, in the chat window, enter a query for today's weather forecast in Seattle, for example:
+
+   :::image type="content" source="../media/how-to/assistants/logic-apps/playground-weather-example.png" alt-text="Screenshot that shows the Assistants playground with a weather prompt example." lightbox="../media/how-to/assistants/logic-apps/playground-weather-example.png":::
+
+1. To confirm the logic app function call, review the logs or the [workflow run history](/azure/logic-apps/monitor-logic-apps?tabs=consumption#review-workflow-run-history).
+
+   The following example shows a sample log with the function call:
+
+   :::image type="content" source="../media/how-to/assistants/logic-apps/example-log.png" alt-text="Screenshot that shows log example." lightbox="../media/how-to/assistants/logic-apps/example-log.png":::
+
+## FAQ
+
+### What happens when you import and invoke a logic app as a function in Foundry?
+
+Azure Logic Apps publishes an OpenAPI 2.0 definition (swagger) for workflows with a **Request** trigger, based on [workflow annotations](/rest/api/logic/workflows/list-swagger). Foundry uses this swagger file to generate a function specification and populate the function definition that the AI assistant requires. The trigger schema and description come from the configuration you set up in the **Request** trigger. You can edit the swagger by updating your workflow.
+
+To view the function specification in Foundry, follow these steps:
+
+1. On the **Assistants playground** page, in the **Setup** section, go to the **Functions** section.
+
+1. Next to the function, from the ellipses menu (...), select **Manage**.
+
+   :::image type="content" source="../media/how-to/assistants/logic-apps/edit-function-trigger.png" alt-text="Screenshot that shows the newly imported logic app function and the Manage button selected." lightbox="../media/how-to/assistants/logic-apps/edit-function-trigger.png":::
+
+   The following screenshot shows a sample function specification for the example function:
+
+   :::image type="content" source="../media/how-to/assistants/logic-apps/view-function-specification.png" alt-text="Screenshot that shows the function specification." lightbox="../media/how-to/assistants/logic-apps/view-function-specification.png":::
+
+### How does authentication work for function calls from Foundry to Azure Logic Apps?
+
+Azure Logic Apps supports the following types of authentication for inbound calls to the **Request** trigger in a logic app workflow from Foundry:
+
+- Shared Access Signature (SAS) based authentication
+
+  When an AI assistant calls a function that runs a logic app workflow, Foundry sends a request to the *callback URL* in the workflow's **Request** trigger. You can get this callback URL, which includes an SAS, by using [Workflows - List callback Url](/rest/api/logic/workflows/list-callback-url) from the REST API for Azure Logic Apps.
+
+  For SAS authentication, Azure Logic Apps also supports the following:
+
+  - Create SAS URLs with a specified validity period.
+  - Use multiple keys and rotate them as needed.
+
+  For more information, see [Generate a Shared Access Signature (SAS) key or token](/azure/logic-apps/logic-apps-securing-a-logic-app#generate-shared-access-signatures-sas).
+
+- Microsoft Entra ID-based OAuth authentication policy
+
+  Azure Logic Apps supports authentication for calls to request triggers by using OAuth with Microsoft Entra ID. You can specify authentication policies to use when validating OAuth tokens. For more information, see [Enable OAuth 2.0 with Microsoft Entra ID in Azure Logic Apps](/azure/logic-apps/logic-apps-securing-a-logic-app?tabs=azure-portal#enable-oauth-20-with-microsoft-entra-id).
+
+For more information about authentication and security for inbound calls to request-based triggers in Azure Logic Apps, see [Access for inbound calls to request-based triggers](/azure/logic-apps/logic-apps-securing-a-logic-app?tabs=azure-portal#access-for-inbound-calls-to-request-based-triggers).
+
+## Related content
+
+- [Learn more about Assistants](../concepts/assistants.md)
