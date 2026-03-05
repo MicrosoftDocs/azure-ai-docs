@@ -28,7 +28,7 @@ You can use models deployed to [!INCLUDE [classic-link](../../../foundry/include
 
 This tutorial shows how to use the `langchain-azure-ai` package with LangChain using Azure AI Model Inference API. Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
 
-> [!IMPORANT]
+> [!IMPORTANT]
 > Support for model inference using Azure AI Model Inference API requires the option `langchain-azure-ai[v1]` installed. Inference capabilities are deprecated and will be retired on May 30, 2026. Switch to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1) with a stable OpenAI SDK introduced in `langchain-azure-ai` or `langchain-openai`.
 
 ## Prerequisites
