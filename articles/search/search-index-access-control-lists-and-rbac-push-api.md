@@ -13,7 +13,7 @@ ms.author: admayber
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Indexing documents, along with their associated [access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and container [Role-Based Access Control (RBAC) roles](/azure/role-based-access-control/overview), into an Azure AI Search index via the [push REST APIs](/rest/api/searchservice/documents/?view=rest-searchservice-2025-11-01-preview&preserve-view=true) preserves document-level permission on indexed content at query time.
+Indexing documents, along with their associated [access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and container [role-based access control (RBAC) roles](/azure/role-based-access-control/overview), into an Azure AI Search index via the [push REST APIs](/rest/api/searchservice/documents/?view=rest-searchservice-2025-11-01-preview&preserve-view=true) preserves document-level permission on indexed content at query time.
 
 Key features include:
 
