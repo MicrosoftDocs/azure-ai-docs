@@ -8,8 +8,6 @@ items:
   href: ../../foundry-models/concepts/model-versions.md
 - name: Marketplace configuration for partner models
   href: ../../foundry-models/how-to/configure-marketplace.md
-- name: Fireworks models (preview)
-  href: ../../foundry-models/concepts/fireworks-models.md
 
 # Model Selection and Management
 - name: Model selection and management
