@@ -22,11 +22,12 @@ Interacting with a model is the basic building block of AI applications.  Send a
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-responses.ts":::
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src
+/quickstart-responses.ts":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/CreateResponses.java":::
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/chat-with-agent/src/main/java/com/azure/ai/agents/ChatWithAgent.java":::
 
 # [REST API](#tab/rest)
 
