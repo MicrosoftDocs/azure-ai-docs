@@ -42,7 +42,7 @@ The model catalog is organized into two main categories:
 Understanding the distinction between these categories helps you choose the right models for your specific requirements and strategic goals. 
 
 > [!NOTE]
-> For all models, Customers remain responsible for:
+> For all models, customers remain responsible for:
 >
 > - Complying with the law in their use of any model or system
 > - Reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation
