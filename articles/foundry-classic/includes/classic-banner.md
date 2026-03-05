@@ -10,8 +10,4 @@ ms.date: 11/21/2025
 ms.custom: include
 ---
 
-> [!NOTE]
-> This document refers to the [Microsoft Foundry (classic)](../what-is-foundry.md#microsoft-foundry-portals) portal. 
->
-> 🔍 [View the Microsoft Foundry (new) documentation](../../foundry/what-is-foundry.md) to learn about the new portal.
->
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal documentation** - [Move to Foundry documentation](../../foundry/what-is-foundry.md)
