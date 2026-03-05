@@ -93,14 +93,14 @@ Enable a [system-assigned managed identity for your Azure AI Search service](sea
 
 ## 2. Enable RBAC on your AI Search service
 
-[Enable a role-based access control (RBAC)](search-security-enable-roles.md) on your Azure AI Search service. This step is required so content-related operations such as indexing content and query the index succeed. Keep both RBAC and API keys to avoid disrupting operations that rely on API keys. 
+[Enable a role-based access control (RBAC)](search-security-enable-roles.md) on your Azure AI Search service. This step is required so content-related operations such as indexing content and querying the index succeed. Keep both RBAC and API keys to avoid disrupting operations that rely on API keys. 
 
-## 3. Granting access to extract sensitivity labels
+## 3. Grant access to extract sensitivity labels
 
 Accessing Microsoft Purview sensitivity label metadata involves highly privileged operations, including reading encrypted content and security classifications. To enable this capability in Azure AI Search, you must grant specific roles to the service's managed identity—following your organization's internal governance and approval processes.
 
 
-### Identify your Global or Privileged Role Administrators
+### Identify your global or privileged role administrators
 
 If you need to determine who can authorize permissions for the search service, you can locate active or eligible Global Administrators in your Microsoft Entra tenant.
 
@@ -120,7 +120,7 @@ If you need to determine who can authorize permissions for the search service, y
 
    :::image type="content" source="media/search-indexer-sensitivity-labels/role-eligible-assignments-and-active-assignments.png" alt-text="Screenshot of role eligible and active assignments." lightbox="media/search-indexer-sensitivity-labels/role-eligible-assignments-and-active-assignments.png":::
 
-### Secure Governance Approval
+### Secure governance approval
 Engage your internal security or compliance teams to review the request. Microsoft recommends following your company's standard governance and security review process before proceeding with any role assignments.
 
 Once approved, a Global Administrator or Privileged Role Administrator must assign the following roles to the Azure AI Search system-assigned managed identity:
@@ -128,7 +128,7 @@ Once approved, a Global Administrator or Privileged Role Administrator must assi
 - **UnifiedPolicy.Tenant.Read** – for Purview policy and label metadata access
 
   
-### Assign Roles via PowerShell
+### Assign roles via PowerShell
 
 Your Global Administrator or Privileged Role Administrator should use the following PowerShell script to grant the required permissions. Replace the placeholder values with your actual subscription, resource group, and search service names.
 

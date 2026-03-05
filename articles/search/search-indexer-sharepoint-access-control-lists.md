@@ -135,7 +135,7 @@ PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2025-1
           { "name": "chunkId",           "source": "/document/chunks/*/id" },     // if you create an id per chunk
           { "name": "content",           "source": "/document/chunks/*/text" },   // chunk text
           { "name": "parentId",          "source": "/document/id" },              // parent doc id
-          { "name": "UserIds",  "source": "/document/metadata_user_ids" } // <-- parent → child
+          { "name": "UserIds",  "source": "/document/metadata_user_ids" }, // <-- parent → child
           { "name": "GroupIds",  "source": "/document/metadata_group_ids" } // <-- parent → child
         ]
       }

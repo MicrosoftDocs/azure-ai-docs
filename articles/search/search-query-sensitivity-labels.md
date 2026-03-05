@@ -29,7 +29,7 @@ This article explains how query-time sensitivity label enforcement works and how
 
 - REST API version 2025-11-01-preview or an equivalent preview SDK package to query the index.
 
-- Authenticate queries using [Azure role-based access control (RBAC)](search-security-rbac.md), not API keys. When Purview sensitivity labels are enabled, API key access is restricted to index schema retrieval.
+- Authenticate queries using [Azure role-based access control](search-security-rbac.md) (RBAC), not API keys. When Purview sensitivity labels are enabled, API key access is restricted to index schema retrieval.
 
 ## Limitations
 
