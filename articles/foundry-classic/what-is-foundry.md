@@ -136,7 +136,7 @@ This table summarizes features available in the two project types:
 | Bring-your-own Storage for Agent service | ✅ | ✅ |
 | Prompt flow | | ✅ |
 
-*New feature enhancements primarily land on the [Microsoft Foundry resource type](../ai-foundry/concepts/resource-types.md). 
+*New feature enhancements primarily land on the [Microsoft Foundry resource type](../ai-foundry/concepts/resource-types.md). [Migrate from hub-based to Foundry projects (classic)](how-to/migrate-project.md).
 
 ### How do I know which type of project I have?
 
