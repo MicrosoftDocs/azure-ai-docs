@@ -38,4 +38,4 @@ items:
   - name: Use Fireworks models (preview)
     href: ../../how-to/fireworks/use-fireworks-models.md
   - name: Import custom models with Fireworks (preview)
-    href: ../how-to/fireworks/import-custom-models.md
+    href: ../../how-to/fireworks/import-custom-models.md
