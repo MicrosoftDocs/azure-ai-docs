@@ -14,7 +14,7 @@ Use the previously created agent named "MyAgent" to interact by asking a questio
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-chat-with-agent.py":::
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/chat-with-agent/quickstart-chat-with-agent.py":::
 
 # [C#](#tab/csharp)
 

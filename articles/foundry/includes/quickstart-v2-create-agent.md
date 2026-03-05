@@ -16,7 +16,7 @@ An agent defines core behavior. Once created, it ensures consistent responses in
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-create-agent.py":::
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/create-agent/quickstart-create-agent.py":::
 
 # [C#](#tab/csharp)
 
