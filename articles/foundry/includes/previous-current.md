@@ -16,11 +16,10 @@ Foundry consolidates several previous Azure AI services and tools into a unified
 | Dimension | Previous | Current |
 |-----------|---------|-----|
 | Brand | Azure AI Studio / Azure AI Foundry | Microsoft Foundry |
-| Portal | Foundry (classic) | Foundry |
-| Documentation | [Foundry (classic)](/azure/foundry-classic/) | [Foundry](/azure/foundry) |
+| Brand | Azure AI Services | Foundry Tools |
+| Portal | [Foundry (classic)](/azure/foundry-classic/) | [Foundry](/azure/foundry) |
 | Agent API | Assistants API (Agents v0.5/v1) | Responses API (Agents v2) |
 | API versioning | Monthly `api-version` params | v1 stable routes (`/openai/v1/`) |
 | Resource model | Hub + Azure OpenAI + Azure AI Services | Foundry resource (single, with projects) |
 | SDKs & endpoints | Multiple packages (`azure-ai-inference`, `azure-ai-generative`, `azure-ai-ml`, `AzureOpenAI()`) against 5+ endpoints | Unified project client (`azure-ai-projects` 2.x) + `OpenAI()` against one project endpoint. See [SDK evolution](/api-sdk/sdk-classic-vs-new). |
 | Terminology | Threads, Messages, Runs, Assistants | Conversations, Items, Responses, Agent Versions |
-| AI services branding | Azure AI Services | Foundry Tools |
