@@ -32,13 +32,24 @@ This article covers the **Foundry (classic)** portal and APIs. For the current p
 
 [!INCLUDE [previous-current](../foundry/includes/previous-current.md)]
 
-## Microsoft Foundry (classic)
+## Microsoft Foundry API and SDKs
 
-[!INCLUDE [classic-link](../foundry/includes/classic-link.md)] (classic) supports hub-based projects, Foundry projects, and Azure OpenAI resources. Use the classic portal when you need features not yet available in the current portal, such as prompt flow or managed compute model deployments.
+The [Microsoft Foundry API](/rest/api/aifoundry/) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. [SDK Client libraries](how-to/develop/sdk-overview.md) are available for:
+
+- Python
+- C#
+- JavaScript/TypeScript (preview)
+- Java (preview)
+
+The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
 
 ## Foundry (classic) portal
 
-The [Foundry (classic) portal](https://ai.azure.com) provides access to all resource types, including hub-based projects, Foundry projects, and Azure OpenAI resources. To use the classic portal, turn off the **New Foundry** toggle in the portal banner.
+[!INCLUDE [classic-link](../foundry/includes/classic-link.md)] (classic) portal supports hub-based projects, Foundry projects, and Azure OpenAI resources. Use the classic portal when you need features not yet available in the current portal, such as prompt flow or managed compute model deployments.
+
+The Foundry (classic) portal provides access to all resource types, including hub-based projects, Foundry projects, and Azure OpenAI resources. To use the classic portal, turn off the **New Foundry** toggle in the portal banner.
+
+:::image type="icon" source="../foundry/media/version-banner/classic-foundry.png" alt-text="Screenshot of New Foundry toggle in the banner turned off for Foundry (classic) portal.":::
 
 ### Work in a Foundry project
 
@@ -50,16 +61,7 @@ A Foundry project is where you do most of your development work. You can work wi
 
 Use your organization controls to limit production environments to general availability supported capabilities, and validate current feature status before rollout decisions. For role-based control guidance, see [Disable preview features by using role-based access control](./concepts/disable-preview-features-with-rbac.md). For tag-based suppression in the Foundry portal, see [Hide preview features with Azure tags](./how-to/disable-preview-features.md).
 
-## Microsoft Foundry API and SDKs
 
-The [Microsoft Foundry API](/rest/api/aifoundry/) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. [SDK Client libraries](how-to/develop/sdk-overview.md) are available for:
-
-- Python
-- C#
-- JavaScript/TypeScript (preview)
-- Java (preview)
-
-The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
 
 ## Types of projects
 

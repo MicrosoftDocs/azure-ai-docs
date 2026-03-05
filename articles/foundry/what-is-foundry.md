@@ -49,6 +49,17 @@ If you're using the classic portal, see [What is Microsoft Foundry? (classic)](.
 * **Centralized AI asset management** – Manage all agents, models, and tools from the **Operate** section, including agents registered from other clouds.
 * **Enterprise controls** – Full authentication support for MCP and A2A, AI gateway integration, and Azure Policy integration.
 
+## Microsoft Foundry API and SDKs
+
+The [Microsoft Foundry API](/rest/api/aifoundry/) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. [SDK Client libraries](how-to/develop/sdk-overview.md) are available for:
+
+- Python
+- C#
+- JavaScript/TypeScript (preview)
+- Java (preview)
+
+The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
+
 ## Foundry portal
 
 The [Microsoft Foundry portal](https://ai.azure.com) is where you manage projects, deploy models, build agents, and monitor your AI assets. To use the current version, make sure the **New Foundry** toggle in the banner is set to on.
@@ -72,16 +83,7 @@ To find these other resources,  select the project name in the upper-left corner
 
 Use your organization controls to limit production environments to general availability supported capabilities, and validate current feature status before rollout decisions. For role-based control guidance, see [Disable preview features by using role-based access control](./concepts/disable-preview-features-with-rbac.md). For tag-based suppression in the Foundry portal, see [Hide preview features with Azure tags](./how-to/disable-preview-features.md).
 
-## Microsoft Foundry API and SDKs
 
-The [Microsoft Foundry API](/rest/api/aifoundry/) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. [SDK Client libraries](how-to/develop/sdk-overview.md) are available for:
-
-- Python
-- C#
-- JavaScript/TypeScript (preview)
-- Java (preview)
-
-The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
 
 ## Pricing and billing
 

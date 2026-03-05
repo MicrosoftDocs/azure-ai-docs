@@ -51,7 +51,7 @@ A Foundry resource provides unified access to models, agents, and tools. This ar
   - **Azure AI Project Manager** (for managing Foundry projects)
   - **Contributor** or **Owner** (for subscription-level permissions)
   
-  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/foundry/concepts/rbac-azure-ai-foundry).
 
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](install-cli-sdk.md).
 
