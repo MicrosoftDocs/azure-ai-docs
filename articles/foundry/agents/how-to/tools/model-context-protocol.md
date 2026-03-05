@@ -45,11 +45,7 @@ Before you begin, ensure you have:
 - Azure role-based access control (RBAC): Contributor or Owner role on the Foundry project.
 - The latest SDK package for your language. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
-- Environment variables configured:
-  - `FOUNDRY_PROJECT_ENDPOINT`: Your project endpoint URL.
-  - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
-  - `MCP_PROJECT_CONNECTION_NAME`: Your MCP project connection name.
-- Access to a remote MCP server endpoint (such as GitHub's MCP server at `https://api.githubcopilot.com/mcp`).
+- Access to a remote MCP server endpoint(such as GitHub's MCP server at `https://api.githubcopilot.com/mcp`).
 
 ## Authentication
 
@@ -93,90 +89,90 @@ Use the following code sample to create an agent and call the function. The .NET
 The following example shows how to use the GitHub MCP server as a tool for an agent.
 
 ```python
-import os
 import json
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, MCPTool, Tool
+from azure.ai.projects.models import PromptAgentDefinition, MCPTool
 from openai.types.responses.response_input_param import McpApprovalResponse, ResponseInputParam
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+MCP_CONNECTION_NAME = "my-mcp-connection"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-    # [START tool_declaration]
-    tool = MCPTool(
-        server_label="api-specs",
-        server_url="https://api.githubcopilot.com/mcp",
-        require_approval="always",
-        project_connection_id=os.getenv("MCP_PROJECT_CONNECTION_NAME"),
-    )
-    # [END tool_declaration]
+# [START tool_declaration]
+tool = MCPTool(
+    server_label="api-specs",
+    server_url="https://api.githubcopilot.com/mcp",
+    require_approval="always",
+    project_connection_id=MCP_CONNECTION_NAME,
+)
+# [END tool_declaration]
 
-    # Create a prompt agent with MCP tool capabilities
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent7",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="Use MCP tools as needed",
-            tools=[tool],
-        ),
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+# Create a prompt agent with MCP tool capabilities
+agent = project.agents.create_version(
+    agent_name="MyAgent7",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="Use MCP tools as needed",
+        tools=[tool],
+    ),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    # Create a conversation to maintain context across multiple interactions
-    conversation = openai_client.conversations.create()
-    print(f"Created conversation (id: {conversation.id})")
+# Create a conversation to maintain context across multiple interactions
+conversation = openai.conversations.create()
+print(f"Created conversation (id: {conversation.id})")
 
-    # Send initial request that will trigger the MCP tool
-    response = openai_client.responses.create(
-        conversation=conversation.id,
-        input="What is my username in my GitHub profile?",
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+# Send initial request that will trigger the MCP tool
+response = openai.responses.create(
+    conversation=conversation.id,
+    input="What is my username in my GitHub profile?",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    # Process any MCP approval requests that were generated
-    input_list: ResponseInputParam = []
-    for item in response.output:
-        if item.type == "mcp_approval_request" and item.id:
-            print("MCP approval requested")
-            print(f"  Server: {item.server_label}")
-            print(f"  Tool: {getattr(item, 'name', '<unknown>')}")
-            print(
-                f"  Arguments: {json.dumps(getattr(item, 'arguments', None), indent=2, default=str)}"
+# Process any MCP approval requests that were generated
+input_list: ResponseInputParam = []
+for item in response.output:
+    if item.type == "mcp_approval_request" and item.id:
+        print("MCP approval requested")
+        print(f"  Server: {item.server_label}")
+        print(f"  Tool: {getattr(item, 'name', '<unknown>')}")
+        print(
+            f"  Arguments: {json.dumps(getattr(item, 'arguments', None), indent=2, default=str)}"
+        )
+
+        # Approve only after you review the tool call.
+        # In production, implement your own approval UX and policy.
+        should_approve = (
+            input("Approve this MCP tool call? (y/N): ").strip().lower() == "y"
+        )
+        input_list.append(
+            McpApprovalResponse(
+                type="mcp_approval_response",
+                approve=should_approve,
+                approval_request_id=item.id,
             )
+        )
 
-            # Approve only after you review the tool call.
-            # In production, implement your own approval UX and policy.
-            should_approve = (
-                input("Approve this MCP tool call? (y/N): ").strip().lower() == "y"
-            )
-            input_list.append(
-                McpApprovalResponse(
-                    type="mcp_approval_response",
-                    approve=should_approve,
-                    approval_request_id=item.id,
-                )
-            )
+# Send the approval response back to continue the agent's work
+response = openai.responses.create(
+    input=input_list,
+    previous_response_id=response.id,
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    # Send the approval response back to continue the agent's work
-    # This allows the MCP tool to access the GitHub repository and complete the original request
-    response = openai_client.responses.create(
-        input=input_list,
-        previous_response_id=response.id,
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+print(f"Response: {response.output_text}")
 
-    print(f"Response: {response.output_text}")
-
-    # Clean up resources by deleting the agent version
-    # This prevents accumulation of unused agent versions in your project
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
+# Clean up resources by deleting the agent version
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
 ```
 
 ### Expected output
@@ -203,15 +199,18 @@ using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
-// Create project client and read the environment variables that are used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+
+// Create project client to call Foundry API
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
 
 // Create Agent with the `MCPTool`. Note that in this scenario 
 // GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval is used,
 // which means that any calls to the MCP server must be approved.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
     Tools = { ResponseTool.CreateMcpTool(
@@ -309,11 +308,14 @@ using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
-// Create project client and read the environment variables to be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var mcpConnectionName = System.Environment.GetEnvironmentVariable("MCP_PROJECT_CONNECTION_NAME");
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var mcpConnectionName = "my-mcp-connection";
+
+// Create project client to call Foundry API
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
 
 // Create an agent with the MCPTool. Note that, in this scenario,
 // GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval is used.
@@ -326,7 +328,7 @@ McpTool tool = ResponseTool.CreateMcpTool(
         toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval
     ));
 tool.ProjectConnectionId = mcpConnectionName;
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
     Tools = { tool }
@@ -403,13 +405,13 @@ import { AIProjectClient } from "@azure/ai-projects";
 import OpenAI from "openai";
 import * as readline from "readline";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
 
 export async function main(): Promise<void> {
-  // Create AI Project client
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   console.log("Creating agent with MCP tool...");
 
@@ -417,7 +419,7 @@ export async function main(): Promise<void> {
   // The tool requires approval for each operation to ensure user control over external requests
   const agent = await project.agents.createVersion("agent-mcp", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions:
       "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
     tools: [
@@ -433,13 +435,13 @@ export async function main(): Promise<void> {
 
   // Create a conversation thread to maintain context across multiple interactions
   console.log("\nCreating conversation...");
-  const conversation = await openAIClient.conversations.create();
+  const conversation = await openai.conversations.create();
   console.log(`Created conversation (id: ${conversation.id})`);
 
   // Send initial request that will trigger the MCP tool to access Azure REST API specs
   // This will generate an approval request since requireApproval="always"
   console.log("\nSending request that will trigger MCP approval...");
-  const response = await openAIClient.responses.create(
+  const response = await openai.responses.create(
     {
       conversation: conversation.id,
       input: "Please summarize the Azure REST API specifications Readme",
@@ -484,7 +486,7 @@ export async function main(): Promise<void> {
   // Send the approval response back to continue the agent's work
   // This allows the MCP tool to access the GitHub repository and complete the original request
   console.log("\nSending approval response...");
-  const finalResponse = await openAIClient.responses.create(
+  const finalResponse = await openai.responses.create(
     {
       input: inputList,
       previous_response_id: response.id,
@@ -499,7 +501,7 @@ export async function main(): Promise<void> {
   // Clean up resources by deleting the agent version and conversation
   // This prevents accumulation of unused resources in your project
   console.log("\nCleaning up resources...");
-  await openAIClient.conversations.delete(conversation.id);
+  await openai.conversations.delete(conversation.id);
   console.log("Conversation deleted");
 
   await project.agents.deleteVersion(agent.name, agent.version);
@@ -561,14 +563,14 @@ import { AIProjectClient } from "@azure/ai-projects";
 import OpenAI from "openai";
 import * as readline from "readline";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const mcpConnectionName = process.env["MCP_PROJECT_CONNECTION_NAME"] || "";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const MCP_CONNECTION_NAME = "my-mcp-connection";
 
 export async function main(): Promise<void> {
-  // Create AI Project client
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   console.log("Creating agent with MCP tool using project connection...");
 
@@ -577,7 +579,7 @@ export async function main(): Promise<void> {
   // Token can be created at https://github.com/settings/personal-access-tokens/new
   const agent = await project.agents.createVersion("agent-mcp-connection-auth", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "Use MCP tools as needed",
     tools: [
       {
@@ -585,7 +587,7 @@ export async function main(): Promise<void> {
         server_label: "api-specs",
         server_url: "https://api.githubcopilot.com/mcp",
         require_approval: "always",
-        project_connection_id: mcpConnectionName,
+        project_connection_id: MCP_CONNECTION_NAME,
       },
     ],
   });
@@ -593,12 +595,12 @@ export async function main(): Promise<void> {
 
   // Create a conversation thread to maintain context across multiple interactions
   console.log("\nCreating conversation...");
-  const conversation = await openAIClient.conversations.create();
+  const conversation = await openai.conversations.create();
   console.log(`Created conversation (id: ${conversation.id})`);
 
   // Send initial request that will trigger the MCP tool
   console.log("\nSending request that will trigger MCP approval...");
-  const response = await openAIClient.responses.create(
+  const response = await openai.responses.create(
     {
       conversation: conversation.id,
       input: "What is my username in my GitHub profile?",
@@ -642,7 +644,7 @@ export async function main(): Promise<void> {
   // Send the approval response back to continue the agent's work
   // This allows the MCP tool to access the GitHub repository and complete the original request
   console.log("\nSending approval response...");
-  const finalResponse = await openAIClient.responses.create(
+  const finalResponse = await openai.responses.create(
     {
       input: inputList,
       previous_response_id: response.id,
@@ -657,7 +659,7 @@ export async function main(): Promise<void> {
   // Clean up resources by deleting the agent version and conversation
   // This prevents accumulation of unused resources in your project
   console.log("\nCleaning up resources...");
-  await openAIClient.conversations.delete(conversation.id);
+  await openai.conversations.delete(conversation.id);
   console.log("Conversation deleted");
 
   await project.agents.deleteVersion(agent.name, agent.version);
@@ -706,13 +708,7 @@ MCP with project connection sample completed!
 
 ## Use MCP tools in a Java agent
 
-Set the following environment variables:
-
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
-- `MCP_PROJECT_CONNECTION_ID` — The ID of the MCP connection in your Foundry project (optional, for authenticated servers).
-
-Add the dependency to your `pom.xml`:
+Add the dependencyto your `pom.xml`:
 
 ```xml
 <dependency>
@@ -733,7 +729,6 @@ import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.McpTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.core.util.BinaryData;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -742,13 +737,13 @@ import java.util.Collections;
 
 public class McpToolExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-        String mcpConnectionId = Configuration.getGlobalConfiguration().get("MCP_PROJECT_CONNECTION_ID");
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
+        String mcpConnectionName = "my-mcp-connection";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(endpoint);
+            .endpoint(projectEndpoint);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -756,11 +751,11 @@ public class McpToolExample {
         // Create MCP tool with server label, URL, connection, and approval mode
         McpTool mcpTool = new McpTool("api-specs")
             .setServerUrl("https://gitmcp.io/Azure/azure-rest-api-specs")
-            .setProjectConnectionId(mcpConnectionId)
+            .setProjectConnectionId(mcpConnectionName)
             .setRequireApproval(BinaryData.fromString("\"always\""));
 
         // Create agent with MCP tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a helpful assistant that can use MCP tools.")
             .setTools(Collections.singletonList(mcpTool));
 

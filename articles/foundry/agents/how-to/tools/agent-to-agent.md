@@ -91,58 +91,61 @@ from azure.ai.projects.models import (
     A2APreviewTool,
 )
 
-PROJECT_ENDPOINT = "https://<resource>.ai.azure.com/api/projects/<project>"
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
 A2A_CONNECTION_NAME = "my-a2a-connection"
 AGENT_NAME = "my-agent"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=credential) as project,
-    project.get_openai_client() as openai,
-):
-    a2a_connection = project.connections.get(A2A_CONNECTION_NAME)
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-    tool = A2APreviewTool(
-        project_connection_id=a2a_connection.id,
-    )
+a2a_connection = project.connections.get(A2A_CONNECTION_NAME)
 
-    agent = project.agents.create_version(
-        agent_name=AGENT_NAME,
-        definition=PromptAgentDefinition(
-            model="gpt-5-mini",
-            instructions="You are a helpful assistant.",
-            tools=[tool],
-        ),
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+tool = A2APreviewTool(
+    project_connection_id=a2a_connection.id,
+)
 
-    user_input = input("Enter your question (e.g., 'What can the secondary agent do?'): \n")
+agent = project.agents.create_version(
+    agent_name=AGENT_NAME,
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant.",
+        tools=[tool],
+    ),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    stream_response = openai.responses.create(
-        stream=True,
-        tool_choice="required",
-        input=user_input,
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+user_input = input("Enter your question (e.g., 'What can the secondary agent do?'): \n")
 
-    for event in stream_response:
-        if event.type == "response.created":
-            print(f"Follow-up response created with ID: {event.response.id}")
-        elif event.type == "response.output_text.delta":
-            print(f"Delta: {event.delta}")
-        elif event.type == "response.text.done":
-            print(f"\nFollow-up response done!")
-        elif event.type == "response.output_item.done":
-            item = event.item
-            if item.type == "remote_function_call":
-                print(f"Call ID: {getattr(item, 'call_id')}")
-                print(f"Label: {getattr(item, 'label')}")
-        elif event.type == "response.completed":
-            print(f"\nFollow-up completed!")
-            print(f"Full response: {event.response.output_text}")
+stream_response = openai.responses.create(
+    stream=True,
+    tool_choice="required",
+    input=user_input,
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    # Clean up the created agent version
-    project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+for event in stream_response:
+    if event.type == "response.created":
+        print(f"Follow-up response created with ID: {event.response.id}")
+    elif event.type == "response.output_text.delta":
+        print(f"Delta: {event.delta}")
+    elif event.type == "response.text.done":
+        print(f"\nFollow-up response done!")
+    elif event.type == "response.output_item.done":
+        item = event.item
+        if item.type == "remote_function_call":
+            print(f"Call ID: {getattr(item, 'call_id')}")
+            print(f"Label: {getattr(item, 'label')}")
+    elif event.type == "response.completed":
+        print(f"\nFollow-up completed!")
+        print(f"Full response: {event.response.output_text}")
+
+# Clean up the created agent version
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 ```
 
 ### Expected output

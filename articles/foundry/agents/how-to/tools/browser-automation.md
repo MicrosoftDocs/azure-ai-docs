@@ -74,17 +74,9 @@ pip install "azure-ai-projects>=2.0.0"
 
 The .NET and Java SDKs are currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 
-### Environment variables
+### Configuration
 
-For the SDK examples, set these environment variables:
-
-| Variable | Description | Format |
-|----------|-------------|--------|
-| `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint URL | `https://{account-name}.services.ai.azure.com/api/projects/{project-name}` |
-| `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your deployed model name | `gpt-4o` |
-| `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID` | The connection resource ID | See the format that follows |
-
-**Get your project endpoint**: Open your project in the [Foundry portal](https://ai.azure.com), and copy the endpoint from the project overview page.
+**Get your project endpoint**: Open your project in the [Foundry portal](https://ai.azure.com), and copy the endpoint from the project overview page. The format is `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`.
 
 **Connection ID format**: Use `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`. You can find this value on the tool's details page after you connect the Browser Automation tool.
 
@@ -112,7 +104,7 @@ For the SDK examples, set these environment variables:
    - **Access token**: Paste the access token you generated.
 1. Select **Connect**.
 
-After the connection is created, you can view the **Project connection ID** on the tool's details page. Use this value for the `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID` environment variable.
+After the connection is created, you can view the **Project connection ID** on the tool's details page. Use this value as the browser automation connection ID in your code.
 
 ## Code example
 
@@ -125,10 +117,9 @@ After you run a sample, verify the tool was called by using tracing in Microsoft
 :::zone pivot="python"
 ## Use BrowserAutomationAgentTool with agents example
 
-The following Python example demonstrates how to create an AI agent with browser automation capabilities by using the `BrowserAutomationAgentTool` and synchronous Azure AI Projects client. The agent can navigate to websites, interact with web elements, and perform tasks such as searching for stock prices. For a complete working example, ensure you have the necessary environment variables set up as indicated in the code comments.
+The following Python example demonstrates how to create an AI agent with browser automation capabilities by using the `BrowserAutomationAgentTool` and synchronous Azure AI Projects client. The agent can navigate to websites, interact with web elements, and perform tasks such as searching for stock prices.
 
 ```python
-import os
 import json
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
@@ -139,72 +130,75 @@ from azure.ai.projects.models import (
     BrowserAutomationToolConnectionParameters,
 )
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+BROWSER_CONNECTION_ID = "your-browser-automation-connection-id"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-    tool = BrowserAutomationPreviewTool(
-        browser_automation_preview=BrowserAutomationToolParameters(
-            connection=BrowserAutomationToolConnectionParameters(
-                project_connection_id=os.environ["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"],
-            )
+tool = BrowserAutomationPreviewTool(
+    browser_automation_preview=BrowserAutomationToolParameters(
+        connection=BrowserAutomationToolConnectionParameters(
+            project_connection_id=BROWSER_CONNECTION_ID,
         )
     )
+)
 
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="""You are an Agent helping with browser automation tasks. 
-            You can answer questions, provide information, and assist with various tasks 
-            related to web browsing using the Browser Automation tool available to you.""",
-            tools=[tool],
-        ),
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+agent = project.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="""You are an Agent helping with browser automation tasks. 
+        You can answer questions, provide information, and assist with various tasks 
+        related to web browsing using the Browser Automation tool available to you.""",
+        tools=[tool],
+    ),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    stream_response = openai_client.responses.create(
-        stream=True,
-        tool_choice="required",
-        input="""
-            Your goal is to report the percent of Microsoft year-to-date stock price change.
-            To do that, go to the website finance.yahoo.com.
-            At the top of the page, you will find a search bar.
-            Enter the value 'MSFT', to get information about the Microsoft stock price.
-            At the top of the resulting page you will see a default chart of Microsoft stock price.
-            Click on 'YTD' at the top of that chart, and report the percent value that shows up just below it.""",
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+stream_response = openai.responses.create(
+    stream=True,
+    tool_choice="required",
+    input="""
+        Your goal is to report the percent of Microsoft year-to-date stock price change.
+        To do that, go to the website finance.yahoo.com.
+        At the top of the page, you will find a search bar.
+        Enter the value 'MSFT', to get information about the Microsoft stock price.
+        At the top of the resulting page you will see a default chart of Microsoft stock price.
+        Click on 'YTD' at the top of that chart, and report the percent value that shows up just below it.""",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    for event in stream_response:
-        if event.type == "response.created":
-            print(f"Follow-up response created with ID: {event.response.id}")
-        elif event.type == "response.output_text.delta":
-            print(f"Delta: {event.delta}")
-        elif event.type == "response.text.done":
-            print(f"\nFollow-up response done!")
-        elif event.type == "response.output_item.done":
-            item = event.item
-            if item.type == "browser_automation_preview_call":
-                arguments_str = getattr(item, "arguments", "{}")
+for event in stream_response:
+    if event.type == "response.created":
+        print(f"Follow-up response created with ID: {event.response.id}")
+    elif event.type == "response.output_text.delta":
+        print(f"Delta: {event.delta}")
+    elif event.type == "response.text.done":
+        print(f"\nFollow-up response done!")
+    elif event.type == "response.output_item.done":
+        item = event.item
+        if item.type == "browser_automation_preview_call":
+            arguments_str = getattr(item, "arguments", "{}")
 
-                # Parse the arguments string into a dictionary
-                arguments = json.loads(arguments_str)
-                query = arguments.get("query")
+            # Parse the arguments string into a dictionary
+            arguments = json.loads(arguments_str)
+            query = arguments.get("query")
 
-                print(f"Call ID: {getattr(item, 'call_id')}")
-                print(f"Query arguments: {query}")
-        elif event.type == "response.completed":
-            print(f"\nFollow-up completed!")
-            print(f"Full response: {event.response.output_text}")
+            print(f"Call ID: {getattr(item, 'call_id')}")
+            print(f"Query arguments: {query}")
+    elif event.type == "response.completed":
+        print(f"\nFollow-up completed!")
+        print(f"Full response: {event.response.output_text}")
 
-    print("\nCleaning up...")
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
+print("\nCleaning up...")
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
 ```
 
 ### What this code does
@@ -213,7 +207,7 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Required inputs
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
+- A Foundry project endpoint and a browser automation connection ID. See [Configuration](#configuration) for details.
 
 ### Expected output
 
@@ -239,12 +233,12 @@ using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
-// Create the Agent client and read the required environment variables.
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var browserConnectionId = "your-browser-automation-connection-id";
+
 // Note that Browser automation operations can take longer than usual
 // and require the request timeout to be at least 5 minutes.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var playwrightConnectionId = System.Environment.GetEnvironmentVariable("BROWSER_AUTOMATION_PROJECT_CONNECTION_ID");
 AIProjectClientOptions options = new()
 {
     NetworkTimeout = TimeSpan.FromMinutes(5)
@@ -254,11 +248,11 @@ AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenPro
 // Create the Browser Automation tool using the Playwright connection.
 BrowserAutomationPreviewTool playwrightTool = new(
     new BrowserAutomationToolParameters(
-    new BrowserAutomationToolConnectionParameters(playwrightConnectionId)
+    new BrowserAutomationToolConnectionParameters(browserConnectionId)
     ));
 
 // Create the Agent version with the Browser Automation tool.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are an Agent helping with browser automation tasks.\n" +
     "You can answer questions, provide information, and assist with various tasks\n" +
@@ -316,7 +310,7 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Required inputs
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
+- A Foundry project endpoint and a browser automation connection ID. See [Configuration](#configuration) for details.
 - A Playwright connection created in your Foundry project.
 
 ### Expected output
@@ -380,11 +374,10 @@ The following TypeScript sample demonstrates how to create an agent with Browser
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-const projectEndpoint= process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const browserAutomationProjectConnectionId =
-  process.env["BROWSER_AUTOMATION_PROJECT_CONNECTION_ID"] ||
-  "<browser automation project connection id>";
+
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const BROWSER_CONNECTION_ID = "your-browser-automation-connection-id";
 
 const handleBrowserCall = (item: any) => {
   // TODO: support browser_automation_preview_call schema
@@ -407,14 +400,15 @@ const handleBrowserCall = (item: any) => {
 };
 
 export async function main(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   console.log("Creating agent with Browser Automation tool...");
 
   const agent = await project.agents.createVersion("MyAgent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: `You are an Agent helping with browser automation tasks. 
             You can answer questions, provide information, and assist with various tasks 
             related to web browsing using the Browser Automation tool available to you.`,
@@ -424,7 +418,7 @@ export async function main(): Promise<void> {
         type: "browser_automation_preview",
         browser_automation_preview: {
           connection: {
-            project_connection_id: browserAutomationProjectConnectionId,
+            project_connection_id: BROWSER_CONNECTION_ID,
           },
         },
       },
@@ -433,7 +427,7 @@ export async function main(): Promise<void> {
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   console.log("\nSending browser automation request with streaming...");
-  const streamResponse = await openAIClient.responses.create(
+  const streamResponse = await openai.responses.create(
     {
       input: `Your goal is to report the percent of Microsoft year-to-date stock price change.
             To do that, go to the website finance.yahoo.com.
@@ -492,7 +486,7 @@ This example creates an agent version with the Browser Automation tool enabled, 
 
 ### Required inputs
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID`.
+- A Foundry project endpoint and a browser automation connection ID. See [Configuration](#configuration) for details.
 
 ### Expected output
 
@@ -502,12 +496,6 @@ You see an "Agent created ..." message, streaming text output, and optionally, b
 :::zone pivot="java"
 
 ## Use browser automation in a Java agent
-
-Set the following environment variables:
-
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
-- `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID` — The resource ID of the Playwright workspace connection.
 
 Add the dependency to your `pom.xml`:
 
@@ -526,7 +514,6 @@ import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.*;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -535,13 +522,13 @@ import java.util.Collections;
 
 public class BrowserAutomationExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-        String connectionId = Configuration.getGlobalConfiguration().get("BROWSER_AUTOMATION_PROJECT_CONNECTION_ID");
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
+        String browserConnectionId = "your-browser-automation-connection-id";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(endpoint);
+            .endpoint(projectEndpoint);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -549,12 +536,12 @@ public class BrowserAutomationExample {
         // Create browser automation tool with connection configuration
         BrowserAutomationPreviewTool browserTool = new BrowserAutomationPreviewTool(
             new BrowserAutomationToolParameters(
-                new BrowserAutomationToolConnectionParameters(connectionId)
+                new BrowserAutomationToolConnectionParameters(browserConnectionId)
             )
         );
 
         // Create agent with browser automation tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a helpful assistant that can interact with web pages.")
             .setTools(Collections.singletonList(browserTool));
 
@@ -601,7 +588,7 @@ This tool uses a Playwright workspace resource to run browser sessions. Review t
 
 ### Connection or authorization errors
 
-- Confirm `BROWSER_AUTOMATION_PROJECT_CONNECTION_ID` matches the Playwright workspace connection resource ID in your project.
+- Confirm the browser automation connection ID matches the Playwright workspace connection resource ID in your project.
 - Confirm the project identity has access to the Playwright workspace resource.
 - If you recently rotated the Playwright access token, update the Foundry project connection key.
 
@@ -609,7 +596,7 @@ This tool uses a Playwright workspace resource to run browser sessions. Review t
 
 ### Python SDK errors
 
-- **Workspace not found**: Verify your `FOUNDRY_PROJECT_ENDPOINT` uses the correct format: `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`. Don't use the legacy Azure ML endpoint format.
+- **Workspace not found**: Verify your project endpoint uses the correct format: `https://{account-name}.services.ai.azure.com/api/projects/{project-name}`. Don't use the legacy Azure ML endpoint format.
 - **Unexpected keyword argument errors**: Ensure you're using the latest version of `azure-ai-projects`. Run `pip install "azure-ai-projects>=2.0.0" --upgrade` to update.
 - **Import errors**: Install all required packages: `pip install "azure-ai-projects>=2.0.0"`.
 

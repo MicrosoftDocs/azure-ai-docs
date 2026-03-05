@@ -47,7 +47,8 @@ In this article, you learn how to:
   - **Java**: `azure-ai-agents` (prerelease)
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)
 - **Azure AI Owner** role on your Foundry resource (required for creating agent resources)
-- Environment variables configured: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`
+- Azure credentials configured for authentication (such as `DefaultAzureCredential`).
+- Your Foundry project endpoint URL and model deployment name.
 
 ## Code examples
 
@@ -59,63 +60,64 @@ The following examples show how to upload a file, create a vector store, configu
 The following code sample shows how to create an agent with the file search tool enabled. You need to upload files and create a vector store before running this code. See the sections below for details.
 
 ```python
-import os
 from pathlib import Path
 
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import FileSearchTool, PromptAgentDefinition
 from azure.identity import DefaultAzureCredential
 
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+
 # Load the file to be indexed for search.
 asset_file_path = (Path(__file__).parent / "../assets/product_info.md").resolve()
 
-with (
-  DefaultAzureCredential() as credential,
-  AIProjectClient(
-    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-    credential=credential,
-  ) as project_client,
-  project_client.get_openai_client() as openai_client,
-):
-  # Create vector store and upload file
-  vector_store = openai_client.vector_stores.create(name="ProductInfoStore")
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-  with asset_file_path.open("rb") as file_handle:
-    vector_store_file = openai_client.vector_stores.files.upload_and_poll(
-      vector_store_id=vector_store.id,
-      file=file_handle,
+# Create vector store and upload file
+vector_store = openai.vector_stores.create(name="ProductInfoStore")
+
+with asset_file_path.open("rb") as file_handle:
+    vector_store_file = openai.vector_stores.files.upload_and_poll(
+        vector_store_id=vector_store.id,
+        file=file_handle,
     )
 
-  # Create agent with file search tool
-  agent = project_client.agents.create_version(
+# Create agent with file search tool
+agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-      model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-      instructions=(
-        "You are a helpful agent that can search through product information. "
-        "Use file search to answer questions from the uploaded files."
-      ),
-      tools=[FileSearchTool(vector_store_ids=[vector_store.id])],
+        model="gpt-5-mini",
+        instructions=(
+            "You are a helpful agent that can search through product information. "
+            "Use file search to answer questions from the uploaded files."
+        ),
+        tools=[FileSearchTool(vector_store_ids=[vector_store.id])],
     ),
     description="File search agent for product information queries.",
-  )
+)
 
-  # Create conversation and generate response
-  conversation = openai_client.conversations.create()
+# Create conversation and generate response
+conversation = openai.conversations.create()
 
-  response = openai_client.responses.create(
+response = openai.responses.create(
     conversation=conversation.id,
     input="Tell me about Contoso products",
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-  )
-  print(response.output_text)
+)
+print(response.output_text)
 
-  # Clean up resources
-  project_client.agents.delete_version(
+# Clean up resources
+project.agents.delete_version(
     agent_name=agent.name,
     agent_version=agent.version,
-  )
-  openai_client.vector_stores.delete(vector_store.id)
+)
+openai.vector_stores.delete(vector_store.id)
 ```
 
 ### Expected output
@@ -143,9 +145,10 @@ using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
-// Create project client and read the environment variables, which is used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+
+// Create project client to call Foundry API
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
 // Create a toy example file and upload it using OpenAI mechanism.
@@ -167,7 +170,7 @@ VectorStoreCreationOptions options = new()
 VectorStore vectorStore = vctStoreClient.CreateVectorStore(options: options);
 
 // Create an Agent capable of using File search.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful agent that can help fetch data from files you know about.",
     Tools = { ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }), }
@@ -254,9 +257,10 @@ class FileSearchStreamingDemo
     }
     public static void Main()
     {
-        // Create project client and read the environment variables, which will be used in the next steps.
-        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-        var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        var projectEndpoint = "your_project_endpoint";
+
+        // Create project client to call Foundry API
         AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
         // Create a toy example file and upload it using OpenAI mechanism.
@@ -276,7 +280,7 @@ class FileSearchStreamingDemo
         VectorStore vectorStore = projectClient.OpenAI.VectorStores.CreateVectorStore(options);
 
         // Create an agent capable of using File search.
-        PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+        PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
         {
             Instructions = "You are a helpful agent that can help fetch data from files you know about.",
             Tools = { ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }), }
@@ -348,8 +352,8 @@ import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
 
 export async function main(): Promise<void> {
   // Load the file to be indexed for search
@@ -357,22 +361,22 @@ export async function main(): Promise<void> {
   const __dirname = path.dirname(__filename);
   const assetFilePath = path.join(__dirname, "../assets/product_info.md");
 
-  // Create AI Project client
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   // Create vector store and upload file
-  const vectorStore = await openAIClient.vectorStores.create({
+  const vectorStore = await openai.vectorStores.create({
     name: "ProductInfoStore",
   });
 
   const fileStream = fs.createReadStream(assetFilePath);
-  const file = await openAIClient.vectorStores.files.uploadAndPoll(vectorStore.id, fileStream);
+  const file = await openai.vectorStores.files.uploadAndPoll(vectorStore.id, fileStream);
 
   // Create agent with file search tool
   const agent = await project.agents.createVersion("agent-file-search", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "You are a helpful assistant that can search through product information.",
     tools: [
       {
@@ -383,9 +387,9 @@ export async function main(): Promise<void> {
   });
 
   // Create conversation and generate response
-  const conversation = await openAIClient.conversations.create();
+  const conversation = await openai.conversations.create();
 
-  const response = await openAIClient.responses.create(
+  const response = await openai.responses.create(
     {
       conversation: conversation.id,
       input: "Tell me about Contoso products",
@@ -398,7 +402,7 @@ export async function main(): Promise<void> {
 
   // Clean up resources
   await project.agents.deleteVersion(agent.name, agent.version);
-  await openAIClient.vectorStores.delete(vectorStore.id);
+  await openai.vectorStores.delete(vectorStore.id);
 }
 
 main().catch((err) => {
@@ -443,7 +447,6 @@ import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.FileSearchTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -453,13 +456,13 @@ import java.util.Collections;
 
 public class FileSearchExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-        String vectorStoreId = Configuration.getGlobalConfiguration().get("VECTOR_STORE_ID");
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
+        String vectorStoreId = "your_vector_store_id";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(endpoint);
+            .endpoint(projectEndpoint);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -470,7 +473,7 @@ public class FileSearchExample {
         );
 
         // Create agent with file search tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a helpful assistant that can search through files to answer questions.")
             .setTools(Collections.singletonList(fileSearchTool));
 

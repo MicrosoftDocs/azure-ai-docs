@@ -53,16 +53,6 @@ Ground your Foundry agent's responses in your proprietary content by connecting 
   - **Search Index Data Contributor**
   - **Search Service Contributor**
 
-### Set environment variables
-
-| Variable | Description |
-| --- | --- |
-| `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint. |
-| `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your model deployment name. |
-| `AZURE_AI_SEARCH_CONNECTION_NAME` | The name of your project connection to Azure AI Search (used by the SDK samples to look up the connection ID). |
-| `AZURE_AI_SEARCH_CONNECTION_ID` | The resource ID of your project connection to Azure AI Search (used by the TypeScript and REST samples). |
-| `AI_SEARCH_INDEX_NAME` | Your Azure AI Search index name. |
- 
 ## Configure tool parameters
 
 | Azure AI Search tool parameter | Required | Notes |
@@ -77,13 +67,12 @@ Ground your Foundry agent's responses in your proprietary content by connecting 
 
 > [!NOTE]
 > - You need the latest SDK package. C# and Java require the prerelease version. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
-> - If you're using the REST or TypeScript sample, the connection ID is in the format `/subscriptions/{{subscriptionId}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{connectionName}}`.
-> - If you're using the Python or C# sample, you can provide the connection name and retrieve the connection ID with the SDK.
+> - If you're using the REST sample, the connection ID is in the format `/subscriptions/{{subscriptionId}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{connectionName}}`.
+> - If you're using the Python, C#, or TypeScript sample, you can provide the connection name and retrieve the connection ID with the SDK.
 
 :::zone pivot="python"
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -94,79 +83,83 @@ from azure.ai.projects.models import (
     AzureAISearchQueryType,
 )
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+SEARCH_CONNECTION_NAME = "my-search-connection"
+SEARCH_INDEX_NAME = "my-search-index"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-    # Resolve the connection ID from the connection name
-    azs_connection = project_client.connections.get(os.environ["AZURE_AI_SEARCH_CONNECTION_NAME"])
-    connection_id = azs_connection.id
+# Resolve the connection ID from the connection name
+azs_connection = project.connections.get(SEARCH_CONNECTION_NAME)
+connection_id = azs_connection.id
 
-    # Create an agent with the Azure AI Search tool
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="""You are a helpful assistant. You must always provide citations for
-            answers using the tool and render them as: `[message_idx:search_idx†source]`.""",
-            tools=[
-                AzureAISearchTool(
-                    azure_ai_search=AzureAISearchToolResource(
-                        indexes=[
-                            AISearchIndexResource(
-                                project_connection_id=connection_id,
-                                index_name=os.environ["AI_SEARCH_INDEX_NAME"],
-                                query_type=AzureAISearchQueryType.SIMPLE,
-                            ),
-                        ]
-                    )
+# Create an agent with the Azure AI Search tool
+agent = project.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="""You are a helpful assistant. You must always provide citations for
+        answers using the tool and render them as: `[message_idx:search_idx†source]`.""",
+        tools=[
+            AzureAISearchTool(
+                azure_ai_search=AzureAISearchToolResource(
+                    indexes=[
+                        AISearchIndexResource(
+                            project_connection_id=connection_id,
+                            index_name=SEARCH_INDEX_NAME,
+                            query_type=AzureAISearchQueryType.SIMPLE,
+                        ),
+                    ]
                 )
-            ],
-        ),
-        description="You are a helpful agent.",
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+            )
+        ],
+    ),
+    description="You are a helpful agent.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    # Prompt user for a question to send to the agent
-    user_input = input(
-        """Enter your question for the AI Search agent available in the index
-        (e.g., 'Tell me about the mental health services available from Premera'): \n"""
-    )
+# Prompt user for a question to send to the agent
+user_input = input(
+    """Enter your question for the AI Search agent available in the index
+    (e.g., 'Tell me about the mental health services available from Premera'): \n"""
+)
 
-    # Stream the response from the agent
-    stream_response = openai_client.responses.create(
-        stream=True,
-        tool_choice="required",
-        input=user_input,
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+# Stream the response from the agent
+stream_response = openai.responses.create(
+    stream=True,
+    tool_choice="required",
+    input=user_input,
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    # Process the streaming response and print citations
-    for event in stream_response:
-        if event.type == "response.output_text.delta":
-            print(event.delta, end="")
-        elif event.type == "response.output_item.done":
-            if event.item.type == "message":
-                item = event.item
-                if item.content[-1].type == "output_text":
-                    text_content = item.content[-1]
-                    for annotation in text_content.annotations:
-                        if annotation.type == "url_citation":
-                            print(
-                                f"URL Citation: {annotation.url}, "
-                                f"Start index: {annotation.start_index}, "
-                                f"End index: {annotation.end_index}"
-                            )
-        elif event.type == "response.completed":
-            print(f"\nFull response: {event.response.output_text}")
+# Process the streaming response and print citations
+for event in stream_response:
+    if event.type == "response.output_text.delta":
+        print(event.delta, end="")
+    elif event.type == "response.output_item.done":
+        if event.item.type == "message":
+            item = event.item
+            if item.content[-1].type == "output_text":
+                text_content = item.content[-1]
+                for annotation in text_content.annotations:
+                    if annotation.type == "url_citation":
+                        print(
+                            f"URL Citation: {annotation.url}, "
+                            f"Start index: {annotation.start_index}, "
+                            f"End index: {annotation.end_index}"
+                        )
+    elif event.type == "response.completed":
+        print(f"\nFull response: {event.response.output_text}")
 
-    # Clean up resources
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
+# Clean up resources
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
 ```
 
 ### Expected outcome
@@ -183,30 +176,36 @@ The following sample code shows synchronous examples of how to use the Azure AI 
 This example shows how to use the Azure AI Search tool with agents to query an index.
 
 ```csharp
-// Read the environment variables to be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
-var aiSearchIndexName = System.Environment.GetEnvironmentVariable("AI_SEARCH_INDEX_NAME");
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
 
-// Create an AIProjectClient object that will be used to create the agent and query the index.
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var searchConnectionName = "my-search-connection";
+var searchIndexName = "my-search-index";
+
+// Create project client to call Foundry API
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
 
 // Resolve the project connection ID from the connection name.
-AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection(connectionName: searchConnectionName);
 
 // Create an AzureAISearchToolIndex object that defines the index and the search parameters.
 AzureAISearchToolIndex index = new()
 {
     ProjectConnectionId = aiSearchConnection.Id,
-    IndexName = aiSearchIndexName,
+    IndexName = searchIndexName,
     TopK = 5,
     Filter = "category eq 'sleeping bag'",
     QueryType = AzureAISearchQueryType.Simple
 };
 
 // Create the agent definition with the Azure AI Search tool.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
     Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
@@ -259,30 +258,36 @@ The agent queries the specified index for information about the sleeping bag. Th
 This example shows how to use the Azure AI Search tool with agents to query an index in a streaming scenario.
 
 ```csharp
-// Read the environment variables to be used in the next steps
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
-var aiSearchIndexName = System.Environment.GetEnvironmentVariable("AI_SEARCH_INDEX_NAME");
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
 
-// Create an AIProjectClient object that will be used to create the agent and query the index.
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var searchConnectionName = "my-search-connection";
+var searchIndexName = "my-search-index";
+
+// Create project client to call Foundry API
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
 
 // Resolve the project connection ID from the connection name.
-AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+AIProjectConnection aiSearchConnection = projectClient.Connections.GetConnection(connectionName: searchConnectionName);
 
 // Create an AzureAISearchToolIndex object that defines the index and the search parameters.
 AzureAISearchToolIndex index = new()
 {
     ProjectConnectionId = aiSearchConnection.Id,
-    IndexName = aiSearchIndexName,
+    IndexName = searchIndexName,
     TopK = 5,
     Filter = "category eq 'sleeping bag'",
     QueryType = AzureAISearchQueryType.Simple
 };
 
 // Create the agent definition with the Azure AI Search tool.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
     Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
@@ -403,24 +408,23 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import * as readline from "readline";
 
-// Load environment variables
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const aiSearchConnectionName =
-  process.env["AZURE_AI_SEARCH_CONNECTION_NAME"] || "<ai search connection name>";
-const aiSearchIndexName = process.env["AI_SEARCH_INDEX_NAME"] || "<ai search index name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const SEARCH_CONNECTION_NAME = "my-search-connection";
+const SEARCH_INDEX_NAME = "my-search-index";
 
 export async function main(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   // Get connection ID from connection name
-  const aiSearchConnection = await project.connections.get(aiSearchConnectionName);
+  const aiSearchConnection = await project.connections.get(SEARCH_CONNECTION_NAME);
 
   // Define Azure AI Search tool that searches indexed content
   const agent = await project.agents.createVersion("MyAISearchAgent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions:
       "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `[message_idx:search_idx†source]`.",
     tools: [
@@ -430,7 +434,7 @@ export async function main(): Promise<void> {
           indexes: [
             {
               project_connection_id: aiSearchConnection.id,
-              index_name: aiSearchIndexName,
+              index_name: SEARCH_INDEX_NAME,
               query_type: "simple",
             },
           ],
@@ -457,7 +461,7 @@ export async function main(): Promise<void> {
   });
 
   // Stream the response from the agent
-  const streamResponse = await openAIClient.responses.create(
+  const streamResponse = await openai.responses.create(
     {
       input: userInput,
       stream: true,
@@ -514,13 +518,6 @@ The application creates an agent with Azure AI Search capabilities, prompts for 
 
 ## Use Azure AI Search in a Java agent
 
-Set the following environment variables:
-
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
-- `AZURE_AI_SEARCH_CONNECTION_ID` — The ID of the Azure AI Search connection in your Foundry project.
-- `AI_SEARCH_INDEX_NAME` — The name of the search index to query.
-
 Add the dependency to your `pom.xml`:
 
 ```xml
@@ -538,7 +535,6 @@ import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.*;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -548,14 +544,14 @@ import java.util.List;
 
 public class AzureAISearchExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-        String connectionId = Configuration.getGlobalConfiguration().get("AZURE_AI_SEARCH_CONNECTION_ID");
-        String indexName = Configuration.getGlobalConfiguration().get("AI_SEARCH_INDEX_NAME");
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
+        String searchConnectionId = "your-search-connection-id";
+        String searchIndexName = "my-search-index";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(endpoint);
+            .endpoint(projectEndpoint);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -564,14 +560,14 @@ public class AzureAISearchExample {
         AzureAISearchTool aiSearchTool = new AzureAISearchTool(
             new AzureAISearchToolResource(List.of(
                 new AISearchIndexResource()
-                    .setProjectConnectionId(connectionId)
-                    .setIndexName(indexName)
+                    .setProjectConnectionId(searchConnectionId)
+                    .setIndexName(searchIndexName)
                     .setQueryType(AzureAISearchQueryType.SIMPLE)
             ))
         );
 
         // Create agent with AI Search tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a helpful assistant that can search through indexed documents. "
                 + "Always provide citations for answers using the tool.")
             .setTools(Collections.singletonList(aiSearchTool));
@@ -755,27 +751,31 @@ If you use the REST or TypeScript sample, you need the project connection ID.
 **Python**
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-project_client = AIProjectClient(
-  endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-  credential=DefaultAzureCredential(),
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+SEARCH_CONNECTION_NAME = "my-search-connection"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
 )
 
-connection = project_client.connections.get(os.environ["AZURE_AI_SEARCH_CONNECTION_NAME"])
+connection = project.connections.get(SEARCH_CONNECTION_NAME)
 print(connection.id)
 ```
 
 **C#**
 
 ```csharp
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var aiSearchConnectionName = System.Environment.GetEnvironmentVariable("AZURE_AI_SEARCH_CONNECTION_NAME");
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var searchConnectionName = "my-search-connection";
 
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-AIProjectConnection connection = projectClient.Connections.GetConnection(connectionName: aiSearchConnectionName);
+AIProjectConnection connection = projectClient.Connections.GetConnection(connectionName: searchConnectionName);
 Console.WriteLine(connection.Id);
 ```
 
@@ -787,7 +787,7 @@ Console.WriteLine(connection.Id);
 | Response has no citations (streaming) | Annotations not captured | Confirm you receive `url_citation` annotations when streaming. Check your stream processing logic. |
 | Tool can't access the index (401/403) | Missing RBAC roles (keyless auth) | Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to the Foundry project's managed identity. See [Azure RBAC in Foundry](../../../concepts/rbac-foundry.md). |
 | Tool can't access the index (401/403) | Invalid or disabled API key | Confirm the API key is correct and enabled in the Azure AI Search resource. |
-| Tool returns "index not found" | Index name mismatch | Confirm `AI_SEARCH_INDEX_NAME` matches the exact index name in your Azure AI Search resource (case-sensitive). |
+| Tool returns "index not found" | Index name mismatch | Confirm the index name matches the exact index name in your Azure AI Search resource (case-sensitive). |
 | Tool returns "index not found" | Wrong connection endpoint | Confirm the project connection points to the Azure AI Search resource that contains the index. |
 | Search returns no results | Query doesn't match indexed content | Verify the index contains the expected data. Use Azure AI Search's test query feature to validate. |
 | Slow search performance | Index not optimized | Review index configuration, consider adding semantic ranking, or optimize the index schema. |

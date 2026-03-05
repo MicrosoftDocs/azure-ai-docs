@@ -63,71 +63,73 @@ asset_file_path = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../assets/synthetic_500_quarterly_results.csv")
 )
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Upload the CSV file for the code interpreter to use
+file = openai.files.create(purpose="assistants", file=open(asset_file_path, "rb"))
+
+# Create agent with code interpreter tool
+agent = project.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant.",
+        tools=[CodeInterpreterTool(container=AutoCodeInterpreterToolParam(file_ids=[file.id]))],
+    ),
+    description="Code interpreter agent for data analysis and visualization.",
+)
+
+# Create a conversation for the agent interaction
+conversation = openai.conversations.create()
+
+# Send request to create a chart and generate a file
+response = openai.responses.create(
+    conversation=conversation.id,
+    input="Could you please create bar chart in TRANSPORTATION sector for the operating profit from the uploaded csv file and provide file to me?",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
+
+# Extract file information from response annotations
+file_id = ""
+filename = ""
+container_id = ""
+
+# Get the last message which should contain file citations
+last_message = response.output[-1]  # ResponseOutputMessage
+if (
+    last_message.type == "message"
+    and last_message.content
+    and last_message.content[-1].type == "output_text"
+    and last_message.content[-1].annotations
 ):
+    file_citation = last_message.content[-1].annotations[-1]  # AnnotationContainerFileCitation
+    if file_citation.type == "container_file_citation":
+        file_id = file_citation.file_id
+        filename = file_citation.filename
+        container_id = file_citation.container_id
+        print(f"Found generated file: {filename} (ID: {file_id})")
 
-    # Upload the CSV file for the code interpreter to use
-    file = openai_client.files.create(purpose="assistants", file=open(asset_file_path, "rb"))
+# Clean up resources
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 
-    # Create agent with code interpreter tool
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant.",
-            tools=[CodeInterpreterTool(container=AutoCodeInterpreterToolParam(file_ids=[file.id]))],
-        ),
-        description="Code interpreter agent for data analysis and visualization.",
-    )
-
-    # Create a conversation for the agent interaction
-    conversation = openai_client.conversations.create()
-
-    # Send request to create a chart and generate a file
-    response = openai_client.responses.create(
-        conversation=conversation.id,
-        input="Could you please create bar chart in TRANSPORTATION sector for the operating profit from the uploaded csv file and provide file to me?",
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
-
-    # Extract file information from response annotations
-    file_id = ""
-    filename = ""
-    container_id = ""
-
-    # Get the last message which should contain file citations
-    last_message = response.output[-1]  # ResponseOutputMessage
-    if (
-        last_message.type == "message"
-        and last_message.content
-        and last_message.content[-1].type == "output_text"
-        and last_message.content[-1].annotations
-    ):
-        file_citation = last_message.content[-1].annotations[-1]  # AnnotationContainerFileCitation
-        if file_citation.type == "container_file_citation":
-            file_id = file_citation.file_id
-            filename = file_citation.filename
-            container_id = file_citation.container_id
-            print(f"Found generated file: {filename} (ID: {file_id})")
-
-    # Clean up resources
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-
-    # Download the generated file if available
-    if file_id and filename:
-        file_content = openai_client.containers.files.content.retrieve(file_id=file_id, container_id=container_id)
-        print(f"File ready for download: {filename}")
-        file_path = os.path.join(os.path.dirname(__file__), filename)
-        with open(file_path, "wb") as f:
-            f.write(file_content.read())
-        print(f"File downloaded successfully: {file_path}")
-    else:
-        print("No file generated in response")
+# Download the generated file if available
+if file_id and filename:
+    file_content = openai.containers.files.content.retrieve(file_id=file_id, container_id=container_id)
+    print(f"File ready for download: {filename}")
+    file_path = os.path.join(os.path.dirname(__file__), filename)
+    with open(file_path, "wb") as f:
+        f.write(file_content.read())
+    print(f"File downloaded successfully: {file_path}")
+else:
+    print("No file generated in response")
 ```
 
 ### Expected output
@@ -155,13 +157,16 @@ using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
-// Create project client and read the environment variables.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+
+// Create project client to call Foundry API
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
 
 // Create an agent with Code Interpreter enabled.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a data visualization assistant. When asked to create charts, write and run Python code using matplotlib to generate them.",
     Tools = {
@@ -217,18 +222,17 @@ import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName =
-  process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
 
 // Helper to resolve asset file path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export async function main(): Promise<void> {
-  // Create AI Project client
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   // Load and upload CSV file
   const assetFilePath = path.resolve(
@@ -238,7 +242,7 @@ export async function main(): Promise<void> {
   const fileStream = fs.createReadStream(assetFilePath);
 
   // Upload CSV file
-  const uploadedFile = await openAIClient.files.create({
+  const uploadedFile = await openai.files.create({
     file: fileStream,
     purpose: "assistants",
   });
@@ -246,7 +250,7 @@ export async function main(): Promise<void> {
   // Create agent with Code Interpreter tool
   const agent = await project.agents.createVersion("MyAgent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "You are a helpful assistant.",
     tools: [
       {
@@ -260,10 +264,10 @@ export async function main(): Promise<void> {
   });
 
   // Create a conversation
-  const conversation = await openAIClient.conversations.create();
+  const conversation = await openai.conversations.create();
 
   // Request chart generation
-  const response = await openAIClient.responses.create(
+  const response = await openai.responses.create(
     {
       conversation: conversation.id,
       input:
@@ -299,7 +303,7 @@ export async function main(): Promise<void> {
   // Download the generated file if available
   if (fileId && filename) {
     const safeFilename = path.basename(filename);
-    const fileContent = await openAIClient.containers.files.content.retrieve({
+    const fileContent = await openai.containers.files.content.retrieve({
       file_id: fileId,
       container_id: containerId,
     });
@@ -345,11 +349,6 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 
 ## Create a chart with Code Interpreter in Java
 
-Set the following environment variables:
-
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
-
 Add the dependency to your `pom.xml`:
 
 ```xml
@@ -370,7 +369,6 @@ import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.CodeInterpreterTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -379,12 +377,12 @@ import java.util.Collections;
 
 public class CodeInterpreterChartExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(endpoint);
+            .endpoint(projectEndpoint);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -393,7 +391,7 @@ public class CodeInterpreterChartExample {
         CodeInterpreterTool codeInterpreter = new CodeInterpreterTool();
 
         // Create agent with code interpreter for data visualization
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a data visualization assistant. When asked to create charts, "
                 + "write and run Python code using matplotlib to generate them.")
             .setTools(Collections.singletonList(codeInterpreter));

@@ -44,15 +44,6 @@ This guide shows how to integrate the computer use tool into an application loop
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
 - A virtual machine or sandboxed environment for safe testing. Don't run on machines with access to sensitive data.
 
-### Environment variables
-
-Set these environment variables before running the samples:
-
-| Variable | Description |
-| --- | --- |
-| `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint URL. |
-| `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your `computer-use-preview` model deployment name. |
-
 ## Run the maintained SDK samples (recommended)
 
 The code snippets in this article focus on the agent and Responses API integration. For an end-to-end runnable sample that includes helper code and sample screenshots, use the SDK samples on GitHub.
@@ -85,7 +76,6 @@ You need the latest SDK package. The .NET and Java SDKs are currently in preview
 The following code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task.
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, ComputerUsePreviewTool
@@ -114,58 +104,60 @@ except FileNotFoundError:
 ### Create an agent version with the tool
 
 ```python
-project_client = AIProjectClient(
-    endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
 
 computer_use_tool = ComputerUsePreviewTool(display_width=1026, display_height=769, environment="windows")
 
-with project_client:
-    agent = project_client.agents.create_version(
-        agent_name="ComputerUseAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="""
-            You are a computer automation assistant. 
-            
-            Be direct and efficient. When you reach the search results page, read and describe the actual search result titles and descriptions you can see.
-            """,
-            tools=[computer_use_tool],
-        ),
-        description="Computer automation agent with screen interaction capabilities.",
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name})")
+agent = project.agents.create_version(
+    agent_name="ComputerUseAgent",
+    definition=PromptAgentDefinition(
+        model="computer-use-preview",
+        instructions="""
+        You are a computer automation assistant. 
+        
+        Be direct and efficient. When you reach the search results page, read and describe the actual search result titles and descriptions you can see.
+        """,
+        tools=[computer_use_tool],
+    ),
+    description="Computer automation agent with screen interaction capabilities.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name})")
 ```
 
 ### One iteration for the tool to process the screenshot and take the next step
 
 ```python
-    openai_client = project_client.get_openai_client()
+openai = project.get_openai_client()
 
-    # Initial request with screenshot - start with Bing search page
-    response = openai_client.responses.create(
-        input=[
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "input_text",
-                        "text": "I need you to help me search for 'OpenAI news'. Please type 'OpenAI news' and submit the search. Once you see search results, the task is complete.",
-                    },
-                    {
-                        "type": "input_image",
-                        "image_url": screenshots["browser_search"]["url"],
-                        "detail": "high",
-                    },  # Start with Bing search page
-                ],
-            }
-        ],
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-        truncation="auto",
-    )
+# Initial request with screenshot - start with Bing search page
+response = openai.responses.create(
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "input_text",
+                    "text": "I need you to help me search for 'OpenAI news'. Please type 'OpenAI news' and submit the search. Once you see search results, the task is complete.",
+                },
+                {
+                    "type": "input_image",
+                    "image_url": screenshots["browser_search"]["url"],
+                    "detail": "high",
+                },  # Start with Bing search page
+            ],
+        }
+    ],
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+    truncation="auto",
+)
 
-    print(f"Initial response received (ID: {response.id})")
+print(f"Initial response received (ID: {response.id})")
 
 ```
 
@@ -202,7 +194,7 @@ while True:
     screenshot_info, current_state = handle_computer_action_and_take_screenshot(action, current_state, screenshots)
 
     # Regular response with just the screenshot
-    response = openai_client.responses.create(
+    response = openai.responses.create(
         previous_response_id=response.id,
         input=[
             {
@@ -224,7 +216,7 @@ while True:
 ### Clean up
 
 ```python
-project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 print("Agent deleted")
 ```
 
@@ -269,7 +261,8 @@ using Azure.Identity;
 
 class ComputerUseDemo
 {
-    
+    // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+    private const string ProjectEndpoint = "your_project_endpoint";
 
     // Read image files using `ReadImageFile` method.
     private static BinaryData ReadImageFile(string name, [CallerFilePath] string pth = "")
@@ -345,10 +338,8 @@ class ComputerUseDemo
 
     public static void Main()
     {
-        // Create project client and read the environment variables, which will be used in the next steps.
-        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-        var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-        AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+        // Create project client
+        AIProjectClient projectClient = new(endpoint: new Uri(ProjectEndpoint), tokenProvider: new DefaultAzureCredential());
 
         // Read in three example screenshots and place them into a dictionary.
         Dictionary<string, BinaryData> screenshots = new() {
@@ -358,7 +349,7 @@ class ComputerUseDemo
         };
 
         // Create a PromptAgentDefinition with ComputerTool.
-        PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+        PromptAgentDefinition agentDefinition = new(model: "computer-use-preview")
         {
             Instructions = "You are a computer automation assistant.\n\n" +
                             "Be direct and efficient. When you reach the search results page, read and describe the actual search result titles and descriptions you can see.",
@@ -463,9 +454,8 @@ import {
   type ComputerAction,
 } from "./computerUseUtil.js";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName =
-    process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
 
 export async function main(): Promise<void> {
   // Initialize state machine
@@ -476,13 +466,13 @@ export async function main(): Promise<void> {
   console.log("Successfully loaded screenshot assets");
 
   // Create AI Project client
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   console.log("Creating Computer Use Agent...");
   const agent = await project.agents.createVersion("ComputerUseAgent", {
     kind: "prompt" as const,
-    model: deploymentName,
+    model: "computer-use-preview",
     instructions: `
 You are a computer automation assistant.
 
@@ -503,7 +493,7 @@ Be direct and efficient. When you reach the search results page, read and descri
   console.log(
     "Starting computer automation session (initial screenshot: cua_browser_search.png)...",
   );
-  let response = await openAIClient.responses.create(
+  let response = await openai.responses.create(
     {
       input: [
         {
@@ -566,7 +556,7 @@ Be direct and efficient. When you reach the search results page, read and descri
 
     console.log(`Sending action result back to agent (using ${screenshotInfo.filename})...`);
     // Regular response with just the screenshot
-    response = await openAIClient.responses.create(
+    response = await openai.responses.create(
       {
         previous_response_id: response.id,
         input: [
@@ -640,11 +630,6 @@ Computer Use Agent sample completed!
 
 ## Use computer use in a Java agent
 
-Set the following environment variables:
-
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — The computer-use-preview model deployment name (defaults to `computer-use-preview`).
-
 Add the dependency to your `pom.xml`:
 
 ```xml
@@ -662,7 +647,6 @@ import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.*;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -670,14 +654,14 @@ import com.openai.models.responses.ResponseCreateParams;
 import java.util.Collections;
 
 public class ComputerUseExample {
+    // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+    private static final String PROJECT_ENDPOINT = "your_project_endpoint";
+
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get(
-            "FOUNDRY_MODEL_DEPLOYMENT_NAME", "computer-use-preview");
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(endpoint);
+            .endpoint(PROJECT_ENDPOINT);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -690,7 +674,7 @@ public class ComputerUseExample {
         );
 
         // Create agent with computer use tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("computer-use-preview")
             .setInstructions("You are a computer automation assistant.")
             .setTools(Collections.singletonList(tool));
 

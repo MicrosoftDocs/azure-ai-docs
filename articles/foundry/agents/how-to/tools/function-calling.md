@@ -44,17 +44,6 @@ Before you start, make sure you have:
   
   For installation and authentication steps, see the [quickstart](../../../quickstarts/get-started-code.md).
 
-### Environment variables
-
-Each language uses different environment variable names. Use one set consistently.
-
-| Language | Project endpoint | Model deployment name |
-| --- | --- | --- |
-| Python | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
-| C# | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
-| TypeScript | `FOUNDRY_PROJECT_ENDPOINT` | `FOUNDRY_MODEL_DEPLOYMENT_NAME` |
-| REST API | `FOUNDRY_PROJECT_ENDPOINT` | (use the request body field) |
-
 > [!TIP]
 > If you use `DefaultAzureCredential`, sign in by using `az login` before running the samples.
 
@@ -73,7 +62,6 @@ Function calling follows this pattern:
 Use the following code sample to create an agent, handle a function call, and return tool output back to the agent.
 
 ```python
-import os
 import json
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, Tool, FunctionTool
@@ -84,77 +72,78 @@ def get_horoscope(sign: str) -> str:
     """Generate a horoscope for the given astrological sign."""
     return f"{sign}: Next Tuesday you will befriend a baby otter."
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-    # Define a function tool for the model to use
-    func_tool = FunctionTool(
-        name="get_horoscope",
-        parameters={
-            "type": "object",
-            "properties": {
-                "sign": {
-                    "type": "string",
-                    "description": "An astrological sign like Taurus or Aquarius",
-                },
+# Define a function tool for the model to use
+func_tool = FunctionTool(
+    name="get_horoscope",
+    parameters={
+        "type": "object",
+        "properties": {
+            "sign": {
+                "type": "string",
+                "description": "An astrological sign like Taurus or Aquarius",
             },
-            "required": ["sign"],
-            "additionalProperties": False,
         },
-        description="Get today's horoscope for an astrological sign.",
-        strict=True,
-    )
+        "required": ["sign"],
+        "additionalProperties": False,
+    },
+    description="Get today's horoscope for an astrological sign.",
+    strict=True,
+)
 
-    tools: list[Tool] = [func_tool]
+tools: list[Tool] = [func_tool]
 
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant that can use function tools.",
-            tools=tools,
-        ),
-    )
+agent = project.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant that can use function tools.",
+        tools=tools,
+    ),
+)
 
-    # Prompt the model with tools defined
-    response = openai_client.responses.create(
-        input="What is my horoscope? I am an Aquarius.",
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+# Prompt the model with tools defined
+response = openai.responses.create(
+    input="What is my horoscope? I am an Aquarius.",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    input_list: ResponseInputParam = []
-    # Process function calls
-    for item in response.output:
-        if item.type == "function_call":
-            if item.name == "get_horoscope":
-                # Execute the function logic for get_horoscope
-                horoscope = get_horoscope(**json.loads(item.arguments))
+input_list: ResponseInputParam = []
+# Process function calls
+for item in response.output:
+    if item.type == "function_call":
+        if item.name == "get_horoscope":
+            # Execute the function logic for get_horoscope
+            horoscope = get_horoscope(**json.loads(item.arguments))
 
-                # Provide function call results to the model
-                input_list.append(
-                    FunctionCallOutput(
-                        type="function_call_output",
-                        call_id=item.call_id,
-                        output=json.dumps({"horoscope": horoscope}),
-                    )
+            # Provide function call results to the model
+            input_list.append(
+                FunctionCallOutput(
+                    type="function_call_output",
+                    call_id=item.call_id,
+                    output=json.dumps({"horoscope": horoscope}),
                 )
+            )
 
-    # Submit function results and get the final response
-    response = openai_client.responses.create(
-        input=input_list,
-        previous_response_id=response.id,
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+# Submit function results and get the final response
+response = openai.responses.create(
+    input=input_list,
+    previous_response_id=response.id,
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    print(f"Agent response: {response.output_text}")
+print(f"Agent response: {response.output_text}")
 
-    # Clean up resources
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+# Clean up resources
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 ```
 
 ### Expected output
@@ -299,14 +288,14 @@ class FunctionCallingDemo
         return null;
     }
 
+    // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+    private const string ProjectEndpoint = "your_project_endpoint";
+
     public static void Main() 
     {
-        // Create project client and read the environment variables that will be used in the next steps.
-        var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-        var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-        AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+        AIProjectClient projectClient = new(endpoint: new Uri(ProjectEndpoint), tokenProvider: new DefaultAzureCredential());
         // Create an agent version with the defined functions as tools.
-        PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+        PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
         {
             Instructions = "You are a weather bot. Use the provided functions to help answer questions. "
                     + "Customize your responses to the user's preferences as much as possible and use friendly "
@@ -507,8 +496,8 @@ Use the following code sample to create an agent with function tools, handle fun
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 
-const projectEndpoint= process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const projectEndpoint = "your_project_endpoint";
 
 /**
  * Define a function tool for the model to use
@@ -541,18 +530,18 @@ function getHoroscope(sign: string): string {
 export async function main(): Promise<void> {
   // Create AI Project client
   const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  const openai = project.getOpenAIClient();
 
   // Create agent with function tools
   const agent = await project.agents.createVersion("function-tool-agent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "You are a helpful assistant that can use function tools.",
     tools: [funcTool],
   });
 
   // Prompt the model with tools defined
-  const response = await openAIClient.responses.create(
+  const response = await openai.responses.create(
     {
       input: [
         {
@@ -595,7 +584,7 @@ export async function main(): Promise<void> {
   }
 
   // Submit function results to get final response
-  const finalResponse = await openAIClient.responses.create(
+  const finalResponse = await openai.responses.create(
     {
       input: inputList,
       previous_response_id: response.id,
@@ -634,11 +623,6 @@ Your horoscope for Aquarius: Next Tuesday you will befriend a baby otter.
 
 ### Set up
 
-Set the following environment variables:
-
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
-
 Add the dependency to your `pom.xml`:
 
 ```xml
@@ -660,7 +644,6 @@ import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.FunctionTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.core.util.BinaryData;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -670,13 +653,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FunctionCallingExample {
-    public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
+    // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+    private static final String PROJECT_ENDPOINT = "your_project_endpoint";
 
+    public static void main(String[] args) {
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(endpoint);
+            .endpoint(PROJECT_ENDPOINT);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -692,7 +675,7 @@ public class FunctionCallingExample {
         FunctionTool weatherFunction = new FunctionTool("get_weather", parameters, true);
 
         // Create agent with function tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a weather assistant. Use the get_weather function to retrieve weather information.")
             .setTools(Arrays.asList(weatherFunction));
 

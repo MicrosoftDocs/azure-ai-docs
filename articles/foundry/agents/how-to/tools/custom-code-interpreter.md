@@ -48,17 +48,6 @@ The custom code interpreter uses the MCP tool type. Any SDK that supports MCP to
   - [Container Apps ManagedEnvironment Contributor](/azure/role-based-access-control/built-in-roles/containers#container-apps-managedenvironments-contributor)
 - An Azure AI Foundry SDK. See the [quickstart](../../../quickstarts/get-started-code.md) for installation.
 
-### Environment variables
-
-Set these environment variables after provisioning the infrastructure:
-
-| Variable | Description |
-| --- | --- |
-| `FOUNDRY_PROJECT_ENDPOINT` | Your Foundry project endpoint URL. |
-| `FOUNDRY_MODEL_DEPLOYMENT_NAME` | Your model deployment name (for example, `gpt-4o`). |
-| `MCP_SERVER_URL` | The MCP server endpoint from your Azure Container Apps deployment. |
-| `MCP_PROJECT_CONNECTION_ID` | Your project connection ID for the custom code interpreter. |
-
 ## Before you begin
 
 This procedure provisions Azure infrastructure, including Azure Container Apps resources. Review your organization's Azure cost and governance requirements before deploying.
@@ -108,47 +97,52 @@ Install the Python dependencies by using `uv sync` or `pip install`. Finally, ru
 The following Python sample shows how to create an agent with a custom code interpreter MCP tool:
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, MCPTool
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+MCP_SERVER_URL = "https://your-mcp-server-url"
+# Optional: set to your project connection ID if your MCP server requires authentication
+MCP_CONNECTION_ID = "your-mcp-connection-id"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-    # Configure the custom code interpreter MCP tool
-    custom_code_interpreter = MCPTool(
-        server_label="custom-code-interpreter",
-        server_url=os.environ["MCP_SERVER_URL"],
-        project_connection_id=os.environ.get("MCP_PROJECT_CONNECTION_ID"),
-    )
+# Configure the custom code interpreter MCP tool
+custom_code_interpreter = MCPTool(
+    server_label="custom-code-interpreter",
+    server_url=MCP_SERVER_URL,
+    project_connection_id=MCP_CONNECTION_ID,
+)
 
-    agent = project_client.agents.create_version(
-        agent_name="CustomCodeInterpreterAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant that can run Python code to analyze data and solve problems.",
-            tools=[custom_code_interpreter],
-        ),
-        description="Agent with custom code interpreter for data analysis.",
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+# Create an agent with the custom code interpreter
+agent = project.agents.create_version(
+    agent_name="CustomCodeInterpreterAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant that can run Python code to analyze data and solve problems.",
+        tools=[custom_code_interpreter],
+    ),
+    description="Agent with custom code interpreter for data analysis.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    # Test the agent with a simple calculation
-    response = openai_client.responses.create(
-        input="Calculate the factorial of 10 using Python.",
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
-    print(f"Response: {response.output_text}")
+# Test the agent with a simple calculation
+response = openai.responses.create(
+    input="Calculate the factorial of 10 using Python.",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
+print(f"Response: {response.output_text}")
 
-    # Clean up
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
+# Clean up
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
 ```
 
 ### Expected output
@@ -174,23 +168,25 @@ using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
-var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var mcpServerUrl = Environment.GetEnvironmentVariable("MCP_SERVER_URL");
-var mcpConnectionId = Environment.GetEnvironmentVariable("MCP_PROJECT_CONNECTION_ID");
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var mcpServerUrl = "https://your-mcp-server-url";
+// Optional: set to your project connection ID if your MCP server requires authentication
+var mcpConnectionId = "your-mcp-connection-id";
 
+// Create project client to call Foundry API
 AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
     tokenProvider: new DefaultAzureCredential());
 
-// Create agent with custom code interpreter MCP tool.
-// Code runs in a sandboxed Azure Container Apps session.
+// Create agent with custom code interpreter MCP tool
+// Code runs in a sandboxed Azure Container Apps session
 McpTool tool = ResponseTool.CreateMcpTool(
     serverLabel: "custom-code-interpreter",
     serverUri: new Uri(mcpServerUrl));
 tool.ProjectConnectionId = mcpConnectionId;
 
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant that can run Python code to analyze data and solve problems.",
     Tools = { tool }
@@ -237,29 +233,28 @@ The following TypeScript sample shows how to create an agent with a custom code 
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const mcpServerUrl = process.env["MCP_SERVER_URL"] || "<mcp server url>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const MCP_SERVER_URL = "https://your-mcp-server-url";
 
 export async function main(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
-
-  console.log("Creating agent with custom code interpreter...");
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   // Create agent with custom code interpreter MCP tool
   // The custom code interpreter uses require_approval: "never" because code
   // runs in a sandboxed Azure Container Apps session
   const agent = await project.agents.createVersion("CustomCodeInterpreterAgent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions:
       "You are a helpful assistant that can run Python code to analyze data and solve problems.",
     tools: [
       {
         type: "mcp",
         server_label: "custom-code-interpreter",
-        server_url: mcpServerUrl,
+        server_url: MCP_SERVER_URL,
         require_approval: "never",
       },
     ],
@@ -267,7 +262,7 @@ export async function main(): Promise<void> {
   console.log(`Agent created (name: ${agent.name}, version: ${agent.version})`);
 
   // Send a request to the agent
-  const response = await openAIClient.responses.create(
+  const response = await openai.responses.create(
     {
       input: "Calculate the factorial of 10 using Python.",
     },
@@ -275,7 +270,6 @@ export async function main(): Promise<void> {
       body: { agent: { name: agent.name, type: "agent_reference" } },
     },
   );
-
   console.log(`Response: ${response.output_text}`);
 
   // Clean up
@@ -291,7 +285,6 @@ main().catch((err) => {
 ### Expected output
 
 ```console
-Creating agent with custom code interpreter...
 Agent created (name: CustomCodeInterpreterAgent, version: 1)
 Response: The factorial of 10 is 3,628,800. I calculated this using Python's math.factorial() function.
 Agent deleted
@@ -300,15 +293,6 @@ Agent deleted
 :::zone-end
 
 :::zone pivot="java"
-
-### Prerequisites
-
-Set the following environment variables:
-
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
-- `MCP_SERVER_URL` — The URL of the custom code interpreter MCP server.
-- `MCP_PROJECT_CONNECTION_ID` — The project connection ID for the MCP server.
 
 Add the dependency to your `pom.xml`:
 
@@ -331,7 +315,6 @@ import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.McpTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.core.util.BinaryData;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -340,14 +323,16 @@ import java.util.Collections;
 
 public class CustomCodeInterpreterExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-        String mcpServerUrl = Configuration.getGlobalConfiguration().get("MCP_SERVER_URL");
-        String connectionId = Configuration.getGlobalConfiguration().get("MCP_PROJECT_CONNECTION_ID");
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
+        String mcpServerUrl = "https://your-mcp-server-url";
+        // Optional: set to your project connection ID if your MCP server requires authentication
+        String mcpConnectionId = "your-mcp-connection-id";
 
+        // Create clients to call Foundry API
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(endpoint);
+            .endpoint(projectEndpoint);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -356,10 +341,10 @@ public class CustomCodeInterpreterExample {
         // Uses require_approval: "never" because code runs in a sandboxed Container Apps session
         McpTool customCodeInterpreter = new McpTool("custom-code-interpreter")
             .setServerUrl(mcpServerUrl)
-            .setProjectConnectionId(connectionId)
+            .setProjectConnectionId(mcpConnectionId)
             .setRequireApproval(BinaryData.fromString("\"never\""));
 
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a helpful assistant that can run Python code to analyze data and solve problems.")
             .setTools(Collections.singletonList(customCodeInterpreter));
 

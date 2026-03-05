@@ -76,7 +76,6 @@ If you need to create a SharePoint connection for your project, see [Add a new c
 The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site.
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -86,68 +85,72 @@ from azure.ai.projects.models import (
     ToolProjectConnection,
 )
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(
-        endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential
-    ) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
-    # Get connection ID from connection name
-    sharepoint_connection = project_client.connections.get(
-        os.environ["SHAREPOINT_PROJECT_CONNECTION_NAME"],
-    )
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+SHAREPOINT_CONNECTION_NAME = "my-sharepoint-connection"
 
-    # Configure SharePoint tool with the project connection
-    sharepoint_tool= SharepointPreviewTool(
-        sharepoint_grounding_preview=SharepointGroundingToolParameters(
-            project_connections=[
-                ToolProjectConnection(project_connection_id=sharepoint_connection.id)
-            ]
-        )
-    )
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="""You are a helpful agent that can use SharePoint tools to assist users. 
-            Use the available SharePoint tools to answer questions and perform tasks.""",
-            tools=[sharepoint_tool],
-        ),
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+# Get connection ID from connection name
+sharepoint_connection = project.connections.get(
+    SHAREPOINT_CONNECTION_NAME,
+)
 
-    # Send initial request that will trigger the SharePoint tool
-    stream_response = openai_client.responses.create(
-        stream=True,
-        tool_choice="required",
-        input="Please summarize the last meeting notes stored in SharePoint.",
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+# Configure SharePoint tool with the project connection
+sharepoint_tool= SharepointPreviewTool(
+    sharepoint_grounding_preview=SharepointGroundingToolParameters(
+        project_connections=[
+            ToolProjectConnection(project_connection_id=sharepoint_connection.id)
+        ]
     )
+)
 
-    for event in stream_response:
-        if event.type == "response.created":
-            print(f"Follow-up response created with ID: {event.response.id}")
-        elif event.type == "response.output_text.delta":
-            print(f"Delta: {event.delta}")
-        elif event.type == "response.text.done":
-            print(f"\nFollow-up response done!")
-        elif event.type == "response.output_item.done":
-            if event.item.type == "message":
-                item = event.item
-                if item.content[-1].type == "output_text":
-                    text_content = item.content[-1]
-                    for annotation in text_content.annotations:
-                        if annotation.type == "url_citation":
-                            print(
-                                f"URL Citation: {annotation.url}, "
-                                f"Start index: {annotation.start_index}, "
-                                f"End index: {annotation.end_index}"
-                            )
-        elif event.type == "response.completed":
-            print(f"\nFollow-up completed!")
-            print(f"Full response: {event.response.output_text}")
+agent = project.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="""You are a helpful agent that can use SharePoint tools to assist users. 
+        Use the available SharePoint tools to answer questions and perform tasks.""",
+        tools=[sharepoint_tool],
+    ),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+
+# Send initial request that will trigger the SharePoint tool
+stream_response = openai.responses.create(
+    stream=True,
+    tool_choice="required",
+    input="Please summarize the last meeting notes stored in SharePoint.",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
+
+for event in stream_response:
+    if event.type == "response.created":
+        print(f"Follow-up response created with ID: {event.response.id}")
+    elif event.type == "response.output_text.delta":
+        print(f"Delta: {event.delta}")
+    elif event.type == "response.text.done":
+        print(f"\nFollow-up response done!")
+    elif event.type == "response.output_item.done":
+        if event.item.type == "message":
+            item = event.item
+            if item.content[-1].type == "output_text":
+                text_content = item.content[-1]
+                for annotation in text_content.annotations:
+                    if annotation.type == "url_citation":
+                        print(
+                            f"URL Citation: {annotation.url}, "
+                            f"Start index: {annotation.start_index}, "
+                            f"End index: {annotation.end_index}"
+                        )
+    elif event.type == "response.completed":
+        print(f"\nFollow-up completed!")
+        print(f"Full response: {event.response.output_text}")
 ```
 
 ### Expected output
@@ -187,10 +190,11 @@ using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
-// Create an agent client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var sharepointConnectionName = System.Environment.GetEnvironmentVariable("SHAREPOINT_PROJECT_CONNECTION_NAME");
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var sharepointConnectionName = "my-sharepoint-connection";
+
+// Create project client to call Foundry API
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 
 // Get connection ID from connection name
@@ -202,7 +206,7 @@ SharePointGroundingToolOptions sharepointToolOption = new()
 {
     ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
 };
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { new SharepointPreviewTool(sharepointToolOption), }
@@ -338,22 +342,22 @@ This sample demonstrates how to create an AI agent with SharePoint capabilities.
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const sharepointConnectionName =
-  process.env["SHAREPOINT_PROJECT_CONNECTION_NAME"] || "<sharepoint connection name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const SHAREPOINT_CONNECTION_NAME = "my-sharepoint-connection";
 
 export async function main(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   // Get connection ID from connection name
-  const sharepointConnection = await project.connections.get(sharepointConnectionName);
+  const sharepointConnection = await project.connections.get(SHAREPOINT_CONNECTION_NAME);
 
   // Create agent with SharePoint tool
   const agent = await project.agents.createVersion("MyAgent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions:
       "You are a helpful agent that can use SharePoint tools to assist users. Use the available SharePoint tools to answer questions and perform tasks.",
     // Define SharePoint tool that searches SharePoint content
@@ -373,7 +377,7 @@ export async function main(): Promise<void> {
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   // Send initial request that will trigger the SharePoint tool
-  const streamResponse= await openAIClient.responses.create(
+  const streamResponse= await openai.responses.create(
     {
       input: "Please summarize the last meeting notes stored in SharePoint.",
       stream: true,
@@ -453,13 +457,7 @@ SharePoint agent sample completed!
 
 ## Use SharePoint grounding in a Java agent
 
-Set the following environment variables:
-
-- `FOUNDRY_PROJECT_ENDPOINT` — Your project endpoint.
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME` — A deployed model name.
-- `SHAREPOINT_PROJECT_CONNECTION_ID` — The ID of the SharePoint connection in your Foundry project.
-
-Add the dependency to your `pom.xml`:
+Add the dependencyto your `pom.xml`:
 
 ```xml
 <dependency>
@@ -476,7 +474,6 @@ import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.*;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -486,13 +483,13 @@ import java.util.List;
 
 public class SharePointGroundingExample {
     public static void main(String[] args) {
-        String endpoint = Configuration.getGlobalConfiguration().get("FOUNDRY_PROJECT_ENDPOINT");
-        String model = Configuration.getGlobalConfiguration().get("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-        String sharepointConnectionId = Configuration.getGlobalConfiguration().get("SHAREPOINT_PROJECT_CONNECTION_ID");
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
+        String sharepointConnectionId = "your_sharepoint_connection_id";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-            .endpoint(endpoint);
+            .endpoint(projectEndpoint);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -506,7 +503,7 @@ public class SharePointGroundingExample {
         );
 
         // Create agent with SharePoint tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a helpful assistant that can search through SharePoint documents.")
             .setTools(Collections.singletonList(sharepointTool));
 
