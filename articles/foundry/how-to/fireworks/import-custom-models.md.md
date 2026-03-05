@@ -122,8 +122,6 @@ With the model registered, you can deploy it to Fireworks' on-demand GPU infrast
 
 When the deployment completes, the status shows **Succeeded** in your deployment list. You can test the deployment in the [Foundry Playground](../../concepts/concept-playgrounds.md) by sending prompts and reviewing responses.
 
-To send inference requests to your deployed custom model using the Azure AI Inference SDK or REST API, see [Use Fireworks models](fireworks-models.md#use-fireworks-models).
-
 ## Troubleshooting
 
 If you encounter issues during import or deployment, use the following table to identify common problems and resolutions.
