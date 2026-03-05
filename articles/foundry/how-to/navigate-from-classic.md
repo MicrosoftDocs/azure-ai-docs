@@ -18,7 +18,10 @@ ai-usage: ai-assisted
 
 If you're accustomed to Microsoft Foundry (classic), the current Foundry portal reorganizes navigation from a single left pane into five top-level sections: **Home**, **Discover**, **Build**, **Operate**, and **Docs**. Each section has its own left-pane navigation. This article maps common classic-portal locations to their current equivalents so you can find what you need quickly.
 
-The classic portal uses a single customizable left pane for all navigation, with **Management center** at the bottom. The current portal splits features across five top-level sections, each with its own left pane. **Home**, **Discover**, and **Build** are scoped to your selected project. **Operate** shows information for all your projects.
+The classic portal uses a single customizable left pane for all navigation, with **Management center** at the bottom. 
+The current portal splits features across five top-level sections, each with its own left pane. **Home**, **Discover**, and **Build** are scoped to your selected project. **Operate** shows information for all your projects.
+
+:::image type="content" source="../media/navigate-from-classic/foundry-home.png" alt-text="Screenshot of home page of the current Foundry portal.":::
 
 | Section | Scope | What you find there |
 | --- | --- | --- |
