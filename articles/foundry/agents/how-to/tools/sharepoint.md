@@ -377,7 +377,7 @@ export async function main(): Promise<void> {
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   // Send initial request that will trigger the SharePoint tool
-  const streamResponse= await openai.responses.create(
+  const streamResponse = await openai.responses.create(
     {
       input: "Please summarize the last meeting notes stored in SharePoint.",
       stream: true,
