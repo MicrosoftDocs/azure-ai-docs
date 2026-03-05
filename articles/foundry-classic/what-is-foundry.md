@@ -61,6 +61,38 @@ A Foundry project is where you do most of your development work. You can work wi
 
 Use your organization controls to limit production environments to general availability supported capabilities, and validate current feature status before rollout decisions. For role-based control guidance, see [Disable preview features by using role-based access control](./concepts/disable-preview-features-with-rbac.md). For tag-based suppression in the Foundry portal, see [Hide preview features with Azure tags](./how-to/disable-preview-features.md).
 
+### Navigate in the Foundry (classic) portal
+
+In the Foundry (classic) portal, you can navigate among all your resources using the breadcrumbs at the top of the page. The breadcrumbs show recent resources, along with a link to all resources. 
+
+The left pane is organized around your goals. Generally, as you develop with Azure AI, you'll likely go through a few distinct stages of project development:
+
+* **Define and explore**. In this stage you define your project goals, and then explore and test models and services against your use case to find the ones that enable you to achieve your goals.
+* **Build and customize**. In this stage, you're actively building solutions and applications with the models, tools, and capabilities you selected. You can also customize models to perform better for your use case by fine-tuning, grounding in your data, and more. Building and customizing might be something you choose to do in the Foundry portal, or through code and the Foundry SDKs. Either way, a project provides you with everything you need.
+  * Once you're actively developing in your project, the **Overview** page shows the things you want easy access to, like your endpoints and keys.
+* **Observe and improve**. In this stage, you're looking for where you can improve your application's performance. You might choose to use tools like tracing to debug your application or compare evaluations to hone in on how you want your application to behave. You can also integrate with safety & security systems so you can be confident when you take your application to production.
+
+If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
+ 
+### Customize the left pane
+
+The left pane of the Foundry (classic) portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
+
+Pin or unpin items into the left pane. When you unpin an item, it's hidden from the left pane but can be found again in the **...More** menu.
+
+* Select **... More** at the bottom of the pane to see items to pin and unpin.
+* Customize each project separately. The left pane isn't shared across projects.
+* The left pane isn't shared across users. Each user customizes their own left pane for each project. 
+
+### Management center
+
+The management center is a part of the Foundry (classic) portal that streamlines governance and management activities. In the management center, you can view and manage:
+
+- Projects and resources
+- Quotas and usage metrics
+- Govern access and permissions
+
+For more information, see [Management center overview](./concepts/management-center.md).
 
 
 ## Types of projects
@@ -124,39 +156,6 @@ Here are some of the ways to identify your project type:
 
     :::image type="content" source="media/how-to/projects/all-resources.png" alt-text="Screenshot shows both a Foundry and hub-based project in the All Resources page.":::
 
-## Navigate in the Foundry (classic) portal
-
-In the Foundry (classic) portal, you can navigate among all your resources using the breadcrumbs at the top of the page. The breadcrumbs show recent resources, along with a link to all resources. 
-
-The left pane is organized around your goals. Generally, as you develop with Azure AI, you'll likely go through a few distinct stages of project development:
-
-* **Define and explore**. In this stage you define your project goals, and then explore and test models and services against your use case to find the ones that enable you to achieve your goals.
-* **Build and customize**. In this stage, you're actively building solutions and applications with the models, tools, and capabilities you selected. You can also customize models to perform better for your use case by fine-tuning, grounding in your data, and more. Building and customizing might be something you choose to do in the Foundry portal, or through code and the Foundry SDKs. Either way, a project provides you with everything you need.
-  * Once you're actively developing in your project, the **Overview** page shows the things you want easy access to, like your endpoints and keys.
-* **Observe and improve**. In this stage, you're looking for where you can improve your application's performance. You might choose to use tools like tracing to debug your application or compare evaluations to hone in on how you want your application to behave. You can also integrate with safety & security systems so you can be confident when you take your application to production.
-
-If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
- 
-## Customize the left pane
-
-The left pane of the Foundry (classic) portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
-
-Pin or unpin items into the left pane. When you unpin an item, it's hidden from the left pane but can be found again in the **...More** menu.
-
-* Select **... More** at the bottom of the pane to see items to pin and unpin.
-* Customize each project separately. The left pane isn't shared across projects.
-* The left pane isn't shared across users. Each user customizes their own left pane for each project. 
-
-## Management center
-
-The management center is a part of the Foundry (classic) portal that streamlines governance and management activities. In the management center, you can view and manage:
-
-- Projects and resources
-- Quotas and usage metrics
-- Govern access and permissions
-
-For more information, see [Management center overview](./concepts/management-center.md).
-
 ## Pricing and billing
 
 Microsoft Foundry is monetized through individual products customers access and consume in the platform, including API and models, complete AI toolchain, and responsible AI and enterprise grade production at scale products. Each product has its own billing model and price. 
@@ -171,7 +170,7 @@ Foundry is available in most regions where Foundry Tools are available. For more
 
 ## How to get access
 
-You can [explore Foundry portal (classic) (including the model catalog)](./concepts/foundry-models-overview.md) without signing in. 
+You can [explore Foundry  (classic) portal (including the model catalog)](./concepts/foundry-models-overview.md) without signing in. 
 
 But for full functionality, you need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). 
 
