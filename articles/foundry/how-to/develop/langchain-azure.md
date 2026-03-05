@@ -54,6 +54,24 @@ pip install -U "langchain-azure-ai[opentelemetry]"
 - Use `[tools]` if your app uses integrations such as Document Intelligence.
 - Use `[opentelemetry]` if you want tracing integration.
 
+## Choose integration building blocks
+
+Use this map to pick the right namespace for your solution:
+
+| Capability | Namespace | Typical use |
+|---|---|---|
+| Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes to build complex graph and flows for LangGraph and LangChain. |
+| Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat models. |
+| Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. |
+| Vector stores | `langchain_azure_ai.vectorstores` | Use Azure AI Search and Cosmos DB vector integrations. |
+| Retrievers | `langchain_azure_ai.retrievers` | Run retrieval over Azure-backed indexes and stores. |
+| Chat history stores | `langchain_azure_ai.chat_message_histories` | Persist and replay chat history across sessions. Use memory-powered histories to retrieve consolidated pass chat history. |
+| Tools | `langchain_azure_ai.tools` | Add tools such as Document Intelligence, Vision, health text analytics, and Logic Apps. |
+| Callbacks and tracing | `langchain_azure_ai.callbacks` | Capture run events and emit OpenTelemetry traces. |
+| Query constructors | `langchain_azure_ai.query_constructors` | Build backend-specific query filters for retrieval scenarios. |
+
+See the section [Learn each capability in detail](#learn-each-capability-in-detail) for specific walkthroughs. 
+
 ## Connect with project endpoints and credentials
 
 Many `langchain-azure-ai` classes support connecting through a Foundry project
@@ -128,22 +146,6 @@ such as `AzureCliCredential` for local-only development or
 `ManagedIdentityCredential` for production workloads in Azure.
 
 The same project-endpoint pattern is also used by other classes.
-
-## Choose integration building blocks
-
-Use this map to pick the right namespace for your solution:
-
-| Capability | Namespace | Typical use |
-|---|---|---|
-| Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes and flows for LangGraph and LangChain. |
-| Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat deployments. |
-| Embeddings | `langchain_azure_ai.embeddings` | Generate vectors for search, retrieval, and ranking workflows. |
-| Vector stores | `langchain_azure_ai.vectorstores` | Use Azure AI Search and Cosmos DB vector integrations. |
-| Retrievers | `langchain_azure_ai.retrievers` | Run retrieval over Azure-backed indexes and stores. |
-| Chat history stores | `langchain_azure_ai.chat_message_histories` | Persist and replay chat history across sessions. |
-| Tools | `langchain_azure_ai.tools` | Add tools such as Document Intelligence, Vision, health text analytics, and Logic Apps. |
-| Callbacks and tracing | `langchain_azure_ai.callbacks` | Capture run events and emit OpenTelemetry traces. |
-| Query constructors | `langchain_azure_ai.query_constructors` | Build backend-specific query filters for retrieval scenarios. |
 
 ## Learn each capability in detail
 
