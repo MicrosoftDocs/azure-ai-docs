@@ -28,18 +28,19 @@ loop approvals, and tracing.
 - Python 3.10 or later.
 - Azure CLI signed in (`az login`) so `DefaultAzureCredential` can authenticate.
 
-## Configure your environment
+### Configure your environment
 
 Install the package `langchain-azure-ai` to use Microsoft Foundry capabilities in LangGraph and LangChain. Use the
 `[v2]` extra to enable the latest Foundry Agent Service features.
 
 ```bash
-pip install langchain-azure-ai[tools,v2] azure-identity
+pip install langchain-azure-ai[tools,opentelemetry,v2] azure-identity
 ```
 
 > [!TIP]
 > Install the extras `[tools]` to use tools like Document Intelligence or Azure
-> Logic Apps connectors.
+> Logic Apps connectors. Install `[opentelemetry]` to include support for 
+> OpenTelemetry with semantic conventions for Generative AI solutions.
 
 Set your environment variables that we use in this tutorial:
 
