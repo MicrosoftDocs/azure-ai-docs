@@ -19,17 +19,21 @@ ai-usage: ai-assisted
 
 Through integration with [Fireworks AI](https://fireworks.ai/), Microsoft Foundry customers can:
 
-* **Experiment with the latest open-source models** before they're available [directly from Azure](../concepts/models-sold-directly-by-azure.md).
-* **Import and deploy custom model weights** (bring your own model) onto Fireworks' on-demand GPU-backed infrastructure. For more information, see [Import custom models into Foundry](import-custom-models.md).
+* **Experiment with the latest open-source models** before they're available [directly from Azure](models-sold-directly-by-azure.md).
+* **Import and deploy custom model weights** (bring your own model, or BYOM) onto Fireworks' on-demand GPU-backed infrastructure. For more information, see [Import custom models into Foundry](import-custom-models.md).
 * **Scale up** using [Provisioned throughput](../../openai/concepts/provisioned-throughput.md).
 
-All from your Foundry project while using Azure's governance, access controls, and project management.
+You can do all of this from your Foundry project while using Azure's governance, access controls, and project management.
+
+## Prerequisites
+
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
+- An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
 
 ## Enable Fireworks on Foundry
 
-While in preview, Fireworks requires an administrator to enable the preview feature within your Azure subscription.
-
-To enable Fireworks, your Azure identity must have either the **Subscription Owner** or **Subscription Contributor** role.
+While in preview, **Fireworks requires an administrator to enable the preview feature** within your Azure subscription.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -49,36 +53,93 @@ To enable Fireworks, your Azure identity must have either the **Subscription Own
 
 The **Preview features** screen refreshes and the preview feature's **State** is displayed. It might take up to 30 minutes for the feature to enable for your subscription.
 
+> [!TIP]
+> To verify registration, refresh the **Preview features** page and confirm the **State** column shows **Registered** for the **Fireworks AI on Foundry** feature.
+
+After the feature is enabled, you can deploy Fireworks models from the Foundry model catalog. Browse available models in the [Available catalog models](#available-catalog-models) section, or [import your own custom model](import-custom-models.md).
 
 ## Available catalog models
 
 The following Fireworks models are available in the Foundry model catalog:
 
-| Model provider | Model name | Model ID |
-|---|---|---|
-| DeepSeek | DeepSeek v3.1 | `FW-DeepSeek-v3.1` |
-| DeepSeek | DeepSeek v3.2 | `FW-DeepSeek-v3.2` |
-| Moonshot AI | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` |
-| Moonshot AI | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` |
-| Moonshot AI | Kimi K2.5 | `FW-Kimi-K2.5` |
-| OpenAI | gpt-oss-120b | `FW-gpt-oss-120b` |
-| Zhipu AI | GLM-4.7 | `FW-GLM-4.7` |
+| Model provider | Model name | Model ID | Type |
+| --- | --- | --- | --- |
+| **DeepSeek** | DeepSeek v3.1 | `FW-DeepSeek-v3.1` | Chat completions |
+| **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions |
+| **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions (reasoning) |
+| **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions |
+| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions |
+| **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions |
+| **Zhipu AI** | GLM-4.7 | `FW-GLM-4.7` | Chat completions |
+
+All catalog models support the [Azure AI Model Inference API](/azure/ai-foundry/reference/reference-model-inference-api) for chat completions.
+
+### Use Fireworks models
+
+After you deploy a Fireworks model, you can call it using the Azure AI Inference SDK. The following example sends a chat completion request to a deployed Fireworks model.
+
+# [Python](#tab/python)
+
+```python
+from azure.ai.inference import ChatCompletionsClient
+from azure.ai.inference.models import UserMessage, SystemMessage
+from azure.identity import DefaultAzureCredential
+
+client = ChatCompletionsClient(
+    endpoint="https://<your-foundry-resource>.services.ai.azure.com/models",
+    credential=DefaultAzureCredential(),
+)
+
+response = client.complete(
+    model="FW-DeepSeek-v3.2",
+    messages=[
+        SystemMessage(
+            content="You are a helpful assistant."
+        ),
+        UserMessage(
+            content="Explain the benefits of open-source AI models."
+        ),
+    ],
+)
+
+print(response.choices[0].message.content)
+```
+
+# [REST](#tab/rest)
+
+```http
+POST https://<your-foundry-resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "model": "FW-DeepSeek-v3.2",
+  "messages": [
+    { "role": "system", "content": "You are a helpful assistant." },
+    { "role": "user", "content": "Explain the benefits of open-source AI models." }
+  ]
+}
+```
+
+---
+
+Replace `<your-foundry-resource>` with your Foundry resource name and `FW-DeepSeek-v3.2` with the model ID of your deployment.
 
 ## Custom models (bring your own model)
 
-In addition to the catalog models, Fireworks on Foundry supports importing and deploying your own custom model weights. This bring-your-own-model (BYOM) capability lets you run proprietary or fine-tuned open-weight models within the Foundry ecosystem, with Fireworks handling the inference runtime on on-demand GPU-backed infrastructure.
+In addition to the catalog models, Fireworks on Foundry supports importing and deploying your own custom model weights. This BYOM capability lets you run proprietary or fine-tuned open-weight models within the Foundry ecosystem, with Fireworks handling the inference runtime on on-demand GPU-backed infrastructure.
 
 ### Supported model architectures
 
 Custom models must be based on one of the following supported architectures:
 
-* DeepSeek (V3.1, V3.2)
-* Llama (3, 3.1, 4)
-* Mistral
-* Qwen (2.5, 2.5-VL, 3)
-* Kimi (K2, K2.5)
-* GLM (4.7, 4.8)
-* OpenAI gpt-oss-120b
+* **DeepSeek** (V3.1, V3.2)
+* **Llama** (3, 3.1, 4)
+* **Mistral**
+* **Qwen** (2.5, 2.5-VL, 3)
+* **Kimi** (K2, K2.5)
+* **GLM** (4.7, 4.8)
+* **OpenAI** gpt-oss-120b
 
 ### Limitations
 
@@ -94,6 +155,9 @@ Fireworks model deployments made available via Foundry send inference traffic ou
 
 > [!IMPORTANT]
 > Because inference is performed on Fireworks infrastructure, review the Fireworks data handling policies before deploying models with sensitive data.
+
+> [!NOTE]
+> If your network restricts outbound traffic, ensure your firewall allows connectivity to the Fireworks AI inference endpoints.
 
 Consult the Fireworks AI [Trust Center](https://trust.fireworks.ai/) to review their Data Processing Addendum and certifications and their [Privacy Notice](https://fireworks.ai/privacy-policy) to understand their privacy commitment.
 
@@ -117,11 +181,15 @@ No, the current preview supports full-weight custom models only. LoRA and adapte
 
 ### Is the Fireworks preview suitable for production workloads?
 
-No. As a public preview, Fireworks on Foundry doesn't include a production service-level agreement (SLA). It's intended for early testing, experimentation, and validation.
+No. As a public preview, Fireworks on Foundry doesn't include a production service-level agreement (SLA). The preview is intended for early testing, experimentation, and validation.
 
 ### How do I import and deploy a custom model?
 
 Custom model import uses a CLI-first workflow with the [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd). For step-by-step instructions, see [Import custom models into Foundry](import-custom-models.md).
+
+### How is Fireworks on Foundry billed?
+
+Fireworks models deployed through Foundry support [provisioned throughput](../../openai/concepts/provisioned-throughput.md). During the preview, contact your Azure account team for specific pricing details.
 
 ### How do I disable Fireworks in my Foundry project?
 
@@ -130,8 +198,11 @@ Fireworks can be disabled at the Azure subscription level. Follow the steps to [
 ## Related content
 
 * [Import custom models into Foundry](import-custom-models.md)
+* [Deploy Foundry Models in the portal](../how-to/deploy-foundry-models.md)
 * [Foundry Models from partners and community](models-from-partners.md)
 * [Foundry model catalog overview](models-sold-directly-by-azure.md)
+* [Deployment types](deployment-types.md)
+* [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
 * [Azure built-in roles](/azure/role-based-access-control/built-in-roles#privileged)
-* [Azure Preview features](/azure/azure-resource-manager/management/preview-features)
+* [Azure preview features](/azure/azure-resource-manager/management/preview-features)
 * [Fireworks AI Trust Center](https://trust.fireworks.ai/)

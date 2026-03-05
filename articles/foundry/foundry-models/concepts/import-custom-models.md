@@ -20,6 +20,13 @@ In this article, you learn how to import, register, and deploy your own custom m
 > [!NOTE]
 > Custom model import uses the Fireworks on Foundry integration. For an overview of available catalog models, supported architectures, data privacy, and limitations, see [Fireworks models in Foundry](fireworks-models.md).
 
+The import workflow has four steps:
+
+1. [**Prepare**](#model-requirements) your model files in a supported architecture.
+1. [**Register**](#import-a-custom-model) the model in the Foundry portal.
+1. [**Upload**](#verify-model-registration) model weights using the Azure Developer CLI.
+1. [**Deploy**](#deploy-the-imported-model) the model to Fireworks inference infrastructure.
+
 ## Prerequisites
 
 Before you begin, make sure your Azure environment is set up and that you have the required tools installed. To complete the steps in this article, you need the following resources and permissions:
@@ -27,7 +34,7 @@ Before you begin, make sure your Azure environment is set up and that you have t
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * The **Fireworks AI on Foundry** preview feature enabled in your subscription. For setup steps, see [Enable Fireworks on Foundry](fireworks-models.md#enable-fireworks-on-foundry).
-* The **Cognitive Services Contributor** role (or equivalent) on the Foundry resource to create and manage deployments. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
+* The **Cognitive Services Contributor** role (or equivalent) on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/role-based-access-control/built-in-roles).
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) installed locally. The import workflow uses `azd` to upload model weights.
 
 ## Model requirements
@@ -40,20 +47,20 @@ Custom models must be based on one of the following model architectures:
 
 | Architecture family | Supported versions |
 | --- | --- |
-| DeepSeek | V3.1, V3.2 |
-| Llama | 3, 3.1, 4 |
-| Mistral | — |
-| Qwen | 2.5, 2.5-VL, 3 |
-| Kimi | K2, K2.5 |
-| GLM | 4.7, 4.8 |
-| OpenAI | gpt-oss-120b |
+| **DeepSeek** | V3.1, V3.2 |
+| **Llama** | 3, 3.1, 4 |
+| **Mistral** | — |
+| **Qwen** | 2.5, 2.5-VL, 3 |
+| **Kimi** | K2, K2.5 |
+| **GLM** | 4.7, 4.8 |
+| **OpenAI** | gpt-oss-120b |
 
 ### Required model files
 
 Your model directory must include the following files:
 
 | File | Description |
-|---|---|
+| --- | --- |
 | `config.json` | Model configuration (architecture, hyperparameters). |
 | `*.safetensors` or `*.bin` | One or more model weight files. |
 | `*.index.json` | At least one weights index file that maps weight shards. |
@@ -106,14 +113,16 @@ With the model registered, you can deploy it to Fireworks' on-demand GPU infrast
 
 1. Configure the deployment:
 
-* **Deployment name**: Provide a deployment name. During inference, this name is used in the `model` parameter to route requests to this deployment.
-* **Provisioned throughput units**: Allocate the number of provisioned throughput units (PTUs) for the deployment. For more information, see [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
+   - **Deployment name** — Provide a deployment name. During inference, this name is used in the `model` parameter to route requests to this deployment.
+   - **Provisioned throughput units** — Allocate the number of provisioned throughput units (PTUs) for the deployment. For more information, see [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
 
 1. Review and acknowledge the pricing terms.
 
 1. Select **Deploy**.
 
 When the deployment completes, the status shows **Succeeded** in your deployment list. You can test the deployment in the [Foundry Playground](../../concepts/concept-playgrounds.md) by sending prompts and reviewing responses.
+
+To send inference requests to your deployed custom model using the Azure AI Inference SDK or REST API, see [Use Fireworks models](fireworks-models.md#use-fireworks-models).
 
 ## Troubleshooting
 
