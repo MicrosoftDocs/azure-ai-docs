@@ -30,7 +30,7 @@ keywords:
 Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
 
 > [!TIP]
-> * Coming from Azure OpenAI? You can upgrade your Azure OpenAI resource to a Foundry resource while preserving your endpoint, API keys, and existing state. See [Upgrade from Azure OpenAI to Microsoft Foundry](./how-to/upgrade-azure-openai.md).
+> * Coming from Azure OpenAI? [Upgrade your Azure OpenAI resource to a Foundry resource](./how-to/upgrade-azure-openai.md) while preserving your endpoint, API keys, and existing state. 
 > * Using hub-based projects? Hub-based projects are accessible in the [Foundry (classic) portal](../foundry-classic/what-is-foundry.md). New investments are focused on Foundry projects in the new portal.
 
 [!INCLUDE [previous-current](includes/previous-current.md)]
