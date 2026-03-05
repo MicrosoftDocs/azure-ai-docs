@@ -1,16 +1,17 @@
 ---
 title: Train models with the Azure Machine Learning Python SDK (v1)
 titleSuffix: Azure Machine Learning
-description: Add compute resources (compute targets) to your workspace to use for machine learning training and inference with SDK v1.
+description: Learn how to attach compute targets such as VMs, HDInsight, and Spark pools to your Azure Machine Learning workspace for training and inference with SDK v1.
 services: machine-learning
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: vijetaj
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 10/21/2021
+ms.date: 03/05/2026
 ms.topic: how-to
-ms.custom: UpdateFrequency5, devx-track-python, sdkv1
+ms.custom: UpdateFrequency5, devx-track-python, sdkv1, dev-focus
+ai-usage: ai-assisted
 ---
 # Train models with the Azure Machine Learning Python SDK (v1)
 
@@ -28,7 +29,6 @@ In this article, learn how to set up your workspace to use these compute resourc
 * Azure HDInsight
 * Azure Batch
 * Azure Databricks - used as a training compute target only in [machine learning pipelines](how-to-create-machine-learning-pipelines.md)
-* Azure Data Lake Analytics
 * Azure Container Instance
 * Azure Machine Learning Kubernetes
 
@@ -71,7 +71,7 @@ When you use your local computer for **inference**, you must have Docker install
 Azure Machine Learning also supports attaching an Azure Virtual Machine. The VM must be an Azure Data Science Virtual Machine (DSVM). The VM offers a curated choice of tools and frameworks for full-lifecycle machine learning development. For more information on how to use the DSVM with Azure Machine Learning, see [Configure a development environment](how-to-configure-environment.md).
 
 > [!TIP]
-> Instead of a remote VM, we recommend using the [Azure Machine Learning compute instance](../concept-compute-instance.md). It is a fully managed, cloud-based compute solution that is specific to Azure Machine Learning. For more information, see [create and manage Azure Machine Learning compute instance](../how-to-create-compute-instance.md).
+> Instead of a remote VM, consider using the [Azure Machine Learning compute instance](../concept-compute-instance.md). It's a fully managed, cloud-based compute solution that is specific to Azure Machine Learning. For more information, see [create and manage Azure Machine Learning compute instance](../how-to-create-compute-instance.md).
 
 1. **Create**: Azure Machine Learning cannot create a remote VM for you. Instead, you must create the VM and then attach it to your Azure Machine Learning workspace. For information on creating a DSVM, see [Provision the Data Science Virtual Machine for Linux (Ubuntu)](../data-science-virtual-machine/dsvm-ubuntu-intro.md).
 
@@ -100,7 +100,7 @@ Azure Machine Learning also supports attaching an Azure Virtual Machine. The VM 
    
    # If no base image is explicitly specified the default CPU image "azureml.core.runconfig.DEFAULT_CPU_IMAGE" will be used
    # To use GPU in DSVM, you should specify the default GPU base Docker image or another GPU-enabled image:
-   # myenv.docker.enabled = True
+   # Note: myenv.docker.enabled is deprecated. Use azureml.core.runconfig.DockerConfiguration instead.
    # myenv.docker.base_image = azureml.core.runconfig.DEFAULT_GPU_IMAGE
    
    # Configure the run configuration with the Linux DSVM as the compute target and the environment defined above
@@ -114,7 +114,10 @@ Azure Machine Learning also supports attaching an Azure Virtual Machine. The VM 
 
 ## <a id="synapse"></a>Apache Spark pools
 
-The Azure Synapse Analytics integration with Azure Machine Learning (preview) allows you to attach an Apache Spark pool backed by Azure Synapse for interactive data exploration and preparation. With this integration, you can have a dedicated compute for data wrangling at scale. For more information, see [How to attach Apache Spark pools powered by Azure Synapse Analytics](how-to-link-synapse-ml-workspaces.md#attach-synapse-spark-pool-as-a-compute).
+> [!WARNING]
+> The Azure Synapse Analytics integration with Azure Machine Learning in SDK v1 is deprecated. New Synapse workspaces can no longer be registered with Azure Machine Learning as a linked service. Use serverless Spark compute and attached Synapse Spark pools available in CLI v2 and Python SDK v2 instead. For more information, see [Apache Spark in Azure Machine Learning](https://aka.ms/aml-spark).
+
+The Azure Synapse Analytics integration with Azure Machine Learning allows you to attach an Apache Spark pool backed by Azure Synapse for interactive data exploration and preparation. With this integration, you can have a dedicated compute for data wrangling at scale. For more information, see [How to attach Apache Spark pools powered by Azure Synapse Analytics](how-to-link-synapse-ml-workspaces.md#attach-synapse-spark-pool-as-a-compute).
 
 ## Azure HDInsight 
 
@@ -245,62 +248,6 @@ For a more detailed example, see an [example notebook](https://aka.ms/pl-databri
 > [!WARNING]
 > Do not create multiple, simultaneous attachments to the same Azure Databricks from your workspace. Each new attachment will break the previous existing attachment(s).
 
-## Azure Data Lake Analytics
-
-Azure Data Lake Analytics is a big data analytics platform in the Azure cloud. It can be used as a compute target with an Azure Machine Learning pipeline.
-
-Create an Azure Data Lake Analytics account before using it. To create this resource, see the [Get started with Azure Data Lake Analytics](/azure/data-lake-analytics/data-lake-analytics-get-started-portal) document.
-
-To attach Data Lake Analytics as a compute target, you must use the Azure Machine Learning SDK and provide the following information:
-
-* __Compute name__: The name you want to assign to this compute resource.
-* __Resource Group__: The resource group that contains the Data Lake Analytics account.
-* __Account name__: The Data Lake Analytics account name.
-
-The following code demonstrates how to attach Data Lake Analytics as a compute target:
-
-```python
-import os
-from azureml.core.compute import ComputeTarget, AdlaCompute
-from azureml.exceptions import ComputeTargetException
-
-
-adla_compute_name = os.environ.get(
-    "AML_ADLA_COMPUTE_NAME", "<adla_compute_name>")
-adla_resource_group = os.environ.get(
-    "AML_ADLA_RESOURCE_GROUP", "<adla_resource_group>")
-adla_account_name = os.environ.get(
-    "AML_ADLA_ACCOUNT_NAME", "<adla_account_name>")
-
-try:
-    adla_compute = ComputeTarget(workspace=ws, name=adla_compute_name)
-    print('Compute target already exists')
-except ComputeTargetException:
-    print('compute not found')
-    print('adla_compute_name {}'.format(adla_compute_name))
-    print('adla_resource_id {}'.format(adla_resource_group))
-    print('adla_account_name {}'.format(adla_account_name))
-    # create attach config
-    attach_config = AdlaCompute.attach_configuration(resource_group=adla_resource_group,
-                                                     account_name=adla_account_name)
-    # Attach ADLA
-    adla_compute = ComputeTarget.attach(
-        ws,
-        adla_compute_name,
-        attach_config
-    )
-
-    adla_compute.wait_for_completion(True)
-```
-
-For a more detailed example, see an [example notebook](https://aka.ms/pl-adla) on GitHub.
-
-> [!WARNING]
-> Do not create multiple, simultaneous attachments to the same ADLA from your workspace. Each new attachment will break the previous existing attachment(s).
-
-> [!TIP]
-> Azure Machine Learning pipelines can only work with data stored in the default data store of the Data Lake Analytics account. If the data you need to work with is in a non-default store, you can use a [`DataTransferStep`](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.data_transfer_step.datatransferstep) to copy the data before training.
-
 ## <a id="aci"></a>Azure Container Instance
 
 Azure Container Instances (ACI) are created dynamically when you deploy a model. You cannot create or attach ACI to your workspace in any other way. For more information, see [Deploy a model to Azure Container Instances](how-to-deploy-azure-container-instance.md).
@@ -329,7 +276,8 @@ See these notebooks for examples of training with various compute targets:
 ## Next steps
 
 * Use the compute resource to [configure and submit a training run](how-to-set-up-training-targets.md).
-* [Tutorial: Train and deploy a model](../tutorial-train-deploy-notebook.md) uses a managed compute target to  train a model.
+* [Tutorial: Train and deploy a model](../tutorial-train-deploy-notebook.md) uses a managed compute target to train a model.
 * Learn how to [efficiently tune hyperparameters](../how-to-tune-hyperparameters.md) to build better models.
 * Once you have a trained model, learn [how and where to deploy models](../how-to-deploy-online-endpoints.md).
 * [Use Azure Machine Learning with Azure Virtual Networks](../how-to-network-security-overview.md)
+* For the recommended v2 experience, see [Upgrade to v2](../how-to-migrate-from-v1.md).
