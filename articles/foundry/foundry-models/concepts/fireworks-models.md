@@ -72,7 +72,7 @@ The following Fireworks models are available in the Foundry model catalog:
 | **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions |
 | **Zhipu AI** | GLM-4.7 | `FW-GLM-4.7` | Chat completions |
 
-All catalog models support the [Azure AI Model Inference API](/azure/ai-foundry/reference/reference-model-inference-api) for chat completions.
+All catalog models support the [Azure AI Model Inference API](/rest/api/aifoundry/modelinference/) for chat completions.
 
 ### Use Fireworks models
 
