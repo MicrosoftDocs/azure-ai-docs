@@ -143,7 +143,7 @@ In general, you can use the following practical retrieval strategies with them:
 - Retrieve chat summary memory based on the current turn to recover relevant
 	prior context.
 
-## Example: add a session-aware memory layer
+## Example: Add a session-aware memory layer
 
 In this example, we build a single runnable in LangChain that retrieves relevant long-term memory,
 injects it into the prompt, and executes the model with short-term chat history
@@ -376,7 +376,7 @@ are retrieved (capped by `k`) but sorted by relevance.
 Use this pattern when you need direct memory reads for features such as profile
 cards, personalization middleware, or workflow routing.
 
-## Example: Use the same pattern in LangGraph
+## Example: Use memory in graphs
 
 LangGraph uses the same conceptual pattern:
 
@@ -385,7 +385,8 @@ LangGraph uses the same conceptual pattern:
 - Retrieve memory before calling the model node.
 
 If you already have a `StateGraph`, inject retrieval in your model node and
-append memory text to your model input.
+append memory text to your model input. Another typical strategy is to use
+a pre-model hook.
 
 ```python
 from langgraph.graph import MessagesState
@@ -417,6 +418,21 @@ For broader LangGraph memory concepts, see:
 
 - [Add memory in LangGraph](https://docs.langchain.com/oss/python/langgraph/add-memory)
 
+## Understand preview limits and operational guidance
+
+Before moving to production, validate these constraints:
+
+- Memory is in preview and behavior can change.
+- Memory requires compatible chat and embedding deployments.
+- Quotas apply per store and per scope, including search and update request
+	rates.
+
+Also plan defensive controls for memory poisoning or prompt-injection attempts.
+Validate untrusted inputs before they influence stored memory.
+
+> [!div class="nextstepaction"]
+> [Trace LangChain and LangGraph apps](langchain-trace.md)
+
 ## Clean up resources
 
 After running samples, delete the scope to avoid test data leaking into future
@@ -433,21 +449,6 @@ print(
 ```output
 Deleted 4 memories for scope 'user_001'.
 ```
-
-## Understand preview limits and operational guidance
-
-Before moving to production, validate these constraints:
-
-- Memory is in preview and behavior can change.
-- Memory requires compatible chat and embedding deployments.
-- Quotas apply per store and per scope, including search and update request
-	rates.
-
-Also plan defensive controls for memory poisoning or prompt-injection attempts.
-Validate untrusted inputs before they influence stored memory.
-
-> [!div class="nextstepaction"]
-> [Trace LangChain and LangGraph apps](langchain-trace.md)
 
 ## Related content
 
