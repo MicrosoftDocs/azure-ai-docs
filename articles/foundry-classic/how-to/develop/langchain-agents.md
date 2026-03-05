@@ -34,7 +34,7 @@ scenarios, from basic prompt agents to tool-enabled workflows.
 Install the packages used in this article:
 
 ```bash
-pip install langchain-azure-ai[tools,v1] azure-identity pandas
+pip install langchain-azure-ai[tools,v1] azure-ai-agents azure-identity pandas
 ```
 
 > [!IMPORTANT]
@@ -190,7 +190,7 @@ You should distinguish two types of tools:
 
 Adding **local tools** to your agent adds a **tool node** to your graph for those tools to run. **Built-in tools** do not add a **tool node** and are executed in the service when you make a request.
 
-:::image type="content" source="../media/langchain-azure-ai-agents/agent-tools.png" alt-text="Diagram of the agent graph for an agent with tools.":::
+:::image type="content" source="../../media/langchain-azure-ai-agents/agent-tools.png" alt-text="Diagram of the agent graph for an agent with tools.":::
 
 The following section explains how to use both:
 
@@ -271,7 +271,7 @@ document_parser_agent = factory.create_prompt_agent(
 
 > [!TIP]
 > `AzureAIDocumentIntelligenceTool` can use the Foundry project to connect to
-> the service and it also support Microsoft Entra for authentication. By default, 
+> the service and it also supports Microsoft Entra for authentication. By default,
 > the tool uses `AZURE_AI_PROJECT_ENDPOINT` with `DefaultAzureCredential`, which
 > is why no further configuration is required. You can change that to use a
 > specific endpoint and key if needed.
@@ -316,8 +316,9 @@ invoice is **$144.00**."*
 ## Add built-in tools
 
 Built-in tools in Foundry Agent Service run server-side instead of in a **tool node**
-like local tools. Tools in the namespace `langchain_azure_ai.agents.v1.prebuilt.tools.*`
-are all built-in tools and only work with `create_prompt_agent`.
+like local tools. In this v1 pattern, create built-in tools from
+`azure.ai.agents.models` and wrap them with `AgentServiceBaseTool` for
+`create_prompt_agent`.
 
 ### Example: use code interpreter tool
 
@@ -349,7 +350,7 @@ print(f"Created sample data file: {csv_path}")
 Created sample data file: .../data.csv
 ```
 
-Files need to be uploaded to the project for agents to use them.You can either
+Files need to be uploaded to the project for agents to use them. You can either
 upload it and configure the file for the tool or let the `AgentServiceFactory`
 handle that for you.
 
@@ -487,21 +488,6 @@ state = code_interpreter_agent.invoke(
         ]
     }
 )
-
-pretty_print(state)
-```
-
-```output
-================================ Human Message =================================
-
-[{'type': 'file', 'mime_type': 'text/csv', ...}, {'type': 'text', ...}]
-================================== Ai Message ==================================
-Name: code-interpreter-agent-inline-file
-
-[
-    {'type': 'text', 'text': 'Here is the pie chart ...'},
-    {'type': 'image', 'mime_type': 'image/png', 'base64': 'iVBORw0...'}
-]
 ```
 
 **What this snippet does:** Sends a CSV file inline in the message payload so
