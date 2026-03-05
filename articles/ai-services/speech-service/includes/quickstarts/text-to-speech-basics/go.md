@@ -95,12 +95,16 @@ Follow these steps to create a Go application and install the Speech SDK.
         if result.Reason == common.SynthesizingAudioCompleted {
             fmt.Printf("Speech synthesized for text: [%s]\n", text)
         } else if result.Reason == common.Canceled {
-            cancellation := speech.NewCancellationDetailsFromResult(result)
-            fmt.Printf("CANCELED: Reason=%d\n", cancellation.Reason())
-            if cancellation.Reason() == common.Error {
-                fmt.Printf("CANCELED: ErrorCode=%d\nCANCELED: ErrorDetails=[%s]\nCANCELED: Did you set the speech resource key and region values?\n",
-                    cancellation.ErrorCode(),
-                    cancellation.ErrorDetails())
+            cancellation, err := speech.NewCancellationDetailsFromSpeechSynthesisResult(result)
+            if err != nil {
+                fmt.Printf("Error getting cancellation details: %v\n", err)
+                return
+            }
+            fmt.Printf("CANCELED: Reason=%v\n", cancellation.Reason)
+            if cancellation.Reason == common.Error {
+                fmt.Printf("CANCELED: ErrorCode=%v\nCANCELED: ErrorDetails=[%s]\nCANCELED: Did you set the speech resource key and region values?\n",
+                    cancellation.ErrorCode,
+                    cancellation.ErrorDetails)
             }
         }
 
