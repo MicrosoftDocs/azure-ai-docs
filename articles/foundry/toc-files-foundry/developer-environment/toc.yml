@@ -16,7 +16,7 @@ items:
 - name: Develop with LangChain and LangGraph
   items:
   - name: Use LangGraph with the Agent Service
-    href: ../../how-to/develop/langchain-azure-ai-agents.md
+    href: ../../how-to/develop/langchain-agents.md
 
 # Agent Tools
 - name: Agent development tools
