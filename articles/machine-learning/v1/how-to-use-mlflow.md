@@ -8,13 +8,15 @@ ms.author: scottpolly
 ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 10/21/2021
+ms.date: 03/05/2026
 ms.topic: how-to
 ms.custom:
   - UpdateFrequency5
   - mlflow
   - sdkv1
   - sfi-image-nochange
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Track ML models with MLflow and Azure Machine Learning 
@@ -22,6 +24,9 @@ ms.custom:
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+> [!NOTE]
+> This article uses Azure Machine Learning SDK v1. For the current approach using SDK v2 and MLflow, see [Track experiments and models with MLflow](../how-to-use-mlflow-cli-runs.md) and [Configure MLflow for Azure Machine Learning](../how-to-use-mlflow-configure-tracking.md).
 
 In this article, learn how to enable [MLflow Tracking](https://mlflow.org/docs/latest/quickstart.html#using-the-tracking-api) to connect Azure Machine Learning as the backend of your MLflow experiments.
 
@@ -80,7 +85,7 @@ You can get the Azure Machine Learning MLflow tracking URI using the [Azure Mach
     > [!TIP]
     > You can download the workspace configuration file by:
     > 1. Navigate to [Azure Machine Learning studio](https://ml.azure.com)
-    > 2. Click on the uper-right corner of the page -> Download config file.
+    > 2. Select the upper-right corner of the page -> Download config file.
     > 3. Save the file `config.json` in the same directory where you are working on.
 
 1. Using the subscription ID, resource group name and workspace name:
@@ -133,7 +138,7 @@ mlflow.set_tracking_uri(azureml_mlflow_uri)
 > [!NOTE]
 > You can also get this URL by: 
 > 1. Navigate to [Azure Machine Learning studio](https://ml.azure.com)
-> 2. Click on the uper-right corner of the page -> View all properties in Azure portal -> MLflow tracking URI.
+> 2. Select the upper-right corner of the page -> View all properties in Azure portal -> MLflow tracking URI.
 > 3. Copy the URI and use it with the method `mlflow.set_tracking_uri`.
 
 ---
@@ -277,11 +282,14 @@ To view the artifacts of a run, you can use [MlFlowClient.list_artifacts()](http
 client.list_artifacts(run_id)
 ```
 
-To download an artifact to the current directory, you can use [MLFlowClient.download_artifacts()](https://www.mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient.download_artifacts)
+To download an artifact to the current directory, you can use [mlflow.artifacts.download_artifacts()](https://mlflow.org/docs/latest/python_api/mlflow.artifacts.html#mlflow.artifacts.download_artifacts)
 
 ```Python
-client.download_artifacts(run_id, "helloworld.txt", ".")
+file_path = mlflow.artifacts.download_artifacts(run_id=run_id, artifact_path="helloworld.txt")
 ```
+
+> [!NOTE]
+> In legacy versions of MLflow (< 2.0), use `MlflowClient.download_artifacts()` instead.
 
 For more details about how to retrieve information from experiments and runs in Azure Machine Learning using MLflow view [Manage experiments and runs with MLflow](../how-to-track-experiments-mlflow.md).
 
