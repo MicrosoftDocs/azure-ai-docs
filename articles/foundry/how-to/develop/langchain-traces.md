@@ -302,9 +302,9 @@ Follow these steps:
 
 12. The **Traces** section shows one entry for each HTTP call made to the agent's endpoint.
 
-   To see the details, select an entry.
+    To see the details, select an entry.
 
-  :::image type="content" source="../../control-plane/media/register-custom-agent/custom-agent-trace.png" alt-text="Screenshot of a call to the agent's endpoint under the route for runs and streams." lightbox="../../control-plane/media/register-custom-agent/custom-agent-trace.png":::
+    :::image type="content" source="../../control-plane/media/register-custom-agent/custom-agent-trace.png" alt-text="Screenshot of a call to the agent's endpoint under the route for runs and streams." lightbox="../../control-plane/media/register-custom-agent/custom-agent-trace.png":::
 
 ## Troubleshoot
 
