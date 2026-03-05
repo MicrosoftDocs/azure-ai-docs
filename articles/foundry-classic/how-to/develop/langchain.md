@@ -13,6 +13,7 @@ ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
 # Develop applications with models and LangChain in Microsoft Foundry (classic)
