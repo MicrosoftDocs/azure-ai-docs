@@ -75,6 +75,9 @@ The [Microsoft Foundry portal](https://ai.azure.com) is where you manage project
 
 :::image type="icon" source="media/version-banner/new-foundry.png" alt-text="Screenshot of New Foundry toggle in the banner.":::
 
+> [!TIP]
+> See [Find features in the Foundry portal](how-to/navigate-from-classic.md) if you're used to the Foundry (classic) portal and not sure where to find things now.
+
 ### Choosing a project
 
 In the Foundry portal, the project you're working with appears in the upper-left corner of most pages. 
