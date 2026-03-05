@@ -26,7 +26,7 @@ The rest of the article covers our new v1 preview API release of the Azure OpenA
 
 If you're looking for documentation on the latest v1 GA API release, refer to the [latest GA data plane inference API](./latest.md)
 
-[!INCLUDE [API surfaces](./includes/api-versions/new-inference-preview.md)]
+[!INCLUDE [API surfaces](../../foundry/openai/includes/api-versions/new-inference-preview.md)]
 
 ## Next steps
 

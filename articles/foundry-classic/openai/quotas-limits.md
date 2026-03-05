@@ -75,32 +75,32 @@ Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can 
 
 # [Tier 1](#tab/tier1)
 
-[!INCLUDE [Quota](./includes/quota-tier/tier-1.md)]
+[!INCLUDE [Quota](../../foundry/openai/includes/quota-tier/tier-1.md)]
 
 # [Tier 2](#tab/tier2)
 
-[!INCLUDE [Quota](./includes/quota-tier/tier-2.md)]
+[!INCLUDE [Quota](../../foundry/openai/includes/quota-tier/tier-2.md)]
 
 # [Tier 3](#tab/tier3)
 
-[!INCLUDE [Quota](./includes/quota-tier/tier-3.md)]
+[!INCLUDE [Quota](../../foundry/openai/includes/quota-tier/tier-3.md)]
 
 # [Tier 4](#tab/tier4)
 
-[!INCLUDE [Quota](./includes/quota-tier/tier-4.md)]
+[!INCLUDE [Quota](../../foundry/openai/includes/quota-tier/tier-4.md)]
 
 # [Tier 5](#tab/tier5)
 
-[!INCLUDE [Quota](./includes/quota-tier/tier-5.md)]
+[!INCLUDE [Quota](../../foundry/openai/includes/quota-tier/tier-5.md)]
 
 # [Tier 6](#tab/tier6)
 
-[!INCLUDE [Quota](./includes/quota-tier/tier-6.md)]
+[!INCLUDE [Quota](../../foundry/openai/includes/quota-tier/tier-6.md)]
 
 <!--
 # [Free](#tab/tierfree)
 
-[!INCLUDE [Quota](./includes/quota-tier/free.md)]
+[!INCLUDE [Quota](../../foundry/openai/includes/quota-tier/free.md)]
 -->
 ---
 
@@ -222,7 +222,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ## Request quota increases
 
-[!INCLUDE [quota-increase- request](includes/quota-increase-request.md)]
+[!INCLUDE [quota-increase- request](../../foundry/openai/includes/quota-increase-request.md)]
 
 ## Regional quota capacity limits
 

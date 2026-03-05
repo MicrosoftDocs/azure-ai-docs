@@ -7,7 +7,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/14/2026
+ms.date: 03/04/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -40,6 +40,7 @@ Cloud evaluation supports the following scenarios:
 | **[Model target evaluation](#model-target-evaluation)** | Provide queries and generate responses from a model at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_model` |
 | **[Agent target evaluation](#agent-target-evaluation)** | Provide queries and generate responses from a Foundry agent at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
+| **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
 | **[Red team evaluation](run-ai-red-teaming-cloud.md)** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
 
 Most scenarios require input data. You can provide data in two ways:
@@ -52,7 +53,7 @@ Most scenarios require input data. You can provide data in two ways:
 Every evaluation requires a `data_source_config` that tells the service what fields to expect in your data:
 
 - **`custom`** — You define an `item_schema` with your field names and types. Set `include_sample_schema` to `true` when using a target so evaluators can reference generated responses.
-- **`azure_ai_source`** — The schema is inferred from the service. Set `"scenario"` to `"responses"` for agent response evaluation or `"red_team"` for [red teaming](run-ai-red-teaming-cloud.md).
+- **`azure_ai_source`** — The schema is inferred from the service. Set `"scenario"` to `"responses"` for agent response evaluation, `"synthetic_data_gen_preview"` for [synthetic data evaluation (preview)](#synthetic-data-evaluation-preview), or `"red_team"` for [red teaming](run-ai-red-teaming-cloud.md).
 
 Each scenario requires evaluators that define your testing criteria. For guidance on selecting evaluators, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
 
@@ -71,7 +72,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 Install the SDK and set up your client:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0b1" azure-identity openai
+pip install --pre "azure-ai-projects>=2.0.0b4"
 ```
 
 ```python
@@ -791,6 +792,224 @@ curl --request POST \
 ---
 
 For a complete runnable example, see [sample_agent_response_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_response_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
+
+## Synthetic data evaluation (preview)
+
+Generate synthetic test queries, send them to a deployed model or Foundry agent, and evaluate the responses using the `azure_ai_synthetic_data_gen_preview` data source type. Use this scenario when you don't have a test dataset — the service generates queries based on a prompt you provide (and/or from the agent's instructions), runs them against your target, and evaluates the responses.
+
+> [!TIP]
+> Before you begin, complete [Get started](#get-started).
+
+### How synthetic data evaluation works
+
+1. The service generates synthetic queries based on your `prompt` and optional seed data files.
+1. Each query is sent to the specified target (model or agent) to generate a response.
+1. Evaluators score each response using the generated query and response.
+1. The generated queries are stored as a dataset in your project for reuse.
+
+### Parameters
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `samples_count` | Yes | Maximum number of synthetic test queries to generate. |
+| `model_deployment_name` | Yes | Model deployment to use for generating synthetic queries. Only models with Responses API capability are supported. For availability, see [Responses API region availability](https://aka.ms/aoai/responsesapi/availability). |
+| `prompt` | No | Instructions describing the type of queries to generate. Optional when the agent target has instructions configured. |
+| `output_dataset_name` | No | Name for the output dataset where generated queries are stored. If not provided, the service generates a name automatically. |
+| `sources` | No | Seed data files (by file ID) to improve relevance of generated queries. Currently only one file is supported. |
+
+### Set up evaluators and data mappings
+
+The synthetic data generator produces queries in the `{{item.query}}` field. The target generates responses available in `{{sample.output_text}}`. Map these fields to your evaluators:
+
+```python
+data_source_config = {"type": "azure_ai_source", "scenario": "synthetic_data_gen_preview"}
+
+testing_criteria = [
+    {
+        "type": "azure_ai_evaluator",
+        "name": "coherence",
+        "evaluator_name": "builtin.coherence",
+        "initialization_parameters": {
+            "deployment_name": model_deployment_name,
+        },
+        "data_mapping": {
+            "query": "{{item.query}}",
+            "response": "{{sample.output_text}}",
+        },
+    },
+    {
+        "type": "azure_ai_evaluator",
+        "name": "violence",
+        "evaluator_name": "builtin.violence",
+        "data_mapping": {
+            "query": "{{item.query}}",
+            "response": "{{sample.output_text}}",
+        },
+    },
+]
+```
+
+### Create evaluation and run
+
+# [Python](#tab/python)
+
+#### Model target
+
+Generate synthetic queries and evaluate a model:
+
+```python
+eval_object = client.evals.create(
+    name="Synthetic Data Evaluation",
+    data_source_config=data_source_config,
+    testing_criteria=testing_criteria,
+)
+
+data_source = {
+    "type": "azure_ai_synthetic_data_gen_preview",
+    "item_generation_params": {
+        "type": "synthetic_data_gen_preview",
+        "samples_count": 5,
+        "prompt": "Generate customer service questions about returning defective products",
+        "model_deployment_name": model_deployment_name,
+        "output_dataset_name": "my-synthetic-dataset",
+    },
+    "target": {
+        "type": "azure_ai_model",
+        "model": model_deployment_name,
+    },
+}
+
+eval_run = client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="synthetic-data-evaluation",
+    data_source=data_source,
+)
+```
+
+You can optionally add a system prompt to shape the target model's behavior. When you use `input_messages` with synthetic data generation, include only `system` role messages — the service provides the generated queries as user messages automatically.
+
+```python
+data_source = {
+    "type": "azure_ai_synthetic_data_gen_preview",
+    "item_generation_params": {
+        "type": "synthetic_data_gen_preview",
+        "samples_count": 5,
+        "prompt": "Generate customer service questions about returning defective products",
+        "model_deployment_name": model_deployment_name,
+    },
+    "target": {
+        "type": "azure_ai_model",
+        "model": model_deployment_name,
+    },
+    "input_messages": {
+        "type": "template",
+        "template": [
+            {
+                "type": "message",
+                "role": "system",
+                "content": {
+                    "type": "input_text",
+                    "text": "You are a helpful customer service agent. Be empathetic and solution-oriented."
+                }
+            }
+        ]
+    },
+}
+```
+
+#### Agent target
+
+Generate synthetic queries and evaluate a Foundry agent:
+
+```python
+data_source = {
+    "type": "azure_ai_synthetic_data_gen_preview",
+    "item_generation_params": {
+        "type": "synthetic_data_gen_preview",
+        "samples_count": 5,
+        "prompt": "Generate questions about returning defective products",
+        "model_deployment_name": model_deployment_name,
+    },
+    "target": {
+        "type": "azure_ai_agent",
+        "name": agent_name,
+        "version": agent_version,
+    },
+}
+
+eval_run = client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="synthetic-agent-evaluation",
+    data_source=data_source,
+)
+```
+
+# [cURL](#tab/curl)
+
+```bash
+# Step 1: Create the evaluation
+curl --request POST \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals?api-version=v1" \
+  --header "Authorization: Bearer ${TOKEN}" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "name": "Synthetic Data Evaluation",
+    "data_source_config": {
+      "type": "azure_ai_source",
+      "scenario": "synthetic_data_gen_preview"
+    },
+    "testing_criteria": [
+      {
+        "type": "azure_ai_evaluator",
+        "name": "coherence",
+        "evaluator_name": "builtin.coherence",
+        "initialization_parameters": {
+          "deployment_name": "gpt-5-mini"
+        },
+        "data_mapping": {
+          "query": "{{item.query}}",
+          "response": "{{sample.output_text}}"
+        }
+      },
+      {
+        "type": "azure_ai_evaluator",
+        "name": "violence",
+        "evaluator_name": "builtin.violence",
+        "data_mapping": {
+          "query": "{{item.query}}",
+          "response": "{{sample.output_text}}"
+        }
+      }
+    ]
+  }'
+
+# Step 2: Create a run with synthetic data generation
+curl --request POST \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --header "Authorization: Bearer ${TOKEN}" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "name": "synthetic-data-evaluation",
+    "data_source": {
+      "type": "azure_ai_synthetic_data_gen_preview",
+      "item_generation_params": {
+        "type": "synthetic_data_gen_preview",
+        "samples_count": 5,
+        "prompt": "Generate customer service questions about returning defective products",
+        "model_deployment_name": "gpt-5-mini",
+        "output_dataset_name": "my-synthetic-dataset"
+      },
+      "target": {
+        "type": "azure_ai_model",
+        "model": "gpt-5-mini"
+      }
+    }
+  }'
+```
+
+---
+
+To poll for completion and interpret results, see [Get results](#get-results). The response includes an `output_dataset_id` property that contains the ID of the generated dataset, which you can use to retrieve or reuse the synthetic data.
 
 ## Get results
 

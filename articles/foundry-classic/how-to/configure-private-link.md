@@ -24,7 +24,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 > [!TIP]
 > An alternate hub-focused version of this article is available: [How to configure a private link for a Microsoft Foundry hub](hub-configure-private-link.md).
 
-When you use a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link. 
+When you use a [!INCLUDE [fdp-projects](../../foundry/includes/fdp-project-name.md)], you can use a private link to secure communication with your project. This article describes how to establish a private connection to your project using a private link. 
 
 ## Prerequisites
 
@@ -104,7 +104,7 @@ In some situations, you might want to allow someone to connect to your secured p
 1. From the left side of the page, select **Resource Management**, **Networking**, and then select the **Firewalls and virtual networks** tab.
 1. Select **All networks**, and then select **Save**.
 
-    :::image type="content" source="../media/how-to/network/foundry-portal-firewall.png" alt-text="Screenshot of the firewalls and virtual networks tab with the all networks option selected.":::
+    :::image type="content" source="../../foundry/media/how-to/network/foundry-portal-firewall.png" alt-text="Screenshot of the firewalls and virtual networks tab with the all networks option selected.":::
 
 ## DNS configuration
 
@@ -173,7 +173,7 @@ For Agent Service network isolation scenarios (including network injection, end-
 
 If you're building agents or running evaluations and you want end-to-end network isolation, use the guidance in [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). That article includes required DNS zones, a reference architecture, and known limitations.
 
-:::image type="content" source="../media/how-to/network/agent-eval-networking.png" alt-text="Diagram of the recommended network isolation for Foundry." lightbox="../media/how-to/network/agent-eval-networking.png":::
+:::image type="content" source="../../foundry/media/how-to/network/agent-eval-networking.png" alt-text="Diagram of the recommended network isolation for Foundry." lightbox="../../foundry/media/how-to/network/agent-eval-networking.png":::
 
 ## Network injection for Agent Service and evaluations
 
@@ -183,7 +183,7 @@ Network-secured Standard Agents and evaluations support full network isolation a
 
 To secure egress (outbound) traffic through network injection, configure an Azure Firewall or another firewall. This configuration helps inspect and control outbound traffic before it leaves your virtual network.
 
-:::image type="content" source="../media/how-to/network/network-diagram-agents.png" alt-text="Diagram of the firewall configuration for egress traffic from Foundry projects and agents." lightbox="../media/how-to/network/network-diagram-agents.png":::
+:::image type="content" source="../../foundry/media/how-to/network/network-diagram-agents.png" alt-text="Diagram of the firewall configuration for egress traffic from Foundry projects and agents." lightbox="../../foundry/media/how-to/network/network-diagram-agents.png":::
 
 ## Troubleshoot private link issues
 

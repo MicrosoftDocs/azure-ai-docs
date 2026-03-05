@@ -49,7 +49,7 @@ RAG follows a three-step flow:
 2. **Augment**: The app combines the user's question and the retrieved content (grounding data) into a prompt.
 3. **Generate**: The model receives the augmented prompt and generates a response grounded in the retrieved content, reducing inaccuracies and enabling accurate citations.
 
-:::image type="content" source="../media/index-retrieve/rag-pattern.png" alt-text="Diagram that shows a user query, retrieval from a data store, and a grounded model response." lightbox="../media/index-retrieve/rag-pattern.png":::
+:::image type="content" source="../../foundry/media/index-retrieve/rag-pattern.png" alt-text="Diagram that shows a user query, retrieval from a data store, and a grounded model response." lightbox="../../foundry/media/index-retrieve/rag-pattern.png":::
 
 ## What is an index and why do I need it?
 
@@ -64,7 +64,7 @@ Many RAG solutions use an index that supports one or more of these retrieval mod
 
 An index can also store fields that improve citation quality (for example, document titles, URLs, or file names).
 
-:::image type="content" source="../media/index-retrieve/rag-pattern-with-index.png" alt-text="Diagram that shows retrieval from an index and how the retrieved passages are added to the model prompt." lightbox="../media/index-retrieve/rag-pattern-with-index.png":::
+:::image type="content" source="../../foundry/media/index-retrieve/rag-pattern-with-index.png" alt-text="Diagram that shows retrieval from an index and how the retrieved passages are added to the model prompt." lightbox="../../foundry/media/index-retrieve/rag-pattern-with-index.png":::
 
 Foundry can connect your project to an Azure AI Search service and index for retrieval. Depending on the feature and API surface you're using, this connection information might be represented as a project connection or an *index asset ID*.
 

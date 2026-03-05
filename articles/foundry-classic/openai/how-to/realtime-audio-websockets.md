@@ -103,7 +103,7 @@ To authenticate:
 
 Once the WebSocket connection session to `/realtime` is established and authenticated, the functional interaction takes place via events for sending and receiving WebSocket messages. These events each take the form of a JSON object. 
 
-:::image type="content" source="../media/how-to/real-time/realtime-api-sequence.png" alt-text="Diagram of the Realtime API authentication and connection sequence." lightbox="../media/how-to/real-time/realtime-api-sequence.png":::
+:::image type="content" source="../../../foundry/openai/media/how-to/real-time/realtime-api-sequence.png" alt-text="Diagram of the Realtime API authentication and connection sequence." lightbox="../../../foundry/openai/media/how-to/real-time/realtime-api-sequence.png":::
 
 <!--
 sequenceDiagram

@@ -6,7 +6,7 @@ ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - build-2024
   - hub-only
-ms.topic: article
+ms.topic: concept-article
 ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
@@ -19,7 +19,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 The prompt flow Index Lookup tool enables the use of common vector indices (such as Azure AI Search, Faiss, and Pinecone) for retrieval augmented generation in prompt flow. The tool automatically detects the indices in the workspace and you can select the index to use in the flow.
 

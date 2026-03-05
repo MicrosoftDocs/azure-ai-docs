@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](../../../foundry/responsible-ai/includes/non-english-translation.md)]
 
 ## What is a Transparency Note?
 
@@ -76,7 +76,7 @@ The following are key components of the Azure AI Agent Service SDK (and the [Mic
 
 Azure AI Agent Service provides integration with securely managed data, out-of-the-box tools and automatic tool calling that enable developers to build Agents that can have the ability to reason, plan, and execute tasks from a high-level goal specified by a user. Azure AI Agent Service enables rapid Agent development with built-in memory management and a sophisticated interface to seamlessly integrate with popular compute platforms, bridging LLM capabilities with general purpose, programmatic actions.
 
-:::image type="content" source="media/agents-capabilities.jpg" alt-text="Diagram of the Azure AI Agents Service components and features.":::
+:::image type="content" source="../../../foundry/responsible-ai/agents/media/agents-capabilities.jpg" alt-text="Diagram of the Azure AI Agents Service components and features.":::
 
 Key features of Azure AI Agent Service include:
 1. **Rapidly develop and automate processes:** Agents need to seamlessly integrate with the right tools, systems, and APIs to perform deterministic or non-deterministic actions.

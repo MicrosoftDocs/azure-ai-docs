@@ -95,7 +95,7 @@ Before you can generate text or inference, you need to deploy a model. You can s
 
 To deploy a model, follow these steps:
 
-1. [!INCLUDE [classic-sign-in](../../includes/classic-sign-in.md)]
+1. [!INCLUDE [classic-sign-in](../../../foundry/includes/classic-sign-in.md)]
 1. In **Keep building with Foundry** section select **View all resources**.
 1. Find and select your resource.
 

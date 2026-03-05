@@ -52,7 +52,7 @@ To get the key and endpoint:
 
 1. In the "Configure authentication" step, select **Get Microsoft Foundry key** from the "Azure AI" section.
 
-    :::image type="content" source="../media/quickstart-github-models/github-models-get-production-key.png" alt-text="A screenshot showing how to get the Azure AI production key from the playground of a GitHub Model." lightbox="../media/quickstart-github-models/github-models-get-production-key.png":::
+    :::image type="content" source="../../../foundry/foundry-models/media/quickstart-github-models/github-models-get-production-key.png" alt-text="A screenshot showing how to get the Azure AI production key from the playground of a GitHub Model." lightbox="../../../foundry/foundry-models/media/quickstart-github-models/github-models-get-production-key.png":::
 
 1. If you're already signed in to your Azure account, skip this step. However, if you don't have an Azure account or you're not signed in to your account, follow these steps:
 

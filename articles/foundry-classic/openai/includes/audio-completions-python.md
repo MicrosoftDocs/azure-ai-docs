@@ -10,7 +10,7 @@ ms.date: 1/21/2025
 
 [Library source code](https://github.com/openai/openai-python/tree/main/src/openai) | [Package](https://github.com/openai/openai-python) | [Samples](https://github.com/openai/openai-python/tree/main/examples)
 
-[!INCLUDE [Audio completions introduction](audio-completions-intro.md)]
+[!INCLUDE [Audio completions introduction](../../../foundry/openai/includes/audio-completions-intro.md)]
 
 Use this guide to get started generating audio with the Azure OpenAI SDK for Python.
 
@@ -79,7 +79,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Retrieve resource information
 
-[!INCLUDE [resource authentication](resource-authentication.md)]
+[!INCLUDE [resource authentication](../../../foundry/openai/includes/resource-authentication.md)]
 
 ## Generate audio from text input
 

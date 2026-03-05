@@ -7,7 +7,8 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 02/21/2025
+ms.date: 03/02/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 ---
 
@@ -42,5 +43,5 @@ A successful response writes the thumbnail image to the file specified in `<thum
 
 If you'd like to call Image Analysis APIs using a native SDK in the language of your choice, follow the quickstart to get set up.
 
-> [!div class=nextstepaction]
+> [!div class="nextstepaction"]
 > [Quickstart (Image Analysis)](../quickstarts-sdk/image-analysis-client-library.md)

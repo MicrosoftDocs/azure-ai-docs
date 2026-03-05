@@ -7,7 +7,8 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: concept-article
-ms.date: 02/21/2025
+ms.date: 03/02/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 ---
 
@@ -15,7 +16,7 @@ ms.author: pafarley
 
 [!INCLUDE [segmentation-deprecation](includes/segmentation-deprecation.md)]
 
-The Background removal operation can divide images into multiple segments or regions to help the user identify different objects or parts of the image. Background removal creates an alpha matte that separates the foreground object from the background in an image. This service is currently in preview, and the API may change in the future.
+The Background removal operation can divide images into multiple segments or regions to help the user identify different objects or parts of the image. Background removal creates an alpha matte that separates the foreground object from the background in an image. This service is currently in preview, and the API might change in the future.
 
 
 > [!div class="nextstepaction"]
