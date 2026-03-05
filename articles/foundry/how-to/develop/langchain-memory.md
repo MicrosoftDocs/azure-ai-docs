@@ -430,9 +430,6 @@ Before moving to production, validate these constraints:
 Also plan defensive controls for memory poisoning or prompt-injection attempts.
 Validate untrusted inputs before they influence stored memory.
 
-> [!div class="nextstepaction"]
-> [Trace LangChain and LangGraph apps](langchain-trace.md)
-
 ## Clean up resources
 
 After running samples, delete the scope to avoid test data leaking into future
@@ -449,6 +446,9 @@ print(
 ```output
 Deleted 4 memories for scope 'user_001'.
 ```
+
+> [!div class="nextstepaction"]
+> [Trace LangChain and LangGraph apps](langchain-traces.md)
 
 ## Related content
 

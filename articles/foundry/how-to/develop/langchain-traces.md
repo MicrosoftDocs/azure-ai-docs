@@ -392,6 +392,6 @@ Follow these steps:
 
 ## Related content
 
-- [Get started with langchain-azure-ai](langchain-azure.md)
+- [Get started with langchain-azure-ai](langchain.md)
 - [Use LangGraph with the Agent Service](langchain-agents.md)
 - [Set up tracing integrations for agent frameworks](../../observability/how-to/trace-agent-framework.md)

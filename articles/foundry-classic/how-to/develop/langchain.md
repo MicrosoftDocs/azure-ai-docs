@@ -78,7 +78,7 @@ Create a client to connect to the chat model by using the `AzureAIChatCompletion
 **What this snippet does:** Instantiates an `AzureAIChatCompletionsModel` client configured to connect to your deployed model using an API key for authentication. This client acts as an interface to the Model Inference API.
 
 **References:**
-- [LangChain Azure AI integration](https://python.langchain.com/docs/integrations/chat/azure_ai)
+- [LangChain Azure AI integration](https://docs.langchain.com/oss/python/integrations/providers/microsoft)
 - [Model Inference API overview](../../../ai-foundry/model-inference/overview.md)
 
 > [!CAUTION]
