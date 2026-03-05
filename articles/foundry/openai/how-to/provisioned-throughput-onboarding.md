@@ -130,7 +130,7 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 |Global & data zone provisioned scale increment|5|5| 5|5|
 |Regional provisioned minimum deployment|50|25| 25|25|
 |Regional provisioned scale increment|50|25| 25|50|
-|Input TPM per PTU|2,500|37,000| 2,500|230|
+|TPM per PTU|2,500|37,000| 2,500|230|
 |Latency Target Value| 99% > 25 Tokens Per Second\* | 99% > 33 Tokens Per Second\* |  99% > 66 Tokens Per Second\* | 99% > 25 Tokens Per Second\* |
 
 \* Calculated as the average request latency on a per-minute basis across the month.
@@ -143,7 +143,7 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 |Global & data zone provisioned scale increment|100|100|100|100|
 |Regional provisioned minimum deployment|NA|NA|NA|NA|
 |Regional provisioned scale increment|NA|NA|NA|NA|
-|Input TPM per PTU|8,450<sup>1</sup>|4,000|4,000|4,000|
+|TPM per PTU|8,450<sup>1</sup>|4,000|4,000|4,000|
 |Latency Target Value|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|
 
 \* Calculated as the average request latency on a per-minute basis across the month.
