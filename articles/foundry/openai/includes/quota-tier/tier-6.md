@@ -50,6 +50,7 @@ ms.date: 02/18/2026
 | gpt-5.2                        | DataZoneStandard  | 40,000      | 4,000,000   |
 | gpt-5.2                        | GlobalStandard    | 150,000     | 15,000,000  |
 | gpt-5.2-chat                   | GlobalStandard    | 80,000      | 8,000,000   |
+| gpt-5.3-chat                   | GlobalStandard    | 8,000       | 8,000,000   |
 | gpt-5.2-codex                  | GlobalStandard    | 150,000     | 15,000,000  |
 | gpt-5.3-codex                  | GlobalStandard    | 150,000     | 15,000,000  |
 | gpt-audio                      | GlobalStandard    | 45000 / 10s | 45,000,000  |

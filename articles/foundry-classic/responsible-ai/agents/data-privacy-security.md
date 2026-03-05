@@ -56,7 +56,7 @@ The diagram below illustrates how your data is processed. This diagram covers se
 
 1. How the Azure AI Agent Service processes data ingested into the service from external tools. 
 
-:::image type="content" source="../../../foundry/responsible-ai/agents/../../../foundry/responsible-ai/agents/media/agents-diagram.png" alt-text="A diagram showing how Azure AI Agent Service processes data." lightbox="../../../foundry/responsible-ai/agents/../../../foundry/responsible-ai/agents/media/agents-diagram.png":::
+:::image type="content" source="../../../foundry/responsible-ai/agents/media/agents-diagram.png" alt-text="A diagram showing how Azure AI Agent Service processes data." lightbox="../../../foundry/responsible-ai/agents/media/agents-diagram.png":::
 
 ## Model inferencing 
 

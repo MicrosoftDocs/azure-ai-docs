@@ -170,8 +170,6 @@ To deploy the models required for your chosen [embedding method](#supported-embe
 
 ## Start the wizard
 
-To start the wizard for multimodal search:
-
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
 1. On the **Overview** page, select **Import data (new)**.

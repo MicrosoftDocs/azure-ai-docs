@@ -45,5 +45,5 @@ Follow these steps to create a custom content filter:
 
 1. When the deployment completes, the new content filter is applied to the model deployment.
 
-[!INCLUDE [code](../../../../foundry/foundry-models/includes/configure-content-filters/code.md)]
+[!INCLUDE [code](code.md)]
 

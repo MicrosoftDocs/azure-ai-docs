@@ -69,7 +69,7 @@ By using API key authentication, you can authenticate your OpenAPI spec through 
 
     1. Go to the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left navigation pane.
 
-       :::image type="content" source="../../media\tools\bing\project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media\tools\bing\project-settings-button.png":::
+       :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
 
     1. Select **Connected resources** under the AI project in the left navigation pane.
     1. Select **+ new connection** in the settings page.
@@ -77,11 +77,11 @@ By using API key authentication, you can authenticate your OpenAPI spec through 
        >[!NOTE]
        > If you regenerate the API key at a later date, you need to update the connection with the new key.
         
-       :::image type="content" source="../../media\tools\bing\project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media\tools\bing\project-connections.png":::
+       :::image type="content" source="../../media/tools/bing/project-connections.png" alt-text="A screenshot of the connections screen for the AI project." lightbox="../../media/tools/bing/project-connections.png":::
 
    1. Select **custom keys** in **other resource types**.
     
-      :::image type="content" source="../../media\tools\bing\api-key-connection.png" alt-text="A screenshot of the custom keys selection for the AI project." lightbox="../../media\tools\bing\api-key-connection.png":::
+      :::image type="content" source="../../media/tools/bing/api-key-connection.png" alt-text="A screenshot of the custom keys selection for the AI project." lightbox="../../media/tools/bing/api-key-connection.png":::
     
    1. Enter the following information
       - key: `name` field of your security scheme. In this example, it should be `x-api-key`
