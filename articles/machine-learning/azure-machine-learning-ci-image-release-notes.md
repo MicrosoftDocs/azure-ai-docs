@@ -30,6 +30,20 @@ Azure Machine Learning checks and validates any machine learning packages that m
 
 Main updates provided with each image version are described in the below sections.
 
+##  February 03, 2026
+
+Image Version: `26.01.05`
+
+Release Notes:
+
+SDK Version: `1.61.0`
+
+Jupyter-core: '5.7.2'
+
+Nvidia-Driver: '535.274.02'
+
+CUDA: '12.2'
+
 ##  February 11, 2025
 
 Image Version: `25.01.31`
