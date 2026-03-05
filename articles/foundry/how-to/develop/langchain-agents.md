@@ -30,8 +30,7 @@ loop approvals, and tracing.
 
 ### Configure your environment
 
-Install the package `langchain-azure-ai` to use Microsoft Foundry capabilities in LangGraph and LangChain. Use the
-`[v2]` extra to enable the latest Foundry Agent Service features.
+Install the package `langchain-azure-ai` to use Microsoft Foundry capabilities in LangGraph and LangChain.
 
 ```bash
 pip install langchain-azure-ai[tools,opentelemetry,v2] azure-identity
@@ -294,7 +293,7 @@ invoice is **$144.00**."*
 ## Add built-in tools
 
 Built-in tools in Foundry Agent Service run server-side instead of in a **tool node**
-like local tools. Tools in the namespace `langchain_azure_ai.agents.v2.prebuilt.tools.*`
+like local tools. Tools in the namespace `langchain_azure_ai.agents.prebuilt.tools.*`
 are all built-in tools and only work with `create_prompt_agent`.
 
 ### Example: use code interpreter tool
@@ -307,7 +306,7 @@ working directory.
 
 ```python
 import base64
-from langchain_azure_ai.agents.v2.prebuilt.tools import CodeInterpreterTool
+from langchain_azure_ai.agents.prebuilt.tools import CodeInterpreterTool
 
 code_interpreter_agent = factory.create_prompt_agent(
 	name="code-interpreter-agent",
@@ -370,7 +369,7 @@ Name: code-interpreter-agent
 The following example shows how to use `ImageGenTool` for image generation:
 
 ```python
-from langchain_azure_ai.agents.v2.prebuilt.tools import ImageGenTool
+from langchain_azure_ai.agents.prebuilt.tools import ImageGenTool
 
 image_agent = factory.create_prompt_agent(
 	name="image-generator-agent",
@@ -410,7 +409,7 @@ The following example shows how to use a `FileSearchTool`:
 
 ```python
 from azure.ai.projects.models import FileSearchTool
-from langchain_azure_ai.agents.v2.prebuilt.tools import AgentServiceBaseTool
+from langchain_azure_ai.agents.prebuilt.tools import AgentServiceBaseTool
 
 file_search_agent = factory.create_prompt_agent(
 	name="file-search-agent",
@@ -440,7 +439,7 @@ by introducing an approval node in the graph:
 The following example shows how to use `MCPTool` with approval:
 
 ```python
-from langchain_azure_ai.agents.v2.prebuilt.tools import MCPTool
+from langchain_azure_ai.agents.prebuilt.tools import MCPTool
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.types import Command
 

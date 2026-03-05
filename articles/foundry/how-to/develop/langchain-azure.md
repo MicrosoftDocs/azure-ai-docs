@@ -32,6 +32,10 @@ right deep-dive documentation for each capability.
 - Python 3.10 or later.
 - Azure CLI signed in (`az login`) so `DefaultAzureCredential` can authenticate.
 
+> [!TIP]
+> This article mentions support for **Microsoft Foundry (new)**, which uses version `azure-ai-projects>=2.0`.
+> If you are using Foundry classic, use `langchain-azure-ai[v1]` instead.
+
 ## Install the package
 
 Install the base package:
