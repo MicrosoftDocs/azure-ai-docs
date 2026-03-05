@@ -44,6 +44,20 @@ Use the fast transcription API to transcribe audio files and return results sync
 
 For more information, see [use the fast transcription API](fast-transcription-create.md).
 
+### Diarization
+
+Diarization is the process of distinguishing and separating different speakers in an audio recording. This feature is particularly useful for transcribing conversations, meetings, or any multi-speaker audio content. The Speech service can identify up to 35 different speakers in an audio recording (if the service recognizes more than 35 speakers, it throws an error).
+
+See the [Diarization quickstart](./get-started-stt-diarization.md) to get started.
+
+### Phrase lists
+
+The phrase lists feature allows you to provide the speech recognition model with a list of specific words or phrases that are likely to be spoken in the audio. This helps improve the accuracy of transcription, especially for domain-specific terminology, proper nouns, or uncommon words. By using phrase lists, you can guide the model to better recognize and transcribe these terms correctly.
+
+### Language detection
+
+Language detection enables the speech recognition model to automatically identify the language being spoken in the audio input. This is useful in scenarios where the language of the audio is not known beforehand or when you have multilingual audio content. By detecting the language, the model can apply the appropriate language-specific recognition algorithms, which can significantly improve transcription accuracy.
+
 ## Batch transcription
 
 [Batch transcription](batch-transcription.md) is designed for transcribing large amounts of audio stored in files. This method processes audio asynchronously and is suited for: 
@@ -58,11 +72,7 @@ You can access batch transcription through:
     spx help batch transcription
     ```
 
-### Diarization
 
-Diarization is the process of distinguishing and separating different speakers in an audio recording. This feature is particularly useful for transcribing conversations, meetings, or any multi-speaker audio content. The Speech service can identify up to 35 different speakers in an audio recording (if the service recognizes more than 35 speakers, it throws an error).
-
-See the [Diarization quickstart](./get-started-stt-diarization.md) to get started.
 
 ## Custom speech
 
