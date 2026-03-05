@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry Models overview (classic)"
-description: "This article introduces Microsoft Foundry Models and the model catalog in Microsoft Foundry portal. (classic)"
+title: Microsoft Foundry Models overview
+description: Discover and deploy AI models with Microsoft Foundry Models. Browse 1,900+ models from OpenAI, Meta, and more to build scalable AI solutions. Explore now.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
@@ -17,9 +17,8 @@ manager: nitinme
 #customer intent: As a developer, I want to explore the Microsoft Foundry model catalog so that I can find and evaluate AI models for my application.
 ---
 
-# Microsoft Foundry Models overview (classic)
+# Microsoft Foundry Models overview
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 Microsoft Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models—whether you're building a custom copilot, an agent, enhancing an existing application, or exploring new AI capabilities.
 
@@ -34,10 +33,10 @@ Whether you're a developer, data scientist, or enterprise architect, Foundry Mod
 
 Foundry offers a comprehensive catalog of AI models. There are over 1,900 models that range from foundation models, reasoning models, small language models, multimodal models, domain-specific models, and industry models.
 
-The model catalog is organized into two main categories:  
+The model catalog is organized into two main categories: 
 
 * [Models sold directly by Azure](#models-sold-directly-by-azure)
-* [Models from Partners and Community](#models-from-partners-and-community)
+* [Models from partners and community](#models-from-partners-and-community)
 
 Understanding the distinction between these categories helps you choose the right models for your specific requirements and strategic goals. 
 
@@ -61,7 +60,7 @@ Characteristics of models sold directly by Azure:
 - Model documentation and transparency reports provide customer visibility to model risks, mitigations, and limitations. 
 - Enterprise-grade scalability, reliability, and security. 
 
-Some of these models also offer fungible provisioned throughput, meaning you can flexibly use your quota and reservations across any of these models. To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry (classic)](../responsible-ai/openai/data-privacy.md).
+Some of these models also offer fungible provisioned throughput, meaning you can flexibly use your quota and reservations across any of these models. To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md).
 
 ## Models from partners and community
 
@@ -69,10 +68,10 @@ These models constitute the vast majority of the Foundry Models and are provided
 
 Anthropic includes the Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Microsoft Support](https://aka.ms/anthropic-maas-support). To learn more about privacy, see [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../responsible-ai/claude-models/data-privacy.md) and [Anthropic privacy policy](https://aka.ms/anthropic_privacy). For terms of service, see [Commercial Terms of Service](https://aka.ms/anthropic_tandc). To learn how to work with Anthropic models, see [Deploy and use Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
 
-Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [How to deploy and infer with a managed compute deployment (classic)](../how-to/deploy-models-managed.md).
+Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [How to deploy and infer with a managed compute deployment (classic)](../../foundry-classic/how-to/deploy-models-managed.md).
 
 > [!IMPORTANT]
-> To work with models that are deployable on managed computes, such as Hugging Face models, use a hub-based project in the Foundry portal (classic). To learn more about the available Foundry portals and the differences between the two types of projects in Foundry (Foundry project and hub-based project), see [What is Microsoft Foundry? (classic)](../what-is-foundry.md).
+> To work with models that are deployable on managed computes, such as Hugging Face models, use a hub-based project in the Foundry portal (classic). To learn more about the available Foundry portals, see [What is Microsoft Foundry?](../what-is-foundry.md).
 
 Characteristics of models from partners and community:
 * Developed and supported by external partners and community contributors 
@@ -81,8 +80,7 @@ Characteristics of models from partners and community:
 * Community-driven innovation and rapid availability of cutting-edge models 
 * Standard Azure AI integration, with support and maintenance managed by the respective providers 
 
-Models from partners and community are deployable using *managed compute* or *serverless deployment* options. The model provider selects how the models are deployable. To learn about the deployment types available under the serverless deployment option, see [Deployment types for Microsoft Foundry Models (classic)](../foundry-models/concepts/deployment-types.md).
-   
+Models from partners and community are deployable using *managed compute* or *serverless deployment* options. The model provider selects how the models are deployable. To learn about the deployment types available under the serverless deployment option, see [Deployment types for Microsoft Foundry Models](../foundry-models/concepts/deployment-types.md).
 
 ### Request a model to be included in the model catalog
 
@@ -122,8 +120,7 @@ Some of the details available in the **model card** are:
 
 ## Model deployment options: managed compute and serverless deployments 
 
-The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../how-to/concept-data-privacy.md). To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry (classic)](../responsible-ai/openai/data-privacy.md).
-
+The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md). To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md).
 
 ### Capabilities of model deployment options
 
@@ -136,26 +133,16 @@ API authentication | Keys and Microsoft Entra authentication. | Keys and Microso
 Content safety | Use Azure AI Content Safety service APIs. | Azure AI Content Safety filters are available integrated with inference APIs. Azure AI Content Safety filters are billed separately.
 Network isolation | [Configure a managed network for Microsoft Foundry hubs (classic)](../../foundry-classic/how-to/configure-managed-network.md).  | Managed networks follow the public network access (PNA) flag setting for your Foundry resource. For more information, see the [Network isolation for models deployed via serverless deployments](#network-isolation-for-models-deployed-via-serverless-deployments) section later in this article.
 
-:::image type="content" source="../media/explore/platform-service-cycle.png" alt-text="Diagram that shows the service cycle differences between managed compute deployments and serverless deployments in Microsoft Foundry Models." lightbox="../media/explore/platform-service-cycle.png":::
-
-### Available models for supported deployment options
-
-View a list of supported models for serverless deployment or managed compute from a hub-project in the model catalog.
-
-1. Open the [Foundry portal](https://ai.azure.com/?cid=learnDocs) and select a hub-based project.
-1. Select **Model catalog** to open its home page.
-1. Use the **Deployment options** filter to select either **Serverless API deployment** or **Managed compute**. 
-
-:::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter.png":::  
+:::image type="content" source="../../foundry-classic/media/explore/platform-service-cycle.png" alt-text="Diagram that shows the service cycle differences between managed compute deployments and serverless deployments in Microsoft Foundry Models." lightbox="../../foundry-classic/media/explore/platform-service-cycle.png":::
 
 ## Managed compute
 
 The capability to deploy models as managed compute builds on platform capabilities of Azure Machine Learning to enable seamless integration of the wide collection of models in the model catalog across the entire life cycle of large language model (LLM) operations.
 
 > [!IMPORTANT]
-> To work with models that are deployable on managed computes, such as Hugging Face models, use a hub-based project in the Foundry portal (classic). To learn more about the available Foundry portals and the differences between the two types of projects in Foundry (Foundry project and hub-based project), see [What is Microsoft Foundry? (classic)](../what-is-foundry.md).
+> To work with models that are deployable on managed computes, use a hub-based project in the Foundry portal (classic). To learn more about the available Foundry portals, see [What is Microsoft Foundry?](../what-is-foundry.md).
 
-:::image type="content" source="../media/explore/llmops-life-cycle.png" alt-text="Diagram that shows the life cycle of large language model (LLM) operations with managed compute." lightbox="../media/explore/llmops-life-cycle.png":::
+:::image type="content" source="../../foundry-classic/media/explore/llmops-life-cycle.png" alt-text="Diagram that shows the life cycle of large language model (LLM) operations with managed compute." lightbox="../../foundry-classic/media/explore/llmops-life-cycle.png":::
 
 ### Availability of models for deployment as managed compute  
 
@@ -196,13 +183,13 @@ Models that are available for serverless deployments are offered by the model pr
 * Makes the inference APIs available.
 * Acts as the data processor for prompts submitted and content output for serverless deployments.
 
-:::image type="content" source="../media/explore/model-publisher-cycle.png" alt-text="Diagram that shows the model publisher service cycle for serverless deployments of Microsoft Foundry Models." lightbox="../media/explore/model-publisher-cycle.png":::
+:::image type="content" source="../../foundry-classic/media/explore/model-publisher-cycle.png" alt-text="Diagram that shows the model publisher service cycle for serverless deployments of Microsoft Foundry Models." lightbox="../../foundry-classic/media/explore/model-publisher-cycle.png":::
 
 ### Serverless deployment types
 
 The serverless deployment option for Foundry Models offers two main deployment categories: standard (pay-per-token) and provisioned (reserved capacity). Within each category, you can choose global, data zone, or regional processing based on your compliance requirements. 
 
-The available serverless deployment types include: Global Standard, Global Provisioned, Global Batch, Data Zone Standard, Data Zone Provisioned, Data Zone Batch, Standard, Regional Provisioned, and Developer. To learn more about these deployment types and how to choose the right one for your use, see [Deployment types for Microsoft Foundry Models (classic)](../foundry-models/concepts/deployment-types.md).
+The available serverless deployment types include: Global Standard, Global Provisioned, Global Batch, Data Zone Standard, Data Zone Provisioned, Data Zone Batch, Standard, Regional Provisioned, and Developer. To learn more about these deployment types and how to choose the right one for your use, see [Deployment types for Microsoft Foundry Models](../foundry-models/concepts/deployment-types.md).
 
 ### Billing for serverless deployments
 
@@ -210,23 +197,23 @@ The discovery, subscription, and consumption experience for models deployed as s
 
 Foundry Models from partners and community are billed through Azure Marketplace, in accordance with the [Microsoft Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms).
 
-Foundry Models sold directly by Azure are billed via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but they aren't subject to Azure service terms. Use of these models is subject to the provided license terms.  
+Foundry Models sold directly by Azure are billed via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but they aren't subject to Azure service terms. Use of these models is subject to the provided license terms. 
 
 ### Fine-tuning models
 
-Certain models also support fine-tuning. For these models, you can use managed compute or serverless deployments fine-tuning to tailor the models by using data that you provide. For more information, see [Fine-tune models with Microsoft Foundry (classic)](../concepts/fine-tuning-overview.md).
+Certain models also support fine-tuning. For these models, you can use managed compute or serverless deployments fine-tuning to tailor the models by using data that you provide. For more information, see [Fine-tune models with Microsoft Foundry (classic)](../../foundry-classic/concepts/fine-tuning-overview.md).
 
 ### RAG with models deployed as serverless deployments
 
-In the Foundry portal, use vector indexes and retrieval-augmented generation (RAG) with models deployed via serverless deployments to generate embeddings and inferencing based on custom data. These embeddings and inferencing can then generate answers specific to your use case. For more information, see [Build and consume vector indexes in Microsoft Foundry portal (classic)](../how-to/index-add.md).
+In the Foundry portal, use vector indexes and retrieval-augmented generation (RAG) with models deployed via serverless deployments to generate embeddings and inferencing based on custom data. These embeddings and inferencing can then generate answers specific to your use case. For more information, see [Build and consume vector indexes in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/index-add.md).
 
 ### Regional availability of offers and models
 
-Pay-per-token billing is available only to users whose Azure subscription belongs to a billing account in a country or region where the model provider has made the offer available. If the offer is available in the relevant region, the user must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless deployments (classic)](../how-to/deploy-models-serverless-availability.md) for detailed information.
+Pay-per-token billing is available only to users whose Azure subscription belongs to a billing account in a country or region where the model provider has made the offer available. If the offer is available in the relevant region, the user must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in serverless deployments (classic)](../../foundry-classic/how-to/deploy-models-serverless-availability.md) for detailed information.
 
 ### Content safety for models deployed via serverless deployments
 
-[!INCLUDE [content-safety-serverless-models](../includes/content-safety-serverless-models.md)]
+[!INCLUDE [content-safety-serverless-models](../../foundry-classic/includes/content-safety-serverless-models.md)]
 
 ### Network isolation for models deployed via serverless deployments
 
@@ -249,16 +236,16 @@ To set the public network access flag for the Foundry hub:
 - Currently, [Azure OpenAI On Your Data](/azure/ai-foundry/openai/concepts/use-your-data) support isn't available for serverless deployments in private hubs, because private hubs have the public network access flag disabled.
 
 - Any network configuration change (for example, enabling or disabling the public network access flag) might take up to five minutes to propagate.
-
+ 
 ## Model lifecycle: deprecation and retirement
 
 AI models evolve fast, and when a new version or a new model with updated capabilities in the same model family becomes available, older models might be retired in the Foundry model catalog. To allow for a smooth transition to a newer model version, some models let users enable automatic updates. To learn about the model lifecycle of different models, upcoming model retirement dates, and suggested replacement models and versions, see:
 
-- [Azure OpenAI in Microsoft Foundry model deprecations and retirements (classic)](../openai/concepts/model-retirements.md)
-- [Model deprecation and retirement for Microsoft Foundry Models (classic)](model-lifecycle-retirement.md)
-
+- [Azure OpenAI in Microsoft Foundry model deprecations and retirements](../openai/concepts/model-retirements.md)
+- [Model deprecation and retirement for Microsoft Foundry Models](model-lifecycle-retirement.md)
+ 
 ## Related content
 
-- [Data, privacy, and security for Azure Direct Models in Microsoft Foundry (classic)](../responsible-ai/openai/data-privacy.md)
-- [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../how-to/concept-data-privacy.md)
+- [Data, privacy, and security for Azure Direct Models in Microsoft Foundry](../responsible-ai/openai/data-privacy.md)
+- [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../../foundry-classic/how-to/concept-data-privacy.md)
 
