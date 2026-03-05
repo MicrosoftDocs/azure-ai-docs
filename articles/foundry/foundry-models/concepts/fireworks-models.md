@@ -72,33 +72,35 @@ The following Fireworks models are available in the Foundry model catalog:
 | **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions |
 | **Zhipu AI** | GLM-4.7 | `FW-GLM-4.7` | Chat completions |
 
-All catalog models support the [Azure AI Model Inference API](/rest/api/aifoundry/modelinference/) for chat completions.
+All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for chat completions.
+
+[!INCLUDE [Migration alert](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ### Use Fireworks models
 
-After you deploy a Fireworks model, you can call it using the Azure AI Inference SDK. The following example sends a chat completion request to a deployed Fireworks model.
+After you deploy a Fireworks model, you can call it using the OpenAI SDK. The following example sends a chat completion request to a deployed Fireworks model.
 
 # [Python](#tab/python)
 
 ```python
-from azure.ai.inference import ChatCompletionsClient
-from azure.ai.inference.models import UserMessage, SystemMessage
-from azure.identity import DefaultAzureCredential
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-client = ChatCompletionsClient(
-    endpoint="https://<your-foundry-resource>.services.ai.azure.com/models",
-    credential=DefaultAzureCredential(),
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default"
 )
 
-response = client.complete(
+client = OpenAI(
+    base_url="https://<your-foundry-resource>.openai.azure.com/openai/v1/",
+    api_key=token_provider,
+)
+
+response = client.chat.completions.create(
     model="FW-DeepSeek-v3.2",
     messages=[
-        SystemMessage(
-            content="You are a helpful assistant."
-        ),
-        UserMessage(
-            content="Explain the benefits of open-source AI models."
-        ),
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Explain the benefits of open-source AI models."},
     ],
 )
 
@@ -107,18 +109,17 @@ print(response.choices[0].message.content)
 
 # [REST](#tab/rest)
 
-```http
-POST https://<your-foundry-resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "model": "FW-DeepSeek-v3.2",
-  "messages": [
-    { "role": "system", "content": "You are a helpful assistant." },
-    { "role": "user", "content": "Explain the benefits of open-source AI models." }
-  ]
-}
+```bash
+curl -X POST https://<your-foundry-resource>.openai.azure.com/openai/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+    "model": "FW-DeepSeek-v3.2",
+    "messages": [
+      { "role": "system", "content": "You are a helpful assistant." },
+      { "role": "user", "content": "Explain the benefits of open-source AI models." }
+    ]
+  }'
 ```
 
 ---
