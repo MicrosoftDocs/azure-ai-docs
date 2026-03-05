@@ -47,7 +47,23 @@ You need the following role assignments:
 
 ## Create a gateway connection
 
-Use the Azure CLI to create a connection to your AI gateway. Agent Service supports two connection types: **API Management (APIM)** connections and **Model Gateway** connections.
+Use the Foundry portal or the Azure CLI to create a connection to your AI gateway. 
+
+# [Foundry portal](#tab/portal)
+
+You can connect both Azure API Management and non-Azure AI model gateways through the Foundry portal to access connected models.
+
+1. Sign into [Microsoft Foundry](https://ai.azure.com).
+1. Select **Operate > Admin console**.
+1. Open the **All projects** tab.
+1. In the list of projects, find your project and select the link in the **Parent resource** column.
+1. Select the **Admin-connected models** tab, then select **Add**.
+
+
+
+# [Azure CLI](#tab/cli)
+
+Agent Service supports two connection types: **API Management (APIM)** connections and **Model Gateway** connections.
 
 Choose the connection type that matches your gateway:
 
@@ -68,6 +84,8 @@ For detailed connection specifications, see the [connection samples on GitHub](h
    > A successful deployment returns `provisioningState: Succeeded` in the command output.
 
 1. Verify the connection in the Foundry portal. Go to the [Foundry portal](https://ai.azure.com) and select your project. Navigate to **Connected resources** in your project settings. The new connection appears with an **Active** status and the gateway endpoint URL you specified.
+
+---
 
 ## Create a prompt agent with the gateway connection
 
@@ -153,14 +171,13 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 ## Limitations
 
 - This feature is in public preview.
-- You can only use this feature through the Azure CLI and SDK.
 - Only prompt agents in the Agent SDK support this feature.
 - Supported agent tools: Code Interpreter, Functions, File Search, OpenAPI, Foundry IQ, SharePoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
-- Public networking is supported for both APIM and self-hosted gateways.
+- Public networking is supported for both API Management and self-hosted gateways.
 - For full network isolation:
   - **APIM as your AI gateway**: Deploy Foundry and APIM together using [this GitHub template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview).
   - **Self-hosted gateway**: Ensure your gateway endpoints are accessible inside the virtual network used by Agent Service.
-- This feature is different from the AI Gateway in Foundry feature, which deploys a new APIM instance with your Foundry resource. For more information, see [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal).
+- This feature is different from the AI Gateway in Foundry feature, which deploys a new API Management instance with your Foundry resource. For more information, see [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal).
 
 ## Related content
 
