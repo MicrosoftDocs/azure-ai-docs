@@ -165,7 +165,7 @@ To check that the imported logic app function works as expected, follow these st
 
 ## FAQ
 
-### What happens when you import and invoke a logic app as a function?
+### What happens when you import and invoke a logic app as a function in Foundry?
 
 Azure Logic Apps publishes an OpenAPI 2.0 definition (swagger) for workflows with a **Request** trigger, based on [workflow annotations](/rest/api/logic/workflows/list-swagger). Foundry uses this swagger file to generate a function specification and populate the function definition that the AI Assistant requires. The trigger schema and description are based on what you set up in the **Request** trigger. You can edit the swagger by updating your workflow.
 
@@ -181,7 +181,7 @@ To view the function specification in Foundry, follow these steps:
 
    :::image type="content" source="../media/how-to/assistants/logic-apps/view-function-specification.png" alt-text="Screenshot shows the function specification." lightbox="../media/how-to/assistants/logic-apps/view-function-specification.png":::
 
-### How does authentication from Foundry to Azure Logic Apps work?
+### How does authentication work for function calls from Foundry to Azure Logic Apps?
 
 Azure Logic Apps supports the following types of authentication for inbound calls to the **Request** trigger in a logic app workflow from Foundry:
 
