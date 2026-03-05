@@ -25,7 +25,7 @@ ai-usage: ai-assisted
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 > [!TIP]
-> **Looking for the current version?** This article covers SDK v1, which is deprecated. See [Set up AutoML to train computer vision models (v2)](/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2) for the current approach using SDK v2.
+> **Looking for the current version?** This article covers SDK v1, which is deprecated. See [Set up AutoML to train computer vision models (v2)](/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2&preserve-view=true) for the current approach using SDK v2.
 
 In this article, you learn how to train computer vision models on image data with automated ML in the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/).
 
@@ -45,7 +45,7 @@ Automated ML supports model training for computer vision tasks like image classi
     * [Install the `automl` package yourself](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/README.md#setup-using-a-local-conda-environment), which includes the [default installation](/python/api/overview/azure/ml/install#default-install) of the SDK.
     
     > [!NOTE]
-    > The SDK v1 AutoML computer vision support requires Python 3.7 or 3.8, both of which are past end-of-life and no longer receive security patches. For supported Python versions, use [SDK v2](/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2).
+    > The SDK v1 AutoML computer vision support requires Python 3.7 or 3.8, both of which are past end-of-life and no longer receive security patches. For supported Python versions, use [SDK v2](/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2&preserve-view=true).
 
 ## Select your task type
 Automated ML for images supports the following task types:
@@ -214,7 +214,7 @@ Object detection | **YOLOv5**: One stage object detection model   <br>  **Faster
 Instance segmentation | **MaskRCNN ResNet FPN**| `maskrcnn_resnet18_fpn` <br> `maskrcnn_resnet34_fpn` <br> ***`maskrcnn_resnet50_fpn`\****  <br> `maskrcnn_resnet101_fpn` <br> `maskrcnn_resnet152_fpn` <br>`maskrcnn_resnet50_fpn`
 
 > [!NOTE]
-> Additional model architectures (HuggingFace, MMDetection) are available in SDK v2. See the [v2 model architecture list](/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2#configure-experiments).
+> Additional model architectures (HuggingFace, MMDetection) are available in SDK v2. See the [v2 model architecture list](/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2#configure-experiments&preserve-view=true).
 
 In addition to controlling the model algorithm, you can also tune hyperparameters used for model training. While many of the hyperparameters exposed are model-agnostic, there are instances where hyperparameters are task-specific or model-specific. [Learn more about the available hyperparameters for these instances](../reference-automl-images-hyperparameters.md). 
 
