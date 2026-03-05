@@ -49,15 +49,13 @@ export AZURE_OPENAI_ENDPOINT="https://<resource>.openai.azure.com/openai/v1"
 export AZURE_OPENAI_DEPLOYMENT="gpt-4.1"
 ```
 
-To configure content recording in traces, set:
-
-```bash
-export AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED=true
-```
+To control whether content from messages and tool calls is recorded in the trace,
+pass `enable_content_recording` to the `AzureAIOpenTelemetryTracer` constructor.
+Content recording is enabled by default.
 
 > [!TIP]
-> You can also pass `enable_content_recording=False` to the class `AzureAIOpenTelemetryTracer`
-> to control whether content from messages and tool calls is recorded in the trace.
+> Set `enable_content_recording=False` in the `AzureAIOpenTelemetryTracer` constructor
+> to redact message content and tool call arguments from traces.
 
 ## Create the tracer
 
@@ -81,7 +79,8 @@ tracer = AzureAIOpenTelemetryTracer(
 **What this snippet does:** Configures a tracer that resolves the associated
 Application Insights connection string from your Foundry project endpoint and
 enables tracing for LangGraph nodes. Use `agent_id` parameter to set the attribute
-`gen_ai.agent.id` when invoking agents.
+`gen_ai.agent.id` when invoking agents. The `name` parameter sets the
+OpenTelemetry tracer name.
 
 You can also sink traces to a specific Azure Application Insights resource by specifying the
 parameter `connection_string` in the constructor or by configuring the environment
@@ -184,7 +183,6 @@ workflow = (
     )
     .add_edge("action", "agent")
     .compile(checkpointer=memory)
-    .with_config({"callbacks": [tracer]})
 )
 ```
 
@@ -238,6 +236,87 @@ The tracer supports common controls for production workflows:
   or skip specific nodes.
 - Use `message_keys` and `message_paths` when your messages are nested under a
   custom state shape, for example `chat_history`.
+
+## Understand trace structure
+
+The tracer emits spans that follow the [OpenTelemetry GenAI semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/).
+Each span type uses a specific `gen_ai.operation.name` value:
+
+| Span type | `gen_ai.operation.name` | Description |
+|---|---|---|
+| Agent/chain invocation | `invoke_agent` | Each LangGraph node or chain step. Span name is `invoke_agent {gen_ai.agent.name}`. |
+| Chat model call | `chat` | LLM inference requests. Span name is `chat {gen_ai.request.model}`. |
+| Text completion | `text_completion` | Non-chat LLM calls. |
+| Tool execution | `execute_tool` | Tool calls triggered by the model. Span name is `execute_tool {gen_ai.tool.name}`. |
+| Retriever | `execute_tool` | Retrieval operations from vector stores or search. |
+
+Spans also carry these key attributes:
+
+- `gen_ai.agent.name` — The agent or node name.
+- `gen_ai.agent.id` — Set from the `agent_id` constructor parameter.
+- `gen_ai.agent.description` — A description of the agent.
+- `gen_ai.provider.name` — The model provider (for example, `openai`, `azure.ai.inference`).
+- `gen_ai.request.model` — The model name used for inference.
+- `gen_ai.conversation.id` — Thread or session identifier, when available.
+- `gen_ai.usage.input_tokens` / `gen_ai.usage.output_tokens` — Token counts from model responses.
+- `gen_ai.input.messages` / `gen_ai.output.messages` — Message content (when content recording is enabled).
+
+### How the tracer resolves `gen_ai.agent.name`
+
+The tracer resolves the agent name from the first non-empty value in this order:
+
+1. `agent_name` in the node metadata.
+2. `langgraph_node` in the node metadata (set automatically by LangGraph).
+3. `agent_type` in the node metadata.
+4. The `name` keyword argument from the LangChain callback.
+5. `langgraph_path` (last element) if the above are generic placeholders.
+6. The serialized chain ID or class name.
+7. The `name` parameter from the `AzureAIOpenTelemetryTracer` constructor (fallback default).
+
+### How the tracer resolves `gen_ai.agent.id`
+
+The tracer resolves the agent ID from:
+
+1. `agent_id` in the node metadata (per-node override).
+2. The `agent_id` constructor parameter (default for all spans).
+
+### Customize attributes with node metadata
+
+You can set `agent_name`, `agent_id`, and `agent_description` per node using
+LangGraph metadata. Any metadata key starting with `gen_ai.` is also forwarded
+as a span attribute.
+
+```python
+config = {
+    "callbacks": [tracer],
+    "metadata": {
+        "agent_name": "support-bot",
+        "agent_id": "support-bot-v2",
+        "agent_description": "Handles customer support requests",
+        "thread_id": "session-abc-123",
+    },
+}
+result = graph.invoke({"messages": [message]}, config)
+```
+
+When using LangGraph, you can also set metadata per node in the graph definition:
+
+```python
+workflow = StateGraph(MessagesState)
+workflow.add_node(
+    "planner",
+    planner_fn,
+    metadata={
+        "agent_name": "PlannerAgent",
+        "agent_id": "planner-v1",
+        "otel_agent_span": True,
+    },
+)
+```
+
+Reference:
+- [OpenTelemetry GenAI Agent Spans](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/)
+- [OpenTelemetry GenAI Spans](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-spans/)
 
 ## View traces in Azure Monitor
 
@@ -311,7 +390,7 @@ Follow these steps:
 - If no traces appear, verify that either `connection_string` is configured or
   your project endpoint exposes telemetry.
 - If message content appears redacted, set
-  `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED=true`.
+  `enable_content_recording=True` in the `AzureAIOpenTelemetryTracer` constructor.
 - If some LangGraph nodes are missing, set `trace_all_langgraph_nodes=True` or
   add node metadata `otel_trace: True`.
 
