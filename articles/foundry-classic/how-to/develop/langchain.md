@@ -6,6 +6,7 @@ ms.custom:
   - ignite-2024
   - update-code-2
   - dev-focus
+  - classic-and-new
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.reviewer: fasantia
