@@ -9,8 +9,9 @@ ms.topic: include
 ms.date: 03/04/2026
 ms.custom: include
 ---
+## Evolution of Foundry
 
-Microsoft Foundry consolidates several previous Azure AI services and tools into a unified platform. The following table maps previous concepts to their current equivalents.
+Foundry consolidates several previous Azure AI services and tools into a unified platform. The following table maps previous concepts to their current equivalents.
 
 | Dimension | Previous | Current |
 |-----------|---------|-----|

@@ -23,15 +23,13 @@ keywords:
 
 # What is Microsoft Foundry?
 
-**Currently viewing:** :::image type="icon" source="media/yes-icon.svg" border="false"::: **Foundry** - [Switch to Foundry (classic) portal documentation](../foundry-classic/what-is-foundry.md)
+**Currently viewing:** :::image type="icon" source="media/yes-icon.svg" border="false"::: **Foundry** - [Switch to Foundry (classic) portal version](../foundry-classic/what-is-foundry.md)
 
 **Microsoft Foundry** is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
 
 Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
 
 If you're using the classic portal, see [What is Microsoft Foundry? (classic)](../foundry-classic/what-is-foundry.md).
-
-## What changed
 
 [!INCLUDE [previous-current](includes/previous-current.md)]
 
@@ -53,7 +51,9 @@ If you're using the classic portal, see [What is Microsoft Foundry? (classic)](.
 
 ## Foundry portal
 
-The [Microsoft Foundry portal](https://ai.azure.com) is where you manage projects, deploy models, build agents, and monitor your AI assets.
+The [Microsoft Foundry portal](https://ai.azure.com) is where you manage projects, deploy models, build agents, and monitor your AI assets. To use the current version, make sure the **New Foundry** toggle in the banner is set to on.
+
+:::image type="icon" source="media/version-banner/new-foundry.png" alt-text="Screenshot of New Foundry toggle in the banner.":::
 
 ### Choosing a project
 
