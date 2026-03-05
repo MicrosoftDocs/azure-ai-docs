@@ -1,10 +1,10 @@
 ---
-title: Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels  
+title: Use Azure AI Search Indexers to Ingest Microsoft Purview Sensitivity Labels  
 titleSuffix: Azure AI Search  
 description: Learn how to configure Azure AI Search indexers to ingest Microsoft Purview sensitivity labels from supported data sources for document-level security enforcement.  
 ms.service: azure-ai-search  
 ms.topic: how-to  
-ms.date: 02/26/2026  
+ms.date: 03/05/2026  
 author: gmndrg  
 ms.author: gimondra  
 ---
@@ -24,48 +24,68 @@ This functionality is available for the following data sources:
 + [SharePoint in Microsoft 365 (Preview)](search-how-to-index-sharepoint-online.md)
 + [Microsoft OneLake](search-how-to-index-onelake-files.md)
 
-> [!IMPORTANT]
-> The feature is available in all regions except West US2. Use the [REST API version 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview SDK to evaluate the feature.  
-> Portal configuration and debug mode for administrators aren't supported at this time.
-
-### Policy enforcement
-
-At query time, Azure AI Search evaluates sensitivity labels and enforces [document-level access control](search-document-level-access-overview.md) in accordance with the user's Microsoft Entra ID token and Purview label policies.  
-
-Only users authorized to access content with [READ usage right](/purview/rights-management-usage-rights) under a given label can retrieve corresponding documents in search results. There's a delay in how often the labels are pulled from a document after changed. 
-
-When configured [on a schedule](search-howto-schedule-indexers.md), the indexer pulls new documents and updates from the data source. It captures:
-- Newly added documents and their associated sensitivity labels
-- Changes in document content
-- Updates to sensitivity labels on existing documents
-  
-These updates are detected if they occurred since the last indexer run.
+:::image type="content" source="media/search-indexer-sensitivity-labels/sensitivity-label-rag-architecture.png" alt-text="Architecture diagram showing a governed RAG solution where documents labeled with Microsoft Purview sensitivity labels are indexed into Azure AI Search, and a RAG orchestrator filters query results by label so junior users see only General content while executive users see General, Confidential, and Highly Confidential content." lightbox="media/search-indexer-sensitivity-labels/sensitivity-label-rag-architecture.png":::
 
 ## Prerequisites
 
-+ [Microsoft Purview sensitivity label policies](/purview/create-sensitivity-labels) must be configured and [applied to documents](/purview/sensitivity-labels) before indexing.  
++ [Microsoft Purview sensitivity label policies](/purview/create-sensitivity-labels) must be configured and [applied to documents](/purview/sensitivity-labels) before indexing.
 
 + [Global Administrator](/entra/identity/role-based-access-control/permissions-reference#global-administrator) or [Privileged Role Administrator](/entra/identity/role-based-access-control/permissions-reference#privileged-role-administrator) roles in your Microsoft Entra tenant are required to grant the search service access to Purview APIs and sensitivity labels.
 
-+ Both the Azure AI Search service and end users querying the content must belong to the same Microsoft Entra tenant. Guest users and multitenant scenarios aren't supported.
++ Both the Azure AI Search service and end users querying the content must be in the same Microsoft Entra tenant.
 
-+ File types must be included in the [Purview sensitivity labels supported formats list](/purview/sensitivity-labels-sharepoint-onedrive-files#supported-file-types) and also be recognized as [Office supported file types](search-how-to-index-azure-blob-storage.md#supported-document-formats) by Azure AI Search indexers.
++ Source documents must use file types that are both [supported by Purview sensitivity labels](/purview/sensitivity-labels-sharepoint-onedrive-files#supported-file-types) and [supported by Azure AI Search indexers](search-how-to-index-azure-blob-storage.md#supported-document-formats).
+
++ REST API version 2025-11-01-preview or preview SDK packages.
 
 ## Limitations
 
-+ Initial release supports REST API version 2025-11-01-preview and associated beta SDK only. There's no portal experience for configuration or management.  
-+ [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs are disabled for Purview-enabled indexes, as they can't yet enforce label-based access control.  
-+ Guest accounts and cross-tenant queries aren't supported.
-+ The following indexer features don't support documents with sensitivity labels. If you use any of these features in a skillset or indexer, they don't process those documents.
++ Available in all Azure AI Search regions except West US 2.
 
-    - Custom Web API skill
-    - GenAI Prompt skill
-    - Knowledge store
-    - Indexer enrichment cache
-    - Debug sessions
++ Azure portal doesn't support this feature.
 
++ [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs aren't supported for Purview-enabled indexes.
 
-The following steps must be followed in order to configure sensitivity label synchronization in Azure AI Search.
++ [Guest accounts](/entra/external-id/b2b-quickstart-add-guest-users-portal) and cross-tenant queries aren't supported.
+
++ The following indexer features don't support documents with sensitivity labels. If you use any of these features in a skillset or indexer, documents with sensitivity labels aren't processed.
+
+  + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
+
+  + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
+
+  + [Knowledge store](knowledge-store-concept-intro.md)
+
+  + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
+  
+  + [Debug sessions](cognitive-search-debug-session.md)
+
+## How policy enforcement works
+
+Sensitivity label support has two phases: indexing and query-time enforcement.
+
+### Indexing
+
+When configured [on a schedule](search-howto-schedule-indexers.md), the indexer pulls new documents and updates from the data source. For each document, it captures:
+
+- Document content
+- The associated sensitivity label
+- Changes to content or labels since the last indexer run
+
+> [!NOTE]
+> There might be a delay between when a label changes on a document and when the indexer detects the update.
+
+### Query-time enforcement
+
+At query time, Azure AI Search evaluates sensitivity labels and enforces [document-level access control](search-document-level-access-overview.md) based on the user's Microsoft Entra ID token and Microsoft Purview label policies. Only users authorized to access content with [READ usage right](/purview/rights-management-usage-rights) under a given label can retrieve corresponding documents in search results.
+
+### End-to-end example
+
+The following images show how sensitivity labels flow from authoring to the search experience. In the first image, a user applies the **Confidential** label to a document in Microsoft Word. In the second image, an enterprise chatbot enforces that label at query time, blocking copy and share actions for confidential content.
+
+:::image type="content" source="media/search-indexer-sensitivity-labels/word-sensitivity-label-menu.jpg" alt-text="Screenshot of the Microsoft Word Sensitivity menu showing a label hierarchy including Non-Business, Public, General, Confidential with sublabels such as Project Obsidian and Recipients Only, and Highly Confidential, with the Confidential label currently applied to the document." lightbox="media/search-indexer-sensitivity-labels/word-sensitivity-label-menu.jpg":::
+
+:::image type="content" source="media/search-indexer-sensitivity-labels/chatbot-sensitivity-label-enforcement.png" alt-text="Screenshot of a Contoso enterprise chatbot displaying a policy-aware response with numbered citations, a Confidential Project Obsidian sensitivity label banner, blocked copy and share actions, and per-document sensitivity labels shown in the references panel." lightbox="media/search-indexer-sensitivity-labels/chatbot-sensitivity-label-enforcement.png":::
 
 ## 1. Enable AI Search managed identity
 
