@@ -51,8 +51,8 @@ pip install -U "langchain-azure-ai[tools]"
 pip install -U "langchain-azure-ai[opentelemetry]"
 ```
 
-- Use `[tools]` if your app uses integrations such as Document Intelligence.
-- Use `[opentelemetry]` if you want tracing integration.
+- Use `[tools]` if your app uses tools from the namespace `langchain_azure_ai.tools.*`, like Document Intelligence.
+- Use `[opentelemetry]` if you want tracing integration via OpenTelemetry.
 
 ## Choose integration building blocks
 
