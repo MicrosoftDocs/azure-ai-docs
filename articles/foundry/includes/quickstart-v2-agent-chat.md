@@ -18,13 +18,11 @@ Use the previously created agent named "MyAgent" to interact by asking a questio
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/chat-with-agent
-/quickstart-chat-with-agent.cs":::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/chat-with-agent/quickstart-chat-with-agent.cs":::
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/chat-with-agent/src
-/quickstart-chat-with-agent.ts":::
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/chat-with-agent/src/quickstart-chat-with-agent.ts":::
 
 # [Java](#tab/java) 
 

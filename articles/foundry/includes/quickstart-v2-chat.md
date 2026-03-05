@@ -22,8 +22,7 @@ Interacting with a model is the basic building block of AI applications.  Send a
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src
-/quickstart-responses.ts":::
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/responses/src/quickstart-responses.ts":::
 
 # [Java](#tab/java)
 
