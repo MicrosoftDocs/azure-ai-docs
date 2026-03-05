@@ -26,13 +26,10 @@ You can use models deployed to [!INCLUDE [classic-link](../../includes/classic-l
 
 -->
 
-- **Use the model provider's API:** Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
+This tutorial shows how to use the `langchain-azure-ai` package with LangChain using Azure AI Model Inference API. Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
 
-- **Use the Azure AI Model Inference API:** All models deployed in Microsoft Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of capabilities across most models in the catalog. Because the API is consistent, switching models is as simple as changing the deployment; no code changes are required. For LangChain, also install the `langchain-azure-ai` integration.
-
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
-
-This tutorial shows how to use the `langchain-azure-ai` package with LangChain.
+> [!IMPORANT]
+> Support for model inference using Azure AI Model Inference API requires the option `langchain-azure-ai[v1]` installed. Inference capabilities are deprecated and will be retired on May 30, 2026. Switch to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1) with a stable OpenAI SDK introduced in `langchain-azure-ai` or `langchain-openai`.
 
 ## Prerequisites
 
@@ -63,9 +60,6 @@ To run this tutorial, you need:
     ```bash
     pip install -U langchain-azure-ai[v1]
     ```
-
-> [!TIP]
-> Installing `langchain-azure-ai[v1]` uses `azure-ai-projects<2.0`.
 
 ## Configure the environment
 
