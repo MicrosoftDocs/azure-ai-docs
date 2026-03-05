@@ -805,6 +805,7 @@ To learn more about our recommendations on how to use Azure OpenAI models respon
 * `gpt-5.2-codex` (`2026-01-14`)
 * `gpt-5.2-chat` (`2026-02-10`)
 * `gpt-5.3-codex` (`2026-02-24`)
+* `gpt-5.3-chat` (`2026-03-03`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
