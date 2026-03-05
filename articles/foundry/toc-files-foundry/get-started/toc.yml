@@ -9,3 +9,5 @@ items:
   href: ../../tutorials/developer-journey-idea-to-prototype.md
 - name: Ask AI
   href: ../../concepts/ask-ai.md
+- name: Find features in the Foundry portal
+  href: ../../how-to/navigate-from-classic.md
