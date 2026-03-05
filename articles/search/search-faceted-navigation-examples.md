@@ -48,7 +48,7 @@ The following facet queries work against the [hotels-sample index](search-get-st
 
 This first query retrieves facets for Categories, Ratings, Tags, and rooms with baseRate values in specific ranges. Notice the last facet is on a subfield of the Rooms collection. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each pricing category.
 
-```rest
+```http
 POST /indexes/hotels-sample/docs/search?api-version={{api_version}}
 {  
   "search": "ocean view",  
@@ -59,7 +59,7 @@ POST /indexes/hotels-sample/docs/search?api-version={{api_version}}
 
 This second example uses a filter to narrow down the previous faceted query result after the user selects Rating 3 and category "Motel".
 
-```rest
+```http
 POST /indexes/hotels-sample/docs/search?api-version={{api_version}}
 {  
   "search": "water view",  
@@ -71,7 +71,7 @@ POST /indexes/hotels-sample/docs/search?api-version={{api_version}}
 
 The third example sets an upper limit on unique terms returned in a query. The default is 10, but you can increase or decrease this value using the count parameter on the facet attribute. This example returns facets for city, limited to 5.
 
-```rest
+```http
 POST /indexes/hotels-sample/docs/search?api-version={{api_version}}
 {  
   "search": "view",  
@@ -220,7 +220,7 @@ Notice that parentheses are processed before nesting and append operations: `A >
 
 There are several examples for facet hierarchies. The first example is a query that returns just a few documents, which is helpful for viewing a full response. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each facet bucket.
 
-```rest
+```http
 POST /indexes/hotels-sample/docs/search?api-version=2025-11-01-Preview
 {
   "search": "ocean",  
@@ -380,7 +380,7 @@ Results from this query are as follows. Both hotels have pools. For other tags, 
 
 This second example extends the previous one, demonstrating multiple top-level facets with multiple children. Notice the semicolon (`;`) operator separates each child.
 
-```rest
+```http
 POST /indexes/hotels-sample/docs/search?api-version=2025-11-01-Preview
 {  
   "search": "+ocean",  
@@ -629,7 +629,7 @@ You can sum any facetable field of a numeric data type (except vectors and geogr
 
 Here's an example using the hotels-sample index. The Rooms/SleepsCount field is facetable and numeric, so we choose this field to demonstrate sum. If we sum that field, we get the sleep count for the entire hotel. Recall that facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response sums the SleepsCount of all rooms for the entire hotel. In this query, we add a filter to sum the SleepsCount for just one hotel.
 
-```rest
+```http
 POST /indexes/hotels-sample/docs/search?api-version=2025-11-01-Preview
 
 { 
