@@ -1,5 +1,5 @@
 ---
-title: "Use the image generation tool in Foundry Agent Service (preview)"
+title: "Use the image generation tool in Foundry Agent Service"
 description: "Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output."
 services: cognitive-services
 manager: nitinme
@@ -14,8 +14,7 @@ ms.author: aashcraft
 zone_pivot_groups: selection-image-generation
 ---
 
-# Use the image generation tool (preview)
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+# Use the image generation tool
 
 > [!IMPORTANT] 
 > - The image generation tool requires the `gpt-image-1` model. See the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md?tabs=image) for limitations and responsible AI considerations.
