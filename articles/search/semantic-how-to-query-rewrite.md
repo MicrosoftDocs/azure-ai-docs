@@ -37,7 +37,7 @@ Query rewriting is an optional feature. Without query rewriting, the search serv
 
 - [Azure AI Search](search-create-service-portal.md) in any [region that provides query rewrite](search-region-support.md), with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-- An existing search index with a [semantic configuration](semantic-how-to-configure.md) and rich text content. The examples in this guide use the [hotels-sample-index](search-get-started-portal.md) sample data to demonstrate query rewriting.
+- An existing search index with a [semantic configuration](semantic-how-to-configure.md) and rich text content. The examples in this guide use the [hotels-sample index](search-get-started-portal.md) to demonstrate query rewriting.
 
 - To follow the instructions in this article, you need a web client that supports REST API requests. The examples in this article were tested with [Visual Studio Code](https://code.visualstudio.com/download) and the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension. 
 
@@ -51,7 +51,7 @@ In this REST API example, use [Search Documents (preview)](/rest/api/searchservi
 1. Paste the following request into a web client as a template. 
 
     ```http
-    POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview
+    POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-11-01-preview
     {
         "search": "newer hotel near the water with a great restaurant",
         "semanticConfiguration":"en-semantic-config",
@@ -64,7 +64,7 @@ In this REST API example, use [Search Documents (preview)](/rest/api/searchservi
     ```
 
     - Replace `search-service-name` with your search service name.
-    - Replace `hotels-sample-index` with your index name if it's different. 
+    - Replace `hotels-sample` with your index name if it's different. 
     - Set "search" to a full text search query. The search property is required for query rewriting, unless you specify [vector queries](#vector-queries-with-query-rewrite). If you specify vector queries, then the "search" text must match the `"text"` property of the `"vectorQueries"` object. Your search string can support either the [simple syntax](query-simple-syntax.md) or [full Lucene syntax](query-lucene-syntax.md).
     - Set "semanticConfiguration" to a [predefined semantic configuration](semantic-how-to-configure.md) embedded in your index.
     - Set "queryType" to "semantic". You either need to set "queryType" to "semantic" or include a nonempty "semanticQuery" property in the request. [Semantic ranking](semantic-search-overview.md) is required for query rewriting.
@@ -202,7 +202,7 @@ Here's an example of a query that includes a vector query with query rewrites. M
 - The "text" value is the same as the "search" value. These values must be identical for query rewriting to work.
 
 ```http
-POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview
+POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-11-01-preview
 {
     "search": "newer hotel near the water with a great restaurant",
     "vectorQueries": [
@@ -234,7 +234,7 @@ You might observe that the debug (test) response includes an empty array for the
 
 ```json
 {
-  "@odata.context": "https://demo-search-svc.search.windows.net/indexes('hotels-sample-index')/$metadata#docs(*)",
+  "@odata.context": "https://demo-search-svc.search.windows.net/indexes('hotels-sample')/$metadata#docs(*)",
   "@search.debug": {
     "semantic": null,
     "queryRewrites": {

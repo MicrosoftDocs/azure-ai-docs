@@ -44,12 +44,12 @@ Interval facets on date time are computed based on the UTC time if `timeoffset` 
 
 ## Basic facet example
 
-The following facet queries work against the [hotels sample index](search-get-started-portal.md). You can use **JSON view** in Search Explorer to paste in the JSON query. For help with getting started, see [Add faceted navigation to search results](search-faceted-navigation.md).
+The following facet queries work against the [hotels-sample index](search-get-started-portal.md). You can use **JSON view** in Search Explorer to paste in the JSON query. For help with getting started, see [Add faceted navigation to search results](search-faceted-navigation.md).
 
 This first query retrieves facets for Categories, Ratings, Tags, and rooms with baseRate values in specific ranges. Notice the last facet is on a subfield of the Rooms collection. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each pricing category.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
+POST /indexes/hotels-sample/docs/search?api-version={{api_version}}
 {  
   "search": "ocean view",  
   "facets": [ "Category", "Rating", "Tags", "Rooms/BaseRate,values:80|150|220" ],
@@ -60,7 +60,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
 This second example uses a filter to narrow down the previous faceted query result after the user selects Rating 3 and category "Motel".
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
+POST /indexes/hotels-sample/docs/search?api-version={{api_version}}
 {  
   "search": "water view",  
   "facets": [ "Tags", "Rooms/BaseRate,values:80|150|220" ],
@@ -72,7 +72,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
 The third example sets an upper limit on unique terms returned in a query. The default is 10, but you can increase or decrease this value using the count parameter on the facet attribute. This example returns facets for city, limited to 5.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
+POST /indexes/hotels-sample/docs/search?api-version={{api_version}}
 {  
   "search": "view",  
   "facets": [ "Address/City,count:5" ],
@@ -83,7 +83,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version={{api_version}}
 This example shows three facets for "Category", "Tags", and "Rating", with a count override on "Tags" and a range override for "Rating", which is otherwise stored as a double in the index.
 
 ```http
-POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}
+POST https://{{service_name}}.search.windows.net/indexes/hotels-sample/docs/search?api-version={{api_version}}
 {
     "search": "*",
     "facets": [ 
@@ -105,10 +105,10 @@ Each range is built using 0 as a starting point, a value from the list as an end
 
 You can formulate a query that returns a distinct value count for each facetable field. This example formulates an empty or unqualified query (`"search": "*"`) that matches on all documents, but by setting `top` to zero, you get just the counts, with no results.
 
-For brevity, this query includes just two fields marked as `facetable` in the hotels sample index.
+For brevity, this query includes just two fields marked as `facetable` in the hotels-sample index.
 
 ```http
-POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}
+POST https://{{service_name}}.search.windows.net/indexes/hotels-sample/docs/search?api-version={{api_version}}
 {
     "search": "*",
     "count": true,
@@ -221,7 +221,7 @@ Notice that parentheses are processed before nesting and append operations: `A >
 There are several examples for facet hierarchies. The first example is a query that returns just a few documents, which is helpful for viewing a full response. Facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response determines the number of *hotels* that have any rooms in each facet bucket.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-11-01-Preview
+POST /indexes/hotels-sample/docs/search?api-version=2025-11-01-Preview
 {
   "search": "ocean",  
   "facets": ["Address/StateProvince>Address/City", "Tags>Rooms/BaseRate,values:50"],
@@ -381,7 +381,7 @@ Results from this query are as follows. Both hotels have pools. For other tags, 
 This second example extends the previous one, demonstrating multiple top-level facets with multiple children. Notice the semicolon (`;`) operator separates each child.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-11-01-Preview
+POST /indexes/hotels-sample/docs/search?api-version=2025-11-01-Preview
 {  
   "search": "+ocean",  
   "facets": ["Address/StateProvince > Address/City", "Tags > (Rooms/BaseRate,values:50 ; Rooms/Type)"],
@@ -390,7 +390,7 @@ POST /indexes/hotels-sample-index/docs/search?api-version=2025-11-01-Preview
 }  
 ```
 
-A partial response, trimmed for brevity, shows Tags with child facets for the rooms base rate and type. In the hotels sample index, both hotels that match to `+ocean` have rooms in each type and a pool.
+A partial response, trimmed for brevity, shows Tags with child facets for the rooms base rate and type. In the hotels-sample index, both hotels that match to `+ocean` have rooms in each type and a pool.
 
 ```json
 {
@@ -507,7 +507,7 @@ The following example shows how to escape special characters in your regular exp
 Here's an example of a facet filter that matches on Budget and Extended-Stay hotels, with Rating as a child of each hotel category.
 
 ```http
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-11-01-Preview
+POST /indexes/hotels-sample/docs/search?api-version=2025-11-01-Preview
 { 
     "search": "*", 
     "facets": ["(Category,includeTermFilter:/(Budget|Extended-Stay)/)>Rating,values:1|2|3|4|5"],
@@ -627,10 +627,10 @@ Faceting is performed in memory. Increasing `precisionThreshold` results in more
 
 You can sum any facetable field of a numeric data type (except vectors and geographic coordinates). 
 
-Here's an example using the hotels-sample-index. The Rooms/SleepsCount field is facetable and numeric, so we choose this field to demonstrate sum. If we sum that field, we get the sleep count for the entire hotel. Recall that facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response sums the SleepsCount of all rooms for the entire hotel. In this query, we add a filter to sum the SleepsCount for just one hotel.
+Here's an example using the hotels-sample index. The Rooms/SleepsCount field is facetable and numeric, so we choose this field to demonstrate sum. If we sum that field, we get the sleep count for the entire hotel. Recall that facets count the parent document (Hotels) and not intermediate subdocuments (Rooms), so the response sums the SleepsCount of all rooms for the entire hotel. In this query, we add a filter to sum the SleepsCount for just one hotel.
 
 ```rest
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-11-01-Preview
+POST /indexes/hotels-sample/docs/search?api-version=2025-11-01-Preview
 
 { 
       "search": "*",

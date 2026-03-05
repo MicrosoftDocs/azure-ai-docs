@@ -45,7 +45,7 @@ Despite their differences, the wizards follow similar workflows for content inge
 | Semantic ranking support | ❌ | ✅ |
 | Knowledge store support | ✅ | ❌ |
 
-Built-in sample data for the hotels sample index is no longer provided, but you can create an identical index by following the [Quickstart: Create an index for keyword search](search-get-started-portal.md).
+Built-in sample data for the hotels-sample index is no longer provided, but you can create an identical index by following the [Quickstart: Create an index for keyword search](search-get-started-portal.md).
 
 This article explains how the wizards work to help you with proof-of-concept testing. For step-by-step instructions, see [Try the wizards](#try-the-wizards).
 
