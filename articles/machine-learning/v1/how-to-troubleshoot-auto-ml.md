@@ -8,9 +8,10 @@ ms.reviewer: sooryar
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.date: 10/21/2021
+ms.date: 03/05/2026
 ms.topic: troubleshooting
-ms.custom: UpdateFrequency5, devx-track-python, automl, references_regions, sdkv1
+ms.custom: UpdateFrequency5, devx-track-python, automl, references_regions, sdkv1, dev-focus
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-1'
 ---
 
@@ -23,6 +24,9 @@ monikerRange: 'azureml-api-1'
 In this guide, learn how to identify and resolve known issues in your automated machine learning experiments with the [Azure Machine Learning SDK](/python/api/overview/azure/ml/intro).
 
 ## Version dependencies
+
+> [!IMPORTANT]
+> The package versions listed in this section (pandas 0.23–0.25, scikit-learn 0.20–0.22) apply only to very old SDK releases (1.12.0 and 1.13.0, from 2019–2020) and are no longer maintained. If you're still on these SDK versions, upgrade to the [latest SDK v1](/python/api/overview/azure/ml/install) or [migrate to SDK v2](/azure/machine-learning/migrate-to-v2-execution-automl).
 
 **`AutoML` dependencies to newer package versions break compatibility**. After SDK version 1.13.0, models aren't loaded in older SDKs due to incompatibility between the older versions pinned in previous `AutoML` packages, and the newer versions pinned today.
 
@@ -68,11 +72,9 @@ Resolutions depend on your `AutoML` SDK training version:
 
 * **automl_setup fails**
 
-  * On Windows, run automl_setup from an Anaconda Prompt. [Install Miniconda](https://docs.conda.io/en/latest/miniconda.html).
+  * On Windows, run automl_setup from an Anaconda Prompt. [Install Miniconda](https://docs.conda.io/projects/miniconda/en/latest/).
 
-  * Ensure that conda 64-bit version  4.4.10 or later is installed. You can check the bit with the `conda info` command. The `platform` should be `win-64` for Windows or `osx-64` for Mac. To check the version use the command `conda -V`. If you have a previous version installed, you can update it by using the command: `conda update conda`. To check  32-bit by running 
-
-  * Ensure that conda  is installed. 
+  * Ensure that a 64-bit version of conda is installed. You can check the bit with the `conda info` command. The `platform` should be `win-64` for Windows or `osx-64` for Mac. To check the version, use the command `conda -V`. If you have a previous version installed, you can update it by using the command: `conda update conda`.
 
   * Linux - `gcc: error trying to exec 'cc1plus'`
 
@@ -80,7 +82,7 @@ Resolutions depend on your `AutoML` SDK training version:
 
     1. Pass a new name as the first parameter to automl_setup to create a new conda environment. View existing conda environments using `conda env list` and remove them with `conda env remove -n <environmentname>`.
 
-* **automl_setup_linux.sh fails**: If automl_setup_linus.sh fails on Ubuntu Linux with the error: `unable to execute 'gcc': No such file or directory`
+* **automl_setup_linux.sh fails**: If automl_setup_linux.sh fails on Ubuntu Linux with the error: `unable to execute 'gcc': No such file or directory`
 
   1. Make sure that outbound ports 53 and 80 are enabled. On an Azure virtual machine, you can do this from the Azure portal by selecting the VM and clicking on **Networking**.
   1. Run the command: `sudo apt-get update`
@@ -106,6 +108,9 @@ Resolutions depend on your `AutoML` SDK training version:
 
 ## TensorFlow
 
+> [!WARNING]
+> TensorFlow 1.12.0 is no longer maintained and contains known security vulnerabilities. It's also incompatible with Python 3.9 and later. This guidance applies only to legacy environments. For current AutoML capabilities, [migrate to SDK v2](/azure/machine-learning/migrate-to-v2-execution-automl).
+
 As of version 1.5.0 of the SDK, automated machine learning does not install TensorFlow models by default. To install TensorFlow and use it with your automated ML experiments, install `tensorflow==1.12.0` via `CondaDependencies`.
 
 ```python
@@ -117,7 +122,7 @@ As of version 1.5.0 of the SDK, automated machine learning does not install Tens
 
 ## NumPy failures
 
-* **`import numpy` fails in Windows**: Some Windows environments see an error loading numpy with the latest Python version 3.6.8. If you see this issue, try with Python version 3.6.7.
+* **`import numpy` fails in Windows**: Some Windows environments see an error loading numpy with Python version 3.6.8. If you see this issue, try with Python version 3.6.7. Note that Python 3.6 reached end-of-life in December 2021. The SDK v1 requires Python 3.7 or 3.8 for `azureml-automl` packages. Consider [migrating to SDK v2](/azure/machine-learning/migrate-to-v2-execution-automl), which supports current Python versions.
 
 * **`import numpy` fails**: Check the TensorFlow version in the automated ml conda environment. Supported versions are < 1.13. Uninstall TensorFlow from the environment if version is >= 1.13.
 
@@ -131,9 +136,13 @@ You can check the version of TensorFlow and uninstall as follows:
 
 Exact error message: `jwt.exceptions.DecodeError: It is required that you pass in a value for the "algorithms" argument when calling decode()`.
 
-For SDK versions <= 1.17.0, installation might result in an unsupported version of PyJWT. Check that the PyJWT version in the automated ml conda environment is a supported version. That is PyJWT version < 2.0.0.
+This issue affects SDK versions <= 1.17.0 only. The recommended fix is to upgrade to the latest SDK v1, which supports PyJWT 2.x:
 
-You may check the version of PyJWT as follows:
+```bash
+pip install -U azureml-sdk[automl]
+```
+
+If upgrading the SDK isn't viable, check and downgrade the PyJWT version:
 
 1. Start a command shell and activate conda environment where automated ML packages are installed.
 
@@ -141,12 +150,8 @@ You may check the version of PyJWT as follows:
 
 If the listed version is not a supported version:
 
-1. Consider upgrading to the latest version of AutoML SDK: `pip install -U azureml-sdk[automl]`
-
-1. If that is not viable, uninstall PyJWT from the environment and install the right version as follows:
-
-    1. `pip uninstall PyJWT` in the command shell and enter `y` for confirmation.
-    1. Install using `pip install 'PyJWT<2.0.0'`.
+1. `pip uninstall PyJWT` in the command shell and enter `y` for confirmation.
+1. Install using `pip install 'PyJWT<2.0.0'`.
   
 
 ## Data access
