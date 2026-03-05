@@ -64,7 +64,6 @@ pip install "azure-ai-projects>=2.0.0"
 ### Define the tool and create an agent
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -76,70 +75,76 @@ from azure.ai.projects.models import (
     PromptAgentDefinition,
 )
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+STORAGE_QUEUE_ENDPOINT = "your_storage_queue_service_endpoint"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
-    tool = AzureFunctionTool(
-        azure_function=AzureFunctionDefinition(
-            input_binding=AzureFunctionBinding(
-                storage_queue=AzureFunctionStorageQueue(
-                    queue_name=os.environ["STORAGE_INPUT_QUEUE_NAME"],
-                    queue_service_endpoint=os.environ["STORAGE_QUEUE_SERVICE_ENDPOINT"],
-                )
-            ),
-            output_binding=AzureFunctionBinding(
-                storage_queue=AzureFunctionStorageQueue(
-                    queue_name=os.environ["STORAGE_OUTPUT_QUEUE_NAME"],
-                    queue_service_endpoint=os.environ["STORAGE_QUEUE_SERVICE_ENDPOINT"],
-                )
-            ),
-            function=AzureFunctionDefinitionFunction(
-                name="GetWeather",
-                description="Get the weather in a location.",
-                parameters={
-                    "type": "object",
-                    "properties": {
-                        "location": {
-                            "type": "string",
-                            "description": "The location to look up.",
-                        }
-                    },
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Define the Azure Function tool
+tool = AzureFunctionTool(
+    azure_function=AzureFunctionDefinition(
+        input_binding=AzureFunctionBinding(
+            storage_queue=AzureFunctionStorageQueue(
+                queue_name="get-weather-input-queue",
+                queue_service_endpoint=STORAGE_QUEUE_ENDPOINT,
+            )
+        ),
+        output_binding=AzureFunctionBinding(
+            storage_queue=AzureFunctionStorageQueue(
+                queue_name="get-weather-output-queue",
+                queue_service_endpoint=STORAGE_QUEUE_ENDPOINT,
+            )
+        ),
+        function=AzureFunctionDefinitionFunction(
+            name="GetWeather",
+            description="Get the weather in a location.",
+            parameters={
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The location to look up.",
+                    }
                 },
-            ),
-        )
-    )
-
-    agent = project_client.agents.create_version(
-        agent_name="azure-function-agent-get-weather",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful support agent. Answer the user's questions to the best of your ability.",
-            tools=[tool],
+            },
         ),
     )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+)
+
+# Create the agent with the Azure Function tool
+agent = project.agents.create_version(
+    agent_name="azure-function-agent-get-weather",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful support agent. Answer the user's questions to the best of your ability.",
+        tools=[tool],
+    ),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 ```
 
 ### Create a response
 
 ```python
-    response = openai_client.responses.create(
-        input="What is the weather in Seattle, WA?",
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+response = openai.responses.create(
+    input="What is the weather in Seattle, WA?",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    print(f"Response: {response.output_text}")
+print(f"Response: {response.output_text}")
 ```
 
 ### Clean up
 
 ```python
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
 ```
 
 ### Write the Azure Function
@@ -227,9 +232,9 @@ using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI;
 using Azure.Identity;
 
-var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var storageQueueUri = Environment.GetEnvironmentVariable("STORAGE_QUEUE_URI");
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var storageQueueUri = "your_storage_queue_service_endpoint";
 
 AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
@@ -271,7 +276,7 @@ AzureFunctionTool azureFnTool = new(
     )
 );
 
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful support agent. Answer the user's questions "
         + "to the best of your ability.",
@@ -401,20 +406,19 @@ Add the Azure AI Agents dependency to your `pom.xml`:
 import com.azure.ai.agents.*;
 import com.azure.ai.agents.models.*;
 import com.azure.core.util.BinaryData;
-import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
 import java.util.*;
 
-String endpoint = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_ENDPOINT");
-String model = Configuration.getGlobalConfiguration().get("AZURE_AGENTS_MODEL");
-String storageQueueUri = Configuration.getGlobalConfiguration().get("STORAGE_QUEUE_URI");
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+String projectEndpoint = "your_project_endpoint";
+String storageQueueUri = "your_storage_queue_service_endpoint";
 
 AgentsClientBuilder builder = new AgentsClientBuilder()
     .credential(new DefaultAzureCredentialBuilder().build())
-    .endpoint(endpoint)
+    .endpoint(projectEndpoint)
     .serviceVersion(AgentsServiceVersion.getLatest());
 
 AgentsClient agentsClient = builder.buildAgentsClient();
@@ -441,7 +445,7 @@ AzureFunctionTool azureFnTool = new AzureFunctionTool(
     )
 );
 
-PromptAgentDefinition agentDefinition = new PromptAgentDefinition(model)
+PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
     .setInstructions("You are a helpful support agent. Answer the user's "
         + "questions to the best of your ability.")
     .setTools(Collections.singletonList(azureFnTool));
@@ -553,22 +557,20 @@ npm install @azure/ai-projects @azure/identity
 ```typescript
 import { AIProjectClient } from "@azure/ai-projects";
 import { DefaultAzureCredential } from "@azure/identity";
-import "dotenv/config";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "";
-const storageQueueEndpoint = process.env["STORAGE_QUEUE_SERVICE_ENDPOINT"] || "";
-const inputQueueName = process.env["STORAGE_INPUT_QUEUE_NAME"] || "input";
-const outputQueueName = process.env["STORAGE_OUTPUT_QUEUE_NAME"] || "output";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const STORAGE_QUEUE_ENDPOINT = "your_storage_queue_service_endpoint";
 
-const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-const openAIClient = project.getOpenAIClient();
+// Create clients to call Foundry API
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = project.getOpenAIClient();
 
 const agent = await project.agents.createVersion(
   "azure-function-agent-get-weather",
   {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions:
       "You are a helpful support agent. Answer the user's questions to the best of your ability.",
     tools: [
@@ -591,15 +593,15 @@ const agent = await project.agents.createVersion(
           input_binding: {
             type: "storage_queue",
             storage_queue: {
-              queue_service_endpoint: storageQueueEndpoint,
-              queue_name: inputQueueName,
+              queue_service_endpoint: STORAGE_QUEUE_ENDPOINT,
+              queue_name: "get-weather-input-queue",
             },
           },
           output_binding: {
             type: "storage_queue",
             storage_queue: {
-              queue_service_endpoint: storageQueueEndpoint,
-              queue_name: outputQueueName,
+              queue_service_endpoint: STORAGE_QUEUE_ENDPOINT,
+              queue_name: "get-weather-output-queue",
             },
           },
         },
@@ -613,7 +615,7 @@ console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${age
 ### Create a response
 
 ```typescript
-const response = await openAIClient.responses.create(
+const response = await openai.responses.create(
   {
     input: "What is the weather in Seattle, WA?",
   },
@@ -711,7 +713,7 @@ curl --request POST \
     "description": "Agent with Azure Function tool",
     "definition": {
       "kind": "prompt",
-      "model": "gpt-4o-mini",
+      "model": "gpt-5-mini",
       "instructions": "You are a helpful support agent. Answer the user's questions to the best of your ability.",
       "tools": [
         { 
