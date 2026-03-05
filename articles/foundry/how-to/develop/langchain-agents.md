@@ -561,8 +561,13 @@ To view the traces, it's important to understand that there are *two agents* her
 2. The entire LangGraph graph, which is composed as the multiple nodes.
 
 You can view Foundry agent traces using the [Foundry portal](https://ai.azure.com),
-but to view the trace of the LangGraph agent, you need to use Azure Monitor in
-the [Azure portal](https://portal.azure.com).
+but to view the trace of the LangGraph agent while developing, you need to use 
+Azure Monitor in the [Azure portal](https://portal.azure.com).
+
+> [!TIP]
+> LangChain and LangGraph applications can be registered in Foundry Control Plane
+> for governance. Then, you can use [Foundry portal](https://ai.azure.com)
+> to view traces. See [View traces in Foundry Control Plane](langchain-traces.md#view-traces-in-foundry-control-plane).
 
 To view the traces using Azure Monitor:
 
