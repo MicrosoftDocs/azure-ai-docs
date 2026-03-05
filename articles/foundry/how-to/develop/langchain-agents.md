@@ -44,13 +44,9 @@ pip install langchain-azure-ai[tools,opentelemetry,v2] azure-identity
 
 Set your environment variables that we use in this tutorial:
 
-```python
-import os
-
-os.environ["AZURE_AI_PROJECT_ENDPOINT"] = (
-	"https://<resource>.ai.azure.com/api/projects/<project_id>"
-)
-os.environ["MODEL_DEPLOYMENT_NAME"] = "gpt-4.1"
+```bash
+export AZURE_AI_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
+export MODEL_DEPLOYMENT_NAME="gpt-4.1"
 ```
 
 ## Using Foundry Agent Service agents
@@ -96,7 +92,7 @@ print(f"Agent created with ID: {factory.get_agents_id_from_graph(agent)}")
 ```
 
 ```output
-Agent with ID {'my-echo-agent:1'} created.
+Agent created with ID: {'my-echo-agent:1'}
 ```
 
 Invoke the agent:
@@ -303,7 +299,11 @@ are all built-in tools and only work with `create_prompt_agent`.
 
 ### Example: use code interpreter tool
 
-Create a code interpreter agent for data analysis:
+Create a code interpreter agent for data analysis and invoke it with a fictitious
+`data.csv` data file.
+
+Before running this sample, create a local `data.csv` file in your current
+working directory.
 
 ```python
 import base64
@@ -403,7 +403,10 @@ Name: image-generator-agent
 Any Foundry Agent Service tool can be used with `create_prompt_agent`. Use `AgentServiceBaseTool` 
 to wrap tools from the Azure AI Projects SDK and attach them to your prompt agent.
 
-The following examples hows how to use a `FileSearchTool`:
+Before running this sample, make sure the vector store ID exists in your
+project.
+
+The following example shows how to use a `FileSearchTool`:
 
 ```python
 from azure.ai.projects.models import FileSearchTool
@@ -520,9 +523,10 @@ Azure Cosmos DB supports multiple APIs, ...
 ## Observability
 
 When you compose solutions using Foundry Agent Service and LangGraph, certain
-pieces run in the Agent Service while other run where your code is executing.
+pieces run in the Agent Service while others run where your code executes.
 
-The class `AzureOpenTelemetryTracer` allow you to trace end-to-end solutions
+The class `AzureAIOpenTelemetryTracer` allows you to trace end-to-end
+solutions
 built with LangGraph using the OpenTelemetry standard, which is supported by
 the Agent Service.
 
@@ -538,12 +542,12 @@ tracer = AzureAIOpenTelemetryTracer(
 mcp_agent = mcp_agent.with_config({ "callbacks": [tracer] })
 ```
 
-**What this snippet does:** Creates an instance of `AzureOpenTelemetryTracer`
+**What this snippet does:** Creates an instance of `AzureAIOpenTelemetryTracer`
 to send traces to Azure Application Insights using OpenTelemetry standard. It
 sets the parameter `agent_id` to identify traces by setting the property 
-`gen_ai.agent.id` in spans of type *agent_invoke*. `AzureOpenTelemetryTracer`
+`gen_ai.agent.id` in spans of type *agent_invoke*. `AzureAIOpenTelemetryTracer`
 requires a connection string to Azure Application Insights. In this case, it's
-not indicated because we have set up the environment variable 
+not shown because you set the environment variable
 `AZURE_AI_PROJECT_ENDPOINT`, which the class can use to detect the connection
 string to the Azure Application Insights associated with the project. You can
 pass any connection string you need. 
@@ -580,6 +584,8 @@ To view the traces using Azure Monitor:
 ## Clean up agents
 
 Delete agents you created in samples to avoid leaving unused resources. 
+
+Delete only agents that you created in your session.
 
 ```python
 factory.delete_agent(math_agent)	
@@ -619,17 +625,10 @@ logging.basicConfig(level=logging.DEBUG)
 
 ### Validate configuration early
 
-- Confirm `AZURE_AI_PROJECT_ENDPOINT` points to the correct project endpoint.
+- Confirm `AZURE_AI_PROJECT_ENDPOINT` points to the correct project endpoint and you are using a Foundry project with the new experience.
 - Confirm `MODEL_DEPLOYMENT_NAME` matches an existing deployed model.
 - Verify authentication context with `az account show`.
-- Use a minimal `create_prompt_agent` example first, then add tools.
-
-### Isolate tool and workflow failures
-
-- Test tools one at a time before combining them in a multi-tool agent.
-- Keep prompts deterministic while debugging to reduce variability.
-- For MCP approval flows, verify `thread_id` and `checkpointer` are set.
-- For file-based messages, verify `mime_type` and base64 encoding are correct.
+- Use a minimal `create_prompt_agent` example first.
 
 ### Verify resource and permission access
 
@@ -639,11 +638,8 @@ logging.basicConfig(level=logging.DEBUG)
 - If a tool requires a specific resource type, verify that resource is
 	provisioned in the correct subscription and region.
 
-### Use async and cleanup practices
-
-- Use `try/finally` to ensure temporary agents are deleted.
-- Keep one request path synchronous while debugging, then introduce async.
-- Reuse a single `AgentServiceFactory` instance during a session.
+> [!div class="nextstepaction"]
+> [Use Foundry Memory with LangChain and LangGraph](langchain-memory.md)
 
 ## Related content
 

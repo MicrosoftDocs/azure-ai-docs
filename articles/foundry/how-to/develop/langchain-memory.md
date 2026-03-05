@@ -38,11 +38,12 @@ in LangChain or LangGraph runtime state.
 
 ### Configure your environment
 
-Install the package `langchain-azure-ai` to use Microsoft Foundry capabilities in LangGraph and LangChain. Use the
-`[v2]` extra to enable the latest Foundry Agent Service features.
+Install the required packages for this tutorial. Use `langchain-azure-ai` for
+LangChain and LangGraph integration, `azure-ai-projects` for memory store
+management, and `azure-identity` for authentication.
 
 ```bash
-pip install langchain-azure-ai[v2]
+pip install -U "langchain-azure-ai[v2]" azure-ai-projects azure-identity
 ```
 
 Set your environment variables that we use in this tutorial:
@@ -63,7 +64,7 @@ Foundry Memory stores and retrieves two long-term memory types:
 	name or dietary constraints.
 - Chat summary memory: distilled summaries of prior discussion topics.
 
-Memory uses the idea of "scope" to partition information so it can be store and retrieved consistently. Scopes
+Memory uses the idea of "scope" to partition information so it can be stored and retrieved consistently. Scopes
 are like identifiers or keys to organize information.
 
 - You can use *user IDs* as the stable identity for long-term memory. Keep it the same across
@@ -129,11 +130,11 @@ the memory store, and enables user profile plus chat summary extraction.
 
 ## Using memory in LangGraph and LangChain
 
-Foundry Memory integrates in LangGraph and LangChain by introducing 2 objects:
+Foundry Memory integrates in LangGraph and LangChain by introducing two objects:
 
-* The class `langchain_azure_ai.chat_message_history.AzureAIMemoryChatMessageHistory`
-that creates a memory-backed chat history.
-* The class `langchain_azure_ai.retriever.AzureAIMemoryRetriever` that creates a way to retrieve
+* The class `langchain_azure_ai.chat_message_histories.AzureAIMemoryChatMessageHistory`
+creates a memory-backed chat history.
+* The class `langchain_azure_ai.retrievers.AzureAIMemoryRetriever` allows retrieval of
 memories from the chat message history.
 
 In general, you can use the following practical retrieval strategies with them:
@@ -156,8 +157,9 @@ This example uses a stable `user_id` as the memory scope. Use `session_id` for p
 conversation context.
 
 ```python
-from langchain_azure_ai.chat_message_history import AzureAIMemoryChatMessageHistory
-from langchain_azure_ai.retriever import AzureAIMemoryRetriever
+from langchain_azure_ai.chat_message_histories import AzureAIMemoryChatMessageHistory
+from langchain_azure_ai.retrievers import AzureAIMemoryRetriever
+from langchain_core.chat_history import InMemoryChatMessageHistory
 
 session_histories: dict[tuple[str, str], AzureAIMemoryChatMessageHistory] = {}
 
@@ -166,16 +168,16 @@ def get_session_history(
 	session_id: str,
 ) -> AzureAIMemoryChatMessageHistory:
 	cache_key = (user_id, session_id)
-	if cache_key not in _session_histories:
-		_session_histories[cache_key] = AzureAIMemoryChatMessageHistory(
+	if cache_key not in session_histories:
+		session_histories[cache_key] = AzureAIMemoryChatMessageHistory(
 			client=client,
 			store_name=store_name,
 			scope=user_id,
 			session_id=session_id,
-			base_history_factory=base_history_factory,
+			base_history_factory=InMemoryChatMessageHistory(),
 			update_delay=0,
 		)
-	return _session_histories[cache_key]
+	return session_histories[cache_key]
 
 
 def get_foundry_retriever(
@@ -197,10 +199,19 @@ Let's create a runnable to implement the loop:
 
 ```python
 from typing import Any
+import os
 
+from azure.identity import DefaultAzureCredential
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import ConfigurableFieldSpec, RunnablePassthrough
 from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+
+llm = AzureAIChatCompletionsModel(
+	endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+	credential=DefaultAzureCredential(),
+	model=os.environ["AZURE_OPENAI_DEPLOYMENT"],
+)
 
 prompt = ChatPromptTemplate.from_messages(
 	[
@@ -434,6 +445,9 @@ Before moving to production, validate these constraints:
 
 Also plan defensive controls for memory poisoning or prompt-injection attempts.
 Validate untrusted inputs before they influence stored memory.
+
+> [!div class="nextstepaction"]
+> [Trace LangChain and LangGraph apps](langchain-trace.md)
 
 ## Related content
 
