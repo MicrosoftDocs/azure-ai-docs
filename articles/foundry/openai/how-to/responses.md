@@ -4,7 +4,7 @@ description: "Learn how to use the Azure OpenAI Responses API to create, retriev
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 01/14/2026
+ms.date: 03/05/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -1411,6 +1411,7 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5.4` (Version:`2026-03-05`)
 - `gpt-5.3-chat` (Version: `2026-03-03`)
 - `gpt-5.3-codex` (Version: `2026-02-24`)
 - `gpt-5.2-codex` (Version: `2026-01-14`)
