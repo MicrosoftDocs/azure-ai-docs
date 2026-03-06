@@ -100,9 +100,6 @@ Fireworks model deployments made available via Foundry send inference traffic ou
 > [!IMPORTANT]
 > Because inference is performed on Fireworks infrastructure, review the Fireworks data handling policies before deploying models with sensitive data.
 
-> [!NOTE]
-> If your network restricts outbound traffic, ensure your firewall allows connectivity to the Fireworks AI inference endpoints.
-
 Consult the Fireworks AI [Trust Center](https://trust.fireworks.ai/) to review their Data Processing Addendum and certifications and their [Privacy Notice](https://fireworks.ai/privacy-policy) to understand their privacy commitment.
 
 ## Frequently asked questions

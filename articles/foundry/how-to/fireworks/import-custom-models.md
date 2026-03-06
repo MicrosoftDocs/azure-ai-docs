@@ -136,8 +136,8 @@ If you encounter issues during import or deployment, use the following table to 
 Explore the following resources to learn more about Fireworks models, deployment options, and authentication in Foundry.
 
 * [Fireworks models in Foundry](use-fireworks-models.md)
-* [Deploy Foundry Models in the portal](../../foundry-models/how-to/how-to/deploy-foundry-models.md)
+* [Deploy Foundry Models in the portal](../../foundry-models/how-to/deploy-foundry-models.md)
 * [Deploy models using Azure CLI and Bicep](../../foundry-models/how-to/create-model-deployments.md)
-* [Deployment types](../../foundry-models/concepts/concepts/deployment-types.md)
+* [Deployment types](../../foundry-models/concepts/deployment-types.md)
 * [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
 * [Configure keyless authentication with Microsoft Entra ID](../../foundry-models/how-to/configure-entra-id.md)
