@@ -73,13 +73,14 @@ Follow these steps to create a Go application and install the Speech SDK.
        defer speechRecognizer.Close()
 
        fmt.Println("Speak into your microphone.")
-       speechRecognitionResult, err := speechRecognizer.RecognizeOnceAsync()
-       if err != nil {
-           fmt.Println("Got an error: ", err)
+       outcome := <-speechRecognizer.RecognizeOnceAsync()
+       defer outcome.Close()
+       if outcome.Error != nil {
+           fmt.Println("Got an error: ", outcome.Error)
            return
        }
 
-       fmt.Println("RECOGNIZED: Text=", speechRecognitionResult.Text)
+       fmt.Println("RECOGNIZED: Text=", outcome.Result.Text)
    }
    ```
 
