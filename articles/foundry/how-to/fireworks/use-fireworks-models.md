@@ -43,7 +43,7 @@ While in preview, **Fireworks requires an administrator to enable the preview fe
 
 1. From the left menu, under **Settings**, select **Preview features**.
 
-1. Search for and select the **Fireworks AI on Foundry** preview feature.
+1. Search for and select the **Fireworks on Foundry** preview feature.
 
 1. Review the terms provided in the **Description** and the [data privacy](#data-privacy) section in this documentation.
 
@@ -54,7 +54,7 @@ While in preview, **Fireworks requires an administrator to enable the preview fe
 The **Preview features** screen refreshes and the preview feature's **State** is displayed. It might take up to 30 minutes for the feature to enable for your subscription.
 
 > [!TIP]
-> To verify registration, refresh the **Preview features** page and confirm the **State** column shows **Registered** for the **Fireworks AI on Foundry** feature.
+> To verify registration, refresh the **Preview features** page and confirm the **State** column shows **Registered** for the **Fireworks on Foundry** feature.
 
 After the feature is enabled, you can deploy Fireworks models from the Foundry model catalog. Browse available models in the [Available catalog models](#available-catalog-models) section, or [import your own custom model](import-custom-models.md).
 
@@ -64,28 +64,23 @@ The following Fireworks models are available in the Foundry model catalog:
 
 | Model provider | Model name | Model ID | Type |
 | --- | --- | --- | --- |
-| **DeepSeek** | DeepSeek v3.1 | `FW-DeepSeek-v3.1` | Chat completions |
 | **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions |
-| **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions (reasoning) |
-| **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions |
+| **MiniMax** | MiniMax 2.5 | `FW-MiniMax-2.5` | Chat completions |
 | **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions |
 | **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions |
-| **Zhipu AI** | GLM-4.7 | `FW-GLM-4.7` | Chat completions |
+| **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions |
 
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for chat completions.
 
 ## Custom models (bring your own model)
 
-In addition to the catalog models, Fireworks on Foundry supports importing and deploying your own custom model weights. This BYOM capability lets you run proprietary or fine-tuned open-weight models within the Foundry ecosystem, with Fireworks handling the inference runtime on on-demand GPU-backed infrastructure.
+In addition to the catalog models, Fireworks on Foundry supports importing and deploying your own custom model weights. This BYOM capability lets you run proprietary or fine-tuned open-weight models within the Foundry ecosystem, with inference provided by the optimized Fireworks cloud.
 
 ### Supported model architectures
 
 Custom models must be based on one of the following supported architectures:
 
 * **DeepSeek** (V3.1, V3.2)
-* **Llama** (3, 3.1, 4)
-* **Mistral**
-* **Qwen** (2.5, 2.5-VL, 3)
 * **Kimi** (K2, K2.5)
 * **GLM** (4.7, 4.8)
 * **OpenAI** gpt-oss-120b
