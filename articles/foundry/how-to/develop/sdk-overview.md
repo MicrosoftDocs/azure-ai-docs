@@ -9,7 +9,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 02/06/2026
+ms.date: 03/06/2026
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -90,15 +90,14 @@ This approach simplifies application configuration. Instead of managing multiple
 
 | SDK Version   | Portal Version  | Status  | Python Package                |
 |---------------|-----------------|---------|-------------------------------|
-| 2.x (preview) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0b1 --pre`  |
+| 2.x (GA) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0`  |
 | 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    |
 
 The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run these commands to install the preview packages for Foundry projects.
+Run this command to install the preview packages for Foundry projects.
 ```bash
-pip install --pre azure-ai-projects
-pip install azure-identity openai
+pip install azure-ai-projects >=2.0.0
 ```
 ::: zone-end
 
