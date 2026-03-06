@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Set up your environment (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../includes/agents-classic.md)]
 
 In this article, you deploy the infrastructure needed to create agents with Foundry Agent Service. After completing this setup, you can create and configure agents using either the SDK of your choice or the Foundry portal.
 

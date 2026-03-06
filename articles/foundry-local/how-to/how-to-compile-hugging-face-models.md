@@ -97,13 +97,13 @@ The `Llama-3.2-1B-Instruct` model requires Hugging Face authentication.
 ### [Bash](#tab/Bash)
 
 ```bash
-huggingface-cli login
+hf auth login
 ```
 
 ### [PowerShell](#tab/PowerShell)
 
 ```powershell
-huggingface-cli login
+hf auth login
 ```
 
 ---
@@ -112,7 +112,7 @@ huggingface-cli login
 > [Create a Hugging Face token](https://huggingface.co/docs/hub/security-tokens) and [request model access](https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct) before proceeding.
 
 > [!TIP]
-> If `huggingface-cli` isn't found, install it by running `pip install -U huggingface_hub`.
+> If `hf` isn't found, install it by running `pip install -U huggingface_hub`.
 
 Expected result: The authentication command finishes without errors.
 

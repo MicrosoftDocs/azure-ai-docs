@@ -31,7 +31,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 | Model | Region |
 |---|---|
-| `gpt-5.4` | East US2 (Global Standard & Datazone Standard) <br> Sweden Central (Global Standard) |
+| `gpt-5.4` | East US2 (Global Standard & Datazone Standard) <br> Sweden Central (Global Standard) <br> Poland Central (Global Standard) <br> South Central US (Global Standard) |
 
 - **[Registration is required for access to gpt-5.4](https://aka.ms/OAI/gpt53codexaccess).**
 

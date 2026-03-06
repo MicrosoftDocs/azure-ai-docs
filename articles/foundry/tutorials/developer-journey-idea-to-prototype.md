@@ -39,7 +39,7 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 - An Azure subscription. If you don't have one, [create one for free](https://azure.microsoft.com/free).
 - Azure CLI 2.67.0 or later, authenticated with `az login` (check with `az version`)
-- A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you don't have one: [Create a project](../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../../foundry-classic/concepts/foundry-models-overview.md)). 
+- A Foundry **project** with a deployed model (for example, `gpt-4o-mini`). If you don't have one: [Create a project](../how-to/create-projects.md) and then deploy a model (see model overview: [Model catalog](../concepts/foundry-models-overview.md)).
 - Python 3.10 or later
 - .NET SDK 8.0 or later (for the C# sample)
 - SharePoint connection configured in your project ([SharePoint tool documentation](../agents/how-to/tools/sharepoint.md))
@@ -709,4 +709,4 @@ When you no longer need them, delete the resources you created in this tutorial:
 - [Foundry Agent Service overview](../agents/overview.md)
 - [SharePoint tool documentation](../agents/how-to/tools/sharepoint.md)
 - [MCP tool integration](../agents/how-to/tools/model-context-protocol.md)
-- [Multi-agent patterns](../../foundry-classic/agents/how-to/connected-agents.md)
+- [Multi-agent patterns](../agents/how-to/tools/agent-to-agent.md)
