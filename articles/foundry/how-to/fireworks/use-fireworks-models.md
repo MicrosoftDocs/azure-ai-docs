@@ -147,10 +147,10 @@ Fireworks can be disabled at the Azure subscription level. Follow the steps to [
 ## Related content
 
 * [Import custom models into Foundry](import-custom-models.md)
-* [Deploy Foundry Models in the portal](../how-to/deploy-foundry-models.md)
-* [Foundry Models from partners and community](models-from-partners.md)
-* [Foundry model catalog overview](models-sold-directly-by-azure.md)
-* [Deployment types](deployment-types.md)
+* [Deploy Foundry Models in the portal](../../foundry-models/how-to/deploy-foundry-models.md)
+* [Foundry Models from partners and community](../../foundry-models/concepts/models-from-partners.md)
+* [Foundry model catalog overview](../../foundry-models/concepts/models-sold-directly-by-azure.md)
+* [Deployment types](../../foundry-models/concepts/deployment-types.md)
 * [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
 * [Azure built-in roles](/azure/role-based-access-control/built-in-roles#privileged)
 * [Azure preview features](/azure/azure-resource-manager/management/preview-features)

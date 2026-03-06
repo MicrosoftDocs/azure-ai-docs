@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 In this article, you learn how to import, register, and deploy your own custom model weights in Microsoft Foundry. Custom model import (also known as *bring your own model*) lets you run your proprietary or fine-tuned open-weight models within the Foundry ecosystem. [Fireworks AI](https://fireworks.ai/) handles inference on on-demand GPU-backed infrastructure, while Foundry provides governance, project management, and access controls.
 
 > [!NOTE]
-> Custom model import uses the Fireworks on Foundry integration. For an overview of available catalog models, supported architectures, data privacy, and limitations, see [Fireworks models in Foundry](fireworks-models.md).
+> Custom model import uses the Fireworks on Foundry integration. For an overview of available catalog models, supported architectures, data privacy, and limitations, see [Fireworks models in Foundry](use-fireworks-models.md).
 
 The import workflow has four steps:
 
@@ -33,7 +33,7 @@ Before you begin, make sure your Azure environment is set up and that you have t
 
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
-* The **Fireworks AI on Foundry** preview feature enabled in your subscription. For setup steps, see [Enable Fireworks on Foundry](fireworks-models.md#enable-fireworks-on-foundry).
+* The **Fireworks AI on Foundry** preview feature enabled in your subscription. For setup steps, see [Enable Fireworks on Foundry](use-fireworks-models.md#enable-fireworks-on-foundry).
 * The **Cognitive Services Contributor** role (or equivalent) on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/role-based-access-control/built-in-roles).
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) installed locally. The import workflow uses `azd` to upload model weights.
 
@@ -131,16 +131,16 @@ If you encounter issues during import or deployment, use the following table to 
 | Import fails with missing files | Verify your model directory contains all [required model files](#required-model-files), including `config.json`, weight files, an index file, and tokenizer files. |
 | Architecture mismatch | Confirm the architecture you selected matches your model. See [supported architectures](#supported-architectures). |
 | Upload times out or stalls | Check your network connection and retry. For large models, use a stable high-bandwidth connection. |
-| Deployment fails | Confirm you have sufficient quota and that the [Fireworks preview feature](fireworks-models.md#enable-fireworks-on-foundry) is enabled and registered in your subscription. |
+| Deployment fails | Confirm you have sufficient quota and that the [Fireworks preview feature](use-fireworks-models.md#enable-fireworks-on-foundry) is enabled and registered in your subscription. |
 | Quota exceeded | [Request more quota](https://aka.ms/oai/stuquotarequest) or reallocate provisioned throughput units from existing deployments. |
 
 ## Related content
 
 Explore the following resources to learn more about Fireworks models, deployment options, and authentication in Foundry.
 
-* [Fireworks models in Foundry](fireworks-models.md)
-* [Deploy Foundry Models in the portal](../how-to/deploy-foundry-models.md)
-* [Deploy models using Azure CLI and Bicep](../how-to/create-model-deployments.md)
-* [Deployment types](../concepts/deployment-types.md)
+* [Fireworks models in Foundry](use-fireworks-models.md)
+* [Deploy Foundry Models in the portal](../../foundry-models/how-to/how-to/deploy-foundry-models.md)
+* [Deploy models using Azure CLI and Bicep](../../foundry-models/how-to/create-model-deployments.md)
+* [Deployment types](../../foundry-models/concepts/concepts/deployment-types.md)
 * [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
-* [Configure keyless authentication with Microsoft Entra ID](../how-to/configure-entra-id.md)
+* [Configure keyless authentication with Microsoft Entra ID](../../foundry-models/how-to/configure-entra-id.md)
