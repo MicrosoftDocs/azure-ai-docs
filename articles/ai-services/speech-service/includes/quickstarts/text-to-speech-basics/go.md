@@ -137,7 +137,8 @@ Follow these steps to create a Go application and install the Speech SDK.
 1. Run your new console application to start speech synthesis to the default speaker.
 
    ```console
-   go run main.go
+   go mod init speech-synthesis
+   go get github.com/Microsoft/cognitive-services-speech-sdk-go
    ```
 
    > [!IMPORTANT]
