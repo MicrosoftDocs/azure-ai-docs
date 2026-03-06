@@ -9,18 +9,22 @@ ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
-ms.custom: UpdateFrequency5, sdkv1, devx-track-python
-ms.date: 03/15/2022
+ms.custom: UpdateFrequency5, sdkv1, devx-track-python, dev-focus
+ms.date: 03/06/2026
+ai-usage: ai-assisted
 #Customer intent: I'm a data scientist with ML knowledge in the natural language processing space, looking to build ML models using language specific data in Azure Machine Learning with full control of the model algorithm, hyperparameters, and training and deployment environments.
 ---
 
-# Set up AutoML to train a natural language processing model with Python (preview)
+# Set up AutoML to train a natural language processing model with Python (v1)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 [!INCLUDE [preview disclaimer](../includes/machine-learning-preview-generic-disclaimer.md)]
+
+> [!NOTE]
+> AutoML NLP reached general availability (GA) in SDK v2. For the latest features, including hyperparameter sweeping and broader Hugging Face model support, see [Set up AutoML to train an NLP model (SDK v2)](/azure/machine-learning/how-to-auto-train-nlp-models?view=azureml-api-2).
 
 In this article, you learn how to train natural language processing (NLP) models with [automated ML](../concept-automated-ml.md) in the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/).
 
@@ -35,7 +39,7 @@ You can seamlessly integrate with the [Azure Machine Learning data labeling](../
 * An Azure Machine Learning workspace with a GPU training compute. To create the workspace, see [Create workspace resources](../quickstart-create-resources.md). See [GPU optimized virtual machine sizes](/azure/virtual-machines/sizes-gpu) for more details of GPU instances provided by Azure.
 
    > [!Warning]
-   > Support for multilingual models and the use of models with longer max sequence length is necessary for several NLP use cases, such as non-english datasets and longer range documents. As a result, these scenarios may require higher GPU memory for model training to succeed, such as the NC_v3 series or the ND series. 
+   > Support for multilingual models and the use of models with longer max sequence length is necessary for several NLP use cases, such as non-english datasets and longer range documents. As a result, these scenarios may require higher GPU memory for model training to succeed, such as the [NCadsH100_v5](/azure/virtual-machines/ncads-h100-v5) series or the [NDv2](/azure/virtual-machines/ndv2-series) series. 
   
 * The Azure Machine Learning Python SDK installed. 
 
@@ -158,7 +162,7 @@ However, there are key differences:
 * You can ignore `primary_metric`, as it is only for reporting purpose. Currently, automated ML only trains one model per run for NLP and there is no model selection.
 * The `label_column_name` parameter is only required for multi-class and multi-label text classification tasks. 
 * If the majority of the samples in your dataset contain more than 128 words, it's considered long range. For this scenario, you can enable the long range text option with the `enable_long_range_text=True` parameter in your `AutoMLConfig`. Doing so, helps improve model performance but requires longer training times.
-   * If you enable long range text, then a GPU with higher memory is required such as, [NCv3](/azure/virtual-machines/ncv3-series) series  or  [ND](/azure/virtual-machines/nd-series)  series.
+   * If you enable long range text, then a GPU with higher memory is required such as, [NCadsH100_v5](/azure/virtual-machines/ncads-h100-v5) series or [NDv2](/azure/virtual-machines/ndv2-series) series.
    * The `enable_long_range_text` parameter is only available for multi-class classification tasks.
 
 
@@ -198,7 +202,7 @@ You can specify your dataset language in your `FeaturizationConfig`. BERT is als
 from azureml.automl.core.featurization import FeaturizationConfig
 
 featurization_config = FeaturizationConfig(dataset_language='{your language code}')
-automl_config = AutomlConfig("featurization": featurization_config)
+automl_config = AutoMLConfig(featurization=featurization_config)
 ```
 
 ## Distributed training
