@@ -14,7 +14,7 @@ Make sure you install the correct version of the packages as shown here.
 
 # [Python](#tab/python)
 
-1. Install these packages, including the current version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** .
+1. Install the current version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** .
 
     ```
     pip install azure-ai-projects>=2.0.0
@@ -39,7 +39,7 @@ Make sure you install the correct version of the packages as shown here.
 
 # [TypeScript](#tab/typescript)
 
-1. Install these packages, including the current version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API**.:
+1. Install the current version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API**.:
 
     ```bash
     npm install @azure/ai-projects
