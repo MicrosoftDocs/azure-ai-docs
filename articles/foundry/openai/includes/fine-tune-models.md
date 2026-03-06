@@ -14,19 +14,21 @@ ms.custom:
   - references_regions
 ---
 
-> [!NOTE]
-> The supported regions for fine-tuning might vary if you use Azure OpenAI models in a Microsoft Foundry project versus outside a project.
+The following models are supported for fine-tuning:
 
-|  Model ID  | Standard regions | Global | Developer | Max request (tokens) | Training data (up to) | Modality |
+|  Model ID  | Standard regions | Global | Developer | Methods | Status | Modality |
 |  --- | --- | :---: | :---: | :---: | --- |
-| `gpt-4o-mini` <br> (2024-07-18) | North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 65,536 | Oct 2023 | Text to text |
-| `gpt-4o` <br> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 65,536 | Oct 2023 | Text and vision to text |
-| `gpt-4.1` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text and vision to text |
-| `gpt-4.1-mini` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text to text |
-| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 32,768 | May 2024 | Text to text |
-| `o4-mini` <br> (2025-04-16) | East US2 <br> Sweden Central | ✅ | ❌ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text to text |
-| `Ministral-3B` (preview) <br> (2411) | Not supported | ✅ | ❌ | Input: 128,000 <br> Output: Unknown <br> Training example context length: Unknown | Unknown | Text to text |
-| `Qwen-32B` (preview) | Not supported | ✅ | ❌ | Input: 8,000 <br> Output: 32,000 <br> Training example context length: 8192 | July 2024 | Text to text |
+| `gpt-4o-mini` <br> (2024-07-18) | North Central US <br> Sweden Central | ✅ | ✅ | SFT | GA | Text to text |
+| `gpt-4o` <br> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text and vision to text |
+| `gpt-4.1` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text and vision to text |
+| `gpt-4.1-mini` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text to text |
+| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text to text |
+| `o4-mini` <br> (2025-04-16) | East US2 <br> Sweden Central | ✅ | ❌ | RFT | GA | Text to text |
+| `gpt-5` <br> (2025-08-07) | North Central US <br> Sweden Central | ✅ | ✅ | SFT | Private preview | Text to text |
+| `Ministral-3B` <br> (2411) | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
+| `Qwen-32B` | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
+| `Llama-3.3-70B-Instruct` | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
+| `gpt-oss-20b` | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
 
 > [!NOTE]
 > Global training provides [more affordable](https://aka.ms/aoai-pricing) training per token, but doesn't offer [data residency](https://aka.ms/data-residency). It's currently available to Foundry resources in the following regions:
