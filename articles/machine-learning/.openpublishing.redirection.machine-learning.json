@@ -4484,6 +4484,11 @@
       "source_path_from_root": "/articles/machine-learning/how-to-responsible-ai-vision-insights.md",
       "redirect_url": "/azure/machine-learning/concept-responsible-ai-dashboard",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-enable-data-collection.md",
+      "redirect_url": "/azure/machine-learning/how-to-monitor-datasets?view=azureml-api-1&tabs=python",
+      "redirect_document_id": false
     }
   ]
 }
