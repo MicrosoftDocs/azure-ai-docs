@@ -47,7 +47,7 @@ Choose from multiple development approaches based on your technical requirements
 
 ## Regional availability
 
-Custom question answering is available in select Azure regions and is **unavailable** in the following Azure regions:
+Custom question answering is **unavailable** in the following Azure regions:
 
 | Region | Authoring (**unavailable**) | Prediction (**unavailable**) |
 | --- | --- | --- |
