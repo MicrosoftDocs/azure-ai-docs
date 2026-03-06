@@ -54,16 +54,20 @@ Follow these steps to create a Go application and install the Speech SDK.
 
     func main() {
         // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-        speechKey :=  os.Getenv("SPEECH_KEY")
-        speechRegion := os.Getenv("SPEECH_REGION")
+       speechKey := os.Getenv("SPEECH_KEY")
+       endpoint := os.Getenv("ENDPOINT")
+       if speechKey == "" || endpoint == "" {
+           fmt.Println("Missing required environment variables. Set SPEECH_KEY and ENDPOINT.")
+           return
+       }
 
-        speechConfig, err := speech.NewSpeechConfigFromSubscription(speechKey, speechRegion)
-        if err != nil {
-            fmt.Println("Got an error: ", err)
-            return
-        }
-        defer speechConfig.Close()
-
+       speechConfig, err := speech.NewSpeechConfigFromEndpointWithSubscription(endpoint, speechKey)
+       if err != nil {
+           fmt.Println("Got an error: ", err)
+           return
+       }
+       defer speechConfig.Close()
+    
         // The neural multilingual voice can speak different languages based on the input text.
         speechConfig.SetSpeechSynthesisVoiceName("en-US-Ava:DragonHDLatestNeural") 
 
