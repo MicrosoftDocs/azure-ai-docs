@@ -67,7 +67,7 @@ cd foundry-samples/samples/python/enterprise-agent-tutorial/1-idea-to-prototype
 # [C#](#tab/csharp)
 
 ```bash
-git clone --depth 1 https://github.com/azure-ai-foundry/foundry-samples.git
+git clone --depth 1 https://github.com/microsoft-foundry/foundry-samples.git
 cd foundry-samples/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype
 ```
 
@@ -89,7 +89,7 @@ cd samples/python/enterprise-agent-tutorial/1-idea-to-prototype
 # [C#](#tab/csharp)
 
 ```bash
-git clone --no-checkout https://github.com/azure-ai-foundry/foundry-samples.git
+git clone --no-checkout https://github.com/microsoft-foundry/foundry-samples.git
 cd foundry-samples
 git sparse-checkout init --cone
 git sparse-checkout set samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype
@@ -116,7 +116,7 @@ After you extract the ZIP, go to `samples/python/enterprise-agent-tutorial/1-ide
 # [C#](#tab/csharp)
 
 > [!div class="nextstepaction"] 
-> [Download the C# code now](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype)
+> [Download the C# code now](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype)
 
 After you extract the ZIP, go to `samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype`.
 
@@ -534,7 +534,7 @@ The code breaks down into the following main sections:
 > For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../how-to/develop/cloud-evaluation.md). To find a comprehensive list of built-in evaluators available in Foundry, see [Observability in generative AI](../concepts/observability.md). 
 
 > [!NOTE]
-> The C# SDK uses **protocol methods** with `BinaryData` and `BinaryContent` instead of typed objects. This approach requires helper methods to parse JSON responses. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for the complete pattern.
+> The C# sample uses a local batch evaluation approach with `ProjectResponsesClient` instead of the cloud `openai_client.evals` API shown in Python. It sends queries to the agent, checks responses against expected keywords, and writes results to `evaluation_results.json`. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for cloud evaluation patterns in C#.
 
 ### Configure the evaluation
 
@@ -548,7 +548,7 @@ In Python, use the OpenAI client directly. In C#, get an `EvaluationClient` from
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="configure_evaluation":::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="load_test_data":::
 
 ---
 
@@ -568,7 +568,7 @@ Create an evaluation run that targets your agent. The `azure_ai_target_completio
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="run_cloud_evaluation":::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="run_batch_evaluation":::
 
 ---
 
@@ -589,7 +589,7 @@ Poll the evaluation run until it completes, then retrieve the detailed output it
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="retrieve_evaluation_results":::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Program.cs" id="evaluation_results":::
 
 ---
 
