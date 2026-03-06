@@ -22,7 +22,7 @@ This article covers how to use Prompt Optimizer in the Foundry portal playground
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one [prompt agent or workflow agent](../../agents/overview.md).
 - A model deployment in a [supported region](#supported-regions).
-- Access to the [agents playground](../../concepts/concept-playgrounds.md#agents-playground) or [model playground](../../concepts/concept-playgrounds.md#model-playground) in the Foundry portal.
+- Access to the [model playground](../../concepts/concept-playgrounds.md#model-playground) in the Foundry portal.
 
 ## How Prompt Optimizer works
 
@@ -46,7 +46,7 @@ To open Prompt Optimizer in the Foundry portal:
 4. Select the pencil-with-sparkle icon (✏️✨) next to the *Instructions* header. This action opens the Prompt Optimizer dialog.
 
 > [!TIP]
-> You can use Prompt Optimizer inside both the agents playground and the model playground wherever a system instructions field is present.
+> You can use Prompt Optimizer inside the model playground wherever a system instructions field is present.
 
 ## Optimize a new agent's instructions
 
