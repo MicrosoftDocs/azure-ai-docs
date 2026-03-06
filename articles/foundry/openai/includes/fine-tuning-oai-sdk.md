@@ -25,9 +25,8 @@ ms.custom:
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 
-Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
+[!INCLUDE [fine-tune-supported-models](../../../foundry/includes/fine-tune-supported-models.md)]
 
 ## Review the workflow for the Python SDK
 
