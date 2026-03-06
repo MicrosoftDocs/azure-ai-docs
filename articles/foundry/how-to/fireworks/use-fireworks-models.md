@@ -64,13 +64,11 @@ The following Fireworks models are available in the Foundry model catalog:
 
 | Model provider | Model name | Model ID | Type |
 | --- | --- | --- | --- |
-| **DeepSeek** | DeepSeek v3.1 | `FW-DeepSeek-v3.1` | Chat completions |
 | **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions |
-| **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions (reasoning) |
-| **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions |
+| **MiniMax** | MiniMax 2.5 | `FW-MiniMax-2.5` | Chat completions |
 | **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions |
 | **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions |
-| **Zhipu AI** | GLM-4.7 | `FW-GLM-4.7` | Chat completions |
+| **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions |
 
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for chat completions.
 
