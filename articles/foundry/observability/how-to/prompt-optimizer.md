@@ -20,7 +20,7 @@ This article covers how to use Prompt Optimizer in the Foundry portal playground
 
 ## Prerequisites
 
-- A [Foundry project](../how-to/create-projects.md) with at least one [prompt agent or workflow agent](../../agents/overview.md).
+- A [Foundry project](../../how-to/create-projects.md) with at least one [prompt agent or workflow agent](../../agents/overview.md).
 - A model deployment in a [supported region](#supported-regions).
 - Access to the [agents playground](../../concepts/concept-playgrounds.md#agents-playground) or [model playground](../../concepts/concept-playgrounds.md#model-playground) in the Foundry portal.
 
