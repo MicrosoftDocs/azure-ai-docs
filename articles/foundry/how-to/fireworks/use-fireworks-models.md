@@ -74,7 +74,7 @@ All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for cha
 
 ## Custom models (bring your own model)
 
-In addition to the catalog models, Fireworks on Foundry supports importing and deploying your own custom model weights. This BYOM capability lets you run proprietary or fine-tuned open-weight models within the Foundry ecosystem, with Fireworks handling the inference runtime on on-demand GPU-backed infrastructure.
+In addition to the catalog models, Fireworks on Foundry supports importing and deploying your own custom model weights. This BYOM capability lets you run proprietary or fine-tuned open-weight models within the Foundry ecosystem, with inference provided by the optimized Fireworks cloud.
 
 ### Supported model architectures
 
