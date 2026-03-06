@@ -141,8 +141,9 @@ The new agents provide the following benefits:
 - ⭐ **More models.** Generate responses by using any Foundry model either in your agent or directly as a response generation call.
 - **More features.** Web Search, File Search, Code Interpreter, MCP tool calling, image generation, and reasoning summaries.
 - **Modern API primitive.** Built on the Responses API instead of the older Assistants API.
+- **Background mode**. Support for long-running tools (like image-generation), and durable streams (supports disconnect/reconnect scenarios)
 - **Future-proof.** New features and model support are only added to the new agents.
-- **New agent types.** Create prompt-based or workflow-based agents.
+- **New agent types.** Create prompt-based, workflow-based agents, workflow-based agents (preview), and hosted agents (preview).
 
 **Enterprise readiness**
 
