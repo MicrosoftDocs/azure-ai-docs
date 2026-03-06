@@ -290,7 +290,7 @@ Each evaluation run returns output items per row in your test dataset, providing
 ## Integrate into your workflow
 
 - **CI/CD pipeline**: Use evaluation as a quality gate in your deployment pipeline. For detailed integration, see [Run evaluations with GitHub Actions](../../how-to/evaluation-github-action.md).
-- **Production monitoring**: Monitor your agent in production by using continuous evaluation. For setup instructions, see [Set up continuous evaluation](how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
+- **Production monitoring**: Monitor your agent in production by using continuous evaluation. For setup instructions, see [Set up continuous evaluation](how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation).
 
 ## Optimize and compare versions
 
