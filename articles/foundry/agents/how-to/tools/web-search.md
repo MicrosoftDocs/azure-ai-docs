@@ -396,8 +396,7 @@ public class WebSearchExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("What are the latest trends in renewable energy?")
-                .build());
+                .input("What are the latest trends in renewable energy?"));
 
         System.out.println("Response: " + response.output());
 

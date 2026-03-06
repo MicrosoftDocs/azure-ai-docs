@@ -409,8 +409,7 @@ public class CodeInterpreterChartExample {
                     + "Q1=$2.1M, Q2=$2.8M, Q3=$3.2M, Q4=$2.9M. "
                     + "Use a blue color scheme, add data labels on each bar, "
                     + "and title the chart 'Quarterly Revenue 2025'. "
-                    + "Save the chart as a PNG file.")
-                .build());
+                    + "Save the chart as a PNG file."));
 
         System.out.println("Response: " + response.output());
 

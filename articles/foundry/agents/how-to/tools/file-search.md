@@ -487,8 +487,7 @@ public class FileSearchExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("What information is in the uploaded files?")
-                .build());
+                .input("What information is in the uploaded files?"));
 
         System.out.println("Response: " + response.output());
 

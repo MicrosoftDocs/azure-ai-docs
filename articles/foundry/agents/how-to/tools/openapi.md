@@ -473,8 +473,9 @@ import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Map;
 
 public class OpenApiAgentJavaSample {
     public static void main(String[] args) throws Exception {
@@ -489,18 +490,18 @@ public class OpenApiAgentJavaSample {
         ResponsesClient responsesClient = builder.buildResponsesClient();
         ConversationsClient conversationsClient = builder.buildConversationsClient();
 
-        JsonReader reader = JsonProviders.createReader(Files.readAllBytes(Path.of("openapi_spec.json")));
+        JsonReader reader = JsonProviders.createReader(Files.readAllBytes(Paths.get("openapi_spec.json")));
         BinaryData spec = reader.getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped()));
 
         OpenApiFunctionDefinition toolDefinition = new OpenApiFunctionDefinition(
             "httpbin_get",
-            spec,
+            Map.of("spec", spec),
             new OpenApiAnonymousAuthDetails())
             .setDescription("Get request metadata from an OpenAPI endpoint.");
 
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("Use the OpenAPI tool for HTTP request metadata.")
-            .setTools(Arrays.asList(new OpenApiAgentTool(toolDefinition)));
+            .setTools(Arrays.asList(new OpenApiTool(toolDefinition)));
 
         AgentVersionDetails agentVersion = agentsClient.createAgentVersion("openapiValidationAgentJava", agentDefinition);
         System.out.println("Agent: " + agentVersion.getName() + ", version: " + agentVersion.getVersion());
@@ -544,7 +545,7 @@ public class OpenApiAgentJavaSample {
 This Java example creates an agent with an OpenAPI tool and runs a conversation-scoped response:
 
 1. Loads the OpenAPI specification from `openapi_spec.json`.
-1. Creates an agent version with `OpenApiAgentTool`.
+1. Creates an agent version with `OpenApiTool`.
 1. Creates a conversation and adds a user message.
 1. Creates a response by passing `AgentReference` and conversation ID.
 1. Cleans up by deleting the agent version.

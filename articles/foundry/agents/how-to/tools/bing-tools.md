@@ -968,8 +968,8 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class BingGroundingExample {
     public static void main(String[] args) {
@@ -986,7 +986,7 @@ public class BingGroundingExample {
 
         // Create Bing grounding tool with connection configuration
         BingGroundingTool bingTool = new BingGroundingTool(
-            new BingGroundingSearchToolParameters(List.of(
+            new BingGroundingSearchToolParameters(Arrays.asList(
                 new BingGroundingSearchConfiguration(bingConnectionId)
             ))
         );
@@ -1006,8 +1006,7 @@ public class BingGroundingExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("What are the latest developments in AI?")
-                .build());
+                .input("What are the latest developments in AI?"));
 
         System.out.println("Response: " + response.output());
 

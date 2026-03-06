@@ -688,8 +688,7 @@ public class ComputerUseExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("Open the browser and navigate to microsoft.com")
-                .build());
+                .input("Open the browser and navigate to microsoft.com"));
 
         System.out.println("Response: " + response.output());
 

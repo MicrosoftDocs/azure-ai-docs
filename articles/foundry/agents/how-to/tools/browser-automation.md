@@ -555,8 +555,7 @@ public class BrowserAutomationExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("Navigate to microsoft.com and summarize the main content")
-                .build());
+                .input("Navigate to microsoft.com and summarize the main content"));
 
         System.out.println("Response: " + response.output());
 

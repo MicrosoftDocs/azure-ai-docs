@@ -321,8 +321,8 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class FabricToolExample {
     public static void main(String[] args) {
@@ -340,7 +340,7 @@ public class FabricToolExample {
         // Create Microsoft Fabric tool with connection configuration
         MicrosoftFabricPreviewTool fabricTool = new MicrosoftFabricPreviewTool(
             new FabricDataAgentToolParameters()
-                .setProjectConnections(List.of(
+                .setProjectConnections(Arrays.asList(
                     new ToolProjectConnection(fabricConnectionId)
                 ))
         );
@@ -360,8 +360,7 @@ public class FabricToolExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("Query the latest sales data from Microsoft Fabric")
-                .build());
+                .input("Query the latest sales data from Microsoft Fabric"));
 
         System.out.println("Response: " + response.output());
 

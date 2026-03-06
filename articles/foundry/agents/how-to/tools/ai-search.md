@@ -539,8 +539,8 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class AzureAISearchExample {
     public static void main(String[] args) {
@@ -558,7 +558,7 @@ public class AzureAISearchExample {
 
         // Create Azure AI Search tool with index configuration
         AzureAISearchTool aiSearchTool = new AzureAISearchTool(
-            new AzureAISearchToolResource(List.of(
+            new AzureAISearchToolResource(Arrays.asList(
                 new AISearchIndexResource()
                     .setProjectConnectionId(searchConnectionId)
                     .setIndexName(searchIndexName)
@@ -582,8 +582,7 @@ public class AzureAISearchExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("Search for information about Azure AI services")
-                .build());
+                .input("Search for information about Azure AI services"));
 
         System.out.println("Response: " + response.output());
 

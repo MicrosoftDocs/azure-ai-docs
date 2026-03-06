@@ -689,8 +689,7 @@ public class FunctionCallingExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("What is the weather in Seattle?")
-                .build());
+                .input("What is the weather in Seattle?"));
 
         System.out.println("Response: " + response.output());
 

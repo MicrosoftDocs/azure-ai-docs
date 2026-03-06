@@ -478,8 +478,8 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
 
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class SharePointGroundingExample {
     public static void main(String[] args) {
@@ -497,7 +497,7 @@ public class SharePointGroundingExample {
         // Create SharePoint grounding tool with connection configuration
         SharepointPreviewTool sharepointTool = new SharepointPreviewTool(
             new SharepointGroundingToolParameters()
-                .setProjectConnections(List.of(
+                .setProjectConnections(Arrays.asList(
                     new ToolProjectConnection(sharepointConnectionId)
                 ))
         );
@@ -517,8 +517,7 @@ public class SharePointGroundingExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("Find the latest project documentation in SharePoint")
-                .build());
+                .input("Find the latest project documentation in SharePoint"));
 
         System.out.println("Response: " + response.output());
 

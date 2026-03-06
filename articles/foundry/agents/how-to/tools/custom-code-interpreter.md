@@ -359,8 +359,7 @@ public class CustomCodeInterpreterExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("Calculate the factorial of 10 using Python.")
-                .build());
+                .input("Calculate the factorial of 10 using Python."));
 
         System.out.println("Response: " + response.output());
 

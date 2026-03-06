@@ -769,8 +769,7 @@ public class McpToolExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("Summarize the Azure REST API specifications")
-                .build());
+                .input("Summarize the Azure REST API specifications"));
 
         System.out.println("Response: " + response.output());
 

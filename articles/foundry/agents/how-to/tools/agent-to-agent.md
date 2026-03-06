@@ -568,12 +568,12 @@ import java.util.Collections;
 
 public class AgentToAgentExample {
     public static void main(String[] args) {
-    String projectEndpoint = "https://<resource>.ai.azure.com/api/projects/<project>";
-    String a2aConnectionId = "<a2a-connection-id>";
+        String projectEndpoint = "https://<resource>.ai.azure.com/api/projects/<project>";
+        String a2aConnectionId = "<a2a-connection-id>";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
             .credential(new DefaultAzureCredentialBuilder().build())
-      .endpoint(projectEndpoint);
+            .endpoint(projectEndpoint);
 
         AgentsClient agentsClient = builder.buildAgentsClient();
         ResponsesClient responsesClient = builder.buildResponsesClient();
@@ -597,8 +597,7 @@ public class AgentToAgentExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("What can the secondary agent do?")
-                .build());
+                .input("What can the secondary agent do?"));
 
         System.out.println("Response: " + response.output());
 

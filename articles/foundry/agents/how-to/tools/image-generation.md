@@ -451,8 +451,7 @@ public class ImageGenerationExample {
         Response response = responsesClient.createWithAgent(
             agentReference,
             ResponseCreateParams.builder()
-                .input("Generate an image of a sunset over a mountain range")
-                .build());
+                .input("Generate an image of a sunset over a mountain range"));
 
         // The response output includes image_generation_call items with base64-encoded image data.
         // Extract and save the image using the response output items.
