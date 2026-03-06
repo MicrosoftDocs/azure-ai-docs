@@ -45,7 +45,6 @@ Follow these steps to create a Go application and install the Speech SDK.
         "fmt"
         "os"
         "strings"
-        "time"
 
         "github.com/Microsoft/cognitive-services-speech-sdk-go/audio"
         "github.com/Microsoft/cognitive-services-speech-sdk-go/common"
