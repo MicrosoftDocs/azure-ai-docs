@@ -20,7 +20,7 @@ zone_pivot_groups: selection-openapi-function
 > This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new OpenAPI tool documentation](../../../../foundry/agents/how-to/tools/openapi.md).
-> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../foundry/agents/overview.md). Follow the [migration guide](../../foundry/agents/how-to/migrate.md) to update your workloads.
+> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 Use this article to find step-by-step instructions and code samples for using OpenAPI based tools.
 

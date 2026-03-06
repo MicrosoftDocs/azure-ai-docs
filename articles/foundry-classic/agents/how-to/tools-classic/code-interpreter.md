@@ -18,7 +18,7 @@ zone_pivot_groups: selection-code-interpreter
 > This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new Code Interpreter documentation](../../../../foundry/agents/how-to/tools/code-interpreter.md).
-> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../foundry/agents/overview.md). Follow the [migration guide](../../foundry/agents/how-to/migrate.md) to update your workloads.
+> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
 

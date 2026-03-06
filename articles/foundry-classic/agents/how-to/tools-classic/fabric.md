@@ -19,7 +19,7 @@ zone_pivot_groups: selection-fabric-data-agent
 > This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new Fabric data agent documentation](../../../../foundry/agents/how-to/tools/fabric.md).
-> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../foundry/agents/overview.md). Follow the [migration guide](../../foundry/agents/how-to/migrate.md) to update your workloads.
+> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 Integrate your Microsoft Foundry Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 
