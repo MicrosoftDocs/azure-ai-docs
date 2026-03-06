@@ -13,8 +13,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Set up authentication for Model Context Protocol (MCP) tools (preview)
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Set up authentication for Model Context Protocol (MCP) tools
 
 Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. Proper authentication ensures your agents can securely connect to MCP servers, invoke their tools, and access protected resources while maintaining appropriate access controls.
 
