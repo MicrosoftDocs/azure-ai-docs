@@ -157,7 +157,7 @@ For current model quotas and limits, see:
 - [Azure OpenAI quotas and limits](../../openai/quotas-limits.md).
 - [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md).
 
-To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../../../openai/how-to/quota.md).
+To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../../how-to/quota.md).
 
 ## Request a limit increase
 
