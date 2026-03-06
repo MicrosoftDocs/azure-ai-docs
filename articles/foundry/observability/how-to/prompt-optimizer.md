@@ -8,6 +8,7 @@ ai-usage: ai-assisted
 ms.date: 03/13/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
+ms.custom: references_regions
 ---
 
 # Optimize agent prompts by using Prompt Optimizer (preview)
