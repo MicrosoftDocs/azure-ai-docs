@@ -51,7 +51,7 @@ To use compute targets managed by Azure Machine Learning, see:
 
 ## Limitations
 
-* **Do not create multiple, simultaneous attachments to the same compute** from your workspace. For example, attaching one Azure Kubernetes Service cluster to a workspace using two different names. Each new attachment will break the previous existing attachment(s).
+* **Do not create multiple, simultaneous attachments to the same compute** from your workspace. For example, attaching one Azure Kubernetes Service cluster to a workspace using two different names. Each new attachment breaks one or more previous existing attachments.
 
     If you want to reattach a compute target, for example to change TLS or other cluster configuration setting, you must first remove the existing attachment.
 
@@ -62,18 +62,18 @@ With Azure Machine Learning, you can train your model on various resources or en
 
 ## Local computer
 
-When you use your local computer for **training**, there is no need to create a compute target.  Just [submit the training run](how-to-set-up-training-targets.md) from your local machine.
+When you use your local computer for **training**, there's no need to create a compute target.  Just [submit the training run](how-to-set-up-training-targets.md) from your local machine.
 
-When you use your local computer for **inference**, you must have Docker installed. To perform the deployment, use [LocalWebservice.deploy_configuration()](/python/api/azureml-core/azureml.core.webservice.local.localwebservice#deploy-configuration-port-none-) to define the port that the web service will use. Then use the normal deployment process as described in [Deploy models with Azure Machine Learning](how-to-deploy-and-where.md).
+When you use your local computer for **inference**, you must have Docker installed. To perform the deployment, use [LocalWebservice.deploy_configuration()](/python/api/azureml-core/azureml.core.webservice.local.localwebservice#deploy-configuration-port-none-) to define the port that the web service uses. Then use the normal deployment process as described in [Deploy models with Azure Machine Learning](how-to-deploy-and-where.md).
 
 ## Remote virtual machines
 
 Azure Machine Learning also supports attaching an Azure Virtual Machine. The VM must be an Azure Data Science Virtual Machine (DSVM). The VM offers a curated choice of tools and frameworks for full-lifecycle machine learning development. For more information on how to use the DSVM with Azure Machine Learning, see [Configure a development environment](how-to-configure-environment.md).
 
 > [!TIP]
-> Instead of a remote VM, consider using the [Azure Machine Learning compute instance](../concept-compute-instance.md). It's a fully managed, cloud-based compute solution that is specific to Azure Machine Learning. For more information, see [create and manage Azure Machine Learning compute instance](../how-to-create-compute-instance.md).
+> Instead of a remote VM, consider using the [Azure Machine Learning compute instance](../concept-compute-instance.md). It's a fully managed, cloud-based compute solution that's specific to Azure Machine Learning. For more information, see [create and manage Azure Machine Learning compute instance](../how-to-create-compute-instance.md).
 
-1. **Create**: Azure Machine Learning cannot create a remote VM for you. Instead, you must create the VM and then attach it to your Azure Machine Learning workspace. For information on creating a DSVM, see [Provision the Data Science Virtual Machine for Linux (Ubuntu)](../data-science-virtual-machine/dsvm-ubuntu-intro.md).
+1. **Create**: Azure Machine Learning can't create a remote VM for you. Instead, you must create the VM and then attach it to your Azure Machine Learning workspace. For information on creating a DSVM, see [Provision the Data Science Virtual Machine for Linux (Ubuntu)](../data-science-virtual-machine/dsvm-ubuntu-intro.md).
 
     > [!WARNING]
     > Azure Machine Learning only supports virtual machines that run **Ubuntu**. When you create a VM or choose an existing VM, you must select a VM that uses Ubuntu.
@@ -83,7 +83,7 @@ Azure Machine Learning also supports attaching an Azure Virtual Machine. The VM 
 1. **Attach**: Attach the DSVM to your workspace [using Azure Machine Learning studio](../how-to-create-attach-compute-studio.md#other-compute-targets).
 
     > [!WARNING]
-    > Do not create multiple, simultaneous attachments to the same DSVM from your workspace. Each new attachment will break the previous existing attachment(s).
+    > Don't create multiple, simultaneous attachments to the same DSVM from your workspace. Each new attachment breaks one or more previous existing attachments.
 
 1. **Configure**: Create a run configuration for the DSVM compute target. Docker and conda are used to create and configure the training environment on the DSVM.
 
@@ -110,7 +110,7 @@ Azure Machine Learning also supports attaching an Azure Virtual Machine. The VM 
 > [!TIP]
 > If you want to __remove__ (detach) a VM from your workspace, use the [RemoteCompute.detach()](/python/api/azureml-core/azureml.core.compute.remotecompute#detach--) method.
 >
-> Azure Machine Learning does not delete the VM for you. You must manually delete the VM using the Azure portal, CLI, or the SDK for Azure VM.
+> Azure Machine Learning doesn't delete the VM for you. You must manually delete the VM using the Azure portal, CLI, or the SDK for Azure VM.
 
 ## <a id="synapse"></a>Apache Spark pools
 
@@ -135,7 +135,7 @@ Azure HDInsight is a popular platform for big-data analytics. The platform provi
 1. **Attach**: Attach the HDInsight cluster to your workspace [using Azure Machine Learning studio](../how-to-create-attach-compute-studio.md#other-compute-targets).
 
     > [!WARNING]
-    > Do not create multiple, simultaneous attachments to the same HDInsight from your workspace. Each new attachment will break the previous existing attachment(s).
+    > Don't create multiple, simultaneous attachments to the same HDInsight from your workspace. Each new attachment breaks one or more previous existing attachments.
 
 1. **Configure**: Create a run configuration for the HDI compute target. 
 
@@ -144,7 +144,7 @@ Azure HDInsight is a popular platform for big-data analytics. The platform provi
 > [!TIP]
 > If you want to __remove__ (detach) an HDInsight cluster from the workspace, use the [HDInsightCompute.detach()](/python/api/azureml-core/azureml.core.compute.hdinsight.hdinsightcompute#detach--) method.
 >
-> Azure Machine Learning does not delete the HDInsight cluster for you. You must manually delete it using the Azure portal, CLI, or the SDK for Azure HDInsight.
+> Azure Machine Learning doesn't delete the HDInsight cluster for you. You must manually delete it using the Azure portal, CLI, or the SDK for Azure HDInsight.
 
 ## <a id="azbatch"></a>Azure Batch 
 
@@ -187,14 +187,14 @@ print("Using Batch compute:{}".format(batch_compute.cluster_resource_id))
 ```
 
 > [!WARNING]
-> Do not create multiple, simultaneous attachments to the same Azure Batch from your workspace. Each new attachment will break the previous existing attachment(s).
+> Don't create multiple, simultaneous attachments to the same Azure Batch from your workspace. Each new attachment breaks one or more previous existing attachments.
 
 ## Azure Databricks
 
 Azure Databricks is an Apache Spark-based environment in the Azure cloud. It can be used as a compute target with an Azure Machine Learning pipeline.
 
 > [!IMPORTANT]
-> Azure Machine Learning cannot create an Azure Databricks compute target. Instead, you must create an Azure Databricks workspace, and then attach it to your Azure Machine Learning workspace. To create a workspace resource, see the [Run a Spark job on Azure Databricks](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal) document.
+> Azure Machine Learning can't create an Azure Databricks compute target. Instead, you must create an Azure Databricks workspace, and then attach it to your Azure Machine Learning workspace. To create a workspace resource, see the [Run a Spark job on Azure Databricks](/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal) document.
 > 
 > To attach an Azure Databricks workspace from a __different Azure subscription__, you (your Microsoft Entra account) must be granted the **Contributor** role on the Azure Databricks workspace. Check your access in the [Azure portal](https://portal.azure.com/).
 
@@ -246,11 +246,11 @@ except ComputeTargetException:
 For a more detailed example, see an [example notebook](https://aka.ms/pl-databricks) on GitHub.
 
 > [!WARNING]
-> Do not create multiple, simultaneous attachments to the same Azure Databricks from your workspace. Each new attachment will break the previous existing attachment(s).
+> Don't create multiple, simultaneous attachments to the same Azure Databricks from your workspace. Each new attachment breaks one or more previous existing attachments.
 
 ## <a id="aci"></a>Azure Container Instance
 
-Azure Container Instances (ACI) are created dynamically when you deploy a model. You cannot create or attach ACI to your workspace in any other way. For more information, see [Deploy a model to Azure Container Instances](how-to-deploy-azure-container-instance.md).
+Azure Container Instances (ACI) are created dynamically when you deploy a model. You can't create or attach ACI to your workspace in any other way. For more information, see [Deploy a model to Azure Container Instances](how-to-deploy-azure-container-instance.md).
 
 ## <a id="kubernetes"></a>Kubernetes
 
