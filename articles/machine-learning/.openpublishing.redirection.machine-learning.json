@@ -4487,7 +4487,7 @@
     },
     {
       "source_path": "articles/machine-learning/v1/how-to-enable-data-collection.md",
-      "redirect_url": "/azure/machine-learning/how-to-monitor-datasets?view=azureml-api-1&tabs=python",
+      "redirect_url": "/azure/machine-learning/how-to-monitor-datasets",
       "redirect_document_id": false
     }
   ]
