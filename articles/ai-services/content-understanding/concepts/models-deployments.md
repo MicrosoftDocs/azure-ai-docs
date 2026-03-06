@@ -102,7 +102,7 @@ Studio](../quickstart/content-understanding-studio.md).
 1. Select the **Settings** gear icon in the upper-right corner.
 1. Select **Add resource** to open the **Add new connected resource** dialog.
 1. To connect a resource, select the subscription, resource group, and Foundry resource in the dialog.
-:::image type="content" source="../media/how-to/bring-your-own-cross-resource-capacity/connect-microsoft-foundry-resource-search-select-and-add-connection.png" alt-text="Screenshot of the Add new connected resource dialog with subscription, resource group, resource name, and automatic deployment option." lightbox="../media/how-to/bring-your-own-cross-resource-capacity/connect-microsoft-foundry-resource-search-select-and-add-connection.png" :::
+:::image type="content" source="../media/concepts/set-defaults-in-content-understanding-studio.png" alt-text="Screenshot of the Add new connected resource dialog with subscription, resource group, resource name, and automatic deployment option." lightbox="../media/concepts/set-defaults-in-content-understanding-studio.png" :::
 1. Optional: Select **Enable auto-deployment for required models if no default deployment available**.
 1. Select **Next**, review mappings, and then save.
 
