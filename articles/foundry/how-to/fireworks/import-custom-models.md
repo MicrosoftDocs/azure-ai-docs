@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article, you learn how to import, register, and deploy your own custom model weights in Microsoft Foundry. Custom model import (also known as *bring your own model*) lets you run your proprietary or fine-tuned open-weight models within the Foundry ecosystem. [Fireworks](https://fireworks.ai/) handles inference on on-demand GPU-backed infrastructure, while Foundry provides governance, project management, and access controls.
+In this article, you learn how to import, register, and deploy your own custom model weights in Microsoft Foundry. Custom model import (also known as *bring your own model*) lets you run your proprietary or fine-tuned open-weight models within the Foundry ecosystem. [Fireworks AI](https://fireworks.ai/) handles inference on on-demand GPU-backed infrastructure, while Foundry provides governance, project management, and access controls.
 
 > [!NOTE]
 > Custom model import uses the Fireworks on Foundry integration. For an overview of available catalog models, supported architectures, data privacy, and limitations, see [Fireworks models in Foundry](use-fireworks-models.md).
@@ -33,7 +33,7 @@ Before you begin, make sure your Azure environment is set up and that you have t
 
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
-* The **Fireworks on Foundry** preview feature enabled in your subscription. For setup steps, see [Enable Fireworks on Foundry](use-fireworks-models.md#enable-fireworks-on-foundry).
+* The **Fireworks AI on Foundry** preview feature enabled in your subscription. For setup steps, see [Enable Fireworks on Foundry](use-fireworks-models.md#enable-fireworks-on-foundry).
 * The **Cognitive Services Contributor** role (or equivalent) on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/role-based-access-control/built-in-roles).
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) installed locally. The import workflow uses `azd` to upload model weights.
 
@@ -48,9 +48,6 @@ Custom models must be based on one of the following model architectures:
 | Architecture family | Supported versions |
 | --- | --- |
 | **DeepSeek** | V3.1, V3.2 |
-| **Llama** | 3, 3.1, 4 |
-| **Mistral** | — |
-| **Qwen** | 2.5, 2.5-VL, 3 |
 | **Kimi** | K2, K2.5 |
 | **GLM** | 4.7, 4.8 |
 | **OpenAI** | gpt-oss-120b |
@@ -67,11 +64,11 @@ Your model directory must include the following files:
 | `tokenizer.model`, `tokenizer.json`, or `tokenizer_config.json` | Tokenizer files required for the model. |
 
 > [!IMPORTANT]
-> Only **full-weight models** are supported. LoRA adapters and adapter-based models aren't supported in this preview.
+> Only **full-weight models** with original quantization are supported. LoRA adapters or custom quantized models aren't currently supported in this preview.
 
 ## Import a custom model
 
-The import workflow requires two steps: initiating the import in the Foundry portal and using the Azure Developer CLI (`azd`) to register and upload the model weights from your local machine.
+The import process starts in the Foundry portal, where you register your model, and then uses the Azure Developer CLI to upload the model weights from your local machine.
 
 1. Sign in to the [Foundry portal](https://ai.azure.com).
 
@@ -105,7 +102,7 @@ Once the upload finishes, confirm that Foundry successfully registered the model
 
 ## Deploy the imported model
 
-With the model registered, you can deploy it to Fireworks' on-demand GPU infrastructure and start running inference.
+With the model registered, you can deploy it to Fireworks' cloud for inference.
 
 1. From the **Custom Models** list, select your custom model.
 
@@ -139,8 +136,8 @@ If you encounter issues during import or deployment, use the following table to 
 Explore the following resources to learn more about Fireworks models, deployment options, and authentication in Foundry.
 
 * [Fireworks models in Foundry](use-fireworks-models.md)
-* [Deploy Foundry Models in the portal](../../foundry-models/how-to/deploy-foundry-models.md)
+* [Deploy Foundry Models in the portal](../../foundry-models/how-to/how-to/deploy-foundry-models.md)
 * [Deploy models using Azure CLI and Bicep](../../foundry-models/how-to/create-model-deployments.md)
-* [Deployment types](../../foundry-models/concepts/deployment-types.md)
+* [Deployment types](../../foundry-models/concepts/concepts/deployment-types.md)
 * [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
 * [Configure keyless authentication with Microsoft Entra ID](../../foundry-models/how-to/configure-entra-id.md)
