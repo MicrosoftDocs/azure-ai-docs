@@ -8,7 +8,6 @@ ai-usage: ai-assisted
 ms.date: 03/13/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
-ai-usage: ai-assisted
 ---
 
 # Optimize agent prompts by using Prompt Optimizer (preview)
@@ -21,9 +20,9 @@ This article covers how to use Prompt Optimizer in the Foundry portal playground
 
 ## Prerequisites
 
-- A [Foundry project](../how-to/create-projects.md) with at least one [prompt agent or workflow agent](../agents/overview.md).
+- A [Foundry project](../how-to/create-projects.md) with at least one [prompt agent or workflow agent](../../agents/overview.md).
 - A model deployment in a [supported region](#supported-regions).
-- Access to the [agents playground](/concepts/concept-playgrounds.md#agents-playground) or [model playground](../../concepts/concept-playgrounds.md#model-playground) in the Foundry portal.
+- Access to the [agents playground](../../concepts/concept-playgrounds.md#agents-playground) or [model playground](../../concepts/concept-playgrounds.md#model-playground) in the Foundry portal.
 
 ## How Prompt Optimizer works
 
