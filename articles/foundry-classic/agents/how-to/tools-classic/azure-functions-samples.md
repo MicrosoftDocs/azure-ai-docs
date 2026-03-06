@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents
@@ -16,9 +16,10 @@ zone_pivot_groups: selection-azure-functions-samples
 # How to use queue-based Azure Functions with Microsoft Foundry agents (classic)
 
 > [!NOTE]
-> This document refers to the classic version of the agents API. 
+> This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new Azure Functions documentation](../../../../foundry/agents/how-to/tools/azure-functions.md).
+> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 This article shows how to use a queue-based integrated tool approach to enable Microsoft Foundry agents to access code deployed to Azure Functions. In this approach, agents access tool code asynchronously in Azure Functions by means of separate input and output message queues in Azure Queue storage. 
 
