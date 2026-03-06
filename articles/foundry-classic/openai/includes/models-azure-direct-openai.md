@@ -32,12 +32,15 @@ ms.custom: pilot-ai-workflow-jan-2026
 | Model | Region |
 |---|---|
 | `gpt-5.3-codex` | East US2 & Sweden Central (Global Standard) |
+| `gpt-5.3-chat` | East US2 & Sweden Central (Global Standard) |
 
 - **[Registration is required for access to gpt-5.3-codex](https://aka.ms/OAI/gpt53codexaccess).**
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-5.3-codex` (2026-02-24) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md). <br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | August 2025 |
+| `gpt-5.3-chat` (2026-03-03)<br>**Preview** |  - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
+
 
 ## GPT-5.2
 
@@ -48,6 +51,8 @@ ms.custom: pilot-ai-workflow-jan-2026
 | `gpt-5.2` |  See the [models table](#model-summary-table-and-region-availability).   |
 | `gpt-5.2-chat` |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.2-codex` | East US2 & Sweden Central (Global Standard) |
+
+
 
 - **[Registration is required for access to gpt-5.2 and gpt-5.2-codex](https://aka.ms/oai/gpt5access).**
 
