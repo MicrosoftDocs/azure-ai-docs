@@ -141,8 +141,9 @@ The new agents provide the following benefits:
 - ⭐ **More models.** Generate responses by using any Foundry model either in your agent or directly as a response generation call.
 - **More features.** Web Search, File Search, Code Interpreter, MCP tool calling, image generation, and reasoning summaries.
 - **Modern API primitive.** Built on the Responses API instead of the older Assistants API.
+- **Background mode**. Support for long-running tools (like image-generation), and durable streams (supports disconnect/reconnect scenarios)
 - **Future-proof.** New features and model support are only added to the new agents.
-- **New agent types.** Create prompt-based or workflow-based agents.
+- **New agent types.** Create prompt-based, workflow-based agents, workflow-based agents (preview), and hosted agents (preview).
 
 **Enterprise readiness**
 
@@ -167,6 +168,31 @@ The following table summarizes the main API changes between the previous and cur
 | Threads | Conversations | Supports streams of items, not just messages. |
 | Runs | Responses | Responses send input items or use a conversation object and receive output items. Tool call loops are explicitly managed. |
 | Assistants / agents | Agents (new) | Support for enterprise-ready prompt, workflow, and hosted agents with stateful context by default for any Foundry model. |
+
+## Agent tool availability
+
+The following table compares agent tools available in classic agents and the new Foundry Agent Service. Use it to identify which tools carry over directly, which have changed, and which are exclusive to the new experience.
+
+| Tool | Foundry (classic) | Foundry (new) |
+| --- | --- | --- |
+| Agent to Agent (A2A) | No | Yes (Public Preview) |
+| Azure AI Search | Yes (GA) | Yes (GA) |
+| Azure Functions | Yes (GA) | No |
+| Browser Automation | Yes (Public Preview) | Yes (Public Preview) |
+| Code Interpreter | Yes (GA) | Yes (GA) |
+| Computer Use | Yes (Public Preview) | Yes (Public Preview) |
+| Connected Agents | Yes (Public Preview) | No (Recommendation: Workflow and A2A tool) |
+| Deep Research | Yes (Public Preview) | No (Recommendation: Deep Research model with Web Search tool) |
+| Fabric Data Agent | Yes (Public Preview) | Yes (Public Preview) |
+| File Search | Yes (GA) | Yes (GA) |
+| Function | Yes (GA) | Yes (GA) |
+| Grounding with Bing Search | Yes (GA) | Yes (GA) |
+| Grounding with Bing Custom Search | Yes (Public Preview) | Yes (Public Preview) |
+| Image Generation | No | Yes (Public Preview) |
+| MCP | Yes (Public Preview) | Yes (GA) |
+| OpenAPI | Yes (GA) | Yes (GA) |
+| SharePoint Grounding | Yes (Public Preview) | Yes (Public Preview) |
+| Web Search | No | Yes (Public Preview) |
 
 > [!IMPORTANT]
 > In the new API, the conversations and responses APIs use the **OpenAI client** (or its language equivalent). In Python, call `project.get_openai_client()`. In C#, use `projectClient.OpenAI.GetProjectResponsesClientForAgent()`. In JavaScript, call `projectClient.getOpenAIClient()`. In Java, use `AgentsClientBuilder` to build a `ResponsesClient`. Agent creation and versioning remain on the **project client**. The examples in each section show which client to use.
