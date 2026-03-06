@@ -36,8 +36,8 @@ AGENT_NAME="MyAgent"
 
 - C# and Java
 
-String ProjectEndpoint = <endpoint copied from welcome screen>
-String AgentName = "MyAgent"
+ProjectEndpoint = <endpoint copied from welcome screen>
+AgentName = "MyAgent"
 ```
 
 [!INCLUDE [quickstart-v2-get-code](../includes/quickstart-v2-get-code.md)]
