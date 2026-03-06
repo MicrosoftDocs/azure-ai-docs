@@ -11,14 +11,14 @@ ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Import custom models into Microsoft Foundry (preview)
+# Import custom models with Fireworks (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to import, register, and deploy your own custom model weights in Microsoft Foundry. Custom model import (also known as *bring your own model*) lets you run your proprietary or fine-tuned open-weight models within the Foundry ecosystem. [Fireworks AI](https://fireworks.ai/) handles inference on on-demand GPU-backed infrastructure, while Foundry provides governance, project management, and access controls.
 
 > [!NOTE]
-> Custom model import uses the Fireworks on Foundry integration. For an overview of available catalog models, supported architectures, data privacy, and limitations, see [Fireworks models in Foundry](use-fireworks-models.md).
+> This custom model import guide uses the Fireworks in Foundry integration. For an overview of available catalog models, supported architectures, data privacy, and limitations, see [Use Fireworks models in Foundry](use-fireworks-models.md).
 
 The import workflow has four steps:
 
@@ -36,6 +36,17 @@ Before you begin, make sure your Azure environment is set up and that you have t
 * The **Fireworks AI on Foundry** preview feature enabled in your subscription. For setup steps, see [Enable Fireworks on Foundry](use-fireworks-models.md#enable-fireworks-on-foundry).
 * The **Cognitive Services Contributor** role (or equivalent) on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/role-based-access-control/built-in-roles).
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) installed locally. The import workflow uses `azd` to upload model weights.
+
+## Region availability
+
+Fireworks on Foundry is available in the following [Azure regions](/azure/reliability/regions-list):
+
+* **East US** (eastus)
+* **East US 2** (eastus2)
+* **Central US** (centralus)
+* **North Central US** (northcentralus)
+* **West US** (westus)
+* **West US 3** (westus3)
 
 ## Model requirements
 

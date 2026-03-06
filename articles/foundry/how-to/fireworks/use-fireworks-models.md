@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Fireworks models in Foundry (preview)
+# Use Fireworks models in Microsoft Foundry (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -27,9 +27,20 @@ You can do all of this from your Foundry project while using Azure's governance,
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
-- A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
-- An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+* A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
+* An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
+
+## Region availability
+ 
+Fireworks on Foundry is available in the following [Azure regions](/azure/reliability/regions-list):
+
+* **East US** (eastus)
+* **East US 2** (eastus2)
+* **Central US** (centralus)
+* **North Central US** (northcentralus)
+* **West US** (westus)
+* **West US 3** (westus3)
 
 ## Enable Fireworks on Foundry
 
