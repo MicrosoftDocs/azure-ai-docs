@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 Through integration with [Fireworks AI](https://fireworks.ai/), Microsoft Foundry customers can:
 
-* **Experiment with the latest open-source models** before they're available [directly from Azure](models-sold-directly-by-azure.md).
+* **Experiment with the latest open-source models** before they're available [directly from Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 * **Import and deploy custom model weights** (bring your own model, or BYOM) onto Fireworks' on-demand GPU-backed infrastructure. For more information, see [Import custom models into Foundry](import-custom-models.md).
 * **Scale up** using [Provisioned throughput](../../openai/concepts/provisioned-throughput.md).
 
