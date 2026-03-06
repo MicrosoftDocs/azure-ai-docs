@@ -122,15 +122,13 @@ Choose one of the following options to verify your setup.
 1. In Studio, run a prebuilt analyzer on a sample file.
 1. Confirm the analysis completes and returns structured results in the results pane.
 
-If either verification path succeeds, your Content Understanding resource is using the connected cross-resource capacity.
-
 ### Option 2: Verify with the REST quickstart
 
 1. Follow [Quickstart: Use Azure Content Understanding in Foundry Tools REST API](../quickstart/use-rest-api.md).
 1. Run the sample request in [Send a file for analysis](../quickstart/use-rest-api.md#send-a-file-for-analysis).
 1. Confirm the operation succeeds by checking [Get analyze result](../quickstart/use-rest-api.md#get-analyze-result) and verifying `status` is `Succeeded`.
 
-
+If either verification path succeeds, your Content Understanding resource is using the connected cross-resource capacity.
 
 ## Related content
 
