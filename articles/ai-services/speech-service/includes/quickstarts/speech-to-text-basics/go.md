@@ -88,8 +88,9 @@ Follow these steps to create a Go application and install the Speech SDK.
 
 1. Run your new Go application to start speech recognition from a microphone:
 
-   ```bash
-   go run main.go
+   ```cmd
+   go mod init speech-recognition
+   go get github.com/Microsoft/cognitive-services-speech-sdk-go
    ```
 
    > [!IMPORTANT]
