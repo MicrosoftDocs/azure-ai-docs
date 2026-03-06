@@ -53,6 +53,8 @@ ms.date: 02/18/2026
 | gpt-5.3-chat                   | GlobalStandard    | 4,000       | 4,000,000   |
 | gpt-5.2-codex                  | GlobalStandard    | 70,000      | 7,000,000   |
 | gpt-5.3-codex                  | GlobalStandard    | 70,000      | 7,000,000   |
+| gpt-5.4                        | DataZoneStandard  | 2,000       | 2,000,000   |
+| gpt-5.4                        | GlobalStandard    | 7,000       | 7,000,000   |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 45          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 84          | -           |
