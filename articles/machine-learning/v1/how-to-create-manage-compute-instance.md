@@ -6,11 +6,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
-ms.custom: UpdateFrequency5, devx-track-azurecli, references_regions, cliv1
+ms.custom: UpdateFrequency5, devx-track-azurecli, references_regions, cliv1, dev-focus
+ai-usage: ai-assisted
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 05/02/2022
+ms.date: 03/06/2026
 ---
 
 # Create and manage an Azure Machine Learning compute instance with CLI v1
@@ -31,7 +32,7 @@ In this article, you learn how to:
 * Manage (start, stop, restart, delete) a compute instance
 
 > [!NOTE]
-> This article covers only how to do these tasks using CLI v1.  For more recent ways to manage a compute instance, see [Create an Azure Machine Learning compute cluster](../how-to-create-compute-instance.md).
+> This article covers only how to do these tasks using CLI v1.  For more recent ways to manage a compute instance, see [Create an Azure Machine Learning compute instance](../how-to-create-compute-instance.md).
 
 ## Prerequisites
 
@@ -43,11 +44,6 @@ In this article, you learn how to:
 
 
 ## Create
-
-> [!IMPORTANT]
-> Items marked (preview) below are currently in public preview.
-> The preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities.
-> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 **Time estimate**: Approximately 5 minutes.
 
@@ -78,7 +74,7 @@ try:
     print('Found existing instance, use it.')
 except ComputeTargetException:
     compute_config = ComputeInstance.provisioning_configuration(
-        vm_size='STANDARD_D3_V2',
+        vm_size='STANDARD_DS3_V2',
         ssh_public_access=False,
         # vnet_resourcegroup_name='<my-resource-group>',
         # vnet_name='<my-vnet-name>',
@@ -101,10 +97,10 @@ For more information on the classes, methods, and parameters used in this exampl
 [!INCLUDE [cli v1](../includes/machine-learning-cli-v1.md)]
 
 ```azurecli-interactive
-az ml computetarget create computeinstance  -n instance -s "STANDARD_D3_V2" -v
+az ml computetarget create computeinstance  -n instance -s "STANDARD_DS3_V2" -v
 ```
 
-For more information, see [Az PowerShell module `az ml computetarget create computeinstance`](/cli/azure/ml(v1)/computetarget/create#az-ml-computetarget-create-computeinstance) reference.
+For more information, see [Azure CLI reference `az ml computetarget create computeinstance`](/cli/azure/ml(v1)/computetarget/create#az-ml-computetarget-create-computeinstance).
 
 ---
 
@@ -113,7 +109,7 @@ For more information, see [Az PowerShell module `az ml computetarget create comp
 Start, stop, restart, and delete a compute instance. A compute instance doesn't automatically scale down, so make sure to stop the resource to prevent ongoing charges. Stopping a compute instance deallocates it. Then start it again when you need it. While stopping the compute instance stops the billing for compute hours, you'll still be billed for disk, public IP, and standard load balancer. 
 
 > [!TIP]
-> The compute instance has 120GB OS disk. If you run out of disk space, [use the terminal](../how-to-access-terminal.md) to clear at least 1-2 GB before you stop or restart the compute instance. Please do not stop the compute instance by issuing sudo shutdown from the terminal. The temp disk size on compute instance depends on the VM size chosen and is mounted on /mnt.
+> The compute instance has 120GB OS disk. If you run out of disk space, [use the terminal](../how-to-access-terminal.md) to clear at least 1-2 GB before you stop or restart the compute instance. Don't stop the compute instance by issuing sudo shutdown from the terminal. The temp disk size on compute instance depends on the VM size chosen and is mounted on /mnt.
 
 # [Python SDK](#tab/python)
 
@@ -171,7 +167,7 @@ In the examples below, the name of the compute instance is **instance**
     az ml computetarget stop computeinstance -n instance -v
     ```
 
-    For more information, see [Az PowerShell module `az ml computetarget stop computeinstance`](/cli/azure/ml(v1)/computetarget/computeinstance#az-ml-computetarget-computeinstance-stop).
+    For more information, see [Azure CLI reference `az ml computetarget stop computeinstance`](/cli/azure/ml(v1)/computetarget/computeinstance#az-ml-computetarget-computeinstance-stop).
 
 * Start
 
@@ -179,7 +175,7 @@ In the examples below, the name of the compute instance is **instance**
     az ml computetarget start computeinstance -n instance -v
     ```
 
-    For more information, see [Az PowerShell module `az ml computetarget start computeinstance`](/cli/azure/ml(v1)/computetarget/computeinstance#az-ml-computetarget-computeinstance-start).
+    For more information, see [Azure CLI reference `az ml computetarget start computeinstance`](/cli/azure/ml(v1)/computetarget/computeinstance#az-ml-computetarget-computeinstance-start).
 
 * Restart
 
@@ -187,7 +183,7 @@ In the examples below, the name of the compute instance is **instance**
     az ml computetarget restart computeinstance -n instance -v
     ```
 
-    For more information, see [Az PowerShell module `az ml computetarget restart computeinstance`](/cli/azure/ml(v1)/computetarget/computeinstance#az-ml-computetarget-computeinstance-restart).
+    For more information, see [Azure CLI reference `az ml computetarget restart computeinstance`](/cli/azure/ml(v1)/computetarget/computeinstance#az-ml-computetarget-computeinstance-restart).
 
 * Delete
 
@@ -195,7 +191,7 @@ In the examples below, the name of the compute instance is **instance**
     az ml computetarget delete -n instance -v
     ```
 
-    For more information, see [Az PowerShell module `az ml computetarget delete computeinstance`](/cli/azure/ml(v1)/computetarget#az-ml-computetarget-delete).
+    For more information, see [Azure CLI reference `az ml computetarget delete`](/cli/azure/ml(v1)/computetarget#az-ml-computetarget-delete).
 
 ---
 

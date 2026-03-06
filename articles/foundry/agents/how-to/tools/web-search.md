@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -35,14 +35,12 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-Java SDK samples are not yet available.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md)
-- The latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
+- The latest SDK package. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Environment variables configured:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
@@ -51,8 +49,7 @@ Java SDK samples are not yet available.
 ## Code examples
 
 > [!NOTE]
-> - See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
-> - You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> See [best practices](../../concepts/tool-best-practice.md) for information on optimizing tool usage.
 
 :::zone pivot="python"
 ### General Web Search
@@ -60,9 +57,6 @@ Java SDK samples are not yet available.
 The following example shows how to set up the AI Project client by using the Azure Identity library for authentication.
 
 ```python
-import os
-from dotenv import load_dotenv
-
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -71,61 +65,76 @@ from azure.ai.projects.models import (
     WebSearchApproximateLocation,
 )
 
-load_dotenv()
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant that can search the web",
-            tools=[
-                WebSearchTool(
-                    user_location=WebSearchApproximateLocation(
-                        country="GB", city="London", region="London"
-                    )
+# Create an agent with the web search tool
+agent = project.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant that can search the web",
+        tools=[
+            WebSearchTool(
+                user_location=WebSearchApproximateLocation(
+                    country="GB", city="London", region="London"
                 )
-            ],
-        ),
-        description="Agent for web search.",
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+            )
+        ],
+    ),
+    description="Agent for web search.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    stream_response = openai_client.responses.create(
-        stream=True,
-        tool_choice="required",
-        input="What is today's date and weather in Seattle?",
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+# Send a query and stream the response
+stream_response = openai.responses.create(
+    stream=True,
+    tool_choice="required",
+    input="What is today's date and weather in Seattle?",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    for event in stream_response:
-        if event.type == "response.created":
-            print(f"Follow-up response created with ID: {event.response.id}")
-        elif event.type == "response.output_text.delta":
-            print(f"Delta: {event.delta}")
-        elif event.type == "response.text.done":
-            print(f"\nFollow-up response done!")
-        elif event.type == "response.output_item.done":
-            if event.item.type == "message":
-                item = event.item
-                if item.content[-1].type == "output_text":
-                    text_content = item.content[-1]
-                    for annotation in text_content.annotations:
-                        if annotation.type == "url_citation":
-                            print(f"URL Citation: {annotation.url}")
-        elif event.type == "response.completed":
-            print(f"\nFollow-up completed!")
-            print(f"Full response: {event.response.output_text}")
+# Process streaming events
+for event in stream_response:
+    if event.type == "response.created":
+        print(f"Follow-up response created with ID: {event.response.id}")
+    elif event.type == "response.output_text.delta":
+        print(f"Delta: {event.delta}")
+    elif event.type == "response.text.done":
+        print(f"\nFollow-up response done!")
+    elif event.type == "response.output_item.done":
+        if event.item.type == "message":
+            item = event.item
+            if item.content[-1].type == "output_text":
+                text_content = item.content[-1]
+                for annotation in text_content.annotations:
+                    if annotation.type == "url_citation":
+                        print(f"URL Citation: {annotation.url}")
+    elif event.type == "response.completed":
+        print(f"\nFollow-up completed!")
+        print(f"Full response: {event.response.output_text}")
 
-    print("\nCleaning up...")
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
+```
+
+#### Expected output
+
+```output
+Agent created: <agent-name> (version 1)
+Response: The latest trends in renewable energy include ...
+URL Citation: https://example.com/source
+
+Follow-up completed!
+Full response: Based on current data ...
+Agent deleted
 ```
 
 ### Deep Research with Web Search
@@ -205,13 +214,21 @@ with project_client:
 In this example, you use the agent to perform the web search in the given location. The example in this section uses synchronous calls. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample13_WebSearch.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
-// Create project client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+using Azure.Identity;
 
-// Create an agent capable of using Web search and set the location to "London" in the WebSearchToolLocation.
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+
+// Create project client to call Foundry API
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Create an agent with the web search tool
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant that can search the web",
     Tools = {
@@ -232,8 +249,8 @@ ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponses
 
 ResponseResult response = responseClient.CreateResponse("Show me the latest London Underground service updates");
 
-// Create the response and throw an exception if the response contains an error.
-Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
+// Create the response and verify it completed.
+Console.WriteLine($"Response status: {response.Status}");
 Console.WriteLine(response.GetOutputText());
 
 // Delete the created agent version.
@@ -245,15 +262,20 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 The following is an example of the expected output when running the C# code:
 
 ```console
-Creating agent with web search tool...
-Agent created (id: 12345, name: myAgent, version: 1)
-Response: The agent returns a grounded response that includes citations.
+Response status: Completed
+The London Underground currently has service disruptions on ...
 Agent deleted
 ```
 :::zone-end
 
 :::zone pivot="rest-api"
 ### General Web Search
+
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
 
 The following example shows how to create a response by using an agent that has the web search tool enabled.
 
@@ -263,7 +285,7 @@ curl --request POST \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{
-    "model": "$FOUNDRY_MODEL_DEPLOYMENT_NAME",
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
     "input": "Tell me about the latest news about AI",
     "tool_choice": "required",
     "tools": [
@@ -316,22 +338,19 @@ The following TypeScript example demonstrates how to create an agent with the we
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
 
 export async function main(): Promise<void> {
-  // Create AI Project client
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = await project.getOpenAIClient();
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
-  console.log("Creating agent with web search tool...");
-
-  // Create Agent with web search tool
+  // Create agent with web search tool
   const agent = await project.agents.createVersion("agent-web-search", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "You are a helpful assistant that can search the web",
     tools: [
       {
@@ -348,12 +367,10 @@ export async function main(): Promise<void> {
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   // Create a conversation for the agent interaction
-  const conversation = await openAIClient.conversations.create();
-  console.log(`Created conversation (id: ${conversation.id})`);
+  const conversation = await openai.conversations.create();
 
   // Send a query to search the web
-  console.log("\nSending web search query...");
-  const response = await openAIClient.responses.create(
+  const response = await openai.responses.create(
     {
       conversation: conversation.id,
       input: "Show me the latest London Underground service updates",
@@ -365,14 +382,10 @@ export async function main(): Promise<void> {
   console.log(`Response: ${response.output_text}`);
 
   // Clean up resources
-  console.log("\nCleaning up resources...");
-  await openAIClient.conversations.delete(conversation.id);
-  console.log("Conversation deleted");
+  await openai.conversations.delete(conversation.id);
 
   await project.agents.deleteVersion(agent.name, agent.version);
   console.log("Agent deleted");
-
-  console.log("\nWeb search sample completed!");
 }
 
 main().catch((err) => {
@@ -385,16 +398,89 @@ main().catch((err) => {
 The following example shows the expected output when running the TypeScript code:
 
 ```console
-Creating agent with web search tool...
 Agent created (id: 12345, name: agent-web-search, version: 1)
-Created conversation (id: 67890)
-Sending web search query...
 Response: The agent returns a grounded response that includes citations.
-Cleaning up resources...
-Conversation deleted
 Agent deleted
-Web search sample completed!
 ```
+:::zone-end
+
+:::zone pivot="java"
+
+## Use web search in a Java agent
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with web search
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.WebSearchPreviewTool;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Collections;
+
+public class WebSearchExample {
+    public static void main(String[] args) {
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(projectEndpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create web search tool with user location
+        WebSearchPreviewTool webSearchTool = new WebSearchPreviewTool();
+
+        // Create agent with web search tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+            .setInstructions("You are a helpful assistant that can search the web for current information.")
+            .setTools(Collections.singletonList(webSearchTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("web-search-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("What are the latest trends in renewable energy?"));
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
+### Expected output
+
+```output
+Agent created: web-search-agent (version 1)
+Response: [ResponseOutputItem with web search results about renewable energy trends ...]
+```
+
 :::zone-end
 
 ## Configure the web search tool

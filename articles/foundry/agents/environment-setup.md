@@ -92,7 +92,7 @@ If you want support for Private Network Isolation, see [network-secured setup](h
 > [!IMPORTANT]
 > **Don't change the modelFormat parameter.** 
 >
-> The templates only support deployment of Azure OpenAI models. See which Azure OpenAI models are supported in the [model support](../../foundry-classic/agents/concepts/model-region-support.md) article.
+> The templates only support deployment of Azure OpenAI models. See which Azure OpenAI models are supported in the [model support](./concepts/limits-quotas-regions.md) article.
 
 You can customize the model used by your agent by editing the model parameters in the autodeploy template. To deploy a different model, you need to update at least the `modelName` and `modelVersion` parameters. 
 
@@ -126,7 +126,7 @@ After deployment completes (typically 5-10 minutes), verify that your resources 
 | Deployment fails with quota error | Insufficient quota for GPT-4.1 in the selected region | Request a quota increase or select a different region |
 | Permission denied during deployment | Missing **Role Based Access Administrator** role | Ask your subscription owner to grant you the required role |
 | Resources created but agent creation fails | Project not properly connected to resources | Verify the connection in the Foundry portal under **Project settings** > **Connected resources** |
-| Model not available | Model not deployed in your region | Check [model region support](../../foundry-classic/agents/concepts/model-region-support.md) and select an available region |
+| Model not available | Model not deployed in your region | Check [model region support](./concepts/limits-quotas-regions.md) and select an available region |
 
 ### What's next?
 
