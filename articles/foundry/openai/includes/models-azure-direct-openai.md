@@ -27,6 +27,18 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
 
+## GPT-5.4
+
+| Model | Region |
+|---|---|
+| `gpt-5.4` | East US2 (Global Standard & Datazone Standard) <br> Sweden Central (Global Standard) |
+
+- **[Registration is required for access to gpt-5.4](https://aka.ms/OAI/gpt53codexaccess).**
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-5.4` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - Computer use (Coming Soon!) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000 <br><br>1,050,000 Context Window (Coming Soon!)   | 128,000 | August 2025 |
+
 ## GPT-5.3
 
 | Model | Region |
@@ -37,7 +49,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-5.3-codex` (2026-02-24) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md). <br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | August 2025 |
+| `gpt-5.3-codex` (2026-02-24) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md). <br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | August 2025 |
 
 ## GPT-5.2
 
