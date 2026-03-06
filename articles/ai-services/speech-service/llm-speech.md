@@ -18,9 +18,7 @@ zone_pivot_groups: llm-speech-quickstart
 
 LLM speech is powered by a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It uses GPU acceleration for ultra-fast inference, making it ideal for a wide range of scenarios including generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
 
-The LLM speech API currently supports the following speech tasks:
-- `transcribe`
-- `translate`
+[!INCLUDE [transcription-features](includes/transcription-features.md)]
 
 ::: zone pivot="programming-language-rest"
 
@@ -40,8 +38,7 @@ The LLM speech API currently supports the following speech tasks:
 
 ::: zone-end
 
-> [!NOTE]
-> Speech service is an elastic service. If you receive 429 error code (too many requests), please follow the [best practices to mitigate throttling during autoscaling](speech-services-quotas-and-limits.md#general-best-practices-to-mitigate-throttling-during-autoscaling).
+[!INCLUDE [error-handling](includes/quickstarts/speech-to-text-basics/error-handling.md)]
 
 ## Related content
 

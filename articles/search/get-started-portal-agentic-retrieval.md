@@ -33,7 +33,7 @@ Afterwards, you test the knowledge base by submitting a complex query that requi
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](search-create-service-portal.md) in any [region that provides agentic retrieval](search-region-support.md).
++ An [Azure AI Search service](search-create-service-portal.md) in any [region that provides agentic retrieval](search-region-support.md). This quickstart requires the Basic tier or higher for managed identity support.
 
 + An [Azure Blob Storage account](/azure/storage/common/storage-account-create).
 
