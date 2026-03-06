@@ -98,7 +98,11 @@ For step-by-step instructions, see [Import custom models into Foundry](import-cu
 Fireworks model deployments made available via Foundry send inference traffic outside of Azure to the Fireworks AI cloud. Your Microsoft customer agreements (including the Product Terms and Microsoft's Data Protection Addendum) don't apply to your use of Fireworks services from within Microsoft Foundry.
 
 > [!IMPORTANT]
-> Because inference is performed on Fireworks infrastructure, review the Fireworks data handling policies before deploying models with sensitive data.
+> Fireworks on Foundry is currently excluded from EU Data Boundary commitments.
+>
+> FedRAMP isn't achieved for Fireworks on Foundry. If your organization requires FedRAMP, before use, consult with your Authorization Official to determine if use of Fireworks on Foundry is allowed.
+>
+> Payment Card Industry (PCI) Data Security Standard (DSS) is not applicable to Fireworks on Foundry. You should not use Fireworks on Foundry to store, process, or transmit payment and cardholder data.
 
 > [!NOTE]
 > If your network restricts outbound traffic, ensure your firewall allows connectivity to the Fireworks AI inference endpoints.
