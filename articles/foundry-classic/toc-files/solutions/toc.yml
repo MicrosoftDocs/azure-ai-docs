@@ -21,8 +21,10 @@ items:
     href: ../../how-to/develop/vs-code-agents-mcp.md
   - name: Start with an AI template
     href: ../../how-to/develop/ai-template-get-started.md
-  - name: Develop with LangChain
+  - name: Develop with models and LangChain
     href: ../../how-to/develop/langchain.md
+  - name: Develop with agents and LangGraph
+    href: ../../how-to/develop/langchain-agents.md
   - name: Develop with LlamaIndex
     href: ../../how-to/develop/llama-index.md
     displayName: code,sdk
