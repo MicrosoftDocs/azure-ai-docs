@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/19/2025
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-mcp-code
@@ -16,9 +16,10 @@ ms.custom: azure-ai-agents-code
 # How to use the Model Context Protocol (MCP) tool (preview) (classic)
 
 > [!NOTE]
-> This article refers to the classic version of the agents API. 
+> This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new MCP tool documentation](../../../../foundry/agents/how-to/tools/model-context-protocol.md).
+> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../foundry/agents/overview.md). Follow the [migration guide](../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 This article provides code samples for connecting Foundry Agent Service with Model Context Protocol (MCP) servers.
 
