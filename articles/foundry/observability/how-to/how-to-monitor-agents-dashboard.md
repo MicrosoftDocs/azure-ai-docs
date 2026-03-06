@@ -82,7 +82,7 @@ To access Monitor settings, select the gear icon on the **Monitor** tab. The fol
 Use the Python SDK to set up continuous evaluation rules for agent responses. This section requires Python 3.9 or later.
 
 ```bash
-pip install "azure-ai-projects>=2.0.0b1" python-dotenv
+pip install "azure-ai-projects>=2.0.0" python-dotenv
 ```
 
 Set these environment variables with your own values:
