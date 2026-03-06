@@ -86,11 +86,20 @@ Follow these steps to create a Go application and install the Speech SDK.
 
 1. To change the speech recognition language, replace `en-US` with another [supported language](~/articles/ai-services/speech-service/language-support.md). For example, use `es-ES` for Spanish (Spain). If you don't specify a language, the default is `en-US`. For details about how to identify one of multiple languages that might be spoken, see [Language identification](~/articles/ai-services/speech-service/language-identification.md).
 
-1. Run your new Go application to start speech recognition from a microphone:
-
-   ```cmd
-   go mod init speech-recognition
-   go get github.com/Microsoft/cognitive-services-speech-sdk-go
+1. Run the following commands to create a `go.mod` file that links to the Speech SDK components hosted on GitHub:
+    ```console
+    go mod init captioning
+    go get github.com/Microsoft/cognitive-services-speech-sdk-go
+    ```
+    
+1. Build the GO module.
+    ```console
+    go build
+    ```
+    
+1. Run your new console application to start speech synthesis to the default speaker.
+   ```console
+   go run main.go
    ```
 
    > [!IMPORTANT]
