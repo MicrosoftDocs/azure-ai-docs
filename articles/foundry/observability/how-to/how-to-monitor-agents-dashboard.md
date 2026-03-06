@@ -86,7 +86,7 @@ Use the Python or .NET SDK to set up continuous evaluation rules for agent respo
 This section requires Python 3.9 or later.
 
 ```bash
-pip install "azure-ai-projects>=2.0.0b1" python-dotenv
+pip install "azure-ai-projects>=2.0.0" python-dotenv
 ```
 
 # [C#](#tab/csharp)
