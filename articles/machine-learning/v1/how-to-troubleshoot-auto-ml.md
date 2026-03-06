@@ -21,7 +21,7 @@ monikerRange: 'azureml-api-1'
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-In this guide, learn how to identify and resolve known issues in your automated machine learning experiments with the [Azure Machine Learning SDK](/python/api/overview/azure/ml/intro).
+This article helps you identify and resolve known problems in your automated machine learning experiments by using the [Azure Machine Learning SDK](/python/api/overview/azure/ml/intro).
 
 ## Version dependencies
 
