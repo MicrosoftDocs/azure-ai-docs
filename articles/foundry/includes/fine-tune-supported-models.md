@@ -25,3 +25,6 @@ The following models are supported for fine-tuning:
 | `gpt-oss-20b` | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
 
 Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
+
+> [!NOTE]
+> Open-source models (Ministral-3B, Qwen-32B, Llama-3.3-70B-Instruct, gpt-oss-20b) are only supported on Foundry resources and in the new Foundry UI. 
