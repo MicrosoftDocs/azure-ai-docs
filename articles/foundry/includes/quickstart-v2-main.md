@@ -31,7 +31,6 @@ Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.m
 ```plaintext
 PROJECT_ENDPOINT=<endpoint copied from welcome screen>
 AGENT_NAME="MyAgent"
-MODEL_DEPLOYMENT_NAME="gpt-4.1-mini"
 ```
 
 [!INCLUDE [quickstart-v2-get-code](../includes/quickstart-v2-get-code.md)]
