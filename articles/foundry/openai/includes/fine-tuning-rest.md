@@ -24,7 +24,7 @@ ms.custom:
 ### Supported models
 
 
-[!INCLUDE [fine-tune-supported-models](./fine-tune-supported-models.md)]
+[!INCLUDE [fine-tune-supported-models](../../../foundry/includes/fine-tune-supported-models.md)]
 
 ## Review the workflow for the REST API
 
