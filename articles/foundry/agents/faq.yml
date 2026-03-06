@@ -52,7 +52,7 @@ sections:
         answer: |
           Start with [Set up your environment](environment-setup.md), then create your first agent.
 
-          - Classic experience: [Quickstart: Create a new agent](../quickstarts/get-started-code.md)
+          - [Quickstart: Create a new agent](../quickstarts/get-started-code.md)
           - New Foundry experience: [Quickstart: Get started with agents in code](../quickstarts/get-started-code.md)
   - name: General
     questions:
@@ -198,6 +198,6 @@ additionalContent: |
   ## Next steps
   - [What is Foundry Agent Service?](overview.md)
   - [Set up your environment](environment-setup.md)
-  - [Quickstart: Create a new agent (classic)](../quickstarts/get-started-code.md)
+  - [Quickstart: Create a new agent](../quickstarts/get-started-code.md)
   - [Tools overview](./concepts/tool-catalog.md)
   - [How to use a virtual network with Foundry Agent Service](how-to/virtual-networks.md)
