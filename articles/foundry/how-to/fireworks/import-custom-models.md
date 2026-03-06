@@ -102,7 +102,7 @@ Once the upload finishes, confirm that Foundry successfully registered the model
 
 ## Deploy the imported model
 
-With the model registered, you can deploy it to Fireworks' on-demand GPU infrastructure and start running inference.
+With the model registered, you can deploy it to Fireworks' cloud for inference.
 
 1. From the **Custom Models** list, select your custom model.
 
