@@ -44,9 +44,6 @@ Custom models must match a supported architecture and include specific files for
 ### Supported architectures
 
 Custom models must be based on one of the following model architectures:
-
-| Architecture family | Supported versions |
-| --- | --- |
 | **DeepSeek** | V3.1, V3.2 |
 | **Kimi** | K2, K2.5 |
 | **GLM** | 4.7, 4.8 |
