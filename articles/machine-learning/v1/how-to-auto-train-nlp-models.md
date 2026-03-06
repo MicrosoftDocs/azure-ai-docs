@@ -24,7 +24,7 @@ ai-usage: ai-assisted
 [!INCLUDE [preview disclaimer](../includes/machine-learning-preview-generic-disclaimer.md)]
 
 > [!NOTE]
-> AutoML NLP reached general availability (GA) in SDK v2. For the latest features, including hyperparameter sweeping and broader Hugging Face model support, see [Set up AutoML to train an NLP model (SDK v2)](/azure/machine-learning/how-to-auto-train-nlp-models?view=azureml-api-2).
+> AutoML NLP reached general availability (GA) in SDK v2. For the latest features, including hyperparameter sweeping and broader Hugging Face model support, see [Set up AutoML to train an NLP model (SDK v2)](/azure/machine-learning/how-to-auto-train-nlp-models?view=azureml-api-2&preserve-view=true).
 
 In this article, you learn how to train natural language processing (NLP) models with [automated ML](../concept-automated-ml.md) in the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/).
 
