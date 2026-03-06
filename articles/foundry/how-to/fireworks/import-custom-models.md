@@ -64,7 +64,7 @@ Your model directory must include the following files:
 | `tokenizer.model`, `tokenizer.json`, or `tokenizer_config.json` | Tokenizer files required for the model. |
 
 > [!IMPORTANT]
-> Only **full-weight models** are supported. LoRA adapters and adapter-based models aren't supported in this preview.
+> Only **full-weight models** with original quantization are supported. LoRA adapters or custom quantized models aren't currently supported in this preview.
 
 ## Import a custom model
 
