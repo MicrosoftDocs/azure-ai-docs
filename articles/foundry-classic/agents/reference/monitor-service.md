@@ -12,7 +12,7 @@ ms.subservice: azure-ai-foundry-agent-service
 
 # Foundry Agent Service monitoring data reference (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../../includes/agents-classic.md)]
 
 [!INCLUDE [horz-monitor-ref-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-intro.md)]
 

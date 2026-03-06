@@ -8,9 +8,10 @@ ms.subservice: training
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: sooryar
-ms.date: 11/04/2022
+ms.date: 03/06/2026
 ms.topic: how-to
-ms.custom: UpdateFrequency5, sdkv1
+ms.custom: UpdateFrequency5, sdkv1, dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a Python scikit-learn developer, I need to combine open-source with a cloud platform to train, evaluate, and deploy my machine learning models at scale.
 ---
 
@@ -85,7 +86,7 @@ You can also create your own custom environment. Define your conda dependencies 
 
 ```yaml
 dependencies:
-  - python=3.7
+  - python=3.10
   - scikit-learn
   - numpy
   - pip:
@@ -174,14 +175,14 @@ from azureml.core.resource_configuration import ResourceConfiguration
 model = run.register_model(model_name='sklearn-iris', 
                            model_path='outputs/model.joblib',
                            model_framework=Model.Framework.SCIKITLEARN,
-                           model_framework_version='0.19.1',
+                           model_framework_version='1.5.2',
                            resource_configuration=ResourceConfiguration(cpu=1, memory_in_gb=0.5))
 ```
 
 ## Deployment
 
 The model you just registered can be deployed the exact same way as any other registered model in Azure Machine Learning. The deployment how-to
-contains a section on registering models, but you can skip directly to [creating a compute targethow-to-deploy-and-where.md#choose-a-compute-target) for deployment, since you already have a registered model.
+contains a section on registering models, but you can skip directly to [creating a compute target](how-to-deploy-and-where.md#choose-a-compute-target) for deployment, since you already have a registered model.
 
 ### (Preview) No-code model deployment
 

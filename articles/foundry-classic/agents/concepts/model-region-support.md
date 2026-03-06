@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Azure OpenAI models and regions for Foundry Agent Service (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../../includes/agents-classic.md)]
 
 Azure OpenAI models power agents in Microsoft Foundry Agent Service. This article helps you choose a supported model and region combination for your deployment. Choosing the right model and region affects your agent's capabilities, latency, and cost.
 

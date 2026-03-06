@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Capability hosts (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../../includes/agents-classic.md)]
 
 > [!NOTE]
 > Updating capability hosts is not supported. To modify a capability host, you must delete the existing one and recreate it with the new configuration.

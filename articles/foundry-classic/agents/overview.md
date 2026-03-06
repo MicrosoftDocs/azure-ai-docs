@@ -24,7 +24,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # What is Foundry Agent Service? (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../includes/agents-classic.md)]
 
 Most businesses don't want just chatbots. They want automation that's faster and has fewer errors. That desire might mean summarizing documents, processing invoices, managing support tickets, or publishing blog posts. In all cases, the goal is the same: freeing people and resources to focus on higher-value work by offloading repetitive and predictable tasks.
 

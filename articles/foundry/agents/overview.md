@@ -43,14 +43,13 @@ By abstracting away infrastructure complexity and enforcing trust and safety by 
 
 - An Azure subscription with permission to create and manage Foundry resources.
 - A Foundry project. If you haven't created one yet, start with [environment setup](environment-setup.md).
-- A deployed model that your agent can use. Model and region availability can vary; see [models that inform agents](../../foundry-classic/agents/concepts/model-region-support.md).
+- A deployed model that your agent can use. Model and region availability can vary; see [models that inform agents](./concepts/limits-quotas-regions.md).
 
 ## Availability, regions, and limits
 
 Agent Service capabilities can vary based on the Foundry experience you're using and the model and region you choose.
 
-- For service limits, quotas, and throttling considerations, see [Quotas and limits for Agent Service](../../foundry-classic/agents/quotas-limits.md).
-- For model and region support, see [models that inform agents](../../foundry-classic/agents/concepts/model-region-support.md).
+- For service limits, quotas, regions, and throttling considerations, see [Quotas and limits for Agent Service](./concepts/limits-quotas-regions.md).
 
 If you're building your first agent, start with the quickstart links in [Get started with Foundry Agent Service](#get-started-with-foundry-agent-service) to make sure you're on the right API path for your Foundry experience.
 
@@ -130,7 +129,7 @@ Agent Service provides a production-ready foundation for deploying intelligent a
 | **Tool orchestration** | Server-side execution and retry of tool calls with structured logging. No manual orchestration is required. |
 | **Trust and safety** | Integrated [content filters](../../foundry-classic/openai/how-to/content-filters.md) to help prevent misuse and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA). All outputs are policy governed. |
 | **Enterprise integration** | Ability to bring your own [storage](./how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-conversation-storage), [Azure AI Search index](./how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](how-to\virtual-networks.md) to meet compliance needs. |
-| **Observability and debugging** | [Full traceability](../../foundry-classic/how-to/develop/trace-agents-sdk.md) of conversations, tool invocations, and message traces; [Application Insights integration](./how-to/metrics.md) for usage data. |
+| **Observability and debugging** | [Full traceability](../observability/concepts/trace-agent-concept.md) of conversations, tool invocations, and message traces; [Application Insights integration](./how-to/metrics.md) for usage data. |
 | **Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional access. |
 
 ## Security, privacy, and compliance
@@ -176,17 +175,14 @@ To understand and manage cost drivers, see [Plan and manage costs](../concepts/m
 
 If you're blocked getting started, check these common issues:
 
-- **Model isn't available in your region**: See [models that inform agents](../../foundry-classic/agents/concepts/model-region-support.md).
-- **Requests are throttled or fail due to quota**: See [Quotas and limits for Agent Service](../../foundry-classic/agents/quotas-limits.md).
+- **Model isn't available in your region** or **Requests are throttled or fail due to quota**: See [models that inform agents](./concepts/limits-quotas-regions.md).
 - **You can't access resources or deployments**: Confirm your role assignments and follow [environment setup](environment-setup.md).
-- **You need to debug tool calls or agent behavior**: Start with [trace agents with the SDK](../../foundry-classic/how-to/develop/trace-agents-sdk.md) and [metrics](how-to/metrics.md).
+- **You need to debug tool calls or agent behavior**: Start with [trace agents](../observability/concepts/trace-agent-concept.md).
 
 ## Related content
 
-- [Quickstart: Create your first agent](../../foundry-classic/agents/quickstart.md)
-- [Models that inform agents](../../foundry-classic/agents/concepts/model-region-support.md)
+- [Quickstart: Create your first agent](../quickstarts/get-started-code.md)
+- [Models that inform agents](./concepts/limits-quotas-regions.md)
 - [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md)
-- [Content filters for safety](../../foundry-classic/openai/how-to/content-filters.md)
-- [Trace agents with the SDK](../../foundry-classic/how-to/develop/trace-agents-sdk.md)
+- [Trace agents](../observability/concepts/trace-agent-concept.md)
 - [Use your own resources](how-to/use-your-own-resources.md)
-- [Quotas and limits for Agent Service](../../foundry-classic/agents/quotas-limits.md)

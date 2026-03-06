@@ -104,7 +104,7 @@ For more information, see [Agent tracing overview](../../observability/concepts/
 Before you publish your agent (and after any meaningful change), run evaluations to catch regressions and measure quality consistently across versions.
 
 - For the key evaluation dimensions for agents, see [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
-- For a code-first workflow you can automate, see [Evaluate your AI agents locally](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md).
+- For a code-first workflow you can automate, see [Evaluate your AI agents](../../observability/concepts/trace-agent-concept.md).
 
 ### Monitor after publishing
 
@@ -114,7 +114,7 @@ After you publish an agent application, treat it like production software:
 - Review traces when behavior changes.
 - Update and republish when you fix issues or make improvements.
 
-For guidance, see [Monitor quality and safety](../../../foundry-classic/how-to/monitor-quality-safety.md).
+For guidance, see [Trace agents](../../observability/concepts/trace-agent-concept.md).
 
 ### Plan for identity and permissions
 
