@@ -1,4 +1,3 @@
-```markdown
 ---
 author: PatrickFarley
 ms.service: azure-ai-speech
@@ -123,4 +122,3 @@ Here are some other considerations:
 ## Clean up resources
 
 [!INCLUDE [Delete resource](../../common/delete-resource.md)]  
-```
