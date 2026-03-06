@@ -339,8 +339,8 @@ if (runs.GetArrayLength() > 0)
 
 To view the full sample code, see:
 
-- [Continuous evaluation sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_continuous_evaluation_rule.py).
-- [Scheduled evaluation and Schedule AI red teaming evaluation sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_scheduled_evaluations.py).
+- [Continuous evaluation sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_continuous_evaluation_rule.py).
+- [Scheduled evaluation and Schedule AI red teaming evaluation sample (Python)](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_scheduled_evaluations.py).
 
 ## Troubleshooting
 
