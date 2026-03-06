@@ -134,15 +134,22 @@ Follow these steps to create a Go application and install the Speech SDK.
 
    All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-Ximena:DragonHDLatestNeural` as the language, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
 
+1. Run the following commands to create a `go.mod` file that links to the Speech SDK components hosted on GitHub:
+    ```console
+    go mod init captioning
+    go get github.com/Microsoft/cognitive-services-speech-sdk-go
+    ```
+1. Build the GO module.
+    ```console
+    go build
+    ```
 1. Run your new console application to start speech synthesis to the default speaker.
-
    ```console
-   go mod init speech-synthesis
-   go get github.com/Microsoft/cognitive-services-speech-sdk-go
+   go run main.go
    ```
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 1. Enter some text that you want to speak. For example, type *I'm excited to try text to speech*. Press the **Enter** key to hear the synthesized speech.
 
