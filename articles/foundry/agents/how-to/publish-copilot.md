@@ -26,9 +26,6 @@ Use this article to publish an agent to Microsoft 365 Copilot and Teams so peopl
   - **Azure AI User** role on the Agent Application scope to invoke or chat with published agents
   - For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 - An Azure subscription where you can create Azure Bot Service resources and Microsoft Entra ID app registrations
-
-## Before you begin
-
 - **Test your agent thoroughly** in the Foundry portal before publishing. Confirm it responds correctly and any tools work as expected.
 - **Publish your agent as an agent application**: A published agent application uses its own agent identity separate from your project identity. If your agent uses tools that access Azure resources, plan to reassign any required permissions after publishing. For details, see [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md) and [Publish and share agents in Microsoft Foundry](publish-agent.md).
 - Verify that required Azure resource providers are registered in your subscription. The publishing process creates an Azure Bot Service resource, which requires the `Microsoft.BotService` provider.
@@ -39,7 +36,7 @@ Use this article to publish an agent to Microsoft 365 Copilot and Teams so peopl
    az provider register --namespace Microsoft.BotService
    ```
 
-## Prerequisite: Publish your agent as an agent application in the Foundry UI
+## Publish your agent as an agent application in the Foundry UI
 
 For more information on publishing an agent as an application, see [Publish and share agents](./publish-agent.md).
 
