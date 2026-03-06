@@ -54,7 +54,7 @@ While in preview, **Fireworks requires an administrator to enable the preview fe
 The **Preview features** screen refreshes and the preview feature's **State** is displayed. It might take up to 30 minutes for the feature to enable for your subscription.
 
 > [!TIP]
-> To verify registration, refresh the **Preview features** page and confirm the **State** column shows **Registered** for the **Fireworks AI on Foundry** feature.
+> To verify registration, refresh the **Preview features** page and confirm the **State** column shows **Registered** for the **Fireworks on Foundry** feature.
 
 After the feature is enabled, you can deploy Fireworks models from the Foundry model catalog. Browse available models in the [Available catalog models](#available-catalog-models) section, or [import your own custom model](import-custom-models.md).
 
