@@ -14,21 +14,8 @@ ms.custom:
   - references_regions
 ---
 
-The following models are supported for fine-tuning:
 
-|  Model ID  | Standard regions | Global | Developer | Methods | Status | Modality |
-|  --- | --- | :---: | :---: | :---: | --- |
-| `gpt-4o-mini` <br> (2024-07-18) | North Central US <br> Sweden Central | ✅ | ✅ | SFT | GA | Text to text |
-| `gpt-4o` <br> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text and vision to text |
-| `gpt-4.1` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text and vision to text |
-| `gpt-4.1-mini` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text to text |
-| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text to text |
-| `o4-mini` <br> (2025-04-16) | East US2 <br> Sweden Central | ✅ | ❌ | RFT | GA | Text to text |
-| `gpt-5` <br> (2025-08-07) | North Central US <br> Sweden Central | ✅ | ✅ | SFT | Private preview | Text to text |
-| `Ministral-3B` <br> (2411) | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
-| `Qwen-32B` | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
-| `Llama-3.3-70B-Instruct` | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
-| `gpt-oss-20b` | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
+[!INCLUDE [fine-tune-supported-models](../../../foundry/includes/fine-tune-supported-models.md)]
 
 > [!NOTE]
 > Global training provides [more affordable](https://aka.ms/aoai-pricing) training per token, but doesn't offer [data residency](https://aka.ms/data-residency). It's currently available to Foundry resources in the following regions:

@@ -24,24 +24,7 @@ ms.custom:
 
 ### Supported models
 
-The following models are supported for fine-tuning:
-
-|  Model ID  | Standard regions | Global | Developer | Methods | Status | Modality |
-|  --- | --- | :---: | :---: | :---: | --- |
-| `gpt-4o-mini` <br> (2024-07-18) | North Central US <br> Sweden Central | ✅ | ✅ | SFT | GA | Text to text |
-| `gpt-4o` <br> (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text and vision to text |
-| `gpt-4.1` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text and vision to text |
-| `gpt-4.1-mini` <br> (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text to text |
-| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | ✅ | ✅ | SFT, DPO | GA | Text to text |
-| `o4-mini` <br> (2025-04-16) | East US2 <br> Sweden Central | ✅ | ❌ | RFT | GA | Text to text |
-| `gpt-5` <br> (2025-08-07) | North Central US <br> Sweden Central | ✅ | ✅ | SFT | Private preview | Text to text |
-| `Ministral-3B` <br> (2411) | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
-| `Qwen-32B` | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
-| `Llama-3.3-70B-Instruct` | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
-| `gpt-oss-20b` | Not supported | ✅ | ❌ | SFT | Public preview | Text to text |
-
-
-Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
+[!INCLUDE [fine-tune-supported-models](./fine-tune-supported-models.md)]
 
 ## Review the workflow for the Python SDK
 
