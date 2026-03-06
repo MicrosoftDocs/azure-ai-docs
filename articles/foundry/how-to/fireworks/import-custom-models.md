@@ -48,9 +48,6 @@ Custom models must be based on one of the following model architectures:
 | Architecture family | Supported versions |
 | --- | --- |
 | **DeepSeek** | V3.1, V3.2 |
-| **Llama** | 3, 3.1, 4 |
-| **Mistral** | — |
-| **Qwen** | 2.5, 2.5-VL, 3 |
 | **Kimi** | K2, K2.5 |
 | **GLM** | 4.7, 4.8 |
 | **OpenAI** | gpt-oss-120b |
