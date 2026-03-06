@@ -490,8 +490,6 @@ public class OpenApiAgentJavaSample {
         ResponsesClient responsesClient = builder.buildResponsesClient();
         ConversationsClient conversationsClient = builder.buildConversationsClient();
 
-        JsonReader reader = JsonProviders.createReader(Files.readAllBytes(Paths.get("openapi_spec.json")));
-
         Map<String, BinaryData> spec = OpenApiFunctionDefinition.readSpecFromFile(
             Paths.get("openapi_spec.json"));
         
