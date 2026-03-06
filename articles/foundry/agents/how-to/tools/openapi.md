@@ -491,11 +491,13 @@ public class OpenApiAgentJavaSample {
         ConversationsClient conversationsClient = builder.buildConversationsClient();
 
         JsonReader reader = JsonProviders.createReader(Files.readAllBytes(Paths.get("openapi_spec.json")));
-        BinaryData spec = reader.getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped()));
 
+        Map<String, BinaryData> spec = OpenApiFunctionDefinition.readSpecFromFile(
+            Paths.get("openapi_spec.json"));
+        
         OpenApiFunctionDefinition toolDefinition = new OpenApiFunctionDefinition(
             "httpbin_get",
-            Map.of("spec", spec),
+            spec,
             new OpenApiAnonymousAuthDetails())
             .setDescription("Get request metadata from an OpenAPI endpoint.");
 
