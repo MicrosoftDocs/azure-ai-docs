@@ -29,8 +29,15 @@ In this quickstart you'll get started using models and agents in Foundry.
 Store [your project endpoint](../tutorials/quickstart-create-foundry-resources.md#get-your-project-connection-details) as an environment variable. Also set these values for use in your scripts.
 
 ```plaintext
+- Python and JavaScript
+
 PROJECT_ENDPOINT=<endpoint copied from welcome screen>
 AGENT_NAME="MyAgent"
+
+- C# and Java
+
+String ProjectEndpoint = <endpoint copied from welcome screen>
+String AgentName = "MyAgent"
 ```
 
 [!INCLUDE [quickstart-v2-get-code](../includes/quickstart-v2-get-code.md)]

@@ -49,6 +49,14 @@ Make sure you install the correct preview/prerelease version of the packages as 
 
 # [Java](#tab/java)
 
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.2</version>
+</dependency>
+```
+
 1. Sign in using the CLI `az login` command to authenticate before running your Java scripts.
 
 # [REST API](#tab/rest)
