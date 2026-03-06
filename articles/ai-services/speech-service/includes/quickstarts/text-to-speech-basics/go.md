@@ -41,79 +41,93 @@ Follow these steps to create a Go application and install the Speech SDK.
     package main
 
     import (
-        "bufio"
-        "fmt"
-        "os"
-        "strings"
-
-        "github.com/Microsoft/cognitive-services-speech-sdk-go/audio"
-        "github.com/Microsoft/cognitive-services-speech-sdk-go/common"
-        "github.com/Microsoft/cognitive-services-speech-sdk-go/speech"
+       "bufio"
+       "fmt"
+       "os"
+       "strings"
+   
+       "github.com/Microsoft/cognitive-services-speech-sdk-go/audio"
+       "github.com/Microsoft/cognitive-services-speech-sdk-go/common"
+       "github.com/Microsoft/cognitive-services-speech-sdk-go/speech"
     )
 
+   func outputSpeechSynthesisResult(result *speech.SpeechSynthesisResult, text string) {
+       switch result.Reason {
+       case common.SynthesizingAudioCompleted:
+           fmt.Printf("Speech synthesized for text: [%s]\n", text)
+       case common.Canceled:
+           cancellation, err := speech.NewCancellationDetailsFromSpeechSynthesisResult(result)
+           if err != nil {
+               fmt.Println("Got an error: ", err)
+               return
+           }
+   
+           fmt.Printf("CANCELED: Reason=%d\n", cancellation.Reason)
+           if cancellation.Reason == common.Error {
+               fmt.Printf("CANCELED: ErrorCode=%d\n", cancellation.ErrorCode)
+               fmt.Printf("CANCELED: ErrorDetails=[%s]\n", cancellation.ErrorDetails)
+               fmt.Println("CANCELED: Did you set the speech resource key and endpoint values?")
+           }
+       default:
+       }
+    }
+
     func main() {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+       // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
        speechKey := os.Getenv("SPEECH_KEY")
        endpoint := os.Getenv("ENDPOINT")
        if speechKey == "" || endpoint == "" {
            fmt.Println("Missing required environment variables. Set SPEECH_KEY and ENDPOINT.")
            return
        }
-
+   
        speechConfig, err := speech.NewSpeechConfigFromEndpointWithSubscription(endpoint, speechKey)
        if err != nil {
            fmt.Println("Got an error: ", err)
            return
        }
        defer speechConfig.Close()
-    
-        // The neural multilingual voice can speak different languages based on the input text.
-        speechConfig.SetSpeechSynthesisVoiceName("en-US-Ava:DragonHDLatestNeural") 
-
-        audioConfig, err := audio.NewAudioConfigFromDefaultSpeakerOutput()
-        if err != nil {
-            fmt.Println("Got an error: ", err)
-            return
-        }
-        defer audioConfig.Close()
-
-        speechSynthesizer, err := speech.NewSpeechSynthesizerFromConfig(speechConfig, audioConfig)
-        if err != nil {
-            fmt.Println("Got an error: ", err)
-            return
-        }
-        defer speechSynthesizer.Close()
-
-        fmt.Println("Enter some text that you want to speak >")
-        reader := bufio.NewReader(os.Stdin)
-        text, _ := reader.ReadString('\n')
-        text = strings.TrimSuffix(text, "\n")
-
-        result, err := speechSynthesizer.SpeakText(context.Background(), text)
-        if err != nil {
-            fmt.Println("Got an error: ", err)
-            return
-        }
-
-        if result.Reason == common.SynthesizingAudioCompleted {
-            fmt.Printf("Speech synthesized for text: [%s]\n", text)
-        } else if result.Reason == common.Canceled {
-            cancellation, err := speech.NewCancellationDetailsFromSpeechSynthesisResult(result)
-            if err != nil {
-                fmt.Printf("Error getting cancellation details: %v\n", err)
-                return
-            }
-            fmt.Printf("CANCELED: Reason=%v\n", cancellation.Reason)
-            if cancellation.Reason == common.Error {
-                fmt.Printf("CANCELED: ErrorCode=%v\nCANCELED: ErrorDetails=[%s]\nCANCELED: Did you set the speech resource key and region values?\n",
-                    cancellation.ErrorCode,
-                    cancellation.ErrorDetails)
-            }
-        }
-
-        fmt.Println("Press any key to exit...")
-        reader.ReadString('\n')
-    }
+   
+       // The neural multilingual voice can speak different languages based on the input text.
+       speechConfig.SetSpeechSynthesisVoiceName("en-US-Ava:DragonHDLatestNeural")
+   
+       audioConfig, err := audio.NewAudioConfigFromDefaultSpeakerOutput()
+       if err != nil {
+           fmt.Println("Got an error: ", err)
+           return
+       }
+       defer audioConfig.Close()
+   
+       speechSynthesizer, err := speech.NewSpeechSynthesizerFromConfig(speechConfig, audioConfig)
+       if err != nil {
+           fmt.Println("Got an error: ", err)
+           return
+       }
+       defer speechSynthesizer.Close()
+   
+       fmt.Println("Enter some text that you want to speak >")
+       reader := bufio.NewReader(os.Stdin)
+       text, _ := reader.ReadString('\n')
+       text = strings.TrimSpace(text)
+       if text == "" {
+           fmt.Println("Input text cannot be empty.")
+           return
+       }
+   
+       outcome := <-speechSynthesizer.SpeakTextAsync(text)
+       defer outcome.Close()
+       if outcome.Error != nil {
+           fmt.Println("Got an error: ", outcome.Error)
+           return
+       }
+       result := outcome.Result
+       defer result.Close()
+   
+       outputSpeechSynthesisResult(result, text)
+   
+       fmt.Println("Press any key to exit...")
+       reader.ReadString('\n')
+   }
     ```
 
 1. To change the speech synthesis language, replace `en-US-Ava:DragonHDLatestNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
