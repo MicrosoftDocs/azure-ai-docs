@@ -10,11 +10,11 @@ ms.date: 02/23/2026
 ms.custom: include
 ---
 
-Make sure you install the correct preview/prerelease version of the packages as shown here.
+Make sure you install the correct version of the packages as shown here.
 
 # [Python](#tab/python)
 
-1. Install these packages, including the preview version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** (preview).
+1. Install these packages, including the current version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** .
 
     ```
     pip install azure-ai-projects>=2.0.0
@@ -26,7 +26,7 @@ Make sure you install the correct preview/prerelease version of the packages as 
 
 1. Install packages:
 
-    Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Foundry projects (new) API** (preview).
+    Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Foundry projects (new) API**.
         
     ```bash
     dotnet add package Azure.AI.Projects --prerelease
@@ -39,7 +39,7 @@ Make sure you install the correct preview/prerelease version of the packages as 
 
 # [TypeScript](#tab/typescript)
 
-1. Install these packages, including the preview version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API** (preview).:
+1. Install these packages, including the current version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API**.:
 
     ```bash
     npm install @azure/ai-projects
