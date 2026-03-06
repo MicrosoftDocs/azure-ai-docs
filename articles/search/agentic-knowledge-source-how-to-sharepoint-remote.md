@@ -5,7 +5,7 @@ description: Learn how to create a remote SharePoint knowledge source, which tel
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/19/2025
-zone_pivot_groups: agentic-retrieval-pivots
+zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create a remote SharePoint knowledge source

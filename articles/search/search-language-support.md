@@ -69,7 +69,7 @@ The `analyzer` property on a field definition is used to set the [language analy
 
 ```JSON
 {
-  "name": "hotels-sample-index",
+  "name": "hotels-sample",
   "fields": [
     {
       "name": "Description",
@@ -111,7 +111,7 @@ By default, a search returns all fields that are marked as retrievable. As such,
 #### Example in REST
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "animaux acceptés",
     "searchFields": "Tags, Description_fr",

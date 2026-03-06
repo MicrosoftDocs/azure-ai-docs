@@ -5,7 +5,7 @@ description: A blob knowledge source specifies a blob container that you want to
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/19/2025
-zone_pivot_groups: agentic-retrieval-pivots
+zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create a blob knowledge source from Azure Blob Storage and ADLS Gen2

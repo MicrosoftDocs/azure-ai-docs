@@ -212,7 +212,7 @@ from azure.search.documents.models import VectorizedQuery
 
 # Set up the client
 endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
-index_name = "hotels-sample-index"
+index_name = "hotels-sample"
 credential = DefaultAzureCredential()
 
 client = SearchClient(endpoint=endpoint, index_name=index_name, credential=credential)
@@ -254,7 +254,7 @@ using Azure.Search.Documents.Models;
 
 // Set up the client
 string endpoint = Environment.GetEnvironmentVariable("AZURE_SEARCH_ENDPOINT");
-string indexName = "hotels-sample-index";
+string indexName = "hotels-sample";
 
 SearchClient client = new SearchClient(
     new Uri(endpoint),

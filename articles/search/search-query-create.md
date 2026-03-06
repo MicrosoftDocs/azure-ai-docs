@@ -44,7 +44,7 @@ A full text query is specified in a `search` parameter and consists of terms, qu
 The following [Search POST REST API](/rest/api/searchservice/documents/search-post) call illustrates a query request using `search` and other parameters.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "NY +view",
     "queryType": "simple",
@@ -94,7 +94,7 @@ In the Azure portal, when you open an index, you can work with Search Explorer a
 
 1. An index opens to the [**Search explorer**](search-explorer.md) tab so that you can query right away. Switch to **JSON view** to specify query syntax. 
 
-   Here's a full text search query expression that works for the Hotels sample index:
+   Here's a full text search query expression that works for the hotels-sample index:
 
    ```json
       {
@@ -125,7 +125,7 @@ Use a REST client to set up a request. If you need help with getting started, se
 The following example calls the REST API for full text search:
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "NY +view",
     "queryType": "simple",
@@ -159,7 +159,7 @@ from azure.search.documents import SearchClient
 
 # Set up the client
 service_name = "<your-search-service-name>"
-index_name = "hotels-sample-index"
+index_name = "hotels-sample"
 api_key = "<your-query-api-key>"
 
 endpoint = f"https://{service_name}.search.windows.net"
@@ -192,7 +192,7 @@ using Azure.Search.Documents.Models;
 
 // Set up the client
 string serviceName = "<your-search-service-name>";
-string indexName = "hotels-sample-index";
+string indexName = "hotels-sample";
 string apiKey = "<your-query-api-key>";
 
 Uri endpoint = new Uri($"https://{serviceName}.search.windows.net");
@@ -259,7 +259,7 @@ Search is fundamentally a user-driven exercise, where terms or phrases are colle
 
 If you're familiar with [query types and composition](search-query-overview.md), you might remember that the parameters on a query request depend on field attributes in an index. For example, only fields marked as *searchable* and *retrievable* can be used in queries and search results. When setting the `search`, `filter`, and `orderby` parameters in your request, you should check attributes to avoid unexpected results.
 
-In the following screenshot of the [hotels sample index](search-get-started-portal.md), only the last two fields **LastRenovationDate** and **Rating** are *sortable*, a requirement for use in an `"$orderby"` only clause.
+In the following screenshot of the [hotels-sample index](search-get-started-portal.md), only the last two fields **LastRenovationDate** and **Rating** are *sortable*, a requirement for use in an `"$orderby"` only clause.
 
 :::image type="content" source="media/search-query-overview/hotel-sample-index-definition.png" alt-text="Screenshot that shows the index definition for the hotel sample.":::
 

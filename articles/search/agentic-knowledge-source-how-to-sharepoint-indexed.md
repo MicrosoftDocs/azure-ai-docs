@@ -5,7 +5,7 @@ description: Learn how to create an indexed SharePoint knowledge source, which i
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/20/2025
-zone_pivot_groups: agentic-retrieval-pivots
+zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create an indexed SharePoint knowledge source

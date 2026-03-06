@@ -83,7 +83,7 @@ In the REST API, add suggesters by using [Create Index](/rest/api/searchservice/
 
   ```json
   {
-    "name": "hotels-sample-index",
+    "name": "hotels-sample",
     "fields": [
       . . .
           {

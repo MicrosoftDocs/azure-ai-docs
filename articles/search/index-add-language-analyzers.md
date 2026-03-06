@@ -68,7 +68,7 @@ The following example illustrates a language analyzer specification in an index:
 
 ```json
 {
-  "name": "hotels-sample-index",
+  "name": "hotels-sample",
   "fields": [
     {
       "name": "Description",

@@ -49,7 +49,7 @@ Available templates include:
 
 - [!INCLUDE [azure-subscription](../../../foundry/includes/azure-subscription.md)]
 - Appropriate RBAC role to create Foundry resources. For details, see [Role-based access control](../../concepts/rbac-foundry.md).
-- Either a [[!INCLUDE [fdp-project-name](../../../foundry/includes/fdp-project-name.md)]](../create-projects.md) or a [[!INCLUDE [hub-project-name](../../../foundry/includes/hub-project-name.md)]](../hub-create-projects.md).
+- Either a [[!INCLUDE [fdp-project-name](../../../foundry/includes/fdp-project-name.md)]](../create-projects.md) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../hub-create-projects.md).
 ## Start with a sample application
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]

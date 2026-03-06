@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/15/2026
-zone_pivot_groups: agentic-retrieval-pivots
+zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create a knowledge base in Azure AI Search

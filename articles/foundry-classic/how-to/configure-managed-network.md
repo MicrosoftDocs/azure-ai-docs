@@ -25,7 +25,7 @@ ai.usage: ai-assisted
 
 [!include [hub](../includes/uses-hub-only.md)]
 
-Network isolation for a [!INCLUDE [hub-based](../../foundry/includes/hub-project-name.md)] has two parts: accessing a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub, and isolating the computing resources in your hub and project (like compute instances, serverless, and managed online endpoints). This article covers the latter. The diagram highlights it. Use the hub's built-in network isolation to protect your computing resources.
+Network isolation for a [!INCLUDE [hub-based](../includes/hub-project-name.md)] has two parts: accessing a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) hub, and isolating the computing resources in your hub and project (like compute instances, serverless, and managed online endpoints). This article covers the latter. The diagram highlights it. Use the hub's built-in network isolation to protect your computing resources.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-outbound.svg" alt-text="Diagram that shows Foundry hub network isolation for outbound traffic and managed network configuration." lightbox="../media/how-to/network/azure-ai-network-outbound.png":::
 

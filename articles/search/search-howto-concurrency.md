@@ -151,7 +151,7 @@ A design pattern for implementing optimistic concurrency should include a loop t
 
 This code snippet illustrates the addition of a synonymMap to an index that already exists.
 
-The snippet gets the [hotels-sample-index](search-get-started-portal.md), checks the object version on an update operation, throws an exception if the condition fails, and then retries the operation (up to three times), starting with index retrieval from the server to get the latest version.
+The snippet gets the [hotels-sample index](search-get-started-portal.md), checks the object version on an update operation, throws an exception if the condition fails, and then retries the operation (up to three times), starting with index retrieval from the server to get the latest version.
 
 ```csharp
 private static void EnableSynonymsInHotelsIndexSafely(SearchIndexClient indexClient)
@@ -162,7 +162,7 @@ private static void EnableSynonymsInHotelsIndexSafely(SearchIndexClient indexCli
     {
         try
         {
-            SearchIndex index = indexClient.GetIndex("hotels-sample-index");
+            SearchIndex index = indexClient.GetIndex("hotels-sample");
             index = AddSynonymMapsToFields(index);
 
             // The onlyIfUnchangedcondition ensures that the index is updated only if the ETags match.
