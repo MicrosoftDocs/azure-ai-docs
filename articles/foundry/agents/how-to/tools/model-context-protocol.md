@@ -708,7 +708,7 @@ MCP with project connection sample completed!
 
 ## Use MCP tools in a Java agent
 
-Add the dependencyto your `pom.xml`:
+Add the dependency to your `pom.xml`:
 
 ```xml
 <dependency>

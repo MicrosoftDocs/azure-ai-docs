@@ -457,7 +457,7 @@ SharePoint agent sample completed!
 
 ## Use SharePoint grounding in a Java agent
 
-Add the dependencyto your `pom.xml`:
+Add the dependency to your `pom.xml`:
 
 ```xml
 <dependency>

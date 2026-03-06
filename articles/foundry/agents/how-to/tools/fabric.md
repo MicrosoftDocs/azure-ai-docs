@@ -300,7 +300,7 @@ main().catch((err) => {
 
 ## Use Microsoft Fabric in a Java agent
 
-Add the dependencyto your `pom.xml`:
+Add the dependency to your `pom.xml`:
 
 ```xml
 <dependency>

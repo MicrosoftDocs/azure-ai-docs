@@ -394,7 +394,7 @@ Image downloaded and saved to: /path/to/microsoft.png
 
 ## Use image generation in a Java agent
 
-Add the dependencyto your `pom.xml`:
+Add the dependency to your `pom.xml`:
 
 ```xml
 <dependency>

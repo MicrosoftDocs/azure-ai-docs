@@ -17,6 +17,7 @@ zone_pivot_groups: selection-bing-grounding-new
 ---
 
 # Grounding agents with Bing Search tools
+
 Traditional language models work with a knowledge cutoff. They can't access new information beyond a fixed point in time. By using Grounding with Bing Search and Grounding with Bing Custom Search (preview), your agents can incorporate real-time public web data when generating responses. By using these tools, you can ask questions such as "what is the top AI news today".
 
 The grounding process involves several key steps:
@@ -422,7 +423,7 @@ This example creates an agent that uses the Grounding with Bing Search tool and 
 ### Expected output
 
 ```console
-Euler's identity is considered one of the most elegant equationsin mathematics... [Euler's identity - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_identity)
+Euler's identity is considered one of the most elegant equations in mathematics... [Euler's identity - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_identity)
 ```
 
 ## Grounding with Bing in streaming scenarios
