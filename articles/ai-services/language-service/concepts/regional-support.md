@@ -191,14 +191,14 @@ Custom text classification is only available in some Azure regions. Some regions
 
 ## Custom question and answering
 
-Custom question and answering is **unavailable** in some Azure regions:
+Custom question answering is available in select Azure regions and is **unavailable** in the following Azure regions:
 
 | Region | Authoring (**unavailable**) | Prediction (**unavailable**) |
 | --- | --- | --- |
-| canadaeast| ✓ | ✓ |
+| canadaeast | ✓ | ✓ |
 | italynorth | ✓ | ✓ |
 | jioindiacentral | ✓ | ✓ |
-| ukwest | ✓ |✓ |
+| ukwest | ✓ | ✓ |
 
 ### Next steps
 

@@ -44,6 +44,18 @@ Choose from multiple development approaches based on your technical requirements
   * [.NET (C#) packages](https://www.nuget.org/packages/Azure.AI.Language.QuestionAnswering/) - Runtime and authoring SDKs for C# applications
   * [Python packages](https://pypi.org/project/azure-ai-language-questionanswering/) - Runtime and authoring SDKs for Python applications
 
+
+## Regional availability
+
+Custom question answering is available in select Azure regions and is **unavailable** in the following Azure regions:
+
+| Region | Authoring (**unavailable**) | Prediction (**unavailable**) |
+| --- | --- | --- |
+| canadaeast | ✓ | ✓ |
+| italynorth | ✓ | ✓ |
+| jioindiacentral | ✓ | ✓ |
+| ukwest | ✓ | ✓ |
+
 ## Next steps
 
 * [Quickstart: Create and deploy a CQA project](./quickstart/sdk.md)
