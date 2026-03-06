@@ -6,11 +6,12 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
-ms.custom: UpdateFrequency5, devx-track-azurecli, cliv1
+ms.custom: UpdateFrequency5, devx-track-azurecli, cliv1, dev-focus
+ai-usage: ai-assisted
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: jturuk
-ms.date: 05/02/2022
+ms.date: 03/06/2026
 ---
 
 # Create an Azure Machine Learning compute cluster with CLI v1
@@ -27,7 +28,7 @@ In this article, learn how to:
 
 * Create a compute cluster
 * Lower your compute cluster cost
-* Set up a [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) for the cluster
+* Set up a [managed identity](/entra/identity/managed-identities-azure-resources/overview) for the cluster
 
 
 ## Prerequisites
@@ -100,26 +101,26 @@ You can also configure several advanced properties when you create Azure Machine
 [!INCLUDE [cli v1](../includes/machine-learning-cli-v1.md)]
 
 ```azurecli-interactive
-az ml computetarget create amlcompute -n cpu --min-nodes 1 --max-nodes 1 -s STANDARD_D3_V2 --location westus2
+az ml computetarget create amlcompute -n cpu --min-nodes 1 --max-nodes 1 -s STANDARD_D4S_V5 --location westus2
 ```
 
 > [!WARNING]
 > When using a compute cluster in a different region than your workspace or datastores, you may see increased network latency and data transfer costs. The latency and costs can occur when creating the cluster, and when running jobs on it.
 
-For more information, see Az PowerShell module [az ml computetarget create amlcompute](/cli/azure/ml(v1)/computetarget/create#az-ml-computetarget-create-amlcompute).
+For more information, see [az ml computetarget create amlcompute](/cli/azure/ml(v1)/computetarget/create#az-ml-computetarget-create-amlcompute).
 
 ---
 
  ## Lower your compute cluster cost
 
-You may also choose to use [low-priority VMs](../how-to-manage-optimize-cost.md#low-pri-vm) to run some or all of your workloads. These VMs do not have guaranteed availability and may be preempted while in use. You will have to restart a preempted job. 
+You can also choose to use [low-priority VMs](../how-to-manage-optimize-cost.md#low-pri-vm) to run some or all of your workloads. These VMs don't have guaranteed availability and might be preempted while in use. You have to restart a preempted job. 
 
 # [Python SDK](#tab/python)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
 ```python
-compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_D2_V2',
+compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_D2S_V5',
                                                             vm_priority='lowpriority',
                                                             max_nodes=4)
 ```
@@ -131,7 +132,7 @@ compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_D2_V2',
 Set the `vm-priority`:
     
 ```azurecli-interactive
-az ml computetarget create amlcompute --name lowpriocluster --vm-size Standard_NC6 --max-nodes 5 --vm-priority lowpriority
+az ml computetarget create amlcompute --name lowpriocluster --vm-size Standard_NC4as_T4_v3 --max-nodes 5 --vm-priority lowpriority
 ```
 ---
 
@@ -148,7 +149,7 @@ az ml computetarget create amlcompute --name lowpriocluster --vm-size Standard_N
     * System assigned managed identity created in a workspace named `ws`
         ```python
         # configure cluster with a system-assigned managed identity
-        compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_D2_V2',
+        compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_D2S_V5',
                                                                 max_nodes=5,
                                                                 identity_type="SystemAssigned",
                                                                 )
@@ -160,7 +161,7 @@ az ml computetarget create amlcompute --name lowpriocluster --vm-size Standard_N
     
         ```python
         # configure cluster with a user-assigned managed identity
-        compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_D2_V2',
+        compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_D2S_V5',
                                                                 max_nodes=5,
                                                                 identity_type="UserAssigned",
                                                                 identity_id=['/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'])
@@ -196,13 +197,13 @@ az ml computetarget create amlcompute --name lowpriocluster --vm-size Standard_N
   * User-assigned managed identity
 
     ```azurecli
-    az ml computetarget create amlcompute --name cpu-cluster --vm-size Standard_NC6 --max-nodes 5 --assign-identity '/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
+    az ml computetarget create amlcompute --name cpu-cluster --vm-size Standard_NC4as_T4_v3 --max-nodes 5 --assign-identity '/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
     ```
 
   * System-assigned managed identity
 
     ```azurecli
-    az ml computetarget create amlcompute --name cpu-cluster --vm-size Standard_NC6 --max-nodes 5 --assign-identity '[system]'
+    az ml computetarget create amlcompute --name cpu-cluster --vm-size Standard_NC4as_T4_v3 --max-nodes 5 --assign-identity '[system]'
     ```
 * Add a managed identity to an existing cluster:
 
