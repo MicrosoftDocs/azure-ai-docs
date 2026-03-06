@@ -1,20 +1,19 @@
 ---
-title: "Set up MCP server authentication"
-description: "Set up authentication for Model Context Protocol (MCP) tools used by agents in Foundry Agent Service."
+title: "Set Up MCP Server Authentication"
+description: "Learn how to set up authentication for Model Context Protocol (MCP) servers used by agents in Microsoft Foundry Agent Service. Configure key-based, Entra, or OAuth auth."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/21/2026
+ms.date: 03/06/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Set up authentication for Model Context Protocol (MCP) tools (preview)
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Set up authentication for Model Context Protocol (MCP) tools
 
 Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. Proper authentication ensures your agents can securely connect to MCP servers, invoke their tools, and access protected resources while maintaining appropriate access controls.
 
