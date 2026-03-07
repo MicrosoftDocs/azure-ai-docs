@@ -72,7 +72,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 Install the SDK and set up your client:
 
 ```bash
-pip install --pre "azure-ai-projects>=2.0.0b4"
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 ```python
@@ -227,7 +227,7 @@ testing_criteria = [
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -283,7 +283,7 @@ eval_run = client.evals.runs.create(
 ```bash
 # Step 1: Create the evaluation
 EVAL_ID=$(curl --silent --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -335,7 +335,7 @@ EVAL_ID=$(curl --silent --request POST \
 
 # Step 2: Create a run against your dataset
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -464,7 +464,7 @@ eval_run = client.evals.runs.create(
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -643,7 +643,7 @@ agent_eval_run = client.evals.runs.create(
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -767,7 +767,7 @@ eval_run = client.evals.runs.create(
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{

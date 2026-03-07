@@ -15,8 +15,6 @@ ms.custom:
 ---
 
 # Azure OpenAI graders
-[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
-
 Azure OpenAI graders are a new set of evaluation tools in the Microsoft Foundry SDK that evaluate the performance of AI models and their outputs. These graders include:
 
 | Grader | What it measures | Required parameters | Output |
