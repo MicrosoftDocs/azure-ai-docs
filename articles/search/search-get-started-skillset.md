@@ -2,9 +2,8 @@
 title: "Quickstart: Create a Skillset in the Azure portal"
 titleSuffix: Azure AI Search
 description: Learn how to use an import wizard to generate searchable text from images and unstructured documents. Skills in this quickstart include optical character recognition (OCR), image analysis, and natural-language processing.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

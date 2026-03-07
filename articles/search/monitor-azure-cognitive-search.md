@@ -6,6 +6,8 @@ ms.update-cycle: 365-days
 ms.custom: horz-monitor
 ms.topic: concept-article
 ms.service: azure-ai-search
+author: mattwojo
+ms.author: mattwoj
 ---
 
 # Monitor Azure AI Search

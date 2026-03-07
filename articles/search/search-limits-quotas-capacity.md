@@ -2,9 +2,8 @@
 title: Service Limits for Tiers and SKUs
 titleSuffix: Azure AI Search
 description: Service limits used for capacity planning and maximum limits on requests and responses for Azure AI Search.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: limits-and-quotas
 ms.date: 01/26/2026
