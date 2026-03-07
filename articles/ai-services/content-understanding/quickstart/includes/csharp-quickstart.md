@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: include
 ms.date: 03/06/2026
-ms.author: paulhsu
+ms.author: lahlouchu
 ai-usage: ai-assisted
 ---
 
@@ -13,13 +13,14 @@ ai-usage: ai-assisted
 
 [Client library](https://www.nuget.org/packages/Azure.AI.ContentUnderstanding) | [Samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples) | [SDK source](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding)
 
-This quickstart shows you how to use the Content Understanding .NET SDK to extract structured data from multimodal content in document, image, audio, and video files.
+This quickstart shows you how to use the Content Understanding .NET SDK to extract structured data using prebuilt analyzers from document, image, audio, and video files. To learn more about prebuilt analyzers and other features, see the documentation of [Prebuilt Analyzers](../concepts/prebuilt-analyzers.md).
 
 ## Prerequisites
 
 * An active Azure subscription. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](/azure/ai-services/content-understanding/language-region-support).
-* [!INCLUDE [foundry-model-deployment-setup](../../includes/foundry-model-deployment-setup.md)]
+* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/language-region-support).
+* Your resource endpoint and API key (found under Keys and Endpoint in the Azure portal).
+* Model deployment defaults configured for your resource. See [Models and deployments](../../concepts/models-deployments.md) or this one-time [configuration script](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample01_UpdateDefaults.md) for setup instructions.
 * The current version of [.NET](https://dotnet.microsoft.com/download/dotnet).
 
 ## Set up
@@ -43,141 +44,56 @@ This quickstart shows you how to use the Content Understanding .NET SDK to extra
     dotnet add package Azure.Identity
     ```
 
-## Create your .NET application
+## Set up environment variables
 
-1. Open the **Program.cs** file in your preferred editor or IDE.
+To authenticate with the Content Understanding service, set the environment variables with your own values before running the sample:
+1) `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
+2) `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
 
-1. Replace the contents of **Program.cs** with one of the following code samples:
 
-    * [**Document search**](#document-search-model) — analyze and extract markdown content from documents.
-    * [**Prebuilt invoice**](#prebuilt-model) — analyze and extract common fields from invoices.
+# [Windows](#tab/windows)
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
-
-## Document search model
-
-Extract markdown content, page information, and summaries from documents.
-
-> [!div class="checklist"]
->
-> * For this example, you need a **document file from a URL**. You can use the [sample invoice document](https://raw.githubusercontent.com/Azure-Samples/azure-ai-content-understanding-assets/main/document/invoice.pdf) for this quickstart.
-> * The file URL value is set in the `documentUrl` variable within the `Main` method.
-
-**Add the following code sample to your Program.cs file. Make sure you update the endpoint and key variables with values from your Microsoft Foundry resource in the Azure portal:**
-
-```csharp
-using System;
-using System.Threading.Tasks;
-using Azure;
-using Azure.AI.ContentUnderstanding;
-
-// set `<your-endpoint>` and `<your-key>` variables
-// with the values from the Azure portal
-string endpoint = "<your-endpoint>";
-string key = "<your-key>";
-
-var client = new ContentUnderstandingClient(
-    new Uri(endpoint),
-    new AzureKeyCredential(key)
-);
-
-// Sample document
-string documentUrl =
-    "https://raw.githubusercontent.com/"
-    + "Azure-Samples/"
-    + "azure-ai-content-understanding-assets/"
-    + "main/document/invoice.pdf";
-
-var result = await client.AnalyzeAsync(
-    WaitUntil.Completed,
-    "prebuilt-documentSearch",
-    inputs: new[] { new AnalysisInput { Uri = documentUrl } }
-);
-
-if (result.Value.Contents != null
-    && result.Value.Contents.Count > 0)
-{
-    var content = result.Value.Contents[0];
-    Console.WriteLine("Markdown:");
-    Console.WriteLine(content.Markdown);
-
-    // Access document-specific properties
-    if (content is DocumentContent documentContent)
-    {
-        Console.WriteLine(
-            $"\nPages: {documentContent.StartPageNumber}"
-            + $" - {documentContent.EndPageNumber}"
-        );
-
-        if (documentContent.Pages != null
-            && documentContent.Pages.Count > 0)
-        {
-            Console.WriteLine(
-                $"Number of pages: {documentContent.Pages.Count}"
-            );
-
-            foreach (var page in documentContent.Pages)
-            {
-                string unit = documentContent.Unit ?? "units";
-                Console.WriteLine(
-                    $"  Page {page.PageNumber}: "
-                    + $"{page.Width} x {page.Height} {unit}"
-                );
-            }
-        }
-    }
-}
+```cmd
+setx CONTENTUNDERSTANDING_ENDPOINT "your-endpoint"
+setx CONTENTUNDERSTANDING_KEY "your-key"
 ```
 
-> [!NOTE]
-> This code is based on the [Sample02_AnalyzeUrl](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample02_AnalyzeUrl.md) sample in the SDK repository.
+# [Linux / macOS](#tab/linux)
 
-**Run the application**
+```bash
+export CONTENTUNDERSTANDING_ENDPOINT="your-endpoint"
+export CONTENTUNDERSTANDING_KEY="your-key"
+```
 
-After you add the code sample to your application, build and run your program:
+## Create a client
 
-1. Navigate to the folder where you have your **ContentUnderstandingQuickstart** project.
-
-1. Type the following command in your terminal:
-
-    ```console
-    dotnet run
-    ```
-
-**Reference**: [`ContentUnderstandingClient`](https://www.nuget.org/packages/Azure.AI.ContentUnderstanding), [`AnalyzeAsync`](https://www.nuget.org/packages/Azure.AI.ContentUnderstanding)
-
-___
-
-## Prebuilt model
-
-Analyze and extract common fields from specific document types using a prebuilt model. In this example, we analyze an invoice using the **prebuilt-invoice** analyzer.
-
-> [!TIP]
-> You aren't limited to invoices—there are several prebuilt analyzers to choose from, each of which has its own set of supported fields. For more information, see [prebuilt analyzers](../../concepts/prebuilt-analyzers.md).
-
-> [!div class="checklist"]
->
-> * Analyze an invoice using the prebuilt-invoice analyzer. You can use the [sample invoice document](https://raw.githubusercontent.com/Azure-Samples/azure-ai-content-understanding-assets/main/document/invoice.pdf) for this quickstart.
-> * The file URL value is set in the `invoiceUrl` variable within the `Main` method.
-
-**Add the following code sample to your Program.cs file. Make sure you update the endpoint and key variables with values from your Microsoft Foundry resource in the Azure portal:**
+The `ContentUnderstandingClient` is the main entry point for interacting with the service. Create an instance by providing your endpoint and credential.
 
 ```csharp
 using System;
-using System.Threading.Tasks;
 using Azure;
 using Azure.AI.ContentUnderstanding;
 
-// set `<your-endpoint>` and `<your-key>` variables
-// with the values from the Azure portal
-string endpoint = "<your-endpoint>";
-string key = "<your-key>";
+string endpoint = Environment.GetEnvironmentVariable("CONTENTUNDERSTANDING_ENDPOINT");
+string key = Environment.GetEnvironmentVariable("CONTENTUNDERSTANDING_KEY");
 
 var client = new ContentUnderstandingClient(
     new Uri(endpoint),
     new AzureKeyCredential(key)
 );
+```
 
+## Get started with a prebuilt analyzer
+
+Analyzers define how your content is processed and the insights that are extracted. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. You can [customize prebuilt analyzers](../concepts/prebuilt-analyzers.md) to better fit your specific needs and use cases.
+This quickstart uses prebuilt invoice, image, audio, and video analyzers to help you get started.
+
+
+# [Document](#tab/document)
+
+This example uses the `prebuilt-invoice` analyzer to extract structured data from an invoice document.
+
+```csharp
 // Sample invoice
 string invoiceUrl =
     "https://raw.githubusercontent.com/"
@@ -188,7 +104,7 @@ string invoiceUrl =
 var result = await client.AnalyzeAsync(
     WaitUntil.Completed,
     "prebuilt-invoice",
-    inputs: new[] { new AnalysisInput { Uri = invoiceUrl } }
+    inputs: new[] { new AnalysisInput { Uri = new Uri(invoiceUrl) } }
 );
 
 if (result.Value.Contents == null
@@ -229,9 +145,6 @@ if (result.Value.Contents[0] is DocumentContent documentContent)
                 + $"{customerNameField.Confidence.Value:F2}"
             );
         }
-        Console.WriteLine(
-            $"  Source: {customerNameField.Source ?? "N/A"}"
-        );
     }
 
     // Extract date fields
@@ -303,24 +216,342 @@ if (result.Value.Contents[0] is DocumentContent documentContent)
         }
     }
 }
+
+```
+
+This will produce the following output:
+```text
+Document unit: inch
+Pages: 1 to 1
+Customer Name: MICROSOFT CORPORATION
+  Confidence: 0.39
+Invoice Date: 11/15/2019 12:00:00 AM +00:00
+  Confidence: 0.94
+
+Total: USD110
+
+Line Items (3):
+  Item 1: Consulting Services
+    Quantity: 2
+  Item 2: Document Fee
+    Quantity: 3
+  Item 3: Printing Fee
+    Quantity: 10
 ```
 
 > [!NOTE]
 > This code is based on the [Sample03_AnalyzeInvoice](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample03_AnalyzeInvoice.md) sample in the SDK repository.
 
-**Run the application**
+# [Image](#tab/image)
 
-After you add the code sample to your application, build and run your program:
+This example uses the `prebuilt-imageSearch` analyzer to generate a description of the image.
 
-1. Navigate to the folder where you have your **ContentUnderstandingQuickstart** project.
+```csharp
+Uri uriSource = new Uri(
+    "https://raw.githubusercontent.com/"
+    + "Azure-Samples/"
+    + "azure-ai-content-understanding-assets/"
+    + "main/image/pieChart.jpg"
+);
 
-1. Type the following command in your terminal:
+var operation = await client.AnalyzeAsync(
+    WaitUntil.Completed,
+    "prebuilt-imageSearch",
+    inputs: new[] { new AnalysisInput { Uri = uriSource } }
+);
 
-    ```console
-    dotnet run
-    ```
+AnalysisResult result = operation.Value;
+AnalysisContent content = result.Contents!.First();
+Console.WriteLine(content.Markdown);
 
-**Reference**: [`ContentUnderstandingClient`](https://www.nuget.org/packages/Azure.AI.ContentUnderstanding), [`AnalyzeAsync`](https://www.nuget.org/packages/Azure.AI.ContentUnderstanding)
+string summary = content.Fields["Summary"].Value?.ToString()
+    ?? string.Empty;
+Console.WriteLine($"Summary: {summary}");
+```
+
+This will produce the following output:
+```bash
+![image](pages/1)
+
+Summary: The pie chart displays the distribution of hours in four categories: 1-39 hours (6.7%), 40-50 hours (18.9%), 50-60 hours (36.6%), and 60+ hours (37.8%). The largest segment is 60+ hours, followed closely by 50-60 hours, then 40-50 hours, and the smallest segment is 1-39 hours.
+```
+
+# [Audio](#tab/audio)
+
+This example uses the `prebuilt-audioSearch` analyzer to extract the audio transcript, generate a summary, and perform speaker labeling.
+
+```csharp
+Uri uriSource = new Uri(
+    "https://raw.githubusercontent.com/"
+    + "Azure-Samples/"
+    + "azure-ai-content-understanding-assets/"
+    + "main/audio/callCenterRecording.mp3"
+);
+
+var operation = await client.AnalyzeAsync(
+    WaitUntil.Completed,
+    "prebuilt-audioSearch",
+    inputs: new[] { new AnalysisInput { Uri = uriSource } }
+);
+
+AnalysisResult result = operation.Value;
+
+// Cast to AudioVisualContent for audio-specific properties
+AudioVisualContent audioContent =
+    (AudioVisualContent)result.Contents!.First();
+Console.WriteLine(audioContent.Markdown);
+
+string summary = audioContent.Fields["Summary"].Value?.ToString()
+    ?? string.Empty;
+Console.WriteLine($"Summary: {summary}");
+
+if (audioContent.TranscriptPhrases != null
+    && audioContent.TranscriptPhrases.Count > 0)
+{
+    Console.WriteLine("Transcript (first two phrases):");
+    foreach (TranscriptPhrase phrase
+        in audioContent.TranscriptPhrases.Take(2))
+    {
+        Console.WriteLine(
+            $"  [{phrase.Speaker}] "
+            + $"{phrase.StartTime.TotalMilliseconds} ms: "
+            + $"{phrase.Text}"
+        );
+    }
+}
+```
+
+This will produce the following output:
+```text
+# Audio: 00:00.000 => 00:32.183
+
+Transcript
+
+WEBVTT
+
+00:00.080 --> 00:00.640
+<v Speaker 1>Good day.
+
+00:00.880 --> 00:02.240
+<v Speaker 1>Welcome to Contoso.
+
+00:02.560 --> 00:03.760
+<v Speaker 1>My name is John Doe.
+
+00:03.920 --> 00:05.120
+<v Speaker 1>How can I help you today?
+
+00:05.440 --> 00:06.320
+<v Speaker 2>Yes, good day.
+
+00:06.640 --> 00:08.160
+<v Speaker 2>My name is Maria Smith.
+
+00:08.560 --> 00:11.360
+<v Speaker 2>I would like to inquire about my current point balance.
+
+00:11.680 --> 00:12.560
+<v Speaker 1>No problem.
+
+00:12.880 --> 00:13.920
+<v Speaker 1>I am happy to help.
+
+00:14.240 --> 00:16.720
+<v Speaker 1>I need your date of birth to confirm your identity.
+
+00:17.120 --> 00:19.600
+<v Speaker 2>It is April 19th, 1988.
+
+00:20.000 --> 00:20.480
+<v Speaker 1>Great.
+
+00:20.800 --> 00:24.160
+<v Speaker 1>Your current point balance is 599 points.
+
+00:24.560 --> 00:26.160
+<v Speaker 1>Do you need any more information?
+
+00:26.480 --> 00:27.200
+<v Speaker 2>No, thank you.
+
+00:27.600 --> 00:28.320
+<v Speaker 2>That was all.
+
+00:28.720 --> 00:29.360
+<v Speaker 2>Goodbye.
+
+00:29.680 --> 00:31.920
+<v Speaker 1>You're welcome, goodbye a Cantoso.
+
+Summary: The conversation is a customer service interaction where Maria Smith contacts Contoso to inquire about her current point balance. The agent, John Doe, verifies her identity by asking for her date of birth and then informs her that she has 599 points. Maria confirms she does not need further information and ends the call politely.
+Transcript (first two phrases):
+  [Speaker 1] 80 ms: Good day.
+  [Speaker 1] 880 ms: Welcome to Contoso.
+```
+
+# [Video](#tab/video)
+
+This example uses the `prebuilt-videoSearch` analyzer to extract keyframes, transcript, and chapter segments from video.
+
+```csharp
+Uri uriSource = new Uri(
+    "https://raw.githubusercontent.com/"
+    + "Azure-Samples/"
+    + "azure-ai-content-understanding-assets/"
+    + "main/videos/sdk_samples/FlightSimulator.mp4"
+);
+
+var operation = await client.AnalyzeAsync(
+    WaitUntil.Completed,
+    "prebuilt-videoSearch",
+    inputs: new[] { new AnalysisInput { Uri = uriSource } }
+);
+
+AnalysisResult result = operation.Value;
+
+// prebuilt-videoSearch can detect segments, so iterate all
+int segmentIndex = 1;
+foreach (AnalysisContent media in result.Contents!)
+{
+    AudioVisualContent videoContent =
+        (AudioVisualContent)media;
+    Console.WriteLine($"--- Segment {segmentIndex} ---");
+    Console.WriteLine("Markdown:");
+    Console.WriteLine(videoContent.Markdown);
+
+    string summary = videoContent.Fields["Summary"]
+        .Value?.ToString() ?? string.Empty;
+    Console.WriteLine($"Summary: {summary}");
+
+    Console.WriteLine(
+        $"Start: {videoContent.StartTime.TotalMilliseconds} ms, "
+        + $"End: {videoContent.EndTime.TotalMilliseconds} ms"
+    );
+    Console.WriteLine(
+        $"Frame size: {videoContent.Width} x {videoContent.Height}"
+    );
+
+    Console.WriteLine("---------------------");
+    segmentIndex++;
+}
+```
+
+This will produce the following output:
+```text
+--- Segment 1 ---
+Markdown:
+# Video: 00:00.733 => 00:15.467
+Width: 1080
+Height: 608
+
+Transcript
+
+WEBVTT
+
+00:01.360 --> 00:06.640
+<Speaker 1>When it comes to the neural TTS, in order to get a good voice, it's better to have good data.
+
+00:07.120 --> 00:13.320
+<Speaker 2>To achieve that, we build a universal TTS model based on 3,000 hours of data.
+
+00:13.440 --> 00:23.680
+<Speaker 1>We actually accumulated tons of the data so that this universal model is able to capture the nuance of the audio and generate a more natural voice for the algorithm.
+
+
+Key Frames
+- 00:00.733 ![](keyFrame.733.jpg)
+- 00:02.067 ![](keyFrame.2067.jpg)
+- 00:02.667 ![](keyFrame.2667.jpg)
+- 00:04.067 ![](keyFrame.4067.jpg)
+- 00:04.900 ![](keyFrame.4900.jpg)
+- 00:05.733 ![](keyFrame.5733.jpg)
+- 00:06.567 ![](keyFrame.6567.jpg)
+- 00:07.800 ![](keyFrame.7800.jpg)
+- 00:09.000 ![](keyFrame.9000.jpg)
+- 00:09.800 ![](keyFrame.9800.jpg)
+- 00:10.600 ![](keyFrame.10600.jpg)
+- 00:12.100 ![](keyFrame.12100.jpg)
+- 00:12.833 ![](keyFrame.12833.jpg)
+- 00:14.200 ![](keyFrame.14200.jpg)
+- 00:14.833 ![](keyFrame.14833.jpg)
+- 00:15.467 ![](keyFrame.15467.jpg)
+Summary: The video opens with a scenic aerial view of an island and a small plane flying over it, accompanied by the Flight Simulator and Microsoft Azure AI logos. The scene then shifts to a person speaking about neural TTS (text-to-speech) technology, emphasizing the importance of good data and describing the creation of a universal TTS model trained on 3,000 hours of data to capture audio nuances and generate natural voices. Visuals include audio waveform displays and shots of a data center and server racks, highlighting the technological infrastructure behind the TTS model.
+Start: 733 ms, End: 15467 ms
+Frame size: 1080 x 608
+---------------------
+--- Segment 2 ---
+Markdown:
+# Video: 00:15.467 => 00:23.100
+Width: 1080
+Height: 608
+
+
+
+Key Frames
+- 00:15.467 ![](keyFrame.15467.jpg)
+- 00:16.933 ![](keyFrame.16933.jpg)
+- 00:17.767 ![](keyFrame.17767.jpg)
+- 00:18.600 ![](keyFrame.18600.jpg)
+- 00:20.167 ![](keyFrame.20167.jpg)
+- 00:20.900 ![](keyFrame.20900.jpg)
+- 00:21.633 ![](keyFrame.21633.jpg)
+- 00:22.367 ![](keyFrame.22367.jpg)
+- 00:23.100 ![](keyFrame.23100.jpg)
+Summary: The video transitions to vibrant in-game footage from Flight Simulator, showcasing detailed landscapes, a biplane flying over coastal and mountainous terrain, and a castle with a plane flying nearby. This segment highlights the realistic graphics and immersive environment of the simulator.
+Start: 15467 ms, End: 23100 ms
+Frame size: 1080 x 608
+---------------------
+--- Segment 3 ---
+Markdown:
+# Video: 00:23.100 => 00:43.233
+Width: 1080
+Height: 608
+
+Transcript
+
+WEBVTT
+
+00:24.040 --> 00:29.120
+<Speaker 3>What we liked about cognitive services offerings were that they had a much higher fidelity.
+
+00:29.600 --> 00:32.880
+<Speaker 3>And they sounded a lot more like an actual human voice.
+
+00:33.680 --> 00:37.200
+<Speaker 4>Orlando ground 9555 requesting the end of pushback.
+
+00:38.680 --> 00:41.280
+<Speaker 4>9555 request to end pushback received.
+
+
+Key Frames
+- 00:23.100 ![](keyFrame.23100.jpg)
+- 00:24.833 ![](keyFrame.24833.jpg)
+- 00:25.700 ![](keyFrame.25700.jpg)
+- 00:26.567 ![](keyFrame.26567.jpg)
+- 00:27.433 ![](keyFrame.27433.jpg)
+- 00:28.300 ![](keyFrame.28300.jpg)
+- 00:29.167 ![](keyFrame.29167.jpg)
+- 00:30.833 ![](keyFrame.30833.jpg)
+- 00:31.633 ![](keyFrame.31633.jpg)
+- 00:32.433 ![](keyFrame.32433.jpg)
+- 00:33.900 ![](keyFrame.33900.jpg)
+- 00:34.600 ![](keyFrame.34600.jpg)
+- 00:36.067 ![](keyFrame.36067.jpg)
+- 00:36.867 ![](keyFrame.36867.jpg)
+- 00:38.200 ![](keyFrame.38200.jpg)
+- 00:38.700 ![](keyFrame.38700.jpg)
+- 00:39.900 ![](keyFrame.39900.jpg)
+- 00:40.600 ![](keyFrame.40600.jpg)
+- 00:41.300 ![](keyFrame.41300.jpg)
+- 00:42.633 ![](keyFrame.42633.jpg)
+- 00:43.233 ![](keyFrame.43233.jpg)
+Summary: The scene shifts to another speaker discussing the high fidelity of cognitive services' TTS offerings, noting how the voices sound more like actual human voices. The visuals then move to an airport setting with ground crew directing an Airbus airplane during pushback, illustrating real-world aviation operations and tying back to the theme of realistic audio and simulation.
+Start: 23100 ms, End: 43233 ms
+Frame size: 1080 x 608
+---------------------
+```
+
 
 ## Next steps
 
