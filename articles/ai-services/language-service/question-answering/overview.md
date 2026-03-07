@@ -47,7 +47,7 @@ Choose from multiple development approaches based on your technical requirements
 
 ## Regional availability
 
-For supported regions and availability, see [Custom question answering regional support](../concepts/regional-support.md#custom-question-answering).
+For supported regions and availability, see [Custom question answering regional support](../concepts/regional-support.md#custom-question-and-answering).
 
 ## Next steps
 
