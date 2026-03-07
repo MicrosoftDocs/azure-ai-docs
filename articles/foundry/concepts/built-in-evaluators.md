@@ -16,8 +16,6 @@ ms.custom:
 
 Microsoft Foundry provides a comprehensive set of built-in evaluators to assess the quality, safety, and reliability of AI responses throughout the development lifecycle. This reference details all available evaluators, their purposes, required inputs, and guidance on selecting the right evaluator for your use case. You can also create [custom evaluators](./evaluation-evaluators/custom-evaluators.md) tailored to your specific evaluation criteria.
 
-[!INCLUDE [evaluation-preview](../includes/evaluation-preview.md)]
-
 ## General purpose evaluators
 
 | Evaluator | Purpose |
@@ -49,7 +47,7 @@ To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textu
 | Groundedness | Measures how consistent the response is with respect to the retrieved context. |
 | Groundedness Pro (preview) | Measures whether the response is consistent with respect to the retrieved context. |
 | Relevance | Measures how relevant the response is with respect to the query. |
-| Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. |
+| Response Completeness (preview) | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. |
 
 To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluation-evaluators/rag-evaluators.md).
 
@@ -75,12 +73,12 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 | Task Adherence (preview)  | Measures whether the agent follows through on identified tasks according to system instructions. |
 | Task Completion (preview)| Measures whether the agent successfully completed the requested task end-to-end. |
 | Intent Resolution (preview) | Measures how accurately the agent identifies and addresses user intentions. |
-| Task Navigation Efficiency (preview) | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. |
-| Tool Call Accuracy (preview) | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. |
-| Tool Selection (preview) | Measures whether the agent selected the most appropriate and efficient tools for a task. |
-| Tool Input Accuracy (preview)| Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. |
-| Tool Output Utilization (preview)| Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. |
-| Tool Call Success (preview) | Evaluates whether all tool calls executed successfully without technical failures. |
+| Task Navigation Efficiency | Determines whether the agent's sequence of steps matches an optimal or expected path to measure efficiency. |
+| Tool Call Accuracy | Measures the overall quality of tool calls including selection, parameter correctness, and efficiency. |
+| Tool Selection | Measures whether the agent selected the most appropriate and efficient tools for a task. |
+| Tool Input Accuracy | Validates that all tool call parameters are correct with strict criteria including grounding, type, format, completeness, and appropriateness. |
+| Tool Output Utilization | Measures whether the agent correctly interprets and uses tool outputs contextually in responses and subsequent calls. |
+| Tool Call Success | Evaluates whether all tool calls executed successfully without technical failures. |
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
 

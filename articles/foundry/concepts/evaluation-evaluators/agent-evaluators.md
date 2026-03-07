@@ -14,8 +14,8 @@ ms.custom:
   - build-2025
 ---
 
-# Agent evaluators (preview)
-[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+# Agent evaluators
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 AI agents are powerful productivity assistants that can create workflows for business needs. However, observability can be a challenge due to their complex interaction patterns. Agent evaluators provide systematic observability into agentic workflows by measuring quality, safety, and performance.
 

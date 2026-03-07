@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 ---
 
 # Custom evaluators (preview)
-[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
 
