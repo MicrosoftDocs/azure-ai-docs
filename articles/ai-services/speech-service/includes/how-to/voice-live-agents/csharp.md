@@ -58,7 +58,7 @@ Voice Live lets you connect to a specific version of your agent. This enables co
 
 To connect to a specific agent version, set the `AGENT_VERSION` environment variable or pass the `agentVersion` parameter when initializing the assistant:
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="190-217,448-506" highlight="9,27,35-38":::
+:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="190-217,449-507" highlight="9,27,35-38":::
 
 The version configuration is applied in three places:
 
@@ -83,7 +83,7 @@ To connect to an agent on a different resource, configure two environment variab
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="190-217,448-506" highlight="14-18,29-30,37-38":::
+:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="190-217,449-507" highlight="14-18,29-30,37-38":::
 
 The configuration is resolved in `Main()` and applied when the assistant is created:
 
@@ -98,7 +98,7 @@ The configuration is resolved in `Main()` and applied when the assistant is crea
 
 Send a proactive message to initiate conversations when the session is ready. The assistant checks a one-time flag in the `SessionUpdateSessionUpdated` event handler, sends a greeting prompt, and triggers a response.
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="392-424" highlight="3-32":::
+:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="393-425" highlight="3-32":::
 
 Proactive messaging is applied in three steps:
 
@@ -117,7 +117,7 @@ The feature supports two modes:
 
 The quickstart voice assistant shows the required code additions:
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="261-288" highlight="6-14,20":::
+:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="261-289" highlight="6-15,21":::
 
 The interim response setup is applied inside `SetupSessionAsync()`:
 
@@ -142,7 +142,7 @@ Reconnect to a previous conversation by specifying the conversation ID. This pre
 
 When a session connects successfully, Voice Live returns session metadata in the `SessionUpdateSessionUpdated` event. Extract the session ID and log it to the conversation file:
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="300-320":::
+:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="301-321":::
 
 In this event handler, the session ID is extracted from `sessionUpdated.Session?.Id` and written to the conversation log.
 
@@ -150,12 +150,12 @@ The sample writes session details to a conversation log file in the `logs/` fold
 
 To reconnect, pass the conversation ID as the `CONVERSATION_ID` environment variable or the `conversationId` parameter:
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="457,482-485":::
+:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="458,483-486":::
 
 Conversation reconnect is applied in three places:
 
-- In `Main()`, read `CONVERSATION_ID` from the environment (line 457).
-- Pass the value to the `BasicVoiceAssistant(...)` constructor (lines 482-485).
+- In `Main()`, read `CONVERSATION_ID` from the environment (line 458).
+- Pass the value to the `BasicVoiceAssistant(...)` constructor (lines 483-486).
 - In the constructor, set the value on `AgentSessionConfig` via `config.ConversationId`.
 
 When a valid `conversationId` is provided, the agent retrieves the previous conversation context and can reference earlier exchanges.
@@ -173,12 +173,12 @@ The sample logs key session metadata, including the session ID, to a timestamped
 
 The following code creates the log filename and writes session metadata when `SessionUpdateSessionUpdated` fires:
 
-:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="188-189,300-320,426-438" highlight="1-2,7-8,28-39":::
+:::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs" range="188-189,301-321,427-439" highlight="1-2,7-8,28-39":::
 
 Session metadata logging is applied in three places:
 
 - A timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 188–189).
-- On `SessionUpdateSessionUpdated`, the handler extracts the session ID and writes it to the log (lines 308–309).
-- `WriteLog(...)` appends entries throughout the conversation lifecycle (lines 426–438).
+- On `SessionUpdateSessionUpdated`, the handler extracts the session ID and writes it to the log (lines 309–310).
+- `WriteLog(...)` appends entries throughout the conversation lifecycle (lines 427–439).
 
 Use the logged session metadata with `CONVERSATION_ID` to resume the same agent conversation later. Use the session ID alongside your conversation ID for diagnostics and reconnect scenarios.

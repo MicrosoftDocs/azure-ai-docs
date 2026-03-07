@@ -60,7 +60,7 @@ Pin your agent to a specific version to enable controlled deployments. This lets
 
 Set the `AGENT_VERSION` environment variable or pass the `agentVersion` parameter when initializing the assistant:
 
-:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="9,27,35-38":::
+:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="8-10,29,55-57":::
 
 In this sample, the version configuration is applied in three places:
 
@@ -82,7 +82,7 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="14-18,29-30,37-38":::
+:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="243-265,506-557" highlight="4,15-18,31-32,55-58":::
 
 This configuration is resolved in `main()` and then applied when the assistant is created:
 
@@ -115,7 +115,7 @@ This feature supports two modes:
 
 The voice assistant created with the quickstart shows the required code additions to configure this feature as follows:
 
-:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="310-335" highlight="3-13,20":::
+:::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java" range="310-335" highlight="5-13,20":::
 
 In this sample, the interim response setup is applied inside `BasicVoiceAssistant.setupSession()`:
 
