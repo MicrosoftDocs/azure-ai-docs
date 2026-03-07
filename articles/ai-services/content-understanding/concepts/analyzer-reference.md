@@ -57,7 +57,7 @@ Here's a condensed example that shows the overall structure of an analyzer confi
 
 ```json
 {
-  "analyzerId": "myCustomInvoiceAnalyzer",
+  "analyzerId": "my-custom-invoice-analyzer",
   "description": "Extracts vendor information, line items, and totals from commercial invoices",
   "baseAnalyzerId": "prebuilt-document",
   "config": {
@@ -83,11 +83,11 @@ Use these properties to uniquely identify and describe your analyzer:
 
 ### `analyzerId`
 - **Description:** Unique identifier for the analyzer. Use this identifier to reference the analyzer in API calls.
-- **Example:** `"prebuilt-invoice"`, `"myCustomAnalyzer"`
+- **Example:** `"prebuilt-invoice"`, `"my-custom-analyzer"`
 - **Guidelines:**
   - Use descriptive names that indicate the analyzer's purpose.
   - For custom analyzers, choose names that don't conflict with prebuilt analyzer names.
-  - Use letters, numbers, dots, or underscores.
+  - Use lowercase with hyphens for consistency.
 
 ### `name`
 - **Description:** Human-readable display name shown in user interfaces and documentation.
@@ -457,7 +457,7 @@ Here's a comprehensive example of a custom invoice analyzer configuration that d
 
 ```json
 {
-  "analyzerId": "myCustomInvoiceAnalyzer",
+  "analyzerId": "my-custom-invoice-analyzer",
   "name": "Custom Invoice Analyzer",
   "description": "Extracts vendor information, line items, and totals from commercial invoices",
   "baseAnalyzerId": "prebuilt-document",

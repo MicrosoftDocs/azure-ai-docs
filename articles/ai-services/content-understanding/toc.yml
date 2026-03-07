@@ -124,9 +124,6 @@ items:
       - name: Create a Microsoft Foundry resource
         displayName: extract, text, images, OCR, optical character recognition
         href: how-to/create-multi-service-resource.md
-      - name: Bring your own cross-resource capacity
-        displayName: byo, cross-resource, deployment, azure openai, connection, authentication
-        href: how-to/bring-your-own-cross-resource-capacity.md
       - name: Build a face-data person directory (preview)
         displayName: person, directory, search, index, vector
         href: tutorial/build-person-directory.md
