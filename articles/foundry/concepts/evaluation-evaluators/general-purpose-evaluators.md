@@ -15,8 +15,6 @@ ms.custom:
 ---
 
 # General purpose evaluators
-[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
-
 AI systems might generate textual responses that are incoherent, or lack the general writing quality beyond minimum grammatical correctness. To address these issues, Microsoft Foundry supports evaluating coherence and fluency.
 
 ## Coherence

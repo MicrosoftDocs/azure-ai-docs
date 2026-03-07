@@ -33,7 +33,7 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 First, install Microsoft Foundry SDK's project client, which runs the AI Red Teaming Agent in the cloud.
 
 ```bash
-pip install azure-ai-projects>=2.0.0b1 azure-identity
+pip install "azure-ai-projects>=2.0.0" azure-identity
 ```
 
 Then, set your environment variables for your Microsoft Foundry resources
@@ -225,7 +225,7 @@ target = AzureAIAgentTarget(
 )
 
 # Create taxonomy for prohibited actions risk category
-taxonomy = project_client.evaluation_taxonomies.create(
+taxonomy = project_client.beta.evaluation_taxonomies.create(
     name=agent_name,
     body=EvaluationTaxonomy(
         description="Taxonomy for red teaming run",
