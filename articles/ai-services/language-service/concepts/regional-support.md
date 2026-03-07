@@ -191,14 +191,44 @@ Custom text classification is only available in some Azure regions. Some regions
 
 ## Custom question and answering
 
-Custom question answering is **unavailable** in the following Azure regions: 
-
-| Region | Authoring (**unavailable**) | Prediction (**unavailable**) |
+| Region | Authoring | Prediction |
 | --- | --- | --- |
-| canadaeast | ✓ | ✓ |
-| italynorth | ✓ | ✓ |
-| jioindiacentral | ✓ | ✓ |
-| ukwest | ✓ | ✓ |
+| AustraliaEast | ✓ | ✓ |
+| BrazilSouth | ✓ | ✓ |
+| CanadaCentral | ✓ | ✓ |
+| CentralIndia | ✓ | ✓ |
+| CentralUS | ✓ | ✓ |
+| ChinaEast2 | ✓ | ✓ |
+| ChinaNorth2 | ✓ | ✓ |
+| ChinaNorth3 | ✓ | ✓ |
+| EastAsia | ✓ | ✓ |
+| EastUS | ✓ | ✓ |
+| EastUS2 | ✓ | ✓ |
+| FranceCentral | ✓ | ✓ |
+| GermanyWestCentral | ✓ | ✓ |
+| JapanEast | ✓ | ✓ |
+| JapanWest | ✓ | ✓ |
+| JioIndiaWest | ✓ | ✓ |
+| KoreaCentral | ✓ | ✓ |
+| NorthCentralUS | ✓ | ✓ |
+| NorthEurope | ✓ | ✓ |
+| NorwayEast | ✓ | ✓ |
+| QatarCentral | ✓ | ✓ |
+| SouthAfricaNorth | ✓ | ✓ |
+| SouthCentralUS | ✓ | ✓ |
+| SouthEastAsia | ✓ | ✓ |
+| SwedenCentral | ✓ | ✓ |
+| SwitzerlandNorth | ✓ | ✓ |
+| SwitzerlandWest | ✓ | ✓ |
+| UaeNorth | ✓ | ✓ |
+| UKSouth | ✓ | ✓ |
+| USGovArizona | ✓ | ✓ |
+| USGovVirginia | ✓ | ✓ |
+| WestCentralUS | ✓ | ✓ |
+| WestEurope | ✓ | ✓ |
+| WestUS | ✓ | ✓ |
+| WestUS2 | ✓ | ✓ |
+| WestUS3 | ✓ | ✓ |
 
 ### Next steps
 
