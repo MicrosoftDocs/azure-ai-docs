@@ -6,7 +6,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/20/2026
+ms.date: 3/6/2026
 ai-usage: ai-assisted
 ---
 
