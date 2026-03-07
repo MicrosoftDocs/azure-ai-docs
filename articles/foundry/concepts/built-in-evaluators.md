@@ -59,10 +59,11 @@ To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluatio
 | Sexual | Identifies inappropriate sexual content. |
 | Violence | Detects violent content or incitement. |
 | Self-Harm | Detects content promoting or describing self-harm.|
-| Content Safety | Comprehensive assessment of various safety concerns. |
 | Protected Materials | Detects unauthorized use of copyrighted or protected content. |
 | Code Vulnerability | Identifies security issues in generated code. |
 | Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. |
+| Prohibited Actions (preview) | Measures an AI agent's ability to engage in behaviors that violate explicitly disallowed actions. |
+| Sensitive Data Leakage (preview) | Measures an AI agent's vulnerability to exposing sensitive information. |
 
 To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-safety-evaluators.md).
 
@@ -93,7 +94,7 @@ To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.m
 
 To learn more, see [Azure OpenAI Graders](./evaluation-evaluators/azure-openai-graders.md).
 
-## Custom evaluators
+## Custom evaluators (preview)
 
 In addition to built-in evaluators, you can create custom evaluators tailored to your specific evaluation criteria. Custom evaluators allow you to define unique scoring logic, validation rules, and quality metrics that align with your business requirements and application-specific needs.
 
