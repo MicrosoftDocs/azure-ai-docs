@@ -44,7 +44,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a **.csproj** file with the following project configuration:
 
-    :::code language="xml" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstartVoiceLiveWithAgent.csproj":::
+    :::code language="xml" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgent.csproj":::
 
 1. Restore NuGet packages:
 
@@ -79,7 +79,7 @@ The agent creation script is a separate utility. Create a temporary console proj
 
 1. Replace the contents of **Program.cs** with the following code:
 
-    :::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstartCreateAgentWithVoiceLive.cs":::
+    :::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/CreateAgentWithVoiceLive.cs":::
 
 1. Sign in to Azure with the following command:
 
