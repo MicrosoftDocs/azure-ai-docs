@@ -158,34 +158,45 @@ There are two ways to access the PII interface:
    * Next, select **Azure-Language-Text-PII redaction** to go to the playground.
 
 
-## Detect PII in the Foundry playground
+## Extract PII from text
 
-The **extract PII from text** feature detects and masks personally identifying information within written content.
+The **Azure-Language-Text-PII redaction** model is used to identify and redact personally identifiable information in text. The interface provides configuration options to customize your detection and redaction preferences, as well as detailed output to review the detected entities and their confidence scores.
 
-1. On the **Playground** tab, select the sample text, use the paperclip icon to upload your text, or enter your own text.
+1. On the **Playground** tab, select **Azure Language—Text PII redaction** from the drop down menu.
 
-1. Select the **Configure** button. In the **Configure** side panel, set the following options:
+1. Select the sample text, use the paperclip icon to upload your text, or enter your own text.
 
-| Option | Description |
-|--|--|
-| **API version** | Select the API version that you prefer to use. |
-| **Model version** | Select the model version that you prefer to use. |
-| **Language** | Select the language in which your source text is written. |
-| **Types** | Select the types of information you want to redact. |
-| **Specify redaction policy** | Select the method of redaction. |
-| **Excluded values** | Select the values that you want to exclude. |
-| **Synonyms** | Select a category for your redaction type values to target related synonyms. |
+1. In the **Configure** side panel, you can set the following options:
 
-After you make your selections, choose the **Detect** button. Detected entities are highlighted in the text and you can review the accompanying details in formatted text or as a JSON response:
+    | Option | Description |
+    | --- | --- |
+    | **API version** | Select the API version that you prefer to use. |
+    | **Model version** | Select the model version that you prefer to use. |
+    | **Language** | Select the language in which your source text is written. |
+    | **Types** | Select the types of information you want to redact. |
+    | **Specify redaction policy** | Select the method of redaction. |
+    | **Excluded values** | Select the values that you want to exclude. |
+    | **Synonyms** | Select a category for your redaction type values to target related synonyms. |
 
-> [!NOTE]
-> The Foundry (new) playground currently supports **text PII** detection. For **conversation PII**, use the **Foundry (classic)** tab.
+
+1. After you make your selections, choose the **Detect** button. Detected entities are highlighted in the text and you can review the accompanying details in formatted text or as a JSON response:
+
+
+    :::image type="content" source="../../media/quickstarts/azure-ai-foundry/new-foundry-test-detection.png" alt-text="Screenshot of PII text detection output in the Foundry playground" lightbox="../../media/quickstarts/azure-ai-foundry/new-foundry-test-detection.png":::
 
 | Field | Description |
-|--|--|
+| --- | --- |
 | **Type** | The detected type. |
 | **Confidence** | The model's level of certainty regarding whether it correctly identified an entity type. |
 | **Offset** | The number of characters that the entity was detected from the beginning of the text. |
 | **Length** | The character length of the entity. |
 
 Verify that the detected entities match the PII in your input text. You can use the **Edit** button to modify the **Configure** parameters and rerun detection as needed.
+
+## Extract PII from conversations 🆕
+
+The **extract PII from conversations** feature detects and masks personally identifying information within conversational text. This feature is designed to handle the unique structure and context of conversations, such as dialogues or chat logs.
+
+1. In the **Playground** tab, select **Azure Language—Conversational PII redaction** from the drop down menu.
+
+1. Select a sample transcript, use the paperclip icon to upload your transcript, or input conversation turn text.
