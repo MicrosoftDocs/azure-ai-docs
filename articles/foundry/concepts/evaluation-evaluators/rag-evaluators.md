@@ -68,7 +68,7 @@ RAG evaluators assess how well AI systems retrieve and use context to generate g
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
 | Groundedness | (`response`, `context`) OR (`query`, `response`) | `deployment_name` |
-| Groundedness Pro | `query`, `response`, `context` | *(none)* |
+| Groundedness Pro (preview) | `query`, `response`, `context` | *(none)* |
 | Relevance | `query`, `response` | `deployment_name` |
 | Response Completeness | `ground_truth`, `response` | `deployment_name` |
 | Retrieval | `query`, `context` | `deployment_name` |
