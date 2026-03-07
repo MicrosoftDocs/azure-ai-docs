@@ -10,4 +10,4 @@ ms.custom: include file
 ---
 
 > [!NOTE]
-> The Microsoft Foundry portal is in public preview. The API and SDK are generally available. Evaluators marked (preview) are in public preview.
+> The Microsoft Foundry portal is in public preview. The Foundry Project API and SDK are generally available.
