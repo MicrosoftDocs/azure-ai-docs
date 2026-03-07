@@ -74,7 +74,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
-    :::code language="txt" source="~/cognitive-services-quickstart-code/python/Speech/requirements.txt":::
+    :::code language="txt" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstartrequirements.txt":::
 
 1. Install the packages:
 
@@ -90,7 +90,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file **create_agent_with_voicelive.py** with the following code:
 
-    :::code language="python" source="~/cognitive-services-quickstart-code/python/Speech/create_agent_v2_with_voicelive.py":::
+    :::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstartcreate_agent_v2_with_voicelive.py":::
 
 1. Sign in to Azure with the following command:
 
@@ -122,7 +122,7 @@ The sample connects to Foundry Agent Service by passing `agent_config` in `conne
 
 1. Create the `voice-live-agents-quickstart.py` file with the following code:
 
-    :::code language="python" source="~/cognitive-services-quickstart-code/python/Speech/voice-live-with-agent-v2.py":::
+    :::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py":::
 
 1. Sign in to Azure with the following command:
 
