@@ -20,7 +20,7 @@ This quickstart shows you how to use the [Content Understanding REST API](/rest/
 
 ## Get started with a prebuilt analyzer
 
-Analyzers define how your content is processed and the insights that are extracted. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. You can [customize prebuilt analyzers](../concepts/prebuilt-analyzers.md) to better fit your specific needs and use cases.
+Analyzers define how your content is processed and the insights that are extracted. We offer [prebuilt analyzers](../../concepts/prebuilt-analyzers.md) for common use cases. You can [customize prebuilt analyzers](../../concepts/prebuilt-analyzers.md) to better fit your specific needs and use cases.
 This quickstart uses prebuilt invoice, image, audio, and video analyzers to help you get started.
 
 ### Send a file for analysis
