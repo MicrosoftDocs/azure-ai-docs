@@ -61,7 +61,7 @@ Before you start, complete the following:
 ::: zone pivot="programming-language-csharp"
 
 > [!IMPORTANT]
-> Interim responses require `Azure.AI.VoiceLive >= 1.1.0-beta.2` and API version `2026-01-01-preview`. Install the preview SDK with:
+> Interim responses require `Azure.AI.VoiceLive >= 1.1.0-beta.3` and API version `2026-01-01-preview`. Install the preview SDK with:
 >
 > ```dotnetcli
 > dotnet add package Azure.AI.VoiceLive --prerelease
@@ -149,26 +149,24 @@ await connection.session.update(session=session_config)
 
 ### SDK configuration
 
-The `VoiceLiveSessionOptions` class doesn't expose the `InterimResponse` property in this SDK version. Send the configuration as a raw `session.update` command via `SendCommandAsync`:
-
 ```csharp
-await session.SendCommandAsync(
-    BinaryData.FromObjectAsJson(new
-    {
-        type = "session.update",
-        session = new
-        {
-            interim_response = new
-            {
-                type = "llm_interim_response",
-                instructions = "Create friendly interim responses indicating "
-                    + "wait time due to ongoing processing, if any. "
-                    + "Do not include in all responses!",
-                triggers = new[] { "tool", "latency" },
-                latency_threshold_ms = 200
-            }
-        }
-    }), cancellationToken);
+var interimConfig = new LlmInterimResponseConfig
+{
+    Instructions = "Create friendly interim responses indicating "
+        + "wait time due to ongoing processing, if any. "
+        + "Do not include in all responses!",
+};
+interimConfig.Triggers.Add(InterimResponseTrigger.Tool);
+interimConfig.Triggers.Add(InterimResponseTrigger.Latency);
+interimConfig.LatencyThresholdMs = 200;
+
+var options = new VoiceLiveSessionOptions
+{
+    InterimResponse = BinaryData.FromObjectAsJson(interimConfig),
+    // ... other session options
+};
+
+await session.ConfigureSessionAsync(options, cancellationToken);
 ```
 
 ::: zone-end
@@ -261,29 +259,24 @@ await connection.send(json.dumps(static_config))
 
 ::: zone pivot="programming-language-csharp"
 
-### Raw JSON configuration
+### SDK configuration
 
 ```csharp
-await session.SendCommandAsync(
-    BinaryData.FromObjectAsJson(new
-    {
-        type = "session.update",
-        session = new
-        {
-            interim_response = new
-            {
-                type = "static_interim_response",
-                triggers = new[] { "tool", "latency" },
-                latency_threshold_ms = 1500,
-                texts = new[]
-                {
-                    "Let me look that up for you.",
-                    "One moment while I check on that.",
-                    "Just a second, I'm working on it."
-                }
-            }
-        }
-    }), cancellationToken);
+var staticConfig = new StaticInterimResponseConfig();
+staticConfig.Texts.Add("Let me look that up for you.");
+staticConfig.Texts.Add("One moment while I check on that.");
+staticConfig.Texts.Add("Just a second, I'm working on it.");
+staticConfig.Triggers.Add(InterimResponseTrigger.Tool);
+staticConfig.Triggers.Add(InterimResponseTrigger.Latency);
+staticConfig.LatencyThresholdMs = 1500;
+
+var options = new VoiceLiveSessionOptions
+{
+    InterimResponse = BinaryData.FromObjectAsJson(staticConfig),
+    // ... other session options
+};
+
+await session.ConfigureSessionAsync(options, cancellationToken);
 ```
 
 ::: zone-end
