@@ -20,7 +20,7 @@ This quickstart shows you how to use the Content Understanding .NET SDK to extra
 * An active Azure subscription. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/language-region-support).
 * Your resource endpoint and API key (found under Keys and Endpoint in the Azure portal).
-* Model deployment defaults configured for your resource. See [Models and deployments](../../concepts/models-deployments.md) or this one-time [configuration script](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample01_UpdateDefaults.md) for setup instructions.
+* Model deployment defaults configured for your resource. See [Models and deployments](../../concepts/models-deployments.md) or this one-time [configuration script](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample00_UpdateDefaults.md) for setup instructions.
 * The current version of [.NET](https://dotnet.microsoft.com/download/dotnet).
 
 ## Set up
@@ -269,12 +269,14 @@ string summary = content.Fields["Summary"].Value?.ToString()
 Console.WriteLine($"Summary: {summary}");
 ```
 
-This will produce the following output:
-```bash
+This will produce an output like the following:
+```text
 ![image](pages/1)
 
 Summary: The pie chart displays the distribution of hours in four categories: 1-39 hours (6.7%), 40-50 hours (18.9%), 50-60 hours (36.6%), and 60+ hours (37.8%). The largest segment is 60+ hours, followed closely by 50-60 hours, then 40-50 hours, and the smallest segment is 1-39 hours.
 ```
+> [!NOTE]
+> This code is based on the [Sample02_AnalyzeUrl](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample02_AnalyzeUrl.md) sample in the SDK repository.
 
 # [Audio](#tab/audio)
 
@@ -321,7 +323,7 @@ if (audioContent.TranscriptPhrases != null
 }
 ```
 
-This will produce the following output:
+This will produce an output like the following:
 ```text
 # Audio: 00:00.000 => 00:32.183
 
@@ -388,6 +390,8 @@ Transcript (first two phrases):
   [Speaker 1] 80 ms: Good day.
   [Speaker 1] 880 ms: Welcome to Contoso.
 ```
+> [!NOTE]
+> This code is based on the [Sample02_AnalyzeUrl](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample02_AnalyzeUrl.md) sample in the SDK repository
 
 # [Video](#tab/video)
 
@@ -436,7 +440,7 @@ foreach (AnalysisContent media in result.Contents!)
 }
 ```
 
-This will produce the following output:
+This will produce an output like the following:
 ```text
 --- Segment 1 ---
 Markdown:
@@ -551,6 +555,8 @@ Start: 23100 ms, End: 43233 ms
 Frame size: 1080 x 608
 ---------------------
 ```
+> [!NOTE]
+> This code is based on the [Sample02_AnalyzeUrl](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample02_AnalyzeUrl.md) sample in the SDK repository
 
 
 ## Next steps

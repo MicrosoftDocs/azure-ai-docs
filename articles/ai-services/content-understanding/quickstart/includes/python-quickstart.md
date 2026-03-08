@@ -200,7 +200,7 @@ if (
 ```
 
 This will produce the following output:
-```bash
+```text
 Document unit: LengthUnit.INCH
 Pages: 1 to 1
 Customer Name: MICROSOFT CORPORATION
@@ -244,13 +244,14 @@ if summary and hasattr(summary, "value"):
     print(f"Summary: {summary.value}")
 ```
 
-This will produce the following output:
-```bash
+This will produce an output like the following:
+```text
 ![image](pages/1)
 
 Summary: The pie chart displays the distribution of hours spent in four categories: 1-39 hours (6.7%), 40-50 hours (18.9%), 50-60 hours (36.6%), and 60+ hours (37.8%). The largest segment is 60+ hours, followed closely by 50-60 hours, then 40-50 hours, and the smallest segment is 1-39 hours.
 ```
-
+ > [!NOTE]
+ > This code is based on the [sample_analyze_url.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_analyze_url.py) sample in the SDK repository.
 
 
 
@@ -283,7 +284,7 @@ if audio_content.transcript_phrases and len(audio_content.transcript_phrases) > 
         print(f"  [{phrase.speaker}] {phrase.start_time_ms} ms: {phrase.text}")
 ```
 
-This will produce the following output:
+This will produce an output like the following:
 ```text
 # Audio: 00:00.000 => 00:32.183
 
@@ -350,7 +351,8 @@ Transcript (first two phrases):
   [Speaker 1] 80 ms: Good day.
   [Speaker 1] 880 ms: Welcome to Contoso.
 ```
-
+ > [!NOTE]
+ > This code is based on the [sample_analyze_url.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_analyze_url.py) sample in the SDK repository.
 
 
 # [Video](#tab/video)
@@ -379,7 +381,7 @@ for media in result.contents:
     print(f"Frame size: {video_content.width} x {video_content.height}")
 ```
 
-This will produce the following output:
+This will produce an output like the following:
 ```text
 # Video: 00:00.733 => 00:15.467
 Width: 1080
@@ -485,7 +487,8 @@ Summary: A new speaker discusses the high fidelity of cognitive services' TTS of
 Start: 23100 ms, End: 43233 ms
 Frame size: 1080 x 608
 ```
-
+ > [!NOTE]
+ > This code is based on the [sample_analyze_url.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_analyze_url.py) sample in the SDK repository.
 
 ## Next steps
 
