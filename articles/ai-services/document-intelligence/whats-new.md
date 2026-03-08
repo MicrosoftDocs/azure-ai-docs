@@ -40,6 +40,13 @@ Key features include:
 * **Flexible deployment options**. Build applications, automate document workflows, or enable AI-driven analytics with scalable cloud infrastructure.
 * **Unified content extraction**. Utilize a single service to handle diverse content types, reducing complexity and improving operational efficiency.
 
+## March 2026
+
+**Updated prebuilt tax form models**
+
+Prebuilt models for US tax forms have been updated supporting 2025 tax forms including quality improvement to address multi-copy extraction (e.g., multiple W-2s or 1099s in one document). You can now extract data from multi-form filings in a single request and get more comprehensive field coverage.
+
+
 ## June 2025
 
 **Document Intelligence v4.0 Read container is now available!**
