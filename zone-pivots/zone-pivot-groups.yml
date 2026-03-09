@@ -1761,7 +1761,7 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-# Owner: heidist
+# Owner: haileytapia
 - id: tutorial-create-skillset
   title: Usage methods
   prompt: Choose a usage method
