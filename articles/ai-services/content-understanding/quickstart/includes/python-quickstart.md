@@ -44,14 +44,14 @@ To authenticate with the Content Understanding service, set the environment vari
 2) `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
 
 
-# [Windows](#tab/windows)
+### Windows 
 
 ```cmd
 setx CONTENTUNDERSTANDING_ENDPOINT "your-endpoint"
 setx CONTENTUNDERSTANDING_KEY "your-key"
 ```
 
-# [Linux / macOS](#tab/linux)
+### Linux / macOS
 
 ```bash
 export CONTENTUNDERSTANDING_ENDPOINT="your-endpoint"
