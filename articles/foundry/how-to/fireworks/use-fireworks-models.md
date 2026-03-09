@@ -131,7 +131,7 @@ Consult the Fireworks AI [Trust Center](https://trust.fireworks.ai/) to review t
 ## Transparency note
 Fireworks on Foundry allows customers to deploy and operate third‑party and open‑weight AI models using Microsoft Foundry platform services. Microsoft does not develop, train, fine‑tune, or evaluate the safety, security, or Responsible AI characteristics of models deployed through Fireworks on Foundry. As a result, Microsoft makes no representations regarding the behavior, performance, or risk profile of these models. Customers are solely responsible for assessing the suitability of any model for their intended use, including performing any required safety, compliance, and Responsible AI evaluations, prior to deploying such models in production or customer‑facing applications.
 
-Foundry provides the tools and best practices for performing your own [risk and safety evaluations](/foundry/concepts/safety-evaluations-transparency-note) of models.
+Foundry provides the tools and best practices for performing your own [risk and safety evaluations](../../concepts/safety-evaluations-transparency-note.md) of models.
 ## Frequently asked questions
 
 ### Is Fireworks on Foundry available in Azure for US Government?
