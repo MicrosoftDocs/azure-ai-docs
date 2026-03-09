@@ -33,7 +33,7 @@ items:
     href: ../../mcp/available-tools.md
 
 # Fireworks
-- name: Foundry and Fireworks integration
+- name: Foundry on Fireworks
   items:
   - name: Use Fireworks models (preview)
     href: ../../how-to/fireworks/use-fireworks-models.md
