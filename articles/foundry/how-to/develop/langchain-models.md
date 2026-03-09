@@ -39,6 +39,10 @@ Install the required packages:
 pip install -U langchain langchain-azure-ai azure-identity
 ```
 
+> [!IMPORTANT]
+> `langchain-azure-ai` uses the new Microsoft Foundry SDK (v2). If you are using Foundry classic or Foundry Hubs, use `langchain-azure-ai[v1]`,
+> which uses Azure AI Inference SDK (legacy). [Learn more](../../../../foundry-classic/how-to/developer/langchain.md).
+
 ## Configure the environment
 
 Set one of the following connection patterns:
@@ -137,6 +141,23 @@ authentication, and model routing.
 **References:**
 - [LangChain runnable interface](https://python.langchain.com/docs/concepts/runnables/)
 
+
+### Responses vs chat completions APIs
+
+By default `AzureAIOpenAIApiChatModel` uses OpenAI Responses API. You can change this behavior by passing `use_responses_api=False`:
+
+```python
+from azure.identity import DefaultAzureCredential
+from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
+
+model = AzureAIOpenAIApiChatModel(
+    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+    model="Mistral-Large-3",
+    use_responses_api=False
+)
+```
+
 ### Run asynchronous calls
 
 Use asynchronous credentials if your app calls models with `ainvoke`. When using Microsoft Entra ID for authentication, use 
@@ -174,7 +195,7 @@ request with `ainvoke`.
 - [Async credentials in Azure Identity](/python/api/overview/azure/identity-readme)
 - [LangChain runnable interface](https://python.langchain.com/docs/concepts/runnables/)
 
-## Use chat models
+### Using runnables
 
 `AzureAIOpenAIApiChatModel` implements LangChain's runnable interface, so you
 can invoke it with message lists.
