@@ -25,7 +25,7 @@ ai-usage: ai-assisted
 1. Install the required NuGet packages:
 
     ```dotnetcli
-    dotnet add package OpenAI --preview
+    dotnet add package OpenAI --prerelease
     dotnet add package Azure.Identity
     ```
 
