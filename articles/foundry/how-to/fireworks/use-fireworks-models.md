@@ -56,7 +56,7 @@ While in preview, **Fireworks requires an administrator to enable the preview fe
 
 1. From the left menu, under **Settings**, select **Preview features**.
 
-    :::image type="content" source="../media/fireworks/portal-preview-features.png" alt-text="Screenshot of the Preview features setting in the Azure portal."::: 
+    :::image type="content" source="../media/fireworks/portal-preview-features.png" alt-text="Screenshot of the Preview features setting in the Azure portal." lightbox="../media/fireworks/portal-preview-features.png":::
 
 1. Search for and select the **Fireworks on Foundry** preview feature.
 
