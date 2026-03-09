@@ -105,7 +105,7 @@ Tools are supported by the following models.
 > [!NOTE]
 > For the image generation tool, you need both the `gpt-image-1` model and a large language model (LLM) as the orchestrator in the same Microsoft Foundry project.
 
-| Model | Agent2Agent | Azure AI Serach | Azure Functions | Grounding Bing Custom | Grounding Bing Search | Browser Automation | Code Interpreter | Computer Use | Fabric Data Agent | File Search | Functions | Image Generation | MCP | OpenAPI | SharePoint | Web Search |
+| Model | Agent2Agent | Azure AI Search | Azure Functions | Grounding Bing Custom | Grounding Bing Search | Browser Automation | Code Interpreter | Computer Use | Fabric Data Agent | File Search | Functions | Image Generation | MCP | OpenAPI | SharePoint | Web Search |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Cohere-command-r | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | Cohere-command-r-plus | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
