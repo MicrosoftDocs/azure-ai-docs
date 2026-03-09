@@ -44,7 +44,8 @@ When you create a custom analyzer, you specify which chat completion model and e
 }
 ```
 
-> [!TIP] GPT-4.1 is a recommended model for use with Foundry and the Studio. You can use any supported chat completion model that fits your quality, latency, and cost goals. Embedding models are used when you use labeled samples or in-context learning to improve analyzer quality.
+> [!TIP] 
+> GPT-4.1 is a recommended model for use with Foundry and the Studio. You can use any supported chat completion model that fits your quality, latency, and cost goals. Embedding models are used when you use labeled samples or in-context learning to improve analyzer quality.
 
 ## Two ways to provide model deployments
 
