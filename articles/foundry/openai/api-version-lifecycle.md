@@ -573,16 +573,6 @@ The following sections summarize changes between API versions.
 - [`audioWord`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5286) object added.
 - Additional TTS [`response_formats: wav & pcm`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5333).
 
-## Troubleshooting
-
-| Issue | Cause | Solution |
-| ----- | ----- | -------- |
-| `404 Not Found` when calling the v1 API | Incorrect `base_url` format | Verify the URL ends with `/openai/v1/`. Both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` are valid. |
-| `401 Unauthorized` with Entra ID | Missing or incorrect role assignment | Assign the `Cognitive Services OpenAI User` role to your identity. Role assignments can take up to 5 minutes to propagate. |
-| `AzureOpenAI()` client doesn't work with v1 | v1 API uses the `OpenAI()` client | Replace `AzureOpenAI()` with `OpenAI()` and set `base_url` to your Azure endpoint with `/openai/v1/` appended. |
-| `api-version` parameter rejected | v1 API doesn't use `api-version` | Remove any `api-version` query parameters from your requests. The v1 API doesn't require or accept them. |
-| Preview features not available | Missing preview header | For preview APIs like `/openai/v1/evals`, pass the required preview header (for example, `"aoai-evals":"preview"`). See [Preview headers](#preview-headers). |
-
 ## Known issues
 
 - The `2025-04-01-preview` Azure OpenAI spec uses OpenAPI 3.1. It's a known issue that this version isn't fully supported by [Azure API Management](/azure/api-management/api-management-key-concepts).
