@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 Through integration with [Fireworks AI](https://fireworks.ai/), Microsoft Foundry customers can:
 
-* **Experiment with the latest open-source models** before they're available [directly from Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+* **Experiment with the latest open-source models** often before they're available [directly from Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 * **Import and deploy custom model weights** (bring your own model, or BYOM) onto Fireworks' on-demand GPU-backed infrastructure. For more information, see [Import custom models into Foundry](import-custom-models.md).
 * **Scale up** using [Provisioned throughput](../../openai/concepts/provisioned-throughput.md).
 
@@ -33,7 +33,7 @@ You can do all of this from your Foundry project while using Azure's governance,
 
 ## Region availability
  
-Fireworks on Foundry is available in the following [Azure regions](/azure/reliability/regions-list):
+Data Zone Standard deployments of models via Fireworks on Foundry is available in the following [Azure regions](/azure/reliability/regions-list):
 
 * **East US** (eastus)
 * **East US 2** (eastus2)
@@ -41,6 +41,8 @@ Fireworks on Foundry is available in the following [Azure regions](/azure/reliab
 * **North Central US** (northcentralus)
 * **West US** (westus)
 * **West US 3** (westus3)
+
+Global provisioned throughput deployments of base and custom models are available in all public [Azure regions](/azure/reliability/regions-list) with the exception of Azure Government cloud environments.
 
 ## Enable Fireworks on Foundry
 
@@ -117,11 +119,15 @@ Fireworks model deployments made available via Foundry send inference traffic ou
 
 Consult the Fireworks AI [Trust Center](https://trust.fireworks.ai/) to review their Data Processing Addendum and certifications and their [Privacy Notice](https://fireworks.ai/privacy-policy) to understand their privacy commitment.
 
+## Transparency note
+Fireworks on Foundry allows customers to deploy and operate third‑party and open‑weight AI models using Microsoft Foundry platform services. Microsoft does not develop, train, fine‑tune, or evaluate the safety, security, or Responsible AI characteristics of models deployed through Fireworks on Foundry. As a result, Microsoft makes no representations regarding the behavior, performance, or risk profile of these models. Customers are solely responsible for assessing the suitability of any model for their intended use, including performing any required safety, compliance, and Responsible AI evaluations, prior to deploying such models in production or customer‑facing applications.
+
+Foundry provides the tools and best practices for performing your own [risk and safety evaluations](/foundry/concepts/safety-evaluations-transparency-note) of models.
 ## Frequently asked questions
 
 ### Is Fireworks on Foundry available in Azure for US Government?
 
-No, currently the Fireworks service isn't available for Azure Government cloud users.
+No, currently the Fireworks on Foundry service isn't available for Azure Government cloud users.
 
 ### How can I get quota for Fireworks model deployments?
 
@@ -145,7 +151,7 @@ Custom model import uses a CLI-first workflow with the [Azure Developer CLI](/az
 
 ### How is Fireworks on Foundry billed?
 
-Fireworks models deployed through Foundry support [provisioned throughput](../../openai/concepts/provisioned-throughput.md). During the preview, contact your Azure account team for specific pricing details.
+Fireworks models deployed through Foundry support both [pay-per-token](https://aka.ms/fireworks-pricing) and [provisioned throughput](../../openai/concepts/provisioned-throughput.md) offers.
 
 ### How do I disable Fireworks in my Foundry project?
 
