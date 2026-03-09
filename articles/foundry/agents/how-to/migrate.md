@@ -42,7 +42,7 @@ dotnet add package Azure.Identity
 # [JavaScript](#tab/javascript)
 
 ```bash
-npm install @azure/ai-projects@2.0.0-beta.5
+npm install @azure/ai-projects@2.0.0
 npm install @azure/identity
 ```
 
