@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article, you learn how to import, register, and deploy your own custom model weights in Microsoft Foundry. Custom model import (also known as *bring your own model*) lets you run your proprietary or fine-tuned open-weight models within the Foundry ecosystem. [Fireworks AI](https://fireworks.ai/) handles inference on on-demand GPU-backed infrastructure, while Foundry provides governance, project management, and access controls.
+In this article, you learn how to import, register, and deploy your own custom model weights in Microsoft Foundry. Custom model import (also known as *bring your own weights*) lets you run your proprietary or fine-tuned open-weight models within the Foundry ecosystem.
 
 > [!NOTE]
 > This custom model import guide uses the Fireworks in Foundry integration. For an overview of available catalog models, supported architectures, data privacy, and limitations, see [Use Fireworks models in Foundry](use-fireworks-models.md).
