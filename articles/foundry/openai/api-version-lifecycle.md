@@ -45,7 +45,7 @@ Access to new API calls that are still in preview will be controlled by passing 
 
 Examples:
 
-- `/openai/v1/evals` is in preview and requires passing an `"aoai-evals":"preview"` header.
+- When `/openai/v1/evals` was previously in preview it required passing an `"aoai-evals":"preview"` header. **/evals is no longer in prevew.**
 - `/openai/v1/fine_tuning/alpha/graders/` is in preview and requires no custom header due to the presence of `alpha` in the API path.
 
 For the initial v1 Generally Available (GA) API launch, only a subset of the inference and authoring API capabilities are supported. All GA features are supported for use in production. Support for more capabilities is being added rapidly.
@@ -493,30 +493,6 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
 ## v1 API support
 
 - [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
-
-### Status
-
-Generally Available features are supported for use in production.
-
-| API Path                               | Status              |
-|----------------------------------------|---------------------|
-| `/openai/v1/chat/completions`          | Generally Available |
-| `/openai/v1/embeddings`                | Generally Available |
-| `/openai/v1/evals`                     | Preview             |
-| `/openai/v1/files`                     | Generally Available |
-| `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | Preview |
-| `/openai/v1/fine_tuning/alpha/graders/`| Preview             |
-| `/openai/v1/fine_tuning/`              | Generally Available |
-| `/openai/v1/models`                    | Generally Available |
-| `/openai/v1/responses`                 | Generally Available |
-| `/openai/v1/vector_stores`             | Generally Available |
-
-### Preview headers
-
-| API Path                              | Header                   |
-|---------------------------------------|:-------------------------|
-| `/openai/v1/evals`                    | `"aoai-evals":"preview"` |
-| `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | `"aoai-copy-ft-checkpoints" : "preview"` |
 
 ## API version changelog
 
