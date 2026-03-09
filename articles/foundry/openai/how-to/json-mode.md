@@ -119,8 +119,6 @@ ChatCompletion completion = client.CompleteChat(
 Console.WriteLine(completion.Content[0].Text);
 ```
 
-Reference: [`ChatResponseFormat.CreateJsonObjectFormat()`](https://learn.microsoft.com/dotnet/api/azure.ai.openai.chatresponseformat)
-
 ### Output
 
 ```json
