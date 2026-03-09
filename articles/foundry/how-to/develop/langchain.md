@@ -81,7 +81,7 @@ classes.
 
 ```bash
 export AZURE_AI_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
-export AZURE_OPENAI_ENDPOINT="https://<resource>.openai.azure.com/openai/v1"
+export AZURE_AI_OPENAI_ENDPOINT="https://<resource>.openai.azure.com/openai/v1"
 ```
 
 When you use `project_endpoint`, authentication uses Microsoft Entra ID and
@@ -95,26 +95,26 @@ Use `AzureAIChatCompletionsModel` as a representative pattern:
 ```python
 import os
 
-from azure.identity import AzureCliCredential, DefaultAzureCredential
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from azure.identity import DefaultAzureCredential
+from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
 
 # Option A: Use a Foundry project endpoint (Microsoft Entra ID required).
-model_from_project = AzureAIChatCompletionsModel(
+model_from_project = AzureAIOpenAIApiChatModel(
   project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
   credential=DefaultAzureCredential(),
   model="gpt-4.1",
 )
 
 # Option B: Use a service endpoint directly.
-model_from_endpoint = AzureAIChatCompletionsModel(
-  endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+model_from_endpoint = AzureAIOpenAIApiChatModel(
+  endpoint=os.environ["AZURE_AI_OPENAI_ENDPOINT"],
   credential=DefaultAzureCredential(),
   model="gpt-4.1",
 )
 
 # Option C: Use a different credential strategy.
-model_with_cli_credential = AzureAIChatCompletionsModel(
-  endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+model_with_cli_credential = AzureAIOpenAIApiChatModel(
+  endpoint=os.environ["AZURE_AI_OPENAI_ENDPOINT"],
   credential="super-secret",
   model="gpt-4.1",
 )
