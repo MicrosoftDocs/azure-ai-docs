@@ -14,7 +14,7 @@ author: ms-johnalex
 #CustomerIntent: As a developer, I want to create and manage Foundry agents in Visual Studio Code so that I can build, test, and deploy agents without leaving my IDE.
 ---
 
-# Create and manage Foundry agents in Visual Studio Code (preview) (classic)
+# Create and manage Foundry agents in Visual Studio Code (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -22,8 +22,6 @@ author: ms-johnalex
 > This document refers to the classic version of the agents API. 
 
 [Foundry Agent Service](../../agents/overview.md) lets you build, configure, and deploy agents without leaving Visual Studio Code (VS Code). In this article, you create an agent by using the designer, add tools, test the agent in the playground, generate sample code, and clean up resources when you're done.
-
-[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 ## Prerequisites
 
