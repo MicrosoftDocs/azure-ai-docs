@@ -2,8 +2,8 @@
 title: "Quickstart: Agentic Retrieval"
 titleSuffix: Azure AI Search
 description: Learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations.
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 02/23/2026

@@ -6,7 +6,7 @@ ms.custom:
   - classic-and-new
   - references_regions
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 03/06/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -33,7 +33,7 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 First, install Microsoft Foundry SDK's project client, which runs the AI Red Teaming Agent in the cloud.
 
 ```bash
-pip install "azure-ai-projects>=2.0.0" azure-identity
+pip install azure-ai-projects>=2.0.0
 ```
 
 Then, set your environment variables for your Microsoft Foundry resources

@@ -173,7 +173,7 @@ Start by running the agent so you see working functionality before diving into i
 1. Verify that your `requirements.txt` uses these published package versions:
 
    ```text
-   azure-ai-projects==2.0.0b3
+   azure-ai-projects>=2.0.0
    azure-identity
    python-dotenv
    openai

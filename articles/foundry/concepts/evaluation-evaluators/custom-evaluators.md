@@ -4,7 +4,7 @@ description: "Learn how to create custom evaluators for your AI applications usi
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
-ms.date: 02/17/2026
+ms.date: 03/06/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -144,7 +144,7 @@ Both `deployment_name` and `threshold` are required as initialization parameters
 Install the SDK and set up your client:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0" azure-identity openai
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 ```python
