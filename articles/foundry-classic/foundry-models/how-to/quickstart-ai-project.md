@@ -37,7 +37,7 @@ In this article, you learn how to configure your project to use Foundry Models d
 
 To complete this tutorial, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. To learn more, see [Upgrade from GitHub Models to Foundry Models](./quickstart-github-models.md).
+* An Azure subscription. If you're using GitHub Models, you can upgrade your experience and create an Azure subscription in the process. To learn more, see [Upgrade from GitHub Models to Foundry Models](./quickstart-github-models.md).
 
 * A Foundry resource. For more information, see [Create your first Foundry resource](../../../ai-services/multi-service-resource.md).
 
