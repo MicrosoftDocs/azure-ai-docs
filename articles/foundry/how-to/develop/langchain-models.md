@@ -41,7 +41,7 @@ pip install -U langchain langchain-azure-ai azure-identity
 
 > [!IMPORTANT]
 > `langchain-azure-ai` uses the new Microsoft Foundry SDK (v2). If you are using Foundry classic or Foundry Hubs, use `langchain-azure-ai[v1]`,
-> which uses Azure AI Inference SDK (legacy). [Learn more](../../../foundry-classic/how-to/developer/langchain.md).
+> which uses Azure AI Inference SDK (legacy). [Learn more](../../../foundry-classic/how-to/develop/langchain.md).
 
 ## Configure the environment
 
