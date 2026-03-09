@@ -11,7 +11,7 @@ ms.date: 03/02/2026
 
 # Quickstart: Multimodal search in the Azure portal
 
-In this quickstart, you use the **Import data (new)** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting, chunking, vectorizing, and loading both text and images into a searchable index.
+In this quickstart, you use the **Import data** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting, chunking, vectorizing, and loading both text and images into a searchable index.
 
 This quickstart uses a multimodal PDF from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo. However, you can use different files and still complete this quickstart.
 
@@ -30,7 +30,7 @@ This quickstart uses a multimodal PDF from the [azure-search-sample-data](https:
 
 + A [supported embedding method](#supported-embedding-methods).
 
-+ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md).
++ Familiarity with the wizard. See [**Import data** wizard in the Azure portal](search-import-data-portal.md).
 
 ### Supported extraction methods
 
@@ -70,7 +70,7 @@ The portal supports the following models for each method. Deployment instruction
 
 ### Public endpoint requirements
 
-All of the preceding resources must have public access enabled so that the Azure portal nodes can access them. Otherwise, the wizard fails. After the wizard runs, you can enable firewalls and private endpoints on the integration components for security. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
+All of the preceding resources must have public access enabled so that the Azure portal nodes can access them. Otherwise, the wizard fails. After the wizard runs, you can enable firewalls and private endpoints on the integration components for security. For more information, see [Secure connections in the import wizard](search-import-data-portal.md#secure-connections).
 
 If private endpoints are already present and you can't disable them, the alternative is to run the respective end-to-end flow from a script or program on a virtual machine. The virtual machine must be on the same virtual network as the private endpoint. [Here's a Python code sample](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/integrated-vectorization) for integrated vectorization. The same [GitHub repo](https://github.com/Azure/azure-search-vector-samples/tree/main) has samples in other programming languages.
 
@@ -172,7 +172,7 @@ To deploy the models required for your chosen [embedding method](#supported-embe
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
-1. On the **Overview** page, select **Import data (new)**.
+1. On the **Overview** page, select **Import data**.
 
    :::image type="content" source="media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
@@ -399,9 +399,12 @@ When the wizard completes the configuration, it creates the following objects:
 | Index | Contains text fields, vector fields, vectorizers, vector profiles, and vector algorithms. You can't modify the default index during the wizard workflow. Indexes conform to the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) so that you can use preview features. |
 | Skillset | Contains the following skills:<br><ul><li>The [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) extracts text and images from source documents. The [Text Split skill](cognitive-search-skill-textsplit.md) accompanies the Document Extraction skill for data chunking, while the Document Layout skill has built-in chunking.</li><li>The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images in natural language. If you're using direct multimodal embeddings, this skill is absent.</li><li>The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called once for text vectorization and once for image vectorization.</li><li>The [Shaper skill](cognitive-search-skill-shaper.md) enriches the output with metadata and creates new images with contextual information.</li></ul> |
 | Indexer | Drives the indexing pipeline, with field mappings and output field mappings (if applicable). |
+| Knowledge store | Stores extracted images as blobs in Azure Storage for downstream processing or multimodal scenarios. |
 
 > [!TIP]
 > Wizard-created objects have configurable JSON definitions. To view or modify these definitions, select **Search management** from the left pane, where you can view your indexes, indexers, data sources, and skillsets.
+>
+> To view the knowledge store, go to your Azure Storage account and select the container you designated for image output.
 
 ## Check results
 
@@ -458,4 +461,4 @@ To query your multimodal index:
 
 ## Next step
 
-This quickstart introduced you to the **Import data (new)** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the [Multimodal tutorial](tutorial-multimodal.md).
+This quickstart introduced you to the **Import data** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the [Multimodal tutorial](tutorial-multimodal.md).

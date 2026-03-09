@@ -70,7 +70,7 @@ When requests originate from IP addresses that aren't in the allowed list, a gen
 
 ## Allow access from the Azure portal IP address
 
-The Azure portal uses your client IP address for a direct connection to Azure AI Search. If your client is in the allowed IP list, you can use almost all portal capabilities with no extra configuration required. However, there's an exception for the legacy Import data wizard when you *import from either Azure Cosmos DB or Azure SQL*. 
+The Azure portal uses your client IP address for a direct connection to Azure AI Search. If your client is in the allowed IP list, you can use almost all portal capabilities with no extra configuration required. However, there's an exception for the legacy **Import data** wizard when you *import from either Azure Cosmos DB or Azure SQL*. 
 
 This scenario requires a separate IP address for the connection:
 
@@ -162,7 +162,7 @@ The trusted services are used for vectorization workloads: generating vectors fr
 
 Consider the following when configuring network access:
 
-+ Some workflows require access to a public endpoint. Specifically, the [**Import data wizard**](search-import-data-portal.md) in the Azure portal connects to built-in (hosted) sample data and embedding models over a public endpoint. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
++ Some workflows require access to a public endpoint. Specifically, the [**Import data** wizard](search-import-data-portal.md) in the Azure portal connects to built-in (hosted) sample data and embedding models over a public endpoint. For more information, see [Secure connections in the import wizard](search-import-data-portal.md#secure-connections).
 
 + If you're in early stages of proof-of-concept testing with sample data, you might want to defer network access controls until you actually need them.
 

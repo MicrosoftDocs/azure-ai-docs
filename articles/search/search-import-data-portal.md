@@ -1,7 +1,7 @@
 ---
-title: Import Wizards in the Azure portal
+title: Import Wizard in the Azure portal
 titleSuffix: Azure AI Search
-description: Learn about the Azure portal wizards that create and load an index and optionally invoke applied AI for vectorization, natural-language processing, language translation, OCR, and image analysis.
+description: Learn about the Azure portal wizard that creates and loads a search index and optionally invokes applied AI for vectorization, natural-language processing, language translation, OCR, and image analysis.
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
@@ -14,7 +14,7 @@ ms.custom:
   - sfi-image-nochange
 ---
 
-# Import data wizards in the Azure portal
+# Import data wizard in the Azure portal
 
 > [!IMPORTANT]
 > We're consolidating the Azure AI Search wizards. Key changes include:

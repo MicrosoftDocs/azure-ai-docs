@@ -58,13 +58,13 @@ The following table lists the vectorizers and their supported models and associa
 
 ## Define a vectorizer using a wizard
 
-The **Import data (new)** wizard in the Azure portal can read files from Azure Blob Storage, create an index with chunked and vectorized fields, and add a vectorizer. By design, the wizard-generated vectorizer is set to the same embedding model used to index the blob content.
+The **Import data** wizard in the Azure portal can read files from Azure Blob Storage, create an index with chunked and vectorized fields, and add a vectorizer. By design, the wizard-generated vectorizer is set to the same embedding model used to index the blob content.
 
 To create a sample index with a vectorizer using the wizard:
 
 1. [Upload files](/azure/storage/blobs/storage-quickstart-blobs-portal) to a container in Azure Storage. We used [small text files from NASA's Earth at Night e-book](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-txt-10) to test these instructions on a free search service.
 
-1. Run the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md). Choose the blob container for the data source.
+1. Run the [**Import data** wizard](search-get-started-portal-import-vectors.md). Choose the blob container for the data source.
 
    :::image type="content" source="media/vector-search-how-to-configure-vectorizer/connect-to-data.png" lightbox="media/vector-search-how-to-configure-vectorizer/connect-to-data.png" alt-text="Screenshot of the connect to your data page.":::
 

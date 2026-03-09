@@ -68,7 +68,7 @@ Before you move on to network security, consider testing all points of connectio
 By default, a search service accepts authenticated and authorized requests over public internet connections. You have two options for enhancing network security:
 
 + [Configure firewall rules](service-configure-firewall.md) to restrict network access by IP address.
-+ [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the import wizards won't run.
++ [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the import wizard won't run.
 
 To learn about inbound and outbound calls in Azure AI Search, see [Understand network traffic patterns](search-security-best-practices.md#understand-network-traffic-patterns).
 
@@ -101,7 +101,7 @@ To connect to Azure AI Search, developers need:
 + An endpoint or URL from the **Overview** page.
 + An API key from the **Keys** page or a role assignment. We recommend Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
-We recommend portal access for the [import wizards](search-get-started-portal.md) and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
+We recommend portal access for the [import wizard](search-get-started-portal.md) and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizard.
 
 ## Related content
 

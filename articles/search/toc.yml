@@ -180,7 +180,7 @@ items:
           href: vector-search-how-to-truncate-dimensions.md
   - name: Indexers and workflows
     items:
-    - name: Index via portal wizards
+    - name: Index via import wizard
       href: search-import-data-portal.md
     - name: Indexers
       items:

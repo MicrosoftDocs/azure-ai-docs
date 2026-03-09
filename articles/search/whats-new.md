@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 02/11/2026
+ms.date: 03/09/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -19,6 +19,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## March 2026
+
+| Item | Description |
+|--|--|
+| [**Import data** wizard unification](search-import-data-portal.md) | The Azure portal now has a single **Import data** wizard that supports keyword search, RAG, and multimodal RAG. The legacy **Import data** wizard has been merged with the **Import data (new)** wizard. |
 
 ## February 2026
 

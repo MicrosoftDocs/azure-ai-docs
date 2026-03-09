@@ -136,9 +136,9 @@ In this step, specify the data source, index, and indexer.
 
    :::image type="content" source="media/search-how-to-index-sql-database/search-data-source.png" alt-text="Screenshot of the data source creation page in the Azure portal.":::
 
-1. Use an [import wizard](search-import-data-portal.md) to create the index and indexer.
+1. Use the [import wizard](search-import-data-portal.md) to create the index and indexer.
 
-   1. On the **Overview** page, select **Import data** or **Import data (new)**.
+   1. On the **Overview** page, select **Import data**.
 
    1. Select the data source you just created.
 

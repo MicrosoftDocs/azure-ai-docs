@@ -76,13 +76,19 @@ A system-assigned managed identity is a Microsoft Entra service principal. The a
 
 ## Set up and test the connection
 
-The easiest way to test the connection is by running the **Import data** wizard.
+The easiest way to test the connection is by running the [**Import data** wizard](search-import-data-portal.md) in the Azure portal.
 
-1. Start the **Import data** wizard, selecting Azure Blob Storage or Azure Data Lake Storage Gen2.
+1. Start the **Import data** wizard.
 
-1. Choose a connection to your storage account, and then select **System-assigned**. Select **Next** to invoke a connection. If the index schema is detected, the connection succeeded.
+1. Select **Azure Blob Storage** or **ADLS Gen2** for the data source.
 
-   :::image type="content" source="media\search-indexer-howto-secure-access\test-system-identity.png" alt-text="Screenshot of the Import data wizard data source connection page." border="true":::
+1. Choose a connection to your storage account.
+
+1. Select the **Authenticate using managed identity** checkbox. Leave the identity type as **System-assigned**.
+
+1. Select **Next**. If the wizard advances to the next page without errors, the connection succeeded.
+
+   :::image type="content" source="media/search-get-started-portal/connect-to-your-data.png" alt-text="Screenshot of the Connect to your data page in the Azure portal.":::
 
 ## Related content
 

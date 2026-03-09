@@ -54,7 +54,7 @@ The Description field provides the most verbose content. You should target this 
 
 ## Use the Azure portal
 
-You can use either the **Import data** wizard or the **Import data (new)** wizard to automate indexing from a SQL database table or view. The data source configuration is similar for both wizards.
+You can use the **Import data** wizard to automate indexing from a SQL database table or view.
 
 1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
 
@@ -68,15 +68,13 @@ You can use either the **Import data** wizard or the **Import data (new)** wizar
 
    If you [configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md), and you create a role assignment on Azure Storage that grants **Reader and Data Access** permissions to the identity, your indexer can connect to table storage using Microsoft Entra ID and roles.
 
-1. For the **Import data (new)** wizard, you can specify options for deletion detection.
+1. You can specify options for deletion detection.
 
    Deletion detection requires that you have a preexisting field in the table that can be used as a soft-delete flag. It should be a Boolean field (you could name it IsDeleted). Specify `true` as the soft-delete value. In the search index, add a corresponding search field called *IsDeleted* set to retrievable and filterable.
 
 1. Continue with the remaining steps to complete the wizard:
 
-   + [**Import data** wizard](search-get-started-portal.md)
-
-   + [**Import data (new)** wizard](search-get-started-portal-import-vectors.md)
+   + [**Import data** wizard](search-import-data-portal.md)
 
 ## Use the REST APIs
 
@@ -187,7 +185,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 
 1. Create a document key field ("key": true), but allow the indexer to populate it automatically. A table indexer populates the key field with concatenated partition and row keys from the table. For example, if a row’s PartitionKey is `1` and RowKey is `1_123`, then the key value is `11_123`. If the partition key is null, just the row key is used.
 
-   If you're using the Import data wizard to create the index, the Azure portal infers a "Key" field for the search index and uses an implicit field mapping to connect the source and destination fields. You don't have to add the field yourself, and you don't need to set up a field mapping.
+   If you're using the **Import data** wizard to create the index, the Azure portal infers a "Key" field for the search index and uses an implicit field mapping to connect the source and destination fields. You don't have to add the field yourself, and you don't need to set up a field mapping.
 
    If you're using the REST APIs and you want implicit field mappings, create and name the document key field "Key" in the search index definition as shown in the previous step (`{ "name": "Key", "type": "Edm.String", "key": true, "searchable": false }`). The indexer populates the Key field automatically, with no field mappings required.
 

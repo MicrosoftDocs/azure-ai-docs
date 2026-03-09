@@ -369,7 +369,7 @@ If you implement the workaround, be sure to test extensively.
 
 ## Next steps
 
-Use an import wizard with sample data to guide you through creating, loading, and querying an index.
+Use the import wizard with sample data to guide you through creating, loading, and querying an index.
 
 > [!div class="nextstepaction"]
 > [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md)

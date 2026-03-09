@@ -40,7 +40,7 @@ Supported regions vary by modality and how the skill connects to the Azure Docum
 
 | Approach | Requirement |
 |----------|-------------|
-| [**Import data (new)** wizard](search-import-data-portal.md) | Create an Azure AI Search service and [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) in one of the following regions: East US, West Europe, or North Central US. | 
+| [**Import data** wizard](search-import-data-portal.md) | Create an Azure AI Search service and [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) in one of the following regions: East US, West Europe, or North Central US. | 
 | Programmatic, using a [Microsoft Foundry resource key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Create an Azure AI Search service and Microsoft Foundry resource in the same region. The region must support both [Azure AI Search and Azure Document Intelligence](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
 | Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | No same-region requirement. Create an Azure AI Search service and Microsoft Foundry resource in any region where [each service is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
 

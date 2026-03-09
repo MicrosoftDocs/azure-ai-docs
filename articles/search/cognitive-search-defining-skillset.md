@@ -273,9 +273,9 @@ Although skill output can be optionally cached for reuse purposes, it's usually 
 
 ## Tips for a first skillset
 
-+ Try the [**Import data** wizard](search-get-started-portal.md) or [**Import data (new)** wizard](search-get-started-portal-import-vectors.md).
++ Try the [**Import data** wizard](search-get-started-portal.md).
 
-  The wizards automate several steps that can be challenging the first time around. It defines the skillset, index, and indexer, including field mappings and output field mappings. It also defines projections in a knowledge store if you're using one. For some skills, such as OCR or image analysis, the wizard adds utility skills that merge the image and text content that was separated during document cracking.
+  The wizard automates several steps that can be challenging the first time around. It defines the skillset, index, and indexer, including field mappings and output field mappings. It also defines projections in a knowledge store if you're using one. For some skills, such as OCR or image analysis, the wizard adds utility skills that merge the image and text content that was separated during document cracking.
 
   After the wizard runs, you can open each object in the Azure portal to view its JSON definition.
 
