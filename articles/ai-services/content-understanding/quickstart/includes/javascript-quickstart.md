@@ -2,6 +2,7 @@
 title: "Quickstart: Use the Content Understanding JavaScript SDK"
 author: PatrickFarley
 manager: nitinme
+description: Get started with the Content Understanding JavaScript SDK to extract structured data from documents, images, audio, and video files.
 ms.service: azure-ai-content-understanding
 ms.topic: include
 ms.date: 03/06/2026

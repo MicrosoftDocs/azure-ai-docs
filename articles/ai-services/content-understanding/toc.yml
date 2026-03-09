@@ -144,10 +144,10 @@ items:
         href: /rest/api/contentunderstanding/operation-groups
       - name: Python SDK
         displayName: python, SDK, client library, pypi
-        href: /python/api/overview/azure/ai-contentunderstanding-readme?view=azure-python-preview
+        href: /python/api/overview/azure/ai-contentunderstanding-readme?
       - name: .NET SDK
         displayName: dotnet, csharp, SDK, client library, nuget
-        href: /dotnet/api/overview/azure/ai.contentunderstanding-readme?view=azure-dotnet-preview
+        href: /dotnet/api/overview/azure/ai.contentunderstanding-readme?
       - name: Java SDK
         displayName: java, SDK, client library, maven
         href: https://central.sonatype.com/artifact/com.azure/azure-ai-contentunderstanding

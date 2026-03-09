@@ -2,6 +2,7 @@
 title: "Quickstart: Use the Content Understanding Java SDK"
 author: PatrickFarley
 manager: nitinme
+description: Get started with the Content Understanding Java SDK to extract structured data from documents, images, audio, and video files.
 ms.service: azure-ai-content-understanding
 ms.topic: include
 ms.date: 03/06/2026
@@ -21,7 +22,7 @@ This quickstart shows you how to use the Content Understanding Java SDK to extra
 * A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](../../language-region-support.md).
 * Your resource endpoint and API key (found under Keys and Endpoint in the Azure portal).
 * Model deployment defaults configured for your resource. See [Models and deployments](../../concepts/models-deployments.md) or this one-time [configuration script](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample00_UpdateDefaults.java) for setup instructions.
-* [Java Development Kit (JDK)](https://learn.microsoft.com/java/openjdk/download) version 8 or later.
+* [Java Development Kit (JDK)](/java/openjdk/download) version 8 or later.
 * [Apache Maven](https://maven.apache.org/download.cgi).
 
 ## Set up
