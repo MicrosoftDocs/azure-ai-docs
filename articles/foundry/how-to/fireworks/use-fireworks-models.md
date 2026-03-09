@@ -141,7 +141,7 @@ No, currently the Fireworks on Foundry service isn't available for Azure Governm
 
 ### How can I get quota for Fireworks model deployments?
 
-We're updating the quota request [form](https://aka.ms/oai/stuquotarequest) to allow requesting quota for Fireworks on Foundry. In the meantime, contact your Azure account team.
+Use the quota request [form](https://aka.ms/fireworks-quota) to request additional quota for Fireworks on Foundry.
 
 ### I have a Fireworks AI account. Can I use my existing Fireworks deployments?
 

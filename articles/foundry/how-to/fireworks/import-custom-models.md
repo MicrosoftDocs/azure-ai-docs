@@ -48,6 +48,8 @@ Custom models must match a supported architecture and include specific files for
 ### Supported architectures
 
 Custom models must be based on one of the following model architectures:
+| Model Architecture | Versions |
+|-|-|
 | **DeepSeek** | V3.1, V3.2 |
 | **Kimi** | K2, K2.5 |
 | **GLM** | 4.7, 4.8 |
@@ -131,7 +133,7 @@ If you encounter issues during import or deployment, use the following table to 
 | Architecture mismatch | Confirm the architecture you selected matches your model. See [supported architectures](#supported-architectures). |
 | Upload times out or stalls | Check your network connection and retry. For large models, use a stable high-bandwidth connection. |
 | Deployment fails | Confirm you have sufficient quota and that the [Fireworks preview feature](use-fireworks-models.md#enable-fireworks-on-foundry) is enabled and registered in your subscription. |
-| Quota exceeded | [Request more quota](https://aka.ms/oai/stuquotarequest) or reallocate provisioned throughput units from existing deployments. |
+| Quota exceeded | [Request more quota](https://aka.ms/fireworks-quota) or reallocate provisioned throughput units from existing deployments. |
 
 ## Related content
 
