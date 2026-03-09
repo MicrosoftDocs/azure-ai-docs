@@ -18,7 +18,7 @@ This quickstart shows you how to use the Content Understanding Java SDK to extra
 ## Prerequisites
 
 * An active Azure subscription. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/language-region-support).
+* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](../../language-region-support.md).
 * Your resource endpoint and API key (found under Keys and Endpoint in the Azure portal).
 * Model deployment defaults configured for your resource. See [Models and deployments](../../concepts/models-deployments.md) or this one-time [configuration script](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample00_UpdateDefaults.java) for setup instructions.
 * [Java Development Kit (JDK)](https://learn.microsoft.com/java/openjdk/download) version 8 or later.
@@ -727,10 +727,3 @@ Frame size: 1080 x 608
 ```
 > [!NOTE]
 > This code is based on the [Sample02_AnalyzeUrl.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample02_AnalyzeUrl.java) sample in the SDK repository.
-
-## Next steps
-
-* Explore more [Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding)
-* [Create a custom analyzer](../../tutorial/create-custom-analyzer.md)
-* [Prebuilt analyzers](../../concepts/prebuilt-analyzers.md)
-* [Language and region support](../../language-region-support.md)

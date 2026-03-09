@@ -18,7 +18,7 @@ This quickstart shows you how to use the Content Understanding Python SDK to ext
 ## Prerequisites
 
 * An active Azure subscription. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/language-region-support).
+* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](../../language-region-support.md).
 * Your resource endpoint and API key (found under Keys and Endpoint in the Azure portal).
 * Model deployment defaults configured for your resource. See [Models and deployments](../../concepts/models-deployments.md) or this one-time [configuration script](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_update_defaults.py) for setup instructions.
 * [Python 3.9 or later](https://www.python.org/).
@@ -490,9 +490,5 @@ Frame size: 1080 x 608
  > [!NOTE]
  > This code is based on the [sample_analyze_url.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_analyze_url.py) sample in the SDK repository.
 
-## Next steps
 
-* Explore more [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples)
-* [Create a custom analyzer](../../tutorial/create-custom-analyzer.md)
-* [Prebuilt analyzers](../../concepts/prebuilt-analyzers.md)
-* [Language and region support](../../language-region-support.md)
+
