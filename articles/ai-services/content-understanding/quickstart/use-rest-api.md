@@ -54,8 +54,4 @@ ai-usage: ai-assisted
 ::: zone-end
 
 
-## Next steps
 
-- [Create a custom analyzer](../tutorial/create-custom-analyzer.md)
-- [Prebuilt analyzers](../concepts/prebuilt-analyzers.md)
-- [Language and region support](../language-region-support.md)
