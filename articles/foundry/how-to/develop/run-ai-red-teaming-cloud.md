@@ -225,7 +225,7 @@ target = AzureAIAgentTarget(
 )
 
 # Create taxonomy for prohibited actions risk category
-taxonomy = project_client.evaluation_taxonomies.create(
+taxonomy = project_client.beta.evaluation_taxonomies.create(
     name=agent_name,
     body=EvaluationTaxonomy(
         description="Taxonomy for red teaming run",

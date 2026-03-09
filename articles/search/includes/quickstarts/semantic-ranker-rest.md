@@ -1,7 +1,4 @@
 ---
-manager: nitinme
-author: heidisteen
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 03/04/2026

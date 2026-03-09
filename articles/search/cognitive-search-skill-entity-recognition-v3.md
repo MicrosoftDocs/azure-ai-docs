@@ -2,8 +2,6 @@
 title: Entity Recognition cognitive skill (v3)
 titleSuffix: Azure AI Search
 description: Extract different types of entities using the machine learning models of Azure Language in Foundry Tools in an AI enrichment pipeline in Azure AI Search.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
