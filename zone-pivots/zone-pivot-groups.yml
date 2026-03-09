@@ -295,6 +295,15 @@ groups:
     title: Python
   - id: rest-api
     title: REST
+# Owner: mbullwin
+- id: openai-chat-completions
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-dotnet
+    title: C#
 # Owner: diberry
 - id: programming-languages-rest-js
   title: Programming languages
