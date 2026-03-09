@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 # Develop applications with models and LangChain in Microsoft Foundry (classic)
 
 > [!NOTE]
-> This article refers to the [Microsoft Foundry (classic)](../../what-is-foundry.md#microsoft-foundry-portals) portal. If you're using the new portal, use the [new version](../../../foundry/langchain.md) of this article instead.
+> This article refers to the [Microsoft Foundry (classic)](../../what-is-foundry.md#microsoft-foundry-portals) portal. If you're using the new portal, use the [new version](../../../foundry/how-to/develop/langchain.md) of this article instead.
 >
 
 LangChain is a developer ecosystem that makes it easier to build reasoning applications. It includes multiple components, and most of them can be used independently, so you can pick and choose the pieces you need.
