@@ -25,7 +25,7 @@ ai-usage: ai-assisted
 1. Install the required NuGet packages:
 
     ```dotnetcli
-    dotnet add package Azure.AI.OpenAI
+    dotnet add package OpenAI --preview
     dotnet add package Azure.Identity
     ```
 
@@ -45,15 +45,25 @@ The following code snippet shows the most basic way to interact with models that
 # [Microsoft Entra ID](#tab/dotnet-secure)
 
 ```csharp
-using Azure.AI.OpenAI;
 using Azure.Identity;
+using OpenAI;
 using OpenAI.Chat;
+using System.ClientModel.Primitives;
 
-AzureOpenAIClient azureClient = new(
-    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
-    new DefaultAzureCredential());
+#pragma warning disable OPENAI001
 
-ChatClient client = azureClient.GetChatClient("YOUR-DEPLOYMENT-NAME");
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+ChatClient client = new(
+    model: "YOUR-DEPLOYMENT-NAME",
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+    }
+);
 
 ChatCompletion completion = await client.CompleteChatAsync(
 [
@@ -67,15 +77,19 @@ Console.WriteLine(completion.Content[0].Text);
 # [API Key](#tab/dotnet-key)
 
 ```csharp
-using Azure;
-using Azure.AI.OpenAI;
+using OpenAI;
 using OpenAI.Chat;
+using System.ClientModel;
 
-AzureOpenAIClient azureClient = new(
-    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
-    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!));
-
-ChatClient client = azureClient.GetChatClient("YOUR-DEPLOYMENT-NAME");
+ChatClient client = new(
+    model: "YOUR-DEPLOYMENT-NAME",
+    credential: new ApiKeyCredential(
+        Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")),
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+    }
+);
 
 ChatCompletion completion = await client.CompleteChatAsync(
 [
@@ -221,15 +235,25 @@ Every time a new question is asked, a running transcript of the conversation so 
 # [Microsoft Entra ID](#tab/dotnet-secure)
 
 ```csharp
-using Azure.AI.OpenAI;
 using Azure.Identity;
+using OpenAI;
 using OpenAI.Chat;
+using System.ClientModel.Primitives;
 
-AzureOpenAIClient azureClient = new(
-    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
-    new DefaultAzureCredential());
+#pragma warning disable OPENAI001
 
-ChatClient client = azureClient.GetChatClient("YOUR-DEPLOYMENT-NAME");
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+ChatClient client = new(
+    model: "YOUR-DEPLOYMENT-NAME",
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+    }
+);
 
 List<ChatMessage> conversation =
 [
@@ -255,15 +279,19 @@ while (true)
 # [API Key](#tab/dotnet-key)
 
 ```csharp
-using Azure;
-using Azure.AI.OpenAI;
+using OpenAI;
 using OpenAI.Chat;
+using System.ClientModel;
 
-AzureOpenAIClient azureClient = new(
-    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
-    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!));
-
-ChatClient client = azureClient.GetChatClient("YOUR-DEPLOYMENT-NAME");
+ChatClient client = new(
+    model: "YOUR-DEPLOYMENT-NAME",
+    credential: new ApiKeyCredential(
+        Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")),
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+    }
+);
 
 List<ChatMessage> conversation =
 [
@@ -308,16 +336,26 @@ dotnet add package Microsoft.ML.Tokenizers.Data.O200kBase
 # [Microsoft Entra ID](#tab/dotnet-secure)
 
 ```csharp
-using Azure.AI.OpenAI;
 using Azure.Identity;
 using Microsoft.ML.Tokenizers;
+using OpenAI;
 using OpenAI.Chat;
+using System.ClientModel.Primitives;
 
-AzureOpenAIClient azureClient = new(
-    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
-    new DefaultAzureCredential());
+#pragma warning disable OPENAI001
 
-ChatClient client = azureClient.GetChatClient("YOUR-DEPLOYMENT-NAME");
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+ChatClient client = new(
+    model: "YOUR-DEPLOYMENT-NAME",
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+    }
+);
 
 const int MaxResponseTokens = 250;
 const int TokenLimit = 4096;
@@ -374,16 +412,20 @@ while (true)
 # [API Key](#tab/dotnet-key)
 
 ```csharp
-using Azure;
-using Azure.AI.OpenAI;
 using Microsoft.ML.Tokenizers;
+using OpenAI;
 using OpenAI.Chat;
+using System.ClientModel;
 
-AzureOpenAIClient azureClient = new(
-    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
-    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")!));
-
-ChatClient client = azureClient.GetChatClient("YOUR-DEPLOYMENT-NAME");
+ChatClient client = new(
+    model: "YOUR-DEPLOYMENT-NAME",
+    credential: new ApiKeyCredential(
+        Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")),
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+    }
+);
 
 const int MaxResponseTokens = 250;
 const int TokenLimit = 4096;
@@ -454,5 +496,5 @@ An alternative approach is to limit the conversation duration to the maximum tok
 ### Common errors
 
 - **401/403 (authentication)**: Verify your API key or confirm you have Microsoft Entra ID access to the Azure OpenAI resource.
-- **400/404 (deployment not found)**: Confirm that the model name passed to `GetChatClient()` matches your deployment name.
-- **Invalid endpoint**: Confirm that the URI passed to `AzureOpenAIClient` ends with `.openai.azure.com/`.
+- **400/404 (deployment not found)**: Confirm that the model name passed to the `ChatClient` constructor matches your deployment name.
+- **Invalid endpoint**: Confirm that the `Endpoint` URI in `OpenAIClientOptions` points to `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`.
