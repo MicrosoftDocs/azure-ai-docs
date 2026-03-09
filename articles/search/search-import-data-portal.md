@@ -1,7 +1,7 @@
 ---
 title: Import Wizard in the Azure portal
 titleSuffix: Azure AI Search
-description: Learn about the Azure portal wizard that creates and loads a search index and optionally invokes applied AI for vectorization, natural-language processing, language translation, OCR, and image analysis.
+description: Learn about the Import data wizard in the Azure portal. The wizard creates an indexing pipeline for keyword search, RAG, and multimodal RAG scenarios, with support for data chunking, vectorization, and AI enrichment.
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme

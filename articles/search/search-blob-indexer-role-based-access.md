@@ -42,7 +42,7 @@ This article focuses on the indexing automation approaches, built on this founda
 
 + You should understand how indexers and knowledge sources work and how to create an index. This article explains the configuration settings for the data source and indexer, but doesn't provide steps for creating the index. For more information about indexes designed for permission filters, see [Create an index with permission filter fields](search-index-access-control-lists-and-rbac-push-api.md#create-an-index-with-permission-filter-fields).
 
-+ This functionality is currently not supported in the Azure portal, this includes permission filters created through the [**Import data** wizard](search-import-data-portal.md). Use a programmatic approach to create or modify existing objects for document-level access. 
++ This functionality isn't currently supported in the Azure portal, which includes permission filters created through the [**Import data** wizard](search-import-data-portal.md). Use a programmatic approach to create or modify existing objects for document-level access. 
 
 ## Configure Blob storage
 

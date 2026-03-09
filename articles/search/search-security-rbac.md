@@ -97,7 +97,7 @@ Combine these roles to get sufficient permissions for your use case.
 |Configure private connections |❌|❌|✅|✅|❌|
 |Configure network security |❌|❌|✅|✅|❌|
 
-<sup>1</sup> In the Azure portal, an Owner or Contributor can run the [import wizard](search-import-data-portal.md) that creates and loads indexes, even though they can't upload documents in other clients. The search service itself, not individual users, makes data connections in the wizard. The wizard has the `Microsoft.Search/searchServices/indexes/documents/*` permission necessary for completing this task.
+<sup>1</sup> In the Azure portal, an Owner or Contributor can run the [**Import data** wizard](search-import-data-portal.md) that creates and loads indexes, even though they can't upload documents in other clients. The search service itself, not individual users, makes data connections in the wizard. The wizard has the `Microsoft.Search/searchServices/indexes/documents/*` permission necessary for completing this task.
 
 <sup>2</sup> Use elevated read for debugging queries that obtain results by using the identity of the called. For more information, see [Investigate incorrect query results](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results).
 
@@ -303,7 +303,7 @@ Use a client to test role assignments. Remember that roles are cumulative. You c
 
    + Search Service Contributors can view and create any object, but can't load documents or query an index. To verify permissions, [create a search index](search-how-to-create-search-index.md#create-an-index).
 
-   + Search Index Data Contributors can load documents. There's no load documents option in the Azure portal outside of the [import wizard](search-import-data-portal.md), but you can [reset and run an indexer](search-howto-run-reset-indexers.md) to confirm document load permissions.
+   + Search Index Data Contributors can load documents. There's no load documents option in the Azure portal outside of the [**Import data** wizard](search-import-data-portal.md), but you can [reset and run an indexer](search-howto-run-reset-indexers.md) to confirm document load permissions.
 
    + Search Index Data Readers can query the index. To verify permissions, use [Search explorer](search-explorer.md). You should be able to send queries and view results, but you shouldn't be able to view the index definition or create one.
 

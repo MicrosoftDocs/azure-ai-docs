@@ -30,7 +30,7 @@ This quickstart uses a multimodal PDF from the [azure-search-sample-data](https:
 
 + A [supported embedding method](#supported-embedding-methods).
 
-+ Familiarity with the wizard. See [**Import data** wizard in the Azure portal](search-import-data-portal.md).
++ Familiarity with the wizard. See [Import data wizard in the Azure portal](search-import-data-portal.md).
 
 ### Supported extraction methods
 

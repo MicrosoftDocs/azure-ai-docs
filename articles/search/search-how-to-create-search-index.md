@@ -43,14 +43,12 @@ Index design through the Azure portal enforces requirements and schema rules for
 
 1. Check for space. Search services are subject to a [maximum number of indexes](search-limits-quotas-capacity.md), which varies by pricing tier. Make sure you have room for a second index.
 
-1. On the search service **Overview** page, choose one of the following options to create an index:
+1. On the search service **Overview** page, choose one of the following options:
 
-   + **Add index** is an embedded editor for specifying an index schema.
-   + [**Import data**](search-import-data-portal.md) is a wizard that creates a data source, indexer, and finished index. The wizard also loads the data. If you don't need the end-to-end workflow, use **Add index** instead.
+   + **Add index**: An embedded editor for specifying an index schema.
+   + [**Import data**](search-import-data-portal.md): A wizard that creates a data source, indexer, and finished index. The wizard also loads the data. If you don't need the end-to-end workflow, use **Add index** instead.
 
     :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the options to add an index." border="true":::
-
-After an index is created, you can find it again on the **Indexes** page from the left pane.
     
 > [!TIP]
 > After you create an index in the Azure portal, you can copy the JSON representation and add it to your application code.
@@ -141,13 +139,13 @@ For Azure AI Search, the Azure SDKs implement generally available features. As s
 
 ## Verify index creation
 
-After creating an index, verify it exists by listing the indexes on your search service.
+After you create an index, verify it exists by listing the indexes on your search service.
 
 ### [**Azure portal**](#tab/portal)
 
 1. In the Azure portal, go to your search service.
 
-1. Under **Search management**, select **Indexes**.
+1. From the left pane, select **Search management** > **Indexes**.
 
 1. Confirm your new index appears in the list. If you don't see it, refresh the page.
 

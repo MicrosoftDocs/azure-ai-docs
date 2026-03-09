@@ -31,7 +31,7 @@ This quickstart uses text-based PDFs and simple images from the [azure-search-sa
 
 + A [supported embedding model](#supported-embedding-models).
 
-+ Familiarity with the wizard. See [**Import data** wizard in the Azure portal](search-import-data-portal.md).
++ Familiarity with the wizard. See [Import data wizard in the Azure portal](search-import-data-portal.md).
 
 ### Supported data sources
 
