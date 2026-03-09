@@ -160,7 +160,6 @@ Tools are supported by the following models.
 | grok-4-1-fast-reasoning | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | grok-4-fast-non-reasoning | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | grok-4-fast-reasoning | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No |
-
 | mistral-small-2503 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | model-router | No | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
 | o1 | No | Yes | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | Yes | Yes |
