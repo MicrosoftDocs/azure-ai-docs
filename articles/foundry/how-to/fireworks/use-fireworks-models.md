@@ -48,7 +48,7 @@ Global provisioned throughput deployments of base and custom models are availabl
 
 While in preview, **Fireworks requires an administrator to enable the preview feature** within your Azure subscription.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) with the `New Foundry` toggle enabled.
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
 1. In the search box, enter _subscriptions_ and select **Subscriptions**.
 
@@ -56,20 +56,22 @@ While in preview, **Fireworks requires an administrator to enable the preview fe
 
 1. From the left menu, under **Settings**, select **Preview features**.
 
+    :::image type="content" source="../media/fireworks/portal-preview-features.png" alt-text="Screenshot of the Preview features setting in the Azure portal."::: 
+
 1. Search for and select the **Fireworks on Foundry** preview feature.
 
 1. Review the terms provided in the **Description** and the [data privacy](#data-privacy) section in this documentation.
 
 1. If you don't agree to the terms, select **Close** and don't continue. Otherwise, select **Register**.
 
-1. Select **OK**.
+1. Select **OK**. The **Preview features** screen refreshes and the preview feature's **State** is displayed. It might take up to 30 minutes for the feature to enable for your subscription.
 
-The **Preview features** screen refreshes and the preview feature's **State** is displayed. It might take up to 30 minutes for the feature to enable for your subscription.
+     > [!TIP]
+     > To verify registration, refresh the **Preview features** page and confirm the **State** column shows **Registered** for the **Fireworks on Foundry** feature.
 
-   > [!TIP]
-   > To verify registration, refresh the **Preview features** page and confirm the **State** column shows **Registered** for the **Fireworks on Foundry** feature.
+## Deploy Fireworks models from the Foundry portal
 
-   After the feature is enabled, you can deploy Fireworks models from the Foundry model catalog. Browse available models in the [Available catalog models](#available-catalog-models) section, or [import your own custom model](import-custom-models.md).
+After the feature is enabled, you can deploy Fireworks models from the Foundry model catalog. Browse available models in the [Available catalog models](#available-catalog-models) section, or [import your own custom model](import-custom-models.md).
 
 1. From the portal homepage, select **Discover** in the upper-right navigation.
 
@@ -78,7 +80,6 @@ The **Preview features** screen refreshes and the preview feature's **State** is
 1. Select your desired Fireworks model to view its details on the model page:
 
    :::image type="content" source="../media/fireworks/models-homepage.png" alt-text="Screenshot of Foundry models homepage showing available Fireworks models.":::
-
 
 ## Available catalog models
 

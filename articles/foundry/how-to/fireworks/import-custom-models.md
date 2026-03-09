@@ -82,8 +82,8 @@ The import process starts in the Foundry portal, where you register your model, 
 
 1. Configure the following settings:
 
-* **Name**: Enter a descriptive name for your custom model.
-* **Architecture**: Select the model architecture that matches your model (for example, `DeepSeek V3.2` or `Llama 4`).
+   * **Name**: Enter a descriptive name for your custom model.
+   * **Architecture**: Select the model architecture that matches your model (for example, `DeepSeek V3.2` or `Llama 4`).
 
 1. The portal generates an `azd` command. Copy the command and paste it into a local terminal. Update the `--source` parameter to point to the directory that contains your model weight files.
 
@@ -112,8 +112,8 @@ With the model registered, you can deploy it to Fireworks' cloud for inference.
 
 1. Configure the deployment:
 
-   - **Deployment name** — Provide a deployment name. During inference, this name is used in the `model` parameter to route requests to this deployment.
-   - **Provisioned throughput units** — Allocate the number of provisioned throughput units (PTUs) for the deployment. For more information, see [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
+  * **Deployment name** — Provide a deployment name. During inference, this name is used in the `model` parameter to route requests to this deployment.
+  * **Provisioned throughput units** — Allocate the number of provisioned throughput units (PTUs) for the deployment. For more information, see [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
 
 1. Review and acknowledge the pricing terms.
 
