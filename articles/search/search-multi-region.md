@@ -6,7 +6,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 08/08/2025
+ms.date: 03/09/2026
 ms.update-cycle: 365-days
 ---
 
@@ -36,8 +36,13 @@ The following diagram illustrates a geo-distributed set of search services:
 
 :::image type="content" source="media/search-multi-region/geo-redundancy.png" alt-text="Diagram that shows a cross-tab view of services by region." border="true" lightbox="media/search-multi-region/geo-redundancy.png":::
 
-> [!TIP]
-> For a complete implementation, see the [Bicep sample](https://github.com/Azure-Samples/azure-search-multiple-regions) on GitHub. The sample deploys a fully configured, multi-region search solution that can be modified to your regions and indexing strategies.
+## Multi-region Bicep sample
+
+Try running this sample to see how to deploy Azure AI Search services in multiple regions with automatic failover using Azure Front Door: [Azure Samples/Azure-Search-Multiple-Regions](https://github.com/Azure-Samples/azure-search-multiple-regions).
+
+The sample demonstrates automatic failover for Azure AI Search using [Azure Front Door](/azure/frontdoor/front-door-overview) with priority-based routing. The deployment creates Azure AI Search services in two regions with Azure Functions APIs and automatic failover capabilities.
+
+Multi-region deployments provide high availability and disaster recovery for Azure AI Search. By deploying search services in multiple regions and using Azure Front Door for global load balancing, you can ensure that your search application remains available even if one region experiences an outage.
 
 ## Data synchronization
 
@@ -102,10 +107,7 @@ The following diagram illustrates search apps connecting through Traffic Manager
 
 :::image type="content" source="media/search-multi-region/azure-function-search-traffic-mgr.png" alt-text="Diagram of search apps connecting through Azure Traffic Manager." border="true" lightbox="media/search-multi-region/azure-function-search-traffic-mgr.png":::
 
-> [!TIP]
-> Azure AI Search provides a [multi-region Bicep sample](https://github.com/Azure-Samples/azure-search-multiple-regions) that uses Traffic Manager for request redirection when the primary endpoint fails. This solution is useful for routing to a search-enabled client that only calls a search service in the same region.
-
----
+## Load-balancing considerations
 
 As you evaluate these load-balancing options, consider the following points:
 
