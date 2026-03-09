@@ -27,8 +27,7 @@ The service is periodically updated to add support for more models. The currentl
 
 ## How model selection works
 
-When you create a custom analyzer, you specify which chat completion model and
-embedding model it uses. This association is made using a deployment alias rather than directly with a specific deployment-name.
+When you create a custom analyzer, you specify which chat completion model and embedding model it uses. This association is made using a deployment alias rather than directly with a specific deployment-name.
 
 ```jsonc
 {
@@ -45,31 +44,24 @@ embedding model it uses. This association is made using a deployment alias rathe
 }
 ```
 
-> [!TIP]
-> GPT-4.1 is a recommended model for use with Foundry and the Studio. You can
-> use any supported chat completion model that fits your quality, latency, and
-> cost goals. Embedding models are used when you use labeled samples or
-> in-context learning to improve analyzer quality.
+> [!TIP] GPT-4.1 is a recommended model for use with Foundry and the Studio. You can use any supported chat completion model that fits your quality, latency, and cost goals. Embedding models are used when you use labeled samples or in-context learning to improve analyzer quality.
 
 ## Two ways to provide model deployments
 
 As a customer, you have two options:
 
-1. **Option 1:** Set default model deployments at the resource level.
-1. **Option 2:** Pass model deployment pointers in every analyze request.
+- **Option 1:** Set default model deployments at the resource level.
+- **Option 2:** Pass model deployment pointers in every analyze request.
 
-If you set resource defaults, you can still override those defaults for a
-single request by including `modelDeployments` in that request.
+If you set resource defaults, you can still override those defaults for a single request by including `modelDeployments` in that request.
 
 ### Option 1: Set default deployments at the resource level
 
-After you set defaults, analyze requests can omit `modelDeployments`. Choose
-one of the following setup methods:
+After you set defaults, analyze requests can omit `modelDeployments`. Choose one of the following setup methods:
 
 # [REST API or code](#tab/rest-api)
 
-Use `PATCH /contentunderstanding/defaults` to set model deployment defaults at
-the resource level.
+Use `PATCH /contentunderstanding/defaults` to set model deployment defaults at the resource level.
 
 ```jsonc
 PATCH /contentunderstanding/defaults
@@ -95,8 +87,7 @@ POST /myReceipt:analyze
 
 # [Content Understanding Studio](#tab/studio)
 
-For the full onboarding flow, see [Quickstart: Try out Content Understanding
-Studio](../quickstart/content-understanding-studio.md).
+For the full onboarding flow, see [Quickstart: Try out Content Understanding Studio](../quickstart/content-understanding-studio.md).
 
 1. Open [Content Understanding Studio](https://aka.ms/cu-studio).
 1. Select the **Settings** gear icon in the upper-right corner.
@@ -108,19 +99,13 @@ Studio](../quickstart/content-understanding-studio.md).
 
 
 
-Studio can configure defaults for supported models such as `gpt-4.1`,
-`gpt-4.1-mini`, and `text-embedding-3-large`. If the selected resource doesn't
-already have the required deployments, Studio can deploy them when
-auto-deployment is enabled.
+Studio can configure defaults for supported models such as `gpt-4.1`, `gpt-4.1-mini`, and `text-embedding-3-large`. If the selected resource doesn't already have the required deployments, Studio can deploy them when auto-deployment is enabled.
 
 ---
 
 ### Option 2: Pass model deployments in each analyze request
 
-Use this option when you want each request to explicitly point to model
-deployments by passing a `modelDeployments` object in the analyze request. This
-approach gives you maximum flexibility to use different deployments for
-different requests and doesn't require resource defaults.
+Use this option when you want each request to explicitly point to model deployments by passing a `modelDeployments` object in the analyze request. This approach gives you maximum flexibility to use different deployments for different requests and doesn't require resource defaults.
 
 ```jsonc
 POST /contentunderstanding/analyzers/prebuilt-invoice:analyze
@@ -138,15 +123,11 @@ POST /contentunderstanding/analyzers/prebuilt-invoice:analyze
 }
 ```
 
-The `modelDeployments` values in this analyze request override any defaults that
-you configured at the resource level.
+The `modelDeployments` values in this analyze request override any defaults that you configured at the resource level.
 
 ## Usage and billing data
 
-Analyze responses include a `usage` property. This property reports token usage
-for your connected deployment and other Content Understanding usage meters.
-You can compare these values with deployment usage data to correlate consumption
-from Content Understanding with your model deployment.
+Analyze responses include a `usage` property. This property reports token usage for your connected deployment and other Content Understanding usage meters. You can compare these values with deployment usage data to correlate consumption from Content Understanding with your model deployment.
 
 ```jsonc
 {
