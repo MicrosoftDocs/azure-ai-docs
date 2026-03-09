@@ -2,9 +2,6 @@
 title: Feature descriptions
 titleSuffix: Azure AI Search
 description: Explore the feature categories of Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
