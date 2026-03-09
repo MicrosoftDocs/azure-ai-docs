@@ -17,13 +17,13 @@ items:
   items:
   - name: Get started with LangChain and LangGraph in Foundry
     href: ../../how-to/develop/langchain.md
-  - name: Use Foundry models with LangChain and LangGraph
+  - name: Use Foundry Models
     href: ../../how-to/develop/langchain-models.md
-  - name: Use the Agent Service with LangGraph
+  - name: Use Foundry Agent Service
     href: ../../how-to/develop/langchain-agents.md
-  - name: Use Foundry Memory with LangChain and LangGraph
+  - name: Use Foundry Memory
     href: ../../how-to/develop/langchain-memory.md
-  - name: Trace LangChain and LangGraph apps
+  - name: Trace with Foundry Observability
     href: ../../how-to/develop/langchain-traces.md
 
 # Agent Tools

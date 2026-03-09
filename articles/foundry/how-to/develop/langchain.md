@@ -152,9 +152,10 @@ The same project-endpoint pattern is also used by other classes.
 
 Start with these guides in this documentation set:
 
-- [Use LangGraph with the Agent Service](langchain-agents.md)
+- [Use Foundry Models with LangChain and LangGraph](langchain-models.md)
+- [Use Foundry Agent Service with LangGraph](langchain-agents.md)
 - [Use Foundry Memory with LangChain and LangGraph](langchain-memory.md)
-- [Trace LangChain and LangGraph apps with Foundry](langchain-traces.md)
+- [Use Foundry Observability to trace apps](langchain-traces.md)
 
 Use these package resources for module-level details and updates:
 
@@ -164,4 +165,4 @@ Use these package resources for module-level details and updates:
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Use LangGraph with the Agent Service](langchain-agents.md)
+> [Use Foundry Models with LangChain](langchain-agents.md)
