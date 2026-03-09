@@ -64,24 +64,27 @@ os.environ["AZURE_OPENAI_API_KEY"] = "<your-api-key>"
 **What this snippet does:** Defines environment variables used by the
 `langchain-azure-ai` model classes for project-based or direct endpoint access.
 
-Understand environment variables:
+You can configure the following environment variables. Those values can also be configured when constructing the objects:
 
-| Variable | Role | Example |
-|----------|------|---------|
-| `AZURE_AI_PROJECT_ENDPOINT` | Foundry project endpoint. Use of the project endpoint requires Microsoft Entra ID authentication (recommended). | `https://contoso.services.ai.azure.com/api/projects/my-project` |
-| `AZURE_AI_OPENAI_ENDPOINT` | Direct OpenAI-compatible endpoint used for direct model calls. | `https://contoso.services.ai.azure.com/openai/v1` |
-| `AZURE_OPENAI_ENDPOINT` | Root for OpenAI resources. Classes `AzureAIOpenAIApiChatModel`, and `AzureAIOpenAIApiEmbeddingsModel` append `/openai/v1` to this path to get the inference endpoint. For a different behavior use `langchain_openai.AzureOpenAIChat`  | `https://contoso.openai.azure.com` |
-| `AZURE_OPENAI_API_KEY` | API key used with `AZURE_OPENAI_ENDPOINT` for key-based authentication. | `<your-api-key>` |
-| `AZURE_OPENAI_DEPLOYMENT_NAME` | Deployment name in the Foundry or OpenAI resource. Any model supporting OpenAI-compatible APIs can be used, however, not all the parameters may be supported. | `Mistral-Large-3` |
-| `AZURE_OPENAI_API_VERSION` | The API version to use. When an `api_version` is available we construct the OpenAI clients and inject the `api-version` query parameter via `default_query`. |
+| Variable | Role | Example | Parameter in constructor |
+|----------|------|---------|--------------------------|
+| `AZURE_AI_PROJECT_ENDPOINT` | Foundry project endpoint. Use of the project endpoint requires Microsoft Entra ID authentication (recommended). | `https://contoso.services.ai.azure.com/api/projects/my-project` | `project_endpoint` |
+| `AZURE_AI_OPENAI_ENDPOINT` | Direct OpenAI-compatible endpoint used for model calls. | `https://contoso.services.ai.azure.com/openai/v1` | `endpoint` |
+| `AZURE_OPENAI_ENDPOINT` | Root for OpenAI resources.  | `https://contoso.openai.azure.com` | None. |
+| `AZURE_OPENAI_API_KEY` | API key used with `AZURE_OPENAI_ENDPOINT` for key-based authentication. | `<your-api-key>` | `credential` |
+| `AZURE_OPENAI_DEPLOYMENT_NAME` | Deployment name in the Foundry or OpenAI resource. Any model supporting OpenAI-compatible APIs can be used, however, not all the parameters may be supported. | `Mistral-Large-3` | `model` |
+| `AZURE_OPENAI_API_VERSION` | The API version to use. When an `api_version` is available we construct the OpenAI clients and inject the `api-version` query parameter via `default_query`. | `v1` or `preview` | `api_version` |
+
+> [!IMPORTANT]
+> Environment variables `AZURE_AI_INFERENCE_ENDPOINT` and `AZURE_AI_CREDENTIALS` used for `AzureAIChatCompletionsModel` or `AzureAIEmbeddingsModel` (legacy) are not longer used.
 
 **References:**
 - [AzureAIOpenAIApiChatModel](https://python.langchain.com/api_reference/azure_ai/chat_models/langchain_azure_ai.chat_models.AzureAIOpenAIApiChatModel.html)
 - [AzureAIOpenAIApiEmbeddingsModel](https://python.langchain.com/api_reference/azure_ai/embeddings/langchain_azure_ai.embeddings.AzureAIOpenAIApiEmbeddingsModel.html)
 
-## Create a chat model client
+## Use chat models
 
-Create a chat model client by using `AzureAIOpenAIApiChatModel`.
+Create a chat model client by using `AzureAIOpenAIApiChatModel`. All Foundry Models supporting OpenAI-compatible APIs can be used with the client:
 
 ```python
 import os
@@ -93,11 +96,11 @@ from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
 model = AzureAIOpenAIApiChatModel(
 	project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
 	credential=DefaultAzureCredential(),
-	model="gpt-4.1",
+	model="gpt-4.1", # Or any model like "Mistral-Large-3"
 )
 ```
 
-For direct endpoint and API key authentication:
+Using `project_endpoint` requires Microsoft Entra ID for authentication and the role **Azure AI User**. For direct endpoint and API key authentication:
 
 ```python
 import os
@@ -105,7 +108,7 @@ import os
 from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
 
 model = AzureAIOpenAIApiChatModel(
-	endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
+	endpoint=os.environ["AZURE_AI_OPENAI_ENDPOINT"],
 	credential=os.environ["AZURE_OPENAI_API_KEY"],
 	model="Mistral-Large-3",
 )
@@ -115,11 +118,7 @@ model = AzureAIOpenAIApiChatModel(
 Foundry project endpoint with Microsoft Entra ID or a direct endpoint with API
 key authentication.
 
-**References:**
-- [AzureAIOpenAIApiChatModel](https://python.langchain.com/api_reference/azure_ai/chat_models/langchain_azure_ai.chat_models.AzureAIOpenAIApiChatModel.html)
-- [DefaultAzureCredential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential)
-
-## Verify your setup
+### Verify your setup
 
 Run a simple model invocation:
 
@@ -138,9 +137,10 @@ authentication, and model routing.
 **References:**
 - [LangChain runnable interface](https://python.langchain.com/docs/concepts/runnables/)
 
-## Run asynchronous calls
+### Run asynchronous calls
 
-Use asynchronous credentials if your app calls models with `ainvoke`:
+Use asynchronous credentials if your app calls models with `ainvoke`. When using Microsoft Entra ID for authentication, use 
+the corresponding asynchronous implementation for credentials:
 
 ```python
 import os
@@ -171,10 +171,10 @@ Hello! How can I help you today?
 request with `ainvoke`.
 
 **References:**
-- [Async credentials in Azure Identity](https://learn.microsoft.com/python/api/overview/azure/identity-readme)
+- [Async credentials in Azure Identity](/python/api/overview/azure/identity-readme)
 - [LangChain runnable interface](https://python.langchain.com/docs/concepts/runnables/)
 
-## Use chat completion models
+## Use chat models
 
 `AzureAIOpenAIApiChatModel` implements LangChain's runnable interface, so you
 can invoke it with message lists.
@@ -204,7 +204,7 @@ prints the assistant response.
 **References:**
 - [LangChain messages](https://python.langchain.com/docs/concepts/messages/)
 
-## Build prompt chains
+### Build prompt chains
 
 Compose prompts, model calls, and output parsing by using the pipe operator.
 
@@ -234,7 +234,7 @@ templating and string output parsing.
 - [ChatPromptTemplate](https://python.langchain.com/docs/concepts/prompt_templates/)
 - [Output parsers](https://python.langchain.com/docs/concepts/output_parsers/)
 
-## Chain multiple models
+### Chain multiple models
 
 Use one model to generate content and another model to verify it.
 
@@ -338,17 +338,11 @@ embed_model = AzureAIOpenAIApiEmbeddingsModel(
 )
 ```
 
-```output
-No output.
-```
-
 **What this snippet does:** Configures embeddings generation for vector search,
 retrieval, and ranking workflows.
 
-**References:**
-- [AzureAIOpenAIApiEmbeddingsModel](https://python.langchain.com/api_reference/azure_ai/embeddings/langchain_azure_ai.embeddings.AzureAIOpenAIApiEmbeddingsModel.html)
 
-## Run similarity search with a vector store
+### Example: Run similarity search with a vector store
 
 Use an in-memory vector store for local experimentation.
 
@@ -399,47 +393,11 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 ```
 
-```output
-No output.
-```
-
 **What this snippet does:** Configures Python logging to emit detailed SDK logs
 that help troubleshoot endpoint or payload issues.
 
 **References:**
 - [Python logging](https://docs.python.org/3/library/logging.html)
-
-## Trace your application
-
-Configure tracing in your Foundry project and send telemetry to Azure
-Application Insights.
-
-```python
-import os
-
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-
-project_client = AIProjectClient(
-	credential=DefaultAzureCredential(),
-	endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-)
-
-application_insights_connection_string = (
-	project_client.telemetry.get_application_insights_connection_string()
-)
-```
-
-```output
-No output.
-```
-
-**What this snippet does:** Retrieves the Application Insights connection
-string associated with your Foundry project for tracing instrumentation.
-
-**References:**
-- [AIProjectClient](https://learn.microsoft.com/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient)
-- [Visualize and manage traces in Foundry](langchain-traces.md)
 
 ## Next step
 
