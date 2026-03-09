@@ -173,16 +173,15 @@ The **Azure-Language-Text-PII redaction** model is used to identify and redact p
     | **API version** | Select the API version that you prefer to use. |
     | **Model version** | Select the model version that you prefer to use. |
     | **Language** | Select the language in which your source text is written. |
-    | **Types** | Select the types of information you want to redact. |
-    | **Specify redaction policy** | Select the method of redaction. |
-    | **Excluded values** | Select the values that you want to exclude. |
-    | **Synonyms** | Select a category for your redaction type values to target related synonyms. |
-
+    | **Select type to include** | Select the PII types you want to redact. |
+    | **Value to exclude** | Specify values that you want to exclude from detection. For example, if you want to redact email addresses but want to exclude those from a specific domain, you can enter that domain as an excluded value. |
+    | **Synonyms** | Provide alternative names for specific entity types. For example, if you select enter "Microsoft" as an excluded value, you can also specify specific synonyms such as "MSFT" and "Microsoft Corporation". |
+    | **Policy type** | Choose the type of redaction policy to apply (character mask, entity mask, or no mask ). |
 
 1. After you make your selections, choose the **Detect** button. Detected entities are highlighted in the text and you can review the accompanying details in formatted text or as a JSON response:
 
 
-    :::image type="content" source="../../media/quickstarts/azure-ai-foundry/new-foundry-test-detection.png" alt-text="Screenshot of PII text detection output in the Foundry playground" lightbox="../../media/quickstarts/azure-ai-foundry/new-foundry-test-detection.png":::
+    :::image type="content" source="../../media/quickstarts/azure-ai-foundry/new-foundry-text-detection.png" alt-text="Screenshot of PII text detection output in the Foundry playground" lightbox="../../media/quickstarts/azure-ai-foundry/new-foundry-test-detection.png":::
 
 | Field | Description |
 | --- | --- |
@@ -200,3 +199,13 @@ The **extract PII from conversations** feature detects and masks personally iden
 1. In the **Playground** tab, select **Azure Language—Conversational PII redaction** from the drop down menu.
 
 1. Select a sample transcript, use the paperclip icon to upload your transcript, or input conversation turn text.
+
+1. In the **Configure** side panel, set your preferred options for API version, model version, language, types, redaction policy, and excluded values.
+
+ Option | Description |
+    | --- | --- |
+    | **API version** | Select the API version that you prefer to use. |
+    | **Model version** | Select the model version that you prefer to use. |
+    | **Language** | Select the language in which your source text is written. |
+    | **Select types to include** | Select the PII types you want to redact. |
+    | **Specify redaction character** | Choose the character used to mask sensitive text. |
