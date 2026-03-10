@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 03/02/2026
+ms.date: 03/10/2026
 ---
 
 # Quickstart: Vector search in the Azure portal
@@ -35,7 +35,7 @@ This quickstart uses text-based PDFs and simple images from the [azure-search-sa
 
 ### Supported data sources
 
-The wizard [supports several Azure data sources](search-import-data-portal.md#supported-data-sources-and-scenarios). However, this quickstart only covers the data sources that work with whole files, which are described in the following table.
+The wizard [supports several Azure data sources](search-import-data-portal.md#data-sources). However, this quickstart only covers the data sources that work with whole files, which are described in the following table.
 
 | Data source | Description |
 |--|--|
@@ -215,7 +215,7 @@ The wizard supports several embedding models from Azure OpenAI and the Microsoft
 
 1. On the **Overview** page, select **Import data**.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
 1. Select your data source: **Azure Blob Storage**, **ADLS Gen2**, or **OneLake**.
 

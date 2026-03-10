@@ -6,7 +6,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/02/2026
+ms.date: 03/10/2026
 ---
 
 # Quickstart: Multimodal search in the Azure portal
@@ -174,7 +174,7 @@ To deploy the models required for your chosen [embedding method](#supported-embe
 
 1. On the **Overview** page, select **Import data**.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
 1. Select your data source: **Azure Blob Storage** or **Azure Data Lake Storage Gen2**.
 

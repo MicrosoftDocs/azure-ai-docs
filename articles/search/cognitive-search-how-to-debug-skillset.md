@@ -6,7 +6,7 @@ manager: nitinme
 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/31/2026
+ms.date: 03/10/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023

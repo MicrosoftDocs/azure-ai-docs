@@ -6,7 +6,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/04/2026
+ms.date: 03/10/2026
 ms.custom:
   - mode-ui
   - ignite-2023
@@ -79,7 +79,7 @@ To prepare the sample data for this quickstart:
 
 1. On the **Overview** page, select **Import data**.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot that shows how to open the import wizard in the Azure portal.":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot that shows how to open the import wizard in the Azure portal.":::
 
 1. Select your data source: **Azure Blob Storage** or **Azure Data Lake Storage Gen2**.
 

@@ -9,7 +9,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 12/11/2025
+ms.date: 03/10/2026
 ---
 
 # Quickstart: Create a skillset in the Azure portal
@@ -51,7 +51,7 @@ To run the wizard:
 
 1. On the **Overview** page, select **Import data**.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot that shows how to open the import wizard in the Azure portal.":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot that shows how to open the import wizard in the Azure portal.":::
 
 1. Select **Azure Blob Storage** for the data source.
 
