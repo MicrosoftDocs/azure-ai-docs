@@ -107,6 +107,8 @@ The following diagram illustrates search apps connecting through Traffic Manager
 
 :::image type="content" source="media/search-multi-region/azure-function-search-traffic-mgr.png" alt-text="Diagram of search apps connecting through Azure Traffic Manager." border="true" lightbox="media/search-multi-region/azure-function-search-traffic-mgr.png":::
 
+---
+
 ## Load-balancing considerations
 
 As you evaluate these load-balancing options, consider the following points:
