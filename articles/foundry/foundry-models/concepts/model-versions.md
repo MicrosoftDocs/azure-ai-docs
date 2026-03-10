@@ -7,6 +7,7 @@ ms.topic: concept-article
 ms.custom:
   - ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 ms.date: 03/10/2026
 author: msakande
 ms.author: mopeakande
@@ -18,6 +19,8 @@ ai-usage: ai-assisted
 # Model versions in Microsoft Foundry Models
 
 Microsoft Foundry Models regularly release new model versions that incorporate the latest features and improvements from model providers. This article explains how model versioning works, what update policies are available for your deployments, and how Azure OpenAI and partner model versions are managed.
+
+After reading this article, you'll know which upgrade policy to choose when you deploy a model, how Azure manages version upgrades automatically, and how partner model versioning differs from Azure OpenAI model versioning.
 
 ## How model versions work
 
@@ -40,11 +43,14 @@ Version upgrade policies include the following options:
 
 * Deployments set to **Opt out of automatic model version upgrades** require a manual upgrade if a new version is released. When the model is retired, those deployments stop working.
 * Deployments set to **Upgrade once new default version becomes available** automatically update to use the new default version.
-* Deployments set to **Once the current version expires** automatically update when its current version is retired.
+* Deployments set to **Once the current version expires** automatically update when their current version is retired.
 
 For example, a deployment of `gpt-4o` might target version `2024-08-06`. When version `2024-11-20` becomes available, deployments set to auto-update switch to the new version automatically.
 
-To check the current version of a deployment, open the deployment details in the Foundry portal or query the deployment via the REST API.
+To check the current version of a deployment, use either of the following methods:
+
+* **Foundry portal**: Go to your deployment in the Foundry portal, then open the **Details** tab to see the current model version.
+* **REST API**: Query the deployments endpoint for your resource. The response includes the model version for each deployment.
 
 ### Version of the API used to consume a model deployment
 
@@ -73,7 +79,7 @@ Yes, even in cases where the latest model version is not yet available in a regi
 
 Azure works closely with model providers to release new model versions. When a new version of a model is released, you can immediately test it in new deployments.
 
-New model versions might result in a new model ID being published. For example, `Llama-3.3-70B-Instruct`, `Meta-Llama-3.1-70B-Instruct`, and `Meta-Llama-3-70B-Instruct`. In some cases, all the model versions might be available in the same API version. In other cases, you might also need to adjust the API version used to consume the model in case the API contract has changed from one model to another.
+New model versions might result in a new model ID being published. For example, `Meta-Llama-3-70B-Instruct` was superseded by `Meta-Llama-3.1-70B-Instruct`, which was in turn superseded by the current `Llama-3.3-70B-Instruct`. Each generation uses a different model ID. In some cases, all model versions might be available in the same API version. In other cases, you might also need to adjust the API version used to consume the model, because the API contract may have changed from one model to another.
 
 ## Related content
 
