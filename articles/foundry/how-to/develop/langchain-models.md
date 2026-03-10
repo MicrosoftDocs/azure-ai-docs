@@ -47,8 +47,8 @@ pip install -U langchain langchain-azure-ai azure-identity
 
 Set one of the following connection patterns:
 
-1. Project endpoint with Microsoft Entra ID (recommended).
-1. Direct endpoint with an API key.
+- Project endpoint with Microsoft Entra ID (recommended).
+- Direct endpoint with an API key.
 
 ```python
 import os
