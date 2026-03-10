@@ -46,8 +46,8 @@ The following table lists several other ways that you might connect to the secur
 
 | Method | Description |
 | ----- | ----- |
-| [Azure VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) | Connects on-premises networks to an Azure Virtual Network over a private connection. A private endpoint for your workspace is created within that virtual network. Connection is made over the public internet. |
-| [ExpressRoute](https://azure.microsoft.com/services/expressroute/) | Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider. |
+| [Azure VPN gateway](https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways) | Connects on-premises networks to an Azure Virtual Network over a private connection. A private endpoint for your workspace is created within that virtual network. Connection is made over the public internet. |
+| [ExpressRoute](https://learn.microsoft.com/azure/expressroute/expressroute-introduction) | Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider. |
 
 > [!IMPORTANT]
 > When using a __VPN gateway__ or __ExpressRoute__, plan how name resolution works between your on-premises resources and those in the cloud. For more information, see [Use a custom DNS server](how-to-custom-dns.md).
@@ -104,6 +104,9 @@ By using Azure Bastion, you can connect to the VM desktop through your browser.
 
 1. From the __Networking__ tab, select __Private with Internet Outbound__.
 
+    > [!NOTE]
+    > This tutorial uses internet outbound access to keep setup simple. If your organization requires stricter egress controls, use a managed virtual network configuration that allows only approved outbound traffic.
+
     :::image type="content" source="./media/tutorial-create-secure-workspace/private-internet-outbound.png" alt-text="Screenshot of the workspace network tab with internet outbound selected.":::
 
 1. From the __Networking__ tab, in the __Workspace inbound access__ section, select __+ Add__.
@@ -128,6 +131,9 @@ By using Azure Bastion, you can connect to the VM desktop through your browser.
 ## Connect to studio
 
 At this point, the workspace is created **but the managed virtual network isn't**. You configure the managed virtual network when you create the workspace. To create the managed virtual network, create a compute resource or manually provision the network.
+
+> [!IMPORTANT]
+> If you plan to run serverless Spark jobs, manually start managed virtual network provisioning before you submit Spark jobs.
 
 Use the following steps to create a compute instance.
 
