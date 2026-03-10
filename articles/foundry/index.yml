@@ -113,7 +113,7 @@ productDirectory:
           text: Document Intelligence
         - url: ../ai-services/content-understanding/index.yml
           text: Content Understanding
-        - url: ../ai-services/computer-vision/overview-identity.md
+        - url: ../ai-services/computer-vision/face-index.yml
           text: Face
     # Card
     - title: Azure Machine Learning
