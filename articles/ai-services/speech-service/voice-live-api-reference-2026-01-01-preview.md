@@ -2357,6 +2357,7 @@ Base VAD-based turn detection.
 | threshold | float | Optional. Activation threshold (0.0-1.0). Default: 0.5 |
 | prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 300) |
 | silence_duration_ms | integer | Optional. Silence duration to detect speech end (default: 500) |
+| speech_duration_ms | integer | Optional. Minimum speech duration (default: 200) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
 | create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true) |
