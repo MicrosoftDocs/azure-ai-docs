@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
 
-## Setup project
+## Set up project
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]
 
@@ -211,7 +211,7 @@ await runToolCallingExample().catch((error) => {
 });
 ```
 
-### Run the application
+## Run the application
 
 To run the application, execute the following command in your terminal:
 

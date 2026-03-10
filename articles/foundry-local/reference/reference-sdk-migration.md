@@ -15,7 +15,7 @@ ms.reviewer: maanavd
 ai-usage: ai-assisted
 ---
 
-# Foundry Local SDK Migration Guide
+# Foundry Local SDK migration guide
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 

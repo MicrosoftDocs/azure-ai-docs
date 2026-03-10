@@ -233,7 +233,7 @@ Represents model-specific parameters.
 | ---------- | ------------------- | -------------------------- |
 | Parameters | List\<JsonElement\> | Model parameter collection |
 
-### `ModelInfo`
+#### `ModelInfo`
 
 Describes a model in the Foundry Local catalog or cache.
 

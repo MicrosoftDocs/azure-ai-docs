@@ -168,7 +168,7 @@ Console.WriteLine();
 await model.UnloadAsync();
 ```
 
-### Run the application
+## Run the application
 
 #### [Windows](#tab/windows)
 
@@ -380,7 +380,7 @@ await mgr.StopWebServiceAsync();
 await model.UnloadAsync();
 ```
 
-### Run the application
+## Run the application
 
 ### [Windows](#tab/windows)
 

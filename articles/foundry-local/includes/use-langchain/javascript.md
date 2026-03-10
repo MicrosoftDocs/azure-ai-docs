@@ -19,7 +19,7 @@ Before starting this tutorial, you need:
 
 - **Node.js 20 or later** installed on your computer. You can download Node.js from the [official website](https://nodejs.org/).
 
-## Set-up project
+## Set up project
 
 [!INCLUDE [project-setup](../javascript-project-setup.md)]
 

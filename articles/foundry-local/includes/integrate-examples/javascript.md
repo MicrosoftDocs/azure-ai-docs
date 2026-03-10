@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 - [Node.js](https://nodejs.org/en/download/) version 20 or later installed.
 
-## Set-up project
+## Set up project
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]
 

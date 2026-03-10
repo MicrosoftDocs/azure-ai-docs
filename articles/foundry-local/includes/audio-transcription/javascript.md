@@ -80,7 +80,7 @@ await model.unload();
 console.log(`✓ Model unloaded`);
 ```
 
-### Run the application
+## Run the application
 To run the application, use the following command in your terminal:
 
 ```bash

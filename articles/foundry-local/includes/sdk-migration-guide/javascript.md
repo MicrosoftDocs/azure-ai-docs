@@ -40,7 +40,7 @@ In this new architecture:
 
 #### API changes
 
-The latest version provides a more object-orientated and composable API. The main entry point continues to be the `FoundryLocalManager` class, but instead of being a flat set of methods that operate via static calls to a stateless HTTP API, the SDK now exposes methods on the `FoundryLocalManager` instance that maintain state about the service and models.
+The latest version provides a more object-oriented and composable API. The main entry point continues to be the `FoundryLocalManager` class, but instead of being a flat set of methods that operate via static calls to a stateless HTTP API, the SDK now exposes methods on the `FoundryLocalManager` instance that maintain state about the service and models.
 
 | Primitive | Previous Version | Current Version |
 | --- | --- | --- |
