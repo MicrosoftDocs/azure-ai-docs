@@ -135,7 +135,7 @@ productDirectory:
           text: Integrate your apps
         - url: ../foundry-local/how-to/how-to-compile-hugging-face-models.md
           text: Run HuggingFace models
-        - url: ../foundry-local/reference/reference-sdk.md
+        - url: ../foundry-local/reference/reference-sdk-current.md
           text: SDK Documentation
 
 tools:
