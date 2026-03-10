@@ -75,7 +75,7 @@ As a customer of Azure OpenAI models, you might notice some changes in the model
 
 Yes, even in cases where the latest model version is not yet available in a region, Azure automatically upgrades deployments during the scheduled upgrade window. Our engineering team begins rollout of the new model version starting on the announced upgrade date. For example, if `gpt-35-turbo-0125` is not yet available in Japan East, Azure engineering team deploys `gpt-35-turbo-0125` to Japan East to upgrade older model versions as part of the default model version upgrade process. 
 
-## Partner model updates
+## Partner model upgrades
 
 Azure works closely with model providers to release new model versions. When a new version of a model is released, you can immediately test it in new deployments.
 
