@@ -9,7 +9,9 @@ ms.topic: reference
 
 author: likebupt
 ms.author: keli19
-ms.date: 05/10/2021
+ms.date: 03/10/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 ---
 # Train Model component
 
@@ -64,9 +66,12 @@ In Azure Machine Learning, creating and using a machine learning model is typica
 
 ## Model Interpretability
 
-Model interpretability provides possibility to comprehend the ML model and to present the underlying basis for decision-making in a way that is understandable to humans.
+> [!IMPORTANT]
+> The **Explanations** tab and the **Model Explanation** setting in the Train Model component have been retired. To understand model predictions and feature importance, use the [Responsible AI dashboard](../concept-responsible-ai-dashboard.md) instead.
 
-Currently **Train Model** component supports [using interpretability package to explain ML models](../v1/how-to-machine-learning-interpretability-aml.md#generate-feature-importance-values-via-remote-runs). Following built-in algorithms are supported:
+Model interpretability helps you comprehend the ML model and present the underlying basis for decision-making in a way that is understandable to humans.
+
+The **Train Model** component previously supported [using the interpretability package to explain ML models](../how-to-machine-learning-interpretability.md). The following built-in algorithms were supported:
 
 - Linear Regression
 - Neural Network Regression
@@ -81,15 +86,7 @@ Currently **Train Model** component supports [using interpretability package to 
 - Multi-class Logistic Regression
 - Multi-class Neural Network
 
-To generate model explanations, you can select **True** in the drop-down list of **Model Explanation** in Train Model component. By default it is set to False in the **Train Model** component. Please note that generating explanation requires extra compute cost.
-
-![Screenshot showing model explanation checkbox](./media/module/train-model-explanation-checkbox.png)
-
-After the pipeline run completed, you can visit **Explanations** tab in the right pane of **Train Model** component, and explore the model performance, dataset and feature importance.
-
-![Screenshot showing model explanation charts](./media/module/train-model-explanations-tab.gif)
-
-To learn more about using model explanations in Azure Machine Learning, refer to the how-to article about [Interpret ML models](../v1/how-to-machine-learning-interpretability-aml.md#generate-feature-importance-values-via-remote-runs).
+To learn more about model interpretability in Azure Machine Learning, see [Model interpretability](../how-to-machine-learning-interpretability.md).
 
 ## Results
 
