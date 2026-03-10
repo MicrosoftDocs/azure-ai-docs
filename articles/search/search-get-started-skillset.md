@@ -14,7 +14,7 @@ ms.date: 03/10/2026
 
 # Quickstart: Create a skillset in the Azure portal
 
-In this quickstart, you learn how a skillset in Azure AI Search adds optical character recognition (OCR), image analysis, language detection, text merging, and entity recognition to generate text-searchable content in an index.
+In this quickstart, you learn how a skillset in Azure AI Search adds optical character recognition (OCR), image analysis, text merging, and entity recognition to generate text-searchable content in an index.
 
 You can run the **Import data** wizard in the Azure portal to apply skills that create and transform textual content during indexing. The input is your raw data, usually blobs in Azure Storage. The output is a searchable index containing AI-generated image text, captions, and entities. You can then query generated content in the Azure portal using [**Search explorer**](search-explorer.md).
 

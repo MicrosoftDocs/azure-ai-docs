@@ -31,7 +31,7 @@ The wizard creates multiple objects on your search service, including a searchab
 
 ### Check for network access
 
-For this quickstart, all of the preceding resources must have public access enabled so that the Azure portal nodes can access them. Otherwise, the wizard fails. After the wizard runs, you can enable firewalls and private endpoints on the integration components for security. For more information, see [Secure connections in the import wizard](search-import-data-portal.md#secure-connections).
+All of the preceding resources must have public access enabled so that the wizard can access them. Otherwise, the wizard fails. After the wizard runs, you can enable firewalls and private endpoints on the integration components for security. For more information, see [Secure connections in the import wizard](search-import-data-portal.md#secure-connections).
 
 ### Check for space
 

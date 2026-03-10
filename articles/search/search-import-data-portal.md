@@ -90,13 +90,13 @@ Semantic ranking is available for all wizard scenarios: keyword search, RAG, and
 
 ## What the wizard creates
 
-When you finish the wizard, it creates several objects in your search service. The exact objects depend on the options you select. For example, if you apply skills-based enrichment, a skillset is created.
+When you finish the wizard, it creates several objects on your search service. The exact objects depend on the options you select. For example, if you apply skills-based enrichment, a skillset is created.
 
 | Object | Description |
 |--|--|
+| [Data source](search-data-sources-gallery.md) | Stores connection information for a supported Microsoft or Azure data source. |
 | [Index](search-what-is-an-index.md) | Physical data structure for full-text search, vector search, and other queries. Can include a semantic configuration if you enable semantic ranking. |
 | [Indexer](search-indexer-overview.md) | Drives data import by pulling from a data source into a target index on an optional schedule. Can also reference a skillset. |
-| [Data source](search-data-sources-gallery.md) | Stores connection information for a supported Microsoft or Azure data source. |
 | [Skillset](cognitive-search-working-with-skillsets.md) | (Optional) Set of instructions for AI enrichment, data chunking, and integrated vectorization during indexing. |
 | [Knowledge store](knowledge-store-concept-intro.md) | (Optional) Secondary storage in Azure Storage for skillset output, such as extracted images. |
 
