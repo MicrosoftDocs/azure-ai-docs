@@ -1,4 +1,6 @@
 ---
+title: Include file
+description: Include file
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
@@ -87,7 +89,7 @@ print(f"Response: {ai_msg.content}")
 
 #### References
 
-- Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+- Reference: [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
 - Reference: [Get started with Foundry Local](../../get-started.md)
 
 > [!NOTE]

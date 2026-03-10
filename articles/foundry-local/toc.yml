@@ -33,7 +33,14 @@ items:
   - name: Foundry Local CLI
     href: reference/reference-cli.md
   - name: Foundry Local SDK
-    href: reference/reference-sdk.md
+    expanded: true
+    items:
+    - name: Current SDK
+      href: reference/reference-sdk-current.md
+    - name: Legacy SDK
+      href: reference/reference-sdk-legacy.md
+    - name: Migration guide for legacy to current SDK
+      href: reference/reference-sdk-migration.md
   - name: APIs
     items:
     - name: REST API

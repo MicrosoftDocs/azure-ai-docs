@@ -360,7 +360,7 @@ Expected result: The script prints a streamed response from the local model.
 
 References:
 
-- Reference: [Foundry Local SDK reference](../reference/reference-sdk.md)
+- Reference: [Foundry Local SDK reference](../reference/reference-sdk-current.md)
 - Reference: [Use chat completions via REST server with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md)
 
 ## Reset the model cache

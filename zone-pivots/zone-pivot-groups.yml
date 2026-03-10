@@ -1806,6 +1806,14 @@ groups:
     title: C#
   - id: programming-language-rust
     title: Rust
+- id: foundry-local-sdk-vnext
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-csharp
+    title: C#
 - id: foundry-local-langchain
   title: Programming languages
   prompt: Choose a programming language
