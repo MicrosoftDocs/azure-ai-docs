@@ -6,7 +6,7 @@ manager: nitinme
 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/29/2026
+ms.date: 03/10/2026
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -22,9 +22,10 @@ To block *all* data plane access to the public endpoint, use [private endpoints]
 
 ## Prerequisites
 
-+ + [Azure AI Search service](search-create-service-portal.md) (Basic tier or higher). Firewall configuration isn't supported on the Free tier.
++ An [Azure AI Search service](search-create-service-portal.md) (Basic tier or higher). Firewall configuration isn't supported on the Free tier.
 
-+ **Owner** or **Contributor** role on the search service resource.
++ **Owner** or **Contributor** permissions on the search service.
+
 + You can also use the [Management REST API](/rest/api/searchmanagement/), [Azure PowerShell](/powershell/module/az.search), or the [Azure CLI](/cli/azure/search) instead of the Azure portal.
 
 ## Configure network access in the Azure portal
@@ -37,9 +38,12 @@ To block *all* data plane access to the public endpoint, use [private endpoints]
 
    :::image type="content" source="media/service-configure-firewall/azure-portal-firewall.png" alt-text="Screenshot showing the network access options in the Azure portal." lightbox="media/service-configure-firewall/azure-portal-firewall.png" :::
 
-1. Under **IP Firewall**, select **Add your client IP address**. This step creates an inbound rule for the public IP address of your personal device to Azure AI Search. See [Allow access from the Azure portal IP address](#allow-access-from-the-azure-portal-ip-address) for details.
+1. Under **IP Firewall**, select **Add your client IP address**. This step creates an inbound rule for the public IP address of your personal device to Azure AI Search.
 
    :::image type="content" source="media/service-configure-firewall/azure-portal-firewall-all.png" alt-text="Screenshot showing how to configure the IP firewall in the Azure portal." lightbox="media/service-configure-firewall/azure-portal-firewall-all.png":::
+
+   > [!TIP]
+   > The portal uses your client IP address for a direct connection. If your client is in the allowed IP list, you can use all portal capabilities with no extra configuration.
 
 1. Add other client IP addresses for other devices and services that send requests to a search service.
 
@@ -66,49 +70,6 @@ When requests originate from IP addresses that aren't in the allowed list, a gen
 
 > [!IMPORTANT]
 > It can take several minutes for changes to take effect. Wait at least 15 minutes before troubleshooting any problems related to network configuration.
-
-## Allow access from the Azure portal IP address
-
-The Azure portal uses your client IP address for a direct connection to Azure AI Search. If your client is in the allowed IP list, you can use almost all portal capabilities with no extra configuration required. However, there's an exception for the legacy **Import data** wizard when you *import from either Azure Cosmos DB or Azure SQL*. 
-
-This scenario requires a separate IP address for the connection:
-
-+ Identify the IP address used by the legacy wizard for this connection.
-
-+ Add a firewall rule on [Azure Cosmos DB](/azure/cosmos-db/how-to-configure-firewall) or [Azure SQL](/azure/azure-sql/database/firewall-configure) to accept connections from the IP address.
-
-This section explains how to get the IP address used by the wizard.
-
-1. Open a command line tool
-
-1. Perform `nslookup` (or `ping`) on:
-
-   + `stamp2.ext.search.windows.net`, which is the domain of the traffic manager for the Azure public cloud.
-   + `stamp2.ext.search.azure.us` for Azure Government cloud.
-
-For nslookup, the IP address is visible in the "Non-authoritative answer" portion of the response. In the following example, the IP address that you should copy is `52.252.175.48`.
-
-```bash
-$ nslookup stamp2.ext.search.windows.net
-Server:  ZenWiFi_ET8-0410
-Address:  192.168.50.1
-
-Non-authoritative answer:
-Name:    azsyrie.northcentralus.cloudapp.azure.com
-Address:  52.252.175.48
-Aliases:  stamp2.ext.search.windows.net
-          azs-ux-prod.trafficmanager.net
-          azspncuux.management.search.windows.net
-```
-
-The IP address in the `Address` field (52.252.175.48 in this example) is the value to add to your firewall rules for legacy wizard connections.
-
-**Reference:** [nslookup command](/windows-server/administration/windows-commands/nslookup)
-
-> [!NOTE]
-> You can use [ping](/windows-server/administration/windows-commands/ping) instead of nslookup for this task. For ping, the request times out, but the IP address is visible in the response. For example, in the message `"Pinging azsyrie.northcentralus.cloudapp.azure.com [52.252.175.48]"`, the IP address is `52.252.175.48`.
->
-> If services run in different regions, they connect to different traffic managers. Regardless of the domain name, the IP address returned from the ping is the correct one to use when defining an inbound firewall rule for the Azure portal in your region.
 
 ## Grant access to trusted Azure services
 

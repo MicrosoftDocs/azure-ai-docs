@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 03/10/2026
 ms.update-cycle: 365-days
 ---
 
@@ -87,12 +87,6 @@ We strongly recommend that you restrict the access to the IP address of your sea
 You can find out the IP address by pinging the FQDN (for example, `<your-search-service-name>.search.windows.net`) of your search service. Although it's possible for the search service IP address to change, it's unlikely that it will change. The IP address tends to be static for the lifetime of the service.
 
 You can find out the IP address range of `AzureCognitiveSearch` [service tag](/azure/virtual-network/service-tags-overview#available-service-tags) by either using [Downloadable JSON files](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files) or via the [Service Tag Discovery API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api). The IP address range is updated weekly.
-
-### Include the Azure portal IP addresses
-
-If you're using the [legacy **Import data** wizard](search-import-data-portal.md) in the Azure portal to create an indexer that pulls from Azure Cosmos DB or Azure SQL, you must grant the Azure portal IP address inbound access to your SQL Azure virtual machine. For more information, see [Allow access from the Azure portal IP address](service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address).
-
-We recommend using the [**Import data (new)** wizard](search-get-started-portal.md), which doesn't have this limitation. 
 
 ## Supplement network security with token authentication
 

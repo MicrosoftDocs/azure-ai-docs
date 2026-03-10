@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: A knowledge store is enriched content created by an Azure AI Search skillset and saved to Azure Storage for use in other apps and non-search scenarios.
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 10/21/2025
+ms.date: 03/10/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -75,25 +75,13 @@ The type of projection you specify in this structure determines the type of stor
 
 ## Create a knowledge store
 
-To create knowledge store, use the Azure portal or an API. 
+Use the Azure portal, REST APIs, or an Azure SDK package to create a knowledge store. All methods require [Azure Storage](/azure/storage/), a [skillset](cognitive-search-working-with-skillsets.md), and an [indexer](search-indexer-overview.md). Because indexers require a search index, you must also provide an [index definition](search-how-to-create-search-index.md).
 
-You need [Azure Storage](/azure/storage/), a [skillset](cognitive-search-working-with-skillsets.md), and an [indexer](search-indexer-overview.md). Because indexers require a search index, you also need to provide an [index definition](search-how-to-create-search-index.md).
+REST APIs and SDKs provide full control over projections: tables, objects, and files. The Azure portal creates a knowledge store automatically as part of the multimodal RAG workflow, which is limited to file projections for extracted images.
 
-Go with the Azure portal approach for the fastest route to a finished knowledge store. Or, choose the REST API for a deeper understanding of how objects are defined and related.
+### [**Azure portal**](#tab/kstore-portal)
 
-### [**Azure portal**](#tab/portal)
-
-[**Create your first knowledge store in four steps**](knowledge-store-create-portal.md) using the **Import data** wizard.
-
-1. Define a data source that contains the data you want to enrich.
-
-1. Define a skillset. The skillset specifies enrichment steps and the knowledge store.
-
-1. Define an index schema. You might not need one, but indexers require it. The wizard can infer an index.
-
-1. Complete the wizard. Data extraction, enrichment, and knowledge store creation occur in this last step.
-
-The wizard automates several tasks. Specifically, both data shaping and projections (definitions of physical data structures in Azure Storage) are created for you. 
+The [**Import data** wizard](search-import-data-portal.md) creates a knowledge store only for the multimodal RAG scenario. To get started, see [Quickstart: Multimodal search in the Azure portal](search-get-started-portal-image-search.md).
 
 ### [**REST**](#tab/kstore-rest)
 
@@ -153,7 +141,7 @@ Although an indexer creates and updates structures and content in Azure Storage,
 
 Knowledge store offers persistence of enriched documents, useful when designing a skillset, or the creation of new structures and content for consumption by any client applications capable of accessing an Azure Storage account.
 
-The simplest approach for creating enriched documents is [through the Azure portal](knowledge-store-create-portal.md), but a REST client and REST APIs can provide more insight into how objects are created and referenced programmatically.
+The simplest approach for creating enriched documents programmatically is through REST APIs.
 
 > [!div class="nextstepaction"]
 > [Create a knowledge store using REST](knowledge-store-create-rest.md)

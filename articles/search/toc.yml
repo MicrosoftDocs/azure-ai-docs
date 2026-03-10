@@ -322,10 +322,8 @@ items:
       items:
       - name: What is a knowledge store?
         href: knowledge-store-concept-intro.md
-      - name: Create a knowledge store (REST)
+      - name: Create a knowledge store
         href: knowledge-store-create-rest.md
-      - name: Create a knowledge store (portal)
-        href: knowledge-store-create-portal.md
       - name: Connect with Power BI
         href: knowledge-store-connect-power-bi.md
       - name: Projections

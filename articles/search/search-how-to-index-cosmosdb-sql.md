@@ -69,7 +69,7 @@ The Description field provides the most verbose content. You should target this 
 
 You can use the **Import data** wizard to automate indexing from an SQL database table or view.
 
-1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
+1. [Start the wizard](search-import-data-portal.md#start-the-wizard).
 
 1. On **Connect to your data**, select or verify that the data source type is either *Azure Cosmos DB* or a *NoSQL account*.
 

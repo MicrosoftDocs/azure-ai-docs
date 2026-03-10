@@ -13,15 +13,16 @@ ms.custom:
 
 # Import data wizard in the Azure portal
 
-The **Import data** wizard in the Azure portal provides a no-code path to a queryable search index. It connects to a supported data source, configures optional AI enrichment, data chunking, and vectorization, infers an index schema, and loads content into the index. You can use the wizard for keyword search, RAG, and multimodal RAG.
+The **Import data** wizard in the Azure portal provides a no-code path to a queryable search index. It connects to a supported data source, configures optional AI enrichment and vectorization, infers an index schema, and loads content into the index. You can use the wizard for keyword search, RAG, and multimodal RAG.
 
 The wizard supports:
 
-- Indexer pipeline creation (index, indexer, data source, and skillset).
+- Indexer pipeline creation, including an index, indexer, data source, and skillset.
 - Built-in indexers and Azure Logic Apps connectors.
 - Skills-based AI enrichment.
-- Integrated vectorization, including multimodal embeddings.
+- Data chunking and integrated vectorization, including multimodal embeddings.
 - Semantic ranking configuration.
+- Knowledge store creation.
 
 ## What the wizard supports
 
@@ -33,7 +34,7 @@ Built-in sample data for the hotels-sample index is no longer available. However
 
 ### Data sources
 
-The wizard connects to the following data sources through [built-in indexers](search-indexer-overview.md#supported-data-sources) or [Azure Logic Apps connectors](search-how-to-index-logic-apps.md#supported-connectors) (preview).
+The wizard connects to the following data sources through [built-in indexers](search-indexer-overview.md#supported-data-sources) or [Logic Apps connectors](search-how-to-index-logic-apps.md#supported-connectors) (preview).
 
 | Data source | Supported | Connection |
 |--|--|--|
@@ -63,36 +64,41 @@ The following skills might appear in a wizard-generated skillset. After the skil
 
 | Skill | Supported | Description |
 |--|--|--|
-| [Azure Vision multimodal](cognitive-search-skill-vision-vectorize.md) | ✅ | Available for RAG and multimodal RAG only. Keyword search isn't supported. |
-| [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md) | ✅ | Available for RAG and multimodal RAG only. Keyword search isn't supported. |
-| [Azure Machine Learning (Microsoft Foundry model catalog)](cognitive-search-aml-skill.md) | ✅ | Available for RAG and multimodal RAG only. Keyword search isn't supported. |
-| [Document layout](cognitive-search-skill-document-intelligence-layout.md) | ✅ | Available for RAG and multimodal RAG only. Keyword search isn't supported. |
-| [Entity recognition](cognitive-search-skill-entity-recognition-v3.md) | ✅ |  |
-| [Image analysis](cognitive-search-skill-image-analysis.md) | ✅ | Available for Azure Storage blobs and Microsoft OneLake files, assuming the default parsing mode. Images can be an image content type, such as PNG or JPG, or an embedded image in an application file, such as PDF. |
-| [Key phrase extraction](cognitive-search-skill-keyphrases.md) | ✅ |  |
-| [Language detection](cognitive-search-skill-language-detection.md) | ✅ | |
-| [Text translation](cognitive-search-skill-text-translation.md) | ❌ | Not applicable. |
-| [OCR](cognitive-search-skill-ocr.md) | ✅ | Available for Azure Storage blobs and Microsoft OneLake files, assuming the default parsing mode. Images can be an image content type, such as PNG or JPG, or an embedded image in an application file, such as PDF. |
-| [PII detection](cognitive-search-skill-pii-detection.md) | ❌ | Not applicable. |
-| [Sentiment analysis](cognitive-search-skill-sentiment.md) | ❌ | Not applicable. |
+| [AML](cognitive-search-aml-skill.md) | ✅ | Available for RAG and multimodal RAG only. |
+| [Azure Vision multimodal embedding](cognitive-search-skill-vision-vectorize.md) | ✅ | Available for RAG and multimodal RAG only. |
+| [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md) | ✅ | Available for RAG and multimodal RAG only. |
+| [Document Layout](cognitive-search-skill-document-intelligence-layout.md) | ✅ | Available for RAG and multimodal RAG only. |
+| [Entity Recognition](cognitive-search-skill-entity-recognition-v3.md) | ✅ | Available for keyword search only. |
+| [Image Analysis](cognitive-search-skill-image-analysis.md) | ✅ | Available for Azure Storage blobs and Microsoft OneLake files, assuming the default parsing mode. Use an image content type, such as PNG or JPG, or an embedded image in an application file, such as PDF. |
+| [Key Phrase Extraction](cognitive-search-skill-keyphrases.md) | ✅ | Available for keyword search only. |
+| [Language Detection](cognitive-search-skill-language-detection.md) | ❌ | Not applicable. |
+| [Text Translation](cognitive-search-skill-text-translation.md) | ❌ | Not applicable. |
+| [OCR](cognitive-search-skill-ocr.md) | ✅ | Available for Azure Storage blobs and Microsoft OneLake files, assuming the default parsing mode. Use an image content type, such as PNG or JPG, or an embedded image in an application file, such as PDF. |
+| [PII Detection](cognitive-search-skill-pii-detection.md) | ❌ | Not applicable. |
+| [Sentiment](cognitive-search-skill-sentiment.md) | ❌ | Not applicable. |
 | [Shaper](cognitive-search-skill-shaper.md) | ❌ | Not applicable. |
 | [Text Split](cognitive-search-skill-textsplit.md) | ✅ | Added for data chunking when you choose an embedding model. For nonembedding skills, it's added when you set the source field granularity to pages or sentences. |
 | [Text Merge](cognitive-search-skill-textmerger.md) | ✅ | Added for data chunking when you choose an embedding model. For nonembedding skills, it's added when you set the source field granularity to pages or sentences. |
 
 ### Semantic ranking
 
-Semantic ranking is available in all wizard scenarios: keyword search, RAG, and multimodal RAG. If you enable it, the wizard adds a [semantic configuration](semantic-how-to-configure.md) to the index.
+Semantic ranking is available for all wizard scenarios: keyword search, RAG, and multimodal RAG. If you enable it, the wizard adds a [semantic configuration](semantic-how-to-configure.md) to the index.
+
+### Knowledge stores
+
+[Knowledge store](knowledge-store-concept-intro.md) creation is available only for the multimodal RAG scenario. The wizard extracts images from your documents and stores them as blobs in an Azure Storage container that you specify.
 
 ## What the wizard creates
 
-When you finish the wizard, it creates several objects in your search service. The exact objects depend on the options you select. For example, if you apply AI enrichment or integrated vectorization, a skillset is created.
+When you finish the wizard, it creates several objects in your search service. The exact objects depend on the options you select. For example, if you apply skills-based enrichment, a skillset is created.
 
-| Object | Required | Description |
-|--|--|--|
-| [Index](search-what-is-an-index.md) | ✅ | Physical data structure for full-text search, vector search, and other queries. Can include a semantic configuration if you enable semantic ranking. |
-| [Indexer](search-indexer-overview.md) | ✅ | Drives data import by pulling from a data source into a target index on a defined schedule. Can reference a skillset for AI enrichment or vectorization. |
-| [Data source](search-data-sources-gallery.md) | ✅ | Stores connection information for a [supported data source](search-indexer-overview.md#supported-data-sources) on Azure. |
-| [Skillset](cognitive-search-working-with-skillsets.md) | ❌ | Set of instructions for AI enrichment, data chunking, and integrated vectorization during indexing. |
+| Object | Description |
+|--|--|
+| [Index](search-what-is-an-index.md) | Physical data structure for full-text search, vector search, and other queries. Can include a semantic configuration if you enable semantic ranking. |
+| [Indexer](search-indexer-overview.md) | Drives data import by pulling from a data source into a target index on an optional schedule. Can also reference a skillset. |
+| [Data source](search-data-sources-gallery.md) | Stores connection information for a supported Microsoft or Azure data source. |
+| [Skillset](cognitive-search-working-with-skillsets.md) | (Optional) Set of instructions for AI enrichment, data chunking, and integrated vectorization during indexing. |
+| [Knowledge store](knowledge-store-concept-intro.md) | (Optional) Secondary storage in Azure Storage for skillset output, such as extracted images. |
 
 To view these objects after the wizard runs:
 
@@ -252,7 +258,7 @@ Internally, the wizard sets up the following definitions, which aren't visible i
 
 ## Try the wizard
 
-The best way to understand the benefits and limitations of the wizard is to step through it. The following quickstarts are based on the wizard.
+The best way to understand the benefits and limitations of the **Import data** wizard is to step through it. The following quickstarts are based on the wizard.
 
 + [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md)
 + [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md)

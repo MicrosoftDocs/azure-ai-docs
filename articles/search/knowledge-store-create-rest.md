@@ -43,7 +43,7 @@ The skillset in this example uses Foundry Tools for enrichments. Because the wor
 
 1. Select **Upload** at the top of the page to load the **HotelReviews_data.csv** file you downloaded from the previous step.
 
-   :::image type="content" source="media/knowledge-store-create-portal/blob-container-storage-explorer.png" alt-text="Screenshot of Storage Browser with uploaded file and left nav pane" border="true":::
+   :::image type="content" source="media/knowledge-store-create-rest/blob-container-storage-explorer.png" alt-text="Screenshot of Storage Browser with uploaded file and left nav pane" border="true":::
 
 1. On the left, select **Access Keys**, select **Show Keys**, and then copy the connection string for either key1 or key2. A full access connection string has the following format:
 
@@ -393,7 +393,7 @@ In the Azure portal, switch to your Azure Storage account and use **Storage Brow
 
 Each table is generated with the IDs necessary for cross-linking the tables in queries. When you open a table, scroll past these fields to view the content fields added by the pipeline.
 
-   :::image type="content" source="media/knowledge-store-create-portal/azure-table-hotel-reviews.png" alt-text="Screenshot of the knowledge store tables in Storage Browser" border="true":::
+   :::image type="content" source="media/knowledge-store-create-rest/azure-table-hotel-reviews.png" alt-text="Screenshot of the knowledge store tables in Storage Browser" border="true":::
 
 In this walkthrough, the knowledge store is composed of various tables that show different ways of shaping and structuring data. Tables one through three use output from a Shaper skill to determine columns and rows. Tables four through six are created from inline shaping instructions embedded within the projection itself. You can use either approach to achieve the same outcome.
 
