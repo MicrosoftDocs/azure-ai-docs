@@ -7,7 +7,7 @@ ms.topic: concept-article
 ms.custom:
   - ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026
   - classic-and-new
-ms.date: 02/11/2026
+ms.date: 03/10/2026
 author: msakande
 ms.author: mopeakande
 recommendations: false
@@ -16,6 +16,7 @@ ai-usage: ai-assisted
 ---
 
 # Model versions in Microsoft Foundry Models
+
 Microsoft Foundry Models regularly release new model versions that incorporate the latest features and improvements from model providers. This article explains how model versioning works, what update policies are available for your deployments, and how Azure OpenAI and partner model versions are managed.
 
 ## How model versions work
@@ -27,28 +28,33 @@ There are two different versions to consider when working with models:
 * The version of the model itself.
 * The version of the API used to consume a model deployment.
 
-The version of a model is decided when you deploy it. You can choose an update policy, which can include the following options:
 
-* Deployments set with a specific version or without offering an upgrade policy require a manual upgrade if a new version is released. When the model is retired, those deployments stop working.
-
-* Deployments set to **Auto-update to default** automatically update to use the new default version.
-
-* Deployments set to **Upgrade when expired** automatically update when its current version is retired.
+### Model version
 
 > [!NOTE]
-> Update policies are configured per deployment and **vary** by model and provider.
+> The following upgrade guidance only applies to Standard deployment types. For guidance on updating or migrating provisioned deployment types, review the [model management documentation](../../openai/how-to/working-with-models.md).
+
+You configure update policies when you deploy a model in the [Foundry portal](https://ai.azure.com). You can also change the policy later in the deployment settings. Update policies are configured per deployment and *vary* by model and provider. 
+
+Version upgrade policies include the following options:
+
+* Deployments set to **Opt out of automatic model version upgrades** require a manual upgrade if a new version is released. When the model is retired, those deployments stop working.
+* Deployments set to **Upgrade once new default version becomes available** automatically update to use the new default version.
+* Deployments set to **Once the current version expires** automatically update when its current version is retired.
 
 For example, a deployment of `gpt-4o` might target version `2024-08-06`. When version `2024-11-20` becomes available, deployments set to auto-update switch to the new version automatically.
 
-You configure update policies when you deploy a model in the [Foundry portal](https://ai.azure.com). You can also change the policy later in the deployment settings. To check the current version of a deployment, open the deployment details in the Foundry portal or query the deployment via the REST API.
+To check the current version of a deployment, open the deployment details in the Foundry portal or query the deployment via the REST API.
+
+### Version of the API used to consume a model deployment
 
 The API version indicates the contract that you use to interface with the model in code. When using REST APIs, you indicate the API version using the query parameter `api-version`. Azure SDK versions are usually paired with specific API versions, but you can specify the API version you want to use.
 
 A given model deployment might support multiple API versions. The release of a new model version doesn't always require you to upgrade to a new API version, as is the case when there's an update to the model's weights. Azure maintains the previous major version of a model until its retirement date, so you can switch back to it if needed.
 
-## Azure OpenAI model updates
+## Azure OpenAI model upgrades
 
-Azure works closely with OpenAI to release new model versions. When a new version of a model is released, you can immediately test it in new deployments. Azure publishes when new versions of models are released, and notifies customers at least two weeks before a new version becomes the default version of the model.
+Azure works closely with OpenAI to release new model versions. When a new version of a model is released, you can immediately test it in new deployments. Azure publishes when new versions of models are released, and notifies customers at least two weeks before a new version becomes the default version of the model. Azure also maintains the previous major version of the model until its retirement date, so customers can switch back to it if desired.
 
 ### Prepare for Azure OpenAI model version upgrades
 
@@ -59,6 +65,10 @@ As a customer of Azure OpenAI models, you might notice some changes in the model
 * Test your applications and workflows with the new model version after release.
 * Update your code and configuration to use the new features and capabilities of the new model version.
 
+### Will a model upgrade happen if the new model version is not yet available in that region?
+
+Yes, even in cases where the latest model version is not yet available in a region, Azure automatically upgrades deployments during the scheduled upgrade window. Our engineering team begins rollout of the new model version starting on the announced upgrade date. For example, if `gpt-35-turbo-0125` is not yet available in Japan East, Azure engineering team deploys `gpt-35-turbo-0125` to Japan East to upgrade older model versions as part of the default model version upgrade process. 
+
 ## Partner model updates
 
 Azure works closely with model providers to release new model versions. When a new version of a model is released, you can immediately test it in new deployments.
@@ -67,8 +77,8 @@ New model versions might result in a new model ID being published. For example, 
 
 ## Related content
 
-- [Working with Azure OpenAI models](../../openai/how-to/working-with-models.md)
+- [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md)
+- [Foundry Models from partners and community](models-from-partners.md)
 - [Model deprecation and retirement for Microsoft Foundry Models](../../concepts/model-lifecycle-retirement.md)
-- [Azure OpenAI in Microsoft Foundry model deprecations and retirements](../../openai/concepts/model-retirements.md)
 - [Deploy Foundry Models](../how-to/deploy-foundry-models.md)
 - [Deployment types in Foundry Models](deployment-types.md)
