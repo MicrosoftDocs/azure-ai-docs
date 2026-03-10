@@ -79,7 +79,17 @@ Yes, even in cases where the latest model version is not yet available in a regi
 
 Azure works closely with model providers to release new model versions. When a new version of a model is released, you can immediately test it in new deployments.
 
-New model versions might result in a new model ID being published. For example, `Meta-Llama-3-70B-Instruct` was superseded by `Meta-Llama-3.1-70B-Instruct`, which was in turn superseded by the current `Llama-3.3-70B-Instruct`. Each generation uses a different model ID. In some cases, all model versions might be available in the same API version. In other cases, you might also need to adjust the API version used to consume the model, because the API contract may have changed from one model to another.
+New model versions might result in a new model ID being published. For example, `Meta-Llama-3-70B-Instruct` and `Meta-Llama-3.1-70B-Instruct` were both retired in favor of `Llama-3.3-70B-Instruct`. Each generation uses a different model ID. In some cases, all model versions might be available in the same API version. In other cases, you might also need to adjust the API version used to consume the model, because the API contract may have changed from one model to another.
+
+## What happens when models are retired
+
+When a model version reaches its retirement date, what happens next depends on the upgrade policy configured for that deployment:
+
+* **Opt out of automatic model version upgrades**: The deployment stops accepting requests and returns errors after the model is retired. Update the deployment to a supported model version before the retirement date to avoid service interruption.
+* **Upgrade once new default version becomes available**: The deployment automatically updates to the current default version. No action is required.
+* **Once the current version expires**: The deployment automatically updates to the next available version when the current version expires.
+
+Azure notifies you of upcoming retirements through email to subscription owners and contributors, Azure Service Health alerts, and the upcoming retirement tables in [Model deprecation and retirement for Microsoft Foundry Models](../../concepts/model-lifecycle-retirement.md).
 
 ## Related content
 
