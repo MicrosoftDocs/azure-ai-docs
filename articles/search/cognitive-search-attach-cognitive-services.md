@@ -2,8 +2,6 @@
 title: Attach Resource to Skillset for Billing
 titleSuffix: Azure AI Search
 description: Learn how to attach a Microsoft Foundry resource to an AI enrichment pipeline for billing purposes in Azure AI Search.
-author: HeidiSteen 
-ms.author: heidist 
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/04/2025

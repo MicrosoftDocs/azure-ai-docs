@@ -30,7 +30,7 @@ This article uses a Foundry Model from partners and community `Llama-3.2-90B-Vis
 
 To complete this article, you need:
 
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can [upgrade to Foundry Models](quickstart-github-models.md) and create an Azure subscription in the process.
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. If you're using GitHub Models, you can [upgrade to Foundry Models](quickstart-github-models.md) and create an Azure subscription in the process.
 
 - The **Cognitive Services Contributor** role or equivalent permissions on the Foundry resource to create and manage deployments. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 

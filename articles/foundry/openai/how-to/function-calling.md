@@ -809,6 +809,7 @@ Support for parallel function was first added in API version [`2023-12-01-previe
 ### Basic function calling with tools
 
 * All the models that support parallel function calling
+* `gpt-5.4-pro` (`2026-03-05`)
 * `gpt-5-pro` (`2025-10-06`)
 * `codex-mini` (`2025-05-16`)
 * `o3-pro` (`2025-06-10`)

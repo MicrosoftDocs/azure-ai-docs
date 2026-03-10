@@ -6,7 +6,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/24/2026
+ms.date: 03/06/2026
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.
@@ -38,7 +38,7 @@ This article explains how to create, manage, and use memory stores. For conceptu
 - [Embedding model deployment](../../openai/tutorials/embeddings.md) (for example, `text-embedding-3-small`) in your project.
 - For Python examples:
   - Python 3.8 or later with a [configured environment](../../quickstarts/get-started-code.md?tabs=python)
-  - Required packages: `pip install "azure-ai-projects>=2.0.0b4"`
+  - Required packages: `pip install "azure-ai-projects>=2.0.0"`
 - For REST API examples, Azure CLI authenticated to your subscription.
 
 ### Authorization and permissions

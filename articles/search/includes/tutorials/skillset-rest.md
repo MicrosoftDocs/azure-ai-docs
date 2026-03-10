@@ -1,7 +1,5 @@
 ---
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 11/21/2025
