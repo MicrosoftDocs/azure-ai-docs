@@ -119,8 +119,8 @@ import com.azure.ai.contentunderstanding.models.*;
 public class test_document {
 
     public static void main(String[] args) {
-        String endpoint = System.getenv("CONTENTUNDERSTANDING_ENDPOINT")
-        String key = System.getenv("CONTENTUNDERSTANDING_KEY")
+        String endpoint = System.getenv("CONTENTUNDERSTANDING_ENDPOINT");
+        String key = System.getenv("CONTENTUNDERSTANDING_KEY");
 
         ContentUnderstandingClient client =
             new ContentUnderstandingClientBuilder()
