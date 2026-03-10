@@ -21,6 +21,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/foundry-classic/openai/concepts/model-versions.md",
+      "redirect_url": "/azure/foundry-classic/foundry-models/concepts/model-versions",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-foundry/concepts/rbac-azure-ai-foundry.md",
       "redirect_url": "/azure/ai-foundry/concepts/rbac-foundry",
       "redirect_document_id": false
