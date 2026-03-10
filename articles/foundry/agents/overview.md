@@ -37,13 +37,13 @@ Every agent in Agent Service combines three components:
 
 Agent Service organizes agent development into six stages:
 
-![Diagram showing the six runtime stages of agent development arranged horizontally: 1) Model selection with icons for GPT-4 and Llama, 2) Customization showing fine-tuning and prompts, 3) Tools displaying data retrieval and actions, 4) Orchestration with workflow connections, 5) Observability with tracing and monitoring icons, and 6) Trust showing identity, content filters, and encryption controls.](../../agents/media/agent-factory.png)
+![Diagram showing the six runtime stages of agent development arranged horizontally: 1) Model selection with icons for GPT-4 and Llama, 2) Customization showing fine-tuning and prompts, 3) Tools displaying data retrieval and actions, 4) Orchestration with workflow connections, 5) Observability with tracing and monitoring icons, and 6) Trust showing identity, content filters, and encryption controls.](./media/agent-factory.png)
 
 1. **Models** — Select a model (GPT-4.1, GPT-4, Llama) that provides reasoning and language capabilities for your agent.
 2. **Customizability** — Configure the model with fine-tuning, distillation, or domain-specific prompts.
 3. **Knowledge and tools** — Connect tools for data retrieval (Bing, SharePoint, Azure AI Search) and external actions (Azure Functions, OpenAPI).
 4. **Orchestration** — Use [workflows](concepts/workflow.md) to coordinate tool calls, conversation state, retries, and multi-agent processes.
-5. **Observability** — [Trace agent decisions](../../how-to/develop/trace-agents-sdk.md) and monitor with [Application Insights](../../agents/how-to/metrics.md) to inspect every tool call, model response, and execution flow.
+5. **Observability** — [Trace agent decisions](../observability/how-to/trace-agent-setup.md) and monitor with [Application Insights](how-to/metrics.md) to inspect every tool call, model response, and execution flow.
 6. **Trust** — Apply identity controls through Microsoft Entra, role-based access control (RBAC), content filters, encryption, and network isolation.
 
 For details on each stage, see [Agent development lifecycle](concepts/development-lifecycle.md).
@@ -109,7 +109,7 @@ The following code samples create a prompt-based agent, start a conversation, an
 
 - A [Microsoft Foundry project](../tutorials/quickstart-create-foundry-resources.md) with a deployed model
     - Agent Service is available in [supported regions](./concepts/limits-quotas-regions.md). Verify your project is in a supported region before proceeding.
-- The **Azure AI User** or **Azure AI Developer** [RBAC role](../../concepts/rbac-foundry.md) on the project
+- The **Azure AI User** or **Azure AI Developer** [RBAC role](../concepts/rbac-foundry.md) on the project
 
 # [Python](#tab/python)
 
@@ -278,7 +278,7 @@ Agent Service provides the following runtime features across all agent types:
 | **Conversation visibility** | Full access to structured [conversations](concepts/runtime-components.md#what-is-a-conversation), including user-to-agent and agent-to-agent messages. Useful for UI integration, debugging, and training. |
 | **Multi-agent coordination** | Built-in support for agent-to-agent messaging and workflow orchestration. |
 | **Tool orchestration** | Server-side execution and retry of tool calls with structured logging. No manual orchestration required. |
-| **Observability and debugging** | [Traceability](../../how-to/develop/trace-agents-sdk.md) of conversations, tool invocations, and message traces; [Application Insights integration](../../agents/how-to/metrics.md) for usage data. |
+| **Observability and debugging** | [Traceability](../observability/how-to/trace-agent-setup.md) of conversations, tool invocations, and message traces; [Application Insights integration](how-to/metrics.md) for usage data. |
 | **Identity and policy control** | Built on Microsoft Entra with support for RBAC, audit logs, and enterprise conditional access. |
 
 For details on conversations and responses, see [Agent runtime components](concepts/runtime-components.md).
@@ -293,7 +293,7 @@ Build agents using the portal, an SDK, or the REST API:
 | **SDK** | [Python](https://pypi.org/project/azure-ai-projects/), [C#](https://www.nuget.org/packages/Azure.AI.Projects), [JavaScript/TypeScript](https://www.npmjs.com/package/@azure/ai-projects), [Java](https://central.sonatype.com/artifact/com.azure/azure-ai-agents) | Production apps, CI/CD | Programmatic control, version control, automation |
 | **REST API** | Any HTTP client | Custom integrations | Language-agnostic, direct HTTP access |
 
-For SDK details, see [Microsoft Foundry SDKs](../../how-to/develop/sdk-overview.md).
+For SDK details, see [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md).
 
 > [!TIP]
 > Agent Service usage is billed based on model tokens consumed and tool executions. For production planning, see [Azure AI Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/).
@@ -302,11 +302,11 @@ For SDK details, see [Microsoft Foundry SDKs](../../how-to/develop/sdk-overview.
 
 Agent Service provides controls for identity, networking, data handling, and safety:
 
-- **Safety controls**: Integrated [content filters](../../openai/how-to/content-filters.md) help reduce unsafe outputs and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA).
+- **Safety controls**: Integrated [content filters](../../foundry-classic/openai/how-to/content-filters.md) help reduce unsafe outputs and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA).
 - **Tool governance**: Control which tools agents can use and enforce enterprise policies. See [Tool governance](how-to/tools/governance.md).
-- **Network isolation and data residency**: Use [virtual networks](../../agents/how-to/virtual-networks.md) and bring-your-own resources to meet your requirements.
-- **Bring your own resources**: Use your own Azure resources (for example, storage, Azure AI Search, and Azure Cosmos DB for conversation state) to meet compliance and operational needs. See [Use your own resources](../../agents/how-to/use-your-own-resources.md).
-- **Responsible AI guidance**: For recommendations and governance resources, see [Responsible AI for Microsoft Foundry](../../responsible-use-of-ai-overview.md).
+- **Network isolation and data residency**: Use [virtual networks](how-to/virtual-networks.md) and bring-your-own resources to meet your requirements.
+- **Bring your own resources**: Use your own Azure resources (for example, storage, Azure AI Search, and Azure Cosmos DB for conversation state) to meet compliance and operational needs. See [Use your own resources](how-to/use-your-own-resources.md).
+- **Responsible AI guidance**: For recommendations and governance resources, see [Responsible AI for Microsoft Foundry](../responsible-use-of-ai-overview.md).
 
 ## Related content
 
@@ -316,8 +316,8 @@ Agent Service provides controls for identity, networking, data handling, and saf
 - [Tool catalog](concepts/tool-catalog.md)
 - [Agent memory concepts](concepts/what-is-memory.md)
 - [Agent identity and authentication](concepts/agent-identity.md)
-- [Microsoft Foundry SDKs](../../how-to/develop/sdk-overview.md)
+- [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md)
 - [Build agent workflows in VS Code](how-to/vs-code-agents-workflow-low-code.md)
 - [Migrate from Azure OpenAI Assistants](how-to/migrate.md)
-- [Business continuity and disaster recovery](../../how-to/high-availability-resiliency.md)
+- [Business continuity and disaster recovery](../how-to/high-availability-resiliency.md)
 - [Azure AI services support options](/azure/ai-services/cognitive-services-support-options)
