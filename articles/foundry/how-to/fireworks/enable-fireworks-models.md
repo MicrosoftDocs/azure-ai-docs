@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Use Fireworks models in Microsoft Foundry (preview)
+# Enable Fireworks models in Microsoft Foundry (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -56,7 +56,7 @@ While in preview, **Fireworks requires an administrator to enable the preview fe
 
 1. From the left menu, under **Settings**, select **Preview features**.
 
-    :::image type="content" source="../media/fireworks/portal-preview-features.png" alt-text="Screenshot of the Preview features setting in the Azure portal." lightbox="../media/fireworks/portal-preview-page.png":::
+    :::image type="content" source="../media/fireworks/portal-preview-registration.png" alt-text="Screenshot of the Preview features setting in the Azure portal." lightbox="../media/fireworks/portal-preview-registration-lightbox.png":::
 
 1. Search for and select the **Fireworks on Foundry** preview feature.
 

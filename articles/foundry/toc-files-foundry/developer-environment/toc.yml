@@ -35,7 +35,7 @@ items:
 # Fireworks
 - name: Foundry on Fireworks
   items:
-  - name: Use Fireworks models (preview)
-    href: ../../how-to/fireworks/use-fireworks-models.md
+  - name: Enable Fireworks models (preview)
+    href: ../../how-to/fireworks/enable-fireworks-models.md
   - name: Import custom models with Fireworks (preview)
     href: ../../how-to/fireworks/import-custom-models.md
