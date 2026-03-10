@@ -28,9 +28,9 @@ In Azure Machine Learning, creating and using a machine learning model is typica
     + **Classification** models, based on neural networks, decision trees, and decision forests, and other algorithms.
     + **Regression** models, which can include standard linear regression, or which use other algorithms, including neural networks and Bayesian regression.  
 
-2. Provide a dataset that is labeled, and has data compatible with the algorithm. Connect both the data and the model to **Train Model**.
+2. Provide a dataset that's labeled and has data compatible with the algorithm. Connect both the data and the model to **Train Model**.
 
-    What training produces is a specific binary format, the iLearner, that encapsulates the statistical patterns learned from the data. You cannot directly modify or read this format; however, other components can use this trained model. 
+    What training produces is a specific binary format, the iLearner, that encapsulates the statistical patterns learned from the data. You can't directly modify or read this format; however, other components can use this trained model. 
     
     You can also view properties of the model. For more information, see the Results section.
 
@@ -50,9 +50,9 @@ In Azure Machine Learning, creating and using a machine learning model is typica
   
     -   For regression problems, the label column must contain **numeric** data that represents the response variable. Ideally the numeric data represents a continuous scale. 
     
-    Examples might be a credit risk score, the projected time to failure for a hard drive, or the forecasted number of calls to a call center on a given day or time.  If you do not choose a numeric column, you might get an error.
+    Examples might be a credit risk score, the projected time to failure for a hard drive, or the forecasted number of calls to a call center on a given day or time.  If you don't choose a numeric column, you might get an error.
   
-    -   If you do not specify which label column to use, Azure Machine Learning will try to infer which is the appropriate label column, by using the metadata of the dataset. If it picks the wrong column, use the column selector to correct it.
+    -   If you don't specify which label column to use, Azure Machine Learning will try to infer which is the appropriate label column, by using the metadata of the dataset. If it picks the wrong column, use the column selector to correct it.
   
     > [!TIP] 
     > If you have trouble using the Column Selector, see the article [Select Columns in Dataset](./select-columns-in-dataset.md) for tips. It describes some common scenarios and tips for using the **WITH RULES** and **BY NAME** options.
@@ -69,7 +69,7 @@ In Azure Machine Learning, creating and using a machine learning model is typica
 > [!IMPORTANT]
 > The **Explanations** tab and the **Model Explanation** setting in the Train Model component have been retired. To understand model predictions and feature importance, use the [Responsible AI dashboard](../concept-responsible-ai-dashboard.md) instead.
 
-Model interpretability helps you comprehend the ML model and present the underlying basis for decision-making in a way that is understandable to humans.
+Model interpretability helps you comprehend the ML model and present the underlying basis for decision-making in a way that's understandable to humans.
 
 The **Train Model** component previously supported [using the interpretability package to explain ML models](../how-to-machine-learning-interpretability.md). The following built-in algorithms were supported:
 
