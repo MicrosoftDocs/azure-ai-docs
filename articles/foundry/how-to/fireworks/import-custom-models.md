@@ -11,7 +11,7 @@ ms.custom: doc-kit-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Import custom models into Microsoft Foundry with Fireworks (preview)
+# Import custom models with Fireworks (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
