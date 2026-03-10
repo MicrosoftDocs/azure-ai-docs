@@ -31,8 +31,8 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 | Model | Region |
 |---|---|
-| `gpt-5.4` | East US2 (Global Standard & Datazone Standard) <br> Sweden Central (Global Standard) <br> Poland Central (Global Standard) <br> South Central US (Global Standard) |
-| `gpt-5.4-pro` | East US2 (Global Standard) <br> Sweden Central (Global Standard)  |
+| `gpt-5.4` | See the [models table](#model-summary-table-and-region-availability) |
+| `gpt-5.4-pro` |  See the [models table](#model-summary-table-and-region-availability)  |
 
 - **[Registration is required for access to gpt-5.4 & gpt-5.4-pro](https://aka.ms/OAI/gpt53codexaccess).**
 
@@ -45,7 +45,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 | Model | Region |
 |---|---|
-| `gpt-5.3-codex` | East US2 & Sweden Central (Global Standard) |
+| `gpt-5.3-codex` |  See the [models table](#model-summary-table-and-region-availability) |
 
 - **[Registration is required for access to gpt-5.3-codex](https://aka.ms/OAI/gpt53codexaccess).**
 
@@ -61,7 +61,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 |---|---|
 | `gpt-5.2` |  See the [models table](#model-summary-table-and-region-availability).   |
 | `gpt-5.2-chat` |  See the [models table](#model-summary-table-and-region-availability).  |
-| `gpt-5.2-codex` | East US2 & Sweden Central (Global Standard) |
+| `gpt-5.2-codex` |  See the [models table](#model-summary-table-and-region-availability) |
 
 - **[Registration is required for access to gpt-5.2 and gpt-5.2-codex](https://aka.ms/oai/gpt5access).**
 
@@ -329,10 +329,10 @@ To request access, fill out an application form: [Apply for GPT-image-1 access](
 
 | Model | Region |
 |---|---|
-|`dall-e-3` | East US<br>Australia East<br>Sweden Central|
-|`gpt-image-1` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard)|
-|`gpt-image-1-mini` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard) |
-|`gpt-image-1.5` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard)|
+|`dall-e-3` |  See the [models table](#model-summary-table-and-region-availability)|
+|`gpt-image-1` |  See the [models table](#model-summary-table-and-region-availability)|
+|`gpt-image-1-mini` |  See the [models table](#model-summary-table-and-region-availability) |
+|`gpt-image-1.5` |  See the [models table](#model-summary-table-and-region-availability)|
 
 ## Video generation models
 
@@ -342,8 +342,8 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 | Model | Region |
 |---|---|
-|`sora` | East US 2 (Global Standard)<br>Sweden Central (Global Standard)  |
-| `sora-2` | East US 2 (Global Standard)<br>Sweden Central (Global Standard) |
+|`sora` |  See the [models table](#model-summary-table-and-region-availability) |
+| `sora-2` |  See the [models table](#model-summary-table-and-region-availability) |
 
 ## Audio models
 
