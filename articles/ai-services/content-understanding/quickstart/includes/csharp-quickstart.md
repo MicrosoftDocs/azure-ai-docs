@@ -71,7 +71,6 @@ export CONTENTUNDERSTANDING_KEY="your-key"
 The `ContentUnderstandingClient` is the main entry point for interacting with the service. Create an instance by providing your endpoint and credential.
 
 ```csharp
-using System;
 using Azure;
 using Azure.AI.ContentUnderstanding;
 
@@ -96,148 +95,119 @@ This example uses the `prebuilt-invoice` analyzer to extract structured data fro
 
 ```csharp
 // Sample invoice
-string invoiceUrl =
-    "https://raw.githubusercontent.com/"
-    + "Azure-Samples/"
-    + "azure-ai-content-understanding-assets/"
-    + "main/document/invoice.pdf";
-
-var result = await client.AnalyzeAsync(
+Uri invoiceUrl = new Uri("https://raw.githubusercontent.com/Azure-Samples/azure-ai-content-understanding-assets/main/document/invoice.pdf");
+Operation<AnalysisResult> operation = await client.AnalyzeAsync(
     WaitUntil.Completed,
     "prebuilt-invoice",
-    inputs: new[] { new AnalysisInput { Uri = new Uri(invoiceUrl) } }
-);
+    inputs: new[] { new AnalysisInput { Uri = invoiceUrl } });
 
-if (result.Value.Contents == null
-    || result.Value.Contents.Count == 0)
+AnalysisResult result = operation.Value;
+
+DocumentContent documentContent = (DocumentContent)result.Contents!.First();
+
+// Print document unit information
+// The unit indicates the measurement system used for coordinates in the source field
+Console.WriteLine($"Document unit: {documentContent.Unit ?? "unknown"}");
+Console.WriteLine($"Pages: {documentContent.StartPageNumber} to {documentContent.EndPageNumber}");
+if (documentContent.Pages != null && documentContent.Pages.Count > 0)
 {
-    Console.WriteLine("No content found in the analysis result.");
-    return;
+    var page = documentContent.Pages[0];
+    var unit = documentContent.Unit?.ToString() ?? "units";
+    Console.WriteLine($"Page dimensions: {page.Width} x {page.Height} {unit}");
+}
+Console.WriteLine();
+
+// Extract simple string fields
+var customerNameField = documentContent.Fields["CustomerName"];
+Console.WriteLine($"Customer Name: {customerNameField.Value ?? "(None)"}");
+Console.WriteLine($"  Confidence: {customerNameField.Confidence?.ToString("F2") ?? "N/A"}");
+
+if (customerNameField.Spans?.Count > 0)
+{
+    var span = customerNameField.Spans[0];
+    Console.WriteLine($"  Position in markdown: offset={span.Offset}, length={span.Length}");
 }
 
-// Get the document content
-if (result.Value.Contents[0] is DocumentContent documentContent)
+// Extract simple date field
+var invoiceDateField = documentContent.Fields.GetFieldOrDefault("InvoiceDate");
+Console.WriteLine($"Invoice Date: {invoiceDateField?.Value ?? "(None)"}");
+Console.WriteLine($"  Confidence: {invoiceDateField?.Confidence?.ToString("F2") ?? "N/A"}");
+
+// Access parsed sources for date field
+if (invoiceDateField?.Sources != null)
 {
-    Console.WriteLine(
-        $"Document unit: {documentContent.Unit ?? "unknown"}"
-    );
-    Console.WriteLine(
-        $"Pages: {documentContent.StartPageNumber}"
-        + $" to {documentContent.EndPageNumber}"
-    );
-
-    if (documentContent.Fields == null)
+    foreach (var source in invoiceDateField.Sources)
     {
-        Console.WriteLine("No fields found.");
-        return;
-    }
-
-    // Extract simple string fields
-    if (documentContent.Fields.TryGetValue(
-            "CustomerName", out var customerNameField))
-    {
-        Console.WriteLine(
-            $"Customer Name: {customerNameField.Value}"
-        );
-        if (customerNameField.Confidence.HasValue)
+        if (source is DocumentSource docSource)
         {
-            Console.WriteLine(
-                $"  Confidence: "
-                + $"{customerNameField.Confidence.Value:F2}"
-            );
+            Console.WriteLine($"  Page {docSource.PageNumber}");
+            Console.WriteLine($"  BoundingBox: {docSource.BoundingBox}");
         }
     }
+}
 
-    // Extract date fields
-    if (documentContent.Fields.TryGetValue(
-            "InvoiceDate", out var invoiceDateField))
+if (invoiceDateField?.Spans?.Count > 0)
+{
+    var span = invoiceDateField.Spans[0];
+    Console.WriteLine($"  Position in markdown: offset={span.Offset}, length={span.Length}");
+}
+
+// Extract object fields (nested structures)
+if (documentContent.Fields.GetFieldOrDefault("TotalAmount") is ContentObjectField totalAmountObj)
+{
+    var amount = totalAmountObj.Value?.GetFieldOrDefault("Amount")?.Value as double?;
+    var currency = totalAmountObj.Value?.GetFieldOrDefault("CurrencyCode")?.Value;
+    Console.WriteLine($"Total: {currency ?? "$"}{amount?.ToString("F2") ?? "(None)"}");
+
+    // Access parsed sources for object field
+    if (totalAmountObj.Sources != null)
     {
-        Console.WriteLine(
-            $"Invoice Date: {invoiceDateField.Value}"
-        );
-        if (invoiceDateField.Confidence.HasValue)
+        foreach (var source in totalAmountObj.Sources)
         {
-            Console.WriteLine(
-                $"  Confidence: "
-                + $"{invoiceDateField.Confidence.Value:F2}"
-            );
-        }
-    }
-
-    // Extract object fields (nested structures)
-    if (documentContent.Fields.TryGetValue(
-            "TotalAmount", out var totalAmountField)
-        && totalAmountField is ContentObjectField totalAmountObj
-        && totalAmountObj.Value != null)
-    {
-        totalAmountObj.Value.TryGetValue(
-            "Amount", out var amountField);
-        totalAmountObj.Value.TryGetValue(
-            "CurrencyCode", out var currencyField);
-
-        string amount = amountField?.Value?.ToString() ?? "(None)";
-        string currency = currencyField?.Value?.ToString() ?? "";
-
-        Console.WriteLine($"\nTotal: {currency}{amount}");
-    }
-
-    // Extract array fields (line items)
-    if (documentContent.Fields.TryGetValue(
-            "LineItems", out var lineItemsField)
-        && lineItemsField is ContentArrayField lineItemsArr
-        && lineItemsArr.Value != null)
-    {
-        Console.WriteLine(
-            $"\nLine Items ({lineItemsArr.Value.Count}):"
-        );
-
-        for (int i = 0; i < lineItemsArr.Value.Count; i++)
-        {
-            if (lineItemsArr.Value[i]
-                is ContentObjectField itemObj
-                && itemObj.Value != null)
+            if (source is DocumentSource docSource)
             {
-                itemObj.Value.TryGetValue(
-                    "Description", out var descField);
-                itemObj.Value.TryGetValue(
-                    "Quantity", out var qtyField);
-
-                string description =
-                    descField?.Value?.ToString() ?? "N/A";
-                string quantity =
-                    qtyField?.Value?.ToString() ?? "N/A";
-
-                Console.WriteLine(
-                    $"  Item {i + 1}: {description}"
-                );
-                Console.WriteLine(
-                    $"    Quantity: {quantity}"
-                );
+                Console.WriteLine($"  Page {docSource.PageNumber}");
+                Console.WriteLine($"  BoundingBox: {docSource.BoundingBox}");
             }
         }
     }
 }
 
+// Extract array fields (collections like line items)
+if (documentContent.Fields.GetFieldOrDefault("LineItems") is ContentArrayField lineItems)
+{
+    Console.WriteLine($"Line Items ({lineItems.Count}):");
+    for (int i = 0; i < lineItems.Count; i++)
+    {
+        if (lineItems[i] is ContentObjectField item)
+        {
+            var description = item.Value?.GetFieldOrDefault("Description")?.Value;
+            var quantity = item.Value?.GetFieldOrDefault("Quantity")?.Value as double?;
+            Console.WriteLine($"  Item {i + 1}: {description ?? "N/A"} (Qty: {quantity?.ToString() ?? "N/A"})");
+        }
+    }
+}
 ```
 
 This will produce the following output:
 ```text
 Document unit: inch
 Pages: 1 to 1
+Page dimensions: 8.5 x 11 inch
+
 Customer Name: MICROSOFT CORPORATION
-  Confidence: 0.39
+  Confidence: 0.44
+  Position in markdown: offset=162, length=21
 Invoice Date: 11/15/2019 12:00:00 AM +00:00
   Confidence: 0.94
-
-Total: USD110
-
+  Page 1
+  BoundingBox: {X=7.2398,Y=1.5908,Width=0.7662997,Height=0.16179991}
+  Position in markdown: offset=113, length=10
+Total: USD110.00
 Line Items (3):
-  Item 1: Consulting Services
-    Quantity: 2
-  Item 2: Document Fee
-    Quantity: 3
-  Item 3: Printing Fee
-    Quantity: 10
+  Item 1: Consulting Services (Qty: 2)
+  Item 2: Document Fee (Qty: 3)
+  Item 3: Printing Fee (Qty: 10)
 ```
 
 > [!NOTE]

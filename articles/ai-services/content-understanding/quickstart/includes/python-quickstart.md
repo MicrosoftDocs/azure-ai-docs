@@ -87,6 +87,7 @@ This quickstart uses prebuilt invoice, image, audio, and video analyzers to help
 This example uses the `prebuilt-invoice` analyzer to extract structured data from an invoice document.
 
 ```python
+import sys
 from azure.ai.contentunderstanding.models import (
     AnalysisInput,
     AnalysisResult,
@@ -111,7 +112,7 @@ result: AnalysisResult = poller.result()
 
 if not result.contents or len(result.contents) == 0:
     print("No content found in the analysis result.")
-    return
+    sys.exit(0)
 
 # Get the document content
 document_content: DocumentContent = (
@@ -128,7 +129,7 @@ print(
 
 if not document_content.fields:
     print("No fields found in the analysis result.")
-    return
+    sys.exit(0)
 
 # Extract simple string fields
 customer_name = document_content.fields.get("CustomerName")
@@ -229,6 +230,8 @@ Line Items (3):
 This example uses the `prebuilt-imageSearch` analyzer to generate a description of the image.
 
 ```python
+from azure.ai.contentunderstanding.models import AnalysisInput
+
 image_url = "https://raw.githubusercontent.com/Azure-Samples/azure-ai-content-understanding-assets/main/image/pieChart.jpg"
 
 poller = client.begin_analyze(
@@ -261,7 +264,10 @@ Summary: The pie chart displays the distribution of hours spent in four categori
 This example uses the `prebuilt-audioSearch` analyzer to extract the audio transcript, generate a summary, and perform speaker labeling.
 
 ```python
-from azure.ai.contentunderstanding.models import AudioVisualContent
+from azure.ai.contentunderstanding.models import (
+    AnalysisInput, 
+    AudioVisualContent
+)
 
 audio_url = "https://raw.githubusercontent.com/Azure-Samples/azure-ai-content-understanding-assets/main/audio/callCenterRecording.mp3"
 
@@ -361,6 +367,11 @@ Transcript (first two phrases):
 This example uses the `prebuilt-videoSearch` analyzer to extract keyframes, transcript, and chapter segments from video.
 
 ```python
+from azure.ai.contentunderstanding.models import (
+    AnalysisInput,
+    AudioVisualContent
+)
+
 video_url = "https://raw.githubusercontent.com/Azure-Samples/azure-ai-content-understanding-assets/main/videos/sdk_samples/FlightSimulator.mp4"
 
 poller = client.begin_analyze(

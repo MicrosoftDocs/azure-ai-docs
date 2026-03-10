@@ -118,8 +118,12 @@ import com.azure.ai.contentunderstanding.models.*;
 public class test_document {
 
     public static void main(String[] args) {
-        String endpoint = System.getenv("CONTENTUNDERSTANDING_ENDPOINT");
-        String key = System.getenv("CONTENTUNDERSTANDING_KEY");
+        String endpoint = System.getenv("CONTENTUNDERSTANDING_ENDPOINT") != null
+            ? System.getenv("CONTENTUNDERSTANDING_ENDPOINT")
+            : "https://cl-foundry-sandbox.services.ai.azure.com/";
+        String key = System.getenv("CONTENTUNDERSTANDING_KEY") != null
+            ? System.getenv("CONTENTUNDERSTANDING_KEY")
+            : "6qsbdQHsvzgKadu4GSr8cqwSglN2IJ5xMgc7N5WjSkANa1fGLon7JQQJ99CBACYeBjFXJ3w3AAAAACOGUtH4";
 
         ContentUnderstandingClient client =
             new ContentUnderstandingClientBuilder()
@@ -144,168 +148,29 @@ public class test_document {
             );
         AnalysisResult result = poller.getFinalResult();
 
-        if (result.getContents() == null
-            || result.getContents().isEmpty()) {
-            System.out.println(
-                "No content found in the analysis result."
-            );
-            return;
-        }
+        // prebuilt-videoSearch can detect video segments, so we should iterate through all segments
+        int segmentIndex = 1;
+        for (AnalysisContent media : result.getContents()) {
+            // Cast AnalysisContent to AudioVisualContent to access audio/visual-specific properties
+            // AudioVisualContent derives from AnalysisContent and provides additional properties
+            // to access full information about audio/video, including timing, transcript phrases, and many others
+            AudioVisualContent videoContent = (AudioVisualContent) media;
+            System.out.println("--- Segment " + segmentIndex + " ---");
+            System.out.println("Markdown:");
+            System.out.println(videoContent.getMarkdown());
 
-        // Get the document content
-        var content = result.getContents().get(0);
-        if (content instanceof DocumentContent) {
-            DocumentContent documentContent =
-                (DocumentContent) content;
+            String summary = videoContent.getFields() != null && videoContent.getFields().containsKey("Summary")
+                ? (videoContent.getFields().get("Summary").getValue() != null
+                    ? videoContent.getFields().get("Summary").getValue().toString()
+                    : "")
+                : "";
+            System.out.println("Summary: " + summary);
 
-            System.out.printf(
-                "Document unit: %s%n",
-                documentContent.getUnit() != null
-                    ? documentContent.getUnit()
-                    : "unknown"
-            );
-            System.out.printf(
-                "Pages: %d to %d%n",
-                documentContent.getStartPageNumber(),
-                documentContent.getEndPageNumber()
-            );
+            System.out.println("Start: " + videoContent.getStartTime().toMillis() + " ms, End: " + videoContent.getEndTime().toMillis() + " ms");
+            System.out.println("Frame size: " + videoContent.getWidth() + " x " + videoContent.getHeight());
 
-            if (documentContent.getFields() == null) {
-                System.out.println("No fields found.");
-                return;
-            }
-
-            // Extract simple string fields
-            var customerNameField =
-                documentContent.getFields()
-                    .get("CustomerName");
-            if (customerNameField != null) {
-                System.out.printf(
-                    "Customer Name: %s%n",
-                    customerNameField.getValue()
-                );
-                if (customerNameField.getConfidence() != null) {
-                    System.out.printf(
-                        "  Confidence: %.2f%n",
-                        customerNameField.getConfidence()
-                    );
-                }
-            }
-
-            // Extract date fields
-            var invoiceDateField =
-                documentContent.getFields()
-                    .get("InvoiceDate");
-            if (invoiceDateField != null) {
-                System.out.printf(
-                    "Invoice Date: %s%n",
-                    invoiceDateField.getValue()
-                );
-                if (invoiceDateField.getConfidence() != null) {
-                    System.out.printf(
-                        "  Confidence: %.2f%n",
-                        invoiceDateField.getConfidence()
-                    );
-                }
-            }
-
-            // Extract object fields (nested structures)
-            var totalAmountField =
-                documentContent.getFields()
-                    .get("TotalAmount");
-            if (totalAmountField
-                instanceof ContentObjectField) {
-
-                ContentObjectField totalAmountObj =
-                    (ContentObjectField) totalAmountField;
-
-                if (totalAmountObj.getValue() != null) {
-                    var amountField = totalAmountObj
-                        .getValue().get("Amount");
-                    var currencyField = totalAmountObj
-                        .getValue().get("CurrencyCode");
-
-                    String amount = amountField != null
-                        && amountField.getValue() != null
-                            ? amountField.getValue().toString()
-                            : "(None)";
-                    String currency =
-                        currencyField != null
-                        && currencyField.getValue() != null
-                            ? currencyField.getValue().toString()
-                            : "";
-
-                    System.out.printf(
-                        "%nTotal: %s%s%n",
-                        currency, amount
-                    );
-                }
-            }
-
-            // Extract array fields (line items)
-            var lineItemsField =
-                documentContent.getFields()
-                    .get("LineItems");
-            if (lineItemsField
-                instanceof ContentArrayField) {
-
-                ContentArrayField lineItemsArr =
-                    (ContentArrayField) lineItemsField;
-
-                if (lineItemsArr.getValue() != null
-                    && !lineItemsArr.getValue().isEmpty()) {
-
-                    System.out.printf(
-                        "%nLine Items (%d):%n",
-                        lineItemsArr.getValue().size()
-                    );
-
-                    for (int i = 0;
-                        i < lineItemsArr.getValue().size();
-                        i++) {
-
-                        var item =
-                            lineItemsArr.getValue().get(i);
-                        if (item
-                            instanceof ContentObjectField) {
-
-                            ContentObjectField itemObj =
-                                (ContentObjectField) item;
-
-                            if (itemObj.getValue() != null) {
-                                var descField = itemObj
-                                    .getValue().get("Description");
-                                var qtyField = itemObj
-                                    .getValue().get("Quantity");
-
-                                String description =
-                                    descField != null
-                                    && descField.getValue()
-                                        != null
-                                        ? descField.getValue()
-                                            .toString()
-                                        : "N/A";
-                                String quantity =
-                                    qtyField != null
-                                    && qtyField.getValue()
-                                        != null
-                                        ? qtyField.getValue()
-                                            .toString()
-                                        : "N/A";
-
-                                System.out.printf(
-                                    "  Item %d: %s%n",
-                                    i + 1, description
-                                );
-                                System.out.printf(
-                                    "    Quantity: %s%n",
-                                    quantity
-                                );
-                            }
-                        }
-                    }
-                }
-            }
+            System.out.println("---------------------");
+            segmentIndex++;
         }
     }
 }
