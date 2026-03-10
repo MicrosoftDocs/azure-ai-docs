@@ -1,6 +1,6 @@
 ---
-title: "Model versions in Microsoft Foundry Models"
-description: "Learn about model versions in Foundry Models."
+title: "Model versioning in Microsoft Foundry Models"
+description: Learn how model versions work in Microsoft Foundry Models. Understand update policies, deployment options, and how to manage version upgrades effectively.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
@@ -13,7 +13,7 @@ author: msakande
 ms.author: mopeakande
 recommendations: false
 ai-usage: ai-assisted
-# customer intent: As a developer, I want to understand how model versions work in Microsoft Foundry Models so I can manage deployments and updates effectively.
+#customer intent: As a developer, I want to understand how model versions work in Microsoft Foundry Models so I can manage deployments and updates effectively.
 ---
 
 # Model versions in Microsoft Foundry Models
