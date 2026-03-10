@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 #customer intent: As a developer using Foundry (classic), I want to understand the differences in terminology, features, SDKs, and portal layout so I can migrate my workflows to the current Microsoft Foundry experience.
 ---
 
-# Migrate from Foundry (classic)
+# Migrate from Foundry (classic) portal
 
 Microsoft Foundry evolved through several naming and architectural changes. If you're moving from the classic experience, this article provides a reference mapping between classic and new terminology, capabilities, SDKs, and portal navigation to help you plan and execute the transition.
 
