@@ -3,7 +3,7 @@ title: Migrate from the Foundry (classic) portal
 description: Map classic terminology, features, SDKs, and portal navigation to their current equivalents in Microsoft Foundry so you can plan and execute your migration.
 author: sdgilley
 ms.author: sgilley
-ms.reviewer: sgilley
+ms.reviewer: nbrady
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 03/10/2026
