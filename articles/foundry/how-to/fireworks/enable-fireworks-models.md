@@ -1,26 +1,26 @@
----
-title: Fireworks models in Microsoft Foundry (preview)
+﻿---
+title: Fireworks models on Microsoft Foundry (preview)
 titleSuffix: Microsoft Foundry
-description: Learn about Fireworks models available in the Foundry model catalog, including catalog models, custom model import (BYOM), data privacy, and frequently asked questions.
-author: laujan
-ms.author: davevoutila
+description: Learn how to enable, deploy, and use Fireworks models in Microsoft Foundry, including catalog models, custom model import (BYOM), data privacy, and frequently asked questions.
+author: ssalgadodev 
+ms.author: ssalgado
 manager: nitinme
-ms.date: 03/03/2026
+ms.date: 03/11/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.topic: conceptual
-ai-usage: ai-assisted
+ms.topic: how-to
+ms.custom: doc-kit-assisted
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Enable Fireworks models in Microsoft Foundry (preview)
+# Fireworks models on Microsoft Foundry (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Through integration with [Fireworks AI](https://fireworks.ai/), Microsoft Foundry customers can:
 
 * **Experiment with the latest open-source models** often before they're available [directly from Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md).
-* **Import and deploy custom model weights** (bring your own model, or BYOM) onto Fireworks' on-demand GPU-backed infrastructure. For more information, see [Import custom models into Foundry](import-custom-models.md).
+* **Import and deploy custom model weights** (bring your own model, or BYOM) onto Fireworks' on-demand GPU-backed infrastructure. For more information, see [Import custom models on Microsoft Foundry with Fireworks](import-custom-models.md).
 * **Scale up** using [Provisioned throughput](../../openai/concepts/provisioned-throughput.md).
 
 You can do all of this from your Foundry project while using Azure's governance, access controls, and project management.
@@ -30,10 +30,11 @@ You can do all of this from your Foundry project while using Azure's governance,
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
+* To deploy models, you need the **Azure AI Developer** role or higher on the Foundry project. For more information, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles#privileged).
 
 ## Region availability
 
-Data Zone Standard deployments of models via Fireworks on Foundry is available in the following [Azure regions](/azure/reliability/regions-list):
+Data Zone Standard deployments of models via Fireworks on Foundry are available in the following [Azure regions](/azure/reliability/regions-list):
 
 * **East US** (eastus)
 * **East US 2** (eastus2)
@@ -56,9 +57,7 @@ While in preview, **Fireworks requires an administrator to enable the preview fe
 
 1. From the left menu, under **Settings**, select **Preview features**.
 
-    :::image type="content" source="../media/fireworks/portal-preview-registration.png" alt-text="Screenshot of the Preview features setting in the Azure portal." lightbox="../media/fireworks/portal-preview-registration-lightbox.png":::
-
-1. Search for and select the **Fireworks on Foundry** preview feature.
+1. Search for and select the **Fireworks.Enable.Deploy** preview feature.
 
 1. Review the terms provided in the **Description** and the [data privacy](#data-privacy) section in this documentation.
 
@@ -69,9 +68,12 @@ While in preview, **Fireworks requires an administrator to enable the preview fe
      > [!TIP]
      > To verify registration, refresh the **Preview features** page and confirm the **State** column shows **Registered** for the **Fireworks on Foundry** feature.
 
+
+    :::image type="content" source="../media/fireworks/portal-preview-registration.png" alt-text="Screenshot of the Preview features setting in the Azure portal." lightbox="../media/fireworks/portal-preview-registration-lightbox.png":::
+
 ## Deploy Fireworks models from the Foundry portal
 
-After the feature is enabled, you can deploy Fireworks models from the Foundry model catalog. Browse available models in the [Available catalog models](#available-catalog-models) section, or [import your own custom model](import-custom-models.md).
+After the feature is enabled, you can deploy Fireworks models from the Foundry model catalog. Complete these steps to get a live endpoint for chat completions. Browse available models in the [Available catalog models](#available-catalog-models) section, or [import your own custom model](import-custom-models.md).
 
 1. From the portal homepage, select **Discover** in the upper-right navigation.
 
@@ -81,17 +83,34 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 
    :::image type="content" source="../media/fireworks/models-homepage.png" alt-text="Screenshot of Foundry models homepage showing available Fireworks models.":::
 
+1. On the model page, select **Deploy**. For more information on deployment options, see [Deploy Foundry Models in the portal](../../foundry-models/how-to/deploy-foundry-models.md).
+
+1. In the deployment window, configure the following settings:
+
+   * **Deployment name** â€” Keep the default name or enter a custom name to identify the deployment.
+   * **Deployment type** â€” Select **Data Zone Standard** or **Global provisioned throughput**. For more information, see [Deployment types](../../foundry-models/concepts/deployment-types.md#deployment-type-comparison).
+   * **Model version settings** â€” Select the model version for the deployment.
+   * **Tokens per Minute Rate Limit** â€” Set a custom tokens-per-minute limit to manage costs and control usage. The default value is based on the model's typical performance and cost profile.
+   * **Guardrails** â€” Select **DefaultV2** or **Default** guardrail configuration. By default, models are assigned the Microsoft.DefaultV2 guardrail. For more information, see [Use guardrails to set boundaries on model outputs](../../guardrails/guardrails-overview.md).
+
+1. Select **Deploy**. The deployment process can take up to 30 minutes.
+
+1. After deployment completes, use the provided endpoint and key to send inference requests to the model. To quickly test the deployment, use the **Playground** in your Foundry project.
+
+   > [!TIP]
+   > To verify the deployment, navigate to your project's **Deployments** page and confirm the deployment **Status** shows **Succeeded**.
+
 ## Available catalog models
 
 The following Fireworks models are available in the Foundry model catalog:
 
-| Model provider | Model name | Model ID | Type |
-| --- | --- | --- | --- |
-| **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions |
-| **MiniMax** | MiniMax 2.5 | `FW-MiniMax-2.5` | Chat completions |
-| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions |
-| **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions |
-| **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions |
+| Model provider | Model name | Model ID | Type | Description |
+| --- | --- | --- | --- | --- |
+| **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions | Reasoning-optimized open-weight model for complex tasks. |
+| **MiniMax** | MiniMax 2.5 | `FW-MiniMax-2.5` | Chat completions | General-purpose model for conversational and instruction-following tasks. |
+| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Multimodal model with strong long-context capabilities. |
+| **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions | Large-scale open-weight model for broad generative tasks. |
+| **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions | High-performance bilingual model for chat and reasoning. |
 
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for chat completions.
 
@@ -130,9 +149,15 @@ Fireworks model deployments made available via Foundry send inference traffic ou
 Consult the Fireworks AI [Trust Center](https://trust.fireworks.ai/) to review their Data Processing Addendum and certifications and their [Privacy Notice](https://fireworks.ai/privacy-policy) to understand their privacy commitment.
 
 ## Transparency note
-Fireworks on Foundry allows customers to deploy and operate third‑party and open‑weight AI models using Microsoft Foundry platform services. Microsoft does not develop, train, fine‑tune, or evaluate the safety, security, or Responsible AI characteristics of models deployed through Fireworks on Foundry. As a result, Microsoft makes no representations regarding the behavior, performance, or risk profile of these models. Customers are solely responsible for assessing the suitability of any model for their intended use, including performing any required safety, compliance, and Responsible AI evaluations, prior to deploying such models in production or customer‑facing applications.
+
+Fireworks on Foundry allows customers to deploy and operate third-party and open-weight AI models using Microsoft Foundry platform services.
+
+* Microsoft doesn't develop, train, fineâ€‘tune, or evaluate the safety, security, or Responsible AI characteristics of models deployed through Fireworks on Foundry.
+* Microsoft makes no representations regarding the behavior, performance, or risk profile of these models.
+* Customers are solely responsible for assessing the suitability of any model for their intended use, including performing any required safety, compliance, and Responsible AI evaluations, before deploying models in production or customer-facing applications.
 
 Foundry provides the tools and best practices for performing your own [risk and safety evaluations](../../concepts/safety-evaluations-transparency-note.md) of models.
+
 ## Frequently asked questions
 
 ### Is Fireworks on Foundry available in Azure for US Government?
@@ -166,6 +191,20 @@ Fireworks models deployed through Foundry support both [pay-per-token](https://a
 ### How do I disable Fireworks in my Foundry project?
 
 Fireworks can be disabled at the Azure subscription level. Follow the steps to [unregister preview features](/azure/azure-resource-manager/management/preview-features#unregister-preview-feature) in your Azure subscription.
+
+## Troubleshoot Fireworks on Foundry
+
+Use the following guidance to resolve common issues with Fireworks on Foundry.
+
+| Issue | Resolution |
+| --- | --- |
+| **Preview registration stays in "Registering" state** | Registration can take up to 30 minutes. Refresh the **Preview features** page to check the current status. If the state doesn't change after 30 minutes, try unregistering and re-registering the feature. |
+| **Fireworks models don't appear in the model catalog** | Confirm that the preview feature state shows **Registered** for your subscription. Verify you're working in a [supported region](#region-availability). |
+| **Deployment fails with a quota error** | Use the [quota request form](https://aka.ms/fireworks-quota) to request additional capacity for Fireworks on Foundry. |
+| **"Forbidden" or access denied during deployment** | Verify that your identity has the **Azure AI Developer** role or higher on the Foundry project. Subscription-level roles alone aren't sufficient for deployment. |
+| **Model endpoint returns errors after deployment** | Confirm the deployment status shows **Succeeded** on the project's **Deployments** page. Verify you're using the correct **Target URI** and **Key** from the deployment details. |
+
+For additional questions, see the [frequently asked questions](#frequently-asked-questions).
 
 ## Related content
 

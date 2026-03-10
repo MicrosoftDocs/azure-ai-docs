@@ -33,9 +33,9 @@ items:
     href: ../../mcp/available-tools.md
 
 # Fireworks
-- name: Foundry on Fireworks
+- name: Fireworks on Foundry (preview)
   items:
-  - name: Enable Fireworks models (preview)
+  - name: Use Fireworks models
     href: ../../how-to/fireworks/enable-fireworks-models.md
-  - name: Import custom models with Fireworks (preview)
+  - name: Import custom models with Fireworks 
     href: ../../how-to/fireworks/import-custom-models.md
