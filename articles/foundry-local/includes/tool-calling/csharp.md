@@ -168,7 +168,7 @@ Console.WriteLine();
 await model.UnloadAsync();
 ```
 
-## Run the application
+## Run the native chat completions example
 
 #### [Windows](#tab/windows)
 
@@ -380,7 +380,7 @@ await mgr.StopWebServiceAsync();
 await model.UnloadAsync();
 ```
 
-## Run the application
+## Run the OpenAI web service example
 
 ### [Windows](#tab/windows)
 
