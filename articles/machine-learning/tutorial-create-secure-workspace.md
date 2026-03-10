@@ -46,8 +46,8 @@ The following table lists several other ways that you might connect to the secur
 
 | Method | Description |
 | ----- | ----- |
-| [Azure VPN gateway](https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways) | Connects on-premises networks to an Azure Virtual Network over a private connection. A private endpoint for your workspace is created within that virtual network. Connection is made over the public internet. |
-| [ExpressRoute](https://learn.microsoft.com/azure/expressroute/expressroute-introduction) | Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider. |
+| [Azure VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) | Connects on-premises networks to an Azure Virtual Network over a private connection. A private endpoint for your workspace is created within that virtual network. Connection is made over the public internet. |
+| [ExpressRoute](/azure/expressroute/expressroute-introduction) | Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider. |
 
 > [!IMPORTANT]
 > When using a __VPN gateway__ or __ExpressRoute__, plan how name resolution works between your on-premises resources and those in the cloud. For more information, see [Use a custom DNS server](how-to-custom-dns.md).
