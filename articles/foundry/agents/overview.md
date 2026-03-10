@@ -22,167 +22,335 @@ keywords:
 ---
 
 # What is Foundry Agent Service?
-Most businesses don't want just chatbots. They want automation that's faster and has fewer errors. That desire might mean summarizing documents, processing invoices, managing support tickets, or publishing blog posts. In all cases, the goal is the same: freeing people and resources to focus on higher-value work by offloading repetitive and predictable tasks.
+Foundry Agent Service lets you build AI agents that autonomously complete tasks by reasoning over inputs and calling tools to accomplish tasks. Instead of writing custom orchestration code to manage conversation state, tool execution, and error handling, you define an agent's model, instructions, and tools—Agent Service handles the rest.
 
-Large language models (LLMs) introduce a new type of automation with systems that can understand unstructured data, make decisions, and generate content. In practice, businesses can have difficulty moving beyond demos and into production. LLMs can drift, be incorrect, and lack accountability. Without visibility, policy enforcement, and orchestration, these models are hard to trust in real business workflows.
+Agent Service provides the runtime and orchestration layer for agents in Microsoft Foundry. It manages conversations and responses, executes tool calls, applies safety controls, and integrates with identity, networking, and observability systems.
 
-:::row:::
-    :::column span="1":::
-*Microsoft Foundry* is designed to change that. It's a platform that combines models, tools, frameworks, and governance into a unified system for building intelligent agents. At the center of this system is *Foundry Agent Service*, which enables the operation of agents across development, deployment, and production.
-    :::column-end:::
-    :::column span="3":::
-![Diagram that shows Foundry Agent Service as the central hub connecting four components: AI models on the left, tools and frameworks on the top, governance and compliance on the right, and orchestration at the bottom. Arrows indicate Agent Service enables agents to move from development through deployment to production.](media/agent-service-the-glue.png)
-    :::column-end:::
-:::row-end:::
+## Core AI agent components
 
-Agent Service connects the core pieces of Foundry, such as models, tools, and frameworks, into a single runtime. It manages conversations, orchestrates tool calls, enforces content safety, and integrates with identity, networking, and observability systems. These capabilities help you build agents that are secure, scalable, and production ready.
+- **Model (LLM)**: Provides reasoning and language capabilities.
+- **Instructions**: Define goals, constraints, and behavior. In Foundry, instructions can be prompt-based, workflow definitions, or hosted agent code.
+- **Tools**: Provide access to data or actions, such as search, file operations, or API calls.
 
-By abstracting away infrastructure complexity and enforcing trust and safety by design, Agent Service can help you move from prototype to production with confidence.
+![Diagram showing the three core components of an AI agent: input flows into an Agent box containing a Model, Instructions, and Tools, which produces output. Bidirectional arrows connect the agent to external tool services for data retrieval and actions.](../../agents/media/what-is-an-agent.png)
 
-## Prerequisites
+## Create your first agent
 
-- An Azure subscription with permission to create and manage Foundry resources.
-- A Foundry project. If you haven't created one yet, start with [environment setup](environment-setup.md).
-- A deployed model that your agent can use. Model and region availability can vary; see [models that inform agents](./concepts/limits-quotas-regions.md).
+The following code samples show how to create an agent, start a conversation, and get a response. If it's your first time using Microsoft Foundry, see the [quickstart](../tutorials/quickstart-create-foundry-resources.md) to set up your project first. 
 
-## Availability, regions, and limits
+### Prerequisites
 
-Agent Service capabilities can vary based on the Foundry experience you're using and the model and region you choose.
+To follow the code samples in this article, you need:
 
-- For service limits, quotas, regions, and throttling considerations, see [Quotas and limits for Agent Service](./concepts/limits-quotas-regions.md).
+- A [Microsoft Foundry project](../tutorials/quickstart-create-foundry-resources.md) with a deployed model
+    - Foundry Agent Service is available in [supported regions](./concepts/limits-quotas-regions.md). Verify your project is in a supported region before proceeding.
+- The **Azure AI User** or **Azure AI Developer** [RBAC role](../../concepts/rbac-foundry.md) on the project
 
-If you're building your first agent, start with the quickstart links in [Get started with Foundry Agent Service](#get-started-with-foundry-agent-service) to make sure you're on the right API path for your Foundry experience.
+# [Python](#tab/python)
 
-## What is an AI agent?
+> [!NOTE]
+> Install the package: `pip install azure-ai-projects>=2.0.0b1`
+>
+> Package: [`azure-ai-projects`](https://pypi.org/project/azure-ai-projects/) | Python 3.8+
 
-Agents make decisions, invoke tools, and participate in workflows. They perform these tasks sometimes independently and sometimes in collaboration with other agents or humans. They're foundational to real process automation.
+### Create agent
 
-Agents you create through Foundry aren't monoliths. They're composable units. Each agent has a specific role, is powered by the right model, and is equipped with the right tools. You deploy each agent within a secure, observable, and governable runtime.
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/create-agent/quickstart-create-agent.py":::
 
-An agent has three core components:
+### Chat with agent
 
-- **Model (LLM)**: Powers reasoning and language understanding.
-- **Instructions**: Define the agent's goals, behavior, and constraints. They can have the following types:
-  - Declarative:
-    - Prompt based: A declaratively defined single agent that combines model configuration, instruction, tools, and natural language prompts to drive behavior.
-    - Workflow: An agentic workflow that can be expressed as a YAML or other code to orchestrate multiple agents together, or to trigger an action on certain criteria.
-  - Hosted: Containerized agents that are created and deployed in code and are hosted by Foundry.
-- **Tools**: Let the agent retrieve knowledge or take action.
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/chat-with-agent/quickstart-chat-with-agent.py":::
 
-![Diagram that shows an agent receiving user inputs on the left, processing them through the model and instructions in the center, and producing outputs on the right. A bidirectional arrow below the agent connects to tools, indicating the agent can call tools during processing to retrieve knowledge or take actions.](media/what-is-an-agent.png)
+Set these environment variables before running the samples:
 
-Agents receive unstructured inputs such as user prompts, alerts, or messages from other agents. They produce outputs in the form of tool results or messages. Along the way, they might call tools to perform retrieval or trigger actions.
+| Variable | Description | Where to find it |
+| -------- | ----------- | ---------------- |
+| `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
+| `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
+| `AGENT_NAME` | The name for your new agent | You can use a name of your choice, for example `MyAgent`. |
 
-## How do agents in Foundry work?
+For more samples, see [Azure SDK for Python agent samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents).
 
-Think of Foundry as an assembly line for intelligent agents. Like any modern factory, Foundry brings together specialized stations that are each responsible for shaping part of the final product. Instead of machines and conveyor belts, the agent factory uses models, tools, policies, and orchestration to build agents that are secure, testable, and production ready. Here's how the factory works step by step:
+# [C#](#tab/csharp)
 
-![Diagram that shows the agent factory as a six-step assembly line. Step 1 Models shows selecting an LLM. Step 2 Customizability shows fine-tuning and prompts. Step 3 Knowledge and Tools shows connecting to enterprise data and actions. Step 4 Orchestration shows coordinating agent workflows. Step 5 Observability shows logging and tracing. Step 6 Trust shows security controls. The steps flow left to right, producing a production-ready agent.](media/agent-factory.png)
+> [!NOTE]
+> Install the package: `dotnet add package Azure.AI.Projects --version 2.0.0-beta.1` or use your IDE's package manager.
+>
+> Package: [`Azure.AI.Projects`](https://www.nuget.org/packages/Azure.AI.Projects) | .NET 8.0+
 
-:::row:::
-    :::column span="1":::
-### 1. Models
+### Create agent
 
-The assembly line starts when you select a model that gives your agent its intelligence. Choose from a growing catalog of large language models (LLMs), including GPT-4o, GPT-4, GPT-3.5 (Azure OpenAI), and others like Llama. The model is the reasoning core of the agent that informs its decisions.
-    :::column-end:::
-    :::column span="1":::
-### 2. Customizability
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/create-agent/quickstart-create-agent.cs":::
 
-Shape the model to fit your use case. Customize your agent with fine-tuning, distillation, or domain-specific prompts. Encode agent behavior, role-specific knowledge, and patterns from prior performance by using data captured from real conversation content and tool results.
-    :::column-end:::
-    :::column span="1":::
-### 3. Knowledge and tools
+### Chat with agent
 
-Equip your agent with tools. These tools let the agent access enterprise knowledge (such as Bing, SharePoint, and Azure AI Search) and take real-world actions (via Azure Logic Apps, Azure Functions, OpenAPI, and more). This step enhances the agent's ability to expand its capabilities.
-    :::column-end:::
-:::row-end:::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/chat-with-agent/quickstart-chat-with-agent.cs":::
 
-:::row:::
-    :::column span="1":::
-### 4. Orchestration
+Set these environment variables before running the samples:
 
-The agent needs coordination. [Workflows](../agents/concepts/workflow.md) orchestrate the full lifecycle, such as handling tool calls, updating conversation state, managing retries, and logging outputs.
+| Variable | Description | Where to find it |
+| -------- | ----------- | ---------------- |
+| `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
+| `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
+| `AGENT_NAME` | The name for your new agent | You can use a name of your choice, for example `MyAgent`. |
 
-    :::column-end:::
-    :::column span="1":::
-### 5. Observability
+For more samples, see [Azure SDK for .NET agent samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/samples).
 
-Test and monitor agents. Foundry can capture logs, traces, and evaluations at every step. With full conversation-level visibility and Application Insights integration, teams can inspect every decision and continuously improve agents over time.
-    :::column-end:::
-    :::column span="1":::
-### 6. Trust
+# [TypeScript](#tab/typescript)
 
-Ensure that agents are suitable and reliable for the workload they're assigned to. Foundry applies enterprise-grade trust features, including identity via Microsoft Entra, role-based access control (RBAC), content filters, encryption, and network isolation. You choose how and where your agents run, by using platform-managed or bring-your-own infrastructure.
-    :::column-end:::
-:::row-end:::
+> [!NOTE]
+> Install the package: `npm install @azure/ai-projects@2.0.0-beta.1`
+>
+> Package: [`@azure/ai-projects`](https://www.npmjs.com/package/@azure/ai-projects) | Node.js 20+
 
-The result is an agent that's ready for production: reliable, extensible, and safe to deploy across your workflows.
+### Create agent
 
-## Why use Foundry Agent Service?
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/create-agent/src/quickstart-create-agent.ts":::
 
-Agent Service provides a production-ready foundation for deploying intelligent agents in enterprise environments. Here's how it compares across key capabilities:
+### Chat with agent
+
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/chat-with-agent/src/quickstart-chat-with-agent.ts":::
+
+Set these environment variables before running the samples:
+
+| Variable | Description | Where to find it |
+| -------- | ----------- | ---------------- |
+| `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
+| `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
+
+For more samples, see [Azure SDK for JavaScript agent samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples).
+
+# [Java](#tab/java)
+
+> [!NOTE]
+> Add the prerelease dependency to your `pom.xml`:
+> ```xml
+> <dependency>
+>     <groupId>com.azure</groupId>
+>     <artifactId>azure-ai-agents</artifactId>
+>     <version>2.0.0-beta.2</version>
+> </dependency>
+> ```
+>
+> Package: [`com.azure:azure-ai-agents`](https://central.sonatype.com/artifact/com.azure/azure-ai-agents) | Java 17+
+
+### Create agent
+
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/create-agent/src/main/java/com/azure/ai/agents/CreateAgent.java":::
+
+### Chat with agent
+
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/chat-with-agent/src/main/java/com/azure/ai/agents/ChatWithAgent.java" :::
+
+Set these environment variables before running the samples:
+
+| Variable | Description | Where to find it |
+| -------- | ----------- | ---------------- |
+| `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
+| `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
+| `AGENT_NAME` | The name for your new agent | You can use a name of your choice, for example `MyAgent`. |
+
+For more samples, see [Azure SDK for Java agent samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples).
+
+
+# [REST API](#tab/rest)
+
+### Create agent
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-create-agent.sh":::
+
+### Chat with agent
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-chat-with-agent.sh":::
+
+Set these environment variables before running the samples:
+
+| Variable | Description | Where to find it |
+| -------- | ----------- | ---------------- |
+| `PROJECT_ENDPOINT` | Your Foundry project endpoint | Overview page in the Foundry portal |
+| `MODEL_DEPLOYMENT_NAME` | Your model deployment name | **Models + endpoints** tab in your project |
+| `AGENT_NAME` | The name for your new agent | You can use a name of your choice, for example `MyAgent`. |
+
+---
+
+## How agents manage conversations
+
+Agents operate through a structured conversation/response model. For details, see [Agent runtime components](concepts/runtime-components.md).
+
+> [!TIP]
+> To understand the complete agent development process from creation to production deployment, see [Agent development lifecycle](concepts/development-lifecycle.md).
+
+## Choosing the right agent type
+
+The Foundry Agent Service supports three approaches to building agents, each suited to different scenarios:
+
+| Agent Type | Best For | Development | Complexity | Deployment |
+| ---------- | -------- | ----------- | ---------- | ---------- |
+| **Prompt-based** | When you don't want to manage/pay for compute and your agent is calling MCP tools. | Portal + SDK | Low | Managed by Foundry |
+| **Workflow** | Multi-step processes, agent orchestration, conditional logic | Portal + SDK (YAML/code) | Medium | Managed by Foundry |
+| **Hosted** | If you want to leverage function calling tools and need to package your code with the agent. | SDK + containers | High | Self-managed or Foundry-hosted |
+
+**Start with prompt-based agents** if you're new to Agent Service. They're the simplest way to build conversational agents with tools like file search, code interpreter, and web search. The code example above creates a prompt-based agent.
+
+**Move to workflows** when you need to orchestrate multiple agents or implement complex conditional logic that goes beyond single-agent conversations. Workflows let you chain agents, implement branching logic, and create sophisticated automation.
+
+**Use hosted agents** when you need to bring existing agent frameworks (LangChain, Semantic Kernel, AutoGen) or require full control over the agent runtime environment.
+
+For details on each type, see [Agent development lifecycle](concepts/development-lifecycle.md).
+
+## Understand the agent execution stages
+
+Foundry organizes agent development into six runtime stages:
+
+![Diagram showing the six runtime stages of agent development arranged horizontally: 1) Model selection with icons for GPT-4 and Llama, 2) Customization showing fine-tuning and prompts, 3) Tools displaying data retrieval and actions, 4) Orchestration with workflow connections, 5) Observability with tracing and monitoring icons, and 6) Trust showing identity, content filters, and encryption controls.](../../agents/media/agent-factory.png)
+
+1. **Models** - Select a model (GPT-4.1, GPT-4, Llama) that provides reasoning and language capabilities for your agent.
+2. **Customizability** - Configure the model with fine-tuning, distillation, or domain-specific prompts.
+3. **Knowledge and tools** - Connect tools for data retrieval (Bing, SharePoint, Azure AI Search) and external actions (Azure Functions, OpenAPI).
+4. **Orchestration** - Use [workflows](concepts/workflow.md) to coordinate tool calls, conversation state, retries, and multi-agent processes.
+5. **Observability** - [Trace agent decisions](../../how-to/develop/trace-agents-sdk.md) and monitor with [Application Insights](../../agents/how-to/metrics.md) to inspect every tool call, model response, and execution flow.
+6. **Trust** - Apply identity controls via Microsoft Entra, role-based access control (RBAC), content filters, encryption, and network isolation.
+
+For details on each stage, see [Agent development lifecycle](concepts/development-lifecycle.md).
+
+## Available tools for agents
+
+Agent Service provides tools organized into several categories:
+
+**Search and retrieval**
+- [Azure AI Search](how-to/tools/ai-search.md) - Query your vector indexes
+- [File search](how-to/tools/file-search.md) - Upload and search documents
+- [Foundry IQ](concepts/what-is-foundry-iq.md) - Enterprise knowledge bases
+- [Web search](how-to/tools/web-search.md) and [Bing grounding](how-to/tools/bing-tools.md)
+
+**Code execution and automation**
+- [Code Interpreter](how-to/tools/code-interpreter.md) - Run Python code
+- [Browser automation](how-to/tools/browser-automation.md) - Automate web interactions
+- [Computer Use](how-to/tools/computer-use.md) - Control desktop applications
+
+**Enterprise integration**
+- [SharePoint](how-to/tools/sharepoint.md) - Access SharePoint content
+- [Fabric data agent](how-to/tools/fabric.md) - Query Microsoft Fabric
+- [OpenAPI tool](how-to/tools/openapi.md) - Call any REST API
+
+**Advanced protocols**
+- [Model Context Protocol (MCP)](how-to/tools/model-context-protocol.md) - Connect to MCP servers
+- [Agent-to-Agent (A2A)](how-to/tools/agent-to-agent.md) - Multi-agent communication
+- [Function calling](how-to/tools/function-calling.md) - Custom functions
+
+For the full catalog, see the [tool catalog](concepts/tool-catalog.md). For guidance on using tools effectively, see [Tool best practices](concepts/tool-best-practice.md).
+
+## Capabilities
+
+Agent Service provides the following runtime features:
 
 | Capability | Agent Service |
-| --- | --- |
-| **Visibility into conversations** | Full access to structured [conversations](../agents/concepts/runtime-components.md#what-is-a-conversation), including both user-to-agent and agent-to-agent messages. Ideal for UIs, debugging, and training. |
+| ---------- | ------------- |
+| **Visibility into conversations** | Full access to structured [conversations](concepts/runtime-components.md#what-is-a-conversation), including both user-to-agent and agent-to-agent messages. Useful for UI integration, debugging, and training. |
 | **Multiple-agent coordination** | Built-in support for agent-to-agent messaging. |
 | **Tool orchestration** | Server-side execution and retry of tool calls with structured logging. No manual orchestration is required. |
-| **Trust and safety** | Integrated [guardrails](../guardrails/guardrails-overview.md) to help prevent misuse and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA). All outputs are policy governed. |
-| **Enterprise integration** | Ability to bring your own [storage](./how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-conversation-storage), [Azure AI Search index](./how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](how-to\virtual-networks.md) to meet compliance needs. |
-| **Observability and debugging** | [Full traceability](../observability/concepts/trace-agent-concept.md) of conversations, tool invocations, and message traces; [Application Insights integration](./how-to/metrics.md) for usage data. |
+| **Trust and safety** | Integrated [content filters](../../openai/how-to/content-filters.md) to help prevent misuse and mitigate prompt injection risks (XPIA). All outputs are policy governed. |
+| **Enterprise integration** | Ability to bring your own [storage](../../agents/how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-conversation-storage), [Azure AI Search index](../../agents/how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](../../agents/how-to/virtual-networks.md) to meet compliance needs. |
+| **Observability and debugging** | [Full traceability](../../how-to/develop/trace-agents-sdk.md) of conversations, tool invocations, and message traces; [Application Insights integration](../../agents/how-to/metrics.md) for usage data. |
 | **Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional access. |
 
 ## Security, privacy, and compliance
 
-Agent Service is designed for enterprise workloads where you need strong controls over identity, networking, data handling, and safety.
+Agent Service provides controls for identity, networking, data handling, and safety.
 
-- **Safety controls**: Use integrated [guardrails](../guardrails/guardrails-overview.md) to help reduce unsafe outputs and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA).
-- **Network isolation and data residency controls**: Use [virtual networks](how-to\virtual-networks.md) and bring-your-own resources to meet your requirements.
-- **Bring your own resources**: Use your own Azure resources (for example, storage, Azure AI Search, and Azure Cosmos DB for conversation state) to meet compliance and operational needs. See [Use your own resources](how-to/use-your-own-resources.md).
-- **Responsible AI guidance**: For a broader set of recommendations and governance resources, see [Responsible AI for Microsoft Foundry](../responsible-use-of-ai-overview.md).
+- **Safety controls**: Use integrated [content filters](../../openai/how-to/content-filters.md) to help reduce unsafe outputs and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA).
+- **Tool governance**: Control which tools agents can use and enforce enterprise policies. See [Tool governance](how-to/tools/governance.md).
+- **Network isolation and data residency controls**: Use [virtual networks](../../agents/how-to/virtual-networks.md) and bring-your-own resources to meet your requirements.
+- **Bring your own resources**: Use your own Azure resources (for example, storage, Azure AI Search, and Azure Cosmos DB for conversation state) to meet compliance and operational needs. See [Use your own resources](../../agents/how-to/use-your-own-resources.md).
+- **Responsible AI guidance**: For a broader set of recommendations and governance resources, see [Responsible AI for Microsoft Foundry](../../responsible-use-of-ai-overview.md).
 
-## Get started with Foundry Agent Service
+## Choose your development path
 
-To get started with Agent Service, create a Foundry project in your Azure subscription.
+You can build agents using the portal, code, or a combination of both:
 
-If you're building in code, see [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md) for SDK options and guidance.
+| Approach | Best For | Advantages | Limitations |
+| -------- | -------- | ---------- | ----------- |
+| **Portal** | Prototyping, no-code users, testing | Visual interface, immediate feedback, no setup | Limited to prompt-based agents and workflows |
+| **SDK (Python/C#)** | Production apps, version control, CI/CD | Programmatic control, reusable code, automation | Requires dev environment setup |
+| **REST API** | Custom integrations, any language | Language-agnostic integration | Manual orchestration, more complex |
 
-If it's your first time using the service, start with the [environment setup](environment-setup.md) and [quickstart](../tutorials/quickstart-create-foundry-resources.md) guides.
+Most developers use a hybrid approach: prototype in the portal to validate concepts, then export to code for production deployment and version control.
 
-Create a project with the required resources. After you create a project, deploy a compatible model such as GPT-4o. When you have a deployed model, you can start making API calls to Agent Service by using the SDKs.
+For SDK details, see [Microsoft Foundry SDKs](../../how-to/develop/sdk-overview.md).
 
-You can find a list of official samples with the new Python agent SDK on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects).
-
-## BCDR for agents
-
-To support service resilience, Agent Service relies on customer-provisioned Azure Cosmos DB accounts for business continuity and disaster recovery (BCDR). This approach helps ensure that your agent state can be preserved and recovered in the event of a regional outage.
-
-As an Azure Standard customer, you provision and manage your own single-tenant Azure Cosmos DB account. You store all agent state in this account. You control backup and recovery through native capabilities in Azure Cosmos DB.
-
-If the primary region becomes unavailable, the agent automatically connects to the same Azure Cosmos DB account in the secondary region. Because Cosmos DB preserves all history, the agent can continue operation with minimal disruption.
-
-Provision and maintain your Azure Cosmos DB account, and configure appropriate backup and recovery policies. This effort helps ensure seamless continuity if the primary region becomes unavailable.
-
-For configuration guidance, see [Use your own resources](how-to/use-your-own-resources.md) and [virtual networks](how-to\virtual-networks.md).
-
-## Costs
-
-Using Agent Service can incur costs from the model you deploy and the Azure resources you use for your project (for example, logging and any customer-managed resources you connect).
-
-To understand and manage cost drivers, see [Plan and manage costs](../concepts/manage-costs.md).
+> [!TIP]
+> Agent Service usage is billed based on model tokens consumed and tool executions. For production planning, see [Azure AI Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/).
 
 ## Troubleshooting
 
-If you're blocked getting started, check these common issues:
+### Authentication errors
 
-- **Model isn't available in your region** or **Requests are throttled or fail due to quota**: See [models that inform agents](./concepts/limits-quotas-regions.md).
-- **You can't access resources or deployments**: Confirm your role assignments and follow [environment setup](environment-setup.md).
-- **You need to debug tool calls or agent behavior**: Start with [trace agents](../observability/concepts/trace-agent-concept.md).
+If you receive authentication errors, verify that:
+
+- You're signed in with an account that has access to the Foundry project.
+- Your `DefaultAzureCredential` is configured correctly. See [Azure Identity authentication](/azure/developer/python/sdk/authentication/overview).
+- You have the required permissions (Contributor or Azure AI Developer role) on the project.
+
+### Model not found
+
+If the model deployment isn't found:
+
+- Verify that `MODEL_DEPLOYMENT_NAME` matches the deployment name in your project (not the model name).
+- Check that the model is deployed in the **Models + endpoints** section of your Foundry project.
+
+### Quota exceeded
+
+If you receive quota errors:
+
+- Check your [quota limits](../../how-to/quota.md) in the Azure portal.
+- Request a quota increase through the Azure portal or contact support.
+
+### Network or firewall errors
+
+If you receive connection timeouts or network errors:
+
+- Verify your network allows outbound connections to `*.services.ai.azure.com`.
+- If using a virtual network, ensure the [required endpoints](../../agents/how-to/virtual-networks.md) are accessible.
+- Check if a proxy or firewall is blocking HTTPS traffic on port 443.
+
+### Tool configuration errors
+
+If tools fail to execute:
+
+- Verify the tool connection is properly configured in your project's **Connected resources** section.
+- Check that your identity has permissions to access the connected resource (for example, Azure AI Search or SharePoint).
+- Review the tool's specific prerequisites in the [tool catalog](concepts/tool-catalog.md).
+
+### Rate limiting
+
+If you receive HTTP 429 errors:
+
+- Your requests are exceeding the model's rate limits. Wait and retry with exponential backoff.
+- Consider using a model deployment with higher [token-per-minute quota](../../how-to/quota.md).
+- For production workloads, request a quota increase through the Azure portal.
+
+For more help, see the [Azure AI services support options](/azure/ai-services/cognitive-services-support-options).
+
+## Clean up resources
+
+If you created resources for testing, delete them to avoid ongoing charges:
+
+- In the Foundry portal, go to **Agents** and delete test agents.
+- If you deployed a model for testing, consider stopping or deleting the deployment in **Models + endpoints**.
 
 ## Related content
 
-- [Quickstart: Create your first agent](../quickstarts/get-started-code.md)
-- [Models that inform agents](./concepts/limits-quotas-regions.md)
-- [Microsoft Foundry SDKs](../how-to/develop/sdk-overview.md)
-- [Trace agents](../observability/concepts/trace-agent-concept.md)
-- [Use your own resources](how-to/use-your-own-resources.md)
+- [Models that support agents](./concepts/limits-quotas-regions.md)
+- [Agent development lifecycle](concepts/development-lifecycle.md)
+- [Agent runtime components](concepts/runtime-components.md)
+- [Tool catalog](concepts/tool-catalog.md)
+- [Agent memory concepts](concepts/what-is-memory.md)
+- [Agent identity and authentication](concepts/agent-identity.md)
+- [Microsoft Foundry SDKs](../../how-to/develop/sdk-overview.md)
+- [Build agent workflows in VS Code](how-to/vs-code-agents-workflow-low-code.md)
+- [Migrate from Azure OpenAI Assistants](how-to/migrate.md)
+- [Business continuity and disaster recovery](../../how-to/high-availability-resiliency.md)
