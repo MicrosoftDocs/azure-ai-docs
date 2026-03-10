@@ -36,6 +36,8 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `path` | string | Either a local path to the model file(s), or the URI of a cloud path to the model file(s). This can point to either a file or a directory. | |
 | `type` | string | Storage format type of the model. Applicable for no-code deployment scenarios. | `custom_model`, `mlflow_model`, `triton_model` |
 | `flavors` | object | Flavors of the model. Each model storage format type may have one or more supported flavors. Applicable for no-code deployment scenarios. | |
+| `default_deployment_template` | object | The default deployment template for the model. | |
+| `default_deployment_template.asset_id` | string | The asset ID of the deployment template. Format: `azureml://registries/{registry_name}/deploymenttemplates/{template_name}/versions/{version}`. | |
 
 ## Remarks
 
