@@ -109,6 +109,7 @@ This example uses the `prebuilt-invoice` analyzer to extract structured data fro
 
 ```java
 import java.util.Arrays;
+import java.util.List;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.ai.contentunderstanding.ContentUnderstandingClient;
@@ -118,12 +119,8 @@ import com.azure.ai.contentunderstanding.models.*;
 public class test_document {
 
     public static void main(String[] args) {
-        String endpoint = System.getenv("CONTENTUNDERSTANDING_ENDPOINT") != null
-            ? System.getenv("CONTENTUNDERSTANDING_ENDPOINT")
-            : "https://cl-foundry-sandbox.services.ai.azure.com/";
-        String key = System.getenv("CONTENTUNDERSTANDING_KEY") != null
-            ? System.getenv("CONTENTUNDERSTANDING_KEY")
-            : "6qsbdQHsvzgKadu4GSr8cqwSglN2IJ5xMgc7N5WjSkANa1fGLon7JQQJ99CBACYeBjFXJ3w3AAAAACOGUtH4";
+        String endpoint = System.getenv("CONTENTUNDERSTANDING_ENDPOINT")
+        String key = System.getenv("CONTENTUNDERSTANDING_KEY")
 
         ContentUnderstandingClient client =
             new ContentUnderstandingClientBuilder()
@@ -147,53 +144,151 @@ public class test_document {
                 Arrays.asList(input)
             );
         AnalysisResult result = poller.getFinalResult();
+        
+        // BEGIN:ContentUnderstandingExtractInvoiceFields
+        // Get the invoice document content
+        AnalysisContent firstContent = result.getContents().get(0);
+        if (firstContent instanceof DocumentContent) {
+            DocumentContent documentContent = (DocumentContent) firstContent;
 
-        // prebuilt-videoSearch can detect video segments, so we should iterate through all segments
-        int segmentIndex = 1;
-        for (AnalysisContent media : result.getContents()) {
-            // Cast AnalysisContent to AudioVisualContent to access audio/visual-specific properties
-            // AudioVisualContent derives from AnalysisContent and provides additional properties
-            // to access full information about audio/video, including timing, transcript phrases, and many others
-            AudioVisualContent videoContent = (AudioVisualContent) media;
-            System.out.println("--- Segment " + segmentIndex + " ---");
-            System.out.println("Markdown:");
-            System.out.println(videoContent.getMarkdown());
+            // Print document unit information
+            System.out.println("Document unit: "
+                + (documentContent.getUnit() != null ? documentContent.getUnit().toString() : "unknown"));
+            System.out.println(
+                "Pages: " + documentContent.getStartPageNumber() + " to " + documentContent.getEndPageNumber());
+            System.out.println();
 
-            String summary = videoContent.getFields() != null && videoContent.getFields().containsKey("Summary")
-                ? (videoContent.getFields().get("Summary").getValue() != null
-                    ? videoContent.getFields().get("Summary").getValue().toString()
-                    : "")
-                : "";
-            System.out.println("Summary: " + summary);
+            // Extract simple string fields using getValue() convenience method
+            // getValue() returns the typed value regardless of field type (StringField, NumberField, DateField, etc.)
+            ContentField customerNameField
+                = documentContent.getFields() != null ? documentContent.getFields().get("CustomerName") : null;
+            ContentField invoiceDateField
+                = documentContent.getFields() != null ? documentContent.getFields().get("InvoiceDate") : null;
 
-            System.out.println("Start: " + videoContent.getStartTime().toMillis() + " ms, End: " + videoContent.getEndTime().toMillis() + " ms");
-            System.out.println("Frame size: " + videoContent.getWidth() + " x " + videoContent.getHeight());
+            // Use getValue() instead of casting to specific types
+            // Note: getValue() returns the actual typed value - String, Number, LocalDate, etc.
+            String customerName = customerNameField != null ? (String) customerNameField.getValue() : null;
+            Object invoiceDateValue = invoiceDateField != null ? invoiceDateField.getValue() : null;
+            String invoiceDate = invoiceDateValue != null ? invoiceDateValue.toString() : null;
 
-            System.out.println("---------------------");
-            segmentIndex++;
-        }
+            System.out.println("Customer Name: " + (customerName != null ? customerName : "(None)"));
+            if (customerNameField != null) {
+                System.out.println("  Confidence: " + (customerNameField.getConfidence() != null
+                    ? String.format("%.2f", customerNameField.getConfidence())
+                    : "N/A"));
+                // Parse into DocumentSource for page number and bounding box
+                List<ContentSource> sources = customerNameField.getSources();
+                if (sources != null) {
+                    for (ContentSource src : sources) {
+                        if (src instanceof DocumentSource) {
+                            DocumentSource docSrc = (DocumentSource) src;
+                            System.out.println("  Source: page " + docSrc.getPageNumber()
+                                + ", polygon " + docSrc.getPolygon()
+                                + ", bounding box " + docSrc.getBoundingBox());
+                        }
+                    }
+                }
+                List<ContentSpan> spans = customerNameField.getSpans();
+                if (spans != null && !spans.isEmpty()) {
+                    ContentSpan span = spans.get(0);
+                    System.out
+                        .println("  Position in markdown: offset=" + span.getOffset() + ", length=" + span.getLength());
+                }
+            }
+
+            System.out.println("Invoice Date: " + (invoiceDate != null ? invoiceDate : "(None)"));
+            if (invoiceDateField != null) {
+                System.out.println("  Confidence: " + (invoiceDateField.getConfidence() != null
+                    ? String.format("%.2f", invoiceDateField.getConfidence())
+                    : "N/A"));
+                System.out.println(
+                    "  Source: " + (invoiceDateField.getSources() != null ? invoiceDateField.getSources() : "N/A"));
+                List<ContentSpan> spans = invoiceDateField.getSpans();
+                if (spans != null && !spans.isEmpty()) {
+                    ContentSpan span = spans.get(0);
+                    System.out
+                        .println("  Position in markdown: offset=" + span.getOffset() + ", length=" + span.getLength());
+                }
+            }
+
+            // Extract object fields (nested structures) using getFieldOrDefault() convenience method
+            ContentField totalAmountField
+                = documentContent.getFields() != null ? documentContent.getFields().get("TotalAmount") : null;
+            if (totalAmountField instanceof ContentObjectField) {
+                ContentObjectField totalAmountObj = (ContentObjectField) totalAmountField;
+                ContentField amountField = totalAmountObj.getFieldOrDefault("Amount");
+                ContentField currencyField = totalAmountObj.getFieldOrDefault("CurrencyCode");
+
+                Double amount = amountField != null ? (Double) amountField.getValue() : null;
+                String currency = currencyField != null ? (String) currencyField.getValue() : null;
+
+                System.out.println("Total: " + (currency != null ? currency : "")
+                    + (amount != null ? String.format("%.2f", amount) : "(None)"));
+                if (totalAmountObj.getConfidence() != null) {
+                    System.out.println("  Confidence: " + String.format("%.2f", totalAmountObj.getConfidence()));
+                }
+                if (totalAmountObj.getSources() != null && !totalAmountObj.getSources().isEmpty()) {
+                    System.out.println("  Source: " + totalAmountObj.getSources());
+                }
+            }
+
+            // Extract array fields using size() and get() convenience methods
+            ContentField lineItemsField
+                = documentContent.getFields() != null ? documentContent.getFields().get("LineItems") : null;
+            if (lineItemsField instanceof ContentArrayField) {
+                ContentArrayField lineItems = (ContentArrayField) lineItemsField;
+
+                System.out.println("Line Items (" + lineItems.size() + "):");
+
+                for (int i = 0; i < lineItems.size(); i++) {
+                    ContentField itemField = lineItems.get(i);
+                    if (itemField instanceof ContentObjectField) {
+                        ContentObjectField item = (ContentObjectField) itemField;
+                        ContentField descField = item.getFieldOrDefault("Description");
+                        ContentField qtyField = item.getFieldOrDefault("Quantity");
+                        String description = descField != null ? (String) descField.getValue() : null;
+                        Double quantity = qtyField != null ? (Double) qtyField.getValue() : null;
+
+                        System.out.println("  Item " + (i + 1) + ": " + (description != null ? description : "N/A"));
+                        System.out.println("    Quantity: " + (quantity != null ? quantity : "N/A"));
+                        if (qtyField != null && qtyField.getConfidence() != null) {
+                            System.out.println("    Quantity Confidence: " + String.format("%.2f", qtyField.getConfidence()));
+                        } else {
+                            System.out.println("    Quantity Confidence: N/A");
+                        }
+                    }
+                }
+            }
+        } // END:ContentUnderstandingExtractInvoiceFields
     }
 }
+        
 ```
 
 This will produce the following output:
 ```text
 Document unit: inch
 Pages: 1 to 1
+
 Customer Name: MICROSOFT CORPORATION
-  Confidence: 0.47
+  Confidence: 0.43
+  Source: page 1, polygon [(6.225, 2.0092), (8.002, 2.0077), (8.0021, 2.1638), (6.2251, 2.1653)], bounding box [x=6.225, y=2.0077, width=1.7771001, height=0.15759993]
+  Position in markdown: offset=162, length=21
 Invoice Date: 2019-11-15
   Confidence: 0.94
-
-Total: USD110.0
-
+  Source: [D(1,7.2399,1.5954,8.0061,1.5908,8.0061,1.7482,7.2398,1.7526)]
+  Position in markdown: offset=113, length=10
+Total: USD110.00
 Line Items (3):
   Item 1: Consulting Services
     Quantity: 2.0
+    Quantity Confidence: 0.96
   Item 2: Document Fee
     Quantity: 3.0
+    Quantity Confidence: 0.90
   Item 3: Printing Fee
     Quantity: 10.0
+    Quantity Confidence: 0.94
 ```
 
 > [!NOTE]
