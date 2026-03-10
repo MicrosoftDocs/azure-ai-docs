@@ -32,7 +32,7 @@ Agent Service provides the runtime and orchestration layer for agents in Microso
 - **Instructions**: Define goals, constraints, and behavior. In Foundry, instructions can be prompt-based, workflow definitions, or hosted agent code.
 - **Tools**: Provide access to data or actions, such as search, file operations, or API calls.
 
-![Diagram showing the three core components of an AI agent: input flows into an Agent box containing a Model, Instructions, and Tools, which produces output. Bidirectional arrows connect the agent to external tool services for data retrieval and actions.](../../agents/media/what-is-an-agent.png)
+![Diagram showing the three core components of an AI agent: input flows into an Agent box containing a Model, Instructions, and Tools, which produces output. Bidirectional arrows connect the agent to external tool services for data retrieval and actions.](./media/what-is-an-agent.png)
 
 ## Create your first agent
 
