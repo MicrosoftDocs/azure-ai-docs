@@ -55,4 +55,15 @@ Examples are available in the [examples GitHub repository](https://github.com/Az
 
 :::code language="yaml" source="~/azureml-examples-main/cli/assets/model/local-mlflow.yml":::
 
+## YAML: default deployment template
+
+```yaml
+$schema: https://azuremlschemas.azureedge.net/latest/model.schema.json
+name: my-model
+version: 1
+path: ./model
+default_deployment_template:
+  asset_id: azureml://registries/my-registry/deploymenttemplates/my-template/versions/1
+```
+
 - [Install and use the CLI (v2)](how-to-configure-cli.md)
