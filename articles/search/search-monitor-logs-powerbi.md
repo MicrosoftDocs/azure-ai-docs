@@ -1,9 +1,9 @@
 ---
 title: Visualize logs and metrics with Power BI
 description: Visualize Azure AI Search logs and metrics with Power BI.
-author: gmndrg
-ms.author: gimondra
-manager: nitinme
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -12,7 +12,7 @@ ms.date: 05/29/2025
 ms.update-cycle: 365-days
 ---
 
-# Visualize Azure AI Search Logs and Metrics with Power BI
+# Visualize Azure AI Search logs and metrics with Power BI
 
 Azure AI Search can send operation logs and service metrics to an Azure Storage account, which can then be visualized in Power BI. This article explains the steps and how to use a Power BI template app to visualize the data. The template covers information about queries, indexing, operations, and service metrics.
 

@@ -3,8 +3,7 @@ title: Delete Documents
 titleSuffix: Azure AI Search
 description: Learn how to delete documents in a search index using the REST APIs or an Azure SDK.
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
@@ -73,7 +72,7 @@ Once you know which field is the document key, you can get the key value by runn
 In this example, the search string is used to find the document in the index, and the select statement determines what fields are in the results. The "HotelId" is the document key in this example. 
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "this query has terms that pertain to the document I want to delete",
     "select": "HotelName, HotelId",
@@ -106,7 +105,7 @@ Now that you have the document key, run a [look up query](/rest/api/searchservic
 The first example returns the hotel having a document key value of `18`.
 
 ```http
-GET https://[service name].search.windows.net/indexes/hotels-sample-index/docs('18')&api-version=2025-09-01
+GET https://[service name].search.windows.net/indexes/hotels-sample/docs('18')&api-version=2025-09-01
 ```
 
 The second example returns a chunk document. The "chunk_id" is the document key.
@@ -160,7 +159,7 @@ Here's an example response:
 1. Make sure the body of the request includes the key of the document you want to delete.
 
     ```http
-    POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2025-09-01
+    POST https://[service name].search.windows.net/indexes/hotels-sample/docs/index?api-version=2025-09-01
     Content-Type: application/json   
     api-key: [admin key]
     
@@ -216,7 +215,7 @@ from azure.search.documents import SearchClient
 
 # Set up the client
 service_name = "<your-search-service-name>"
-index_name = "hotels-sample-index"
+index_name = "hotels-sample"
 api_key = "<your-admin-api-key>"
 
 endpoint = f"https://{service_name}.search.windows.net"
@@ -241,7 +240,7 @@ using Azure.Search.Documents.Models;
 
 // Set up the client
 string serviceName = "<your-search-service-name>";
-string indexName = "hotels-sample-index";
+string indexName = "hotels-sample";
 string apiKey = "<your-admin-api-key>";
 
 Uri endpoint = new Uri($"https://{serviceName}.search.windows.net");
@@ -288,7 +287,7 @@ Code sample: [IndexContentManagementExample.java](https://github.com/Azure/azure
 1. Make sure the body of the request includes the keys of all of the documents you want to delete.
 
     ```http
-    POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2025-09-01
+    POST https://[service name].search.windows.net/indexes/hotels-sample/docs/index?api-version=2025-09-01
     Content-Type: application/json   
     api-key: [admin key]
     
@@ -326,7 +325,7 @@ from azure.search.documents import SearchClient
 
 # Set up the client
 service_name = "<your-search-service-name>"
-index_name = "hotels-sample-index"
+index_name = "hotels-sample"
 api_key = "<your-admin-api-key>"
 
 endpoint = f"https://{service_name}.search.windows.net"
@@ -356,7 +355,7 @@ using Azure.Search.Documents.Models;
 
 // Set up the client
 string serviceName = "<your-search-service-name>";
-string indexName = "hotels-sample-index";
+string indexName = "hotels-sample";
 string apiKey = "<your-admin-api-key>";
 
 Uri endpoint = new Uri($"https://{serviceName}.search.windows.net");
@@ -410,7 +409,7 @@ After deleting documents, verify the deletion was successful.
 Use the [Get Document](/rest/api/searchservice/documents/get) API to confirm the document no longer exists:
 
 ```http
-GET https://[service-name].search.windows.net/indexes/hotels-sample-index/docs/18?api-version=2025-09-01
+GET https://[service-name].search.windows.net/indexes/hotels-sample/docs/18?api-version=2025-09-01
 api-key: [admin-key]
 ```
 
@@ -419,7 +418,7 @@ Expected response: HTTP 404 Not Found if the document was deleted successfully.
 You can also check index statistics:
 
 ```http
-GET https://[service-name].search.windows.net/indexes/hotels-sample-index/stats?api-version=2025-09-01
+GET https://[service-name].search.windows.net/indexes/hotels-sample/stats?api-version=2025-09-01
 api-key: [admin-key]
 ```
 

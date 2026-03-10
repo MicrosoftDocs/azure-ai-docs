@@ -5,9 +5,9 @@ ms.date: 07/25/2025
 ms.update-cycle: 365-days
 ms.custom: horz-monitor
 ms.topic: concept-article
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
+author: mattwojo
+ms.author: mattwoj
 ---
 
 # Monitor Azure AI Search

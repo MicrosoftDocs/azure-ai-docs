@@ -5,9 +5,10 @@ description: Learn about the batch synthesis properties that are available for t
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 author: PatrickFarley
+ai-usage: ai-assisted
 ---
 
 # Batch synthesis properties for text to speech avatar

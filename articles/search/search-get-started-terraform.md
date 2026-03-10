@@ -7,8 +7,8 @@ ms.update-cycle: 365-days
 ms.custom:
   - devx-track-terraform
   - ignite-2023
-author: TomArcherMsft
-ms.author: tarcher
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 content_well_notification: 
   - AI-contribution

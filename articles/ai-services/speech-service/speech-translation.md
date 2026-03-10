@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 ms.custom: devx-track-csharp
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of speech translation with Azure Speech in Foundry Tools.
@@ -63,15 +63,15 @@ Live Interpreter continuously identifies the language being spoken without requi
 
 For a list of the supported input (source) languages, see the [speech to text languages documentation](language-support.md?tabs=stt).
 
-Please refer to the [Speech translation how-to guide](./how-to-translate-speech.md#using-live-interpreter-for-real-time-speech-to-speech-translation-with-personal-voice) for the Live Interpreter sample code.
+For the Live Interpreter sample code, see the [Speech translation how-to guide](./how-to-translate-speech.md#using-live-interpreter-for-real-time-speech-to-speech-translation-with-personal-voice).
 
 ## Multiple target languages translation
 
-In scenarios where you want output in multiple languages, the Speech service directly offers the ability for you to translate the input language into two target languages. This enables them to receive two outputs and share these translations to a wider audience with a single API call. If more output languages are required, you can create a multi-service resource or use separate translation services. 
+In scenarios where you want output in multiple languages, the Speech service directly offers the ability for you to translate the input language into two target languages. This enables you to receive two outputs and share these translations to a wider audience in a single API call. If more output languages are required, you can create a multi-service resource or use separate translation services. 
 
-If you need translation into more than two target languages, you need to either [Create a Foundry resource](../multi-service-resource.md) or utilize separate translation services for more languages beyond the second. If you choose to call the speech translation service with a multi-service resource, please note that translation fees apply for each language beyond the second, based on the character count of the translation. 
+If you need translation into more than two target languages, you need to either [Create a Foundry resource](../multi-service-resource.md) or utilize separate translation services for more languages beyond the second. If you choose to call the speech translation service with a multi-service resource, note that translation fees apply for each language beyond the second, based on the character count of the translation. 
 
-To calculate the applied translation fee, please refer to [Azure Translator in Foundry Tools pricing](https://azure.microsoft.com/products/ai-services/ai-translator#Pricing). 
+To calculate the applied translation fee, see [Azure Translator in Foundry Tools pricing](https://azure.microsoft.com/products/ai-services/ai-translator#Pricing). 
 
 ### Multiple target languages translation pricing
 
@@ -80,7 +80,7 @@ It's important to note that the speech translation service operates in real-time
 For example, let's say that you want text translations from a one-hour audio file to three target languages. If the initial speech to text transcription contains 10,000 characters, you might be charged $2.80. 
 
 > [!WARNING]
-> The prices in this example are for illustrative purposes only. Please refer to the [Azure Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) and [Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/) for the most up-to-date pricing information.
+> The prices in this example are for illustrative purposes only. See the [Azure Speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) and [Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/) for the most up-to-date pricing information.
 
 The previous example price of $2.80 was calculated by combining the speech to text transcription and the text translation costs. Here's how the calculation was done: 
 - The speech translation list price is $2.50 per hour, covering up to 2 target languages. The price is used as an example of how to calculate costs. See **Standard** > **Speech translation** > **Standard** in the [Azure Speech pricing table](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) for the most up-to-date pricing information.

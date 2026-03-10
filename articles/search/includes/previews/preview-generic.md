@@ -1,9 +1,8 @@
 ---
 title: Include file
 description: Include file
-author: HeidiSteen
-ms.author: heidist
-ms.service: azure-ai-speech
+
+ms.service: azure-ai-search
 ms.topic: include
 ms.date: 03/19/2024
 ms.custom: include, ignite-2024

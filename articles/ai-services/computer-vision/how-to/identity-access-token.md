@@ -29,12 +29,12 @@ The limited access token feature is a part of the existing Foundry Tools token s
 ## Prerequisites
 
 * [cURL](https://curl.se/) installed (or another tool that can make HTTP requests).
-* The ISV needs to have either an [Azure AI Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource or a [Foundry Tools multi-service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllInOne) resource.
-* The client needs to have an [Azure AI Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource.
+* The ISV needs to have either an [Azure Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource or a [Foundry Tools multi-service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllInOne) resource.
+* The client needs to have an [Azure Face](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/Face) resource.
 
 ## Example use case
 
-An example company sells software that uses the Azure AI Face service to operate door access security systems. Their clients, individual manufacturers of door devices, subscribe to the software and run it on their devices. These client companies want to make Face API calls from their devices to perform Limited Access operations like face identification. By relying on access tokens from the ISV, they can bypass the formal approval process for face identification. The ISV, which has already been approved, can grant the client just-in-time access tokens.
+An example company sells software that uses the Azure Face service to operate door access security systems. Their clients, individual manufacturers of door devices, subscribe to the software and run it on their devices. These client companies want to make Face API calls from their devices to perform Limited Access operations like face identification. By relying on access tokens from the ISV, they can bypass the formal approval process for face identification. The ISV, which has already been approved, can grant the client just-in-time access tokens.
 
 ## Expectation of responsibility
 

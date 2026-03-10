@@ -2,9 +2,6 @@
 title: Configure a suggester for autocomplete and suggestions
 titleSuffix: Azure AI Search
 description: Enable typeahead query actions in Azure AI Search by creating suggesters and formulating requests that invoke autocomplete or autosuggested query terms.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 09/11/2025
@@ -86,7 +83,7 @@ In the REST API, add suggesters by using [Create Index](/rest/api/searchservice/
 
   ```json
   {
-    "name": "hotels-sample-index",
+    "name": "hotels-sample",
     "fields": [
       . . .
           {

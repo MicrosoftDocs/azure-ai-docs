@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Use a blocklist with C#"
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
 ms.date: 02/22/2025
-ms.author: pafarley
+ms.author: ssalgado
 ai-usage: ai-assisted
 ---
 

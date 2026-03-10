@@ -3,8 +3,7 @@ title: Add facets to a query
 titleSuffix: Azure AI Search
 description: Add faceted navigation for self-directed navigation in applications that integrate with Azure AI Search.
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/05/2025
@@ -42,7 +41,7 @@ Facets are enabled on supported fields in an index, and then specified on a quer
 The following REST example is an empty query (`"search": "*"`) that is scoped to the entire index (see the [built-in hotels sample](search-get-started-portal.md)). The `facets` parameter specifies the "Category" field.
 
 ```http
-POST https://{{service_name}}.search.windows.net/indexes/hotels/docs/search?api-version={{api_version}}
+POST https://{{service_name}}.search.windows.net/indexes/hotels-sample/docs/search?api-version={{api_version}}
 {
     "search": "*",
     "queryType": "simple",
@@ -59,7 +58,7 @@ The response for the example starts with the faceted navigation structure. The s
 
 ```json
 {
-    "@odata.context": "https://demo-search-svc.search.windows.net/indexes('hotels')/$metadata#docs(*)",
+    "@odata.context": "https://demo-search-svc.search.windows.net/indexes('hotels-sample')/$metadata#docs(*)",
     "@odata.count": 50,
     "@search.facets": {
         "Category": [
@@ -154,11 +153,11 @@ When you define an index schema, facets are enabled when you set `"facetable": t
 
 Start with [Create or Update Index](search-how-to-create-search-index.md) request and specify the fields collection.
 
-  Here's a JSON example of the hotels sample index, showing "facetable" and "filterable" on low cardinality fields that contain single values or short phrases: "Category", "Tags", "Rating".
+  Here's a JSON example of the hotels-sample index, showing "facetable" and "filterable" on low cardinality fields that contain single values or short phrases: "Category", "Tags", "Rating".
 
   ```json
   {
-    "name": "hotels",  
+    "name": "hotels-sample",  
     "fields": [
       { "name": "hotelId", "type": "Edm.String", "key": true, "searchable": false, "sortable": false, "facetable": false },
       { "name": "Description", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": false },
@@ -205,7 +204,7 @@ Use JSON view in Search Explorer to set facet parameters in the [Azure portal](h
 1. Provide a query in JSON. You can type it out, copy the JSON from a REST example, or use intellisense to help with syntax. Refer to the REST example in the next tab for reference on facet expressions.
 1. Select **Search** to return faceted results, articulated in JSON.
 
-Here's a screenshot of the [basic facet query example](search-faceted-navigation-examples.md#basic-facet-example) on the [hotels sample index](search-get-started-portal.md). You can paste in other examples in this article to return the results in Search Explorer.
+Here's a screenshot of the [basic facet query example](search-faceted-navigation-examples.md#basic-facet-example) on the [hotels-sample index](search-get-started-portal.md). You can paste in other examples in this article to return the results in Search Explorer.
 
 :::image type="content" source="media/search-faceted-navigation/portal-facet-query.png" alt-text="Screenshot of the Search Explorer page in the Azure portal." border="true" lightbox="media/search-faceted-navigation/portal-facet-query.png":::
 

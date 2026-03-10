@@ -2,8 +2,8 @@
 title: Limited Access to Content Safety
 titleSuffix: Azure AI services
 description: This article explains why certain Azure AI Content Safety features are available as limited access, and how to request access.
-author: PatrickFarley
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-content-safety

@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 12/29/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container

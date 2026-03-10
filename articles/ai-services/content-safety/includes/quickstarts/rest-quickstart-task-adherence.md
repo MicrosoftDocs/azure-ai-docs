@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Use task adherence with the REST API"
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
 ms.date: 04/10/2025
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 ## Prerequisites

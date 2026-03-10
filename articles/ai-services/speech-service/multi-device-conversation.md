@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 ms.custom: cogserv-non-critical-speech
 #Customer intent: As a developer, I want to learn about multi-device conversation in the Speech service.
@@ -37,7 +37,7 @@ Multi-device Conversation is suited for scenarios with multiple devices, each wi
 - **Real-time transcription:** Everyone receives a transcript of the conversation, so they can follow along the text in real-time or save it for later.
 - **Real-time translation:** With more than 70 [supported languages](language-support.md) for text translation, users can translate the conversation to their preferred languages.
 - **Readable transcripts:** The transcription and translation are easy to follow, with punctuation and sentence breaks.
-- **Voice or text input:** Each user can speak or type on their own device, depending on the language support capabilities enabled for the participant's chosen language. Refer to [Language support](language-support.md).
+- **Voice or text input:** Each user can speak or type on their own device, depending on the language support capabilities enabled for the participant's chosen language. See [Language support](language-support.md).
 - **Message relay:** The multi-device conversation service distributes messages sent by one client to all the others, in the languages of their choice.
 - **Message identification:** Every message that users receive in the conversation is tagged with the nickname of the user who sent it.
 

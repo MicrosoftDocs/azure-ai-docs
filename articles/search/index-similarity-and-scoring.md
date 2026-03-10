@@ -2,8 +2,6 @@
 title: BM25 relevance scoring
 titleSuffix: Azure AI Search
 description: Explains the concepts of BM25 relevance and scoring in Azure AI Search, and what a developer can do to customize the scoring result.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -155,7 +153,7 @@ This parameter is especially useful when you're trying to understand why certain
 For a query that targets a "description" field, a request might look like this:
 
 ```http
-POST {{baseUrl}}/indexes/hotels-sample-index/docs/search?api-version=2025-11-01-preview  HTTP/1.1
+POST {{baseUrl}}/indexes/hotels-sample/docs/search?api-version=2025-11-01-preview  HTTP/1.1
   Content-Type: application/json
   Authorization: Bearer {{accessToken}}
 

@@ -2,9 +2,8 @@
 title: Service Configuration in the Azure portal
 titleSuffix: Azure AI Search
 description: Manage your new Azure AI Search service in the Azure portal. This article provides a day-one checklist for configuring RBAC, managed identities, network security, and more.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/08/2025
@@ -70,7 +69,7 @@ By default, a search service accepts authenticated and authorized requests over 
 + [Configure firewall rules](service-configure-firewall.md) to restrict network access by IP address.
 + [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the import wizards won't run.
 
-To learn about inbound and outbound calls in Azure AI Search, see [Security in Azure AI Search](search-security-overview.md).
+To learn about inbound and outbound calls in Azure AI Search, see [Understand network traffic patterns](search-security-best-practices.md#understand-network-traffic-patterns).
 
 ## Check capacity and understand billing
 
@@ -86,7 +85,7 @@ To learn about other features that affect billing, see [How you're charged for A
 
 Internally, Microsoft collects telemetry data about your service and the platform. To learn more about data retention, see [Retention of metrics](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
 
-To learn more about data location and privacy, see [Data residency](search-security-overview.md#data-residency).
+To learn more about data location and privacy, see [Data residency](search-security-built-in.md#data-residency).
 
 ## Enable semantic ranker
 

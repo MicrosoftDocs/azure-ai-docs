@@ -2,8 +2,7 @@
 title: Use Scoring Profiles with Semantic Ranking
 titleSuffix: Azure AI Search
 description: Learn how to combine scoring profiles with semantic ranking in Azure AI Search to optimize final document relevance.
-author: HeidiSteen
-ms.author: heidist
+
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to

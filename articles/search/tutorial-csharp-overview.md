@@ -2,9 +2,7 @@
 title: "Add search to web sites (.NET tutorial)"
 titleSuffix: Azure AI Search
 description: Technical overview and setup for adding search to a website and deploying to Azure Static Web App with .NET.
-manager: nitinme
 author: diberry
-ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial

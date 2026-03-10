@@ -2,9 +2,6 @@
 title: Examples of simple syntax
 titleSuffix: Azure AI Search
 description: Explore query examples that demonstrate the simple syntax for full text search, filter search, and geo search against an Azure AI Search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -22,7 +19,7 @@ In Azure AI Search, the [simple query syntax](query-simple-syntax.md) invokes th
 
 ## Hotels sample index
 
-The following queries are based on the hotels-sample-index, which you can create by following the instructions in [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md).
+The following queries are based on the hotels-sample index, which you can create by following the instructions in [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md).
 
 Example queries are articulated using the REST API and POST requests. You can paste and run them in a [REST client](search-get-started-text.md). Or, use the JSON view of [Search explorer](search-explorer.md) in the Azure portal. In JSON view, you can paste in the query examples shown here in this article.
 
@@ -36,7 +33,7 @@ Request headers must have the following values:
 URI parameters must include your search service endpoint with the index name, docs collections, search command, and API version, similar to the following example:
 
 ```http
-https://{{service-name}}.search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+https://{{service-name}}.search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 ```
 
 The request body should be formed as valid JSON:
@@ -56,7 +53,7 @@ The request body should be formed as valid JSON:
 
 + `select` set to a comma-delimited list of fields is used for search result composition, including just those fields that are useful in the context of search results.
 
-+ `count` returns the number of documents matching the search criteria. On an empty search string, the count is all documents in the index (50 in the hotels-sample-index).
++ `count` returns the number of documents matching the search criteria. On an empty search string, the count is all documents in the index (50 in the hotels-sample index).
 
 ## Example 1: Full text search
 
@@ -122,7 +119,7 @@ Uniform scores of *1.0* occur when there's no rank, either because the search wa
 After search results are returned, a logical next step is to provide a details page that includes more fields from the document. This example shows you how to return a single document using [Get Document](/rest/api/searchservice/documents/get) by passing in the document ID.
 
 ```http
-GET /indexes/hotels-sample-index/docs/41?api-version=2025-09-01
+GET /indexes/hotels-sample/docs/41?api-version=2025-09-01
 ```
 
 All documents have a unique identifier. If you're using the Azure portal, select the index from the **Indexes** tab and then look at the field definitions to determine which field is the key. In the REST API, the [GET Index](/rest/api/searchservice/indexes/get) call returns the index definition in the response body.
@@ -171,10 +168,10 @@ The response for the preceding query consists of the document whose key is *41*.
 
 [Filter syntax](search-query-odata-filter.md) is an OData expression that you can use by itself or with `search`. When used together in the same request, `filter` is applied first to the entire index, and then the `search` is performed on the results of the filter. Filters can therefore be a useful technique to improve query performance since they reduce the set of documents that the search query needs to process.
 
-Filters can be defined on any field marked as `filterable` in the index definition. For hotels-sample-index, filterable fields include *Category*, *Tags*, *ParkingIncluded*, *Rating*, and most *Address* fields.
+Filters can be defined on any field marked as `filterable` in the index definition. For the hotels-sample index, filterable fields include *Category*, *Tags*, *ParkingIncluded*, *Rating*, and most *Address* fields.
 
 ```http
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST /indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "art tours",
     "queryType": "simple",
@@ -204,7 +201,7 @@ The response for the preceding query is scoped to only those hotels categorized 
 Filter expressions can include [search.ismatch and search.ismatchscoring functions](search-query-odata-full-text-search-functions.md), allowing you to build a search query within the filter. This filter expression uses a wildcard on *free* to select amenities including free wifi, free parking, and so forth.
 
 ```http
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST /indexes/hotels-sample/docs/search?api-version=2025-09-01
   {
     "search": "",
     "filter": "search.ismatch('free*', 'Tags', 'full', 'any')",
@@ -255,10 +252,10 @@ The response for the preceding query matches on 27 hotels that offer free amenit
 
 Range filtering is supported through filters expressions for any data type. The following examples illustrate numeric and string ranges. Data types are important in range filters and work best when numeric data is in numeric fields, and string data in string fields. Numeric data in string fields isn't suitable for ranges because numeric strings aren't comparable.
 
-The following query is a numeric range. In hotels-sample-index, the only filterable numeric field is `Rating`.
+The following query is a numeric range. In the hotels-sample index, the only filterable numeric field is `Rating`.
 
 ```http
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST /indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "*",
     "filter": "Rating ge 2 and Rating lt 4",
@@ -297,7 +294,7 @@ The response for this query should look similar to the following example, trimme
 The next query is a range filter over a string field (Address/StateProvince):
 
 ```http
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST /indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "*",
     "filter": "Address/StateProvince ge 'A*' and Address/StateProvince lt 'D*'",
@@ -357,7 +354,7 @@ The response for this query should look similar to the following example, trimme
 
 ## Example 6: Geospatial search
 
-The hotels-sample-index includes a *Location* field with latitude and longitude coordinates. This example uses the [geo.distance function](search-query-odata-geo-spatial-functions.md#examples) that filters on documents within the circumference of a starting point, out to an arbitrary distance (in kilometers) that you provide. You can adjust the last value in the query (10) to reduce or enlarge the surface area of the query.
+The hotels-sample index includes a *Location* field with latitude and longitude coordinates. This example uses the [geo.distance function](search-query-odata-geo-spatial-functions.md#examples) that filters on documents within the circumference of a starting point, out to an arbitrary distance (in kilometers) that you provide. You can adjust the last value in the query (10) to reduce or enlarge the surface area of the query.
 
 ```http
 POST /indexes/v/docs/search?api-version=2025-09-01
@@ -419,7 +416,7 @@ The following example provides an illustration. The query looks for matches on *
 Notice that there's no space between the boolean operator (`-`) and the phrase *air conditioning*. The quotation marks are escaped (`\"`).
 
 ```http
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST /indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "restaurant -\"air conditioning\"",
     "searchMode": "any",
@@ -479,7 +476,7 @@ By default, a search service returns the top 50 matches. To control the number o
 The following example uses a filter and sort order on the `Rating` field (Rating is both filterable and sortable) because it's easier to see the effects of paging on sorted results. In a regular full search query, the top matches are ranked and paged by `@search.score`.
 
 ```http
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST /indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "*",
     "filter": "Rating gt 4",
@@ -495,7 +492,7 @@ The query finds 21 matching documents, but because you specified `top`, the resp
 To get the next five, skip the first batch:
 
 ```http
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST /indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "*",
     "filter": "Rating gt 4",

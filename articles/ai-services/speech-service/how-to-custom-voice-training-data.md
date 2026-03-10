@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the data types that I can use for professional voice fine-tuning.
 ---
@@ -28,7 +28,7 @@ This table lists data types and how each is used for professional voice fine-tun
 
 | Data type | Description | When to use | Extra processing required | Processed as |
 | --------- | ----------- | ----------- | ------------------------------ | ---------------- |
-| [Individual utterances + matching transcript](#individual-utterances--matching-transcript) | A collection (.zip) of audio files (.wav) as individual utterances. Each audio file should be 15 seconds or less in length, paired with a formatted transcript (.txt). | Professional recordings with matching transcripts | Ready for fine-tuning. | Segmented |
+| [Individual utterances + matching transcript](#individual-utterances-and-matching-transcript) | A collection (.zip) of audio files (.wav) as individual utterances. Each audio file should be 15 seconds or less in length, paired with a formatted transcript (.txt). | Professional recordings with matching transcripts | Ready for fine-tuning. | Segmented |
 | [Long audio + transcript](#long-audio--transcript) | A collection (.zip) of long, unsegmented audio files (.wav or .mp3, longer than 20 seconds, at most 1,000 audio files), paired with a collection (.zip) of transcripts that contains all spoken words. | You have audio files and matching transcripts, but they aren't segmented into utterances. | Segmentation (using batch transcription).<br>Audio format transformation wherever required. | Segmented, Contextual |
 | [Audio only](#audio-only) | A collection (.zip) of audio files (.wav or .mp3, at most 1,000 audio files) without a transcript. | You only have audio files available, without transcripts. | Segmentation + transcript generation (using batch transcription).<br>Audio format transformation wherever required.| Segmented, Contextual |
 
@@ -37,19 +37,19 @@ Files should be grouped by type into a dataset and uploaded as a zip file. Each 
 > [!NOTE]
 > The maximum number of datasets allowed to be imported per subscription is 500 zip files for standard subscription (S0) users.
 >
-> Processed as Contextual would retain the audio as a whole to keep the contextual information for more natural intonations.
+> Processed as Contextual retains the audio as a whole to keep the contextual information for more natural intonations.
 
-## Individual utterances + matching transcript
+## Individual utterances and matching transcript
 
 You can prepare recordings of individual utterances and the matching transcript in two ways. Either [write a script and have it read by a voice talent](record-custom-voice-samples.md) or use publicly available audio and transcribe it to text. If you do the latter, edit disfluencies from the audio files, such as "um" and other filler sounds, stutters, mumbled words, or mispronunciations.
 
 To produce a good voice model, create the recordings in a quiet room with a high-quality microphone. Consistent volume, speaking rate, speaking pitch, and expressive mannerisms of speech are essential.
 
-For data format examples, refer to the sample dataset on [GitHub](https://github.com/Azure-Samples/Cognitive-Speech-TTS/tree/master/CustomVoice/Sample%20Data). The sample dataset includes the sample script and the associated audio.
+For data format examples, see the sample dataset on [GitHub](https://github.com/Azure-Samples/Cognitive-Speech-TTS/tree/master/CustomVoice/Sample%20Data). The sample dataset includes the sample script and the associated audio.
 
-### Audio data for Individual utterances + matching transcript
+### Audio data for Individual utterances and matching transcript
 
-Each audio file should contain a single utterance (a single sentence or a single turn of a dialog system), less than 15 seconds long. All files must be in the same spoken language. Multi-language custom Text to speech voices aren't supported, except for the Chinese-English bi-lingual. Each audio file must have a unique filename with the filename extension .wav.
+Each audio file should contain a single utterance (a single sentence or a single turn of a dialog system), less than 15 seconds long. All files must be in the same spoken language. Multi-language custom text to speech voices aren't supported, except for the Chinese-English bi-lingual. Each audio file must have a unique filename with the filename extension .wav.
 
 Follow these guidelines when preparing audio.
 
@@ -66,7 +66,7 @@ Follow these guidelines when preparing audio.
 > [!NOTE]
 > The default sampling rate for professional voice fine-tuning is 24 KHz. Audio files with a sampling rate lower than 16,000 Hz will be rejected. If a .zip file contains .wav files with different sample rates, only those equal to or higher than 16,000 Hz will be imported. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz for fine-tuning. It's recommended that you use a sample rate of 24 KHz and higher for your fine-tuning data.
 
-### Transcription data for Individual utterances + matching transcript
+### Transcription data for Individual utterances and matching transcript
 
 The transcription file is a plain text file. Use these guidelines to prepare your transcriptions.
 
@@ -99,9 +99,9 @@ The service offers two processing modes:
 - **Segmented**: The default processing mode that works with all supported languages
 - **Contextual**: An enhanced mode that retains the audio as a whole to keep the contextual information for more natural intonations.
 
-During the processing of the segmentation, your audio files and the transcripts are also sent to the custom speech service to refine the recognition model so the accuracy can be improved for your data. No data is retained during this process. After the segmentation is done, only the utterances segmented and their mapping transcripts will be stored for your downloading and fine-tuning.
+During the processing of the segmentation, your audio files and the transcripts are also sent to the custom speech service to refine the recognition model so the accuracy can be improved for your data. No data is retained during this process. After the segmentation is done, only the segmented utterances and their mapping transcripts are stored for your downloading and fine-tuning.
 
-### Audio data for Long audio + transcript
+### Audio data for Long audio and transcript
 
 Follow these guidelines when preparing audio for segmentation.
 
@@ -116,13 +116,13 @@ Follow these guidelines when preparing audio for segmentation.
 | Maximum archive size | 2048 MB, at most 1,000 audio files included |
 
 > [!NOTE]
-> The default sampling rate for professional voice fine-tuning is 24 KHz. Audio files with a sampling rate lower than 16,000 Hz will be rejected. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz for fine-tuning. It's recommended that you should use a sample rate of 24 KHz and higher for your fine-tuning data.
+> The default sampling rate for professional voice fine-tuning is 24 KHz. Audio files with a sampling rate lower than 16,000 Hz will be rejected. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz for fine-tuning. It's recommended that you use a sample rate of 24 KHz and higher for your fine-tuning data.
 >
-> Segmented utterances should ideally be between 5 and 15 seconds long. For optimal segmentation results, it is recommended to include natural pauses of 0.5 to 1 second every 5 to 15 seconds of speech, preferably at the end of phrases or sentences.
+> Segmented utterances should ideally be between 5 and 15 seconds long. For optimal segmentation results, it's recommended to include natural pauses of 0.5 to 1 second every 5 to 15 seconds of speech, preferably at the end of phrases or sentences.
 
-All audio files should be grouped into a zip file. It's OK to put .wav files and .mp3 files into the same zip file. For example, you can upload a 45-second audio file named 'kingstory.wav' and a 200-second long audio file named 'queenstory.mp3' in the same zip file. All .mp3 files will be transformed into the .wav format after processing.
+All audio files should be grouped into a zip file. It's OK to put .wav files and .mp3 files into the same zip file. For example, you can upload a 45-second audio file named 'kingstory.wav' and a 200-second long audio file named 'queenstory.mp3' in the same zip file. All .mp3 files are transformed into the .wav format after processing.
 
-### Transcription data for Long audio + transcript
+### Transcription data for Long audio and transcript
 
 Transcripts must be prepared to the specifications listed in this table. Each audio file must be matched with a transcript.
 
@@ -136,7 +136,7 @@ Transcripts must be prepared to the specifications listed in this table. Each au
 
 All transcripts files in this data type should be grouped into a zip file. For example, you might upload a 45-second audio file named 'kingstory.wav' and a 200-second long audio file named 'queenstory.mp3' in the same zip file. You need to upload another zip file containing the corresponding two transcripts--one named 'kingstory.txt' and the other one named 'queenstory.txt'. Within each plain text file, you provide the full correct transcription for the matching audio.
 
-After your dataset is successfully uploaded, we'll help you segment the audio file into utterances based on the transcript provided. You can check the segmented utterances and the matching transcripts by downloading the dataset. Unique IDs are assigned to the segmented utterances automatically. It's important that you make sure the transcripts you provide are 100% accurate. Errors in the transcripts can reduce the accuracy during the audio segmentation and further introduce quality loss in the fine-tuning phase that comes later.
+After your dataset is successfully uploaded, the Speech service helps you segment the audio file into utterances based on the transcript provided. You can check the segmented utterances and the matching transcripts by downloading the dataset. Unique IDs are assigned to the segmented utterances automatically. It's important that you make sure the transcripts you provide are 100% accurate. Errors in the transcripts can reduce the accuracy during the audio segmentation and further introduce quality loss in the fine-tuning phase that comes later.
 
 ## Audio only
 
@@ -145,7 +145,7 @@ After your dataset is successfully uploaded, we'll help you segment the audio fi
 >
 > Processed as Contextual is currently only available for English, Chinese (Mandarin, Simplified), French, Italian, German, Spanish, Portuguese (Brazil), Japanese, Korean and Czech.
 
-If you don't have transcriptions for your audio recordings, use the **Audio only** option to upload your data. Our system can help you segment and transcribe your audio files.
+If you don't have transcriptions for your audio recordings, use the **Audio only** option to upload your data. The Speech service can help you segment and transcribe your audio files.
 
 The service offers two processing modes:
 - **Segmented**: The default processing mode that works with all supported languages
@@ -164,11 +164,11 @@ Follow these guidelines when preparing audio.
 | Maximum archive size | 2048 MB, at most 1,000 audio files included |
 
 > [!NOTE]
-> The default sampling rate for professional voice fine-tuning is 24 KHz. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz for fine-tuning. It's recommended that you should use a sample rate of 24 KHz and higher for your fine-tuning data.
+> The default sampling rate for professional voice fine-tuning is 24 KHz. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz for fine-tuning. It's recommended that you use a sample rate of 24 KHz and higher for your fine-tuning data.
 >
-> Segmented utterances should ideally be between 5 and 15 seconds long. For optimal segmentation results, it is recommended to include natural pauses of 0.5 to 1 second every 5 to 15 seconds of speech, preferably at the end of phrases or sentences.
+> Segmented utterances should ideally be between 5 and 15 seconds long. For optimal segmentation results, it's recommended to include natural pauses of 0.5 to 1 second every 5 to 15 seconds of speech, preferably at the end of phrases or sentences.
 
-All audio files should be grouped into a zip file. Once your dataset is successfully uploaded, the Speech service helps you segment the audio file into utterances based on our speech batch transcription service. You can select either the Standard or Contextual processing mode, depending on your language and requirements. Unique IDs are assigned to the segmented utterances automatically. Matching transcripts are generated through speech recognition. All .mp3 files will be transformed into the .wav format after processing. You can check the segmented utterances and the matching transcripts by downloading the dataset.
+All audio files should be grouped into a zip file. Once your dataset is successfully uploaded, the Speech service helps you segment the audio file into utterances based on the speech batch transcription service. You can select either the Standard or Contextual processing mode, depending on your language and requirements. Unique IDs are assigned to the segmented utterances automatically. Matching transcripts are generated through speech recognition. All .mp3 files are transformed into the .wav format after processing. You can check the segmented utterances and the matching transcripts by downloading the dataset.
 
 ## Next steps
 

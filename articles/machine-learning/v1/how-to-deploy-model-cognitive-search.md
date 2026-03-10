@@ -8,8 +8,8 @@ ms.subservice: core
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: ssalgado
-ms.date: 03/11/2021
+ms.reviewer: scottpolly
+ms.date: 03/05/2026
 ms.custom:
   - UpdateFrequency5
   - deploy
@@ -35,6 +35,9 @@ Azure Machine Learning can deploy a trained model as a web service. The web serv
 > The information in this article is specific to the deployment of the model. It provides information on the supported deployment configurations that allow the model to be used by Azure AI Search.
 >
 > For information on how to configure Azure AI Search to use the deployed model, see the [Build and deploy a custom skill with Azure Machine Learning](/azure/search/cognitive-search-tutorial-aml-custom-skill) tutorial.
+
+> [!TIP]
+> For a simpler integration, consider using the [AML skill in Azure AI Search](/azure/search/cognitive-search-aml-skill), which connects directly to Azure Machine Learning online endpoints without manual web service scaffolding. For new projects, use [managed online endpoints](/azure/machine-learning/how-to-deploy-managed-online-endpoints) with [SDK v2](/azure/machine-learning/how-to-migrate-from-v1).
 
 When deploying a model for use with Azure AI Search, the deployment must meet the following requirements:
 
@@ -135,6 +138,9 @@ The entry script receives data submitted to the web service, passes it to the mo
 > [!IMPORTANT]
 > When you plan on using the deployed model from Azure AI Search you must use the `inference_schema` package to enable schema generation for the deployment. This package provides decorators that allow you to define the input and output data format for the web service that performs inference using the model.
 
+> [!WARNING]
+> The NLP Architect library (`nlp-architect`) used in this example is archived and no longer maintained. The pinned spaCy version (2.0.18) is also end-of-life. This example is provided for illustrative purposes only. Replace the model and entry script with your own trained model.
+
 ```python
 from azureml.core.model import Model
 from nlp_architect.models.absa.inference.inference import SentimentInference
@@ -223,8 +229,6 @@ The deployment configuration defines the Azure Kubernetes Service hosting enviro
 
 ```python
 from azureml.core.model import Model
-from azureml.core.webservice import Webservice
-from azureml.core.image import ContainerImage
 from azureml.core.webservice import AksWebservice, Webservice
 
 # If deploying to a cluster configured for dev/test, ensure that it was created with enough

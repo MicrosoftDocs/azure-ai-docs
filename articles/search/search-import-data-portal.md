@@ -2,9 +2,6 @@
 title: Import Wizards in the Azure portal
 titleSuffix: Azure AI Search
 description: Learn about the Azure portal wizards that create and load an index and optionally invoke applied AI for vectorization, natural-language processing, language translation, OCR, and image analysis.
-author: HeidiSteen
-ms.author: heidist
-manager: nitinme
 ms.date: 01/29/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
@@ -45,7 +42,7 @@ Despite their differences, the wizards follow similar workflows for content inge
 | Semantic ranking support | ❌ | ✅ |
 | Knowledge store support | ✅ | ❌ |
 
-Built-in sample data for the hotels sample index is no longer provided, but you can create an identical index by following the [Quickstart: Create an index for keyword search](search-get-started-portal.md).
+Built-in sample data for the hotels-sample index is no longer provided, but you can create an identical index by following [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md).
 
 This article explains how the wizards work to help you with proof-of-concept testing. For step-by-step instructions, see [Try the wizards](#try-the-wizards).
 

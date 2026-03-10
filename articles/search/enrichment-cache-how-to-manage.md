@@ -2,11 +2,10 @@
 title: Manage enrichment caching
 titleSuffix: Azure AI Search
 description: Cache intermediate content and incremental changes from AI enrichment pipeline in Azure Storage to preserve investments in existing processed documents. This feature is currently in public preview.
-author: HeidiSteen
-ms.author: heidist
+
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 02/24/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -20,7 +19,7 @@ ms.custom:
 
 An *enrichment cache* is an optional feature that stores reusable enriched content created during [skillset execution](cognitive-search-working-with-skillsets.md) so that only new and changed skills and documents incur standard processing charges during future indexer and skillset processing. 
 
-The cache contains the output from [document cracking](search-indexer-overview.md#document-cracking), plus the outputs of each skill for every document. Although caching is billable (it uses Azure Storage), the overall cost of enrichment is reduced because the costs of storage are less than image extraction and AI processing.
+The enrichment cache is created in Azure Storage. The cache contains the output from [document cracking](search-indexer-overview.md#document-cracking), plus the outputs of each skill for every document. Although caching is billable (it uses Azure Storage), the overall cost of enrichment is reduced because the costs of storage are less than image extraction and AI processing.
 
 If you have configured an enrichment cache, this article explains how to manage skill and data source updates so that you get maximum utility from cached enrichments.
 
@@ -37,13 +36,11 @@ If you have configured an enrichment cache, this article explains how to manage 
 
 ## Cache configuration
 
-Physically, the cache is stored in a blob container or table in your Azure Storage account, one per indexer. Each indexer is assigned a unique and immutable cache identifier that corresponds to the container it's using.
+Physically, the cache is stored in a blob container and tables in your Azure Storage account, one per indexer. Each indexer is assigned a unique and immutable cache identifier that corresponds to the container it's using.
 
-The cache is created when you specify the "cache" property and run the indexer. Only enriched content can be cached. If your indexer doesn't have an attached skillset, then caching doesn't apply. 
+The cache is created when you specify the `cache` property and run the indexer. Only enriched content can be cached. If your indexer doesn't have an attached skillset, then caching doesn't apply. 
 
 The following example illustrates an indexer with caching enabled. See [Configure enrichment caching](enrichment-cache-how-to-configure.md) for full instructions. 
-
-To set the cache property, use latest preview REST API for [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview Azure SDK package that provides the feature. You can also enable enrichment caching in the Import data wizard in the Azure portal.
 
 ```json
 POST https://[YOUR-SEARCH-SERVICE-NAME].search.windows.net/indexers?api-version=2025-11-01-preview
@@ -66,7 +63,7 @@ POST https://[YOUR-SEARCH-SERVICE-NAME].search.windows.net/indexers?api-version=
 
 The lifecycle of the cache is managed by the indexer. If an indexer is deleted, its cache is also deleted. If the `cache` property on the indexer is set to null or the connection string is changed, the existing cache is deleted on the next indexer run. 
 
-While incremental enrichment is designed to detect and respond to changes with no intervention on your part, there are parameters you can use to invoke specific behaviors:
+While incremental enrichment is designed to detect and respond to changes with no intervention on your part, you can set parameters to invoke specific behaviors:
 
 + [Prioritize new documents](#Prioritize-new-documents)
 + [Bypass skillset checks](#Bypass-skillset-checks)
@@ -77,9 +74,9 @@ While incremental enrichment is designed to detect and respond to changes with n
 
 ### Prioritize new documents
 
-The cache property includes an `enableReprocessing` parameter. It's used to control processing over incoming documents already represented in the cache. When true (default), documents already in the cache are reprocessed when you rerun the indexer, assuming your skill update affects that doc. 
+The `cache` property includes an `enableReprocessing` parameter that controls whether cached content is reprocessed. When true (default), cached documents are reprocessed when you rerun the indexer if a skill update affects them.
 
-When false, existing documents aren't reprocessed, effectively prioritizing new, incoming content over existing content. You should only set enableReprocessing to false on a temporary basis. Having enableReprocessing set to true most of the time ensures that all documents, both new and existing, are valid per the current skillset definition.
+When false, existing documents aren't reprocessed, effectively prioritizing new content. Set `enableReprocessing` to false only temporarily. Keeping it true most of the time ensures that both new and existing documents remain valid for the current skillset definition.
 
 <a name="Bypass-skillset-checks"></a>
 
