@@ -582,7 +582,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-studio/how-to/develop/langchain.md",
-      "redirect_url": "/azure/ai-foundry/how-to/develop/langchain",
+      "redirect_url": "/azure/foundry/how-to/develop/langchain",
       "redirect_document_id": true
     },
     {
@@ -2812,7 +2812,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/how-to/develop/langchain.md",
-      "redirect_url": "/azure/foundry-classic/how-to/develop/langchain",
+      "redirect_url": "/azure/foundry/how-to/develop/langchain",
       "redirect_document_id": true
     },
     {
