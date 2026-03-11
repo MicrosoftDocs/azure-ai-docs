@@ -35,11 +35,11 @@ items:
   - name: Foundry Local SDK
     expanded: true
     items:
-    - name: Current SDK
+    - name: SDK guide
       href: reference/reference-sdk-current.md
     - name: Legacy SDK
       href: reference/reference-sdk-legacy.md
-    - name: Migration guide for legacy to current SDK
+    - name: Guidance for migrating from the legacy SDK
       href: reference/reference-sdk-migration.md
   - name: APIs
     items:

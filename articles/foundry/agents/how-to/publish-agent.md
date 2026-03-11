@@ -49,7 +49,7 @@ Because the identity changes, **permissions don't transfer automatically**. When
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
-- [Azure AI Project Manager role](../../concepts/rbac-foundry.md) on the Foundry project scope to publish agents
+- [Azure AI Project Manager role](../../concepts/rbac-foundry.md) on the Foundry resource scope to publish agents
 - [Azure AI User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
@@ -394,7 +394,7 @@ Agents published as Agent Applications have the following limitations:
 
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
-| **Publish Agent** is disabled | Missing Azure AI Project Manager role on the project scope | Confirm you have the required role assignment on the Foundry project. |
+| **Publish Agent** is disabled | Missing Azure AI Project Manager role on the Foundry resource scope | Assign the Azure AI Project Manager role on the Foundry resource (account) scope, not just on the project scope. |
 | `403 Forbidden` when invoking the endpoint | Caller lacks invoke permissions on the Agent Application resource | Assign the Azure AI User role on the Agent Application resource to the caller. |
 | `401 Unauthorized` when invoking the endpoint | The access token is missing, expired, or for the wrong resource | Reauthenticate and request a token for `https://ai.azure.com`. |
 | Tool calls fail after publishing | The Agent Application identity doesn’t have the same access as the project identity | Reassign the required RBAC roles to the published agent identity for any downstream Azure resources it must access. |
