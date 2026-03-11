@@ -3109,6 +3109,16 @@
       "source_path_from_root": "/articles/ai-services/computer-vision/use-case-identity-verification.md",
       "redirect_url": "/azure/ai-services/face/use-case-identity-verification",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-liveness-abuse-monitoring.md",
+      "redirect_url": "/azure/ai-services/face/concept-liveness-abuse-monitoring",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/liveness-use-network-isolation.md",
+      "redirect_url": "/azure/ai-services/face/how-to/liveness-use-network-isolation",
+      "redirect_document_id": true
     }
   ]
 }

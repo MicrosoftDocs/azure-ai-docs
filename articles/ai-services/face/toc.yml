@@ -59,7 +59,7 @@ items:
     - name: Use customer-managed keys
       href: ./identity-encrypt-data-at-rest.md
     - name: Use liveness detection with network isolation (preview)
-      href: ../computer-vision/how-to/liveness-use-network-isolation.md
+      href: ./how-to/liveness-use-network-isolation.md
 - name: Tutorials
   items:
   - name: Detect liveness in faces
