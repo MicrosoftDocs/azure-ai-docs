@@ -18,13 +18,12 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-web-search
 ---
 
-# Web search tool (preview)
-[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
+# Web search tool
 
 The web search tool in Foundry Agent Service enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations, helping you build agents that provide current, factual information to users.
 
 > [!IMPORTANT]
-> - Web Search(preview) uses Grounding with Bing Search and Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
+> - Web Search uses Grounding with Bing Search and Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:%7E:text=First-Party%20Consumption%20Services) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > - The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search and Grounding with Bing Custom Search. When you use Grounding with Bing Search and Grounding with Bing Custom Search, data transfers occur outside compliance and geographic boundaries.
 > - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
 > - See the [management section](#administrator-control-for-the-web-search-tool) for information about how Azure admins can manage access to use of web search.
@@ -523,7 +522,7 @@ Before running the following commands, make sure that you:
 1. Are signed in to Azure by using `az login`. 
 1. Have Owner or Contributor access to the subscription. 
 
-### Disable Bing Web Search 
+### Disable Web Search 
 
 To disable the web search tool for all accounts in a subscription, run the following command: 
 
@@ -536,7 +535,7 @@ az feature register \
 
 This command disables web search across all accounts in the specified subscription. 
 
-### Enable Bing Web Search 
+### Enable Web Search 
 
 To enable the web search tool, run the following command: 
 
