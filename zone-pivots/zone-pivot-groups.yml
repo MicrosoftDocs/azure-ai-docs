@@ -1808,6 +1808,8 @@ groups:
     title: Python
   - id: programming-language-java
     title: Java
+  - id: programming-language-csharp
+    title: C#
 # Owner: pafarley
 - id: llm-speech-quickstart
   title: Programming languages
