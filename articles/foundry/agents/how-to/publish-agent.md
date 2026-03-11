@@ -29,7 +29,7 @@ During development, you build and test your agent inside a Foundry project. The 
 When you publish an agent version, Foundry creates an **Agent Application** resource that wraps your agent version with its own invocation URL, authentication policy, unique Entra agent identity, and unique Entra agent blueprint. A **Deployment** is also created as a child resource of the application, referencing the specific agent version being published and supporting start/stop lifecycle management.
 
 > [!NOTE]
-> Foundry **Agent Applications** are not registered in the Microsoft Entra agent registry. This change applies only to **Agent Applications** (not other agent types).
+> Foundry Agent Applications are not registered in the Microsoft Entra agent registry.
 
 ### Why publish?
 
