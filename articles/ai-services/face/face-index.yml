@@ -90,10 +90,10 @@ tools:
     imageSrc: media/index/logo-csharp.svg
     url: https://aka.ms/azsdk-csharp-face-pkg
   - title: Node.js
-    imageSrc: media/index/logo_nodejs.svg
+    imageSrc: media/index/logo-javascript.svg
     url: https://www.npmjs.com/package/@azure-rest/ai-vision-face
   - title: Python
-    imageSrc: media/index/logo_python.svg
+    imageSrc: media/index/logo-python.svg
     url: https://aka.ms/azsdk-python-face-pkg
   - title: Java
     imageSrc: /media/logos/logo_java.svg
