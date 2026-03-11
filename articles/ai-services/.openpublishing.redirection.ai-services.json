@@ -3094,6 +3094,11 @@
       "redirect_url": "/azure/ai-services/face/sdk/understand-the-liveness-sdk-versions",
       "source_path_from_root": "/articles/ai-services/computer-vision/sdk/understand-the-liveness-sdk-versions.md",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/quickstarts-sdk/identity-client-library.md",
+      "redirect_url": "/azure/ai-services/face/quickstarts-sdk/identity-client-library",
+      "redirect_document_id": true
     }
   ]
 }

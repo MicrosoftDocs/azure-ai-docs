@@ -40,4 +40,4 @@ Face service can power an end-to-end, low-friction, high-accuracy, verification 
 Follow a quickstart to do verification with Face. 
 
 > [!div class="nextstepaction"]
-> [Identity verification quickstart](./quickstarts-sdk/identity-client-library.md)
+> [Identity verification quickstart](../face/quickstarts-sdk/identity-client-library.md)
