@@ -9,7 +9,7 @@ ms.date: 03/11/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, references_regions
 ---
 
 <!-- markdownlint-disable MD025 -->
