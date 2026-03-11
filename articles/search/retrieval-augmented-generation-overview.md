@@ -1,5 +1,5 @@
 ---
-title: RAG and generative AI
+title: RAG and Generative AI
 titleSuffix: Azure AI Search
 description: Learn how generative AI and retrieval augmented generation (RAG) patterns are used in Azure AI Search solutions.
 ms.date: 01/15/2026

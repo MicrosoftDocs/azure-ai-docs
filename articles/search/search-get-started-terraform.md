@@ -1,5 +1,6 @@
 ---
-title: 'Quickstart: Deploy using Terraform'
+title: 'Quickstart: Deploy Using Terraform'
+titleSuffix: Azure AI Search
 description: 'In this article, you create an Azure AI Search service using Terraform.'
 ms.topic: quickstart
 ms.date: 05/29/2025

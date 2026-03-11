@@ -1,5 +1,5 @@
 ---
-title: Configure enrichment caching (preview)
+title: Configure Enrichment Caching
 titleSuffix: Azure AI Search
 description: Cache enriched content for potential reuse when modifying downstream skills and projections in an AI enrichment pipeline.
 

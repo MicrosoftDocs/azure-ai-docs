@@ -1,5 +1,4 @@
 ---
-manager: nitinme
 
 ms.service: azure-ai-search
 ms.topic: include

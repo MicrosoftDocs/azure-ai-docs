@@ -2,9 +2,6 @@
 title: 'Tutorial: Create an End-to-End Retrieval Solution'
 titleSuffix: Azure AI Search
 description: Learn how to design and build a custom agentic retrieval solution where Azure AI Search handles data retrieval for your custom agents in Microsoft Foundry.
-author: haileytap
-ms.author: haileytapia
-manager: nitinme
 ms.date: 01/27/2026
 ms.service: azure-ai-search
 ms.topic: tutorial

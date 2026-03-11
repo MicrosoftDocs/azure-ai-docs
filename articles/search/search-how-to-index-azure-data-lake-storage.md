@@ -1,10 +1,8 @@
 ---
-title: Azure Data Lake Storage Gen2 indexer
+title: Azure Data Lake Storage Gen2 Indexer
 titleSuffix: Azure AI Search
 description: Set up an Azure Data Lake Storage (ADLS) Gen2 indexer to automate indexing of content and metadata for full text search in Azure AI Search.
-author: gmndrg
-ms.author: gimondra
-manager: vinodva
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/29/2025

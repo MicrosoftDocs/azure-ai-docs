@@ -1,5 +1,5 @@
 ---
-title: Data sources gallery
+title: Data Sources Gallery
 titleSuffix: Azure AI Search
 description: Lists data source connectors for importing into an Azure AI Search index.
 

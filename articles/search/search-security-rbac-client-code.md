@@ -1,5 +1,6 @@
 ---
-title: Configure apps for role-based security
+title: Configure Apps for Role-Based Security
+titleSuffix: Azure AI Search
 description: Use keyless connections with an Azure Identity library for Microsoft Entra ID authentication and authorization with Azure AI Search.
 ms.topic: how-to
 ms.date: 01/20/2026

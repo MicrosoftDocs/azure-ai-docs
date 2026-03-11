@@ -2,11 +2,10 @@
 title: Use a Blob Indexer or Knowledge Source to Ingest RBAC Scopes Metadata
 titleSuffix: Azure AI Search  
 description: Learn how to configure Azure AI Search knowledge sources and indexers for ingesting Azure Role-Based Access (RBAC) metadata on Azure blobs.
+ms.reviewer: vaishalishah
 ms.service: azure-ai-search  
 ms.topic: how-to
 ms.date: 11/18/2025
-author: vaishalishah
-ms.author: vaishalishah
 ---  
 
 # Use a blob indexer or knowledge source to ingest RBAC scopes metadata

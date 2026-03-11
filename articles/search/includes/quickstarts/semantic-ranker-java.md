@@ -1,6 +1,4 @@
 ---
-author: KarlErickson
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom: devx-track-java
 ms.topic: include

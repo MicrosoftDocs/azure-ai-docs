@@ -1,10 +1,8 @@
 ---
-title: Changed and deleted blobs
+title: Changed and Deleted Blobs
 titleSuffix: Azure AI Search
 description: Indexers that index from Azure Storage can pick up new and changed content automatically. This article describes the strategies.
-author: gmndrg
-ms.author: gimondra
-manager: nitinme
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 02/26/2025
