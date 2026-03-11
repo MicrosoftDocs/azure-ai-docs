@@ -15,7 +15,7 @@ author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# View evaluation results in the portal
+# View evaluation results in the Microsoft Foundry portal
 In this article, you learn to:
 
 - Locate and open evaluation runs.

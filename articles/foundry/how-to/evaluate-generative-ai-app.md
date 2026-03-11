@@ -1,5 +1,5 @@
 ---
-title: "Run evaluations from the portal"
+title: "Run evaluations from the Microsoft Foundry portal"
 description: "Evaluate your generative AI models and agents by using Microsoft Foundry."
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
@@ -14,7 +14,7 @@ author: lgayhardt
 # customer intent: As a developer, I want to evaluate my generative AI models and applications using Microsoft Foundry so I can assess their performance and safety with comprehensive metrics.
 ---
 
-# Run evaluations from the portal
+# Run evaluations from the Microsoft Foundry portal
 Evaluate the performance and safety of your generative AI models and agents by running them against a test dataset. During an evaluation, the model or agent is tested with the dataset and its performance is measured using built-in and custom evaluators.
 
 Use the Foundry portal to run evaluations, view results, and analyze metrics.
@@ -49,7 +49,7 @@ Provide a dataset for the evaluation. You can upload your own dataset or synthet
 - **Synthetic dataset generation**: Generate a synthetic dataset when you don't have test data. Specify the resource, the number of rows, and a prompt that describes the data to generate. You can also upload files to improve relevance.
 
 > [!NOTE]
-> Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](https://aka.ms/aoai/responsesapi/availability).
+> Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](../openai/how-to/responses.md#region-availability).
 
 ### Configure testing criteria
 
