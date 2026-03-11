@@ -26,7 +26,10 @@ If you specifically want to build and publish an agent as a digital worker in Ag
 
 During development, you build and test your agent inside a Foundry project. The project gives you and your teammates a shared workspace, but it isn't designed for broad distribution because everyone with project access can interact with all agents and shares the same conversation context and permissions. Publishing is the step that moves an agent out of that shared development space and into a production-ready Azure resource.
 
-When you publish an agent version, Foundry creates an **Agent Application** resource that wraps your agent version with its own invocation URL, authentication policy, unique Entra agent identity, unique Entra agent blueprint, and registers it in the [Entra Agent Registry](/entra/agent-id/identity-platform/what-is-agent-registry) for discoverability and governance. A **Deployment** is also created as a child resource of the application, referencing the specific agent version being published and supporting start/stop lifecycle management.
+When you publish an agent version, Foundry creates an **Agent Application** resource that wraps your agent version with its own invocation URL, authentication policy, unique Entra agent identity, and unique Entra agent blueprint. A **Deployment** is also created as a child resource of the application, referencing the specific agent version being published and supporting start/stop lifecycle management.
+
+> [!NOTE]
+> Foundry **Agent Applications** are not registered in the Microsoft Entra agent registry. This change applies only to **Agent Applications** (not other agent types).
 
 ### Why publish?
 
@@ -387,7 +390,7 @@ Agents published as Agent Applications have the following limitations:
 
 | Limitation | Description |
 | --- | --- |
-| Microsoft Entra Agent Registry visibility | There's a bug where published agents don't appear in the Entra Agent Registry (EAR). |
+| No Microsoft Entra agent registry registration | Agent Applications aren't registered in the Microsoft Entra agent registry. |
 | No UI or CLI management | There isn’t a dedicated UI/CLI for advanced management operations. Use the REST API for management operations not available in the Foundry portal publishing flow. |
 
 ## Troubleshooting
