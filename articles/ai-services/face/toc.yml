@@ -71,7 +71,7 @@ items:
 - name: Scenario deep-dives
   items:
   - name: Verify a user
-    href: ../use-case-identity-verification.md
+    href: ../face/use-case-identity-verification.md
 - name: Samples
   href: https://aka.ms/FaceSamples
 - name: Responsible use of AI
