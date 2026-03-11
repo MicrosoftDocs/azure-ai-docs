@@ -2,8 +2,7 @@
 title: Vector Search
 titleSuffix: Azure AI Search
 description: Describes concepts, scenarios, and availability of vector capabilities in Azure AI Search.
-author: robertklee
-ms.author: robertlee
+ms.reviewer: robertlee
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

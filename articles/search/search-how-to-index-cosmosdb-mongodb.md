@@ -2,8 +2,7 @@
 title: Indexing with Azure Cosmos DB for MongoDB
 titleSuffix: Azure AI Search
 description: Set up a search indexer to index data stored in Azure Cosmos DB for full text search in Azure AI Search. This article explains how index data in Azure Cosmos DB for MongoDB.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/29/2025

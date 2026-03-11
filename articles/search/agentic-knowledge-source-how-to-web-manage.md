@@ -2,9 +2,6 @@
 title: Enable or Disable Access to Web Knowledge Source
 titleSuffix: Azure AI Search
 description: Learn how to enable or disable the use of Web Knowledge Source in your Azure subscription. By default, access is enabled, but you can disable or re-enable access using the Azure CLI.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2025

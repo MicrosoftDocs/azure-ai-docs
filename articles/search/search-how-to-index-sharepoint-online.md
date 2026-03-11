@@ -1,9 +1,8 @@
 ---
-title: SharePoint in Microsoft 365 indexer (preview)
+title: SharePoint in Microsoft 365 Indexer
 titleSuffix: Azure AI Search
 description: Set up a SharePoint in Microsoft 365 indexer to automate indexing of document library content in Azure AI Search.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/28/2026

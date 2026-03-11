@@ -1,5 +1,5 @@
 ---
-title: Service Upgrade in the Azure portal
+title: Service Upgrade in the Azure Portal
 titleSuffix: Azure AI Search
 description: Learn how to upgrade your existing Azure AI Search service to high-capacity storage and processors in your region.
 author: mattwojo

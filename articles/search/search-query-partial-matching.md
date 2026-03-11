@@ -1,5 +1,5 @@
 ---
-title: Partial terms, patterns, and special characters
+title: Partial Terms, Patterns, and Special Characters
 titleSuffix: Azure AI Search
 description: Use wildcard, regex, and prefix queries to match on whole or partial terms in an Azure AI Search query request. Hard-to-match patterns that include special characters can be resolved using full query syntax and custom analyzers.
 ms.service: azure-ai-search

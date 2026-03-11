@@ -2,8 +2,6 @@
 title: Assign Narrow Data Types
 titleSuffix: Azure AI Search
 description: Learn how to assign narrow data types to vector fields to reduce the storage requirements of vector indexes.
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

@@ -1,10 +1,8 @@
 ---
-title: Full text search
+title: Full-Text Search
 titleSuffix: Azure AI Search
 description: Describes concepts and architecture of query processing and document retrieval for full text search, as implemented Azure AI Search.
-manager: nitinme
-author: yahnoosh
-ms.author: jlembicz
+ms.reviewer: jlembicz
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
