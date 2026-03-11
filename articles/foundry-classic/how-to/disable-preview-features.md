@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Hide preview features with Azure tags (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/disable-preview-features.md)
 
 Hide preview features in both Foundry portal experiences (new and classic) by applying a tag at the appropriate scope in Azure portal. This approach helps teams focus on generally available capabilities in production environments.
 

@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Capability hosts (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/agents/concepts/capability-hosts.md)
 
 > [!NOTE]
 > Updating capability hosts is not supported. To modify a capability host, you must delete the existing one and recreate it with the new configuration.

@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Observability in generative AI (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]  
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/observability.md)
 
 [!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 

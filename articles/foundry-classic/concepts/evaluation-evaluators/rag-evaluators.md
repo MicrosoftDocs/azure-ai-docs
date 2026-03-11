@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Retrieval-Augmented Generation (RAG) evaluators (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/concepts/evaluation-evaluators/rag-evaluators.md)
 
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 

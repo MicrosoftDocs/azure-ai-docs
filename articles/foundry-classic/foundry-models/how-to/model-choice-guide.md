@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # GPT-5 vs GPT-4.1: choosing the right model for your use case (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/how-to/model-choice-guide.md)
 
 GPT-5 is the first model from OpenAI that introduces four adjustable levels of thinking, controlling the amount of time and tokens the model uses when responding to a prompt. When selecting which model to use, or whether to use a reasoning model at all, it is important to consider your application’s priorities.
 

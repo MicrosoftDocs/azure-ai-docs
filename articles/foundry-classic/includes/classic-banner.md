@@ -10,4 +10,4 @@ ms.date: 11/21/2025
 ms.custom: include
 ---
 
-**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal documentation** - [Move to Foundry documentation](../../foundry/what-is-foundry.md)
+**Applies only to:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal**. This article isn't available for the new Foundry portal. [Learn more about the new portal](../../foundry/what-is-foundry.md).

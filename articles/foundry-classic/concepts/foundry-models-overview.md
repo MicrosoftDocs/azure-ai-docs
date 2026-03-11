@@ -19,7 +19,7 @@ manager: nitinme
 
 # Microsoft Foundry Models overview (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/foundry-models-overview.md)
 
 Microsoft Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models—whether you're building a custom copilot, an agent, enhancing an existing application, or exploring new AI capabilities.
 
@@ -123,7 +123,6 @@ Some of the details available in the **model card** are:
 ## Model deployment options: managed compute and serverless deployments 
 
 The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../how-to/concept-data-privacy.md). To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry (classic)](../responsible-ai/openai/data-privacy.md).
-
 
 ### Capabilities of model deployment options
 

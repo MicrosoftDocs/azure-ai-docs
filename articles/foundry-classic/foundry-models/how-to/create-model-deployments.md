@@ -21,7 +21,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Deploy models using Azure CLI and Bicep (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/how-to/create-model-deployments.md)
 
 [!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
 

@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Set up private networking for Foundry Agent Service (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/agents/how-to/virtual-networks.md)
 
 Foundry Agent Service offers a **Standard Setup with private networking** environment, where you bring your own (BYO) private virtual network. This setup creates an isolated network environment that enables secure access to data while maintaining full control over your network infrastructure.
 
