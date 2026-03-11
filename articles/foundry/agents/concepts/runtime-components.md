@@ -228,6 +228,290 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
 
 For additional agent types (workflow, hosted), see [Agent development lifecycle](./development-lifecycle.md).
 
+### Add tools to an agent
+
+Tools extend what an agent can do beyond generating text. When you attach tools to an agent, the agent can call external services, run code, search files, and access data sources during response generation—using tools such as code interpreter or function calling.
+
+You can attach one or more tools when you create an agent. During response generation, the agent decides whether to call a tool based on the user input and its instructions. The following example creates an agent with a code interpreter tool attached.
+
+# [Python](#tab/python)
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, CodeInterpreterTool
+
+PROJECT_ENDPOINT = "your_project_endpoint"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+
+# Create an agent with a code interpreter tool
+agent = project.agents.create_version(
+    agent_name="my-tool-agent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant that can run code.",
+        tools=[CodeInterpreterTool()],
+    ),
+)
+print(f"Agent: {agent.name}, Version: {agent.version}")
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+
+var projectEndpoint = "your_project_endpoint";
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Create an agent with a code interpreter tool
+var agent = await projectClient.Agents
+    .CreateAgentVersionAsync(
+        agentName: "my-tool-agent",
+        options: new(
+            new PromptAgentDefinition("gpt-5-mini")
+            {
+                Instructions = "You are a helpful assistant that can run code.",
+                Tools = { new CodeInterpreterToolDefinition() },
+            }));
+Console.WriteLine($"Agent: {agent.Value.Name}, Version: {agent.Value.Version}");
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+
+// Create an agent with a code interpreter tool
+const agent = await project.agents.createVersion(
+  "my-tool-agent",
+  {
+    kind: "prompt",
+    model: "gpt-5-mini",
+    instructions: "You are a helpful assistant that can run code.",
+    tools: [{ type: "code_interpreter" }],
+  },
+);
+console.log(`Agent: ${agent.name}, Version: ${agent.version}`);
+```
+
+# [Java](#tab/java)
+
+```java
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.CodeInterpreterTool;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+String projectEndpoint = "your_project_endpoint";
+
+AgentsClient agentsClient = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(projectEndpoint)
+    .buildAgentsClient();
+
+// Create an agent with a code interpreter tool
+PromptAgentDefinition definition = new PromptAgentDefinition("gpt-5-mini");
+definition.setInstructions("You are a helpful assistant that can run code.");
+definition.setTools(Arrays.asList(new CodeInterpreterTool()));
+
+var agent = agentsClient.createAgentVersion("my-tool-agent", definition);
+System.out.println("Agent: " + agent.getName() + ", Version: " + agent.getVersion());
+```
+
+# [REST API](#tab/rest)
+
+```bash
+ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
+
+# Create an agent with a code interpreter tool
+curl -X POST "${ENDPOINT}/agents?api-version=v1" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my-tool-agent",
+    "definition": {
+      "kind": "prompt",
+      "model": "gpt-5-mini",
+      "instructions": "You are a helpful assistant that can run code.",
+      "tools": [{ "type": "code_interpreter" }]
+    }
+  }'
+```
+
+---
+
+For the full list of available tools, see the [tools overview](./tool-catalog.md). For best practices, see [Best practices for using tools](./tool-best-practice.md).
+
+### Attach memory to an agent
+
+Memory gives agents the ability to retain information across sessions, so they can personalize responses and recall user preferences over time. Without memory, each conversation starts from scratch.
+
+Foundry Agent Service provides a managed memory solution (preview) that you configure through **memory stores**. A memory store defines which types of information the agent should retain. Attach a memory store to your agent, and the agent uses stored memories as additional context during response generation.
+
+The following example creates a memory store and attaches it to an agent.
+
+# [Python](#tab/python)
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    MemoryStoreDefaultDefinition,
+    MemoryStoreDefaultOptions,
+)
+
+PROJECT_ENDPOINT = "your_project_endpoint"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+
+# Create a memory store
+options = MemoryStoreDefaultOptions(
+    chat_summary_enabled=True,
+    user_profile_enabled=True,
+)
+definition = MemoryStoreDefaultDefinition(
+    chat_model="gpt-5.2",
+    embedding_model="text-embedding-3-small",
+    options=options,
+)
+memory_store = project.beta.memory_stores.create(
+    name="my_memory_store",
+    definition=definition,
+    description="Memory store for my agent",
+)
+print(f"Memory store: {memory_store.name}")
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+
+#pragma warning disable AAIP001
+
+var projectEndpoint = "your_project_endpoint";
+
+AIProjectClient projectClient = new(
+    new Uri(projectEndpoint),
+    new DefaultAzureCredential());
+
+// Create a memory store
+MemoryStoreDefaultDefinition memoryStoreDefinition = new(
+    chatModel: "gpt-5.2",
+    embeddingModel: "text-embedding-3-small");
+memoryStoreDefinition.Options = new(
+    userProfileEnabled: true,
+    chatSummaryEnabled: true);
+
+MemoryStore memoryStore = await projectClient.MemoryStores
+    .CreateMemoryStoreAsync(
+        name: "my_memory_store",
+        definition: memoryStoreDefinition,
+        description: "Memory store for my agent");
+Console.WriteLine($"Memory store: {memoryStore.Name}");
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+
+// Create a memory store
+const memoryStore = await project.beta.memoryStores.create(
+  "my_memory_store",
+  {
+    kind: "default",
+    chat_model: "gpt-5.2",
+    embedding_model: "text-embedding-3-small",
+    options: {
+      user_profile_enabled: true,
+      chat_summary_enabled: true,
+    },
+  },
+  { description: "Memory store for my agent" },
+);
+console.log(`Memory store: ${memoryStore.name}`);
+```
+
+# [Java](#tab/java)
+
+```java
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.MemoryStoresClient;
+import com.azure.ai.agents.models.MemoryStoreDefaultDefinition;
+import com.azure.ai.agents.models.MemoryStoreDetails;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+String projectEndpoint = "your_project_endpoint";
+
+// Create memory stores client
+MemoryStoresClient memoryStoresClient = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(projectEndpoint)
+    .buildMemoryStoresClient();
+
+// Create a memory store
+MemoryStoreDefaultDefinition definition =
+    new MemoryStoreDefaultDefinition("gpt-5.2", "text-embedding-3-small");
+MemoryStoreDetails memoryStore = memoryStoresClient
+    .createMemoryStore("my_memory_store", definition,
+        "Memory store for my agent", null);
+System.out.println("Memory store: " + memoryStore.getName());
+```
+
+# [REST API](#tab/rest)
+
+```bash
+ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
+API_VERSION="2025-11-15-preview"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
+
+# Create a memory store
+curl -X POST "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my_memory_store",
+    "description": "Memory store for my agent",
+    "definition": {
+      "kind": "default",
+      "chat_model": "gpt-5.2",
+      "embedding_model": "text-embedding-3-small",
+      "options": {
+        "chat_summary_enabled": true,
+        "user_profile_enabled": true
+      }
+    }
+  }'
+```
+
+---
+
+For conceptual details, see [Memory in Foundry Agent Service](./what-is-memory.md). For full implementation guidance, see [Create and use memory](../how-to/memory-usage.md).
+
 ## What is a conversation?
 
 A conversation manages state automatically, so you don't need to pass inputs manually for each turn.
