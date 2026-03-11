@@ -26,7 +26,7 @@ keywords:
 
 # What is Microsoft Foundry Agent Service?
 
-Foundry Agent Service is a fully managed platform for building, deploying, and scaling AI agents. Use any framework and any model from the [Foundry model catalog](../foundry-models/how-to/deploy-foundry-models.md). Create no-code **prompt agents** in the Foundry portal, or deploy code-based **[hosted agents](concepts/hosted-agents.md)** built with Agent Framework, LangGraph, or your own code.
+Foundry Agent Service is a fully managed platform for building, deploying, and scaling AI agents. Use any framework and many models from the [Foundry model catalog](../foundry-models/how-to/deploy-foundry-models.md). Create no-code **prompt agents** in the Foundry portal, or deploy code-based **[hosted agents](concepts/hosted-agents.md)** built with Agent Framework, LangGraph, or your own code.
 
 Agent Service handles hosting, scaling, identity, observability, and enterprise security so you can focus on your agent logic.
 
@@ -40,16 +40,24 @@ An agent is an AI application that uses a large language model (LLM) to reason a
 
 :::image type="content" source="media/what-is-an-agent.png" alt-text="A diagram showing the components of an AI agent.":::
 
-Agent Service provides:
+## Agent Service at a glance
 
-* **Agent Runtime**: Hosts and scales both prompt agents and hosted agents. Manages conversations, tool calls, and [agent lifecycle](concepts/development-lifecycle.md).
-* **Observability**: End-to-end tracing, metrics, and Application Insights integration. See every decision your agent makes.
-**Identity & Security**: Microsoft Entra identity, RBAC, content filters, and virtual network isolation. Enterprise-grade trust is built in.
-**Publishing**: Version agents, create stable endpoints, and share through Microsoft Teams, Microsoft 365 Copilot, and the Entra Agent Registry.
+| Component | What it does |
+| --- | --- |
+| **Agent Runtime** | Hosts and scales both prompt agents and hosted agents. Manages conversations, tool calls, and agent lifecycle. |
+| **Tools** | Built-in tools including web search, file search, memory, code interpreter, MCP servers, and custom functions. Extend your agent's capabilities without building infrastructure. |
+| **Models** | Works with many models from the Foundry model catalog, such as GPT-4o, Llama, and DeepSeek. Swap models without changing your agent code. |
+| **Observability** | End-to-end tracing, metrics, and Application Insights integration. See every decision your agent makes. |
+| **Identity & Security** | Microsoft Entra identity, RBAC, content filters, and virtual network isolation. Enterprise-grade trust built in. |
+| **Publishing** | Version agents, create stable endpoints, and share through Microsoft Teams, Microsoft 365 Copilot, and the Entra Agent Registry. |
 
 ## Agent types
 
-Agent Service supports three types of agents, each designed for different needs.
+Agent Service supports three types of agents, each designed for different needs:
+
+* Prompt agents
+* Workflow agents
+* Hosted agents
 
 ### Prompt agents
 
@@ -74,6 +82,12 @@ Prompt agents are defined entirely through configuration — instructions, model
 
 ### Compare agent types
 
+> [!TIP]
+> Ready to get started with agents? Choose your path based on how you want to build:
+> - **New to agents?** [Start with a prompt agent](../quickstarts/get-started-code.md) to create an agent with instructions and tools. Use the Foundry portal to create one with no code required, or use the SDKs or REST API.
+> - **Want to deploy an agent as a container with a framework of your choice?** [Build a hosted agent](quickstarts/quickstart-hosted-agent.md) with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
+> - **Want to orchestrate multiple agents?** [Build a workflow](./concepts/workflow.md) to orchestrate agents and business logic in a visual builder.
+
 | | Prompt agents | Workflow agents | Hosted agents (preview) |
 | --- | --- | --- | --- |
 | **Code required** | No | No (YAML optional) | Yes |
@@ -91,24 +105,14 @@ Agent Service is framework-agnostic. Bring the framework that fits your team and
 | LangGraph | Supported | — |
 | Custom code | Supported | Supported |
 
-Agent Service works with any model available in the Foundry model catalog. For the full list, see [Quotas, limits, and regional support](concepts/limits-quotas-regions.md).
+Agent Service works with many models available in the Foundry model catalog. For the full list, see [Quotas, limits, and regional support](concepts/limits-quotas-regions.md).
 
 ## Tools
 
-Agent Service provides built-in tools and supports custom tools so your agents can take actions and access data.
+Agent Service provides built-in tools and supports custom tools so your agents can take actions and access data. For a full list, see the [Foundry tool catalog](concepts/tool-catalog.md). For advanced tool selection patterns, see [Tool best practices](concepts/tool-best-practice.md).
 
-| Tool | Description |
-| --- | --- |
-| [Web search (Bing)](how-to/tools/bing-tools.md) | Search the web for real-time information. |
-| [File search](how-to/tools/file-search.md) | Search uploaded files and [vector stores](concepts/vector-stores.md). |
-| [Code interpreter](how-to/tools/custom-code-interpreter.md) | Execute code dynamically for calculations and data analysis. |
-| [Function calling](how-to/tools/function-calling.md) | Call your own functions to integrate with external systems. |
-| [MCP servers](how-to/tools/model-context-protocol.md) | Connect Model Context Protocol servers for extensible tool access. |
-| [OpenAPI](how-to/tools/openapi.md) | Invoke any API described by an OpenAPI specification. |
-| [Azure AI Search](how-to/tools/ai-search.md) | Query your Azure AI Search indexes for grounded retrieval. |
-| [Image generation](how-to/tools/image-generation.md) | Generate images from text descriptions. |
-
-This table highlights commonly used tools. For the full list, including Browser Automation, Computer Use, Microsoft Fabric, SharePoint, and Agent-to-Agent, see the [Foundry tool catalog](concepts/tool-catalog.md). For advanced tool selection patterns, see [Tool best practices](concepts/tool-best-practice.md).
+> [!NOTE]
+> Some tools, including memory and web search, are in preview. For availability by region and preview status, see [Quotas, limits, and regional support](concepts/limits-quotas-regions.md).
 
 ## Development lifecycle
 
@@ -128,7 +132,7 @@ For a detailed walkthrough, see [Agent development lifecycle](concepts/developme
 Agent Service provides enterprise-grade infrastructure for every agent you deploy:
 
 - **[Agent identity](concepts/agent-identity.md)** — Each agent can have a dedicated Microsoft Entra identity, enabling secure, scoped access to resources and APIs without sharing credentials.
-- **[Private networking](how-to/virtual-networks.md)** — Run agents within your Azure virtual network for full network isolation and compliance with data residency requirements.
+- **[Private networking](how-to/virtual-networks.md)** — Run agents within your Azure virtual network for full network isolation and compliance with data residency requirements. Private networking is available for prompt agents and workflow agents. Hosted agents don't currently support private networking during preview.
 - **Role-based access control** — Fine-grained permissions through Microsoft Entra and Azure RBAC. Control who can create, invoke, and manage agents.
 - **Content safety** — Integrated content filters help mitigate prompt injection risks (including cross-prompt injection) and prevent unsafe outputs.
 
@@ -142,31 +146,12 @@ Agent Service provides built-in versioning and publishing so your agents can mov
 - **[Publishing](how-to/publish-agent.md)** — Promote an agent to a managed resource with a stable endpoint. Published agents inherit the [enterprise identity and access controls](#enterprise-capabilities) configured for your project and can be invoked programmatically.
 - **Distribution** — Share published agents through [Microsoft 365 Copilot and Teams](how-to/publish-copilot.md) and the Entra Agent Registry, putting your agents where your users already work.
 
-## Get started
-
-Choose your path based on how you want to build:
-
-- **New to agents? Start with a prompt agent.** Open the Foundry portal, create an agent with instructions and tools, and test it in minutes — no code required.
-  [Microsoft Foundry quickstart](../quickstarts/get-started-code.md)
-
-- **Ready to code? Deploy a hosted agent.** Build an agent with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
-  [Quickstart: Deploy a hosted agent](quickstarts/quickstart-hosted-agent.md)
-
 For help or to connect with the community, join the [Microsoft AI Discord](https://aka.ms/ai-discord).
 
 ## Related content
 
 - [Set up your environment](environment-setup.md)
 - [Agent development lifecycle](concepts/development-lifecycle.md)
-- [Hosted agents](concepts/hosted-agents.md)
-- [Agent runtime components](concepts/runtime-components.md)
-- [Agent identity](concepts/agent-identity.md)
-- [Tool catalog](concepts/tool-catalog.md)
-- [Tool best practices](concepts/tool-best-practice.md)
-- [Workflows](concepts/workflow.md)
-- [Memory](concepts/what-is-memory.md)
-- [Foundry IQ](concepts/what-is-foundry-iq.md)
-- [Quotas, limits, and regional support](concepts/limits-quotas-regions.md)
 - [Deploy your first hosted agent](quickstarts/quickstart-hosted-agent.md)
-- [Publish and share agents](how-to/publish-agent.md)
-- [Microsoft Foundry SDK overview](../how-to/develop/sdk-overview.md)
+- [Tool catalog](concepts/tool-catalog.md)
+- [Quotas, limits, and regional support](concepts/limits-quotas-regions.md)
