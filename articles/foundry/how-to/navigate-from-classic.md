@@ -30,8 +30,8 @@ Microsoft Foundry evolved through several naming and architectural changes. If y
 
 > [!IMPORTANT]
 > **Key migration dates:**
-> - **May 30, 2026** &mdash; `azure-ai-inference` package retires. Migrate to the `openai` package.
-> - **August 26, 2026** &mdash; Assistants API sunsets. Migrate to the Responses API.
+> - **May 30, 2026** &mdash; `azure-ai-inference` package retires. [Migrate to the `openai` package](./model-inference-to-openai-migration).
+> - **August 26, 2026** &mdash; Assistants API sunsets.  Use the generally available [Microsoft Foundry Agents service](../agents/overview.md). Follow the [migration guide](../agents/how-to/migrate.md#migrate-classic-agents-to-new-agents) to update your workloads. [Learn more](../agents/how-to/migrate.md).
 
 ## Plan your migration
 
@@ -39,8 +39,8 @@ Follow these steps to move from the classic portal experience to the current Fou
 
 1. **Review terminology changes.** Scan the [terminology mapping](#terminology-mapping) to understand renamed concepts and new resource types.
 1. **Check the feature comparison.** Use the [feature comparison](#feature-comparison) table to identify capabilities that are new, enhanced, or classic-only.
-1. **Update your SDK packages.** Replace deprecated packages using the [SDK mapping](#sdk-mapping) table. Ensure SDK versions match your portal target.
-1. **Migrate agents to the Responses API.** Rewrite agents that use the Assistants API to use the Responses API before the August 2026 sunset.
+1. **Update your SDK packages.** Replace deprecated packages using the [SDK mapping](#sdk-mapping) table.
+1. **Migrate agents to the Responses API.** Rewrite agents that use the Assistants API to use the [Responses API](../foundry-models/how-to/generate-responses.md) before the August 2026 sunset.
 1. **Validate in the new portal.** Use the [portal navigation](#navigate-the-portal) reference to verify your workflows in the current experience.
 
 ## Terminology mapping
@@ -63,7 +63,7 @@ The following table maps classic concepts to their current equivalents.
 | Agent definition | Assistants / Agents | Agent Versions | Versioned, with explicit kind (prompt, workflow, hosted). |
 | Agent creation | `create_agent()` | `create_version()` | Uses `PromptAgentDefinition`. |
 | Endpoints | Multiple (openai, azureml, cognitiveservices, search, speech) | Single project endpoint + OpenAI v1 endpoint | Simplified endpoint management. |
-| Documentation | [Classic docs](../../foundry-classic/what-is-foundry.md) | [Current docs](../../foundry/what-is-foundry.md) | Content in two separate doc sets. |
+| Documentation | [Classic docs](../../foundry-classic/what-is-foundry.md) | [Current docs](../what-is-foundry.md) | Content in two separate doc sets. |
 
 ## SDK mapping
 
@@ -73,9 +73,9 @@ Use the following table to identify which SDK packages map to the current Foundr
 | --- | --- | --- | --- |
 | `openai` | `azure-ai-inference` | Use for model inference | `azure-ai-inference` retiring May 30, 2026. |
 | `OpenAI()` with `base_url` | `AzureOpenAI()` | Use standard client | Azure-specific code eliminated. |
-| `azure-ai-projects` 2.x | `azure-ai-projects` 1.x | Preview &mdash; targets the new portal | 1.x targets the classic portal experience. |
-| `azure-ai-projects` 2.x | `azure-ai-generative` | Preview | Capabilities merged into project client. |
-| `azure-ai-projects` 2.x | `azure-ai-ml` | Preview | For hub-to-project migration scenarios. |
+| `azure-ai-projects` 2.x | `azure-ai-projects` 1.x | Stable &mdash; targets the new portal | 1.x targets the classic portal experience. |
+| `azure-ai-projects` 2.x | `azure-ai-generative` | Stable | Capabilities merged into project client. |
+| `azure-ai-projects` 2.x | `azure-ai-ml` | Stable | For hub-to-project migration scenarios. |
 | `azure-ai-projects` (remote) + `azure-ai-evaluation` (local) | `azure-ai-evaluation` (standalone) | Stable | Remote evaluations via project client; local evaluations unchanged. |
 | `azure-search-documents` (via project connections) | `azure-search-documents` | Stable | Separate package, discoverable through project client. |
 
@@ -193,7 +193,7 @@ You can switch between the classic and current portal experiences at any time. T
 | Symptom | Cause | Resolution |
 | --- | --- | --- |
 | `ModuleNotFoundError` or unexpected API behavior | SDK version doesn't match your portal target | Check the [SDK mapping](#sdk-mapping) table and install the correct package version |
-| Projects missing from the new portal | Hub-based projects aren't visible in the current portal | Switch to the classic portal to access hub-based projects, or migrate to Foundry projects |
+| Projects missing from the new portal | Hub-based projects aren't visible in the current portal | Switch to the classic portal to access hub-based projects, or [migrate to Foundry projects (article appears in the classic documentation)](../../foundry-classic/how-to/migrate-project.md) |
 | Endpoint connection failures | Old multi-endpoint URLs no longer resolve | Update to the single project endpoint format (`https://<project>.services.ai.azure.com`) |
 | `AuthenticationError` with new client | API key used with `OpenAI()` client without proper header | Use `DefaultAzureCredential` with a bearer token provider as shown in the [SDK migration example](#sdk-mapping) |
 | Agent code returns `404` or `MethodNotAllowed` | Assistants API calls sent to a Responses API endpoint | Rewrite agent code to use the Responses API (`create_version()` instead of `create_agent()`) |
