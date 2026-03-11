@@ -20,7 +20,7 @@ Azure Face liveness detection lets you detect and mitigate instances of recurrin
 
 Details on how data is handled can be found on the [Data, Privacy, and Security](/azure/ai-foundry/responsible-ai/face/data-privacy-security) page.
 
-[!INCLUDE [liveness-sdk-gate](./includes/liveness-sdk-gate.md)]
+[!INCLUDE [liveness-sdk-gate](../face/includes/liveness-sdk-gate.md)]
 
 ## Components of abuse monitoring in Face API v1.2 and earlier
 
