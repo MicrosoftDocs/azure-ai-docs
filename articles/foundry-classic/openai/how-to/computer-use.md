@@ -27,7 +27,7 @@ Computer Use provides:
 
 For access to the `gpt-5.4` model, registration is required and access will be granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models will still need to request access for this model.
 
-Request access: [gpt-5.4 limited access model application](https://aka.ms/OAI/gpt53codexaccess)
+Request access: [gpt-5.4 limited access model application](https://aka.ms/OAI/gpt54access)
 
 Once access has been granted, you will need to create a deployment for the model.
 
