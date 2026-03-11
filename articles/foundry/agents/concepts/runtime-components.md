@@ -1,6 +1,6 @@
 ---
-title: "Understand agent runtime components in Foundry Agent Service"
-description: "Learn how agents, conversations, and responses work together in Microsoft Foundry Agent Service. Understand state persistence, streaming, and multi-turn interactions."
+title: "Build with agents, conversations, and responses in Foundry Agent Service"
+description: "Learn how to create agents, manage conversations, and generate responses in Microsoft Foundry Agent Service with code examples in Python, C#, JavaScript, Java, and REST API."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -12,10 +12,11 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Agent runtime components
-Agent runtime components are the core objects—agents, conversations, and responses—that power stateful, multi-turn interactions in Microsoft Foundry Agent Service. Together, these components let you generate outputs, persist state across turns, and build conversational applications.
+# Build with agents, conversations, and responses
 
-This article explains the roles of an **agent**, **conversation**, and **response**, and how they work together during response generation. Each section includes code examples that show how to work with these components.
+Microsoft Foundry Agent Service uses three core runtime components—**agents**, **conversations**, and **responses**—to power stateful, multi-turn interactions. An agent defines what model, instructions, and tools to use. A conversation persists history across turns. A response is the output the agent produces when it processes input.
+
+This article walks through each component and shows how to use them together in code. You'll learn how to create an agent, start a conversation, generate responses (with or without an agent), add follow-up messages, and stream results—with examples in Python, C#, JavaScript, Java, and REST API.
 
 
 ## How runtime components work together
