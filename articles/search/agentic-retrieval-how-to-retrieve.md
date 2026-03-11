@@ -1,14 +1,14 @@
 ---
 title: Query Knowledge Base via APIs or MCP
 titleSuffix: Azure AI Search
-description: Learn how to Query a knowledge base using the retrieve action or MCP in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
+description: Learn how to Query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 03/11/2026
 ai-usage: ai-assisted
 ---
 
-# Query a knowledge base using the retrieve action or MCP
+# Query a knowledge base using the retrieve action or MCP endpoint
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 

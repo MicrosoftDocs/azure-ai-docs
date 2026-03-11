@@ -115,7 +115,7 @@ To create an agentic retrieval solution, you can use the Azure portal, the lates
   + [Web](agentic-knowledge-source-how-to-web.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
-+ [Query a knowledge base using the retrieve action or MCP](agentic-retrieval-how-to-retrieve.md)
++ [Query a knowledge base using the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md)
 
 ### [**Tutorials**](#tab/tutorials)
 
