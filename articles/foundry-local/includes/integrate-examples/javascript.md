@@ -1,4 +1,6 @@
 ---
+title: Include file
+description: Include file
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
@@ -13,165 +15,146 @@ ai-usage: ai-assisted
 
 ## Prerequisites
 
-- Foundry Local installed and running. For installation instructions, see [Get started with Foundry Local](../../get-started.md).
-- [Node.js](https://nodejs.org/en/download/) version 18 or later installed.
+- [Node.js](https://nodejs.org/en/download/) version 20 or later installed.
 
-## Install Node.js packages
+## Set up project
 
-You need to install the following Node.js packages:
+[!INCLUDE [project-setup](./../javascript-project-setup.md)]
 
-```bash
-npm install openai
-npm install foundry-local-sdk
-```
-
-The Foundry Local SDK allows you to manage the Foundry Local service and models.
 
 ## Use OpenAI SDK with Foundry Local
 
-The following example demonstrates how to use the OpenAI SDK with Foundry Local. The code initializes the Foundry Local service, loads a model, and generates a response using the OpenAI SDK.
+Install the OpenAI SDK package:
 
-Copy-and-paste the following code into a JavaScript file named `app.mjs`:
+```bash
+npm install openai
+```
+
+The following example demonstrates how to use the OpenAI SDK with Foundry Local's optional web service that is compatible with the OpenAI API. The code includes the following steps:
+
+1. Initializes a `FoundryLocalManager` instance with a configuration that includes the web service URL.
+1. Gets a `Model` object from the model catalog using an alias.
+1. Downloads and loads the model variant.
+1. Starts the Foundry Local web service.
+1. Uses the OpenAI SDK to generate a chat completion.
+1. Unloads the model and stops the web service.
+
+Copy-and-paste the following code into a JavaScript file named `app.js`:
 
 ```javascript
-import { OpenAI } from "openai";
-import { FoundryLocalManager } from "foundry-local-sdk";
+import { FoundryLocalManager } from 'foundry-local-sdk';
+import { OpenAI } from 'openai';
 
-// By using an alias, the most suitable model will be downloaded
-// to your end-user's device.
-// TIP: You can find a list of available models by running the
-// following command in your terminal: `foundry model list`.
-const alias = "qwen2.5-0.5b";
+// Initialize the Foundry Local SDK
+console.log('Initializing Foundry Local SDK...');
 
-// Create a FoundryLocalManager instance. This will start the Foundry
-// Local service if it is not already running.
-const foundryLocalManager = new FoundryLocalManager();
+const endpointUrl = 'http://localhost:5764';
 
-// Initialize the manager with a model. This will download the model
-// if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(alias);
-console.log("Model Info:", modelInfo);
+const manager = FoundryLocalManager.create({
+    appName: 'foundry_local_samples',
+    logLevel: 'info',
+    webServiceUrls: endpointUrl
+});
+console.log('✓ SDK initialized successfully');
+
+// Get the model object
+const modelAlias = 'qwen2.5-0.5b'; // Using an available model from the list above
+const model = await manager.catalog.getModel(modelAlias);
+
+// Download the model
+console.log(`\nDownloading model ${modelAlias}...`);
+await model.download((progress) => {
+    process.stdout.write(`\rDownloading... ${progress.toFixed(2)}%`);
+});
+console.log('\n✓ Model downloaded');
+
+// Load the model
+console.log(`\nLoading model ${modelAlias}...`);
+await model.load();
+console.log('✓ Model loaded');
+
+// Start the web service
+console.log('\nStarting web service...');
+manager.startWebService();
+console.log('✓ Web service started');
 
 const openai = new OpenAI({
-  baseURL: foundryLocalManager.endpoint,
-  apiKey: foundryLocalManager.apiKey,
+    baseURL: endpointUrl + '/v1',
+    apiKey: 'notneeded',
 });
 
-async function generateText() {
-  const response = await openai.chat.completions.create({
-    model: modelInfo.id,
+// Example chat completion
+console.log('\nTesting chat completion with OpenAI client...');
+const response = await openai.chat.completions.create({
+    model: model.id,
     messages: [
-      {
+    {
         role: "user",
         content: "What is the golden ratio?",
-      },
+    },
     ],
-  });
-
-  console.log(response.choices[0].message.content);
-}
-
-generateText();
-```
-
-Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
-Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
-
-Run the code using the following command:
-
-```bash
-node app.mjs
-```
-
-You should see a text response printed in your terminal. On the first run, Foundry Local might download execution providers and the model, which can take a few minutes.
-
-### Streaming Responses
-
-If you want to receive streaming responses, you can modify the code as follows:
-
-```javascript
-import { OpenAI } from "openai";
-import { FoundryLocalManager } from "foundry-local-sdk";
-
-// By using an alias, the most suitable model will be downloaded
-// to your end-user's device.
-// TIP: You can find a list of available models by running the
-// following command in your terminal: `foundry model list`.
-const alias = "qwen2.5-0.5b";
-
-// Create a FoundryLocalManager instance. This will start the Foundry
-// Local service if it is not already running.
-const foundryLocalManager = new FoundryLocalManager();
-
-// Initialize the manager with a model. This will download the model
-// if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(alias);
-console.log("Model Info:", modelInfo);
-
-const openai = new OpenAI({
-  baseURL: foundryLocalManager.endpoint,
-  apiKey: foundryLocalManager.apiKey,
 });
 
-async function streamCompletion() {
-  const stream = await openai.chat.completions.create({
-    model: modelInfo.id,
-    messages: [{ role: "user", content: "What is the golden ratio?" }],
-    stream: true,
-  });
+console.log(response.choices[0].message.content);
 
-  for await (const chunk of stream) {
-    if (chunk.choices[0]?.delta?.content) {
-      process.stdout.write(chunk.choices[0].delta.content);
-    }
-  }
-}
+// Tidy up
+console.log('Unloading model and stopping web service...');
+await model.unload();
+manager.stopWebService();
+console.log(`✓ Model unloaded and web service stopped`);
 
-streamCompletion();
 ```
-
-Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
-
-Run the code using the following command:
-
-```bash
-node app.mjs
-```
-
-You should see tokens stream to your terminal.
 
 ## Use Fetch API with Foundry Local
 
 If you prefer to use an HTTP client like `fetch`, you can do so as follows:
 
 ```javascript
-import { FoundryLocalManager } from "foundry-local-sdk";
+import { FoundryLocalManager } from 'foundry-local-sdk';
 
-// By using an alias, the most suitable model will be downloaded
-// to your end-user's device.
-// TIP: You can find a list of available models by running the
-// following command in your terminal: `foundry model list`.
-const alias = "qwen2.5-0.5b";
+// Initialize the Foundry Local SDK
+console.log('Initializing Foundry Local SDK...');
 
-// Create a FoundryLocalManager instance. This will start the Foundry
-// Local service if it is not already running.
-const foundryLocalManager = new FoundryLocalManager();
+const config = {
+    appName: 'foundry_local_samples',
+    logLevel: 'info',
+    webServiceUrls: 'http://localhost:5764'
+};
 
-// Initialize the manager with a model. This will download the model
-// if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(alias);
-console.log("Model Info:", modelInfo);
+const manager = FoundryLocalManager.create(config);
+console.log('✓ SDK initialized successfully');
 
+// Get the model object
+const modelAlias = 'qwen2.5-0.5b'; // Using an available model from the list above
+const model = await manager.catalog.getModel(modelAlias);
+
+// Download the model
+console.log(`\nDownloading model ${modelAlias}...`);
+await model.download((progress) => {
+    process.stdout.write(`\rDownloading... ${progress.toFixed(2)}%`);
+});
+console.log('\n✓ Model downloaded');
+
+// Load the model
+console.log(`\nLoading model ${modelAlias}...`);
+await model.load();
+console.log('✓ Model loaded');
+
+// Start the web service
+console.log('\nStarting web service...');
+manager.startWebService();
+console.log('✓ Web service started');
+        
 async function queryModel() {
   const response = await fetch(
-    foundryLocalManager.endpoint + "/chat/completions",
+    config.webServiceUrls + "/v1/chat/completions",
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: modelInfo.id,
+        model: model.id,
         messages: [{ role: "user", content: "What is the golden ratio?" }],
       }),
     }
@@ -181,83 +164,12 @@ async function queryModel() {
   console.log(data.choices[0].message.content);
 }
 
-queryModel();
+
+await queryModel();
+
+// Tidy up
+console.log('Unloading model and stopping web service...');
+await model.unload();
+manager.stopWebService();
+console.log(`✓ Model unloaded and web service stopped`);
 ```
-
-Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
-
-### Streaming Responses
-
-If you want to receive streaming responses using the Fetch API, you can modify the code as follows:
-
-```javascript
-import { FoundryLocalManager } from "foundry-local-sdk";
-
-// By using an alias, the most suitable model will be downloaded
-// to your end-user's device.
-// TIP: You can find a list of available models by running the
-// following command in your terminal: `foundry model list`.
-const alias = "qwen2.5-0.5b";
-
-// Create a FoundryLocalManager instance. This will start the Foundry
-// Local service if it is not already running.
-const foundryLocalManager = new FoundryLocalManager();
-
-// Initialize the manager with a model. This will download the model
-// if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(alias);
-console.log("Model Info:", modelInfo);
-
-async function streamWithFetch() {
-  const response = await fetch(
-    foundryLocalManager.endpoint + "/chat/completions",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "text/event-stream",
-      },
-      body: JSON.stringify({
-        model: modelInfo.id,
-        messages: [{ role: "user", content: "what is the golden ratio?" }],
-        stream: true,
-      }),
-    }
-  );
-
-  const reader = response.body.getReader();
-  const decoder = new TextDecoder();
-
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-
-    const chunk = decoder.decode(value);
-    const lines = chunk.split("\n").filter((line) => line.trim() !== "");
-
-    for (const line of lines) {
-      if (line.startsWith("data: ")) {
-        const data = line.substring(6);
-        if (data === "[DONE]") continue;
-
-        try {
-          const json = JSON.parse(data);
-          const content = json.choices[0]?.delta?.content || "";
-          if (content) {
-            // Print to console without line breaks, similar to process.stdout.write
-            process.stdout.write(content);
-          }
-        } catch (e) {
-          console.error("Error parsing JSON:", e);
-        }
-      }
-    }
-  }
-}
-
-// Call the function to start streaming
-streamWithFetch();
-```
-
-Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
-

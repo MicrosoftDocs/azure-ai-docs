@@ -193,7 +193,7 @@ Represents information about a model.
 - **`to_download_body(&self) -> serde_json::Value`**  
   Converts the model info to a JSON body for download requests.
 
-#### `ExecutionProvider`
+### `ExecutionProvider`
 
 Enum for supported execution providers.
 
