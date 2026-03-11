@@ -43,7 +43,7 @@ For a full description of agent lifecycle operations, see [Manage agents in Foun
 
 ### Infrastructure actions vs. admin center actions
 
-The actions available in the Foundry Control Plane are **infrastructure operations** on Azure resources. They're not the same as the **Block** and **Unblock** actions you might be familiar with in Microsoft 365 Admin Center. If an agent application serves a multi-tenant scenario, infrastructure actions affect **all consumers** of that agent, not just your tenant's users.
+The actions available in the Foundry Control Plane are **infrastructure operations** on Azure resources. They're not the same as the **Block** and **Unblock** actions you might be familiar with in Microsoft 365 Admin Center. If an agent application serves a multitenant scenario, infrastructure actions affect **all consumers** of that agent, not just your tenant's users.
 
 - [**Stop** and **Start**](how-to-manage-agents.md#start-and-stop-agents) operate on individual deployments by deallocating or provisioning compute. They affect the underlying Azure infrastructure, not just how an agent is used in your organization.
 - **Delete** permanently removes Azure resources. For published agents, this includes the Agent Application and its deployments. This action can't be undone.
