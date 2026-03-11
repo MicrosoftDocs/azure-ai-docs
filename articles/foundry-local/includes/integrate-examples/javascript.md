@@ -21,14 +21,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]
 
-
 ## Use OpenAI SDK with Foundry Local
-
-Install the OpenAI SDK package:
-
-```bash
-npm install openai
-```
 
 The following example demonstrates how to use the OpenAI SDK with Foundry Local's optional web service that is compatible with the OpenAI API. The code includes the following steps:
 
