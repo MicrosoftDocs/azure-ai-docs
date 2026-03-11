@@ -2,7 +2,6 @@
 title: 'Tutorial: Build an Agentic Retrieval Solution'
 titleSuffix: Azure AI Search
 description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
-keywords: agentic retrieval tutorial, foundry agent service mcp, azure ai search agent, end-to-end retrieval pipeline
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
