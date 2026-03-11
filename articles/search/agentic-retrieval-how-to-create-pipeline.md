@@ -1,11 +1,11 @@
 ---
-title: 'Tutorial: Create an End-to-End Retrieval Solution'
+title: 'Tutorial: Build an Agentic Retrieval Solution'
 titleSuffix: Azure AI Search
-description: Learn how to design and build a custom agentic retrieval solution where Azure AI Search handles data retrieval for your custom agents in Microsoft Foundry.
+description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 01/27/2026
+ms.date: 03/11/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -29,7 +29,7 @@ In this tutorial, you:
 > + Test the solution by chatting with the agent
 > + Review tips for optimizing the solution
 
-:::image type="content" source="media/agentic-retrieval/end-to-end-pipeline.svg" alt-text="Diagram of Azure AI Search integration with Foundry Agent Service via MCP." lightbox="media/agentic-retrieval/end-to-end-pipeline.svg" :::
+:::image type="content" source="media/agentic-retrieval/end-to-end-pipeline.svg" alt-text="Diagram of the end-to-end agentic retrieval pipeline showing Azure AI Search integration with Foundry Agent Service via MCP." lightbox="media/agentic-retrieval/end-to-end-pipeline.svg":::
 
 > [!TIP]
 > Want to get started right away? Clone the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python notebook on GitHub. The notebook contains the code from this tutorial in a ready-to-run format.
@@ -413,7 +413,7 @@ agent = project_client.agents.create_version(
 print(f"AI agent '{agent_name}' created or updated successfully")
 ```
 
-#### Connect to a remote SharePoint knowledge source
+#### (Optional) Connect to a remote SharePoint knowledge source
 
 [!INCLUDE [foundry-iq-limitation](../foundry/includes/foundry-iq-limitation.md)]
 
