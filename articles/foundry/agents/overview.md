@@ -56,8 +56,8 @@ An agent is an AI application that uses a large language model (LLM) to reason a
 Agent Service supports three types of agents, each designed for different needs:
 
 * Prompt agents
-* Workflow agents
-* Hosted agents
+* Workflow agents (preview)
+* Hosted agents (preview)
 
 ### Prompt agents
 
@@ -65,7 +65,7 @@ Prompt agents are defined entirely through configuration — instructions, model
 
 **Best for**: Rapid prototyping, internal tools, and agents that don't need custom orchestration logic. Create a working agent in minutes using the portal.
 
-### Workflow agents
+### Workflow agents (preview)
 
 [Workflow agents](concepts/workflow.md) orchestrate a sequence of actions or coordinate multiple agents using declarative definitions. Build workflows visually in the Foundry portal or define them in YAML through Visual Studio Code. Workflows support branching logic, human-in-the-loop steps, and sequential or group-chat patterns.
 
@@ -82,12 +82,6 @@ Prompt agents are defined entirely through configuration — instructions, model
 
 ### Compare agent types
 
-> [!TIP]
-> Ready to get started with agents? Choose your path based on how you want to build:
-> - **New to agents?** [Start with a prompt agent](../quickstarts/get-started-code.md) to create an agent with instructions and tools. Use the Foundry portal to create one with no code required, or use the SDKs or REST API.
-> - **Want to deploy an agent as a container with a framework of your choice?** [Build a hosted agent](quickstarts/quickstart-hosted-agent.md) with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
-> - **Want to orchestrate multiple agents?** [Build a workflow](./concepts/workflow.md) to orchestrate agents and business logic in a visual builder.
-
 | | Prompt agents | Workflow agents | Hosted agents (preview) |
 | --- | --- | --- | --- |
 | **Code required** | No | No (YAML optional) | Yes |
@@ -95,9 +89,15 @@ Prompt agents are defined entirely through configuration — instructions, model
 | **Orchestration** | Single agent | Multi-agent, branching | Custom logic |
 | **Best for** | Prototyping, simple tasks | Multi-step automation | Full control, custom frameworks |
 
+> [!TIP]
+> Ready to get started with agents? Choose your path based on how you want to build:
+> - **New to agents?** [Start with a prompt agent](../quickstarts/get-started-code.md) to create an agent with instructions and tools. Use the Foundry portal to create one with no code required, or use the SDKs or REST API.
+> - **Want to deploy an agent as a container with a framework of your choice?** [Build a hosted agent](quickstarts/quickstart-hosted-agent.md) with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
+> - **Want to orchestrate multiple agents?** [Build a workflow](./concepts/workflow.md) to orchestrate agents and business logic in a visual builder.
+
 ## Framework and model support
 
-Agent Service is framework-agnostic. Bring the framework that fits your team and use case.
+ Foundry agents can be used with the [Foundry SDK](../how-to/develop/sdk-overview.md) which is available in python, .Net, JS and Java. The Agents service itself is framework-agnostic. Bring the framework that fits your team and use case.
 
 | Framework | Python | C# |
 | --- | --- | --- |
