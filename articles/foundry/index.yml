@@ -22,7 +22,7 @@ highlightedContent:
     - title: What is Microsoft Foundry?
       itemType: overview
       url: ./what-is-foundry.md
-    - title: Looking for Foundry (classic)?
+    - title: Looking for Foundry (classic) portal documentation?
       itemType: overview
       url: ../foundry-classic/what-is-foundry.md
     - title: Explore Foundry Models
