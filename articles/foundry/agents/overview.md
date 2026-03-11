@@ -146,7 +146,14 @@ Agent Service provides built-in versioning and publishing so your agents can mov
 - **[Publishing](how-to/publish-agent.md)** — Promote an agent to a managed resource with a stable endpoint. Published agents inherit the [enterprise identity and access controls](#enterprise-capabilities) configured for your project and can be invoked programmatically.
 - **Distribution** — Share published agents through [Microsoft 365 Copilot and Teams](how-to/publish-copilot.md) and the Entra Agent Registry, putting your agents where your users already work.
 
-For help or to connect with the community, join the [Microsoft AI Discord](https://aka.ms/ai-discord).
+## Security, privacy, and compliance
+
+Agent Service is designed for enterprise workloads where you need strong controls over identity, networking, data handling, and safety.
+
+- **Safety controls**: Use integrated [guardrails](../guardrails/guardrails-overview.md) to help reduce unsafe outputs and mitigate prompt injection risks, including cross-prompt injection attacks (XPIA).
+- **Network isolation and data residency controls**: Use [virtual networks](how-to\virtual-networks.md) and bring-your-own resources to meet your requirements.
+- **Bring your own resources**: Use your own Azure resources (for example, storage, Azure AI Search, and Azure Cosmos DB for conversation state) to meet compliance and operational needs. See [Use your own resources](how-to/use-your-own-resources.md).
+- **Responsible AI guidance**: For a broader set of recommendations and governance resources, see [Responsible AI for Microsoft Foundry](../responsible-use-of-ai-overview.md).
 
 ## Related content
 
@@ -155,3 +162,4 @@ For help or to connect with the community, join the [Microsoft AI Discord](https
 - [Deploy your first hosted agent](quickstarts/quickstart-hosted-agent.md)
 - [Tool catalog](concepts/tool-catalog.md)
 - [Quotas, limits, and regional support](concepts/limits-quotas-regions.md)
+- For help or to connect with the community, join the [Microsoft AI Discord](https://aka.ms/ai-discord).
