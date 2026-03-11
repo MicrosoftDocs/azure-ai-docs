@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: overview
 ms.date: 03/10/2026
-ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, classic-and-new, doc-kit-assisted
+ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 keywords:
     - Foundry Agent Service
@@ -30,22 +30,22 @@ Foundry Agent Service is a fully managed platform for building, deploying, and s
 
 Agent Service handles hosting, scaling, identity, observability, and enterprise security so you can focus on your agent logic.
 
-## Prerequisites
+## What is an agent?
 
-- An Azure subscription.
-- A [Microsoft Foundry project](../how-to/create-projects.md).
-- For SDK development: [Install the CLI and SDK](../how-to/develop/install-cli-sdk.md).
+An agent is an AI application that uses a large language model (LLM) to reason about user requests and take autonomous actions to fulfill them. Unlike a simple chatbot that only generates text, an agent can call tools, access external data, and make decisions across multiple steps to complete a task. Every agent combines three core components:
 
-## At a glance
+* **Model (LLM)**: Provides reasoning and language capabilities.
+* **Instructions**: Define goals, constraints, and behavior. In Foundry, instructions can be prompt-based, workflow definitions, or hosted agent code.
+* **Tools**: Provide access to data or actions, such as search, file operations, or API calls.
 
-| Component | What it does |
-| --- | --- |
-| **Agent Runtime** | Hosts and scales both prompt agents and hosted agents. Manages conversations, tool calls, and [agent lifecycle](concepts/development-lifecycle.md). |
-| **Tools** | [Web search](how-to/tools/bing-tools.md), [file search](how-to/tools/file-search.md), [memory](concepts/what-is-memory.md), [code interpreter](how-to/tools/custom-code-interpreter.md), [MCP servers](how-to/tools/model-context-protocol.md), and [custom functions](how-to/tools/function-calling.md). Extend agent capabilities without building infrastructure. Discover and manage tools in the [Foundry tool catalog](concepts/tool-catalog.md). |
-| **Models** | Works with any model from the Foundry model catalog. Swap models without changing your agent code. For supported models, see [Quotas, limits, and regional support](concepts/limits-quotas-regions.md). |
-| **Observability** | End-to-end [tracing](../observability/concepts/trace-agent-concept.md), [metrics](how-to/metrics.md), and Application Insights integration. View agent decisions, tool calls, and model interactions. |
-| **Identity & Security** | Microsoft Entra [agent identity](concepts/agent-identity.md), RBAC, content filters, and virtual network isolation. Meets enterprise security and compliance requirements. |
-| **Publishing** | Version agents, create stable endpoints, and [share through Microsoft Teams, Microsoft 365 Copilot, and the Entra Agent Registry](how-to/publish-agent.md). |
+:::image type="content" source="media/what-is-an-agent.png" alt-text="A diagram showing the components of an AI agent.":::
+
+Agent Service provides:
+
+* **Agent Runtime**: Hosts and scales both prompt agents and hosted agents. Manages conversations, tool calls, and [agent lifecycle](concepts/development-lifecycle.md).
+* **Observability**: End-to-end tracing, metrics, and Application Insights integration. See every decision your agent makes.
+**Identity & Security**: Microsoft Entra identity, RBAC, content filters, and virtual network isolation. Enterprise-grade trust is built in.
+**Publishing**: Version agents, create stable endpoints, and share through Microsoft Teams, Microsoft 365 Copilot, and the Entra Agent Registry.
 
 ## Agent types
 
