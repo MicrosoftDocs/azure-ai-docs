@@ -23,7 +23,7 @@ Through integration with [Fireworks AI](https://fireworks.ai/), Microsoft Foundr
 * **Import and deploy custom model weights** (bring your own model, or BYOM) onto Fireworks' on-demand GPU-backed infrastructure. For more information, see [Import custom models on Microsoft Foundry with Fireworks](import-custom-models.md).
 * **Scale up** using [Provisioned throughput](../../openai/concepts/provisioned-throughput.md).
 
-You can do all of this from your Foundry project while using Azure's governance, access controls, and project management.
+All of these capabilities are available directly within your Foundry project, with Azure governance, access controls, and project management built in.
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ Data Zone Standard deployments of models via Fireworks on Foundry are available 
 * **West US** (westus)
 * **West US 3** (westus3)
 
-Global provisioned throughput deployments of base and custom models are available in all public [Azure regions](/azure/reliability/regions-list) with the exception of Azure Government cloud environments.
+Global provisioned throughput deployments of base and custom models are available in all global [Azure regions](/azure/reliability/regions-list) except for Azure Government cloud environments.
 
 ## Enable Fireworks on Foundry
 
@@ -87,11 +87,11 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 
 1. In the deployment window, configure the following settings:
 
-   * **Deployment name** â€” Keep the default name or enter a custom name to identify the deployment.
-   * **Deployment type** â€” Select **Data Zone Standard** or **Global provisioned throughput**. For more information, see [Deployment types](../../foundry-models/concepts/deployment-types.md#deployment-type-comparison).
-   * **Model version settings** â€” Select the model version for the deployment.
-   * **Tokens per Minute Rate Limit** â€” Set a custom tokens-per-minute limit to manage costs and control usage. The default value is based on the model's typical performance and cost profile.
-   * **Guardrails** â€” Select **DefaultV2** or **Default** guardrail configuration. By default, models are assigned the Microsoft.DefaultV2 guardrail. For more information, see [Use guardrails to set boundaries on model outputs](../../guardrails/guardrails-overview.md).
+   * **Deployment name**: Keep the default name or enter a custom name to identify the deployment.
+   * **Deployment type**: Select **Data Zone Standard** or **Global provisioned throughput**. For more information, see [Deployment types](../../foundry-models/concepts/deployment-types.md#deployment-type-comparison).
+   * **Model version settings**: Select the model version for the deployment.
+   * **Tokens per Minute Rate Limit**:  Set a custom tokens-per-minute limit to manage costs and control usage. The default value is based on the model's typical performance and cost profile.
+   * **Guardrails**: Select **DefaultV2** or **Default** guardrail configuration. Models use the **Microsoft.DefaultV2** guardrail unless a different one is specified. For more information, see [Use guardrails to set boundaries on model outputs](../../guardrails/guardrails-overview.md).
 
 1. Select **Deploy**. The deployment process can take up to 30 minutes.
 
@@ -144,7 +144,7 @@ Fireworks model deployments made available via Foundry send inference traffic ou
 >
 > FedRAMP isn't achieved for Fireworks on Foundry. If your organization requires FedRAMP, before use, consult with your Authorization Official to determine if use of Fireworks on Foundry is allowed.
 >
-> Payment Card Industry (PCI) Data Security Standard (DSS) is not applicable to Fireworks on Foundry. You should not use Fireworks on Foundry to store, process, or transmit payment and cardholder data.
+> Payment Card Industry (PCI) Data Security Standard (DSS) isn't applicable to Fireworks on Foundry. You shouldn't use Fireworks on Foundry to store, process, or transmit payment and cardholder data.
 
 Consult the Fireworks AI [Trust Center](https://trust.fireworks.ai/) to review their Data Processing Addendum and certifications and their [Privacy Notice](https://fireworks.ai/privacy-policy) to understand their privacy commitment.
 
@@ -166,7 +166,7 @@ No, currently the Fireworks on Foundry service isn't available for Azure Governm
 
 ### How can I get quota for Fireworks model deployments?
 
-Use the quota request [form](https://aka.ms/fireworks-quota) to request additional quota for Fireworks on Foundry.
+Use the quota request [form](https://aka.ms/fireworks-quota) to request added quota for Fireworks on Foundry.
 
 ### I have a Fireworks AI account. Can I use my existing Fireworks deployments?
 
@@ -200,11 +200,11 @@ Use the following guidance to resolve common issues with Fireworks on Foundry.
 | --- | --- |
 | **Preview registration stays in "Registering" state** | Registration can take up to 30 minutes. Refresh the **Preview features** page to check the current status. If the state doesn't change after 30 minutes, try unregistering and re-registering the feature. |
 | **Fireworks models don't appear in the model catalog** | Confirm that the preview feature state shows **Registered** for your subscription. Verify you're working in a [supported region](#region-availability). |
-| **Deployment fails with a quota error** | Use the [quota request form](https://aka.ms/fireworks-quota) to request additional capacity for Fireworks on Foundry. |
+| **Deployment fails with a quota error** | Use the [quota request form](https://aka.ms/fireworks-quota) to request added capacity for Fireworks on Foundry. |
 | **"Forbidden" or access denied during deployment** | Verify that your identity has the **Azure AI Developer** role or higher on the Foundry project. Subscription-level roles alone aren't sufficient for deployment. |
 | **Model endpoint returns errors after deployment** | Confirm the deployment status shows **Succeeded** on the project's **Deployments** page. Verify you're using the correct **Target URI** and **Key** from the deployment details. |
 
-For additional questions, see the [frequently asked questions](#frequently-asked-questions).
+For other queries, see the [frequently asked questions](#frequently-asked-questions) section.
 
 ## Related content
 
