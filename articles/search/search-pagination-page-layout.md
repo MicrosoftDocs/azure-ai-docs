@@ -1,9 +1,7 @@
 ---
-title: Shape search results
+title: Shape Search Results
 titleSuffix: Azure AI Search
 description: Modify search result composition, get a document count, sort results, and add content navigation to search results in Azure AI Search.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

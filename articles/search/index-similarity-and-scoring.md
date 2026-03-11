@@ -1,5 +1,5 @@
 ---
-title: BM25 relevance scoring
+title: BM25 Relevance Scoring
 titleSuffix: Azure AI Search
 description: Explains the concepts of BM25 relevance and scoring in Azure AI Search, and what a developer can do to customize the scoring result.
 ms.service: azure-ai-search

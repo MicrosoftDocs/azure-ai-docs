@@ -1,13 +1,11 @@
 ---
-title: Model complex data types
+title: Model Complex Data Types
 titleSuffix: Azure AI Search
 description: Nested or hierarchical data structures can be modeled in an Azure AI Search index using ComplexType and Collections data types.
-manager: nitinme
-author: bevloh
-ms.author: beloh
 tags: complex data types; compound data types; aggregate data types
 ms.custom:
   - ignite-2023
+ms.reviewer: beloh
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/14/2025

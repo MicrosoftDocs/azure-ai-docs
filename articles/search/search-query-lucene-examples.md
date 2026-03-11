@@ -1,5 +1,5 @@
 ---
-title: Examples of full Lucene query syntax
+title: Examples of Full Lucene Query Syntax
 titleSuffix: Azure AI Search
 description: Explore query examples that demonstrate the Lucene query syntax for fuzzy search, proximity search, term boosting, regular expression search, and wildcard searches in an Azure AI Search index.
 ms.service: azure-ai-search

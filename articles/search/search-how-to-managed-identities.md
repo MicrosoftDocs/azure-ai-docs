@@ -1,5 +1,5 @@
 ---
-title: Configure a managed identity
+title: Configure a Managed Identity
 titleSuffix: Azure AI Search
 description: Create a managed identity for your search service, and use Microsoft Entra authentication and role-based-access controls for connections to other cloud services.
 ms.service: azure-ai-search

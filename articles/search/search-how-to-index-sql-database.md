@@ -1,5 +1,5 @@
 ---
-title: Azure SQL indexer
+title: Azure SQL Indexer
 titleSuffix: Azure AI Search
 description: Set up a search indexer to index tables in Azure SQL Database for vector and full text search in Azure AI Search.
 ms.service: azure-ai-search

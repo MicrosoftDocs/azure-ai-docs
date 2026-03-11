@@ -1,10 +1,8 @@
 ---
-title: Azure Content Understanding skill
+title: Azure Content Understanding Skill
 titleSuffix: Azure AI Search
 description: Learn how to analyze and chunk a document in an enrichment pipeline in Azure AI Search.
-author: ruix
-ms.author: ruix
-ms.reviewer: haileytapia
+ms.reviewer: ruix
 ms.service: azure-ai-search
 ms.custom:
   - references_regions

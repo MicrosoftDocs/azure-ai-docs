@@ -1,5 +1,5 @@
 ---
-title: Performance tips
+title: Performance Tips
 titleSuffix: Azure AI Search
 description: Learn about tips and best practices for maximizing performance on a search service.
 author: mattwojo

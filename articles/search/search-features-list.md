@@ -1,5 +1,5 @@
 ---
-title: Feature descriptions
+title: Feature Descriptions
 titleSuffix: Azure AI Search
 description: Explore the feature categories of Azure AI Search.
 ms.service: azure-ai-search

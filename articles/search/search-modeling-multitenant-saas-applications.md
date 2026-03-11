@@ -1,5 +1,5 @@
 ---
-title: Multitenancy and content isolation
+title: Multitenancy and Content Isolation
 titleSuffix: Azure AI Search
 description: Learn about common design patterns for multitenant SaaS applications while using Azure AI Search.
 author: mattwojo

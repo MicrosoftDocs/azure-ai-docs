@@ -1,5 +1,5 @@
 ---
-title: Search over JSON blobs
+title: Search Over JSON Blobs
 titleSuffix: Azure AI Search
 description: Extract searchable text from JSON blobs using the blob indexer in Azure AI Search. Indexers provide indexing automation for supported data sources like Azure Blob Storage.
 ms.service: azure-ai-search
