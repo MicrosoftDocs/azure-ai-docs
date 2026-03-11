@@ -3119,6 +3119,61 @@
       "source_path_from_root": "/articles/ai-services/computer-vision/how-to/liveness-use-network-isolation.md",
       "redirect_url": "/azure/ai-services/face/how-to/liveness-use-network-isolation",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-face-detection.md",
+      "redirect_url": "/azure/ai-services/face/concept-face-detection",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-face-liveness-detection.md",
+      "redirect_url": "/azure/ai-services/face/concept-face-liveness-detection",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-face-recognition-data-structures.md",
+      "redirect_url": "/azure/ai-services/face/concept-face-recognition-data-structures",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-face-recognition.md",
+      "redirect_url": "/azure/ai-services/face/concept-face-recognition",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/enrollment-overview.md",
+      "redirect_url": "/azure/ai-services/face/enrollment-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/face-index.yml",
+      "redirect_url": "/azure/ai-services/face/face-index",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/face/context/context.yml",
+      "redirect_url": "/azure/ai-services/face/context/context.json",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/identity-api-reference.md",
+      "redirect_url": "/azure/ai-services/face/identity-api-reference",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/identity-encrypt-data-at-rest.md",
+      "redirect_url": "/azure/ai-services/face/identity-encrypt-data-at-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/identity-quotas-limits.md",
+      "redirect_url": "/azure/ai-services/face/identity-quotas-limits",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/liveness-detection-shared-responsibility.md",
+      "redirect_url": "/azure/ai-services/face/liveness-detection-shared-responsibility",
+      "redirect_document_id": true
     }
   ]
 }
