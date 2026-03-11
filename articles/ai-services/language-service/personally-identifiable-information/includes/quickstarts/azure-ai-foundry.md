@@ -217,11 +217,3 @@ The **extract`PII` from conversations** feature detects and masks personally ide
     | **Length** | The character length of the entity. |
 
 Verify that the detected entities match the`PII` in your input conversation. You can use the **Edit** button to modify the **Configure** parameters and rerun detection as needed.
-
-## Related content
-
-* [Recognized`PII` entity types in text](../../concepts/entity-categories.md)
-
-* [Recognized`PII` entity types in conversations](../../concepts/conversations-entity-categories.md)
-
-* [Redaction policies (text)](../../how-to/redact-text-pii.md#redaction-policies)

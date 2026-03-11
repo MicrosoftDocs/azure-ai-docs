@@ -88,6 +88,9 @@ If you no longer need the resources you created in this quickstart, delete the i
 ## Related content
 
 * [PII overview](overview.md)
-* [How to detect and redact PII in text](how-to/redact-text-pii.md)
-* [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md)
-* [Supported entity categories for text](concepts/entity-categories.md)
+
+* [Recognized`PII` entity types in text](../../concepts/entity-categories.md)
+
+* [Recognized`PII` entity types in conversations](../../concepts/conversations-entity-categories.md)
+
+* [Redaction policies (text)](../../how-to/redact-text-pii.md#redaction-policies)
