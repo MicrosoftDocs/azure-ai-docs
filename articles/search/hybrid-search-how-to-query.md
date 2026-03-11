@@ -1,5 +1,5 @@
 ---
-title: Create a hybrid query
+title: Create a Hybrid Query
 titleSuffix: Azure AI Search
 description: Learn how to build queries for hybrid search.
 ms.service: azure-ai-search

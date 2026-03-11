@@ -1,5 +1,5 @@
 ---
-title: Monitor queries
+title: Monitor Queries
 titleSuffix: Azure AI Search
 description: Monitor query metrics for performance and throughput. Collect and analyze query string inputs in resource logs.
 author: mattwojo

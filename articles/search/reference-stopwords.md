@@ -2,9 +2,6 @@
 title: Stopwords
 titleSuffix: Azure AI Search
 description: Reference documentation containing the stopwords list of the Microsoft language analyzers.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

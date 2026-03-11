@@ -1,9 +1,8 @@
 ---
-title: Sentiment cognitive skill (v2)
+title: Sentiment Cognitive Skill (V2)
 titleSuffix: Azure AI Search
 description: Extract a positive-negative sentiment score from text in an AI enrichment pipeline in Azure AI Search.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

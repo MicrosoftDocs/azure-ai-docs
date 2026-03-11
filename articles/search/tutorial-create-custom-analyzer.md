@@ -2,8 +2,7 @@
 title: 'Tutorial: Create a Custom Analyzer'
 titleSuffix: Azure AI Search
 description: Learn how to build a custom analyzer to improve the quality of search results in Azure AI Search.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

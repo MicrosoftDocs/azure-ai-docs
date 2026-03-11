@@ -1,5 +1,5 @@
 ---
-title: Multi-language indexing for non-English search queries
+title: Multi-Language Indexing for Non-English Search Queries
 titleSuffix: Azure AI Search
 description: Create an index that supports multi-language content and then create queries scoped to that content.
 ms.service: azure-ai-search

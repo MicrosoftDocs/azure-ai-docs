@@ -1,5 +1,5 @@
 ---
-title: PowerShell scripts using Azure Search PowerShell module
+title: PowerShell Scripts Using Azure Search PowerShell Module
 titleSuffix: Azure AI Search
 description: Create and configure an Azure AI Search service with PowerShell. You can scale a service up or down, manage admin and query api-keys, and query for system information.
 author: mattwojo

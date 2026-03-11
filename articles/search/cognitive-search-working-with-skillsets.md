@@ -1,5 +1,5 @@
 ---
-title: Skillset concepts
+title: Skillset Concepts
 titleSuffix: Azure AI Search
 description: Skillsets are used to apply AI processing to indexing pipelines in Azure AI Search. Learn important concepts and details about skillset composition.
 ms.service: azure-ai-search

@@ -1,7 +1,5 @@
 ---
-manager: nitinme
-author: diberry
-ms.author: haileytapia
+ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/05/2026

@@ -1,8 +1,8 @@
 ---
-title:  "Deploy search app (.NET tutorial)"
+title: Deploy Search App (.NET Tutorial)
 titleSuffix: Azure AI Search
 description: Deploy search-enabled website with .NET APIs to Azure Static web app.
-author: diberry
+ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial

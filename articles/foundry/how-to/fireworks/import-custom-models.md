@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 03/11/2026
 author: ssalgadodev 
 ms.author: ssalgado
-ms.custom: doc-kit-assisted
+ms.custom: doc-kit-assisted, references_regions
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -41,7 +41,7 @@ Before you begin, make sure your Azure environment is set up and that you have t
 
 ## Region availability
 
-Support for deploying custom models is available in all public [Azure regions](/azure/reliability/regions-list) with the exception of Azure Government cloud environments.
+Support for deploying custom models is available in all global [Azure regions](/azure/reliability/regions-list) except for Azure Government cloud environments.
 
 ## Model requirements
 
@@ -85,10 +85,14 @@ The import process starts in the Foundry portal, where you register your model, 
 
 1. Select **Add a custom model**.
 
+    :::image type="content" source="../media/fireworks/add-custom-model.png" alt-text="Screenshot of the Add a custom model page.":::
+
 1. Configure the following settings:
 
-   * **Name**: Enter a descriptive name for your custom model.
-   * **Architecture**: Select the model architecture that matches your model (for example, `DeepSeek V3.2` or `GLM 4.7`).
+   * **Model name**: Enter a descriptive name for your custom model.
+   * **Base model architecture**: Select the model architecture that matches your model (for example, `DeepSeek V3.2` or `GLM 4.7`).
+
+      :::image type="content" source="../media/fireworks/select-model-architecture.png" alt-text="Screenshot of the Select model architecture window.":::
 
 1. The portal generates an `azd` command. Copy the command and paste it into a local terminal. Update the `--source` parameter to point to the directory that contains your model weight files.
 
@@ -117,8 +121,8 @@ With the model registered, you can deploy it to Fireworks' cloud for inference.
 
 1. Configure the deployment:
 
-   * **Deployment name** — Provide a deployment name. During inference, this name is used in the `model` parameter to route requests to this deployment.
-   * **Provisioned throughput units** — Allocate the number of provisioned throughput units (PTUs) for the deployment. For more information, see [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
+   * **Deployment name**: provide a deployment name. During inference, this name is used in the `model` parameter to route requests to this deployment.
+   * **Provisioned throughput units**: allocate the number of provisioned throughput units (PTUs) for the deployment. For more information, see [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md).
 
 1. Review and acknowledge the pricing terms.
 
@@ -146,7 +150,7 @@ If you encounter issues during import or deployment, use the following table to 
 | Deployment fails | Confirm you have sufficient quota and that the [Fireworks preview feature](enable-fireworks-models.md#enable-fireworks-on-foundry) is enabled and registered in your subscription. |
 | Quota exceeded | [Request more quota](https://aka.ms/fireworks-quota) or reallocate provisioned throughput units from existing deployments. |
 
-For additional troubleshooting guidance, see [Troubleshoot Fireworks on Foundry](enable-fireworks-models.md#troubleshoot-fireworks-on-foundry).
+For more troubleshooting guidance, see [Troubleshoot Fireworks on Foundry](enable-fireworks-models.md#troubleshoot-fireworks-on-foundry).
 
 ## Related content
 

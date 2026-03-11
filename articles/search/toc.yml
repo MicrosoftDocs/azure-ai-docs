@@ -495,7 +495,7 @@ items:
       href: agentic-retrieval-how-to-answer-synthesis.md
     - name: Set retrieval reasoning effort
       href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
-    - name: Retrieve data
+    - name: Query a knowledge base (APIs or MCP)
       href: agentic-retrieval-how-to-retrieve.md
     - name: Build an end-to-end retrieval solution
       href: agentic-retrieval-how-to-create-pipeline.md

@@ -4,12 +4,13 @@ titleSuffix: Azure Machine Learning
 description: Plan to manage costs for Azure Machine Learning with cost analysis in the Azure portal. Learn further cost-saving tips for building ML models.
 author: s-polly
 ms.author: scottpolly
-ms.custom: subject-cost-optimization, build-2023
+ms.custom: subject-cost-optimization, build-2023, dev-focus
 ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: concept-article
-ms.date: 03/21/2025
+ms.date: 03/11/2026
+ai-usage: ai-assisted
 # customer intent: Understand the costs associated with Azure Machine Learning and how to manage them.
 ---
 
@@ -17,9 +18,9 @@ ms.date: 03/21/2025
 
 This article describes how to plan and manage costs for Azure Machine Learning. First, use the Azure pricing calculator to help plan for costs before you add any resources. Next, review the estimated costs while you add Azure resources.
 
-After you start using Azure Machine Learning resources, use the cost management features to set budgets and monitor costs. Also, review the forecasted costs and identify spending trends to identify areas where you might want to act.
+After you start using Azure Machine Learning resources, use the cost management features to set budgets and monitor costs. Also, review the forecasted costs and identify spending trends to find areas where you might want to act.
 
-Understand that the costs for Azure Machine Learning are only a portion of the monthly costs in your Azure bill. If you use other Azure services, you're billed for all the Azure services and resources used in your Azure subscription, including third-party services. This article explains how to plan for and manage costs for Azure Machine Learning. After you're familiar with managing costs for Azure Machine Learning, apply similar methods to manage costs for all the Azure services used in your subscription.
+Understand that the costs for Azure Machine Learning are only a portion of the monthly costs in your Azure bill. If you use other Azure services, you pay for all the Azure services and resources used in your Azure subscription, including third-party services. This article explains how to plan for and manage costs for Azure Machine Learning. After you're familiar with managing costs for Azure Machine Learning, apply similar methods to manage costs for all the Azure services used in your subscription.
 
 For more information on optimizing costs, see [Manage and optimize Azure Machine Learning costs](how-to-manage-optimize-cost.md).
 
@@ -31,26 +32,26 @@ For more information on optimizing costs, see [Manage and optimize Azure Machine
 
 ## Estimate costs before using Azure Machine Learning
 
-Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs before you create resources in an Azure Machine Learning workspace. On the left side of the pricing calculator, select **AI + Machine Learning**, then select **Azure Machine Learning** to begin.  
+Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs before you create resources in an Azure Machine Learning workspace. On the left side of the pricing calculator, select **AI + Machine Learning**, and then select **Azure Machine Learning**.  
 
 The following screenshot shows an example cost estimate in the pricing calculator:
 
 :::image type="content" source="media/concept-plan-manage-cost/capacity-calculator-cost-estimate.png" alt-text="Screenshot that shows an example of estimated cost in the Azure pricing calculator." lightbox="media/concept-plan-manage-cost/capacity-calculator-cost-estimate.png":::
 
-As you add resources to your workspace, return to this calculator and add the same resource here to update your cost estimates.
+As you add resources to your workspace, return to this calculator and add the same resource to update your cost estimates.
 
 For more information, see [Azure Machine Learning pricing](https://azure.microsoft.com/pricing/details/machine-learning?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
 ## Understand the full billing model for Azure Machine Learning
 
-Azure Machine Learning runs on Azure infrastructure that accrues costs along with Azure Machine Learning when you deploy the new resource. It's important to understand that extra infrastructure might accrue cost. You need to manage that cost when you make changes to deployed resources. 
+Azure Machine Learning runs on Azure infrastructure that accrues costs along with Azure Machine Learning when you deploy the new resource. Extra infrastructure might accrue costs. You need to manage those costs when you make changes to deployed resources. 
 
 ### Costs that typically accrue with Azure Machine Learning
 
-When you create resources for an Azure Machine Learning workspace, resources for other Azure services are also created. They are:
+When you create resources for an Azure Machine Learning workspace, you also create resources for other Azure services. They are:
 
 * [Azure Container Registry](https://azure.microsoft.com/pricing/details/container-registry?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) basic account
-* [Azure Blob Storage](https://azure.microsoft.com/pricing/details/storage/blobs?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) (general purpose v1)
+* [Azure Blob Storage](https://azure.microsoft.com/pricing/details/storage/blobs?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) (general purpose v2)
 * [Azure Key Vault](https://azure.microsoft.com/pricing/details/key-vault?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn)
 * [Azure Monitor](https://azure.microsoft.com/pricing/details/monitor?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn)
 
@@ -69,7 +70,7 @@ Before you delete an Azure Machine Learning workspace in the Azure portal or wit
 
 Each VM is billed per hour that it runs. Cost depends on VM specifications. VMs that run but don't actively work on a dataset are still charged via the load balancer. For each compute instance, one load balancer is billed per day. Every 50 nodes of a compute cluster have one standard load balancer billed. Each load balancer is billed around $0.33/day. To avoid load balancer costs on stopped compute instances and compute clusters, delete the compute resource.
 
-Compute instances also incur P10 disk costs even in stopped state because any user content saved there persists across the stopped state similar to Azure VMs. We're working on making the OS disk size/ type configurable to better control costs. For Azure Virtual Networks, one virtual network is billed per subscription and per region. Virtual networks can't span regions or subscriptions. Setting up private endpoints in a virtual network might also incur charges. If your virtual network uses an Azure Firewall, it might also incur charges. Bandwidth charges reflect usage; the more data transferred, the greater the charge. 
+Compute instances also incur P10 disk costs even in stopped state because any user content saved there persists across the stopped state similar to Azure VMs. The OS disk on a compute instance has a 120-GB capacity. Currently, it isn't possible to change the OS disk type. For Azure Virtual Networks, one virtual network is billed per subscription and per region. Virtual networks can't span regions or subscriptions. Setting up private endpoints in a virtual network might also incur charges. If your virtual network uses an Azure Firewall, it might also incur charges. Bandwidth charges reflect usage; the more data transferred, the greater the charge. 
 
 > [!TIP]
 > - Using an Azure Machine Learning managed virtual network is free. However, some features of the managed network rely on Azure Private Link (for private endpoints) and Azure Firewall (for FQDN rules), which incur charges. For more information, see [Managed virtual network isolation](how-to-managed-network.md#pricing).
@@ -88,11 +89,21 @@ To delete the workspace along with these dependent resources, use the SDK:
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 ```python
-from azure.ai.ml.entities import Workspace
-ml_client.workspaces.begin_delete(name=ws.name, delete_dependent_resources=True)
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+
+ml_client = MLClient(
+    DefaultAzureCredential(),
+    subscription_id="<SUBSCRIPTION_ID>",
+    resource_group_name="<RESOURCE_GROUP>",
+    workspace_name="<WORKSPACE_NAME>",
+)
+ml_client.workspaces.begin_delete(
+    name="<WORKSPACE_NAME>", delete_dependent_resources=True
+)
 ```
 
-If you create Azure Kubernetes Service (AKS) in your workspace, or if you attach any compute resources to your workspace, you must delete them separately in the [Azure portal](https://portal.azure.com).
+If you attach Kubernetes compute or any other compute resources to your workspace, you must delete them separately in the [Azure portal](https://portal.azure.com). The legacy `AksCompute` target is deprecated; use `KubernetesCompute` with CLI/SDK v2 instead. For more information, see [Introduction to Kubernetes compute target](how-to-attach-kubernetes-anywhere.md).
 
 ### Use Azure Prepayment credit with Azure Machine Learning
 
@@ -100,18 +111,11 @@ You can pay for Azure Machine Learning charges by using your Azure Prepayment cr
 
 ## Review estimated costs in the Azure portal
 
-<!-- Note for Azure service writer: If your service shows estimated costs when a user is creating resources in the Azure portal, at a minimum, insert this section as a brief walkthrough that steps through creating a Azure Machine Learning resource where the estimated cost is shown to the user, updated for your service. Add a screenshot where the estimated costs or subscription credits are shown.
-
-If your service doesn't show costs as they create a resource or if estimated costs aren't shown to users before they use your service, then omit this section.
-
-For example, you might start with the following (modify for your service):
--->
-
 As you create compute resources for Azure Machine Learning, you see estimated costs.
 
 To create a compute instance and view the estimated price:
 
-1. Sign into the [Azure Machine Learning studio](https://ml.azure.com).
+1. Sign in to the [Azure Machine Learning studio](https://ml.azure.com).
 1. On the left side, select **Compute**.
 1. On the top toolbar, select **+New**.
 1. Review the estimated price shown for each available virtual machine size.

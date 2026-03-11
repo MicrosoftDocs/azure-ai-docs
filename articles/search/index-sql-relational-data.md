@@ -1,5 +1,5 @@
 ---
-title: Model SQL relational data for import and indexing
+title: Model SQL Relational Data for Import and Indexing
 titleSuffix: Azure AI Search
 description: Learn how to model relational data, denormalized into a flat result set, for indexing and full text search in Azure AI Search.
 ms.service: azure-ai-search

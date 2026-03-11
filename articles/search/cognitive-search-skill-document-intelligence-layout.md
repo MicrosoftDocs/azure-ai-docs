@@ -2,8 +2,7 @@
 title: Document Layout Skill
 titleSuffix: Azure AI Search
 description: Analyze a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format) in an enrichment pipeline in Azure AI Search.
-author: rawan
-ms.author: rawan
+ms.reviewer: rawan
 ms.service: azure-ai-search
 ms.custom:
   - references_regions
