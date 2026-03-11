@@ -15,7 +15,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Fine-tuning and tool calling (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/fine-tuning-functions.md)
 
 Models that use the chat completions API support [tool calling](../how-to/function-calling.md). Functions defined in your chat completion calls don't always perform as expected. Fine-tuning your model with tool calling examples can improve model output:
 

@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Deep research (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/deep-research.md)
 
 The o3-deep-research model is designed for advanced research tasks. It can browse, analyze, and synthesize information from hundreds of sources to produce a comprehensive, citation-rich report. This model uses multi-step reasoning, web search, and remote Model Context Protocol (MCP) servers to gather and process data. It can also run code for complex analysis.
 
