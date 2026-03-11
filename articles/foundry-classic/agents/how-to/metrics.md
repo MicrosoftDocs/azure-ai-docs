@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Monitor Foundry Agent Service with Azure Monitor (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/agents/how-to/metrics.md)
 
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 

@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # How to generate text responses with Microsoft Foundry Models (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/how-to/generate-responses.md)
 
 This article explains how to generate text responses for Foundry Models, such as Microsoft AI, DeepSeek, and Grok models, by using the Responses API. For a full list of the Foundry Models that support use of the Responses API, see [Supported Foundry Models](#supported-foundry-models). 
 

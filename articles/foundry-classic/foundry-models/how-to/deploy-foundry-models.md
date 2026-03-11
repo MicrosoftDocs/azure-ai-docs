@@ -20,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Deploy Microsoft Foundry Models in the Foundry portal (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/how-to/deploy-foundry-models.md)
 
 In this article, you learn how to use the Foundry portal to deploy a Foundry Model in a Foundry resource for inference. Foundry Models include models such as Azure OpenAI models, Meta Llama models, and more. After you deploy a Foundry Model, you can interact with it in the Foundry Playground and use it from code.
 

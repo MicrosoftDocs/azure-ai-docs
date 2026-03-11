@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Role-based access control for Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/rbac-foundry.md)
 
 > [!TIP]
 > This article is for a Foundry project type. An alternate RBAC article for hub-based projects is available: [Role-based access control for Microsoft Foundry (Hubs and Projects)](hub-rbac-foundry.md).

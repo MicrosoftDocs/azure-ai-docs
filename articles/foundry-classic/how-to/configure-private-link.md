@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # How to configure a private link for Microsoft Foundry (Foundry projects) (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/configure-private-link.md)
 
 > [!TIP]
 > An alternate hub-focused version of this article is available: [How to configure a private link for a Microsoft Foundry hub](hub-configure-private-link.md).

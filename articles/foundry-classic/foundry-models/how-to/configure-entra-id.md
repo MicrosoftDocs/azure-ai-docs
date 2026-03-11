@@ -22,7 +22,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Configure keyless authentication with Microsoft Entra ID (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/how-to/configure-entra-id.md)
 
 This article explains how to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models. Keyless authentication enhances security by eliminating the need for API keys, simplifies the user experience with role-based access control (RBAC), and reduces operational complexity while providing robust compliance support.
 
