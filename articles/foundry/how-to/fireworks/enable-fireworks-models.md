@@ -47,6 +47,13 @@ Global provisioned throughput deployments of base and custom models are availabl
 
 ## Enable Fireworks on Foundry
 
+> [!IMPORTANT]
+> Fireworks on Foundry is currently excluded from EU Data Boundary commitments.
+>
+> FedRAMP isn't achieved for Fireworks on Foundry. If your organization requires FedRAMP, before use, consult with your Authorization Official to determine if use of Fireworks on Foundry is allowed.
+>
+> Payment Card Industry (PCI) Data Security Standard (DSS) isn't applicable to Fireworks on Foundry. You shouldn't use Fireworks on Foundry to store, process, or transmit payment and cardholder data.
+
 While in preview, **Fireworks requires an administrator to enable the preview feature** within your Azure subscription.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
@@ -138,13 +145,6 @@ For step-by-step instructions, see [Import custom models into Foundry](import-cu
 ## Data privacy
 
 Fireworks model deployments made available via Foundry send inference traffic outside of Azure to the Fireworks AI cloud. Your Microsoft customer agreements (including the Product Terms and Microsoft's Data Protection Addendum) don't apply to your use of Fireworks services from within Microsoft Foundry.
-
-> [!IMPORTANT]
-> Fireworks on Foundry is currently excluded from EU Data Boundary commitments.
->
-> FedRAMP isn't achieved for Fireworks on Foundry. If your organization requires FedRAMP, before use, consult with your Authorization Official to determine if use of Fireworks on Foundry is allowed.
->
-> Payment Card Industry (PCI) Data Security Standard (DSS) isn't applicable to Fireworks on Foundry. You shouldn't use Fireworks on Foundry to store, process, or transmit payment and cardholder data.
 
 Consult the Fireworks AI [Trust Center](https://trust.fireworks.ai/) to review their Data Processing Addendum and certifications and their [Privacy Notice](https://fireworks.ai/privacy-policy) to understand their privacy commitment.
 
