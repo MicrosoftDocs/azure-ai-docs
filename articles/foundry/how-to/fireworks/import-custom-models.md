@@ -85,14 +85,14 @@ The import process starts in the Foundry portal, where you register your model, 
 
 1. Select **Add a custom model**.
 
-    :::image type="content" source="../media/fireworks/add-custom-model.png" alt-text="Screenshot of the add a custom model page.":::
+    :::image type="content" source="../media/fireworks/add-custom-model.png" alt-text="Screenshot of the Add a custom model page.":::
 
 1. Configure the following settings:
 
    * **Model name**: Enter a descriptive name for your custom model.
    * **Base model architecture**: Select the model architecture that matches your model (for example, `DeepSeek V3.2` or `GLM 4.7`).
 
-      :::image type="content" source="../media/fireworks/select-model-architecture.png" alt-text="Screenshot of the select model architecture window.":::
+      :::image type="content" source="../media/fireworks/select-model-architecture.png" alt-text="Screenshot of the Select model architecture window.":::
 
 1. The portal generates an `azd` command. Copy the command and paste it into a local terminal. Update the `--source` parameter to point to the directory that contains your model weight files.
 
