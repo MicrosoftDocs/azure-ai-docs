@@ -17,11 +17,30 @@ Agent runtime components are the core objects—agents, conversations, and respo
 
 This article explains the roles of an **agent**, **conversation**, and **response**, and how they work together during response generation. Each section includes code examples that show how to work with these components.
 
+
+## How runtime components work together
+
+When you work with an agent, you follow a consistent pattern:
+
+- **Create an agent**: Define an agent to start sending messages and receiving responses.
+- **Create a conversation (optional)**: Use a conversation to maintain history across turns. If you don't use a conversation, carry forward context by using the output from a previous response.
+- **Generate a response**: The agent processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
+- **Check response status**: Monitor the response until it finishes (especially in streaming or background mode).
+- **Retrieve the response**: Display the generated response to the user.
+
+The following diagram illustrates how these components interact in a typical agent loop.
+
+:::image type="content" source="../media/runtime-components.png" alt-text="Diagram that shows the agent runtime loop: an agent definition and optional conversation history feed response generation, which can call tools, append items back into the conversation, and produce output items you display to the user.":::
+
+You provide user input (and optionally conversation history), the service generates a response (including tool calls when configured), and the resulting items can be reused as context for the next turn.
+
+
 ## Prerequisites
+
+To run the samples in this article, you need:
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
-- Familiarity with the [agent development lifecycle](./development-lifecycle.md) (optional).
 - The Foundry Agent Service SDK for your language:
 
 # [Python](#tab/python)
@@ -70,22 +89,6 @@ az login
 ```
 
 ---
-
-## How runtime components work together
-
-When you work with an agent, you follow a consistent pattern:
-
-- **Create an agent**: Define an agent to start sending messages and receiving responses.
-- **Create a conversation (optional)**: Use a conversation to maintain history across turns. If you don't use a conversation, carry forward context by using the output from a previous response.
-- **Generate a response**: The agent processes input items in the conversation and any instructions provided in the request. The agent might append items to the conversation.
-- **Check response status**: Monitor the response until it finishes (especially in streaming or background mode).
-- **Retrieve the response**: Display the generated response to the user.
-
-The following diagram illustrates how these components interact in a typical agent loop.
-
-:::image type="content" source="../media/runtime-components.png" alt-text="Diagram that shows the agent runtime loop: an agent definition and optional conversation history feed response generation, which can call tools, append items back into the conversation, and produce output items you display to the user.":::
-
-You provide user input (and optionally conversation history), the service generates a response (including tool calls when configured), and the resulting items can be reused as context for the next turn.
 
 ## What is an agent?
 
