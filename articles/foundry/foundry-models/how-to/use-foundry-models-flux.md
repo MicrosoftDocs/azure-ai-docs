@@ -1,6 +1,6 @@
 ---
 title: "Deploy and use FLUX models in Microsoft Foundry"
-description: "Deploy Black Forest Labs' FLUX image generation models in Microsoft Foundry to generate and edit high-quality images from text prompts and reference images."
+description: "Deploy Black Forest Labs FLUX image generation models in Microsoft Foundry to generate and edit high-quality images from text prompts and reference images."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -19,10 +19,7 @@ ai-usage: ai-assisted
 
 # Deploy and use FLUX models in Microsoft Foundry
 
-Black Forest Labs' FLUX models bring state-of-the-art image generation to Microsoft Foundry, enabling you to generate and edit high-quality images from text prompts and reference images. BFL models are optimized for photorealism, prompt fidelity, and compositional control, making them well suited for creative, e-commerce, media, and design-centric applications. FLUX models support a range of capabilities including text-to-image generation, multi-reference image editing, and in-context generation and editing.
-
-> [!NOTE]
-> [Registration is required for access to FLUX.2 \[flex\]](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu).
+Black Forest Labs (BFL) FLUX models bring state-of-the-art image generation to Microsoft Foundry, enabling you to generate and edit high-quality images from text prompts and reference images. BFL models are optimized for photorealism, prompt fidelity, and compositional control, making them well suited for creative, e-commerce, media, and design-centric applications. FLUX models support a range of capabilities including text-to-image generation, multi-reference image editing, and in-context generation and editing.
 
 In this article, you learn how to:
 
@@ -65,7 +62,7 @@ After deployment, use the [Foundry playground](../../concepts/concept-playground
 
 After you deploy a FLUX model, use either the **BFL provider-specific API** or the **Image API** to generate images:
 
-- **BFL provider-specific API**: Supports all four FLUX models and provides access to additional parameters such as `guidance`, `steps`, `seed`, `aspect_ratio`, `safety_tolerance`, and `output_format`. Use this route for fine-grained control over generation.
+- **BFL provider-specific API**: Supports all FLUX models and provides access to additional parameters such as `guidance`, `steps`, `seed`, `aspect_ratio`, `safety_tolerance`, and `output_format`. Use this route for fine-grained control over generation.
 - **Image API**: An OpenAI-compatible endpoint available for `FLUX.1-Kontext-pro` and `FLUX-1.1-pro`. Use this route if your application already uses the Azure OpenAI images API.
 
 To authenticate, you need your **resource endpoint** and either a **Microsoft Entra ID token** or an **API key**. You can find these values in the **Keys and Endpoint** section of your resource in the Azure portal, or on the deployment details page in the [Foundry portal](https://ai.azure.com).
@@ -313,12 +310,12 @@ https://<resource-name>.services.ai.azure.com/openai/deployments/<deployment-nam
 
     ```python
     import os
-    from openai import AzureOpenAI
+    from openai import OpenAI
 
-    client = AzureOpenAI(
-        azure_endpoint=os.environ["AZURE_ENDPOINT"],
+    client = OpenAI(
+        base_url=os.environ["AZURE_ENDPOINT"] + "/openai",
         api_key=os.environ["AZURE_API_KEY"],
-        api_version="preview",
+        default_query={"api-version": "preview"},
     )
 
     result = client.images.generate(
@@ -333,7 +330,7 @@ https://<resource-name>.services.ai.azure.com/openai/deployments/<deployment-nam
 
     **Expected output:** A URL to the generated image.
 
-    **Reference:** [AzureOpenAI client](https://github.com/openai/openai-python), [images.generate](https://learn.microsoft.com/python/api/overview/azure/ai-openai-readme)
+    **Reference:** [OpenAI Python client](https://github.com/openai/openai-python), [images.generate](https://learn.microsoft.com/python/api/overview/azure/ai-openai-readme)
 
 # [REST API](#tab/rest-api)
 
@@ -367,12 +364,12 @@ curl -X POST https://<resource-name>.services.ai.azure.com/openai/deployments/$D
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-    azure_endpoint=os.environ["AZURE_ENDPOINT"],
+client = OpenAI(
+    base_url=os.environ["AZURE_ENDPOINT"] + "/openai",
     api_key=os.environ["AZURE_API_KEY"],
-    api_version="preview",
+    default_query={"api-version": "preview"},
 )
 
 with open("reference.jpg", "rb") as image_file:
@@ -389,7 +386,7 @@ print(result.data[0].url)
 
 **Expected output:** A URL to the edited image with the new background.
 
-**Reference:** [AzureOpenAI client](https://github.com/openai/openai-python), [images.edit](https://learn.microsoft.com/python/api/overview/azure/ai-openai-readme)
+**Reference:** [OpenAI Python client](https://github.com/openai/openai-python), [images.edit](https://learn.microsoft.com/python/api/overview/azure/ai-openai-readme)
 
 # [REST API](#tab/rest-api)
 
@@ -477,7 +474,7 @@ FLUX1.1 \[pro\] is available through both the BFL provider API and the Image API
 
 FLUX models in Foundry have the following rate limits measured in Requests Per Minute (RPM). The tier available to you depends on your subscription and deployment configuration.
 
-| Model | Tier | RPM |
+| Model | Tier | Requests Per Minute (RPM) |
 | -- | -- | -- |
 | FLUX.2 \[pro\] | Low | 15 |
 | FLUX.2 \[pro\] | Medium | 30 |
