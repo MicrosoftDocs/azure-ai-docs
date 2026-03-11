@@ -40,7 +40,7 @@ The Face service offers face detection capabilities, as well as a more comprehen
 * **Features**: Full support for all face scenarios under the Image Analysis API, plus face recognition scenarios like person identification.
 * **Learn more** about the Face API:
     * [What is the Azure Face Service?](./overview-identity.md)
-    * [Face detection, attributes, and input data](./concept-face-detection.md)
+    * [Face detection, attributes, and input data](../face/concept-face-detection.md)
 
 ### Image embeddings scenarios
 
