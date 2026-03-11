@@ -261,7 +261,7 @@ conversation = openai.conversations.create(
         {
             "type": "message",
             "role": "user",
-            "content": "What is the capital of France?",
+            "content": "What is the largest city in France?",
         }
     ],
 )
@@ -308,7 +308,7 @@ const conversation = await openai.conversations.create({
     {
       type: "message",
       role: "user",
-      content: "What is the capital of France?",
+      content: "What is the largest city in France?",
     },
   ],
 });
@@ -352,7 +352,7 @@ curl -X POST "${ENDPOINT}/openai/v1/conversations" \
       {
         "type": "message",
         "role": "user",
-        "content": "What is the capital of France?"
+        "content": "What is the largest city in France?"
       }
     ]
   }'
@@ -506,7 +506,7 @@ response = openai.responses.create(
             "type": "agent_reference",
         }
     },
-    input="What is the capital of France?",
+    input="What is the largest city in France?",
 )
 print(response.output_text)
 ```
@@ -537,7 +537,7 @@ ResponsesClient responsesClient
         new AgentReference { Name = agentName },
         conversation.Id);
 ResponseResult response = await responsesClient.CreateResponseAsync(
-    "What is the capital of France?");
+    "What is the largest city in France?");
 Console.WriteLine(response.GetOutputText());
 ```
 
@@ -561,7 +561,7 @@ const conversation = await openai.conversations.create();
 // Generate a response using the agent
 const response = await openai.responses.create({
   conversation: conversation.id,
-  input: "What is the capital of France?",
+  input: "What is the largest city in France?",
   agent_reference: {
     name: AGENT_NAME,
     type: "agent_reference",
@@ -593,7 +593,7 @@ AgentReference agentRef = new AgentReference(agentName);
 Response response = responsesClient.createWithAgent(
     agentRef,
     ResponseCreateParams.builder()
-        .input("What is the capital of France?"));
+        .input("What is the largest city in France?"));
 System.out.println(response.output());
 ```
 
@@ -611,7 +611,7 @@ curl -X POST "${ENDPOINT}/openai/v1/responses" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
-    "input": "What is the capital of France?",
+    "input": "What is the largest city in France?",
     "conversation": "'"${CONVERSATION_ID}"'",
     "agent_reference": {
       "name": "'"${AGENT_NAME}"'",
@@ -645,7 +645,7 @@ openai = project.get_openai_client()
 # Generate a response directly with a model
 response = openai.responses.create(
     model="gpt-5-mini",
-    input="What is the capital of France?",
+    input="What is the largest city in France?",
 )
 print(response.output_text)
 ```
@@ -669,7 +669,7 @@ AIProjectClient projectClient = new(
 ProjectResponsesClient responsesClient
     = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5-mini");
 ResponseResult response = await responsesClient.CreateResponseAsync(
-    "What is the capital of France?");
+    "What is the largest city in France?");
 Console.WriteLine(response.GetOutputText());
 ```
 
@@ -689,7 +689,7 @@ const openai = await project.getOpenAIClient();
 // Generate a response directly with a model
 const response = await openai.responses.create({
   model: "gpt-5-mini",
-  input: "What is the capital of France?",
+  input: "What is the largest city in France?",
 });
 console.log(response.output_text);
 ```
@@ -714,7 +714,7 @@ ResponsesClient responsesClient = new AgentsClientBuilder()
 // Generate a response directly with a model
 ResponseCreateParams request = new ResponseCreateParams.Builder()
     .model("gpt-5-mini")
-    .input("What is the capital of France?")
+    .input("What is the largest city in France?")
     .build();
 var response = responsesClient.getResponseService().create(request);
 System.out.println(response.output());
@@ -733,7 +733,7 @@ curl -X POST "${ENDPOINT}/openai/v1/responses" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gpt-5-mini",
-    "input": "What is the capital of France?"
+    "input": "What is the largest city in France?"
   }'
 ```
 
