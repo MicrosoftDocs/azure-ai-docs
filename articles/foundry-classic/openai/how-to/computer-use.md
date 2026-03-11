@@ -52,8 +52,8 @@ pip install azure-identity
 import os
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from openai import OpenAI
+import json
 
-#from openai import OpenAI
 token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
 
 client = OpenAI(  
@@ -72,22 +72,108 @@ response = client.responses.create(
     ],
 )
 
-print(response.output)
+print(json.dumps(response.model_dump(), indent=2))
 ```
 
 ### Output
 
-```console
-[
-    ResponseComputerToolCall(
-        id='cu_67d841873c1081908bfc88b90a8555e0',
-        actions=[ActionScreenshot(type='screenshot')],
-        call_id='call_wwEnfFDqQr1Z4Edk62Fyo7Nh',
-        pending_safety_checks=[],
-        status='completed',
-        type='computer_call'
-    )
-]
+```json
+{
+  "id": "resp_068b0022b159a6710069b0d44d97848195911e2ff69ff500fa",
+  "created_at": 1773196365.0,
+  "error": null,
+  "incomplete_details": null,
+  "instructions": null,
+  "metadata": {},
+  "model": "gpt-5.4",
+  "object": "response",
+  "output": [
+    {
+      "id": "msg_068b0022b159a6710069b0d44ede1881959e2d1deefe9f8676",
+      "content": [
+        {
+          "annotations": [],
+          "text": "I\u2019ll open Bing, look for current AI news, and summarize the latest headlines I find.",
+          "type": "output_text",
+          "logprobs": []
+        }
+      ],
+      "role": "assistant",
+      "status": "completed",
+      "type": "message",
+      "phase": "commentary"
+    },
+    {
+      "id": "cu_068b0022b159a6710069b0d45008448195980f77beaa9cec83",
+      "action": null,
+      "call_id": "call_4y94crSZe0elpGhdiiwjLpa0",
+      "pending_safety_checks": null,
+      "status": "completed",
+      "type": "computer_call",
+      "actions": [
+        {
+          "type": "screenshot"
+        }
+      ]
+    }
+  ],
+  "parallel_tool_calls": true,
+  "temperature": 1.0,
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "name": null,
+      "parameters": null,
+      "strict": null,
+      "type": "computer",
+      "description": null
+    }
+  ],
+  "top_p": 0.98,
+  "background": false,
+  "conversation": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "previous_response_id": null,
+  "prompt": null,
+  "prompt_cache_key": null,
+  "reasoning": {
+    "effort": "none",
+    "generate_summary": null,
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "status": "completed",
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "top_logprobs": 0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 820,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 40,
+    "output_tokens_details": {
+      "reasoning_tokens": 16
+    },
+    "total_tokens": 860
+  },
+  "user": null,
+  "completed_at": 1773196368,
+  "content_filters": [
+    {Removed from example output}
+  ],
+  "frequency_penalty": 0.0,
+  "presence_penalty": 0.0,
+  "prompt_cache_retention": null,
+  "store": true
+}
 ```
 
 ## [REST API](#tab/rest-api)
@@ -109,99 +195,6 @@ curl ${MY_ENDPOINT}/openai/v1/responses \
         "type": "computer"
     }]
   }'
-```
-
-### Output
-
-```json
-{
-  "id": "resp_xxxxxxxxxxxxxxxxxxxxxxxx",
-  "object": "response",
-  "created_at": 1742227653,
-  "status": "completed",
-  "background": false,
-  "completed_at": 1742227664,
-  "content_filters": [
-    {
-      "blocked": false,
-      "source_type": "prompt",
-      "content_filter_results": {
-        "jailbreak": { "filtered": false, "detected": false },
-        "hate": { "filtered": false, "severity": "safe" },
-        "self_harm": { "filtered": false, "severity": "safe" },
-        "violence": { "filtered": false, "severity": "safe" },
-        "sexual": { "filtered": false, "severity": "safe" }
-      }
-    },
-    {
-      "blocked": false,
-      "source_type": "completion",
-      "content_filter_results": {
-        "self_harm": { "filtered": false, "severity": "safe" },
-        "violence": { "filtered": false, "severity": "safe" },
-        "sexual": { "filtered": false, "severity": "safe" },
-        "hate": { "filtered": false, "severity": "safe" },
-        "protected_material_text": { "filtered": false, "detected": false },
-        "protected_material_code": { "filtered": false, "detected": false }
-      }
-    }
-  ],
-  "error": null,
-  "frequency_penalty": 0.0,
-  "incomplete_details": null,
-  "instructions": null,
-  "max_output_tokens": null,
-  "max_tool_calls": null,
-  "model": "gpt-5.4",
-  "output": [
-    {
-      "id": "cu_xxxxxxxxxxxxxxxxxxxxxxxxxx",
-      "type": "computer_call",
-      "status": "completed",
-      "actions": [
-        { "type": "screenshot" }
-      ],
-      "call_id": "call_xxxxxxxxxxxxxxxxxxxxxxx"
-    }
-  ],
-  "parallel_tool_calls": true,
-  "presence_penalty": 0.0,
-  "previous_response_id": null,
-  "reasoning": {
-    "effort": "none",
-    "summary": null
-  },
-  "service_tier": "default",
-  "store": true,
-  "temperature": 1.0,
-  "text": {
-    "format": {
-      "type": "text"
-    },
-    "verbosity": "medium"
-  },
-  "tool_choice": "auto",
-  "tools": [
-    {
-      "type": "computer"
-    }
-  ],
-  "top_p": 0.98,
-  "truncation": "disabled",
-  "usage": {
-    "input_tokens": 820,
-    "input_tokens_details": {
-      "cached_tokens": 0
-    },
-    "output_tokens": 17,
-    "output_tokens_details": {
-      "reasoning_tokens": 17
-    },
-    "total_tokens": 837
-  },
-  "user": null,
-  "metadata": {}
-}
 ```
 
 ---
