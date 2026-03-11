@@ -9,7 +9,6 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 07/10/2025
 ms.update-cycle: 365-days
-
 ---
 # OData full-text search functions in Azure AI Search - `search.ismatch` and `search.ismatchscoring`
 

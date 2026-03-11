@@ -1,4 +1,5 @@
 ---
+ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

@@ -6,7 +6,6 @@ ms.topic: how-to
 ms.date: 01/20/2026
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, Keyless-dotnet, Keyless-java, Keyless-js, Keyless-python, build-2024-intelligent-apps, dev-focus
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to use keyless connections so that I don't leak secrets.

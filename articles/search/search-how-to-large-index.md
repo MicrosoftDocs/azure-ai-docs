@@ -1,8 +1,7 @@
 ---
-title: Index Large Data Sets for Full Text Search
+title: Index Large Data Sets for Full-Text Search
 titleSuffix: Azure AI Search
 description: Learn about strategies for large data indexing or computationally intensive indexing through batch mode, resourcing, and scheduled, parallel, and distributed indexing.
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

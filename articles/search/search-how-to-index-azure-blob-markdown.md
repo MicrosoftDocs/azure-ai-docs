@@ -1,5 +1,5 @@
 ---
-title: Search over Markdown Blobs
+title: Search Over Markdown Blobs
 titleSuffix: Azure AI Search
 description: Extract searchable text from Markdown blobs using the blob indexer in Azure AI Search. Indexers provide indexing automation for supported data sources like Azure Blob Storage.
 ms.service: azure-ai-search

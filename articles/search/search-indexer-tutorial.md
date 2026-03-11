@@ -2,7 +2,6 @@
 title: 'C# Tutorial: Index Azure SQL Data'
 titleSuffix: Azure AI Search
 description: In this C# tutorial, you connect to Azure SQL Database, extract searchable data, and load it into an Azure AI Search index.
-
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 02/27/2026

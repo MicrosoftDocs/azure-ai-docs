@@ -5,7 +5,6 @@ description: Lists Azure Policy built-in policy definitions for Azure Cognitive 
 ms.date: 12/10/2024
 ms.update-cycle: 365-days
 ms.topic: concept-article
-
 ms.service: azure-ai-search
 ms.custom: subject-policy-reference
 ---

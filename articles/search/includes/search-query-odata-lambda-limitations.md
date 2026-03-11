@@ -3,6 +3,7 @@ ms.reviewer: brjohnst
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 06/13/2018
+---
 
 | Data type | Features allowed in lambda expressions with `any` | Features allowed in lambda expressions with `all` |
 |---|---|---|

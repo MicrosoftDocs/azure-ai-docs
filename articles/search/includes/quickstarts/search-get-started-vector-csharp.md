@@ -1,4 +1,5 @@
 ---
+ms.reviewer: rotabor
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/05/2026

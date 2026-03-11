@@ -11,7 +11,7 @@ ms.custom:
 author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
-content_well_notification: 
+content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ---

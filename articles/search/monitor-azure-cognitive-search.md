@@ -1,5 +1,5 @@
 ---
-title: Monitor
+title: Monitor Your Search Service
 titleSuffix: Azure AI Search
 description: Start here to learn how to monitor Azure AI Search.
 ms.date: 07/25/2025

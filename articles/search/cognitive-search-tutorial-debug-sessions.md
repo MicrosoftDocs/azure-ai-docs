@@ -2,7 +2,6 @@
 title: 'Tutorial: Debug Skillsets'
 titleSuffix: Azure AI Search
 description: Practice creating and completing a debug session on an Azure AI Search skillset. This tutorial provides a buggy sample skillset that you resolve in a debug session.
-
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 03/31/2025

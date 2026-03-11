@@ -5,7 +5,6 @@ description: Lists Azure Policy Regulatory Compliance controls available for Azu
 ms.date: 02/27/2026
 ms.update-cycle: 365-days
 ms.topic: concept-article
-
 ms.service: azure-ai-search
 ms.custom:
   - subject-policy-compliancecontrols

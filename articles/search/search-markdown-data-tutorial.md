@@ -10,7 +10,6 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
   - sfi-ropc-nochange
-
 ---
 
 # Tutorial: Index nested Markdown blobs from Azure Storage using REST
