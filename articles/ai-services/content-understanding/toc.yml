@@ -39,7 +39,7 @@ items:
     - name: Content Understanding Studio Quickstart
       displayName: Content Understanding Studio, quickstart, prerequisites, setup, create, analyze, extract
       href: quickstart/content-understanding-studio.md
-    - name: Try Content Understanding REST API and SDKs (Preview)
+    - name: Try Content Understanding REST API and SDKs
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: quickstart/use-rest-api.md
     - name: Create CU Task in Foundry (classic) (Preview)
