@@ -3099,6 +3099,11 @@
       "source_path_from_root": "/articles/ai-services/computer-vision/quickstarts-sdk/identity-client-library.md",
       "redirect_url": "/azure/ai-services/face/quickstarts-sdk/identity-client-library",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/mitigate-latency.md",
+      "redirect_url": "/azure/ai-services/face/how-to/mitigate-latency",
+      "redirect_document_id": true
     }
   ]
 }

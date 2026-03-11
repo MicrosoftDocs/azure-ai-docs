@@ -127,7 +127,7 @@ In addition to telemetry data, you may also want to analyze feedback from the pe
 
 Making sure the face in an enrollment or probe image is sufficiently large is critical to high quality matches. 
 
-Faces are detectable when their size is as small as 36x36 pixels, but for best performance Microsoft recommends a minimum size of 200x200 pixels with at least 100 pixels between the eyes. Note that higher image resolution increases latency, but [there are ways to optimize latency](/azure/ai-services/computer-vision/how-to/mitigate-latency). The maximum size allowed is 4096 x 4096.
+Faces are detectable when their size is as small as 36x36 pixels, but for best performance Microsoft recommends a minimum size of 200x200 pixels with at least 100 pixels between the eyes. Note that higher image resolution increases latency, but [there are ways to optimize latency](/azure/ai-services/face/how-to/mitigate-latency). The maximum size allowed is 4096 x 4096.
 
 ![A small photo of people walking.](media/face-size.png)
 

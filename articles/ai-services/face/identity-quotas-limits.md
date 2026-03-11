@@ -28,7 +28,7 @@ This article contains a reference and a detailed description of the quotas and l
 | Standard (S0), </br>Enterprise (E0) | 10 transactions per second, and 200 TPS across all resources in a single region. </br>See the next section if you want to increase this limit. |
 
 > [!NOTE]
-> If you exceed the default rate limit, you receive a `429` error. To address this issue, refer to the [Performance guide](/azure/ai-services/computer-vision/how-to/mitigate-latency#handle-errors-effectively).
+> If you exceed the default rate limit, you receive a `429` error. To address this issue, refer to the [Performance guide](/azure/ai-services/face/how-to/mitigate-latency#handle-errors-effectively).
 
 ### Default Face resource quantity limits
 
