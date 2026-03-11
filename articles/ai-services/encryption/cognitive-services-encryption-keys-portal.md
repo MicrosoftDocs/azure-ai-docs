@@ -52,7 +52,7 @@ The process to enable customer-managed keys with Azure Key Vault for Foundry Too
 * [Azure OpenAI](../../ai-foundry/openai/encrypt-data-at-rest.md)
 * [Azure Custom Vision ](../custom-vision-service/encrypt-data-at-rest.md)
 * [Azure AI Content Safety ](../content-safety/how-to/encrypt-data-at-rest.md)
-* [Azure AI Face ](../computer-vision/identity-encrypt-data-at-rest.md)
+* [Azure AI Face ](../face/identity-encrypt-data-at-rest.md)
 * [Azure Document Intelligence ](../../ai-services/document-intelligence/authentication/encrypt-data-at-rest.md)
 * [Azure Translator](../translator/encrypt-data-at-rest.md)
 * [Azure Language](../language-service/concepts/encryption-data-at-rest.md)
