@@ -26,7 +26,7 @@ keywords:
 
 # What is Microsoft Foundry Agent Service?
 
-Foundry Agent Service is a fully managed platform for building, deploying, and scaling AI agents. Use any framework and many models from the [Foundry model catalog](../foundry-models/how-to/deploy-foundry-models.md). Create no-code **prompt agents** in the Foundry portal, or deploy code-based **[hosted agents](concepts/hosted-agents.md)** built with Agent Framework, LangGraph, or your own code.
+Foundry Agent Service is a fully managed platform for building, deploying, and scaling AI agents. Use any framework and many models from the [Foundry model catalog](../foundry-models/how-to/deploy-foundry-models.md). Create no-code [prompt agents](#agent-types) in the Foundry portal, or use the available SDKs and REST API to deploy them and code-based **[hosted agents](concepts/hosted-agents.md)** built with Agent Framework, LangGraph, or your own code.
 
 Agent Service handles hosting, scaling, identity, observability, and enterprise security so you can focus on your agent logic.
 
