@@ -97,7 +97,7 @@ Prompt agents are defined entirely through configuration — instructions, model
 
 ## Framework and model support
 
- Foundry agents can be used with the [Foundry SDK](../how-to/develop/sdk-overview.md) which is available in python, .Net, JS and Java. The Agents service itself is framework-agnostic. Bring the framework that fits your team and use case.
+ Foundry agents can be used with the [Foundry SDK](../how-to/develop/sdk-overview.md) which is available in Python, .NET, JavaScript and Java. The Agents service itself is framework-agnostic. Bring the framework that fits your team and use case.
 
 | Framework | Python | C# |
 | --- | --- | --- |
