@@ -112,6 +112,15 @@ Tools are supported by the following models.
 | DeepSeek-R1-0528 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | DeepSeek-V3-0324 | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
 | DeepSeek-V3.1 | No | No | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
+| FW-DeepSeek-V3.1 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
+| FW-DeepSeek-V3.2 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
+| FW-GLM-4.7 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
+| FW-GLM-5 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
+| FW-GPT-OSS-120B | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
+| FW-Kimi-K2-Instruct-0905 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
+| FW-Kimi-K2-Thinking | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
+| FW-Kimi-K2.5 | No | No | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
+| FW-MiniMax-M2.5 | No | Yes | No | No | No | No | Yes | No | Yes | Yes | No | No | Yes | Yes | No | No |
 | Llama-3.3-70B-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | Llama-4-Maverick-17B-128E-Instruct-FP8 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | Llama-4-Scout-17B-16E-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
