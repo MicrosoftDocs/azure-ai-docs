@@ -1,5 +1,5 @@
 ---
-title: OData Order-By Reference
+title: OData Order-by Reference
 titleSuffix: Azure AI Search
 description: Syntax and language reference documentation for using order-by in Azure AI Search queries.
 ms.service: azure-ai-search
