@@ -497,6 +497,10 @@ You can configure web search behavior when you create your agent.
 - Avoid sending secrets or sensitive personal data in prompts that might be forwarded to external services.
 - Review the terms, privacy, and data boundary notes in the preview section of this article before enabling web search in production.
 
+## Known limitations
+
+For information about web search behavior and limitations in the Responses API, see [Web search with the Responses API](../../../openai/how-to/web-search.md).
+
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
