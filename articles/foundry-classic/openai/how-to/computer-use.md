@@ -37,10 +37,7 @@ The Computer Use tool is accessed through the [responses API](./responses.md). T
 
 In this way, your code simulates the actions of a human using a computer interface, while the model uses the screenshots to understand the state of the environment and suggest next actions.
 
-The following examples show a basic API call. 
-
-> [!NOTE]
-> You need an Azure OpenAI resource with a `gpt-5.4` model deployment in a [supported region](#regional-support).
+The following examples show a basic API call: 
 
 ## [Python](#tab/python)
 
