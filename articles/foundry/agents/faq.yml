@@ -129,7 +129,7 @@ sections:
       - question: |
           What should I do for business continuity and disaster recovery (BCDR)?
         answer: |
-          Agent Service BCDR guidance depends on your setup and the resources you provision. For the current guidance, see [Foundry Agent Service disaster recovery](../how-to/agent-service-disaster-recovery).
+          Agent Service BCDR guidance depends on your setup and the resources you provision. For the current guidance, see [Foundry Agent Service disaster recovery](../how-to/agent-service-disaster-recovery.md).
   - name: Virtual networking
     questions:
       - question: |
