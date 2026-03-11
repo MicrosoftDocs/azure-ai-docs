@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Migration from Preview to GA version of Realtime API (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/realtime-audio-preview-api-migration-guide.md)
 
 The Azure OpenAI GPT Realtime API is now Generally Available (GA). This migration guide helps you update existing applications to use the GA protocol. The GA version introduces changes to SDK usage, endpoint URLs, event names, and session configuration.
 

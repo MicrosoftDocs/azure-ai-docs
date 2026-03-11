@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Azure OpenAI in Microsoft Foundry Models v1 REST API reference (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/openai/latest.md)
 
 Only a subset of operations are currently supported with the v1 API. To learn more, see the [API version lifecycle guide](./api-version-lifecycle.md).
 
