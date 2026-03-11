@@ -33,6 +33,10 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
         <WindowsPackageType>None</WindowsPackageType>
         <EnableCoreMrtTooling>false</EnableCoreMrtTooling>
       </PropertyGroup>
+
+      <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">
+        <RuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+      </PropertyGroup>
     
       <ItemGroup>
         <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.9.*" />
@@ -78,6 +82,10 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
           <TargetFramework>net9.0</TargetFramework>
           <ImplicitUsings>enable</ImplicitUsings>
           <Nullable>enable</Nullable>
+        </PropertyGroup>
+
+        <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">
+            <RuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
         </PropertyGroup>
     
         <ItemGroup>
