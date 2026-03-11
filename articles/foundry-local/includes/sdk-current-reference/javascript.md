@@ -13,8 +13,6 @@ ai-usage: ai-assisted
 
 ## JavaScript SDK Reference
 
-This article provides reference documentation for the Foundry Local JavaScript SDK, which allows you to integrate Foundry Local's on-device AI capabilities into your JavaScript applications. The SDK provides APIs for managing models, performing inference, and accessing other features of Foundry Local.
-
 ### Project setup
 
 The high-level architecture of the Foundry Local SDK is as follows:

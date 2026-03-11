@@ -39,7 +39,7 @@ items:
       href: reference/reference-sdk-current.md
     - name: Legacy SDK
       href: reference/reference-sdk-legacy.md
-    - name: Migration guidance from legacy SDK
+    - name: Guidance for migrating from the legacy SDK
       href: reference/reference-sdk-migration.md
   - name: APIs
     items:
