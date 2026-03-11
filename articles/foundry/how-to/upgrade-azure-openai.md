@@ -323,5 +323,4 @@ If you're not sure who upgraded your resource to Foundry, you can [view the acti
 
 ## Related content
 
-* [Choose an Azure resource type for Foundry](../concepts/resource-types.md)
 * [Bicep samples for Foundry common infrastructure configurations](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep)
