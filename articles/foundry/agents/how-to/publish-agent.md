@@ -390,7 +390,6 @@ Agents published as Agent Applications have the following limitations:
 
 | Limitation | Description |
 | --- | --- |
-| No Microsoft Entra agent registry registration | Agent Applications aren't registered in the Microsoft Entra agent registry. |
 | No UI or CLI management | There isn’t a dedicated UI/CLI for advanced management operations. Use the REST API for management operations not available in the Foundry portal publishing flow. |
 
 ## Troubleshooting
