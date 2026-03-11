@@ -43,3 +43,11 @@ items:
     href: ../../mcp/security-best-practices.md
   - name: Available tools and sample prompts
     href: ../../mcp/available-tools.md
+
+# Fireworks
+- name: Fireworks on Foundry (preview)
+  items:
+  - name: Use Fireworks models
+    href: ../../how-to/fireworks/enable-fireworks-models.md
+  - name: Import custom models with Fireworks 
+    href: ../../how-to/fireworks/import-custom-models.md

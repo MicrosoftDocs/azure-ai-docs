@@ -1,19 +1,19 @@
 ---
-title: "Work with Foundry Classic agents and MCP server tools in Visual Studio Code (classic)"
-description: "Add Model Context Protocol (MCP) server tools to your Foundry Classic agents by using the Microsoft Foundry for Visual Studio Code extension. (classic)"
+title: "Work with Foundry agents and MCP server tools in Visual Studio Code (classic)"
+description: "Add Model Context Protocol (MCP) server tools to your Foundry agents by using the Microsoft Foundry for Visual Studio Code extension. (classic)"
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 02/19/2026
+ms.date: 03/09/2026
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
 ---
 
-# Work with Foundry Classic agents and MCP server tools in Visual Studio Code (preview) (classic)
+# Work with Foundry agents and MCP server tools in Visual Studio Code (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -26,8 +26,6 @@ After you [build an agent in Agent Service](./vs-code-agents.md) by using the Vi
 
 - Access up-to-date information from your APIs and services.
 - Retrieve relevant context to enhance the quality of responses from your AI models.
-
-[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
 ## Prerequisites
 

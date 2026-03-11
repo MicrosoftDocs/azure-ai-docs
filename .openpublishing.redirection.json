@@ -1181,6 +1181,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/foundry-classic/openai/concepts/model-versions.md",
+      "redirect_url": "/azure/foundry-classic/foundry-models/concepts/model-versions",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/machine-learning/concept-package-models.md",
       "redirect_url": "/azure/machine-learning/concept-endpoints",
       "redirect_document_id": false

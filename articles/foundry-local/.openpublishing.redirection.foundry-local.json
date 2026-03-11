@@ -1,0 +1,9 @@
+{
+    "redirections": [
+        {
+            "source_path_from_root": "/articles/foundry-local/reference/reference-sdk.md",
+            "redirect_url": "/azure/foundry-local/reference/reference-sdk-current",
+            "redirect_document_id": false
+        }
+    ]
+}
