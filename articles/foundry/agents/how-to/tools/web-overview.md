@@ -62,12 +62,12 @@ The following use cases help you compare the available tools. Use case 1 covers 
 
 ### Use case 2: Grounding from specific domains you defined
 
-|                               |[Grounding with Bing Custom Search](./bing-tools.md)                                                                 |
-|-------------------------------|--------------------------------------------------------------------------------------------------|
-| **Stage**                     | Preview                                                                                  |
-| **Pre-defined domains**       | Supported — use `custom_search_configuration` to pre‑define allowed or blocked domains (requires creating a Bing Custom Search resource + instance) |
-| **Other parameters**          |  - `count`: the maximum number of results returned by Bing <br>- `freshness`: specifies the period for the search results<br>- `market`: specifies the region for the search results <br>- `set_lang`: specifies the language for the search results <br> Learn more about [Bing Custom Search parameters](./bing-tools.md#optional-parameters) |
-| **Supported models**          |  Azure OpenAI models and Azure direct models |
+|                               | [Web Search](./web-search.md) (recommended) | [Grounding with Bing Custom Search](./bing-tools.md)                                                                 |
+|-------------------------------|---------------------------------------------|--------------------------------------------------------------------------------------------------|
+| **Stage**                     | GA                                          | Preview                                                                                  |
+| **Restrict to custom domains**       | Supported — use `custom_search_configuration` to pre‑define allowed or blocked domains (requires creating a Bing Custom Search resource + instance)  | Supported — use `custom_search_configuration` to pre‑define allowed or blocked domains (requires creating a Bing Custom Search resource + instance) |
+| **Other parameters**          | - `user_location`: Provides geo‑relevant results<br>- `search_context_size`: low/medium/high (default: medium)<br> Learn more about [Web Search parameters](./web-search.md#domain-restricted-search-with-bing-custom-search) | - `count`: the maximum number of results returned by Bing <br>- `freshness`: specifies the period for the search results<br>- `market`: specifies the region for the search results <br>- `set_lang`: specifies the language for the search results <br> Learn more about [Bing Custom Search parameters](./bing-tools.md#optional-parameters) |
+| **Supported models**          | Azure OpenAI models                         | Azure OpenAI models and Azure direct models |
 
 ## Common questions
 
@@ -81,7 +81,7 @@ Web grounding tools don't respect VPN or private endpoints. They act as public e
 
 ### How do I restrict search results to specific websites?
 
-Use [Grounding with Bing Custom Search (preview)](./bing-tools.md). This tool lets you define an allow-list or block-list of domains, so search results come only from sources you approve.
+Use [Web Search](./web-search.md). This tool lets you define an allow-list or block-list of domains, so search results come only from sources you approve.
 
 ### Are there additional costs for web grounding?
 
