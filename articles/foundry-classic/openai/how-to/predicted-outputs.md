@@ -75,7 +75,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -301,7 +301,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -407,6 +407,6 @@ for chunk in completion:
 
 ## Troubleshooting
 
-- **401/403**: If you use Microsoft Entra ID, confirm your identity has access to the Azure OpenAI resource. If you use `get_bearer_token_provider`, request a token for `https://cognitiveservices.azure.com/.default`.
+- **401/403**: If you use Microsoft Entra ID, confirm your identity has access to the Azure OpenAI resource. If you use `get_bearer_token_provider`, request a token for `https://ai.azure.com/.default`.
 - **404**: Confirm `base_url` uses your Azure OpenAI resource name, and `model` uses your deployment name.
 - **400**: Remove optional parameters and features listed in [Unsupported features](#unsupported-features), and try again.

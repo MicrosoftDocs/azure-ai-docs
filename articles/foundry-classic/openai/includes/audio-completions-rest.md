@@ -99,7 +99,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     # Keyless authentication
     credential = DefaultAzureCredential()
-    token = credential.get_token("https://cognitiveservices.azure.com/.default")
+    token = credential.get_token("https://ai.azure.com/.default")
     
     api_version = '2025-01-01-preview'
     url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"
@@ -218,7 +218,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     
     # Keyless authentication
     credential = DefaultAzureCredential()
-    token = credential.get_token("https://cognitiveservices.azure.com/.default")
+    token = credential.get_token("https://ai.azure.com/.default")
     
     # Read and encode audio file  
     with open('dog.wav', 'rb') as wav_reader: 
@@ -362,7 +362,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     
     # Keyless authentication
     credential = DefaultAzureCredential()
-    token = credential.get_token("https://cognitiveservices.azure.com/.default")
+    token = credential.get_token("https://ai.azure.com/.default")
     
     api_version = '2025-01-01-preview'
     url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"

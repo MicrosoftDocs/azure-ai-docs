@@ -173,7 +173,7 @@ def get_token():
     """
     try:
         # Get bearer token using DefaultAzureCredential
-        bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+        bearer_token = get_bearer_token("https://ai.azure.com/.default")
         
         # Construct the Azure OpenAI endpoint URL
         url = f"https://{azure_resource}.openai.azure.com/openai/v1/realtime/client_secrets"
@@ -569,7 +569,7 @@ def get_ephemeral_token():
         Exception: If token generation fails
     """
     # Get bearer token using DefaultAzureCredential
-    bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+    bearer_token = get_bearer_token("https://ai.azure.com/.default")
     
     # Construct the Azure OpenAI endpoint URL
     url = f"https://{azure_resource}.openai.azure.com/openai/v1/realtime/client_secrets"
@@ -814,7 +814,7 @@ def connect_and_negotiate():
         if location_header:
             try:
                 # Get a bearer token for WebSocket authentication
-                bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+                bearer_token = get_bearer_token("https://ai.azure.com/.default")
                 start_websocket_background(location_header, bearer_token)
             except Exception as e:
                 print(f"Failed to start background WebSocket monitoring: {e}")
