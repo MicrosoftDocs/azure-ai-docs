@@ -4,7 +4,7 @@ description: "Learn how to disable preview features in Microsoft Foundry by usin
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: shwinne, meerakurup
-ms.date: 02/24/2026
+ms.date: 03/11/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.custom:
