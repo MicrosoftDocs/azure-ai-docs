@@ -228,7 +228,7 @@ Agent deleted
 
 Grounding with Bing Custom Search is a powerful tool that you can use to select a subspace of the web to limit your agent's grounding knowledge. Here are a few tips to help you take full advantage of this capability:
 
-- If you own a public site that you want to include in the search but Bing hasn't indexed, see the [Bing Webmaster Guidelines](/bing/webmaster/webmaster-guidelines) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date.
+- If you own a public site that you want to include in the search but Bing hasn't indexed, see the [Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmasters-guidelines-30fba23a) for details about getting your site indexed. The webmaster documentation also provides details about getting Bing to crawl your site if the index is out of date.
 - You need at least the **Contributor** role for the Bing Custom Search resource to create a configuration.
 - You can block certain domains and perform a search against the rest of the web (a competitor's site, for example).
 - Grounding with Bing Custom Search only returns results for domains and webpages that are public and indexed by Bing.
