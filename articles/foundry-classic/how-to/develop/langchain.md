@@ -6,17 +6,21 @@ ms.custom:
   - ignite-2024
   - update-code-2
   - dev-focus
+  - classic-and-new
 ms.topic: how-to
 ms.date: 12/29/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
+ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# Develop applications with LangChain and Microsoft Foundry (classic)
+# Develop applications with models and LangChain in Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+> [!NOTE]
+> This article refers to the [Microsoft Foundry (classic)](../../what-is-foundry.md#microsoft-foundry-portals) portal. If you're using the new portal, use the [new version](../../../foundry/how-to/develop/langchain.md) of this article instead.
+>
 
 LangChain is a developer ecosystem that makes it easier to build reasoning applications. It includes multiple components, and most of them can be used independently, so you can pick and choose the pieces you need.
 
@@ -26,13 +30,10 @@ You can use models deployed to [!INCLUDE [classic-link](../../../foundry/include
 
 -->
 
-- **Use the model provider's API:** Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
+This tutorial shows how to use the `langchain-azure-ai` package with LangChain using Azure AI Model Inference API. Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
 
-- **Use the Azure AI Model Inference API:** All models deployed in Microsoft Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of capabilities across most models in the catalog. Because the API is consistent, switching models is as simple as changing the deployment; no code changes are required. For LangChain, also install the `langchain-azure-ai` integration.
-
-[!INCLUDE [migrate-model-inference-to-v1-openai](../../../foundry/includes/migrate-model-inference-to-v1-openai.md)]
-
-This tutorial shows how to use the `langchain-azure-ai` package with LangChain.
+> [!IMPORTANT]
+> Support for model inference using Azure AI Model Inference API requires the option `langchain-azure-ai[v1]` installed. Inference capabilities are deprecated and will be retired on May 30, 2026. Switch to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1) with a stable OpenAI SDK introduced in `langchain-azure-ai` or `langchain-openai`.
 
 ## Prerequisites
 
@@ -61,7 +62,7 @@ To run this tutorial, you need:
 * Install the Foundry integration:
 
     ```bash
-    pip install -U langchain-azure-ai
+    pip install -U langchain-azure-ai[v1]
     ```
 
 ## Configure the environment
@@ -81,21 +82,21 @@ Create a client to connect to the chat model by using the `AzureAIChatCompletion
 **What this snippet does:** Instantiates an `AzureAIChatCompletionsModel` client configured to connect to your deployed model using an API key for authentication. This client acts as an interface to the Model Inference API.
 
 **References:**
-- [LangChain Azure AI integration](https://python.langchain.com/docs/integrations/chat/azure_ai)
+- [LangChain Azure AI integration](https://docs.langchain.com/oss/python/integrations/providers/microsoft)
 - [Model Inference API overview](../../../ai-foundry/model-inference/overview.md)
 
 > [!CAUTION]
-> **Breaking change:** The `model_name` parameter is renamed to `model` in version `0.1.3`.
+> Class `langchain_azure_ai.chat_models.inference.AzureAIChatCompletionsModel` is deprecated. Use `langchain_azure_ai.chat_models.openai.AzureAIChatCompletionsModel` instead which uses OpenAI responses API.
 
 If your endpoint supports Microsoft Entra ID, use the following code to create the client:
 
 ```python
 import os
 from azure.identity import DefaultAzureCredential
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain_azure_ai.chat_models.inference import AzureAIChatCompletionsModel
 
 model = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint=os.environ["AZURE_AI_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredential(),
     model="Mistral-Large-3",
 )
@@ -110,10 +111,10 @@ If you plan to use asynchronous calls, use the asynchronous version of the crede
 from azure.identity.aio import (
     DefaultAzureCredential as DefaultAzureCredentialAsync,
 )
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain_azure_ai.chat_models.inference import AzureAIChatCompletionsModel
 
 model = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint=os.environ["AZURE_AI_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredentialAsync(),
     model="Mistral-Large-3",
 )
@@ -123,11 +124,11 @@ If your endpoint serves a single model (for example, serverless API deployments)
 
 ```python
 import os
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain_azure_ai.chat_models.inference import AzureAIChatCompletionsModel
 
 model = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
+    endpoint=os.environ["AZURE_AI_INFERENCE_ENDPOINT"],
+    credential=os.environ["AZURE_AI_CREDENTIAL"],
 )
 ```
 
@@ -286,7 +287,7 @@ When you use Azure OpenAI models with the `langchain-azure-ai` package, use the 
 
 ```python
 import os
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain_azure_ai.chat_models.inference import AzureAIChatCompletionsModel
 
 llm = AzureAIChatCompletionsModel(
     endpoint="https://<resource>.openai.azure.com/openai/v1",

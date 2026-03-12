@@ -1,10 +1,7 @@
 ---
-title: Fuzzy search
+title: Fuzzy Search
 titleSuffix: Azure AI Search
 description: Implement a fuzzy search query for a "did you mean" search experience. Fuzzy search autocorrects a misspelled term or typo on the query.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

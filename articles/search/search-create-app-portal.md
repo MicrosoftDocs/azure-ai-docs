@@ -1,10 +1,7 @@
 ---
-title: "Create a Demo App in the Azure portal"
+title: Create a Demo App in the Azure Portal
 titleSuffix: Azure AI Search
 description: Run the Create demo app wizard to generate HTML pages and script for a local web app. The page includes a search box, results area, sidebar, and typeahead support.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 03/05/2026

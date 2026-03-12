@@ -2,8 +2,6 @@
 title: Configure Vectorizer
 titleSuffix: Azure AI Search
 description: Add a vectorizer to an Azure AI Search index so the search service converts text queries to vectors at query time using Microsoft-hosted or custom embedding models.
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

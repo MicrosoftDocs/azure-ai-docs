@@ -1,10 +1,7 @@
 ---
-title: Data import and data ingestion
+title: Data Import and Data Ingestion
 titleSuffix: Azure AI Search
 description: Populate and upload data to an index in Azure AI Search from external data sources.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

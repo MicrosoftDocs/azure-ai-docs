@@ -1,9 +1,7 @@
 ---
-title: Manage enrichment caching
+title: Manage Enrichment Caching
 titleSuffix: Azure AI Search
 description: Cache intermediate content and incremental changes from AI enrichment pipeline in Azure Storage to preserve investments in existing processed documents. This feature is currently in public preview.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 02/24/2026

@@ -1,10 +1,7 @@
 ---
-title: Create a private endpoint for a secure connection
+title: Create a Private Endpoint for a Secure Connection
 titleSuffix: Azure AI Search
 description: Set up a private endpoint in a virtual network for a secure client connection to an Azure AI Search service.
-author: HeidiSteen
-ms.author: heidist
-manager: nitinme
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

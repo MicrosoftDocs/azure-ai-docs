@@ -22,15 +22,15 @@ highlightedContent:
     - title: What is Microsoft Foundry?
       itemType: overview
       url: ./what-is-foundry.md
+    - title: Looking for Foundry (classic) portal documentation?
+      itemType: overview
+      url: ../foundry-classic/what-is-foundry.md
     - title: Explore Foundry Models
       itemType: concept
       url: ./foundry-models/concepts/models-from-partners.md
-    - title: Upgrade from GitHub Models
-      itemType: how-to-guide
-      url: ./foundry-models/how-to/quickstart-github-models.md
-    - title: Responsible use of AI
-      itemType: concept
-      url: responsible-use-of-ai-overview.md
+    - title: Manage agents, models, and tools
+      itemType: overview
+      url: ./control-plane/overview.md
 
 # productDirectory section 
 productDirectory:
@@ -113,7 +113,7 @@ productDirectory:
           text: Document Intelligence
         - url: ../ai-services/content-understanding/index.yml
           text: Content Understanding
-        - url: ../ai-services/computer-vision/overview-identity.md
+        - url: ../ai-services/computer-vision/face-index.yml
           text: Face
     # Card
     - title: Azure Machine Learning
@@ -135,7 +135,7 @@ productDirectory:
           text: Integrate your apps
         - url: ../foundry-local/how-to/how-to-compile-hugging-face-models.md
           text: Run HuggingFace models
-        - url: ../foundry-local/reference/reference-sdk.md
+        - url: ../foundry-local/reference/reference-sdk-current.md
           text: SDK Documentation
 
 tools:

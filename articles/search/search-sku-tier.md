@@ -1,10 +1,9 @@
 ---
-title: Choose a service tier
+title: Choose a Service Tier
 titleSuffix: Azure AI Search
 description: 'Learn about the service tiers (or SKUs) for Azure AI Search. A search service can be provisioned at these tiers: Free, Basic, Standard, and Storage Optimized. Standard is available in various resource configurations and capacity levels.'
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 11/06/2025

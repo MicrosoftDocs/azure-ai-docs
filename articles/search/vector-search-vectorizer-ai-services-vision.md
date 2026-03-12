@@ -1,9 +1,8 @@
 ---
-title: Azure Vision vectorizer
+title: Azure Vision Vectorizer
 titleSuffix: Azure AI Search
 description: Connects to Azure Vision in Foundry Tools to generate embeddings at query time.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2024

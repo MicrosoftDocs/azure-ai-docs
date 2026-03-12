@@ -1,9 +1,8 @@
 ---
-title: Named Entity Recognition skill (v2)
+title: Named Entity Recognition Skill (V2)
 titleSuffix: Azure AI Search
 description: Extract named entities for person, location and organization from text in an AI enrichment pipeline in Azure AI Search.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

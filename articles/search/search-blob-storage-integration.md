@@ -1,10 +1,7 @@
 ---
-title: Search over Azure Blob Storage content
+title: Search Over Azure Blob Storage Content
 titleSuffix: Azure AI Search
 description: Learn how to extract text from Azure blobs and making the content full-text searchable in an Azure AI Search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 10/06/2025

@@ -1,9 +1,7 @@
 ---
-title: Shaping data for knowledge store
+title: Shaping Data for Knowledge Store
 titleSuffix: Azure AI Search
 description: Define the data structures in a knowledge store by creating data shapes and passing them to a projection.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 10/21/2025

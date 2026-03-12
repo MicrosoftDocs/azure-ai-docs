@@ -15,14 +15,16 @@ items:
     href: ../../how-to/develop/install-cli-sdk.md
   - name: Work in VS Code (Preview)
     href: ../../how-to/develop/get-started-projects-vs-code.md
-  - name: Use the Microsoft Foundry Agent Service in VS Code (Preview)
+  - name: Use the Microsoft Foundry Agent Service in VS Code
     href: ../../how-to/develop/vs-code-agents.md
-  - name: Use MCP tools with the Microsoft Foundry Agent Service in VS Code (Preview)
+  - name: Use MCP tools with the Microsoft Foundry Agent Service in VS Code
     href: ../../how-to/develop/vs-code-agents-mcp.md
   - name: Start with an AI template
     href: ../../how-to/develop/ai-template-get-started.md
-  - name: Develop with LangChain
+  - name: Develop with models and LangChain
     href: ../../how-to/develop/langchain.md
+  - name: Develop with agents and LangGraph
+    href: ../../how-to/develop/langchain-agents.md
   - name: Develop with LlamaIndex
     href: ../../how-to/develop/llama-index.md
     displayName: code,sdk

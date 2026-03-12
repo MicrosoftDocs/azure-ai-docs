@@ -1,12 +1,11 @@
 ---
-title: Use a SharePoint indexer to ingest permission metadata
+title: Use a SharePoint Indexer to Ingest Permission Metadata
 titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) from SharePoint in Microsoft 365 files.
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/09/2025
-author: gmndrg
-ms.author: gimondra
 ---
 
 # Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights

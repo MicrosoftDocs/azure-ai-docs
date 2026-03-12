@@ -1,10 +1,7 @@
 ---
-title: Migrate semantic ranking code 
+title: Migrate Semantic Ranking Code
 titleSuffix: Azure AI Search
 description: Migrate semantic ranking code from preview to stable versions, and now to newer preview versions.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

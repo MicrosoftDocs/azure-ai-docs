@@ -2,8 +2,8 @@
 title: 'Quickstart: Deploy Using a Bicep File'
 titleSuffix: Azure AI Search
 description: Learn how to deploy an Azure AI Search service instance using Bicep.
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.custom:

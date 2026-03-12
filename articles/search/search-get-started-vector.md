@@ -2,8 +2,8 @@
 title: 'Quickstart: Vector Search'
 titleSuffix: Azure AI Search
 description: Learn how to call the Search REST and Azure SDK APIs for vector workloads in Azure AI Search.
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

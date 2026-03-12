@@ -1,9 +1,8 @@
 ---
-title: Microsoft Foundry model catalog vectorizer
+title: Microsoft Foundry Model Catalog Vectorizer
 titleSuffix: Azure AI Search
 description: Connects to a deployed model from the Microsoft Foundry model catalog at query time.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2024

@@ -1,9 +1,7 @@
 ---
-title: Eliminate optional vector instances
+title: Eliminate Optional Vector Instances
 titleSuffix: Azure AI Search
 description: In vector search, configure storage to exclude optional copies of vector fields, reducing the storage requirements of vector data.
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
