@@ -692,77 +692,6 @@ Use one of the following options.
 
 For more detailed steps, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
-#### [Azure CLI](#tab/azurecli)
-
-> [!NOTE]
-> This option uses the Azure Machine Learning CLI extension (`az ml`). The `--workspace-name` parameter corresponds to your Foundry **project name** (not the Foundry resource name). You can find the project name in the Foundry portal under your project settings, or in the Azure portal as the underlying workspace resource name.
-
-**Create the following connection.yml file:**
-
-You can use a YAML configuration file for both key-based and keyless authentication. Replace the `name`, `endpoint`, and `api_key` (optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search.md). 
-
-Here's a key-based example:
-
-```yml
-name: my_project_acs_connection_keys
-type: azure_ai_search
-endpoint: https://contoso.search.windows.net/
-api_key: XXXXXXXXXXXXXXX
-```
-
-> [!IMPORTANT]
-> Don't put real keys in source control. Store secrets in a secure store (for example, Azure Key Vault) and inject them at deployment time.
-
-Here's a keyless example:
-
-```yml    
-name: my_project_acs_connection_keyless
-type: azure_ai_search
-endpoint: https://contoso.search.windows.net/
-```
-
-**Then, run the following command:**
-
-Replace the placeholders with the resource group and project name.
-
-```azurecli
-az ml connection create --file connection.yml --resource-group <resource-group> --workspace-name <project-name>
-```
-
-#### [Python SDK](#tab/pythonsdk)
-
-> [!NOTE]
-> This example uses the `azure-ai-ml` package (Azure Machine Learning SDK) to create the connection. This is a separate package from the `azure-ai-projects` package used in the code samples earlier in this article. The `workspace_name` parameter corresponds to your Foundry **project name** (not the Foundry resource name).
-
-Replace the `my_connection_name`, `my_endpoint`, and `my_key` (optional) placeholders with your search service details, and then run the following code:
-
-```python
-from azure.identity import DefaultAzureCredential
-from azure.ai.ml import MLClient
-from azure.ai.ml.entities import AzureAISearchConnection
-
-# Azure AI Search connection details
-CONNECTION_NAME = "my-connection-name"
-SEARCH_ENDPOINT = "https://my-service.search.windows.net"
-API_KEY = None  # Leave blank for keyless (Microsoft Entra ID) authentication
-
-# Define the connection
-connection = AzureAISearchConnection(name=CONNECTION_NAME,
-                                     endpoint=SEARCH_ENDPOINT,
-                                     api_key=API_KEY)
-
-# Create MLClient
-ml_client = MLClient(
-  credential=DefaultAzureCredential(),
-  subscription_id="<subscription-id>",
-  resource_group_name="<resource-group>",
-  workspace_name="<project-name>",
-)
-
-# Create the connection
-ml_client.connections.create_or_update(connection)
-```
-
 #### [REST API](#tab/restapi)
 
 Use the Foundry account management REST API to create a project connection. Replace the placeholders with your subscription, resource group, Foundry resource, project, and connection details.
@@ -860,7 +789,7 @@ Console.WriteLine(connection.Id);
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
-| "Workspace not found" when creating a connection | Incorrect `--workspace-name` or `workspace_name` value | The workspace name corresponds to your Foundry **project name**, not the Foundry resource name. Use the Foundry portal or REST API as alternatives. See [Create a project connection](#create-a-project-connection). |
+| "Workspace not found" when creating a connection | The `az ml` CLI and `azure-ai-ml` Python SDK use the `Microsoft.MachineLearningServices` resource provider, which doesn't support new Foundry projects (`Microsoft.CognitiveServices`) | Create the connection by using the Foundry portal, REST API, or Bicep. See [Create a project connection](#create-a-project-connection). |
 | Response has no citations | Agent instructions don't request citations | Update your agent instructions to explicitly request citations in responses. |
 | Response has no citations (streaming) | Annotations not captured | Confirm you receive `url_citation` annotations when streaming. Check your stream processing logic. |
 | Tool can't access the index (401/403) | Missing RBAC roles (keyless auth) | Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to the Foundry project's managed identity. See [Azure RBAC in Foundry](../../../concepts/rbac-foundry.md). |
