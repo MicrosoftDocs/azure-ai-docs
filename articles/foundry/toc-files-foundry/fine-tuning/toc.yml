@@ -9,6 +9,9 @@ items:
 - name: Deploy your fine-tuned model
   href: ../../openai/how-to/fine-tuning-deploy.md
   displayName: finetuning, fine-tuning     
+- name: Fine-tune using Azure Developer CLI
+  href: ../../fine-tuning/fine-tune-cli.md
+  displayName: finetuning, fine-tuning  
 
 # Data Preparation
 - name: Synthetic Data Generation

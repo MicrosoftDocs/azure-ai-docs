@@ -36,7 +36,7 @@ Before you begin, make sure your Azure environment is set up and that you have t
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * The **Fireworks on Foundry** preview feature enabled in your subscription. For setup steps, see [Use Fireworks models on Foundry](enable-fireworks-models.md#enable-fireworks-on-foundry).
-* The **Cognitive Services Contributor** role (or equivalent) on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/role-based-access-control/built-in-roles).
+* The **Azure AI Owner** role (or equivalent) on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) installed locally. The import workflow uses `azd` to upload model weights.
 
 ## Region availability
