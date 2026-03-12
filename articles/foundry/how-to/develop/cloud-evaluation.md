@@ -793,6 +793,10 @@ curl --request POST \
 
 For a complete runnable example, see [sample_agent_response_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_response_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
+> [!TIP]
+> To add another evaluation run,  you can use the same code.
+
+
 ## Synthetic data evaluation (preview)
 
 Generate synthetic test queries, send them to a deployed model or Foundry agent, and evaluate the responses using the `azure_ai_synthetic_data_gen_preview` data source type. Use this scenario when you don't have a test dataset — the service generates queries based on a prompt you provide (and/or from the agent's instructions), runs them against your target, and evaluates the responses.
