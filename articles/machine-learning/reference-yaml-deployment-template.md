@@ -32,15 +32,15 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `description` | string | Description of the deployment template. | | |
 | `tags` | object | Dictionary of tags for the deployment template. | | |
 | `type` | string | Type of the deployment template. | | |
-| `deployment_template_type` | string | The deployment template type. | | |
-| `environment` | string or object | The environment to use for the deployment template. This value can be either a reference to an existing versioned environment in a registry, or an inline environment specification. <br><br> To reference an existing environment in a registry, use the `azureml://registries/<registry-name>/environments/<environment-name>` syntax. <br><br> To define an environment inline, follow the [Environment schema](reference-yaml-environment.md#yaml-syntax). <br><br> As a best practice for production scenarios, you should create the environment separately and reference it here. | | |
+| `deployment_template_type` | string | **Required.** The deployment template type. | | |
+| `environment` | string | **Required.** The environment to use for the deployment template. This value must be a reference to an existing versioned environment in a registry. Use the `azureml://registries/<registry-name>/environments/<environment-name>/versions/<version>` syntax. <br><br> **Note:** Workspace-scoped environments (using `azureml:<name>:<version>` syntax) and inline environment definitions are not supported for deployment templates. | | |
 | `environment_variables` | object | Dictionary of environment variable key-value pairs to set for the deployment. You can access these environment variables from your scoring scripts. | | |
-| `instance_count` | integer | The number of instances to use for the deployment. Specify the value based on the workload you expect. | | |
-| `default_instance_type` | string | The default instance type to use when deploying with this template. | | |
+| `instance_count` | integer | **Required.** The number of instances to use for the deployment. Specify the value based on the workload you expect. | | |
+| `default_instance_type` | string | **Required.** The default instance type to use when deploying with this template. | | |
 | `allowed_instance_types` | string | The allowed instance type that can be used when deploying with this template. | | |
 | `model_mount_path` | string | The path to mount the model in the container. | | |
-| `scoring_path` | string | The path for the scoring endpoint. | | |
-| `scoring_port` | integer | The port for the scoring endpoint. | | |
+| `scoring_path` | string | **Required.** The path for the scoring endpoint. | | |
+| `scoring_port` | integer | **Required.** The port for the scoring endpoint. | | |
 | `liveness_probe` | object | Liveness probe settings for monitoring the health of the container regularly. See [ProbeSettings](#probesettings) for the set of configurable properties. | | |
 | `readiness_probe` | object | Readiness probe settings for validating if the container is ready to serve traffic. See [ProbeSettings](#probesettings) for the set of configurable properties. | | |
 | `request_settings` | object | Request settings for the deployment. See [RequestSettings](#requestsettings) for the set of configurable properties. | | |
@@ -81,9 +81,12 @@ $schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.j
 name: my-deployment-template
 version: 1
 description: Basic deployment template example
-environment: azureml:my-environment:1
+deployment_template_type: ManagedOnlineEndpoint
+environment: azureml://registries/my-registry/environments/my-environment/versions/1
 instance_count: 1
 default_instance_type: Standard_DS3_v2
+scoring_path: /score
+scoring_port: 5001
 ```
 
 ## YAML: with environment variables and probes
@@ -93,7 +96,8 @@ $schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.j
 name: my-deployment-template
 version: 1
 description: Deployment template with environment variables and health probes
-environment: azureml://registries/azureml/environments/minimal-ubuntu20.04-py38-cpu-inference:latest
+deployment_template_type: ManagedOnlineEndpoint
+environment: azureml://registries/azureml/environments/minimal-ubuntu20.04-py38-cpu-inference/versions/latest
 environment_variables:
   MODEL_PATH: /var/azureml-app/model
   SCORING_TIMEOUT: "60"
@@ -125,34 +129,13 @@ $schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.j
 name: my-deployment-template-restricted
 version: 1
 description: Deployment template with instance type restrictions
-environment: azureml:my-environment:1
+deployment_template_type: ManagedOnlineEndpoint
+environment: azureml://registries/my-registry/environments/my-environment/versions/1
 instance_count: 1
 default_instance_type: Standard_DS3_v2
+scoring_path: /score
+scoring_port: 5001
 allowed_instance_types: Standard_DS3_v2
-```
-
-## YAML: with inline environment
-
-```yml
-$schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.json
-name: my-deployment-template-inline-env
-version: 1
-description: Deployment template with inline environment definition
-environment:
-  name: inline-environment
-  image: mcr.microsoft.com/azureml/minimal-ubuntu20.04-py38-cpu-inference:latest
-  inference_config:
-    liveness_route:
-      path: /health
-      port: 5001
-    readiness_route:
-      path: /ready
-      port: 5001
-    scoring_route:
-      path: /score
-      port: 5001
-instance_count: 1
-default_instance_type: Standard_DS3_v2
 ```
 
 ## YAML: with model mount path
@@ -162,9 +145,12 @@ $schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.j
 name: my-deployment-template-custom-mount
 version: 1
 description: Deployment template with custom model mount path
-environment: azureml:my-environment:1
+deployment_template_type: ManagedOnlineEndpoint
+environment: azureml://registries/my-registry/environments/my-environment/versions/1
 instance_count: 1
 default_instance_type: Standard_DS3_v2
+scoring_path: /score
+scoring_port: 5001
 model_mount_path: /var/azureml-app/models
 ```
 
