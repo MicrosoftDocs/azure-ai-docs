@@ -1,6 +1,5 @@
 ---
-title: Add semantic ranking
-titleSuffix: Azure AI Search
+title: Add Semantic Ranking
 description: Set a semantic query type to attach the deep learning models of semantic ranker.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

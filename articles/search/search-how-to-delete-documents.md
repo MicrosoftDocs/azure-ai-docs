@@ -1,9 +1,6 @@
 ---
 title: Delete Documents
-titleSuffix: Azure AI Search
 description: Learn how to delete documents in a search index using the REST APIs or an Azure SDK.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to

@@ -1,6 +1,5 @@
 ---
-title: Create a skillset
-titleSuffix: Azure AI Search
+title: Create a Skillset
 description: Learn about skillsets and create a skillset in Azure AI Search using REST APIs.
 ms.service: azure-ai-search
 ms.topic: how-to

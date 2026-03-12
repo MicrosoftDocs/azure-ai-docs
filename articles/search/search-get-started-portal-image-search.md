@@ -1,6 +1,5 @@
 ---
-title: "Quickstart: Multimodal Search in the Azure portal"
-titleSuffix: Azure AI Search
+title: "Quickstart: Multimodal Search in the Azure Portal"
 description: Learn how to index and search for multimodal content in the Azure portal. Run a wizard to extract and embed both text and images, and then use Search Explorer to query your multimodal index.
 author: mattwojo
 ms.author: mattwoj

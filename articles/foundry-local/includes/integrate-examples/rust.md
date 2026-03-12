@@ -1,4 +1,6 @@
 ---
+title: Include file
+description: Include file
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 01/06/2026
@@ -70,7 +72,7 @@ async fn main() -> Result<()> {
 }
 ```
 
-Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+Reference: [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
 Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
 
 Run the code using the following command:

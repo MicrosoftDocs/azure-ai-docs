@@ -1,6 +1,5 @@
 ---
-title: Multi-Region Solutions in Azure AI Search
-titleSuffix: Azure AI Search
+title: Multi-Region Solutions
 description: Learn about multi-region deployments in Azure AI Search, including data synchronization and request failover.
 author: mattwojo
 ms.author: mattwoj

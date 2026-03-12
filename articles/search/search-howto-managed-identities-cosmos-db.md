@@ -1,9 +1,7 @@
 ---
-title: Set up an indexer connection to Azure Cosmos DB using a managed identity
-titleSuffix: Azure AI Search
+title: Set up an Indexer Connection to Azure Cosmos DB Using a Managed Identity
 description: Learn how to set up an indexer connection to an Azure Cosmos DB account using a managed identity.
-author: arv100kri
-ms.author: arjagann
+ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 08/27/2025

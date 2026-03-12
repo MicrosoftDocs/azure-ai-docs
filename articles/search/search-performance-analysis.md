@@ -1,6 +1,5 @@
 ---
-title: Analyze performance
-titleSuffix: Azure AI Search
+title: Analyze Performance
 description: Learn about the tools, behaviors, and approaches for analyzing query and indexing performance in Azure AI Search.
 author: mattwojo
 ms.author: mattwoj

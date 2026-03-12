@@ -1,21 +1,21 @@
 ---
 title: "Deploy pipelines with batch endpoints"
 titleSuffix: Azure Machine Learning
-description: Learn how to create a batch deploy a pipeline component and invoke it.
+description: Learn how to deploy a pipeline component as a batch endpoint and invoke it.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 11/15/2023
+ms.date: 03/12/2026
 ms.reviewer: jturuk
+ai-usage: ai-assisted
 ms.custom:
   - how-to
   - devplatv2
-  - event-tier1-build-2023
-  - ignite-2023
   - update-code2
+  - dev-focus
 ---
 
 # How to deploy pipelines with batch endpoints
@@ -31,7 +31,7 @@ You can deploy pipeline components under a batch endpoint, providing a convenien
 
 ## About this example
 
-In this example, we're going to deploy a pipeline component consisting of a simple command job that prints "hello world!". This component requires no inputs or outputs and is the simplest pipeline deployment scenario.
+In this example, you deploy a pipeline component consisting of a simple command job that prints "hello world!". This component requires no inputs or outputs and is the simplest pipeline deployment scenario.
 
 [!INCLUDE [machine-learning-batch-clone](includes/azureml-batch-clone-samples.md)]
 
@@ -121,9 +121,9 @@ Register the component:
 
 ## Deploy the pipeline component
 
-To deploy the pipeline component, we have to create a batch deployment. A deployment is a set of resources required for hosting the asset that does the actual work.
+To deploy the pipeline component, you need to create a batch deployment. A deployment is a set of resources required for hosting the asset that does the actual work.
 
-1. Create a compute cluster. Batch endpoints and deployments run on compute clusters. They can run on any Azure Machine Learning compute cluster that already exists in the workspace. Therefore, multiple batch deployments can share the same compute infrastructure. In this example, we'll work on an Azure Machine Learning compute cluster called `batch-cluster`. Let's verify that the compute exists on the workspace or create it otherwise.
+1. Create a compute cluster. Batch endpoints and deployments run on compute clusters. They can run on any Azure Machine Learning compute cluster that already exists in the workspace. Therefore, multiple batch deployments can share the same compute infrastructure. In this example, you use an Azure Machine Learning compute cluster called `batch-cluster`. Verify that the compute exists on the workspace or create it otherwise.
 
     # [Azure CLI](#tab/cli)
     
@@ -164,7 +164,7 @@ To deploy the pipeline component, we have to create a batch deployment. A deploy
 
     [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-pipelines/hello-batch/sdk-deploy-and-test.ipynb?name=create_deployment)]
     
-    Once created, let's configure this new deployment as the default one:
+    Once created, configure this new deployment as the default one:
 
     [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-pipelines/hello-batch/sdk-deploy-and-test.ipynb?name=update_default_deployment)]
 
@@ -185,7 +185,7 @@ Once the deployment is created, it's ready to receive jobs. You can invoke the d
 ---
 
 > [!TIP]
-> In this example, the pipeline doesn't have inputs or outputs. However, if the pipeline component requires some, they can be indicated at invocation time. To learn about how to indicate inputs and outputs, see [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md) or see the tutorial [How to deploy a pipeline to perform batch scoring with preprocessing (preview)](how-to-use-batch-scoring-pipeline.md).
+> In this example, the pipeline doesn't have inputs or outputs. However, if the pipeline component requires some, they can be indicated at invocation time. To learn about how to indicate inputs and outputs, see [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md) or see the tutorial [How to deploy a pipeline to perform batch scoring with preprocessing](how-to-use-batch-scoring-pipeline.md).
 
 You can monitor the progress of the show and stream the logs using:
 

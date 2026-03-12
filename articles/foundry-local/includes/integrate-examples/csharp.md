@@ -1,4 +1,6 @@
 ---
+title: Include file
+description: Include file
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 01/06/2026
@@ -14,7 +16,7 @@ ai-usage: ai-assisted
 
 ## Samples repository
 
-The sample in this article can be found in the [Foundry Local C# SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
+You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
 
 ## Set up project
 
@@ -28,7 +30,7 @@ The following example demonstrates how to use the OpenAI SDK with Foundry Local.
 1. Gets a `Model` object from the model catalog using an alias.
 
    > [!NOTE]
-   > Foundry Local will select the best variant for the model automatically based on the available hardware of the host machine.
+   > Foundry Local selects the best variant for the model automatically based on the available hardware of the host machine.
 
 1. Downloads and loads the model variant.
 1. Starts the web service.
@@ -116,7 +118,7 @@ await mgr.StopWebServiceAsync();
 await model.UnloadAsync();
 ```
 
-Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+Reference: [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
 Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
 
 Run the code using the following command:
@@ -157,7 +159,7 @@ dotnet run -r win-x64
 ```
 
 > [!NOTE]
-> If you are targeting Windows, we recommend using the Windows-specific instructions under the Windows tab for optimal performance and experience.
+> If you're targeting Windows, we recommend using the Windows-specific instructions under the Windows tab for optimal performance and experience.
 
 You should see a streaming response printed to your console.
 

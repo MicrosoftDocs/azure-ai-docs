@@ -1,4 +1,6 @@
 ---
+title: Include file
+description: Include file
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
@@ -15,30 +17,18 @@ ai-usage: ai-assisted
 
 Before starting this tutorial, you need:
 
-- **Foundry Local** installed on your computer. Read the [Get started with Foundry Local](../../get-started.md) guide for installation instructions.
-- **Node.js 18 or later** installed on your computer. You can download Node.js from the [official website](https://nodejs.org/).
+- **Node.js 20 or later** installed on your computer. You can download Node.js from the [official website](https://nodejs.org/).
 
-## Install Node.js packages
+## Set up project
 
-You need to install the following Node.js packages:
+[!INCLUDE [project-setup](../javascript-project-setup.md)]
+
+### Install LangChain packages
+
+You also need to install the following Node.js packages:
 
 ```bash
 npm install @langchain/openai @langchain/core
-npm install foundry-local-sdk
-```
-
-This example uses ES modules (`import`) and top-level `await`. If you haven't already, initialize a Node.js project and enable ES modules:
-
-```bash
-npm init -y
-```
-
-In your `package.json`, set:
-
-```json
-{
-    "type": "module"
-}
 ```
 
 ## Create a translation application
@@ -46,31 +36,49 @@ In your `package.json`, set:
 Create a new JavaScript file named `translation_app.js` in your favorite IDE and add the following code:
 
 ```javascript
-import { FoundryLocalManager } from "foundry-local-sdk";
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
+import { FoundryLocalManager } from 'foundry-local-sdk';
 
-// By using an alias, the most suitable model will be downloaded 
-// to your end-user's device.
-// TIP: You can find a list of available models by running the 
-// following command in your terminal: `foundry model list`.
-const alias = "phi-3-mini-4k";
+// Initialize the Foundry Local SDK
+console.log('Initializing Foundry Local SDK...');
 
-// Create a FoundryLocalManager instance. This will start the Foundry 
-// Local service if it is not already running.
-const foundryLocalManager = new FoundryLocalManager()
+const endpointUrl = 'http://localhost:5764';
 
-// Initialize the manager with a model. This will download the model 
-// if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(alias)
-console.log("Model Info:", modelInfo)
+const manager = FoundryLocalManager.create({
+    appName: 'foundry_local_samples',
+    logLevel: 'info',
+    webServiceUrls: endpointUrl
+});
+console.log('✓ SDK initialized successfully');
+
+// Get the model object
+const modelAlias = 'qwen2.5-0.5b'; // Using an available model from the list above
+const model = await manager.catalog.getModel(modelAlias);
+model.selectVariant('qwen2.5-0.5b-instruct-generic-cpu:4');
+
+// Download the model
+console.log(`\nDownloading model ${modelAlias}...`);
+await model.download();
+console.log('✓ Model downloaded');
+
+// Load the model
+console.log(`\nLoading model ${modelAlias}...`);
+await model.load();
+console.log('✓ Model loaded');
+
+// Start the web service
+console.log('\nStarting web service...');
+manager.startWebService();
+console.log('✓ Web service started');
+
 
 // Configure ChatOpenAI to use your locally-running model
 const llm = new ChatOpenAI({
-    model: modelInfo.id,
+    model: model.id,
     configuration: {
-        baseURL: foundryLocalManager.endpoint,
-        apiKey: foundryLocalManager.apiKey
+        baseURL: endpointUrl + '/v1',
+        apiKey: 'notneeded'
     },
     temperature: 0.6,
     streaming: false
@@ -95,7 +103,7 @@ const input = "I love to code.";
 console.log(`Translating '${input}' to French...`);
 
 // Run the chain with your inputs
-chain.invoke({
+await chain.invoke({
     input_language: "English",
     output_language: "French",
     input: input
@@ -105,17 +113,15 @@ chain.invoke({
 }).catch(err => {
     console.error("Error:", err);
 });
+
+// Tidy up
+console.log('Unloading model and stopping web service...');
+await model.unload();
+manager.stopWebService();
+console.log(`✓ Model unloaded and web service stopped`);
 ```
 
-#### References
-
-- Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
-- Reference: [Get started with Foundry Local](../../get-started.md)
-
-> [!NOTE]
-> One of the key benefits of Foundry Local is that it **automatically** selects the most suitable model **variant** for the user's hardware. For example, if the user has a GPU, it downloads the GPU version of the model. If the user has an NPU (Neural Processing Unit), it downloads the NPU version. If the user doesn't have either a GPU or NPU, it downloads the CPU version of the model.
-
-## Run the application
+### Run the application
 
 To run the application, open a terminal and navigate to the directory where you saved the `translation_app.js` file. Then, run the following command:
 
@@ -128,7 +134,6 @@ You're done when you see a `Response:` line with the translated text.
 You should see output similar to:
 
 ```text
-Model Info: { ... }
 Translating 'I love to code.' to French...
-Response: <translated text>
+Response: J'aime le coder
 ```

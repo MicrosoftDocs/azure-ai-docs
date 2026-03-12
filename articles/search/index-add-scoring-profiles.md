@@ -1,6 +1,5 @@
 ---
-title: Add scoring profiles
-titleSuffix: Azure AI Search
+title: Add Scoring Profiles
 description: Boost search relevance scores for Azure AI Search results by adding scoring profiles to a search index.
 ms.service: azure-ai-search
 ms.custom:

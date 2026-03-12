@@ -38,8 +38,8 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-5.4` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - Computer use (Coming Soon!) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000 <br><br>1,050,000 Context Window (Coming Soon!)   | 128,000 | August 2025 |
-| `gpt-5.4-pro` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Text and image processing. <br> - Functions & tools <br> - Computer use (Coming Soon!) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000 <br><br>1,050,000 Context Window (Coming Soon!)   | 128,000 | August 2025 |
+| `gpt-5.4` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 1,050,000 Context Window | 128,000 | August 2025 |
+| `gpt-5.4-pro` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Text and image processing. <br> - Functions & tools <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000 <br><br>1,050,000 Context Window (Coming Soon!)   | 128,000 | August 2025 |
 
 ## GPT-5.3
 
@@ -96,9 +96,6 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | `gpt-5.1-codex-mini` |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.1-codex-max` |  See the [models table](#model-summary-table-and-region-availability).  | 
 
-- **[Registration is required for access to gpt-5.1, gpt-5.1-codex, and gpt-5.1-codex-max](https://aka.ms/oai/gpt5access).**
-
-Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -131,12 +128,6 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | `gpt-5-chat` (2025-10-03) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-codex` (2025-09-11) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-pro` (2025-10-06) |  See the [models table](#model-summary-table-and-region-availability).  |
-
-- **[Registration is required for access to the gpt-5-pro, gpt-5, & gpt-5-codex models](https://aka.ms/oai/gpt5access).**
-
-- `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
-
- Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to `o3`, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |

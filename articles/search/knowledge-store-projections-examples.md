@@ -1,6 +1,5 @@
 ---
-title: Define projections
-titleSuffix: Azure AI Search
+title: Define Projections
 description: Learn how to define table, object, and file projections in a knowledge store by reviewing syntax and examples.
 ms.service: azure-ai-search
 ms.topic: concept-article
