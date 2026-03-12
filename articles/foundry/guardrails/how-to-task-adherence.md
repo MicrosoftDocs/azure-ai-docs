@@ -5,7 +5,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 11/06/2025
+ms.date: 03/12/2026
 ---
 
 # How to use Task Adherence for your Agentic workflows
