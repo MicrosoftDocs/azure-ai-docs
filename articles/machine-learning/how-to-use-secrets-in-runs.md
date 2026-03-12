@@ -12,8 +12,7 @@ ms.date: 03/12/2026
 ms.topic: how-to
 ms.custom: sdkv2, FY25Q1-Linter, dev-focus
 ai-usage: ai-assisted
-ms.custom: sdkv2, FY25Q1-Linter, dev-focus
-ai-usage: ai-assisted
+
 # Customer intent: As a data scientist, I want to securely access secrets from Azure Key Vault in my training jobs so that I can use them in my training scripts.
 ---
 
