@@ -1,6 +1,5 @@
 ---
 title: Explore Code (.NET Tutorial)
-titleSuffix: Azure AI Search
 description: Understand the .NET SDK Search integration queries used in the Search-enabled website with this cheat sheet.
 ms.reviewer: diberry
 ms.service: azure-ai-search

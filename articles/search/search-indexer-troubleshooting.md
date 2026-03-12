@@ -1,6 +1,5 @@
 ---
 title: Indexer Troubleshooting
-titleSuffix: Azure AI Search
 description: Provides indexer problem and resolution guidance for cases when no error messages are returned from the service search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

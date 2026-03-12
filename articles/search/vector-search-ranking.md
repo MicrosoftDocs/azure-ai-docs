@@ -1,6 +1,5 @@
 ---
 title: Vector Relevance and Ranking
-titleSuffix: Azure AI Search
 description: Learn about the concepts behind vector relevance, scoring, including how matches are found in vector space and ranked in search results.
 ms.reviewer: jlembicz
 ms.service: azure-ai-search

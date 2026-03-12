@@ -1,6 +1,5 @@
 ---
 title: 'Tutorial: Index ADLS Gen2 Permission Metadata'
-titleSuffix: Azure AI Search
 description: Learn how to index Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scope from ADLS Gen2 and query with permission-filtered results in Azure AI Search.
 ms.reviewer: wli
 ms.service: azure-ai-search

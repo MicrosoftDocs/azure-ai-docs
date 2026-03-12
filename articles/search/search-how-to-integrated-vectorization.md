@@ -1,6 +1,5 @@
 ---
 title: Integrated Vectorization Using REST APIs
-titleSuffix: Azure AI Search
 description: Learn how to use skills to automate data chunking and vectorization during indexing and query execution.
 ms.service: azure-ai-search
 ms.topic: how-to

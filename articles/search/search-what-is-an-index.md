@@ -1,6 +1,5 @@
 ---
 title: Search Index Overview
-titleSuffix: Azure AI Search
 description: Explains index content, construction, physical expression, and schema.
 ms.service: azure-ai-search
 ms.custom:

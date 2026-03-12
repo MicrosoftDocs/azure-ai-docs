@@ -1,6 +1,5 @@
 ---
 title: Manage Using REST
-titleSuffix: Azure AI Search
 description: Create and configure an Azure AI Search service with the Management REST API. The Management REST API is comprehensive in scope, with access to generally available and preview features.
 author: mattwojo
 ms.author: mattwoj

@@ -1,6 +1,5 @@
 ---
 title: Compress Vectors Using Quantization
-titleSuffix: Azure AI Search
 description: Configure built-in scalar or quantization for compressing vectors on disk and in memory.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

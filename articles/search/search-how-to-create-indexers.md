@@ -1,6 +1,5 @@
 ---
 title: Create an Indexer
-titleSuffix: Azure AI Search
 description: Configure an indexer to automate data import and indexing from Azure data sources into a search index in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to

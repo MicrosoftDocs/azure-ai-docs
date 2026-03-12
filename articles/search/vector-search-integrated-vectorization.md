@@ -1,6 +1,5 @@
 ---
 title: Integrated Vectorization
-titleSuffix: Azure AI Search
 description: Add a vector embedding step in an Azure AI Search skillset to vectorize content during indexing or queries.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

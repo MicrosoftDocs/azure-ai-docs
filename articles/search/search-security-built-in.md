@@ -1,6 +1,5 @@
 ---
 title: Data, Privacy, and Built-in Protections
-titleSuffix: Azure AI Search
 description: Learn about Microsoft-managed security, data residency, encryption, and compliance features built into Azure AI Search.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

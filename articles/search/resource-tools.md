@@ -1,6 +1,5 @@
 ---
 title: Productivity Tools
-titleSuffix: Azure AI Search
 description: Use existing code samples or build your own tools for working with a search index in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
