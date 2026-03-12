@@ -12,13 +12,16 @@ author: lgayhardt
 ms.date: 03/12/2026
 ms.custom: responsible-ml, devx-track-python, dev-focus
 ai-usage: ai-assisted
+ms.date: 03/12/2026
+ms.custom: responsible-ml, devx-track-python, dev-focus
+ai-usage: ai-assisted
 ---
 
-# Generate a Responsible AI insights with YAML and Python
+# Generate Responsible AI insights with YAML and Python
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-You can generate a Responsible AI dashboard and scorecard via a pipeline job by using Responsible AI components. There are six core components for creating Responsible AI dashboards, along with a couple of helper components. Here's a sample experiment graph:
+By using Responsible AI components, you can generate a Responsible AI dashboard and scorecard through a pipeline job. Six core components help you create Responsible AI dashboards, along with a couple of helper components. Here's a sample experiment graph:
 
 :::image type="content" source="./media/how-to-responsible-ai-insights-sdk-cli/sample-experiment-graph.png" alt-text="Screenshot of a sample experiment graph." lightbox= "./media/how-to-responsible-ai-insights-sdk-cli/sample-experiment-graph.png":::
 
@@ -35,9 +38,9 @@ The core components for constructing the Responsible AI dashboard in Azure Machi
     - `Gather RAI Insights dashboard`
     - `Gather RAI Insights score card`
 
-The `RAI Insights dashboard constructor` and `Gather RAI Insights dashboard` components are always required, plus at least one of the tool components. However, it isn't necessary to use all the tools in every Responsible AI dashboard.  
+The `RAI Insights dashboard constructor` and `Gather RAI Insights dashboard` components are always required, plus at least one of the tool components. However, you don't need to use all the tools in every Responsible AI dashboard.  
 
-In the following sections are specifications of the Responsible AI components and examples of code snippets in YAML and Python.
+The following sections describe the Responsible AI components and provide examples of code snippets in YAML and Python.
 
 > [!IMPORTANT]
 > Items marked (preview) in this article are currently in public preview.
@@ -130,7 +133,6 @@ First, load the component:
                 classes="[]", 
             ) 
 ```
-
 ---
 
 ### Add Causal to RAI Insights dashboard
@@ -166,20 +168,22 @@ This component has a single output port, which you can connect to one of the `in
     component: azureml://registries/azureml/components/microsoft_azureml_rai_tabular_causal/versions/<version>
     inputs: 
       rai_insights_dashboard: ${{parent.jobs.create_rai_job.outputs.rai_insights_dashboard}} 
-      treatment_features: `["Number of GitHub repos contributed to", "YOE"]' 
+treatment_features: '["Number of GitHub repos contributed to", "YOE"]' 
 ```
 
 # [Python SDK](#tab/python)
 
 ```python
-#First load the component: 
+# First load the component:
+rai_causal_component = ml_client_registry.components.get(
+    name="microsoft_azureml_rai_tabular_causal", label="latest"
+)
 
-        rai_causal_component = ml_client_registry.components.get(name="microsoft_azureml_rai_tabular_causal", label="latest")
-
-#Use it inside a pipeline definition: 
-            causal_job = rai_causal_component( 
-                rai_insights_dashboard=construct_job.outputs.rai_insights_dashboard, 
-                treatment_features='["Number of GitHub repos contributed to", "YOE"]', 
+# Use it inside a pipeline definition:
+causal_job = rai_causal_component(
+    rai_insights_dashboard=construct_job.outputs.rai_insights_dashboard,
+    treatment_features='["Number of GitHub repos contributed to", "YOE"]',
+)
 ```
 
 ---
@@ -218,17 +222,18 @@ This component has a single output port, which can be connected to one of the `i
 # [Python SDK](#tab/python)
 
 ```python
-#First load the component: 
-        rai_counterfactual_component = ml_client_registry.components.get(name="microsoft_azureml_rai_tabular_counterfactual", label="latest")
+# First load the component:
+rai_counterfactual_component = ml_client_registry.components.get(
+    name="microsoft_azureml_rai_tabular_counterfactual", label="latest"
+)
 
-#Use it in a pipeline function: 
-            counterfactual_job = rai_counterfactual_component( 
-                rai_insights_dashboard=create_rai_job.outputs.rai_insights_dashboard, 
-                total_cfs=10, 
-                desired_range="[5, 10]", 
-            ) 
+# Use it in a pipeline function:
+counterfactual_job = rai_counterfactual_component(
+    rai_insights_dashboard=create_rai_job.outputs.rai_insights_dashboard,
+    total_cfs=10,
+    desired_range="[5, 10]",
+)
 ```
-
 ---
 
 ### Add error analysis to RAI Insights dashboard 
@@ -252,20 +257,22 @@ This component has a single output port, which you can connect to one of the `in
     component: azureml://registries/azureml/components/microsoft_azureml_rai_tabular_erroranalysis/versions/<version>
     inputs: 
       rai_insights_dashboard: ${{parent.jobs.create_rai_job.outputs.rai_insights_dashboard}} 
-      filter_features: `["style", "Employer"]' 
+filter_features: '["style", "Employer"]' 
 ```
 
 # [Python SDK](#tab/python)
 
 ```python
-#First load the component: 
-        rai_erroranalysis_component = ml_client_registry.components.get(name="microsoft_azureml_rai_tabular_erroranalysis", label="latest")
+# First load the component:
+rai_erroranalysis_component = ml_client_registry.components.get(
+    name="microsoft_azureml_rai_tabular_erroranalysis", label="latest"
+)
 
-#Use inside a pipeline: 
-            erroranalysis_job = rai_erroranalysis_component( 
-                rai_insights_dashboard=create_rai_job.outputs.rai_insights_dashboard, 
-                filter_features='["style", "Employer"]', 
-            ) 
+# Use inside a pipeline:
+erroranalysis_job = rai_erroranalysis_component(
+    rai_insights_dashboard=create_rai_job.outputs.rai_insights_dashboard,
+    filter_features='["style", "Employer"]',
+)
 ```
 
 ---
@@ -333,16 +340,19 @@ The component has two output ports:
 # [Python SDK](#tab/python)
 
 ```python
-#First load the component: 
-        rai_gather_component = ml_client_registry.components.get(name="microsoft_azureml_rai_tabular_insight_gather", label="latest")
-#Use in a pipeline: 
-            rai_gather_job = rai_gather_component( 
-                constructor=create_rai_job.outputs.rai_insights_dashboard, 
-                insight_1=explain_job.outputs.explanation, 
-                insight_2=causal_job.outputs.causal, 
-                insight_3=counterfactual_job.outputs.counterfactual, 
-                insight_4=erroranalysis_job.outputs.error_analysis, 
-            ) 
+# First load the component:
+rai_gather_component = ml_client_registry.components.get(
+    name="microsoft_azureml_rai_tabular_insight_gather", label="latest"
+)
+
+# Use in a pipeline:
+rai_gather_job = rai_gather_component(
+    constructor=create_rai_job.outputs.rai_insights_dashboard,
+    insight_1=explain_job.outputs.explanation,
+    insight_2=causal_job.outputs.causal,
+    insight_3=counterfactual_job.outputs.counterfactual,
+    insight_4=erroranalysis_job.outputs.error_analysis,
+)
 ```
 
 ---
@@ -373,13 +383,13 @@ scorecard_01:
 
 ```
 
-Where pdf_gen.json is the score card generation configuration json file, and *predefined_cohorts_json* is the prebuilt cohorts definition json file. 
+Where pdf_gen.json is the score card generation configuration JSON file, and *predefined_cohorts_json* is the prebuilt cohorts definition JSON file. 
 
 The following examples show a JSON file for cohorts definition and scorecard-generation configuration:
 
 
 Cohorts definition:
-```yml
+```json
 [ 
   { 
     "name": "High Yoe", 
@@ -410,7 +420,7 @@ Cohorts definition:
 
 The following example shows a scorecard-generation configuration file for a regression model:
 
-```yml
+```json
 { 
   "Model": { 
     "ModelName": "GPT-2 Access", 
@@ -446,14 +456,14 @@ The following example shows a scorecard-generation configuration file for a regr
 
 The following example shows a scorecard-generation configuration file for a classification model:
 
-```yml
+```json
 {
   "Model": {
     "ModelName": "Housing Price Range Prediction",
     "ModelType": "Classification",
     "ModelSummary": "This model is a classifier that predicts whether the house will sell for more than the median price."
   },
-  "Metrics" :{
+  "Metrics": {
     "accuracy_score": {
         "threshold": ">=0.85"
     }

@@ -43,6 +43,9 @@ items:
     href: ../../openai/concepts/system-message.md
   - name: Safety system message templates
     href: ../../openai/concepts/safety-system-message-templates.md
+  - name: Optimize agent prompts 
+    href: ../../observability/how-to/prompt-optimizer.md
+    
 
 # Publishing and Sharing
 - name: Publishing and sharing

@@ -1,9 +1,7 @@
 ---
-title: Integrated Vectorization With Models From Microsoft Foundry
-titleSuffix: Azure AI Search
+title: Integrated Vectorization with Models from Microsoft Foundry
 description: Learn how to vectorize content during indexing in Azure AI Search with a Microsoft Foundry model.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2024

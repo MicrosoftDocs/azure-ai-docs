@@ -1,13 +1,14 @@
 ---
 title: Customize base image for compute session in prompt flow
 titleSuffix: Azure Machine Learning
-description: Learn how to create base image for compute session in prompt flow with Azure Machine Learning studio.
+description: Learn how to create a custom base image for a compute session in prompt flow with Azure Machine Learning studio.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.custom:
   - build-2024
   - dev-focus
+ai-usage: ai-assisted
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
@@ -17,10 +18,11 @@ ms.update-cycle: 365-days
 ai-usage: ai-assisted
 ---
 
-# Customize base image for compute session
+# Customize a  base image for compute session
 
 Before you begin, make sure you're familiar with [Docker](https://www.docker.com/) and [Azure Machine Learning environments](../concept-environments.md).
 
+## Step 1: Prepare the Docker context
 ## Step 1: Prepare the Docker context
 
 ### Create `image_build` folder
@@ -36,11 +38,11 @@ In your local environment, create a folder that contains the following files. Th
 
 ### Define your required packages in `requirements.txt`
 
-**Optional**: Add packages in private pypi repository.
+**Optional**: Add packages in private PyPI repository.
 
 Use the following command to download your packages locally: `pip wheel <package_name> --index-url=<private pypi> --wheel-dir <local path to save packages>`
 
-Open the `requirements.txt` file and add your extra packages and specific version in it.  For example:
+Open the `requirements.txt` file and add your extra packages and their specific versions. For example:
 
 ```
 ###### Requirements with Version Specifiers ######
@@ -64,13 +66,13 @@ RUN pip install -r requirements.txt
 ```
 
 > [!NOTE]
-> This docker image should be built from prompt flow base image that is `mcr.microsoft.com/azureml/promptflow/promptflow-runtime:<newest_version>`. If possible use the [latest version of the base image](https://mcr.microsoft.com/v2/azureml/promptflow/promptflow-runtime/tags/list). 
+> Build this Docker image from the prompt flow base image `mcr.microsoft.com/azureml/promptflow/promptflow-runtime:<newest_version>`. If possible, use the [latest version of the base image](https://mcr.microsoft.com/v2/azureml/promptflow/promptflow-runtime/tags/list). 
 
 ## Step 2: Create custom Azure Machine Learning environment 
 
 ### Define your environment in `environment.yaml`
 
-In your local compute, you can use the CLI (v2) to create a customized environment based on your docker image.
+On your local computer, use the CLI (v2) to create a customized environment based on your Docker image.
 
 > [!NOTE]
 > - Make sure to meet the [prerequisites](../how-to-manage-environments-v2.md#prerequisites) for creating environment.
@@ -102,10 +104,11 @@ az ml environment create -f environment.yaml --subscription <sub-id> -g <resourc
 
 > [!NOTE]
 > Building the environment image might take several minutes.
+> Building the environment image might take several minutes.
 
 Go to your workspace UI page, then go to the **environment** page, and locate the custom environment you created. 
 
-You can also find the image in environment detail page and use it as base image for compute session of prompt flow. This image will also be used to build environment for flow deployment from UI. Learn more [how to specify base image in compute session](how-to-manage-compute-session.md#change-the-base-image-for-compute-session).
+You can also find the image in the environment detail page and use it as base image for compute session of prompt flow. This image is also used to build environment for flow deployment from UI. To learn more, see [how to specify base image in compute session](how-to-manage-compute-session.md#change-the-base-image-for-compute-session).
 
 To learn more about environment CLI, see [Manage environments](../how-to-manage-environments-v2.md#manage-environments).
 

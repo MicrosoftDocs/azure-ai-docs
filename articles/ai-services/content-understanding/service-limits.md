@@ -49,9 +49,9 @@ The currently supported models are:
 |Chat Completion | gpt-4o | `2024-08-06` |
 |Chat Completion | gpt-4o | `2024-11-20` |
 |Chat Completion | gpt-4o-mini | `2024-11-20` |
-|Chat Completion | gpt-4.1 | `2024-11-20` |
-|Chat Completion | gpt-4.1-mini | `2024-11-20` |
-|Chat Completion | gpt-4.1-nano | `2024-11-20` |
+|Chat Completion | gpt-4.1 | `2025-04-14` |
+|Chat Completion | gpt-4.1-mini | `2025-04-14` |
+|Chat Completion | gpt-4.1-nano | `2025-04-14` |
 |Embeddings | text-embedding-3-small |  |
 |Embeddings | text-embedding-3-large |  |
 |Embeddings | text-embedding-ada-002 |  |

@@ -1,10 +1,6 @@
 ---
-title: "Quickstart: Create a Knowledge Store in the Azure portal"
-titleSuffix: Azure AI Search
+title: "Quickstart: Create a Knowledge Store in the Azure Portal"
 description: Learn how to use the Import Data wizard to create a knowledge store for persisting enriched content. Connect to a knowledge store for analysis from other apps or send enriched content to downstream processes.
-author: haileytap
-ms.author: haileytapia
-manager: nitinme
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 10/21/2025

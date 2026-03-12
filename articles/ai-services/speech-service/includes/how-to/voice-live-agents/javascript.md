@@ -63,7 +63,7 @@ Pin your agent to a specific version to enable controlled deployments. This lets
 
 Set the `AGENT_VERSION` environment variable or pass the `agentVersion` property when initializing the assistant:
 
-:::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js" range="135-163,356-397" highlight="9,22,39,59":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="258-282,536-551,693-705" highlight="9,31,47":::
 
 In this sample, the version configuration is applied in three places:
 
@@ -85,7 +85,7 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js" range="135-163,356-397" highlight="11-14,25-28,43-44,61-62":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="258-282,536-551,693-705" highlight="11-17,33-35,49-50":::
 
 This configuration is resolved in `main()` and then applied when the assistant is created:
 
@@ -100,7 +100,7 @@ This configuration is resolved in `main()` and then applied when the assistant i
 
 Voice Live can initiate the conversation by sending a proactive message as soon as the session is ready. In this sample, the assistant checks a one-time flag in the `onSessionUpdated` handler, sends a greeting prompt, and then triggers a response.
 
-:::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js" range="206-222" highlight="2-17":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="455-492" highlight="2-37":::
 
 In this sample, proactive messaging is applied in three steps:
 
@@ -114,7 +114,7 @@ Voice Live provides a feature called `interimResponse` to bridge wait times when
 
 The voice assistant created with the quickstart shows the required code additions to configure this feature as follows:
 
-:::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js" range="334-350" highlight="3-16":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="495-511" highlight="7-14":::
 
 In this sample, the interim response setup is applied inside `_setupSession()`:
 
@@ -138,7 +138,7 @@ Voice Live enables you to reconnect to a previous conversation by specifying the
 
 When a session connects successfully, Voice Live returns session metadata in the `onSessionUpdated` handler. The sample extracts the session ID from the context and logs it to the conversation file:
 
-:::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js" range="186-201":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="298-314":::
 
 In this event handler, the session ID is extracted from `context.sessionId` and written to the conversation log along with agent metadata.
 
@@ -146,11 +146,11 @@ The sample code writes session details to a conversation log file in the `logs/`
 
 To reconnect to that conversation, pass the conversation ID as the `CONVERSATION_ID` environment variable (or the `conversationId` property):
 
-:::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js" range="361,393-394":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="542,699":::
 
 In this sample, conversation reconnect is applied in three places:
 
-- In `main()`, `CONVERSATION_ID` is read from `process.env` (line 361).
+- In `main()`, `CONVERSATION_ID` is read from `process.env` (line 542).
 - The value is passed to the `BasicVoiceAssistant` constructor.
 - In the constructor, `conversationId` is conditionally spread into the `agentConfig` object.
 
@@ -169,13 +169,13 @@ The sample logs key session metadata, including the session ID, to a timestamped
 
 The following code creates the log filename and writes session metadata when `onSessionUpdated` is received:
 
-:::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js" range="21-33,186-201" highlight="1-2,9,14-15":::
+:::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js" range="20-33,298-314" highlight="1-2,9,15-16":::
 
 In this sample, session metadata logging is applied in three places:
 
-- A `logs/` directory is created if it doesn't exist, and a timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 21–29).
-- On `onSessionUpdated`, the handler extracts the session ID from `context.sessionId` and writes it along with agent metadata to the log (lines 190–191).
-- `writeConversationLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 31–33).
+- A `logs/` directory is created if it doesn't exist, and a timestamped conversation log file (`conversation_YYYYMMDD_HHmmss.log`) is created per run (lines 20–28).
+- On `onSessionUpdated`, the handler extracts the session ID from `context.sessionId` and writes it along with agent metadata to the log (lines 302–305).
+- `writeConversationLog(...)` appends entries to the same log file throughout the conversation lifecycle (lines 30–33).
 
 Use the logged session metadata with `CONVERSATION_ID` to resume the same agent conversation in a later session.
 

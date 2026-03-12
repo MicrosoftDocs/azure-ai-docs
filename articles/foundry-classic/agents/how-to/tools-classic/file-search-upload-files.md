@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/18/2025
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-bing-grounding-code
@@ -16,9 +16,10 @@ ms.custom: azure-ai-agents-code
 # How to upload files using the file search tool (classic)
 
 > [!NOTE]
-> This document refers to the classic version of the agents API. 
+> This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new file search documentation](../../../../foundry/agents/how-to/tools/file-search.md).
+> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 Use this article to find step-by-step instructions and code samples for uploading files using the file search tool.
 

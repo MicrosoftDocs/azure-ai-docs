@@ -25,7 +25,7 @@ When you use a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you c
 ## Prerequisites
 
 > [!IMPORTANT]
-> End-to-end network isolation isn't supported in the new Foundry portal experience. Use the classic Foundry portal experience or the SDK or CLI to securely access your Foundry projects when network isolation is enabled. For more on limitations with private networking in Foundry, see [limitations](#limitations).
+> End-to-end network isolation is not supported yet in the new Foundry portal experience. Use the classic Foundry portal experience or the SDK or CLI to securely access your Foundry projects when network isolation is enabled. For more on limitations with private networking in Foundry, see [limitations](#limitations). Private MCP is now supported with network isolated Foundry. For more on private MCP set-up, see the [foundry samples template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup).
 
 - An existing Azure virtual network and subnet to create the private endpoint in.
 - Azure permissions to create and approve private endpoint connections:

@@ -1,10 +1,6 @@
 ---
-title: Semantic ranking
-titleSuffix: Azure AI Search
-description: Learn how Azure AI Search uses deep learning semantic ranking models from Bing to make search results more intuitive.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+title: Semantic Ranking Overview
+description: Learn how semantic ranking in Azure AI Search uses deep learning language models to rerank results, improve relevance, and enhance search quality for your users.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

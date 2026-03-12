@@ -1,10 +1,6 @@
 ---
-title: Examples of simple syntax
-titleSuffix: Azure AI Search
+title: Examples of Simple Syntax
 description: Explore query examples that demonstrate the simple syntax for full text search, filter search, and geo search against an Azure AI Search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

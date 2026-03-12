@@ -5,8 +5,6 @@ summary: Learn how to use Azure AI Search for information retrieval at scale, wi
 metadata:
   title: Azure AI Search documentation
   description: Learn how to use Azure AI Search for information retrieval at scale, with support for text, vector, and multimodal content in traditional and generative search scenarios.
-  author: HeidiSteen
-  ms.author: heidist
   ms.date: 12/12/2025
   ms.service: azure-ai-search
   ms.topic: landing-page

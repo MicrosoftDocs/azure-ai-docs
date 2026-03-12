@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Set up standard agent resources (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../../includes/agents-classic.md)]
 
 Standard agent setup uses customer-managed, single-tenant Azure resources to store agent state and keep all agent data under your control. Use standard setup when you need full data sovereignty, compliance with enterprise security policies, or project-level isolation.
 

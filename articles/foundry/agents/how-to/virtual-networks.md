@@ -116,7 +116,7 @@ After the template deployment finishes, verify that all resources are configured
     - Additionally, expect traffic to a `10.x.x.x` private IP (for non-class A scenarios) or `100.x.x.x` private IP (for class A scenario) as necessary traffic to Agent Infra services. Allow this traffic if you're integrating with a Firewall.
 - **All Foundry workspace resources must be deployed in the same region as the virtual network (VNet)**. This includes Azure Cosmos DB, Storage Account, Azure AI Search, Foundry Account, Project, Managed Identity, Azure OpenAI, or another Foundry resource used for model deployments.
 - **Region availability**:
-  - For supported regions for model deployments, see: [Azure OpenAI model region support](../../../foundry-classic/agents/concepts/model-region-support.md#available-models).
+  - For supported regions for model deployments, see: [Azure OpenAI model region support](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 - **Azure Blob Storage**: Using Azure Blob Storage files with the File Search tool isn't supported.
 - **Grounding with Bing Search**: Only the following regions are supported:
   - West Europe
