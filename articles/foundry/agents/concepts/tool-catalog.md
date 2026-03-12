@@ -97,7 +97,7 @@ Each tool type has its own configuration. For detailed setup and code samples in
 
 ### Customize tool behavior at runtime with structured inputs
 
-By default, tool configurations such as file IDs, vector store IDs, and MCP server endpoints are fixed when you create the agent. *Structured inputs* let you use handlebar templates (`{{variable_name}}`) in tool properties so you can override these values at runtime without creating a new agent version.
+By default, tool configurations such as file IDs, vector store IDs, and MCP server endpoints are fixed when you create the agent. *Structured inputs* in tool properties allows you to override these values at runtime without creating a new agent version.
 
 Structured inputs are useful when:
 
@@ -105,7 +105,7 @@ Structured inputs are useful when:
 - You want to reuse the same agent definition across environments (development, staging, production).
 - MCP server endpoints or authentication tokens vary per request.
 
-The following tool properties support handlebar templates:
+The following tool properties support customization via structured inputs:
 
 | Tool type | Property | Description |
 | --------- | --------- | --------- |
