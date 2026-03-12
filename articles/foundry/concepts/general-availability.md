@@ -26,7 +26,7 @@ Before you standardize on GA features for production, make sure you:
 - Define your organization policy for using only GA capabilities in production.
 - Review migration guidance for existing Azure OpenAI and Foundry Classic workloads.
 - Confirm required role assignments for your teams and service identities. For role details, see [Role-based access control for Microsoft Foundry](rbac-foundry.md).
-- Define how your organization restricts preview feature access in production environments. For guidance, see [Disable preview features by using role-based access control](disable-preview-features-with-rbac.md).
+- Define how your organization restricts preview feature access in production environments. For guidance, see [Disable preview features in Microsoft Foundry](../how-to/disable-preview-features.md).
 
 ## Key terms used in this article
 
@@ -40,7 +40,7 @@ Before you standardize on GA features for production, make sure you:
 At GA, the new Microsoft Foundry portal provides:
 
 - **Production-ready core platform** with validated end-to-end core scenarios.
-- **Enterprise capabilities** such as RBAC, audit logs, compliance controls, monitoring, alerting, virtual network integration, and API keys.
+- **Enterprise capabilities** such as RBAC, audit logs, compliance controls, monitoring, alerting, virtual network integration. Also API keys are supported for all areas except for evals, dataset tab, content understanding, agents and workflows.
 - **Governed lifecycle consistency** across the portal, APIs, SDKs, CLI, and developer tools.
 - **Defined GA scope** for Foundry projects, with out-of-scope capabilities continuing in Foundry Classic experiences.
 
@@ -84,7 +84,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Build | Tracing and tracing VNet | GA |
 | Build | Optimization (cluster analysis) | Preview |
 | Build | Fine-tuning | GA |
-| Build | Tools | GA |
+| Build | Tools | GA (check label on individual tools in the catalog to determine if they are GA or Preview)|
 | Build | Knowledge | Preview |
 | Build | Data | GA (minus stored completions in Preview) |
 | Build | Evaluations | GA |
@@ -104,10 +104,10 @@ The following table summarizes feature readiness. Most core capabilities across 
 
 The following items are out of scope at GA for the new Foundry portal and require the classic portal:
 
-- AOAI resource kind or other singular-capability kinds in the new Foundry experience.
+- Standalone Azure OpenAI or other single-service resources that aren't connected to a Foundry project.
 - Assistant creation and authoring in the new Foundry experience.
 - Listing AOAI evaluation files as datasets for upgrade workflows.
-- Audio playground (low-volume scenario).
+- Audio playground.
 - AI service fine-tuning.
 - Content Understanding.
 - Prebuilt prompts in video playground.
@@ -130,11 +130,11 @@ No. GA covers validated core experiences and required enterprise features. Some 
 
 ### How do I disable preview features?
 
-Use your organization controls to limit production environments to GA-supported capabilities, and validate current feature status before rollout decisions. For role-based control guidance, see [Disable preview features by using role-based access control](disable-preview-features-with-rbac.md).
+[!INCLUDE [disable-preview](../includes/disable-preview.md)]
 
 ### What is the experience for existing Azure OpenAI users?
 
-Azure OpenAI users can continue to use classic experiences for unsupported workflows while they plan upgrading to Foundry projects.
+If you have existing Azure OpenAI resources, you can continue to use classic experiences for unsupported workflows while you plan your upgrade to Foundry projects.
 
 For upgrade guidance, see [Upgrade Azure OpenAI to Microsoft Foundry](../how-to/upgrade-azure-openai.md).
 
@@ -142,11 +142,7 @@ For project migration guidance, see [Migrate from hub-based to Foundry projects]
 
 ### Are assistants supported in Foundry projects?
 
-Agents v2 are supported in the new Foundry UI. Existing assistants and v1 agents require migration to v2 agents for the new Foundry experience.
-
-If you need assistant workflows with API key support, continue using Foundry Classic where applicable.
-
-For migration steps, see [Migrate to the new Foundry Agent Service](../agents/how-to/migrate.md).
+Agents v2 are supported in the new Foundry UI. Existing assistants and v1 agents aren't supported in the new Foundry experience. To use or edit assistants, continue using Foundry Classic until assistant upgrade is available.
 
 ### Can customers use Foundry GA through APIs and developer tools?
 
