@@ -29,7 +29,7 @@ items:
   items:
   - name: Agent runtime components
     href: ../../agents/concepts/runtime-components.md
-  - name: Developer tools overview
+  - name: Tools overview
     href: ../../agents/concepts/tool-catalog.md
   - name: Tool best practices
     href: ../../agents/concepts/tool-best-practice.md
@@ -55,8 +55,6 @@ items:
       href: ../../agents/how-to/tools/model-context-protocol.md
     - name: OpenAPI tool
       href: ../../agents/how-to/tools/openapi.md
-  - name: Protocols
-    items:
     - name: Agent2Agent (A2A) (preview)
       href: ../../agents/how-to/tools/agent-to-agent.md
 
