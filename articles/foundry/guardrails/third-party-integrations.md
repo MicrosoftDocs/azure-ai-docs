@@ -13,6 +13,7 @@ ms.topic: how-to
 # Integrate third-party guardrails
 Microsoft Foundry supports third-party safety and security integrations. You can connect external solutions to your AI models and agents at runtime to enhance Foundry Guardrails & Controls with best-in-class security capabilities from trusted partners.
 
+
 ## Prerequisites
 
 Before you set up the integration, ensure you have:
@@ -21,6 +22,9 @@ Before you set up the integration, ensure you have:
 - **Key Vault**: Create at least one Key Vault with the Key Vault Administrator role assigned to you.
 - **Foundry project**: Create a project with the Azure AI User and Azure AI Account Owner roles assigned to you.
 - **Managed Identity**: Create at least one user-assigned Managed Identity and attach it to the Foundry resource in the Azure portal under **Resource Management** > **Identity**.
+
+### Enablement and data processing 
+Third-party integrations  are enabled via a Bring Your Own License (BYOL) approach, allowing you to utilize existing third-party software licenses from supported partners. Your data will be processed outside of Azure AI Foundry using the service you selected. The terms and privacy commitments for your other service will apply to this processing. 
 
 ## Palo Alto Networks Prisma AIRS
 
@@ -65,6 +69,19 @@ The following table shows supported regions. We recommend that your Foundry proj
 | South India | India |
 | Southeast Asia | Singapore |
 | East Asia | Singapore |
+
+## Zenity 
+
+Zenity delivers purpose-built capabilities to monitor agent intent and execution paths at runtime. By observing how agents reason, act, and chain decisions in real environments, Zenity enables security teams to detect and stop risky behavior before it impacts systems or data. 
+
+### Register and connect Zenity integration
+
+1. Follow the Zenity onboarding steps [here](https://zenity.io/platform/ai-security-platform/aidr). retrieve your API key linked to your custom security profile. 
+1. Go to AI Foundry and select **Guardrails**. 
+1. Select the Integrations tab, add a third-party integration and select Zenity. 
+1. Select a Keyvault and Managed Identity. Learn more. 
+1. Add the Zenity endpoint(s) and API key(s). To get the endpoint-API key pair, [follow the Zenity onboarding flow](https://zenity.io/platform/ai-security-platform/aidr). 
+1. Once registered, you’ll only have to come back to this step in case you’re planning on rotating your API key or changing components such as Managed Identity or Key Vault. 
 
 ### Attach and test the integration
 
