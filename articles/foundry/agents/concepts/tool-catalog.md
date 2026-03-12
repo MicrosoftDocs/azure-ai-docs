@@ -14,57 +14,186 @@ ai-usage: ai-assisted
 
 # Agent tools overview for Foundry Agent Service
 
-Microsoft Foundry Agent Service provides a set of tools that extend what your agents can do - from searching the web and running code to calling your own APIs. This article explains the tools available, helps you choose the right one for your scenario, and introduces the Foundry tool catalog where you discover and manage them. To use these tools, you need access to a Foundry project in the portal and permission to manage tools in that project.
+Tools extend what your agents can do in Microsoft Foundry Agent Service. An agent on its own can generate text, but tools let it take action — searching the web, running code, querying your data, or calling your own APIs. This article explains what tools are, the types of tools available, how to use a tool in an agent, and how to manage authentication. It also introduces the Foundry tool catalog where you discover and configure tools. To use tools, you need access to a Foundry project and permission to manage tools in that project.
 
-## Available tools
+> [!NOTE]
+> The Foundry tool catalog and the core tools framework are generally available. Some individual tools are still in preview, as noted in the tool listings throughout this article. Each tool's own page also indicates its preview status with a banner. Preview tools are subject to [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-The following tools are available for your agents. Some are built in and ready to use after basic configuration. Others let you bring your own endpoints or code.
+## What are tools
 
-### Web search
+A *tool* is a capability that an agent can invoke during a conversation to perform a specific task. When an agent receives a user message, the model decides whether to call a tool based on the agent's instructions and the available tool definitions. The agent sends the tool request, your application or the service executes it, and the result flows back into the conversation so the agent can continue with accurate, up-to-date information.
 
-To add web search to your agent, use the web search tool. The agent retrieves real-time information from the public web and returns cited answers.
+Tools enable agents to go beyond text generation. For example, an agent can:
 
-| Tool | Description |
-| --------- | --------- |
-| [Web search (preview)](../how-to/tools/web-search.md) | Add web search to your agent. The agent retrieves real-time information from the public web and returns answers with inline citations. This tool is the recommended way to add web grounding. |
+- Search the web for current information before answering.
+- Run Python code to analyze a dataset and generate a chart.
+- Query a vector store of your documents to ground its response in your data.
+- Call an external API to look up a customer record or create a support ticket.
 
-> [!TIP]
-> For advanced scenarios such as market-specific filtering or custom search indexes, see [Grounding with Bing tools](../how-to/tools/bing-tools.md) and the [web grounding overview](../how-to/tools/web-overview.md).
+## Types of tools
+
+Foundry Agent Service provides two categories of tools: built-in tools that are ready to use after basic configuration, and custom tools that let you bring your own capabilities.
+
+### Built-in tools
+
+Built-in tools are preconfigured capabilities provided by Foundry Agent Service. You enable them on your agent and the service handles execution. No external hosting or custom code is required.
+
+The most commonly used built-in tools include:
+
+- **[Web search (preview)](../how-to/tools/web-search.md)** — Add web search to your agent. The agent retrieves real-time information from the public web and returns answers with inline citations. This is the recommended way to add web grounding. For advanced scenarios such as market-specific filtering, see [Grounding with Bing tools](../how-to/tools/bing-tools.md) and the [web grounding overview](../how-to/tools/web-overview.md).
+- **[Code Interpreter](../how-to/tools/code-interpreter.md)** — Let agents write and run Python code in a sandboxed environment for data analysis, math, and chart generation.
+- **[File Search](../how-to/tools/file-search.md)** — Augment agents with knowledge from uploaded files or proprietary documents using vector search.
+- **[Function calling](../how-to/tools/function-calling.md)** — Define custom functions that the agent can call. Your application executes the function and returns the result.
+
+For the complete list of built-in tools, see [All built-in tools](#all-built-in-tools).
 
 ### Custom tools
 
-When built-in tools aren't enough, add your own custom capabilities to your agent. Two main approaches exist depending on your needs.
+Custom tools let you extend your agent with your own APIs, services, or other agents. Use custom tools when built-in tools don't cover your scenario.
 
-**Option 1 (recommended): Define tools in your agent code.** When you use the Microsoft Foundry SDK or frameworks like Agent Framework or LangGraph, you register custom functions directly as tools. The agent calls your function and you return the result. This approach works best for tools tightly coupled to your agent logic.
+The most common custom tool options include:
 
-See [Use function calling with Foundry agents](../how-to/tools/function-calling.md).
+- **[Model Context Protocol (MCP)](../how-to/tools/model-context-protocol.md)** — Connect your agent to tools hosted on an MCP server endpoint. Best for tools shared across multiple agents or maintained by a different team.
+- **[Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md)** — Connect your agent to other agents through A2A-compatible endpoints for cross-agent communication.
+- **[OpenAPI tool](../how-to/tools/openapi.md)** — Connect your agent to external HTTP APIs using an OpenAPI 3.0 or 3.1 specification.
 
-**Option 2: Deploy as a Model Context Protocol (MCP) server.** Package your tools in an MCP server and connect the endpoint to your agent. This approach works best for tools shared across multiple agents or maintained by a different team.
+For the complete list of custom tool options, see [All custom tools](#all-custom-tools).
 
-See [Connect to MCP servers](../how-to/tools/model-context-protocol.md).
+## Use a tool in an agent
 
-You can also connect agents to external APIs or other agents:
+To add a tool to an agent, include it in the agent's tool list when you create or update the agent definition. The following example creates an agent with the Code Interpreter tool enabled and sends a request to analyze data:
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    PromptAgentDefinition,
+    CodeInterpreterTool,
+    AutoCodeInterpreterToolParam,
+)
+
+project = AIProjectClient(
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+
+# Create an agent with Code Interpreter enabled
+agent = project.agents.create_version(
+    agent_name="data-analyst",
+    definition=PromptAgentDefinition(
+        model=os.environ["MODEL_NAME"],
+        instructions="You are a helpful data analyst.",
+        tools=[CodeInterpreterTool(container=AutoCodeInterpreterToolParam())],
+    ),
+)
+
+# Start a conversation and send a request
+openai = project.get_openai_client()
+conversation = openai.conversations.create()
+response = openai.responses.create(
+    conversation=conversation.id,
+    input="What is the square root of 1234567?",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
+print(response.output_text)
+```
+
+Each tool type has its own configuration. For detailed setup and code samples in all supported languages, see the individual tool how-to guides linked in the [types of tools](#types-of-tools) section.
+
+### Customize tool behavior at runtime with structured inputs
+
+By default, tool configurations such as file IDs, vector store IDs, and MCP server endpoints are fixed when you create the agent. *Structured inputs* let you use handlebar templates (`{{variable_name}}`) in tool properties so you can override these values at runtime without creating a new agent version.
+
+Structured inputs are useful when:
+
+- Different users need different vector stores or files based on their context.
+- You want to reuse the same agent definition across environments (development, staging, production).
+- MCP server endpoints or authentication tokens vary per request.
+
+The following tool properties support handlebar templates:
+
+| Tool type | Property | Description |
+| --------- | --------- | --------- |
+| `file_search` | `vector_store_ids` | Array of vector store IDs. Empty values are stripped at runtime. |
+| `code_interpreter` | `container`, `container.file_ids` | Container ID or file IDs within an auto container. Empty values are stripped at runtime. |
+| `mcp` | `server_label`, `server_url`, `headers` | MCP server label, URL, and HTTP header values. |
+
+For example, an agent definition with a templated vector store:
+
+```json
+{
+  "tools": [
+    {
+      "type": "file_search",
+      "vector_store_ids": ["vs_base_kb", "{{customer_kb}}"]
+    }
+  ],
+  "structured_inputs": {
+    "customer_kb": {
+      "description": "Vector store ID for the customer's knowledge base",
+      "required": true,
+      "schema": { "type": "string" }
+    }
+  }
+}
+```
+
+At runtime, provide the actual value:
+
+```json
+{
+  "agent": { "type": "agent_reference", "name": "support-agent", "version": "1" },
+  "input": [{ "type": "text", "text": "How do I upgrade my account?" }],
+  "structured_inputs": {
+    "customer_kb": "vs_premium_kb_2024"
+  }
+}
+```
+
+## Manage authentication for tools
+
+Different tools require different authentication approaches. Understanding these options helps you connect tools securely.
+
+**Built-in tools** authenticate through Foundry Agent Service automatically. Most built-in tools such as Code Interpreter and File Search require no extra authentication configuration. Tools that connect to external data sources (for example, Azure AI Search or SharePoint) use the connections configured in your Foundry project.
+
+**MCP servers** support multiple authentication methods depending on the server. Options include key-based authentication (API key or token), Microsoft Entra authentication (managed identity), and OAuth for user-level identity passthrough. When in doubt, start with Microsoft Entra authentication if the MCP server supports it, because it eliminates the need to manage secrets and provides built-in token rotation. For detailed setup steps, see [Set up MCP server authentication](../how-to/mcp-authentication.md).
+
+**OpenAPI tools** support anonymous, API key, and managed identity authentication. Choose the method that matches your API's requirements. For details, see [Connect agents to OpenAPI tools](../how-to/tools/openapi.md).
+
+> [!TIP]
+> Treat all credentials as secrets. Only provide the minimum required headers, don't include credentials in prompts, and review the provider's data handling practices. For governance controls such as rate limits and IP restrictions on MCP tools, see [Govern MCP tools by using an AI gateway](../how-to/tools/governance.md).
+
+## All built-in tools
+
+The following table lists all built-in tools available in Foundry Agent Service.
 
 | Tool | Description |
 | --------- | --------- |
-| [OpenAPI tool](../how-to/tools/openapi.md) | Connect your agent to external APIs using an OpenAPI 3.0 or 3.1 specification. |
-| [Agent-to-Agent (A2A) tool (preview)](../how-to/tools/agent-to-agent.md) | Connect your agent to other agents through A2A-compatible endpoints. |
-
-### Other built-in tools
-
-These built-in tools cover common scenarios such as search, retrieval, code execution, and more.
-
-| Tool | Description |
-| --------- | --------- |
-| [Azure AI Search](../how-to/tools/ai-search.md) | Ground agents with data from an existing Azure AI Search index. |
-| [File Search](../how-to/tools/file-search.md) | Augment agents with knowledge from uploaded files or proprietary documents. |
-| [Code Interpreter](../how-to/tools/code-interpreter.md) | Let agents write and run Python code in a sandboxed environment. |
+| [Web search (preview)](../how-to/tools/web-search.md) | Retrieve real-time information from the public web and return answers with inline citations. |
+| [Code Interpreter](../how-to/tools/code-interpreter.md) | Write and run Python code in a sandboxed environment. |
 | [Custom Code Interpreter (preview)](../how-to/tools/custom-code-interpreter.md) | Customize the code interpreter's resources, Python packages, and Container Apps environment. |
+| [File Search](../how-to/tools/file-search.md) | Augment agents with knowledge from uploaded files or proprietary documents. |
+| [Azure AI Search](../how-to/tools/ai-search.md) | Ground agents with data from an existing Azure AI Search index. |
+| [Function calling](../how-to/tools/function-calling.md) | Define custom functions that the agent can call. Your app executes the function and returns the result. |
 | [Image Generation (preview)](../how-to/tools/image-generation.md) | Generate images as part of conversations and workflows. |
 | [Browser Automation (preview)](../how-to/tools/browser-automation.md) | Perform browser tasks through natural language prompts. |
 | [Computer Use (preview)](../how-to/tools/computer-use.md) | Interact with computer systems through their user interfaces. |
 | [Microsoft Fabric (preview)](../how-to/tools/fabric.md) | Connect to a [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) for data analysis. |
 | [SharePoint (preview)](../how-to/tools/sharepoint.md) | Chat with private documents stored in SharePoint. |
+
+> [!TIP]
+> For advanced web grounding scenarios, see [Grounding with Bing tools](../how-to/tools/bing-tools.md) and the [web grounding overview](../how-to/tools/web-overview.md).
+
+## All custom tools
+
+The following table lists all custom tool options for connecting your own capabilities to an agent.
+
+| Tool | Description |
+| --------- | --------- |
+| [Model Context Protocol (MCP)](../how-to/tools/model-context-protocol.md) | Connect your agent to tools hosted on an MCP server endpoint. |
+| [OpenAPI tool](../how-to/tools/openapi.md) | Connect your agent to external APIs using an OpenAPI 3.0 or 3.1 specification. |
+| [Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md) | Connect your agent to other agents through A2A-compatible endpoints. |
 
 ## Key concepts
 
@@ -157,6 +286,8 @@ Use these checks to resolve common issues:
 ## Related content
 
 - [Tool best practices for Foundry Agent Service](tool-best-practice.md)
+- [Set up MCP server authentication](../how-to/mcp-authentication.md)
+- [Govern MCP tools by using an AI gateway](../how-to/tools/governance.md)
 - [Create a private tool catalog](../how-to/private-tool-catalog.md)
 - [Build and register an MCP server](../../mcp/build-your-own-mcp-server.md)
 - [Foundry MCP Server best practices and security guidance](../../mcp/security-best-practices.md)
