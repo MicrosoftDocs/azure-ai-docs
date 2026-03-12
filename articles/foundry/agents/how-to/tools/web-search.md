@@ -41,9 +41,7 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 - A [basic or standard agent environment](../../../agents/environment-setup.md)
 - The latest SDK package. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
-- Environment variables configured:
-  - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-  - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
+- Your Foundry project endpoint URL and a model deployment name.
 
 ## Code examples
 
