@@ -130,9 +130,9 @@ These features are available only in the current Foundry portal:
 | --- | --- |
 | Responses API | GA |
 | Agents v2 (Responses API) | GA |
-| Multi-agent workflows | GA |
 | Tool catalog (1,400+ tools) | GA |
-| Agent memory | GA |
+| Multi-agent workflows | Preview |
+| Agent memory | Preview |
 | Agent publishing to M365/Teams | GA |
 | Foundry IQ | Preview |
 | Hosted agents | Preview |
