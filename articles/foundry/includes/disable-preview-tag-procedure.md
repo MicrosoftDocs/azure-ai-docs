@@ -10,7 +10,7 @@ ms.date: 03/11/2026
 ms.custom: include
 ---
 
-## Apply the tag in Azure portal
+## Apply the tag
 
 Apply the preview-feature suppression tag at the scope your organization governs.
 
@@ -19,24 +19,15 @@ Apply the preview-feature suppression tag at the scope your organization governs
 > - Tag key: `AZML_DISABLE_PREVIEW_FEATURE`
 > - Tag value: `true`
 
-1. Sign in to [Azure portal](https://portal.azure.com/?cid=learnDocs).
-1. Go to the scope where you want to suppress preview features.
-   - Use subscription scope for organization-wide governance.
-   - Use resource group scope to cover all resources in a group.
-   - Use Foundry resource scope for granular control.
+Apply the tag at the scope that matches your governance needs:
 
-1. Select **Tags**.
-1. Add the preview suppression tag key and value:
-   - Key: `AZML_DISABLE_PREVIEW_FEATURE`
-   - Value: `true`
-1. Select **Apply**.
-1. Repeat for other scopes, as needed.
+- **Subscription** for organization-wide governance.
+- **Resource group** to cover all resources in a group.
+- **Foundry resource** for granular control.
 
-:::image type="content" source="../media/disable-preview-features/disable-preview-tag.png" alt-text="Screenshot of the Azure portal Tags pane showing the AZML_DISABLE_PREVIEW_FEATURE tag set to true on a Foundry resource.":::
+# [Azure CLI](#tab/cli)
 
-### Apply the tag with Azure CLI
-
-You can also apply the tag by using the Azure CLI. Replace `<resource-id>` with the full resource ID of your subscription, resource group, or Foundry resource.
+Replace `<resource-id>` with the full resource ID of your subscription, resource group, or Foundry resource.
 
 ```azurecli
 az tag update --resource-id <resource-id> --operation merge --tags AZML_DISABLE_PREVIEW_FEATURE=true
@@ -48,22 +39,39 @@ To find the resource ID for a Foundry resource:
 az resource show --name <resource-name> --resource-group <resource-group> --resource-type "Microsoft.CognitiveServices/accounts" --query id --output tsv
 ```
 
+# [Azure portal](#tab/portal)
+
+1. Sign in to [Azure portal](https://portal.azure.com/?cid=learnDocs).
+1. Go to the resource, resource group, or subscription where you want to suppress preview features.
+1. Select **Tags**.
+1. Add the preview suppression tag key and value:
+   - Key: `AZML_DISABLE_PREVIEW_FEATURE`
+   - Value: `true`
+1. Select **Apply**.
+1. Repeat for other scopes, as needed.
+
+:::image type="content" source="../media/disable-preview-features/disable-preview-tag.png" alt-text="Screenshot of the Azure portal Tags pane showing the AZML_DISABLE_PREVIEW_FEATURE tag set to true on a Foundry resource.":::
+
+---
+
 ## Remove the tag to re-enable preview features
 
 To restore preview features, remove the `AZML_DISABLE_PREVIEW_FEATURE` tag.
 
-### Remove the tag in Azure portal
+# [Azure CLI](#tab/cli)
+
+```azurecli
+az tag update --resource-id <resource-id> --operation delete --tags AZML_DISABLE_PREVIEW_FEATURE=true
+```
+
+# [Azure portal](#tab/portal)
 
 1. In the [Azure portal](https://portal.azure.com), go to the resource, resource group, or subscription where you applied the tag.
 1. Select **Tags**.
 1. Select the delete icon (trash can) next to the `AZML_DISABLE_PREVIEW_FEATURE` tag.
 1. Select **Apply**.
 
-### Remove the tag with Azure CLI
-
-```azurecli
-az tag update --resource-id <resource-id> --operation delete --tags AZML_DISABLE_PREVIEW_FEATURE=true
-```
+---
 
 After you remove the tag, refresh the Foundry portal or sign out and back in. Preview features reappear within a few minutes.
 

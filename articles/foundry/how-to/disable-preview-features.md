@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 Restrict preview features in Microsoft Foundry to keep production environments focused on generally available capabilities. This article covers two approaches:
 
-- **Azure tags** hide preview surfaces in the Foundry portal (new and classic).
+- **Azure tags** hide preview surfaces in the Foundry portal (current and classic portals).
 - **Custom RBAC roles** block specific preview operations at the API level.
 
 Use tags for portal-level suppression, and use custom RBAC roles when you need to block specific operations or permissions.
