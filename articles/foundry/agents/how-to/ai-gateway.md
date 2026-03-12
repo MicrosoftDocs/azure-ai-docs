@@ -3,7 +3,7 @@ title: "Connect an AI gateway to Foundry Agent Service (preview)"
 description: "Connect and use models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
-ms.date: 02/17/2026
+ms.date: 03/12/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -11,10 +11,10 @@ ai-usage: ai-assisted
 ---
 
 # Connect an AI gateway to Foundry Agent Service (preview)
-Foundry Agent Service allows you to connect and use models hosted behind your enterprise AI gateways such as **Azure API Management** or other **non-Azure hosted AI model gateways**. This capability allows you to maintain control over your model endpoints while using Foundry agent capabilities.
+Foundry Agent Service allows you to connect and use models hosted behind your enterprise AI gateways such as **Azure API Management** or other **non-Azure hosted AI model gateways**. This capability, called *bring your own model* (BYOM), allows you to maintain control over your model endpoints while using Foundry agent capabilities.
 
 > [!IMPORTANT]
-> This feature is currently in preview. Preview features aren't meant for production use. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> This feature is currently in preview. Preview features aren't meant for production use. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and [BYOM disclaimers](#byom-disclaimers).
 
 This capability enables organizations to:
 
@@ -26,6 +26,14 @@ This capability enables organizations to:
 :::image type="content" source="../media/gateway.png" alt-text="Diagram that shows the AI gateway architecture with flows from Agent Service to your gateway and models behind it." lightbox="../media/gateway.png":::
 
 In this article, you create a gateway connection to your AI model endpoint, deploy a prompt agent that routes requests through the gateway, and verify the end-to-end flow.
+
+## BYOM disclaimers
+
+For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Azure Direct Models. Foundry Agent Service supports the ability to bring-your-own-model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.
+
+If you use Foundry Agent Service to interact with BYOM models, you are responsible for implementing your own responsible AI mitigations within Foundry Agent Service, such as metaprompt, content filters, or other safety systems.
+
+If you use Foundry Agent Service to interact with BYOM models, you are responsible for ensuring that use of the BYOM model complies with your data handling requirements. You are responsible for reviewing all data being shared with BYOM models and understanding third-party practices for retention and location of data. It is your responsibility to manage whether your data will flow outside of your organization's Azure compliance and geographic boundaries and any related implications when using BYOM models.
 
 ## Prerequisites
 
@@ -61,14 +69,16 @@ To add a model connection in the Foundry portal:
 1. In the list of projects, find your project and select the link in the **Parent resource** column.
 1. Select the **Admin-connected models** tab, and then select **Add**.
     The **Add model connection** wizard opens.
-1. On the **Connection type** page, select **Azure API Management** or, for other platforms or hosting services, **Other source**. Provide  details for your connection.
+1. On the **Connection type** page, select **Azure API Management** or, for other platforms or hosting services, **Other source**. Provide details for your connection.
 1. On the **Authentication** page, select either **API key** or **OAuth2** and provide the required credentials for your connection. If needed, configure **Custom headers** to include in requests to your model deployment.
     > [!NOTE]
     > If you select OAuth2 authentication for API Management, the AI Foundry project's managed identity is automatically used for authentication. No additional OAuth2 configuration is needed in this case. For other gateway types, provide the necessary OAuth2 configuration details.
-1. On the **Model configuration** page, select **Add model** to specify each model that you want to connect through this gateway. For each model, provide a **Deployment name** (used in API calls) and corresponding **Model name**, **Version**, and **Format**. 
+1. On the **Model configuration** page, select **Add model** to specify each model to connect through this gateway. For each model, provide a **Deployment name** (used in API calls) and corresponding **Model name**, **Version**, and **Format**. 
     > [!NOTE]
     > Currently, Foundry supports OpenAI-compatible, Anthropic, and non-OpenAI (other) model formats.
-1. On the **Advanced** page, optionally enable the **Deployment path** setting if your gateway exposes the chat completions API on a path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). If your gateway uses a standard path without the deployment name (for example, `/chat/completions`), and passes the deployment name in the request body, leave this setting disabled.
+1. On the **Advanced** page, optionally enable the **Deployment path** setting.
+    * Enable the setting if your gateway exposes the chat completions API on a path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
+    * If your gateway uses a standard path without the deployment name (for example, `/chat/completions`), and passes the deployment name in the request body, leave this setting disabled.
 1. Select **Add**.
    The connection is created and appears in the list on the **Admin-connected models** tab.
 
@@ -78,11 +88,10 @@ To modify a connection, select it from the table on the **Admin-connected models
 
 ### Admin-connected model deployments
 
-Foundry automatically deploys models you add through a connection to Azure API Management or a non-Azure AI model gateway, so you can use them in your projects. Each model you add in the connection wizard corresponds to a deployment in Foundry.
+Foundry automatically deploys models you add through a connection to Azure API Management or a non-Azure AI model gateway, so you can use them in your projects. Each model you add in the connection wizard corresponds to a deployment in Foundry. Foundry automatically routes requests from agents to these deployments through the connected gateway.
 
 * To see a list of deployments, select **Models** > **Admin-connected deployments** tab in the left pane of your Foundry project. You manage these deployments at the project level, and any agent within the project can use them.
 * Select a deployment to see its details, including the connection it belongs to and the model information you provided in the connection setup. You can also access the playground from the deployment details page to test the model with sample prompts.
-
 
 # [Azure CLI](#tab/cli)
 
