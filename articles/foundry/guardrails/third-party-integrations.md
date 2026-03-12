@@ -33,8 +33,11 @@ Third-party integrations  are enabled via a Bring Your Own License (BYOL) approa
 | Zenity  | [AIDR](https://zenity.io/platform/ai-security-platform/aidr).     |
 | Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) |
 
+
+
 # [section method](#tab/section)
 
+### Steps to connect integration
 
 1. Follow the [partner specific onboarding steps](#partner-onboarding-information) and retrieve your API key linked to your custom security profile. 
 1. Go to AI Foundry and select **Guardrails**. 
@@ -45,6 +48,8 @@ Third-party integrations  are enabled via a Bring Your Own License (BYOL) approa
 
 
 # [table method](#tab/combined)
+
+### Steps to connect integration
 
 1. Follow the partner specific onboarding steps and retrieve your API key linked to your custom security profile. 
     
