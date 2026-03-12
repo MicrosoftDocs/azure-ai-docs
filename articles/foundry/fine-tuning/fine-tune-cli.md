@@ -17,7 +17,7 @@ In this article, you learn to use the Azure Developer CLI (`azd`) AI fine-tuning
 
 ## Prerequisites
 
-- The [Azure Developer CLI (`azd`)](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd) installed (version **1.22.1** or later) and authenticated (`azd auth login`).
+- The [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/install-azd) installed (version **1.22.1** or later) and authenticated (`azd auth login`).
 - The `azd` AI fine-tuning extension installed (`azd ext install azure.ai.finetune`). See [Install the fine-tuning extension](#install-the-fine-tuning-extension) for details.
 - An Azure subscription with permission to create and manage Microsoft Foundry resources.
 - (Optional) The [GitHub CLI](https://cli.github.com/) installed, if you plan to download sample templates from GitHub repositories.
@@ -302,9 +302,9 @@ azd ai finetuning jobs deploy -i <job-id> -d "<deployment-name>" -c 100 -m "Open
 
 ## Additional resources
 
-- [Install the Azure Developer CLI](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd)
-- [Azure Developer CLI documentation](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/)
-- [Microsoft Foundry documentation](https://learn.microsoft.com/en-us/azure/ai-services/)
+- [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
+- [Azure Developer CLI documentation](/azure/developer/azure-developer-cli/)
+- [Microsoft Foundry documentation](/azure/ai-services/)
 - [GitHub CLI](https://cli.github.com/)
 - [Foundry samples repository - Fine-tuning CLI Samples](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/cli/finetuning/README.md)
 - [Send feedback](https://forms.office.com/r/FQd419iHft)
