@@ -38,15 +38,14 @@ items:
     items:
     - name: Web search
       href: ../../agents/how-to/tools/web-search.md
-    - name: Custom tools
-      href: ../../agents/how-to/tools/custom-tools.md
     - name: File search
       href: ../../agents/how-to/tools/file-search.md
     - name: Code interpreter
       href: ../../agents/how-to/tools/code-interpreter.md
     - name: Memory
       href: ../../agents/how-to/memory-usage.md
-
+    - name: Function calling
+      href: ../../agents/how-to/tools/function-calling.md
   - name: Additional tools
     items:
     - name: Browser automation (preview)
@@ -59,8 +58,6 @@ items:
       href: ../../agents/how-to/tools/model-context-protocol.md
     - name: OpenAPI tool
       href: ../../agents/how-to/tools/openapi.md
-    - name: Function calling
-      href: ../../agents/how-to/tools/function-calling.md
   - name: Protocols
     items:
     - name: Agent2Agent (A2A) (preview)
@@ -93,7 +90,7 @@ items:
   - name: Monitor agents in the dashboard
     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
   - name: Evaluate agent quality
-    href: ../../../how-to/develop/agent-evaluate-sdk.md
+    href: ../../observability/how-to/develop/evaluate-agent.md
 
 # Reference
 - name: Reference
