@@ -5,11 +5,8 @@ items:
 - name: Get started
   href: toc-files-foundry/get-started/toc.yml
   
-- name: Agent development
-  href: toc-files-foundry/agent-development/toc.yml
-
-- name: Agent tools & integration
-  href: toc-files-foundry/agent-tools/toc.yml
+- name: Agent Service
+  href: toc-files-foundry/agent-development/toc-new.yml
 
 - name: Model catalog
   href: toc-files-foundry/model-catalog/toc.yml

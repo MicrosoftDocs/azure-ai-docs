@@ -3,58 +3,74 @@ items:
   items: 
   - name: What is the Foundry Agent service
     href: ../../agents/overview.md
+  - name: Quickstart - Create a prompt agent
+    href: ../../quickstarts/get-started-code.md
+  - name: Quickstart - Deploy your first hosted agent
+    href: ../../agents/quickstarts/quickstart-hosted-agent.md
 
-# Getting Started
-- name: Agent development overview
-  href: ../../agents/overview.md
-- name: FAQ
-  href: ../../agents/faq.yml
-- name: Quotas, limits, models and region support
-  href: ../../agents/concepts/limits-quotas-regions.md
-
-# Core Concepts
-- name: Core concepts
+# Concepts
+- name: Concepts
   items:
-  - name: Development lifecycle
+  - name: Agent development lifecycle
     href: ../../agents/concepts/development-lifecycle.md
-  - name: Agent runtime components
-    href: ../../agents/concepts/runtime-components.md
   - name: Agent identity
     href: ../../agents/concepts/agent-identity.md
   - name: Hosted agents
-    href: ../../agents/concepts/hosted-agents.md
-  - name: Capability hosts
-    href: ../../agents/concepts/capability-hosts.md
+    items:
+    - name: What is a hosted agent?
+      href: ../../agents/concepts/hosted-agents.md
+    - name: Deploy a hosted agent
+      href: ../../agents/how-to/deploy-hosted-agent.md
+    - name: Manage hosted agent lifecycle
+      href: ../../agents/how-to/manage-hosted-agent.md
   - name: Create a workflow
     href: ../../agents/concepts/workflow.md
-
-# Hosted Agents
-- name: Hosted agents
+- name: Build your agent
   items:
-  - name: Quickstart - Deploy your first hosted agent
-    href: ../../agents/quickstarts/quickstart-hosted-agent.md
+  - name: Agent runtime components
+    href: ../../agents/concepts/runtime-components.md
+  - name: Developer tools overview
+    href: ../../agents/concepts/tool-catalog.md
+  - name: Tool best practices
+    href: ../../agents/concepts/tool-best-practice.md
+
+  - name: Core tools
+    items:
+    - name: Web search
+      href: ../../agents/how-to/tools/web-search.md
+    - name: Custom tools
+      href: ../../agents/how-to/tools/custom-tools.md
+    - name: File search
+      href: ../../agents/how-to/tools/file-search.md
+    - name: Code interpreter
+      href: ../../agents/how-to/tools/code-interpreter.md
+    - name: Memory
+      href: ../../agents/how-to/memory-usage.md
+
+  - name: Additional tools
+    items:
+    - name: Browser automation (preview)
+      href: ../../agents/how-to/tools/browser-automation.md
+    - name: Computer Use (preview)
+      href: ../../agents/how-to/tools/computer-use.md
+    - name: Image generation (preview)
+      href: ../../agents/how-to/tools/image-generation.md
+    - name: MCP server connection
+      href: ../../agents/how-to/tools/model-context-protocol.md
+    - name: OpenAPI tool
+      href: ../../agents/how-to/tools/openapi.md
+    - name: Function calling
+      href: ../../agents/how-to/tools/function-calling.md
+  - name: Protocols
+    items:
+    - name: Agent2Agent (A2A) (preview)
+      href: ../../agents/how-to/tools/agent-to-agent.md
+
+# Deploy and Share
+- name: Deploy and share
+  items:
   - name: Deploy a hosted agent
     href: ../../agents/how-to/deploy-hosted-agent.md
-  - name: Manage hosted agent lifecycle
-    href: ../../agents/how-to/manage-hosted-agent.md
-
-
-# System Messages
-- name: System messages
-  items:
-  - name: System message design
-    href: ../../openai/concepts/advanced-prompt-engineering.md
-  - name: Safety system messages
-    href: ../../openai/concepts/system-message.md
-  - name: Safety system message templates
-    href: ../../openai/concepts/safety-system-message-templates.md
-  - name: Optimize agent prompts 
-    href: ../../observability/how-to/prompt-optimizer.md
-    
-
-# Publishing and Sharing
-- name: Publishing and sharing
-  items:
   - name: Publish and share agents
     href: ../../agents/how-to/publish-agent.md
   - name: Publish to Microsoft 365 Copilot and Teams
@@ -63,15 +79,9 @@ items:
     href: ../../agents/how-to/agent-365.md
   - name: Invoke your Agent Application using the Responses API protocol
     href: ../../agents/how-to/publish-responses.md
-
-
-# Observability and Monitoring
-- name: Observability and monitoring
+# Monitor and Evaluate
+- name: Monitor and evaluate
   items:
-  - name: Service monitoring
-    href: ../../agents/how-to/metrics.md
-  - name: Monitor agents in the dashboard
-    href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
   - name: Trace agents
     items:
     - name: Trace agent overview
@@ -80,3 +90,17 @@ items:
       href: ../../observability/how-to/trace-agent-setup.md
     - name: Tracing integrations
       href: ../../observability/how-to/trace-agent-framework.md
+  - name: Monitor agents in the dashboard
+    href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
+  - name: Evaluate agent quality
+    href: ../../../how-to/develop/agent-evaluate-sdk.md
+
+# Reference
+- name: Reference
+  items:
+  - name: Quotas, limits, and region support
+    href: ../../agents/concepts/limits-quotas-regions.md
+  - name: FAQ
+    href: ../../agents/faq.yml
+- name: Capability hosts
+  href: ../../agents/concepts/capability-hosts.md
