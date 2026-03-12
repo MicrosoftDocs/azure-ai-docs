@@ -9,8 +9,9 @@ ms.topic:  how-to
 ms.reviewer: shshubhe
 ms.author: scottpolly
 author: lgayhardt
-ms.date: 03/29/2024
-ms.custom: responsible-ml, devx-track-python
+ms.date: 03/12/2026
+ms.custom: responsible-ml, devx-track-python, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Generate a Responsible AI insights with YAML and Python
@@ -62,14 +63,14 @@ This component has three input ports:
 - The training dataset  
 - The test dataset  
 
-To generate model-debugging insights with components such as error analysis and Model explanations, use the training and test dataset that you used when you trained your model. For components like causal analysis, which doesn't require a model, you use the training dataset to train the causal model to generate the causal insights. You use the test dataset to populate your Responsible AI dashboard visualizations.
+To generate model-debugging insights with components such as error analysis and model explanations, use the training and test datasets that you used when you trained your model. For components like causal analysis, which doesn't require a model, use the training dataset to train the causal model to generate the causal insights. Use the test dataset to populate your Responsible AI dashboard visualizations.
 
-The easiest way to supply the model is to register the input model and reference the same model in the model input port of `RAI Insight Constructor` component, which we discuss later in this article.
+The easiest way to supply the model is to register the input model and reference the same model in the model input port of `RAI Insight Constructor` component, which is discussed later in this article.
 
 > [!NOTE]
 > Currently, only models in MLflow format and with a `sklearn` flavor are supported.
 
-The two datasets should be in `mltable` format. The training and test datasets provided don't have to be the same datasets that are used in training the model, but they can be the same. By default, for performance reasons, the test dataset is restricted to 5,000 rows of the visualization UI.
+The two datasets should be in `mltable` format. The training and test datasets you provide don't have to be the same datasets that you use for training the model, but they can be the same. By default, for performance reasons, the test dataset is restricted to 5,000 rows of the visualization UI.
 
 The constructor component also accepts the following parameters:
 
@@ -81,12 +82,12 @@ The constructor component also accepts the following parameters:
 | `maximum_rows_for_test_dataset` | The maximum number of rows allowed in the test dataset, for performance reasons. | Integer, defaults to 5,000 |
 | `categorical_column_names` | The columns in the datasets, which represent categorical data. | Optional list of strings<sup>1</sup> |
 | `classes` | The full list of class labels in the training dataset. | Optional list of strings<sup>1</sup> |
-| `feature_metadata`| Specifies additional information the dashboard might need depending on task type. For forecasting, this includes specifying which column is the `datetime` column and which column is the `time_series_id` column. For vision, this might include mean pixel value or location data of an image.| Optional list of strings<sup>1</sup> |
-| `use_model_dependency`| Specifies if the model requires a separate docker container to be served in due to conflicting dependencies with the RAI dashboard. For forecasting, this must be enabled. Typically for other scenarios this isn't enabled.  | Boolean |
+| `feature_metadata`| Specifies additional information the dashboard might need depending on task type. For forecasting, this information includes specifying which column is the `datetime` column and which column is the `time_series_id` column. For vision, this information might include mean pixel value or location data of an image.| Optional list of strings<sup>1</sup> |
+| `use_model_dependency`| Specifies if the model requires a separate docker container to be served in due to conflicting dependencies with the RAI dashboard. For forecasting, you must enable this value. Typically for other scenarios, don't enable this value.  | Boolean |
 
-<sup>1</sup> The lists should be supplied as a single JSON-encoded string for `categorical_column_names`, `classes`, `feature_metadata` inputs.
+<sup>1</sup> Supply the lists as a single JSON-encoded string for `categorical_column_names`, `classes`, and `feature_metadata` inputs.
 
-The constructor component has a single output named `rai_insights_dashboard`. This is an empty dashboard, which the individual tool components operate on. All the results are assembled by the `Gather RAI Insights dashboard` component at the end.
+The constructor component has a single output named `rai_insights_dashboard`. This output is an empty dashboard that the individual tool components operate on. The `Gather RAI Insights dashboard` component assembles all the results.
 
 # [YAML](#tab/yaml)
 
@@ -108,10 +109,10 @@ The constructor component has a single output named `rai_insights_dashboard`. Th
 
 # [Python SDK](#tab/python)
 
-First load the component:
+First, load the component:
 
 ```python
-# First load the component:
+# First, load the component:
 
         rai_constructor_component = ml_client_registry.components.get(name="microsoft_azureml_rai_tabular_insight_constructor", label="latest")
 
@@ -120,7 +121,7 @@ First load the component:
             construct_job = rai_constructor_component( 
                 title="From Python", 
                 task_type="classification", 
-                model_input= model_input= Input(type=AssetTypes.MLFLOW_MODEL, path="<azureml:model_name:model_id>"),
+                model_input=Input(type=AssetTypes.MLFLOW_MODEL, path="<azureml:model_name:model_id>"),
                 train_dataset=train_data, 
                 test_dataset=test_data, 
                 target_column_name=target_column_name, 
@@ -155,7 +156,7 @@ This component performs a causal analysis on the supplied datasets. It has a sin
 
 <sup>2</sup> For the `list` parameters: Several of the parameters accept lists of other types (strings, numbers, even other lists). To pass these into the component, they must first be JSON-encoded into a single string.
 
-This component has a single output port, which can be connected to one of the `insight_[n]` input ports of the `Gather RAI Insights Dashboard` component.
+This component has a single output port, which you can connect to one of the `insight_[n]` input ports of the `Gather RAI Insights Dashboard` component.
 
 # [YAML](#tab/yaml)
 
@@ -178,8 +179,7 @@ This component has a single output port, which can be connected to one of the `i
 #Use it inside a pipeline definition: 
             causal_job = rai_causal_component( 
                 rai_insights_dashboard=construct_job.outputs.rai_insights_dashboard, 
-                treatment_features='`["Number of GitHub repos contributed to", "YOE"]', 
-            ) 
+                treatment_features='["Number of GitHub repos contributed to", "YOE"]', 
 ```
 
 ---
@@ -231,7 +231,7 @@ This component has a single output port, which can be connected to one of the `i
 
 ---
 
-### Add Error Analysis to RAI Insights dashboard 
+### Add error analysis to RAI Insights dashboard 
 
 This component generates an error analysis for the model. It has a single input port, which accepts the output of the `RAI Insights Dashboard Constructor`. It also accepts the following parameters:
 
@@ -239,10 +239,10 @@ This component generates an error analysis for the model. It has a single input 
 |---|---|---|
 | `max_depth` | The maximum depth of the error analysis tree. | Optional integer. Defaults to 3. |
 | `num_leaves` | The maximum number of leaves in the error tree. | Optional integer. Defaults to 31. |
-| `min_child_samples` | The minimum number of datapoints required to produce a leaf. | Optional integer. Defaults to 20. |
+| `min_child_samples` | The minimum number of data points required to produce a leaf. | Optional integer. Defaults to 20. |
 | `filter_features` | A list of one or two features to use for the matrix filter. | Optional list, to be passed as a single JSON-encoded string. |
 
-This component has a single output port, which can be connected to one of the `insight_[n]` input ports of the `Gather RAI Insights Dashboard` component.
+This component has a single output port, which you can connect to one of the `insight_[n]` input ports of the `Gather RAI Insights Dashboard` component.
 
 # [YAML](#tab/yaml)
 
@@ -272,9 +272,9 @@ This component has a single output port, which can be connected to one of the `i
 
 ### Add Explanation to RAI Insights dashboard
 
-This component generates an explanation for the model. It has a single input port, which accepts the output of the `RAI Insights Dashboard Constructor`. It accepts a single, optional comment string as a parameter.
+This component generates an explanation for the model. It has one input port, which accepts the output of the `RAI Insights Dashboard Constructor`. It accepts a single, optional comment string as a parameter.
 
-This component has a single output port, which can be connected to one of the `insight_[n]` input ports of the Gather RAI Insights dashboard component.
+This component has one output port, which you can connect to one of the `insight_[n]` input ports of the Gather RAI Insights dashboard component.
 
 
 # [YAML](#tab/yaml)
@@ -293,7 +293,7 @@ This component has a single output port, which can be connected to one of the `i
 
 ```python
 #First load the component: 
-        rai_explanation_component = ml_client_registry.components.get(name="microsoft_azureml_rai_tabular_explanation", label="latest"
+rai_explanation_component = ml_client_registry.components.get(name="microsoft_azureml_rai_tabular_explanation", label="latest")
 
 #Use inside a pipeline: 
             explain_job = rai_explanation_component( 
@@ -307,10 +307,10 @@ This component has a single output port, which can be connected to one of the `i
 
 This component assembles the generated insights into a single Responsible AI dashboard. It has five input ports: 
 
-- The `constructor` port that must be connected to the RAI Insights dashboard constructor component.
-- Four `insight_[n]` ports that can be connected to the output of the tool components. At least one of these ports must be connected.
+- The `constructor` port that you connect to the RAI Insights dashboard constructor component.
+- Four `insight_[n]` ports that you connect to the output of the tool components. Connect at least one of these ports.
 
-There are two output ports: 
+The component has two output ports: 
 - The `dashboard` port contains the completed `RAIInsights` object.
 - The `ux_json` port contains the data required to display a minimal dashboard.
 
@@ -350,7 +350,7 @@ There are two output ports:
 
 ## How to generate a Responsible AI scorecard (preview)
 
-The configuration stage requires you to use your domain expertise around the problem to set your desired target values on model performance and fairness metrics. 
+During the configuration stage, use your domain expertise to set target values for model performance and fairness metrics. 
 
 Like other Responsible AI dashboard components configured in the YAML pipeline, you can add a component to generate the scorecard in the YAML pipeline:
 
@@ -373,9 +373,9 @@ scorecard_01:
 
 ```
 
-Where pdf_gen.json is the score card generation configuration json file, and *predifined_cohorts_json* ID the prebuilt cohorts definition json file. 
+Where pdf_gen.json is the score card generation configuration json file, and *predefined_cohorts_json* is the prebuilt cohorts definition json file. 
 
-Here's a sample JSON file for cohorts definition and scorecard-generation configuration:
+The following examples show a JSON file for cohorts definition and scorecard-generation configuration:
 
 
 Cohorts definition:
@@ -408,7 +408,7 @@ Cohorts definition:
 ] 
 ```
 
-Here's a scorecard-generation configuration file as a regression example:
+The following example shows a scorecard-generation configuration file for a regression model:
 
 ```yml
 { 
@@ -444,7 +444,7 @@ Here's a scorecard-generation configuration file as a regression example:
 } 
 ```
 
-Here's a scorecard-generation configuration file as a classification example:
+The following example shows a scorecard-generation configuration file for a classification model:
 
 ```yml
 {
@@ -456,8 +456,8 @@ Here's a scorecard-generation configuration file as a classification example:
   "Metrics" :{
     "accuracy_score": {
         "threshold": ">=0.85"
-    },
-  }
+    }
+  },
   "FeatureImportance": { 
     "top_n": 6 
   }, 
@@ -478,7 +478,7 @@ Here's a scorecard-generation configuration file as a classification example:
 
 ### Definition of inputs for the Responsible AI scorecard component
 
-This section lists and defines the parameters that are required to configure the Responsible AI scorecard component.
+This section lists and defines the parameters that you need to configure the Responsible AI scorecard component.
 
 #### Model
 
@@ -488,41 +488,41 @@ This section lists and defines the parameters that are required to configure the
 | `ModelSummary` | Enter text that summarizes what the model is for. |
 
 > [!NOTE]
-> For multi-class classification, you should first use the One-vs-Rest strategy to choose your reference class, and then split your multi-class classification model into a binary classification problem for your selected reference class versus the rest of the classes.
+> For multi-class classification, use the One-vs-Rest strategy to choose your reference class. Then, split your multi-class classification model into a binary classification problem for your selected reference class versus the rest of the classes.
 
 #### Metrics
 
 | Performance metric | Definition | Model type |
 |---|---|---|
-| `accuracy_score` | The fraction of data points that are classified correctly. | Classification |
-| `precision_score` | The fraction of data points that are classified correctly among those classified as 1. | Classification |
-| `recall_score` | The fraction of data points that are classified correctly among those whose true label is 1. Alternative names: true positive rate, sensitivity. | Classification |
+| `accuracy_score` | The fraction of data points that the model classifies correctly. | Classification |
+| `precision_score` | The fraction of data points that the model classifies correctly among those classified as 1. | Classification |
+| `recall_score` | The fraction of data points that the model classifies correctly among those whose true label is 1. Alternative names: true positive rate, sensitivity. | Classification |
 | `f1_score` | The F1 score is the harmonic mean of precision and recall. | Classification |
-| `error_rate` | The proportion of instances that are misclassified over the whole set of instances. | Classification |
+| `error_rate` | The proportion of instances that the model misclassifies over the whole set of instances. | Classification |
 | `mean_absolute_error` | The average of absolute values of errors. More robust to outliers than `mean_squared_error`. | Regression |
 | `mean_squared_error` | The average of squared errors. | Regression |
 | `median_absolute_error` | The median of squared errors. | Regression |
-| `r2_score` | The fraction of variance in the labels explained by the model. | Regression |
+| `r2_score` | The fraction of variance in the labels that the model explains. | Regression |
 
-Threshold: The desired threshold for the selected metric. Allowed mathematical tokens are >, <, >=, and <=m, followed by a real number. For example, >= 0.75 means that the target for the selected metric is greater than or equal to 0.75.
+Threshold: The desired threshold for the selected metric. Allowed mathematical tokens are `>`, `<`, `>=`, and `<=`, followed by a real number. For example, `>= 0.75` means that the target for the selected metric is greater than or equal to 0.75.
 
 #### Feature importance
 
-top_n: The number of features to show, with a maximum of 10. Positive integers up to 10 are allowed.
+`top_n`: The number of features to show, with a maximum of 10. Enter positive integers up to 10.
 
 #### Fairness
 
 | Metric | Definition |
 |--|--|
 | `metric` | The primary metric for evaluation fairness. |
-| `sensitive_features` | A list of feature names from the input dataset to be designated as sensitive features for the fairness report. |
+| `sensitive_features` | A list of feature names from the input dataset to designate as sensitive features for the fairness report. |
 | `fairness_evaluation_kind` | Values in ['difference', 'ratio']. |
-| `threshold` | The *desired target values* of the fairness evaluation. Allowed mathematical tokens are >, <, >=,  and <=, followed by a real number.<br>For example, metric="accuracy", fairness_evaluation_kind="difference".<br><= 0.05 means that the target for the difference in accuracy is less than or equal to 0.05. |
+| `threshold` | The *desired target values* of the fairness evaluation. Allowed mathematical tokens are `>`, `<`, `>=`,  and `<=`, followed by a real number.<br>For example, `metric="accuracy"`, `fairness_evaluation_kind="difference"`.<br>`<= 0.05` means that the target for the difference in accuracy is less than or equal to 0.05. |
 
 > [!NOTE]
-> Your choice of `fairness_evaluation_kind` (selecting 'difference' versus 'ratio') affects the scale of your target value. In your selection, be sure to choose a meaningful target value.
+> Your choice of `fairness_evaluation_kind` (selecting 'difference' versus 'ratio') affects the scale of your target value. Choose a meaningful target value.
 
-You can select from the following metrics, paired with `fairness_evaluation_kind`, to configure your fairness assessment component of the scorecard:
+Select from the following metrics, paired with `fairness_evaluation_kind`, to configure your fairness assessment component of the scorecard:
 
 | Metric | fairness_evaluation_kind | Definition | Model type |
 |---|---|---|---|
@@ -545,13 +545,13 @@ You can select from the following metrics, paired with `fairness_evaluation_kind
 | `median_absolute_error` | difference | The maximum difference in median absolute error between any two groups. | Regression |
 | `median_absolute_error` | ratio | The maximum ratio in median absolute error between any two groups. | Regression |
 | `r2_score` | difference | The maximum difference in R<sup>2</sup> score between any two groups. | Regression |
-| `r2_Score` | ratio | The maximum ratio in R<sup>2</sup> score between any two groups. | Regression |
+| `r2_score` | ratio | The maximum ratio in R<sup>2</sup> score between any two groups. | Regression |
 
 ## Input constraints
 
 ### What model formats and flavors are supported?
 
-The model must be in the MLflow directory with a sklearn flavor available. Additionally, the model needs to be loadable in the environment that's used by the Responsible AI components.
+The model must be in the MLflow directory with a `sklearn` flavor available. Additionally, the model needs to be loadable in the environment that's used by the Responsible AI components.
 
 ### What data formats are supported?
 
@@ -559,11 +559,11 @@ The supplied datasets should be `mltable` with tabular data.
 
 ## Next steps
 
-- After you've generated your Responsible AI dashboard, [view how to access and use it in Azure Machine Learning studio](how-to-responsible-ai-dashboard.md).
+- After you generate your Responsible AI dashboard, [view how to access and use it in Azure Machine Learning studio](how-to-responsible-ai-dashboard.md).
 - Summarize and share your Responsible AI insights with the [Responsible AI scorecard as a PDF export](how-to-responsible-ai-scorecard.md).
 - Learn more about the [concepts and techniques behind the Responsible AI dashboard](concept-responsible-ai-dashboard.md).
 - Learn more about how to [collect data responsibly](concept-sourcing-human-data.md).
-- View [sample YAML and Python notebooks](https://aka.ms/RAIsamples) to generate the Responsible AI dashboard with YAML or Python.
+- View [sample YAML and Python notebooks](https://aka.ms/RAIsamples) to generate the Responsible AI dashboard by using YAML or Python.
 - Learn more about how to use the Responsible AI dashboard and scorecard to debug data and models and inform better decision-making in this [tech community blog post](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard).
 - Learn about how the Responsible AI dashboard and scorecard were used by the UK National Health Service (NHS) in a [real life customer story](https://aka.ms/NHSCustomerStory).
 - Explore the features of the Responsible AI dashboard through this [interactive AI lab web demo](https://www.microsoft.com/ai/ai-lab-responsible-ai-dashboard).
