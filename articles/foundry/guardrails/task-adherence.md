@@ -5,7 +5,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.service: azure-ai-content-safety
 ms.topic: conceptual
-ms.date: 11/06/2025
+ms.date: 03/12/2026
 ---
 
 # Agentic Workflows: Task Adherence (preview)
