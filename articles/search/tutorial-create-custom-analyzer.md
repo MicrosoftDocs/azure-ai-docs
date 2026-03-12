@@ -1,6 +1,5 @@
 ---
 title: 'Tutorial: Create a Custom Analyzer'
-titleSuffix: Azure AI Search
 description: Learn how to build a custom analyzer to improve the quality of search results in Azure AI Search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

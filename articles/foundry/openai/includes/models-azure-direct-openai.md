@@ -96,9 +96,6 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | `gpt-5.1-codex-mini` |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.1-codex-max` |  See the [models table](#model-summary-table-and-region-availability).  | 
 
-- **[Registration is required for access to gpt-5.1, gpt-5.1-codex, and gpt-5.1-codex-max](https://aka.ms/oai/gpt5access).**
-
-Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -131,12 +128,6 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | `gpt-5-chat` (2025-10-03) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-codex` (2025-09-11) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-pro` (2025-10-06) |  See the [models table](#model-summary-table-and-region-availability).  |
-
-- **[Registration is required for access to the gpt-5-pro, gpt-5, & gpt-5-codex models](https://aka.ms/oai/gpt5access).**
-
-- `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
-
- Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to `o3`, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |

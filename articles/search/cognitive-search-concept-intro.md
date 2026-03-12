@@ -1,6 +1,5 @@
 ---
 title: AI Enrichment Concepts
-titleSuffix: Azure AI Search
 description: Content extraction, natural language processing (NLP), and image processing can create searchable content in Azure AI Search indexes.
 ms.service: azure-ai-search
 ms.custom:

@@ -1,6 +1,5 @@
 ---
 title: 'C# Tutorial: Index Multiple Azure Data Sources'
-titleSuffix: Azure AI Search
 description: Learn how to import data from multiple data sources into a single Azure AI Search index using indexers. This tutorial and sample code are in C#.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

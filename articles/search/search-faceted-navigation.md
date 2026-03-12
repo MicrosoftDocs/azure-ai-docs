@@ -1,6 +1,5 @@
 ---
 title: Add Facets to a Query
-titleSuffix: Azure AI Search
 description: Add faceted navigation for self-directed navigation in applications that integrate with Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to

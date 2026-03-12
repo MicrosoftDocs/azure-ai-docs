@@ -1,6 +1,5 @@
 ---
 title: Custom Web API Vectorizer
-titleSuffix: Azure AI Search
 description: Use the Custom Web API vectorizer to integrate your custom code for generating embeddings at query time.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

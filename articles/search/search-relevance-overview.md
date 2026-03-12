@@ -1,6 +1,5 @@
 ---
 title: Relevance
-titleSuffix: Azure AI Search
 description: Describe strategies for producing relevant results  in Azure AI Search and explain how the scoring and ranking algorithms work and how to use them together.
 ms.service: azure-ai-search
 ms.topic: concept-article

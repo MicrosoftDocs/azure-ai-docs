@@ -1,6 +1,5 @@
 ---
 title: OData Filter Reference
-titleSuffix: Azure AI Search
 description: OData language reference and full syntax used for creating filter expressions in Azure AI Search queries.
 ms.service: azure-ai-search
 ms.custom:

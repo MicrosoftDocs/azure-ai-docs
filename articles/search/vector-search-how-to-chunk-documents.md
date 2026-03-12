@@ -1,6 +1,5 @@
 ---
 title: Chunk Documents
-titleSuffix: Azure AI Search
 description: Learn strategies for chunking PDFs, HTML files, and other large documents for agentic retrieval and vector search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

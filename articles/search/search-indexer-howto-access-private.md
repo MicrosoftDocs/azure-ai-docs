@@ -1,6 +1,5 @@
 ---
 title: Connect Through a Shared Private Link
-titleSuffix: Azure AI Search
 description: Configure indexer connections to access content from other Azure resources that are protected through a shared private link.
 ms.reviewer: mcarter
 ms.service: azure-ai-search

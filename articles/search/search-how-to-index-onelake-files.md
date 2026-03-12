@@ -1,6 +1,5 @@
 ---
 title: OneLake Indexer
-titleSuffix: Azure AI Search
 description: Set up a OneLake indexer to automate indexing of content and metadata from Microsoft OneLake files and shortcuts.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

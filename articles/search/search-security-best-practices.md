@@ -1,6 +1,5 @@
 ---
 title: Best Practices for Security
-titleSuffix: Azure AI Search
 description: Learn how to configure security features in Azure AI Search to protect endpoints, content, and operations. This article provides best practices for network security, authentication, and data protection.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

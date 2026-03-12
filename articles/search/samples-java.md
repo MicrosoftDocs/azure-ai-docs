@@ -1,6 +1,5 @@
 ---
 title: Java Samples
-titleSuffix: Azure AI Search
 description: Find Azure AI Search demo Java code samples that use the Azure .NET SDK for Java.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

@@ -1,6 +1,5 @@
 ---
 title: Text Normalization for Filters, Facets, Sort
-titleSuffix: Azure AI Search
 description: Specify normalizers to text fields in an index to customize the strict keyword matching behavior in filtering, faceting and sorting.
 ms.service: azure-ai-search
 ms.custom:
