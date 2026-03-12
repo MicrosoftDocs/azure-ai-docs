@@ -99,8 +99,8 @@ A value of `true` for `taskRiskDetected` signifies a detected risk, in which cas
 
 ## Prerequisites 
 
-An Azure account. If you don't have one, you can create one for free. 
-An Azure AI resource. 
+- An Azure account. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An [Azure AI resource](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AIServices). 
  
 ## Set up and use Task Adherence 
 
