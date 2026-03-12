@@ -149,7 +149,7 @@ At runtime, provide the actual value:
 
 Different tools require different authentication approaches. Understanding these options helps you connect tools securely.
 
-**Built-in tools** authenticate through Foundry Agent Service automatically. Most built-in tools such as Code Interpreter and File Search require no extra authentication configuration. Tools that connect to external data sources (for example, Azure AI Search or SharePoint) use the connections configured in your Foundry project.
+**Built-in tools** authenticate through Foundry Agent Service automatically. Most built-in tools such as Code Interpreter and File Search require no extra authentication configuration. Tools that connect to external data sources (for example, Azure AI Search or SharePoint) use the [connections](../../how-to/connections-add.md) configured in your Foundry project.
 
 **MCP servers** support multiple authentication methods depending on the server. Options include key-based authentication (API key or token), Microsoft Entra authentication (managed identity), and OAuth for user-level identity passthrough. When in doubt, start with Microsoft Entra authentication if the MCP server supports it, because it eliminates the need to manage secrets and provides built-in token rotation. For detailed setup steps, see [Set up MCP server authentication](../how-to/mcp-authentication.md).
 
