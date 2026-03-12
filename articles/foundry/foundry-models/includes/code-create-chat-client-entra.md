@@ -32,7 +32,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), 
-    "https://cognitiveservices.azure.com/.default"
+    "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -92,7 +92,7 @@ Replace `<resource>` with your Foundry resource name (find it in the Azure porta
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default"
+    "https://ai.azure.com/.default"
 );
 
 ChatClient client = new(
@@ -143,7 +143,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default'
+    'https://ai.azure.com/.default'
 );
 
 const client = new OpenAI({
@@ -202,7 +202,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
     .credential(BearerTokenCredential.create(
         AuthenticationUtil.getBearerTokenSupplier(
             tokenCredential, 
-            "https://cognitiveservices.azure.com/.default"
+            "https://ai.azure.com/.default"
         )
     ))
     .build();
@@ -282,7 +282,7 @@ If authentication is successful, you receive a `200 OK` response with chat compl
 }
 ```
 
-Tokens must be issued with scope `https://cognitiveservices.azure.com/.default`.
+Tokens must be issued with scope `https://ai.azure.com/.default`.
 
 For testing purposes, the easiest way to get a valid token for your user account is to use the Azure CLI. In a console, run the following Azure CLI command:
 

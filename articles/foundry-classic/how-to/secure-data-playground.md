@@ -279,7 +279,7 @@ credential = DefaultAzureCredential()
 # Initialize the Azure OpenAI client
 client = AzureOpenAI(
     azure_endpoint=endpoint,
-    azure_ad_token_provider=credential.get_token("https://cognitiveservices.azure.com/.default").token,
+    azure_ad_token_provider=credential.get_token("https://ai.azure.com/.default").token,
     api_version="2024-02-01" # Use a supported API version
 )
 

@@ -127,7 +127,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -276,7 +276,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -369,7 +369,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -425,4 +425,4 @@ This command enables Bing web search functionality for all accounts in the subsc
 
 - **No citations returned**: Confirm your request includes `tools: [{"type": "web_search_preview"}]`. If the model doesn't call the tool, prompt more explicitly to browse the web or ask for citations.
 - **Tool is blocked**: Ask your subscription admin to verify the subscription feature setting for blocked tools. See [Manage web search preview tool](#manage-web-search-preview-tool).
-- **Authentication errors**: For API keys, verify you set `AZURE_OPENAI_API_KEY`. For Microsoft Entra ID, verify your token scope is `https://cognitiveservices.azure.com/.default`.
+- **Authentication errors**: For API keys, verify you set `AZURE_OPENAI_API_KEY`. For Microsoft Entra ID, verify your token scope is `https://ai.azure.com/.default`.
