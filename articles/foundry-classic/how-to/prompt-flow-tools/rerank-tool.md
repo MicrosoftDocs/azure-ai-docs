@@ -3,7 +3,7 @@ title: "Rerank tool for flows in Microsoft Foundry portal (classic)"
 description: "This article introduces you to the Rerank tool for flows in Microsoft Foundry portal. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-prompt-flow
-ms.topic: article
+ms.topic: concept-article
 ms.date: 01/27/2026
 ms.reviewer: jingyizhu
 ms.author: lagayhar

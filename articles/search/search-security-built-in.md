@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn about Microsoft-managed security, data residency, encryption, and compliance features built into Azure AI Search.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 02/24/2026
 ai-usage: ai-assisted
 ---
