@@ -7,23 +7,25 @@ ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.custom:
   - build-2024
+  - dev-focus
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 04/19/2024
+ms.date: 03/12/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Customize base image for compute session
 
-This section assumes you have knowledge of [Docker](https://www.docker.com/) and [Azure Machine Learning environments](../concept-environments.md).
+Before you begin, make sure you're familiar with [Docker](https://www.docker.com/) and [Azure Machine Learning environments](../concept-environments.md).
 
-## Step-1: Prepare the docker context
+## Step 1: Prepare the Docker context
 
 ### Create `image_build` folder
 
-In your local environment, create a folder contains following files, the folder structure should look like this:
+In your local environment, create a folder that contains the following files. The folder structure should look like this:
 
 ```
 |--image_build
@@ -36,16 +38,16 @@ In your local environment, create a folder contains following files, the folder 
 
 **Optional**: Add packages in private pypi repository.
 
-Using the following command to download your packages to local: `pip wheel <package_name> --index-url=<private pypi> --wheel-dir <local path to save packages>`
+Use the following command to download your packages locally: `pip wheel <package_name> --index-url=<private pypi> --wheel-dir <local path to save packages>`
 
 Open the `requirements.txt` file and add your extra packages and specific version in it.  For example:
 
 ```
 ###### Requirements with Version Specifiers ######
-langchain == 0.0.149        # Version Matching. Must be version 0.0.149
-keyring >= 4.1.1            # Minimum version 4.1.1
+numpy == 2.2.0              # Version Matching. Must be version 2.2.0
+requests >= 2.31.0          # Minimum version 2.31.0
 coverage != 3.5             # Version Exclusion. Anything except version 3.5
-Mopidy-Dirble ~= 1.1        # Compatible release. Same as >= 1.1, == 1.*
+pydantic ~= 2.0             # Compatible release. Same as >= 2.0, == 2.*
 <path_to_local_package>     # reference to local pip wheel package
 ```
 
@@ -99,7 +101,7 @@ az ml environment create -f environment.yaml --subscription <sub-id> -g <resourc
 ```
 
 > [!NOTE]
-> Building the environment image may take several minutes.
+> Building the environment image might take several minutes.
 
 Go to your workspace UI page, then go to the **environment** page, and locate the custom environment you created. 
 
@@ -110,5 +112,4 @@ To learn more about environment CLI, see [Manage environments](../how-to-manage-
 
 ## Next steps
 
-- [Develop a standard flow](how-to-develop-a-standard-flow.md)
-- [Develop a chat flow](how-to-develop-a-chat-flow.md)
+- [Develop a prompt flow](how-to-develop-flow.md)
