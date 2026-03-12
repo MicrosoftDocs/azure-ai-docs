@@ -11,11 +11,8 @@ items:
 - name: Agent tools & integration
   href: toc-files-foundry/agent-tools/toc.yml
 
-- name: Model catalog
-  href: toc-files-foundry/model-catalog/toc.yml
-
-- name: Model capabilities
-  href: toc-files-foundry/model-capabilities/toc.yml
+- name: Foundry Models
+  href: toc-files-foundry/foundry-models/toc.yml
 
 - name: Fine-tuning
   href: toc-files-foundry/fine-tuning/toc.yml
