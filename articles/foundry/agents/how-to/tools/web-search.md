@@ -140,17 +140,7 @@ Agent deleted
 
 The following example shows how to restrict web search to specific domains using a Bing Custom Search instance. This approach gives you control over which websites your agent can search.
 
-> [!NOTE]
-> Before running this sample, set these environment variables:
-> - `AZURE_AI_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-> - `AZURE_AI_MODEL_DEPLOYMENT_NAME`: Your model deployment name.
-> - `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`: The Bing Custom Search project connection ID from your Foundry project's **Connections** tab.
-> - `BING_CUSTOM_SEARCH_INSTANCE_NAME`: The Bing Custom Search instance name.
-
 ```python
-import os
-from dotenv import load_dotenv
-
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -159,80 +149,73 @@ from azure.ai.projects.models import (
     WebSearchConfiguration,
 )
 
-load_dotenv()
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+BING_CUSTOM_SEARCH_CONNECTION_ID = "your_bing_custom_search_connection_id"
+BING_CUSTOM_SEARCH_INSTANCE_NAME = "your_bing_custom_search_instance_name"
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
-    # Create web search tool with custom search configuration
-    tool = WebSearchTool(
-        custom_search_configuration=WebSearchConfiguration(
-            project_connection_id=os.environ["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID"],
-            instance_name=os.environ["BING_CUSTOM_SEARCH_INSTANCE_NAME"],
-        )
-    )
+# Create an agent with the web search tool and custom search configuration
+agent = project.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant that can search the web",
+        tools=[
+            WebSearchTool(
+                custom_search_configuration=WebSearchConfiguration(
+                    project_connection_id=BING_CUSTOM_SEARCH_CONNECTION_ID,
+                    instance_name=BING_CUSTOM_SEARCH_INSTANCE_NAME,
+                )
+            )
+        ],
+    ),
+    description="Agent for domain-restricted web search.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    # Create Agent with web search tool
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant that can search the web",
-            tools=[tool],
-        ),
-        description="Agent for domain-restricted web search.",
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+# Send a query and stream the response
+stream_response = openai.responses.create(
+    stream=True,
+    tool_choice="required",
+    input="What are the latest updates from Microsoft Learn?",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    # Create a conversation for the agent interaction
-    conversation = openai_client.conversations.create()
-    print(f"Created conversation (id: {conversation.id})")
+# Process streaming events
+for event in stream_response:
+    if event.type == "response.created":
+        print(f"Response created with ID: {event.response.id}")
+    elif event.type == "response.output_text.delta":
+        print(f"Delta: {event.delta}")
+    elif event.type == "response.text.done":
+        print(f"\nResponse done!")
+    elif event.type == "response.output_item.done":
+        if event.item.type == "message":
+            item = event.item
+            if item.content[-1].type == "output_text":
+                text_content = item.content[-1]
+                for annotation in text_content.annotations:
+                    if annotation.type == "url_citation":
+                        print(f"URL Citation: {annotation.url}")
+    elif event.type == "response.completed":
+        print(f"\nResponse completed!")
+        print(f"Full response: {event.response.output_text}")
 
-    user_input = input("Enter your question: \n")
-
-    # Send a query to search the web using your custom search instance
-    stream_response = openai_client.responses.create(
-        stream=True,
-        input=user_input,
-        tool_choice="required",
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
-
-    for event in stream_response:
-        if event.type == "response.created":
-            print(f"Response created with ID: {event.response.id}")
-        elif event.type == "response.output_text.delta":
-            print(f"Delta: {event.delta}")
-        elif event.type == "response.text.done":
-            print(f"\nResponse done!")
-        elif event.type == "response.output_item.done":
-            if event.item.type == "message":
-                item = event.item
-                if item.content[-1].type == "output_text":
-                    text_content = item.content[-1]
-                    for annotation in text_content.annotations:
-                        if annotation.type == "url_citation":
-                            print(f"URL Citation: {annotation.url}")
-        elif event.type == "response.completed":
-            print(f"\nResponse completed!")
-            print(f"Full response: {event.response.output_text}")
-
-    print("\nCleaning up...")
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
 ```
 
 #### Expected output
 
 ```output
 Agent created (id: abc123, name: MyAgent, version: 1)
-Created conversation (id: conv_xyz789)
-Enter your question: 
-What are the latest updates?
 Response created with ID: resp_456
 Delta: Based on your custom search ...
 Response done!
@@ -240,8 +223,6 @@ URL Citation: https://your-allowed-domain.com/article
 
 Response completed!
 Full response: Based on your custom search ...
-
-Cleaning up...
 Agent deleted
 ```
 
