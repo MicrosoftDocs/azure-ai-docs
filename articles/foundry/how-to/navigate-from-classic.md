@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 Microsoft Foundry evolved through several naming and architectural changes. If you're moving from the classic portal experience, this article helps you plan and execute the transition with reference mappings for terminology, capabilities, SDKs, and portal navigation.
 
 > [!NOTE]
-> **Naming history:** Azure AI Studio (Nov 2023) &rarr; Azure AI Foundry (Nov 2024) &rarr; Microsoft Foundry (Nov 2025). Azure AI Services &rarr; Foundry Tools. The Azure resource type remains `Microsoft.CognitiveServices/accounts`. All names in this documentation refer to the same evolving platform.
+> **Product naming**: Microsoft's AI Platform has evolved from Azure AI Studio → Azure AI Foundry → to Microsoft Foundry (current). Similarly, our AI services portfolio evolved with the platform from Azure Cognitive Services → Azure AI Services → to Foundry Tools (current). Despite the platform evolution, the Azure resource type remains `Microsoft.CognitiveServices/accounts`. All names in this documentation refer to the same evolving platform.
 
 ## Prerequisites
 
