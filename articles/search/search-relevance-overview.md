@@ -1,6 +1,6 @@
 ---
-title: Relevance Overview
-description: Learn about the relevance concepts and technology in Azure AI Search.
+title: Relevance and Ranking Overview
+description: Learn how relevance and ranking work in Azure AI Search. Explore hybrid search, semantic reranking, agentic retrieval, and scoring profiles to improve results.
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 12/08/2025

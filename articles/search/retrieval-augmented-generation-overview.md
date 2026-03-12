@@ -1,6 +1,6 @@
 ---
 title: RAG and Generative AI
-description: Learn how Azure AI Search supports retrieval-augmented generation (RAG) patterns to ground LLM responses in your proprietary content for accurate, reliable answers.
+description: Learn how Azure AI Search supports RAG patterns with agentic retrieval and classic hybrid search to ground LLM responses in your content. Get started today.
 ms.date: 01/15/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
