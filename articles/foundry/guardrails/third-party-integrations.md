@@ -137,7 +137,7 @@ The following table shows supported regions. We recommend that your Foundry proj
 
 ## Code Examples
 
-Examples adapted from Guardrail annotations – [Microsoft Foundry](https://learn.microsoft.com/en-gb/azure/ai-foundry/openai/concepts/content-filter-annotations?view=foundry-classic&tabs=python-new): 
+Examples adapted from Guardrail annotations – [Microsoft Foundry](/azure/ai-foundry/openai/concepts/content-filter-annotations): 
 
 ```python
 from openai import OpenAI
