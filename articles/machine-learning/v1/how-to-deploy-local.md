@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: core
 author: s-polly
 ms.author: scottpolly
-ms.date: 08/15/2022
+ms.date: 03/06/2026
 ms.topic: how-to
 ms.custom:
   - UpdateFrequency5
@@ -23,7 +23,10 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-This article describes how to use your local computer as a target for training or deploying models created in Azure Machine Learning. Azure Machine Learning is flexible enough to work with most Python machine learning frameworks. Machine learning solutions generally have complex dependencies that can be difficult to duplicate. This article will show you how to balance total control with ease of use.
+> [!NOTE]
+> For the recommended v2 approach to local deployment and debugging, see [Deploy and debug locally by using a local endpoint](/azure/machine-learning/how-to-deploy-online-endpoints?view=azureml-api-2#deploy-and-debug-locally-by-using-a-local-endpoint).
+
+This article describes how to use your local computer as a target for training or deploying models created in Azure Machine Learning. Azure Machine Learning is flexible enough to work with most Python machine learning frameworks. Machine learning solutions generally have complex dependencies that can be difficult to duplicate. This article shows you how to balance total control with ease of use.
 
 Scenarios for local deployment include:
 
@@ -94,11 +97,11 @@ For more advanced examples, including automatic Swagger schema generation and sc
 
 ## Deploy as a local web service by using Docker
 
-The easiest way to replicate the environment used by Azure Machine Learning is to deploy a web service by using Docker. With Docker running on your local machine, you will:
+The easiest way to replicate the environment used by Azure Machine Learning is to deploy a web service by using Docker. With Docker running on your local machine, you:
 
 1. Connect to the Azure Machine Learning workspace in which your model is registered.
 1. Create a `Model` object that represents the model.
-1. Create an `Environment` object that contains the dependencies and defines the software environment in which your code will run.
+1. Create an `Environment` object that contains the dependencies and defines the software environment in which your code runs.
 1. Create an `InferenceConfig` object that associates the entry script with the `Environment`.
 1. Create a `DeploymentConfiguration` object of the subclass `LocalWebserviceDeploymentConfiguration`.
 1. Use `Model.deploy()` to create a `Webservice` object. This method downloads the Docker image and associates it with the `Model`, `InferenceConfig`, and `DeploymentConfiguration`.
@@ -137,7 +140,7 @@ The call to `Model.deploy()` can take a few minutes. After you've initially depl
 
 ### Test your local deployment
 
-When you run the previous deployment script, it will output the URI to which you can POST data for scoring (for example, `http://localhost:6789/score`). The following sample shows a script that scores sample data by using the `"sklearn-mnist-local"` locally deployed model. The model, if properly trained, infers that `normalized_pixel_values` should be interpreted as a "2". 
+When you run the previous deployment script, it outputs the URI to which you can POST data for scoring (for example, `http://localhost:6789/score`). The following sample shows a script that scores sample data by using the `"sklearn-mnist-local"` locally deployed model. The model, if properly trained, infers that `normalized_pixel_values` should be interpreted as a "2". 
 
 ```python
 import requests
@@ -221,7 +224,7 @@ After you download the model and resolve its dependencies, there are no Azure-de
 
 ## Upload a retrained model to Azure Machine Learning
 
-If you have a locally trained or retrained model, you can register it with Azure. After it's registered, you can continue tuning it by using Azure compute or deploy it by using Azure facilities like [Azure Kubernetes Service](how-to-deploy-azure-kubernetes-service.md) or [Triton Inference Server (Preview)](../how-to-deploy-with-triton.md).
+If you have a locally trained or retrained model, you can register it with Azure. After it's registered, you can continue tuning it by using Azure compute or deploy it by using Azure facilities like [Azure Kubernetes Service](how-to-deploy-azure-kubernetes-service.md) or [Triton Inference Server](../how-to-deploy-with-triton.md).
 
 To be used with the Azure Machine Learning Python SDK, a model must be stored as a serialized Python object in pickle format (a `.pkl` file). It must also implement a `predict(data)` method that returns a JSON-serializable object. For example, you might store a locally trained scikit-learn diabetes model with: 
 

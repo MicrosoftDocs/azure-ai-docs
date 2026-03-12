@@ -1,10 +1,8 @@
 ---
 title: 'Quickstart: Deploy Using an ARM Template'
-titleSuffix: Azure AI Search
 description: Learn how to deploy an Azure AI Search service instance using an Azure Resource Manager template.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.custom:

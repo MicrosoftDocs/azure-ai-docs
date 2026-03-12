@@ -1,10 +1,6 @@
 ---
-title: Enable role-based access control
-titleSuffix: Azure AI Search
+title: Enable Role-Based Access Control
 description: Enable or disable role-based access control for token authentication using Microsoft Entra ID on Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/22/2026

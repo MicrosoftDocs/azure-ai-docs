@@ -1,9 +1,6 @@
 ---
-title: Integrated vectorization
-titleSuffix: Azure AI Search
+title: Integrated Vectorization
 description: Add a vector embedding step in an Azure AI Search skillset to vectorize content during indexing or queries.
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

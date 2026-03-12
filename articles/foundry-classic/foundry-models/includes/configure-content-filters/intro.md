@@ -18,6 +18,6 @@ You can configure content filters at the resource level and associate them with 
 
 To complete this article, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry](../../how-to/quickstart-github-models.md).
+* An Azure subscription. If you're using GitHub Models, you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry](../../how-to/quickstart-github-models.md).
 
 * A Foundry resource (formerly known as Azure AI Services resource). For more information, see [Create a Foundry resource](../../../quickstarts/get-started-code.md).

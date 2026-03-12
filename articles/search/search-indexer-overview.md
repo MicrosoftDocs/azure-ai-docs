@@ -1,10 +1,6 @@
 ---
-title: Indexer overview
-titleSuffix: Azure AI Search
+title: Indexer Overview
 description: Crawl Azure SQL Database, SQL Managed Instance, Azure Cosmos DB, or Azure storage to extract searchable data and populate an Azure AI Search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

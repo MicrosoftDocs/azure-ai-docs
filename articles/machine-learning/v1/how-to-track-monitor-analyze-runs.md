@@ -8,9 +8,10 @@ ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 04/25/2022
+ms.date: 03/06/2026
 ms.topic: how-to
-ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli, cliv1
+ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli, cliv1, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Start, monitor, and track run history
@@ -41,7 +42,7 @@ This article shows how to do the following tasks:
 
 > [!TIP]
 > If you're looking for information on monitoring the Azure Machine Learning service and associated Azure services, see [How to monitor Azure Machine Learning](../monitor-azure-machine-learning.md).
-> If you're looking for information on monitoring models deployed as web services, see [Collect model data](how-to-enable-data-collection.md) and [Monitor with Application Insights](../how-to-enable-app-insights.md).
+> If you're looking for information on monitoring models deployed as web services, see [Monitor with Application Insights](../how-to-enable-app-insights.md).
 
 ## Prerequisites
 
@@ -51,7 +52,7 @@ You'll need the following items:
 
 * An [Azure Machine Learning workspace](../quickstart-create-resources.md).
 
-* The Azure Machine Learning SDK for Python (version 1.0.21 or later). To install or update to the latest version of the SDK, see [Install or update the SDK](/python/api/overview/azure/ml/install).
+* The Azure Machine Learning SDK for Python v1 (latest version). To install or update to the latest version of the SDK, see [Install or update the SDK](/python/api/overview/azure/ml/install).
 
     To check your version of the Azure Machine Learning SDK, use the following code:
 

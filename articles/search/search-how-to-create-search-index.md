@@ -1,10 +1,6 @@
 ---
-title: Create an index
-titleSuffix: Azure AI Search
+title: Create an Index
 description: Create a search index using the Azure portal, REST APIs, or an Azure SDK.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to

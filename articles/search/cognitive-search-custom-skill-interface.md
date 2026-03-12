@@ -1,9 +1,7 @@
 ---
-title: Custom skill interface
-titleSuffix: Azure AI Search
+title: Custom Skill Interface
 description: Integrate a custom skill with an AI enrichment pipeline in Azure AI Search through a web interface that defines compatible inputs and outputs in a skillset.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

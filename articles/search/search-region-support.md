@@ -1,10 +1,8 @@
 ---
 title: Supported Regions
-titleSuffix: Azure AI Search
 description: Learn about the regions that offer Azure AI Search and the features available in each region.
-author: haileytap
-ms.author: haileytapia
-manager: nitinme
+author: mattwojo
+ms.author: mattwoj
 ms.date: 11/19/2025
 ms.service: azure-ai-search
 ms.topic: concept-article

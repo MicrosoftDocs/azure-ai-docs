@@ -12,6 +12,8 @@ ms.date: 03/12/2026
 ms.topic: how-to
 ms.custom: sdkv2, FY25Q1-Linter, dev-focus
 ai-usage: ai-assisted
+ms.custom: sdkv2, FY25Q1-Linter, dev-focus
+ai-usage: ai-assisted
 # Customer intent: As a data scientist, I want to securely access secrets from Azure Key Vault in my training jobs so that I can use them in my training scripts.
 ---
 
@@ -19,12 +21,12 @@ ai-usage: ai-assisted
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-Authentication information, such as your user name and password, are secrets. For example, if you connect to an external database to query training data, you need to pass your user name and password to the remote job context. Coding such values into training scripts in clear text is insecure because it potentially exposes the secret.
+Authentication information, such as your user name and password, are secrets. For example, if you connect to an external database to query training data, you need to pass your user name and password to the remote job context. Coding such values into training scripts in clear text is insecure because it exposes the secret.
 
-By using Azure Key Vault, you can securely store and retrieve secrets. In this article, learn how you can retrieve secrets stored in a key vault from a training job running on a compute cluster.
+Azure Key Vault provides secure storage and retrieval of secrets. In this article, learn how to retrieve secrets stored in a key vault from a training job running on a compute cluster.
 
 > [!IMPORTANT]
-> The Azure Machine Learning Python SDK v2 and Azure CLI extension v2 for machine learning don't provide the capability to set or get secrets. Instead, use the [Azure Key Vault Secrets client library for Python](/python/api/overview/azure/keyvault-secrets-readme).
+> Use the [Azure Key Vault Secrets client library for Python](/python/api/overview/azure/keyvault-secrets-readme) to store and retrieve secrets. The Azure Machine Learning SDK v2 provides workspace information you need to connect to your key vault.
 
 ## Prerequisites
 
@@ -56,6 +58,37 @@ Before following the steps in this article, make sure you have the following pre
     > [!TIP]
     > The quickstart link is to the steps for using the Azure Key Vault Python SDK. In the table of contents in the left pane are links to other ways to set a key.
 
+## Get the key vault URL
+
+When you create an Azure Machine Learning workspace, a default key vault is provisioned alongside it. Use the `MLClient` to retrieve the vault URL programmatically:
+
+```python
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+
+subscription_id = "<subscription-id>"
+resource_group = "<resource-group>"
+workspace_name = "<workspace-name>"
+
+ml_client = MLClient(
+    DefaultAzureCredential(),
+    subscription_id=subscription_id,
+    resource_group_name=resource_group,
+    workspace_name=workspace_name,
+)
+
+workspace = ml_client.workspaces.get(workspace_name)
+key_vault_arm_id = workspace.key_vault
+vault_name = key_vault_arm_id.split("/")[-1]
+vault_url = f"https://{vault_name}.vault.azure.net/"
+print(vault_url)  # https://<your-vault-name>.vault.azure.net/
+```
+
+You can then pass this `vault_url` value to your training job as an environment variable, as shown in the examples that follow.
+
+> [!TIP]
+> You can also find the key vault URL in the [Azure portal](https://portal.azure.com) by navigating to your workspace and selecting **Overview**. The key vault is listed in the workspace properties.
+
 ## Get secrets
 
 You can get secrets during training in two ways:
@@ -69,15 +102,17 @@ You can get secrets during training in two ways:
 
     Use this environment to build the Docker image that the training job runs in on the compute cluster.
 
-1. From your training code, use the [Azure Identity SDK](/python/api/overview/azure/identity-readme) and [Key Vault client library](/python/api/overview/azure/keyvault-secrets-readme) to get the managed identity credentials and authenticate to Key Vault:
+1. From your training code, use the [Azure Identity SDK](/python/api/overview/azure/identity-readme) and [Key Vault client library](/python/api/overview/azure/keyvault-secrets-readme) to get the managed identity credentials and authenticate to key vault. The `KEY_VAULT_URL` environment variable is passed to the job at submission time (see step 3):
 
     ```python
+    import os
     from azure.identity import DefaultAzureCredential
     from azure.keyvault.secrets import SecretClient
 
     credential = DefaultAzureCredential()
 
-    secret_client = SecretClient(vault_url="https://my-key-vault.vault.azure.net/", credential=credential)
+    vault_url = os.environ["KEY_VAULT_URL"]
+    secret_client = SecretClient(vault_url=vault_url, credential=credential)
     ```
 
     > [!TIP]
@@ -90,20 +125,39 @@ You can get secrets during training in two ways:
     print(secret.value)
     ```
 
+1. When you submit the training job, pass the key vault URL as an environment variable. Use the `vault_url` value retrieved in [Get the key vault URL](#get-the-key-vault-url):
+
+    ```python
+    from azure.ai.ml import command
+
+    job = command(
+        code="./src",
+        command="python train.py",
+        environment="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:1",
+        compute="cpu-cluster",
+        environment_variables={"KEY_VAULT_URL": vault_url},
+    )
+
+    ml_client.jobs.create_or_update(job)
+    ```
+
 # [Your identity](#tab/user)
 
 1. Add the `azure-keyvault-secrets`, `azure-identity`, and `azure-ai-ml` packages to the [Azure Machine Learning environment](concept-environments.md) used when training the model. For example, add them to the conda file used to build the environment.
 
     Use this environment to build the Docker image that the training job runs in on the compute cluster.
 
-1. From your training code, use the [Azure Machine Learning SDK](/python/api/overview/azure/ai-ml-readme) and [Key Vault client library](/python/api/overview/azure/keyvault-secrets-readme) to get the managed identity credentials and authenticate to key vault. Use the `AzureMLOnBehalfOfCredential` class to authenticate on behalf of your user identity:
+1. From your training code, use the [Azure Machine Learning SDK](/python/api/overview/azure/ai-ml-readme) and [Key Vault client library](/python/api/overview/azure/keyvault-secrets-readme) to authenticate on behalf of your user identity. The `KEY_VAULT_URL` environment variable is passed to the job at submission time (see step 3):
 
     ```python
+    import os
     from azure.ai.ml.identity import AzureMLOnBehalfOfCredential
     from azure.keyvault.secrets import SecretClient
 
     credential = AzureMLOnBehalfOfCredential()
-    secret_client = SecretClient(vault_url="https://my-key-vault.vault.azure.net/", credential=credential)
+
+    vault_url = os.environ["KEY_VAULT_URL"]
+    secret_client = SecretClient(vault_url=vault_url, credential=credential)
     ```
 
     After authenticating, use the Key Vault client library to retrieve a secret by providing the associated key:
@@ -127,6 +181,7 @@ You can get secrets during training in two ways:
         environment="AzureML-sklearn-1.0-ubuntu22.04-py39-cpu:1",
         compute="cpu-cluster",
         identity=UserIdentityConfiguration(),
+        environment_variables={"KEY_VAULT_URL": vault_url},
     )
     ```    
 

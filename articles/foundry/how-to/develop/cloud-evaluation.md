@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset. 
 
-Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large-scale, automated testing workflows. You can also [schedule evaluations](../../observability/how-to/how-to-monitor-agents-dashboard.md) to run on a recurring basis, or set up [continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk) to automatically evaluate sampled agent responses in production.
+Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large-scale, automated testing workflows. You can also [schedule evaluations](../../observability/how-to/how-to-monitor-agents-dashboard.md) to run on a recurring basis, or set up [continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#) to automatically evaluate sampled agent responses in production.
 
 Cloud evaluation results are stored in your Foundry project. You can review results in the portal, retrieve them through the SDK, or route them to Application Insights if connected. Cloud evaluation supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Evaluators are managed in the [evaluator catalog](../evaluate-generative-ai-app.md) with the same project-scope, role-based access control.
 
@@ -72,7 +72,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 Install the SDK and set up your client:
 
 ```bash
-pip install --pre "azure-ai-projects>=2.0.0b4"
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 ```python
@@ -227,7 +227,7 @@ testing_criteria = [
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -283,7 +283,7 @@ eval_run = client.evals.runs.create(
 ```bash
 # Step 1: Create the evaluation
 EVAL_ID=$(curl --silent --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -335,7 +335,7 @@ EVAL_ID=$(curl --silent --request POST \
 
 # Step 2: Create a run against your dataset
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -464,7 +464,7 @@ eval_run = client.evals.runs.create(
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -643,7 +643,7 @@ agent_eval_run = client.evals.runs.create(
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -767,7 +767,7 @@ eval_run = client.evals.runs.create(
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
