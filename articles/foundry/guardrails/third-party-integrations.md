@@ -46,12 +46,14 @@ Once registered, you’ll only have to come back to this step in case you’re p
 #### Region availability 
 
 
+We highly recommend that the Foundry project is in the same or a geographically close region as the Zenity endpoint to avoid higher latency and potential timeouts.
+
 | Azure Region        | Recommended Endpoint |
 |--------------------|----------------------|
-| West US             | US                   |
-| West US 2           | US                   |
-| West US 3           | US                   |
-| West Central US     | US                   |
+| West US             | US     |
+| West US 2           | US    |
+| West US 3           | US  |
+| West Central US     | US |
 | Central US          | US                   |
 | North Central US    | US                   |
 | South Central US    | US   |
@@ -122,19 +124,20 @@ The following table shows supported regions. We recommend that your Foundry proj
 
 ---
 
-### Attach and test the integration
 
-To attach the integration to your guardrails:
+## Attach Integrations to Foundry Guardrails
 
-1. Select one or more Foundry guardrails to attach the integration.
-1. Select **Save**, and confirm the integration and guardrail attachment in the integrations table.
-1. Verify the status. **Running** indicates a successful connection. Error messages provide specific recommendations, such as **Missing Managed Identity**.
-1. [Assign a Foundry custom guardrail](/azure/ai-foundry/guardrails/guardrails-overview) with an active third-party integration to a model or agent.
-1. Test the setup in the playground.
+1. Select one or more Foundry Guardrails to attach the integration.
+1. Select **Save** and confirm integration and guardrail attachment in the integrations table.
+1. Confirm the status:Running indicates a successful connection.
+1. Error messages provide concrete recommendations (for example, missing Managed Identity).
+1. Follow the main Foundry Guardrail flow to [assign a custom guardrail](/guardrails/guardrails-overview.md) with an active third-party integration to a model or agent.
+1. Test in Playground.
 
-## Test with code
 
-The following example shows how to test the integration using the OpenAI Python SDK. This code sends a request that violates the configured safety policy and demonstrates the content filtering response.
+## Code Examples
+
+Examples adapted from Guardrail annotations – [Microsoft Foundry](https://learn.microsoft.com/en-gb/azure/ai-foundry/openai/concepts/content-filter-annotations?view=foundry-classic&tabs=python-new): 
 
 ```python
 from openai import OpenAI
