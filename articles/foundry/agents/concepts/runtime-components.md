@@ -1275,16 +1275,16 @@ echo "$RESPONSE" | jq -r '.output[0].content[0].text'
 
 ## Add tools to an agent
 
-Tools extend what an agent can do beyond generating text. When you attach tools to an agent, the agent can call external services, run code, search files, and access data sources during response generation—using tools such as code interpreter or function calling.
+Tools extend what an agent can do beyond generating text. When you attach tools to an agent, the agent can call external services, run code, search files, and access data sources during response generation—using tools such as web search or function calling.
 
-You can attach one or more tools when you create an agent. During response generation, the agent decides whether to call a tool based on the user input and its instructions. The following example creates an agent with a code interpreter tool attached.
+You can attach one or more tools when you create an agent. During response generation, the agent decides whether to call a tool based on the user input and its instructions. The following example creates an agent with a web search tool attached.
 
 # [Python](#tab/python)
 
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, CodeInterpreterTool
+from azure.ai.projects.models import PromptAgentDefinition, WebSearchTool
 
 PROJECT_ENDPOINT = "your_project_endpoint"
 
@@ -1293,13 +1293,13 @@ project = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 
-# Create an agent with a code interpreter tool
+# Create an agent with a web search tool
 agent = project.agents.create_version(
     agent_name="my-tool-agent",
     definition=PromptAgentDefinition(
         model="gpt-5-mini",
-        instructions="You are a helpful assistant that can run code.",
-        tools=[CodeInterpreterTool()],
+        instructions="You are a helpful assistant that can search the web.",
+        tools=[WebSearchTool()],
     ),
 )
 print(f"Agent: {agent.name}, Version: {agent.version}")
@@ -1317,15 +1317,15 @@ AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
     tokenProvider: new DefaultAzureCredential());
 
-// Create an agent with a code interpreter tool
+// Create an agent with a web search tool
 var agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-tool-agent",
         options: new(
             new PromptAgentDefinition("gpt-5-mini")
             {
-                Instructions = "You are a helpful assistant that can run code.",
-                Tools = { new CodeInterpreterToolDefinition() },
+                Instructions = "You are a helpful assistant that can search the web.",
+                Tools = { ResponseTool.CreateWebSearchTool() },
             }));
 Console.WriteLine($"Agent: {agent.Value.Name}, Version: {agent.Value.Version}");
 ```
@@ -1339,14 +1339,14 @@ import { AIProjectClient } from "@azure/ai-projects";
 const PROJECT_ENDPOINT = "your_project_endpoint";
 const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
 
-// Create an agent with a code interpreter tool
+// Create an agent with a web search tool
 const agent = await project.agents.createVersion(
   "my-tool-agent",
   {
     kind: "prompt",
     model: "gpt-5-mini",
-    instructions: "You are a helpful assistant that can run code.",
-    tools: [{ type: "code_interpreter" }],
+    instructions: "You are a helpful assistant that can search the web.",
+    tools: [{ type: "web_search_preview" }],
   },
 );
 console.log(`Agent: ${agent.name}, Version: ${agent.version}`);
@@ -1358,8 +1358,9 @@ console.log(`Agent: ${agent.name}, Version: ${agent.version}`);
 import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.ai.agents.models.CodeInterpreterTool;
+import com.azure.ai.agents.models.WebSearchPreviewTool;
 import com.azure.identity.DefaultAzureCredentialBuilder;
+import java.util.Collections;
 
 String projectEndpoint = "your_project_endpoint";
 
@@ -1368,10 +1369,11 @@ AgentsClient agentsClient = new AgentsClientBuilder()
     .endpoint(projectEndpoint)
     .buildAgentsClient();
 
-// Create an agent with a code interpreter tool
+// Create an agent with a web search tool
+WebSearchPreviewTool webSearchTool = new WebSearchPreviewTool();
 PromptAgentDefinition definition = new PromptAgentDefinition("gpt-5-mini");
-definition.setInstructions("You are a helpful assistant that can run code.");
-definition.setTools(Arrays.asList(new CodeInterpreterTool()));
+definition.setInstructions("You are a helpful assistant that can search the web.");
+definition.setTools(Collections.singletonList(webSearchTool));
 
 var agent = agentsClient.createAgentVersion("my-tool-agent", definition);
 System.out.println("Agent: " + agent.getName() + ", Version: " + agent.getVersion());
@@ -1383,7 +1385,7 @@ System.out.println("Agent: " + agent.getName() + ", Version: " + agent.getVersio
 ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
 ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
-# Create an agent with a code interpreter tool
+# Create an agent with a web search tool
 curl -X POST "${ENDPOINT}/agents?api-version=v1" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
@@ -1392,8 +1394,8 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
     "definition": {
       "kind": "prompt",
       "model": "gpt-5-mini",
-      "instructions": "You are a helpful assistant that can run code.",
-      "tools": [{ "type": "code_interpreter" }]
+      "instructions": "You are a helpful assistant that can search the web.",
+      "tools": [{ "type": "web_search_preview" }]
     }
   }'
 ```
