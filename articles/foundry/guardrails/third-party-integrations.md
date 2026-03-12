@@ -26,6 +26,76 @@ Before you set up the integration, ensure you have:
 ### Enablement and data processing 
 Third-party integrations  are enabled via a Bring Your Own License (BYOL) approach, allowing you to utilize existing third-party software licenses from supported partners. Your data will be processed outside of Azure AI Foundry using the service you selected. The terms and privacy commitments for your other service will apply to this processing. 
 
+# [Zenity](#tab/zenity)
+
+## Register and connect integration
+
+Zenity delivers purpose-built capabilities to monitor agent intent and execution paths at runtime. By observing how agents reason, act, and chain decisions in real environments, Zenity enables security teams to detect and stop risky behavior before it impacts systems or data. 
+
+### Steps to connect Zenity integration
+
+1. Follow the Zenity onboarding steps [here](https://zenity.io/platform/ai-security-platform/aidr). Retrieve your API key linked to your custom security profile. 
+1. Go to AI Foundry and select **Guardrails**. 
+1. Select the Integrations tab, add a third-party integration and select Zenity. 
+1. Select a Keyvault and Managed Identity. Learn more. 
+1. Add the Zenity endpoint(s) and API key(s). To get the endpoint-API key pair, [follow the Zenity onboarding flow](https://zenity.io/platform/ai-security-platform/aidr). 
+
+Once registered, you’ll only have to come back to this step in case you’re planning on rotating your API key or changing components such as Managed Identity or Key Vault.
+
+
+#### Region availability 
+
+
+| Azure Region        | Recommended Endpoint |
+|--------------------|----------------------|
+| West US             | US                   |
+| West US 2           | US                   |
+| West US 3           | US                   |
+| West Central US     | US                   |
+| Central US          | US                   |
+| North Central US    | US                   |
+| South Central US    | US   |
+| East US             | US   |
+| East US 2           | US   |
+| Canada Central      | US   |
+| Canada East          | US     |
+| West Europe          | Europe |
+| North Europe         | Europe |
+| France Central       | Europe |
+| Germany West Central | Europe |
+| Italy North         | Europe |
+| Spain Central       | Europe |
+| Sweden Central      | Europe |
+| Norway East         | Europe |
+| Switzerland North   | Europe |
+| Switzerland West    | Europe |
+| UK South            | Europe |
+| UK West             | Europe |
+
+
+
+# [Palo Alto Networks Prisma AIRS](#tab/palo-alto)
+
+## Register and connect integration
+
+Palo Alto Networks Prisma AIRS delivers runtime security for AI applications, models, and agents. Prisma AIRS scans for threats, blocks unsafe behavior, and provides actionable alerts.
+
+### License and data processing
+
+Palo Alto Networks Prisma AIRS uses a Bring Your Own License (BYOL) approach. You can use your existing third-party software licenses from supported partners. Your data is processed outside of Foundry using the service you selected. The terms and privacy commitments for the other service apply to this processing.
+
+### Register and connect to Prisma AIRS
+
+To register your Prisma AIRS integration:
+
+1. Follow the [Prisma AIRS onboarding steps](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) to retrieve your API key linked to your custom security profile.
+1. In Foundry, select **Guardrails**.
+1. Select the **Integrations** tab, then select **Add integration** > **Palo Alto Networks Prisma AIRS**.
+1. Select a Key Vault and Managed Identity.
+1. Add the Prisma AIRS endpoint and API key. To get the endpoint and API key pair, complete the [Palo Alto Networks Prisma AIRS onboarding flow](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm).
+
+You only need to return to this step if you rotate your API key or change components such as Managed Identity or Key Vault.
+
 #### Region availability 
 
 The following table shows supported regions. We recommend that your Foundry project is in the same region as the Palo Alto Networks Prisma AIRS endpoint. Different regions can cause higher latency and potential timeouts.
@@ -49,44 +119,6 @@ The following table shows supported regions. We recommend that your Foundry proj
 | South India | India |
 | Southeast Asia | Singapore |
 | East Asia | Singapore |
-
-# [Zenity](#tab/zenity)
-
-## Register and connect integration
-
-Zenity delivers purpose-built capabilities to monitor agent intent and execution paths at runtime. By observing how agents reason, act, and chain decisions in real environments, Zenity enables security teams to detect and stop risky behavior before it impacts systems or data. 
-
-### Steps to connect Zenity integration
-
-1. Follow the Zenity onboarding steps [here](https://zenity.io/platform/ai-security-platform/aidr). Retrieve your API key linked to your custom security profile. 
-1. Go to AI Foundry and select **Guardrails**. 
-1. Select the Integrations tab, add a third-party integration and select Zenity. 
-1. Select a Keyvault and Managed Identity. Learn more. 
-1. Add the Zenity endpoint(s) and API key(s). To get the endpoint-API key pair, [follow the Zenity onboarding flow](https://zenity.io/platform/ai-security-platform/aidr). 
-
-Once registered, you’ll only have to come back to this step in case you’re planning on rotating your API key or changing components such as Managed Identity or Key Vault.
-
-# [Palo Alto Networks Prisma AIRS](#tab/palo-alto)
-
-## Register and connect integration
-
-Palo Alto Networks Prisma AIRS delivers runtime security for AI applications, models, and agents. Prisma AIRS scans for threats, blocks unsafe behavior, and provides actionable alerts.
-
-### License and data processing
-
-Palo Alto Networks Prisma AIRS uses a Bring Your Own License (BYOL) approach. You can use your existing third-party software licenses from supported partners. Your data is processed outside of Foundry using the service you selected. The terms and privacy commitments for the other service apply to this processing.
-
-### Register and connect to Prisma AIRS
-
-To register your Prisma AIRS integration:
-
-1. Follow the [Prisma AIRS onboarding steps](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) to retrieve your API key linked to your custom security profile.
-1. In Foundry, select **Guardrails**.
-1. Select the **Integrations** tab, then select **Add integration** > **Palo Alto Networks Prisma AIRS**.
-1. Select a Key Vault and Managed Identity.
-1. Add the Prisma AIRS endpoint and API key. To get the endpoint and API key pair, complete the [Palo Alto Networks Prisma AIRS onboarding flow](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm).
-
-You only need to return to this step if you rotate your API key or change components such as Managed Identity or Key Vault.
 
 ---
 
