@@ -39,7 +39,7 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
       </PropertyGroup>
     
       <ItemGroup>
-        <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.9.*" />
+        <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.9.0" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
         <PackageReference Include="OpenAI" Version="2.5.0" />
       </ItemGroup>
@@ -89,7 +89,7 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
         </PropertyGroup>
     
         <ItemGroup>
-          <PackageReference Include="Microsoft.AI.Foundry.Local" Version="0.9.*" />
+          <PackageReference Include="Microsoft.AI.Foundry.Local" Version="0.9.0" />
           <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
           <PackageReference Include="OpenAI" Version="2.5.0" />
         </ItemGroup>
