@@ -3,7 +3,7 @@ title: "Quickstart: Deploy your first hosted agent"
 description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry for VS Code."
 author: aahill
 ms.author: aahi
-ms.date: 01/26/2026
+ms.date: 03/12/2026
 ms.manager: nitinme
 ms.topic: quickstart
 ms.service: azure-ai-foundry
@@ -36,6 +36,8 @@ Before you begin, you need:
 
 :::zone pivot="azd"
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later
+* [Docker Desktop](https://docs.docker.com/get-docker/) installed and running
+* A [Microsoft Foundry project](../../tutorials/quickstart-create-foundry-resources.md) with a [model](../concepts/limits-quotas-regions.md) deployed.
 :::zone-end
 
 :::zone pivot="vscode"
