@@ -96,5 +96,5 @@ Add-AppxProvisionedPackage -Online -PackagePath .\FoundryLocal.msix `
 ## Related references
 
 - [Foundry Local CLI Reference](./reference-cli.md)
-- [Foundry Local SDK Reference](./reference-sdk.md)
+- [Foundry Local SDK Reference](./reference-sdk-current.md)
 - [Foundry Local REST API Reference](./reference-rest.md)

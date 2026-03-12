@@ -2,9 +2,6 @@
 title: OData Comparison Operator Reference
 titleSuffix: Azure AI Search
 description: Syntax and reference documentation for using OData comparison operators (eq, ne, gt, lt, ge, and le) in Azure AI Search queries.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

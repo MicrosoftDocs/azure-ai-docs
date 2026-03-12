@@ -2,8 +2,8 @@
 title: "Quickstart: Agentic Retrieval"
 titleSuffix: Azure AI Search
 description: Learn how to use agentic retrieval to create a knowledge base that processes multi-turn conversations.
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 02/23/2026
@@ -43,5 +43,5 @@ zone_pivot_groups: search-sdks-rest
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md)
-+ [Use a knowledge base to retrieve data](agentic-retrieval-how-to-retrieve.md)
++ [Query a knowledge base using the retrieve action or MCP endpoint](agentic-retrieval-how-to-retrieve.md)
 + [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md)

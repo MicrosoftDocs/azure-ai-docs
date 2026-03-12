@@ -10,7 +10,6 @@ ms.author: lagayhar
 author: lgayhardt
 ms.custom: hub-only
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 ---
 
 # Rerank tool for flows in Microsoft Foundry portal (classic)

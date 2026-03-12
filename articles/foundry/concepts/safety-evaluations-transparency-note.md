@@ -1,5 +1,5 @@
 ---
-title:  "Microsoft Foundry risk and safety evaluations (preview) Transparency Note"
+title:  "Microsoft Foundry risk and safety evaluations Transparency Note"
 description: "Microsoft Foundry safety evaluations intended purpose, capabilities, limitations and how to achieve the best performance."
 ms.service: azure-ai-foundry
 ms.custom:
@@ -14,8 +14,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to understand the capabilities, limitations, and best practices for Microsoft Foundry safety evaluations so I can responsibly evaluate and deploy my generative AI applications.
 ---
 
-# Microsoft Foundry risk and safety evaluations (preview) Transparency Note
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+# Microsoft Foundry risk and safety evaluations Transparency Note
 
 ## What is a Transparency Note
 
@@ -23,7 +22,7 @@ An AI system includes not only the technology, but also the people who will use 
 
 Microsoft's Transparency Notes are part of a broader effort at Microsoft to put our AI Principles into practice. To find out more, see the [Microsoft AI principles](https://www.microsoft.com/en-us/ai/responsible-ai).
 
-## The basics of Microsoft Foundry risk and safety evaluations (preview)
+## The basics of Microsoft Foundry risk and safety evaluations
 
 ### Introduction
 

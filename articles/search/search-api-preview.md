@@ -1,10 +1,7 @@
 ---
-title: Preview feature list
+title: Preview Feature List
 titleSuffix: Azure AI Search
 description: Preview features are released so that customers can provide feedback on their design and utility. This article is a comprehensive list of all features currently in preview.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - build-2024

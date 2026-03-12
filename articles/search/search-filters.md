@@ -1,10 +1,7 @@
 ---
-title: Text query filters
+title: Text Query Filters
 titleSuffix: Azure AI Search
 description: Apply filter criteria to include or exclude content before text query execution in Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 03/11/2025

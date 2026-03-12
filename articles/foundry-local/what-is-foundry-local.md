@@ -100,6 +100,6 @@ Follow the [Get started with Foundry Local](get-started.md) guide to set up Foun
 - [Get started with Foundry Local](get-started.md)
 - [Foundry Local CLI reference](reference/reference-cli.md)
 - [Foundry Local REST API reference](reference/reference-rest.md)
-- [Foundry Local SDK reference](reference/reference-sdk.md)
+- [Foundry Local SDK reference](reference/reference-sdk-current.md)
 - [Compile Hugging Face models for Foundry Local](how-to/how-to-compile-hugging-face-models.md)
 - [Foundry Local best practices and troubleshooting](reference/reference-best-practice.md)

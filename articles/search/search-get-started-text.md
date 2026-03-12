@@ -2,9 +2,8 @@
 title: 'Quickstart: Full-Text Search'
 titleSuffix: Azure AI Search
 description: "Learn how to create, load, and query a search index programmatically."
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet

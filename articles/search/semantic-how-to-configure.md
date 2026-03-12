@@ -1,10 +1,7 @@
 ---
-title: Configure semantic ranker
+title: Configure Semantic Ranker
 titleSuffix: Azure AI Search
 description: Add a semantic configuration to a search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

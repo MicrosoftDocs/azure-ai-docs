@@ -1,10 +1,8 @@
 ---
-title: Indexer connection to SQL Server on Azure VMs
+title: Indexer Connection to SQL Server on Azure VMs
 titleSuffix: Azure AI Search
 description: Enable encrypted connections and configure the firewall to allow connections to SQL Server on an Azure virtual machine (VM) from an indexer on Azure AI Search.
-author: gmndrg
-ms.author: gimondra
-manager: nitinme
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

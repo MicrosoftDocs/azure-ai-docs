@@ -1,9 +1,7 @@
 ---
-title: Create a hybrid query
+title: Create a Hybrid Query
 titleSuffix: Azure AI Search
 description: Learn how to build queries for hybrid search.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

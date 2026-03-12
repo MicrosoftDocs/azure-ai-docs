@@ -1,9 +1,10 @@
 ---
-title: Visualize logs and metrics with Power BI
+title: Visualize Logs and Metrics with Power BI
+titleSuffix: Azure AI Search
 description: Visualize Azure AI Search logs and metrics with Power BI.
-author: gmndrg
-ms.author: gimondra
-manager: nitinme
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

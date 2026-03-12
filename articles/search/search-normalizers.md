@@ -1,10 +1,7 @@
 ---
-title: Text normalization for filters, facets, sort
+title: Text Normalization for Filters, Facets, Sort
 titleSuffix: Azure AI Search
 description: Specify normalizers to text fields in an index to customize the strict keyword matching behavior in filtering, faceting and sorting.
-author: HeidiSteen
-manager: jlembicz
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

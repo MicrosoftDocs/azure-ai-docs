@@ -2,9 +2,6 @@
 title: Add a Search Service to a Network Security Perimeter
 titleSuffix: Azure AI Search
 description: Learn how to add an Azure AI Search service to a network security perimeter for a secure connection.
-author: haileytap
-ms.author: haileytapia
-manager: nitinme
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024

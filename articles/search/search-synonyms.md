@@ -1,10 +1,7 @@
 ---
-title: Add synonyms to expand queries for equivalent terms
+title: Add Synonyms to Expand Queries for Equivalent Terms
 titleSuffix: Azure AI Search
 description: Create a synonym map to expand the scope of a search query over an Azure AI Search index. The query can search on equivalent terms provided in the synonym map, even if the query doesn't explicitly include the term.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

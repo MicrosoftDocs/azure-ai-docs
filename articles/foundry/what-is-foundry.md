@@ -52,7 +52,7 @@ Microsoft Foundry serves three primary audiences:
 
 ### Operate and govern
 
-* **[Real-time observability](observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk)** – Monitor performance and governance with built-in metrics and model tracking.
+* **[Real-time observability](observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)** – Monitor performance and governance with built-in metrics and model tracking.
 * **Centralized AI asset management** – Manage all agents, models, and tools from the **Operate** section, including agents registered from other clouds.
 * **Enterprise controls** – Full authentication support for MCP and A2A, AI gateway integration, and Azure Policy integration.
 

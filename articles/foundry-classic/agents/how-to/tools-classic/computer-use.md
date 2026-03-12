@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/16/2025
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: references_regions
@@ -15,9 +15,10 @@ ms.custom: references_regions
 # Foundry Agent Service Computer Use Tool (classic)
 
 > [!NOTE]
-> This document refers to the classic version of the agents API. 
+> This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new Computer Use documentation](../../../../foundry/agents/how-to/tools/computer-use.md).
+> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 > [!WARNING]
 > The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).

@@ -8,9 +8,10 @@ ms.subservice: training
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: sooryar
-ms.date: 11/04/2022
+ms.date: 03/06/2026
 ms.topic: how-to
-ms.custom: UpdateFrequency5, sdkv1
+ms.custom: UpdateFrequency5, sdkv1, dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a Python PyTorch developer, I need to combine open-source with a cloud platform to train, evaluate, and deploy my deep learning models at scale.
 ---
 
@@ -76,7 +77,7 @@ ws = Workspace.from_config()
 
 ### Get the data
 
-The dataset consists of about 120 training images each for turkeys and chickens, with 100 validation images for each class. We'll download and extract the dataset as part of our training script `pytorch_train.py`. The images are a subset of the [Open Images v5 Dataset](https://storage.googleapis.com/openimages/web/index.html). For more steps on creating a JSONL to train with your own data, see this [Jupyter notebook](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/image-classification-multiclass/auto-ml-image-classification-multiclass.ipynb).
+The dataset consists of about 120 training images each for turkeys and chickens, with 100 validation images for each class. You download and extract the dataset as part of the training script `pytorch_train.py`. The images are a subset of the [Open Images v5 Dataset](https://storage.googleapis.com/openimages/web/index.html). For more steps on creating a JSONL to train with your own data, see this [Jupyter notebook](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/image-classification-multiclass/auto-ml-image-classification-multiclass.ipynb).
 
 ### Prepare training script
 
@@ -107,7 +108,7 @@ try:
     print('Found existing compute target')
 except ComputeTargetException:
     print('Creating a new compute target...')
-    compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_NC6', 
+    compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_NC4AS_T4_V3', 
                                                            max_nodes=4)
 
     # Create the cluster with the specified name and configuration
@@ -132,7 +133,7 @@ Azure Machine Learning provides prebuilt, [curated environments](../resource-cur
 If you want to use a curated environment, you can run the following command instead:
 
 ```python
-curated_env_name = 'AzureML-PyTorch-1.6-GPU'
+curated_env_name = 'AzureML-acpt-pytorch-2.2-cuda12.1'
 pytorch_env = Environment.get(workspace=ws, name=curated_env_name)
 ```
 
@@ -145,13 +146,13 @@ pytorch_env.save_to_directory(path=curated_env_name)
 Make sure the curated environment includes all the dependencies required by your training script. If not, you'll have to modify the environment to include the missing dependencies. If the environment is modified, you'll have to give it a new name, as the 'AzureML' prefix is reserved for curated environments. If you modified the conda dependencies YAML file, you can create a new environment from it with a new name, for example:
 
 ```python
-pytorch_env = Environment.from_conda_specification(name='pytorch-1.6-gpu', file_path='./conda_dependencies.yml')
+pytorch_env = Environment.from_conda_specification(name='pytorch-2.2-gpu', file_path='./conda_dependencies.yml')
 ```
 
 If you had instead modified the curated environment object directly, you can clone that environment with a new name:
 
 ```python
-pytorch_env = pytorch_env.clone(new_name='pytorch-1.6-gpu')
+pytorch_env = pytorch_env.clone(new_name='pytorch-2.2-gpu')
 ```
 
 #### Create a custom environment
@@ -164,13 +165,12 @@ First, define your conda dependencies in a YAML file; in this example the file i
 channels:
 - conda-forge
 dependencies:
-- python=3.7
-- pip=21.3.1
+- python=3.10
+- pip>=23.0
 - pip:
   - azureml-defaults
-  - torch==1.6.0
-  - torchvision==0.7.0
-  - future==0.17.1
+  - torch==2.2.2
+  - torchvision==0.17.2
   - pillow
 ```
 
@@ -179,11 +179,10 @@ Create an Azure Machine Learning environment from this conda environment specifi
 By default if no base image is specified, Azure Machine Learning will use a CPU image `azureml.core.environment.DEFAULT_CPU_IMAGE` as the base image. Since this example runs training on a GPU cluster, you'll need to specify a GPU base image that has the necessary GPU drivers and dependencies. Azure Machine Learning maintains a set of base images published on Microsoft Container Registry (MCR) that you can use. For more information, see [AzureML-Containers GitHub repo](https://github.com/Azure/AzureML-Containers).
 
 ```python
-pytorch_env = Environment.from_conda_specification(name='pytorch-1.6-gpu', file_path='./conda_dependencies.yml')
+pytorch_env = Environment.from_conda_specification(name='pytorch-2.2-gpu', file_path='./conda_dependencies.yml')
 
 # Specify a GPU base image
-pytorch_env.docker.enabled = True
-pytorch_env.docker.base_image = 'mcr.microsoft.com/azureml/openmpi3.1.2-cuda10.1-cudnn7-ubuntu18.04'
+pytorch_env.docker.base_image = 'mcr.microsoft.com/azureml/openmpi4.1.0-cuda11.8-cudnn8-ubuntu22.04'
 ```
 
 > [!TIP]

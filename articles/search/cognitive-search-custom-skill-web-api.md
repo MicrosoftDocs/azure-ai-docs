@@ -1,9 +1,8 @@
 ---
-title: Custom Web API skill in skillsets
+title: Custom Web API Skill in Skillsets
 titleSuffix: Azure AI Search
 description: Extend capabilities of Azure AI Search skillsets by calling out to Web APIs. Use the Custom Web API skill to integrate your custom code.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

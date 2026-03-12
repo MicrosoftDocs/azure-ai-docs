@@ -1,9 +1,7 @@
 ---
-title: Tips for AI enrichment design
+title: Tips for AI Enrichment Design
 titleSuffix: Azure AI Search
 description: Tips and troubleshooting for setting up AI enrichment pipelines in Azure AI Search.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

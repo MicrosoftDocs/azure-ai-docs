@@ -1,9 +1,8 @@
 ---
-title: Conditional cognitive skill
+title: Conditional Cognitive Skill
 titleSuffix: Azure AI Search
 description: The conditional skill in Azure AI Search enables filtering, creating defaults, and merging values in a skillset definition.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
