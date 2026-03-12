@@ -691,6 +691,12 @@ curl --request POST \
 
 For a complete runnable example, see [sample_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
+> [!TIP]
+> To add another evaluation run, run the same evaluation again using the same evaluation group.  Each execution creates a new run under the same group, which lets you compare >results across runs after changing things like the model, prompt, or dataset—without creating a new evaluation or using a different API.
+>
+>See [the sample](https://github.com/Azure/azure-sdk-for-python/blob/7b953844412cae5dfe8e1a4be610bb71fa0849b7/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_dataset_id.py#L119C1-L126C6) that reuses the same evaluation group to create multiple runs for comparison.
+
+
 ## Agent response evaluation
 
 Retrieve and evaluate Foundry agent responses by response IDs using the `azure_ai_responses` data source type. Use this scenario to evaluate specific agent interactions after they occur.
