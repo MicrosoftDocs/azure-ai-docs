@@ -27,8 +27,6 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 > [!IMPORTANT]
 > Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is retiring. If you're still using the preview API or the associated SDK versions, update your code to target the latest API version `2024-11-30 (GA)`. </br>
 
-## Latest updates
-
 **Content Understanding: The Next Step Forward for Document Intelligence**
 </br>
 In November 2025, the GA version of **Content Understanding** was released (**2025-11-01** API version). Content Understanding is an evolution of Document Intelligence that expands multimodal processing capabilities to support text, images, audio, and video content types.

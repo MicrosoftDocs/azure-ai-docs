@@ -9,8 +9,9 @@ ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
-ms.date: 02/04/2026
-ms.custom: FY25Q1-Linter
+ms.date: 03/11/2026
+ms.custom: FY25Q1-Linter, dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a data scientist, I want to use the terminal on a compute instance in Azure Machine Learning studio so I can use Git, install packages, and add kernels to the instance.
 ---
 
@@ -96,10 +97,13 @@ The following code examples install a new Jupyter kernel. You can install any of
 
 To add a new R kernel to the compute instance:
 
+> [!NOTE]
+> As of November 2025, the Anaconda R channel is no longer actively maintained. The following commands use the `conda-forge` channel as an alternative source for R packages.
+
 1. Use the terminal window to create a new environment. The following command creates `r_env`.
 
    ```console
-   conda create -n r_env r-essentials r-base
+   conda create -n r_env -c conda-forge r-essentials r-base
    ```
 
 1. Activate the environment.

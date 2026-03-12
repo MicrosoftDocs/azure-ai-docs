@@ -11,8 +11,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As an AI developer, I want to evaluate my agent so that I ensure quality and safety before and after deployment.
 ---
 
-# Evaluate your AI agents (preview)
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Evaluate your AI agents
 
 Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds, such as an 85% task adherence passing rate, before releasing it to users.
 
@@ -25,8 +24,6 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 
 > [!TIP]
 > For general-purpose evaluation of generative AI models and applications, including custom evaluators, different data sources, and additional SDK options, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
-
-[!INCLUDE [evaluation-preview-foundry](../../includes/evaluation-preview-foundry.md)]
 
 ## Prerequisites
 
@@ -42,7 +39,7 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 Install the Foundry SDK and set up authentication:
 
 ```bash
-pip install "azure-ai-projects>=2.0.0b1" azure-identity
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 Create the project client. The following code samples assume you run them in this context:
@@ -72,7 +69,7 @@ Evaluators are functions that assess your agent's responses. Some evaluators use
 
 For more built-in evaluators, see:
 
-- [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) - Tool Call Accuracy, Intent Resolution, Response Completeness
+- [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) - Tool Call Accuracy, Intent Resolution
 - [Quality evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) - Fluency, Relevance, Groundedness
 - [Text similarity evaluators](../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) - F1 Score, BLEU, ROUGE
 - [Safety evaluators](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) - Hate, Self-Harm, Sexual Content
@@ -128,7 +125,7 @@ testing_criteria = [
         "evaluator_name": "builtin.coherence",
         "data_mapping": {
             "query": "{{item.query}}",
-            "response": "{{sample.output_items}}",
+            "response": "{{sample.output_text}}",
         },
         "initialization_parameters": {"deployment_name": model_deployment},
     },
@@ -138,7 +135,7 @@ testing_criteria = [
         "evaluator_name": "builtin.violence",
         "data_mapping": {
             "query": "{{item.query}}",
-            "response": "{{sample.output_items}}",
+            "response": "{{sample.output_text}}",
         },
     },
 ]

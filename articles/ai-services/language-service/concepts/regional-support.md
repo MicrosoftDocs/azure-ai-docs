@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 03/06/2026
 ms.author: lajanuar
 ms.custom: references_regions
 ---
@@ -188,6 +188,47 @@ Custom text classification is only available in some Azure regions. Some regions
 |WestEurope|✓|✓|
 |WestUS|✓|✓|
 |WestUS2|✓|✓|
+
+## Custom question and answering
+
+| Region | Authoring | Prediction |
+| --- | --- | --- |
+| AustraliaEast | ✓ | ✓ |
+| BrazilSouth | ✓ | ✓ |
+| CanadaCentral | ✓ | ✓ |
+| CentralIndia | ✓ | ✓ |
+| CentralUS | ✓ | ✓ |
+| ChinaEast2 | ✓ | ✓ |
+| ChinaNorth2 | ✓ | ✓ |
+| ChinaNorth3 | ✓ | ✓ |
+| EastAsia | ✓ | ✓ |
+| EastUS | ✓ | ✓ |
+| EastUS2 | ✓ | ✓ |
+| FranceCentral | ✓ | ✓ |
+| GermanyWestCentral | ✓ | ✓ |
+| JapanEast | ✓ | ✓ |
+| JapanWest | ✓ | ✓ |
+| JioIndiaWest | ✓ | ✓ |
+| KoreaCentral | ✓ | ✓ |
+| NorthCentralUS | ✓ | ✓ |
+| NorthEurope | ✓ | ✓ |
+| NorwayEast | ✓ | ✓ |
+| QatarCentral | ✓ | ✓ |
+| SouthAfricaNorth | ✓ | ✓ |
+| SouthCentralUS | ✓ | ✓ |
+| SouthEastAsia | ✓ | ✓ |
+| SwedenCentral | ✓ | ✓ |
+| SwitzerlandNorth | ✓ | ✓ |
+| SwitzerlandWest | ✓ | ✓ |
+| UaeNorth | ✓ | ✓ |
+| UKSouth | ✓ | ✓ |
+| USGovArizona | ✓ | ✓ |
+| USGovVirginia | ✓ | ✓ |
+| WestCentralUS | ✓ | ✓ |
+| WestEurope | ✓ | ✓ |
+| WestUS | ✓ | ✓ |
+| WestUS2 | ✓ | ✓ |
+| WestUS3 | ✓ | ✓ |
 
 ### Next steps
 

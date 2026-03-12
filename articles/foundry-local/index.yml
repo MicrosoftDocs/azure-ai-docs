@@ -59,7 +59,7 @@ landingContent:
           - text: CLI reference
             url: reference/reference-cli.md
           - text: SDK reference
-            url: reference/reference-sdk.md
+            url: reference/reference-sdk-current.md
           - text: REST reference
             url: reference/reference-rest.md
           - text: Catalog API reference

@@ -72,7 +72,7 @@ Each scenario requires evaluators that define your testing criteria. For guidanc
 Install the SDK and set up your client:
 
 ```bash
-pip install --pre "azure-ai-projects>=2.0.0b4"
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 ```python
@@ -227,7 +227,7 @@ testing_criteria = [
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -283,7 +283,7 @@ eval_run = client.evals.runs.create(
 ```bash
 # Step 1: Create the evaluation
 EVAL_ID=$(curl --silent --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -335,7 +335,7 @@ EVAL_ID=$(curl --silent --request POST \
 
 # Step 2: Create a run against your dataset
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -464,7 +464,7 @@ eval_run = client.evals.runs.create(
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -505,7 +505,10 @@ curl --request POST \
 For a complete runnable example, see [sample_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_model_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
 > [!TIP]
-> To add another evaluation run,  you can use the same code.
+> To add another evaluation run, run the same evaluation again using the same evaluation group.  Each execution creates a new run under the same group, which lets you compare >results across runs after changing things like the model, prompt, or dataset—without creating a new evaluation or using a different API.
+>
+>See [the sample](https://github.com/Azure/azure-sdk-for-python/blob/7b953844412cae5dfe8e1a4be610bb71fa0849b7/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_dataset_id.py#L119C1-L126C6) that reuses the same evaluation group to create multiple runs for comparison.
+
 
 ## Agent target evaluation
 
@@ -643,7 +646,7 @@ agent_eval_run = client.evals.runs.create(
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -687,6 +690,12 @@ curl --request POST \
 ---
 
 For a complete runnable example, see [sample_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
+
+> [!TIP]
+> To add another evaluation run, run the same evaluation again using the same evaluation group.  Each execution creates a new run under the same group, which lets you compare >results across runs after changing things like the model, prompt, or dataset—without creating a new evaluation or using a different API.
+>
+>See [the sample](https://github.com/Azure/azure-sdk-for-python/blob/7b953844412cae5dfe8e1a4be610bb71fa0849b7/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_dataset_id.py#L119C1-L126C6) that reuses the same evaluation group to create multiple runs for comparison.
+
 
 ## Agent response evaluation
 
@@ -767,7 +776,7 @@ eval_run = client.evals.runs.create(
 
 ```bash
 curl --request POST \
-  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
   --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
@@ -792,6 +801,12 @@ curl --request POST \
 ---
 
 For a complete runnable example, see [sample_agent_response_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_response_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
+
+> [!TIP]
+> To add another evaluation run, run the same evaluation again using the same evaluation group.  Each execution creates a new run under the same group, which lets you compare >results across runs after changing things like the model, prompt, or dataset—without creating a new evaluation or using a different API.
+>
+>See [the sample](https://github.com/Azure/azure-sdk-for-python/blob/7b953844412cae5dfe8e1a4be610bb71fa0849b7/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_dataset_id.py#L119C1-L126C6) that reuses the same evaluation group to create multiple runs for comparison.
+
 
 ## Synthetic data evaluation (preview)
 
@@ -1032,14 +1047,17 @@ while True:
     time.sleep(5)
     print("Waiting for eval run to complete...")
 
-# Retrieve results
-output_items = list(
-    client.evals.runs.output_items.list(
-        run_id=run.id, eval_id=eval_object.id
+if run.status == "failed":
+    print(f"Evaluation run failed: {run.error}")
+else:
+    # Retrieve results
+    output_items = list(
+        client.evals.runs.output_items.list(
+            run_id=run.id, eval_id=eval_object.id
+        )
     )
-)
-pprint(output_items)
-print(f"Report URL: {run.report_url}")
+    pprint(output_items)
+    print(f"Report URL: {run.report_url}")
 ```
 
 ### Interpret results
@@ -1149,7 +1167,7 @@ If an agent evaluator returns an error for unsupported tools:
 ## Related content
 
 - [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
-- [Evaluate your AI agents continuously](../../../foundry-classic/how-to/continuous-evaluation-agents.md)
+- [Evaluate your AI agents continuously](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)

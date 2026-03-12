@@ -1,10 +1,6 @@
 ---
-title: Debug a skillset
-titleSuffix: Azure AI Search
+title: Debug a Skillset
 description: Learn how to troubleshoot Azure AI Search skillset errors and issues by using a debug session in Azure portal.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/31/2026

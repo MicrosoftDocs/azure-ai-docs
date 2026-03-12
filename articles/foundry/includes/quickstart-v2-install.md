@@ -10,15 +10,14 @@ ms.date: 02/23/2026
 ms.custom: include
 ---
 
-Make sure you install the correct preview/prerelease version of the packages as shown here.
+Make sure you install the correct version of the packages as shown here.
 
 # [Python](#tab/python)
 
-1. Install these packages, including the preview version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** (preview).
+1. Install the current version of `azure-ai-projects`. This version uses the **Foundry projects (new) API** .
 
     ```
     pip install azure-ai-projects>=2.0.0
-    pip install python-dotenv
     ```
 
 1. Sign in using the CLI `az login` command to authenticate before running your Python scripts.
@@ -27,7 +26,7 @@ Make sure you install the correct preview/prerelease version of the packages as 
 
 1. Install packages:
 
-    Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Foundry projects (new) API** (preview).
+    Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Foundry projects (new) API**.
         
     ```bash
     dotnet add package Azure.AI.Projects --prerelease
@@ -40,15 +39,23 @@ Make sure you install the correct preview/prerelease version of the packages as 
 
 # [TypeScript](#tab/typescript)
 
-1. Install these packages, including the preview version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API** (preview).:
+1. Install the current version of `@azure/ai-projects`. This version uses the **Foundry projects (new) API**.:
 
     ```bash
-    npm install @azure/ai-projects@beta @azure/identity dotenv
+    npm install @azure/ai-projects
     ```
 
 1. Sign in using the CLI `az login` command to authenticate before running your TypeScript scripts.
 
 # [Java](#tab/java)
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.2</version>
+</dependency>
+```
 
 1. Sign in using the CLI `az login` command to authenticate before running your Java scripts.
 

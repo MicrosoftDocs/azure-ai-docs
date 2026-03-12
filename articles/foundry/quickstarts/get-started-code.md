@@ -4,7 +4,7 @@ description: "Get started with Microsoft Foundry SDK building AI applications."
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 03/04/2026
+ms.date: 03/10/2026
 ms.service: azure-ai-foundry
 ms.topic: quickstart
 ms.custom:
@@ -13,7 +13,7 @@ ms.custom:
   - devx-track-azurecli
   - devx-track-python
   - ignite-2024
-  - update-code9
+  - update-code11
   - build-aifnd
   - build-2025
   - peer-review-program

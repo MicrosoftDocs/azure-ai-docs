@@ -295,6 +295,15 @@ groups:
     title: Python
   - id: rest-api
     title: REST
+# Owner: mbullwin
+- id: openai-chat-completions
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-dotnet
+    title: C#
 # Owner: diberry
 - id: programming-languages-rest-js
   title: Programming languages
@@ -1811,6 +1820,14 @@ groups:
     title: C#
   - id: programming-language-rust
     title: Rust
+- id: foundry-local-sdk-vnext
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-csharp
+    title: C#
 - id: foundry-local-langchain
   title: Programming languages
   prompt: Choose a programming language
@@ -1819,7 +1836,7 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-# Owner: heidist
+# Owner: haileytapia
 - id: tutorial-create-skillset
   title: Usage methods
   prompt: Choose a usage method

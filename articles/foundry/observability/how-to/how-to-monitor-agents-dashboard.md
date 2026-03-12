@@ -12,7 +12,7 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Monitor agents with the Agent Monitoring Dashboard (preview)
+# Monitor agents with the Agent Monitoring Dashboard
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Use the Agent Monitoring Dashboard in Microsoft Foundry to track operational metrics and evaluation results for your agents. This dashboard helps you understand token usage, latency, success rates, and evaluation outcomes for production traffic.
@@ -31,7 +31,7 @@ The Agent Monitoring Dashboard reads telemetry from the Application Insights res
 
 - [How to set up tracing in Microsoft Foundry](trace-agent-setup.md) 
 
-## View agent metrics
+## View agent metrics (preview)
 
 To view metrics for an agent in the Foundry portal:
 
@@ -73,9 +73,9 @@ To access Monitor settings, select the gear icon on the **Monitor** tab. The fol
 | Setting | Purpose | Configuration Options |
 |---------|---------|----------------------|
 | **Continuous evaluation** | Runs evaluations on sampled agent responses. | Enable or disable<br>Add evaluators<br>Set the sample rate |
-| **Scheduled evaluations** | Runs evaluations on a schedule to validate performance against benchmarks. | Enable or disable<br>Select an evaluation template and run<br>Set a schedule |
-| **Red team scans** | Runs adversarial tests to detect risks such as data leakage or prohibited actions. | Enable or disable<br>Select an evaluation template and run<br>Set a schedule |
-| **Alerts** | Detects performance anomalies, evaluation failures, and security risks. | Configure alerts for latency, token usage, evaluation scores, or red team findings |
+| **Scheduled evaluations (preview)** | Runs evaluations on a schedule to validate performance against benchmarks. | Enable or disable<br>Select an evaluation template and run<br>Set a schedule |
+| **Red team scans (preview)** | Runs adversarial tests to detect risks such as data leakage or prohibited actions. | Enable or disable<br>Select an evaluation template and run<br>Set a schedule |
+| **Alerts (preview)** | Detects performance anomalies, evaluation failures, and security risks. | Configure alerts for latency, token usage, evaluation scores, or red team findings |
 
 ## Set up continuous evaluation
 
@@ -86,7 +86,7 @@ Use the Python or .NET SDK to set up continuous evaluation rules for agent respo
 This section requires Python 3.9 or later.
 
 ```bash
-pip install "azure-ai-projects>=2.0.0b1" python-dotenv
+pip install "azure-ai-projects>=2.0.0" python-dotenv
 ```
 
 # [C#](#tab/csharp)

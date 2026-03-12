@@ -1,10 +1,7 @@
 ---
-title: Troubleshoot shared private link resources
-titleSuffix: Azure AI Search
+title: Troubleshoot Shared Private Link Resources
 description: Troubleshooting guide for common problems when managing shared private link resources in Azure AI Search.
-manager: nitinme
-author: arv100kri
-ms.author: arjagann
+ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.topic: troubleshooting-general
 ms.date: 06/04/2025

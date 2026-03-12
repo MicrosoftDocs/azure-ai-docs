@@ -14,7 +14,6 @@ ms.reviewer: lochen
 ms.author: sgilley
 author: sdgilley
 ms.collection: ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 # customer intent: Learn how to create and manage prompt flow compute sessions in Microsoft Foundry portal.
 
 ---

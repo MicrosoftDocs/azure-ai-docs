@@ -619,6 +619,9 @@ In this section, you create a connection between the Microsoft Foundry project t
 
 If you already connected your project to your search service, skip this section.
 
+> [!TIP]
+> The quickest way to create a connection is through the Foundry portal. For all connection methods and supported connection types, see [Add a new connection to your project](../../../how-to/connections-add.md).
+
 To create the connection, you need your search service endpoint and authentication method. The following steps guide you through gathering these details.
 
 ### Gather connection details
@@ -677,7 +680,22 @@ Create the project connection by using the search service details you gathered.
 
 Use one of the following options.
 
+#### [Foundry portal](#tab/portal)
+
+1. Go to the [Foundry portal](https://ai.azure.com).
+1. Open your project, then select **Operate** > **Admin**.
+1. Select your project name in the **Manage all projects** list.
+1. Select **Add connection**.
+1. Select **Azure AI Search** from the list of available services.
+1. Browse for and select your Azure AI Search service, then select the type of **Authentication** to use.
+1. Select **Add connection**.
+
+For more detailed steps, see [Add a new connection to your project](../../../how-to/connections-add.md).
+
 #### [Azure CLI](#tab/azurecli)
+
+> [!NOTE]
+> This option uses the Azure Machine Learning CLI extension (`az ml`). The `--workspace-name` parameter corresponds to your Foundry **project name** (not the Foundry resource name). You can find the project name in the Foundry portal under your project settings, or in the Azure portal as the underlying workspace resource name.
 
 **Create the following connection.yml file:**
 
@@ -711,7 +729,10 @@ Replace the placeholders with the resource group and project name.
 az ml connection create --file connection.yml --resource-group <resource-group> --workspace-name <project-name>
 ```
 
-#### [Python](#tab/pythonsdk)
+#### [Python SDK](#tab/pythonsdk)
+
+> [!NOTE]
+> This example uses the `azure-ai-ml` package (Azure Machine Learning SDK) to create the connection. This is a separate package from the `azure-ai-projects` package used in the code samples earlier in this article. The `workspace_name` parameter corresponds to your Foundry **project name** (not the Foundry resource name).
 
 Replace the `my_connection_name`, `my_endpoint`, and `my_key` (optional) placeholders with your search service details, and then run the following code:
 
@@ -720,14 +741,15 @@ from azure.identity import DefaultAzureCredential
 from azure.ai.ml import MLClient
 from azure.ai.ml.entities import AzureAISearchConnection
 
-# Create an Azure AI Search project connection
-my_connection_name = "my-connection-name"
-my_endpoint = "my-endpoint" # This could also be called target
-my_api_keys = None # Leave blank for Authentication type = AAD
+# Azure AI Search connection details
+CONNECTION_NAME = "my-connection-name"
+SEARCH_ENDPOINT = "https://my-service.search.windows.net"
+API_KEY = None  # Leave blank for keyless (Microsoft Entra ID) authentication
 
-my_connection = AzureAISearchConnection(name=my_connection_name,
-                                        endpoint=my_endpoint,
-                                        api_key=my_api_keys)
+# Define the connection
+connection = AzureAISearchConnection(name=CONNECTION_NAME,
+                                     endpoint=SEARCH_ENDPOINT,
+                                     api_key=API_KEY)
 
 # Create MLClient
 ml_client = MLClient(
@@ -738,8 +760,64 @@ ml_client = MLClient(
 )
 
 # Create the connection
-ml_client.connections.create_or_update(my_connection)
+ml_client.connections.create_or_update(connection)
 ```
+
+#### [REST API](#tab/restapi)
+
+Use the Foundry account management REST API to create a project connection. Replace the placeholders with your subscription, resource group, Foundry resource, project, and connection details.
+
+First, obtain a bearer token:
+
+```bash
+export MGMT_TOKEN=$(az account get-access-token --resource "https://management.azure.com" --query accessToken -o tsv)
+```
+
+For keyless authentication:
+
+```bash
+curl -X PUT "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{foundryResourceName}/projects/{projectName}/connections/{connectionName}?api-version=2025-06-01" \
+  -H "Authorization: Bearer $MGMT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "properties": {
+      "category": "CognitiveSearch",
+      "target": "https://{searchServiceName}.search.windows.net",
+      "authType": "AAD"
+    }
+  }'
+```
+
+For key-based authentication, use `ApiKey` as the `authType` and include the credentials:
+
+```bash
+curl -X PUT "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{foundryResourceName}/projects/{projectName}/connections/{connectionName}?api-version=2025-06-01" \
+  -H "Authorization: Bearer $MGMT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "properties": {
+      "category": "CognitiveSearch",
+      "target": "https://{searchServiceName}.search.windows.net",
+      "authType": "ApiKey",
+      "credentials": {
+        "key": "{searchAdminKey}"
+      }
+    }
+  }'
+```
+
+> [!IMPORTANT]
+> Don't put real keys in source control. Store secrets in a secure store (for example, Azure Key Vault) and inject them at deployment time.
+
+For the full API specification, see [Project Connections REST API reference](/rest/api/aifoundry/accountmanagement/project-connections?view=rest-aifoundry-accountmanagement-2025-06-01&preserve-view=true).
+
+#### [Bicep](#tab/bicep)
+
+Use a Bicep template to create an Azure AI Search connection as part of your infrastructure deployment.
+
+See the [AI Search connection Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) in the foundry-samples repository for complete examples.
+
+For more information about deploying connections with Bicep, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
 ---
 
@@ -782,6 +860,7 @@ Console.WriteLine(connection.Id);
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
+| "Workspace not found" when creating a connection | Incorrect `--workspace-name` or `workspace_name` value | The workspace name corresponds to your Foundry **project name**, not the Foundry resource name. Use the Foundry portal or REST API as alternatives. See [Create a project connection](#create-a-project-connection). |
 | Response has no citations | Agent instructions don't request citations | Update your agent instructions to explicitly request citations in responses. |
 | Response has no citations (streaming) | Annotations not captured | Confirm you receive `url_citation` annotations when streaming. Check your stream processing logic. |
 | Tool can't access the index (401/403) | Missing RBAC roles (keyless auth) | Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to the Foundry project's managed identity. See [Azure RBAC in Foundry](../../../concepts/rbac-foundry.md). |
@@ -793,6 +872,8 @@ Console.WriteLine(connection.Id);
 
 ## Related content
 
+- [Add a new connection to your project](../../../how-to/connections-add.md)
+- [Project Connections REST API reference](/rest/api/aifoundry/accountmanagement/project-connections?view=rest-aifoundry-accountmanagement-2025-06-01&preserve-view=true)
 - [Connect a Foundry IQ knowledge base to Foundry Agent Service](../foundry-iq-connect.md)
 - [Tool best practices](../../concepts/tool-best-practice.md)
 - [Create a vector search index in Azure AI Search](../../../../search/search-get-started-portal-import-vectors.md)

@@ -1,9 +1,7 @@
 ---
-title: Azure OpenAI Embedding skill
-titleSuffix: Azure AI Search
+title: Azure OpenAI Embedding Skill
 description: Connects to a deployed model on your Azure OpenAI resource.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

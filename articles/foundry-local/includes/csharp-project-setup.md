@@ -1,6 +1,6 @@
 ---
-title: "include file"
-description: "include file"
+title: Include file
+description: Include file
 author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
@@ -33,9 +33,13 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
         <WindowsPackageType>None</WindowsPackageType>
         <EnableCoreMrtTooling>false</EnableCoreMrtTooling>
       </PropertyGroup>
+
+      <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">
+        <RuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+      </PropertyGroup>
     
       <ItemGroup>
-        <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.8.2.1" />
+        <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.9.0" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
         <PackageReference Include="OpenAI" Version="2.5.0" />
       </ItemGroup>
@@ -79,9 +83,13 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
           <ImplicitUsings>enable</ImplicitUsings>
           <Nullable>enable</Nullable>
         </PropertyGroup>
+
+        <PropertyGroup Condition="'$(RuntimeIdentifier)'==''">
+            <RuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+        </PropertyGroup>
     
         <ItemGroup>
-          <PackageReference Include="Microsoft.AI.Foundry.Local" Version="0.8.2.1" />
+          <PackageReference Include="Microsoft.AI.Foundry.Local" Version="0.9.0" />
           <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
           <PackageReference Include="OpenAI" Version="2.5.0" />
         </ItemGroup>
@@ -109,3 +117,6 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
     ```
 
 ---
+
+> [!NOTE]
+> The Microsoft.AI.Foundry.Local NuGet package targets net8.0. With .NET's forward compatibility, it works seamlessly in projects targeting .NET 9, .NET 10, and later—no other configuration needed. The SDK uses only .NET 8 APIs and contains no framework-specific code paths, so behavior is identical regardless of which runtime your app targets. We target .NET 8 as it's the current Long Term Support (LTS) release with the broadest install base.
