@@ -1,6 +1,6 @@
 ---
-title: Vector Store
-description: Describes concepts behind vector storage in Azure AI Search.
+title: Vector Index Overview
+description: Learn how Azure AI Search stores and manages vector indexes for similarity search, including vector field types, algorithms, and storage requirements.
 ms.reviewer: robertlee
 ms.service: azure-ai-search
 ms.custom:
