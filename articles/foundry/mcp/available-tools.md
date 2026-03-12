@@ -5,7 +5,7 @@ keywords: mcp, model context protocol, foundry mcp server
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 11/04/2025
+ms.date: 03/12/2026
 ms.topic: reference
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
@@ -21,253 +21,206 @@ Foundry MCP Server exposes a set of tools that let you manage datasets, run eval
 
 ## Agent management
 
-**agent_get (read)**
+Manage the full lifecycle of agents in a Foundry project, including creation, invocation, container orchestration, and deletion.
 
-Get a specific agent by name, or list all agents in a Foundry Project.
-
-Example prompts include:
+Example prompts:
 
 - "List all agents in my Foundry project."
-- "Show details for the `customer-support-agent`."
-- "Get the configuration for agent `triage-agent`."
-
-**agent_update (write)**
-
-Create, update, or clone an agent in a Foundry Project.
-
-Example prompts include:
-
 - "Create a new agent named `faq-agent` using model `gpt-4o-mini`."
-- "Update `triage-agent` instructions to prioritize billing issues."
-- "Clone `prod-agent` to `staging-agent` and switch it to a newer model."
-
-**agent_delete (write)**
-
-Delete an agent in a Foundry Project.
-
-Example prompts include:
-
+- "Send 'Hello, how can you help?' to my `customer-support-agent`."
+- "Start the container for my hosted agent `triage-agent`."
+- "Check the container status for `triage-agent`."
+- "Show me the agent definition schema for prompt agents."
 - "Delete the `old-test-agent` from my project."
-- "Remove `deprecated-agent` now that migration is complete."
-- "Clean up unused agents in this project."
+
+| Tool | Access | Description |
+| --- | --- | --- |
+| `agent_get` | read | List all agents in a Foundry project, or get a specific agent by name. |
+| `agent_update` | write | Create, update, or clone an agent. Use `agent_definition_schema_get` to discover the full definition schema first. |
+| `agent_invoke` | write | Send a message to an agent and get a response. Works for both prompt-based and hosted container agents. |
+| `agent_delete` | write | Permanently delete an agent. For hosted agents, this also deletes the container. |
+| `agent_container_control` | write | Start or stop a hosted agent container. Use before invoking a hosted agent. |
+| `agent_container_status_get` | read | Check the current status of a hosted agent container (Starting, Running, Stopped, Failed, and so on). |
+| `agent_definition_schema_get` | read | Return the complete JSON schema for agent definitions, including all tool types. |
 
 ## Dataset management
 
-**evaluation_dataset_create (write)**
+Create, retrieve, and version evaluation datasets in a Foundry project.
 
-Create or update a dataset version in a Foundry project.
-
-Example prompts include:
+Example prompts:
 
 - "Upload my customer support Q&A dataset from this Azure Blob Storage URL."
-- "Create a new dataset version 2.0 for my training data located at `<blob-storage-account-url>`."
-- "Register a new evaluation dataset called `product-reviews-v1` from my blob storage." 
+- "Show me all datasets in my Foundry project."
+- "Get details for the `customer-support-qa` dataset version 2."
+- "List all versions of my `product-reviews` dataset."
 
-**evaluation_dataset_get (read)**
+| Tool | Access | Description |
+| --- | --- | --- |
+| `evaluation_dataset_create` | write | Create or update a dataset version from an Azure Blob Storage URI. |
+| `evaluation_dataset_get` | read | Get a dataset by name and version, or list all datasets in the project. |
+| `evaluation_dataset_versions_get` | read | List all versions of a specific dataset. |
 
-Get a dataset by name and version, or list all datasets in the project.
+## Evaluation operations
 
-Example prompts include:
+Run batch evaluations against agents or datasets, and compare results across runs.
 
-- "Show me all datasets in my Foundry project" 
-- "Get details for the 'customer-support-qa' dataset version 2" 
-- "List all available datasets I can use for evaluation" 
+Example prompts:
 
-## Evaluation operations 
+- "Evaluate my `customer-support-agent` v2 using Relevance, Groundedness, and Coherence evaluators."
+- "Run a batch evaluation on my JSONL dataset with Violence and HateUnfairness evaluators."
+- "Generate 50 synthetic test queries and evaluate my agent with them."
+- "Show me all evaluation runs in my Foundry project."
+- "Compare run-baseline-123 against treatment runs run-124 and run-125."
 
-**evaluation_create (write)**
+| Tool | Access | Description |
+| --- | --- | --- |
+| `evaluation_agent_batch_eval_create` | write | Create a batch evaluation run that calls a specific agent. Supports built-in and custom evaluators, plus synthetic data generation. |
+| `evaluation_dataset_batch_eval_create` | write | Create a batch evaluation run against a JSONL dataset. Supports built-in and custom evaluators. |
+| `evaluation_get` | read | List evaluation runs in the Foundry project. |
+| `evaluation_comparison_create` | write | Create comparison results between a baseline and treatment evaluation runs. |
+| `evaluation_comparison_get` | read | Get or list evaluation comparison insights. |
 
-Create an evaluation run for a dataset using one or more evaluators.
+## Evaluator catalog
 
-Example prompts include:
+Browse built-in evaluators and manage custom evaluators for use in evaluation runs.
 
-- "Create an evaluation run for my customer service dataset using Relevance, Groundedness, and Coherence evaluators." 
-- "Run an evaluation on dataset-456 with Violence, HateUnfairness, and ContentSafety evaluators for my chatbot model." 
-- "Evaluate my QA model using the F1Score, BleuScore, and RougeScore metrics on the test dataset."
+Example prompts:
 
-**evaluation_get (read)**
+- "List all built-in evaluators available in my project."
+- "Show me the full definition of the `coherence` evaluator."
+- "Create a custom prompt-based evaluator called `tone-check` that scores responses on a 1-5 scale."
+- "Update the description of my `tone-check` evaluator."
+- "Delete version 1 of my `old-evaluator`."
 
-List evaluation runs in the Foundry Project.
+| Tool | Access | Description |
+| --- | --- | --- |
+| `evaluator_catalog_get` | read | List evaluators in the catalog, or get the full definition of a specific evaluator. Filter by built-in or custom type. |
+| `evaluator_catalog_create` | write | Create a custom prompt-based or code-based evaluator. |
+| `evaluator_catalog_update` | write | Update metadata (display name, description, category) for an existing custom evaluator. |
+| `evaluator_catalog_delete` | write | Delete a specific version of a custom evaluator. |
 
-Example prompts include:
+## Model catalog and details
 
-- "Show me all evaluation runs in my Foundry project" 
-- "List the recent evaluations I've run this week" 
-- "Get the status of all my model evaluations" 
+Explore and get details about models in the Foundry model catalog.
 
-**evaluation_comparison_create (write)**
-
-Create comparison results of evaluations within a group.
-
-Example prompts include:
-
-- "Compare the performance of my baseline model against the two new fine-tuned versions."
-- "Create a comparison between run-baseline-123 and treatment runs run-124, run-125 for evaluation eval-456."
-- "I want to compare Model A vs Model B performance on the same evaluation metrics."
-
-**evaluation_comparison_get (read)**
-
-Get or list comparison results of evaluations within a group.
-
-Example prompts include:
-
-- "Get the results of comparison insight-789."
-- "Show me the comparison results I created yesterday."
-- "Retrieve all evaluation comparison insights from my project."
-
-## Model catalog and details 
-
-**model_catalog_list (read)**
-
-List models from the Foundry model catalog.
-
-Example prompts include:
+Example prompts:
 
 - "Show me all GPT-4 models available in the catalog."
 - "List all Microsoft-published models with MIT license."
-- "Find models I can use for free in the playground."
-- "What models are available for text generation from OpenAI?"
-
-**model_details_get (read)**
-
-Get full model details and code sample from Foundry.
-
-Example prompts include:
-
 - "Get detailed information and code samples for GPT-4o-mini."
-- "Show me the specifications and usage examples for the Llama-2-70b model."
-- "I need the documentation and sample code for the text-embedding-ada-002 model."
 
-## Model deployment management 
+| Tool | Access | Description |
+| --- | --- | --- |
+| `model_catalog_list` | read | List models from the Foundry model catalog with optional filters (publisher, license, task). |
+| `model_details_get` | read | Get full model details and code samples. |
 
-**model_deploy (write)**
+## Model deployment management
 
-Create or update a model deployment in the specified Foundry account.
+Deploy, inspect, and remove model deployments in a Foundry account.
 
-Example prompts include:
+Example prompts:
 
-- "Deploy GPT-4o-mini as 'production-chatbot' with 20 capacity units"
-- "Create a new deployment called 'content-generator' using the GPT-4o model."
-- "Deploy the latest version of GPT-4o for my application."
-
-**model_deployment_get (read)**
-
-Get one or more model deployments from a Foundry account.
-
-Example prompts include:
-
+- "Deploy GPT-4o-mini as `production-chatbot` with 20 capacity units."
 - "Show me all my current model deployments."
-- "Get details for my 'production-chatbot' deployment."
-- "List all deployments in my Foundry account."
+- "Delete the `old-test-deployment` that I'm no longer using."
 
-**model_deployment_delete (write)**
+| Tool | Access | Description |
+| --- | --- | --- |
+| `model_deploy` | write | Create or update a model deployment with specified capacity. |
+| `model_deployment_get` | read | Get one or more model deployments from a Foundry account. |
+| `model_deployment_delete` | write | Delete a specific model deployment by name. |
 
-Delete a specific model deployment by name.
+## Model analytics and recommendations
 
-Example prompts include:
+Compare model benchmarks and get recommendations for switching to more cost-effective or higher-quality models.
 
-- "Delete the 'old-test-deployment' that I'm no longer using." 
-- "Remove my staging deployment to free up quota." 
-- "Clean up that deprecated model deployment from my Foundry account `<account-name>`." 
-
-## Model analytics and recommendations 
-
-**model_benchmark_get (read)**
-
-Fetch benchmark data for Foundry models.
-
-Example prompts include:
+Example prompts:
 
 - "Show me benchmark data for all available models."
-- "Get performance comparisons across different model families."
-- "I want to see accuracy and cost metrics for various models."
-
-**model_benchmark_subset_get (read)**
-
-Get benchmark data for specific model name and version pairs.
-
-Example prompts include:
-
 - "Compare benchmark performance between GPT-4 and GPT-3.5-turbo."
-- "Get benchmark data for Claude-3 vs Llama-2-70b models."
-- "Show me performance metrics for the specific model versions I'm considering."
-
-**model_similar_models_get (read)**
-
-Returns a list of similar models based on deployment or model details.
-
-Example prompts include:
-
 - "Find models similar to my current GPT-4 deployment."
-- "What alternatives are there to the model I'm currently using?"
-- "Show me models with similar capabilities to my production deployment."
-
-**model_switch_recommendations_get (read)**
-
-Get model switch recommendations based on benchmark data.
-
-Example prompts include:
-
-- "Recommend better models based on my current deployment's performance."
-- "Should I switch from my current model to something more cost-effective?"
-- "Get optimization recommendations for my production model deployment."
 - "What models would give me better quality/cost ratio than what I'm using now?"
 
-## Model monitoring and operations 
+| Tool | Access | Description |
+| --- | --- | --- |
+| `model_benchmark_get` | read | Fetch benchmark data for Foundry models. |
+| `model_benchmark_subset_get` | read | Get benchmark data for specific model name and version pairs. |
+| `model_similar_models_get` | read | Find similar models based on deployment or model details. |
+| `model_switch_recommendations_get` | read | Get model switch recommendations based on benchmark data. |
 
-**model_monitoring_metrics_get (read)**
+## Model monitoring and operations
 
-Get monitoring metrics for a model deployment.
+Track deployment health, monitor metrics, check deprecation status, and view quota usage.
 
-Example prompts include:
+Example prompts:
 
-- "Show me the request metrics for my production-chatbot deployment."
-- "Get latency statistics for my GPT-4o deployment over the last week."
-- "Check the quota usage for my text-embedding deployment."
-- "What are the error rates for my content-generator model?"
-
-**model_deprecation_info_get (read)**
-
-Get deployment info enriched with deprecation data.
-
-Example prompts include:
-
-- "Check if my production deployment is using a deprecated model version."
-- "Get deprecation information for my legacy-chatbot deployment."
-- "Are any of my current deployments scheduled for retirement?"
-
-**model_quota_list (read)**
-
-List available deployment quota and usage for a subscription in a region.
-
-Example prompts include:
-
-- "Check my available quota in East US region."
-- "How much capacity do I have left for new deployments in West Europe?"
+- "Show me the request metrics for my `production-chatbot` deployment."
+- "Check if any of my deployments are using deprecated model versions."
 - "Show me quota usage across all regions for my subscription."
 
-## Example workflows 
+| Tool | Access | Description |
+| --- | --- | --- |
+| `model_monitoring_metrics_get` | read | Get monitoring metrics (requests, latency, errors, quota) for a model deployment. |
+| `model_deprecation_info_get` | read | Get deployment info enriched with deprecation and retirement schedules. |
+| `model_quota_list` | read | List available deployment quota and usage for a subscription in a region. |
 
-**Complete Model Evaluation Workflow:**
+## Project connections
 
-- "Upload my evaluation dataset from this blob storage URL."
-- "Run an evaluation using Relevance, Groundedness, and Safety evaluators."
-- "Compare my baseline model against the new fine-tuned version."
-- "Show me the comparison results with statistical significance."
+Manage connections to external services (Azure OpenAI, Azure Blob Storage, search, and others) within a Foundry project.
 
-**Model Deployment & Optimization:**
+Example prompts:
 
-- "Show me all GPT-4 models available in the catalog."
-- "Deploy GPT-4o as 'customer-service-bot' with 15 capacity units."
-- "Monitor the request latency for my new deployment."
-- "Recommend more cost-effective alternatives based on current usage."
+- "List all connections in my Foundry project."
+- "Show me the details for my `azure-search` connection."
+- "What connection types and authentication methods are supported?"
+- "Create a new AzureOpenAI connection called `my-openai` using AAD auth."
+- "Delete the `old-storage` connection from my project."
 
-**Resource Management & Cleanup:**
+| Tool | Access | Description |
+| --- | --- | --- |
+| `project_connection_list` | read | List all connections in a Foundry project, with optional filtering by category or target. |
+| `project_connection_get` | read | Get a specific connection by name. |
+| `project_connection_list_metadata` | read | List all supported connection categories and authentication types. Call this first to discover valid values. |
+| `project_connection_create` | write | Create or replace a project connection. |
+| `project_connection_update` | write | Update an existing project connection. |
+| `project_connection_delete` | write | Delete a project connection by name. |
 
-- "List all my current deployments and their usage."
-- "Check which deployments are using deprecated model versions."
-- "Show me my quota usage across all regions."
-- "Delete unused test deployments to free up capacity."
+## Prompt optimization
+
+Optimize system prompts and developer messages for better LLM performance.
+
+Example prompts:
+
+- "Optimize my system prompt: 'You are a helpful customer service agent' using `gpt-4o`."
+- "Improve my agent instructions to get more concise responses."
+- "Refine my optimized prompt to also handle follow-up questions."
+
+| Tool | Access | Description |
+| --- | --- | --- |
+| `prompt_optimize` | write | Optimize a developer prompt (system message) for better LLM performance using the Azure OpenAI Prompt Optimizer. |
+
+## Example workflows
+
+**Agent evaluation workflow:**
+
+1. "List all agents in my project."
+1. "Evaluate my `customer-support-agent` v2 using Relevance, Groundedness, and Safety evaluators."
+1. "Compare my baseline evaluation against the new run."
+1. "Show me the comparison results with statistical significance."
+
+**Model deployment and optimization:**
+
+1. "Show me all GPT-4 models available in the catalog."
+1. "Deploy GPT-4o as `customer-service-bot` with 15 capacity units."
+1. "Monitor the request latency for my new deployment."
+1. "Recommend more cost-effective alternatives based on current usage."
+
+**Resource management and cleanup:**
+
+1. "List all my current deployments and their usage."
+1. "Check which deployments are using deprecated model versions."
+1. "Show me my quota usage across all regions."
+1. "Delete unused test deployments to free up capacity."
 
 ## Related content
 
