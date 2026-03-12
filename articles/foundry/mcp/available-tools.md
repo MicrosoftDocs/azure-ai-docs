@@ -19,7 +19,7 @@ Foundry MCP Server exposes a set of tools that let you manage datasets, run eval
 
 [!INCLUDE [preview-feature](../openai/includes/preview-feature.md)]
 
-### Agent management
+## Agent management
 
 **agent_get (read)**
 
