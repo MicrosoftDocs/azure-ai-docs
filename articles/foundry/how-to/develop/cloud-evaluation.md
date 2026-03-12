@@ -27,7 +27,7 @@ Batch evaluation results are stored in your Foundry project. You can review resu
 > [!TIP]
 > For complete runnable examples, see the [Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) on GitHub.
 
-When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built in evaluators](../../concepts/built-in-evaluators.md). and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md) and have the same project-scope, role-based access control.
+When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built in evaluators](../../concepts/built-in-evaluators.md) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md) and have the same project-scope, role-based access control.
 ## How batch evaluation works
 
 To run a batch evaluation, you create an evaluation definition with your data schema and testing criteria (evaluators), then create an evaluation run. The run executes each evaluator against your data and returns scored results that you can poll for completion.
