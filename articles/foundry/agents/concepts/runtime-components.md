@@ -224,6 +224,9 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
 
 ---
 
+> [!NOTE]
+> Agents are new identified using the agent name and agent version. They don't have a GUID called `AgentID` anymore.
+
 For additional agent types (workflow, hosted), see [Agent development lifecycle](./development-lifecycle.md).
 
 ## Generate responses
@@ -231,155 +234,6 @@ For additional agent types (workflow, hosted), see [Agent development lifecycle]
 Response generation invokes the agent. The agent uses its configuration and any provided history (conversation or previous response) to perform tasks by calling models and tools. As part of response generation, the agent appends items to the conversation.
 
 You can also generate a response without defining an agent. In this case, you provide all configurations directly in the request and use them only for that response. This approach is useful for simple scenarios with minimal tools.
-
-### Generate a response with an agent
-
-The following example generates a response using an agent reference and a conversation. The agent processes the conversation history and produces output.
-
-# [Python](#tab/python)
-
-```python
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-
-# Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
-PROJECT_ENDPOINT = "your_project_endpoint"
-AGENT_NAME = "your_agent_name"
-
-# Create clients to call Foundry API
-project = AIProjectClient(
-    endpoint=PROJECT_ENDPOINT,
-    credential=DefaultAzureCredential(),
-)
-openai = project.get_openai_client()
-
-# Create a conversation for multi-turn chat
-conversation = openai.conversations.create()
-
-# Generate a response using the agent
-response = openai.responses.create(
-    conversation=conversation.id,
-    extra_body={
-        "agent_reference": {
-            "name": AGENT_NAME,
-            "type": "agent_reference",
-        }
-    },
-    input="What is the largest city in France?",
-)
-print(response.output_text)
-```
-
-# [C#](#tab/csharp)
-
-```csharp
-using Azure.Identity;
-using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
-
-// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
-var projectEndpoint = "your_project_endpoint";
-var agentName = "your_agent_name";
-
-// Create project client to call Foundry API
-AIProjectClient projectClient = new(
-    endpoint: new Uri(projectEndpoint),
-    tokenProvider: new DefaultAzureCredential());
-
-// Create a conversation for multi-turn chat
-ProjectConversation conversation
-    = await projectClient.OpenAI.Conversations.CreateProjectConversationAsync();
-
-// Generate a response using the agent
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName },
-        conversation.Id);
-ResponseResult response = await responsesClient.CreateResponseAsync(
-    "What is the largest city in France?");
-Console.WriteLine(response.GetOutputText());
-```
-
-# [JavaScript](#tab/javascript)
-
-```javascript
-import { DefaultAzureCredential } from "@azure/identity";
-import { AIProjectClient } from "@azure/ai-projects";
-
-// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
-const PROJECT_ENDPOINT = "your_project_endpoint";
-const AGENT_NAME = "your_agent_name";
-
-// Create clients to call Foundry API
-const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-const openai = await project.getOpenAIClient();
-
-// Create a conversation for multi-turn chat
-const conversation = await openai.conversations.create();
-
-// Generate a response using the agent
-const response = await openai.responses.create({
-  conversation: conversation.id,
-  input: "What is the largest city in France?",
-  agent_reference: {
-    name: AGENT_NAME,
-    type: "agent_reference",
-  },
-});
-console.log(response.output_text);
-```
-
-# [Java](#tab/java)
-
-```java
-import com.azure.ai.agents.*;
-import com.azure.ai.agents.models.AgentReference;
-import com.azure.identity.DefaultAzureCredentialBuilder;
-
-// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
-String projectEndpoint = "your_project_endpoint";
-String agentName = "your_agent_name";
-
-// Create clients to call Foundry API
-AgentsClientBuilder builder = new AgentsClientBuilder()
-    .credential(new DefaultAzureCredentialBuilder().build())
-    .endpoint(projectEndpoint);
-ResponsesClient responsesClient = builder.buildResponsesClient();
-
-// Generate a response using the agent
-AgentReference agentRef = new AgentReference(agentName);
-
-Response response = responsesClient.createWithAgent(
-    agentRef,
-    ResponseCreateParams.builder()
-        .input("What is the largest city in France?"));
-System.out.println(response.output());
-```
-
-# [REST API](#tab/rest)
-
-```bash
-# Configuration
-ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
-ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
-AGENT_NAME="your_agent_name"
-CONVERSATION_ID="conv_abc123"
-
-# Generate a response using an agent
-curl -X POST "${ENDPOINT}/openai/v1/responses" \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "input": "What is the largest city in France?",
-    "conversation": "'"${CONVERSATION_ID}"'",
-    "agent_reference": {
-      "name": "'"${AGENT_NAME}"'",
-      "type": "agent_reference"
-    }
-  }'
-```
-
----
 
 ### Generate a response without an agent
 
@@ -498,9 +352,193 @@ curl -X POST "${ENDPOINT}/openai/v1/responses" \
 
 ---
 
-## Conversations and conversation items
+### Generate a response with an agent
 
-A conversation manages state automatically, so you don't need to pass inputs manually for each turn.
+The following example generates a response using an agent reference, then sends a follow-up question using the previous response as context.
+
+# [Python](#tab/python)
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+# Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_agent_name"
+
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Generate a response using the agent
+response = openai.responses.create(
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    input="What is the largest city in France?",
+)
+print(response.output_text)
+
+# Ask a follow-up question using the previous response
+follow_up = openai.responses.create(
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    previous_response_id=response.id,
+    input="What is the population of that city?",
+)
+print(follow_up.output_text)
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+
+// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var agentName = "your_agent_name";
+
+// Create project client to call Foundry API
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Generate a response using the agent
+ResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
+        new AgentReference { Name = agentName });
+ResponseResult response = await responsesClient.CreateResponseAsync(
+    "What is the largest city in France?");
+Console.WriteLine(response.GetOutputText());
+
+// Ask a follow-up question using the previous response
+ResponseResult followUp = await responsesClient.CreateResponseAsync(
+    "What is the population of that city?",
+    previousResponseId: response.Id);
+Console.WriteLine(followUp.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const AGENT_NAME = "your_agent_name";
+
+// Create clients to call Foundry API
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = await project.getOpenAIClient();
+
+// Generate a response using the agent
+const response = await openai.responses.create({
+  input: "What is the largest city in France?",
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+console.log(response.output_text);
+
+// Ask a follow-up question using the previous response
+const followUp = await openai.responses.create({
+  input: "What is the population of that city?",
+  previous_response_id: response.id,
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+console.log(followUp.output_text);
+```
+
+# [Java](#tab/java)
+
+```java
+import com.azure.ai.agents.*;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+String projectEndpoint = "your_project_endpoint";
+String agentName = "your_agent_name";
+
+// Create clients to call Foundry API
+AgentsClientBuilder builder = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(projectEndpoint);
+ResponsesClient responsesClient = builder.buildResponsesClient();
+
+// Generate a response using the agent
+AgentReference agentRef = new AgentReference(agentName);
+
+Response response = responsesClient.createWithAgent(
+    agentRef,
+    ResponseCreateParams.builder()
+        .input("What is the largest city in France?"));
+System.out.println(response.output());
+
+// Ask a follow-up question using the previous response
+Response followUp = responsesClient.createWithAgent(
+    agentRef,
+    ResponseCreateParams.builder()
+        .input("What is the population of that city?")
+        .previousResponseId(response.id()));
+System.out.println(followUp.output());
+```
+
+# [REST API](#tab/rest)
+
+```bash
+# Configuration
+ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
+AGENT_NAME="your_agent_name"
+
+# Generate a response using an agent
+RESPONSE=$(curl -s -X POST "${ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "input": "What is the largest city in France?",
+    "agent_reference": {
+      "name": "'"${AGENT_NAME}"'",
+      "type": "agent_reference"
+    }
+  }')
+RESPONSE_ID=$(echo "$RESPONSE" | jq -r '.id')
+
+# Ask a follow-up question using the previous response
+curl -X POST "${ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "input": "What is the population of that city?",
+    "previous_response_id": "'"${RESPONSE_ID}"'",
+    "agent_reference": {
+      "name": "'"${AGENT_NAME}"'",
+      "type": "agent_reference"
+    }
+  }'
+```
+
+---
+
+## Conversations and conversation items
 
 Conversations are durable objects with unique identifiers. After creation, you can reuse them across sessions.
 
@@ -639,6 +677,11 @@ Use a conversation when you want:
 - **Cross-session continuity**: Reuse the same conversation for a user who returns later.
 - **Easier debugging**: Inspect what happened over time (for example, tool calls and outputs).
 
+When a conversation is used to generate a response (with or without an agent), the full conversation is provided as input to the model. The generated response is then appended to the same conversation.
+
+> [!NOTE]
+> If the conversation exceeds the model's supported context size, the model will automatically truncate the input context. The conversation itself is not truncated, but only a subset of it is used to generate the response.
+
 If you don't create a conversation, you can still build multi-turn flows by using the output from a previous response as the starting point for the next request. This approach gives you more flexibility than the older thread-based pattern, where state was tightly coupled to thread objects. For migration guidance, see [Migrate to the Agents SDK](../how-to/migrate.md).
 
 ### Conversation item types
@@ -736,11 +779,210 @@ curl -X POST "${ENDPOINT}/openai/v1/conversations/${CONVERSATION_ID}/items" \
 
 ---
 
+### Use a conversation with an agent
+
+Combine a conversation with an agent reference to maintain history across multiple turns. The agent processes all items in the conversation and appends its output automatically.
+
+# [Python](#tab/python)
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_agent_name"
+
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Create a conversation for multi-turn chat
+conversation = openai.conversations.create()
+
+# First turn
+response = openai.responses.create(
+    conversation=conversation.id,
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    input="What is the largest city in France?",
+)
+print(response.output_text)
+
+# Follow-up turn in the same conversation
+follow_up = openai.responses.create(
+    conversation=conversation.id,
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    input="What is the population of that city?",
+)
+print(follow_up.output_text)
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+
+var projectEndpoint = "your_project_endpoint";
+var agentName = "your_agent_name";
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Create a conversation for multi-turn chat
+ProjectConversation conversation
+    = await projectClient.OpenAI.Conversations.CreateProjectConversationAsync();
+
+// First turn
+ResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
+        new AgentReference { Name = agentName },
+        conversation.Id);
+ResponseResult response = await responsesClient.CreateResponseAsync(
+    "What is the largest city in France?");
+Console.WriteLine(response.GetOutputText());
+
+// Follow-up turn in the same conversation
+ResponseResult followUp = await responsesClient.CreateResponseAsync(
+    "What is the population of that city?");
+Console.WriteLine(followUp.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const AGENT_NAME = "your_agent_name";
+
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = await project.getOpenAIClient();
+
+// Create a conversation for multi-turn chat
+const conversation = await openai.conversations.create();
+
+// First turn
+const response = await openai.responses.create({
+  conversation: conversation.id,
+  input: "What is the largest city in France?",
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+console.log(response.output_text);
+
+// Follow-up turn in the same conversation
+const followUp = await openai.responses.create({
+  conversation: conversation.id,
+  input: "What is the population of that city?",
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+console.log(followUp.output_text);
+```
+
+# [Java](#tab/java)
+
+```java
+import com.azure.ai.agents.*;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+String projectEndpoint = "your_project_endpoint";
+String agentName = "your_agent_name";
+
+AgentsClientBuilder builder = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(projectEndpoint);
+ResponsesClient responsesClient = builder.buildResponsesClient();
+ConversationsClient conversationsClient = builder.buildConversationsClient();
+
+// Create a conversation for multi-turn chat
+var conversation = conversationsClient.getConversationService().create();
+
+// First turn
+AgentReference agentRef = new AgentReference(agentName);
+Response response = responsesClient.createWithAgentConversation(
+    agentRef, conversation.id(),
+    ResponseCreateParams.builder()
+        .input("What is the largest city in France?"));
+System.out.println(response.output());
+
+// Follow-up turn in the same conversation
+Response followUp = responsesClient.createWithAgentConversation(
+    agentRef, conversation.id(),
+    ResponseCreateParams.builder()
+        .input("What is the population of that city?"));
+System.out.println(followUp.output());
+```
+
+# [REST API](#tab/rest)
+
+```bash
+ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
+AGENT_NAME="your_agent_name"
+
+# Create a conversation
+CONVERSATION=$(curl -s -X POST "${ENDPOINT}/openai/v1/conversations" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{}')
+CONVERSATION_ID=$(echo "$CONVERSATION" | jq -r '.id')
+
+# First turn
+curl -s -X POST "${ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "input": "What is the largest city in France?",
+    "conversation": "'"${CONVERSATION_ID}"'",
+    "agent_reference": {
+      "name": "'"${AGENT_NAME}"'",
+      "type": "agent_reference"
+    }
+  }'
+
+# Follow-up turn in the same conversation
+curl -X POST "${ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "input": "What is the population of that city?",
+    "conversation": "'"${CONVERSATION_ID}"'",
+    "agent_reference": {
+      "name": "'"${AGENT_NAME}"'",
+      "type": "agent_reference"
+    }
+  }'
+```
+
+---
+
 For examples that show how conversations and responses work together in code, see [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md).
 
 ## Streaming and background responses
 
-Some response generation modes return results incrementally (streaming) or complete asynchronously (background). In these cases, you typically monitor the response until it finishes and then consume the final output items.
+For long running operations, you can return results incrementally using `streaming` or run completely asynchronously using `background` mode. In these cases, you typically monitor the response until it finishes and then consume the final output items.
 
 ### Stream a response
 
@@ -754,6 +996,7 @@ from azure.ai.projects import AIProjectClient
 
 # Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_agent_name"
 
 # Create clients to call Foundry API
 project = AIProjectClient(
@@ -762,9 +1005,14 @@ project = AIProjectClient(
 )
 openai = project.get_openai_client()
 
-# Stream a response
+# Stream a response using the agent
 stream = openai.responses.create(
-    model="gpt-5-mini",
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
     input="Explain how agents work in one paragraph.",
     stream=True,
 )
@@ -782,15 +1030,17 @@ using Azure.AI.Projects.OpenAI;
 
 // Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
+var agentName = "your_agent_name";
 
 // Create project client to call Foundry API
 AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
     tokenProvider: new DefaultAzureCredential());
 
-// Stream a response
-ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5-mini");
+// Stream a response using the agent
+ResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
+        new AgentReference { Name = agentName });
 await foreach (var update in responsesClient.CreateResponseStreamingAsync(
     "Explain how agents work in one paragraph."))
 {
@@ -806,16 +1056,20 @@ import { AIProjectClient } from "@azure/ai-projects";
 
 // Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 const PROJECT_ENDPOINT = "your_project_endpoint";
+const AGENT_NAME = "your_agent_name";
 
 // Create clients to call Foundry API
 const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
 const openai = await project.getOpenAIClient();
 
-// Stream a response
+// Stream a response using the agent
 const stream = await openai.responses.create({
-  model: "gpt-5-mini",
   input: "Explain how agents work in one paragraph.",
   stream: true,
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
 });
 for await (const event of stream) {
   if (event.type === "response.output_text.delta") {
@@ -832,23 +1086,23 @@ for await (const event of stream) {
 ```java
 // Streaming is not yet supported in the Java SDK.
 // Use a synchronous response call instead.
-import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.*;
+import com.azure.ai.agents.models.AgentReference;
 import com.azure.identity.DefaultAzureCredentialBuilder;
-import com.openai.models.responses.ResponseCreateParams;
 
 String projectEndpoint = "your_project_endpoint";
+String agentName = "your_agent_name";
 
 ResponsesClient responsesClient = new AgentsClientBuilder()
     .credential(new DefaultAzureCredentialBuilder().build())
     .endpoint(projectEndpoint)
     .buildResponsesClient();
 
-ResponseCreateParams request = new ResponseCreateParams.Builder()
-    .model("gpt-5-mini")
-    .input("Explain how agents work in one paragraph.")
-    .build();
-var response = responsesClient.getResponseService().create(request);
+AgentReference agentRef = new AgentReference(agentName);
+Response response = responsesClient.createWithAgent(
+    agentRef,
+    ResponseCreateParams.builder()
+        .input("Explain how agents work in one paragraph."));
 System.out.println(response.output());
 ```
 
@@ -858,21 +1112,166 @@ System.out.println(response.output());
 # Configuration
 ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
 ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
+AGENT_NAME="your_agent_name"
 
-# Stream a response (returns server-sent events)
+# Stream a response using an agent (returns server-sent events)
 curl -N -X POST "${ENDPOINT}/openai/v1/responses" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-5-mini",
     "input": "Explain how agents work in one paragraph.",
-    "stream": true
+    "stream": true,
+    "agent_reference": {
+      "name": "'"${AGENT_NAME}"'",
+      "type": "agent_reference"
+    }
   }'
 ```
 
 ---
 
 For details about response modes and how to consume outputs, see [Responses API](../../openai/how-to/responses.md).
+
+### Run an agent in background mode
+
+Background mode runs the agent asynchronously, which is useful for long-running tasks such as complex reasoning or image generation. Set `background` to `true` and then poll for the response status until it completes.
+
+# [Python](#tab/python)
+
+```python
+from time import sleep
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_agent_name"
+
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Start a background response using the agent
+response = openai.responses.create(
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    input="Write a detailed analysis of renewable energy trends.",
+    background=True,
+)
+
+# Poll until the response completes
+while response.status in ("queued", "in_progress"):
+    sleep(2)
+    response = openai.responses.retrieve(response.id)
+
+print(response.output_text)
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+
+var projectEndpoint = "your_project_endpoint";
+var agentName = "your_agent_name";
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Start a background response using the agent
+ResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
+        new AgentReference { Name = agentName });
+ResponseResult response = await responsesClient.CreateResponseAsync(
+    "Write a detailed analysis of renewable energy trends.",
+    background: true);
+
+// Poll until the response completes
+while (response.Status is "queued" or "in_progress")
+{
+    await Task.Delay(2000);
+    response = await responsesClient.RetrieveResponseAsync(response.Id);
+}
+Console.WriteLine(response.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const AGENT_NAME = "your_agent_name";
+
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = await project.getOpenAIClient();
+
+// Start a background response using the agent
+let response = await openai.responses.create({
+  input: "Write a detailed analysis of renewable energy trends.",
+  background: true,
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+
+// Poll until the response completes
+while (response.status === "queued" || response.status === "in_progress") {
+  await new Promise((r) => setTimeout(r, 2000));
+  response = await openai.responses.retrieve(response.id);
+}
+console.log(response.output_text);
+```
+
+# [Java](#tab/java)
+
+> [!NOTE]
+> Background mode with polling isn't yet fully supported in the Java SDK. Check the [azure-ai-agents release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/ai/azure-ai-agents/CHANGELOG.md) for updates.
+
+# [REST API](#tab/rest)
+
+```bash
+ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
+AGENT_NAME="your_agent_name"
+
+# Start a background response using an agent
+RESPONSE=$(curl -s -X POST "${ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "input": "Write a detailed analysis of renewable energy trends.",
+    "background": true,
+    "agent_reference": {
+      "name": "'"${AGENT_NAME}"'",
+      "type": "agent_reference"
+    }
+  }')
+RESPONSE_ID=$(echo "$RESPONSE" | jq -r '.id')
+
+# Poll until the response completes
+STATUS=$(echo "$RESPONSE" | jq -r '.status')
+while [ "$STATUS" = "queued" ] || [ "$STATUS" = "in_progress" ]; do
+  sleep 2
+  RESPONSE=$(curl -s -X GET "${ENDPOINT}/openai/v1/responses/${RESPONSE_ID}" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}")
+  STATUS=$(echo "$RESPONSE" | jq -r '.status')
+done
+echo "$RESPONSE" | jq -r '.output[0].content[0].text'
+```
+
+---
 
 ## Add tools to an agent
 
@@ -1003,7 +1402,7 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
 
 For the full list of available tools, see the [tools overview](./tool-catalog.md). For best practices, see [Best practices for using tools](./tool-best-practice.md).
 
-## Attach memory to an agent
+## Attach memory to an agent (preview)
 
 Memory gives agents the ability to retain information across sessions, so they can personalize responses and recall user preferences over time. Without memory, each conversation starts from scratch.
 
