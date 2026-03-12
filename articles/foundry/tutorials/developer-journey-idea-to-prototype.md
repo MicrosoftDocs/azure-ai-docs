@@ -152,8 +152,8 @@ enterprise-agent-tutorial/
    │   ├── Program.cs                   # Agent implementation with SharePoint + MCP
    │   ├── ModernWorkplaceAssistant.csproj
    │   └── .env                         # Environment variables (create this)
-   ├── Evaluate/                        # Cloud evaluation framework
-   │   ├── Program.cs                   # Cloud evaluation with built-in evaluators
+   ├── Evaluate/                        # Batch evaluation framework
+   │   ├── Program.cs                   # Batch evaluation with built-in evaluators
    │   ├── Evaluate.csproj
    │   └── evaluation_results.json      # Example output (generated)
    ├── questions.jsonl                  # Business test scenarios
@@ -513,9 +513,9 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 🔗 Next: Add evaluation metrics, monitoring, and production deployment
 ```
 
-## Step 4: Evaluate the assistant by using cloud evaluation
+## Step 4: Evaluate the assistant by using batch evaluation
 
-The evaluation framework tests realistic business scenarios by using the **cloud evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`, `builtin.fluency`, `builtin.task_adherence`) and the `openai_client.evals` API to run scalable, repeatable evaluations in the cloud.
+The evaluation framework tests realistic business scenarios by using the **batch evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`, `builtin.fluency`, `builtin.task_adherence`) and the `openai_client.evals` API to run scalable, repeatable evaluations in the cloud.
 
 This evaluation framework demonstrates:
 
@@ -527,11 +527,11 @@ This evaluation framework demonstrates:
 The code breaks down into the following main sections:
 
 1. [Configure the evaluation](#configure-the-evaluation).
-1. [Run the cloud evaluation](#run-the-cloud-evaluation).
+1. [Run the batch evaluation](#run-the-batch-evaluation).
 1. [Retrieve evaluation results](#retrieve-evaluation-results).
 
 > [!TIP]
-> For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../how-to/develop/cloud-evaluation.md). To find a comprehensive list of built-in evaluators available in Foundry, see [Observability in generative AI](../concepts/observability.md). 
+> For detailed guidance on batch evaluations, see [Run evaluations in the cloud](../how-to/develop/cloud-evaluation.md). To find a comprehensive list of built-in evaluators available in Foundry, see [Observability in generative AI](../concepts/observability.md). 
 
 > [!NOTE]
 > The C# sample uses a local batch evaluation approach with `ProjectResponsesClient` instead of the cloud `openai_client.evals` API shown in Python. It sends queries to the agent, checks responses against expected keywords, and writes results to `evaluation_results.json`. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for cloud evaluation patterns in C#.
@@ -558,7 +558,7 @@ The `testing_criteria` array specifies which evaluators to run:
 - `builtin.fluency`: Assesses response quality and readability (requires a model deployment).
 - `builtin.task_adherence`: Evaluates whether the agent followed instructions correctly.
 
-### Run the cloud evaluation
+### Run the batch evaluation
 
 Create an evaluation run that targets your agent. The `azure_ai_target_completions` data source sends queries to your agent and captures responses for evaluation:
 
@@ -599,7 +599,7 @@ Each output item includes:
 - **Score**: Numeric score on the evaluator's scale
 - **Reason**: Explanation of why the score was assigned (for LLM-based evaluators)
 
-### Expected output from cloud evaluation (evaluate.py)
+### Expected output from batch evaluation (evaluate.py)
 
 When you run the evaluation script, you see output similar to the following example. The output shows the evaluation object creation, run submission, and results retrieval:
 
@@ -632,7 +632,7 @@ Agent deleted
 
 ### Understanding evaluation results
 
-Cloud evaluations provide structured results that you can view in the Foundry portal or retrieve programmatically. Each output item includes:
+Batch evaluations provide structured results that you can view in the Foundry portal or retrieve programmatically. Each output item includes:
 
 | Field | Description |
 | ------- | ------------- |

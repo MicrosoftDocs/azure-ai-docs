@@ -1,6 +1,6 @@
 ---
 title: Indexer Overview
-description: Crawl Azure SQL Database, SQL Managed Instance, Azure Cosmos DB, or Azure storage to extract searchable data and populate an Azure AI Search index.
+description: Learn how indexers in Azure AI Search crawl Azure SQL, Cosmos DB, Blob Storage, and other data sources to extract and populate a search index automatically.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

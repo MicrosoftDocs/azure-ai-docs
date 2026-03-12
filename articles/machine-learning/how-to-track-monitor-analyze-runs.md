@@ -8,14 +8,14 @@ ms.subservice: mlops
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: jturuk
-ms.date: 03/22/2024
+ms.date: 03/11/2026
 ms.topic: how-to
 ms.custom: build-2023
 ---
 
-# Monitor and analyze jobs in studio
+# Monitor and analyze jobs in Azure Machine Learning studio
 
-You can use [Azure Machine Learning studio](https://ml.azure.com) to monitor, organize, and track your jobs for training and experimentation. Your machine learning (ML) job history is an important part of an explainable and repeatable ML development process.
+Use [Azure Machine Learning studio](https://ml.azure.com) to monitor, organize, and track your jobs for training and experimentation. Your machine learning (ML) job history plays an important role in an explainable and repeatable ML development process.
 
 This article explains how to:
 
@@ -23,13 +23,13 @@ This article explains how to:
 * Create a custom view.
 * Add a job description.
 * Tag and find jobs.
-* Run search over your job history.
+* Run searches over your job history.
 * Cancel or fail jobs.
-* Monitor job status by email notification.
-* Monitor your job resources (preview).
+* Monitor job status by using email notifications.
  
 > [!TIP]
-> * For information on using the Azure Machine Learning SDK v1 or CLI v1, see [Monitor and analyze jobs in studio (v1)](./v1/how-to-track-monitor-analyze-runs.md).
+> * The Azure Machine Learning SDK v1 is deprecated (end of support June 30, 2026) and CLI v1 reached end of support on September 30, 2025. For v1 information, see [Monitor and analyze jobs in studio (v1)](./v1/how-to-track-monitor-analyze-runs.md).
+> * For the new jobs list experience with sorting, filtering, and batch actions, see [Organize & track training jobs (preview)](how-to-track-monitor-organize-jobs.md).
 > * To learn how to monitor training jobs from the CLI or SDK v2, see [Track ML experiments and models with MLflow (v2)](how-to-use-mlflow-cli-runs.md).
 > * To learn how to monitor the Azure Machine Learning service and associated Azure services, see [Monitor Azure Machine Learning](monitor-azure-machine-learning.md).
 > * To learn how to monitor models deployed to online endpoints, see [Monitor online endpoints](how-to-monitor-online-endpoints.md).
@@ -39,7 +39,7 @@ This article explains how to:
 You need the following items:
 
 * To use Azure Machine Learning, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* You must have an Azure Machine Learning workspace. A workspace is created in [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
+* You must have an Azure Machine Learning workspace. Create a workspace in [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
 
 ## Job display name 
 
