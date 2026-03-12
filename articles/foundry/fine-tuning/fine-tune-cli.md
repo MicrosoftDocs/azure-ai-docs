@@ -7,7 +7,6 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 author: williamliang
 ms.author: ssalgado
-monikerRange: 'foundry'
 ---
 
 # Fine-tune AI models in Microsoft Foundry with the Azure Developer CLI fine-tuning extension
