@@ -61,39 +61,33 @@ For the complete list of custom tool options, see [All custom tools](#all-custom
 
 ## Use a tool in an agent
 
-To add a tool to an agent, include it in the agent's tool list when you create or update the agent definition. The following example creates an agent with the Code Interpreter tool enabled and sends a request to analyze data:
+To add a tool to an agent, include it in the agent's tool list when you create or update the agent definition. The following example creates an agent with the web search tool enabled and sends a query:
 
 ```python
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import (
-    PromptAgentDefinition,
-    CodeInterpreterTool,
-    AutoCodeInterpreterToolParam,
-)
+from azure.ai.projects.models import PromptAgentDefinition, WebSearchTool
 
 project = AIProjectClient(
     endpoint=os.environ["PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
 
-# Create an agent with Code Interpreter enabled
+# Create an agent with web search enabled
 agent = project.agents.create_version(
-    agent_name="data-analyst",
+    agent_name="web-search-agent",
     definition=PromptAgentDefinition(
         model=os.environ["MODEL_NAME"],
-        instructions="You are a helpful data analyst.",
-        tools=[CodeInterpreterTool(container=AutoCodeInterpreterToolParam())],
+        instructions="You are a helpful assistant that can search the web.",
+        tools=[WebSearchTool()],
     ),
 )
 
-# Start a conversation and send a request
+# Start a conversation and send a query
 openai = project.get_openai_client()
-conversation = openai.conversations.create()
 response = openai.responses.create(
-    conversation=conversation.id,
-    input="What is the square root of 1234567?",
+    input="What are the latest updates to Microsoft Foundry?",
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
 )
 print(response.output_text)
