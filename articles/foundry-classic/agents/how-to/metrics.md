@@ -27,7 +27,7 @@ Monitoring is available for agents in a [standard agent setup](../concepts/stand
 > [!IMPORTANT]
 > Monitoring support is currently limited to Microsoft Foundry hubs. Foundry projects aren't supported.
 >
-> To learn about Foundry hubs and projects, see [What is Microsoft Foundry?](../../what-is-foundry.md). [Mirgrate to Foundry (new)](../../../what-is-foundry.md) to use [monitoring](/agents/how-to/metrics.md) with Foundry projects. 
+> To learn about Foundry hubs and projects, see [What is Microsoft Foundry?](../../what-is-foundry.md). [Mirgrate to Foundry (new)](../../..foundry/what-is-foundry.md) to use [monitoring](../../../foundry/agents/how-to/metrics.md) with Foundry projects. 
 
 > [!NOTE]
 > If you're using a Foundry project, use Foundry monitoring instead of Azure Monitor metrics.
