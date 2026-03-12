@@ -1,6 +1,6 @@
 ---
 title: Connect Using Azure Roles
-description: Use Azure role-based access control for granular permissions on service administration and content tasks.
+description: Learn how to assign Azure roles for granular permission management on Azure AI Search service administration and content tasks using Microsoft Entra ID.
 ms.date: 01/20/2026
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

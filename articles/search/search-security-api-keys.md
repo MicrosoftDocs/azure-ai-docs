@@ -1,6 +1,6 @@
 ---
 title: Connect Using API Keys
-description: Learn how to use an admin or query API key for inbound access to an Azure AI Search service endpoint.
+description: Learn how to create, manage, and use admin and query API keys for authenticating requests to an Azure AI Search service endpoint.
 ms.service: azure-ai-search
 ai-usage: ai-assisted
 ms.custom:

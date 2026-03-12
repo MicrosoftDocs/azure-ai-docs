@@ -1,6 +1,6 @@
 ---
 title: Search Index Overview
-description: Explains index content, construction, physical expression, and schema.
+description: Learn about search indexes in Azure AI Search, including schema design, field attributes, physical structure, and how indexes store searchable content.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

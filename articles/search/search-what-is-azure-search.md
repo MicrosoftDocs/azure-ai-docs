@@ -1,6 +1,6 @@
 ---
-title: Introduction
-description: Azure AI Search is an AI-powered information retrieval platform that helps developers build rich search experiences and generative AI apps that combine large language models (LLMs) with enterprise or web data.
+title: Introduction to Azure AI Search
+description: Learn how Azure AI Search helps you build rich search experiences and generative AI apps. Combine LLMs with enterprise data using classic search and agentic retrieval.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

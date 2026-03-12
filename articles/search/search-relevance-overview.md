@@ -1,6 +1,6 @@
 ---
-title: Relevance
-description: Describe strategies for producing relevant results  in Azure AI Search and explain how the scoring and ranking algorithms work and how to use them together.
+title: Relevance Overview
+description: Learn about the relevance concepts and technology in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 12/08/2025
