@@ -84,7 +84,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Build | Tracing and tracing VNet | GA |
 | Build | Optimization (cluster analysis) | Preview |
 | Build | Fine-tuning | GA |
-| Build | Tools | GA |
+| Build | Tools | GA (check label on individual tools in the catalog to determine if they are GA or Preview)|
 | Build | Knowledge | Preview |
 | Build | Data | GA (minus stored completions in Preview) |
 | Build | Evaluations | GA |
