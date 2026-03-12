@@ -1,6 +1,5 @@
 ---
 title: Connect to Azure Storage
-titleSuffix: Azure AI Search
 description: Learn how to set up an indexer connection to an Azure Storage account using a managed identity.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

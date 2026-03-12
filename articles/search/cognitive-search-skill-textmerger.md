@@ -1,6 +1,5 @@
 ---
 title: Text Merge Cognitive Skill
-titleSuffix: Azure AI Search
 description: Merge text from a collection of fields into one consolidated field. Use this cognitive skill in an AI enrichment pipeline in Azure AI Search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

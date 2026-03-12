@@ -1,6 +1,5 @@
 ---
 title: Return a Semantic Answer
-titleSuffix: Azure AI Search
 description: Describes the composition of a semantic answer and how to obtain answers from a result set.
 ms.service: azure-ai-search
 ms.custom:

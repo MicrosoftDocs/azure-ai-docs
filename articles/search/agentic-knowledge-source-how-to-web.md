@@ -1,6 +1,5 @@
 ---
 title: Create Web Knowledge Source for Agentic Retrieval
-titleSuffix: Azure AI Search
 description: Learn how to create a Web Knowledge Source resource for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.custom:

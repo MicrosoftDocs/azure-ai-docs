@@ -1,6 +1,5 @@
 ---
 title: Index Management
-titleSuffix: Azure AI Search
 description: Learn how to manage indexes in Azure AI Search. Operations include viewing all indexes on your search service, checking index-specific statistics and definitions, and deleting indexes.
 ms.service: azure-ai-search
 ms.topic: how-to

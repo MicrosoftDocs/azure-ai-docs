@@ -1,6 +1,5 @@
 ---
 title: Create a Vector Query
-titleSuffix: Azure AI Search
 description: Learn how to build queries for vector search.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

@@ -1,6 +1,5 @@
 ---
 title: Connect Through Firewalls
-titleSuffix: Azure AI Search
 description: Configure IP firewall rules to allow data access by an Azure AI Search indexer.
 ms.reviewer: arjagann
 ms.service: azure-ai-search

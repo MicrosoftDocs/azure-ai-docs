@@ -1,6 +1,5 @@
 ---
 title: Generate Embeddings
-titleSuffix: Azure AI Search
 description: Learn how to generate embeddings for downstream indexing into an Azure AI Search index.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

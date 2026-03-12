@@ -1,6 +1,5 @@
 ---
 title: Chunk and Vectorize by Document Layout
-titleSuffix: Azure AI Search
 description: Chunk textual content by headings and semantically coherent fragments, generate embeddings, and send the results to a searchable index.
 ms.service: azure-ai-search
 ms.topic: how-to
