@@ -132,7 +132,7 @@ construct_job = rai_constructor_component(
     maximum_rows_for_test_dataset=5000,
     classes="[]",
 )
-
+```
 ---
 
 ### Add Causal to RAI Insights dashboard
