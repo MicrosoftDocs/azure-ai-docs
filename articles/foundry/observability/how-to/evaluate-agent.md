@@ -125,7 +125,7 @@ testing_criteria = [
         "evaluator_name": "builtin.coherence",
         "data_mapping": {
             "query": "{{item.query}}",
-            "response": "{{sample.output_items}}",
+            "response": "{{sample.output_text}}",
         },
         "initialization_parameters": {"deployment_name": model_deployment},
     },
@@ -135,7 +135,7 @@ testing_criteria = [
         "evaluator_name": "builtin.violence",
         "data_mapping": {
             "query": "{{item.query}}",
-            "response": "{{sample.output_items}}",
+            "response": "{{sample.output_text}}",
         },
     },
 ]

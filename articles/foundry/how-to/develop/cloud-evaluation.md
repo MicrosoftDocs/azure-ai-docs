@@ -1047,14 +1047,17 @@ while True:
     time.sleep(5)
     print("Waiting for eval run to complete...")
 
-# Retrieve results
-output_items = list(
-    client.evals.runs.output_items.list(
-        run_id=run.id, eval_id=eval_object.id
+if run.status == "failed":
+    print(f"Evaluation run failed: {run.error}")
+else:
+    # Retrieve results
+    output_items = list(
+        client.evals.runs.output_items.list(
+            run_id=run.id, eval_id=eval_object.id
+        )
     )
-)
-pprint(output_items)
-print(f"Report URL: {run.report_url}")
+    pprint(output_items)
+    print(f"Report URL: {run.report_url}")
 ```
 
 ### Interpret results
@@ -1164,7 +1167,7 @@ If an agent evaluator returns an error for unsupported tools:
 ## Related content
 
 - [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
-- [Evaluate your AI agents continuously](../../../foundry-classic/how-to/continuous-evaluation-agents.md)
+- [Evaluate your AI agents continuously](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)

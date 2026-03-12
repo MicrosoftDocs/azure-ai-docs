@@ -93,6 +93,7 @@ The following tools currently have limited support. Avoid using `tool_call_accur
 - Bing Grounding
 - Bing Custom Search
 - SharePoint Grounding
+- Code Interpreter
 - Fabric Data Agent
 - Web Search
 
@@ -206,6 +207,30 @@ Task Navigation Efficiency measures whether the agent took an optimal sequence o
 | `exact_match` | Agent's trajectory must match the ground truth exactly (order and content) |
 | `in_order_match` | All ground truth steps must appear in the agent's trajectory in correct order (extra steps allowed) |
 | `any_order_match` | All ground truth steps must appear in the agent's trajectory, order doesn't matter (extra steps allowed) |
+
+**Actions format:**
+
+The `actions` field takes a list of message objects that follow the OpenAI message schema. Each message represents a step the agent took during the conversation:
+
+```python
+actions = [
+    {
+        "role": "assistant",
+        "content": [
+            {"type": "function_call", "name": "call_tool_A", "arguments": "{\"param\": \"value\"}"}
+        ]
+    },
+    {
+        "role": "assistant",
+        "content": [
+            {"type": "function_call", "name": "call_tool_B", "arguments": "{}"}
+        ]
+    },
+]
+```
+
+> [!NOTE]
+> The `actions` and `expected_actions` fields use different formats. `actions` requires OpenAI message-schema dictionaries (representing the agent's actual behavior), while `expected_actions` uses a simple list of tool names (representing the ground truth).
 
 **Expected actions format:**
 
