@@ -29,6 +29,9 @@ items:
   - name: Tool calling
     href: ../../openai/how-to/fine-tuning-functions.md
     displayName: finetuning, fine-tuning       
+  - name: Fine-tuning with Azure CLI
+    href: ../../fine-tuning/fine-tune-cli.md
+    displayName: finetuning, fine-tuning  
 
 # Safety and Cost Management
 - name: Safety evaluation
