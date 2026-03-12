@@ -63,9 +63,9 @@ items:
   - name: Data, privacy, and security for model catalog
     displayName: Data, privacy, and security for Azure Direct Models
     href: ../../responsible-ai/openai/data-privacy.md
-  - name: Data, privacy, and security for model catalog
+  - name: Data, privacy, and security for model catalog (classic)
     displayName: Data, privacy, and security for partner models in the model catalog
-    href: ../../../foundry-classic/how-to/concept-data-privacy.md
+    href: ../../../foundry-classic/how-to/concept-data-privacy.md?context=/azure/foundry/context/context
 
   - name: Model Router
     items:
@@ -100,16 +100,16 @@ items:
   items:
   - name: Deployment overview in Microsoft Foundry portal
     displayName: Deployment overview for Microsoft Foundry Models
-    href: ../../../foundry-classic/concepts/deployments-overview.md
+    href: ../../../foundry-classic/concepts/deployments-overview.md?context=/azure/foundry/context/context
   - name: Deployment types
     displayName: Deployment types for Microsoft Foundry Models
     href: ../../foundry-models/concepts/deployment-types.md
   - name: Managed compute pay-as-you-go
     displayName: Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing
-    href: ../../../foundry-classic/how-to/deploy-models-managed-pay-go.md
+    href: ../../../foundry-classic/how-to/deploy-models-managed-pay-go.md?context=/azure/foundry/context/context
   - name: Managed compute deployment
     displayName: Deploy models with managed compute
-    href: ../../../foundry-classic/how-to/deploy-models-managed.md
+    href: ../../../foundry-classic/how-to/deploy-models-managed.md?context=/azure/foundry/context/context
   - name: Batch processing
     displayName: Getting started with Azure OpenAI batch deployments
     href: ../../openai/how-to/batch.md
@@ -131,7 +131,7 @@ items:
       displayName: Manage traffic with spillover for provisioned deployments
       href: ../../openai/how-to/spillover-traffic-management.md
   - name: Microsoft Foundry pricing
-    href: https://azure.microsoft.com/en-us/pricing/details/microsoft-foundry/
+    href: https://azure.microsoft.com/pricing/details/microsoft-foundry/
   - name: Plan and manage costs
     displayName: Plan and manage costs for Microsoft Foundry
     href: ../../concepts/manage-costs.md
@@ -152,7 +152,7 @@ items:
     href: ../../concepts/concept-playgrounds.md
   - name: Troubleshoot deployments and monitoring
     displayName: How to troubleshoot your deployments and monitors in Microsoft Foundry portal
-    href: ../../../foundry-classic/how-to/troubleshoot-deploy-and-monitor.md
+    href: ../../../foundry-classic/how-to/troubleshoot-deploy-and-monitor.md?context=/azure/foundry/context/context
 
 - name: Model support
   items:
@@ -204,10 +204,10 @@ items:
       href: ../../openai/how-to/reasoning.md
     - name: Work with reasoning models in Foundry Models
       displayName: How to use reasoning models with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md
+      href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
     - name: Work with Multimodal models
       displayName: How to use image and audio in chat completions with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-chat-multi-modal.md
+      href: ../../../foundry-classic/foundry-models/how-to/use-chat-multi-modal.md?context=/azure/foundry/context/context
   - name: Embeddings
     items:
     - name: Work with embeddings inn Azure OpenAI
@@ -215,10 +215,10 @@ items:
       href: ../../openai/how-to/embeddings.md
     - name: Work with text embeddings in Foundry Models
       displayName: How to generate embeddings with Microsoft Foundry Models
-      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md
+      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
     - name: Generate image embeddings
       displayName: How to generate image embeddings with Microsoft Foundry Models service
-      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md
+      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
     - name: Embeddings tutorial
       displayName: "Tutorial: Explore Azure OpenAI in Microsoft Foundry Models embeddings and document search"
       href: ../../openai/tutorials/embeddings.md
@@ -246,7 +246,7 @@ items:
       href: ../../openai/concepts/prompt-transformation.md
     - name: How to use image to text models
       displayName: How to use image-to-text models in the model catalog
-      href: ../../../foundry-classic/how-to/use-image-models.md
+      href: ../../../foundry-classic/how-to/use-image-models.md?context=/azure/foundry/context/context
     - name: Video generation 
       displayName: Video generation with Sora
       href: ../../openai/concepts/video-generation.md
