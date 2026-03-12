@@ -1,6 +1,5 @@
 ---
 title: Entity Recognition Cognitive Skill (V2)
-titleSuffix: Azure AI Search
 description: Extract different types of entities from text in an enrichment pipeline in Azure AI Search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

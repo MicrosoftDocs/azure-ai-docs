@@ -623,7 +623,9 @@
         "articles/open-datasets/**/*.md": "Azure Open Datasets",
         "articles/open-datasets/**/*.yml": "Azure Open Datasets",
         "articles/foundry/**/*.md": "Microsoft Foundry",
-        "articles/foundry-classic/**/*.md": "Microsoft Foundry (classic)"
+        "articles/foundry-classic/**/*.md": "Microsoft Foundry (classic)",
+        "articles/search/**/*.md": "Azure AI Search",
+        "articles/search/**/*.yml": "Azure AI Search"
       }
     },
     "overwrite": [],

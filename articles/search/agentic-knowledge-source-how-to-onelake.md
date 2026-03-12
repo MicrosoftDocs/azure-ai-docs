@@ -1,6 +1,5 @@
 ---
 title: Create an Indexed OneLake Knowledge Source for Agentic Retrieval
-titleSuffix: Azure AI Search
 description: Learn how to create an indexed OneLake knowledge source in Azure AI Search. An indexed OneLake knowledge source specifies a lakehouse, models, and properties that create an enrichment pipeline for agentic retrieval workloads.
 ms.service: azure-ai-search
 ms.custom:

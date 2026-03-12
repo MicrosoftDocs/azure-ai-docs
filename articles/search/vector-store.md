@@ -1,6 +1,5 @@
 ---
 title: Vector Store
-titleSuffix: Azure AI Search
 description: Describes concepts behind vector storage in Azure AI Search.
 ms.reviewer: robertlee
 ms.service: azure-ai-search

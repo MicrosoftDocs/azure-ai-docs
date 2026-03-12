@@ -1,6 +1,5 @@
 ---
 title: Faceted Navigation Examples
-titleSuffix: Azure AI Search
 description: Examples that demonstrate query syntax for facet hierarchies, distinct counts, facet aggregations, and facet filters.
 ms.service: azure-ai-search
 ms.topic: how-to

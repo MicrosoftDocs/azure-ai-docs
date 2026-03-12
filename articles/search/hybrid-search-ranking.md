@@ -1,6 +1,5 @@
 ---
 title: Hybrid Search Scoring (RRF)
-titleSuffix: Azure AI Search
 description: Learn about the Reciprocal Rank Fusion (RRF) algorithm used to unify search scores from parallel queries in Azure AI Search.
 ms.reviewer: jlembicz
 ms.service: azure-ai-search

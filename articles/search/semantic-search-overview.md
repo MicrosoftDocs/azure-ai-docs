@@ -1,6 +1,5 @@
 ---
 title: Semantic Ranking
-titleSuffix: Azure AI Search
 description: Learn how Azure AI Search uses deep learning semantic ranking models from Bing to make search results more intuitive.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

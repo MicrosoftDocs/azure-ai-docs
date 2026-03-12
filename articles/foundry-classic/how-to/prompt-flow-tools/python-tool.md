@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
   - hub-only
-ms.topic: article
+ms.topic: concept-article
 ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
