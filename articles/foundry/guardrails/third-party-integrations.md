@@ -25,6 +25,33 @@ Before you set up the integration, ensure you have:
 
 ### Enablement and data processing 
 Third-party integrations  are enabled via a Bring Your Own License (BYOL) approach, allowing you to utilize existing third-party software licenses from supported partners. Your data will be processed outside of Azure AI Foundry using the service you selected. The terms and privacy commitments for your other service will apply to this processing. 
+# [Combined](#tab/combined)
+
+1. Follow the partner specific onboarding steps and retrieve your API key linked to your custom security profile. 
+    
+    | Model   | onboarding step |
+    |--------------------|----------------------|
+    | Zenity  | [AIDR](https://zenity.io/platform/ai-security-platform/aidr).     |
+    | Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) |
+1. Go to AI Foundry and select **Guardrails**. 
+1. Select the Integrations tab, add a third-party integration and select Zenity. 
+1. Select a Keyvault and Managed Identity. Learn more. 
+1. Add the endpoint(s) and API key(s). To get the endpoint-API key pair, follow the partner specific onboarding flow:(https://zenity.io/platform/ai-security-platform/aidr).
+    | Model   | onboarding step |
+    |--------------------|----------------------|
+    | Zenity  | [AIDR](https://zenity.io/platform/ai-security-platform/aidr).     |
+    | Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) |    
+
+
+### Steps to connect Zenity integration
+
+1. Follow the Zenity onboarding steps [here](https://zenity.io/platform/ai-security-platform/aidr). Retrieve your API key linked to your custom security profile. 
+1. Go to AI Foundry and select **Guardrails**. 
+1. Select the Integrations tab, add a third-party integration and select Zenity. 
+1. Select a Keyvault and Managed Identity. Learn more. 
+1. Add the Zenity endpoint(s) and API key(s). To get the endpoint-API key pair, [follow the Zenity onboarding flow](https://zenity.io/platform/ai-security-platform/aidr). 
+
+Once registered, you’ll only have to come back to this step in case you’re planning on rotating your API key or changing components such as Managed Identity or Key Vault.
 
 # [Zenity](#tab/zenity)
 
