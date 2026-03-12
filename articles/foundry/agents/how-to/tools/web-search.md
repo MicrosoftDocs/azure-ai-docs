@@ -390,7 +390,7 @@ curl --request POST \
     "tool_choice": "required",
     "tools": [
       {
-        "type": "web_search_preview"
+        "type": "web_search"
       }
     ]
   }'
@@ -428,6 +428,40 @@ The following example shows the expected output when using the web search tool v
   ]
 }
 ```
+### Domain restricted web search
+
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
+
+The following example shows how to create a response by using an agent that has the web search tool enabled.
+
+```bash
+curl --request POST \
+  --url "$FOUNDRY_PROJECT_ENDPOINT/openai/v1/responses" \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data '{
+    "model": "'$FOUNDRY_MODEL_DEPLOYMENT_NAME'",
+    "input": "Tell me about the latest news about AI",
+    "tool_choice": "required",
+    "tools": [
+      {
+        "type": "web_search",
+        "web_search"：{
+            "search_configurations": [
+              {
+                "project_connection_id": "'$BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID'",
+                "instance_name": "'$BING_CUSTOM_SEARCH_INSTANCE_NAME'",
+              }
+        ]
+        }
+      }
+    ]
+  }'
+```
 :::zone-end
 
 :::zone pivot="typescript"
@@ -436,25 +470,42 @@ The following example shows the expected output when using the web search tool v
 The following TypeScript example demonstrates how to create an agent with the web search tool. For an example that uses JavaScript, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentWebSearch.js) example in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+/**
+ * This sample demonstrates how to run Prompt Agent operations using the Web Search Tool.
+ *
+ * @summary This sample demonstrates how to create an agent with web search capabilities,
+ * send a query to search the web, and clean up resources.
+ *
+ * @warning Web Search tool uses Grounding with Bing, which has additional costs and terms: [terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and [privacy statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). Customer data will flow outside the Azure compliance boundary. Learn more [here](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/web-search?view=foundry&pivots=rest-api)
+ *
+ * @azsdk-weight 100
+ */
+
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
+import "dotenv/config";
 
-// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
-const PROJECT_ENDPOINT = "your_project_endpoint";
+const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
+const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
 
 export async function main(): Promise<void> {
-  // Create clients to call Foundry API
-  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-  const openai = project.getOpenAIClient();
+  // Create AI Project client
+  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+  const openAIClient = project.getOpenAIClient();
 
-  // Create agent with web search tool
+  console.log("Creating agent with web search tool...");
+
+  // Create Agent with web search tool
   const agent = await project.agents.createVersion("agent-web-search", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: deploymentName,
     instructions: "You are a helpful assistant that can search the web",
     tools: [
       {
-        type: "web_search_preview",
+        type: "web_search",
         user_location: {
           type: "approximate",
           country: "GB",
@@ -467,10 +518,12 @@ export async function main(): Promise<void> {
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   // Create a conversation for the agent interaction
-  const conversation = await openai.conversations.create();
+  const conversation = await openAIClient.conversations.create();
+  console.log(`Created conversation (id: ${conversation.id})`);
 
   // Send a query to search the web
-  const response = await openai.responses.create(
+  console.log("\nSending web search query...");
+  const response = await openAIClient.responses.create(
     {
       conversation: conversation.id,
       input: "Show me the latest London Underground service updates",
@@ -482,10 +535,14 @@ export async function main(): Promise<void> {
   console.log(`Response: ${response.output_text}`);
 
   // Clean up resources
-  await openai.conversations.delete(conversation.id);
+  console.log("\nCleaning up resources...");
+  await openAIClient.conversations.delete(conversation.id);
+  console.log("Conversation deleted");
 
   await project.agents.deleteVersion(agent.name, agent.version);
   console.log("Agent deleted");
+
+  console.log("\nWeb search sample completed!");
 }
 
 main().catch((err) => {
@@ -527,7 +584,7 @@ import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.ai.agents.models.WebSearchPreviewTool;
+import com.azure.ai.agents.models.WebSearchTool;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -547,7 +604,7 @@ public class WebSearchExample {
         ResponsesClient responsesClient = builder.buildResponsesClient();
 
         // Create web search tool with user location
-        WebSearchPreviewTool webSearchTool = new WebSearchPreviewTool();
+        WebSearchPreviewTool webSearchTool = new WebSearchTool();
 
         // Create agent with web search tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
