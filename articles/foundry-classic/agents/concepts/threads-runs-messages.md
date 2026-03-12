@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Threads, runs, and messages in Foundry Agent Service (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../../includes/agents-classic.md)]
 
 Foundry Agent Service supports persistent threads, runs, and messages. These components are essential for managing conversation states and interactions with users.
 

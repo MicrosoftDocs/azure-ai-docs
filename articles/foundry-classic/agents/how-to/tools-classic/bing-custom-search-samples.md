@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 12/22/2025
+ms.date: 03/06/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -18,9 +18,10 @@ zone_pivot_groups: selection-bing-custom-grounding
 # How to use Grounding with Bing Custom Search (preview) (classic)
 
 > [!NOTE]
-> This article refers to the classic version of the agents API. 
+> This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new Grounding with Bing Search documentation](../../../../foundry/agents/how-to/tools/bing-tools.md).
+> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 This article provides step-by-step instructions and code samples for using the Grounding with Bing Custom Search tool in the Foundry Agent Service.
 

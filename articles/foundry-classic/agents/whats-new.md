@@ -13,7 +13,7 @@ ms.custom: azure-ai-agents
 
 # What's new in Foundry Agent Service (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../includes/agents-classic.md)]
 
 This article provides a summary of the latest releases and major documentation updates for Foundry Agent Service.
 

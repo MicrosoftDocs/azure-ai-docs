@@ -1,9 +1,6 @@
 ---
-title: Extract text from images by using AI enrichment
-titleSuffix: Azure AI Search
+title: Extract Text from Images by Using AI Enrichment
 description: Use Optical Character Recognition (OCR) and image analysis to extract text, layout, captions, and tags from image files in Azure AI Search pipelines.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 02/27/2026

@@ -1,10 +1,6 @@
 ---
-title: Create a full text query 
-titleSuffix: Azure AI Search
-description: Learn how to construct a query request for full text search in Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+title: Create a Full-Text Query
+description: Learn how to construct a full text query request in Azure AI Search. Set parameters on the request. Use Lucene syntax for specialized queries.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -15,7 +11,7 @@ ai-usage: ai-assisted
 ms.update-cycle: 180-days
 ---
 
-# Create a full text query in Azure AI Search
+# Create a full-text query in Azure AI Search
 
 If you're building a query for [full text search](search-lucene-query-architecture.md), this article provides steps for setting up the request. It also introduces a query structure, and explains how field attributes and linguistic analyzers can affect query outcomes.
 

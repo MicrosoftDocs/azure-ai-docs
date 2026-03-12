@@ -13,7 +13,6 @@ ms.reviewer: alehughes
 reviewer: ahughes-msft
 ms.author: lagayhar  
 author: lgayhardt
-ms.update-cycle: 180-days
 ---
 
 # Monitor quality and token usage of deployed prompt flow applications (classic)

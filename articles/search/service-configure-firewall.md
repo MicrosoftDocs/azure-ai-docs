@@ -1,10 +1,6 @@
 ---
-title: Configure network access
-titleSuffix: Azure AI Search
+title: Configure Network Access
 description: Configure IP control policies to restrict network access to your Azure AI Search service to specific IP addresses.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/29/2026

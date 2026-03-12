@@ -4,7 +4,7 @@ description: "Publish a Microsoft Foundry agent to Microsoft 365 Copilot and Mic
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 02/13/2026
+ms.date: 03/09/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -26,9 +26,6 @@ Use this article to publish an agent to Microsoft 365 Copilot and Teams so peopl
   - **Azure AI User** role on the Agent Application scope to invoke or chat with published agents
   - For details, see [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md).
 - An Azure subscription where you can create Azure Bot Service resources and Microsoft Entra ID app registrations
-
-## Before you begin
-
 - **Test your agent thoroughly** in the Foundry portal before publishing. Confirm it responds correctly and any tools work as expected.
 - **Publish your agent as an agent application**: A published agent application uses its own agent identity separate from your project identity. If your agent uses tools that access Azure resources, plan to reassign any required permissions after publishing. For details, see [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md) and [Publish and share agents in Microsoft Foundry](publish-agent.md).
 - Verify that required Azure resource providers are registered in your subscription. The publishing process creates an Azure Bot Service resource, which requires the `Microsoft.BotService` provider.
@@ -39,7 +36,7 @@ Use this article to publish an agent to Microsoft 365 Copilot and Teams so peopl
    az provider register --namespace Microsoft.BotService
    ```
 
-## Prerequisite: Publish your agent as an agent application in the Foundry UI
+## Publish your agent as an agent application in the Foundry UI
 
 For more information on publishing an agent as an application, see [Publish and share agents](./publish-agent.md).
 
@@ -165,13 +162,8 @@ To confirm your agent is published correctly:
 | Limitation | Description |
 | --- | --- |
 | File uploads and image generation in Microsoft 365 | File uploads and image generation don't work for agents published to Microsoft 365. These features work correctly in Microsoft Teams. |
-| Microsoft Admin Center approval | There's currently a bug where published agents with Organization (tenant) scope don't appear in the Microsoft Admin Center (MAC) for approval. Workaround: download the `.zip` package, then in Microsoft Teams go to **Apps** > **Manage your apps** > **Upload an app**, and select **Submit an app to your org**. |
-| MCP tools requiring approval | Model Context Protocol tools must have `required_approval` set to `false`. |
 | Private Link | Private Link isn't supported for Teams or Azure Bot Service integrations. |
 | Streaming and citations | Published agents don't support streaming responses or citations. |
-| OAuth authentication for tools | Published agents don't support OAuth authentication for tools. |
-| SharePoint and Microsoft Fabric tools | Published agents don't support the SharePoint tool or the Microsoft Fabric tool. |
-| Project managed identity needs Azure AI User role on itself | When you publish to Microsoft 365, the project managed identity must have the **Azure AI User** role on itself. Without it, you get an authorization error when chatting with the agent in Teams/M365. In the Azure portal, go to your Foundry project resource and select **Access control (IAM)** > **Add role assignment**. Assign the **Azure AI User** role to the project managed identity, scoped to the project itself. |
 
 ## Troubleshooting
 

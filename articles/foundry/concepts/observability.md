@@ -35,13 +35,13 @@ Evaluators measure the quality, safety, and reliability of AI responses througho
 
 For a complete list of built-in evaluators, see [Built-in evaluators reference](built-in-evaluators.md).
 
-### Monitoring
+### Monitoring (preview)
 
 Production monitoring ensures your deployed AI applications maintain quality and performance in real-world conditions. Integrated with Azure Monitor Application Insights, Microsoft Foundry delivers real-time dashboards tracking operational metrics, token consumption, latency, error rates, and quality scores. Teams can set up alerts when outputs fail quality thresholds or produce harmful content, enabling rapid issue resolution.
 
 For details on setting up production monitoring, see [Monitor agents dashboard](../observability/how-to/how-to-monitor-agents-dashboard.md).
 
-### Tracing
+### Tracing (preview)
 
 Distributed tracing captures the execution flow of AI applications, providing visibility into LLM calls, tool invocations, agent decisions, and inter-service dependencies. Built on OpenTelemetry standards and integrated with Application Insights, tracing enables debugging complex agent behaviors, identifying performance bottlenecks, and understanding multi-step reasoning chains. Microsoft Foundry supports tracing for popular frameworks including LangChain, Semantic Kernel, and the OpenAI Agents SDK.
 

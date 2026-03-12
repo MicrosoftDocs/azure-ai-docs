@@ -1030,9 +1030,6 @@ items:
             href: ./v1/how-to-troubleshoot-prebuilt-docker-image-inference.md
       - name: Monitor web services
         items:
-          - name: Collect & evaluate model data
-            href: ./v1/how-to-enable-data-collection.md
-            displayName: track production
           - name: Monitor with Application Insights
             href: ./v1/how-to-enable-app-insights.md
       - name: Deploy designer models

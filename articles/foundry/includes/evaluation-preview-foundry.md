@@ -10,4 +10,4 @@ ms.custom: include file
 ---
 
 > [!NOTE]
-> The Microsoft Foundry SDK for evaluation and Foundry portal are in public preview, but the APIs are generally available for model and dataset evaluation (agent evaluation remains in public preview). Evaluators marked (preview) in this article are currently in public preview everywhere.
+> The Microsoft Foundry portal is in public preview. The Foundry API and SDK are generally available.

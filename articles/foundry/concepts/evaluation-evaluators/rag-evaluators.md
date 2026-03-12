@@ -15,7 +15,6 @@ ms.custom:
 ---
 
 # Retrieval-Augmented Generation (RAG) evaluators
-[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 A Retrieval-Augmented Generation (RAG) system tries to generate the most relevant answer consistent with grounding documents in response to a user's query. A user's query triggers a search retrieval in the corpus of grounding documents to provide grounding context for the AI model to generate a response.
 
@@ -26,7 +25,7 @@ A Retrieval-Augmented Generation (RAG) system tries to generate the most relevan
 | Groundedness | System evaluation | You want a well-rounded groundedness definition that works with agent inputs, and bring your own GPT models as the LLM-judge | Measures how well the generated response aligns with the given context without fabricating content (precision aspect) | Binary: Pass/Fail based on threshold (1-5 scale) |
 | Groundedness Pro (preview) | System evaluation | You want a strict groundedness definition powered by Azure AI Content Safety and use our service model | Detects if the response is strictly consistent with the context using the Azure AI Content Safety service | Binary: True/False |
 | Relevance | System evaluation | You want to assess how well the RAG response addresses the query but don't have ground truths | Measures the accuracy, completeness, and direct relevance of the response to the query | Binary: Pass/Fail based on threshold (1-5 scale) |
-| Response Completeness | System evaluation | You want to ensure the RAG response doesn't miss critical information (recall aspect) from your ground truth | Measures how completely the response covers the expected information compared to ground truth | Binary: Pass/Fail based on threshold (1-5 scale) |
+| Response Completeness (preview) | System evaluation | You want to ensure the RAG response doesn't miss critical information (recall aspect) from your ground truth | Measures how completely the response covers the expected information compared to ground truth | Binary: Pass/Fail based on threshold (1-5 scale) |
 
 Think about *groundedness* and *response completeness* as:
 
@@ -40,7 +39,7 @@ System evaluation examines the quality of the final response in your RAG workflo
 - Groundedness - Is the response grounded in the provided context without fabrication?
 - Groundedness Pro - Does the response strictly adhere to the context (Azure AI Content Safety)?
 - Relevance - Does the response accurately address the user's query?
-- Response Completeness - Does the response cover all critical information from ground truth?
+- Response Completeness (preview) - Does the response cover all critical information from ground truth?
 
 Examples:
 
@@ -68,9 +67,9 @@ RAG evaluators assess how well AI systems retrieve and use context to generate g
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
 | Groundedness | (`response`, `context`) OR (`query`, `response`) | `deployment_name` |
-| Groundedness Pro | `query`, `response`, `context` | *(none)* |
+| Groundedness Pro (preview) | `query`, `response`, `context` | *(none)* |
 | Relevance | `query`, `response` | `deployment_name` |
-| Response Completeness | `ground_truth`, `response` | `deployment_name` |
+| Response Completeness (preview) | `ground_truth`, `response` | `deployment_name` |
 | Retrieval | `query`, `context` | `deployment_name` |
 | Document Retrieval | `retrieval_ground_truth`, `retrieved_documents` | *(none)* |
 
@@ -222,5 +221,5 @@ The `document_retrieval` evaluator returns multiple metrics for retrieval qualit
 
 - [More examples for quality evaluators](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
 - [How to run agent evaluation](../../observability/how-to/evaluate-agent.md)
-- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)
