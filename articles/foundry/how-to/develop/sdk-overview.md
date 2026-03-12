@@ -93,7 +93,7 @@ This approach simplifies application configuration. Instead of managing multiple
 | 2.x (GA) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0`  |
 | 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    |
 
-The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 Run this command to install the preview packages for Foundry projects.
 ```bash
@@ -280,7 +280,7 @@ Console.WriteLine(response.GetOutputText());
 
 - [Access Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
 - [Use the Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
-- [Run cloud evaluations](cloud-evaluation.md)
+- [Run batch evaluations](cloud-evaluation.md)
 - [Enable app tracing](../../../foundry-classic/how-to/develop/trace-application.md)
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai&pivots=programming-language-python)
 - Get endpoints and keys for Foundry Tools, local orchestration, and more

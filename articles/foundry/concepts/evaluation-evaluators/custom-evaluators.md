@@ -31,7 +31,7 @@ You can create two types of custom evaluators:
 | **Scoring method** | Continuous: float from 0.0 to 1.0 (higher is better). | Ordinal, continuous, or binary. You define the min/max range for ordinal and continuous scores. Higher is better for numeric scores. |
 | **Output contract** | A single float value between 0.0 and 1.0. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. |
 
-After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [cloud evaluation runs](../../how-to/develop/cloud-evaluation.md).
+After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [batch evaluation runs](../../how-to/develop/cloud-evaluation.md).
 
 ## Code-based evaluators
 
@@ -443,7 +443,7 @@ After you create a custom evaluator, use it in an evaluation run from the portal
 1. Supply the required initialization parameters. For prompt-based evaluators, provide the **model deployment** and **threshold**. For code-based evaluators, provide the **pass threshold**.
 1. Complete the wizard and start the evaluation run.
 
-For detailed steps on running evaluations from the portal, see [Run evaluations from the portal](../../how-to/evaluate-generative-ai-app.md#create-an-evaluation-with-built-in-evaluation-metrics).
+For detailed steps on running evaluations from the portal, see [Run evaluations from the portal](../../how-to/evaluate-generative-ai-app.md#create-an-evaluation).
 
 ## Related content
 
