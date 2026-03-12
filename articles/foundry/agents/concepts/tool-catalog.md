@@ -40,7 +40,7 @@ Built-in tools are preconfigured capabilities provided by Foundry Agent Service.
 
 The most commonly used built-in tools include:
 
-- **[Web search (preview)](../how-to/tools/web-search.md)** — Add web search to your agent. The agent retrieves real-time information from the public web and returns answers with inline citations. This is the recommended way to add web grounding. For advanced scenarios such as market-specific filtering, see [Grounding with Bing tools](../how-to/tools/bing-tools.md) and the [web grounding overview](../how-to/tools/web-overview.md).
+- **[Web search](../how-to/tools/web-search.md)** — Add web search to your agent. The agent retrieves real-time information from the public web and returns answers with inline citations. This is the recommended way to add web grounding. For advanced scenarios such as market-specific filtering, see [Grounding with Bing tools](../how-to/tools/bing-tools.md) and the [web grounding overview](../how-to/tools/web-overview.md).
 - **[Code Interpreter](../how-to/tools/code-interpreter.md)** — Let agents write and run Python code in a sandboxed environment for data analysis, math, and chart generation.
 - **[File Search](../how-to/tools/file-search.md)** — Augment agents with knowledge from uploaded files or proprietary documents using vector search.
 - **[Function calling](../how-to/tools/function-calling.md)** — Define custom functions that the agent can call. Your application executes the function and returns the result.
@@ -164,7 +164,7 @@ The following table lists all built-in tools available in Foundry Agent Service.
 
 | Tool | Description |
 | --------- | --------- |
-| [Web search (preview)](../how-to/tools/web-search.md) | Retrieve real-time information from the public web and return answers with inline citations. |
+| [Web search](../how-to/tools/web-search.md) | Retrieve real-time information from the public web and return answers with inline citations. |
 | [Code Interpreter](../how-to/tools/code-interpreter.md) | Write and run Python code in a sandboxed environment. |
 | [Custom Code Interpreter (preview)](../how-to/tools/custom-code-interpreter.md) | Customize the code interpreter's resources, Python packages, and Container Apps environment. |
 | [File Search](../how-to/tools/file-search.md) | Augment agents with knowledge from uploaded files or proprietary documents. |
