@@ -37,7 +37,6 @@ Before you begin, you need:
 :::zone pivot="azd"
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later
 * [Docker Desktop](https://docs.docker.com/get-docker/) installed and running
-* A [Microsoft Foundry project](../../tutorials/quickstart-create-foundry-resources.md) with a [model](../concepts/limits-quotas-regions.md) deployed.
 :::zone-end
 
 :::zone pivot="vscode"
