@@ -52,11 +52,13 @@ The following table shows supported regions. We recommend that your Foundry proj
 
 # [Zenity](#tab/zenity)
 
+## Register and connect integration
+
 Zenity delivers purpose-built capabilities to monitor agent intent and execution paths at runtime. By observing how agents reason, act, and chain decisions in real environments, Zenity enables security teams to detect and stop risky behavior before it impacts systems or data. 
 
-### Register and connect Zenity integration
+### Steps to connect Zenity integration
 
-1. Follow the Zenity onboarding steps [here](https://zenity.io/platform/ai-security-platform/aidr). retrieve your API key linked to your custom security profile. 
+1. Follow the Zenity onboarding steps [here](https://zenity.io/platform/ai-security-platform/aidr). Retrieve your API key linked to your custom security profile. 
 1. Go to AI Foundry and select **Guardrails**. 
 1. Select the Integrations tab, add a third-party integration and select Zenity. 
 1. Select a Keyvault and Managed Identity. Learn more. 
@@ -65,6 +67,8 @@ Zenity delivers purpose-built capabilities to monitor agent intent and execution
 Once registered, you’ll only have to come back to this step in case you’re planning on rotating your API key or changing components such as Managed Identity or Key Vault.
 
 # [Palo Alto Networks Prisma AIRS](#tab/palo-alto)
+
+## Register and connect integration
 
 Palo Alto Networks Prisma AIRS delivers runtime security for AI applications, models, and agents. Prisma AIRS scans for threats, blocks unsafe behavior, and provides actionable alerts.
 
