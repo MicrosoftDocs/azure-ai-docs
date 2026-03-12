@@ -26,7 +26,7 @@ Before you standardize on GA features for production, make sure you:
 - Define your organization policy for using only GA capabilities in production.
 - Review migration guidance for existing Azure OpenAI and Foundry Classic workloads.
 - Confirm required role assignments for your teams and service identities. For role details, see [Role-based access control for Microsoft Foundry](rbac-foundry.md).
-- Define how your organization restricts preview feature access in production environments. For guidance, see [Disable preview features by using role-based access control](disable-preview-features-with-rbac.md).
+- Define how your organization restricts preview feature access in production environments. For guidance, see [Disable preview features in Microsoft Foundry](../how-to/disable-preview-features.md).
 
 ## Key terms used in this article
 
