@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article 
-ms.date: 02/11/2026
+ms.date: 03/11/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
