@@ -131,7 +131,7 @@ The following table shows supported regions. We recommend that your Foundry proj
 1. Select **Save** and confirm integration and guardrail attachment in the integrations table.
 1. Confirm the status:Running indicates a successful connection.
 1. Error messages provide concrete recommendations (for example, missing Managed Identity).
-1. Follow the main Foundry Guardrail flow to [assign a custom guardrail](/guardrails/guardrails-overview.md) with an active third-party integration to a model or agent.
+1. Follow the main Foundry Guardrail flow to [assign a custom guardrail](guardrails-overview.md) with an active third-party integration to a model or agent.
 1. Test in Playground.
 
 
