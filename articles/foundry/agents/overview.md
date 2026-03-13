@@ -117,7 +117,7 @@ Agent Service supports the full build-test-deploy-monitor workflow:
 1. **Trace** — Inspect every model call, tool invocation, and decision with [agent tracing](../observability/concepts/trace-agent-concept.md).
 1. **Evaluate** — Run evaluations to measure quality and catch regressions.
 1. **Publish** — [Promote your agent](how-to/publish-agent.md) to a managed resource with a stable endpoint.
-1. **Monitor** — Track performance and reliability with [service metrics](how-to/metrics.md) and dashboards.
+1. **Monitor** — Track performance and reliability with [service metrics](../observability/how-to/how-to-monitor-agents-dashboard.md) and dashboards.
 
 For a detailed walkthrough, see [Agent development lifecycle](concepts/development-lifecycle.md).
 

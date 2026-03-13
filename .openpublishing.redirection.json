@@ -676,7 +676,7 @@
       "redirect_document_id": false
     },
     {
-      "source_path": "articles/foundry/how-to/metrics.md",
+      "source_path": "articles/foundry/agents/how-to/metrics.md",
       "redirect_url": "/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard",
       "redirect_document_id": false
     },
