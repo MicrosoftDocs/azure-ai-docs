@@ -12,7 +12,6 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 ---
 
 # Azure OpenAI GPT-4 Turbo with Vision tool in Microsoft Foundry portal (classic)

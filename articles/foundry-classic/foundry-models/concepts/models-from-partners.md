@@ -24,7 +24,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Foundry Models from partners and community (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/concepts/models-from-partners.md)
 
 This article lists capabilities for a selection of Microsoft Foundry Models from partners and community.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 

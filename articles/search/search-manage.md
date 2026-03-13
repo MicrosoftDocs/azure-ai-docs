@@ -1,10 +1,8 @@
 ---
-title: Service Configuration in the Azure portal
-titleSuffix: Azure AI Search
+title: Service Configuration in the Azure Portal
 description: Manage your new Azure AI Search service in the Azure portal. This article provides a day-one checklist for configuring RBAC, managed identities, network security, and more.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/08/2025

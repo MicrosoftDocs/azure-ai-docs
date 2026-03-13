@@ -3,7 +3,7 @@ title: "Hosted agents in Foundry Agent Service (preview)"
 description: "Deploy and manage containerized agents on Foundry Agent Service (preview) with managed hosting, scaling, and observability."
 author: aahill
 ms.author: aahi
-ms.date: 02/19/2026
+ms.date: 03/05/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 When you build agentic applications by using open-source frameworks, you typically manage containerization, web server setup, security integration, memory persistence, infrastructure scaling, data transmission, instrumentation, and version rollbacks. These tasks become even more challenging in heterogeneous cloud environments.
 
 > [!IMPORTANT]
-> Hosted agents are currently in **public preview**. See [Limits, pricing, and availability (preview)](#limits-pricing-and-availability-preview) for current constraints.
+> If you use Foundry Agent Service to host agents that interact with third-party models, servers, or agents, you do so at your own risk. We recommend reviewing all data being shared with third-party models, servers, or agents and understanding third-party practices for retention and location of data. It is your responsibility to manage whether your data will flow outside of your organization’s Azure compliance and geographic boundaries and any related implications.  
 
 Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foundry users. By using this managed platform, you can deploy and operate AI agents securely and at scale. You can use your custom agent code or a preferred agent framework with streamlined deployment and management.
 
@@ -156,22 +156,24 @@ Agent Service handles:
 
 Only the following CPU and memory pairs are currently supported for hosted agents. These values define the replica size; an agent can run multiple replicas.
 
-| CPU (cores) | Memory (GiB) |
-|-------------|--------------|
-| 0.25        | 0.5          |
-| 0.5         | 1            |
-| 0.75        | 1.5          |
-| 1           | 2            |
-| 1.25        | 2.5          |
-| 1.5         | 3            |
-| 1.75        | 3.5          |
-| 2           | 4            |
-| 2.25        | 4.5          |
-| 2.5         | 5            |
-| 2.75        | 5.5          |
-| 3           | 6            |
-| 3.25        | 6.5          |
-| 3.5         | 7            |
+| vCPUs (cores) | Memory (GiB) |
+|---------------|--------------|
+| 0.25          | 0.5          |
+| 0.5           | 1.0          |
+| 0.75          | 1.5          |
+| 1.0           | 2.0          |
+| 1.25          | 2.5          |
+| 1.5           | 3.0          |
+| 1.75          | 3.5          |
+| 2.0           | 4.0          |
+| 2.25          | 4.5          |
+| 2.5           | 5.0          |
+| 2.75          | 5.5          |
+| 3.0           | 6.0          |
+| 3.25          | 6.5          |
+| 3.5           | 7.0          |
+| 3.75          | 7.5          |
+| 4.0           | 8.0          |
 
 ## Package code and test locally
 
@@ -371,7 +373,7 @@ Before creating a hosted agent, complete these steps **in order**:
 
 1. **Ensure your access**: Ensure that you have access to assign roles in Azure Container Registry. You need at least User Access Administrator or Owner permissions on the container registry.
 2. **Install the Azure AI Projects SDK**:  run the following command:
-    `pip install --pre "azure-ai-projects>=2.0.0b4"`
+    `pip install "azure-ai-projects>=2.0.0"`
 3. **Create an Azure Container Registry**: [Create a private container registry](/azure/container-registry/container-registry-get-started-portal) 
 4. **Build your Docker image with the correct platform**: [Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry)
 5. **Push your image to YOUR registry**: [Build and push your docker image.](#build-and-push-your-docker-image-to-azure-container-registry) Replace the sample URLs (`YOUR_ACR_NAME, YOUR_IMAGE_NAME`, `YOUR_TAG`) with your actual values for your docker image and Azure Container Registry.
@@ -462,10 +464,10 @@ az rest --method put `
 
 ### Create the hosted agent version
 
-Install version>=2.0.0b4 of the Azure AI Projects SDK. Python 3.10 or later is required.
+Install version 2.0.0 or later of the Azure AI Projects SDK. Python 3.10 or later is required.
 
 ```bash
-pip install --pre "azure-ai-projects>=2.0.0b4"
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 Use the Azure AI Projects SDK to create and register your agent:
@@ -478,7 +480,8 @@ from azure.identity import DefaultAzureCredential
 # Initialize the client
 client = AIProjectClient(
     endpoint="https://your-project.services.ai.azure.com/api/projects/project-name",
-    credential=DefaultAzureCredential()
+    credential=DefaultAzureCredential(),
+    allow_preview=True,
 )
 
 # Create the agent from a container image
@@ -819,7 +822,11 @@ PROJECT_ENDPOINT = "https://your-project.services.ai.azure.com/api/projects/your
 AGENT_NAME = "your-agent-name"
 
 # Initialize the client and retrieve the agent
-client = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
+client = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+    allow_preview=True,
+)
 agent = client.agents.get(agent_name=AGENT_NAME)
 print(f"Agent retrieved: {agent.name} (version: {agent.versions.latest.version})")
 
@@ -871,7 +878,8 @@ from azure.identity import DefaultAzureCredential
 # Initialize the client
 client = AIProjectClient(
     endpoint="https://your-project.services.ai.azure.com/api/projects/project-name",
-    credential=DefaultAzureCredential()
+    credential=DefaultAzureCredential(),
+    allow_preview=True,
 )
 
 # Create the agent from a container image
@@ -914,7 +922,7 @@ Hosted agents support exposing OpenTelemetry traces, metrics, and logs from unde
 
 If you use the `azd ai agent` CLI extension, Application Insights is automatically provisioned and connected to your Foundry project for you. Your project's managed identity is granted the Azure AI User role on the Foundry resource so that traces are exported to Application Insights.
 
-If you use the Foundry SDK, you need to perform these steps independently. For more information, see [Enable tracing in your project](../../../foundry-classic/how-to/develop/trace-application.md#enable-tracing-in-your-project).
+If you use the Foundry SDK, you need to perform these steps independently. For more information, see [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md).
 
 The hosting adapter provides:
 
@@ -1019,7 +1027,7 @@ Microsoft Foundry provides comprehensive evaluation and testing capabilities tha
 
 **Use iterative evaluation**: Regularly evaluate agent versions during development to catch problems early and measure improvements.
 
-For more information about evaluating agents, see [Evaluate your AI agents](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md) and [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
+For more information about evaluating agents, see [Evaluate your AI agents](../../observability/concepts/trace-agent-concept.md) and [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
 
 ## Publish hosted agents to channels
 

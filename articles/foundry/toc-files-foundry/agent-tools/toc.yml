@@ -3,7 +3,7 @@ items:
 # Tool Catalog and Management
 - name: Overview of agent tools
   items:
-  - name: Tool catalog (preview)
+  - name: Tool catalog
     href: ../../agents/concepts/tool-catalog.md
   - name: Create a private tool catalog (preview)
     href: ../../agents/how-to/private-tool-catalog.md

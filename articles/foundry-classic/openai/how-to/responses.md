@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Use the Azure OpenAI Responses API (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/responses.md)
 
 Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../how-to/computer-use.md).
 
@@ -1415,6 +1415,8 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5.4-pro` (Version:`2026-03-05`)
+- `gpt-5.4` (Version:`2026-03-05`)
 - `gpt-5.3-chat` (Version: `2026-03-03`)
 - `gpt-5.3-codex` (Version: `2026-02-24`)
 - `gpt-5.2-codex` (Version: `2026-01-14`)

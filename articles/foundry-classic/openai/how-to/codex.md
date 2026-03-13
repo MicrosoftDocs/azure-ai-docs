@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Codex with Azure OpenAI in Microsoft Foundry Models (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/codex.md)
 
 OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent that powers ChatGPT’s Codex. You can run this coding agent entirely on Azure infrastructure, while keeping your data inside your compliance boundary with the added advantages of enterprise-grade security, private networking, role-based access control, and predictable cost management. Codex is more than a chat with your code agent – it's an asynchronous coding agent that can be triggered from your terminal, VS Code, or from a GitHub Actions runner. Codex allows you to automatically open pull requests, refactor files, and write tests with the credentials of your Foundry project and Azure OpenAI deployments.
 

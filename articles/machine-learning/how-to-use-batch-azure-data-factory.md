@@ -8,7 +8,7 @@ ms.subservice: inferencing
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 08/14/2024
+ms.date: 03/10/2026
 ms.reviewer: jturuk
 ms.custom: devplatv2
 #customer intent: As a data scientist, I want to use Azure Data Factory to handle complex hybrid extract-transform-load, extract-load-transform, and data integration projects.
@@ -20,12 +20,12 @@ ms.custom: devplatv2
 
 Big data requires a service that can orchestrate and operationalize processes to refine these enormous stores of raw data into actionable business insights. The [Azure Data Factory](/azure/data-factory/introduction) managed cloud service handles these complex hybrid extract-transform-load (ETL), extract-load-transform (ELT), and data integration projects.
 
-Azure Data Factory allows you to create pipelines that can orchestrate multiple data transformations and manage them as a single unit. Batch endpoints are an excellent candidate to become a step in such processing workflow.
+Azure Data Factory allows you to create pipelines that orchestrate multiple data transformations and manage them as a single unit. Batch endpoints are an excellent candidate to become a step in such a processing workflow.
 
 In this article, learn how to use batch endpoints in Azure Data Factory activities by relying on the Web Invoke activity and the REST API.
 
 > [!TIP]
-> When you use data pipelines in Fabric, you can invoke batch endpoint directly using the Azure Machine Learning activity. We recommend using Fabric for data orchestration whenever possible to take advantage of the newest capabilities.
+> When you use data pipelines in Fabric, you can invoke batch endpoint directly by using the Azure Machine Learning activity. Use Fabric for data orchestration whenever possible to take advantage of the newest capabilities.
 > The Azure Machine Learning activity in Azure Data Factory can only work with assets from Azure Machine Learning V1. For more information, see [Run Azure Machine Learning models from Fabric, using batch endpoints (preview)](how-to-use-batch-fabric.md).
 
 ## Prerequisites
@@ -38,41 +38,41 @@ In this article, learn how to use batch endpoints in Azure Data Factory activiti
 
 ## Authenticate against batch endpoints
 
-Azure Data Factory can invoke the REST APIs of batch endpoints by using the *Web Invoke* activity. Batch endpoints support Microsoft Entra ID for authorization and the request made to the APIs require a proper authentication handling. For more information, see [Web activity in Azure Data Factory and Azure Synapse Analytics](/azure/data-factory/control-flow-web-activity).
+Azure Data Factory can invoke the REST APIs of batch endpoints by using the *Web Invoke* activity. Batch endpoints support Microsoft Entra ID for authorization, and the request made to the APIs requires proper authentication handling. For more information, see [Web activity in Azure Data Factory and Azure Synapse Analytics](/azure/data-factory/control-flow-web-activity).
 
-You can use a service principal or a [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to authenticate against batch endpoints. We recommend using a managed identity because it simplifies the use of secrets.
+You can use a service principal or a [managed identity](/entra/identity/managed-identities-azure-resources/overview) to authenticate against batch endpoints. Use a managed identity because it simplifies the use of secrets.
 
 # [Use a managed identity](#tab/mi)
 
-You can use Azure Data Factory managed identity to communicate with batch endpoints. In this case, you only need to make sure that your Azure Data Factory resource was deployed with a managed identity.
+You can use Azure Data Factory managed identity to communicate with batch endpoints. In this case, you only need to make sure that you deployed your Azure Data Factory resource with a managed identity.
 
-1. If you don't have an Azure Data Factory resource or it was already deployed without a managed identity, follow this procedure to create it: [System-assigned managed identity](/azure/data-factory/data-factory-service-identity#system-assigned-managed-identity).
+1. If you don't have an Azure Data Factory resource or you already deployed it without a managed identity, follow this procedure to create it: [System-assigned managed identity](/azure/data-factory/data-factory-service-identity#system-assigned-managed-identity).
 
    > [!CAUTION]
-   > It isn't possible to change the resource identity in Azure Data Factory after deployment. If you need to change the identity of a resource after you create it, you need to recreate the resource.
+   > You can't change the resource identity in Azure Data Factory after deployment. If you need to change the identity of a resource, you must recreate the resource.
 
 1. After deployment, grant access for the managed identity of the resource you created to your Azure Machine Learning workspace. See [Grant access](/azure/role-based-access-control/quickstart-assign-role-user-portal#grant-access). In this example, the service principal requires:
 
    - Permission in the workspace to read batch deployments and perform actions over them.
-   - Permissions to read/write in data stores.
+   - Permissions to read and write in data stores.
    - Permissions to read in any cloud location (storage account) indicated as a data input.
 
 # [Use a service principal](#tab/sp)
 
-1. Create a service principal following the procedure at [Register a Microsoft Entra app and create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal#register-an-application-with-azure-ad-and-create-a-service-principal).
-1. Create a secret to use for authentication as explained at [Option 3: Create a new client secret](/azure/active-directory/develop/howto-create-service-principal-portal#option-3-create-a-new-client-secret).
+1. Create a service principal following the procedure at [Register a Microsoft Entra app and create a service principal](/entra/identity-platform/howto-create-service-principal-portal#register-an-application-with-microsoft-entra-id-and-create-a-service-principal).
+1. Create a secret to use for authentication as explained at [Option 3: Create a new client secret](/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret).
 1. Take note of the client secret **Value** that is generated. This value is only displayed once.
 1. Take note of the `client ID` and the `tenant id` in the **Overview** pane of the application.
 1. Grant access for the service principal you created to your workspace as explained at [Grant access](/azure/role-based-access-control/quickstart-assign-role-user-portal#grant-access). In this example, the service principal requires:
 
    - Permission in the workspace to read batch deployments and perform actions over them.
-   - Permissions to read/write in data stores.
+   - Permissions to read and write in data stores.
 
 ---
 
 ## About the pipeline
 
-In this example, you create a pipeline in Azure Data Factory that can invoke a given batch endpoint over some data. The pipeline communicates with Azure Machine Learning batch endpoints using REST. For more information about how to use the REST API of batch endpoints, see [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md?tabs=rest).
+In this example, you create a pipeline in Azure Data Factory that can invoke a given batch endpoint over some data. The pipeline communicates with Azure Machine Learning batch endpoints by using REST. For more information about how to use the REST API of batch endpoints, see [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md?tabs=rest).
 
 The pipeline looks as follows:
 
@@ -83,18 +83,18 @@ The pipeline looks as follows:
 The pipeline contains the following activities:
 
 - **Run Batch-Endpoint**: A Web Activity that uses the batch endpoint URI to invoke it. It passes the input data URI where the data is located and the expected output file.
-- **Wait for job**: It's a loop activity that checks the status of the created job and waits for its completion, either as **Completed** or **Failed**. This activity, in turns, uses the following activities:
+- **Wait for job**: It's a loop activity that checks the status of the created job and waits for its completion, either as **Completed** or **Failed**. This activity uses the following activities:
 
   - **Check status**: A Web Activity that queries the status of the job resource that was returned as a response of the **Run Batch-Endpoint** activity.
-  - **Wait**: A Wait Activity that controls the polling frequency of the job's status. We set a default of 120 (2 minutes).
+  - **Wait**: A Wait Activity that controls the polling frequency of the job's status. It has a default value of 120 (2 minutes).
 
-The pipeline requires you to configure the following parameters:
+You need to configure the following parameters for the pipeline:
 
 | Parameter             | Description  | Sample value |
 | --------------------- | -------------|------------- |
 | `endpoint_uri`        | The endpoint scoring URI  | `https://<endpoint_name>.<region>.inference.ml.azure.com/jobs` |
 | `poll_interval`       | The number of seconds to wait before checking the job status for completion. Defaults to `120`.  | `120` |
-| `endpoint_input_uri`  | The endpoint's input data. Multiple data input types are supported. Ensure that the managed identity that you use to execute the job has access to the underlying location. Alternatively, if you use Data Stores, ensure the credentials are indicated there.  | `azureml://datastores/.../paths/.../data/` |
+| `endpoint_input_uri`  | The endpoint's input data. Multiple data input types are supported. Ensure that the managed identity you use to execute the job has access to the underlying location. Alternatively, if you use Data Stores, ensure the credentials are indicated there.  | `azureml://datastores/.../paths/.../data/` |
 | `endpoint_input_type`  | The type of the input data you're providing. Currently batch endpoints support folders (`UriFolder`) and File (`UriFile`). Defaults to `UriFolder`.  | `UriFolder` |
 | `endpoint_output_uri` | The endpoint's output data file. It must be a path to an output file in a Data Store attached to the Machine Learning workspace. No other type of URIs is supported. You can use the default Azure Machine Learning data store, named `workspaceblobstore`. | `azureml://datastores/workspaceblobstore/paths/batch/predictions.csv` |
 
@@ -109,9 +109,9 @@ The pipeline contains the following activities:
 - **Wait for job**: It's a loop activity that checks the status of the created job and waits for its completion, either as **Completed** or **Failed**. This activity uses the following activities:
 
   - **Check status**: A Web Activity that queries the status of the job resource that was returned as a response of the **Run Batch-Endpoint** activity.
-  - **Wait**: A Wait Activity that controls the polling frequency of the job's status. We set a default of 120 (2 minutes).
+  - **Wait**: A Wait Activity that controls the polling frequency of the job's status. It has a default value of 120 (2 minutes).
 
-The pipeline requires the following parameters to be configured:
+Configure the following parameters for the pipeline:
 
 | Parameter             | Description  | Sample value |
 | --------------------- | -------------|------------- |
@@ -135,18 +135,18 @@ To create this pipeline in your existing Azure Data Factory and invoke batch end
 
 1. Ensure the compute where the batch endpoint runs has permissions to mount the data Azure Data Factory provides as input. The entity that invokes the endpoint still grants access.
 
-   In this case, it's Azure Data Factory. However, the compute where the batch endpoint runs needs to have permission to mount the storage account your Azure Data Factory provides. See [Accessing storage services](how-to-identity-based-service-authentication.md#access-storage-services) for details.
+   In this case, Azure Data Factory is the entity that invokes the endpoint. However, the compute where the batch endpoint runs needs permission to mount the storage account your Azure Data Factory provides. For more information, see [Accessing storage services](how-to-identity-based-service-authentication.md#access-storage-services).
 
-1. Open Azure Data Factory Studio. Select the pencil icon to open the Author pane and, under **Factory Resources**, select the plus sign.
+1. Open Azure Data Factory Studio. Select the pencil icon to open the **Author** pane and, under **Factory Resources**, select the plus sign.
 
 1. Select **Pipeline** > **Import from pipeline template**.
 
-1. Select a *.zip* file.
+1. Download the pipeline template *.zip* file to your local machine, and then select it in the import dialog:
 
-   - To use managed identities, select `https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-MI.zip`.
-   - To use a service principle, select `https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-SP.zip`.
+   - To use managed identities: [Run-BatchEndpoint-MI.zip](https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-MI.zip).
+   - To use a service principal: [Run-BatchEndpoint-SP.zip](https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-SP.zip).
 
-1. A preview of the pipeline shows up in the portal. Select **Use this template**.
+1. A preview of the pipeline appears in the portal. Select **Use this template**.
 
    The pipeline is created for you with the name **Run-BatchEndpoint**.
 
@@ -163,7 +163,7 @@ To create this pipeline in your existing Azure Data Factory and invoke batch end
    ---
 
   > [!WARNING]
-  > Ensure that your batch endpoint has a default deployment configured before you submit a job to it. The created pipeline invokes the endpoint. A default deployment needs to be created and configured.
+  > Ensure that your batch endpoint has a default deployment configured before you submit a job to it. The created pipeline invokes the endpoint. You need to create and configure a default deployment.
 
   > [!TIP]
   > For best reusability, use the created pipeline as a template and call it from within other Azure Data Factory pipelines by using the [Execute pipeline activity](/azure/data-factory/control-flow-execute-pipeline-activity). In that case, don't configure the parameters in the inner pipeline but pass them as parameters from the outer pipeline as shown in the following image:
@@ -178,14 +178,14 @@ When you use Azure Machine Learning batch deployments, consider the following li
 
 ### Data inputs
 
-- Only Azure Machine Learning data stores or Azure Storage Accounts (Azure Blob Storage, Azure Data Lake Storage Gen1, Azure Data Lake Storage Gen2) are supported as inputs. If your input data is in another source, use the Azure Data Factory Copy activity before the execution of the batch job to sink the data to a compatible store.
+- Only Azure Machine Learning data stores or Azure Storage Accounts (Azure Blob Storage, Azure Data Lake Storage Gen2) are supported as inputs. If your input data is in another source, use the Azure Data Factory Copy activity before the execution of the batch job to sink the data to a compatible store.
 - Batch endpoint jobs don't explore nested folders. They can't work with nested folder structures. If your data is distributed in multiple folders, you have to flatten the structure.
-- Make sure that your scoring script provided in the deployment can handle the data as it's expected to be fed into the job. If the model is MLflow, for the limitations on supported file types, see [Deploy MLflow models in batch deployments](how-to-mlflow-batch.md).
+- Make sure that the scoring script you provide in the deployment can handle the data as it's expected to be fed into the job. If the model is MLflow, for the limitations on supported file types, see [Deploy MLflow models in batch deployments](how-to-mlflow-batch.md).
 
 ### Data outputs
 
-- Only registered Azure Machine Learning data stores are supported. We recommend that you to register the storage account your Azure Data Factory is using as a Data Store in Azure Machine Learning. In that way, you can write back to the same storage account where you're reading.
-- Only Azure Blob Storage Accounts are supported for outputs. For instance, Azure Data Lake Storage Gen2 isn't supported as output in batch deployment jobs. If you need to output the data to a different location or sink, use the Azure Data Factory Copy activity after you run the batch job.
+- Only registered Azure Machine Learning data stores are supported. Register the storage account your Azure Data Factory uses as a Data Store in Azure Machine Learning. By using this approach, you can write back to the same storage account where you're reading.
+- Only Azure Blob Storage Accounts are supported for outputs. For example, Azure Data Lake Storage Gen2 isn't supported as output in batch deployment jobs. If you need to output the data to a different location or sink, use the Azure Data Factory Copy activity after you run the batch job.
 
 ## Related content
 

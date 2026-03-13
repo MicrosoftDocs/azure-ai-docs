@@ -1,20 +1,19 @@
 ---
-title: "Set up MCP server authentication"
-description: "Set up authentication for Model Context Protocol (MCP) tools used by agents in Foundry Agent Service."
+title: "Set Up MCP Server Authentication"
+description: "Learn how to set up authentication for Model Context Protocol (MCP) servers used by agents in Microsoft Foundry Agent Service. Configure key-based, Entra, or OAuth auth."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 01/21/2026
+ms.date: 03/06/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
 
-# Set up authentication for Model Context Protocol (MCP) tools (preview)
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Set up authentication for Model Context Protocol (MCP) tools
 
 Most Model Context Protocol (MCP) servers require authentication to access the server and its underlying service. Proper authentication ensures your agents can securely connect to MCP servers, invoke their tools, and access protected resources while maintaining appropriate access controls.
 
@@ -64,8 +63,8 @@ Use the following guidance to choose a method:
 | Method | Description | User context persists |
 | --- | --- | --- |
 | Key-based | Provide an API key or access token to authenticate with the MCP server. | No |
-| Microsoft Entra - agent identity | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
-| Microsoft Entra - project managed identity | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - agent identity (preview) | Use the agent identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
+| Microsoft Entra - project managed identity (preview) | Use the project managed identity to authenticate with the MCP server. Assign the required roles on the underlying service. | No |
 | OAuth identity passthrough | Prompt users interacting with your agent to sign in and authorize access to the MCP server. | Yes |
 | Unauthenticated access | Use this method only when the MCP server doesn't require authentication. | No |
 
@@ -95,7 +94,7 @@ For security:
 
 Use Microsoft Entra authentication when the MCP server (and its underlying service) supports Microsoft Entra tokens. This method eliminates the need to manage secrets and provides automatic token rotation.
 
-### Use agent identity authentication
+### Use agent identity authentication (preview)
 
 Use agent identity when you want authentication scoped to a specific agent. This approach is ideal when you have multiple agents that need different levels of access to the same MCP server.
 
@@ -167,7 +166,7 @@ The scope of OAuth is per tool (connection) name per Foundry project. Each new u
 - The user is prompted to sign in and give consent after reviewing the access needed. After giving consent successfully, the user sees a dialog like this example:
    :::image type="content" source="../../media/mcp/foundry-close-me.png" alt-text="Screenshot that shows the confirmation dialog after giving OAuth consent in the Foundry portal." lightbox="../../media/mcp/foundry-close-me.png":::
 
-- After the user has closed the dialog, you need to submit another response with the previous response id
+- After the user has closed the dialog, you need to submit another response with the previous response ID
 
    ```python
    # Requires: azure-ai-projects >= 1.0.0

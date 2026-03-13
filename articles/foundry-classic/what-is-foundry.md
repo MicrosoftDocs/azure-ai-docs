@@ -24,8 +24,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # What is Microsoft Foundry? (classic)
 
-**Currently viewing:** :::image type="icon" source="../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to Foundry](../foundry/what-is-foundry.md)
-
 This article covers the **Foundry (classic)** portal and APIs. For the current platform experience, see [What is Microsoft Foundry?](../foundry/what-is-foundry.md).
 
 [!INCLUDE [foundry-portals](../foundry/includes/foundry-portals.md)]
@@ -59,7 +57,7 @@ A Foundry project is where you do most of your development work. You can work wi
 
 ### Disable preview features
 
-Use your organization controls to limit production environments to general availability supported capabilities, and validate current feature status before rollout decisions. For role-based control guidance, see [Disable preview features by using role-based access control](./concepts/disable-preview-features-with-rbac.md). For tag-based suppression in the Foundry portal, see [Hide preview features with Azure tags](./how-to/disable-preview-features.md).
+Use your organization controls to limit production environments to general availability supported capabilities, and validate current feature status before rollout decisions. For guidance on hiding preview features with tags or blocking them with custom RBAC roles, see [Disable preview features in Microsoft Foundry](../foundry/how-to/disable-preview-features.md).
 
 ### Navigate in the Foundry (classic) portal
 

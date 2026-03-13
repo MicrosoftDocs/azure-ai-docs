@@ -25,19 +25,19 @@ Azure Content Understanding in Foundry Tools transforms unstructured content—d
 
 Foundry portal and Content Understanding Studio have parity for most features. See the chart for key differences.
 
-| Feature category | Foundry (new) (coming soon) | Foundry (classic) | Content Understanding Studio |
+| Feature category | Foundry (new) | Foundry (classic) | Content Understanding Studio |
 |------------------|-----------------|-----------------|-----------------|
 | **API version support** | 2025-11-01 GA API support | 2025-05-01-preview | 2025-11-01 GA API support |
-| **Supports agent building?** |	✅ | ❌	| ❌ |
-| **Supports in-context learning (data labeling)?**	| ❌ | ❌	| ✅ | 
+| **Read and layout playground** | ✅ | ✅ | ✅ |
+| **Supports in-context learning (data labeling)?** | ❌  | ❌ | ✅ |
 
 ## What is offered in Foundry and Content Understanding Studio?
 
-Content Understanding is available in Foundry (classic) and is coming soon to the updated Foundry (new) portal. 
+Content Understanding is available in Foundry (classic) and in the updated Foundry (new) portal, with more features coming soon.
 
-The **Foundry (new) portal** (coming soon) offers the ability to:
+The **Foundry (new) portal** offers the ability to:
 
-* Build advanced, comprehensive agentic workflows with the Content Understanding tool.
+* Try read and layout analyzers interactively in the built-in playgrounds.
 
 > [!NOTE]
 > In Foundry (classic), the supported Content Understanding API is 2025-05-01-preview. The updated Foundry (new) platform will soon support all the new features of the Content Understanding GA API 2025-11-01.
@@ -56,7 +56,7 @@ The **Foundry (new) portal** (coming soon) offers the ability to:
 
 ## Summary
 
-* **Foundry (new)** is coming soon, and is ideal for users seeking a comprehensive agent-building experience through the Foundry portal.
+* **Foundry (new)** is ideal for users who want to explore Content Understanding with built-in playgrounds for read and layout analyzers.
 * **Foundry (classic)** supports the preview API, 2025-05-01-preview. It includes some preview features, like Pro mode, that aren't yet available in the GA API. Migrate to the new GA API when possible to continue getting the best experience from Content Understanding.
 * **Content Understanding Studio** is best suited for users focused on building and refining analyzers, with a streamlined interface and guided setup. It's the ideal choice for Document Intelligence customers transitioning to Content Understanding, offering the same studio-based approach you already know while extending to analyze documents, images, audio, and video with enhanced classification and in-context learning capabilities.
 

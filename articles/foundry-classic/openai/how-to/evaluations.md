@@ -13,7 +13,7 @@ zone_pivot_groups: openai-fine-tuning
 recommendations: false
 ---
 
-# Azure OpenAI Evaluation (Preview) (classic)
+# Azure OpenAI Evaluation (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
@@ -64,9 +64,9 @@ If your preferred region is missing, refer to [Azure OpenAI regions](/azure/ai-f
 - Global provisioned-managed
 - Data zone provisioned-managed
 
-## Evaluation API (preview)
+## Evaluation API
 
-Evaluation API lets you test model outputs directly through API calls, and programmatically assess model quality and performance. To use Evaluation API, check out the [REST API documentation](/azure/ai-foundry/openai/authoring-reference-preview#evaluation---get-list). 
+Evaluation API lets you test model outputs directly through API calls, and programmatically assess model quality and performance. To use Evaluation API, check out the [REST API documentation](/azure/ai-foundry/openai/latest). 
 
 ## Evaluation pipeline
 

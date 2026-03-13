@@ -23,8 +23,6 @@ keywords:
 
 # What is Microsoft Foundry?
 
-**Currently viewing:** :::image type="icon" source="media/yes-icon.svg" border="false"::: **Foundry** - [Switch to Foundry (classic) portal version](../foundry-classic/what-is-foundry.md)
-
 **Microsoft Foundry** is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
 
 Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
@@ -54,7 +52,7 @@ Microsoft Foundry serves three primary audiences:
 
 ### Operate and govern
 
-* **[Real-time observability](observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk)** – Monitor performance and governance with built-in metrics and model tracking.
+* **[Real-time observability](observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)** – Monitor performance and governance with built-in metrics and model tracking.
 * **Centralized AI asset management** – Manage all agents, models, and tools from the **Operate** section, including agents registered from other clouds.
 * **Enterprise controls** – Full authentication support for MCP and A2A, AI gateway integration, and Azure Policy integration.
 
@@ -75,6 +73,9 @@ The [Microsoft Foundry portal](https://ai.azure.com) is where you manage project
 
 :::image type="icon" source="media/version-banner/new-foundry.png" alt-text="Screenshot of New Foundry toggle in the banner.":::
 
+> [!TIP]
+> See [Find features in the Foundry portal](how-to/navigate-from-classic.md) if you're used to the Foundry (classic) portal and not sure where to find things now.
+
 ### Choosing a project
 
 In the Foundry portal, the project you're working with appears in the upper-left corner of most pages. 
@@ -90,9 +91,7 @@ To find these other resources,  select the project name in the upper-left corner
 
 ### Disable preview features
 
-Use your organization controls to limit production environments to general availability supported capabilities, and validate current feature status before rollout decisions. For role-based control guidance, see [Disable preview features by using role-based access control](./concepts/disable-preview-features-with-rbac.md). For tag-based suppression in the Foundry portal, see [Hide preview features with Azure tags](./how-to/disable-preview-features.md).
-
-
+[!INCLUDE [disable-preview](includes/disable-preview.md)]
 
 ## Pricing and billing
 
