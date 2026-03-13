@@ -14,7 +14,14 @@ ai-usage: ai-assisted
 Foundry Agent Service allows you to connect and use models hosted behind your enterprise AI gateways such as **Azure API Management** or other **non-Azure hosted AI model gateways**. This capability, called *bring your own model* (BYOM), allows you to maintain control over your model endpoints while using Foundry agent capabilities.
 
 > [!IMPORTANT]
-> This feature is currently in preview. Preview features aren't meant for production use. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and [BYOM disclaimers](#byom-disclaimers).
+> This feature is currently in preview. Preview features aren't meant for production use. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+> [!IMPORTANT]
+> For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Azure Direct Models. Foundry Agent Service supports the ability to bring-your-own-model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.
+>
+> If you use Foundry Agent Service to interact with BYOM models, you are responsible for implementing your own responsible AI mitigations within Foundry Agent Service, such as metaprompt, content filters, or other safety systems.
+>
+> If you use Foundry Agent Service to interact with BYOM models, you are responsible for ensuring that use of the BYOM model complies with your data handling requirements. You are responsible for reviewing all data being shared with BYOM models and understanding third-party practices for retention and location of data. It is your responsibility to manage whether your data will flow outside of your organization's Azure compliance and geographic boundaries and any related implications when using BYOM models.
 
 This capability enables organizations to:
 
@@ -26,14 +33,6 @@ This capability enables organizations to:
 :::image type="content" source="../media/gateway.png" alt-text="Diagram that shows the AI gateway architecture with flows from Agent Service to your gateway and models behind it." lightbox="../media/gateway.png":::
 
 In this article, you create a gateway connection to your AI model endpoint, deploy a prompt agent that routes requests through the gateway, and verify the end-to-end flow.
-
-## BYOM disclaimers
-
-For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Azure Direct Models. Foundry Agent Service supports the ability to bring-your-own-model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.
-
-If you use Foundry Agent Service to interact with BYOM models, you are responsible for implementing your own responsible AI mitigations within Foundry Agent Service, such as metaprompt, content filters, or other safety systems.
-
-If you use Foundry Agent Service to interact with BYOM models, you are responsible for ensuring that use of the BYOM model complies with your data handling requirements. You are responsible for reviewing all data being shared with BYOM models and understanding third-party practices for retention and location of data. It is your responsibility to manage whether your data will flow outside of your organization's Azure compliance and geographic boundaries and any related implications when using BYOM models.
 
 ## Prerequisites
 
