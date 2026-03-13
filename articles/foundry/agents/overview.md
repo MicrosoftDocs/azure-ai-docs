@@ -30,14 +30,6 @@ Foundry Agent Service is a fully managed platform for building, deploying, and s
 
 Agent Service handles hosting, scaling, identity, observability, and enterprise security so you can focus on your agent logic.
 
-## Get started with agents
-
-Ready to get started with agents? Choose your path based on how you want to build:
-
-- **New to agents?** [Start with a prompt agent](../quickstarts/get-started-code.md) to create an agent with instructions and tools. Use the Foundry portal to create one with no code required, or use the SDKs or REST API.
-- **Want to deploy an agent as a container with a framework of your choice?** [Build a hosted agent](quickstarts/quickstart-hosted-agent.md) with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
-- **Want to orchestrate multiple agents?** [Build a workflow](./concepts/workflow.md) to orchestrate agents and business logic in a visual builder.
-
 ## What is an agent?
 
 An agent is an AI application that uses a large language model (LLM) to reason about user requests and take autonomous actions to fulfill them. Unlike a simple chatbot that only generates text, an agent can call tools, access external data, and make decisions across multiple steps to complete a task. Every agent combines three core components:
@@ -58,6 +50,14 @@ An agent is an AI application that uses a large language model (LLM) to reason a
 | **Observability** | End-to-end tracing, metrics, and Application Insights integration. See every decision your agent makes. |
 | **Identity & Security** | Microsoft Entra identity, RBAC, content filters, and virtual network isolation. Enterprise-grade trust built in. |
 | **Publishing** | Version agents, create stable endpoints, and share through Microsoft Teams, Microsoft 365 Copilot, and the Entra Agent Registry. |
+
+## Get started with agents
+
+Ready to get started with agents? Choose your path based on how you want to build:
+
+- **New to agents?** [Start with a prompt agent](../quickstarts/get-started-code.md) to create an agent with instructions and tools. Use the Foundry portal to create one with no code required, or use the SDKs or REST API.
+- **Want to deploy an agent as a container with a framework of your choice?** [Build a hosted agent](quickstarts/quickstart-hosted-agent.md) with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
+- **Want to orchestrate multiple agents?** [Build a workflow](./concepts/workflow.md) to orchestrate agents and business logic in a visual builder.
 
 ## Agent types
 
