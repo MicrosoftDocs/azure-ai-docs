@@ -37,6 +37,22 @@ items:
     href: ../../agents/concepts/tool-catalog.md
   - name: Tool best practices
     href: ../../agents/concepts/tool-best-practice.md
+  - name: Azure AI Search
+    href: ../../agents/how-to/tools/ai-search.md
+  - name: Code interpreter
+    href: ../../agents/how-to/tools/code-interpreter.md
+  - name: File search
+    href: ../../agents/how-to/tools/file-search.md
+  - name: Function calling
+    href: ../../agents/how-to/tools/function-calling.md
+  - name: Memory
+    href: ../../agents/how-to/memory-usage.md
+  - name: Voice integration (preview)  
+    items:
+    - name: Quickstart - Talk to a voice agent
+      href: ../../../ai-services/speech-service/voice-live-agents-quickstart.md
+    - name: How to build a voice agent
+      href: ../../../ai-services/speech-service/how-to-voice-agent-integration.md
   - name: Web search capabilities
     items:
     - name: Web search overview
@@ -45,16 +61,6 @@ items:
       href: ../../agents/how-to/tools/web-search.md
     - name: Grounding with Bing tools
       href: ../../agents/how-to/tools/bing-tools.md
-  - name: File search
-    href: ../../agents/how-to/tools/file-search.md
-  - name: Code interpreter
-    href: ../../agents/how-to/tools/code-interpreter.md
-  - name: Memory
-    href: ../../agents/how-to/memory-usage.md
-  - name: Function calling
-    href: ../../agents/how-to/tools/function-calling.md
-  - name: Azure AI Search
-    href: ../../agents/how-to/tools/ai-search.md
   - name: Additional tools
     items:
     - name: Browser automation (preview)
