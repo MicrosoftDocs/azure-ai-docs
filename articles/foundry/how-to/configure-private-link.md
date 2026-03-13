@@ -212,7 +212,7 @@ When creating a new Foundry resource, follow these steps:
 1. From the [Azure portal](https://portal.azure.com), search for **Foundry** and select **Create a resource**.
 1. After configuring the **Basics** tab, select the **Storage** tab and then select **Select resources** under **Agent service**.
     - Select or create new Storage account, AI Search resource, and Azure Cosmos DB. If you're setting up Foundry with virtual network injection, you must also bring your own Storage, AI Search, and Azure Cosmos DB resources, creating a Standard Agent with end-to-end virtual network isolation.
-1. After configuring the **Storage** tab, select the **Network** tab and then select the **Disabled** option for public access. Add your private endpoint using the instructions from the [inbound network isolation section](#setup-walkthrough-for-inbound-network-isolation).
+1. After configuring the **Storage** tab, select the **Network** tab and then select the **Disabled** option for public access. Add your private endpoint using the instructions from the [inbound network isolation section](#set-up-walkthrough-for-inbound-network-isolation).
 1. After setting your inbound private endpoint, a new dropdown appears for setting **Virtual network injection**. Select your **virtual network** in the first dropdown, then select your **subnet** that is delegated to **Microsoft.App/environments** with a subnet size of /27 or larger. This delegation and subnet size are required for the injection.
 1. Continue through the forms to create the project. When you reach the **Review + create** tab, review your settings and select **Create** to create the project.
 
