@@ -72,7 +72,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default"
+    "https://ai.azure.com/.default"
 );
 
 ChatClient client = new(

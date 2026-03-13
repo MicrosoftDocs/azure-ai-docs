@@ -1872,6 +1872,15 @@ groups:
     title: Python
   - id: csharp
     title: C#
+# Owner: johmil
+- id: hosted-agent-deploy-method
+  title: Deployment method
+  prompt: Choose a deployment method
+  pivots:
+  - id: azd
+    title: Azure Developer CLI
+  - id: vscode
+    title: VS Code
 # Owner: pafarley
 - id: fast-transcription-quickstart
   title: Programming languages
@@ -1959,5 +1968,16 @@ groups:
     title: C#
   - id: python
     title: Python
+  - id: rest
+    title: REST
+# Owner: haileytapia
+- id: foundry-memory-store
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: typescript
+    title: TypeScript
   - id: rest
     title: REST

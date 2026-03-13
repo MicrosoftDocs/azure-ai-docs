@@ -365,7 +365,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -452,7 +452,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 
 const deployment = "gpt-4o"
 const endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
-const scope = "https://cognitiveservices.azure.com/.default";
+const scope = "https://ai.azure.com/.default";
 const apiVersion = "2024-04-01-preview";
 
 const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);

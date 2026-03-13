@@ -45,7 +45,7 @@ You can access the GPT real-time models for global deployments in the [East US 2
 - `gpt-realtime` (version 2025-08-28)
 - `gpt-realtime-mini` (version 2025-10-06)
 - `gpt-realtime-mini-2025-12-15` (version 2025-12-15)
-- `gpt-realtime-1.5-2026-02-23` (version 2026-02-23)
+- `gpt-realtime-1.5` (version 2026-02-23)
 
 You should use API version `2025-08-28` in the URL for the Realtime API. The API version is included in the sessions URL.
 
@@ -175,7 +175,7 @@ def get_token():
     """
     try:
         # Get bearer token using DefaultAzureCredential
-        bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+        bearer_token = get_bearer_token("https://ai.azure.com/.default")
         
         # Construct the Azure OpenAI endpoint URL
         url = f"https://{azure_resource}.openai.azure.com/openai/v1/realtime/client_secrets"
@@ -571,7 +571,7 @@ def get_ephemeral_token():
         Exception: If token generation fails
     """
     # Get bearer token using DefaultAzureCredential
-    bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+    bearer_token = get_bearer_token("https://ai.azure.com/.default")
     
     # Construct the Azure OpenAI endpoint URL
     url = f"https://{azure_resource}.openai.azure.com/openai/v1/realtime/client_secrets"
@@ -816,7 +816,7 @@ def connect_and_negotiate():
         if location_header:
             try:
                 # Get a bearer token for WebSocket authentication
-                bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+                bearer_token = get_bearer_token("https://ai.azure.com/.default")
                 start_websocket_background(location_header, bearer_token)
             except Exception as e:
                 print(f"Failed to start background WebSocket monitoring: {e}")
