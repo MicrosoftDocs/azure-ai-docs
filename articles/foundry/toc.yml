@@ -14,9 +14,6 @@ items:
 - name: Foundry Models
   href: toc-files-foundry/foundry-models/toc.yml
 
-- name: Fine-tuning
-  href: toc-files-foundry/fine-tuning/toc.yml
-
 # - name: Integration & orchestration
 #   href: toc-files-foundry/integrations-orchestration/toc.yml
 
