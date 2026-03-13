@@ -339,7 +339,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -389,7 +389,7 @@ DefaultAzureCredential tokenCredential = new DefaultAzureCredentialBuilder().bui
 String endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
 String deploymentName = "gpt-5.2";
 Supplier<String> bearerTokenSupplier = AuthenticationUtil.getBearerTokenSupplier(
-        tokenCredential, "https://cognitiveservices.azure.com/.default");
+        tokenCredential, "https://ai.azure.com/.default");
 OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
         .baseUrl(endpoint)
         .credential(BearerTokenCredential.create(bearerTokenSupplier))
@@ -411,7 +411,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 ```javascript
 const endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
-const scope = "https://cognitiveservices.azure.com/.default";
+const scope = "https://ai.azure.com/.default";
 const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
 const client = new OpenAI({ baseURL: endpoint, apiKey: azureADTokenProvider });
 const response = await client.responses.create({
@@ -447,7 +447,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
    BearerTokenPolicy tokenPolicy = new(
         new DefaultAzureCredential(),
-        "https://cognitiveservices.azure.com/.default");
+        "https://ai.azure.com/.default");
     
    OpenAIResponseClient client = new(
         model: deploymentName,

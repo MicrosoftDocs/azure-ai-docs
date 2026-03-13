@@ -99,7 +99,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
     
     // keyless authentication    
     const credential = new DefaultAzureCredential();
-    const scope = "https://cognitiveservices.azure.com/.default";
+    const scope = "https://ai.azure.com/.default";
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
     function getClient(): AzureOpenAI {

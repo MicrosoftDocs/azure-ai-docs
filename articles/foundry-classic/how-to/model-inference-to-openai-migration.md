@@ -128,7 +128,7 @@ If you experience authentication failures:
 
 - Verify your API key is correct and isn't expired
 - For Microsoft Entra ID, ensure your application has the correct permissions
-- Check that the credential scope is set to `https://cognitiveservices.azure.com/.default`
+- Check that the credential scope is set to `https://ai.azure.com/.default`
 
 ### Endpoint errors
 

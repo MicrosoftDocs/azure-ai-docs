@@ -118,7 +118,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     
     # Create token provider for Entra ID authentication
     tokenProvider = get_bearer_token_provider(
-        DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+        DefaultAzureCredential(), "https://ai.azure.com/.default"
     )
     
     # Create client with Entra ID authentication
@@ -250,7 +250,7 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     // Create token provider for Entra ID authentication
     const tokenProvider = getBearerTokenProvider(
         new DefaultAzureCredential(),
-        'https://cognitiveservices.azure.com/.default');
+        'https://ai.azure.com/.default');
     
     // Create client with Entra ID authentication
     const client = new AnthropicFoundry({
@@ -343,7 +343,7 @@ For a list of supported runtimes, see [Requirements to use Anthropic TypeScript 
 
 For Messages API endpoints, use the deployed model's endpoint URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages` with Microsoft Entra ID authentication.
 
-If you configure the resource with Microsoft Entra ID support, pass your token in the Authorization header with the format `Bearer $AZURE_AUTH_TOKEN`. Use scope `https://cognitiveservices.azure.com/.default`. Using Microsoft Entra ID might require additional configuration in your resource to grant access. For more information, see [Configure authentication with Microsoft Entra ID](/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=rest#use-microsoft-entra-id-in-your-code).
+If you configure the resource with Microsoft Entra ID support, pass your token in the Authorization header with the format `Bearer $AZURE_AUTH_TOKEN`. Use scope `https://ai.azure.com/.default`. Using Microsoft Entra ID might require additional configuration in your resource to grant access. For more information, see [Configure authentication with Microsoft Entra ID](/azure/ai-foundry/foundry-models/how-to/configure-entra-id?tabs=rest#use-microsoft-entra-id-in-your-code).
 
 1. Export your Microsoft Entra ID token to an environment variable:
 
@@ -590,7 +590,7 @@ The following table lists common errors when you work with Claude models in Foun
 
 | Error | Cause | Solution |
 |-------|-------|----------|
-| 401 Unauthorized | Invalid or expired API key, or incorrect Entra ID token scope. | Verify your API key is correct. For Entra ID, confirm you use scope `https://cognitiveservices.azure.com/.default`. |
+| 401 Unauthorized | Invalid or expired API key, or incorrect Entra ID token scope. | Verify your API key is correct. For Entra ID, confirm you use scope `https://ai.azure.com/.default`. |
 | 403 Forbidden | Insufficient permissions on the resource or subscription. | Verify you have **Contributor** or **Owner** role on the resource group. For Entra ID, ensure the **Cognitive Services User** role is assigned. |
 | 404 Not Found | Incorrect endpoint URL or deployment name. | Confirm your base URL follows the pattern `https://<resource-name>.services.ai.azure.com/anthropic` and the deployment name matches your configuration. |
 | 429 Too Many Requests | Rate limit exceeded for your subscription tier. | Implement exponential backoff with retry logic. Consider reducing request frequency or requesting a [quota increase](https://aka.ms/oai/stuquotarequest). |

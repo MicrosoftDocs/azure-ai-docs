@@ -118,7 +118,7 @@ Sora supports three input modes:
     
     # Keyless authentication
     credential = DefaultAzureCredential()
-    token = credential.get_token("https://cognitiveservices.azure.com/.default")
+    token = credential.get_token("https://ai.azure.com/.default")
 
     # Video generation uses 'preview' as the API version during the preview period
     api_version = 'preview'
