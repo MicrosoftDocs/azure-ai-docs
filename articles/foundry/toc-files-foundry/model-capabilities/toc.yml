@@ -35,6 +35,16 @@ items:
     - name: Provisioned spillover
       href: ../../openai/how-to/spillover-traffic-management.md
 
+# System Messages
+- name: System messages
+  items:
+  - name: System message design
+    href: ../../openai/concepts/advanced-prompt-engineering.md
+  - name: Safety system messages
+    href: ../../openai/concepts/system-message.md
+  - name: Safety system message templates
+    href: ../../openai/concepts/safety-system-message-templates.md
+  
 # Core APIs and Capabilities
 - name: Chat completions & Responses APIs
   items:

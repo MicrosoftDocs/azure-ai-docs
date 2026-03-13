@@ -82,6 +82,8 @@ items:
       href: ../../observability/how-to/trace-agent-setup.md
     - name: Tracing integrations
       href: ../../observability/how-to/trace-agent-framework.md
+  - name: Optimize agent prompts 
+    href: ../../observability/how-to/prompt-optimizer.md
   - name: Monitor agents in the dashboard
     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
   - name: Evaluate agent quality

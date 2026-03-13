@@ -7,18 +7,6 @@ items:
 - name: Third party Guardrail integrations
   href: ../../guardrails/third-party-integrations.md
 
-# System Messages
-- name: System messages
-  items:
-  - name: System message design
-    href: ../../openai/concepts/advanced-prompt-engineering.md
-  - name: Safety system messages
-    href: ../../openai/concepts/system-message.md
-  - name: Safety system message templates
-    href: ../../openai/concepts/safety-system-message-templates.md
-  - name: Optimize agent prompts 
-    href: ../../observability/how-to/prompt-optimizer.md
-    
 # Content Filtering and Risk Detection
 - name: Content filters
   items:
