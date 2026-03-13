@@ -4,7 +4,7 @@ description: "Deploy Anthropic's Claude models in Microsoft Foundry to integrate
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 02/17/2026
+ms.date: 03/11/2026
 ms.custom:
   - ignite-2024, dev-focus, pilot-ai-workflow-jan-2026
   - classic-and-new
@@ -465,7 +465,7 @@ For more details about the model capabilities, see [capabilities of Claude model
 
 ### Claude Opus 4.6 (preview)
 
-Claude Opus 4.6 is the latest version of Anthropic's most intelligent model, and the world's best model for coding, enterprise agents, and professional work.  With a **1M token context window (beta) and 128K max output**, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
+Claude Opus 4.6 is the latest version of Anthropic's most intelligent model, and the world's best model for coding, enterprise agents, and professional work.  With a **1M token context window** and 128K max output, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
 
 ### Claude Opus 4.5 (preview)
 
@@ -477,7 +477,7 @@ Claude Opus 4.1 is an industry leader for coding. It delivers sustained performa
 
 ### Claude Sonnet 4.6 (preview)
 
-Claude Sonnet 4.6 delivers frontier intelligence at scale—built for coding, agents, and enterprise workflows. With a **1M token context window (beta) and 128K max output**, Sonnet 4.6 is ideal for coding, agents, office tasks, financial analysis, cybersecurity, and computer use.
+Claude Sonnet 4.6 delivers frontier intelligence at scale—built for coding, agents, and enterprise workflows. With a **1M token context window** and 128K max output, Sonnet 4.6 is ideal for coding, agents, office tasks, financial analysis, cybersecurity, and computer use.
  
 ### Claude Sonnet 4.5 (preview)
 
