@@ -1,11 +1,11 @@
 ---
-title: "Enable priority processing for Microsoft Foundry Models (preview)"
+title: Enable priority processing for Microsoft Foundry Models
 description: "Learn how to enable priority processing for Microsoft Foundry models to achieve low latency and high availability for time-sensitive workloads."
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 02/10/2026
+ms.date: 03/13/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: seramasu
@@ -14,42 +14,33 @@ ai-usage: ai-assisted
 ms.custom:
   - ignite-2025, pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 #customerIntent: As a developer or data scientist working with latency-sensitive AI applications, I want to understand and implement priority processing for Microsoft Foundry models so that I can achieve predictable low latency and high availability for time-critical workloads without requiring long-term commitments or provisioned capacity.
 ---
 
-# Enable priority processing for Microsoft Foundry models (preview)
-> [!IMPORTANT]
-> Priority processing is in preview and available by invitation only. [Register here](https://aka.ms/priority-register-interest) to be notified when it becomes more broadly available.
->
-> This preview is provided without a service-level agreement and isn't recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+# Enable priority processing for Microsoft Foundry models
 
-Priority processing provides low-latency performance with the flexibility of pay-as-you-go. It operates on a pay-as-you-go token model, offering rapid response times without long-term contract commitments. In this article, you enable priority processing on a model deployment, verify which service tier processed your requests, and monitor associated costs.
+Priority processing provides low-latency performance with the flexibility of pay-as-you-go. It operates on a pay-as-you-go token model, offering rapid response times without long-term contract commitments. Priority processing uses the same quota as standard processing. This means your deployment that's enabled with priority processing consumes quota from your existing standard allocation. In this article, you enable priority processing on a model deployment, verify which service tier processed your requests, and monitor associated costs.
 
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry project with a model of the deployment type `GlobalStandard` or `DataZoneStandard` deployed.
-- Acceptance into the priority processing preview. [Register here](https://aka.ms/priority-register-interest) to be notified when priority processing becomes more broadly available.
-- API version `2025-10-01-preview` or later.
+- API version `2025-12-01` or later.
 
-## Overview
-
-### Benefits
-
-- **Predictable low latency**: Faster, more consistent token generation.
-- **Easy-to-use flexibility**: Like standard pay-as-you-go processing, access priority processing on a flexible, pay-as-you-go basis instead of requiring provisioning and reservations in advance.
-
-### Key use cases
+## Key use cases
 
 - **Consistent, low latency** for responsive user experiences.
 - **Pay-as-you-go simplicity** with no long-term commitments. 
 - **Business-hour or bursty traffic** that benefits from scalable, cost-efficient performance. Optionally, you can combine priority processing with Provisioned Throughput Units (PTU) for steady-state capacity and cost optimization.
 
-### Limits
+## Latency target
 
-- **Ramp limit:** Rapid increases to your priority processing tokens per minute might lead to hitting [ramp rate limits](#ramp-rate-limits). If you exceed the ramp rate limit, the service might send extra traffic to standard processing instead.
+|Topic| **gpt-4.1, 2025-04-14** | 
+| --- | --- 
+|Latency Target Value| 99% > 80 Tokens Per Second\* |
 
-- **Quota:** Priority processing uses the same quota as standard processing. This means your deployment with priority processing enabled consumes quota from your existing standard allocation.
+\* Calculated as p50 request latency on a per 5 minute basis.
 
 ## Priority processing support
 
@@ -78,21 +69,11 @@ Priority processing provides low-latency performance with the flexibility of pay
 > [!NOTE]
 > Model and region availability might expand during the preview period. Check this page for updates.
 
-### Known issues
-
-Priority processing currently has these limitations, and fixes are underway:
-
-- **Long context limit for gpt-4.1:** The service doesn't support requests that exceed 128,000 tokens and returns an HTTP 400 error.
-
-- **No support for PTU spillover:** The service doesn't yet support PTU spillover to a priority-processing–enabled deployment. If you need spillover behavior, implement your own logic, such as by using Azure API Management.
-
-- **Incorrect service_tier value when using streaming in the Responses API:** When streaming responses through the Responses API, the `service_tier` field might incorrectly return "priority", even if capacity constraints or ramp limits caused the request to be served by the standard tier. In this case, the expected value for `service_tier` is "default".
-
 ## Enable priority processing at the deployment level
 
 You can enable priority processing at the deployment level and [(optionally) at the request level](#enable-priority-processing-at-the-request-level).
 
-In the [!INCLUDE [foundry-link](../../includes/foundry-link.md)] portal, you can enable priority processing during deployment setup. Turn on the **Priority processing (preview)** toggle on the deployment details page when creating the deployment or update the setting of a deployed model by editing the deployment details.
+In the [!INCLUDE [foundry-link](../../includes/foundry-link.md)] portal, you can enable priority processing during deployment setup. Turn on the **Priority processing** toggle on the deployment details page when creating the deployment or update the setting of a deployed model by editing the deployment details.
 
 :::image type="content" source="../media/priority-processing/enable-priority-processing-foundry.png" alt-text="Screenshot showing how to enable priority processing during model deployment in the Foundry portal." lightbox="../media/priority-processing/enable-priority-processing-foundry.png":::
 > [!NOTE]
@@ -162,17 +143,9 @@ The following table summarizes which service tier processes your requests based 
 | priority | auto, priority | Priority processing |
 | priority | default | Standard |
 
-## Latency target
+## Ramp rate limits
 
-|Topic| **gpt-4.1, 2025-04-14** | 
-| --- | --- 
-|Latency Target Value| 99% > 80 Tokens Per Second\* |
-
-\* Calculated as p50 request latency on a per 5 minute basis.
-
-### Ramp rate limits
-
-To ensure consistently high performance for all customers, while still providing flexible, on-demand pricing, priority processing enforces ramp rate limits. Currently, the ramp rate limit is defined as increasing traffic by more than 50% tokens per minute in less than 15 minutes.
+Rapid increases to your priority processing tokens per minute might lead to hitting _ramp rate limits_. Currently, the ramp rate limit is defined as increasing traffic by more than 50% tokens per minute in less than 15 minutes. If you exceed the ramp rate limit, the service might send extra traffic to standard processing instead.
 
 **Downgrade conditions**
 
@@ -185,16 +158,7 @@ If priority processing performance degrades and a customer's traffic ramps up to
 
 | Issue | Cause | Resolution |
 | ------- | ------- | ------------ |
-| HTTP 400 error on long prompts | gpt-4.1 doesn't support requests exceeding 128,000 tokens in priority processing. | Keep total request tokens under 128,000. Split long prompts into smaller requests. |
 | Requests downgraded to standard tier | Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. | Increase traffic gradually. Consider purchasing PTU for steady-state capacity. |
-| PTU spillover not working | Priority processing doesn't yet support PTU spillover to a priority-processing–enabled deployment. | Implement custom spillover logic, such as by using Azure API Management. |
-| `service_tier` returns incorrect value during streaming | When streaming via the Responses API, `service_tier` might report `"priority"` even when the request was served by the standard tier. | Check billing records to confirm which tier actually processed the request. |
-
-## API support
-
-|   | API Version   |
-|---|---|
-|**Latest supported preview API release:**| `2025-10-01-preview`|
 
 ## Related content
 
