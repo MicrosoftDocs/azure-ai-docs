@@ -73,6 +73,12 @@ items:
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
 
+  - name: Azure OpenAI supported programming languages
+    href: ../../openai/supported-languages.md
+  - name: Deploy and use Claude models in Microsoft Foundry 
+    displayName: Claude in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-claude.md
+
 - name: Quota limits and region availability
   items:
   - name: Manage quotas for Foundry resources
@@ -148,14 +154,6 @@ items:
     displayName: How to troubleshoot your deployments and monitors in Microsoft Foundry portal
     href: ../../../foundry-classic/how-to/troubleshoot-deploy-and-monitor.md?context=/azure/foundry/context/context
 
-- name: Model support
-  items:
-  - name: Azure OpenAI supported programming languages
-    href: ../../openai/supported-languages.md
-  - name: Deploy and use Claude models in Microsoft Foundry 
-    displayName: Claude in Foundry Models
-    href: ../../foundry-models/how-to/use-foundry-models-claude.md
-
 - name: Develop with AI models
   items:
   - name: Endpoints for Microsoft Foundry Models
@@ -204,7 +202,7 @@ items:
       href: ../../../foundry-classic/foundry-models/how-to/use-chat-multi-modal.md?context=/azure/foundry/context/context
   - name: Embeddings
     items:
-    - name: Work with embeddings inn Azure OpenAI
+    - name: Work with embeddings in Azure OpenAI
       displayName: Learn how to generate embeddings
       href: ../../openai/how-to/embeddings.md
     - name: Work with text embeddings in Foundry Models
