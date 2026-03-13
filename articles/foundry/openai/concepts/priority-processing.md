@@ -20,7 +20,7 @@ ms.custom:
 
 # Enable priority processing for Microsoft Foundry models
 
-Priority processing provides low-latency performance with the flexibility of pay-as-you-go. Priority processing uses the same quota as standard processing so that your standard deployment that's enabled with priority processing consumes quota from your existing standard allocation. In this article, you enable priority processing on a model deployment, verify which service tier processed your requests, and monitor associated costs.
+Priority processing provides low-latency performance with the flexibility of pay-as-you-go. In this article, you enable priority processing on a model deployment, verify which service tier processed your requests, and monitor associated costs.
 
 ## Prerequisites
 
@@ -39,13 +39,12 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 ## Latency target
 
-
-
 | Model | Latency target value | 
 | --- | --- |
-| gpt-4.1, 2025-04-14 <br> excludes long context | 99% > 80 Tokens Per Second<sup>1</sup> |
+| gpt-4.1, 2025-04-14 <br> excludes long context<sup>1</sup> | 99% > 80 Tokens Per Second<sup>2</sup> |
 
 <sup>1</sup> Long context requests (that is, requests estimated at larger than 128k prompt tokens) will be downgraded to standard
+
 <sup>2</sup> Calculated as p50 request latency on a per 5 minute basis.
 
 ## Priority processing support
@@ -151,7 +150,7 @@ The following table summarizes which service tier processes your requests based 
 
 ## Limitations
 
-- The service currently doesn't support regional deployments and EU datazone deployments.
+- The service currently doesn't support regional standard deployments and EU datazone standard deployments.
 
 - The service might re-route some priority requests to standard processing during either of these scenarios:
 
