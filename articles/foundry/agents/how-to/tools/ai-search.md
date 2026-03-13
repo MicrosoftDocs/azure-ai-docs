@@ -6,10 +6,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/13/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-ai-search-tool
 # CustomerIntent: As a developer, I want to connect my Foundry agent to Azure AI Search so that I can ground responses in my proprietary content with citations.
@@ -692,6 +692,101 @@ Use one of the following options.
 
 For more detailed steps, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
+#### [Azure CLI](#tab/azurecli)
+
+Create a JSON connection file and use the `az cognitiveservices` CLI to create the connection on your Foundry project.
+
+For keyless authentication, create a file named `connection.json`:
+
+```json
+{
+  "properties": {
+    "category": "CognitiveSearch",
+    "target": "https://{searchServiceName}.search.windows.net",
+    "authType": "AAD"
+  }
+}
+```
+
+For key-based authentication, use `ApiKey` as the `authType` and include the credentials:
+
+```json
+{
+  "properties": {
+    "category": "CognitiveSearch",
+    "target": "https://{searchServiceName}.search.windows.net",
+    "authType": "ApiKey",
+    "credentials": {
+      "key": "{searchAdminKey}"
+    }
+  }
+}
+```
+
+> [!IMPORTANT]
+> Don't put real keys in source control. Store secrets in a secure store (for example, Azure Key Vault) and inject them at deployment time.
+
+Run the following command. Replace the placeholders with your resource group, Foundry resource name, project name, and connection name.
+
+```azurecli
+az cognitiveservices account project connection create \
+  --resource-group <resource-group> \
+  --name <foundry-resource-name> \
+  --project-name <project-name> \
+  --connection-name <connection-name> \
+  --file connection.json
+```
+
+#### [Python SDK](#tab/pythonsdk)
+
+Use the `azure-mgmt-cognitiveservices` management SDK to create the connection. Install the package:
+
+```bash
+pip install azure-mgmt-cognitiveservices azure-identity
+```
+
+For keyless authentication:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+from azure.mgmt.cognitiveservices.models import (
+    ConnectionPropertiesV2BasicResource,
+    AADAuthTypeConnectionProperties,
+)
+
+# Foundry resource details
+SUBSCRIPTION_ID = "<subscription-id>"
+RESOURCE_GROUP = "<resource-group>"
+FOUNDRY_RESOURCE_NAME = "<foundry-resource-name>"
+PROJECT_NAME = "<project-name>"
+CONNECTION_NAME = "my-search-connection"
+SEARCH_ENDPOINT = "https://my-service.search.windows.net"
+
+# Create the management client
+client = CognitiveServicesManagementClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=SUBSCRIPTION_ID,
+)
+
+# Create a keyless Azure AI Search connection
+connection = client.project_connections.create(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=FOUNDRY_RESOURCE_NAME,
+    project_name=PROJECT_NAME,
+    connection_name=CONNECTION_NAME,
+    connection=ConnectionPropertiesV2BasicResource(
+        properties=AADAuthTypeConnectionProperties(
+            category="CognitiveSearch",
+            target=SEARCH_ENDPOINT,
+        )
+    ),
+)
+print(f"Connection created: {connection.name}")
+```
+
+Reference: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient), [ProjectConnectionsOperations](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.operations.projectconnectionsoperations).
+
 #### [REST API](#tab/restapi)
 
 Use the Foundry account management REST API to create a project connection. Replace the placeholders with your subscription, resource group, Foundry resource, project, and connection details.
@@ -789,7 +884,7 @@ Console.WriteLine(connection.Id);
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
-| "Workspace not found" when creating a connection | The `az ml` CLI and `azure-ai-ml` Python SDK use the `Microsoft.MachineLearningServices` resource provider, which doesn't support new Foundry projects (`Microsoft.CognitiveServices`) | Create the connection by using the Foundry portal, REST API, or Bicep. See [Create a project connection](#create-a-project-connection). |
+| "Workspace not found" when creating a connection | The `az ml` CLI and `azure-ai-ml` Python SDK use the `Microsoft.MachineLearningServices` resource provider, which doesn't support new Foundry projects (`Microsoft.CognitiveServices`) | Use `az cognitiveservices account project connection create` or the `azure-mgmt-cognitiveservices` Python SDK instead. See [Create a project connection](#create-a-project-connection). |
 | Response has no citations | Agent instructions don't request citations | Update your agent instructions to explicitly request citations in responses. |
 | Response has no citations (streaming) | Annotations not captured | Confirm you receive `url_citation` annotations when streaming. Check your stream processing logic. |
 | Tool can't access the index (401/403) | Missing RBAC roles (keyless auth) | Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to the Foundry project's managed identity. See [Azure RBAC in Foundry](../../../concepts/rbac-foundry.md). |
