@@ -165,3 +165,12 @@ items:
     href: ../../agents/concepts/capability-hosts.md
   - name: Tool governance
     href: ../../agents/how-to/tools/governance.md
+# System Messages
+- name: System messages
+  items:
+  - name: System message design
+    href: ../../openai/concepts/advanced-prompt-engineering.md
+  - name: Safety system messages
+    href: ../../openai/concepts/system-message.md
+  - name: Safety system message templates
+    href: ../../openai/concepts/safety-system-message-templates.md
