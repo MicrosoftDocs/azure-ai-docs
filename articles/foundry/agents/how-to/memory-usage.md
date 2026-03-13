@@ -26,26 +26,13 @@ This article explains how to create, manage, and use memory stores. For conceptu
 
 ### Usage support
 
-| Capability | JavaScript SDK | Python SDK | REST API |
+| Capability | Python SDK | JavaScript SDK | REST API |
 |---|---|---|---|
 | Create, update, list, and delete memory stores | ✔️ | ✔️ | ✔️ |
 | Update and search memories | ✔️ | ✔️ | ✔️ |
 | Attach memory to a prompt agent | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
-
-:::zone pivot="javascript"
-
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry project](../../how-to/create-projects.md) with configured [authorization and permissions](#authorization-and-permissions).
-- [Chat model deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-5.2`, in your project.
-- [Embedding model deployment](../../openai/tutorials/embeddings.md), such as `text-embedding-3-small`, in your project.
-- Review [limitations and quotas](../concepts/what-is-memory.md) for both models and memory stores.
-- Node.js LTS with a [configured environment](../../quickstarts/get-started-code.md).
-- Required packages: `npm install @azure/ai-projects @azure/identity`
-- [Environment variables](#set-environment-variables) configured for your project endpoint and model deployments.
-
-:::zone-end
 
 :::zone pivot="python"
 
@@ -56,6 +43,19 @@ This article explains how to create, manage, and use memory stores. For conceptu
 - Review [limitations and quotas](../concepts/what-is-memory.md) for both models and memory stores.
 - Python 3.8 or later with a [configured environment](../../quickstarts/get-started-code.md?tabs=python).
 - Required packages: `pip install "azure-ai-projects>=2.0.0" azure-identity`
+- [Environment variables](#set-environment-variables) configured for your project endpoint and model deployments.
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- A [Microsoft Foundry project](../../how-to/create-projects.md) with configured [authorization and permissions](#authorization-and-permissions).
+- [Chat model deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-5.2`, in your project.
+- [Embedding model deployment](../../openai/tutorials/embeddings.md), such as `text-embedding-3-small`, in your project.
+- Review [limitations and quotas](../concepts/what-is-memory.md) for both models and memory stores.
+- Node.js LTS with a [configured environment](../../quickstarts/get-started-code.md). The TypeScript samples in this article use the [Azure AI Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme).
+- Required packages: `npm install @azure/ai-projects @azure/identity`
 - [Environment variables](#set-environment-variables) configured for your project endpoint and model deployments.
 
 :::zone-end
@@ -89,9 +89,9 @@ To configure role-based access:
 
 ### Set environment variables
 
-:::zone pivot="javascript,python"
+:::zone pivot="python,typescript"
 
-Set environment variables for your project endpoint and model deployment names. The code examples in this article use these variables.
+Set environment variables for your project endpoint and model deployment names:
 
 #### [Bash](#tab/bash)
 
@@ -109,11 +109,13 @@ $env:AZURE_AI_CHAT_MODEL_DEPLOYMENT_NAME = "<chat-model-deployment-name>"
 $env:AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME = "<embedding-model-deployment-name>"
 ```
 
+---
+
 :::zone-end
 
 :::zone pivot="rest"
 
-Set shell variables for your project endpoint, API version, model deployments, and access token. The REST examples in this article use these variables.
+Set shell variables for your project endpoint, API version, model deployments, and access token:
 
 ```bash
 ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
@@ -138,54 +140,6 @@ Alternatively, when you specify `{{$userId}}` as the scope, the system automatic
 ## Create a memory store
 
 Create a dedicated memory store for each agent to establish clear boundaries for memory access and optimization. When you create a memory store, specify the chat model and embedding model deployments that process your memory content.
-
-:::zone pivot="javascript"
-
-```javascript
-import { DefaultAzureCredential } from "@azure/identity";
-import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
-
-const projectEndpoint =
-  process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const chatModelDeployment =
-  process.env["AZURE_AI_CHAT_MODEL_DEPLOYMENT_NAME"] ||
-  "<chat model deployment name>";
-const embeddingModelDeployment =
-  process.env["AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME"] ||
-  "<embedding model deployment name>";
-
-const memoryStoreName = "my_memory_store";
-
-const project = new AIProjectClient(
-  projectEndpoint,
-  new DefaultAzureCredential(),
-);
-
-const definition = {
-  kind: "default",
-  chat_model: chatModelDeployment,
-  embedding_model: embeddingModelDeployment,
-  options: {
-    user_profile_enabled: true,
-    chat_summary_enabled: true,
-  },
-};
-
-const memoryStore = await project.beta.memoryStores.create(
-  memoryStoreName,
-  definition,
-  {
-    description: "Example memory store for conversations",
-  },
-);
-
-console.log(
-  `Created memory store: ${memoryStore.name} (${memoryStore.id})`,
-);
-```
-
-:::zone-end
 
 :::zone pivot="python"
 
@@ -230,6 +184,64 @@ print(f"Created memory store: {memory_store.name}")
 
 :::zone-end
 
+:::zone pivot="typescript"
+
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+import type {
+  MemoryStoreDefaultDefinition,
+  MemoryStoreDefaultOptions,
+} from "@azure/ai-projects";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const projectEndpoint =
+  process.env["FOUNDRY_PROJECT_ENDPOINT"] ||
+  "<project endpoint>";
+const chatModelDeployment =
+  process.env["AZURE_AI_CHAT_MODEL_DEPLOYMENT_NAME"] ||
+  "<chat model deployment name>";
+const embeddingModelDeployment =
+  process.env["AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME"] ||
+  "<embedding model deployment name>";
+
+const memoryStoreName = "my_memory_store";
+
+const project = new AIProjectClient(
+  projectEndpoint,
+  new DefaultAzureCredential(),
+);
+
+const memoryOptions: MemoryStoreDefaultOptions = {
+  user_profile_enabled: true,
+  chat_summary_enabled: true,
+  user_profile_details:
+    "Avoid irrelevant or sensitive data, such as age, " +
+    "financials, precise location, and credentials",
+};
+
+const definition: MemoryStoreDefaultDefinition = {
+  kind: "default",
+  chat_model: chatModelDeployment,
+  embedding_model: embeddingModelDeployment,
+  options: memoryOptions,
+};
+
+const memoryStore = await project.beta.memoryStores.create(
+  memoryStoreName,
+  definition,
+  {
+    description: "Memory store for customer support agent",
+  },
+);
+
+console.log(
+  `Created memory store: ${memoryStore.name} ` +
+    `(${memoryStore.id})`,
+);
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -266,24 +278,6 @@ You can also use this parameter to exclude certain types of data, keeping memory
 
 Update memory store properties, such as `description` or `metadata`, to better manage memory stores.
 
-> [!NOTE]
-> The memory store API uses HTTP POST (not PATCH) for update operations.
-
-:::zone pivot="javascript"
-
-```javascript
-const updatedStore = await project.beta.memoryStores.update(
-  memoryStoreName,
-  {
-    description: "Updated description",
-  },
-);
-
-console.log(`Updated: ${updatedStore.description}`);
-```
-
-:::zone-end
-
 :::zone pivot="python"
 
 ```python
@@ -294,6 +288,21 @@ updated_store = project_client.beta.memory_stores.update(
 )
 
 print(f"Updated: {updated_store.description}")
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+const updatedStore = await project.beta.memoryStores.update(
+  memoryStoreName,
+  {
+    description: "Updated description",
+  },
+);
+
+console.log(`Updated: ${updatedStore.description}`);
 ```
 
 :::zone-end
@@ -317,19 +326,6 @@ curl -X POST "${ENDPOINT}/memory_stores/${MEMORY_STORE_NAME}?api-version=${API_V
 
 Retrieve a list of memory stores in your project to manage and monitor your memory infrastructure.
 
-:::zone pivot="javascript"
-
-```javascript
-const storeList = project.beta.memoryStores.list();
-
-console.log("Listing all memory stores...");
-for await (const store of storeList) {
-  console.log(`  - Memory Store: ${store.name} (${store.id})`);
-}
-```
-
-:::zone-end
-
 :::zone pivot="python"
 
 ```python
@@ -339,6 +335,19 @@ stores_list = list(project_client.beta.memory_stores.list())
 print(f"Found {len(stores_list)} memory stores")
 for store in stores_list:
     print(f"- {store.name} ({store.description})")
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+const storeList = project.beta.memoryStores.list();
+
+console.log("Listing all memory stores...");
+for await (const store of storeList) {
+  console.log(`  - Memory Store: ${store.name} (${store.id})`);
+}
 ```
 
 :::zone-end
@@ -356,9 +365,43 @@ curl -X GET "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
 
 After you create a memory store, you can attach the memory search tool to a prompt agent. This tool enables the agent to read from and write to your memory store during conversations. Configure the tool with the appropriate `scope` and `update_delay` to control how and when memories are updated.
 
-:::zone pivot="javascript"
+:::zone pivot="python"
 
-```javascript
+```python
+from azure.ai.projects.models import MemorySearchPreviewTool, PromptAgentDefinition
+
+# Set scope to associate the memories with
+# You can also use "{{$userId}}" to take the TID and OID of the request authentication header
+scope = "user_123"
+
+openai_client = project_client.get_openai_client()
+
+# Create memory search tool
+tool = MemorySearchPreviewTool(
+    memory_store_name=memory_store_name,
+    scope=scope,
+    update_delay=1, # Wait 1 second of inactivity before updating memories
+    # In a real application, set this to a higher value like 300 (5 minutes, default)
+)
+
+# Create a prompt agent with memory search tool
+agent = project_client.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model=os.environ["AZURE_AI_CHAT_MODEL_DEPLOYMENT_NAME"],
+        instructions="You are a helpful assistant that answers general questions",
+        tools=[tool],
+    )
+)
+
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
 // Set scope to associate the memories with
 // You can also use "{{$userId}}" to take the TID and OID of the request authentication header
 const scope = "user_123";
@@ -391,45 +434,10 @@ console.log(
 
 :::zone-end
 
-:::zone pivot="python"
-
-```python
-# Continue from the previous Python snippets
-from azure.ai.projects.models import MemorySearchPreviewTool, PromptAgentDefinition
-
-# Set scope to associate the memories with
-# You can also use "{{$userId}}" to take the TID and OID of the request authentication header
-scope = "user_123"
-
-openai_client = project_client.get_openai_client()
-
-# Create memory search tool
-tool = MemorySearchPreviewTool(
-    memory_store_name=memory_store_name,
-    scope=scope,
-    update_delay=1,  # Wait 1 second of inactivity before updating memories
-    # In a real application, set this to a higher value like 300 (5 minutes, default)
-)
-
-# Create a prompt agent with memory search tool
-agent = project_client.agents.create_version(
-    agent_name="MyAgent",
-    definition=PromptAgentDefinition(
-        model=os.environ["AZURE_AI_CHAT_MODEL_DEPLOYMENT_NAME"],
-        instructions="You are a helpful assistant that answers general questions",
-        tools=[tool],
-    )
-)
-
-print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
-```
-
-:::zone-end
-
 :::zone pivot="rest"
 
 ```bash
-# Note: The agents API uses api-version=v1, which differs from the memory store API version.
+# Note: The agents API uses api-version=v1, which differs from the memory store API version
 curl -X POST "${ENDPOINT}/agents?api-version=v1" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
@@ -458,46 +466,6 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
 You can now create conversations and request agent responses. At the start of each conversation, static memories are injected so the agent has immediate, persistent context. Contextual memories are retrieved per turn based on the latest messages to inform each response.
 
 After each agent response, the service internally calls `update_memories`. However, actual writes to long‑term memory are debounced by the `update_delay` setting. The update is scheduled and only completes after the configured period of inactivity.
-
-:::zone pivot="javascript"
-
-```javascript
-const openaiClient = project.getOpenAIClient();
-
-const conversation = await openaiClient.conversations.create();
-console.log(`Created conversation with ID: ${conversation.id}`);
-
-const response = await openaiClient.responses.create(
-  {
-    conversation: conversation.id,
-    input: "I prefer dark roast coffee",
-  },
-  {
-    body: {
-      agent: { name: agent.name, type: "agent_reference" },
-    },
-  },
-);
-
-console.log(`Agent response: ${response.output_text}`);
-
-// Create an agent response with stored memories
-const newResponse = await openaiClient.responses.create(
-  {
-    conversation: conversation.id,
-    input: "Please order my usual coffee?",
-  },
-  {
-    body: {
-      agent: { name: agent.name, type: "agent_reference" },
-    },
-  },
-);
-
-console.log("Response output: ", newResponse.output_text);
-```
-
-:::zone-end
 
 :::zone pivot="python"
 
@@ -537,6 +505,61 @@ print(f"Response output: {new_response.output_text}")
 
 :::zone-end
 
+:::zone pivot="typescript"
+
+```typescript
+import { setTimeout } from "timers/promises";
+
+const openaiClient = project.getOpenAIClient();
+
+// Create a conversation with the agent with memory tool enabled
+const conversation = await openaiClient.conversations.create();
+console.log(`Created conversation (id: ${conversation.id})`);
+
+// Create an agent response to initial user message
+const response = await openaiClient.responses.create(
+  {
+    conversation: conversation.id,
+    input: "I prefer dark roast coffee",
+  },
+  {
+    body: {
+      agent: { name: agent.name, type: "agent_reference" },
+    },
+  },
+);
+
+console.log(`Response output: ${response.output_text}`);
+
+// After inactivity, memories are extracted and stored
+console.log("Waiting for memories to be stored...");
+await setTimeout(65_000);
+
+// Create a new conversation to demonstrate cross-session recall
+const newConversation =
+  await openaiClient.conversations.create();
+console.log(
+  `Created new conversation (id: ${newConversation.id})`,
+);
+
+// Create an agent response with stored memories
+const newResponse = await openaiClient.responses.create(
+  {
+    conversation: newConversation.id,
+    input: "Please order my usual coffee",
+  },
+  {
+    body: {
+      agent: { name: agent.name, type: "agent_reference" },
+    },
+  },
+);
+
+console.log(`Response output: ${newResponse.output_text}`);
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 
 ```bash
@@ -545,7 +568,7 @@ curl -X POST "${ENDPOINT}/openai/v1/conversations" \
     -H "Content-Type: application/json" \
     -d '{}'
 
-# Copy the "id" field from the previous response.
+# Copy the "id" field from the previous response
 curl -X POST "${ENDPOINT}/openai/v1/responses" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
@@ -566,7 +589,7 @@ curl -X POST "${ENDPOINT}/openai/v1/responses" \
 You can interact with a memory store directly using the memory store APIs. Start by adding memories from conversation content to the memory store, and then search for relevant memories to provide context for agent interactions.
 
 > [!TIP]
-> The Python and JavaScript code snippets in this section build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run them independently, include the import and client initialization code from that section.
+> The Python and TypeScript code snippets in this section build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run them independently, include the import and client initialization code from that section.
 
 ### Add memories to a memory store
 
@@ -576,12 +599,61 @@ Decide how to segment memory across users by specifying the `scope` parameter. Y
 
 You can update a memory store with content from multiple conversation turns, or update after each turn and chain updates using the previous update operation ID.
 
-:::zone pivot="javascript"
+:::zone pivot="python"
 
-```javascript
+```python
+# Set scope to associate the memories with
+scope = "user_123"
+
+user_message = {
+  "role": "user",
+  "content": "I prefer dark roast coffee and usually drink it in the morning",
+   "type": "message"
+}
+
+update_poller = project_client.beta.memory_stores.begin_update_memories(
+    name=memory_store_name,
+    scope=scope,
+    items=[user_message], # Pass conversation items that you want to add to memory
+    update_delay=0, # Trigger update immediately without waiting for inactivity
+)
+
+# Wait for the update operation to complete, but can also fire and forget
+update_result = update_poller.result()
+print(f"Updated with {len(update_result.memory_operations)} memory operations")
+for operation in update_result.memory_operations:
+    print(
+        f"  - Operation: {operation.kind}, Memory ID: {operation.memory_item.memory_id}, Content: {operation.memory_item.content}"
+    )
+
+# Extend the previous update with another update and more messages
+new_message = {
+    "role":"user", 
+    "content":"I also like cappuccinos in the afternoon", 
+    "type":"message"}
+
+new_update_poller = project_client.beta.memory_stores.begin_update_memories(
+    name=memory_store_name,
+    scope=scope,
+    items=[new_message],
+    previous_update_id=update_poller.update_id, # Extend from previous update ID
+    update_delay=0, # Trigger update immediately without waiting for inactivity
+)
+new_update_result = new_update_poller.result()
+for operation in new_update_result.memory_operations:
+    print(
+        f"  - Operation: {operation.kind}, Memory ID: {operation.memory_item.memory_id}, Content: {operation.memory_item.content}"
+    )
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
 const scope = "user_123";
 
-const userMessage = {
+const userMessage: Record<string, unknown> = {
   type: "message",
   role: "user",
   content: [
@@ -616,6 +688,7 @@ for (const operation of updateResult.memory_operations) {
   );
 }
 
+// Extend the previous update with another message
 const newMessage = {
   role: "user",
   content: "I also like cappuccinos in the afternoon",
@@ -627,6 +700,7 @@ const newUpdatePoller = project.beta.memoryStores.updateMemories(
   scope,
   {
     items: [newMessage],
+    previousUpdateId: updatePoller.updateId,
     updateDelayInSecs: 0,
   },
 );
@@ -643,56 +717,6 @@ for (const operation of newUpdateResult.memory_operations) {
       `Content: ${operation.memory_item.content}`,
   );
 }
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-# Continue from the previous Python snippets
-# Set scope to associate the memories with
-scope = "user_123"
-
-user_message = {
-  "role": "user",
-  "content": "I prefer dark roast coffee and usually drink it in the morning",
-   "type": "message"
-}
-
-update_poller = project_client.beta.memory_stores.begin_update_memories(
-    name=memory_store_name,
-    scope=scope,
-    items=[user_message],  # Pass conversation items that you want to add to memory
-    update_delay=0,  # Trigger update immediately without waiting for inactivity
-)
-
-# Wait for the update operation to complete, but can also fire and forget
-update_result = update_poller.result()
-print(f"Updated with {len(update_result.memory_operations)} memory operations")
-for operation in update_result.memory_operations:
-    print(
-        f"  - Operation: {operation.kind}, Memory ID: {operation.memory_item.memory_id}, Content: {operation.memory_item.content}"
-    )
-
-# Extend the previous update with another update and more messages
-new_message = {
-    "role":"user", 
-    "content":"I also like cappuccinos in the afternoon", 
-    "type":"message"}
-
-new_update_poller = project_client.beta.memory_stores.begin_update_memories(
-    name=memory_store_name,
-    scope=scope,
-    items=[new_message],
-    previous_update_id=update_poller.update_id,  # Extend from previous update ID
-    update_delay=0,  # Trigger update immediately without waiting for inactivity
-)
-new_update_result = new_update_poller.result()
-for operation in new_update_result.memory_operations:
-    print(
-        f"  - Operation: {operation.kind}, Memory ID: {operation.memory_item.memory_id}, Content: {operation.memory_item.content}"
-    )
 ```
 
 :::zone-end
@@ -733,10 +757,31 @@ curl -X GET "${ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-
 
 Search memories to retrieve relevant context for agent interactions. Specify the memory store name and scope to narrow the search.
 
-:::zone pivot="javascript"
+:::zone pivot="python"
 
-```javascript
-const queryMessage = {
+```python
+from azure.ai.projects.models import MemorySearchOptions
+
+# Search memories by a query
+query_message = {"role": "user", "content": "What are my coffee preferences?", "type": "message"}
+
+search_response = project_client.beta.memory_stores.search_memories(
+    name=memory_store_name,
+    scope=scope,
+    items=[query_message],
+    options=MemorySearchOptions(max_memories=5)
+)
+print(f"Found {len(search_response.memories)} memories")
+for memory in search_response.memories:
+    print(f"  - Memory ID: {memory.memory_item.memory_id}, Content: {memory.memory_item.content}")
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+const queryMessage: Record<string, unknown> = {
   type: "message",
   role: "user",
   content: [
@@ -764,28 +809,6 @@ for (const memory of searchResponse.memories) {
       `Content: ${memory.memory_item.content}`,
   );
 }
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-# Continue from the previous Python snippets
-from azure.ai.projects.models import MemorySearchOptions
-
-# Search memories by a query
-query_message = {"role": "user", "content": "What are my coffee preferences?", "type": "message"}
-
-search_response = project_client.beta.memory_stores.search_memories(
-    name=memory_store_name,
-    scope=scope,
-    items=[query_message],
-    options=MemorySearchOptions(max_memories=5)
-)
-print(f"Found {len(search_response.memories)} memories")
-for memory in search_response.memories:
-    print(f"  - Memory ID: {memory.memory_item.memory_id}, Content: {memory.memory_item.content}")
 ```
 
 :::zone-end
@@ -826,117 +849,6 @@ Often, user profile memories can't be retrieved based on semantic similarity to 
 
 - To retrieve contextual memories, call `search_memories` with `items` set to the latest messages. This can return both user profile and chat summary memories most relevant to the given items.
 
-:::zone pivot="javascript"
-
-```javascript
-// Static memories: Retrieve user profile memories for a scope
-const staticResponse =
-  await project.beta.memoryStores.searchMemories(
-    memoryStoreName,
-    scope,
-    {
-      options: { max_memories: 5 },
-    },
-  );
-
-console.log(
-  `Found ${staticResponse.memories.length} static memory item(s)`,
-);
-
-// Contextual memories: Retrieve memories relevant to the latest messages
-const contextualResponse =
-  await project.beta.memoryStores.searchMemories(
-    memoryStoreName,
-    scope,
-    {
-      items: [
-        {
-          type: "message",
-          role: "user",
-          content: [
-            {
-              type: "input_text",
-              text: "What coffee should I order?",
-            },
-          ],
-        },
-      ],
-      options: { max_memories: 5 },
-    },
-  );
-
-console.log(
-  `Found ${contextualResponse.memories.length} contextual memory item(s)`,
-);
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-from azure.ai.projects.models import MemorySearchOptions
-
-# Static memories: Retrieve user profile memories for a scope
-static_response = project_client.beta.memory_stores.search_memories(
-    name=memory_store_name,
-    scope=scope,
-    options=MemorySearchOptions(max_memories=5)
-)
-print(f"Found {len(static_response.memories)} static memories")
-
-# Contextual memories: Retrieve memories relevant to the latest messages
-contextual_response = project_client.beta.memory_stores.search_memories(
-    name=memory_store_name,
-    scope=scope,
-    items="What coffee should I order?",
-    options=MemorySearchOptions(max_memories=5)
-)
-print(f"Found {len(contextual_response.memories)} contextual memories")
-```
-
-:::zone-end
-
-:::zone pivot="rest"
-
-```bash
-# Static memories: Omit "items" to retrieve user profile memories
-curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:search_memories?api-version=${API_VERSION}" \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "scope": "user_123",
-    "options": {
-      "max_memories": 5
-    }
-  }'
-
-# Contextual memories: Include "items" with the latest messages
-curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:search_memories?api-version=${API_VERSION}" \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "scope": "user_123",
-    "items": [
-      {
-        "type": "message",
-        "role": "user",
-        "content": [
-          {
-            "type": "input_text",
-            "text": "What coffee should I order?"
-          }
-        ]
-      }
-    ],
-    "options": {
-      "max_memories": 5
-    }
-  }'
-```
-
-:::zone-end
-
 For more information about user profile and chat summary memories, see [Memory types](../concepts/what-is-memory.md#memory-types).
 
 ## Delete memories
@@ -950,18 +862,6 @@ Memories are organized by scope within a memory store. You can delete memories f
 
 Remove all memories associated with a particular user or group scope while preserving the memory store structure. Use this operation to handle user data deletion requests or reset memory for specific users.
 
-:::zone pivot="javascript"
-
-```javascript
-console.log("\nDeleting memories for scope...");
-await project.beta.memoryStores.deleteScope(
-  memoryStoreName,
-  scope,
-);
-```
-
-:::zone-end
-
 :::zone pivot="python"
 
 ```python
@@ -972,6 +872,18 @@ project_client.beta.memory_stores.delete_scope(
 )
 
 print(f"Deleted memories for scope: user_123")
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+console.log("\nDeleting memories for scope...");
+await project.beta.memoryStores.deleteScope(
+  memoryStoreName,
+  scope,
+);
 ```
 
 :::zone-end
@@ -993,21 +905,21 @@ curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:delete_scope?api-version
 
 Remove the entire memory store and all associated memories across all scopes. This operation is irreversible.
 
-:::zone pivot="javascript"
-
-```javascript
-console.log("Deleting memory store...");
-await project.beta.memoryStores.delete(memoryStoreName);
-```
-
-:::zone-end
-
 :::zone pivot="python"
 
 ```python
 # Delete the entire memory store
 delete_response = project_client.beta.memory_stores.delete(memory_store_name)
 print(f"Deleted memory store: {delete_response.deleted}")
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+```typescript
+console.log("Deleting memory store...");
+await project.beta.memoryStores.delete(memoryStoreName);
 ```
 
 :::zone-end
@@ -1046,18 +958,20 @@ curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERS
 
 ## Related content
 
-:::zone pivot="javascript"
+:::zone pivot="python"
 
-- [Azure AI Projects SDK for JavaScript: Memory samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2/javascript/memories)
+- [Azure AI Projects client library for Python: Memory samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
+- [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
 - [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)
 
 :::zone-end
 
-:::zone pivot="python"
+:::zone pivot="typescript"
 
-- [Azure AI Projects SDK for Python: Memory samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
+- [Azure AI Projects client library for JavaScript: Memory samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2/javascript/memories)
+- [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
 - [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)
