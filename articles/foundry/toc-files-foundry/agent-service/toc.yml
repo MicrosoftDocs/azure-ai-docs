@@ -87,7 +87,7 @@ items:
   - name: Monitor agents in the dashboard
     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
   - name: Evaluate agent quality
-    href: ../../observability/how-to/observability/evaluate-agent.md
+    href: ../../observability/how-to/evaluate-agent.md
 
 # Reference
 - name: Reference
