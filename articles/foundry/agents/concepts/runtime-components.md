@@ -83,7 +83,7 @@ npm install @azure/identity
 
 # [REST API](#tab/rest)
 
-No SDK installation required. Use [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) to obtain an access token:
+No SDK installation required. Use [Azure CLI](/cli/azure/install-azure-cli) to obtain an access token:
 
 ```bash
 az login
