@@ -166,7 +166,7 @@ The scope of OAuth is per tool (connection) name per Foundry project. Each new u
 - The user is prompted to sign in and give consent after reviewing the access needed. After giving consent successfully, the user sees a dialog like this example:
    :::image type="content" source="../../media/mcp/foundry-close-me.png" alt-text="Screenshot that shows the confirmation dialog after giving OAuth consent in the Foundry portal." lightbox="../../media/mcp/foundry-close-me.png":::
 
-- After the user has closed the dialog, you need to submit another response with the previous response id
+- After the user has closed the dialog, you need to submit another response with the previous response ID
 
    ```python
    # Requires: azure-ai-projects >= 1.0.0
