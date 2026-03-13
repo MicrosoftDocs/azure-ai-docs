@@ -847,7 +847,7 @@ Agent retrieved: your-agent-name (version: 1)
 Agent response: Hello! I'm your hosted agent. I can help you with...
 ```
 
-For more information, see [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview).
+For more information, see [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme).
 
 ### Use tools with hosted agents
 
