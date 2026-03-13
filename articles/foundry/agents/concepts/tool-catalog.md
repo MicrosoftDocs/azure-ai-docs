@@ -149,11 +149,79 @@ At runtime, provide the actual value:
 
 Different tools require different authentication approaches. Understanding these options helps you connect tools securely.
 
-**Built-in tools** authenticate through Foundry Agent Service automatically. Most built-in tools such as Code Interpreter and File Search require no extra authentication configuration. Tools that connect to external data sources (for example, Azure AI Search or SharePoint) use the [connections](../../how-to/connections-add.md) configured in your Foundry project.
+### Built-in tools
 
-**MCP servers** support multiple authentication methods depending on the server. Options include key-based authentication (API key or token), Microsoft Entra authentication (managed identity), and OAuth for user-level identity passthrough. When in doubt, start with Microsoft Entra authentication if the MCP server supports it, because it eliminates the need to manage secrets and provides built-in token rotation. For detailed setup steps, see [Set up MCP server authentication](../how-to/mcp-authentication.md).
+Most built-in tools such as Code Interpreter and File Search authenticate through Foundry Agent Service automatically and require no extra configuration. Tools that connect to external data sources (for example, Azure AI Search or SharePoint) use the [connections](../../how-to/connections-add.md) configured in your Foundry project.
 
-**OpenAPI tools** support anonymous, API key, and managed identity authentication. Choose the method that matches your API's requirements. For details, see [Connect agents to OpenAPI tools](../how-to/tools/openapi.md).
+### MCP servers
+
+MCP servers support multiple authentication methods depending on the server: key-based authentication (API key or token), Microsoft Entra authentication (managed identity), and OAuth for user-level identity passthrough.
+
+The following example connects to an MCP server using key-based authentication. Store the credential in a project connection, then reference the connection name when you create the tool:
+
+```python
+from azure.ai.projects.models import MCPTool
+
+tool = MCPTool(
+    server_label="github",
+    server_url="https://api.githubcopilot.com/mcp",
+    require_approval="always",
+    project_connection_id="my-github-connection",
+)
+```
+
+For Microsoft Entra authentication, use agent identity or project managed identity instead of a connection. The service requests a token automatically. For OAuth identity passthrough (per-user auth), Agent Service generates a consent link that users authorize on first use.
+
+For detailed setup steps for all methods, see [Set up MCP server authentication](../how-to/mcp-authentication.md).
+
+> [!TIP]
+> When in doubt, start with Microsoft Entra authentication if the MCP server supports it. It eliminates the need to manage secrets and provides built-in token rotation.
+
+### OpenAPI tools
+
+OpenAPI tools support anonymous, API key, and managed identity authentication. The auth configuration is part of the tool definition.
+
+**Anonymous authentication** — use when the API doesn't require credentials:
+
+```python
+from azure.ai.projects.models import (
+    OpenApiTool,
+    OpenApiFunctionDefinition,
+    OpenApiAnonymousAuthDetails,
+)
+
+weather_tool = OpenApiTool(
+    openapi=OpenApiFunctionDefinition(
+        name="get_weather",
+        spec=openapi_spec,
+        description="Retrieve weather information for a location.",
+        auth=OpenApiAnonymousAuthDetails(),
+    )
+)
+```
+
+**API key authentication** — store the key in a project connection, then reference it. Your OpenAPI spec must include `securitySchemes` and `security` sections:
+
+```python
+from azure.ai.projects.models import (
+    OpenApiTool,
+    OpenApiFunctionDefinition,
+    OpenApiKeyAuthDetails,
+)
+
+api_tool = OpenApiTool(
+    openapi=OpenApiFunctionDefinition(
+        name="get_orders",
+        spec=openapi_spec,
+        description="Look up customer orders.",
+        auth=OpenApiKeyAuthDetails(
+            project_connection_id="my-api-connection"
+        ),
+    )
+)
+```
+
+For managed identity configuration, see [Connect agents to OpenAPI tools](../how-to/tools/openapi.md).
 
 > [!TIP]
 > Treat all credentials as secrets. Only provide the minimum required headers, don't include credentials in prompts, and review the provider's data handling practices. For governance controls such as rate limits and IP restrictions on MCP tools, see [Govern MCP tools by using an AI gateway](../how-to/tools/governance.md).
