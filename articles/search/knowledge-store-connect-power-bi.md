@@ -66,7 +66,7 @@ Follow the steps in this article using sample data and a knowledge store as [cre
 
 ## Check table relationships
 
-1. Select on the Model tile on the left pane and validate that Power BI shows relationships between all three tables.
+1. Select the Model tile on the left pane and validate that Power BI shows relationships between all three tables.
 
    ![Validate relationships](media/knowledge-store-connect-power-bi/powerbi-relationships.png "Validate relationships")
 
@@ -74,7 +74,7 @@ Follow the steps in this article using sample data and a knowledge store as [cre
 
 ## Build a report
 
-1. Select on the Report tile on the left pane to explore data through visualizations. For text fields, tables and cards are useful visualizations.
+1. Select the Report tile on the left pane to explore data through visualizations. For text fields, tables and cards are useful visualizations.
 
 1. Choose fields from each of the three tables to fill in the table or card.
 
