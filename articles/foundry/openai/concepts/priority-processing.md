@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 03/13/2026
+ms.date: 03/16/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: seramasu
@@ -39,11 +39,14 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 ## Latency target
 
-| Model | Latency target value | 
+| Model | Latency target value<sup>2</sup> | 
 | --- | --- |
-| gpt-4.1, 2025-04-14 <br> excludes long context<sup>1</sup> | 99% > 80 Tokens Per Second<sup>2</sup> |
+| gpt-5.4, 2026-03-05<sup>1</sup> | 99% > 50 Tokens Per Second |
+| gpt-5.2, 2025-12-11 | 99% > 50 Tokens Per Second |
+| gpt-5.1, 2025-11-13 | 99% > 50 Tokens Per Second |
+| gpt-4.1, 2025-04-14<sup>1</sup> | 99% > 80 Tokens Per Second |
 
-<sup>1</sup> Long context requests (that is, requests estimated at larger than 128k prompt tokens) will be downgraded to standard
+<sup>1</sup> Long context requests (that is, requests estimated at larger than 128k prompt tokens) will be downgraded to standard processing
 
 <sup>2</sup> Calculated as p50 request latency on a per 5 minute basis.
 
@@ -53,21 +56,22 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 ### Global standard model availability
 
-| **Region**    | **gpt-4.1, 2025-04-14** |
-|:--------------|:-----------------------:|
-| eastus2       | ✅                      |
-| swedencentral | ✅                      |
-| westus3       | ✅                      |
+| **Region**     | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
+|:---------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
+| centralus      | ✅                      | ✅                      | ✅                      | ✅                      |
+| koreacentral   | ✅                      | ✅                      | ✅                      | ✅                      |
+| southcentralus | ✅                      | ✅                      | ✅                      | ✅                      |
+
 
 # [Data Zone standard](#tab/datazone-standard)
 
 ### Data zone standard model availability
 
-| **Region**    | **gpt-4.1, 2025-04-14** |
-|:--------------|:-----------------------:|
-| eastus2       | ✅                      |
-| swedencentral | ✅                      |
-| westus3       | ✅                      |
+| **Region**     | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
+|:---------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
+| centralus      | ✅                      | ✅                     | ✅                      | ✅                      |
+| southcentralus | ✅                      | ✅                     | ✅                      | ✅                      |
+
 
 ---
 
@@ -152,10 +156,10 @@ The following table summarizes which service tier processes your requests based 
 
 - The service currently doesn't support regional standard deployments and EU datazone standard deployments.
 
-- The service might re-route some priority requests to standard processing during either of these scenarios:
+- The service might re-route some priority requests to standard processing during these scenarios:
 
-    - During periods of peak constraint.
     - If rapid increases to your priority processing tokens per minute lead to hitting _ramp rate limits_. Currently, the ramp rate limit is defined as increasing traffic by more than 50% tokens per minute in less than 15 minutes.
+    - During periods of peak requests to priority processing.
     
     > [!NOTE]
     > - The service bills requests processed by the standard service tier at standard rates. Requests processed by the standard service tier include `service_tier = default` in the response, while requests processed by priority processing tier include `service_tier = priority` in the response.
@@ -166,7 +170,7 @@ The following table summarizes which service tier processes your requests based 
 
 | Issue | Cause | Resolution |
 | ------- | ------- | ------------ |
-| Requests downgraded to standard tier | One of two situations: <br>- Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. <br>- Requests sent during periods of peak constraint. | - Increase traffic gradually, if you've encountered ramp rate limits.<br> - Send requests outside of periods where there are peak constrains. <br> - Consider purchasing PTU for steady-state capacity. |
+| Requests downgraded to standard tier | One of two situations: <br>- Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. <br>- Requests sent during periods of peak requests to priority processing. | - Increase traffic gradually, if you've encountered ramp rate limits.<br> - Consider purchasing PTU for steady-state capacity. |
 
 ## Related content
 
