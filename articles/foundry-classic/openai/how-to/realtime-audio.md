@@ -102,7 +102,7 @@ Follow the instructions in this section to get started with the Realtime API via
 
 ## API support
 
-Use the API with `/openai/v1` in the URL to access the latest Realtime API features. Do not use any date-based API version for Realtime API.
+Use the API with `/openai/v1` in the URL to access the latest Realtime API features. Don't use any date-based API version for Realtime API.
 
 > [!CAUTION]
 > You need to use **different** endpoint formats for Preview and Generally Available (GA) models. All samples in this article use GA models and GA endpoint format, and don't use `api-version` parameter, which is required for Preview endpoint format only. See detailed information on the endpoint format [in this article](../how-to/realtime-audio-websockets.md#connection-and-authentication). 
