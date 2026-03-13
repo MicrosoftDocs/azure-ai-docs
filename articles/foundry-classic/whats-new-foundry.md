@@ -15,7 +15,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # What's new in Microsoft Foundry documentation? (classic)
 
-[!INCLUDE [classic-banner](includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../foundry/whats-new-foundry.md)
 
 Welcome! This article highlights key changes and updates in Microsoft Foundry documentation for December 2025.
 

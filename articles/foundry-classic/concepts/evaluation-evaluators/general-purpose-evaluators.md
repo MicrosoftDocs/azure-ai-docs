@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # General purpose evaluators (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/concepts/evaluation-evaluators/general-purpose-evaluators.md)
 
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 

@@ -20,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Microsoft Foundry SDKs and Endpoints (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/sdk-overview.md)
 
 A Foundry resource provides unified access to models, agents, and tools. This article explains which SDK and endpoint to use for your scenario.
 
@@ -51,7 +51,7 @@ A Foundry resource provides unified access to models, agents, and tools. This ar
   - **Azure AI Project Manager** (for managing Foundry projects)
   - **Contributor** or **Owner** (for subscription-level permissions)
   
-  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/foundry/concepts/rbac-azure-ai-foundry).
 
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](install-cli-sdk.md).
 
