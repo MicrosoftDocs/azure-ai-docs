@@ -69,6 +69,7 @@ While Task Adherence can be enabled in all Azure AI Content Safety regions, data
 
 > [!div class="nextstepaction"]
 > [Azure AI Content Safety documentation](/azure/ai-services/content-safety/)
+> [Guardrails and controls overview](guardrails-overview.md)
 
 ## Related content
 
