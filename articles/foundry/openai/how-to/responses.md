@@ -63,7 +63,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -190,7 +190,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -1337,7 +1337,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -1464,7 +1464,7 @@ Not every model is available in the regions supported by the responses API. Chec
 
 ## Troubleshooting
 
-- **401/403**: If you use Microsoft Entra ID, verify your token is scoped for `https://cognitiveservices.azure.com/.default`. If you use an API key, confirm you're using the correct key for the resource.
+- **401/403**: If you use Microsoft Entra ID, verify your token is scoped for `https://ai.azure.com/.default`. If you use an API key, confirm you're using the correct key for the resource.
 - **404**: Confirm `model` matches your deployment name.
 
 ## Related content

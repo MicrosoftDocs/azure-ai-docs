@@ -1,10 +1,7 @@
 ---
-title: Indexer access to protected resources
-titleSuffix: Azure AI Search
+title: Indexer Access to Protected Resources
 description: Learn import concepts and requirements related to network-level security options for outbound requests made by indexers in Azure AI Search.
-manager: nitinme
-author: arv100kri
-ms.author: arjagann
+ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

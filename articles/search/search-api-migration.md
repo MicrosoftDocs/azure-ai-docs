@@ -1,10 +1,7 @@
 ---
-title: Upgrade REST API versions
-titleSuffix: Azure AI Search
+title: Upgrade REST API Versions
 description: Review differences in API versions and learn about the REST API lifecycle and the steps for migrating code to the newer versions.
-manager: nitinme
-author: bevloh
-ms.author: beloh
+ms.reviewer: beloh
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

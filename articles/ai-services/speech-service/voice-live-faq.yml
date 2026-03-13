@@ -131,7 +131,7 @@ sections:
       - question: |
           Is there model context protocol (MCP) support?
         answer: |
-          Currently MCP isn't supported.
+          Currently, MCP is supported in with model mode with the exception of phi models. Further with Foundry (new) agents. It's not supported with Foundry (classic) agents.
   - name: Pricing
     questions:
       - question: |

@@ -1,6 +1,5 @@
 ---
-title: API versions
-titleSuffix: Azure AI Search
+title: API Versions
 description: Version policy for Azure AI Search REST APIs and the client library in the .NET SDK.
 ms.service: azure-ai-search
 ms.custom:

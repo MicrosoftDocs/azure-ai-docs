@@ -1,9 +1,7 @@
 ---
-title: Vector Search
-titleSuffix: Azure AI Search
-description: Describes concepts, scenarios, and availability of vector capabilities in Azure AI Search.
-author: robertklee
-ms.author: robertlee
+title: Vector Search Overview
+description: Learn about vector search in Azure AI Search for similarity matching across text, images, and multilingual content using numeric embeddings and vector indexes.
+ms.reviewer: robertlee
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

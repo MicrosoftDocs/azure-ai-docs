@@ -27,6 +27,20 @@ ms.custom: pilot-ai-workflow-jan-2026
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
 
+## GPT-5.4
+
+| Model | Region |
+|---|---|
+| `gpt-5.4` | See the [models table](#model-summary-table-and-region-availability) |
+| `gpt-5.4-pro` |  See the [models table](#model-summary-table-and-region-availability)  |
+
+- **[Registration is required for access to gpt-5.4 & gpt-5.4-pro](https://aka.ms/OAI/gpt53codexaccess).**
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-5.4` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 1,050,000 Context Window | 128,000 | August 2025 |
+| `gpt-5.4-pro` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Text and image processing. <br> - Functions & tools <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000 <br><br>1,050,000 Context Window (Coming Soon!)   | 128,000 | August 2025 |
+
 ## GPT-5.3
 
 | Model | Region |
@@ -87,10 +101,6 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | `gpt-5.1-codex-mini` |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.1-codex-max` |  See the [models table](#model-summary-table-and-region-availability).  | 
 
-- **[Registration is required for access to gpt-5.1, gpt-5.1-codex, and gpt-5.1-codex-max](https://aka.ms/oai/gpt5access).**
-
-Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
-
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-5.1` (2025-11-13) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024  |
@@ -122,12 +132,6 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | `gpt-5-chat` (2025-10-03) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-codex` (2025-09-11) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-pro` (2025-10-06) |  See the [models table](#model-summary-table-and-region-availability).  |
-
-- **[Registration is required for access to the gpt-5-pro, gpt-5, & gpt-5-codex models](https://aka.ms/oai/gpt5access).**
-
-- `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
-
- Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to `o3`, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -356,7 +360,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-4o-realtime-preview` (2025-06-03) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-mini-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
-|`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini-2025-12-15` (2025-12-15) <br> `gpt-realtime-1.5-2026-02-23` (2026-02-23)<br> `gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06)<br> `gpt-audio-1.5-2026-02-23` (2026-02-23) | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
+|`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini-2025-12-15` (2025-12-15) <br> `gpt-realtime-1.5` (2026-02-23)<br> `gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06)<br> `gpt-audio-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
 
 To compare the availability of GPT-4o audio models across all regions, refer to the [models table](#global-standard-model-availability).
 

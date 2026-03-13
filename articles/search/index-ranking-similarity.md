@@ -1,6 +1,5 @@
 ---
-title: Configure BM25 relevance scoring
-titleSuffix: Azure AI Search
+title: Configure BM25 Relevance Scoring
 description: Enable Okapi BM25 ranking to upgrade the search ranking and relevance behavior on older Azure Search services.
 ms.service: azure-ai-search
 ms.custom:

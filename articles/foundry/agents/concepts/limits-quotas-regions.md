@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 02/12/2026
+ms.date: 03/11/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions
 ai-usage: ai-assisted
 ---
@@ -26,27 +26,7 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 
 ## Supported regions
 
-Foundry Agent Service is available in the following Azure regions:
-
-- Australia East
-- Brazil South
-- Canada East
-- East US
-- East US 2
-- France Central
-- Germany West Central
-- Italy North
-- Japan East
-- Norway East
-- South Africa North
-- South Central US
-- South India
-- Sweden Central
-- Switzerland North
-- UK South
-- West Europe
-- West US
-- West US 3
+Foundry Agent Service is available in the same regions as the [Azure OpenAI Responses API](../../openai/how-to/responses.md#region-availability).
 
 > [!IMPORTANT]
 > Not all tools are available in every region. For example, file search isn't available in Italy North and Brazil South. For the full tool-by-region matrix, see [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model).
