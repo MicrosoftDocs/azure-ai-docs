@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Auto-upgrade Azure OpenAI resources to Microsoft Foundry
 
-Microsoft is automatically upgrading eligible Azure OpenAI resources to Microsoft Foundry resources. This service backend upgrade gives you access to a broader set of models, [Foundry Agent Service](../agents/overview.md), [Evaluations](evaluate-generative-ai-app.md), [Fine-Tuning Service](../openai/how-to/fine-tuning.md) with more models along with deeper integration across the Microsoft ecosystem.
+Microsoft is automatically upgrading eligible Azure OpenAI resources to Microsoft Foundry resources. This service backend upgrade gives you access to a broader set of models, [Foundry Agent Service](../agents/overview.md), [Evaluations](evaluate-generative-ai-app.md), [Fine-Tuning](../openai/how-to/fine-tuning.md) availability with more models, and deeper integration across the Microsoft ecosystem.
 
 Upgrading doesn't increase your costs. Your Azure resource name, managed identity, endpoint, keys, and existing settings and state remain the same, including security configurations and permissions, Azure OpenAI v1 endpoint access and API keys, and existing fine-tuning jobs, batches, stored completions, and files.
 
