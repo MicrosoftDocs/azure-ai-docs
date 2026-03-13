@@ -33,7 +33,7 @@ items:
     # - name: Link to running custom evaluations on models
     #   href:
 
-  - name: Model versions
+  - name: Model versions and lifecycle
     items:
     - name: Model versions
       displayName: Model versions in Microsoft Foundry Models
@@ -44,9 +44,6 @@ items:
     - name: Upgrade or switch models with Ask AI
       displayName: Upgrade or switch models with Ask AI (preview)
       href: ../../observability/how-to/optimization-model-upgrade.md
-
-  - name: Model lifecycle
-    items:
     - name: Model lifecycle and retirement for Foundry Models
       displayName: Model deprecation and retirement for Microsoft Foundry Models
       href: ../../concepts/model-lifecycle-retirement.md
