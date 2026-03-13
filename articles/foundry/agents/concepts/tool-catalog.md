@@ -19,7 +19,7 @@ Tools extend what your agents can do in Microsoft Foundry Agent Service. An agen
 > [!NOTE]
 > The Foundry tool catalog and the core tools framework are generally available. Some individual tools are still in preview, as noted in the tool listings throughout this article. Each tool's own page also indicates its preview status with a banner. Preview tools are subject to [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-## What are tools
+## What are tools?
 
 A *tool* is a capability that an agent can invoke during a conversation to perform a specific task. When an agent receives a user message, the model decides whether to call a tool based on the agent's instructions and the available tool definitions. The agent sends the tool request, your application or the service executes it, and the result flows back into the conversation so the agent can continue with accurate, up-to-date information.
 
