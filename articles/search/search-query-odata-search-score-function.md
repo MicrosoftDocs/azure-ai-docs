@@ -1,6 +1,5 @@
 ---
 title: OData search.score Function Reference
-titleSuffix: Azure AI Search
 description: Syntax and reference documentation for using the search.score function in Azure AI Search queries.
 ms.service: azure-ai-search
 ms.custom:

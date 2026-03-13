@@ -1,6 +1,5 @@
 ---
 title: Custom AML Skill in Skillsets
-titleSuffix: Azure AI Search
 description: Learn how to extend the capabilities of Azure AI Search skillsets with Microsoft Foundry or Azure Machine Learning models.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

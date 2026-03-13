@@ -6,7 +6,7 @@ ms.author: lagayhar
 ms.reviewer: skohlmeier
 ms.date: 02/12/2026
 ms.service: azure-ai-foundry
-ms.topic: article
+ms.topic: reference
 ms.custom:
   - classic-and-new
 ---

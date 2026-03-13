@@ -1,6 +1,5 @@
 ---
 title: Set the Retrieval Reasoning Effort
-titleSuffix: Azure AI Search
 description: Learn how to set the level of LLM processing for agentic retrieval in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to

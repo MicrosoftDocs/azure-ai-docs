@@ -1,6 +1,5 @@
 ---
 title: Deploy Search App (.NET Tutorial)
-titleSuffix: Azure AI Search
 description: Deploy search-enabled website with .NET APIs to Azure Static web app.
 ms.reviewer: diberry
 ms.service: azure-ai-search

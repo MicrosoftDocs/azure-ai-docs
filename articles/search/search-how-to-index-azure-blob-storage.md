@@ -1,6 +1,5 @@
 ---
 title: Azure Blob Indexer
-titleSuffix: Azure AI Search
 description: Learn how to set up a blob indexer to automate indexing of Azure Blob Storage content for full-text search, knowledge mining, and other scenarios in Azure AI Search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

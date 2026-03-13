@@ -1,6 +1,5 @@
 ---
 title: Search Over CSV Blobs Using delimitedText Parsing
-titleSuffix: Azure AI Search
 description: Extract CSV blobs from Azure Blob Storage or Azure Files, and import as search documents into Azure AI Search using the delimitedText parsing mode.
 ms.service: azure-ai-search
 ms.topic: how-to

@@ -1,6 +1,5 @@
 ---
 title: "Tutorial: Skillsets"
-titleSuffix: Azure AI Search
 description: Learn how to create a skillset that calls built-in skills to enrich content during indexing.
 ms.service: azure-ai-search
 ms.topic: tutorial

@@ -1,6 +1,5 @@
 ---
 title: Use Indexers to Ingest Microsoft Purview Sensitivity Labels
-titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers to ingest Microsoft Purview sensitivity labels from supported data sources for document-level security enforcement.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

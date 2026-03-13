@@ -1,6 +1,5 @@
 ---
 title: Built-in Policy Definitions
-titleSuffix: Azure AI Search
 description: Lists Azure Policy built-in policy definitions for Azure Cognitive Search. These built-in policy definitions provide common approaches to managing your Azure resources.
 ms.date: 12/10/2024
 ms.update-cycle: 365-days

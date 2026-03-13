@@ -1,6 +1,5 @@
 ---
 title: Migrate Semantic Ranking Code
-titleSuffix: Azure AI Search
 description: Migrate semantic ranking code from preview to stable versions, and now to newer preview versions.
 ms.service: azure-ai-search
 ms.custom:

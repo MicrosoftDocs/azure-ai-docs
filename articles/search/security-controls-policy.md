@@ -1,6 +1,5 @@
 ---
 title: Azure Policy Regulatory Compliance Controls
-titleSuffix: Azure AI Search
 description: Lists Azure Policy Regulatory Compliance controls available for Azure AI Search. These built-in policy definitions provide common approaches to managing the compliance of your Azure resources.
 ms.date: 02/27/2026
 ms.update-cycle: 365-days

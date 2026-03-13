@@ -1,6 +1,5 @@
 ---
 title: Azure Files Indexer
-titleSuffix: Azure AI Search
 description: Set up an Azure Files indexer to automate indexing of file shares in Azure AI Search.
 ms.reviewer: magottei
 ms.service: azure-ai-search

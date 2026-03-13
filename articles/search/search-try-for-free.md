@@ -1,6 +1,5 @@
 ---
 title: Try for Free
-titleSuffix: Azure AI Search
 description: Learn how to start a trial subscription and use credits to try advanced Azure AI Search features.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

@@ -1,6 +1,5 @@
 ---
 title: Create a Knowledge Store Using REST
-titleSuffix: Azure AI Search
 description: Use the REST APIs to create an Azure AI Search knowledge store for persisting AI enrichments from a skillset.
 ms.service: azure-ai-search
 ms.topic: how-to
