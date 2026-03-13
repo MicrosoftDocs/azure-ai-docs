@@ -18,6 +18,8 @@ Microsoft is applying an in-place platform upgrade to eligible Azure OpenAI reso
 
 Auto-upgrade applies only to eligible Azure resources. If your resource is selected, you receive advance notice and can review your scheduled date, defer the upgrade, or roll back after the upgrade completes.
 
+If your Azure OpenAI resource isn't eligible for auto-upgrade, you can still start the upgrade yourself by using the [opt-in process](upgrade-azure-openai.md).
+
 ## Check auto-upgrade status
 
 Resources selected for auto-upgrade show a notice in the Azure portal.
