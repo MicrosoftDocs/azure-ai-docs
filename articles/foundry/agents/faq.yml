@@ -8,7 +8,7 @@ metadata:
   ms.service: azure-ai-foundry
   ms.subservice: azure-ai-foundry-agent-service
   ms.topic: faq
-  ms.date: 02/02/2026
+  ms.date: 03/11/2026
   ms.author: aahi
   author: aahill
   ms.custom:
@@ -129,7 +129,7 @@ sections:
       - question: |
           What should I do for business continuity and disaster recovery (BCDR)?
         answer: |
-          Agent Service BCDR guidance depends on your setup and the resources you provision. For the current guidance, see [BCDR for agents](overview.md#bcdr-for-agents).
+          Agent Service BCDR guidance depends on your setup and the resources you provision. For the current guidance, see [Foundry Agent Service disaster recovery](../how-to/agent-service-disaster-recovery.md).
   - name: Virtual networking
     questions:
       - question: |
