@@ -10,6 +10,7 @@ ms.date: 02/10/2026
 ms.custom:
   - dev-focus, pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 manager: nitinme
 author: msakande 
 ms.author: mopeakande

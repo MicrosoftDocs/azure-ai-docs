@@ -9,6 +9,7 @@ author: jonburchel
 ms.reviewer: dantaylo
 ai-usage: ai-assisted
 #customer intent: As a developer I want to quickly prototype an enterprise-grade agent with real data, tools, evaluation, and a deployment path so I can validate feasibility before scaling.
+ms.custom: doc-kit-assisted
 ---
 
 # Tutorial: Idea to prototype - Build and evaluate an enterprise agent

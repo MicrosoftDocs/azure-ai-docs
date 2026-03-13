@@ -13,8 +13,8 @@ ms.custom:
   - ignite-2023
   - references_regions
   - build-2025
+  - doc-kit-assisted
 ai-usage: ai-assisted
-
 ---
 
 # Azure OpenAI in Microsoft Foundry Models quotas and limits

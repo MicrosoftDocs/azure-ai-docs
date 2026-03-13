@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023, devx-track-azurecli, build-2024, ignite-2024, dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 03/12/2026
 ms.reviewer: meerakurup

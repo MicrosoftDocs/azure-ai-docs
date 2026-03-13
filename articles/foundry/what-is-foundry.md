@@ -15,6 +15,7 @@ ms.custom:
   - ignite-2024
   - build-aifnd
   - build-2025
+  - doc-kit-assisted
 keywords:
   - Foundry Tools
   - cognitive

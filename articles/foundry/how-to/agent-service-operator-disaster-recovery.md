@@ -12,6 +12,7 @@ ms.collection: ce-skilling-ai-copilot
 ms.custom:
   - arb-aiml, dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

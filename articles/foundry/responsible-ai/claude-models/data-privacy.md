@@ -8,12 +8,12 @@ ms.date: 12/16/2025
 ms.custom:
   - ignite-2024
   - classic-and-new
+  - doc-kit-assisted
 author: msakande
 ms.author: mopeakande
 ms.reviewer: keijik
 reviewer: gojira
 ai-usage: ai-assisted
-
 ---
 
 # Data, privacy, and security for Claude models in Microsoft Foundry (preview)

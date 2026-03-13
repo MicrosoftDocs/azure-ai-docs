@@ -5,6 +5,7 @@ ms.date: 02/03/2026
 ms.custom:
   - horz-monitor, subject-monitoring, pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry

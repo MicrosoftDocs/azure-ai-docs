@@ -7,7 +7,7 @@ ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 03/13/2026
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-memory-store
 #customer intent: As a developer, I want to attach a memory store to my AI agent so that it can access and update memories during interactions.

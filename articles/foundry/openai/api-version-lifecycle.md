@@ -13,6 +13,7 @@ recommendations: false
 ms.custom:
   - pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

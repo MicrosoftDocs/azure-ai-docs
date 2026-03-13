@@ -13,6 +13,7 @@ ms.custom:
     - azure-ai-agents
     - dev-focus
     - pilot-ai-workflow-jan-2026
+    - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-sharepoint-new
 ---

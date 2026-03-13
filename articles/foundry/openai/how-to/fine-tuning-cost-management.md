@@ -9,9 +9,11 @@ ms.date: 02/11/2026
 author: ssalgadodev
 ms.author: ssalgado
 show_latex: true
+ai-usage: ai-assisted
 ms.custom:
   - ignite2025
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Cost management for fine-tuning

@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.date: 02/27/2026
 ms.author: mahender
 author: mattchenderson
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 #customer intent: As an Entra Global Administrator, I want to understand how to govern Foundry agent infrastructure so that I can manage agents responsibly without disrupting shared resources.
 ---
