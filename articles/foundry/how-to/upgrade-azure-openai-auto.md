@@ -2,9 +2,9 @@
 title: Auto-upgrade of Azure OpenAI resources to Microsoft Foundry
 titleSuffix: Microsoft Foundry
 description: Learn how auto-upgrade from Azure OpenAI to Microsoft Foundry works for eligible resources, including status codes, defer options, and rollback.
-ms.author: sgilley
-author: sdgilley
-ms.reviewer: deeikele
+ms.author: deeikele
+author: deeikele
+ms.reviewer: sdgilley
 ms.date: 03/13/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -20,10 +20,10 @@ Auto-upgrade applies only to eligible Azure resources. If your resource is selec
 
 ## Check auto-upgrade status
 
-Resources selected for auto-upgrade show a notice in Azure portal. They
-also include a `foundryAutoUpgrade` block in their Azure Resource Manager
-resource properties. Resources not yet selected show no such notice or
-property.
+Resources selected for auto-upgrade show a notice in the Azure portal.
+They also include a `foundryAutoUpgrade` block in their Azure Resource
+Manager resource properties. Resources that aren't yet selected show no
+such notice or property.
 
 To check whether your resource is selected:
 
@@ -48,19 +48,28 @@ JSON properties:
 }
 ```
 
-If you only see the opt-in upgrade experience and no auto-upgrade notice
+If you see only the opt-in upgrade experience and no auto-upgrade notice
 or `foundryAutoUpgrade` property, your resource isn't yet selected for
 auto-upgrade.
 
 ## Understand eligibility and status codes
 
-Auto-upgrade is rolled out in stages based on technical readiness and observed usage patterns. This staged approach helps ensure a predictable, low-disruption experience as support expands.
+Auto-upgrade is rolled out in stages based on technical readiness and
+observed usage patterns. This staged approach helps ensure a predictable,
+low-disruption experience as support expands.
 
-Resources that use Azure security configurations, such as private networking or customer-managed key (CMK) encryption, aren't selected at first. As zero-touch support for these configurations becomes available, those resources can be selected later.
+Resources that use Azure security configurations, such as private
+networking or customer-managed key (CMK) encryption, aren't selected at
+first. As zero-touch support for these configurations becomes available,
+those resources can be selected later.
 
-If your resource uses security features and is selected in a later wave, you still receive advance notice before the scheduled upgrade date so you have time to review and adapt governance controls.
+If your resource uses security features and is selected in a later wave,
+you still receive advance notice before the scheduled upgrade date so you
+have time to review and adapt governance controls.
 
-If your resource doesn't show the `foundryAutoUpgrade` block, it isn't currently selected for auto-upgrade. If the block is present, use the following status codes to understand your upgrade state.
+If your resource doesn't show the `foundryAutoUpgrade` block, it isn't
+currently selected for auto-upgrade. If the block is present, use the
+following status codes to understand your upgrade state.
 
 | Status | Meaning |
 |---|---|
@@ -68,9 +77,9 @@ If your resource doesn't show the `foundryAutoUpgrade` block, it isn't currently
 | `Completed` | Auto-upgrade completed successfully. Your resource is now a Foundry resource, and `scheduledAt` is `null`. |
 | `DeferredByCustomer` | You deferred auto-upgrade. `scheduledAt` is `null`. |
 | `RolledBack` | The resource was upgraded to Foundry and then rolled back to Azure OpenAI. `scheduledAt` is `null`. |
-| `Failed: CustomerManagedKeys` | Only customer managed key encryption resources for [allow-listed subscriptions](upgrade-azure-openai.md#limitations) can be upgraded. |
+| `Failed: CustomerManagedKeys` | The resource isn't currently eligible for auto-upgrade because it uses customer-managed keys and isn't in an [allow-listed subscription](upgrade-azure-openai.md#limitations). |
 | `Failed: PrivateNetworking` | The resource isn't yet eligible for auto-upgrade because it uses private networking. |
-| `Failed: WeightsAndBiases` | The resource is not eligible for auto-upgrade because it has a Weights & Biases (W&B) integration. W&B is not supported on Foundry resource. |
+| `Failed: WeightsAndBiases` | The resource isn't eligible for auto-upgrade because it has a Weights & Biases (W&B) integration. W&B isn't supported on a Foundry resource. |
 
 When `status` starts with `Failed`, the value identifies why the resource
 isn't yet eligible for auto-upgrade. Once support is available for that
@@ -140,5 +149,4 @@ model deployments.
 
 ## Related content
 
-- [Upgrade from Azure OpenAI to Microsoft Foundry](upgrade-azure-openai.md)
-- [Microsoft.CognitiveServices/accounts resource reference](/azure/templates/microsoft.cognitiveservices/accounts)
+- [Upgrade from Azure OpenAI to Microsoft Foundry (opt-in)](upgrade-azure-openai.md)
