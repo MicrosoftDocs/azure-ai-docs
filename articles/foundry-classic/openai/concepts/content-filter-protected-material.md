@@ -15,7 +15,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Protected material detection filter (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/content-filter-protected-material.md)
 
 The protected material detection filter scans the output of large language models (LLMs) to identify and flag known protected material. It helps organizations prevent the generation of content that closely matches copyrighted text or code.
 

@@ -15,7 +15,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Overview of responsible AI practices for Azure OpenAI models (classic) 
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/openai/overview.md)
 
 [!INCLUDE [non-english-translation](../../../foundry/responsible-ai/includes/non-english-translation.md)]
 

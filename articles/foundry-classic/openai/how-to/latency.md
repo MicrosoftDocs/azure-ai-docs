@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Performance and latency (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/latency.md)
 
 This article provides you with background around how latency and throughput works with Azure OpenAI and how to optimize your environment to improve performance.
 

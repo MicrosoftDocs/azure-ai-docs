@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Default Guardrail policies for Azure OpenAI (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/default-safety-policies.md)
 
 Azure OpenAI in Foundry Models includes default safety policies applied to all models (excluding Azure OpenAI Whisper). These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and other features.
 

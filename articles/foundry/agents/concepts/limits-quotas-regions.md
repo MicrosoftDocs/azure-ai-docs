@@ -126,7 +126,7 @@ Use the following practices to reduce limit-related failures:
 - **Avoid very large messages.** Put long content in uploaded files and query it by using file search.
 - **Plan for long conversations.** Treat threads as session state and rotate to new threads when conversations become very long.
 - **Register only required tools.** Remove unused tools from agent definitions.
-- **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../agents/how-to/metrics.md) to identify growth before you hit limits.
+- **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../observability/how-to/how-to-monitor-agents-dashboard.md) to identify growth before you hit limits.
 
 ## Quotas and limits for models
 
@@ -151,6 +151,6 @@ The limits in this article are default values for Foundry Agent Service. If your
 - [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
 - [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)
-- [Monitor Foundry Agent Service](../../agents/how-to/metrics.md)
+- [Monitor Foundry Agent Service](../../observability/how-to/how-to-monitor-agents-dashboard.md)
 - [Azure OpenAI quotas and limits](../../openai/quotas-limits.md)
 - [Manage and increase quotas for resources with Microsoft Foundry](../../how-to/quota.md)

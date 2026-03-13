@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Predicted outputs (preview) (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/predicted-outputs.md)
 
 Predicted outputs can improve model response latency for chat completions calls where minimal changes are needed to a larger body of text. If you're asking the model to provide a response where a large portion of the expected response is already known, predicted outputs can significantly reduce the latency of this request. This capability is particularly well-suited for coding scenarios, including autocomplete, error detection, and real-time editing, where speed and responsiveness are critical for developers and end-users. Rather than have the model regenerate all the text from scratch, you can indicate to the model that most of the response is already known by passing the known text to the `prediction` parameter.
 
@@ -75,7 +75,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -301,7 +301,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -407,6 +407,6 @@ for chunk in completion:
 
 ## Troubleshooting
 
-- **401/403**: If you use Microsoft Entra ID, confirm your identity has access to the Azure OpenAI resource. If you use `get_bearer_token_provider`, request a token for `https://cognitiveservices.azure.com/.default`.
+- **401/403**: If you use Microsoft Entra ID, confirm your identity has access to the Azure OpenAI resource. If you use `get_bearer_token_provider`, request a token for `https://ai.azure.com/.default`.
 - **404**: Confirm `base_url` uses your Azure OpenAI resource name, and `model` uses your deployment name.
 - **400**: Remove optional parameters and features listed in [Unsupported features](#unsupported-features), and try again.

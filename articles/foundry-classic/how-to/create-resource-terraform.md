@@ -21,7 +21,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Use Terraform to manage Microsoft Foundry resources (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/create-resource-terraform.md)
 
 Use Terraform to automate the creation of [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resources, projects, deployments, and connections.
 

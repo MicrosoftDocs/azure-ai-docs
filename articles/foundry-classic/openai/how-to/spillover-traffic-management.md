@@ -20,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Manage traffic with spillover for provisioned deployments (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/spillover-traffic-management.md)
 
 This article describes how to manage traffic with spillover for provisioned deployments in Azure OpenAI. Spillover manages traffic fluctuations by routing overage traffic to a corresponding standard deployment. This optional capability can be set for all requests on a deployment or managed on a per-request basis, helping you reduce disruptions during traffic bursts.
 

@@ -43,7 +43,7 @@ Pass an auth token with the `authorization` header.
 
 **Scopes:**
 
-- `https://cognitiveservices.azure.com/.default`
+- `https://ai.azure.com/.default`
 
 ## Batch
 

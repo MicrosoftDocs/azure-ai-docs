@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Video generation with Sora (preview) (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/video-generation.md)
 
 Sora is an AI model from OpenAI that creates realistic and imaginative video scenes from text instructions and/or input images or video. The model can generate a wide range of video content, including realistic scenes, animations, and special effects. It supports several video resolutions and durations.
 
@@ -118,7 +118,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -206,7 +206,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -248,7 +248,7 @@ from openai import AsyncOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = AsyncOpenAI(  
@@ -434,7 +434,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -519,7 +519,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -549,7 +549,7 @@ import requests
 from io import BytesIO
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -709,7 +709,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  

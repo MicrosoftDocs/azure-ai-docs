@@ -4,7 +4,7 @@ description: Learn how to trace LangChain and LangGraph applications in Foundry 
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 03/05/2026
-ms.author: fasanti
+ms.author: fasantia
 author: santiagxf
 ms.reviewer: sgilley
 ms.custom:
@@ -43,10 +43,20 @@ pip install -U "langchain-azure-ai[opentelemetry]" azure-identity
 
 Set the environment variables used in this article:
 
-```bash
-export AZURE_AI_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
-export AZURE_OPENAI_ENDPOINT="https://<resource>.openai.azure.com/openai/v1"
-export AZURE_OPENAI_DEPLOYMENT="gpt-4.1"
+```python
+import os
+
+# Option 1: Project endpoint (recommended)
+os.environ["AZURE_AI_PROJECT_ENDPOINT"] = (
+	"https://<resource>.services.ai.azure.com/api/projects/<project>"
+)
+
+# Option 2: Direct OpenAI-compatible endpoint + API key
+os.environ["OPENAI_BASE_URL"] = (
+	"https://<resource>.services.ai.azure.com/openai/v1"
+)
+os.environ["OPENAI_API_KEY"] = "<your-api-key>"
+os.environ["APPLICATION_INSIGHTS_CONNECTION_STRING"] = "InstrumentationKey=0ab1c2d3..."
 ```
 
 To control whether content from messages and tool calls is recorded in the trace,
@@ -94,6 +104,38 @@ The tracer supports common controls for production workflows:
 
 Reference:
 - [AzureAIOpenTelemetryTracer](https://python.langchain.com/api_reference/azure_ai/callbacks/langchain_azure_ai.callbacks.tracers.inference_tracing.AzureAIOpenTelemetryTracer.html)
+
+## Trace an agent
+
+Start with a minimal LangChain agent so you can verify tracing quickly. For 
+LangGraph, attach the tracer with `with_config` on the compiled graph.
+
+```python
+from langchain.agents import create_agent
+
+agent = create_agent(
+    model="azure_ai:gpt-5.2", 
+    system_prompt="You're an informational agent. Answer questions cheerfully.", 
+).with_config(
+    {"callbacks": [tracer]}
+)
+
+response = agent.invoke({"messages": "what's your name?"})
+response["messages"][-1].pretty_print()
+```
+
+```output
+================================== Ai Message ==================================
+
+I’m ChatGPT, your AI assistant.
+```
+
+**What this snippet does:** Creates a simple LangGraph agent, attach
+the tracer, and invokes the agent with a message.
+
+Reference:
+- [LangGraph](https://langchain-ai.github.io/langgraph/)
+- [OpenTelemetry](https://opentelemetry.io/docs/)
 
 ## Trace a LangChain runnable
 

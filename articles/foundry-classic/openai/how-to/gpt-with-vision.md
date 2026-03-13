@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Use vision-enabled chat models (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/gpt-with-vision.md)
 
 Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are the [o-series reasoning models](./reasoning.md), GPT-5 series, GPT-4.1 series, GPT-4.5, GPT-4o series.
 

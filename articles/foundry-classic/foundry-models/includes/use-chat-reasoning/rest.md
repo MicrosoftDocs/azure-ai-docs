@@ -47,7 +47,7 @@ api-key: <key>
 ```
 ---
 
-If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
+If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://ai.azure.com/.default`. 
 
 # [OpenAI API](#tab/openai)
 

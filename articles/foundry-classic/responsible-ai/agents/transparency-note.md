@@ -15,7 +15,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Transparency Note for Azure Agent Service (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/agents/transparency-note.md)
 
 [!INCLUDE [non-english-translation](../../../foundry/responsible-ai/includes/non-english-translation.md)]
 

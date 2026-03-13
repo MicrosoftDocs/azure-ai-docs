@@ -181,7 +181,7 @@ To view detailed agent costs:
 1. Set the date range in the upper-right corner.
 1. View token costs and usage metrics for the selected range.
 
-**Reference:** [Monitor agent metrics](../agents/how-to/metrics.md)
+**Reference:** [Monitor agent metrics](../observability/how-to/how-to-monitor-agents-dashboard.md)
 
 :::image type="content" source="media/manage-costs/agent-build-cost.png" alt-text="Screenshot of the Build page showing the Models pane with a selected model highlighted." lightbox="media/manage-costs/agent-build-cost.png":::
 
@@ -306,6 +306,7 @@ For more information, see [Azure pricing calculator](https://azure.microsoft.com
 
 ## Related content
 
+- [Microsoft Foundry pricing](https://azure.microsoft.com/pricing/details/microsoft-foundry/)
 - [Foundry status dashboard](../foundry-status-dashboard-documentation.md)
 - Learn [how to optimize your cloud investment with cost management](/azure/cost-management-billing/costs/cost-mgt-best-practices).
 - Learn more about managing costs with [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis).
