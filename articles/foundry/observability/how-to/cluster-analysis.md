@@ -10,7 +10,7 @@ author: lgayhardt
 ai-usage: ai-assisted 
 ---
 
-# Evaluation cluster analysis (preview)
+# Analyze evaluation results (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 After you run one or more evaluation runs, you can generate an evaluation cluster analysis to understand your evaluation results. This analysis provides an intuitive way to identify the top patterns and errors in your evaluation runs, along with recommended next steps to improve evaluator scores.

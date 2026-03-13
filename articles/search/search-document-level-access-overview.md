@@ -1,6 +1,5 @@
 ---
 title: Document-Level Access Control
-titleSuffix: Azure AI Search
 description: Conceptual overview of document-level permissions in Azure AI Search.
 ms.date: 11/18/2025
 ms.reviewer: gimondra

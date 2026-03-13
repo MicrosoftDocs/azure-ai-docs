@@ -1,6 +1,5 @@
 ---
 title: Indexing ACLs Using the Push REST API
-titleSuffix: Azure AI Search
 description: Learn how to use the REST API for indexing documents with ACLs and RBAC metadata.
 ms.reviewer: admayber
 ms.service: azure-ai-search

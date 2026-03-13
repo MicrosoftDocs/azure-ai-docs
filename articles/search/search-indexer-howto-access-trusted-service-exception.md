@@ -1,6 +1,5 @@
 ---
 title: Connect as Trusted Service
-titleSuffix: Azure AI Search
 description: Learn how to enable secure data access to Azure Storage from an indexer in Azure AI Search.
 ms.reviewer: arjagann
 ms.service: azure-ai-search

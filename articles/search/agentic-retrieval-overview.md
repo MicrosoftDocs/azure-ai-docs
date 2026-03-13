@@ -1,7 +1,6 @@
 ---
 title: Agentic Retrieval Overview
-titleSuffix: Azure AI Search
-description: Learn about agentic retrieval in Azure AI Search, a multi-query pipeline that uses LLMs to break down complex queries into subqueries for better RAG and agent workflows.
+description: Learn about agentic retrieval in Azure AI Search, a pipeline that uses LLMs to decompose complex queries into subqueries for better RAG and agent workflows.
 ms.date: 03/11/2026
 ms.service: azure-ai-search
 ms.topic: concept-article

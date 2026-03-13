@@ -1,6 +1,5 @@
 ---
 title: Create an Index Alias
-titleSuffix: Azure AI Search
 description: Create an alias to define a secondary name that can be used to refer to an index for querying, indexing, and other operations.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

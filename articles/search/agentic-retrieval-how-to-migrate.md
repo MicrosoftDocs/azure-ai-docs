@@ -1,6 +1,5 @@
 ---
 title: Migrate Agentic Retrieval Code
-titleSuffix: Azure AI Search
 description: Learn how to migrate your agentic retrieval code to the latest REST API version. This article focuses on breaking changes and backwards compatibility.
 ms.service: azure-ai-search
 ms.topic: how-to
