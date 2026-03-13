@@ -36,7 +36,22 @@ Native SDK client libraries for Content Understanding are now available for Pyth
 | TypeScript | [`@azure/ai-content-understanding`](https://www.npmjs.com/package/@azure/ai-content-understanding) | [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/typescript) | `npm install @azure/ai-content-understanding` | [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding) |
 
 > [!TIP]
-> Get started with the [SDK quickstart](quickstart/use-sdk.md). For REST API usage, see the [REST API quickstart](quickstart/use-rest-api.md).
+> Get started with the [Try Content Understanding with REST API and SDKs](quickstart/use-rest-api.md) for quickstarts and resource links for more details. 
+
+**Cross-regional Bring Your Own Capacity (BYOC) support**
+
+Bring Your Own Capacity (BYOC) now supports cross-regional model deployments. Customers can leverage any Azure OpenAI deployments they own regardless of the resource or region. For details, see [Bring your own cross-resource capacity in Content Understanding](how-to/bring-your-own-cross-resource-capacity.md).
+
+### Content Understanding Studio updates 
+
+- **GPT-4.1-mini model selection**: Studio now supports selecting the GPT-4.1-mini model, giving you more flexible options to balance quality and cost.
+- **Plain text (.txt) input support**: You can now process plain text documents directly in Studio.
+- **RAG analyzers in Discover tab**: The Discover tab now includes RAG analyzers, making it easy to explore and try directly from the UI.
+
+### Analyzer updates
+
+- **Support for larger analyzers**: For complex document types (such as large forms or detailed contracts), you can now define comprehensive extraction schemas, enabling more complete data capture in a single pass.
+- **Increased nested schema depth**: The maximum nesting depth for document extraction analyzers has been raised from 5 to 7. This supports more complex analyzer compositions by allowing two additional levels of nested analyzers, benefiting scenarios such as tax and auditing workflows.
 
 ## January 2026
 
@@ -48,6 +63,7 @@ Native SDK client libraries for Content Understanding are now available for Pyth
 
 **Read and Layout update**
 - The Read and Layout prebuilt models no longer require specifying a model (LLM). They also no longer require your Foundry resource to be configured with a model. Content Understanding runs them even if no model is defined in `contentunderstanding/defaults`.
+
 
 **Updated GitHub samples**
 - New and refreshed samples are now available, including updated [Python](https://github.com/Azure-Samples/azure-ai-content-understanding-python) and [.NET](https://github.com/Azure-Samples/azure-ai-content-understanding-dotnet) samples. Other samples have also been updated.

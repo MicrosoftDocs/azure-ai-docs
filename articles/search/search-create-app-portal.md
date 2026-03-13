@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 03/05/2026
 ms.update-cycle: 180-days
 ms.custom:
   - mode-ui
@@ -32,17 +32,19 @@ A demo app can help you visualize how an index functions in a client app, but it
 
 The **Create demo app** wizard is available for existing indexes. Choose an index that includes retrievable, filterable, and facetable fields.
 
+To start the wizard:
+
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
 1. From the left pane, select **Search management** > **Indexes**.
 
-1. Select **hotels-sample-index** from the list.
+1. Select **hotels-sample** from the list.
 
 1. At the top of the index page, select **Create demo app**.
 
 1. Select **Enable CORS and continue** to add CORS support to your index definition.
 
-:::image type="content" source="media/search-create-app-portal/create-demo-app-action.png" alt-text="Screenshot of the Create Demo App action.":::
+    :::image type="content" source="media/search-create-app-portal/enable-cors-continue.png" alt-text="Screenshot of the button for enabling CORS and continuing." lightbox="media/search-create-app-portal/enable-cors-continue.png":::
 
 ## Configure search results
 
@@ -50,13 +52,15 @@ You can configure a basic layout for the rendered search results, including spac
 
 To configure the search results:
 
-1. Skip **Thumbnail** because the hotels-sample-index doesn't have image URLs. If your index contains a field populated with URLs that resolve to publicly available images, you should specify that field for the thumbnail.
+1. Skip **Thumbnail** because the hotels-sample index doesn't have image URLs. If your index contains a field populated with URLs that resolve to publicly available images, you should specify that field for the thumbnail.
 
 1. For **Title**, choose a field that conveys the uniqueness of each document. Our example uses **HotelName**.
 
 1. For **Description**, choose a field that might help someone decide whether to drill down to that particular document. Our example uses **Description**.
 
 1. Select **Next**.
+
+    :::image type="content" source="media/search-create-app-portal/customize-results.png" alt-text="Screenshot of the page for customizing individual results." lightbox="media/search-create-app-portal/customize-results.png":::
 
 ## Add a sidebar
 
@@ -75,7 +79,7 @@ To customize the sidebar:
 
 1. Select **Next**.
 
-:::image type="content" source="media/search-create-app-portal/delete-filters.png" alt-text="Screenshot of the filters page and the delete option.":::
+    :::image type="content" source="media/search-create-app-portal/customize-sidebar.png" alt-text="Screenshot of the page for customizing the sidebar." lightbox="media/search-create-app-portal/customize-sidebar.png":::
 
 ## Add suggestions
 
@@ -87,7 +91,7 @@ To customize the suggestions:
 
 1. Use the **Show Field Name** checkbox to include or exclude labels for the suggestions.
 
-    :::image type="content" source="media/search-create-app-portal/suggestions.png" lightbox="media/search-create-app-portal/suggestions.png" alt-text="Screenshot of the suggestion configuration page.":::
+    :::image type="content" source="media/search-create-app-portal/add-suggestions.png" lightbox="media/search-create-app-portal/add-suggestions.png" alt-text="Screenshot of the page for adding suggestions.":::
 
 ## Create, download, and execute
 
@@ -107,7 +111,7 @@ To finish the wizard and use the demo app:
 
 1. Test suggestions by typing in part of a search term. If you don't see suggested results, check your browser settings or try a different browser. Notice that suggested results are different from autocompletion of a search term. The demo app supports suggested results only.
 
-   :::image type="content" source="media/search-create-app-portal/app-suggestions.png" alt-text="Screenshot of suggested results.":::
+   :::image type="content" source="media/search-create-app-portal/app-suggestions.png" alt-text="Screenshot of suggested results." lightbox="media/search-create-app-portal/app-suggestions.png":::
 
 ## Clean up resources
 

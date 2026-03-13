@@ -45,6 +45,8 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 ::: zone-end
 
+[!INCLUDE [error-handling](includes/quickstarts/speech-to-text-basics/error-handling.md)]
+
 ## Related content
 
 - [Fast transcription REST API reference](/rest/api/speechtotext/transcriptions/transcribe)

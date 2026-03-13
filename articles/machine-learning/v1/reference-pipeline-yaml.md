@@ -10,8 +10,9 @@ ms.topic: reference
 ms.reviewer: None
 ms.author: lagayhar
 author: lgayhardt
-ms.date: 07/31/2020
-ms.custom: UpdateFrequency5, devx-track-azurecli, cliv1
+ms.date: 03/05/2026
+ms.custom: UpdateFrequency5, devx-track-azurecli, cliv1, dev-focus
+ai-usage: ai-assisted
 ---
 
 # CLI (v1) pipeline job YAML schema
@@ -25,7 +26,10 @@ ms.custom: UpdateFrequency5, devx-track-azurecli, cliv1
 
 [!INCLUDE [cli v1 only](../includes/machine-learning-cli-v1-deprecation.md)]
 
-Define your machine learning pipelines in [YAML](https://yaml.org/). When using the machine learning extension for the [Azure CLI **v1**](reference-azure-machine-learning-cli.md)., many of the pipeline-related commands expect a YAML file that defines the pipeline.
+> [!IMPORTANT]
+> The following SDK v1 pipeline packages are retired: `azureml-pipeline`, `azureml-pipeline-core`, `azureml-pipeline-steps`, `azureml-train-core`, and `azureml-pipeline-internal`. We recommend that you transition to SDK v2 before June 30, 2026. For v2 pipelines, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
+
+Define your machine learning pipelines in [YAML](https://yaml.org/). When using the machine learning extension for the [Azure CLI **v1**](reference-azure-machine-learning-cli.md), many of the pipeline-related commands expect a YAML file that defines the pipeline.
 
 The following table lists what is and is not currently supported when defining a pipeline in YAML for use with CLI v1:
 
@@ -115,12 +119,15 @@ Steps define a computational environment, along with the files to run on the env
 | ----- | ----- |
 | `AdlaStep` | Runs a U-SQL script with Azure Data Lake Analytics. Corresponds to the [AdlaStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.adlastep) class. |
 | `AzureBatchStep` | Runs jobs using Azure Batch. Corresponds to the [AzureBatchStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.azurebatchstep) class. |
-| `DatabricsStep` | Adds a Databricks notebook, Python script, or JAR. Corresponds to the [DatabricksStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.databricksstep) class. |
+| `DatabricksStep` | Adds a Databricks notebook, Python script, or JAR. Corresponds to the [DatabricksStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.databricksstep) class. |
 | `DataTransferStep` | Transfers data between storage options. Corresponds to the [DataTransferStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.datatransferstep) class. |
 | `PythonScriptStep` | Runs a Python script. Corresponds to the [PythonScriptStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.python_script_step.pythonscriptstep) class. |
 | `ParallelRunStep` | Runs a Python script to process large amounts of data asynchronously and in parallel. Corresponds to the [ParallelRunStep](/python/api/azureml-pipeline-steps/azureml.pipeline.steps.parallel_run_step.parallelrunstep) class. |
 
 ### ADLA step
+
+> [!WARNING]
+> Azure Data Lake Analytics was retired on February 29, 2024. The `AdlaStep` is no longer functional. For analytics workloads, migrate to [Azure Synapse Analytics](/azure/synapse-analytics/overview-what-is).
 
 | YAML key | Description |
 | ----- | ----- |
@@ -557,4 +564,7 @@ Schedule:
 
 ## Next steps
 
-Learn how to [use the CLI extension for Azure Machine Learning](reference-azure-machine-learning-cli.md).
+- Learn how to [use the CLI extension for Azure Machine Learning](reference-azure-machine-learning-cli.md).
+- [Upgrade to v2](/azure/machine-learning/how-to-migrate-from-v1) for guidance on migrating from CLI/SDK v1 to v2.
+- [CLI (v2) pipeline job YAML schema](../reference-yaml-job-pipeline.md) for the current pipeline YAML reference.
+- [Build and run machine learning pipelines with CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python) for the v2 pipeline components approach.

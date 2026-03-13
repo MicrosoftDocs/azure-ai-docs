@@ -226,7 +226,7 @@ from azure.search.documents import SearchClient
 
 # Set up the client
 service_name = "<your-search-service-name>"
-index_name = "hotels-sample-index"
+index_name = "hotels-sample"
 api_key = "<your-admin-api-key>"
 
 endpoint = f"https://{service_name}.search.windows.net"
@@ -257,7 +257,7 @@ using Azure.Search.Documents.Models;
 
 // Set up the client
 string serviceName = "<your-search-service-name>";
-string indexName = "hotels-sample-index";
+string indexName = "hotels-sample";
 string apiKey = "<your-admin-api-key>";
 
 Uri endpoint = new Uri($"https://{serviceName}.search.windows.net");

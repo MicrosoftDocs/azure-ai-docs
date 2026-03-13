@@ -6,11 +6,12 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 12/15/2025
+ms.date: 03/04/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: aahi
-ms.custom: azure-ai-agents
+ms.custom: azure-ai-agents, doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 # Azure AI Search tool (classic)
@@ -50,6 +51,8 @@ This article describes how to set up the Azure AI Search tool, including creatin
 + The Azure AI Search tool can only target one index. To use multiple indexes, consider using [connected agents](../connected-agents.md), each with a configured index.
   
 + A Foundry resource with basic agent deployments does not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
+
++ If you disabled public network access on your Azure AI Search resource, configure the connection to use managed identity (keyless authentication) instead of an API key. API key-based connections can't reach a search service that has public network access disabled.
 
 + Your Azure AI Search resource and Foundry Agent need to be in the same tenant.
 
