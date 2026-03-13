@@ -5,7 +5,7 @@ description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 01/29/2026
+ms.date: 03/03/2026
 ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: whats-new
@@ -21,6 +21,38 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 > [!NOTE]
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
 
+## March 2026
+
+### Content Understanding SDK client libraries are now Generally Available
+
+Native SDK client libraries for Content Understanding are now available for Python, .NET, Java, and JavaScript/TypeScript — all targeting the `2025-11-01` GA API version. The SDKs provide strongly-typed models, built-in long-running operation polling, Azure authentication integration, automatic retries, and full consistency with the [Azure SDK design guidelines](https://azure.github.io/azure-sdk/). For production applications, we recommend using the official SDKs over raw REST calls.
+
+| Language | Package | SDK Samples | Install | SDK Repo |
+|----------|---------|-------------|---------|----------|
+| Python | [`azure-ai-contentunderstanding`](https://pypi.org/project/azure-ai-contentunderstanding/) | [samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples) | `pip install azure-ai-contentunderstanding` | [azure-sdk-for-python](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding) |
+| .NET | [`Azure.AI.ContentUnderstanding`](https://www.nuget.org/packages/Azure.AI.ContentUnderstanding) | [samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples) | `dotnet add package Azure.AI.ContentUnderstanding` | [azure-sdk-for-net](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding) |
+| Java | [`azure-ai-contentunderstanding`](https://central.sonatype.com/artifact/com.azure/azure-ai-contentunderstanding) | [samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples) | See [Maven Central](https://central.sonatype.com/artifact/com.azure/azure-ai-contentunderstanding) | [azure-sdk-for-java](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding) |
+| JavaScript | [`@azure/ai-content-understanding`](https://www.npmjs.com/package/@azure/ai-content-understanding) | [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript) | `npm install @azure/ai-content-understanding` | [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding) |
+| TypeScript | [`@azure/ai-content-understanding`](https://www.npmjs.com/package/@azure/ai-content-understanding) | [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/typescript) | `npm install @azure/ai-content-understanding` | [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding) |
+
+> [!TIP]
+> Get started with the [Content Understanding quickstart](quickstart/use-rest-api.md), and see resource links for more details. 
+
+### Cross-regional Bring Your Own Capacity (BYOC) support
+
+Bring Your Own Capacity (BYOC) now supports cross-regional model deployments. Customers can leverage any Azure OpenAI deployments they own regardless of the resource or region. For details, see [Bring your own cross-resource capacity in Content Understanding](how-to/bring-your-own-cross-resource-capacity.md).
+
+### Content Understanding Studio updates 
+
+- **GPT-4.1-mini model selection**: Studio now supports selecting the GPT-4.1-mini model, giving you more flexible options to balance quality and cost.
+- **Plain text (.txt) input support**: You can now process plain text documents directly in Studio.
+- **RAG analyzers in Discover tab**: The Discover tab now includes RAG analyzers, making it easy to explore and try directly from the UI.
+
+### Analyzer updates
+
+- **Support for larger analyzers**: For complex document types (such as large forms or detailed contracts), you can now define comprehensive extraction schemas, enabling more complete data capture in a single pass.
+- **Increased nested schema depth**: The maximum nesting depth for document extraction analyzers has been raised from 5 to 7. This supports more complex analyzer compositions by allowing two additional levels of nested analyzers, benefiting scenarios such as tax and auditing workflows.
+
 ## January 2026
 
 - **Foundry (new) availability**: The new Read and Layout models are now available directly in the Foundry (new) portal.
@@ -31,6 +63,7 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 
 **Read and Layout update**
 - The Read and Layout prebuilt models no longer require specifying a model (LLM). They also no longer require your Foundry resource to be configured with a model. Content Understanding runs them even if no model is defined in `contentunderstanding/defaults`.
+
 
 **Updated GitHub samples**
 - New and refreshed samples are now available, including updated [Python](https://github.com/Azure-Samples/azure-ai-content-understanding-python) and [.NET](https://github.com/Azure-Samples/azure-ai-content-understanding-dotnet) samples. Other samples have also been updated.

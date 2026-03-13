@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Run AI Red Teaming Agent in the cloud (preview) (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/run-ai-red-teaming-cloud.md)
 
 [!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 

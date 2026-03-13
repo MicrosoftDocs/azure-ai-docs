@@ -1,5 +1,7 @@
 items:
 # Planning and Preparation
+- name: General availability overview
+  href: ../../concepts/general-availability.md
 - name: Plan rollout
   href: ../../concepts/planning.md
 

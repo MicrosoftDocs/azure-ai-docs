@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Azure OpenAI in Microsoft Foundry Models v1 API (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/openai/api-version-lifecycle.md)
 
 This article shows you how to use the v1 Azure OpenAI API. The v1 API simplifies authentication, removes the need for dated `api-version` parameters, and supports cross-provider model calls.
 

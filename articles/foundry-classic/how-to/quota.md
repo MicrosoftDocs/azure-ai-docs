@@ -22,7 +22,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Manage and increase quotas for resources with Microsoft Foundry (Foundry projects) (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/quota.md)
 
 > [!TIP]
 > An alternate hub-focused quota article is available: [Manage and increase quotas for hub resources](hub-quota.md).

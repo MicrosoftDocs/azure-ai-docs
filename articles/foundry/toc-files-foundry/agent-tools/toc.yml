@@ -26,7 +26,7 @@ items:
   href: ../../agents/how-to/tools/browser-automation.md
 - name: Computer Use (preview)
   href: ../../agents/how-to/tools/computer-use.md
-- name: Image generation
+- name: Image generation (preview)
   href: ../../agents/how-to/tools/image-generation.md
 
 # Memory Tools
