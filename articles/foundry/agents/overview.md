@@ -26,9 +26,17 @@ keywords:
 
 # What is Microsoft Foundry Agent Service?
 
-Foundry Agent Service is a fully managed platform for building, deploying, and scaling AI agents. Use any framework and many models from the [Foundry model catalog](../foundry-models/how-to/deploy-foundry-models.md). Create no-code [prompt agents](#agent-types) in the Foundry portal, or use the available SDKs and REST API to deploy them and code-based **[hosted agents](concepts/hosted-agents.md)** built with Agent Framework, LangGraph, or your own code.
+Foundry Agent Service is a fully managed platform for building, deploying, and scaling AI agents. Use any framework and [many models](./concepts/limits-quotas-regions.md) from the Foundry model catalog. Create no-code [prompt agents](#agent-types) in the Foundry portal, or use the available SDKs and REST API to deploy them and code-based **[hosted agents](concepts/hosted-agents.md)** built with Agent Framework, LangGraph, or your own code.
 
 Agent Service handles hosting, scaling, identity, observability, and enterprise security so you can focus on your agent logic.
+
+## Get startd with agents
+
+Ready to get started with agents? Choose your path based on how you want to build:
+
+- **New to agents?** [Start with a prompt agent](../quickstarts/get-started-code.md) to create an agent with instructions and tools. Use the Foundry portal to create one with no code required, or use the SDKs or REST API.
+- **Want to deploy an agent as a container with a framework of your choice?** [Build a hosted agent](quickstarts/quickstart-hosted-agent.md) with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
+- **Want to orchestrate multiple agents?** [Build a workflow](./concepts/workflow.md) to orchestrate agents and business logic in a visual builder.
 
 ## What is an agent?
 
@@ -45,7 +53,7 @@ An agent is an AI application that uses a large language model (LLM) to reason a
 | Component | What it does |
 | --- | --- |
 | **Agent Runtime** | Hosts and scales both prompt agents and hosted agents. Manages conversations, tool calls, and agent lifecycle. |
-| **Tools** | Built-in tools including web search, file search, memory, code interpreter, MCP servers, and custom functions. Extend your agent's capabilities without building infrastructure. |
+| **Tools** | Built-in tools including web search, file search, memory, code interpreter, MCP servers, and custom functions. Extend your agent's capabilities without building infrastructure. Tools have managed authentication - service managed credentials and On-Behalf-Of (OBO) authentication. |
 | **Models** | Works with many models from the Foundry model catalog, such as GPT-4o, Llama, and DeepSeek. Swap models without changing your agent code. |
 | **Observability** | End-to-end tracing, metrics, and Application Insights integration. See every decision your agent makes. |
 | **Identity & Security** | Microsoft Entra identity, RBAC, content filters, and virtual network isolation. Enterprise-grade trust built in. |
@@ -89,21 +97,7 @@ Prompt agents are defined entirely through configuration — instructions, model
 | **Orchestration** | Single agent | Multi-agent, branching | Custom logic |
 | **Best for** | Prototyping, simple tasks | Multi-step automation | Full control, custom frameworks |
 
-> [!TIP]
-> Ready to get started with agents? Choose your path based on how you want to build:
-> - **New to agents?** [Start with a prompt agent](../quickstarts/get-started-code.md) to create an agent with instructions and tools. Use the Foundry portal to create one with no code required, or use the SDKs or REST API.
-> - **Want to deploy an agent as a container with a framework of your choice?** [Build a hosted agent](quickstarts/quickstart-hosted-agent.md) with Agent Framework or LangGraph, deploy it to Foundry, and test it end-to-end.
-> - **Want to orchestrate multiple agents?** [Build a workflow](./concepts/workflow.md) to orchestrate agents and business logic in a visual builder.
-
-## Framework and model support
-
- Foundry agents can be used with the [Foundry SDK](../how-to/develop/sdk-overview.md) which is available in Python, .NET, JavaScript and Java. The Agents service itself is framework-agnostic. Bring the framework that fits your team and use case.
-
-| Framework | Python | C# |
-| --- | --- | --- |
-| Microsoft Agent Framework (recommended) | Supported | Supported |
-| LangGraph | Supported | — |
-| Custom code | Supported | Supported |
+## Model support
 
 Agent Service works with many models available in the Foundry model catalog. For the full list, see [Quotas, limits, and regional support](concepts/limits-quotas-regions.md).
 
