@@ -6,7 +6,7 @@ items:
   href: toc-files-foundry/get-started/toc.yml
   
 - name: Agent Service
-  href: toc-files-foundry/agent-development/toc.yml
+  href: toc-files-foundry/agent-service/toc.yml
 
 - name: Model catalog
   href: toc-files-foundry/model-catalog/toc.yml
