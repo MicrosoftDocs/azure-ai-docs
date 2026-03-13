@@ -130,8 +130,6 @@ items:
     - name: Provisioned spillover
       displayName: Manage traffic with spillover for provisioned deployments
       href: ../../openai/how-to/spillover-traffic-management.md
-  - name: Microsoft Foundry pricing
-    href: https://azure.microsoft.com/pricing/details/microsoft-foundry/
   - name: Plan and manage costs
     displayName: Plan and manage costs for Microsoft Foundry
     href: ../../concepts/manage-costs.md
