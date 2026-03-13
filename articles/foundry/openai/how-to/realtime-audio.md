@@ -45,7 +45,7 @@ The GPT real-time models are available for global deployments.
 - `gpt-4o-mini-realtime-preview` (version `2024-12-17`)
 - `gpt-realtime` (version `2025-08-28`)
 - `gpt-realtime-mini` (version `2025-10-06`)
-- `gpt-realtime-mini-2025-12-15` (version `2025-12-15`)
+- `gpt-realtime-mini` (version `2025-12-15`)
 - `gpt-realtime-1.5` (`2026-02-23`)
 
 For more information, see the [models and versions documentation](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#audio-models).
@@ -53,9 +53,9 @@ For more information, see the [models and versions documentation](/azure/ai-foun
 > [!NOTE]
 > Token limits vary by model:
 > - **Preview models** (gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview): Input 128,000 / Output 4,096 tokens
-> - **GA models** (gpt-realtime, gpt-realtime-mini): Input 28,672 / Output 4,096 tokens
+> - **GA models** (gpt-realtime, gpt-realtime-1.5, gpt-realtime-mini): Input 28,672 / Output 4,096 tokens
 
-For the Realtime API, use API version `2025-04-01-preview` in the URL for preview models. For GA models, use the GA API version (without the `-preview` suffix) when possible. 
+For the Realtime API, use the GA API version `/openai/v1` in the URL for all models. 
 
 ## Prerequisites
 

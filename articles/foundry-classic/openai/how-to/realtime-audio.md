@@ -49,7 +49,7 @@ The GPT real-time models are available for global deployments.
 - `gpt-4o-mini-realtime-preview` (version `2024-12-17`)
 - `gpt-realtime` (version `2025-08-28`)
 - `gpt-realtime-mini` (version `2025-10-06`)
-- `gpt-realtime-mini-2025-12-15` (version `2025-12-15`)
+- `gpt-realtime-mini` (version `2025-12-15`)
 - `gpt-realtime-1.5` (`2026-02-23`)
 
 For more information, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
@@ -58,7 +58,7 @@ For more information, see the [models and versions documentation](../../foundry-
 > - **Preview models** (gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview): Input 128,000 / Output 4,096 tokens
 > - **GA models** (gpt-realtime, gpt-realtime-mini): Input 28,672 / Output 4,096 tokens
 
-For the Realtime API, use API version `2025-04-01-preview` in the URL for preview models. For GA models, use the GA API version (without the `-preview` suffix) when possible. 
+For the Realtime API, use the GA API version `/openai/v1` in the URL for all models. 
 
 ## Prerequisites
 
@@ -102,7 +102,7 @@ Follow the instructions in this section to get started with the Realtime API via
 
 ## API support
 
-Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-08-28` to access the latest Realtime API features. We recommend you select the generally available API version (without '-preview' suffix) when possible.
+Use the API with `/openai/v1` in the URL to access the latest Realtime API features. Do not use any date-based API version for Realtime API.
 
 > [!CAUTION]
 > You need to use **different** endpoint formats for Preview and Generally Available (GA) models. All samples in this article use GA models and GA endpoint format, and don't use `api-version` parameter, which is required for Preview endpoint format only. See detailed information on the endpoint format [in this article](../how-to/realtime-audio-websockets.md#connection-and-authentication). 
