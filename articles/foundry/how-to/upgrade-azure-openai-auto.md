@@ -18,7 +18,7 @@ Microsoft is automatically upgrading eligible Azure OpenAI resources to Microsof
 
 Upgrading doesn't increase your costs. Your Azure resource name, managed identity, endpoint, keys, and existing settings and state remain the same, including security configurations and permissions, Azure OpenAI v1 endpoint access and API keys, and existing fine-tuning jobs, batches, stored completions, and files.
 
-Auto-upgrade applies only to eligible resources. If your resource is selected, you receive advance notice and can review your scheduled date, defer the upgrade, or roll back after the upgrade completes.
+Auto-upgrade applies only to eligible resources. If your resource is selected, your subscription owner receives advance notice and can review your scheduled date, defer the upgrade, or roll back after the upgrade completes.
 
 If your Azure OpenAI resource isn't eligible for auto-upgrade, you can still start the upgrade yourself by using the [opt-in process](upgrade-azure-openai.md).
 
