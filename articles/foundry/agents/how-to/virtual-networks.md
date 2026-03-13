@@ -30,9 +30,6 @@ If you don't have an existing virtual network, the Standard Setup with private n
 > [!TIP]
 > See the [FAQ article](../faq.yml#virtual-networking) for common questions when working with virtual networks.
 
-> [!NOTE]
-> End-to-end network isolation is not supported in the new Foundry portal experience. Use the classic Foundry portal experience, the SDK, or the CLI to securely access your Foundry projects when network isolation is enabled. Private [MCP](./tools/model-context-protocol.md) is supported with network isolated Foundry. For more on private MCP set-up, see the [foundry samples template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup).
-
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
