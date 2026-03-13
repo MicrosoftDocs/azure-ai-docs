@@ -1,7 +1,7 @@
 ---
 title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
-ms.date: 03/10/2026
+ms.date: 03/13/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:

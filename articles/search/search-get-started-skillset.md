@@ -8,7 +8,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 03/10/2026
+ms.date: 03/13/2026
 ---
 
 # Quickstart: Create a skillset in the Azure portal

@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/10/2026
+ms.date: 03/13/2026
 ---
 
 # Quickstart: Multimodal search in the Azure portal

@@ -3,7 +3,7 @@ title: Debug a Skillset
 description: Learn how to troubleshoot Azure AI Search skillset errors and issues by using a debug session in Azure portal.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/10/2026
+ms.date: 03/13/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023

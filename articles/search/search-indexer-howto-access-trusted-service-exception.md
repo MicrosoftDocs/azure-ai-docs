@@ -4,7 +4,7 @@ description: Learn how to enable secure data access to Azure Storage from an ind
 ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/10/2026
+ms.date: 03/13/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
