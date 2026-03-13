@@ -34,8 +34,6 @@ Priority processing provides low-latency performance with the flexibility of pay
 - **Pay-as-you-go simplicity** with no long-term commitments. 
 - **Business-hour or bursty traffic** that benefits from scalable, cost-efficient performance. Optionally, you can combine priority processing with Provisioned Throughput Units (PTU) for steady-state capacity and cost optimization.
 
-> [!NOTE]
-> Priority processing uses the same quota as standard processing. This means your standard deployment that's enabled with priority processing consumes quota from your existing standard allocation.
 
 ## Latency target
 
@@ -46,7 +44,7 @@ Priority processing provides low-latency performance with the flexibility of pay
 | gpt-5.1, 2025-11-13 | 99% > 50 Tokens Per Second |
 | gpt-4.1, 2025-04-14<sup>1</sup> | 99% > 80 Tokens Per Second |
 
-<sup>1</sup> Long context requests (that is, requests estimated at larger than 128k prompt tokens) will be downgraded to standard processing
+<sup>1</sup> Long context requests (that is, requests estimated at larger than 128k prompt tokens) will be downgraded to standard processing and you'll be charged at the standard tier rate.
 
 <sup>2</sup> Calculated as p50 request latency on a per 5 minute basis.
 
@@ -80,7 +78,7 @@ Priority processing provides low-latency performance with the flexibility of pay
 You can enable priority processing at the deployment level and [(optionally) at the request level](#enable-priority-processing-at-the-request-level).
 
 > [!NOTE]
-> Priority processing uses the same quota as standard processing. This means your deployment that's enabled with priority processing consumes quota from your existing standard allocation.
+> Priority processing can be enabled with Global standard or Data Zone standard (US) deployment. Priority processing uses the same quota as standard processing.
 
 In the [!INCLUDE [foundry-link](../../includes/foundry-link.md)] portal, you can enable priority processing during deployment setup. Turn on the **Priority processing** toggle on the deployment details page when creating the deployment or update the setting of a deployed model by editing the deployment details.
 
@@ -160,6 +158,7 @@ The following table summarizes which service tier processes your requests based 
 
     - If rapid increases to your priority processing tokens per minute lead to hitting _ramp rate limits_. Currently, the ramp rate limit is defined as increasing traffic by more than 50% tokens per minute in less than 15 minutes.
     - During periods of peak requests to priority processing.
+    - Long context requests sent when using `gpt-5.4` and `gpt-4.1`.
     
     > [!NOTE]
     > - The service bills requests processed by the standard service tier at standard rates. Requests processed by the standard service tier include `service_tier = default` in the response, while requests processed by priority processing tier include `service_tier = priority` in the response.
@@ -170,7 +169,7 @@ The following table summarizes which service tier processes your requests based 
 
 | Issue | Cause | Resolution |
 | ------- | ------- | ------------ |
-| Requests downgraded to standard tier | One of two situations: <br>- Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. <br>- Requests sent during periods of peak requests to priority processing. | - Increase traffic gradually, if you've encountered ramp rate limits.<br> - Consider purchasing PTU for steady-state capacity. |
+| Requests downgraded to standard tier | One of two situations: <br>- Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. <br>- Requests sent during periods of peak requests to priority processing.<br> - Long context requests sent when using `gpt-5.4` and `gpt-4.1`. | - Increase traffic gradually, if you've encountered ramp rate limits.<br> - Consider purchasing PTU for steady-state capacity. |
 
 ## Related content
 
