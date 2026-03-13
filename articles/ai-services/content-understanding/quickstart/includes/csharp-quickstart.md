@@ -24,7 +24,7 @@ This quickstart shows you how to use the Content Understanding .NET SDK to extra
 * Model deployment defaults configured for your resource. See [Models and deployments](../../concepts/models-deployments.md) or this one-time [configuration script](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample00_UpdateDefaults.md) for setup instructions.
 * The current version of [.NET](https://dotnet.microsoft.com/download/dotnet).
 
-## Set up
+## Setup
 
 1. Create a new .NET console application:
 
@@ -48,8 +48,8 @@ This quickstart shows you how to use the Content Understanding .NET SDK to extra
 ## Set up environment variables
 
 To authenticate with the Content Understanding service, set the environment variables with your own values before running the sample:
-1) `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
-2) `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
+- `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
+- `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
 
 
 ### Windows
@@ -211,7 +211,7 @@ Line Items (3):
 ```
 
 > [!NOTE]
-> This code is based on the [Sample03_AnalyzeInvoice](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample03_AnalyzeInvoice.md) sample in the SDK repository.
+> This code is based on the [AnalyzeInvoice](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample03_AnalyzeInvoice.md) sample in the SDK repository.
 
 # [Image](#tab/image)
 
@@ -247,7 +247,7 @@ This will produce an output like the following:
 Summary: The pie chart displays the distribution of hours in four categories: 1-39 hours (6.7%), 40-50 hours (18.9%), 50-60 hours (36.6%), and 60+ hours (37.8%). The largest segment is 60+ hours, followed closely by 50-60 hours, then 40-50 hours, and the smallest segment is 1-39 hours.
 ```
 > [!NOTE]
-> This code is based on the [Sample02_AnalyzeUrl](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample02_AnalyzeUrl.md) sample in the SDK repository.
+> This code is based on the AnalyzeUrl](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample02_AnalyzeUrl.md) sample in the SDK repository.
 
 # [Audio](#tab/audio)
 
@@ -362,7 +362,7 @@ Transcript (first two phrases):
   [Speaker 1] 880 ms: Welcome to Contoso.
 ```
 > [!NOTE]
-> This code is based on the [Sample02_AnalyzeUrl](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample02_AnalyzeUrl.md) sample in the SDK repository
+> This code is based on the AnalyzeUrl](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample02_AnalyzeUrl.md) sample in the SDK repository
 
 # [Video](#tab/video)
 
@@ -527,5 +527,5 @@ Frame size: 1080 x 608
 ---------------------
 ```
 > [!NOTE]
-> This code is based on the [Sample02_AnalyzeUrl](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample02_AnalyzeUrl.md) sample in the SDK repository
+> This code is based on the AnalyzeUrl](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample02_AnalyzeUrl.md) sample in the SDK repository
 

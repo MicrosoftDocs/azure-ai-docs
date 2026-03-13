@@ -24,7 +24,7 @@ This quickstart shows you how to use the Content Understanding JavaScript SDK to
 * Model deployment defaults configured for your resource. See [Models and deployments](../../concepts/models-deployments.md) or this one-time [configuration script](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/updateDefaults.js) for setup instructions.
 * [Node.js](https://nodejs.org/) LTS version.
 
-## Set up
+## Setup
 
 1. Create a new Node.js project:
 
@@ -49,8 +49,8 @@ This quickstart shows you how to use the Content Understanding JavaScript SDK to
 ## Set up environment variables
 
 To authenticate with the Content Understanding service, set the environment variables with your own values before running the sample:
-1) `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
-2) `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
+- `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
+- `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
 
 
 ### Windows

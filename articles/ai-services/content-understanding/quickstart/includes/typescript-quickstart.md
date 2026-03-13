@@ -25,7 +25,7 @@ This quickstart shows you how to use the Content Understanding TypeScript SDK to
 * [Node.js](https://nodejs.org/) LTS version.
 * [TypeScript](https://www.typescriptlang.org/) 5.x or later.
 
-## Set up
+## Setup
 
 1. Create a new Node.js project:
 
@@ -50,8 +50,8 @@ This quickstart shows you how to use the Content Understanding TypeScript SDK to
 ## Set up environment variables
 
 To authenticate with the Content Understanding service, set the environment variables with your own values before running the sample:
-1) `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
-2) `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
+- `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
+- `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
 
 
 ### Windows

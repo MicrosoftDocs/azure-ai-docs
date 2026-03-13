@@ -7,6 +7,7 @@ ms.service: azure-ai-content-understanding
 ms.topic: include
 ms.date: 01/29/2026
 ms.author: paulhsu
+ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
 
@@ -15,22 +16,19 @@ This quickstart shows you how to use the [Content Understanding REST API](/rest/
 ## Prerequisites
 
 * An active Azure subscription. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](/azure/ai-services/content-understanding/language-region-support).
+* A [Microsoft Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) created in a [supported region](/azure/ai-services/content-understanding/language-region-support). To create the resource, you need the **Contributor** role or higher on the target subscription or resource group.
 * [!INCLUDE [foundry-model-deployment-setup](../../includes/foundry-model-deployment-setup.md)]
 * [cURL](https://everything.curl.dev/install/index.html) installed for your dev environment.
 
 ## Get started with a prebuilt analyzer
 
-Analyzers define how your content is processed and the insights that are extracted. We offer [prebuilt analyzers](../../concepts/prebuilt-analyzers.md) for common use cases. You can [customize prebuilt analyzers](../../concepts/prebuilt-analyzers.md) to better fit your specific needs and use cases.
-This quickstart uses prebuilt invoice, image, audio, and video analyzers to help you get started.
+This quickstart uses prebuilt analyzers — no configuration required. To learn how to customize analyzers for your needs, see [Prebuilt analyzers](../../concepts/prebuilt-analyzers.md).
 
 ### Send a file for analysis
 
 Before running the following cURL command, make the following changes to the HTTP request:
 
-1. Replace `{endpoint}` and `{key}` with the corresponding values from your Foundry instance in the Azure portal.
-
----
+- Replace `{endpoint}` and `{key}` with the corresponding values from your Foundry instance in the Azure portal.
 
 #### POST request
 
@@ -140,7 +138,7 @@ curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api
 
 #### GET response
 
-The 200 (`OK`) JSON response includes a `status` field indicating the status of the operation. If the operation isn't complete, the value of `status` is `Running` or `NotStarted`. In such cases, you should send the `GET` request again, either manually or through a script. Wait an interval of one second or more between calls.
+The 200 (`OK`) JSON response includes a `status` field. If the operation isn't complete, `status` is `Running` or `NotStarted`. Poll the URL every 1–2 seconds until `status` is `Succeeded`.
 
 # [Document](#tab/document)
 ```json
@@ -796,9 +794,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 ---
 
 > [!TIP]
-> When using the video analyzer, keyframes are returned as URLs in the JSON response (for example, under `result.contents.frames[]`). Download keyframes using a standard HTTP `GET` request:
+> When you use the video analyzer, keyframes are returned as URLs in the JSON response (for example, under `result.contents.frames[]`). Download keyframes using a standard HTTP `GET` request:
 > ```bash
 > curl -O "<keyframeUrl>"
 > ```
-
-
