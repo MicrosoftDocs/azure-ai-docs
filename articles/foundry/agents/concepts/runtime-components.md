@@ -229,38 +229,36 @@ curl -X POST "${ENDPOINT}/agents?api-version=v1" \
 
 For additional agent types (workflow, hosted), see [Agent development lifecycle](./development-lifecycle.md).
 
-## Generate responses
+## Create an agent with tools
 
-Response generation invokes the agent. The agent uses its configuration and any provided history (conversation or previous response) to perform tasks by calling models and tools. As part of response generation, the agent appends items to the conversation.
+Tools extend what an agent can do beyond generating text. When you attach tools to an agent, the agent can call external services, run code, search files, and access data sources during response generation—using tools such as web search or function calling.
 
-You can also generate a response without defining an agent. In this case, you provide all configurations directly in the request and use them only for that response. This approach is useful for simple scenarios with minimal tools.
-
-### Generate a response without an agent
-
-For simple scenarios, you can generate a response directly with a model, without creating an agent first.
+You can attach one or more tools when you create an agent. During response generation, the agent decides whether to call a tool based on the user input and its instructions. The following example creates an agent with a web search tool attached.
 
 # [Python](#tab/python)
 
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, WebSearchTool
 
-# Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 PROJECT_ENDPOINT = "your_project_endpoint"
 
-# Create clients to call Foundry API
 project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
-openai = project.get_openai_client()
 
-# Generate a response directly with a model
-response = openai.responses.create(
-    model="gpt-5-mini",
-    input="What is the largest city in France?",
+# Create an agent with a web search tool
+agent = project.agents.create_version(
+    agent_name="my-tool-agent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant that can search the web.",
+        tools=[WebSearchTool()],
+    ),
 )
-print(response.output_text)
+print(f"Agent: {agent.name}, Version: {agent.version}")
 ```
 
 # [C#](#tab/csharp)
@@ -268,22 +266,24 @@ print(response.output_text)
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
 
-// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
 
-// Create project client to call Foundry API
 AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
     tokenProvider: new DefaultAzureCredential());
 
-// Generate a response directly with a model
-ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5-mini");
-ResponseResult response = await responsesClient.CreateResponseAsync(
-    "What is the largest city in France?");
-Console.WriteLine(response.GetOutputText());
+// Create an agent with a web search tool
+var agent = await projectClient.Agents
+    .CreateAgentVersionAsync(
+        agentName: "my-tool-agent",
+        options: new(
+            new PromptAgentDefinition("gpt-5-mini")
+            {
+                Instructions = "You are a helpful assistant that can search the web.",
+                Tools = { ResponseTool.CreateWebSearchTool() },
+            }));
+Console.WriteLine($"Agent: {agent.Value.Name}, Version: {agent.Value.Version}");
 ```
 
 # [JavaScript](#tab/javascript)
@@ -292,65 +292,81 @@ Console.WriteLine(response.GetOutputText());
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 
-// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 const PROJECT_ENDPOINT = "your_project_endpoint";
-
-// Create clients to call Foundry API
 const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-const openai = await project.getOpenAIClient();
 
-// Generate a response directly with a model
-const response = await openai.responses.create({
-  model: "gpt-5-mini",
-  input: "What is the largest city in France?",
-});
-console.log(response.output_text);
+// Create an agent with a web search tool
+const agent = await project.agents.createVersion(
+  "my-tool-agent",
+  {
+    kind: "prompt",
+    model: "gpt-5-mini",
+    instructions: "You are a helpful assistant that can search the web.",
+    tools: [{ type: "web_search_preview" }],
+  },
+);
+console.log(`Agent: ${agent.name}, Version: ${agent.version}`);
 ```
 
 # [Java](#tab/java)
 
 ```java
 import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.models.PromptAgentDefinition;
+import com.azure.ai.agents.models.WebSearchPreviewTool;
 import com.azure.identity.DefaultAzureCredentialBuilder;
-import com.openai.models.responses.ResponseCreateParams;
+import java.util.Collections;
 
-// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 String projectEndpoint = "your_project_endpoint";
 
-// Create responses client to call Foundry API
-ResponsesClient responsesClient = new AgentsClientBuilder()
+AgentsClient agentsClient = new AgentsClientBuilder()
     .credential(new DefaultAzureCredentialBuilder().build())
     .endpoint(projectEndpoint)
-    .buildResponsesClient();
+    .buildAgentsClient();
 
-// Generate a response directly with a model
-ResponseCreateParams request = new ResponseCreateParams.Builder()
-    .model("gpt-5-mini")
-    .input("What is the largest city in France?")
-    .build();
-var response = responsesClient.getResponseService().create(request);
-System.out.println(response.output());
+// Create an agent with a web search tool
+WebSearchPreviewTool webSearchTool = new WebSearchPreviewTool();
+PromptAgentDefinition definition = new PromptAgentDefinition("gpt-5-mini");
+definition.setInstructions("You are a helpful assistant that can search the web.");
+definition.setTools(Collections.singletonList(webSearchTool));
+
+var agent = agentsClient.createAgentVersion("my-tool-agent", definition);
+System.out.println("Agent: " + agent.getName() + ", Version: " + agent.getVersion());
 ```
 
 # [REST API](#tab/rest)
 
 ```bash
-# Configuration
 ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
 ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 
-# Generate a response directly with a model
-curl -X POST "${ENDPOINT}/openai/v1/responses" \
+# Create an agent with a web search tool
+curl -X POST "${ENDPOINT}/agents?api-version=v1" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-5-mini",
-    "input": "What is the largest city in France?"
+    "name": "my-tool-agent",
+    "definition": {
+      "kind": "prompt",
+      "model": "gpt-5-mini",
+      "instructions": "You are a helpful assistant that can search the web.",
+      "tools": [{ "type": "web_search_preview" }]
+    }
   }'
 ```
 
 ---
+
+For the full list of available tools, see the [tools overview](./tool-catalog.md). For best practices, see [Best practices for using tools](./tool-best-practice.md).
+
+## Generate responses
+
+Response generation invokes the agent. The agent uses its configuration and any provided history (conversation or previous response) to perform tasks by calling models and tools. As part of response generation, the agent appends items to the conversation.
+
+You can also generate a response without defining an agent. In this case, you provide all configurations directly in the request and use them only for that response. This approach is useful for simple scenarios with minimal tools.
+
+Additionally, you can fork the conversation at the first response ID or second response ID
 
 ### Generate a response with an agent
 
@@ -529,6 +545,413 @@ curl -X POST "${ENDPOINT}/openai/v1/responses" \
   -d '{
     "input": "What is the population of that city?",
     "previous_response_id": "'"${RESPONSE_ID}"'",
+    "agent_reference": {
+      "name": "'"${AGENT_NAME}"'",
+      "type": "agent_reference"
+    }
+  }'
+```
+
+---
+
+### Print tool calls from a response
+
+When an agent uses tools during response generation, the response output contains tool call items alongside the final message. You can iterate over `response.output` to inspect each item and display tool calls—such as web searches, function calls, or file searches—before printing the text response.
+
+# [Python](#tab/python)
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_agent_name"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+response = openai.responses.create(
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    input="What happened in the news today?",
+)
+
+# Print each output item, including tool calls
+for item in response.output:
+    if item.type == "web_search_call":
+        print(f"[Tool] Web search: status={item.status}")
+    elif item.type == "function_call":
+        print(f"[Tool] Function call: {item.name}({item.arguments})")
+    elif item.type == "file_search_call":
+        print(f"[Tool] File search: status={item.status}")
+    elif item.type == "message":
+        print(f"[Assistant] {item.content[0].text}")
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+
+var projectEndpoint = "your_project_endpoint";
+var agentName = "your_agent_name";
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+ResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
+        new AgentReference { Name = agentName });
+ResponseResult response = await responsesClient.CreateResponseAsync(
+    "What happened in the news today?");
+
+// Print each output item, including tool calls
+foreach (var item in response.OutputItems)
+{
+    switch (item)
+    {
+        case ResponseWebSearchCallItem webSearch:
+            Console.WriteLine($"[Tool] Web search: status={webSearch.Status}");
+            break;
+        case ResponseFunctionCallItem functionCall:
+            Console.WriteLine($"[Tool] Function call: {functionCall.Name}({functionCall.Arguments})");
+            break;
+        case ResponseFileSearchCallItem fileSearch:
+            Console.WriteLine($"[Tool] File search: status={fileSearch.Status}");
+            break;
+        case ResponseOutputMessage message:
+            Console.WriteLine($"[Assistant] {message.Content[0].Text}");
+            break;
+    }
+}
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const AGENT_NAME = "your_agent_name";
+
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = await project.getOpenAIClient();
+
+const response = await openai.responses.create({
+  input: "What happened in the news today?",
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+
+// Print each output item, including tool calls
+for (const item of response.output) {
+  switch (item.type) {
+    case "web_search_call":
+      console.log(`[Tool] Web search: status=${item.status}`);
+      break;
+    case "function_call":
+      console.log(`[Tool] Function call: ${item.name}(${item.arguments})`);
+      break;
+    case "file_search_call":
+      console.log(`[Tool] File search: status=${item.status}`);
+      break;
+    case "message":
+      console.log(`[Assistant] ${item.content[0].text}`);
+      break;
+  }
+}
+```
+
+# [Java](#tab/java)
+
+```java
+import com.azure.ai.agents.*;
+import com.azure.ai.agents.models.*;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+String projectEndpoint = "your_project_endpoint";
+String agentName = "your_agent_name";
+
+AgentsClientBuilder builder = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(projectEndpoint);
+ResponsesClient responsesClient = builder.buildResponsesClient();
+
+AgentReference agentRef = new AgentReference(agentName);
+Response response = responsesClient.createWithAgent(
+    agentRef,
+    ResponseCreateParams.builder()
+        .input("What happened in the news today?"));
+
+// Print each output item, including tool calls
+for (ResponseOutputItem item : response.getOutput()) {
+    String type = item.getType();
+    if ("web_search_call".equals(type)) {
+        System.out.println("[Tool] Web search: status=" + item.getStatus());
+    } else if ("function_call".equals(type)) {
+        System.out.println("[Tool] Function call: " + item.getName()
+            + "(" + item.getArguments() + ")");
+    } else if ("file_search_call".equals(type)) {
+        System.out.println("[Tool] File search: status=" + item.getStatus());
+    } else if ("message".equals(type)) {
+        System.out.println("[Assistant] " + item.getContent().get(0).getText());
+    }
+}
+```
+
+# [REST API](#tab/rest)
+
+```bash
+ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
+AGENT_NAME="your_agent_name"
+
+RESPONSE=$(curl -s -X POST "${ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "input": "What happened in the news today?",
+    "agent_reference": {
+      "name": "'"${AGENT_NAME}"'",
+      "type": "agent_reference"
+    }
+  }')
+
+# Print each output item, including tool calls
+echo "$RESPONSE" | jq -r '.output[] |
+  if .type == "web_search_call" then "[Tool] Web search: status=\(.status)"
+  elif .type == "function_call" then "[Tool] Function call: \(.name)(\(.arguments))"
+  elif .type == "file_search_call" then "[Tool] File search: status=\(.status)"
+  elif .type == "message" then "[Assistant] \(.content[0].text)"
+  else "[Unknown] \(.type)"
+  end'
+```
+
+---
+
+### Generate a response without storing
+
+By default, the service stores response history server-side, so you can reference `previous_response_id` for multi-turn context. If you set `store` to `false`, the service doesn't persist the response. You must carry forward the conversation context yourself by passing previous output items as input to the next request.
+
+This approach is useful when you need full control over conversation state, want to minimize stored data, or work in a zero-data-retention environment.
+
+# [Python](#tab/python)
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_agent_name"
+
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Generate a response without storing
+response = openai.responses.create(
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    input="What is the largest city in France?",
+    store=False,
+)
+print(response.output_text)
+
+# Carry forward context client-side by passing previous output as input
+follow_up = openai.responses.create(
+    extra_body={
+        "agent_reference": {
+            "name": AGENT_NAME,
+            "type": "agent_reference",
+        }
+    },
+    input=[
+        {"role": "user", "content": "What is the largest city in France?"},
+        {"role": "assistant", "content": response.output_text},
+        {"role": "user", "content": "What is the population of that city?"},
+    ],
+    store=False,
+)
+print(follow_up.output_text)
+```
+
+# [C#](#tab/csharp)
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+using Azure.AI.Projects.OpenAI;
+
+var projectEndpoint = "your_project_endpoint";
+var agentName = "your_agent_name";
+
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
+
+// Generate a response without storing
+ResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
+        new AgentReference { Name = agentName });
+ResponseResult response = await responsesClient.CreateResponseAsync(
+    "What is the largest city in France?",
+    store: false);
+Console.WriteLine(response.GetOutputText());
+
+// Carry forward context client-side by passing previous output as input
+ResponseResult followUp = await responsesClient.CreateResponseAsync(
+    new ResponseCreationOptions
+    {
+        Instructions = null,
+        Input = ResponseInput.FromItems(
+            new ResponseInputItem.Message
+            {
+                Role = "user",
+                Content = "What is the largest city in France?"
+            },
+            new ResponseInputItem.Message
+            {
+                Role = "assistant",
+                Content = response.GetOutputText()
+            },
+            new ResponseInputItem.Message
+            {
+                Role = "user",
+                Content = "What is the population of that city?"
+            }
+        ),
+        Store = false
+    });
+Console.WriteLine(followUp.GetOutputText());
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const AGENT_NAME = "your_agent_name";
+
+const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+const openai = await project.getOpenAIClient();
+
+// Generate a response without storing
+const response = await openai.responses.create({
+  input: "What is the largest city in France?",
+  store: false,
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+console.log(response.output_text);
+
+// Carry forward context client-side by passing previous output as input
+const followUp = await openai.responses.create({
+  input: [
+    { role: "user", content: "What is the largest city in France?" },
+    { role: "assistant", content: response.output_text },
+    { role: "user", content: "What is the population of that city?" },
+  ],
+  store: false,
+  agent_reference: {
+    name: AGENT_NAME,
+    type: "agent_reference",
+  },
+});
+console.log(followUp.output_text);
+```
+
+# [Java](#tab/java)
+
+```java
+import com.azure.ai.agents.*;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+String projectEndpoint = "your_project_endpoint";
+String agentName = "your_agent_name";
+
+AgentsClientBuilder builder = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(projectEndpoint);
+ResponsesClient responsesClient = builder.buildResponsesClient();
+
+// Generate a response without storing
+AgentReference agentRef = new AgentReference(agentName);
+
+Response response = responsesClient.createWithAgent(
+    agentRef,
+    ResponseCreateParams.builder()
+        .input("What is the largest city in France?")
+        .store(false));
+System.out.println(response.output());
+
+// Carry forward context client-side by passing previous output as input
+Response followUp = responsesClient.createWithAgent(
+    agentRef,
+    ResponseCreateParams.builder()
+        .input(List.of(
+            new InputMessage("user", "What is the largest city in France?"),
+            new InputMessage("assistant", response.output()),
+            new InputMessage("user", "What is the population of that city?")))
+        .store(false));
+System.out.println(followUp.output());
+```
+
+# [REST API](#tab/rest)
+
+```bash
+ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
+ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
+AGENT_NAME="your_agent_name"
+
+# Generate a response without storing
+RESPONSE=$(curl -s -X POST "${ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "input": "What is the largest city in France?",
+    "store": false,
+    "agent_reference": {
+      "name": "'"${AGENT_NAME}"'",
+      "type": "agent_reference"
+    }
+  }')
+OUTPUT_TEXT=$(echo "$RESPONSE" | jq -r '.output[] | select(.type=="message") | .content[0].text')
+
+# Carry forward context client-side by passing previous output as input
+curl -X POST "${ENDPOINT}/openai/v1/responses" \
+  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "input": [
+      {"role": "user", "content": "What is the largest city in France?"},
+      {"role": "assistant", "content": "'"${OUTPUT_TEXT}"'"},
+      {"role": "user", "content": "What is the population of that city?"}
+    ],
+    "store": false,
     "agent_reference": {
       "name": "'"${AGENT_NAME}"'",
       "type": "agent_reference"
@@ -1272,137 +1695,6 @@ echo "$RESPONSE" | jq -r '.output[0].content[0].text'
 ```
 
 ---
-
-## Add tools to an agent
-
-Tools extend what an agent can do beyond generating text. When you attach tools to an agent, the agent can call external services, run code, search files, and access data sources during response generation—using tools such as web search or function calling.
-
-You can attach one or more tools when you create an agent. During response generation, the agent decides whether to call a tool based on the user input and its instructions. The following example creates an agent with a web search tool attached.
-
-# [Python](#tab/python)
-
-```python
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, WebSearchTool
-
-PROJECT_ENDPOINT = "your_project_endpoint"
-
-project = AIProjectClient(
-    endpoint=PROJECT_ENDPOINT,
-    credential=DefaultAzureCredential(),
-)
-
-# Create an agent with a web search tool
-agent = project.agents.create_version(
-    agent_name="my-tool-agent",
-    definition=PromptAgentDefinition(
-        model="gpt-5-mini",
-        instructions="You are a helpful assistant that can search the web.",
-        tools=[WebSearchTool()],
-    ),
-)
-print(f"Agent: {agent.name}, Version: {agent.version}")
-```
-
-# [C#](#tab/csharp)
-
-```csharp
-using Azure.Identity;
-using Azure.AI.Projects;
-
-var projectEndpoint = "your_project_endpoint";
-
-AIProjectClient projectClient = new(
-    endpoint: new Uri(projectEndpoint),
-    tokenProvider: new DefaultAzureCredential());
-
-// Create an agent with a web search tool
-var agent = await projectClient.Agents
-    .CreateAgentVersionAsync(
-        agentName: "my-tool-agent",
-        options: new(
-            new PromptAgentDefinition("gpt-5-mini")
-            {
-                Instructions = "You are a helpful assistant that can search the web.",
-                Tools = { ResponseTool.CreateWebSearchTool() },
-            }));
-Console.WriteLine($"Agent: {agent.Value.Name}, Version: {agent.Value.Version}");
-```
-
-# [JavaScript](#tab/javascript)
-
-```javascript
-import { DefaultAzureCredential } from "@azure/identity";
-import { AIProjectClient } from "@azure/ai-projects";
-
-const PROJECT_ENDPOINT = "your_project_endpoint";
-const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
-
-// Create an agent with a web search tool
-const agent = await project.agents.createVersion(
-  "my-tool-agent",
-  {
-    kind: "prompt",
-    model: "gpt-5-mini",
-    instructions: "You are a helpful assistant that can search the web.",
-    tools: [{ type: "web_search_preview" }],
-  },
-);
-console.log(`Agent: ${agent.name}, Version: ${agent.version}`);
-```
-
-# [Java](#tab/java)
-
-```java
-import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.AgentsClient;
-import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.ai.agents.models.WebSearchPreviewTool;
-import com.azure.identity.DefaultAzureCredentialBuilder;
-import java.util.Collections;
-
-String projectEndpoint = "your_project_endpoint";
-
-AgentsClient agentsClient = new AgentsClientBuilder()
-    .credential(new DefaultAzureCredentialBuilder().build())
-    .endpoint(projectEndpoint)
-    .buildAgentsClient();
-
-// Create an agent with a web search tool
-WebSearchPreviewTool webSearchTool = new WebSearchPreviewTool();
-PromptAgentDefinition definition = new PromptAgentDefinition("gpt-5-mini");
-definition.setInstructions("You are a helpful assistant that can search the web.");
-definition.setTools(Collections.singletonList(webSearchTool));
-
-var agent = agentsClient.createAgentVersion("my-tool-agent", definition);
-System.out.println("Agent: " + agent.getName() + ", Version: " + agent.getVersion());
-```
-
-# [REST API](#tab/rest)
-
-```bash
-ENDPOINT="https://{resource_name}.services.ai.azure.com/api/projects/{project_name}"
-ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
-
-# Create an agent with a web search tool
-curl -X POST "${ENDPOINT}/agents?api-version=v1" \
-  -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "my-tool-agent",
-    "definition": {
-      "kind": "prompt",
-      "model": "gpt-5-mini",
-      "instructions": "You are a helpful assistant that can search the web.",
-      "tools": [{ "type": "web_search_preview" }]
-    }
-  }'
-```
-
----
-
-For the full list of available tools, see the [tools overview](./tool-catalog.md). For best practices, see [Best practices for using tools](./tool-best-practice.md).
 
 ## Attach memory to an agent (preview)
 
