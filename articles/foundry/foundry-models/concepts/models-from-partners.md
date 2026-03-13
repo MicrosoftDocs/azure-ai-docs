@@ -1,10 +1,10 @@
 ---
 title: "Foundry Models from partners and community"
-description: "Learn about Microsoft Foundry Models from partners and community, including their capabilities, supported input and output types, and language support for AI applications."
+description: "Learn about Microsoft Foundry Models from partners and community, including their capabilities, supported input and output types, Azure Marketplace requirements, and troubleshooting."
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 02/17/2026
+ms.date: 03/13/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: partner-tools
@@ -15,6 +15,7 @@ ms.custom:
   - build-aifnd
   - build-2025
   - pilot-ai-workflow-jan-2026
+  - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: azure-ai-model-categories
 
@@ -31,6 +32,21 @@ To learn more about attributes of Foundry Models from partners and community, se
 > For a list of models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md).
 >
 > For a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
+
+## Prerequisites
+
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+
+    > [!IMPORTANT]
+    > The following Azure subscriptions can't be used to purchase software as a service (SaaS) offers in Marketplace: Student, Visual Studio Enterprise, or Free credit. For more information on purchasing SaaS offers, see [The SaaS purchase experience](/marketplace/purchase-saas-offer-in-azure-portal#the-saas-purchase-experience).
+
+- A [Microsoft Foundry project](../../how-to/create-projects.md).
+
+[!INCLUDE [marketplace-rbac](../includes/configure-marketplace/rbac.md)]
+
+## Country/region availability
+
+You can access models from partners and community with pay-as-you-go billing only if your Azure subscription belongs to a billing account in a country/region where the model offer is available. Availability varies per model provider and model SKU. For more information, see [Region availability for models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md).
 
 ## Anthropic
 
@@ -131,12 +147,22 @@ To deploy Stability AI models in Foundry, see [Deploy Microsoft Foundry Models i
 
 See [Stability AI models in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Stability+AI/?cid=learnDocs).
 
+## Troubleshooting
+
+Use the following troubleshooting guide to find and solve errors when deploying third-party models in Foundry Models:
+
+| Error | Description |
+|-------|-------------|
+| Offer not available in your country/region | The model provider didn't make the specific model SKU available in the country/region where you registered your subscription. Each model provider decides which countries/regions are available, and availability can vary by model SKU. Deploy the model to a subscription with billing in a supported country/region. See [Region availability for models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md). |
+| Marketplace purchase eligibility check failed | The model provider didn't make the specific model SKU available in your country/region, or the model isn't available in the region where you deployed the Foundry resource. See [Region availability for models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md). |
+| Unable to create a model deployment | Azure Marketplace rejected the request to create a model subscription. This rejection can happen for multiple reasons, including subscribing to the model offering too often or from multiple subscriptions at the same time. Contact [support](https://go.microsoft.com/fwlink/?linkid=2101400&clcid=0x409) and include your subscription ID. |
+| CSP subscription not supported | Cloud Solution Provider (CSP) subscriptions can't purchase third-party model offerings. Consider using models offered as a first-party consumption service. |
+
 ## Related content
 
 - [Deployment overview for Foundry Models](../../../foundry-classic/concepts/deployments-overview.md)
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
 - [Deployment types in Foundry Models](deployment-types.md)
-- [Azure Marketplace requirements for Foundry Models from partners](../how-to/configure-marketplace.md)
 - [Region availability for Foundry Models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md)
 - [Explore Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md)
 
