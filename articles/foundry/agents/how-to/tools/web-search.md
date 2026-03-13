@@ -366,6 +366,176 @@ Response status: Completed
 The London Underground currently has service disruptions on ...
 Agent deleted
 ```
+
+### Domain restricted web search
+To enable your Agent to use Web Search with Grounding with Bing Custom Search instance.
+
+1. First, we need to create project client and read the environment variables, which will be used in the next steps.
+
+```C# Snippet:Sample_CreateAgentClient_WebSearchCustomStreaming
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var connectionName = System.Environment.GetEnvironmentVariable("CUSTOM_BING_CONNECTION_NAME");
+var customInstanceName = System.Environment.GetEnvironmentVariable("BING_CUSTOM_SEARCH_INSTANCE_NAME");
+AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+```
+
+2. Create an Agent capable of using Web search on Grounding with Bing Custom Search instance.
+
+Synchronous sample:
+```C# Snippet:Sample_CreateAgent_WebSearchCustomStreaming_Sync
+AIProjectConnection bingConnection = projectClient.Connections.GetConnection(connectionName: connectionName);
+WebSearchTool webSearchTool = ResponseTool.CreateWebSearchTool();
+webSearchTool.CustomSearchConfiguration = new(bingConnection.Id, customInstanceName);
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "You are a helpful agent.",
+    Tools = { webSearchTool }
+};
+AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+    agentName: "myAgent",
+    options: new(agentDefinition));
+```
+
+Asynchronous sample:
+```C# Snippet:Sample_CreateAgent_WebSearchCustomStreaming_Async
+AIProjectConnection bingConnection = projectClient.Connections.GetConnection(connectionName: connectionName);
+WebSearchTool webSearchTool = ResponseTool.CreateWebSearchTool();
+webSearchTool.CustomSearchConfiguration = new(bingConnection.Id, customInstanceName);
+PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+{
+    Instructions = "You are a helpful agent.",
+    Tools = { webSearchTool }
+};
+AgentVersion agentVersion = await projectClient.Agents.CreateAgentVersionAsync(
+    agentName: "myAgent",
+    options: new(agentDefinition));
+```
+
+3. To get the formatted annotation we have created the `GetFormattedAnnotation` method.
+
+```C# Snippet:Sample_FormatReference_WebSearchCustomStreaming
+private static string GetFormattedAnnotation(ResponseItem item)
+{
+    if (item is MessageResponseItem messageItem)
+    {
+        foreach (ResponseContentPart content in messageItem.Content)
+        {
+            foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+            {
+                if (annotation is UriCitationMessageAnnotation uriAnnotation)
+                {
+                    return $" [{uriAnnotation.Title}]({uriAnnotation.Uri})";
+                }
+            }
+        }
+    }
+    return "";
+}
+```
+
+4. Ask the question and stream the response.
+
+Synchronous sample:
+```C# Snippet:Sample_StreamResponse_WebSearchCustomStreaming_Sync
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+
+string annotation = "";
+string text = "";
+CreateResponseOptions options = new()
+{
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    InputItems = { ResponseItem.CreateUserMessageItem("How many medals did the USA win in the 2024 summer olympics?") },
+};
+foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponseStreaming(options))
+{
+    if (streamResponse is StreamingResponseCreatedUpdate createUpdate)
+    {
+        Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
+    }
+    else if (streamResponse is StreamingResponseOutputTextDeltaUpdate textDelta)
+    {
+        Console.WriteLine($"Delta: {textDelta.Delta}");
+    }
+    else if (streamResponse is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
+    {
+        text = textDoneUpdate.Text;
+    }
+    else if (streamResponse is StreamingResponseOutputItemDoneUpdate itemDoneUpdate)
+    {
+        if (annotation.Length == 0)
+        {
+            annotation = GetFormattedAnnotation(itemDoneUpdate.Item);
+        }
+    }
+    else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
+    {
+        throw new InvalidOperationException($"The stream has failed: {errorUpdate.Message}");
+    }
+}
+Console.WriteLine($"{text}{annotation}");
+```
+
+Asynchronous sample:
+```C# Snippet:Sample_StreamResponse_WebSearchCustomStreaming_Async
+ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+
+string annotation = "";
+string text = "";
+CreateResponseOptions options = new()
+{
+    ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
+    InputItems = { ResponseItem.CreateUserMessageItem("How many medals did the USA win in the 2024 summer olympics?") },
+};
+await foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponseStreamingAsync(options))
+{
+    if (streamResponse is StreamingResponseCreatedUpdate createUpdate)
+    {
+        Console.WriteLine($"Stream response created with ID: {createUpdate.Response.Id}");
+    }
+    else if (streamResponse is StreamingResponseOutputTextDeltaUpdate textDelta)
+    {
+        Console.WriteLine($"Delta: {textDelta.Delta}");
+    }
+    else if (streamResponse is StreamingResponseOutputTextDoneUpdate textDoneUpdate)
+    {
+        text = textDoneUpdate.Text;
+    }
+    else if (streamResponse is StreamingResponseOutputItemDoneUpdate itemDoneUpdate)
+    {
+        if (annotation.Length == 0)
+        {
+            annotation = GetFormattedAnnotation(itemDoneUpdate.Item);
+        }
+    }
+    else if (streamResponse is StreamingResponseErrorUpdate errorUpdate)
+    {
+        throw new InvalidOperationException($"The stream has failed: {errorUpdate.Message}");
+    }
+}
+Console.WriteLine($"{text}{annotation}");
+```
+
+5. Finally, delete all the resources we have created in this sample.
+
+Synchronous sample:
+```C# Snippet:Sample_Cleanup_WebSearchCustomStreaming_Sync
+projectClient.Agents.DeleteAgentVersionAsync(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+
+Asynchronous sample:
+```C# Snippet:Sample_Cleanup_WebSearchCustomStreaming_Async
+await projectClient.Agents.DeleteAgentVersionAsync(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+```
+**Expected output**
+
+The following is an example of the expected output when running the C# code:
+
+```console
+Response status: Completed
+The London Underground currently has service disruptions on ...
+Agent deleted
+```
 :::zone-end
 
 :::zone pivot="rest-api"
@@ -450,14 +620,12 @@ curl --request POST \
     "tools": [
       {
         "type": "web_search",
-        "web_search"：{
-            "search_configurations": [
-              {
-                "project_connection_id": "'$BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID'",
-                "instance_name": "'$BING_CUSTOM_SEARCH_INSTANCE_NAME'",
-              }
+        "custom_search_configurations": [
+          {
+            "project_connection_id": "'$BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID'",
+            "instance_name": "'$BING_CUSTOM_SEARCH_INSTANCE_NAME'",
+          }
         ]
-        }
       }
     ]
   }'
