@@ -1,6 +1,5 @@
 ---
 title: Use Language Models for Content Generation in an Ingestion Pipeline
-titleSuffix: Azure AI Search
 description: Use language models to caption your images and facilitate an image search through your data.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

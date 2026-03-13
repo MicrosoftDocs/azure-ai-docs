@@ -1,7 +1,6 @@
 ---
 title: Create a Vector Query
-titleSuffix: Azure AI Search
-description: Learn how to build queries for vector search.
+description: Learn how to create vector queries that target an index in Azure AI Search.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

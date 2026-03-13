@@ -1,6 +1,5 @@
 ---
 title: Security Filter Pattern
-titleSuffix: Azure AI Search
 description: Learn how to implement security privileges at the document level for Azure AI Search search results, using security filters and user identities.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days

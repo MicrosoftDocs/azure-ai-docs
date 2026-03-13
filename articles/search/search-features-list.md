@@ -1,7 +1,6 @@
 ---
-title: Feature Descriptions
-titleSuffix: Azure AI Search
-description: Explore the feature categories of Azure AI Search.
+title: Features and Capabilities
+description: Explore Azure AI Search features by category, including full-text search, vector search, AI enrichment, semantic ranking, and security capabilities.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024

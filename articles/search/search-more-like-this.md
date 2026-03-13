@@ -1,6 +1,5 @@
 ---
 title: moreLikeThis Query Feature
-titleSuffix: Azure AI Search
 description: Describes the moreLikeThis feature, which is available in preview versions of the Azure AI Search REST API.
 ms.service: azure-ai-search
 ms.custom:

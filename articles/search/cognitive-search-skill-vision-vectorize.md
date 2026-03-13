@@ -1,6 +1,5 @@
 ---
 title: Azure Vision Multimodal Embeddings Skill
-titleSuffix: Azure AI Search
 description: Vectorize images or text using the Azure Vision multimodal embeddings API.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

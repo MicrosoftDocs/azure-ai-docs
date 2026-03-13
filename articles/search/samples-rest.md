@@ -1,6 +1,5 @@
 ---
 title: REST Samples
-titleSuffix: Azure AI Search
 description: Find Azure AI Search demo REST code samples that use the Search or Management REST APIs.
 ms.service: azure-ai-search
 ms.custom:
