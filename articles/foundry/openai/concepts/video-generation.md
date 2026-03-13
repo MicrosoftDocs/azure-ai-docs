@@ -9,8 +9,10 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 zone_pivot_groups: openai-video-generation
 ms.date: 12/1/2025
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Video generation with Sora (preview)

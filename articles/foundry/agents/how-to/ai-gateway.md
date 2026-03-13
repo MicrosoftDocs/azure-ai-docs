@@ -8,6 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Connect an AI gateway to Foundry Agent Service (preview)

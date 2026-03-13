@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.custom:
   - dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

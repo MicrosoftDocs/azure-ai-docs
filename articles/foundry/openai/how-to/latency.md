@@ -11,6 +11,7 @@ ms.author: mbullwin
 recommendations: false
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

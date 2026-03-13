@@ -7,6 +7,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - devx-track-python
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: quickstart
 ms.date: 11/21/2025
 ms.author: pafarley

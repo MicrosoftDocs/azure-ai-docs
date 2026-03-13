@@ -11,7 +11,7 @@ author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
 zone_pivot_groups: selection-mcp-code-new
-ms.custom: dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 #CustomerIntent: As a developer, I want to connect my Foundry agent to external MCP servers so that I can extend agent capabilities with third-party tools.
 ---
 

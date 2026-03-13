@@ -9,6 +9,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024, build-2025, dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/24/2026
 ai-usage: ai-assisted

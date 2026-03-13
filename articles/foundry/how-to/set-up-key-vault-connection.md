@@ -10,6 +10,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # zone_pivot_groups: set-up-key-vault
 ---

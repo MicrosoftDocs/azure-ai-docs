@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 zone_pivot_groups: selection-code-interpreter-new
 ai-usage: ai-assisted
 #CustomerIntent: As a developer building AI agents, I want to enable Code Interpreter so that my agent can execute Python code for data analysis and visualization.

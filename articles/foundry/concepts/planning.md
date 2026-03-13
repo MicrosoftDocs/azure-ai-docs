@@ -10,6 +10,7 @@ ms.reviewer: deeikele
 ms.custom:
   - classic-and-new
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

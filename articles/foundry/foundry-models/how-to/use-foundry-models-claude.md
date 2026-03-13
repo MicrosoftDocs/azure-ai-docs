@@ -8,6 +8,7 @@ ms.date: 03/11/2026
 ms.custom:
   - ignite-2024, dev-focus, pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 author: msakande
 ms.author: mopeakande
 ms.reviewer: ambadal

@@ -8,9 +8,11 @@ ms.date: 02/05/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
+ai-usage: ai-assisted
 ms.custom:
   - azure-ai-content-safety
   - classic-and-new
+  - doc-kit-assisted
 
 # customer intent: As a developer, I want to understand the harm categories and severity levels in Microsoft Foundry so that I can properly handle content filtering in my applications.
 ---

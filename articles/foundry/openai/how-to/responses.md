@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - references_regions
   - build-2025
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

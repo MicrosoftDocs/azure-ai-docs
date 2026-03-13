@@ -11,6 +11,7 @@ ms.custom:
   - dev-focus
   - classic-and-new
   - update-code-2
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to use OpenAI-compatible LangChain classes with Foundry models so I can build chat, embedding, and chained workflows.
 ---

@@ -11,6 +11,7 @@ ms.author: pafarley
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # How to use blocklists in Microsoft Foundry models

@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Manage hosted agent lifecycle
