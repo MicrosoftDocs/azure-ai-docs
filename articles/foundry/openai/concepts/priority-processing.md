@@ -163,7 +163,7 @@ The following table summarizes which service tier processes your requests based 
     > [!TIP]
     > If you routinely encounter ramp rate limits, consider purchasing PTU instead of or in addition to priority processing.
     
-\* The service bills requests processed by the standard service tier at standard rates. Requests processed by the standard service tier include `service_tier = default` in the response, while requests processed by priority processing tier include `service_tier = priority` in the response.
+    \* The service bills requests processed by the standard service tier at standard rates. Requests processed by the standard service tier include `service_tier = default` in the response, while requests processed by priority processing tier include `service_tier = priority` in the response.
 
 ## Troubleshooting
 
