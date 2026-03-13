@@ -6,7 +6,7 @@ ms.author: ssalgado
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
 ms.date: 03/12/2026
-zone_pivot_groups: foundry-speech-studio-rest
+zone_pivot_groups: programming-languages-content-safety-2
 ---
 
 # How to use Task Adherence for your Agentic workflows
@@ -26,7 +26,7 @@ The primary objectives of the Task Adherence feature are:
 
 For more information on how Task Adherence works, see the [Task Adherence concepts page](task-adherence.md).
 
-::: zone pivot="rest-api"
+::: zone pivot="programming-language-rest"
 
 ## Prerequisites
 
@@ -99,7 +99,7 @@ A value of `true` for `taskRiskDetected` signifies a detected risk, in which cas
 ::: zone-end
 
 
-::: zone pivot="ai-foundry-portal"
+::: zone pivot="programming-language-foundry-portal"
 
 ## Prerequisites 
 
