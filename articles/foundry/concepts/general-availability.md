@@ -22,9 +22,9 @@ Foundry is designed for teams that need to build, deploy, and operate AI systems
 Before you standardize on GA features for production, make sure you:
 
 - Understand your required scenarios across model deployment, agent development, and operations.
-- Identify any current dependencies on preview-only or classic-only experiences.
+- Identify any current dependencies on preview-only or classic portal experiences.
 - Define your organization policy for using only GA capabilities in production.
-- Review migration guidance for existing Azure OpenAI and Foundry Classic workloads.
+- Review migration guidance for existing Azure OpenAI and Foundry (classic) portal workloads.
 - Confirm required role assignments for your teams and service identities. For role details, see [Role-based access control for Microsoft Foundry](rbac-foundry.md).
 - Define how your organization restricts preview feature access in production environments. For guidance, see [Disable preview features in Microsoft Foundry](../how-to/disable-preview-features.md).
 
@@ -42,7 +42,7 @@ At GA, the new Microsoft Foundry portal provides:
 - **Production-ready core platform** with validated end-to-end core scenarios.
 - **Enterprise capabilities** such as RBAC, audit logs, compliance controls, monitoring, alerting, virtual network integration. Also API keys are supported for all areas except for evals, dataset tab, content understanding, agents and workflows.
 - **Governed lifecycle consistency** across the portal, APIs, SDKs, CLI, and developer tools.
-- **Defined GA scope** for Foundry projects, with out-of-scope capabilities continuing in Foundry Classic experiences.
+- **Defined GA scope** for Foundry projects, with out-of-scope capabilities continuing in Foundry (classic) portal.
 
 For governance-sensitive production workloads, use Microsoft Entra ID with RBAC for role-based access control. API key-based access is available, but it doesn't provide the same role-based permission granularity. For billing and cost management details, see [Plan and manage costs for Microsoft Foundry](planning.md).
 
@@ -50,7 +50,7 @@ For governance-sensitive production workloads, use Microsoft Entra ID with RBAC 
 
 At GA, the new Foundry experience supports Foundry projects for core end-to-end scenarios. Confirm that your target regions support the models and features you need. For region details, see [Feature availability across cloud regions](../reference/region-support.md).
 
-For scenarios not yet available in the new Foundry experience, you can continue to use Foundry Classic experiences to maintain continuity while capabilities continue to evolve.
+For scenarios not yet available in the new Foundry portal, you can continue to use Foundry (classic) portal to maintain continuity while capabilities continue to evolve.
 
 ## Core scenarios at GA
 
@@ -134,7 +134,7 @@ No. GA covers validated core experiences and required enterprise features. Some 
 
 ### What is the experience for existing Azure OpenAI users?
 
-If you have existing Azure OpenAI resources, you can continue to use classic experiences for unsupported workflows while you plan your upgrade to Foundry projects.
+If you have existing Azure OpenAI resources, you can continue to use classic portal for unsupported workflows while you plan your upgrade to Foundry projects.
 
 For upgrade guidance, see [Upgrade Azure OpenAI to Microsoft Foundry](../how-to/upgrade-azure-openai.md).
 
@@ -142,7 +142,7 @@ For project migration guidance, see [Migrate from hub-based to Foundry projects]
 
 ### Are assistants supported in Foundry projects?
 
-Agents v2 are supported in the new Foundry UI. Existing assistants and v1 agents aren't supported in the new Foundry experience. To use or edit assistants, continue using Foundry Classic until assistant upgrade is available.
+Agents v2 are supported in the new Foundry UI. Existing assistants and v1 agents aren't supported in the new Foundry experience. To use or edit assistants, continue using Foundry (classic) portal until assistant upgrade is available.
 
 ### Can customers use Foundry GA through APIs and developer tools?
 
@@ -162,14 +162,14 @@ Before production rollout, validate the following:
 - Dependencies on **Preview** features are documented and approved for nonproduction use only.
 - Role assignments and authentication model are aligned to your governance policy, especially where API keys are used.
 - Target-region model and feature availability are confirmed in [Feature availability across cloud regions](../reference/region-support.md).
-- Teams supporting migration scenarios have a documented path between the new Foundry experience and Foundry Classic workflows.
+- Teams supporting migration scenarios have a documented path between the new Foundry experience and Foundry (classic) portal workflows.
 
 ## Common rollout pitfalls
 
 - Treating Preview features as production dependencies without explicit approval. Check the [feature readiness table](#feature-readiness-at-ga) for current status.
 - Assuming API key authentication provides the same governance granularity as Entra ID with RBAC. See [Role-based access control for Microsoft Foundry](rbac-foundry.md) for proper configuration.
 - Skipping region availability validation for required models and services. See [Feature availability across cloud regions](../reference/region-support.md).
-- Migrating assistants or AOAI workflows without a documented fallback path in Foundry Classic. See [Migrate to the new Foundry Agent Service](../agents/how-to/migrate.md).
+- Migrating assistants or AOAI workflows without a documented fallback path in Foundry (classic) portal. See [Migrate to the new Foundry Agent Service](../agents/how-to/migrate.md).
 - Assuming all GA features work behind a virtual network. Some features, including Hosted Agents, Traces, and Workflow Agents, don't yet fully support network isolation. If your workload requires private networking, review the feature limitations table in [How to configure network isolation for Microsoft Foundry](../how-to/configure-private-link.md#foundry-feature-limitations).
 
 ## Next steps
