@@ -78,9 +78,9 @@ Priority processing provides low-latency performance with the flexibility of pay
 You can enable priority processing at the deployment level and [(optionally) at the request level](#enable-priority-processing-at-the-request-level).
 
 > [!NOTE]
-> Priority processing can be enabled with Global standard or Data Zone standard (US) deployment. Priority processing uses the same quota as standard processing.
+> Priority processing can be enabled in Global standard or Data Zone standard (US) deployments. Priority processing uses the same quota as standard processing.
 
-In the [!INCLUDE [foundry-link](../../includes/foundry-link.md)] portal, you can enable priority processing during deployment setup. Turn on the **Priority processing** toggle on the deployment details page when creating the deployment or update the setting of a deployed model by editing the deployment details.
+In the [!INCLUDE [foundry-link](../../includes/foundry-link.md)] portal, turn on the **Priority processing** toggle on the deployment details page when creating the deployment or update the setting of a deployed model by editing the deployment details.
 
 :::image type="content" source="../media/priority-processing/enable-priority-processing-foundry.png" alt-text="Screenshot showing how to enable priority processing during model deployment in the Foundry portal." lightbox="../media/priority-processing/enable-priority-processing-foundry.png":::
 > [!NOTE]
@@ -158,7 +158,7 @@ The following table summarizes which service tier processes your requests based 
 
     - If rapid increases to your priority processing tokens per minute lead to hitting _ramp rate limits_. Currently, the ramp rate limit is defined as increasing traffic by more than 50% tokens per minute in less than 15 minutes.
     - During periods of peak requests to priority processing.
-    - Long context requests sent when using `gpt-5.4` and `gpt-4.1`.
+    - Long context requests sent to certain models listed in the [Latency target table](#latency-target).
     
     > [!NOTE]
     > - The service bills requests processed by the standard service tier at standard rates. Requests processed by the standard service tier include `service_tier = default` in the response, while requests processed by priority processing tier include `service_tier = priority` in the response.
@@ -169,7 +169,7 @@ The following table summarizes which service tier processes your requests based 
 
 | Issue | Cause | Resolution |
 | ------- | ------- | ------------ |
-| Requests downgraded to standard tier | One of two situations: <br>- Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. <br>- Requests sent during periods of peak requests to priority processing.<br> - Long context requests sent when using `gpt-5.4` and `gpt-4.1`. | - Increase traffic gradually, if you've encountered ramp rate limits.<br> - Consider purchasing PTU for steady-state capacity. |
+| Requests downgraded to standard tier | One of two situations: <br>- Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. <br>- Requests sent during periods of peak requests to priority processing.<br> - Long context requests sent to certain models listed in the [Latency target table](#latency-target). | - Increase traffic gradually, if you've encountered ramp rate limits.<br> - Consider purchasing PTU for steady-state capacity. |
 
 ## Related content
 
