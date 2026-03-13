@@ -154,16 +154,16 @@ The following table summarizes which service tier processes your requests based 
 
 - The service currently doesn't support regional standard deployments and EU datazone standard deployments.
 
-- The service might re-route some priority requests to standard processing during these scenarios:
+- The service might re-route some priority requests to standard processing\* during these scenarios:
 
     - If rapid increases to your priority processing tokens per minute lead to hitting _ramp rate limits_. Currently, the ramp rate limit is defined as increasing traffic by more than 50% tokens per minute in less than 15 minutes.
     - During periods of peak requests to priority processing.
     - Long context requests sent to certain models listed in the [Latency target table](#latency-target).
+
+    > [!TIP]
+    > If you routinely encounter ramp rate limits, consider purchasing PTU instead of or in addition to priority processing.
     
-    > [!NOTE]
-    > - The service bills requests processed by the standard service tier at standard rates. Requests processed by the standard service tier include `service_tier = default` in the response, while requests processed by priority processing tier include `service_tier = priority` in the response.
-    >
-    > - If you routinely encounter ramp rate limits, consider purchasing PTU instead of or in addition to priority processing. 
+\* The service bills requests processed by the standard service tier at standard rates. Requests processed by the standard service tier include `service_tier = default` in the response, while requests processed by priority processing tier include `service_tier = priority` in the response.
 
 ## Troubleshooting
 
