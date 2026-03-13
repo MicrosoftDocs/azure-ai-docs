@@ -40,7 +40,6 @@ This article explains how to create, manage, and use memory stores. For conceptu
 - A [Microsoft Foundry project](../../how-to/create-projects.md) with configured [authorization and permissions](#authorization-and-permissions).
 - [Chat model deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-5.2`, in your project.
 - [Embedding model deployment](../../openai/tutorials/embeddings.md), such as `text-embedding-3-small`, in your project.
-- Review [limitations and quotas](../concepts/what-is-memory.md) for both models and memory stores.
 - Python 3.8 or later with a [configured environment](../../quickstarts/get-started-code.md?tabs=python).
 - Required packages: `pip install "azure-ai-projects>=2.0.0" azure-identity`
 - [Environment variables](#set-environment-variables) configured for your project endpoint and model deployments.
@@ -53,9 +52,8 @@ This article explains how to create, manage, and use memory stores. For conceptu
 - A [Microsoft Foundry project](../../how-to/create-projects.md) with configured [authorization and permissions](#authorization-and-permissions).
 - [Chat model deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-5.2`, in your project.
 - [Embedding model deployment](../../openai/tutorials/embeddings.md), such as `text-embedding-3-small`, in your project.
-- Review [limitations and quotas](../concepts/what-is-memory.md) for both models and memory stores.
 - Node.js LTS with a [configured environment](../../quickstarts/get-started-code.md). The TypeScript samples in this article use the [Azure AI Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme).
-- Required packages: `npm install @azure/ai-projects @azure/identity`
+- Required packages: `npm install @azure/ai-projects@2 @azure/identity`
 - [Environment variables](#set-environment-variables) configured for your project endpoint and model deployments.
 
 :::zone-end
@@ -66,7 +64,6 @@ This article explains how to create, manage, and use memory stores. For conceptu
 - A [Microsoft Foundry project](../../how-to/create-projects.md) with configured [authorization and permissions](#authorization-and-permissions).
 - [Chat model deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-5.2`, in your project.
 - [Embedding model deployment](../../openai/tutorials/embeddings.md), such as `text-embedding-3-small`, in your project.
-- Review [limitations and quotas](../concepts/what-is-memory.md) for both models and memory stores.
 - Azure CLI [authenticated to your subscription](/cli/azure/authenticate-azure-cli).
 - [Environment variables](#set-environment-variables) configured for your project endpoint and model deployments.
 
@@ -97,16 +94,16 @@ Set environment variables for your project endpoint and model deployment names:
 
 ```bash
 export FOUNDRY_PROJECT_ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-export AZURE_AI_CHAT_MODEL_DEPLOYMENT_NAME="<chat-model-deployment-name>"
-export AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME="<embedding-model-deployment-name>"
+export MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME="<chat-model-deployment-name>"
+export MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME="<embedding-model-deployment-name>"
 ```
 
 #### [PowerShell](#tab/powershell)
 
 ```powershell
 $env:FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-$env:AZURE_AI_CHAT_MODEL_DEPLOYMENT_NAME = "<chat-model-deployment-name>"
-$env:AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME = "<embedding-model-deployment-name>"
+$env:MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME = "<chat-model-deployment-name>"
+$env:MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME = "<embedding-model-deployment-name>"
 ```
 
 ---
@@ -115,17 +112,33 @@ $env:AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME = "<embedding-model-deployment-nam
 
 :::zone pivot="rest"
 
-Set shell variables for your project endpoint, API version, model deployments, and access token:
+Set environment variables for your project endpoint, model deployments, API version, and access token:
+
+#### [Bash](#tab/bash)
 
 ```bash
-ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+FOUNDRY_PROJECT_ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME="<chat-model-deployment-name>" # For example, gpt-5.2
+MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME="<embedding-model-deployment-name>" # For example, text-embedding-3-small
 API_VERSION="2025-11-15-preview"
-CHAT_MODEL="<chat-model-deployment-name>" # For example, gpt-5.2
-EMBEDDING_MODEL="<embedding-model-deployment-name>" # For example, text-embedding-3-small
 
 # Get a short-lived access token using Azure CLI
 ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 ```
+
+#### [PowerShell](#tab/powershell)
+
+```powershell
+$FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
+$MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME = "<chat-model-deployment-name>" # For example, gpt-5.2
+$MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME = "<embedding-model-deployment-name>" # For example, text-embedding-3-small
+$API_VERSION = "2025-11-15-preview"
+
+# Get a short-lived access token using Azure CLI
+$ACCESS_TOKEN = az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv
+```
+
+---
 
 :::zone-end
 
@@ -164,8 +177,8 @@ options = MemoryStoreDefaultOptions(
 )
 
 # Create memory store
-chat_model = os.environ["AZURE_AI_CHAT_MODEL_DEPLOYMENT_NAME"]
-embedding_model = os.environ["AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME"]
+chat_model = os.environ["MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME"]
+embedding_model = os.environ["MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME"]
 
 definition = MemoryStoreDefaultDefinition(
     chat_model=chat_model,
@@ -198,10 +211,10 @@ const projectEndpoint =
   process.env["FOUNDRY_PROJECT_ENDPOINT"] ||
   "<project endpoint>";
 const chatModelDeployment =
-  process.env["AZURE_AI_CHAT_MODEL_DEPLOYMENT_NAME"] ||
+  process.env["MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME"] ||
   "<chat model deployment name>";
 const embeddingModelDeployment =
-  process.env["AZURE_AI_EMBEDDING_MODEL_DEPLOYMENT_NAME"] ||
+  process.env["MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME"] ||
   "<embedding model deployment name>";
 
 const memoryStoreName = "my_memory_store";
@@ -235,8 +248,7 @@ const memoryStore = await project.beta.memoryStores.create(
 );
 
 console.log(
-  `Created memory store: ${memoryStore.name} ` +
-    `(${memoryStore.id})`,
+  `Created memory store: ${memoryStore.name} (${memoryStore.id})`,
 );
 ```
 
@@ -245,7 +257,7 @@ console.log(
 :::zone pivot="rest"
 
 ```bash
-curl -X POST "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -253,8 +265,8 @@ curl -X POST "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
     "description": "Memory store for customer support agent",
     "definition": {
       "kind": "default",
-      "chat_model": "'"${CHAT_MODEL}"'",
-      "embedding_model": "'"${EMBEDDING_MODEL}"'",
+      "chat_model": "'"${MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME}"'",
+      "embedding_model": "'"${MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME}"'",
       "options": {
         "chat_summary_enabled": true,
         "user_profile_enabled": true,
@@ -263,6 +275,13 @@ curl -X POST "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
     }
   }'
 ```
+
+:::zone-end
+
+:::zone pivot="python,typescript"
+
+> [!TIP]
+> The code snippets in the remaining sections of this article build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run those snippets independently, include the import and client initialization code from this section.
 
 :::zone-end
 
@@ -312,7 +331,7 @@ console.log(`Updated: ${updatedStore.description}`);
 ```bash
 MEMORY_STORE_NAME="my_memory_store"
 
-curl -X POST "${ENDPOINT}/memory_stores/${MEMORY_STORE_NAME}?api-version=${API_VERSION}" \
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/${MEMORY_STORE_NAME}?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -355,7 +374,7 @@ for await (const store of storeList) {
 :::zone pivot="rest"
 
 ```bash
-curl -X GET "${ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
+curl -X GET "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}"
 ```
 
@@ -388,7 +407,7 @@ tool = MemorySearchPreviewTool(
 agent = project_client.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model=os.environ["AZURE_AI_CHAT_MODEL_DEPLOYMENT_NAME"],
+        model=os.environ["MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME"],
         instructions="You are a helpful assistant that answers general questions",
         tools=[tool],
     )
@@ -413,8 +432,7 @@ const agent = await project.agents.createVersion(
     model: chatModelDeployment,
     instructions:
       "You are a helpful assistant that retrieves relevant " +
-      "information from the user's memory store to answer " +
-      "their questions.",
+      "information from the user's memory store to answer their questions.",
     tools: [
       {
         type: "memory_search_preview",
@@ -438,7 +456,7 @@ console.log(
 
 ```bash
 # Note: The agents API uses api-version=v1, which differs from the memory store API version
-curl -X POST "${ENDPOINT}/agents?api-version=v1" \
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/agents?api-version=v1" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -536,11 +554,8 @@ console.log("Waiting for memories to be stored...");
 await setTimeout(65_000);
 
 // Create a new conversation to demonstrate cross-session recall
-const newConversation =
-  await openaiClient.conversations.create();
-console.log(
-  `Created new conversation (id: ${newConversation.id})`,
-);
+const newConversation = await openaiClient.conversations.create();
+console.log(`Created new conversation (id: ${newConversation.id})`);
 
 // Create an agent response with stored memories
 const newResponse = await openaiClient.responses.create(
@@ -563,13 +578,13 @@ console.log(`Response output: ${newResponse.output_text}`);
 :::zone pivot="rest"
 
 ```bash
-curl -X POST "${ENDPOINT}/openai/v1/conversations" \
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/conversations" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d '{}'
 
 # Copy the "id" field from the previous response
-curl -X POST "${ENDPOINT}/openai/v1/responses" \
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/responses" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d '{
@@ -587,9 +602,6 @@ curl -X POST "${ENDPOINT}/openai/v1/responses" \
 ## Use memories via APIs
 
 You can interact with a memory store directly using the memory store APIs. Start by adding memories from conversation content to the memory store, and then search for relevant memories to provide context for agent interactions.
-
-> [!TIP]
-> The Python and TypeScript code snippets in this section build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run them independently, include the import and client initialization code from that section.
 
 ### Add memories to a memory store
 
@@ -659,8 +671,7 @@ const userMessage: Record<string, unknown> = {
   content: [
     {
       type: "input_text",
-      text: "I prefer dark roast coffee and usually drink it " +
-        "in the morning",
+      text: "I prefer dark roast coffee and usually drink it in the morning",
     },
   ],
 };
@@ -700,7 +711,6 @@ const newUpdatePoller = project.beta.memoryStores.updateMemories(
   scope,
   {
     items: [newMessage],
-    previousUpdateId: updatePoller.updateId,
     updateDelayInSecs: 0,
   },
 );
@@ -724,7 +734,7 @@ for (const operation of newUpdateResult.memory_operations) {
 :::zone pivot="rest"
 
 ```bash
-curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:update_memories?api-version=${API_VERSION}" \
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store:update_memories?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -747,7 +757,7 @@ curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:update_memories?api-vers
 # Get add memory status by polling the update_id
 # Use the "update_id" from previous response
 UPDATE_ID=<your_update_id>
-curl -X GET "${ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-version=${API_VERSION}" \
+curl -X GET "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store/updates/${UPDATE_ID}?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}"
 ```
 
@@ -800,9 +810,7 @@ const searchResponse =
     },
   );
 
-console.log(
-  `Found ${searchResponse.memories.length} memory item(s)`,
-);
+console.log(`Found ${searchResponse.memories.length} memory item(s)`);
 for (const memory of searchResponse.memories) {
   console.log(
     `  - Memory ID: ${memory.memory_item.memory_id}, ` +
@@ -816,7 +824,7 @@ for (const memory of searchResponse.memories) {
 :::zone pivot="rest"
 
 ```bash
-curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:search_memories?api-version=${API_VERSION}" \
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store:search_memories?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -880,10 +888,7 @@ print(f"Deleted memories for scope: user_123")
 
 ```typescript
 console.log("\nDeleting memories for scope...");
-await project.beta.memoryStores.deleteScope(
-  memoryStoreName,
-  scope,
-);
+await project.beta.memoryStores.deleteScope(memoryStoreName, scope);
 ```
 
 :::zone-end
@@ -891,7 +896,7 @@ await project.beta.memoryStores.deleteScope(
 :::zone pivot="rest"
 
 ```bash
-curl -X POST "${ENDPOINT}/memory_stores/my_memory_store:delete_scope?api-version=${API_VERSION}" \
+curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store:delete_scope?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
@@ -927,7 +932,7 @@ await project.beta.memoryStores.delete(memoryStoreName);
 :::zone pivot="rest"
 
 ```bash
-curl -X DELETE "${ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERSION}" \
+curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-version=${API_VERSION}" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}"
 ```
 
