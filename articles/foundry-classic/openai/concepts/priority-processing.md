@@ -171,7 +171,7 @@ The following table summarizes which service tier processes your requests based 
 
 | Issue | Cause | Resolution |
 | ------- | ------- | ------------ |
-| Requests downgraded to standard tier | One of two situations: <br>- Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. <br>- Requests sent during periods of peak requests to priority processing.<br> - Long context requests sent to certain models listed in the [Latency target table](#latency-target). | - Increase traffic gradually, if you've encountered ramp rate limits.<br> - Consider purchasing PTU for steady-state capacity. |
+| Requests downgraded to standard tier | One of these situations: <br>- Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. <br>- Requests sent during periods of peak requests to priority processing.<br> - Long context requests sent to certain models listed in the [Latency target table](#latency-target). | - Increase traffic gradually, if you've encountered ramp rate limits.<br> - Consider purchasing PTU for steady-state capacity. |
 
 ## Related content
 
