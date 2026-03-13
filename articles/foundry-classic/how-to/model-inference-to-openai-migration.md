@@ -112,6 +112,7 @@ Use this checklist to ensure a smooth migration:
 > * Install the OpenAI SDK for your programming language
 > * Update authentication code (API key or Microsoft Entra ID)
 > * Change endpoint URLs from `.services.ai.azure.com/models` to `.openai.azure.com/openai/v1/`
+> * Change the credential scope from `https://cognitiveservices.azure.com/.default` to `https://ai.azure.com/.default`
 > * Update client initialization code
 > * Always specify the `model` parameter with your deployment name
 > * Update request method calls (`complete` → `chat.completions.create`)
