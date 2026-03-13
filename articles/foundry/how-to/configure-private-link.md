@@ -18,10 +18,7 @@ ai-usage: ai-assisted
 
 # How to configure network isolation for Microsoft Foundry
 
-> [!TIP]
-> An alternate hub-focused version of this article is available: [How to configure a private link for a Microsoft Foundry hub](../../foundry-classic/how-to/hub-configure-private-link.md).
-
-When you use a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private endpoint to secure communication. This article describes how to establish a private connection to your Foundry account and projects using a private endpoint.
+Use a private endpoint to secure communication. This article describes how to establish a private connection to your Foundry account and projects using a private endpoint.
 
 ## Plan for network isolation in Foundry
 
