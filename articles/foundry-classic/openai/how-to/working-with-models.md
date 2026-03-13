@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Working with models (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/working-with-models.md)
 
 Azure OpenAI in Microsoft Foundry Models is powered by a diverse set of models with different capabilities and price points. [Model availability varies by region](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 

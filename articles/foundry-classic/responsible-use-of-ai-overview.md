@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Responsible AI for Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../foundry/responsible-use-of-ai-overview.md)
 
 This article provides an overview of the resources for building and deploying trustworthy AI agents. This includes end-to end security, observability, and governance with controls and checkpoints at all stages of the agent lifecycle. Our recommended essential development steps are grounded in the [Microsoft Responsible AI Standard](https://aka.ms/RAI), which sets policy requirements that our own engineering teams follow. Much of the content of the Standard follows a pattern, asking teams to Discover, Protect, and Govern potential content risks.
 

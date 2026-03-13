@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Authentication and authorization in Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/authentication-authorization-foundry.md)
 
 Authentication and authorization in Microsoft Foundry control how principals prove identity and gain permission to perform operations. Foundry divides operations into control plane (resource management) and data plane (runtime usage), each with its own authentication and role-based access control (RBAC) surface.
 

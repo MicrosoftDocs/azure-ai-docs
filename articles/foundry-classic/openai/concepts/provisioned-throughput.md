@@ -22,7 +22,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # What is provisioned throughput for Foundry Models? (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/provisioned-throughput.md)
 
 > [!TIP]
 > For more information on recent changes to the provisioned throughput offering, see the [update article](./provisioned-migration.md).

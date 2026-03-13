@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Data, privacy, and security for Claude models in Microsoft Foundry (preview) (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/claude-models/data-privacy.md)
 
 This article describes how the data that you provide is processed, used, and stored when you use Anthropic Claude models from the Microsoft Marketplace in Microsoft Foundry. Claude in Foundry processes data differently from models sold directly by Azure. When you transact for Claude in Foundry, you will agree to Anthropic's terms of use and Anthropic (not Microsoft) is the processor of the data. 
 

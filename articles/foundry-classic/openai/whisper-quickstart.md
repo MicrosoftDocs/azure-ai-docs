@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Quickstart: Speech to text with the Azure OpenAI Whisper model (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/openai/whisper-quickstart.md)
 
 In this quickstart, you transcribe speech to text using the [Azure OpenAI Whisper model](../../ai-services/speech-service/whisper-overview.md). The Whisper model can transcribe human speech in numerous languages and translate other languages into English.
 

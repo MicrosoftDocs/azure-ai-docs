@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Microsoft Foundry architecture (classic) 
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/architecture.md)
 
 Microsoft Foundry provides a comprehensive set of tools to help development teams build, customize, evaluate, and operate AI agents and the models and tools they use.
 
