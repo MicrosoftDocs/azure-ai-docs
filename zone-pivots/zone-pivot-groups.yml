@@ -1858,6 +1858,15 @@ groups:
     title: Python
   - id: csharp
     title: C#
+# Owner: johmil
+- id: hosted-agent-deploy-method
+  title: Deployment method
+  prompt: Choose a deployment method
+  pivots:
+  - id: azd
+    title: Azure Developer CLI
+  - id: vscode
+    title: VS Code
 # Owner: pafarley
 - id: fast-transcription-quickstart
   title: Programming languages
