@@ -37,6 +37,8 @@ items:
     href: ../../agents/concepts/tool-catalog.md
   - name: Tool best practices
     href: ../../agents/concepts/tool-best-practice.md
+  - name: Create a private tool catalog (preview)
+    href: ../../agents/how-to/private-tool-catalog.md
   - name: Azure AI Search
     href: ../../agents/how-to/tools/ai-search.md
   - name: Code interpreter
@@ -45,8 +47,6 @@ items:
     href: ../../agents/how-to/tools/file-search.md
   - name: Function calling
     href: ../../agents/how-to/tools/function-calling.md
-  - name: Memory
-    href: ../../agents/how-to/memory-usage.md
   - name: Voice integration (preview)  
     items:
     - name: Quickstart - Talk to a voice agent
@@ -63,32 +63,18 @@ items:
       href: ../../agents/how-to/tools/bing-tools.md
   - name: Additional tools
     items:
-    - name: Browser automation (preview)
-      href: ../../agents/how-to/tools/browser-automation.md
-    - name: Computer Use (preview)
-      href: ../../agents/how-to/tools/computer-use.md
-    - name: Image generation (preview)
-      href: ../../agents/how-to/tools/image-generation.md
-    # MCP Server
-    - name: Model Context Protocol (MCP)
-      items:
-      - name: Connect to MCP server
-        href: ../../agents/how-to/tools/model-context-protocol.md
-      - name: MCP authentication
-        href: ../../agents/how-to/mcp-authentication.md
-      - name: Build your own MCP server
-        href: ../../mcp/build-your-own-mcp-server.md
-    - name: OpenAPI tool
-      href: ../../agents/how-to/tools/openapi.md
-    - name: SharePoint (preview)
-      href: ../../agents/how-to/tools/sharepoint.md
-    - name: Fabric data agent (preview)
-      href: ../../agents/how-to/tools/fabric.md
     - name: Agent2Agent (A2A) (preview)
       href: ../../agents/how-to/tools/agent-to-agent.md
     - name: Agent2Agent (A2A) authentication (preview)
       href: ../../agents/concepts/agent-to-agent-authentication.md
-    # Foundry IQ
+    - name: Browser automation (preview)
+      href: ../../agents/how-to/tools/browser-automation.md
+    - name: Computer Use (preview)
+      href: ../../agents/how-to/tools/computer-use.md
+    - name: Custom code interpreter (preview)
+      href: ../../agents/how-to/tools/custom-code-interpreter.md
+    - name: Fabric data agent (preview)
+      href: ../../agents/how-to/tools/fabric.md
     - name: Foundry IQ (preview)
       items:
       - name: What is Foundry IQ?
@@ -117,6 +103,26 @@ items:
           href: /azure/ai-services/translator/text-translation/overview?context=/azure/foundry/context/context
         - name: Azure document translation
           href: /azure/ai-services/translator/document-translation/overview?context=/azure/foundry/context/context
+    - name: Image generation (preview)
+      href: ../../agents/how-to/tools/image-generation.md
+    - name: Memory (preview)
+      items:
+      - name: What is memory?
+        href: ../../agents/concepts/what-is-memory.md
+      - name: Create and use memory
+        href: ../../agents/how-to/memory-usage.md
+    - name: Model Context Protocol (MCP)
+      items:
+      - name: Connect to MCP server
+        href: ../../agents/how-to/tools/model-context-protocol.md
+      - name: MCP authentication
+        href: ../../agents/how-to/mcp-authentication.md
+      - name: Build your own MCP server
+        href: ../../mcp/build-your-own-mcp-server.md
+    - name: OpenAPI tool
+      href: ../../agents/how-to/tools/openapi.md
+    - name: SharePoint (preview)
+      href: ../../agents/how-to/tools/sharepoint.md
 # Deploy and Share
 - name: Deploy and share
   items:
@@ -157,3 +163,5 @@ items:
     href: ../../agents/faq.yml
   - name: Capability hosts
     href: ../../agents/concepts/capability-hosts.md
+  - name: Tool governance
+    href: ../../agents/how-to/tools/governance.md
