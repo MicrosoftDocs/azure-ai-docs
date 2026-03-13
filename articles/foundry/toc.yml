@@ -8,14 +8,8 @@ items:
 - name: Agent Service
   href: toc-files-foundry/agent-service/toc.yml
 
-- name: Model catalog
-  href: toc-files-foundry/model-catalog/toc.yml
-
-- name: Model capabilities
-  href: toc-files-foundry/model-capabilities/toc.yml
-
-- name: Fine-tuning
-  href: toc-files-foundry/fine-tuning/toc.yml
+- name: Foundry Models
+  href: toc-files-foundry/foundry-models/toc.yml
 
 # - name: Integration & orchestration
 #   href: toc-files-foundry/integrations-orchestration/toc.yml

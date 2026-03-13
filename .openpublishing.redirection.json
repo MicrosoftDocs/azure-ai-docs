@@ -1269,6 +1269,16 @@
       "source_path": "articles/ai-foundry/default/agents/how-to/tools/knowledge-retrieval.md",
       "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/foundry/foundry-models/how-to/configure-marketplace.md",
+      "redirect_url": "/azure/foundry/foundry-models/concepts/models-from-partners",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/foundry-models/how-to/configure-marketplace.md",
+      "redirect_url": "/azure/foundry-classic/foundry-models/concepts/models-from-partners",
+      "redirect_document_id": false
     }
   ]
 }
