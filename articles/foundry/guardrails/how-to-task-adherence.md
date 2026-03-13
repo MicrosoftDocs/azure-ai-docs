@@ -6,6 +6,7 @@ ms.author: ssalgado
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
 ms.date: 03/12/2026
+zone_pivot_groups: foundry-speech-studio-rest
 ---
 
 # How to use Task Adherence for your Agentic workflows
@@ -25,7 +26,7 @@ The primary objectives of the Task Adherence feature are:
 
 For more information on how Task Adherence works, see the [Task Adherence concepts page](task-adherence.md).
 
-# [Rest](#tab/rest)
+::: zone pivot="rest-api"
 
 ## Prerequisites
 
@@ -95,7 +96,10 @@ After you submit your request, you'll receive JSON data reflecting the analysis 
 
 A value of `true` for `taskRiskDetected` signifies a detected risk, in which case we recommend review and action, such as blocking of the tool invocation request or human-in-the-loop escalation.
 
-# [Foundry](#tab/foundry)
+::: zone-end
+
+
+::: zone pivot="ai-foundry-portal"
 
 ## Prerequisites 
 
@@ -113,6 +117,8 @@ Follow these steps to use the **Content Safety try it out** page:
 1. Select **Run test**. Task Adherence returns the risk flag for each sample, and if a risk is detected, it returns a reason. 
 
 ---
+
+::: zone-end
 
 ## Related content
 
