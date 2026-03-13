@@ -4,7 +4,7 @@ description: Learn how to use langchain-azure-ai with Foundry Memory to build AI
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 03/05/2026
-ms.author: fasanti
+ms.author: fasantia
 author: santiagxf
 ms.reviewer: sgilley
 ms.custom:

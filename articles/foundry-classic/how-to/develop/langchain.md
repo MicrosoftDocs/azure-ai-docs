@@ -252,7 +252,7 @@ Create the client:
 **What this snippet does:** Instantiates an embeddings client using `AzureAIEmbeddingsModel` to convert text into vector embeddings, which can be used for semantic search and similarity comparisons.
 
 **References:**
-- [LangChain Embeddings](https://python.langchain.com/docs/integrations/text_embedding/azure_ai)
+- [LangChain Embeddings](https://docs.langchain.com/oss/python/integrations/providers/microsoft#embedding-models)
 
 Use an in-memory vector store:
 
