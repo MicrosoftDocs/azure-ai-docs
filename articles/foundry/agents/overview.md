@@ -106,7 +106,7 @@ Agent Service works with many models available in the Foundry model catalog. For
 Agent Service provides built-in tools and supports custom tools so your agents can take actions and access data. For a full list, see the [Foundry tool catalog](concepts/tool-catalog.md). For advanced tool selection patterns, see [Tool best practices](concepts/tool-best-practice.md).
 
 > [!NOTE]
-> Some tools, including memory and web search, are in preview. For availability by region and preview status, see the [tool overview](./concepts/tool-catalog.md).
+> Some tools, including memory and web search, are in preview. For availability by region and preview status, see [tool support by region and model](./concepts/tool-best-practice.md#tool-support-by-region-and-model).
 
 ## Development lifecycle
 
