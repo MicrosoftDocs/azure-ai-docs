@@ -1,9 +1,6 @@
 ---
-title: Find encryption key information
-titleSuffix: Azure AI Search
+title: Find Encryption Key Information
 description: Retrieve the encryption key name and version used in an index or synonym map so that you can manage the key in Azure Key Vault.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

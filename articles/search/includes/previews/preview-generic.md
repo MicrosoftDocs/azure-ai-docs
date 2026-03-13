@@ -1,7 +1,6 @@
 ---
 title: Include file
 description: Include file
-
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 03/19/2024

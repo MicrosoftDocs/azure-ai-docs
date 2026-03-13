@@ -114,7 +114,7 @@ mongo_db_collection = os.environ.get("MongoDBCollection")
 mongo_db_index = os.environ.get("MongoDBIndex")
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    DefaultAzureCredential(), "https://ai.azure.com/.default")
 
 client = AzureOpenAI(
     azure_endpoint=endpoint,

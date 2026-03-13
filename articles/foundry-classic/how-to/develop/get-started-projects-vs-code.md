@@ -20,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Work with the Microsoft Foundry for Visual Studio Code extension (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/get-started-projects-vs-code.md)
 
 In this article, learn how to install and use the [Microsoft Foundry](../../what-is-foundry.md) for Visual Studio Code extension. Create projects, deploy models from the Foundry model catalog, and interact with model playgrounds from within VS Code.
 

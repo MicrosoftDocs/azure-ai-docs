@@ -1,6 +1,5 @@
 ---
-title: Update or rebuild an index
-titleSuffix: Azure AI Search
+title: Update or Rebuild an Index
 description: Update or rebuild an index to update the schema or clean out obsolete documents. You can fully rebuild or do partial indexing.
 ms.service: azure-ai-search
 ms.custom:

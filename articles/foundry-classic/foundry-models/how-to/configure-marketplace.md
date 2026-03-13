@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Azure Marketplace requirements for Foundry Models from partners (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/how-to/configure-marketplace.md)
 
 Certain Microsoft Foundry Models are offered directly by the model provider through the Azure Marketplace. These models belong to the collection of [Foundry Models from partners and community](../concepts/models-from-partners.md). This article explains the requirements to use Azure Marketplace if you plan to use such models in your workloads. [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), like DeepSeek, Black Forest Labs, or Azure OpenAI in Foundry Models, don't have this requirement.
 

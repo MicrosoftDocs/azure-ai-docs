@@ -1,10 +1,6 @@
 ---
 title: Enable Answer Synthesis
-titleSuffix: Azure AI Search
 description: Learn how to enable answer synthesis in a knowledge base or retrieve request in Azure AI Search. At query time, the knowledge base uses your deployed LLM to produce natural-language answers with citations to your knowledge sources.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/10/2025

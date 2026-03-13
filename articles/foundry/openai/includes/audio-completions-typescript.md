@@ -89,7 +89,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     // Keyless authentication 
     const getClient = (): AzureOpenAI => {
         const credential = new DefaultAzureCredential();
-        const scope = "https://cognitiveservices.azure.com/.default";
+        const scope = "https://ai.azure.com/.default";
         const azureADTokenProvider = getBearerTokenProvider(credential, scope);
         const client = new AzureOpenAI({
           endpoint: endpoint,
@@ -287,7 +287,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     // Keyless authentication 
     const getClient = (): AzureOpenAI => {
         const credential = new DefaultAzureCredential();
-        const scope = "https://cognitiveservices.azure.com/.default";
+        const scope = "https://ai.azure.com/.default";
         const azureADTokenProvider = getBearerTokenProvider(credential, scope);
         const client = new AzureOpenAI({
           endpoint: endpoint,
@@ -510,7 +510,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     // Keyless authentication 
     const getClient = (): AzureOpenAI => {
         const credential = new DefaultAzureCredential();
-        const scope = "https://cognitiveservices.azure.com/.default";
+        const scope = "https://ai.azure.com/.default";
         const azureADTokenProvider = getBearerTokenProvider(credential, scope);
         const client = new AzureOpenAI({
           endpoint: endpoint,

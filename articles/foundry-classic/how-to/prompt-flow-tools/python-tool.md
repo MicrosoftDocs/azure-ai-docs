@@ -9,13 +9,12 @@ ms.custom:
   - build-2024
   - ignite-2024
   - hub-only
-ms.topic: article
+ms.topic: concept-article
 ms.date: 01/27/2026
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 ---
 
 # Python tool for flows in Microsoft Foundry portal (classic)

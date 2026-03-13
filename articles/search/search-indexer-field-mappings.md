@@ -1,6 +1,5 @@
 ---
-title: Map fields in indexers
-titleSuffix: Azure AI Search
+title: Map Fields in Indexers
 description: Configure field mappings in an indexer to account for differences in field names and data representations.
 ms.service: azure-ai-search
 ms.custom:

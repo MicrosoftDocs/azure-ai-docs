@@ -158,4 +158,4 @@ Graders return results with pass/fail status. Key output fields:
 
 - [Complete working sample.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_graders.py#L9)
 - [How to run agent evaluation](../../observability/how-to/evaluate-agent.md)
-- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)

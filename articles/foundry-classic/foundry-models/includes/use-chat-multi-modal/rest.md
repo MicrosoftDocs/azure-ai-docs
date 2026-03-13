@@ -38,7 +38,7 @@ Content-Type: application/json
 api-key: <key>
 ```
 
-If you've configured the resource with **Microsoft Entra ID** support, pass your token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
+If you've configured the resource with **Microsoft Entra ID** support, pass your token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://ai.azure.com/.default`. 
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview

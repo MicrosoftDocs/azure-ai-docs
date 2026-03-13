@@ -137,7 +137,7 @@ from langchain_openai import AzureChatOpenAI
 
 token_provider = azure.identity.get_bearer_token_provider(
     azure.identity.DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default",
+    "https://ai.azure.com/.default",
 )
 
 model = AzureChatOpenAI(
@@ -331,7 +331,7 @@ from langchain_openai import AzureChatOpenAI
 
 token_provider = azure.identity.get_bearer_token_provider(
     azure.identity.DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default",
+    "https://ai.azure.com/.default",
 )
 
 model = AzureChatOpenAI(

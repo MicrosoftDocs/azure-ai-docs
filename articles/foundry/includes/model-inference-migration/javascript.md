@@ -63,7 +63,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default'
+    'https://ai.azure.com/.default'
 );
 
 const client = new OpenAI({
@@ -181,7 +181,7 @@ import { getBearerTokenProvider, DefaultAzureCredential } from "@azure/identity"
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
     baseURL: "https://<resource>.openai.azure.com/openai/v1/",
     apiKey: tokenProvider

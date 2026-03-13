@@ -53,7 +53,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "o4-mini",
@@ -90,7 +90,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -273,7 +273,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "o4-mini",
@@ -311,7 +311,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-  DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+  DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -493,7 +493,7 @@ using Azure.Identity;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 OpenAIResponseClient client = new(
     model: "o4-mini",
@@ -551,7 +551,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -729,7 +729,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -920,14 +920,14 @@ print(response.model_dump_json(indent=2))
 | `gpt-5.3-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
 | `gpt-5.2-codex`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
 | `gpt-5.2`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)   | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
-`gpt-5.1-codex-max` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.|
-| `gpt-5.1`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
+`gpt-5.1-codex-max` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Access is no longer restricted for this model.  |
+| `gpt-5.1`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  |  Access is no longer restricted for this model.   |
 | `gpt-5.1-chat` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | No access request needed.  |
-| `gpt-5.1-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
+| `gpt-5.1-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Access is no longer restricted for this model. |
 | `gpt-5.1-codex-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | No access request needed. | 
-| `gpt-5-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.   |
-| `gpt-5-codex` |[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.    |
-| `gpt-5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)   |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.     |
+| `gpt-5-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Access is no longer restricted for this model.  |
+| `gpt-5-codex` |[Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Access is no longer restricted for this model.    |
+| `gpt-5` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)   | Access is no longer restricted for this model.      |
 | `gpt-5-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  |  No access request needed.    |
 | `gpt-5-nano` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  |  No access request needed. |
 | `o3-pro`  | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)     |  Request access: [Limited access model application](https://aka.ms/oai/o3access). If you already have access to a limited access model no request is required.  |

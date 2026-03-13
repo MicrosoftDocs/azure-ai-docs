@@ -1,16 +1,12 @@
 ---
 title: 'Tutorial: Index Semi-Structured Data in JSON Blobs'
-titleSuffix: Azure AI Search
 description: Learn how to index and search semi-structured Azure JSON blobs using Azure AI Search REST APIs.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
 ms.date: 03/28/2025
 ms.update-cycle: 365-days
-
 ---
 
 # Tutorial: Index nested JSON blobs from Azure Storage using REST

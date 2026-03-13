@@ -1,6 +1,5 @@
 ---
-title: Map enriched output to fields in a search index
-titleSuffix: Azure AI Search
+title: Map Enriched Output to Fields in a Search Index
 description: Export the enriched content created by a skillset by mapping its output fields to fields in a search index.
 ms.service: azure-ai-search
 ms.custom:

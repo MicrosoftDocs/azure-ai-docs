@@ -1,6 +1,5 @@
 ---
-title: Run or reset indexers
-titleSuffix: Azure AI Search
+title: Run or Reset Indexers
 description: Run indexers in full, or reset an indexer, skills, or individual documents to refresh all or part of a search index or knowledge store.
 ms.service: azure-ai-search
 ms.topic: how-to

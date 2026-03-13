@@ -96,9 +96,6 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | `gpt-5.1-codex-mini` |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.1-codex-max` |  See the [models table](#model-summary-table-and-region-availability).  | 
 
-- **[Registration is required for access to gpt-5.1, gpt-5.1-codex, and gpt-5.1-codex-max](https://aka.ms/oai/gpt5access).**
-
-Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -131,12 +128,6 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | `gpt-5-chat` (2025-10-03) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-codex` (2025-09-11) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-pro` (2025-10-06) |  See the [models table](#model-summary-table-and-region-availability).  |
-
-- **[Registration is required for access to the gpt-5-pro, gpt-5, & gpt-5-codex models](https://aka.ms/oai/gpt5access).**
-
-- `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
-
- Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to `o3`, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -365,7 +356,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-4o-realtime-preview` (2025-06-03) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-mini-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
-|`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini-2025-12-15` (2025-12-15) <br> `gpt-realtime-1.5-2026-02-23` (2026-02-23)<br> `gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06)<br> `gpt-audio-1.5-2026-02-23` (2026-02-23) | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
+|`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini-2025-12-15` (2025-12-15) <br> `gpt-realtime-1.5` (2026-02-23)<br> `gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06)<br> `gpt-audio-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
 
 To compare the availability of GPT-4o audio models across all regions, refer to the [models table](#global-standard-model-availability).
 

@@ -1,7 +1,6 @@
 ---
-title: Create an index
-titleSuffix: Azure AI Search
-description: Create a search index using the Azure portal, REST APIs, or an Azure SDK.
+title: Create a Search Index
+description: Learn how to define a schema and create a search index in Azure AI Search using the Azure portal, REST APIs, or an Azure SDK. Set up fields and attributes.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to

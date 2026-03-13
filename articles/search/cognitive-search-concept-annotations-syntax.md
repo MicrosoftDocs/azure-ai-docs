@@ -1,6 +1,5 @@
 ---
-title: Reference enriched nodes during skillset execution
-titleSuffix: Azure AI Search
+title: Reference Enriched Nodes During Skillset Execution
 description: Explains the annotation syntax and how to reference inputs and outputs of a skillset in an AI enrichment pipeline in Azure AI Search.
 ms.service: azure-ai-search
 ms.custom:

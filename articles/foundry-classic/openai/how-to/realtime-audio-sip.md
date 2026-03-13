@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Use the GPT Realtime API via SIP (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/realtime-audio-sip.md)
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
@@ -35,7 +35,7 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 - `gpt-realtime` (`2025-08-28`)
 - `gpt-realtime-mini` (`2025-10-06`)
 - `gpt-realtime-mini-2025-12-15` (`2025-12-15`)
-- `gpt-realtime-1.5-2026-02-23` (`2026-02-23`)
+- `gpt-realtime-1.5` (`2026-02-23`)
 
 ## Prerequisites
 

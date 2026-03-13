@@ -1,9 +1,7 @@
 ---
-title: Indexer troubleshooting
-titleSuffix: Azure AI Search
+title: Indexer Troubleshooting
 description: Provides indexer problem and resolution guidance for cases when no error messages are returned from the service search.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

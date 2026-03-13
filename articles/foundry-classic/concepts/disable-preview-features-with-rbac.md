@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Disable preview features in Microsoft Foundry by using role-based access control (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/disable-preview-features-with-rbac.md)
 
 Some features in Microsoft Foundry are in preview. You can block access to specific preview features by creating a custom Azure role that excludes the corresponding permissions, and then assigning that role to users.
 

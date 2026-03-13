@@ -1,6 +1,4 @@
 ---
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 11/21/2025
