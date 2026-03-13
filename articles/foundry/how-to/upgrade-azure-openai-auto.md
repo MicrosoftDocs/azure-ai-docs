@@ -14,13 +14,15 @@ ai-usage: ai-assisted
 
 # Auto-upgrade Azure OpenAI resources to Microsoft Foundry
 
-Microsoft is applying an in-place platform upgrade to eligible Azure OpenAI resources. Your resource name, identity, endpoint, keys, and other existing configurations and state remain the same. This upgrade enables access to a broader set of models and Foundry capabilities such as Agent Service and evaluations.
+Microsoft is automatically upgrading eligible Azure OpenAI resources to Microsoft Foundry resources. This service backend upgrade gives you access to a broader set of models, tools, and evaluations, along with deeper integration across the Microsoft ecosystem.
 
-Auto-upgrade applies only to eligible Azure resources. If your resource is selected, you receive advance notice and can review your scheduled date, defer the upgrade, or roll back after the upgrade completes.
+Upgrading doesn't increase your costs. Your Azure resource name, managed identity, endpoint, keys, and existing settings and state remain the same, including security configurations and permissions, Azure OpenAI v1 endpoint access and API keys, and existing fine-tuning jobs, batches, stored completions, and files.
+
+Auto-upgrade applies only to eligible resources. If your resource is selected, you receive advance notice and can review your scheduled date, defer the upgrade, or roll back after the upgrade completes.
 
 If your Azure OpenAI resource isn't eligible for auto-upgrade, you can still start the upgrade yourself by using the [opt-in process](upgrade-azure-openai.md).
 
-## Check auto-upgrade status
+## Review auto-upgrade status
 
 Resources selected for auto-upgrade show a notice in the Azure portal.
 They also include a `foundryAutoUpgrade` block in their Azure Resource
@@ -80,13 +82,10 @@ following status codes to understand your upgrade state.
 | `DeferredByCustomer` | You deferred auto-upgrade. `scheduledAt` is `null`. |
 | `RolledBack` | The resource was upgraded to Foundry and then rolled back to Azure OpenAI. `scheduledAt` is `null`. |
 | `Failed: CustomerManagedKeys` | The resource isn't currently eligible for auto-upgrade because it uses customer-managed keys and isn't in an [allow-listed subscription](upgrade-azure-openai.md#limitations). |
-| `Failed: PrivateNetworking` | The resource isn't yet eligible for auto-upgrade because it uses private networking. |
+| `Failed: PrivateNetworking` | The resource isn't yet eligible for auto-upgrade because it uses private networking. Manually upgrade to configure two additionally required DNS zones.|
 | `Failed: WeightsAndBiases` | The resource isn't eligible for auto-upgrade because it has a Weights & Biases (W&B) integration. W&B isn't supported on a Foundry resource. |
 
-When `status` starts with `Failed`, the value identifies why the resource
-isn't yet eligible for auto-upgrade. Once support is available for that
-configuration, the resource can return to `Eligible` with a new scheduled
-date.
+When `status` starts with `Failed`, the value identifies why the resource isn't yet eligible for auto-upgrade. Once support is available for that configuration, the resource can return to `Eligible` with a new scheduled date.
 
 ## Defer auto-upgrade
 
@@ -148,6 +147,29 @@ Microsoft Foundry](upgrade-azure-openai.md#roll-back-to-azure-openai).
 Before you roll back, delete any Foundry-specific sub-resources that
 prevent rollback, such as projects, connections, and non-Azure OpenAI
 model deployments.
+
+## Review Foundry governance and security guidance
+
+If your organization needs more time to complete security reviews or
+update governance controls, use these guidelines before your scheduled
+upgrade date:
+
+- Microsoft Foundry provides a broader set of capabilities than Azure
+  OpenAI, and both resource variants use the same Azure resource type
+  and management APIs. Existing Azure RBAC assignments and Azure Policy
+  controls continue to apply after upgrade.
+- Broad Azure RBAC permissions that supported OpenAI model operations will also apply to the broader model set after the upgrade. To constrain model access, use Azure Policy for model deployment governance. For details, see
+  [Built-in policy for model deployment](model-deployment-policy.md).
+- Consider approving Foundry capabilities in phases, for example, broader non-OpenAI model access first, then Agent service, then Foundry tools. Use narrower built-in roles (for example 'Cognitive Services OpenAI User') or custom roles to grant only the access each team
+  needs. For role guidance, see [Role-based access control for Microsoft
+  Foundry](../concepts/rbac-foundry.md).
+
+For more upgrade-specific guidance, see [Considerations for RBAC and
+policy during
+upgrade](upgrade-azure-openai.md#considerations-for-rbac-and-policy-during-upgrade).
+For broader security and governance guidance, see [Manage compliance and
+security in Microsoft
+Foundry](../control-plane/how-to-manage-compliance-security.md).
 
 ## Related content
 
