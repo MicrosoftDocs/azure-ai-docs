@@ -30,7 +30,7 @@ Foundry Agent Service is a fully managed platform for building, deploying, and s
 
 Agent Service handles hosting, scaling, identity, observability, and enterprise security so you can focus on your agent logic.
 
-## Get startd with agents
+## Get started with agents
 
 Ready to get started with agents? Choose your path based on how you want to build:
 
