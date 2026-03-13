@@ -1956,3 +1956,14 @@ groups:
     title: Python
   - id: rest
     title: REST
+# Owner: haileytapia
+- id: foundry-memory-store
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
