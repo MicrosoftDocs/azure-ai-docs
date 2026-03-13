@@ -31,7 +31,7 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 - `gpt-realtime` (`2025-08-28`)
 - `gpt-realtime-mini` (`2025-10-06`)
 - `gpt-realtime-mini-2025-12-15` (`2025-12-15`)
-- `gpt-realtime-1.5-2026-02-23` (`2026-02-23`)
+- `gpt-realtime-1.5` (`2026-02-23`)
 
 ## Prerequisites
 

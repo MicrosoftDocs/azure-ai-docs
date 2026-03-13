@@ -77,8 +77,8 @@ ms.custom: references_regions, build-2025
 | `gpt-realtime-mini` | 2025-12-15   | `Generally Available` | n/a | 2026-12-15    |       |
 | `gpt-4o-mini-transcribe` | 2025-12-15   | `Generally Available` | n/a | 2026-12-15    |       |
 | `gpt-4o-mini-tts` | 2025-12-15   | `Generally Available` | n/a | 2026-12-15    |       |
-|`gpt-realtime-1.5-2026-02-23` | 2026-02-23 | `Generally Available` | n/a | No earlier than February 23, 2027  |       |
-|`gpt-audio-1.5-2026-02-23` |2026-02-23| `Generally Available` | n/a | No earlier than February 23, 2027  |       |
+|`gpt-realtime-1.5` | 2026-02-23 | `Generally Available` | n/a | No earlier than February 23, 2027  |       |
+|`gpt-audio-1.5` |2026-02-23| `Generally Available` | n/a | No earlier than February 23, 2027  |       |
 
 # [Image and video](#tab/image)
 

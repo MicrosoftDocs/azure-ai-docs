@@ -41,7 +41,7 @@ You can access the GPT real-time models for global deployments in the [East US 2
 - `gpt-realtime` (version 2025-08-28)
 - `gpt-realtime-mini` (version 2025-10-06)
 - `gpt-realtime-mini-2025-12-15` (version 2025-12-15)
-- `gpt-realtime-1.5-2026-02-23` (version 2026-02-23)
+- `gpt-realtime-1.5` (version 2026-02-23)
 
 You should use API version `2025-08-28` in the URL for the Realtime API. The API version is included in the sessions URL.
 

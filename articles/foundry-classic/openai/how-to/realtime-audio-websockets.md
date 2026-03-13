@@ -56,7 +56,7 @@ The GPT real-time models are available for global deployments in the [East US 2 
 - `gpt-realtime` (`2025-08-28`)
 - `gpt-realtime-mini` (`2025-10-06`)
 - `gpt-realtime-mini-2025-12-15` (`2025-12-15`)
-- `gpt-realtime-1.5-2026-02-23` (`2026-02-23`)
+- `gpt-realtime-1.5` (`2026-02-23`)
 
 For more information about supported models, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 
