@@ -61,7 +61,7 @@ Before getting started, ensure you have the following prerequisites set-up.
     - On the Foundry project resource: **Contributor** (or **Owner**) to create private endpoint connections. If you don't have approval permissions, the private endpoint connection stays in a **Pending** state until the resource owner approves it.
     - If you manage private DNS zones: **Private DNS Zone Contributor** (or equivalent) for the private DNS zone that you link to the virtual network.
 
-## Setup walkthrough for inbound network isolation
+## Set up walkthrough for inbound network isolation
 
 This section guides you through creating a new Foundry resource with inbound network isolation enabled. The public network access can be set to **Disabled** with a private endpoint (private link) enabled, or set to **Selected networks** to grant specific IP addresses and virtual networks the ability to access Foundry securely. 
 
@@ -76,10 +76,11 @@ When creating a new Foundry resource, follow these steps:
 
     - From **Basics**, select the same **Region** as your virtual network.
     - From the **Virtual Network** form, select the virtual network and subnet that you want to connect to.
-> [!NOTE]
-> In the portal UI, the target to which you create the private endpoint should be labeled as an "account". Select your Foundry resource when prompted.
 
-1. Continue through the forms to create the project. When you reach the **Review + create** tab, review your settings and select **Create** to create the project.
+    > [!NOTE]
+    > In the portal UI, the target to which you create the private endpoint should be labeled as an "account". Select your Foundry resource when prompted.
+
+1. Continue through the forms to create the project.When you reach the **Review + create** tab, review your settings and select **Create** to create the project.
 
 ### Add a private endpoint to an existing project
 
@@ -192,7 +193,7 @@ To access your Foundry resource that has public network access disabled and is b
 * [Azure Bastion VM](/azure/bastion/bastion-overview) - Create an Azure virtual machine (a jump box) in the virtual network, then connect to it through Azure Bastion using RDP or SSH from your browser. Use the VM as your development environment. Because it's in the virtual network, it can access the resource directly.
 
 
-## Setup walkthrough for outbound network isolation
+## Set up walkthrough for outbound network isolation
 
 This section guides you through creating a new Foundry resource with outbound network isolation enabled. You can choose the best approach to secure outbound access for your Agent and evaluations client: virtual network injection through your own virtual network (BYO VNet) or managed virtual network (preview). For more information on managed networks, see the managed network documentation. This section describes network isolation with a custom (BYO) virtual network. 
 
