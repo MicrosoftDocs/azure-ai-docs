@@ -81,7 +81,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Build | Agents | GA (minus Voice Live, traces in agent builder in Preview) |
 | Build | Workflows | Preview |
 | Build | Models | GA |
-| Build | Tracing and tracing VNet | GA |
+| Build | Tracing and tracing VNet | Preview |
 | Build | Optimization (cluster analysis) | Preview |
 | Build | Fine-tuning | GA |
 | Build | Tools | GA (check label on individual tools in the catalog to determine if they are GA or Preview)|
@@ -90,7 +90,7 @@ The following table summarizes feature readiness. Most core capabilities across 
 | Build | Evaluations | GA |
 | Build | Memory | Preview |
 | Build | Guardrails | Agents = Preview; Models = GA; Controls and intervention = Preview |
-| Build | Monitoring | GA |
+| Build | Monitoring | Preview |
 | Build | Red teaming | GA |
 | Build | AI services speech playgrounds | GA |
 | Operate | Overview | Preview |
@@ -170,11 +170,12 @@ Before production rollout, validate the following:
 - Assuming API key authentication provides the same governance granularity as Entra ID with RBAC. See [Role-based access control for Microsoft Foundry](rbac-foundry.md) for proper configuration.
 - Skipping region availability validation for required models and services. See [Feature availability across cloud regions](../reference/region-support.md).
 - Migrating assistants or AOAI workflows without a documented fallback path in Foundry Classic. See [Migrate to the new Foundry Agent Service](../agents/how-to/migrate.md).
+- Assuming all GA features work behind a virtual network. Some features, including Hosted Agents, Traces, and Workflow Agents, don't yet fully support network isolation. If your workload requires private networking, review the feature limitations table in [How to configure network isolation for Microsoft Foundry](../how-to/configure-private-link.md#foundry-feature-limitations).
 
 ## Next steps
 
 - [What is Microsoft Foundry?](../what-is-foundry.md)
 - [Microsoft Foundry rollout across my organization](planning.md)
 - [Role-based access control for Microsoft Foundry](rbac-foundry.md)
-- [How to configure a private link for Foundry](../how-to/configure-private-link.md)
+- [How to configure network isolation for Microsoft Foundry](../how-to/configure-private-link.md)
 - [Feature availability across cloud regions](../reference/region-support.md)
