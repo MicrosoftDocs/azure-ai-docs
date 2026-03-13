@@ -42,7 +42,7 @@ A sophisticated attacker could alter or tamper with the client application, whic
 
 ### Mobile applications
 
-In both Android and iOS platforms, there are native and third-party solutions to check application integrity, such as [iOS App Attest](https://developer.apple.com/documentation/devicecheck/establishing-your-app-s-integrity), and [Android Play Integrity](https://developer.android.com/google/play/integrity). It's the application developer’s responsibility to incorporate the integrity check feature and respond promptly to potential hacks.
+In both Android and iOS platforms, there are native and non-Microsoft solutions to check application integrity, such as [iOS App Attest](https://developer.apple.com/documentation/devicecheck/establishing-your-app-s-integrity), and [Android Play Integrity](https://developer.android.com/google/play/integrity). It's the application developer’s responsibility to incorporate the integrity check feature and respond promptly to potential hacks.
 
 Azure liveness detection implements safeguards against untrustworthy runtime environments. The liveness detection SDK provides a digest of its liveness detection service calls, which can be passed to the application integrity APIs.
 
@@ -71,7 +71,7 @@ These considerations are also applicable to Android and iOS platforms.
 
 Azure Face API supports Virtual Networks and private endpoints. Refer to the [guide](../cognitive-services-virtual-networks.md).
 
-Customer who use a high security baseline can reference a Device Management solution such as [Microsoft Defender for Endpoints](/defender-endpoint/).
+Customers who use a high security baseline can reference a Device Management solution such as [Microsoft Defender for Endpoints](/defender-endpoint/).
 
 ## Keep your solution up to date
 

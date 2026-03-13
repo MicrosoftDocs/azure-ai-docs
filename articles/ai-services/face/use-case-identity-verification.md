@@ -17,7 +17,7 @@ ms.author: pafarley
 
 Azure Face service lets you provide the best-in-class face verification experience in your business solution. Use verification to grant access to digital or physical services or recover an account. For example, you can verify a user's face against a government-issued ID card like a passport or driver's license. Specific access scenarios include opening a new account, verifying a user, or proctoring an online assessment. Verification can be done when a person is onboarded to your service and repeated when they access a digital or physical service.
 
-:::image type="content" source="../computer-vision/media/use-cases/face-recognition.png" alt-text="Photo of a person holding a phone up to his face to take a picture":::
+:::image type="content" source="../computer-vision/media/use-cases/face-recognition.png" alt-text="Photo of a person holding a phone up to his face to take a picture.":::
 
 ## Benefits for your business 
 
