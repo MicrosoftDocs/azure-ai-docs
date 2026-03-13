@@ -37,7 +37,7 @@ Priority processing provides low-latency performance with the flexibility of pay
 ## Latency target
 
 |Topic| **gpt-4.1, 2025-04-14** | 
-| --- | --- 
+| --- | --- |
 |Latency Target Value| 99% > 80 Tokens Per Second\* |
 
 \* Calculated as p50 request latency on a per 5 minute basis.
@@ -50,7 +50,7 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 | **Region**    | **gpt-4.1, 2025-04-14** |
 |:--------------|:-----------------------:|
-| eastus 2      | ✅                      |
+| eastus2       | ✅                      |
 | swedencentral | ✅                      |
 | westus3       | ✅                      |
 
@@ -60,14 +60,11 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 | **Region**    | **gpt-4.1, 2025-04-14** |
 |:--------------|:-----------------------:|
-| eastus 2      | ✅                      |
+| eastus2       | ✅                      |
 | swedencentral | ✅                      |
 | westus3       | ✅                      |
 
 ---
-
-> [!NOTE]
-> Model and region availability might expand during the preview period. Check this page for updates.
 
 ## Enable priority processing at the deployment level
 
