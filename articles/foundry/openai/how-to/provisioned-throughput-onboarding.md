@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
-ms.date: 03/10/2026
+ms.date: 03/16/2026
 manager: nitinme
 author: msakande 
 ms.author: mopeakande 

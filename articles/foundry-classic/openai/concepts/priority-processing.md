@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 03/13/2026
+ms.date: 03/16/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: seramasu
@@ -23,7 +23,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-Priority processing provides low-latency performance with the flexibility of pay-as-you-go. It operates on a pay-as-you-go token model, offering rapid response times without long-term contract commitments. Priority processing uses the same quota as standard processing. This means your deployment that's enabled with priority processing consumes quota from your existing standard allocation. In this article, you enable priority processing on a model deployment, verify which service tier processed your requests, and monitor associated costs.
+Priority processing provides low-latency performance with the flexibility of pay-as-you-go. In this article, you enable priority processing on a model deployment, verify which service tier processed your requests, and monitor associated costs.
 
 ## Prerequisites
 
@@ -39,11 +39,16 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 ## Latency target
 
-|Topic| **gpt-4.1, 2025-04-14** | 
+| Model | Latency target value<sup>2</sup> | 
 | --- | --- |
-|Latency Target Value| 99% > 80 Tokens Per Second\* |
+| gpt-5.4, 2026-03-05<sup>1</sup> | 99% > 50 Tokens Per Second |
+| gpt-5.2, 2025-12-11 | 99% > 50 Tokens Per Second |
+| gpt-5.1, 2025-11-13 | 99% > 50 Tokens Per Second |
+| gpt-4.1, 2025-04-14<sup>1</sup> | 99% > 80 Tokens Per Second |
 
-\* Calculated as p50 request latency on a per 5 minute basis.
+<sup>1</sup> Long context requests (that is, requests estimated at larger than 128k prompt tokens) will be downgraded to standard processing and you'll be charged at the standard tier rate.
+
+<sup>2</sup> Calculated as p50 request latency on a per 5 minute basis.
 
 ## Priority processing support
 
@@ -51,21 +56,21 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 ### Global standard model availability
 
-| **Region**    | **gpt-4.1, 2025-04-14** |
-|:--------------|:-----------------------:|
-| eastus2       | ✅                      |
-| swedencentral | ✅                      |
-| westus3       | ✅                      |
+| **Region**     | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
+|:---------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
+| centralus      | ✅                      | ✅                      | ✅                      | ✅                      |
+| koreacentral   | ✅                      | ✅                      | ✅                      | ✅                      |
+| southcentralus | ✅                      | ✅                      | ✅                      | ✅                      |
+
 
 # [Data Zone standard](#tab/datazone-standard)
 
 ### Data zone standard model availability
 
-| **Region**    | **gpt-4.1, 2025-04-14** |
-|:--------------|:-----------------------:|
-| eastus2       | ✅                      |
-| swedencentral | ✅                      |
-| westus3       | ✅                      |
+| **Region**     | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
+|:---------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
+| centralus      | ✅                      | ✅                     | ✅                      | ✅                      |
+| southcentralus | ✅                      | ✅                     | ✅                      | ✅                      |
 
 ---
 
@@ -73,7 +78,10 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 You can enable priority processing at the deployment level and [(optionally) at the request level](#enable-priority-processing-at-the-request-level).
 
-In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), you can enable priority processing during deployment setup. Turn on the **Priority processing** toggle on the deployment details page when creating the deployment or update the setting by editing the deployment details of a deployed model.
+> [!NOTE]
+> Priority processing can be enabled in Global standard or Data Zone standard (US) deployments. Priority processing uses the same quota as standard processing.
+
+In the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), turn on the **Priority processing** toggle on the deployment details page when creating the deployment or update the setting of a deployed model by editing the deployment details.
 
 :::image type="content" source="../media/priority-processing/enable-priority-processing.png" alt-text="Screenshot showing how to enable priority processing by updating the settings of a deployed model in the Foundry portal." lightbox="../media/priority-processing/enable-priority-processing.png":::
 
@@ -144,22 +152,26 @@ The following table summarizes which service tier processes your requests based 
 | priority | auto, priority | Priority processing |
 | priority | default | Standard |
 
-## Ramp rate limits
+## Limitations
 
-Rapid increases to your priority processing tokens per minute might lead to hitting _ramp rate limits_. Currently, the ramp rate limit is defined as increasing traffic by more than 50% tokens per minute in less than 15 minutes. If you exceed the ramp rate limit, the service might send extra traffic to standard processing instead.
+- The service currently doesn't support regional standard deployments and EU datazone standard deployments.
 
-**Downgrade conditions**
+- The service might re-route some priority requests to standard processing during these scenarios:
 
-If priority processing performance degrades and a customer's traffic ramps up too quickly, the service might downgrade some priority requests to standard processing. The service bills requests processed by the standard service tier at standard rates. These requests aren't eligible for the priority processing latency target. Requests processed by the standard service tier include `service_tier = default` in the response. 
-
-> [!TIP]
-> If you routinely encounter ramp rate limits, consider purchasing PTU instead of or in addition to priority processing. 
+    - If rapid increases to your priority processing tokens per minute lead to hitting _ramp rate limits_. Currently, the ramp rate limit is defined as increasing traffic by more than 50% tokens per minute in less than 15 minutes.
+    - During periods of peak requests to priority processing.
+    - Long context requests sent to certain models listed in the [Latency target table](#latency-target).
+    
+    > [!NOTE]
+    > - The service bills requests processed by the standard service tier at standard rates. Requests processed by the standard service tier include `service_tier = default` in the response, while requests processed by priority processing tier include `service_tier = priority` in the response.
+    >
+    > - If you routinely encounter ramp rate limits, consider purchasing PTU instead of or in addition to priority processing. 
 
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
 | ------- | ------- | ------------ |
-| Requests downgraded to standard tier | Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. | Increase traffic gradually. Consider purchasing PTU for steady-state capacity. |
+| Requests downgraded to standard tier | One of two situations: <br>- Traffic ramped up more than 50% tokens per minute in under 15 minutes, hitting the ramp rate limit. <br>- Requests sent during periods of peak requests to priority processing.<br> - Long context requests sent to certain models listed in the [Latency target table](#latency-target). | - Increase traffic gradually, if you've encountered ramp rate limits.<br> - Consider purchasing PTU for steady-state capacity. |
 
 ## Related content
 
