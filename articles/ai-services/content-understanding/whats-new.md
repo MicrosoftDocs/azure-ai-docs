@@ -23,7 +23,7 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 
 ## March 2026
 
-**Official Azure SDK client libraries are now Generally Available**
+### Content Understanding SDK client libraries are now Generally Available
 
 Native SDK client libraries for Content Understanding are now available for Python, .NET, Java, and JavaScript/TypeScript — all targeting the `2025-11-01` GA API version. The SDKs provide strongly-typed models, built-in long-running operation polling, Azure authentication integration, automatic retries, and full consistency with the [Azure SDK design guidelines](https://azure.github.io/azure-sdk/). For production applications, we recommend using the official SDKs over raw REST calls.
 
@@ -36,9 +36,9 @@ Native SDK client libraries for Content Understanding are now available for Pyth
 | TypeScript | [`@azure/ai-content-understanding`](https://www.npmjs.com/package/@azure/ai-content-understanding) | [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/typescript) | `npm install @azure/ai-content-understanding` | [azure-sdk-for-js](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding) |
 
 > [!TIP]
-> Get started with the [Try Content Understanding with REST API and SDKs](quickstart/use-rest-api.md) for quickstarts and resource links for more details. 
+> Get started with the [Content Understanding quickstart](quickstart/use-rest-api.md), and see resource links for more details. 
 
-**Cross-regional Bring Your Own Capacity (BYOC) support**
+### Cross-regional Bring Your Own Capacity (BYOC) support
 
 Bring Your Own Capacity (BYOC) now supports cross-regional model deployments. Customers can leverage any Azure OpenAI deployments they own regardless of the resource or region. For details, see [Bring your own cross-resource capacity in Content Understanding](how-to/bring-your-own-cross-resource-capacity.md).
 
