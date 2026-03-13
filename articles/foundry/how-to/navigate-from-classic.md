@@ -30,7 +30,7 @@ Microsoft Foundry evolved through several naming and architectural changes. If y
 
 > [!IMPORTANT]
 > **Key migration dates:**
-> - **May 30, 2026** &mdash; `azure-ai-inference` package retires. [Migrate to the `openai` package](./model-inference-to-openai-migration).
+> - **May 30, 2026** &mdash; `azure-ai-inference` package retires. [Migrate to the `openai` package](./model-inference-to-openai-migration.md).
 > - **August 26, 2026** &mdash; Assistants API sunsets.  Use the generally available [Microsoft Foundry Agents service](../agents/overview.md). Follow the [migration guide](../agents/how-to/migrate.md#migrate-classic-agents-to-new-agents) to update your workloads. [Learn more](../agents/how-to/migrate.md).
 
 ## Plan your migration
