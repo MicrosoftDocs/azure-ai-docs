@@ -11,9 +11,6 @@ items:
   - name: Foundry Models sold from partners and community
     displayName: Foundry Models from partners and community
     href: ../../foundry-models/concepts/models-from-partners.md
-    items:
-    - name: Marketplace configuration for partner models
-      href: ../../foundry-models/how-to/configure-marketplace.md
 
   - name: Benchmark models
     items:
