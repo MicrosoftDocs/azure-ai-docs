@@ -357,8 +357,6 @@ To view the full sample code, see:
 
 Foundry can serve as a centralized location for your agent monitoring, even for agents not running on the platform. Within Foundry control plane, you can onboard agents running elsewhere via AI Gateway. You can then instrument your agent to send traces to the same Application Insights instance as your Foundry project. This setup enables continuous evaluations and tracking of metrics like error rate for agents not running in Foundry.
 
-:::image type="content" source="../../media/observability/how-to-monitor-agents-dashboard/3p-agent-monitoring.png" alt-text="Screenshot of the Agent Monitoring Dashboard in Foundry showing summary cards at the top with high-level metrics and charts below displaying evaluation scores, agent run success rates, and token usage over time." lightbox="../../media/observability/how-to-monitor-agents-dashboard/foundry-metrics-dashboard.png":::
-
 ## Set up monitoring for your custom agents
 
 1. Onboard your custom agent to Foundry using the instructions in [Register and manage custom agents](../../control-plane/register-custom-agent.md).
