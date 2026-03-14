@@ -7,6 +7,7 @@ ms.custom:
   - build-2024
   - ignite-2024
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 03/06/2026

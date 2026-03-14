@@ -4,7 +4,7 @@ description: "Learn tool best practices for Foundry Agent Service: configure too
 author: aahill
 ms.author: aahi
 ms.date: 03/09/2026
-ms.custom: references_regions, pilot-ai-workflow-jan-2026
+ms.custom: references_regions, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry

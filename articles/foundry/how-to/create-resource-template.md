@@ -14,6 +14,7 @@ ms.custom:
   - "build-aifnd"
   - "build-2025"
   - "dev-focus"
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a Foundry resource by using templates.
 ---

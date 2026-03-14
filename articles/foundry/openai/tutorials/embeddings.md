@@ -13,6 +13,7 @@ recommendations: false
 ms.custom:
   - devx-track-python
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Tutorial: Explore Azure OpenAI in Microsoft Foundry Models embeddings and document search

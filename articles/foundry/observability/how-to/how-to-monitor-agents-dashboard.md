@@ -8,7 +8,7 @@ ms.reviewer: sonalimalik
 ms.date: 01/08/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
-ms.custom: dev-focus, pilot-ai-workflow-jan-2026 
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026 , doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

@@ -11,9 +11,9 @@ ms.author: pafarley
 ms.custom:
   - references_regions
   - classic-and-new
+  - doc-kit-assisted
 recommendations: false
 ai-usage: ai-assisted
-
 ---
 
 # Use the GPT Realtime API via WebSockets

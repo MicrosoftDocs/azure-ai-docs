@@ -9,9 +9,11 @@ ms.date: 03/11/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
+ai-usage: ai-assisted
 ms.custom:
   - ignite2025
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Microsoft Foundry fine-tuning considerations

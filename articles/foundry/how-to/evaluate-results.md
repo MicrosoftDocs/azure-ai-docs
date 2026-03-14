@@ -7,6 +7,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 12/22/2025
 ms.reviewer: dlozier

@@ -11,6 +11,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Azure OpenAI in Foundry Models webhooks

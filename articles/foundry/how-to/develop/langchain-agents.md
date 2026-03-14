@@ -10,6 +10,7 @@ ms.reviewer: fasanti
 ms.custom:
   - classic-and-new
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to use langchain-azure-ai with Foundry Agent Service so that I can build practical intelligent applications with LangGraph and LangChain and the Agent Service.
 ---

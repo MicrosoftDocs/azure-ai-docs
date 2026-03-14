@@ -7,6 +7,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - pilot-ai-workflow-jan-2026
+  - doc-kit-assisted
 ms.topic: concept-article
 ms.date: 02/04/2026
 ms.reviewer: sgilley

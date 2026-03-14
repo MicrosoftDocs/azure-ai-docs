@@ -9,6 +9,7 @@ ms.date: 11/04/2025
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Foundry MCP Server best practices and security guidance

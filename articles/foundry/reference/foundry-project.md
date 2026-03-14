@@ -7,8 +7,10 @@ ms.topic: reference
 ms.date: 02/19/2026
 author: mrbullwinkle    
 ms.author: mbullwin
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Microsoft Foundry

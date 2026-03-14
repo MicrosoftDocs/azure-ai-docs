@@ -12,6 +12,7 @@ ms.author: aashcraft
 ms.custom: 
  - dev-focus
  - pilot-ai-workflow-jan-2026
+ - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-bing-grounding-new
 ---

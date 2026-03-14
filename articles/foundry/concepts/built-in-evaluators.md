@@ -7,8 +7,10 @@ ms.reviewer: skohlmeier
 ms.date: 02/12/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Built-in evaluators reference

@@ -7,6 +7,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - build-2023, build-2023-dataai, devx-track-python, references_regions
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 12/01/2025
 author: ssalgadodev
