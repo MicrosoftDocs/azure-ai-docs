@@ -149,7 +149,7 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 :::zone pivot="csharp"
 ## Create a chart with Code Interpreter in C#
 
-The following C# sample shows how to create an agent with the code interpreter tool and use it to generate a bar chart. The agent writes and executes Python code (using matplotlib) in a sandboxed container. For asynchronous usage, refer to the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample7_CodeInterpreter.md) in the Azure SDK for .NET repository on GitHub.
+The following C# sample shows how to create an agent with the code interpreter tool and use it to generate a bar chart. The agent writes and executes Python code (using matplotlib) in a sandboxed container. For asynchronous usage, refer to the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample7_CodeInterpreter.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
