@@ -35,11 +35,11 @@ This section links resources to 3rd party instructions on retrieving API keys an
 
 ## Steps to connect integration
 
-1. Follow the [Third-party integrations steps](#third-partyintegrations) and retrieve your API key linked to your custom security profile. 
+1. Follow the [Third-party integrations steps](#third-party-integrations) and retrieve your API key linked to your custom security profile. 
 1. Go to AI Foundry and select **Guardrails**. 
 1. Select the Integrations tab, add a third-party integration and select Zenity. 
 1. Select a Keyvault and Managed Identity. Learn more. 
-1. Add the endpoint(s) and API key(s). To get the endpoint-API key pair, follow the [Third-party integrations steps](#third-partyintegrations).
+1. Add the endpoint(s) and API key(s). To get the endpoint-API key pair, follow the [Third-party integrations steps](#third-party-integrations).
 
 
 #### Region availability 
