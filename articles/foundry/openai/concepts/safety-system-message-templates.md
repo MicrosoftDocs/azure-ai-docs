@@ -8,12 +8,12 @@ ms.date: 01/30/2026
 ms.custom: 
   - classic-and-new
   - pilot-ai-workflow-jan-2026
+  - doc-kit-assisted
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
 ai-usage: ai-assisted
 keywords: safety system message, system message, system prompt, metaprompt, prompt injection, groundedness, protected material
-
 ---
 
 # Safety system message templates

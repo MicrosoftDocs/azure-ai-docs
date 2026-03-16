@@ -11,6 +11,7 @@ ms.date: 03/09/2026
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
+ms.custom: doc-kit-assisted
 ---
 
 # Work with Foundry agents and MCP server tools in Visual Studio Code (classic)

@@ -5,6 +5,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
   - build-2024
+  - doc-kit-assisted
 ms.topic: concept-article
 ms.date: 12/23/2025
 ms.reviewer: mithigpe

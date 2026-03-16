@@ -351,12 +351,15 @@ Details about maximum request tokens and training data are available in the foll
 
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |---|---|---|---|
-|`gpt-4o-mini-audio-preview` (2024-12-17) <br> GPT-4o audio | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
-|`gpt-4o-audio-preview` (2024-12-17) <br> GPT-4o audio | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
-|`gpt-4o-realtime-preview` (2025-06-03) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
-|`gpt-4o-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
-|`gpt-4o-mini-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
-|`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini-2025-12-15` (2025-12-15) <br> `gpt-realtime-1.5-2026-02-23` (2026-02-23)<br> `gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06)<br> `gpt-audio-1.5-2026-02-23` (2026-02-23) | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
+|`gpt-4o-mini-audio-preview` (2024-12-17) | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
+|`gpt-4o-audio-preview` (2024-12-17) | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
+|`gpt-4o-realtime-preview` (2025-06-03) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | October 2023 |
+|`gpt-4o-realtime-preview` (2024-12-17) | Audio model for real-time audio processing. |Input: 16,000  <br> Output: 4,096 | October 2023 |
+|`gpt-4o-mini-realtime-preview` (2024-12-17) | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
+|`gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | October 2023 |
+|`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini` (2025-12-15) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | October 2023 |
+|`gpt-audio-1.5` (2026-02-23) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | September 2024 |
+|`gpt-realtime-1.5` (2026-02-23) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | September 2024 |
 
 To compare the availability of GPT-4o audio models across all regions, refer to the [models table](#global-standard-model-availability).
 
@@ -369,10 +372,10 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 |  Model ID  | Description | Max request (audio file size) |
 | ----- | ----- | ----- |
 | `whisper` | General-purpose speech recognition model. | 25 MB |
-| `gpt-4o-transcribe` | Speech-to-text model powered by GPT-4o. | 25 MB|
-| `gpt-4o-mini-transcribe` | Speech-to-text model powered by GPT-4o mini. | 25 MB|
-| `gpt-4o-transcribe-diarize` | Speech-to-text model with automatic speech recognition. | 25 MB|
-| `gpt-4o-mini-transcribe-2025-12-15` | Speech-to-text model with automatic speech recognition. Improved transcription accuracy and robustness. | 25 MB|
+| `gpt-4o-transcribe` (2025-03-20) | Speech-to-text model powered by GPT-4o. | 25 MB|
+| `gpt-4o-mini-transcribe` (2025-03-20) | Speech-to-text model powered by GPT-4o mini. | 25 MB|
+| `gpt-4o-transcribe-diarize` (2025-10-15) | Speech-to-text model with automatic speech recognition. | 25 MB|
+| `gpt-4o-mini-transcribe` (2025-12-15) | Speech-to-text model with automatic speech recognition. Improved transcription accuracy and robustness. | 25 MB|
 
 #### Speech translation models
 
@@ -386,8 +389,8 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 |  --- | :--- |
 | `tts` | Text-to-speech model optimized for speed. |
 | `tts-hd` | Text-to-speech model optimized for quality.|
-| `gpt-4o-mini-tts` | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
-| `gpt-4o-mini-tts-2025-12-15` | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
+| `gpt-4o-mini-tts` (2025-03-20) | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
+| `gpt-4o-mini-tts` (2025-12-15) | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 
 ## Model summary table and region availability
 

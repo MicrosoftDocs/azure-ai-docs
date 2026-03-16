@@ -32,7 +32,7 @@ It supports all languages documented on the [Language and voice support for the 
 There are three options for Voice Live language processing:
 - Automatic multilingual configuration using multilingual model (default): When setting an empty `language` configuration, Voice Live uses a multilingual model that works well for multiple languages. This is the default and recommended configuration for most customers.
 - Single language configuration: Customer can specify a single language to restrict the transcription languages detected.
-- Multilingual configuration using up to 10 defined languages: Use this ONLY if the input voice includes multiple languages that aren't fully covered by the automatic multilingual mode. Note this can incur extra latency. In some cases, for example, with short sentences, transcript quality can be lower.
+- Multilingual configuration using up to 10 defined languages: Use this ONLY if the input voice includes multiple languages that aren't fully covered by the automatic multilingual mode. The order of languages matters: the first language in the list is treated as the primary language. Note this can incur extra latency. In some cases, for example, with short sentences, transcript quality can be lower.
 
 The current multi-lingual model supports the following languages:
 - Chinese (China) [zh-CN]
@@ -66,7 +66,7 @@ To use **Automatic multilingual configuration using multilingual model** no extr
 > [!NOTE]
 > The multilingual model generates results for unsupported languages, if no language is defined. In these cases transcription, quality is low. Ensure to configure defined languages, if you're setting up application with languages unsupported by the multilingual model.
 
-To configure a single or multiple languages not supported by the multimodal model, you must add them to the `language` string in the session`session.update` message. A maximum of 10 languages are supported.
+To configure a single or multiple languages not supported by the multimodal model, you must add them to the `language` string in the `session.update` message. A maximum of 10 languages are supported. When specifying multiple languages, the order matters: the first language in the list is treated as the primary language.
 
 ```json
 {

@@ -8,7 +8,7 @@ ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.custom: references_regions
+ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

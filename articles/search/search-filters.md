@@ -1,6 +1,6 @@
 ---
 title: Text Query Filters
-description: Apply filter criteria to include or exclude content before text query execution in Azure AI Search.
+description: Filter by user security identity, language, geo-location, or numeric values to reduce search results on queries in a search index in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 03/11/2025
@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
 ---
 
-# Filters in keyword search
+# Filters for keyword search in Azure AI Search
 
 A *filter* provides value-based criteria for including or excluding content before query execution for keyword search, or before or after query execution for vector search. Filters are applied to nonvector fields, but can be used in vector search if documents include nonvector fields. For example, for indexes organized around chunked content, you might have parent-level fields or metadata fields that can be filtered.
 

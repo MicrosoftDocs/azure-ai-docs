@@ -7,6 +7,8 @@ ms.topic: reference
 ms.date: 11/17/2025
 author: mrbullwinkle    
 ms.author: mbullwin
+ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Microsoft Foundry Project REST reference

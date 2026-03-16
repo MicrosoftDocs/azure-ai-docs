@@ -9,8 +9,10 @@ ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
+ai-usage: ai-assisted
 ms.custom:
 - classic-and-new
+- doc-kit-assisted
 ---
 
 # Azure OpenAI in Microsoft Foundry Models authoring REST API preview reference

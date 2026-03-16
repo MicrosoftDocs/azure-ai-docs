@@ -1,24 +1,15 @@
 items:
-- name: What is Microsoft Foundry (new)?
+- name: What is Microsoft Foundry?
   href: what-is-foundry.md
 
 - name: Get started
   href: toc-files-foundry/get-started/toc.yml
   
-- name: Agent development
-  href: toc-files-foundry/agent-development/toc.yml
+- name: Agent Service
+  href: toc-files-foundry/agent-service/toc.yml
 
-- name: Agent tools & integration
-  href: toc-files-foundry/agent-tools/toc.yml
-
-- name: Model catalog
-  href: toc-files-foundry/model-catalog/toc.yml
-
-- name: Model capabilities
-  href: toc-files-foundry/model-capabilities/toc.yml
-
-- name: Fine-tuning
-  href: toc-files-foundry/fine-tuning/toc.yml
+- name: Foundry Models
+  href: toc-files-foundry/foundry-models/toc.yml
 
 # - name: Integration & orchestration
 #   href: toc-files-foundry/integrations-orchestration/toc.yml

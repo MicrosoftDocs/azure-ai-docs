@@ -1,6 +1,6 @@
 ---
 title: Integrated Vectorization Using REST APIs
-description: Learn how to use skills to automate data chunking and vectorization during indexing and query execution.
+description: Learn how to use the REST APIs to define an indexer pipeline that includes chunking and vectorization.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/16/2026

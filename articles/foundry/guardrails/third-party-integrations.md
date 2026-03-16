@@ -1,13 +1,11 @@
 ---
 title: "Integrate third-party guardrails with Microsoft Foundry"
 description: "Learn how to connect external safety solutions to AI models and agents in Microsoft Foundry using third-party integrations."
-ms.date: 03/12/2026
 ms.custom: ai-assisted, references_regions
 ms.author: pafarley
 author: PatrickFarley
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-
 ---
 
 # Integrate third-party guardrails

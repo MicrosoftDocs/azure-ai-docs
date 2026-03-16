@@ -1,4 +1,4 @@
-﻿---
+---
 title: Fireworks models on Microsoft Foundry (preview)
 titleSuffix: Microsoft Foundry
 description: Learn how to enable, deploy, and use Fireworks models in Microsoft Foundry, including catalog models, custom model import (BYOM), data privacy, and frequently asked questions.
@@ -9,6 +9,7 @@ ms.date: 03/11/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
+ai-usage: ai-assisted
 ms.custom: doc-kit-assisted, references_regions
 ---
 
@@ -30,7 +31,7 @@ All of these capabilities are available directly within your Foundry project, wi
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
-* To deploy models, you need the **Azure AI Developer** role or higher on the Foundry project. For more information, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles#privileged).
+* To deploy models, you need the **Azure AI Owner** role on the Foundry project. For more information, see [Azure built-in roles](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
 
 ## Region availability
 

@@ -20,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Customer-managed keys (CMKs) for Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/encryption-keys-portal.md)
 
 > [!TIP]
 > An alternate hub-focused article is available: [Customer-managed keys for hub projects](hub-encryption-keys-portal.md).

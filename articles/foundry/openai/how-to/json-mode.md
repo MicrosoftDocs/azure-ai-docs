@@ -14,6 +14,7 @@ ai-usage: ai-assisted
 
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Learn how to use JSON mode

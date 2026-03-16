@@ -8,7 +8,7 @@ ms.reviewer: ychen
 ms.date: 01/20/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
 
 <!-- CustomerIntent: As a developer building AI agents, I want to configure tracing for my agent framework so that I can debug issues and monitor performance in production. -->
@@ -137,7 +137,7 @@ from langchain_openai import AzureChatOpenAI
 
 token_provider = azure.identity.get_bearer_token_provider(
     azure.identity.DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default",
+    "https://ai.azure.com/.default",
 )
 
 model = AzureChatOpenAI(
@@ -331,7 +331,7 @@ from langchain_openai import AzureChatOpenAI
 
 token_provider = azure.identity.get_bearer_token_provider(
     azure.identity.DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default",
+    "https://ai.azure.com/.default",
 )
 
 model = AzureChatOpenAI(

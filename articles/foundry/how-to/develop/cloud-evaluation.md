@@ -1,11 +1,12 @@
 ---
-title: "Cloud Evaluation with the Microsoft Foundry SDK"
+title: "Batch Evaluation with the Microsoft Foundry SDK"
 description: "Run scalable evaluations for generative AI applications using the Microsoft Foundry SDK. Learn how to integrate evaluations into your development pipeline."
 ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
   - references_regions
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 03/04/2026
 ms.reviewer: dlozier
@@ -15,24 +16,24 @@ author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# Run evaluations in the cloud by using the Microsoft Foundry SDK
+# Run evaluations from the SDK
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 In this article, you learn how to run evaluations in the cloud (preview) for predeployment testing on a test dataset. 
 
-Use cloud evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large-scale, automated testing workflows. You can also [schedule evaluations](../../observability/how-to/how-to-monitor-agents-dashboard.md) to run on a recurring basis, or set up [continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#) to automatically evaluate sampled agent responses in production.
+Use batch evaluations for most scenarios—especially when testing at scale, integrating evaluations into continuous integration and continuous delivery (CI/CD) pipelines, or performing predeployment testing. Running evaluations in the cloud eliminates the need to manage local compute infrastructure and supports large-scale, automated testing workflows. You can also [schedule evaluations](../../observability/how-to/how-to-monitor-agents-dashboard.md) to run on a recurring basis, or set up [continuous evaluation](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation) to automatically evaluate sampled agent responses in production.
 
-Cloud evaluation results are stored in your Foundry project. You can review results in the portal, retrieve them through the SDK, or route them to Application Insights if connected. Cloud evaluation supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Evaluators are managed in the [evaluator catalog](../evaluate-generative-ai-app.md) with the same project-scope, role-based access control.
+Batch evaluation results are stored in your Foundry project. You can review results in the portal, retrieve them through the SDK, or route them to Application Insights if connected. Batch evaluation supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Evaluators are managed in the [evaluator catalog](../evaluate-generative-ai-app.md) with the same project-scope, role-based access control.
 
 > [!TIP]
 > For complete runnable examples, see the [Python SDK evaluation samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) on GitHub.
 
-When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built in evaluators](../../concepts/built-in-evaluators.md). and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md) and have the same project-scope, role-based access control.
-## How cloud evaluation works
+When you use the Foundry SDK, it logs evaluation results in your Foundry project for better observability. This feature supports all Microsoft-curated [built in evaluators](../../concepts/built-in-evaluators.md) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md) and have the same project-scope, role-based access control.
+## How batch evaluation works
 
-To run a cloud evaluation, you create an evaluation definition with your data schema and testing criteria (evaluators), then create an evaluation run. The run executes each evaluator against your data and returns scored results that you can poll for completion.
+To run a batch evaluation, you create an evaluation definition with your data schema and testing criteria (evaluators), then create an evaluation run. The run executes each evaluator against your data and returns scored results that you can poll for completion.
 
-Cloud evaluation supports the following scenarios:
+Batch evaluation supports the following scenarios:
 
 | Scenario | When to use | Data source type | Target |
 |----------|-------------|------------------|--------|
@@ -505,7 +506,10 @@ curl --request POST \
 For a complete runnable example, see [sample_model_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_model_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
 > [!TIP]
-> To add another evaluation run,  you can use the same code.
+> To add another evaluation run, run the same evaluation again using the same evaluation group.  Each execution creates a new run under the same group, which lets you compare >results across runs after changing things like the model, prompt, or dataset—without creating a new evaluation or using a different API.
+>
+>See [the sample](https://github.com/Azure/azure-sdk-for-python/blob/7b953844412cae5dfe8e1a4be610bb71fa0849b7/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_dataset_id.py#L119C1-L126C6) that reuses the same evaluation group to create multiple runs for comparison.
+
 
 ## Agent target evaluation
 
@@ -688,6 +692,12 @@ curl --request POST \
 
 For a complete runnable example, see [sample_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
+> [!TIP]
+> To add another evaluation run, run the same evaluation again using the same evaluation group.  Each execution creates a new run under the same group, which lets you compare >results across runs after changing things like the model, prompt, or dataset—without creating a new evaluation or using a different API.
+>
+>See [the sample](https://github.com/Azure/azure-sdk-for-python/blob/7b953844412cae5dfe8e1a4be610bb71fa0849b7/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_dataset_id.py#L119C1-L126C6) that reuses the same evaluation group to create multiple runs for comparison.
+
+
 ## Agent response evaluation
 
 Retrieve and evaluate Foundry agent responses by response IDs using the `azure_ai_responses` data source type. Use this scenario to evaluate specific agent interactions after they occur.
@@ -792,6 +802,12 @@ curl --request POST \
 ---
 
 For a complete runnable example, see [sample_agent_response_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_response_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
+
+> [!TIP]
+> To add another evaluation run, run the same evaluation again using the same evaluation group.  Each execution creates a new run under the same group, which lets you compare >results across runs after changing things like the model, prompt, or dataset—without creating a new evaluation or using a different API.
+>
+>See [the sample](https://github.com/Azure/azure-sdk-for-python/blob/7b953844412cae5dfe8e1a4be610bb71fa0849b7/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_dataset_id.py#L119C1-L126C6) that reuses the same evaluation group to create multiple runs for comparison.
+
 
 ## Synthetic data evaluation (preview)
 
@@ -1032,14 +1048,17 @@ while True:
     time.sleep(5)
     print("Waiting for eval run to complete...")
 
-# Retrieve results
-output_items = list(
-    client.evals.runs.output_items.list(
-        run_id=run.id, eval_id=eval_object.id
+if run.status == "failed":
+    print(f"Evaluation run failed: {run.error}")
+else:
+    # Retrieve results
+    output_items = list(
+        client.evals.runs.output_items.list(
+            run_id=run.id, eval_id=eval_object.id
+        )
     )
-)
-pprint(output_items)
-print(f"Report URL: {run.report_url}")
+    pprint(output_items)
+    print(f"Report URL: {run.report_url}")
 ```
 
 ### Interpret results
@@ -1149,7 +1168,7 @@ If an agent evaluator returns an error for unsupported tools:
 ## Related content
 
 - [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
-- [Evaluate your AI agents continuously](../../../foundry-classic/how-to/continuous-evaluation-agents.md)
+- [Evaluate your AI agents continuously](../../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)

@@ -1,0 +1,337 @@
+items:
+- name: Foundry Models overview
+  displayName: Microsoft Foundry Models overview
+  href: ../../concepts/foundry-models-overview.md
+
+- name: Explore Foundry Models
+  items:
+  - name: Foundry Models sold directly by Azure
+    displayName: Foundry Models sold directly by Azure
+    href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
+  - name: Foundry Models sold from partners and community
+    displayName: Foundry Models from partners and community
+    href: ../../foundry-models/concepts/models-from-partners.md
+
+  - name: Benchmark models
+    items:
+    - name: Model leaderboards
+      displayName: Model leaderboards
+      href: ../../concepts/model-benchmarks.md
+    - name: Compare models
+      displayName: Compare models using the model leaderboard (preview)
+      href: ../../how-to/benchmark-model-in-catalog.md
+    - name: GPT-5 vs GPT-4.1
+      displayName: GPT-5 vs GPT-4.1 - choosing the right model for your use case
+      href: ../../foundry-models/how-to/model-choice-guide.md
+    - name: Explore the model playgrounds
+      displayName: Microsoft Foundry Playgrounds
+      href: ../../concepts/concept-playgrounds.md
+    # - name: Benchmark model in catalog
+    #   href: 
+    - name: Optimization model upgrade
+      href: ../../observability/how-to/optimization-model-upgrade.md
+    # - name: Link to running custom evaluations on models
+    #   href:
+
+  - name: Model versions and lifecycle
+    items:
+    - name: Model versions
+      displayName: Model versions in Microsoft Foundry Models
+      href: ../../foundry-models/concepts/model-versions.md
+    - name: Automatic model updates for Azure OpenAI Models
+      displayName: Working with models
+      href: ../../openai/how-to/working-with-models.md
+    - name: Upgrade or switch models with Ask AI
+      displayName: Upgrade or switch models with Ask AI (preview)
+      href: ../../observability/how-to/optimization-model-upgrade.md
+    - name: Model lifecycle and retirement for Foundry Models
+      displayName: Model deprecation and retirement for Microsoft Foundry Models
+      href: ../../concepts/model-lifecycle-retirement.md
+    - name: Azure OpenAI model retirement
+      displayName: Azure OpenAI model retirement in Microsoft Foundry Models
+      href: ../../openai/concepts/model-retirements.md
+    - name: Legacy models
+      displayName: Retired Azure OpenAI models in Microsoft Foundry
+      href: ../../openai/concepts/legacy-models.md
+
+  - name: Data, privacy, and security for model catalog
+    displayName: Data, privacy, and security for Azure Direct Models
+    href: ../../responsible-ai/openai/data-privacy.md
+  - name: Data, privacy, and security for model catalog (classic)
+    displayName: Data, privacy, and security for partner models in the model catalog
+    href: ../../../foundry-classic/how-to/concept-data-privacy.md?context=/azure/foundry/context/context
+
+  - name: Model Router
+    items:
+    - name: Overview
+      displayName: Model Router for Microsoft Foundry
+      href: ../../openai/concepts/model-router.md
+    - name: What's new in Model Router
+      displayName: "What's new in model router in Microsoft Foundry Models"
+      href: ../../foundry-models/whats-new-model-router.md
+    - name: Get started with model router
+      displayName: Use model router for Microsoft Foundry
+      href: ../../openai/how-to/model-router.md
+
+  - name: Azure OpenAI supported programming languages
+    href: ../../openai/supported-languages.md
+  - name: Deploy and use Claude models in Microsoft Foundry 
+    displayName: Claude in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-claude.md
+
+- name: Quota limits and region availability
+  items:
+  - name: Manage quotas for Foundry resources
+    displayName: Manage and increase quotas for resources with Microsoft Foundry
+    href: ../../how-to/quota.md
+  - name: Foundry Model quotas and limits
+    displayName: Microsoft Foundry Models quotas and limits
+    href: ../../foundry-models/quotas-limits.md
+  - name: Azure OpenAI quotas and limits
+    displayName: Azure OpenAI in Microsoft Foundry Models quotas and limits
+    href: ../../openai/quotas-limits.md
+  # - name: Model availability by region
+  #   href: 
+  - name: Feature availability by region
+    displayName: Microsoft Foundry feature availability across cloud regions
+    href: ../../reference/region-support.md
+
+- name: Offers, deployment types, and pricing
+  items:
+  - name: Deployment overview in Microsoft Foundry portal
+    displayName: Deployment overview for Microsoft Foundry Models
+    href: ../../../foundry-classic/concepts/deployments-overview.md?context=/azure/foundry/context/context
+  - name: Deployment types
+    displayName: Deployment types for Microsoft Foundry Models
+    href: ../../foundry-models/concepts/deployment-types.md
+  - name: Managed compute pay-as-you-go
+    displayName: Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing
+    href: ../../../foundry-classic/how-to/deploy-models-managed-pay-go.md?context=/azure/foundry/context/context
+  - name: Managed compute deployment
+    displayName: Deploy models with managed compute
+    href: ../../../foundry-classic/how-to/deploy-models-managed.md?context=/azure/foundry/context/context
+  - name: Batch processing
+    displayName: Getting started with Azure OpenAI batch deployments
+    href: ../../openai/how-to/batch.md
+  - name: Priority processing
+    displayName: Enable priority processing for Microsoft Foundry models
+    href: ../../openai/concepts/priority-processing.md
+  - name: Provisioned throughput
+    items:
+    - name: Provisioned throughput offering (PTU)
+      displayName: What is provisioned throughput for Foundry Models?
+      href: ../../openai/concepts/provisioned-throughput.md
+    - name: Understanding and calculating PTU costs
+      displayName: Provisioned throughput unit (PTU) costs and billing
+      href: ../../openai/how-to/provisioned-throughput-onboarding.md
+    - name: Get started with Provisioned Deployments
+      displayName: Get started with provisioned deployments in Microsoft Foundry
+      href: ../../openai/how-to/provisioned-get-started.md
+    - name: Provisioned spillover
+      displayName: Manage traffic with spillover for provisioned deployments
+      href: ../../openai/how-to/spillover-traffic-management.md
+  - name: Plan and manage costs
+    displayName: Plan and manage costs for Microsoft Foundry
+    href: ../../concepts/manage-costs.md
+
+- name: Model deployment
+  items:
+  - name: Deploy Foundry Models in the portal
+    displayName: Deploy Microsoft Foundry Models in the Foundry portal
+    href: ../../foundry-models/how-to/deploy-foundry-models.md
+  - name: Deploy Foundry Models using code
+    displayName: Deploy models using Azure CLI and Bicep
+    href: ../../foundry-models/how-to/create-model-deployments.md
+  - name: Upgrade GitHub Models to Foundry Models
+    displayName: Upgrade from GitHub Models to Microsoft Foundry Models
+    href: ../../foundry-models/how-to/quickstart-github-models.md
+  - name: Explore the model playgrounds
+    displayName: Microsoft Foundry Playgrounds
+    href: ../../concepts/concept-playgrounds.md
+  - name: Troubleshoot deployments and monitoring
+    displayName: How to troubleshoot your deployments and monitors in Microsoft Foundry portal
+    href: ../../../foundry-classic/how-to/troubleshoot-deploy-and-monitor.md?context=/azure/foundry/context/context
+
+- name: Develop with AI models
+  items:
+  - name: Endpoints for Microsoft Foundry Models
+    href: ../../foundry-models/concepts/endpoints.md
+  - name: Chat completions and Responses APIs
+    items:
+    - name: Chat completions API
+      displayName: Work with chat completions models
+      href: ../../openai/how-to/chatgpt.md
+    - name: Responses API
+      items:
+      - name: Use the Azure OpenAI Responses API
+        href: ../../openai/how-to/responses.md
+      - name: Text generation
+        displayName: How to generate text responses with Microsoft Foundry Models
+        href: ../../foundry-models/how-to/generate-responses.md
+      - name: Function calling
+        displayName: How to use function calling with Azure OpenAI in Microsoft Foundry Models
+        href: ../../openai/how-to/function-calling.md
+      - name: Structured outputs
+        displayName: How to use structured outputs with Azure OpenAI in Microsoft Foundry Models
+        href: ../../openai/how-to/structured-outputs.md
+      - name: JSON mode
+        displayName: How to use JSON mode with Azure OpenAI in Microsoft Foundry Models
+        href: ../../openai/how-to/json-mode.md
+      - name: Deep research
+        displayName: Deep research with the Responses API
+        href: ../../openai/how-to/deep-research.md
+      - name: Web search
+        displayName: Web search with the Responses API
+        href: ../../openai/how-to/web-search.md
+    - name: Predicted outputs
+      displayName: How to use predicted outputs with Azure OpenAI in Microsoft Foundry Models
+      href: ../../openai/how-to/predicted-outputs.md
+    - name: Prompt caching
+      displayName: Prompt caching with Azure OpenAI in Microsoft Foundry Models
+      href: ../../openai/how-to/prompt-caching.md
+    - name: Work with Azure OpenAI reasoning models
+      displayName: Azure OpenAI reasoning models
+      href: ../../openai/how-to/reasoning.md
+    - name: Work with reasoning models in Foundry Models
+      displayName: How to use reasoning models with Microsoft Foundry Models
+      href: ../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md?context=/azure/foundry/context/context
+    - name: Work with Multimodal models
+      displayName: How to use image and audio in chat completions with Microsoft Foundry Models
+      href: ../../../foundry-classic/foundry-models/how-to/use-chat-multi-modal.md?context=/azure/foundry/context/context
+  - name: Embeddings
+    items:
+    - name: Work with embeddings in Azure OpenAI
+      displayName: Learn how to generate embeddings
+      href: ../../openai/how-to/embeddings.md
+    - name: Work with text embeddings in Foundry Models
+      displayName: How to generate embeddings with Microsoft Foundry Models
+      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
+    - name: Generate image embeddings
+      displayName: How to generate image embeddings with Microsoft Foundry Models service
+      href: ../../../foundry-classic/foundry-models/how-to/use-embeddings.md?context=/azure/foundry/context/context
+    - name: Embeddings tutorial
+      displayName: "Tutorial: Explore Azure OpenAI in Microsoft Foundry Models embeddings and document search"
+      href: ../../openai/tutorials/embeddings.md
+  - name: Codex
+    displayName: Codex with Azure OpenAI in Microsoft Foundry Models
+    href: ../../openai/how-to/codex.md
+  - name: Webhooks
+    href: ../../openai/how-to/webhooks.md
+  - name: Claude Code
+    displayName: Configure Claude Code for Microsoft Foundry
+    href: ../../foundry-models/how-to/configure-claude-code.md
+
+- name: Model capabilities
+  items:
+  - name: Image and video
+    items:
+    - name: Image generation
+      displayName: Azure OpenAI image generation models
+      href: ../../openai/how-to/dall-e.md
+    - name: Image prompt engineering techniques
+      displayName: Image prompt engineering techniques
+      href: ../../openai/concepts/gpt-4-v-prompt-engineering.md
+    - name: Image prompt transformation
+      displayName: Prompt transformation
+      href: ../../openai/concepts/prompt-transformation.md
+    - name: How to use image to text models
+      displayName: How to use image-to-text models in the model catalog
+      href: ../../../foundry-classic/how-to/use-image-models.md?context=/azure/foundry/context/context
+    - name: Video generation 
+      displayName: Video generation with Sora
+      href: ../../openai/concepts/video-generation.md
+    - name: Vision-enabled chats
+      displayName: Use vision-enabled chat models
+      href: ../../openai/how-to/gpt-with-vision.md
+    - name: Video translation
+      displayName: How to use video translation
+      href: ../../../ai-services/speech-service/video-translation-get-started.md?context=/azure/foundry/context/context
+      
+  - name: Audio and speech
+    items:
+    - name: Audio generation
+      displayName: "Quickstart: Get started with Azure OpenAI audio generation"
+      href: ../../openai/audio-completions-quickstart.md
+    - name: Speech to text
+      displayName: "Quickstart: Recognize and convert speech to text"
+      href: ../../../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/foundry/context/context
+    - name: Speech to text with Whisper
+      displayName: "Quickstart: Speech to text with the Azure OpenAI Whisper model"
+      href: ../../openai/whisper-quickstart.md
+    - name: Text to speech
+      displayName: "Quickstart: Convert text to speech"
+      href: ../../../ai-services/speech-service/get-started-text-to-speech.md?context=/azure/foundry/context/context
+    - name: Text to speech avatar
+      displayName: Use batch synthesis for text to speech avatar
+      href: ../../../ai-services/speech-service/text-to-speech-avatar/batch-synthesis-avatar.md?context=/azure/foundry/context/context
+    - name: Voice Live
+      displayName: "Quickstart: Create a Voice Live real-time voice agent"
+      href: ../../../ai-services/speech-service/voice-live-quickstart.md?context=/azure/foundry/context/context
+  # - name: Documents and files
+  #   href:
+  # - name: Code generation
+  #   href:
+  - name: Realtime API
+    items:
+    - name: Realtime API for speech and audio
+      displayName: Use the GPT Realtime API for speech and audio
+      href: ../../openai/how-to/realtime-audio.md
+    - name: Realtime API via WebRTC
+      displayName: Use the GPT Realtime API via WebRTC
+      href: ../../openai/how-to/realtime-audio-webrtc.md
+    - name: Realtime API via WebSockets
+      displayName: Use the GPT Realtime API via WebSockets
+      href: ../../openai/how-to/realtime-audio-websockets.md
+    - name: Realtime API via SIP
+      displayName: Use the GPT Realtime API via SIP
+      href: ../../openai/how-to/realtime-audio-sip.md
+    - name: Realtime API migration from Preview to GA
+      displayName: Migration from Preview to GA version of Realtime API
+      href: ../../openai/how-to/realtime-audio-preview-api-migration-guide.md
+
+- name: Fine-tuning
+  items:
+  # Getting Started
+  - name: When to use fine-tuning
+    href: ../../openai/concepts/fine-tuning-considerations.md
+    displayName: finetuning, fine-tuning 
+  - name: Fine-tune models
+    href: ../../openai/how-to/fine-tuning.md
+    displayName: finetuning, fine-tuning 
+  - name: Deploy your fine-tuned model
+    href: ../../openai/how-to/fine-tuning-deploy.md
+    displayName: finetuning, fine-tuning     
+  - name: Fine-tune using Azure Developer CLI
+    href: ../../fine-tuning/fine-tune-cli.md
+    displayName: finetuning, fine-tuning  
+
+  # Data Preparation
+  - name: Synthetic Data Generation
+    href: ../../fine-tuning/data-generation.md
+    displayName: finetuning, fine-tuning         
+
+  # Advanced Techniques
+  - name: Advanced techniques
+    items:
+    - name: Vision fine-tuning
+      href: ../../openai/how-to/fine-tuning-vision.md
+      displayName: finetuning, fine-tuning 
+    - name: Preference fine-tuning
+      href: ../../openai/how-to/fine-tuning-direct-preference-optimization.md
+    - name: Reinforcement fine-tuning
+      href: ../../openai/how-to/reinforcement-fine-tuning.md
+      displayName: finetuning, fine-tuning 
+    - name: Tool calling
+      href: ../../openai/how-to/fine-tuning-functions.md
+      displayName: finetuning, fine-tuning       
+
+  # Safety and Cost Management
+  - name: Safety evaluation
+    href: ../../openai/how-to/fine-tuning-safety-evaluation.md
+    displayName: finetuning, fine-tuning 
+  - name: Fine-tuning cost management
+    href: ../../openai/how-to/fine-tuning-cost-management.md
+
+
+# - name: Foundry Models FAQ
+#   href:

@@ -8,12 +8,13 @@ ms.topic: how-to
 ms.date: 01/30/2026
 author: PatrickFarley
 ms.author: pafarley
+ai-usage: ai-assisted
 ms.custom:
   - references_regions
   - classic-and-new
+  - doc-kit-assisted
 zone_pivot_groups: audio-completions-quickstart
 recommendations: false
-
 ---
 
 # Quickstart: Get started with Azure OpenAI audio generation

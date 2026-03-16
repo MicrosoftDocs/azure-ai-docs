@@ -15,6 +15,7 @@ ms.custom:
   - build-aifnd
   - build-2025
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to create a Microsoft Foundry project so I can work with generative AI.
 ---

@@ -8,8 +8,10 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 ms.date: 11/03/2023
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 # Limited access for Azure Direct Models
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]

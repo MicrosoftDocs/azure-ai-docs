@@ -9,8 +9,10 @@ ms.date: 11/26/2025
 author: mrbullwinkle 
 ms.author: mbullwin
 recommendations: false
+ai-usage: ai-assisted
 ms.custom:
 - classic-and-new
+- doc-kit-assisted
 ---
 
 # Azure OpenAI in Microsoft Foundry Models v1 REST API reference
@@ -43,7 +45,7 @@ Pass an auth token with the `authorization` header.
 
 **Scopes:**
 
-- `https://cognitiveservices.azure.com/.default`
+- `https://ai.azure.com/.default`
 
 ## Batch
 

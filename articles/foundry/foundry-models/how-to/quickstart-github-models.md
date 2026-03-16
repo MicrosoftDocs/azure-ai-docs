@@ -8,6 +8,7 @@ ms.date: 02/09/2026
 ms.custom:
   - ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 author: msakande   
 ms.author: mopeakande
 recommendations: false

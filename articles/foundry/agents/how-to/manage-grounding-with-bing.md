@@ -7,6 +7,8 @@ ms.reviewer: magottei
 ms.service: azure-ai-foundry
 ms.topic: overview
 ms.date: 02/17/2026
+ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Manage Grounding with Bing in Microsoft Foundry and Azure
