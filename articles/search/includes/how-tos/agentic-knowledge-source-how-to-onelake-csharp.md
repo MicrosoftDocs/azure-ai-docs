@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/23/2026
+ms.date: 03/16/2026
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -185,14 +185,14 @@ We recommend using the Azure portal to validate output creation. The workflow is
 
 ## Assign to a knowledge base
 
-If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](../../search-agentic-retrieval-how-to-create.md).
+If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](../../agentic-retrieval-how-to-create-knowledge-base.md).
 
 For any knowledge base that specifies an indexed OneLake knowledge source, be sure to set `includeReferenceSourceData` to `true`. This step is necessary for pulling the source document URL into the citation.
 
 After the knowledge base is configured, use the [retrieve action](../../agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 > [!TIP]
-> To enforce document-level permissions at query time, set `IngestionPermissionOptions` on the knowledge source during creation. At query time, pass the user's access token in the `xMsQuerySourceAuthorization` parameter. For details, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+> To enforce document-level permissions, set `IngestionPermissionOptions` when you create this knowledge source, and then pass the user's access token in the `xMsQuerySourceAuthorization` parameter at query time. For more information, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ## Delete a knowledge source
 

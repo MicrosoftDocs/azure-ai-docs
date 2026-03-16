@@ -409,11 +409,11 @@ agent = project_client.agents.create_version(
 print(f"AI agent '{agent_name}' created or updated successfully")
 ```
 
-#### (Optional) Pass user identity for permissions enforcement
+#### (Optional) Connect to a remote SharePoint knowledge source
 
 [!INCLUDE [foundry-iq-limitation](../foundry/includes/foundry-iq-limitation.md)]
 
-If your knowledge base includes knowledge sources with document-level permissions — such as [remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md), [indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md), [Azure Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md), or [OneLake](agentic-knowledge-source-how-to-onelake.md) — include the `x-ms-query-source-authorization` header to pass the user's identity token. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+Optionally, if your knowledge base includes a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
 
 ```python
 from azure.search.documents.indexes.models import RemoteSharePointKnowledgeSource, KnowledgeSourceReference

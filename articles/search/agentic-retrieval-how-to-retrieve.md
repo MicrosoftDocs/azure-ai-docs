@@ -26,13 +26,13 @@ This article explains how to call both retrieval methods with optional permissio
 
 :::zone pivot="csharp"
 
-+ The latest preview [.NET SDK package](/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet-preview&preserve-view=true): `dotnet add package Azure.Search.Documents --prerelease`
++ The latest [.NET SDK preview package](/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet-preview&preserve-view=true): `dotnet add package Azure.Search.Documents --prerelease`
 
 :::zone-end
 
 :::zone pivot="python"
 
-+ The latest preview [Python SDK package](/python/api/overview/azure/search-documents-readme?view=azure-python-preview&preserve-view=true): `pip install --pre azure-search-documents`
++ The latest [Python SDK preview package](/python/api/overview/azure/search-documents-readme?view=azure-python-preview&preserve-view=true): `pip install --pre azure-search-documents`
 
 :::zone-end
 
@@ -47,8 +47,6 @@ This article explains how to call both retrieval methods with optional permissio
 You specify the retrieve action on a knowledge base. The input is chat conversation history in natural language, where the `messages` array contains the conversation. The agentic retrieval engine supports messages only if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is low or medium.
 
 :::zone pivot="csharp"
-
-Here's an example using the Azure SDK for .NET:
 
 ```csharp
 using Azure.Identity;
@@ -69,7 +67,7 @@ retrievalRequest.Messages.Add(
             new KnowledgeBaseMessageTextContent(
                 "You can answer questions about the Earth at night. "
                 + "Sources have a JSON format with a ref_id that must be cited in the answer. "
-                + "If you do not know the answer, respond with 'I do not know'."
+                + "If you do not have the answer, respond with 'I do not know'."
             )
         }
     ) { Role = "assistant" }
@@ -97,8 +95,6 @@ Console.WriteLine(
 
 :::zone pivot="python"
 
-Here's an example using the Azure SDK for Python:
-
 ```python
 from azure.identity import DefaultAzureCredential
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
@@ -124,7 +120,7 @@ request = KnowledgeBaseRetrievalRequest(
                 KnowledgeBaseMessageTextContent(
                     text="You can answer questions about the Earth at night. "
                     "Sources have a JSON format with a ref_id that must be cited in the answer. "
-                    "If you do not know the answer, respond with 'I do not know'."
+                    "If you do not have the answer, respond with 'I do not know'."
                 )
             ],
         ),
@@ -155,13 +151,11 @@ print(result.response[0].content[0].text)
 
 :::zone pivot="rest"
 
-Here's an example using [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API):
-
 ```http
-@search-url=<YOUR SEARCH SERVICE URL>
-@accessToken=<YOUR ACCESS TOKEN>
+@search-url = <YOUR SEARCH SERVICE URL> # Example: https://my-service.search.windows.net
+@accessToken = <YOUR ACCESS TOKEN> # Run: az account get-access-token --scope https://search.azure.com/.default --query accessToken -o tsv
 
-POST https://{{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
@@ -172,7 +166,7 @@ Authorization: Bearer {{accessToken}}
             "content": [
                 {
                     "type": "text",
-                    "text": "You can answer questions about the Earth at night. Sources have a JSON format with a ref_id that must be cited in the answer. If you do not know the answer, respond with 'I do not know'."
+                    "text": "You can answer questions about the Earth at night. Sources have a JSON format with a ref_id that must be cited in the answer. If you do not have the answer, respond with 'I do not know'."
                 }
             ]
         },
@@ -247,33 +241,33 @@ The MCP endpoint requires authentication via custom headers. You have two option
 
 ## Enforce permissions at query time
 
-Permissions enforcement works the same across all supported knowledge sources: at query time, the `x-ms-query-source-authorization` header carries the end user's identity so the retrieval engine can filter results to content the user is authorized to access. Without this header, results from permission-enabled knowledge sources are either unfiltered or fail.
+Document-level permissions enforcement works the same across all supported knowledge sources: at query time, the `x-ms-query-source-authorization` header carries the end user's identity so the retrieval engine can filter results to content the user is authorized to access. Without this header, results from permission-enabled knowledge sources are returned unfiltered.
 
 Permissions enforcement requires two parts:
 
-1. **Ingestion time** (indexed sources only): Configure `ingestionPermissionOptions` on the knowledge source so that permission metadata (ACLs or RBAC scopes) is ingested alongside document content. Without this step, there are no permissions in the index to enforce.
+1. **Ingestion time**: For indexed sources only, set `ingestionPermissionOptions` on the knowledge source so that permission metadata is ingested alongside document content. Valid values are `userIds`, `groupIds`, and `rbacScope`. For configuration steps, see the [how-to article](#permissions-by-knowledge-source) for each supported knowledge source.
 
-1. **Query time** (all sources with permissions): Pass the user's access token in the `x-ms-query-source-authorization` HTTP header on the retrieve request. For indexed sources, the retrieval engine uses this token to match against ingested permission metadata. For remote sources, the engine queries the underlying data source directly on behalf of the user.
+1. **Query time**: Pass the user's access token in the `x-ms-query-source-authorization` HTTP header on the retrieve request. The token must be scoped to `https://search.azure.com/.default`. For indexed sources, the retrieval engine uses this token to match against ingested permission metadata. For remote sources, the engine queries the underlying data source directly on behalf of the user.
 
-### Source-specific behavior
+### Permissions by knowledge source
 
-The following knowledge sources support document-level permissions enforcement.
+The following knowledge sources support permissions enforcement:
 
 | Knowledge source | Ingestion configuration needed? | How permissions are enforced |
 |---|---|---|
-| [Azure Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestionparameters-properties) | Yes | Ingested RBAC scopes or ACLs matched against user identity |
-| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestionparameters-properties) | Yes | Ingested permissions matched against user identity |
-| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestionparameters-properties) | Yes | Ingested SharePoint ACLs matched against user identity |
-| [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | No (no index) | Copilot Retrieval API queries SharePoint directly using the user's token |
+| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestionparameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
+| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestionparameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
+| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestionparameters-properties) | ✅ | Ingested SharePoint ACLs matched against user identity. |
+| [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | ❌ | Copilot Retrieval API queries SharePoint directly using the user's token. |
 
 > [!IMPORTANT]
-> If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. The solution is to update or recreate the knowledge source with the appropriate `ingestionPermissionOptions` values and reindex.
+> If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. To fix this, update or recreate the knowledge source with the appropriate `ingestionPermissionOptions` values and [reindex](search-howto-run-reset-indexers.md).
 
 ### Pass the authorization header
 
 :::zone pivot="csharp"
 
-Pass the token through the `xMsQuerySourceAuthorization` parameter on the `RetrieveAsync` method.
+Pass the token through the `xMsQuerySourceAuthorization` parameter on the `RetrieveAsync` method. For detailed information about how the retrieval engine resolves user permissions at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
 ```csharp
 using Azure;
@@ -300,7 +294,7 @@ var retrievalRequest = new KnowledgeBaseRetrievalRequest();
 retrievalRequest.Messages.Add(
     new KnowledgeBaseMessage(
         content: new[] {
-            new KnowledgeBaseMessageTextContent("What projects are in the financial sector?")
+            new KnowledgeBaseMessageTextContent("What companies are in the financial sector?")
         }
     ) { Role = "user" }
 );
@@ -319,7 +313,7 @@ Console.WriteLine(
 
 :::zone pivot="python"
 
-Pass the token through the `x_ms_query_source_authorization` parameter on the retrieve method.
+Pass the token through the `x_ms_query_source_authorization` parameter on the retrieve method. For detailed information about how the retrieval engine resolves user permissions at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
 ```python
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -347,7 +341,7 @@ request = KnowledgeBaseRetrievalRequest(
     messages=[
         KnowledgeBaseMessage(
             role="user",
-            content=[KnowledgeBaseMessageTextContent(text="What projects are in the financial sector?")],
+            content=[KnowledgeBaseMessageTextContent(text="What companies are in the financial sector?")],
         )
     ]
 )
@@ -364,20 +358,20 @@ print(result.response[0].content[0].text)
 
 :::zone pivot="rest"
 
-Include the `x-ms-query-source-authorization` header with the user's access token. Make sure you [generate an access token](search-get-started-rbac.md?pivots=rest#get-token) for the tenant that hosts your search service.
+Include the `x-ms-query-source-authorization` header with the user's access token. For detailed information about how the retrieval engine resolves user permissions at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
 ```http
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
-x-ms-query-source-authorization: {{user-access-token}}
+x-ms-query-source-authorization: {{user-access-token}} # Run: az account get-access-token --scope https://search.azure.com/.default --query accessToken -o tsv
 
 {
     "messages": [
         {
             "role": "user",
             "content": [
-                { "type": "text", "text": "What projects are in the financial sector?" }
+                { "type": "text", "text": "What companies are in the financial sector?" }
             ]
         }
     ]
@@ -387,8 +381,6 @@ x-ms-query-source-authorization: {{user-access-token}}
 **Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 :::zone-end
-
-For detailed information on how the retrieval engine resolves user permissions at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
 ## Review the response
 
@@ -602,7 +594,7 @@ print(result.response[0].content[0].text)
 :::zone pivot="rest"
 
 ```http
-POST {{url}}/knowledgebases/kb-override/retrieve?api-version={{api-version}}
+POST {{search-url}}/knowledgebases/kb-override/retrieve?api-version={{api-version}}
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
@@ -698,7 +690,7 @@ print(result.response[0].content[0].text)
 :::zone pivot="rest"
 
 ```http
-POST {{url}}/knowledgebases/kb-medium-example/retrieve?api-version={{api-version}}
+POST {{search-url}}/knowledgebases/kb-medium-example/retrieve?api-version={{api-version}}
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
@@ -793,7 +785,7 @@ print(result.response[0].content[0].text)
 :::zone pivot="rest"
 
 ```http
-POST {{url}}/knowledgebases/kb-minimal/retrieve?api-version={{api-version}}
+POST {{search-url}}/knowledgebases/kb-minimal/retrieve?api-version={{api-version}}
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
