@@ -9,6 +9,7 @@ ms.topic: how-to
 ---
 
 # Integrate third-party guardrails
+
 Microsoft Foundry supports third-party safety and security integrations. You can connect external solutions to your AI models and agents at runtime to enhance Foundry Guardrails & Controls with best-in-class security capabilities from trusted partners.
 
 
@@ -17,9 +18,9 @@ Microsoft Foundry supports third-party safety and security integrations. You can
 Before you set up the integration, ensure you have:
 
 - **Azure subscription**: You need the Owner role on the subscription.
-- **Key Vault**: Create at least one Key Vault with the Key Vault Administrator role assigned to you.
+- **Key Vault**: Create at least one [Key Vault with the Key Vault Administrator role assigned to you](/azure/key-vault/).
 - **Foundry project**: Create a project with the Azure AI User and Azure AI Account Owner roles assigned to you.
-- **Managed Identity**: Create at least one user-assigned Managed Identity and attach it to the Foundry resource in the Azure portal under **Resource Management** > **Identity**.
+- **Managed Identity**: Create at least one [user-assigned Managed Identity](/entra/identity/managed-identities-azure-resources/overview) and attach it to the Foundry resource in the Azure portal under **Resource Management** > **Identity**.
 
 ### Enablement and data processing 
 Third-party integrations  are enabled via a Bring Your Own License (BYOL) approach, allowing you to utilize existing third-party software licenses from supported partners. Your data will be processed outside of Azure AI Foundry using the service you selected. The terms and privacy commitments for your other service will apply to this processing. 
@@ -40,7 +41,7 @@ This section links resources to third-party instructions on retrieving API keys 
 | Model   | Onboarding step |
 |--------------------|----------------------|
 | Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) |
-| Zenity  | [AIDR](https://zenity.io/platform/ai-security-platform/aidr).     |
+| Zenity  | [AI Detection and Response](https://app.zenity.io/app/connect/integrations).     |
 
 
 ## Attach Integrations to Foundry Guardrails
@@ -54,8 +55,6 @@ This section links resources to third-party instructions on retrieving API keys 
 
 
 ## Code Examples
-
-Examples adapted from Guardrail annotations – [Microsoft Foundry](/azure/ai-foundry/openai/concepts/content-filter-annotations): 
 
 ```python
 from openai import OpenAI
