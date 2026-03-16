@@ -102,7 +102,7 @@ import langchain.chat_models import init_chat_model
 model = init_chat_model("azure_ai:gpt-5.2")
 ```
 
-You can also configure clients specifically. As an example, let's see `AzureAIChatCompletionsModel` as a representative pattern:
+You can also configure clients specifically. As an example, let's see `AzureAIOpenAIApiChatModel` as a representative pattern:
 
 ```python
 import os
