@@ -46,12 +46,12 @@ This section links resources to 3rd party instructions on retrieving API keys an
 
 The following table shows supported regions. We recommend that your Foundry project is in the same region as the Third-party endpoint. Different regions can cause higher latency and potential timeouts.
 
-| Azure Region | Recommended Endpoint | Supported Third-party |
+| Azure Region | Recommended Endpoint | Third-party Integration |
 |---|---|---|
-| West US | US | Zenity, Palo Alto |
+| West US | US | Zenity, Palo Alto Networks Prisma AIRS |
 | West US 2 | US | Zenity |
-| West US 3 | US | Zenity, Palo Alto |
-| West Central US | US | Zenity, Palo Alto |
+| West US 3 | US | Zenity, Palo Alto Networks Prisma AIRS |
+| West Central US | US | Zenity, Palo Alto Networks Prisma AIRS |
 | Central US | US | Zenity |
 | North Central US | US | Zenity |
 | South Central US | US | Zenity |
@@ -59,21 +59,21 @@ The following table shows supported regions. We recommend that your Foundry proj
 | East US 2 | US | Zenity |
 | Canada Central | US | Zenity |
 | Canada East | US | Zenity |
-| West Europe | Europe | Zenity, Palo Alto |
-| North Europe | Europe | Zenity, Palo Alto |
-| France Central | Europe | Zenity, Palo Alto |
-| Germany West Central | Europe | Zenity, Palo Alto |
-| Italy North | Europe | Zenity, Palo Alto |
+| West Europe | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| North Europe | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| France Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Germany West Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Italy North | Europe | Zenity, Palo Alto Networks Prisma AIRS |
 | Spain Central | Europe | Zenity |
-| Sweden Central | Europe | Zenity, Palo Alto |
-| Norway East | Europe | Zenity, Palo Alto |
-| Switzerland North | Europe | Zenity, Palo Alto |
-| Switzerland West | Europe | Zenity, Palo Alto |
-| UK South | Europe | Zenity, Palo Alto |
-| UK West | Europe | Zenity, Palo Alto |
-| South India | India | Palo Alto |
-| Southeast Asia | Singapore | Palo Alto |
-| East Asia | Singapore | Palo Alto |
+| Sweden Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Norway East | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Switzerland North | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Switzerland West | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| UK South | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| UK West | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| South India | India | Palo Alto Networks Prisma AIRS |
+| Southeast Asia | Singapore | Palo Alto Networks Prisma AIRS |
+| East Asia | Singapore | Palo Alto Networks Prisma AIRS |
 
 
 
