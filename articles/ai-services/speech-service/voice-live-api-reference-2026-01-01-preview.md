@@ -2354,12 +2354,13 @@ Base VAD-based turn detection.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"server_vad"` |
-| threshold | number | Optional. Activation threshold (0.0-1.0) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech starts |
-| silence_duration_ms | integer | Optional. Silence duration to detect speech end |
+| threshold | float | Optional. Activation threshold (0.0-1.0) (default: 0.5) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 300) |
+| silence_duration_ms | integer | Optional. Silence duration to detect speech end (default: 500) |
+| speech_duration_ms | integer | Optional. Minimum speech duration (default: 200) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
-| create_response | boolean | Optional. Enable or disable whether a response is generated. |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ##### RealtimeOpenAISemanticVAD
@@ -2370,8 +2371,8 @@ OpenAI semantic VAD configuration which uses a model to determine when the user 
 |-------|------|-------------|
 | type | string | Must be `"semantic_vad"` |
 | eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` lets the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
-| create_response | boolean | Optional. Enable or disable whether a response is generated. |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
 
 ##### RealtimeAzureSemanticVAD
 
@@ -2380,15 +2381,15 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad"` |
-| threshold | number | Optional. Activation threshold |
-| prefix_padding_ms | integer | Optional. Audio padding before speech |
-| silence_duration_ms | integer | Optional. Silence duration for speech end, in milliseconds. Default is 500 ms. |
+| threshold | float | Optional. Activation threshold (default: 0.5) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
+| silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| speech_duration_ms | integer | Optional. Minimum speech duration |
+| speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
-| languages | string[] | Optional. Supports English. Other languages are ignored. |
-| create_response | boolean | Optional. Enable or disable whether a response is generated. |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| languages | string[] | Optional. Supports English. Other languages are ignored (default: none). |
+| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ##### RealtimeAzureSemanticVADMultilingual
@@ -2398,15 +2399,15 @@ Azure semantic VAD (default variant).
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad_multilingual"` |
-| threshold | number | Optional. Activation threshold |
-| prefix_padding_ms | integer | Optional. Audio padding before speech |
-| silence_duration_ms | integer | Optional. Silence duration for speech end |
+| threshold | float | Optional. Activation threshold (default: 0.5) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
+| silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| speech_duration_ms | integer | Optional. Minimum speech duration |
-| remove_filler_words | boolean | Optional. Remove filler words (default: false). |
-| languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages are ignored. |
-| create_response | boolean | Optional. Enable or disable whether a response is generated. |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
+| remove_filler_words | boolean | Optional. Remove filler words (default: false) |
+| languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages are ignored (default: none). |
+| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ### RealtimeEOUDetection
