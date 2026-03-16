@@ -39,8 +39,9 @@ This section links resources to third-party instructions on retrieving API keys 
 
 | Model   | Onboarding step |
 |--------------------|----------------------|
-| Zenity  | [AIDR](https://zenity.io/platform/ai-security-platform/aidr).     |
 | Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) |
+| Zenity  | [AIDR](https://zenity.io/platform/ai-security-platform/aidr).     |
+
 
 ## Attach Integrations to Foundry Guardrails
 
