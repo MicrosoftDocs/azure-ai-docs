@@ -31,8 +31,8 @@ Third-party integrations  are enabled via a Bring Your Own License (BYOL) approa
 
 1. Follow the [third-party integrations steps](#third-party-integrations) and retrieve your API key linked to your custom security profile. We recommend that your Foundry project is in the same region as the third-party endpoint. View [supported regions here](#region-availability).
 1. Go to AI Foundry and select **Guardrails**. 
-1. Select the Integrations tab, add a third-party integration, and select Zenity. 
-1. Select a Keyvault and Managed Identity. Learn more. 
+1. Select the **Integrations** tab, and **add a third-party integration**. Then, select your desired third-party integration. 
+1. Select a [**Keyvault**](/azure/key-vault/) and [**Managed Identity**](/entra/identity/managed-identities-azure-resources/overview). 
 1. Add the endpoint and API keys. To get the endpoint-API key pair, follow the [third-party integrations steps](#third-party-integrations).
 
 #### Third-party integrations
