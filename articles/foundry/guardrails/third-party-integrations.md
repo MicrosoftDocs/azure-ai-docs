@@ -2,8 +2,9 @@
 title: "Integrate third-party guardrails with Microsoft Foundry"
 description: "Learn how to connect external safety solutions to AI models and agents in Microsoft Foundry using third-party integrations."
 ms.custom: ai-assisted, references_regions
-ms.author: pafarley
-author: PatrickFarley
+ms.author: ssalgado
+author: ssalgadodev
+ms.date: 03/16/2026
 ms.service: azure-ai-content-safety
 ms.topic: how-to
 ---
@@ -23,16 +24,16 @@ Before you set up the integration, ensure you have:
 - **Managed Identity**: Create at least one [user-assigned Managed Identity](/entra/identity/managed-identities-azure-resources/overview) and attach it to the Foundry resource in the Azure portal under **Resource Management** > **Identity**.
 
 ### Enablement and data processing 
-Third-party integrations  are enabled via a Bring Your Own License (BYOL) approach, allowing you to utilize existing third-party software licenses from supported partners. Your data will be processed outside of Azure AI Foundry using the service you selected. The terms and privacy commitments for your other service will apply to this processing. 
+Third-party integrations  are enabled via a Bring Your Own License (BYOL) approach, allowing you to utilize existing third-party software licenses from supported partners. Your data is processed outside of Azure AI Foundry using the service you selected. The terms and privacy commitments for your other service is applied to this processing. 
 
 
 ## Steps to connect integration
 
 1. Follow the [third-party integrations steps](#third-party-integrations) and retrieve your API key linked to your custom security profile. We recommend that your Foundry project is in the same region as the third-party endpoint. View [supported regions here](#region-availability).
 1. Go to AI Foundry and select **Guardrails**. 
-1. Select the Integrations tab, add a third-party integration and select Zenity. 
+1. Select the Integrations tab, add a third-party integration, and select Zenity. 
 1. Select a Keyvault and Managed Identity. Learn more. 
-1. Add the endpoint(s) and API key(s). To get the endpoint-API key pair, follow the [third-party integrations steps](#third-party-integrations).
+1. Add the endpoint and API keys. To get the endpoint-API key pair, follow the [third-party integrations steps](#third-party-integrations).
 
 #### Third-party integrations
 
