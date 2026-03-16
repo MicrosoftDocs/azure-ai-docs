@@ -53,12 +53,10 @@ The GPT real-time models are available for global deployments.
 - `gpt-realtime-1.5` (`2026-02-23`)
 
 For more information, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
-> [!NOTE]
-> Token limits vary by model:
-> - **Preview models** (gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview): Input 128,000 / Output 4,096 tokens
-> - **GA models** (gpt-realtime, gpt-realtime-mini): Input 28,672 / Output 4,096 tokens
 
-For the Realtime API, use the GA API version `/openai/v1` in the URL for all models. 
+The Realtime API supports up to 32,000 input tokens and 4,096 output tokens.
+
+For all Realtime API models, use the GA endpoint format with `/openai/v1` in the URL.
 
 ## Prerequisites
 
@@ -102,10 +100,7 @@ Follow the instructions in this section to get started with the Realtime API via
 
 ## API support
 
-Use the API with `/openai/v1` in the URL to access the latest Realtime API features. Don't use any date-based API version for Realtime API.
-
-> [!CAUTION]
-> You need to use **different** endpoint formats for Preview and Generally Available (GA) models. All samples in this article use GA models and GA endpoint format, and don't use `api-version` parameter, which is required for Preview endpoint format only. See detailed information on the endpoint format [in this article](../how-to/realtime-audio-websockets.md#connection-and-authentication). 
+For the Realtime API, use the GA endpoint with `/openai/v1` in the URL. Don't use date-based API versions or the api-version query parameter.
 
 > [!NOTE]
 > The Realtime API has specific rate limits for audio tokens and concurrent sessions. Before deploying to production, review [Azure OpenAI quotas and limits](../quotas-limits.md) for your deployment type.
