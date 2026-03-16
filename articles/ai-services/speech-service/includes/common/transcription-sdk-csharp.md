@@ -21,6 +21,7 @@ ai-usage: ai-assisted
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Sign in with the Azure CLI by running `az login`.
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Set up the project
@@ -73,7 +74,7 @@ Uri endpoint = new Uri(Environment.GetEnvironmentVariable("AZURE_SPEECH_ENDPOINT
 var credential = new DefaultAzureCredential();
 TranscriptionClient client = new TranscriptionClient(endpoint, credential);
 
-string audioFilePath = "path/to/audio.wav";
+string audioFilePath = "<path-to-your-audio-file.wav>";
 using FileStream audioStream = File.OpenRead(audioFilePath);
 
 TranscriptionOptions options = new TranscriptionOptions(audioStream);

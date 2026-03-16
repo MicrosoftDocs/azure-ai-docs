@@ -21,6 +21,7 @@ ai-usage: ai-assisted
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
 - Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+- Sign in with the Azure CLI by running `az login`.
 - Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Set up the project
@@ -54,7 +55,7 @@ You need to retrieve your resource endpoint for authentication.
 
 ## Transcribe audio with LLM speech
 
-LLM speech uses the `EnhancedModeOptions` class to enable large-language-model-enhanced transcription. Enhanced mode is automatically enabled when you create an `EnhancedModeOptions` instance. The model automatically detects the language in your audio.
+LLM speech uses the `EnhancedModeProperties` class to enable large-language-model-enhanced transcription. Enhanced mode is automatically enabled when you create an `EnhancedModeProperties` instance. The model automatically detects the language in your audio.
 
 Replace the contents of `Program.cs` with the following code:
 
@@ -78,10 +79,10 @@ TranscriptionClient client = new TranscriptionClient(endpoint, credential);
 string audioFilePath = "<path-to-your-audio-file.wav>";
 using FileStream audioStream = File.OpenRead(audioFilePath);
 
-// Create enhanced mode options for LLM speech transcription
+// Create enhanced mode properties for LLM speech transcription
 TranscriptionOptions options = new TranscriptionOptions(audioStream)
 {
-    EnhancedModeOptions = new EnhancedModeOptions
+    EnhancedMode = new EnhancedModeProperties
     {
         Task = "transcribe"
     }
@@ -96,10 +97,10 @@ foreach (var combinedPhrase in response.Value.CombinedPhrases)
 }
 
 // Print detailed phrase information
-if (response.Value.Phrases != null)
+foreach (var channel in response.Value.PhrasesByChannel)
 {
     Console.WriteLine("\nDetailed phrases:");
-    foreach (var phrase in response.Value.Phrases)
+    foreach (var phrase in channel.Phrases)
     {
         Console.WriteLine($"  [{phrase.Offset}] ({phrase.Locale}): {phrase.Text}");
     }
@@ -114,7 +115,7 @@ Run the application:
 dotnet run
 ```
 
-Reference: [`TranscriptionClient`](/dotnet/api/azure.ai.speech.transcription.transcriptionclient), [`EnhancedModeOptions`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeoptions)
+Reference: [`TranscriptionClient`](/dotnet/api/azure.ai.speech.transcription.transcriptionclient), [`EnhancedModeProperties`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeproperties)
 
 ## Translate audio with LLM speech
 
@@ -137,10 +138,10 @@ TranscriptionClient client = new TranscriptionClient(endpoint, credential);
 string audioFilePath = "<path-to-your-audio-file.wav>";
 using FileStream audioStream = File.OpenRead(audioFilePath);
 
-// Create enhanced mode options for LLM speech translation
+// Create enhanced mode properties for LLM speech translation
 TranscriptionOptions options = new TranscriptionOptions(audioStream)
 {
-    EnhancedModeOptions = new EnhancedModeOptions
+    EnhancedMode = new EnhancedModeProperties
     {
         Task = "translate",
         TargetLanguage = "de"
@@ -158,7 +159,7 @@ foreach (var combinedPhrase in response.Value.CombinedPhrases)
 
 Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
 
-Reference: [`EnhancedModeOptions`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeoptions)
+Reference: [`EnhancedModeProperties`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeproperties)
 
 ## Use prompt-tuning
 
@@ -167,10 +168,10 @@ You can provide an optional prompt to guide the output style for transcription o
 ```csharp
 TranscriptionOptions options = new TranscriptionOptions(audioStream)
 {
-    EnhancedModeOptions = new EnhancedModeOptions
+    EnhancedMode = new EnhancedModeProperties
     {
         Task = "transcribe",
-        Prompts = { "Output must be in lexical format." }
+        Prompt = { "Output must be in lexical format." }
     }
 };
 
@@ -189,7 +190,7 @@ foreach (var combinedPhrase in response.Value.CombinedPhrases)
 - Use `Output must be in lexical format.` to enforce lexical formatting instead of the default display format.
 - Use `Pay attention to *phrase1*, *phrase2*, …` to improve recognition of specific phrases or acronyms.
 
-Reference: [`EnhancedModeOptions`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeoptions)
+Reference: [`EnhancedModeProperties`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeproperties)
 
 ## Clean up resources
 
