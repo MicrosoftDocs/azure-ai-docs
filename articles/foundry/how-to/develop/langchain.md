@@ -10,6 +10,7 @@ ms.reviewer: sgilley
 ms.custom:
   - classic-and-new
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want an overview of langchain-azure-ai so I can choose the right integration pattern for my LangChain or LangGraph solution.
 ---
@@ -80,16 +81,29 @@ classes.
 
 ```bash
 export AZURE_AI_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
-export AZURE_AI_OPENAI_ENDPOINT="https://<resource>.openai.azure.com/openai/v1"
 ```
 
 When you use `project_endpoint`, authentication uses Microsoft Entra ID and
-Azure RBAC on the project. API keys are for direct service endpoints, such as
-`/openai/v1`.
+Azure RBAC on the project. 
 
-### Example: use `project_endpoint` or `endpoint`
+API keys are for direct service endpoints, such as `/openai/v1`.
 
-Use `AzureAIChatCompletionsModel` as a representative pattern:
+```bash
+export OPENAI_BASE_URL="https://<resource>.services.ai.azure.com/openai/v1"
+export OPENAI_API_KEY="<your-key>"
+```
+
+### Example: Use Foundry Models
+
+Once the environment variables are configured, you can use a model by:
+
+```python
+import langchain.chat_models import init_chat_model
+
+model = init_chat_model("azure_ai:gpt-5.2")
+```
+
+You can also configure clients specifically. As an example, let's see `AzureAIChatCompletionsModel` as a representative pattern:
 
 ```python
 import os
@@ -101,21 +115,21 @@ from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
 model_from_project = AzureAIOpenAIApiChatModel(
   project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
   credential=DefaultAzureCredential(),
-  model="gpt-4.1",
+  model="gpt-5.2",
 )
 
 # Option B: Use a service endpoint directly.
 model_from_endpoint = AzureAIOpenAIApiChatModel(
-  endpoint=os.environ["AZURE_AI_OPENAI_ENDPOINT"],
+  endpoint=os.environ["OPENAI_BASE_URL"],
   credential=DefaultAzureCredential(),
-  model="gpt-4.1",
+  model="gpt-5.2",
 )
 
 # Option C: Use a different credential strategy.
 model_with_cli_credential = AzureAIOpenAIApiChatModel(
-  endpoint=os.environ["AZURE_AI_OPENAI_ENDPOINT"],
+  endpoint=os.environ["OPENAI_BASE_URL"],
   credential="super-secret",
-  model="gpt-4.1",
+  model="gpt-5.2",
 )
 ```
 

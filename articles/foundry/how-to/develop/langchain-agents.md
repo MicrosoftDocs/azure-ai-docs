@@ -10,6 +10,7 @@ ms.reviewer: fasanti
 ms.custom:
   - classic-and-new
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to use langchain-azure-ai with Foundry Agent Service so that I can build practical intelligent applications with LangGraph and LangChain and the Agent Service.
 ---
@@ -522,6 +523,113 @@ Name: mcp-github-specs-agent
 
 Azure Cosmos DB supports multiple APIs, ...
 ```
+
+## Compose graphs
+
+You can compose complex graphs creating nodes that run in the Agent Service
+and connecting them with other nodes. The method `create_prompt_agent_node`
+returns a node instead of a compiled graph, which can be used later with
+other nodes.
+
+```python
+from langchain_azure_ai.agents import AgentServiceFactory
+from langchain_azure_ai.agents.prebuilt import AgentServiceAgentState
+from langchain_azure_ai.tools import AzureAIDocumentIntelligenceTool
+
+factory = AgentServiceFactory()
+
+parser_node = factory.create_prompt_agent_node(
+    name="document-parser",
+    description="Extracts content from documents using Azure AI Document Intelligence.",
+    model="gpt-4.1",
+    instructions="""You are a document parsing specialist. Your job is to extract all 
+		content from documents provided by the user using the Azure AI Document Intelligence 
+		tool. When given a document URL or file:
+
+		1. Use the Document Intelligence tool to parse it.
+		2. Return the full extracted content faithfully, preserving structure (headings, tables, 
+		lists, key-value pairs).
+		3. Do NOT summarize or analyze — just extract and return the raw content.""",
+    tools=[AzureAIDocumentIntelligenceTool()],
+)
+
+analyst_node = service.create_prompt_agent_node(
+    name="document-analyst",
+    description="Analyzes extracted document content and produces a structured report.",
+    model="gpt-4.1",
+    instructions="""You are a senior document analyst. You receive raw extracted content 
+		from documents and produce a structured analysis. Your analysis should include:
+
+		1. **Document Type** — Classify the document (e.g., invoice, contract, report, form, 
+		receipt, letter, resume, etc.).
+		2. **Key Entities** — Extract names, dates, amounts, addresses, and other important 
+		entities.
+		3. **Summary** — Write a concise summary of the document's content and purpose.
+		4. **Action Items** — List any action items, deadlines, or follow-ups found in the 
+		document.
+		5. **Risks or Notable Clauses** — Flag anything unusual, risky, or noteworthy 
+		(especially for contracts and legal documents).
+
+		Be thorough but concise. Format your output clearly with markdown headings.""",
+)
+
+def route_parser_output(
+    state: AgentServiceAgentState,
+) -> Literal["tools", "prepare_analysis"]:
+    """Route parser output: call tools if needed, otherwise move to analysis."""
+    last = state["messages"][-1]
+    if isinstance(last, AIMessage) and last.tool_calls:
+        return "tools"
+    return "prepare_analysis"
+
+def prepare_analysis(state: AgentServiceAgentState) -> AgentServiceAgentState:
+    """Bridge between parser and analyst.
+
+    Takes the parser's AI response and wraps it in a HumanMessage so the
+    analyst agent can process it on its own thread. Resets the V2 agent
+    state fields so the analyst starts a fresh conversation.
+    """
+    parser_output = state["messages"][-1].content
+    handoff_message = HumanMessage(
+        content=(
+            "Analyze the following extracted document content and produce a "
+            "structured report:\n\n"
+            f"{parser_output}"
+        )
+    )
+    return AgentServiceAgentState(messages=[handoff_message])
+
+
+builder = StateGraph(AgentServiceAgentState)
+
+# Nodes
+builder.add_node("parser", parser_node)
+builder.add_node("tools", ToolNode(tools))
+builder.add_node("prepare_analysis", prepare_analysis)
+builder.add_node("analyst", analyst_node)
+
+# Edges
+builder.add_edge(START, "parser")
+builder.add_conditional_edges("parser", route_parser_output)
+builder.add_edge("tools", "parser")
+builder.add_edge("prepare_analysis", "analyst")
+builder.add_edge("analyst", END)
+
+# Compile with tracing
+graph = builder.compile(name="document-intake-agent")
+```
+
+**What this snippet does:** Builds a two-agent document intake pipeline as a
+LangGraph `StateGraph`. The `parser` node uses Document Intelligence to
+extract raw content from a document. A routing function checks whether the
+parser needs to call tools; if so, execution loops through a `tools` node and
+back to the parser. Once parsing is complete, the `prepare_analysis` bridge
+wraps the extracted content in a new `HumanMessage` and hands it to the
+`analyst` node, which produces a structured report (document type, key
+entities, summary, action items, and risks). The compiled graph runs both
+agents through Foundry Agent Service while keeping routing and bridging logic
+local.
+
 
 ## Observability
 

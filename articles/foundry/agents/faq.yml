@@ -8,12 +8,13 @@ metadata:
   ms.service: azure-ai-foundry
   ms.subservice: azure-ai-foundry-agent-service
   ms.topic: faq
-  ms.date: 02/02/2026
+  ms.date: 03/11/2026
   ms.author: aahi
   author: aahill
   ms.custom:
   - references_regions
   - pilot-ai-workflow-jan-2026
+  - doc-kit-assisted
 title: Foundry Agent Service frequently asked questions
 summary: |
   Find answers to common questions about Foundry Agent Service.
@@ -125,11 +126,11 @@ sections:
       - question: |
           How do I monitor Foundry Agent Service?
         answer: |
-          To understand usage and monitoring options, see [Metrics](how-to/metrics.md) and [Monitor the service](../observability/how-to/how-to-monitor-agents-dashboard.md).
+          To understand usage and monitoring options, see [Metrics](../observability/how-to/how-to-monitor-agents-dashboard.md) and [Monitor the service](../observability/how-to/how-to-monitor-agents-dashboard.md).
       - question: |
           What should I do for business continuity and disaster recovery (BCDR)?
         answer: |
-          Agent Service BCDR guidance depends on your setup and the resources you provision. For the current guidance, see [BCDR for agents](overview.md#bcdr-for-agents).
+          Agent Service BCDR guidance depends on your setup and the resources you provision. For the current guidance, see [Foundry Agent Service disaster recovery](../how-to/agent-service-disaster-recovery.md).
   - name: Virtual networking
     questions:
       - question: |

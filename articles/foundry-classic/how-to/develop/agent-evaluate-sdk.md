@@ -5,6 +5,7 @@ ms.service: azure-ai-foundry
 ms.custom: 
 - build-2025
 - references_regions
+- doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/10/2025
 ms.reviewer: changliu2

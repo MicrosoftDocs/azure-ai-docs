@@ -12,6 +12,7 @@ ms.custom:
   - build-2025
   - dev-focus
   - pilot-ai-workflow-jan-2026
+  - doc-kit-assisted
 zone_pivot_groups: selection-fabric-tool
 ai-usage: ai-assisted
 ---

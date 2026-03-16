@@ -8,7 +8,7 @@ ms.reviewer: sonalimalik
 ms.date: 01/08/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
-ms.custom: dev-focus, pilot-ai-workflow-jan-2026 
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026 , doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -76,6 +76,8 @@ To access Monitor settings, select the gear icon on the **Monitor** tab. The fol
 | **Scheduled evaluations (preview)** | Runs evaluations on a schedule to validate performance against benchmarks. | Enable or disable<br>Select an evaluation template and run<br>Set a schedule |
 | **Red team scans (preview)** | Runs adversarial tests to detect risks such as data leakage or prohibited actions. | Enable or disable<br>Select an evaluation template and run<br>Set a schedule |
 | **Alerts (preview)** | Detects performance anomalies, evaluation failures, and security risks. | Configure alerts for latency, token usage, evaluation scores, or red team findings |
+
+
 
 ## Set up continuous evaluation
 
@@ -350,6 +352,19 @@ To view the full sample code, see:
 | You see authorization errors | Missing RBAC permissions on Application Insights or Log Analytics | Confirm access in **Access control (IAM)** for the connected resources. For log access, assign the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader). |
 | Continuous evaluation results don't appear | Continuous evaluation isn't enabled or rule creation failed | Confirm that your rule is enabled and that agent traffic is flowing. If you use the Python SDK setup, confirm the project managed identity has the **Azure AI User** role. |
 | Evaluation runs are skipped | Hourly run limit reached | Increase `max_hourly_runs` in the evaluation rule configuration or wait for the next hour. The default limit is 100 runs per hour. |
+
+## Monitor and set up continuous evaluation for custom agents
+
+Foundry can serve as a centralized location for your agent monitoring, even for agents not running on the platform. Within Foundry control plane, you can onboard agents running elsewhere via AI Gateway. You can then instrument your agent to send traces to the same Application Insights instance as your Foundry project. This setup enables continuous evaluations and tracking of metrics like error rate for agents not running in Foundry.
+
+## Set up monitoring for your custom agents
+
+1. Onboard your custom agent to Foundry using the instructions in [Register and manage custom agents](../../control-plane/register-custom-agent.md).
+1. Instrument your agent to comply with the [semantic conventions for generative AI solutions in the OpenTelemetry standard](https://opentelemetry.io/docs/specs/semconv/gen-ai/).
+1. Configure your agent to send telemetry to the same Application Insights instance as your Foundry project to enable continuous evaluation features.
+1. In Foundry Control Plane, go to the **Asset** page and select your agent.
+1. Select the **Monitor** tab to view your metrics and charts.
+1. Set up continuous evaluations using the methods outlined in [Configure settings](#configure-settings).
 
 ## Related content
 

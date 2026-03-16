@@ -7,7 +7,7 @@ ms.date: 02/17/2026
 ms.reviewer: hanch
 ms.author: scottpolly
 author: bhcglx
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

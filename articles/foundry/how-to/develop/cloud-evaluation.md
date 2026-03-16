@@ -6,6 +6,7 @@ ms.custom:
   - classic-and-new
   - references_regions
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 03/04/2026
 ms.reviewer: dlozier

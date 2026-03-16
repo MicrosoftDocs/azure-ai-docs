@@ -10,6 +10,7 @@ ms.date: 02/24/2026
 ms.custom:
   - dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

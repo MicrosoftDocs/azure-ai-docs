@@ -7,6 +7,7 @@ ms.custom:
   - classic-and-new
   - dev-focus
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 01/05/2026
 ms.reviewer: varundua

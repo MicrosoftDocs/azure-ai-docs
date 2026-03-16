@@ -14,6 +14,7 @@ zone_pivot_groups: openai-quickstart-gpt-v
 
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Use vision-enabled chat models
