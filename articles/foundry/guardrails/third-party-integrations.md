@@ -41,8 +41,8 @@ This section links resources to third-party instructions on retrieving API keys 
 
 | Model   | Onboarding step |
 |--------------------|----------------------|
-| Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm){:target="_blank"} |
-| Zenity  | [AI Detection and Response](https://app.zenity.io/app/connect/integrations){:target="_blank"}.     |
+| Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) |
+| Zenity  | [AI Detection and Response](https://app.zenity.io/app/connect/integrations).     |
 
 
 ## Attach Integrations to Foundry Guardrails
