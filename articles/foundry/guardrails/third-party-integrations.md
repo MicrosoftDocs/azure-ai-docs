@@ -47,7 +47,6 @@ This section links resources to 3rd party instructions on retrieving API keys an
 The following table shows supported regions. We recommend that your Foundry project is in the same region as the Third-party endpoint. Different regions can cause higher latency and potential timeouts.
 
 | Azure Region | Recommended Endpoint | Supported Third-party |
-
 |---|---|---|
 | West US | US | Zenity, Palo Alto |
 | West US 2 | US | Zenity |
