@@ -70,6 +70,7 @@ Here is the video type list for each scenario.
 | Consent video</br> Natural speaking video</br> Silent video| Interaction video|
 
 **Video content generation (batch)**
+
 |Required|Optional|
 |--|--|
 | Consent video</br> Natural speaking video| Status 0 video and Gesture video|
