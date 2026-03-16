@@ -6,7 +6,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 03/09/2026
+ms.date: 03/16/2026
 ms.update-cycle: 365-days
 ---
 
@@ -38,11 +38,11 @@ The following diagram illustrates a geo-distributed set of search services:
 
 ## Multi-region Bicep sample
 
-Try running this sample to see how to deploy Azure AI Search services in multiple regions with automatic failover using Azure Front Door: [Azure Samples/Azure-Search-Multiple-Regions](https://github.com/Azure-Samples/azure-search-multiple-regions).
+Try running this sample to see how to deploy Azure AI Search services in multiple regions with failover handled by Azure Front Door: [Azure-Samples/azure-search-multiple-regions](https://github.com/Azure-Samples/azure-search-multiple-regions).
 
-The sample demonstrates automatic failover for Azure AI Search using [Azure Front Door](/azure/frontdoor/front-door-overview) with priority-based routing. The deployment creates Azure AI Search services in two regions with Azure Functions APIs and automatic failover capabilities.
+The deployment creates identical Azure AI Search services in two regions and exposes them through [Azure Functions](/azure/azure-functions/functions-overview) APIs. 
 
-Multi-region deployments provide high availability and disaster recovery for Azure AI Search. By deploying search services in multiple regions and using Azure Front Door for global load balancing, you can ensure that your search application remains available even if one region experiences an outage.
+By combining health probes with priority-based routing, [Azure Front Door](/azure/frontdoor/front-door-overview) can automatically redirect traffic to a secondary region during a regional failure. Developers commonly use this multi‑region pattern to improve availability and disaster recovery for search-based applications.
 
 ## Data synchronization
 
@@ -109,17 +109,16 @@ The following diagram illustrates search apps connecting through Traffic Manager
 
 ---
 
-## Load-balancing considerations
 
 As you evaluate these load-balancing options, consider the following points:
 
-+ Azure AI Search is a backend service that accepts indexing and query requests from a client.
+- Azure AI Search is a backend service that accepts indexing and query requests from a client.
 
-+ By default, service endpoints are accessed through a public internet connection. We recommend [Azure Application Gateway](/azure/application-gateway/overview) for private endpoints that originate from within a virtual network.
+- By default, service endpoints are accessed through a public internet connection. We recommend [Azure Application Gateway](/azure/application-gateway/overview) for private endpoints that originate from within a virtual network.
 
-+ Azure AI Search accepts requests addressed to the `<your-search-service-name>.search.windows.net` endpoint. If you reach the same endpoint using a different DNS name in the host header, such as a CNAME, the request is rejected.
+- Azure AI Search accepts requests addressed to the `<your-search-service-name>.search.windows.net` endpoint. If you reach the same endpoint using a different DNS name in the host header, such as a CNAME, the request is rejected.
 
-+ Requests from the client to a search service must be authenticated. To access search operations, the caller must have [role-based permissions](search-security-rbac.md) or provide an [API key](search-security-api-keys.md) with the request.
+- Requests from the client to a search service must be authenticated. To access search operations, the caller must have [role-based permissions](search-security-rbac.md) or provide an [API key](search-security-api-keys.md) with the request.
 
 ## Related content
 
