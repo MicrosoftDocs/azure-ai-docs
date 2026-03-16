@@ -64,6 +64,7 @@ The video clips required to train a custom avatar model vary slightly depending 
 Here is the video type list for each scenario.
 
 **Interactive conversation (real-time)**
+
 |Required|Optional|
 |--|--|
 | Consent video</br> Natural speaking video</br> Silent video| Interaction video|
