@@ -24,59 +24,23 @@ Before you set up the integration, ensure you have:
 ### Enablement and data processing 
 Third-party integrations  are enabled via a Bring Your Own License (BYOL) approach, allowing you to utilize existing third-party software licenses from supported partners. Your data will be processed outside of Azure AI Foundry using the service you selected. The terms and privacy commitments for your other service will apply to this processing. 
 
-## Third-party integrations
-
-This section links resources to 3rd party instructions on retrieving API keys and creating custom profiles. In the [Steps to connect integration](#steps-to-connect-integration) section, you can use these links to continue connecting your integration. 
-
-| Model   | onboarding step |
-|--------------------|----------------------|
-| Zenity  | [AIDR](https://zenity.io/platform/ai-security-platform/aidr).     |
-| Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) |
 
 ## Steps to connect integration
 
-1. Follow the [Third-party integrations steps](#third-party-integrations) and retrieve your API key linked to your custom security profile. 
+1. Follow the [third-party integrations steps](#third-party-integrations) and retrieve your API key linked to your custom security profile. We recommend that your Foundry project is in the same region as the third-party endpoint. View [supported regions here](#region-availability).
 1. Go to AI Foundry and select **Guardrails**. 
 1. Select the Integrations tab, add a third-party integration and select Zenity. 
 1. Select a Keyvault and Managed Identity. Learn more. 
-1. Add the endpoint(s) and API key(s). To get the endpoint-API key pair, follow the [Third-party integrations steps](#third-party-integrations).
+1. Add the endpoint(s) and API key(s). To get the endpoint-API key pair, follow the [third-party integrations steps](#third-party-integrations).
 
+#### Third-party integrations
 
-#### Region availability 
+This section links resources to third-party instructions on retrieving API keys and creating custom profiles. In the [steps to connect integration](#steps-to-connect-integration) section, you can use these links to continue connecting your integration. 
 
-The following table shows supported regions. We recommend that your Foundry project is in the same region as the Third-party endpoint. Different regions can cause higher latency and potential timeouts.
-
-| Azure Region | Recommended Endpoint | Third-party Integration |
-|---|---|---|
-| West US | US | Zenity, Palo Alto Networks Prisma AIRS |
-| West US 2 | US | Zenity |
-| West US 3 | US | Zenity, Palo Alto Networks Prisma AIRS |
-| West Central US | US | Zenity, Palo Alto Networks Prisma AIRS |
-| Central US | US | Zenity |
-| North Central US | US | Zenity |
-| South Central US | US | Zenity |
-| East US | US | Zenity |
-| East US 2 | US | Zenity |
-| Canada Central | US | Zenity |
-| Canada East | US | Zenity |
-| West Europe | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| North Europe | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| France Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| Germany West Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| Italy North | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| Spain Central | Europe | Zenity |
-| Sweden Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| Norway East | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| Switzerland North | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| Switzerland West | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| UK South | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| UK West | Europe | Zenity, Palo Alto Networks Prisma AIRS |
-| South India | India | Palo Alto Networks Prisma AIRS |
-| Southeast Asia | Singapore | Palo Alto Networks Prisma AIRS |
-| East Asia | Singapore | Palo Alto Networks Prisma AIRS |
-
-
-
+| Model   | Onboarding step |
+|--------------------|----------------------|
+| Zenity  | [AIDR](https://zenity.io/platform/ai-security-platform/aidr).     |
+| Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) |
 
 ## Attach Integrations to Foundry Guardrails
 
@@ -193,6 +157,39 @@ openai.BadRequestError: Error code: 400 -
   }
 }
 ```
+
+#### Region availability 
+
+The following table shows supported regions. We recommend that your Foundry project is in the same region as the third-party endpoint. Different regions can cause higher latency and potential timeouts.
+
+| Azure Region | Recommended Endpoint | Third-party Integration |
+|---|---|---|
+| West US | US | Zenity, Palo Alto Networks Prisma AIRS |
+| West US 2 | US | Zenity |
+| West US 3 | US | Zenity, Palo Alto Networks Prisma AIRS |
+| West Central US | US | Zenity, Palo Alto Networks Prisma AIRS |
+| Central US | US | Zenity |
+| North Central US | US | Zenity |
+| South Central US | US | Zenity |
+| East US | US | Zenity |
+| East US 2 | US | Zenity |
+| Canada Central | US | Zenity |
+| Canada East | US | Zenity |
+| West Europe | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| North Europe | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| France Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Germany West Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Italy North | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Spain Central | Europe | Zenity |
+| Sweden Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Norway East | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Switzerland North | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Switzerland West | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| UK South | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| UK West | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| South India | India | Palo Alto Networks Prisma AIRS |
+| Southeast Asia | Singapore | Palo Alto Networks Prisma AIRS |
+| East Asia | Singapore | Palo Alto Networks Prisma AIRS |
 
 ## Next steps
 
