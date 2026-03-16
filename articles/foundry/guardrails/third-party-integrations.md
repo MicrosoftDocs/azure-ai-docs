@@ -49,7 +49,7 @@ This section links resources to third-party instructions on retrieving API keys 
 
 1. Select one or more Foundry Guardrails to attach the integration.
 1. Select **Save** and confirm integration and guardrail attachment in the integrations table.
-1. Confirm the status:Running indicates a successful connection.
+1. Confirm the status: Running indicates a successful connection.
 1. Error messages provide concrete recommendations (for example, missing Managed Identity).
 1. Follow the main Foundry Guardrail flow to [assign a custom guardrail](guardrails-overview.md) with an active third-party integration to a model or agent.
 1. Test in Playground.
