@@ -9,6 +9,7 @@ ms.date: 11/04/2025
 ms.topic: reference
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Available tools and example prompts for Foundry MCP Server (preview)

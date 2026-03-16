@@ -8,8 +8,10 @@ ms.topic: how-to
 ms.date: 02/11/2026
 author: ssalgadodev
 ms.author: ssalgado
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Fine-tuning and tool calling

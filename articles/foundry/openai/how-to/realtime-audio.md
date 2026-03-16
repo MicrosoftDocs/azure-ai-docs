@@ -11,6 +11,7 @@ ms.author: pafarley
 ms.custom:
   - references_regions
   - classic-and-new
+  - doc-kit-assisted
 recommendations: false
 ai-usage: ai-assisted
 zone_pivot_groups: openai-portal-js-python-ts

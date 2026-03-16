@@ -8,6 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/20/2026
 ms.reviewer: haakar

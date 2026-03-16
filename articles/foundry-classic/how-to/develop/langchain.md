@@ -30,10 +30,10 @@ You can use models deployed to [!INCLUDE [classic-link](../../../foundry/include
 
 -->
 
-This tutorial shows how to use the `langchain-azure-ai` package with LangChain using Azure AI Model Inference API. Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
+This tutorial shows how to use the `langchain-azure-ai[v1]` package with LangChain using Azure AI Model Inference API. Some models, such as OpenAI, Cohere, or Mistral, offer their own APIs and LangChain extensions. These extensions might include model-specific capabilities and are suitable if you need to use them. Install the extension for your chosen model, such as `langchain-openai` or `langchain-cohere`.
 
-> [!IMPORTANT]
-> Support for model inference using Azure AI Model Inference API requires the option `langchain-azure-ai[v1]` installed. Inference capabilities are deprecated and will be retired on May 30, 2026. Switch to the generally available [OpenAI/v1 API](https://aka.ms/openai/v1) with a stable OpenAI SDK introduced in `langchain-azure-ai` or `langchain-openai`.
+> [!CAUTION]
+> Model inference with `langchain-azure-ai[v1]` is deprecated and will be retired on May 30, 2026. Switch to the generally available OpenAI/v1 API with a stable OpenAI SDK introduced in `langchain-azure-ai` or `langchain-openai`. [Learn more](https://aka.ms/azureai/langchain).
 
 ## Prerequisites
 
@@ -84,9 +84,6 @@ Create a client to connect to the chat model by using the `AzureAIChatCompletion
 **References:**
 - [LangChain Azure AI integration](https://docs.langchain.com/oss/python/integrations/providers/microsoft)
 - [Model Inference API overview](../../../ai-foundry/model-inference/overview.md)
-
-> [!CAUTION]
-> Class `langchain_azure_ai.chat_models.inference.AzureAIChatCompletionsModel` is deprecated. Use `langchain_azure_ai.chat_models.openai.AzureAIChatCompletionsModel` instead which uses OpenAI responses API.
 
 If your endpoint supports Microsoft Entra ID, use the following code to create the client:
 
@@ -255,7 +252,7 @@ Create the client:
 **What this snippet does:** Instantiates an embeddings client using `AzureAIEmbeddingsModel` to convert text into vector embeddings, which can be used for semantic search and similarity comparisons.
 
 **References:**
-- [LangChain Embeddings](https://python.langchain.com/docs/integrations/text_embedding/azure_ai)
+- [LangChain Embeddings](https://docs.langchain.com/oss/python/integrations/providers/microsoft#embedding-models)
 
 Use an in-memory vector store:
 

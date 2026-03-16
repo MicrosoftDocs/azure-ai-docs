@@ -9,6 +9,7 @@ ms.date: 11/04/2025
 ms.topic: get-started
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Get started with Foundry MCP Server (preview) using Visual Studio Code

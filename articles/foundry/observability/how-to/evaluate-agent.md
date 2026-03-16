@@ -9,6 +9,7 @@ author: lgayhardt
 ms.reviewer: changliu2
 ai-usage: ai-assisted
 #CustomerIntent: As an AI developer, I want to evaluate my agent so that I ensure quality and safety before and after deployment.
+ms.custom: doc-kit-assisted
 ---
 
 # Evaluate your AI agents

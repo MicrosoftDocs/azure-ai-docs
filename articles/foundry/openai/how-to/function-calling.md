@@ -8,6 +8,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - devx-track-python
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/10/2026
 manager: nitinme

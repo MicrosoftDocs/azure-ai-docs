@@ -4,11 +4,12 @@ description: Learn how to use langchain-azure-ai with Foundry Memory to build AI
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 03/05/2026
-ms.author: fasanti
+ms.author: fasantia
 author: santiagxf
 ms.reviewer: sgilley
 ms.custom:
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to use langchain-azure-ai with Foundry Memory so that my application can retrieve long-term user context across sessions.
 ---
@@ -31,10 +32,12 @@ in LangChain or LangGraph runtime state.
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - A [Foundry project](../../how-to/create-projects.md).
-- A deployed Azure OpenAI chat model for app responses.
+- A deployed Microsoft Foundry chat model for memory retrieval.
+	- This tutorial uses "gpt-4.1".
 - A deployed chat model and embedding model for the memory store.
+	- This tutorial uses `text-embedding-3-large`.
 - Python 3.10 or later.
-- Azure CLI signed in (`az login`) so `DefaultAzureCredential` can authenticate.
+- Azure CLI signed in (`az login`) so `DefaultAzureCredential` can authenticate with role **Azure AI Developer**.
 
 ### Configure your environment
 
@@ -43,17 +46,13 @@ LangChain and LangGraph integration, `azure-ai-projects` for memory store
 management, and `azure-identity` for authentication.
 
 ```bash
-pip install -U "langchain-azure-ai[v2]" azure-ai-projects azure-identity
+pip install -U "langchain-azure-ai" azure-ai-projects azure-identity
 ```
 
 Set your environment variables that we use in this tutorial:
 
 ```bash
 export AZURE_AI_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
-export AZURE_OPENAI_ENDPOINT="https://<resource>.openai.azure.com/openai/v1"
-export AZURE_OPENAI_DEPLOYMENT="gpt-4.1"
-export MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME="gpt-4.1"
-export MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME="text-embedding-3-large"
 ```
 
 ## Understand the memory model
@@ -97,27 +96,25 @@ credential = DefaultAzureCredential()
 client = AIProjectClient(endpoint=endpoint, credential=credential)
 
 store_name = "lc-integration-test-store"
-
 try:
-	store = client.memory_stores.get(store_name)
-	print(f"✓ Memory store '{store_name}' already exists")
+    store = client.beta.memory_stores.get(store_name)
+    print(f"✓ Memory store '{store_name}' already exists")
 except ResourceNotFoundError:
-	definition = MemoryStoreDefaultDefinition(
-		chat_model=os.environ["MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME"],
-		embedding_model=os.environ[
-			"MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME"
-		],
-		options=MemoryStoreDefaultOptions(
-			user_profile_enabled=True,
-			chat_summary_enabled=True,
-		),
-	)
-	store = client.memory_stores.create(
-		name=store_name,
-		description="Long-term memory store",
-		definition=definition,
-	)
-	print(f"✓ Memory store '{store_name}' created successfully")
+    print(f"Creating memory store '{store_name}'...")
+    definition = MemoryStoreDefaultDefinition(
+        chat_model="gpt-4.1", 						# Change for your LLM model
+        embedding_model="text-embedding-3-large",	# Change for your emebddings model
+        options=MemoryStoreDefaultOptions(
+            user_profile_enabled=True,
+            chat_summary_enabled=True,
+        ),
+    )
+    store = client.beta.memory_stores.create(
+        name=store_name,
+        description="Long-term memory store",
+        definition=definition,
+    )
+    print(f"✓ Memory store '{store_name}' created successfully")
 ```
 
 ```output
@@ -132,7 +129,7 @@ the memory store, and enables user profile plus chat summary extraction.
 
 Foundry Memory integrates in LangGraph and LangChain by introducing two objects:
 
-* The class `langchain_azure_ai.chat_message_histories.AzureAIMemoryChatMessageHistory`
+* The class `langchain_azure_ai.chat_message_history.AzureAIMemoryChatMessageHistory`
 creates a memory-backed chat history.
 * The class `langchain_azure_ai.retrievers.AzureAIMemoryRetriever` allows retrieval of
 memories from the chat message history.
@@ -161,30 +158,44 @@ from langchain_azure_ai.chat_message_histories import AzureAIMemoryChatMessageHi
 from langchain_azure_ai.retrievers import AzureAIMemoryRetriever
 from langchain_core.chat_history import InMemoryChatMessageHistory
 
-session_histories: dict[tuple[str, str], AzureAIMemoryChatMessageHistory] = {}
+_session_histories: dict[tuple[str, str], AzureAIMemoryChatMessageHistory] = {}
 
-def get_session_history(
-	user_id: str,
-	session_id: str,
-) -> AzureAIMemoryChatMessageHistory:
-	cache_key = (user_id, session_id)
-	if cache_key not in session_histories:
-		session_histories[cache_key] = AzureAIMemoryChatMessageHistory(
-			client=client,
-			store_name=store_name,
-			scope=user_id,
-			session_id=session_id,
-			base_history_factory=InMemoryChatMessageHistory(),
-			update_delay=0,
-		)
-	return session_histories[cache_key]
+def get_session_history(user_id: str, session_id: str) -> AzureAIMemoryChatMessageHistory:
+    """Get or create a session history for a user and session.
+    
+    Args:
+        user_id: Stable user identifier (used as scope in Foundry Memory)
+        session_id: Ephemeral session identifier
+        
+    Returns:
+        AzureAIMemoryChatMessageHistory instance
+    """
+    cache_key = (user_id, session_id)
+    if cache_key not in _session_histories:
+        _session_histories[cache_key] = AzureAIMemoryChatMessageHistory(
+            project_endpoint=endpoint,
+            credential=credential,
+            store_name=store_name,
+            scope=user_id,
+            base_history=InMemoryChatMessageHistory(),
+            update_delay=0,  # TEST MODE: process updates immediately (default ~300s)
+        )
+    return _session_histories[cache_key]
 
 
-def get_foundry_retriever(
-	user_id: str,
-	session_id: str,
-) -> AzureAIMemoryRetriever:
-	return get_session_history(user_id, session_id).get_retriever(k=5)
+def get_foundry_retriever(user_id: str, session_id: str) -> AzureAIMemoryRetriever:
+    """Get a retriever tied to the cached session history.
+    
+    This preserves incremental search state across turns.
+    
+    Args:
+        user_id: Stable user identifier
+        session_id: Ephemeral session identifier
+        
+    Returns:
+        AzureAIMemoryRetriever instance
+    """
+    return get_session_history(user_id, session_id).get_retriever(k=5)
 ```
 
 **What this snippet does:** Creates a memory-backed history and retriever per
@@ -201,68 +212,74 @@ Let's create a runnable to implement the loop:
 from typing import Any
 import os
 
-from azure.identity import DefaultAzureCredential
+from langchain.chat_models import init_chat_model
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import ConfigurableFieldSpec, RunnablePassthrough
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 
-llm = AzureAIChatCompletionsModel(
-	endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-	credential=DefaultAzureCredential(),
-	model=os.environ["AZURE_OPENAI_DEPLOYMENT"],
-)
+llm = init_chat_model("azure_ai:gpt4.1" temperature=0.7)
 
 prompt = ChatPromptTemplate.from_messages(
-	[
-		(
-			"system",
-			"You are helpful and concise. Use prior memories when relevant.",
-		),
-		MessagesPlaceholder("history"),
-		("system", "Memories:\n{memories}"),
-		("human", "{question}"),
-	]
+    [
+        ("system", "You are helpful and concise. Use prior memories when relevant."),
+        MessagesPlaceholder("history"),
+        ("system", "Memories:\n{memories}"),
+        ("human", "{question}"),
+    ]
 )
 
 
 def chain_for_session(user_id: str, session_id: str) -> RunnableWithMessageHistory:
-	retriever = get_foundry_retriever(user_id, session_id)
+    """Create a chain with message history for a specific user and session.
+    
+    Args:
+        user_id: Stable user identifier
+        session_id: Ephemeral session identifier
+        
+    Returns:
+        Runnable chain with message history
+    """
+    retriever = get_foundry_retriever(user_id, session_id)
 
-	def format_memories(x: dict[str, Any]) -> str:
-		docs = retriever.invoke(x["question"])
-		return (
-			"\n".join([doc.page_content for doc in docs])
-			if docs
-			else "No relevant memories found."
-		)
+    def format_memories(x: dict[str, Any]) -> str:
+        """Retrieve and format memories as text."""
+        docs = retriever.invoke(x["question"])
+        return (
+            "\n".join([doc.page_content for doc in docs])
+            if docs
+            else "No relevant memories found."
+        )
 
-	chain = RunnablePassthrough.assign(memories=format_memories) | prompt | llm
+    # Use RunnablePassthrough.assign to add memories to the input dict
+    # RunnableWithMessageHistory will inject history automatically
+    chain = RunnablePassthrough.assign(memories=format_memories) | prompt | llm
 
-	return RunnableWithMessageHistory(
-		chain,
-		get_session_history=get_session_history,
-		input_messages_key="question",
-		history_messages_key="history",
-		history_factory_config=[
-			ConfigurableFieldSpec(
-				id="user_id",
-				annotation=str,
-				name="User ID",
-				description="Unique identifier for the user.",
-				default="",
-				is_shared=True,
-			),
-			ConfigurableFieldSpec(
-				id="session_id",
-				annotation=str,
-				name="Session ID",
-				description="Unique identifier for the session.",
-				default="",
-				is_shared=True,
-			),
-		],
-	)
+    chain_with_history = RunnableWithMessageHistory(
+        chain,
+        get_session_history=get_session_history,
+        input_messages_key="question",
+        history_messages_key="history",
+        history_factory_config=[
+            ConfigurableFieldSpec(
+                id="user_id",
+                annotation=str,
+                name="User ID",
+                description="Unique identifier for the user.",
+                default="",
+                is_shared=True,
+            ),
+            ConfigurableFieldSpec(
+                id="session_id",
+                annotation=str,
+                name="Session ID",
+                description="Unique identifier for the session.",
+                default="",
+                is_shared=True,
+            ),
+        ],
+    )
+    return chain_with_history
 ```
 
 **What this snippet does:** Builds a runnable that injects retrieved memories
@@ -286,44 +303,51 @@ user_id = "user_001"
 session_id = "session_2026_02_10_001"
 chain = chain_for_session(user_id, session_id)
 
-print("\n=== Turn 1 (Session A) ===")
+# 4) Session A: seed preferences (long-term memory extraction happens async)
+print(
+	"\n=== Turn 1 (Session A): Introduce a preference "
+	"(will be extracted into long-term memory) ==="
+)
 r1 = chain.invoke(
 	{"question": "Hi! Call me JT. I prefer dark roast coffee and budget trips."},
 	config={"configurable": {"user_id": user_id, "session_id": session_id}},
 )
 print("ASSISTANT:", r1.content)
 
-print("\n=== Turn 2 (Session A) ===")
+print("\n=== Turn 2 (Session A): Add another preference ===")
 r2 = chain.invoke(
 	{
 		"question": "Also, I usually drink green tea in the afternoon "
-		"and I like staying in hostels.",
+		"and I like staying in hostels."
 	},
 	config={"configurable": {"user_id": user_id, "session_id": session_id}},
 )
 print("ASSISTANT:", r2.content)
 
+# Because we set update_delay=0, extraction should happen immediately for demo.
+# If you use the default delay, you may need to wait before querying from new session.
 time.sleep(60)
 
+# 5) Cross-session test: same user_id, new session_id
 session_id_b = "session_2026_02_10_002"
 chain_b = chain_for_session(user_id, session_id_b)
 
-print("\n=== Turn 3 (Session B) ===")
-r3 = chain_b.invoke(
+print("\n=== Turn 3 (Session B): New session should recall coffee preference ===")
+r4 = chain_b.invoke(
 	{"question": "Remind me of my coffee preference and travel style."},
 	config={"configurable": {"user_id": user_id, "session_id": session_id_b}},
 )
-print("ASSISTANT:", r3.content)
+print("ASSISTANT:", r4.content)
 
-print("\n=== Turn 4 (Session B) ===")
-r4 = chain_b.invoke(
+print("\n=== Turn 4 (Session B): Retrieve another preference ===")
+r5 = chain_b.invoke(
 	{
 		"question": "What do I usually drink in the afternoon, "
-		"and where do I like to stay?",
+		"and where do I like to stay?"
 	},
 	config={"configurable": {"user_id": user_id, "session_id": session_id_b}},
 )
-print("ASSISTANT:", r4.content)
+print("ASSISTANT:", r5.content)
 ```
 
 ```output
@@ -352,14 +376,15 @@ inspection tools.
 
 ```python
 adhoc = AzureAIMemoryRetriever(
-	client=client,
+	project_endpoint=endpoint,
+	credential=credential,
 	store_name=store_name,
 	scope=user_id,
 	k=5,
 )
-
-docs = adhoc.invoke("What are my drinking preferences?")
-for i, doc in enumerate(docs, start=1):
+print("\n=== Turn 5 (Ad-hoc): Direct retriever query without session history ===")
+adhoc_docs = adhoc.invoke("What are my drinking preferences?")
+for i, doc in enumerate(adhoc_docs, start=1):
 	print(f"MEMORY {i}:", doc.page_content)
 ```
 

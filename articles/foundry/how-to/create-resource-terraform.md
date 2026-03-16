@@ -12,6 +12,7 @@ ms.custom:
   - devx-track-terraform
   - update-code2
   - dev-focus
+  - doc-kit-assisted
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted

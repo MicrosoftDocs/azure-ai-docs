@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
+  - doc-kit-assisted
 ---
 
 # Retrieval-Augmented Generation (RAG) evaluators

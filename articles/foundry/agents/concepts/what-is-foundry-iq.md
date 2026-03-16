@@ -8,6 +8,7 @@ ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 02/12/2026
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Foundry IQ (preview)

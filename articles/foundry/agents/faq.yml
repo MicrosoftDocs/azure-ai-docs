@@ -14,6 +14,7 @@ metadata:
   ms.custom:
   - references_regions
   - pilot-ai-workflow-jan-2026
+  - doc-kit-assisted
 title: Foundry Agent Service frequently asked questions
 summary: |
   Find answers to common questions about Foundry Agent Service.
@@ -125,7 +126,7 @@ sections:
       - question: |
           How do I monitor Foundry Agent Service?
         answer: |
-          To understand usage and monitoring options, see [Metrics](how-to/metrics.md) and [Monitor the service](../observability/how-to/how-to-monitor-agents-dashboard.md).
+          To understand usage and monitoring options, see [Metrics](../observability/how-to/how-to-monitor-agents-dashboard.md) and [Monitor the service](../observability/how-to/how-to-monitor-agents-dashboard.md).
       - question: |
           What should I do for business continuity and disaster recovery (BCDR)?
         answer: |

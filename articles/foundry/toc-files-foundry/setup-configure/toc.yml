@@ -34,8 +34,6 @@ items:
     href: ../../agents/concepts/standard-agent-setup.md
   - name: Use your own Azure resources
     href: ../../agents/how-to/use-your-own-resources.md
-  - name: Migrate agents
-    href: ../../agents/how-to/migrate.md
   - name: Virtual networks
     href: ../../agents/how-to/virtual-networks.md
   - name: Use an AI Gateway

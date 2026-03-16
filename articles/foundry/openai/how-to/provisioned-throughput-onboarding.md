@@ -14,6 +14,7 @@ reviewer: rsethur
 ms.custom:
   - pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 recommendations: false
 #customerIntent: As a developer, I want to understand PTU costs and billing so I can plan and manage my Microsoft Foundry provisioned throughput deployments efficiently.
 ---
