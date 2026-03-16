@@ -3,7 +3,7 @@ title: Supported Regions
 description: Learn about the regions that offer Azure AI Search and the features available in each region.
 author: mattwojo
 ms.author: mattwoj
-ms.date: 11/19/2025
+ms.date: 03/16/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -67,9 +67,9 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Germany West Central​ <sup>1</sup> ​| ✅ | ✅ | ✅ |  | ✅ |  |
 | Italy North​​ |  | ✅ | ✅ | ✅ | ✅ |  |
 | Norway East​​ | ✅ | ✅ |  | ✅ |  |  |
-| North Europe​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
+| North Europe​ <sup>2</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Poland Central​​ <sup>1</sup> |  |  | ✅ |  | ✅ |  |
-| Spain Central <sup>2</sup> |  | ✅ |  | ✅ | ✅ | ✅ |
+| Spain Central <sup>3</sup> |  | ✅ |  | ✅ | ✅ | ✅ |
 | Sweden Central​​ <sup>1</sup> | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Switzerland North​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Switzerland West​ | ✅ | ✅ | ✅ |  | ✅ |  |
@@ -79,7 +79,9 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 <sup>1</sup> This region supports [agentic retrieval](agentic-retrieval-overview.md) and [semantic ranker](semantic-search-overview.md) on the free tier.
 
-<sup>2</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
+<sup>2</sup> This region is experiencing capacity constraints that prevent the creation of new search services. Please choose a different region.
+
+<sup>3</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
 ### Middle East
 
