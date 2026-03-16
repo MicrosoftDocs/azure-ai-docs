@@ -170,6 +170,9 @@ For any knowledge base that specifies an indexed SharePoint knowledge source, be
 
 After the knowledge base is configured, use the [retrieve action](../../agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
+> [!TIP]
+> To enforce document-level permissions at query time, set `ingestionPermissionOptions` to `["userIds", "groupIds"]` when you create the knowledge source. At query time, pass the user's access token in the `x-ms-query-source-authorization` header. For details, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+
 ## Delete a knowledge source
 
 [!INCLUDE [Delete knowledge source using REST](knowledge-source-delete-rest.md)]

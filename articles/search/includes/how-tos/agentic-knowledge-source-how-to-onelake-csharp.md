@@ -191,6 +191,9 @@ For any knowledge base that specifies an indexed OneLake knowledge source, be su
 
 After the knowledge base is configured, use the [retrieve action](../../agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
+> [!TIP]
+> To enforce document-level permissions at query time, set `IngestionPermissionOptions` on the knowledge source during creation. At query time, pass the user's access token in the `xMsQuerySourceAuthorization` parameter. For details, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+
 ## Delete a knowledge source
 
 [!INCLUDE [Delete knowledge source using C#](knowledge-source-delete-csharp.md)]

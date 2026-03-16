@@ -148,66 +148,13 @@ If you're satisfied with the knowledge source, continue to the next step: specif
 
 After the knowledge base is configured, use the [retrieve action](../../agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
-## Query a knowledge base
+## Permissions and retrieval
 
-The [retrieve action](../../agentic-retrieval-how-to-retrieve.md) on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. 
+Remote SharePoint enforces SharePoint permissions at query time. The retrieval engine uses the caller's access token, passed via the `x-ms-query-source-authorization` header, to query SharePoint content on behalf of the user through the Copilot Retrieval API. Only content the user has access to is returned. SharePoint permissions and Purview sensitivity labels are honored in requests for content.
 
-Azure AI Search uses the access token to call the Copilot Retrieval API on behalf of the user identity. The access token is provided in the retrieve endpoint as a `x-ms-query-source-authorization` HTTP header.
+Because remote SharePoint doesn't use a search index, no ingestion-time permissions configuration is needed. The `x-ms-query-source-authorization` header is the only requirement.
 
-Make sure that you [generate an access token](../../search-get-started-rbac.md?pivots=rest#get-token) for the tenant that has your search service.
-
-```http
-POST {{search-url}}/knowledgebases/remote-sp-kb/retrieve?api-version={{api-version}}
-api-key: {{api-key}}
-Content-Type: application/json
-x-ms-query-source-authorization: {{access-token}}
-
-{
-    "messages": [
-        {
-            "role": "user",
-            "content": [
-                { "type": "text", "text": "What was covered in the keynote doc for Ignite 2024?" }
-            ]
-        }
-    ],
-    "includeActivity": true,
-    "knowledgeSourceParams": [
-        {
-            "filterExpressionAddOn": "ModifiedBy:\"Adele Vance\"",
-            "knowledgeSourceName": "my-remote-sharepoint-ks",
-            "kind": "remoteSharePoint",
-            "includeReferences": true,
-            "includeReferenceSourceData": true
-        }
-    ]
-}
-```
-
-The retrieve request also takes a [KQL filter](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) (`filterExpressionAddOn`) if you want to apply constraints at query time. If you specify `filterExpressionAddOn` on both the knowledge source and knowledge base retrieve action, the filters are AND'd together.
-
-Queries asking questions about the content itself are more effective than questions about where a file is located or when it was last updated. For example, if you ask, "Where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location or date-specific queries.
-
-A better question to ask is, "What is the keynote doc for Ignite 2024". The response includes the synthesized answer, query activity and token counts, plus the URL and other metadata.
-
-```json
-{
-    "resourceMetadata": {
-        "Author": "Nuwan Amarathunga;Nurul Izzati",
-        "Title": "Ignite 2024 Keynote Address"
-    }
-},
-"rerankerScore": 2.489522,
-"webUrl": "https://contoso-my.sharepoint.com/keynotes/nuamarth_contoso_com/Documents/Keynote-Ignite-2024.docx",
-"searchSensitivityLabelInfo": {
-        "displayName": "Confidential\\Contoso Extended",
-        "sensitivityLabelId": "aaaaaaaa-0b0b-1c1c-2d2d-333333333333",
-        "tooltip": "Data is classified and protected. Contoso Full Time Employees (FTE) and non-employees can edit, reply, forward and print. Recipient can unprotect content with the right justification.",
-        "priority": 5,
-        "color": "#FF8C00",
-        "isEncrypted": true
-    }
-```
+For instructions on calling the retrieve action with the authorization header, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ## Delete a knowledge source
 

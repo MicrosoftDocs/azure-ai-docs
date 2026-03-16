@@ -3,8 +3,9 @@ title: Query Knowledge Base via APIs or MCP
 description: Learn how to Query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/13/2026
+ms.date: 03/16/2026
 ai-usage: ai-assisted
+zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Query a knowledge base using the retrieve action or MCP endpoint
@@ -13,7 +14,7 @@ ai-usage: ai-assisted
 
 In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents.
 
-This article explains how to call both retrieval methods and interpret the three-pronged response. To set up a full pipeline that connects Azure AI Search to Foundry Agent Service via MCP, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
+This article explains how to call both retrieval methods with optional permissions enforcement and interpret the three-pronged response. To set up a pipeline that connects Azure AI Search to Foundry Agent Service via MCP, see [Tutorial: Build an end-to-end agentic retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
 
 ## Prerequisites
 
@@ -23,49 +24,180 @@ This article explains how to call both retrieval methods and interpret the three
 
 + If the knowledge base specifies an LLM, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
 
-+ The [2025-11-01-preview](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) REST API or an equivalent Azure SDK preview package: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
+:::zone pivot="csharp"
+
++ The latest preview [.NET SDK package](/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet-preview&preserve-view=true): `dotnet add package Azure.Search.Documents --prerelease`
+
+:::zone-end
+
+:::zone pivot="python"
+
++ The latest preview [Python SDK package](/python/api/overview/azure/search-documents-readme?view=azure-python-preview&preserve-view=true): `pip install --pre azure-search-documents`
+
+:::zone-end
+
+:::zone pivot="rest"
+
++ The [2025-11-01-preview](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) version of the Search Service REST APIs.
+
+:::zone-end
 
 ## Call the retrieve action
 
 You specify the retrieve action on a knowledge base. The input is chat conversation history in natural language, where the `messages` array contains the conversation. The agentic retrieval engine supports messages only if the [retrieval reasoning effort](agentic-retrieval-how-to-set-retrieval-reasoning-effort.md) is low or medium.
 
+:::zone pivot="csharp"
+
+Here's an example using the Azure SDK for .NET:
+
+```csharp
+using Azure.Identity;
+using Azure.Search.Documents.KnowledgeBases;
+using Azure.Search.Documents.KnowledgeBases.Models;
+
+// Create knowledge base retrieval client
+var kbClient = new KnowledgeBaseRetrievalClient(
+    endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
+    knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
+    tokenCredential: new DefaultAzureCredential()
+);
+
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent(
+                "You can answer questions about the Earth at night. "
+                + "Sources have a JSON format with a ref_id that must be cited in the answer. "
+                + "If you do not know the answer, respond with 'I do not know'."
+            )
+        }
+    ) { Role = "assistant" }
+);
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent(
+                "Why is the Phoenix nighttime street grid so sharply visible from space, "
+                + "whereas large stretches of the interstate between midwestern cities remain comparatively dim?"
+            )
+        }
+    ) { Role = "user" }
+);
+
+var result = await kbClient.RetrieveAsync(retrievalRequest);
+Console.WriteLine(
+    (result.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text
+);
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
+
+:::zone-end
+
+:::zone pivot="python"
+
+Here's an example using the Azure SDK for Python:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
+from azure.search.documents.knowledgebases.models import (
+    KnowledgeBaseMessage,
+    KnowledgeBaseMessageTextContent,
+    KnowledgeBaseRetrievalRequest,
+    SearchIndexKnowledgeSourceParams,
+)
+
+# Create knowledge base retrieval client
+kb_client = KnowledgeBaseRetrievalClient(
+    endpoint="<YOUR SEARCH SERVICE URL>",
+    knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
+    credential=DefaultAzureCredential(),
+)
+
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="assistant",
+            content=[
+                KnowledgeBaseMessageTextContent(
+                    text="You can answer questions about the Earth at night. "
+                    "Sources have a JSON format with a ref_id that must be cited in the answer. "
+                    "If you do not know the answer, respond with 'I do not know'."
+                )
+            ],
+        ),
+        KnowledgeBaseMessage(
+            role="user",
+            content=[
+                KnowledgeBaseMessageTextContent(
+                    text="Why is the Phoenix nighttime street grid so sharply visible from space, "
+                    "whereas large stretches of the interstate between midwestern cities remain comparatively dim?"
+                )
+            ],
+        ),
+    ],
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name="earth-at-night-blob-ks",
+        )
+    ],
+)
+
+result = kb_client.retrieve(retrieval_request=request)
+print(result.response[0].content[0].text)
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient), [KnowledgeBaseRetrievalRequest](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest)
+
+:::zone-end
+
+:::zone pivot="rest"
+
 Here's an example using [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API):
 
 ```http
 @search-url=<YOUR SEARCH SERVICE URL>
-@accessToken=<YOUR PERSONAL ID>
+@accessToken=<YOUR ACCESS TOKEN>
 
-# Send grounding request
 POST https://{{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
-    Content-Type: application/json
-    Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
-    "messages" : [
-            {
-                "role" : "assistant",
-                "content" : [
-                  { "type" : "text", "text" : "You can answer questions about the Earth at night.
-                    Sources have a JSON format with a ref_id that must be cited in the answer.
-                    If you do not have the answer, respond with 'I do not know'." }
-                ]
-            },
-            {
-                "role" : "user",
-                "content" : [
-                  { "type" : "text", "text" : "Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?" }
-                ]
-            }
-        ],
-  "knowledgeSourceParams": [
-    {
-      "filterAddOn": null,
-      "knowledgeSourceName": "earth-at-night-blob-ks",
-      "kind": "searchIndex"
-    }
-  ]
+    "messages": [
+        {
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "You can answer questions about the Earth at night. Sources have a JSON format with a ref_id that must be cited in the answer. If you do not know the answer, respond with 'I do not know'."
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Why is the Phoenix nighttime street grid so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?"
+                }
+            ]
+        }
+    ],
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "earth-at-night-blob-ks",
+            "kind": "searchIndex"
+        }
+    ]
 }
 ```
+
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+
+:::zone-end
 
 ### Request parameters
 
@@ -112,6 +244,151 @@ The MCP endpoint requires authentication via custom headers. You have two option
 > + In [Foundry Agent Service](/azure/ai-foundry/agents/how-to/foundry-iq-connect), you configure authentication via a project connection and add the MCP tool to an agent. The service automatically injects the required headers on MCP requests.
 >
 > + In [GitHub Copilot](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/extend-copilot-chat-with-mcp), [Claude Desktop](https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop), and similar clients, you configure headers in the MCP server JSON, such as `mcp.json`.
+
+## Enforce permissions at query time
+
+Permissions enforcement works the same across all supported knowledge sources: at query time, the `x-ms-query-source-authorization` header carries the end user's identity so the retrieval engine can filter results to content the user is authorized to access. Without this header, results from permission-enabled knowledge sources are either unfiltered or fail.
+
+Permissions enforcement requires two parts:
+
+1. **Ingestion time** (indexed sources only): Configure `ingestionPermissionOptions` on the knowledge source so that permission metadata (ACLs or RBAC scopes) is ingested alongside document content. Without this step, there are no permissions in the index to enforce.
+
+1. **Query time** (all sources with permissions): Pass the user's access token in the `x-ms-query-source-authorization` HTTP header on the retrieve request. For indexed sources, the retrieval engine uses this token to match against ingested permission metadata. For remote sources, the engine queries the underlying data source directly on behalf of the user.
+
+### Source-specific behavior
+
+The following knowledge sources support document-level permissions enforcement.
+
+| Knowledge source | Ingestion configuration needed? | How permissions are enforced |
+|---|---|---|
+| [Azure Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestionparameters-properties) | Yes | Ingested RBAC scopes or ACLs matched against user identity |
+| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestionparameters-properties) | Yes | Ingested permissions matched against user identity |
+| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestionparameters-properties) | Yes | Ingested SharePoint ACLs matched against user identity |
+| [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | No (no index) | Copilot Retrieval API queries SharePoint directly using the user's token |
+
+> [!IMPORTANT]
+> If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. The solution is to update or recreate the knowledge source with the appropriate `ingestionPermissionOptions` values and reindex.
+
+### Pass the authorization header
+
+:::zone pivot="csharp"
+
+Pass the token through the `xMsQuerySourceAuthorization` parameter on the `RetrieveAsync` method.
+
+```csharp
+using Azure;
+using Azure.Identity;
+using Azure.Search.Documents.KnowledgeBases;
+using Azure.Search.Documents.KnowledgeBases.Models;
+
+// Get access token for the user
+var credential = new DefaultAzureCredential();
+var tokenRequestContext = new Azure.Core.TokenRequestContext(
+    new[] { "https://search.azure.com/.default" }
+);
+var accessToken = await credential.GetTokenAsync(tokenRequestContext);
+string token = accessToken.Token;
+
+// Create knowledge base retrieval client
+var kbClient = new KnowledgeBaseRetrievalClient(
+    endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
+    knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
+    tokenCredential: new DefaultAzureCredential()
+);
+
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent("What projects are in the financial sector?")
+        }
+    ) { Role = "user" }
+);
+
+var result = await kbClient.RetrieveAsync(
+    retrievalRequest, xMsQuerySourceAuthorization: token
+);
+Console.WriteLine(
+    (result.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text
+);
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
+
+:::zone-end
+
+:::zone pivot="python"
+
+Pass the token through the `x_ms_query_source_authorization` parameter on the retrieve method.
+
+```python
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
+from azure.search.documents.knowledgebases.models import (
+    KnowledgeBaseMessage,
+    KnowledgeBaseMessageTextContent,
+    KnowledgeBaseRetrievalRequest,
+)
+
+# Get access token for the user
+identity_token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://search.azure.com/.default"
+)
+token = identity_token_provider()
+
+# Create knowledge base retrieval client
+kb_client = KnowledgeBaseRetrievalClient(
+    endpoint="<YOUR SEARCH SERVICE URL>",
+    knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
+    credential=DefaultAzureCredential(),
+)
+
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="user",
+            content=[KnowledgeBaseMessageTextContent(text="What projects are in the financial sector?")],
+        )
+    ]
+)
+
+result = kb_client.retrieve(
+    retrieval_request=request, x_ms_query_source_authorization=token
+)
+print(result.response[0].content[0].text)
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient), [KnowledgeBaseRetrievalRequest](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest)
+
+:::zone-end
+
+:::zone pivot="rest"
+
+Include the `x-ms-query-source-authorization` header with the user's access token. Make sure you [generate an access token](search-get-started-rbac.md?pivots=rest#get-token) for the tenant that hosts your search service.
+
+```http
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+x-ms-query-source-authorization: {{user-access-token}}
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "What projects are in the financial sector?" }
+            ]
+        }
+    ]
+}
+```
+
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+
+:::zone-end
+
+For detailed information on how the retrieval engine resolves user permissions at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
 ## Review the response
 
@@ -270,9 +547,63 @@ The following examples illustrate different ways to call the retrieve action:
 
 This example specifies [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md), so `retrievalReasoningEffort` must be "low" or "medium".
 
+:::zone pivot="csharp"
+
+```csharp
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent("What companies are in the financial sector?")
+        }
+    ) { Role = "user" }
+);
+retrievalRequest.RetrievalReasoningEffort = new KnowledgeRetrievalLowReasoningEffort();
+retrievalRequest.OutputMode = "answerSynthesis";
+retrievalRequest.MaxRuntimeInSeconds = 30;
+retrievalRequest.MaxOutputSize = 6000;
+
+var result = await kbClient.RetrieveAsync(retrievalRequest);
+Console.WriteLine(
+    (result.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text
+);
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.search.documents.knowledgebases.models import KnowledgeRetrievalLowReasoningEffort
+
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="user",
+            content=[KnowledgeBaseMessageTextContent(text="What companies are in the financial sector?")],
+        )
+    ],
+    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort,
+    output_mode="answerSynthesis",
+    max_runtime_in_seconds=30,
+    max_output_size=6000,
+)
+
+result = kb_client.retrieve(retrieval_request=request)
+print(result.response[0].content[0].text)
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient), [KnowledgeBaseRetrievalRequest](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest)
+
+:::zone-end
+
+:::zone pivot="rest"
+
 ```http
 POST {{url}}/knowledgebases/kb-override/retrieve?api-version={{api-version}}
-api-key: {{key}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -291,13 +622,84 @@ Content-Type: application/json
 }
 ```
 
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+
+:::zone-end
+
 ### Set references for each knowledge source
 
 This example uses the default reasoning effort specified in the knowledge base. The focus of this example is specification of how much information to include in the response.
 
+:::zone pivot="csharp"
+
+```csharp
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+retrievalRequest.Messages.Add(
+    new KnowledgeBaseMessage(
+        content: new[] {
+            new KnowledgeBaseMessageTextContent("What companies are in the financial sector?")
+        }
+    ) { Role = "user" }
+);
+retrievalRequest.IncludeActivity = true;
+// Knowledge source params are configured per source on the request
+
+var result = await kbClient.RetrieveAsync(retrievalRequest);
+Console.WriteLine(
+    (result.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text
+);
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.search.documents.knowledgebases.models import SearchIndexKnowledgeSourceParams
+
+request = KnowledgeBaseRetrievalRequest(
+    messages=[
+        KnowledgeBaseMessage(
+            role="user",
+            content=[KnowledgeBaseMessageTextContent(text="What companies are in the financial sector?")],
+        )
+    ],
+    include_activity=True,
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name="demo-financials-ks",
+            include_references=True,
+            include_reference_source_data=True,
+        ),
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name="demo-communicationservices-ks",
+            include_references=False,
+            include_reference_source_data=False,
+        ),
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name="demo-healthcare-ks",
+            include_references=True,
+            include_reference_source_data=False,
+            always_query_source=True,
+        ),
+    ],
+)
+
+result = kb_client.retrieve(retrieval_request=request)
+print(result.response[0].content[0].text)
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient), [SearchIndexKnowledgeSourceParams](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.searchindexknowledgesourceparams)
+
+:::zone-end
+
+:::zone pivot="rest"
+
 ```http
 POST {{url}}/knowledgebases/kb-medium-example/retrieve?api-version={{api-version}}
-api-key: {{key}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -334,6 +736,9 @@ Content-Type: application/json
 }
 ```
 
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+
+:::zone-end
 
 > [!NOTE]
 > For indexed OneLake or indexed SharePoint knowledge sources, set `includeReferenceSourceData` to `true` to include source document URLs in citations.
@@ -342,9 +747,54 @@ Content-Type: application/json
 
 In this example, there's no LLM for intelligent query planning or answer synthesis. The query string goes to the agentic retrieval engine for keyword search or hybrid search.
 
+:::zone pivot="csharp"
+
+```csharp
+var retrievalRequest = new KnowledgeBaseRetrievalRequest();
+retrievalRequest.Intents.Add(
+    new KnowledgeBaseRetrievalIntent("semantic", "what is a brokerage")
+);
+
+var result = await kbClient.RetrieveAsync(retrievalRequest);
+Console.WriteLine(
+    (result.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text
+);
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.search.documents.knowledgebases.models import (
+    KnowledgeBaseRetrievalRequest,
+    KnowledgeBaseRetrievalIntent,
+)
+
+request = KnowledgeBaseRetrievalRequest(
+    intents=[
+        KnowledgeBaseRetrievalIntent(
+            type="semantic",
+            search="what is a brokerage",
+        )
+    ]
+)
+
+result = kb_client.retrieve(retrieval_request=request)
+print(result.response[0].content[0].text)
+```
+
+**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient), [KnowledgeBaseRetrievalRequest](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest)
+
+:::zone-end
+
+:::zone pivot="rest"
+
 ```http
 POST {{url}}/knowledgebases/kb-minimal/retrieve?api-version={{api-version}}
-api-key: {{key}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -357,8 +807,14 @@ Content-Type: application/json
 }
 ```
 
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+
+:::zone-end
+
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
++ [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
++ [Use a blob indexer or knowledge source to ingest RBAC scopes metadata](search-blob-indexer-role-based-access.md)
 + [Agentic RAG: Build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
 + [Azure OpenAI demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
