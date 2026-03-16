@@ -250,7 +250,7 @@ Agent deleted
 :::zone pivot="csharp"
 ## Sample for use of an Agent with Computer Use tool
 
-The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
+The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
