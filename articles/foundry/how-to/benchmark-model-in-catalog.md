@@ -5,6 +5,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
   - ai-learning-hub
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/13/2026
 ms.reviewer: changliu2

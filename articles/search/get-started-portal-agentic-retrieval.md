@@ -1,6 +1,5 @@
 ---
-title: "Quickstart: Agentic Retrieval in the Azure portal"
-titleSuffix: Azure AI Search
+title: "Quickstart: Agentic Retrieval in the Azure Portal"
 description: Learn how to use agentic retrieval in the Azure portal for a conversational search experience powered by Azure AI Search and Azure OpenAI models.
 author: mattwojo
 ms.author: mattwoj

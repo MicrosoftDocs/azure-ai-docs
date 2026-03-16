@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
+  - doc-kit-assisted
 ---
 
 # General purpose evaluators
@@ -95,4 +96,4 @@ These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excelle
 
 ## Related content
 
-- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)

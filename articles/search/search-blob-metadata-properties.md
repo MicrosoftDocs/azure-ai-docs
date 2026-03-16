@@ -1,6 +1,5 @@
 ---
-title: Content metadata properties
-titleSuffix: Azure AI Search
+title: Content Metadata Properties
 description: Learn how metadata properties can provide content to fields in a search index. This article lists metadata properties supported in Azure AI Search.
 ms.service: azure-ai-search
 ms.custom:

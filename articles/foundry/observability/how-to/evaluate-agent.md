@@ -9,6 +9,7 @@ author: lgayhardt
 ms.reviewer: changliu2
 ai-usage: ai-assisted
 #CustomerIntent: As an AI developer, I want to evaluate my agent so that I ensure quality and safety before and after deployment.
+ms.custom: doc-kit-assisted
 ---
 
 # Evaluate your AI agents
@@ -69,10 +70,10 @@ Evaluators are functions that assess your agent's responses. Some evaluators use
 
 For more built-in evaluators, see:
 
-- [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) - Tool Call Accuracy, Intent Resolution
-- [Quality evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) - Fluency, Relevance, Groundedness
-- [Text similarity evaluators](../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) - F1 Score, BLEU, ROUGE
-- [Safety evaluators](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) - Hate, Self-Harm, Sexual Content
+- [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) — Evaluate how effectively agents handle tasks, tools, and user intent.
+- [Quality evaluators](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) — Measure the overall quality of generated responses.
+- [Text similarity evaluators](../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) — Compare generated text against reference answers using NLP metrics.
+- [Safety evaluators](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) — Identify potential content and security risks in generated output.
 
 To build your own evaluators, see [Custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
@@ -125,7 +126,7 @@ testing_criteria = [
         "evaluator_name": "builtin.coherence",
         "data_mapping": {
             "query": "{{item.query}}",
-            "response": "{{sample.output_items}}",
+            "response": "{{sample.output_text}}",
         },
         "initialization_parameters": {"deployment_name": model_deployment},
     },
@@ -135,7 +136,7 @@ testing_criteria = [
         "evaluator_name": "builtin.violence",
         "data_mapping": {
             "query": "{{item.query}}",
-            "response": "{{sample.output_items}}",
+            "response": "{{sample.output_text}}",
         },
     },
 ]

@@ -11,10 +11,10 @@ ms.topic: how-to
 ms.custom:
   - classic-and-new
   - build-2025
+  - doc-kit-assisted
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
 zone_pivot_groups: openai-quickstart-dall-e
 ai-usage: ai-assisted
-
 ---
 
 # Azure OpenAI image generation models
@@ -245,7 +245,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  

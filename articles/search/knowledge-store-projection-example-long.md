@@ -1,9 +1,6 @@
 ---
-title: Projection examples
-titleSuffix: Azure AI Search
+title: Projection Examples
 description: Explore a detailed example that projects the output of a rich skillset into complex shapes that inform the structure and composition of content in a knowledge store.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 10/21/2025

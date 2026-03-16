@@ -24,7 +24,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Foundry Models from partners and community (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/concepts/models-from-partners.md)
 
 This article lists capabilities for a selection of Microsoft Foundry Models from partners and community.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
@@ -36,6 +36,21 @@ To learn more about attributes of Foundry Models from partners and community, se
 >
 > For a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../../foundry/agents/concepts/limits-quotas-regions.md).
 
+## Prerequisites
+
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+
+    > [!IMPORTANT]
+    > The following Azure subscriptions can't be used to purchase software as a service (SaaS) offers in Marketplace: Student, Visual Studio Enterprise, or Free credit. For more information on purchasing SaaS offers, see [The SaaS purchase experience](/marketplace/purchase-saas-offer-in-azure-portal#the-saas-purchase-experience).
+
+- A [Microsoft Foundry project](../../how-to/create-projects.md).
+
+[!INCLUDE [marketplace-rbac](../../../foundry/foundry-models/includes/configure-marketplace/rbac.md)]
+
+## Country/region availability
+
+Users can access models from partners and community with pay-as-you-go billing only if their Azure subscription belongs to a billing account in a country/region or region where the model offer is available. Availability varies per model provider and model SKU. For more information, see [Region availability for models](../../how-to/deploy-models-serverless-availability.md).
+
 ## Anthropic
 
 Anthropic's flagship product is Claude, a frontier AI model trusted by leading enterprises and millions of users worldwide for complex tasks including coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
@@ -46,10 +61,10 @@ To work with Claude models in Foundry, see [Deploy and use Claude models in Micr
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
-| [claude-opus-4-6](https://aka.ms/claude-opus-4-6) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000 (beta)   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)| Foundry, Hub-based |
+| [claude-opus-4-6](https://aka.ms/claude-opus-4-6) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)| Foundry, Hub-based |
 | [claude-opus-4-5](https://aka.ms/claude-opus-4-5) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)| Foundry, Hub-based |
 | [claude-opus-4-1](https://aka.ms/claude-opus-4-1) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)| Foundry, Hub-based |
-| [claude-sonnet-4-6](https://aka.ms/claude-sonnet-4-6) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000 (beta)   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)| Foundry, Hub-based |
+| [claude-sonnet-4-6](https://aka.ms/claude-sonnet-4-6) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)| Foundry, Hub-based |
 | [claude-sonnet-4-5](https://aka.ms/claude-sonnet-4-5) <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)| Foundry, Hub-based |
 | [claude-haiku-4-5](https://aka.ms/claude-haiku-4-5) <br><br> **(Preview)** | Messages | - **Input:**  text and image  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)| Foundry, Hub-based |
 
@@ -143,7 +158,7 @@ To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference 
 
 | Model  | Type | Capabilities | Inference API | Project type |
 | ------ | ---- | ------------ | ------------- | ------------ |
-| [TimeGEN-1](https://ai.azure.com/explore/models/TimeGEN-1/version/1/registry/azureml-nixtla/?cid=learnDocs) | Forecasting  | - **Input:** Time series data as JSON or dataframes (with support for multivariate input)  <br /> - **Output:**  Time series data as JSON <br /> - **Tool calling:** No <br /> - **Response formats:** JSON  | [Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/nixtla/docs/reference/nixtla_client.html#nixtlaclient-forecast) | Hub-based |
+| [TimeGEN-1](https://ai.azure.com/explore/models/TimeGEN-1/version/1/registry/azureml-nixtla/?cid=learnDocs) | Forecasting  | - **Input:** Time series data as JSON or dataframes (with support for multivariate input)  <br /> - **Output:**  Time series data as JSON <br /> - **Tool calling:** No <br /> - **Response formats:** JSON  | [Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/neuralforecast/docs/capabilities/overview.html) | Hub-based |
 
 For more details on pricing for Nixtla models, see [Nixtla](../../concepts/models-inference-examples.md#nixtla).
 
@@ -177,12 +192,22 @@ See [Stability AI models in the Foundry portal](https://ai.azure.com/explore/mod
 
 [!INCLUDE [models-open-and-custom](../includes/models-open-custom.md)]
 
+## Troubleshooting
+
+Use the following troubleshooting guide to find and solve errors when deploying third-party models in Foundry Models:
+
+| Error | Description |
+|-------|-------------|
+| Offer not available in your country/region | The model provider didn't make the specific model SKU available in the country/region where you registered your subscription. Each model provider decides which countries/regions are available, and availability can vary by model SKU. Deploy the model to a subscription with billing in a supported country/region. See [Region availability for models](../../how-to/deploy-models-serverless-availability.md). |
+| Marketplace purchase eligibility check failed | The model provider didn't make the specific model SKU available in your country/region, or the model isn't available in the region where you deployed the Foundry resource. See [Region availability for models](../../how-to/deploy-models-serverless-availability.md). |
+| Unable to create a model deployment | Azure Marketplace rejected the request to create a model subscription. This rejection can happen for multiple reasons, including subscribing to the model offering too often or from multiple subscriptions at the same time. Contact [support](https://go.microsoft.com/fwlink/?linkid=2101400&clcid=0x409) and include your subscription ID. |
+| CSP subscription not supported | Cloud Solution Provider (CSP) subscriptions can't purchase third-party model offerings. Consider using models offered as a first-party consumption service. |
+
 ## Related content
 
 - [Deployment overview for Foundry Models](../../concepts/deployments-overview.md)
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
 - [Deployment types in Foundry Models](deployment-types.md)
-- [Azure Marketplace requirements for Foundry Models from partners](../how-to/configure-marketplace.md)
 - [Region availability for Foundry Models](../../how-to/deploy-models-serverless-availability.md)
 - [Explore Foundry Models](../../concepts/foundry-models-overview.md)
 

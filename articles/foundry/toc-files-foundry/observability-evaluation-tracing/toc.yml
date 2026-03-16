@@ -40,7 +40,7 @@ items:
    - name: View evaluation results in the portal
      href: ../../how-to/evaluate-results.md
      displayName: accuracy,metrics
-   - name: Evaluation Cluster Analysis
+   - name: Analyze evaluation results
      href: ../../observability/how-to/cluster-analysis.md
    - name: Human evaluation for agents
      href: ../../observability/how-to/human-evaluation.md

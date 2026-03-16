@@ -1,6 +1,5 @@
 ---
-title: Estimate capacity for query and index workloads
-titleSuffix: Azure AI Search
+title: Estimate Capacity for Query and Index Workloads
 description: Learn how capacity is structured and used in Azure AI Search, and how to estimate the resources needed for indexing and query workloads.
 author: mattwojo
 ms.author: mattwoj

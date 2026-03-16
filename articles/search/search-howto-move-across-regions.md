@@ -1,6 +1,5 @@
 ---
-title: Move a search service across regions
-titleSuffix: Azure AI Search
+title: Move a Search Service Across Regions
 description: Learn how to move your Azure AI Search resources from one region to another in the Azure cloud.
 author: mattwojo
 ms.author: mattwoj

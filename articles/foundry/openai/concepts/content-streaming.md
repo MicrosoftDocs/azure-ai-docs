@@ -11,6 +11,7 @@ ms.date: 01/15/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Content streaming

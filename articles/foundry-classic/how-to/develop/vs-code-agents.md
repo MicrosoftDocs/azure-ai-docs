@@ -12,6 +12,7 @@ ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
 #CustomerIntent: As a developer, I want to create and manage Foundry agents in Visual Studio Code so that I can build, test, and deploy agents without leaving my IDE.
+ms.custom: doc-kit-assisted
 ---
 
 # Create and manage Foundry agents in Visual Studio Code (classic)

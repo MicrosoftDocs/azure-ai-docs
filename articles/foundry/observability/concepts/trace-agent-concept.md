@@ -7,7 +7,7 @@ ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 01/20/2026
 ms.service: azure-ai-foundry
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ms.topic: concept-article
 ---
 # Agent tracing overview (preview)

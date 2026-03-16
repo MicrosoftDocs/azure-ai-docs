@@ -1,9 +1,6 @@
 ---
-title: Search over plain text blobs
-titleSuffix: Azure AI Search
+title: Search Over Plain Text Blobs
 description: Configure a search indexer to extract plain text from Azure blobs for full text search in Azure AI Search.
-manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

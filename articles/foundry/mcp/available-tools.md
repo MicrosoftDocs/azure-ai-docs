@@ -9,6 +9,7 @@ ms.date: 11/04/2025
 ms.topic: reference
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Available tools and example prompts for Foundry MCP Server (preview)
@@ -19,7 +20,7 @@ Foundry MCP Server exposes a set of tools that let you manage datasets, run eval
 
 [!INCLUDE [preview-feature](../openai/includes/preview-feature.md)]
 
-### Agent management
+## Agent management
 
 **agent_get (read)**
 

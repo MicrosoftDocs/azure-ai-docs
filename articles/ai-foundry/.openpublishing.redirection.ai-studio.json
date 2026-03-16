@@ -1842,7 +1842,12 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/concepts/disable-preview-features-with-rbac.md",
-      "redirect_url": "/azure/foundry/concepts/disable-preview-features-with-rbac",
+      "redirect_url": "/azure/foundry/how-to/disable-preview-features",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/foundry/concepts/disable-preview-features-with-rbac.md",
+      "redirect_url": "/azure/foundry/how-to/disable-preview-features",
       "redirect_document_id": true
     },
     {

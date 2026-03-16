@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Microsoft Foundry status dashboard (classic)
 
-[!INCLUDE [classic-banner](includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../foundry/foundry-status-dashboard-documentation.md)
 
 The [Microsoft Foundry Status Dashboard](https://status.ai.azure.com/) provides visibility into the health and availability of key Foundry services. It helps customers monitor service status, stay informed about ongoing incidents, and plan around scheduled maintenance windows.
 

@@ -1,6 +1,5 @@
 ---
-title: Entity Linking cognitive skill (v3)
-titleSuffix: Azure AI Search
+title: Entity Linking Cognitive Skill (V3)
 description: Extract different linked entities from text in an enrichment pipeline in Azure AI Search.
 ms.service: azure-ai-search
 ms.custom:

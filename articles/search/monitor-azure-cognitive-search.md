@@ -1,5 +1,5 @@
 ---
-title: Monitor Azure AI Search
+title: Monitor Your Search Service
 description: Start here to learn how to monitor Azure AI Search.
 ms.date: 07/25/2025
 ms.update-cycle: 365-days

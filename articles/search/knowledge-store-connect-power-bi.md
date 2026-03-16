@@ -1,9 +1,6 @@
 ---
-title: Connect to a knowledge store with Power BI
-titleSuffix: Azure AI Search
+title: Connect to a Knowledge Store with Power BI
 description: Connect an Azure AI Search knowledge store with Power BI for analysis and exploration.
-
-manager: nitinme
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 10/21/2025

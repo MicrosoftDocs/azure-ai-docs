@@ -20,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Enable priority processing for Microsoft Foundry models (preview) (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/priority-processing.md)
 
 > [!IMPORTANT]
 > Priority processing is in preview and available by invitation only. [Register here](https://aka.ms/priority-register-interest) to be notified when it becomes more broadly available.
