@@ -25,7 +25,7 @@ The API uses JSON-formatted events sent over WebSocket connections to manage con
 - **Intelligent Turn Detection**: Multiple VAD options including Azure semantic VAD and server-side detection
 - **Audio Enhancement**: Built-in noise reduction and echo cancellation
 - **Function Calling**: Tool integration for enhanced conversational capabilities
-- **Flexible Session Management**: Configurable modalities, instructions, and response parameters
+- **Flexible Session Management**: Configurable output modalities, instructions, and response parameters
 
 ## Client Events
 
@@ -33,7 +33,7 @@ The Voice Live API supports the following client events that can be sent from th
 
 | Event | Description |
 |-------|-------------|
-| [session.update](#sessionupdate) | Update the session configuration including voice, modalities, turn detection, and other settings |
+| [session.update](#sessionupdate) | Update the session configuration including voice, output modalities, turn detection, and other settings |
 | [session.avatar.connect](#sessionavatarconnect) | Establish avatar connection by providing client SDP for WebRTC negotiation |
 | [input_audio_buffer.append](#input_audio_bufferappend) | Append audio bytes to the input audio buffer |
 | [input_audio_buffer.commit](#input_audio_buffercommit) | Commit the input audio buffer for processing |
@@ -47,7 +47,7 @@ The Voice Live API supports the following client events that can be sent from th
 
 ### session.update
 
-Update the session's configuration. This event can be sent at any time to modify settings such as voice, modalities, turn detection, tools, and other session parameters. Note that once a session is initialized with a particular model, it can't be changed to another model.
+Update the session's configuration. This event can be sent at any time to modify settings such as voice, output modalities, turn detection, tools, and other session parameters. Note that once a session is initialized with a particular model, it can't be changed to another model.
 
 #### Event Structure
 
@@ -2382,7 +2382,7 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 | type | string | Must be `"azure_semantic_vad"` |
 | threshold | number | Optional. Activation threshold |
 | prefix_padding_ms | integer | Optional. Audio padding before speech |
-| silence_duration_ms | integer | Optional. Silence duration for speech end |
+| silence_duration_ms | integer | Optional. Silence duration for speech end, in milliseconds. Default is 500 ms. |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
 | speech_duration_ms | integer | Optional. Minimum speech duration |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
@@ -2517,7 +2517,7 @@ Session configuration object used in `session.update` events.
 | Field | Type | Description |
 |-------|------|-------------|
 | model | string | Optional. Model name to use |
-| modalities | [RealtimeModality](#realtimemodality)[] | Optional. The supported modalities for the session. <br><br> For example, "modalities": ["text", "audio"] is the default setting that enables both text and audio modalities. To enable only text, set "modalities": ["text"]. To enable avatar output, set "modalities": ["text", "audio", "avatar"]. You can't enable only audio. |
+| modalities | [RealtimeModality](#realtimemodality)[] | Optional. The supported output modalities for the session. <br><br> For example, "modalities": ["text", "audio"] is the default setting that enables both text and audio output modalities. To enable only text output, set "modalities": ["text"]. To enable avatar output, set "modalities": ["text", "audio", "avatar"]. You can't enable only audio. |
 | animation | [RealtimeAnimation](#realtimeanimation) | Optional. Animation configuration |
 | voice | [RealtimeVoice](#realtimevoice) | Optional. Voice configuration |
 | instructions | string | Optional. System instructions for the model. The instructions could guide the output audio if OpenAI voices are used but may not apply to Azure voices. |
@@ -2539,11 +2539,11 @@ Session configuration object used in `session.update` events.
 
 #### RealtimeModality
 
-Supported session modalities.
+Supported session output modalities.
 
 **Allowed Values:**
-* `text` - Text input/output
-* `audio` - Audio input/output
+* `text` - Text output
+* `audio` - Audio output
 * `animation` - Animation output
 * `avatar` - Avatar video output
 
@@ -2684,7 +2684,7 @@ Configuration for LLM-based interim response generation. Uses LLM to generate co
 | type | string | Must be `"llm-interim-response"`. |
 | triggers | [InterimResponseTrigger](#interimresponsetrigger)[] | Optional. List of triggers that can fire the interim response. Any trigger can activate the interim response (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
 | latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering interim response. Default is 2000ms. Minimum value is 0. |
-| model | string | Optional. The model to use for LLM-based interim response generation. Default is `gpt-4.1-mini`. |
+| model | string | Optional. The model to use for LLM-based interim response generation. Default is `gpt-4.1-mini`. The default model might change without a new API version. |
 | instructions | string | Optional. Custom instructions for generating interim responses. If not provided, a default prompt is used. |
 | max_completion_tokens | integer | Optional. Maximum number of tokens to generate for the interim response. Default is 50. Minimum value is 1. |
 
@@ -2902,7 +2902,7 @@ Response object representing a model inference response.
 | usage | [RealtimeUsage](#realtimeusage) | Optional. Token usage statistics |
 | conversation_id | string | Optional. Associated conversation ID |
 | voice | [RealtimeVoice](#realtimevoice) | Optional. Voice used for response |
-| modalities | string[] | Optional. Modalities used |
+| modalities | string[] | Optional. Output modalities used |
 | output_audio_format | [RealtimeOutputAudioFormat](#realtimeoutputaudioformat) | Optional. Audio format used |
 | temperature | number | Optional. Temperature used |
 | max_response_output_tokens | integer or "inf" | Optional. Max tokens used |
@@ -3074,7 +3074,7 @@ The definition of a function tool as used by the realtime endpoint.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| modalities | array | The modalities that the session supports.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio modalities. To enable only text, set `"modalities": ["text"]`. You can't enable only audio. |
+| modalities | array | The output modalities for the response.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio output modalities. To enable only text output, set `"modalities": ["text"]`. You can't enable only audio. |
 | instructions | string | The instructions (the system message) to guide the model's responses.|
 | voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br><br>Once the voice is used in the session for the model's audio response, it can't be changed. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
@@ -3097,7 +3097,7 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | object | string | The session object.<br><br>Allowed values: `realtime.session` |
 | id | string | The unique ID of the session. |
 | model | string | The model used for the session. |
-| modalities | array | The modalities that the session supports.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio modalities. To enable only text, set `"modalities": ["text"]`. You can't enable only audio. |
+| modalities | array | The output modalities for the session.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio output modalities. To enable only text output, set `"modalities": ["text"]`. You can't enable only audio. |
 | instructions | string | The instructions (the system message) to guide the model's text and audio responses.<br><br>Here are some example instructions to help guide content and format of text and audio responses:<br>`"instructions": "be succinct"`<br>`"instructions": "act friendly"`<br>`"instructions": "here are examples of good responses"`<br><br>Here are some example instructions to help guide audio behavior:<br>`"instructions": "talk quickly"`<br>`"instructions": "inject emotion into your voice"`<br>`"instructions": "laugh frequently"`<br><br>While the model might not always follow these instructions, they provide guidance on the desired behavior. |
 | voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br><br>Once the voice is used in the session for the model's audio response, it can't be changed. |
 | input_audio_sampling_rate | integer | The sampling rate for the input audio. |
