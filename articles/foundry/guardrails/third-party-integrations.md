@@ -41,16 +41,16 @@ This section links resources to third-party instructions on retrieving API keys 
 
 | Model   | Onboarding step |
 |--------------------|----------------------|
-| Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) |
-| Zenity  | [AI Detection and Response](https://app.zenity.io/app/connect/integrations).     |
+| Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm){:target="_blank"} |
+| Zenity  | [AI Detection and Response](https://app.zenity.io/app/connect/integrations){:target="_blank"}.     |
 
 
 ## Attach Integrations to Foundry Guardrails
 
 1. Select one or more Foundry Guardrails to attach the integration.
 1. Select **Save** and confirm integration and guardrail attachment in the integrations table.
-1. Confirm the status: Running indicates a successful connection.
-1. Error messages provide concrete recommendations (for example, missing Managed Identity).
+1. Confirm the status. Running indicates that a connection has been successfully established.
+1. Error messages point to concrete recommendations (for example, missing Managed Identity).
 1. Follow the main Foundry Guardrail flow to [assign a custom guardrail](guardrails-overview.md) with an active third-party integration to a model or agent.
 1. Test in Playground.
 
