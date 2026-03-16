@@ -8,7 +8,7 @@ ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 01/20/2026
 ms.topic: how-to
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
 
 # Set up tracing in Microsoft Foundry (preview)

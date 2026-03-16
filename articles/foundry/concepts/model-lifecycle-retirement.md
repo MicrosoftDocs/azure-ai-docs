@@ -15,6 +15,7 @@ reviewer: rsavage2
 #Customer intent: As a data scientist, I want to learn about the lifecycle of models that are available in the model catalog.
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Model deprecation and retirement for Microsoft Foundry Models

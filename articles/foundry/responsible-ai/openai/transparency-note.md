@@ -8,8 +8,10 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 ms.date: 04/16/2025
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Transparency note for Azure OpenAI

@@ -12,8 +12,8 @@ ms.custom:
   - classic-and-new
   - build-2025
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
-
 ---
 
 # Model router for Microsoft Foundry

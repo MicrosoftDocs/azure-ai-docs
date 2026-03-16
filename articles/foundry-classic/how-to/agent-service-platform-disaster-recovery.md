@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Foundry Agent Service platform outage recovery (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/agent-service-platform-disaster-recovery.md)
 
 In this article, you learn how to recover your Foundry Agent Service projects from Azure platform incidents that take an entire region or a regional dependency offline. Examples of these incidents include prolonged regional outages or loss of a stateful dependency.
 

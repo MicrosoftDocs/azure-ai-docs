@@ -7,8 +7,10 @@ ms.date: 02/25/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # AI Red Teaming Agent (preview)
@@ -131,7 +133,7 @@ The AI Red Teaming Agent currently supported red teaming Foundry agents with Azu
 | Connected Agent tool calls              | Not Supported |
 | Computer Use tool calls                  | Not Supported |
 
-For a comprehensive list of tools, see [Tools](../../foundry-classic/agents/how-to/tools-classic/overview.md).
+For a comprehensive list of tools, see [Tools](../agents/concepts/tool-catalog.md).
 
 ## Supported attack strategies
 

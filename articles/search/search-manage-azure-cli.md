@@ -1,9 +1,8 @@
 ---
-title: Azure CLI scripts using the az search module
-titleSuffix: Azure AI Search
+title: Azure CLI Scripts Using az search Module
 description: Create and configure an Azure AI Search service with the Azure CLI. You can scale a service up or down, manage admin and query api-keys, and query for system information.
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.devlang: azurecli
 ms.custom:

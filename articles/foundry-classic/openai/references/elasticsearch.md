@@ -153,7 +153,7 @@ key = os.environ.get("Key")
 key_id = os.environ.get("KeyId")
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    DefaultAzureCredential(), "https://ai.azure.com/.default")
 
 client = AzureOpenAI(
     azure_endpoint=endpoint,

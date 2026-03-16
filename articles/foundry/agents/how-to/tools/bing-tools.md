@@ -6,17 +6,19 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 02/20/2026
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
  - dev-focus
  - pilot-ai-workflow-jan-2026
+ - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-bing-grounding-new
 ---
 
 # Grounding agents with Bing Search tools
+
 Traditional language models work with a knowledge cutoff. They can't access new information beyond a fixed point in time. By using Grounding with Bing Search and Grounding with Bing Custom Search (preview), your agents can incorporate real-time public web data when generating responses. By using these tools, you can ask questions such as "what is the top AI news today".
 
 The grounding process involves several key steps:
@@ -41,9 +43,7 @@ The grounding process involves several key steps:
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
-
-Java SDK samples are not yet available.
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -55,21 +55,19 @@ Before you begin, make sure you have:
   - **Azure AI Project Manager** role to create project connections in Foundry. For more information, see [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md).
 - A Foundry project created with a configured endpoint.
 - An AI model deployed in your project.
-- SDK installed for your preferred language:
-  - Python: `azure-ai-projects` (latest prerelease version)
-  - C#: `Azure.AI.Projects.OpenAI`
+- SDK installed for your preferred language. C# and Java require the prerelease version:
+  - Python: `azure-ai-projects`
+  - C#: `Azure.AI.Projects.OpenAI` (prerelease)
   - TypeScript/JavaScript: `@azure/ai-projects`
-- Environment variables set up:
-  - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
-  - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
-  - For SDK samples:
-    - `BING_PROJECT_CONNECTION_NAME`: Your Grounding with Bing Search project connection name.
-    - `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME`: Your Grounding with Bing Custom Search project connection name.
-  - For REST samples:
+  - Java: `com.azure:azure-ai-agents:2.0.0-beta.1`
+- Azure credentials configured for authentication (such as `DefaultAzureCredential`).
+  - For REST samples, environment variables set up:
+    - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
+    - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your deployed model name.
     - `BING_PROJECT_CONNECTION_ID`: Your Grounding with Bing Search project connection ID.
     - `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`: Your Grounding with Bing Custom Search project connection ID.
+    - `BING_CUSTOM_SEARCH_INSTANCE_NAME`: Your custom search instance name.
     - `AGENT_TOKEN`.
-  - For Bing Custom Search: `BING_CUSTOM_SEARCH_INSTANCE_NAME`: Your custom search instance name.
 - A Bing Grounding or Bing Custom Search resource created and connected to your Foundry project. A paid subscription is required to create a Grounding with Bing Search or Grounding with Bing Custom Search resource.
 - The Grounding with Bing Search tool works in a network-secured Foundry project, but it behaves like a public endpoint. Consider this behavior when you use the tool in a network-secured environment.
 
@@ -112,57 +110,16 @@ If you already have a project connection ID for the Bing resource you want to us
 ## Code examples
 
 > [!NOTE]
-> - You need the latest prerelease package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
-> - For SDK samples, use the project connection name. For REST samples, use the project connection ID in the format `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
+> - You need the latest SDK package. C# and Java require the prerelease version. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> - For SDK samples, use the project connection name. For REST samples, use the project connection ID in the format`/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
-
-### Quick verification
-
-Before running the full samples, verify your Bing connection exists:
-
-```python
-import os
-
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from dotenv import load_dotenv
-
-load_dotenv()
-
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-):
-    print("Connected to project.")
-    
-    # Verify Bing connection exists
-    connection_name = os.environ.get("BING_PROJECT_CONNECTION_NAME")
-    if connection_name:
-        try:
-            conn = project_client.connections.get(connection_name)
-            print(f"Bing connection verified: {conn.name}")
-            print(f"Connection ID: {conn.id}")
-        except Exception as e:
-            print(f"Bing connection '{connection_name}' not found: {e}")
-    else:
-        # List available connections to help find the right one
-        print("BING_PROJECT_CONNECTION_NAME not set. Available connections:")
-        for conn in project_client.connections.list():
-            print(f"  - {conn.name}")
-```
-
-If this code runs without errors, your credentials and Bing connection are configured correctly.
-
-### Full samples
 
 The following examples demonstrate how to create an agent with Grounding with Bing Search tools, and how to use the agent to respond to user queries.
 
 #### Grounding with Bing Search
 
 ```python
-import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -172,65 +129,66 @@ from azure.ai.projects.models import (
     BingGroundingSearchConfiguration,
 )
 
-load_dotenv()
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+BING_CONNECTION_NAME = "my-bing-connection"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
-    # Get connection ID from connection name
-    bing_connection = project_client.connections.get(
-        os.environ["BING_PROJECT_CONNECTION_NAME"],
-    )
-    print(f"Grounding with Bing Search connection ID: {bing_connection.id}")
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant.",
-            tools=[
-                BingGroundingTool(
-                    bing_grounding=BingGroundingSearchToolParameters(
-                        search_configurations=[
-                            BingGroundingSearchConfiguration(
-                                project_connection_id=bing_connection.id
-                            )
-                        ]
-                    )
+# Get connection ID from connection name
+bing_connection = project.connections.get(BING_CONNECTION_NAME)
+
+agent = project.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant.",
+        tools=[
+            BingGroundingTool(
+                bing_grounding=BingGroundingSearchToolParameters(
+                    search_configurations=[
+                        BingGroundingSearchConfiguration(
+                            project_connection_id=bing_connection.id
+                        )
+                    ]
                 )
-            ],
-        ),
-        description="You are a helpful agent.",
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+            )
+        ],
+    ),
+    description="You are a helpful agent.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    stream_response = openai_client.responses.create(
-        stream=True,
-        tool_choice="required",
-        input="What is today's date and weather in Seattle?",
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+stream_response = openai.responses.create(
+    stream=True,
+    tool_choice="required",
+    input="What is today's date and weather in Seattle?",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    for event in stream_response:
-        if event.type == "response.created":
-            print(f"Follow-up response created with ID: {event.response.id}")
-        elif event.type == "response.output_text.delta":
-            print(f"Delta: {event.delta}")
-        elif event.type == "response.text.done":
-            print(f"\nFollow-up response done!")
-        elif event.type == "response.output_item.done":
-            if event.item.type == "message":
-                item = event.item
-                if item.content[-1].type == "output_text":
-                    text_content = item.content[-1]
-                    for annotation in text_content.annotations:
-                        if annotation.type == "url_citation":
-                            print(f"URL Citation: {annotation.url}")
-        elif event.type == "response.completed":
-            print(f"\nFollow-up completed!")
-            print(f"Full response: {event.response.output_text}")
+for event in stream_response:
+    if event.type == "response.created":
+        print(f"Follow-up response created with ID: {event.response.id}")
+    elif event.type == "response.output_text.delta":
+        print(f"Delta: {event.delta}")
+    elif event.type == "response.text.done":
+        print(f"\nFollow-up response done!")
+    elif event.type == "response.output_item.done":
+        if event.item.type == "message":
+            item = event.item
+            if item.content[-1].type == "output_text":
+                text_content = item.content[-1]
+                for annotation in text_content.annotations:
+                    if annotation.type == "url_citation":
+                        print(f"URL Citation: {annotation.url}")
+    elif event.type == "response.completed":
+        print(f"\nFollow-up completed!")
+        print(f"Full response: {event.response.output_text}")
 ```
 
 ### What this code does
@@ -245,8 +203,8 @@ This example creates an agent with grounding by using the Bing Search tool that 
 
 ### Required inputs
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_NAME`
-- Azure credentials configured for `DefaultAzureCredential`
+- Update the `PROJECT_ENDPOINT` and `BING_CONNECTION_NAME` constants in the code with your values.
+- Azure credentials configured for `DefaultAzureCredential`.
 
 ### Expected output
 
@@ -265,8 +223,6 @@ Full response: Today's date is December 12, 2025, and the weather in Seattle is.
 ### Grounding with Bing Custom Search (preview)
 
 ```python
-import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -276,74 +232,76 @@ from azure.ai.projects.models import (
     BingCustomSearchConfiguration,
 )
 
-load_dotenv()
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+CUSTOM_SEARCH_CONNECTION_NAME = "my-custom-search-connection"
+CUSTOM_SEARCH_INSTANCE_NAME = "my-custom-search-instance"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
-    # Get connection ID from connection name
-    bing_custom_connection = project_client.connections.get(
-        os.environ["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME"],
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Get connection ID from connection name
+bing_custom_connection = project.connections.get(CUSTOM_SEARCH_CONNECTION_NAME)
+
+bing_custom_search_tool = BingCustomSearchPreviewTool(
+    bing_custom_search_preview=BingCustomSearchToolParameters(
+        search_configurations=[
+            BingCustomSearchConfiguration(
+                project_connection_id=bing_custom_connection.id,
+                instance_name=CUSTOM_SEARCH_INSTANCE_NAME,
+            )
+        ]
     )
-    print(f"Grounding with Bing Custom Search connection ID: {bing_custom_connection.id}")
+)
 
-    bing_custom_search_tool = BingCustomSearchPreviewTool(
-        bing_custom_search_preview=BingCustomSearchToolParameters(
-            search_configurations=[
-                BingCustomSearchConfiguration(
-                    project_connection_id=bing_custom_connection.id,
-                    instance_name=os.environ["BING_CUSTOM_SEARCH_INSTANCE_NAME"],
-                )
-            ]
-        )
-    )
+agent = project.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="""You are a helpful agent that can use Bing Custom Search tools to assist users. 
+        Use the available Bing Custom Search tools to answer questions and perform tasks.""",
+        tools=[bing_custom_search_tool],
+    ),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="""You are a helpful agent that can use Bing Custom Search tools to assist users. 
-            Use the available Bing Custom Search tools to answer questions and perform tasks.""",
-            tools=[bing_custom_search_tool],
-        ),
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+user_input = input(
+    "Enter your question for the Bing Custom Search agent " "(e.g., 'Tell me more about foundry agent service'): \n"
+)
 
-    user_input = input(
-        "Enter your question for the Bing Custom Search agent " "(e.g., 'Tell me more about foundry agent service'): \n"
-    )
+# Send initial request that will trigger the Bing Custom Search tool
+stream_response = openai.responses.create(
+    stream=True,
+    input=user_input,
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    # Send initial request that will trigger the Bing Custom Search tool
-    stream_response = openai_client.responses.create(
-        stream=True,
-        input=user_input,
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
-
-    for event in stream_response:
-        if event.type == "response.created":
-            print(f"Follow-up response created with ID: {event.response.id}")
-        elif event.type == "response.output_text.delta":
-            print(f"Delta: {event.delta}")
-        elif event.type == "response.text.done":
-            print(f"\nFollow-up response done!")
-        elif event.type == "response.output_item.done":
-            if event.item.type == "message":
-                item = event.item
-                if item.content[-1].type == "output_text":
-                    text_content = item.content[-1]
-                    for annotation in text_content.annotations:
-                        if annotation.type == "url_citation":
-                            print(
-                                f"URL Citation: {annotation.url}, "
-                                f"Start index: {annotation.start_index}, "
-                                f"End index: {annotation.end_index}"
-                            )
-        elif event.type == "response.completed":
-            print(f"\nFollow-up completed!")
-            print(f"Full response: {event.response.output_text}")
+for event in stream_response:
+    if event.type == "response.created":
+        print(f"Follow-up response created with ID: {event.response.id}")
+    elif event.type == "response.output_text.delta":
+        print(f"Delta: {event.delta}")
+    elif event.type == "response.text.done":
+        print(f"\nFollow-up response done!")
+    elif event.type == "response.output_item.done":
+        if event.item.type == "message":
+            item = event.item
+            if item.content[-1].type == "output_text":
+                text_content = item.content[-1]
+                for annotation in text_content.annotations:
+                    if annotation.type == "url_citation":
+                        print(
+                            f"URL Citation: {annotation.url}, "
+                            f"Start index: {annotation.start_index}, "
+                            f"End index: {annotation.end_index}"
+                        )
+    elif event.type == "response.completed":
+        print(f"\nFollow-up completed!")
+        print(f"Full response: {event.response.output_text}")
 ```
 
 **What this code does**
@@ -358,9 +316,9 @@ This example creates an agent with Grounding with Bing Custom Search tool that s
 
 **Required inputs**
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME`, `BING_CUSTOM_SEARCH_INSTANCE_NAME`
-- Azure credentials configured for `DefaultAzureCredential`
-- User input at runtime
+- Update the `PROJECT_ENDPOINT`, `CUSTOM_SEARCH_CONNECTION_NAME`, and `CUSTOM_SEARCH_INSTANCE_NAME` constants in the code with your values.
+- Azure credentials configured for `DefaultAzureCredential`.
+- User input at runtime.
 
 **Expected output**
 
@@ -382,56 +340,21 @@ Full response: Microsoft Foundry Agent Service enables you to build...
 
 :::zone pivot="csharp"
 
-### Quick verification
-
-Before running the full samples, verify your Bing connection exists:
-
-```csharp
-using Azure.AI.Projects;
-using Azure.Identity;
-
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_NAME");
-
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-
-// Verify Bing connection exists
-try
-{
-    AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: bingConnectionName);
-    Console.WriteLine($"Bing connection verified: {conn.Name}");
-    Console.WriteLine($"Connection ID: {conn.Id}");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Bing connection '{bingConnectionName}' not found: {ex.Message}");
-    // List available connections
-    Console.WriteLine("Available connections:");
-    foreach (var conn in projectClient.Connections.GetConnections())
-    {
-        Console.WriteLine($"  - {conn.Name}");
-    }
-}
-```
-
-If this code runs without errors, your credentials and Bing connection are configured correctly.
-
-### Full samples
-
-The following C# examples demonstrate how to create an agent with Grounding with Bing Search tool, and how to use the agent to respond to user queries. These examples use synchronous calls for simplicity. For asynchronous examples, see the [agent tools C# samples](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples).
+The following C# examples demonstrate how to create an agent with Grounding with Bing Search tool, and how to use the agent to respond to user queries. These examples use synchronous calls for simplicity. For asynchronous examples, see the [agent tools C# samples](https://aka.ms/azsdk/Azure.AI.Extensions.OpenAI/net/samples).
 
 To enable your Agent to use Bing search API, use `BingGroundingAgentTool`.
 
 #### Grounding with Bing Search
 
 ```csharp
-// Read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_NAME");
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var bingConnectionName = "my-bing-connection";
 
-// Create an instance of AIProjectClient.
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Create project client to call Foundry API
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
 
 // Get connection ID from connection name
 AIProjectConnection bingConnection = projectClient.Connections.GetConnection(connectionName: bingConnectionName);
@@ -441,7 +364,7 @@ BingGroundingTool bingGroundingAgentTool = new(new BingGroundingSearchToolOption
   searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
     )
 );
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful agent.",
     Tools = { bingGroundingAgentTool, }
@@ -495,8 +418,8 @@ This example creates an agent that uses the Grounding with Bing Search tool and 
 
 ### Required inputs
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_NAME`
-- Azure credentials configured for `DefaultAzureCredential`
+- Update the `projectEndpoint` and `bingConnectionName` constants in the code with your values.
+- Azure credentials configured for `DefaultAzureCredential`.
 
 ### Expected output
 
@@ -507,13 +430,14 @@ Euler's identity is considered one of the most elegant equations in mathematics.
 ## Grounding with Bing in streaming scenarios
 
 ```csharp
-// Read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var bingConnectionName = System.Environment.GetEnvironmentVariable("BING_PROJECT_CONNECTION_NAME");
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var bingConnectionName = "my-bing-connection";
 
-// Create an instance of AIProjectClient
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Create project client to call Foundry API
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
 
 // Get connection ID from connection name
 AIProjectConnection bingConnection = projectClient.Connections.GetConnection(connectionName: bingConnectionName);
@@ -523,7 +447,7 @@ BingGroundingTool bingGroundingAgentTool = new(new BingGroundingSearchToolOption
   searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
     )
 );
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful agent.",
     Tools = { bingGroundingAgentTool }
@@ -598,8 +522,8 @@ This example creates an agent with grounding by using the Bing Search tool and d
 
 ### Required inputs
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_NAME`
-- Azure credentials configured for `DefaultAzureCredential`
+- Update the `projectEndpoint` and `bingConnectionName` constants in the code with your values.
+- Azure credentials configured for `DefaultAzureCredential`.
 
 ### Expected output
 
@@ -738,43 +662,6 @@ JSON response with:
 
 :::zone pivot="typescript"
 
-### Quick verification
-
-Before running the full samples, verify your Bing connection exists:
-
-```typescript
-import { DefaultAzureCredential } from "@azure/identity";
-import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
-
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const bingConnectionName = process.env["BING_PROJECT_CONNECTION_NAME"] || "<bing connection name>";
-
-async function verifyConnection(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  console.log("Connected to project.");
-
-  try {
-    const conn = await project.connections.get(bingConnectionName);
-    console.log(`Bing connection verified: ${conn.name}`);
-    console.log(`Connection ID: ${conn.id}`);
-  } catch (error) {
-    console.log(`Bing connection '${bingConnectionName}' not found: ${error}`);
-    // List available connections
-    console.log("Available connections:");
-    for await (const conn of project.connections.list()) {
-      console.log(`  - ${conn.name}`);
-    }
-  }
-}
-
-verifyConnection().catch(console.error);
-```
-
-If this code runs without errors, your credentials and Bing connection are configured correctly.
-
-### Full samples
-
 The following TypeScript examples demonstrate how to create an agent with Grounding with Bing Search and Grounding with Bing Custom Search (preview) tools, and how to use the agent to respond to user queries. For JavaScript examples, see the [agent tools JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools) in the Azure SDK for JavaScript repository on GitHub.
 
 #### Grounding with Bing Search
@@ -782,27 +669,22 @@ The following TypeScript examples demonstrate how to create an agent with Ground
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName =
-  process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const bingConnectionName =
-  process.env["BING_PROJECT_CONNECTION_NAME"] || "<bing connection name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const BING_CONNECTION_NAME = "my-bing-connection";
 
 export async function main(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = await project.getOpenAIClient();
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   // Get connection ID from connection name
-  const bingConnection = await project.connections.get(bingConnectionName);
-  console.log(`Bing connection ID: ${bingConnection.id}`);
-
-  console.log("Creating agent with Bing grounding tool...");
+  const bingConnection = await project.connections.get(BING_CONNECTION_NAME);
 
   const agent = await project.agents.createVersion("MyBingGroundingAgent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "You are a helpful assistant.",
     tools: [
       {
@@ -820,8 +702,7 @@ export async function main(): Promise<void> {
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   // Send request that requires current information from the web
-  console.log("\nSending request to Bing grounding agent with streaming...");
-  const streamResponse = await openAIClient.responses.create(
+  const streamResponse = await openai.responses.create(
     {
       input: "What is today's date and weather in Seattle?",
       stream: true,
@@ -890,16 +771,13 @@ This example creates an agent with grounding by using the Bing Search tool that 
 
 **Required inputs**
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_NAME`
-- Azure credentials configured for `DefaultAzureCredential`
+- Update the `PROJECT_ENDPOINT` and `BING_CONNECTION_NAME` constants in the code with your values.
+- Azure credentials configured for `DefaultAzureCredential`.
 
 **Expected output**
 
 ```console
-Creating agent with Bing grounding tool...
 Agent created (id: asst_abc123, name: MyBingGroundingAgent, version: 1)
-
-Sending request to Bing grounding agent with streaming...
 Follow-up response created with ID: resp_xyz789
 Today's date is December 12, 2025, and the weather in Seattle...
 
@@ -920,30 +798,23 @@ Bing grounding agent sample completed!
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import * as readline from "readline";
-import "dotenv/config";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName =
-  process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const bingCustomSearchConnectionName =
-  process.env["BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME"] ||
-  "<bing custom search connection name>";
-const bingCustomSearchInstanceName =
-  process.env["BING_CUSTOM_SEARCH_INSTANCE_NAME"] || "<bing custom search instance name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const CUSTOM_SEARCH_CONNECTION_NAME = "my-custom-search-connection";
+const CUSTOM_SEARCH_INSTANCE_NAME = "my-custom-search-instance";
 
 export async function main(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = await project.getOpenAIClient();
+  // Create clients to call Foundry API
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   // Get connection ID from connection name
-  const bingCustomConnection = await project.connections.get(bingCustomSearchConnectionName);
-  console.log(`Bing Custom Search connection ID: ${bingCustomConnection.id}`);
-
-  console.log("Creating agent with Bing Custom Search tool...");
+  const bingCustomConnection = await project.connections.get(CUSTOM_SEARCH_CONNECTION_NAME);
 
   const agent = await project.agents.createVersion("MyAgent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions:
       "You are a helpful agent that can use Bing Custom Search tools to assist users. Use the available Bing Custom Search tools to answer questions and perform tasks.",
     tools: [
@@ -953,7 +824,7 @@ export async function main(): Promise<void> {
           search_configurations: [
             {
               project_connection_id: bingCustomConnection.id,
-              instance_name: bingCustomSearchInstanceName,
+              instance_name: CUSTOM_SEARCH_INSTANCE_NAME,
             },
           ],
         },
@@ -979,8 +850,7 @@ export async function main(): Promise<void> {
   });
 
   // Send initial request that will trigger the Bing Custom Search tool
-  console.log("\nSending request to Bing Custom Search agent with streaming...");
-  const streamResponse = await openAIClient.responses.create(
+  const streamResponse = await openai.responses.create(
     {
       input: userInput,
       stream: true,
@@ -1048,19 +918,16 @@ This example creates an agent with Grounding with Bing Custom Search tool that s
 
 **Required inputs**
 
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_NAME`, `BING_CUSTOM_SEARCH_INSTANCE_NAME`
-- Azure credentials configured for `DefaultAzureCredential`
-- User input provided at runtime via console
+- Update the `PROJECT_ENDPOINT`, `CUSTOM_SEARCH_CONNECTION_NAME`, and `CUSTOM_SEARCH_INSTANCE_NAME` constants in the code with your values.
+- Azure credentials configured for `DefaultAzureCredential`.
+- User input provided at runtime via console.
 
 **Expected output**
 
 ```console
-Creating agent with Bing Custom Search tool...
 Agent created (id: asst_abc123, name: MyAgent, version: 1)
 Enter your question for the Bing Custom Search agent (e.g., 'Tell me more about foundry agent service'):
 Tell me more about foundry agent service
-
-Sending request to Bing Custom Search agent with streaming...
 Follow-up response created with ID: resp_xyz789
 Microsoft Foundry Agent Service enables you to build...
 
@@ -1077,9 +944,84 @@ Bing Custom Search agent sample completed!
 
 :::zone-end
 
+:::zone pivot="java"
+
+## Use Bing grounding in a Java agent
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with Bing grounding
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.*;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+public class BingGroundingExample {
+    public static void main(String[] args) {
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
+        String bingConnectionId = "my-bing-connection-id";
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(projectEndpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create Bing grounding tool with connection configuration
+        BingGroundingTool bingTool = new BingGroundingTool(
+            new BingGroundingSearchToolParameters(Arrays.asList(
+                new BingGroundingSearchConfiguration(bingConnectionId)
+            ))
+        );
+
+        // Create agent with Bing grounding tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+            .setInstructions("You are a helpful assistant. Use Bing to find up-to-date information.")
+            .setTools(Collections.singletonList(bingTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("bing-grounding-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("What are the latest developments in AI?"));
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
+:::zone-end
+
 ## How it works
 
-The user query is the message that an end user sends to an agent, such as *"should I take an umbrella with me today? I'm in Seattle."* Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave. 
+The user query is the message that an end user sends to an agent, such as *"should I take an umbrella with me today? I'm in Seattle."*Instructions are the system message a developer can provide to share context and provide instructions to the AI model on how to use various tools or behave. 
 
 When a user sends a query, the customer's AI model deployment first processes it (using the provided instructions) to later perform a Bing search query (which is [visible to developers](#how-to-display-search-results)). 
 Grounding with Bing returns relevant search results to the customer's model deployment, which then generates the final output. 
@@ -1181,18 +1123,15 @@ Replace all placeholder values (including `{{` and `}}`) with your actual resour
 - If your site isn't indexed, see [Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmasters-guidelines-30fba23a) for indexing instructions.
 - Wait for Bing to crawl recently added or updated content (can take several days).
 
-### Missing or invalid environment variables
+### Missing or invalid configuration values
 
-**Problem**: Code fails with `KeyError` or "environment variable not found" errors.
+**Problem**: Code fails with connection errors or "not found" responses.
 
-**Solution**: Ensure you set all required environment variables:
-- `FOUNDRY_PROJECT_ENDPOINT`
-- `FOUNDRY_MODEL_DEPLOYMENT_NAME`
-- `BING_PROJECT_CONNECTION_ID` or `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`
-- For custom search: `BING_CUSTOM_SEARCH_INSTANCE_NAME`
-- For REST API: `AGENT_TOKEN`
-
-Create a `.env` file or set system environment variables with these values.
+**Solution**: Ensure you update all required constants in the code with your actual values:
+- `PROJECT_ENDPOINT` (Python/TypeScript) or `projectEndpoint` (C#/Java): Your Foundry project endpoint URL.
+- Connection name or ID for your Bing resource.
+- For custom search: your custom search instance name.
+- For REST API, set environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `BING_PROJECT_CONNECTION_ID` or `BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID`, and `AGENT_TOKEN`.
 
 ### Agent doesn't use the grounding tool
 

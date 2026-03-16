@@ -7,6 +7,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 12/22/2025
 ms.reviewer: dlozier
@@ -15,7 +16,7 @@ author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# See evaluation results in the Microsoft Foundry portal
+# View evaluation results in the Microsoft Foundry portal
 In this article, you learn to:
 
 - Locate and open evaluation runs.

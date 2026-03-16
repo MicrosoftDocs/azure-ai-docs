@@ -12,10 +12,11 @@ ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
+  - doc-kit-assisted
 ---
 
-# Agent evaluators (preview)
-[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
+# Agent evaluators
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 AI agents are powerful productivity assistants that can create workflows for business needs. However, observability can be a challenge due to their complex interaction patterns. Agent evaluators provide systematic observability into agentic workflows by measuring quality, safety, and performance.
 
@@ -30,13 +31,13 @@ Foundry provides built-in agent evaluators that function like unit tests for age
 |--|--|--|--|--|
 | Task Completion (preview) | System evaluation | Assessing end-to-end task success in workflow automation, goal-oriented AI interactions, or any scenario where full task completion is critical | Measures if the agent completed the requested task with a usable deliverable that meets all user requirements | Binary: Pass/Fail |
 | Task Adherence (preview) | System evaluation | Ensuring agents follow system instructions, validating compliance in regulated environments | Measures if the agent's actions adhere to its assigned tasks according to rules, procedures, and policy constraints, based on its system message and prior steps | Binary: Pass/Fail |
-| Task Navigation Efficiency (preview) | System evaluation | Optimizing agent workflows, reducing unnecessary steps, validating against known optimal paths (requires ground truth) | Measures whether the agent made tool calls efficiently to complete a task by comparing them to expected tool sequences | Binary: Pass/Fail |
+| Task Navigation Efficiency | System evaluation | Optimizing agent workflows, reducing unnecessary steps, validating against known optimal paths (requires ground truth) | Measures whether the agent made tool calls efficiently to complete a task by comparing them to expected tool sequences | Binary: Pass/Fail |
 | Intent Resolution (preview) | System evaluation | Customer support scenarios, conversational AI, FAQ systems where understanding user intent is essential | Measures whether the agent correctly identifies the user's intent | Binary: Pass/Fail based on threshold (1-5 scale) |
-| Tool Call Accuracy (preview) | Process evaluation | Overall tool call quality assessment in agent systems with tool integration, API interactions to complete its tasks | Measures whether the agent made the right tool calls with correct parameters to complete its task | Binary: Pass/Fail based on threshold (1-5 scale) |
-| Tool Selection (preview) | Process evaluation | Validating tool choice quality in orchestration platforms, ensuring efficient tool usage without redundancy | Measures whether the agent selected the correct tools without selecting unnecessary ones | Binary: Pass/Fail |
-| Tool Input Accuracy (preview) | Process evaluation | Strict validation of tool parameters in production environments, API integration tests, critical workflows requiring 100% parameter correctness | Measures if all tool call parameters are correct across six strict criteria: groundedness, type compliance, format compliance, required parameters, no unexpected parameters, and value appropriateness | Binary: Pass/Fail |
-| Tool Output Utilization (preview) | Process evaluation | Validating correct use of API responses, database query results, search outputs in agent reasoning and responses | Measures if the agent correctly understood and used tool call results contextually in its reasoning and final response | Binary: Pass/Fail |
-| Tool Call Success (preview) | Process evaluation | Monitoring tool reliability, detecting API failures, timeout issues, or technical errors in tool execution | Measures if tool calls succeeded or resulted in technical errors or exceptions | Binary: Pass/Fail |
+| Tool Call Accuracy | Process evaluation | Overall tool call quality assessment in agent systems with tool integration, API interactions to complete its tasks | Measures whether the agent made the right tool calls with correct parameters to complete its task | Binary: Pass/Fail based on threshold (1-5 scale) |
+| Tool Selection | Process evaluation | Validating tool choice quality in orchestration platforms, ensuring efficient tool usage without redundancy | Measures whether the agent selected the correct tools without selecting unnecessary ones | Binary: Pass/Fail |
+| Tool Input Accuracy | Process evaluation | Strict validation of tool parameters in production environments, API integration tests, critical workflows requiring 100% parameter correctness | Measures if all tool call parameters are correct across six strict criteria: groundedness, type compliance, format compliance, required parameters, no unexpected parameters, and value appropriateness | Binary: Pass/Fail |
+| Tool Output Utilization | Process evaluation | Validating correct use of API responses, database query results, search outputs in agent reasoning and responses | Measures if the agent correctly understood and used tool call results contextually in its reasoning and final response | Binary: Pass/Fail |
+| Tool Call Success | Process evaluation | Monitoring tool reliability, detecting API failures, timeout issues, or technical errors in tool execution | Measures if tool calls succeeded or resulted in technical errors or exceptions | Binary: Pass/Fail |
 
 ## System evaluation
 
@@ -53,7 +54,7 @@ Examples:
 
 - [Task completion (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_completion.py)
 - [Task adherence sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
-- [Task navigation efficiency (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_navigation_efficiency.py)
+- [Task navigation efficiency sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_navigation_efficiency.py)
 - [Intent resolution sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
 
 ## Process evaluation
@@ -69,10 +70,10 @@ Process evaluation examines the quality and efficiency of each step in your agen
 Examples:
 
 - [Tool call accuracy sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_accuracy.py)
-- [Tool selection (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_selection.py)
-- [Tool input accuracy (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_input_accuracy.py)
-- [Tool output utilization (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
-- [Tool call success (preview) sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_success.py)
+- [Tool selection sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_selection.py)
+- [Tool input accuracy sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_input_accuracy.py)
+- [Tool output utilization sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
+- [Tool call success sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_success.py)
 
 ## Evaluator model and tool support for agent evaluators
 
@@ -93,6 +94,7 @@ The following tools currently have limited support. Avoid using `tool_call_accur
 - Bing Grounding
 - Bing Custom Search
 - SharePoint Grounding
+- Code Interpreter
 - Fabric Data Agent
 - Web Search
 
@@ -102,9 +104,9 @@ Agent evaluators assess how well AI agents perform tasks, follow instructions, a
 
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
-| Task Completion | `query`, `response` | `deployment_name` |
-| Task Adherence | `query`, `response` | `deployment_name` |
-| Intent Resolution | `query`, `response` | `deployment_name` |
+| Task Completion (preview) | `query`, `response` | `deployment_name` |
+| Task Adherence (preview) | `query`, `response` | `deployment_name` |
+| Intent Resolution (preview) | `query`, `response` | `deployment_name` |
 | Tool Call Accuracy | (`query`, `response`, `tool_definitions`) OR (`query`, `tool_calls`, `tool_definitions`) | `deployment_name` |
 | Tool Selection | (`query`, `response`, `tool_definitions`) OR (`query`, `tool_calls`, `tool_definitions`) | `deployment_name` |
 | Tool Input Accuracy | `query`, `response`, `tool_definitions` | `deployment_name` |
@@ -207,6 +209,30 @@ Task Navigation Efficiency measures whether the agent took an optimal sequence o
 | `in_order_match` | All ground truth steps must appear in the agent's trajectory in correct order (extra steps allowed) |
 | `any_order_match` | All ground truth steps must appear in the agent's trajectory, order doesn't matter (extra steps allowed) |
 
+**Actions format:**
+
+The `actions` field takes a list of message objects that follow the OpenAI message schema. Each message represents a step the agent took during the conversation:
+
+```python
+actions = [
+    {
+        "role": "assistant",
+        "content": [
+            {"type": "function_call", "name": "call_tool_A", "arguments": "{\"param\": \"value\"}"}
+        ]
+    },
+    {
+        "role": "assistant",
+        "content": [
+            {"type": "function_call", "name": "call_tool_B", "arguments": "{}"}
+        ]
+    },
+]
+```
+
+> [!NOTE]
+> The `actions` and `expected_actions` fields use different formats. `actions` requires OpenAI message-schema dictionaries (representing the agent's actual behavior), while `expected_actions` uses a simple list of tool names (representing the ground truth).
+
 **Expected actions format:**
 
 The `expected_actions` can be a simple list of expected steps:
@@ -300,5 +326,5 @@ When using conversation array format, `query` and `response` follow the OpenAI m
 
 - [More examples for agent quality evaluator](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators)
 - [How to run agent evaluation](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md)
-- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)

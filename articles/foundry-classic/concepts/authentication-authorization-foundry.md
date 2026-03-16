@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Authentication and authorization in Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/authentication-authorization-foundry.md)
 
 Authentication and authorization in Microsoft Foundry control how principals prove identity and gain permission to perform operations. Foundry divides operations into control plane (resource management) and data plane (runtime usage), each with its own authentication and role-based access control (RBAC) surface.
 
@@ -72,7 +72,7 @@ Foundry supports Microsoft Entra ID (token-based, keyless) and API keys.
 
 ### Microsoft Entra ID
 
-Microsoft Entra ID uses OAuth 2.0 bearer tokens scoped to `https://cognitiveservices.azure.com/.default`.
+Microsoft Entra ID uses OAuth 2.0 bearer tokens scoped to `https://ai.azure.com/.default`.
 
 Use Microsoft Entra ID for:
 - Production workloads.
@@ -110,7 +110,7 @@ import requests
 credential = DefaultAzureCredential()
 
 # Get an access token for the Cognitive Services scope
-token = credential.get_token("https://cognitiveservices.azure.com/.default")
+token = credential.get_token("https://ai.azure.com/.default")
 
 # Use the token in your API request
 headers = {
@@ -242,7 +242,7 @@ For high-level guidance on setting up Entra ID authentication in Foundry, see [C
 
 | Error | Cause | Resolution |
 | --- | --- | --- |
-| 401 Unauthorized | Missing or expired token; invalid API key | Verify the token acquisition scope is `https://cognitiveservices.azure.com/.default`. Regenerate the API key if you use key-based auth. |
+| 401 Unauthorized | Missing or expired token; invalid API key | Verify the token acquisition scope is `https://ai.azure.com/.default`. Regenerate the API key if you use key-based auth. |
 | 403 Forbidden | Missing RBAC role assignment | Assign the appropriate built-in role (for example, Azure AI User) at the resource or project scope. |
 | AADSTS700016 | Application not found in tenant | Verify the app registration exists in the correct tenant and the client ID is correct. |
 | Custom subdomain required | Resource uses a regional endpoint instead of a custom subdomain | Configure a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains) on the Foundry resource. Token-based auth requires a custom subdomain. |

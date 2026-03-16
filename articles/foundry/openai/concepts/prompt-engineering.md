@@ -8,6 +8,7 @@ ms.date: 12/6/2025
 ms.custom:
   - references_regions, build-2023, build-2023-dataai
   - classic-and-new
+  - doc-kit-assisted
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin

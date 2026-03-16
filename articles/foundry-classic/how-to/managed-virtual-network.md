@@ -15,7 +15,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Configure managed virtual network for Microsoft Foundry projects (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/managed-virtual-network.md)
 
 [!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 

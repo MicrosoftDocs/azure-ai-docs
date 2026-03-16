@@ -9,12 +9,12 @@ ms.custom:
   - classic-and-new
   - ignite-2023
   - pilot-ai-workflow-jan-2026
+  - doc-kit-assisted
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 ai-usage: ai-assisted
-
 ---
 
 # Safety system messages

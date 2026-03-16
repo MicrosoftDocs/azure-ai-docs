@@ -94,7 +94,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     from openai import AzureOpenAI
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
     
-    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
     
     # Set environment variables or edit the corresponding values here.
     endpoint = os.environ['AZURE_OPENAI_ENDPOINT']
@@ -202,7 +202,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     from openai import AzureOpenAI
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
     
-    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
     
     # Set environment variables or edit the corresponding values here.
     endpoint = os.environ['AZURE_OPENAI_ENDPOINT']
@@ -342,7 +342,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     from openai import AzureOpenAI 
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
     
-    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
     
     # Set environment variables or edit the corresponding values here.
     endpoint = os.environ['AZURE_OPENAI_ENDPOINT']

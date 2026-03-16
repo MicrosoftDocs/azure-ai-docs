@@ -11,6 +11,7 @@ ms.author: aashcraft
 ms.custom: 
  - dev-focus
  - pilot-ai-workflow-jan-2026
+ - doc-kit-assisted
 ai-usage: ai-assisted
 #CustomerIntent: As a developer building AI agents, I want to understand the differences between web grounding tools so that I can choose the right one for my scenario.
 ---

@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Content streaming (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/content-streaming.md)
 
 This guide describes the Azure OpenAI content streaming experience and options. Customers can receive content from the API when it's generated, instead of waiting for chunks of content that have been verified to pass the content filters.
 

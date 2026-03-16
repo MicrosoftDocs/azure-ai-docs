@@ -26,7 +26,6 @@ async def create_eval():
         f'{API_ENDPOINT}/openai/v1/evals',
         headers={
             'api-key': API_KEY,
-            'aoai-evals': 'preview'
         },
         json={
             'name': 'My Evaluation',
@@ -93,7 +92,6 @@ response = await asyncio.to_thread(
     f'{API_ENDPOINT}/openai/v1/evals/{eval_id}/runs',
     headers={
         'api-key': API_KEY,
-        'aoai-evals': 'preview'
     },
     json={
         "name": "No sample",
@@ -127,7 +125,6 @@ async def update_eval():
         f'{API_ENDPOINT}/openai/v1/evals/{eval_id}',
         headers={
             'api-key': API_KEY,
-            'aoai-evals': 'preview'
         },
         json={
             "name": "Updated Eval Name",
@@ -156,7 +153,6 @@ async def get_eval():
         f'{API_ENDPOINT}/openai/v1/evals/{eval_id}',
         headers={
             'api-key': API_KEY,
-            'aoai-evals': 'preview'
         })
 
     print(response.status_code)
@@ -178,7 +174,6 @@ async def get_eval_run():
         f'{API_ENDPOINT}/openai/v1/evals/eval_67fd95c864f08190817f0dff5f42f49e/runs/evalrun_67fe987a6c548190ba6f33f7cd89343d',
         headers={
             'api-key': API_KEY,
-            'aoai-evals': 'preview'
         })
 
     print(response.status_code)
@@ -213,7 +208,6 @@ async def get_eval_list():
         f'{API_ENDPOINT}/openai/v1/evals',
         headers={
             'api-key': API_KEY,
-            'aoai-evals': 'preview'
         })
 
     print(response.status_code)
@@ -235,7 +229,6 @@ async def get_eval_output_item_list():
         f'{API_ENDPOINT}/openai/v1/evals/eval_67fd95c864f08190817f0dff5f42f49e/runs/evalrun_67fe987a6c548190ba6f33f7cd89343d/output_items',
         headers={
             'api-key': API_KEY,
-            'aoai-evals': 'preview'
         })
 
     print(response.status_code)

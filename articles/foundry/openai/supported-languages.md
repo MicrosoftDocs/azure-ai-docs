@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: concept-article
 ms.date: 11/26/2025
 ms.author: mbullwin

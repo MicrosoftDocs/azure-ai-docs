@@ -1,10 +1,6 @@
 ---
-title: Azure SQL indexer
-titleSuffix: Azure AI Search
+title: Azure SQL Indexer
 description: Set up a search indexer to index tables in Azure SQL Database for vector and full text search in Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/21/2025

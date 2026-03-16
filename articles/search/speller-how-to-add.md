@@ -1,10 +1,6 @@
 ---
-title: Add spell check to queries
-titleSuffix: Azure AI Search
+title: Add Spell Check to Queries
 description: Attach spelling correction to the query pipeline, to fix typos on query terms before executing the query.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

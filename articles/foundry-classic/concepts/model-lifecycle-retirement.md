@@ -20,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Model deprecation and retirement for Microsoft Foundry Models (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/model-lifecycle-retirement.md)
 
 Microsoft Foundry Models are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
 

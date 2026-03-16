@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Azure OpenAI in Microsoft Foundry Models v1 API (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/openai/api-version-lifecycle.md)
 
 This article shows you how to use the v1 Azure OpenAI API. The v1 API simplifies authentication, removes the need for dated `api-version` parameters, and supports cross-provider model calls.
 
@@ -49,7 +49,7 @@ Access to new API calls that are still in preview will be controlled by passing 
 
 Examples:
 
-- `/openai/v1/evals` is in preview and requires passing an `"aoai-evals":"preview"` header.
+- When `/openai/v1/evals` was previously in preview it required passing an `"aoai-evals":"preview"` header. **/evals is no longer in prevew.**
 - `/openai/v1/fine_tuning/alpha/graders/` is in preview and requires no custom header due to the presence of `alpha` in the API path.
 
 For the initial v1 Generally Available (GA) API launch, only a subset of the inference and authoring API capabilities are supported. All GA features are supported for use in production. Support for more capabilities is being added rapidly.
@@ -112,7 +112,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -155,7 +155,7 @@ OpenAIClient client = new(
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 OpenAIClient client = new(
     authenticationPolicy: tokenPolicy,
     options: new OpenAIClientOptions()
@@ -190,7 +190,7 @@ const client = new OpenAI();
 ```javascript
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
@@ -259,7 +259,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
 Credential tokenCredential = BearerTokenCredential.create(
         AuthenticationUtil.getBearerTokenSupplier(
                 new DefaultAzureCredentialBuilder().build(),
-                "https://cognitiveservices.azure.com/.default"));
+                "https://ai.azure.com/.default"));
 OpenAIClient client = OpenAIOkHttpClient.builder()
         .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
         .credential(tokenCredential)
@@ -312,7 +312,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -343,7 +343,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "MAI-DS-R1", // Replace with your model deployment name.
@@ -367,7 +367,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
@@ -498,30 +498,6 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
 
 - [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
 
-### Status
-
-Generally Available features are supported for use in production.
-
-| API Path                               | Status              |
-|----------------------------------------|---------------------|
-| `/openai/v1/chat/completions`          | Generally Available |
-| `/openai/v1/embeddings`                | Generally Available |
-| `/openai/v1/evals`                     | Preview             |
-| `/openai/v1/files`                     | Generally Available |
-| `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | Preview |
-| `/openai/v1/fine_tuning/alpha/graders/`| Preview             |
-| `/openai/v1/fine_tuning/`              | Generally Available |
-| `/openai/v1/models`                    | Generally Available |
-| `/openai/v1/responses`                 | Generally Available |
-| `/openai/v1/vector_stores`             | Generally Available |
-
-### Preview headers
-
-| API Path                              | Header                   |
-|---------------------------------------|:-------------------------|
-| `/openai/v1/evals`                    | `"aoai-evals":"preview"` |
-| `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | `"aoai-copy-ft-checkpoints" : "preview"` |
-
 ## API version changelog
 
 The following sections summarize changes between API versions.
@@ -600,16 +576,6 @@ The following sections summarize changes between API versions.
 - [timestamp_granularities](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5217) parameter added.
 - [`audioWord`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5286) object added.
 - Additional TTS [`response_formats: wav & pcm`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5333).
-
-## Troubleshooting
-
-| Issue | Cause | Solution |
-| ----- | ----- | -------- |
-| `404 Not Found` when calling the v1 API | Incorrect `base_url` format | Verify the URL ends with `/openai/v1/`. Both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` are valid. |
-| `401 Unauthorized` with Entra ID | Missing or incorrect role assignment | Assign the `Cognitive Services OpenAI User` role to your identity. Role assignments can take up to 5 minutes to propagate. |
-| `AzureOpenAI()` client doesn't work with v1 | v1 API uses the `OpenAI()` client | Replace `AzureOpenAI()` with `OpenAI()` and set `base_url` to your Azure endpoint with `/openai/v1/` appended. |
-| `api-version` parameter rejected | v1 API doesn't use `api-version` | Remove any `api-version` query parameters from your requests. The v1 API doesn't require or accept them. |
-| Preview features not available | Missing preview header | For preview APIs like `/openai/v1/evals`, pass the required preview header (for example, `"aoai-evals":"preview"`). See [Preview headers](#preview-headers). |
 
 ## Known issues
 

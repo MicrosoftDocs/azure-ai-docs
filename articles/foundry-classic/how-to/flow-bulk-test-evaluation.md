@@ -13,7 +13,6 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 ---
 
 # Submit a batch run and evaluate a flow (classic)

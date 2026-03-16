@@ -12,11 +12,10 @@ ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
+  - doc-kit-assisted
 ---
 
 # Azure OpenAI graders
-[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
-
 Azure OpenAI graders are a new set of evaluation tools in the Microsoft Foundry SDK that evaluate the performance of AI models and their outputs. These graders include:
 
 | Grader | What it measures | Required parameters | Output |
@@ -160,4 +159,4 @@ Graders return results with pass/fail status. Key output fields:
 
 - [Complete working sample.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_graders.py#L9)
 - [How to run agent evaluation](../../observability/how-to/evaluate-agent.md)
-- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
