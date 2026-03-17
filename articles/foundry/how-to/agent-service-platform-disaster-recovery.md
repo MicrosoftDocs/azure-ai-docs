@@ -75,7 +75,7 @@ To reduce recovery time, automate the failover steps by using scripts or infrast
 
 ### Gateway routing
 
-It's always a good idea to have a level of abstraction between clients and APIs. Add a layer of indirection between your clients and the Agent Service [data plane APIs](/rest/api/aifoundry/aiagents/operation-groups). Implement the [Gateway Routing](/azure/architecture/patterns/gateway-routing) pattern in a multiregion gateway such as [API Management configured for multiple regions](/azure/api-management/api-management-howto-deploy-multi-region). This indirection lets you fail over the data plane APIs without updating your clients' fully qualified domain name (FQDN) configuration by instead updating failover routing inside the gateway.
+It's always a good idea to have a level of abstraction between clients and APIs. Add a layer of indirection between your clients and the Agent Service. For more information, see [Azure AI Foundry REST API reference](/rest/api/aifoundry/). Implement the [Gateway Routing](/azure/architecture/patterns/gateway-routing) pattern in a multiregion gateway such as [API Management configured for multiple regions](/azure/api-management/api-management-howto-deploy-multi-region). This indirection lets you fail over the data plane APIs without updating your clients' fully qualified domain name (FQDN) configuration by instead updating failover routing inside the gateway.
 
 ## Complete regional outage
 
