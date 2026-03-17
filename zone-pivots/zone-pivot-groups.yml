@@ -1988,3 +1988,12 @@ groups:
     title: TypeScript
   - id: rest
     title: REST
+# Owner: aahi
+- id: foundry-portal-and-cli
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: foundry-portal
+    title: Foundry portal
+  - id: azure-cli
+    title: Azure CLI

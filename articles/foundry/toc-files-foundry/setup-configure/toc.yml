@@ -36,7 +36,7 @@ items:
     href: ../../agents/how-to/use-your-own-resources.md
   - name: Virtual networks
     href: ../../agents/how-to/virtual-networks.md
-  - name: Use an AI Gateway
+  - name: Bring your own models with AI gateways
     href: ../../agents/how-to/ai-gateway.md
 
 # Connections and Integration

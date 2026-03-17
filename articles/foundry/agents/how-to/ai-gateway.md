@@ -1,21 +1,19 @@
 ---
-title: "Connect an AI gateway to Foundry Agent Service (preview)"
-description: "Connect and use models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
+title: "Bring Your Own Model to Foundry Agent Service"
+description: "Connect and bring your own models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
-ms.date: 03/12/2026
+ms.date: 03/17/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
+zone_pivot_groups: foundry-portal-and-cli
 ---
 
-# Connect an AI gateway to Foundry Agent Service (preview)
+# Bring your own model to Foundry Agent Service
 Foundry Agent Service allows you to connect and use models hosted behind your enterprise AI gateways such as **Azure API Management** or other **non-Azure hosted AI model gateways**. This capability, called *bring your own model* (BYOM), allows you to maintain control over your model endpoints while using Foundry agent capabilities.
-
-> [!IMPORTANT]
-> This feature is currently in preview. Preview features aren't meant for production use. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 > [!IMPORTANT]
 > For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Azure Direct Models. Foundry Agent Service supports the ability to bring-your-own-model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.
@@ -55,9 +53,9 @@ You need the following role assignments:
 
 ## Create a gateway connection
 
-Use the Foundry portal or the Azure CLI to create a connection to your AI gateway. 
+Use the Foundry portal or the Azure CLI to create a connection to your AI gateway.
 
-# [Foundry portal](#tab/portal)
+::: zone pivot="foundry-portal"
 
 To access models in a connected gateway by using the Foundry portal, you can choose either an existing Azure API Management instance or a non-Azure AI model gateway. In a connected gateway, Foundry currently supports one or more models implementing the OpenAI chat completions API.
 
@@ -93,7 +91,9 @@ Foundry automatically deploys models you add through a connection to Azure API M
 * To see a list of deployments, select **Models** > **Admin-connected deployments** tab in the left pane of your Foundry project. You manage these deployments at the project level, and any agent within the project can use them.
 * Select a deployment to see its details, including the connection it belongs to and the model information you provided in the connection setup. You can also access the playground from the deployment details page to test the model with sample prompts.
 
-# [Azure CLI](#tab/cli)
+::: zone-end
+
+::: zone pivot="azure-cli"
 
 Agent Service supports two connection types: **API Management (APIM)** connections and **Model Gateway** connections.
 
@@ -117,7 +117,7 @@ For detailed connection specifications, see the [connection samples on GitHub](h
 
 1. Verify the connection in the Foundry portal. Go to the [Foundry portal](https://ai.azure.com) and select your project. Navigate to **Connected resources** in your project settings. The new connection appears with an **Active** status and the gateway endpoint URL you specified.
 
----
+::: zone-end
 
 ## Create a prompt agent with the gateway connection
 
@@ -202,7 +202,6 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 
 ## Limitations
 
-- This feature is in public preview.
 - Only prompt agents in the Agent SDK support this feature.
 - Supported agent tools: Code Interpreter, Functions, File Search, OpenAPI, Foundry IQ, SharePoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
 - Public networking is supported for both API Management and self-hosted gateways.
@@ -210,6 +209,7 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
   - **APIM as your AI gateway**: Deploy Foundry and APIM together using [this GitHub template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview).
   - **Self-hosted gateway**: Ensure your gateway endpoints are accessible inside the virtual network used by Agent Service.
 - This feature is different from the AI Gateway in Foundry feature, which deploys a new API Management instance with your Foundry resource. For more information, see [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal).
+- Dynamic discovery of model endpoints is currently not available with model connections configured using the Foundry portal.
 
 ## Related content
 
