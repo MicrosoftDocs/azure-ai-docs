@@ -1,9 +1,6 @@
 ---
-title: Azure OpenAI vectorizer
-titleSuffix: Azure AI Search
+title: Azure OpenAI Vectorizer
 description: Connects to a deployed model on your Azure OpenAI resource at query time.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - build-2024

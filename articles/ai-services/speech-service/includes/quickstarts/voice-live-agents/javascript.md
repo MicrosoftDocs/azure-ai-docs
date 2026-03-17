@@ -34,7 +34,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 - [SoX](https://sox.sourceforge.io/) installed on your system (required by `node-record-lpcm16` for microphone capture).
 - The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../../../../ai-foundry/how-to/develop/install-cli-sdk.md).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
-- A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../ai-foundry/default/tutorials/quickstart-create-foundry-resources.md).
+- A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../foundry/tutorials/quickstart-create-foundry-resources.md).
 <!-- - A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](../../../../../ai-foundry/quickstarts/get-started-code.md). -->
 - Assign the `Azure AI User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
@@ -48,7 +48,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a **package.json** file with the following content:
 
-    :::code language="json" source="~/cognitive-services-quickstart-code/javascript/speech/package.json":::
+    :::code language="json" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/package.json":::
 
 1. Install the dependencies:
 
@@ -64,7 +64,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file **create-agent-with-voicelive.js** with the following code:
 
-    :::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/create-agent-with-voicelive.js":::
+    :::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/create-agent-with-voicelive.js":::
 
 1. Sign in to Azure with the following command:
 
@@ -96,7 +96,7 @@ The sample connects to Foundry Agent Service by passing an `agent` config object
 
 1. Create the **voice-live-with-agent.js** file with the following code:
 
-    :::code language="javascript" source="~/cognitive-services-quickstart-code/javascript/speech/voice-live-with-agent-v2.js":::
+    :::code language="javascript" source="~/voice-live-samples-code/javascript/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.js":::
 
 1. Sign in to Azure with the following command:
 

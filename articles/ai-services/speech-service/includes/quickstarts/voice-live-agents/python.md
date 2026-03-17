@@ -30,7 +30,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 - <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 - The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../../../../ai-foundry/how-to/develop/install-cli-sdk.md).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
-- A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../ai-foundry/default/tutorials/quickstart-create-foundry-resources.md).
+- A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../foundry/tutorials/quickstart-create-foundry-resources.md).
 <!-- - A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](../../../../../ai-foundry/quickstarts/get-started-code.md). -->
 - Assign the `Azure AI User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
@@ -74,7 +74,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file named **requirements.txt**. Add the following packages to the file:
 
-    :::code language="txt" source="~/cognitive-services-quickstart-code/python/Speech/requirements.txt":::
+    :::code language="txt" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/requirements.txt":::
 
 1. Install the packages:
 
@@ -90,7 +90,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file **create_agent_with_voicelive.py** with the following code:
 
-    :::code language="python" source="~/cognitive-services-quickstart-code/python/Speech/create_agent_v2_with_voicelive.py":::
+    :::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/create_agent_v2_with_voicelive.py":::
 
 1. Sign in to Azure with the following command:
 
@@ -122,7 +122,7 @@ The sample connects to Foundry Agent Service by passing `agent_config` in `conne
 
 1. Create the `voice-live-agents-quickstart.py` file with the following code:
 
-    :::code language="python" source="~/cognitive-services-quickstart-code/python/Speech/voice-live-with-agent-v2.py":::
+    :::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py":::
 
 1. Sign in to Azure with the following command:
 

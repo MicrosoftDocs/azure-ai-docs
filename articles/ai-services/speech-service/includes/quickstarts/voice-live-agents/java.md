@@ -31,7 +31,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 - [Apache Maven](https://maven.apache.org/download.cgi) installed.
 - The required language runtimes, global tools, and Visual Studio Code extensions as described in [Prepare your development environment](../../../../../ai-foundry/how-to/develop/install-cli-sdk.md).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).
-- A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../ai-foundry/default/tutorials/quickstart-create-foundry-resources.md).
+- A model deployed in Microsoft Foundry. If you don't have a model, first complete [Quickstart: Set up Microsoft Foundry resources](../../../../../foundry/tutorials/quickstart-create-foundry-resources.md).
 <!-- - A Microsoft Foundry agent created in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](../../../../../ai-foundry/quickstarts/get-started-code.md). -->
 - Assign the `Azure AI User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
@@ -45,7 +45,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file named **pom.xml** with the following Maven configuration:
 
-    :::code language="xml" source="~/cognitive-services-quickstart-code/java/Speech/pom-agent.xml":::
+    :::code language="xml" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/pom-agent.xml":::
 
 1. Create the Java source directory structure:
 
@@ -83,7 +83,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file **src/main/java/CreateAgentWithVoiceLive.java** with the following code:
 
-    :::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/CreateAgentWithVoiceLive.java":::
+    :::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/CreateAgentWithVoiceLive.java":::
 
 1. Sign in to Azure with the following command:
 
@@ -115,7 +115,7 @@ The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to 
 
 1. Create the **src/main/java/VoiceLiveWithAgent.java** file with the following code:
 
-    :::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/VoiceLiveWithAgentV2.java":::
+    :::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java":::
 
 1. Sign in to Azure with the following command:
 

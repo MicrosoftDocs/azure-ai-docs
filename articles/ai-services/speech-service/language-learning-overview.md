@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 #Customer intent: As a language learner, I want to learn how to use Azure Speech in Foundry Tools to improve my language skills.
 ---
 
@@ -26,9 +27,9 @@ The Pronunciation Assessment feature offers several benefits for educators, serv
 
 ## Speech to text 
 
-[Speech to text](speech-to-text.md) supports real-time language identification for multilingual language learning scenarios, help human-human interaction with better understanding and readable context.
+[Speech to text](speech-to-text.md) supports real-time language identification for multilingual language learning scenarios. It helps human-to-human interaction with better understanding and readable context.
 
-##  Text to speech
+## Text to speech
 
 [Text to speech](text-to-speech.md) standard voices can read out learning materials natively and empower self-served learning. A broad portfolio of [languages and voices](language-support.md?tabs=tts) are supported for AI teacher, content read aloud capabilities, and more. Microsoft is continuously working on bringing new languages to the world. 
 

@@ -1,10 +1,6 @@
 ---
-title: Debug a skillset
-titleSuffix: Azure AI Search
+title: Debug a Skillset
 description: Learn how to troubleshoot Azure AI Search skillset errors and issues by using a debug session in Azure portal.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/31/2026
@@ -50,6 +46,8 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 + If the Azure Storage account is behind a firewall, configure it to [allow search service access](search-indexer-howto-access-ip-restricted.md).
 
++ If Azure AI Search is configured to use a customer-managed encryption key (CMK), sensitive information in the debug session is encrypted with that key when data is persisted.
+
 ## Create a debug session
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
@@ -70,7 +68,7 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
    :::image type="content" source="media/cognitive-search-debug/copy-blob-url.png" lightbox="media/cognitive-search-debug/copy-blob-url.png" alt-text="Screenshot of the URI property in blob storage." border="true":::
 
-   For a specific document in Azure CosmosDB for NoSQL: provide the document key in the search index for the value, and the ID of the entity in Cosmos DB for the partition key.
+   For a specific document in Azure Cosmos DB for NoSQL: provide the document key in the search index for the value, and the ID of the entity in Cosmos DB for the partition key.
 
    :::image type="content" source="media/cognitive-search-debug/cosmos-db-source.png" lightbox="media/cognitive-search-debug/cosmos-db-source.png" alt-text="Screenshot of the properties in Cosmos DB." border="true":::
 

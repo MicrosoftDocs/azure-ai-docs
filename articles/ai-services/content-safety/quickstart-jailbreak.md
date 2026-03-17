@@ -3,12 +3,12 @@ title: "Quickstart: Detect prompt attacks with Prompt Shields"
 titleSuffix: Azure AI services
 description: Learn how to detect large language model input attack risks and mitigate risk with Azure AI Content Safety.
 services: ai-services
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
 ms.date: 01/30/2026
-ms.author: pafarley
+ms.author: ssalgado
 ms.custom: dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: programming-languages-content-safety-foundry-rest

@@ -1,10 +1,8 @@
 ---
-title: "Quickstart: Agentic Retrieval in the Azure portal"
-titleSuffix: Azure AI Search
+title: "Quickstart: Agentic Retrieval in the Azure Portal"
 description: Learn how to use agentic retrieval in the Azure portal for a conversational search experience powered by Azure AI Search and Azure OpenAI models.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
@@ -33,7 +31,7 @@ Afterwards, you test the knowledge base by submitting a complex query that requi
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](search-create-service-portal.md) in any [region that provides agentic retrieval](search-region-support.md).
++ An [Azure AI Search service](search-create-service-portal.md) in any [region that provides agentic retrieval](search-region-support.md). This quickstart requires the Basic tier or higher for managed identity support.
 
 + An [Azure Blob Storage account](/azure/storage/common/storage-account-create).
 
@@ -117,7 +115,7 @@ To create the knowledge source for this quickstart:
 
 1. Under **Enable text vectorization**, select **Add vectorizer**.
 
-1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
+1. Select **Microsoft Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
 
 1. Select **System assigned identity** for the authentication type.
 
@@ -143,7 +141,7 @@ To create the knowledge base for this quickstart:
 
 1. Under **Chat completion model**, select **Add model deployment**.
 
-1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and LLM deployment.
+1. Select **Microsoft Foundry** for the kind, and then select your subscription, project, and LLM deployment.
 
 1. Select **System assigned identity** for the authentication type.
 

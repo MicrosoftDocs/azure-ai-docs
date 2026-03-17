@@ -1,7 +1,4 @@
 ---
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/02/2026
@@ -63,7 +60,7 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
     az account get-access-token --scope https://search.azure.com/.default --query accessToken -o tsv
     ```
 
-1. Replace the placeholder value for `@token` with the access token from the previous step.
+1. Replace the placeholder value for `@token` with the token from the previous step.
 
 ## Run the code
 

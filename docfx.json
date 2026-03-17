@@ -66,7 +66,7 @@
       {
         "group": "grp-machine-learningv1",
         "src": "articles/machine-learning/v-fake",
-        "dest": "./machine-learning/v1",        
+        "dest": "./machine-learning/v1",
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -92,7 +92,6 @@
           "**/obj/**"
         ]
       },
-
       {
         "group": "grp-foundry-default",
         "src": "articles/ai-foundry/default",
@@ -208,7 +207,7 @@
           "**/obj/**"
         ]
       },
-            {
+      {
         "group": "grp-foundry-classic",
         "src": "articles/ai-foundry",
         "dest": "./ai-foundry/",
@@ -257,7 +256,7 @@
         "moniker_range": "azureml-api-1",
         "dest": "destmachinelearningv1"
       },
-        "grp-foundry-classic": {
+      "grp-foundry-classic": {
         "moniker_range": "foundry-classic || foundry",
         "dest": "destfoundryclassic"
       },
@@ -364,7 +363,8 @@
         "articles/ai-services/translator/**/*.md": "laujan",
         "articles/open-datasets/**/*.md": "shubhirajMsft",
         "articles/open-datasets/**/*.yml": "shubhirajMsft",
-        "articles/search/*.md": "HeidiSteen"
+        "articles/search/*.md": "haileytap",
+        "articles/search/*.yml": "haileytap"
       },
       "featureFlags": {
         "articles/**/*.md": [
@@ -457,7 +457,8 @@
         "articles/ai-services/translator/**/*.md": "lajanuar",
         "articles/open-datasets/**/*.md": "samkemp",
         "articles/open-datasets/**/*.yml": "samkemp",
-        "articles/search/*.md": "heidist"
+        "articles/search/*.md": "haileytapia",
+        "articles/search/*.yml": "haileytapia"
       },
       "ms.collection": {
         "articles/search/**/*.md": "ce-skilling-ai-copilot",
@@ -561,18 +562,22 @@
         "articles/ai-services/immersive-reader/**/*.yml": "1095-days",
         "articles/ai-studio/**/*.md": "90-days",
         "articles/ai-studio/**/*.yml": "90-days",
-        "articles/ai-foundry/**/*.md": "90-days",
-        "articles/ai-foundry/**/*.yml": "90-days",
-        "articles/ai-foundry/responsible-ai/**/*.md": "1825-days",
-        "articles/ai-foundry/responsible-ai/**/*.yml": "1825-days",
+        "articles/foundry/**/*.md": "90-days",
+        "articles/foundry/**/*.yml": "90-days",
+        "articles/foundry/responsible-ai/**/*.md": "1825-days",
+        "articles/foundry/responsible-ai/**/*.yml": "1825-days",
+        "articles/foundry-classic/**/*.md": "365-days",
+        "articles/foundry-classic/**/*.yml": "365-days",
+        "articles/foundry-classic/responsible-ai/**/*.md": "1825-days",
+        "articles/foundry-classic/responsible-ai/**/*.yml": "1825-days",
         "articles/machine-learning/*.md": "365-days",
         "articles/machine-learning/prompt-flow/*.md": "365-days",
         "articles/machine-learning/component-reference/*.md": "365-days",
         "articles/machine-learning/component-reference/*.yml": "365-days",
         "articles/machine-learning/component-reference-v2/*.md": "365-days",
         "articles/machine-learning/component-reference-v2/*.yml": "365-days",
-        "articles/open-datasets/**/*.md": "365-days", 
-        "articles/open-datasets/**/*.yml": "365-days", 
+        "articles/open-datasets/**/*.md": "365-days",
+        "articles/open-datasets/**/*.yml": "365-days",
         "articles/machine-learning/v1/*.md": "1095-days"
       },
       "ms.custom": {
@@ -588,7 +593,9 @@
         "articles/ai-services/content-moderator/**/*.md": "azure-ai-content-moderator",
         "articles/ai-services/language-service/**/*.md": "azure-ai-language",
         "articles/ai-services/anomaly-detector/**/*.md": "azure-ai-anomaly-detector",
-        "articles/ai-services/custom-vision-service/**/*.md": "azure-ai-custom-vision"
+        "articles/ai-services/custom-vision-service/**/*.md": "azure-ai-custom-vision",
+        "articles/foundry/**/*.md": "azure-ai-foundry",
+        "articles/foundry-classic/**/*.md": "azure-ai-foundry"
       },
       "monikerRange": {
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
@@ -614,7 +621,11 @@
         "articles/ai-services/LUIS/*.yml": "Azure",
         "articles/machine-learning/*.md": "Azure Machine Learning",
         "articles/open-datasets/**/*.md": "Azure Open Datasets",
-        "articles/open-datasets/**/*.yml": "Azure Open Datasets"
+        "articles/open-datasets/**/*.yml": "Azure Open Datasets",
+        "articles/foundry/**/*.md": "Microsoft Foundry",
+        "articles/foundry-classic/**/*.md": "Microsoft Foundry (classic)",
+        "articles/search/**/*.md": "Azure AI Search",
+        "articles/search/**/*.yml": "Azure AI Search"
       }
     },
     "overwrite": [],

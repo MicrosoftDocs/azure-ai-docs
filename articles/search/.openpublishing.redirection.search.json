@@ -649,6 +649,11 @@
             "source_path_from_root": "/articles/search/keyless-connections.md",
             "redirect_url": "/azure/search/search-security-rbac-client-code",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-security-overview.md",
+            "redirect_url": "/azure/search/search-security-built-in",
+            "redirect_document_id": true
         }
     ]
   }

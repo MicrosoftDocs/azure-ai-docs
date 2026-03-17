@@ -1,330 +1,389 @@
 ---
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
+  - dev-focus
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 03/04/2026
+ai-usage: ai-assisted
 ---
 
-[!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
+In this quickstart, you use the [Azure AI Search client library for Python](/python/api/overview/azure/search-documents-readme) to add [semantic ranking](../../semantic-search-overview.md) to an existing search index and query the index.
 
-## Set up the client
-
-In this quickstart, use a Jupyter notebook and the [**azure-search-documents**](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to learn about semantic ranking.
-
-We recommend [Visual Studio Code](https://code.visualstudio.com/download) with Python 3.10 or later and the [Python extension](https://code.visualstudio.com/docs/languages/python) for this quickstart.
+Semantic ranking is query-side functionality that uses machine reading comprehension to rescore search results, promoting the most semantically relevant matches to the top of the list. You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective for informational or descriptive text.
 
 > [!TIP]
-> You can [download a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Ranking) to start with a finished project or follow these steps to create your own.
+> Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Ranking) on GitHub.
 
-We recommend a virtual environment for this quickstart:
+## Prerequisites
 
-1. Start Visual Studio Code.
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-1. Open the **semantic-ranking-quickstart.ipynb** file or create a new notebook.
++ An [Azure AI Search service](../../search-create-service-portal.md) with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-1. Open the Command Palette by using **Ctrl+Shift+P**.
++ An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample index](../../search-get-started-portal.md).
 
-1. Search for **Python: Create Environment**.
++ [Python 3.10](https://www.python.org/downloads/) or later.
 
-1. Select **`Venv.`**
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 
-1. Select a Python interpreter. Choose 3.10 or later.
++ [Git](https://git-scm.com/downloads) to clone the sample repository.
 
-It can take a minute to set up. If you run into problems, see [Python environments in VS Code](https://code.visualstudio.com/docs/python/environments).
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-### Install packages and set environment variables
+## Configure access
 
-1. Install packages, including [azure-search-documents](/python/api/azure-search-documents).
+[!INCLUDE [resource authentication](../resource-authentication-semantic.md)]
 
-    ```python
-   ! pip install -r requirements.txt --quiet
+## Get endpoint
+
+[!INCLUDE [resource endpoint](../resource-endpoint.md)]
+
+## Start with an index
+
+[!INCLUDE [start with an index](semantic-ranker-index.md)]
+
+## Set up the environment
+
+1. Use Git to clone the sample repository.
+
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-python-samples
     ```
 
-1. Rename `sample.env` to `.env`, and provide your search service endpoint. You can get the endpoint from the Azure portal on the search service **Overview** page.
+1. Navigate to the quickstart folder and open it in Visual Studio Code.
 
-    ```python
-    AZURE_SEARCH_ENDPOINT=https://your-search-service.search.windows.net
-    AZURE_SEARCH_INDEX_NAME=hotels-sample-index
+    ```bash
+    cd azure-search-python-samples/Quickstart-Semantic-Ranking
+    code .
     ```
 
-### Sign in to Azure
+1. In `sample.env`, replace the placeholder value for `AZURE_SEARCH_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).
 
-If you signed in to the [Azure portal](https://portal.azure.com), you're signed into Azure. If you aren't sure, use the Azure CLI or Azure PowerShell to log in: `az login` or `az connect`. If you have multiple tenants and subscriptions, see [Quickstart: Connect without keys](../../search-get-started-rbac.md) for help on how to connect.
+1. Rename `sample.env` to `.env`.
 
-## Update the index
-
-In this section, you update a search index to include a semantic configuration. The code gets the index definition from the search service and adds a semantic configuration.
-
-1. Open the [semantic-ranking-quickstart.ipynb](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Semantic-Ranking/semantic-ranking-quickstart.ipynb) file in Visual Studio Code or create a new file.
-
-1. Provide the variables used in the solution.
-
-    ```python
-    # Provide variables
-    from dotenv import load_dotenv
-    from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-    import os
-    
-    load_dotenv(override=True) # Take environment variables from .env.
-    
-    # The following variables from your .env file are used in this notebook
-    search_endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
-    credential = DefaultAzureCredential()
-    token_provider = get_bearer_token_provider(credential, "https://search.azure.com/.default")
-    index_name = os.getenv("AZURE_SEARCH_INDEX", "hotels-sample-index")
+    ```bash
+    mv sample.env .env
     ```
 
-1. Create a SearchIndexClient and get the existing hotels-sample-index.
+1. Open `semantic-ranking-quickstart.ipynb`.
 
-    ```python
-    from azure.search.documents.indexes import SearchIndexClient
-    from azure.identity import DefaultAzureCredential
-    import os
-    
-    # Initialize the client (similar to what you already have)
-    search_endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
-    credential = DefaultAzureCredential()
-    index_name = "hotels-sample-index"  # or use your existing index_name variable
-    
-    # Create the SearchIndexClient
-    index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
-    
-    try:
-        # Get the existing index schema
-        index = index_client.get_index(index_name)
-        
-        print(f"Index name: {index.name}")
-        print(f"Number of fields: {len(index.fields)}")
-        
-        # Print field details
-        for field in index.fields:
-            print(f"Field: {field.name}, Type: {field.type}, Searchable: {field.searchable}")
-        
-        # Access semantic configuration if it exists
-        if index.semantic_search and index.semantic_search.configurations:
-            for config in index.semantic_search.configurations:
-                print(f"Semantic config: {config.name}")
-                if config.prioritized_fields.title_field:
-                    print(f"Title field: {config.prioritized_fields.title_field.field_name}")
-        else:
-            print("No semantic configuration exists for this index")
-    
-    except Exception as ex:
-        print(f"Error retrieving index: {ex}")
+1. Press **Ctrl+Shift+P**, select **Notebook: Select Notebook Kernel**, and follow the prompts to create a virtual environment. Select **requirements.txt** for the dependencies.
+
+   When complete, you should see a `.venv` folder in the project directory.
+
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
+
+    ```azurecli
+    az login
     ```
 
-1. Run the code.
+## Run the code
 
-1. Output is the name of the index, list of fields, and a statement indicating whether a semantic configuration exists. For the purposes of this quickstart, the message should say "No semantic configuration exists for this index".
+1. Run the `Install packages and set variables` cells to install the required packages and load environment variables.
 
-1. Add a semantic configuration to an existing hotels-sample-index on your search service. No search documents are deleted by this operation and your index is still operational after the configuration is added.
+1. Run the remaining cells sequentially to add a semantic configuration and query the index.
 
-    ```python
-    # Add semantic configuration to hotels-sample-index and display updated index details
-    from azure.search.documents.indexes.models import (
-        SemanticConfiguration,
-        SemanticField,
-        SemanticPrioritizedFields,
-        SemanticSearch
+### Output
+
+The output of the `Get the index definition` cell is the name of the index, its fields, and any existing semantic configurations.
+
+```output
+Index name: hotels-sample
+Number of fields: 23
+Field: HotelId, Type: Edm.String, Searchable: True
+Field: HotelName, Type: Edm.String, Searchable: True
+Field: Description, Type: Edm.String, Searchable: True
+Field: Description_fr, Type: Edm.String, Searchable: True
+Field: Category, Type: Edm.String, Searchable: True
+Field: Tags, Type: Collection(Edm.String), Searchable: True
+// Trimmed for brevity
+Semantic config: hotels-sample-semantic-configuration
+Title field: HotelName
+```
+
+The output of the `Add a semantic configuration to the index` cell lists all semantic configurations on the index, including the one the code added, followed by a success message.
+
+```output
+Semantic configurations:
+----------------------------------------
+  Configuration: hotels-sample-semantic-configuration
+    Title field: HotelName
+    Keywords fields: Category
+    Content fields: Description
+
+  Configuration: semantic-config
+    Title field: HotelName
+    Keywords fields: Tags
+    Content fields: Description
+
+✅ Semantic configuration successfully added!
+```
+
+The output of the `Run a term query` cell returns all matching documents ordered by BM25 score. This baseline query doesn't use semantic ranking.
+
+```output
+5.360838
+4
+Sublime Palace Hotel
+Description: Sublime Cliff Hotel is located in the heart of the
+historic center of Sublime in an extremely vibrant and lively area
+within short walking distance to the sites and landmarks of the city
+and is surrounded by the extraordinary beauty of churches, buildings,
+shops and monuments. Sublime Cliff is part of a lovingly restored
+19th century resort, updated for every modern convenience.
+4.691083
+2
+Old Century Hotel
+Description: The hotel is situated in a nineteenth century plaza,
+which has been expanded and renovated to the highest architectural
+standards to create a modern, functional and first-class hotel in
+which art and unique historical elements coexist with the most
+modern comforts. The hotel also regularly hosts events like wine
+tastings, beer dinners, and live music.
+// Trimmed for brevity
+```
+
+The output of the `Run a semantic query` cell returns all matching documents ordered by the semantic re-ranker score.
+
+```output
+2.613231658935547
+24
+Uptown Chic Hotel
+Description: Chic hotel near the city. High-rise hotel in downtown,
+within walking distance to theaters, art galleries, restaurants and
+shops. Visit Seattle Art Museum by day, and then head over to
+Benaroya Hall to catch the evening's concert performance.
+2.271434783935547
+2
+Old Century Hotel
+Description: The hotel is situated in a nineteenth century plaza,
+which has been expanded and renovated to the highest architectural
+standards to create a modern, functional and first-class hotel in
+which art and unique historical elements coexist with the most
+modern comforts. The hotel also regularly hosts events like wine
+tastings, beer dinners, and live music.
+// Trimmed for brevity
+```
+
+The output of the `Return captions` cell adds a caption element with hit highlighting alongside search fields. Captions are the most relevant passages in a result. If your index includes larger text, captions help extract the most interesting sentences.
+
+```output
+2.613231658935547
+24
+Uptown Chic Hotel
+Description: Chic hotel near the city. High-rise hotel in downtown,
+within walking distance to theaters, art galleries, restaurants and
+shops. Visit Seattle Art Museum by day, and then head over to
+Benaroya Hall to catch the evening's concert performance.
+Caption: Chic hotel near the city. High-rise hotel in downtown,
+within walking distance to<em> theaters, </em>art galleries,
+restaurants and shops. Visit<em> Seattle Art Museum </em>by day, and
+then head over to<em> Benaroya Hall </em>to catch the evening's
+concert performance.
+// Trimmed for brevity
+```
+
+The output of the `Return semantic answers` cell includes a semantic answer pulled from one of the results that best matches the question, followed by search results with captions.
+
+```output
+Semantic Answer: Nature is Home on the beach. Explore the shore by
+day, and then come home to our shared living space to relax around a
+stone fireplace, sip something warm, and explore the<em> library
+</em>by night. Save up to 30 percent. Valid Now through the end of
+the year. Restrictions and blackouts may apply.
+Semantic Answer Score: 0.9829999804496765
+```
+
+## Understand the code
+
+[!INCLUDE [understand code note](../understand-code-note.md)]
+
+Now that you've run the code, let's break down the key steps:
+
+1. [Configuration and authentication](#configuration-and-authentication)
+1. [Update the index with a semantic configuration](#update-the-index-with-a-semantic-configuration)
+1. [Query the index](#query-the-index)
+
+### Configuration and authentication
+
+The `Install packages and set variables` cell loads environment variables and creates a `DefaultAzureCredential` for authentication.
+
+```python
+from dotenv import load_dotenv
+from azure.identity import DefaultAzureCredential
+from azure.identity import get_bearer_token_provider
+import os
+
+load_dotenv(override=True)
+
+search_endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
+credential = DefaultAzureCredential()
+index_name = os.getenv(
+    "AZURE_SEARCH_INDEX", "hotels-sample"
+)
+```
+
+Key takeaways:
+
++ `DefaultAzureCredential` provides keyless authentication using Microsoft Entra ID. It chains multiple credential types, including the Azure CLI credential from `az login`.
++ Environment variables are loaded from the `.env` file using `python-dotenv`.
+
+### Update the index with a semantic configuration
+
+The `Add a semantic configuration to the index` cell adds a semantic configuration to the existing `hotels-sample` index. This operation doesn't delete any search documents, and your index remains operational after the configuration is added.
+
+```python
+from azure.search.documents.indexes.models import (
+    SemanticConfiguration,
+    SemanticField,
+    SemanticPrioritizedFields,
+    SemanticSearch
+)
+
+new_semantic_config = SemanticConfiguration(
+    name="semantic-config",
+    prioritized_fields=SemanticPrioritizedFields(
+        title_field=SemanticField(field_name="HotelName"),
+        keywords_fields=[
+            SemanticField(field_name="Tags")
+        ],
+        content_fields=[
+            SemanticField(field_name="Description")
+        ]
     )
-    
-    try:
-        # Get the existing index
-        existing_index = index_client.get_index(index_name)
-        
-        # Create a new semantic configuration
-        new_semantic_config = SemanticConfiguration(
-            name="semantic-config",
-            prioritized_fields=SemanticPrioritizedFields(
-                title_field=SemanticField(field_name="HotelName"),
-                keywords_fields=[SemanticField(field_name="Tags")],
-                content_fields=[SemanticField(field_name="Description")]
-            )
-        )
-        
-        # Add semantic configuration to the index
-        if existing_index.semantic_search is None:
-            existing_index.semantic_search = SemanticSearch(configurations=[new_semantic_config])
-        else:
-            # Check if configuration already exists
-            config_exists = any(config.name == "semantic-config" 
-                              for config in existing_index.semantic_search.configurations)
-            if not config_exists:
-                existing_index.semantic_search.configurations.append(new_semantic_config)
-        
-        # Update the index
-        result = index_client.create_or_update_index(existing_index)
-        
-        # Get the updated index and display detailed information
-        updated_index = index_client.get_index(index_name)
-        
-        print("Semantic configurations:")
-        print("-" * 40)
-        if updated_index.semantic_search and updated_index.semantic_search.configurations:
-            for config in updated_index.semantic_search.configurations:
-                print(f"  Configuration: {config.name}")
-                if config.prioritized_fields.title_field:
-                    print(f"    Title field: {config.prioritized_fields.title_field.field_name}")
-                if config.prioritized_fields.keywords_fields:
-                    keywords = [kf.field_name for kf in config.prioritized_fields.keywords_fields]
-                    print(f"    Keywords fields: {', '.join(keywords)}")
-                if config.prioritized_fields.content_fields:
-                    content = [cf.field_name for cf in config.prioritized_fields.content_fields]
-                    print(f"    Content fields: {', '.join(content)}")
-                print()
-        else:
-            print("  No semantic configurations found")
-        
-        print("✅ Semantic configuration successfully added!")
-        
-    except Exception as ex:
-        print(f"❌ Error adding semantic configuration: {ex}")
-    ```
+)
 
-1. Run the code.
+if existing_index.semantic_search is None:
+    existing_index.semantic_search = SemanticSearch(
+        configurations=[new_semantic_config]
+    )
+else:
+    existing_index.semantic_search.configurations.append(
+        new_semantic_config
+    )
 
-1. Output is the semantic configuration you just added.
+result = index_client.create_or_update_index(existing_index)
+```
 
-## Run semantic queries
+Key takeaways:
 
-Once the index has a semantic configuration, you can run queries that include semantic parameters.
++ A semantic configuration specifies the fields used for semantic ranking. `title_field` sets the document title, `content_fields` sets the main content, and `keywords_fields` sets the keyword or tag fields.
++ You create the configuration with `SemanticConfiguration` and its associated `SemanticPrioritizedFields` model, and then append it to the existing index.
++ `create_or_update_index` pushes the updated schema to the search service without rebuilding the index or deleting documents.
 
-1. Create a SearchClient and a query request that includes the semantic query type and the semantic configuration. This is the minimum requirement for invoking semantic ranking.
+### Query the index
 
-    ```python
-    # Set up the search client
-    search_client = SearchClient(endpoint=search_endpoint,
-                          index_name=index_name,
-                          credential=credential)
-    
-    # Runs a semantic query (runs a BM25-ranked query, rescoring and promoting the most semantically relevant matches to the top)
-    results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
-        search_text="walking distance to live music", 
-        select='HotelId,HotelName,Description', query_caption='extractive')
-    
-    for result in results:
-        print(result["@search.reranker_score"])
-        print(result["HotelId"])
-        print(result["HotelName"])
-        print(f"Description: {result['Description']}")
-    ```
+The query cells run four queries in sequence: a baseline keyword search followed by three semantic ranking variations with increasing functionality.
 
-1. Run the code.
+#### Term query (baseline)
 
-1. Output should consist of 13 documents, ordered by the `"@search.reranker_score"`.
+The `Run a term query` cell runs a keyword search using BM25 scoring. This baseline query doesn't use semantic ranking and serves as a comparison point.
 
-### Return captions
+```python
+from azure.search.documents import SearchClient
 
-Optionally, you can add captions to extract portions of the text and apply hit highlighting to the important terms and phrases. This query adds captions.
+search_client = SearchClient(
+    endpoint=search_endpoint,
+    index_name=index_name,
+    credential=credential
+)
 
-1. Add `captions` to the query.
+results = search_client.search(
+    query_type='simple',
+    search_text="walking distance to live music",
+    select='HotelId,HotelName,Description',
+    include_total_count=True
+)
+```
 
-    ```python
-    # Runs a semantic query that returns captions
-    results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
-        search_text="walking distance to live music", 
-        select='HotelName,HotelId,Description', query_caption='extractive')
-    
-    for result in results:
-        print(result["@search.reranker_score"])
-        print(result["HotelId"])
-        print(result["HotelName"])
-        print(f"Description: {result['Description']}")
-    
-        captions = result["@search.captions"]
-        if captions:
-            caption = captions[0]
-            if caption.highlights:
-                print(f"Caption: {caption.highlights}\n")
-            else:
-                print(f"Caption: {caption.text}\n")
-    ```
+Key takeaways:
 
-1. Run the code.
++ `query_type='simple'` specifies a keyword search using BM25 scoring.
++ The `@search.score` in results indicates the BM25 relevance score.
 
-1. Output should include a new caption element alongside search field. Captions are the most relevant passages in a  result. If your index includes larger chunks of text, a caption is helpful for extracting the most interesting sentences.
+#### Semantic query (no captions, no answers)
 
-    ```bash
-    2.613231658935547
-    24
-    Uptown Chic Hotel
-    Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
-    Caption: Chic hotel near the city. High-rise hotel in downtown, within walking distance to<em> theaters, </em>art galleries, restaurants and shops. Visit<em> Seattle Art Museum </em>by day, and then head over to<em> Benaroya Hall </em>to catch the evening's concert performance.
-    ```
+The `Run a semantic query` cell shows the minimum requirement for invoking semantic ranking.
 
-### Return semantic answers
+```python
+from azure.search.documents import SearchClient
 
-In this final query, return semantic answers.
+search_client = SearchClient(
+    endpoint=search_endpoint,
+    index_name=index_name,
+    credential=credential
+)
 
-Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it won't include composed content like what you might expect from a chat completion model. If the semantic answer isn't useful for your scenario, you can omit `semantic_answers` from your code.
+results = search_client.search(
+    query_type='semantic',
+    semantic_configuration_name='semantic-config',
+    search_text="walking distance to live music",
+    select='HotelId,HotelName,Description',
+    query_caption='extractive'
+)
+```
 
-To produce a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. For demonstration purposes, the question in this example is designed to get a response so that you can see the syntax.
+Key takeaways:
 
-1. Add `answers` to the query.
++ `query_type='semantic'` enables semantic ranking on the query.
++ `semantic_configuration_name` specifies which semantic configuration to use.
++ The `@search.reranker_score` in results indicates semantic relevance (higher is better).
 
-    ```python
-    # Run a semantic query that returns semantic answers  
-    results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
-     search_text="what's a good hotel for people who like to read",
-     select='HotelName,Description,Category', query_caption='extractive', query_answer="extractive",)
-    
-    semantic_answers = results.get_answers()
-    for answer in semantic_answers:
-        if answer.highlights:
-            print(f"Semantic Answer: {answer.highlights}")
-        else:
-            print(f"Semantic Answer: {answer.text}")
-        print(f"Semantic Answer Score: {answer.score}\n")
-    
-    for result in results:
-        print(result["@search.reranker_score"])
-        print(result["HotelName"])
-        print(f"Description: {result['Description']}")
-    
-        captions = result["@search.captions"]
-        if captions:
-            caption = captions[0]
-            if caption.highlights:
-                print(f"Caption: {caption.highlights}\n")
-            else:
-                print(f"Caption: {caption.text}\n")
-    ```
+#### Semantic query with captions
 
-1. Run the code.
+The `Return captions` cell adds captions to extract the most relevant passages from each result, with hit highlighting applied to the important terms and phrases.
 
-1. Output should look similar to the following example, where the best answer to question is pulled from one of the results.
+```python
+results = search_client.search(
+    query_type='semantic',
+    semantic_configuration_name='semantic-config',
+    search_text="walking distance to live music",
+    select='HotelName,HotelId,Description',
+    query_caption='extractive'
+)
 
-    Recall that answers are *verbatim content* pulled from your index and might be missing phrases that a user would expect to see. To get *composed answers* as generated by a chat completion model, considering using a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
+for result in results:
+    captions = result["@search.captions"]
+    if captions:
+        caption = captions[0]
+        if caption.highlights:
+            print(f"Caption: {caption.highlights}\n")
+```
 
-    ```bash
-    Semantic Answer: Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the<em> library </em>by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.
-    Semantic Answer Score: 0.9829999804496765
-    
-    2.124817371368408
-    1
-    Stay-Kay City Hotel
-    Description: This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
-    Caption: This classic hotel is<em> fully-refurbished </em>and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
-    
-    2.0705394744873047
-    16
-    Double Sanctuary Resort
-    Description: 5 star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso in room.
-    Caption: <em>5 star Luxury Hotel </em>-<em> Biggest </em>Rooms in the city. #1 Hotel in the area listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso in room.
-    
-    2.041472911834717
-    38
-    Lakeside B & B
-    Description: Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the library by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.
-    Caption: Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the<em> library </em>by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.
-    
-    2.084540843963623
-    Double Sanctuary Resort
-    Description: 5 star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso in room.
-    Caption: <em>5 star Luxury Hotel </em>-<em> Biggest </em>Rooms in the<em> city. #1 </em>Hotel in the area listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso in room.
-    
-    ...
-    ```
+Key takeaways:
+
++ `query_caption='extractive'` enables extractive captions from the content fields.
++ Captions surface the most relevant passages and add `<em>` tags around important terms.
+
+#### Semantic query with answers
+
+The `Return semantic answers` cell adds semantic answers. This query uses a question as the search text because semantic answers work best when the query is phrased as a question. The answer is a verbatim passage extracted from your index, not a composed response from a chat completion model.
+
+The query and the indexed content must be closely aligned for an answer to be returned. If no candidate meets the confidence threshold, the response doesn't include an answer. This example uses a question that's known to produce a result so that you can see the syntax. If answers aren't useful for your scenario, omit `query_answer` from your code. For composed answers, consider a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../agentic-retrieval-overview.md).
+
+```python
+results = search_client.search(
+    query_type='semantic',
+    semantic_configuration_name='semantic-config',
+    search_text="what's a good hotel for people who "
+                "like to read",
+    select='HotelName,Description,Category',
+    query_caption='extractive',
+    query_answer="extractive",
+)
+
+semantic_answers = results.get_answers()
+for answer in semantic_answers:
+    if answer.highlights:
+        print(f"Semantic Answer: {answer.highlights}")
+    else:
+        print(f"Semantic Answer: {answer.text}")
+    print(f"Semantic Answer Score: {answer.score}\n")
+```
+
+Key takeaways:
+
++ `query_answer="extractive"` enables extractive answers for question-like queries.
++ Answers are verbatim content extracted from your index, not generated text.
++ `results.get_answers()` retrieves the answer objects separately from the search results.

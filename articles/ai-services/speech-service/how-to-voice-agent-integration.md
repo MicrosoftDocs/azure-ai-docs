@@ -12,11 +12,16 @@ ms.author: pafarley
 ms.reviewer: pafarley
 zone_pivot_groups: voice-live-howto-agents
 recommendations: false
+ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # How to build a voice agent (preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+> [!NOTE]
+> Foundry agent integration currently only supports agents available on public endpoints. Foundry agents deployed in private VNet aren't supported.
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python quickstart](./includes/how-to/voice-live-agents/python.md)]

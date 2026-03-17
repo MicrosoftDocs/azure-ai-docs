@@ -1,10 +1,8 @@
 ---
-title: "Quickstart: Create a Skillset in the Azure portal"
-titleSuffix: Azure AI Search
+title: "Quickstart: Create a Skillset in the Azure Portal"
 description: Learn how to use an import wizard to generate searchable text from images and unstructured documents. Skills in this quickstart include optical character recognition (OCR), image analysis, and natural-language processing.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -117,7 +115,7 @@ To add the skills:
 
    :::image type="content" source="media/search-get-started-skillset/extract-text.png" alt-text="Screenshot of the Extract text from images options in the Azure portal." lightbox="media/search-get-started-skillset/extract-text.png":::
 
-1. Leave the **Use a free AI service (limited enrichments)** checkbox selected.
+1. Leave the **Use a free Foundry Tools resource (limited enrichments)** checkbox selected.
 
    The sample data consists of 14 files, so the free allotment of 20 transactions on Foundry Tools is sufficient.
 

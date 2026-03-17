@@ -1,13 +1,9 @@
 ---
 title: 'C# Tutorial: Index Azure SQL Data'
-titleSuffix: Azure AI Search
 description: In this C# tutorial, you connect to Azure SQL Database, extract searchable data, and load it into an Azure AI Search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 03/28/2025
+ms.date: 02/27/2026
 ms.update-cycle: 180-days
 ms.custom:
   - devx-track-csharp
@@ -133,7 +129,7 @@ Indexers require a data source object and an index. The relevant code is in two 
 
 ### In hotel.cs
 
-The index schema defines the fields collection, including attributes specifying allowed operations, such as whether a field is full-text searchable, filterable, or sortable, as shown in the following field definition for `HotelName`. A [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield) is, by definition, full-text searchable. Other attributes are explicitly assigned.
+The index schema defines the fields collection, including attributes that specify allowed operations, such as whether a field is full-text searchable, filterable, or sortable, as shown in the following field definition for `HotelName`. A [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield) is, by definition, full-text searchable. Other attributes are explicitly assigned.
 
 ```csharp
 . . . 
@@ -147,7 +143,7 @@ A schema can also include other elements, such as scoring profiles for boosting 
 
 ### In Program.cs
 
-The main program includes logic for creating [an indexer client](/dotnet/api/azure.search.documents.indexes.models.searchindexer), an index, a data source, and an indexer. The code checks for and deletes existing resources of the same name, assuming that you might run this program multiple times.
+The main program includes logic for creating [an indexer client](/dotnet/api/azure.search.documents.indexes.searchindexerclient), an index, a data source, and an indexer. The code checks for and deletes existing resources of the same name, assuming that you might run this program multiple times.
 
 The data source object is configured with settings that are specific to Azure SQL Database resources, including [partial or incremental indexing](search-how-to-index-sql-database.md#CaptureChangedRows) for using the built-in [change detection features](/sql/relational-databases/track-changes/about-change-tracking-sql-server) of Azure SQL. The source demo hotels database in Azure SQL has a "soft delete" column named **IsDeleted**. When this column is set to true in the database, the indexer removes the corresponding document from the Azure AI Search index.
 
@@ -158,7 +154,7 @@ var dataSource =
       new SearchIndexerDataSourceConnection(
          "hotels-sql-ds",
          SearchIndexerDataSourceType.AzureSql,
-         configuration["AzureSQLConnectionString"],
+         configuration["AzureSqlConnectionString"],
          new SearchIndexerDataContainer("hotels"));
 
 indexerClient.CreateOrUpdateDataSourceConnection(dataSource);
@@ -233,7 +229,7 @@ Your code runs locally in Visual Studio, connecting to your search service on Az
 
 Use the Azure portal to verify object creation, and then use **Search explorer** to query the index.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and go to your search service. From the left pane, open each page to verify the objects are created. **Indexes**, **Indexers**, and **Data Sources** should have **hotels-sql-idx**, **hotels-sql-indexer**, and **hotels-sql-ds**, respectively.
+1. Sign in to the [Azure portal](https://portal.azure.com) and go to your search service. From the left pane, open each page to verify the objects are created. **Indexes**, **Indexers**, and **Data Sources** should have **hotels-sql-idx**, **hotels-sql-idxr**, and **hotels-sql-ds**, respectively.
 
 1. On the **Indexes** tab, select the **hotels-sql-idx** index. On the hotels page, **Search explorer** is the first tab.
 

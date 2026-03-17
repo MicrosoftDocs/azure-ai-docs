@@ -1,10 +1,6 @@
 ---
-title: Data import and data ingestion
-titleSuffix: Azure AI Search
-description: Populate and upload data to an index in Azure AI Search from external data sources.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+title: Data Import and Ingestion
+description: Learn about data import in Azure AI Search, including the push and pull models for loading content into a search index from external data sources.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -112,7 +108,7 @@ A quick way to perform a preliminary check on the document upload is to use [**S
 
 The explorer lets you query an index without having to write any code. The search experience is based on default settings, such as the [simple syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) and default [searchMode query parameter](/rest/api/searchservice/documents/search-post). Results are returned in JSON so that you can inspect the entire document.
 
-Here's an example query that you can run in Search Explorer in JSON view. The "HotelId" is the document key of the hotels-sample-index. The filter provides the document ID of a specific document:
+Here's an example query that you can run in Search Explorer in JSON view. The "HotelId" is the document key of the hotels-sample index. The filter provides the document ID of a specific document:
 
 ```JSON
 {

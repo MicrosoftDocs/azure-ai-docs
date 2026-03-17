@@ -1,7 +1,5 @@
 ---
-manager: nitinme
-author: diberry
-ms.author: haileytapia
+ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/05/2026
@@ -74,6 +72,12 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
    When the installation completes, you should see a `node_modules` folder in the project directory.
 
+1. Build the TypeScript files.
+
+   ```bash
+   npm run build
+   ```
+
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service.
 
    ```azurecli
@@ -85,32 +89,32 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 1. Create a vector index.
 
     ```bash
-    npm run build && node -r dotenv/config dist/createIndex.js
+    node -r dotenv/config dist/createIndex.js
     ```
 
 1. Load documents that contain precomputed embeddings.
 
     ```bash
-    npm run build && node -r dotenv/config dist/uploadDocuments.js
+    node -r dotenv/config dist/uploadDocuments.js
     ```
 
 1. Run a vector search query.
 
     ```bash
-    npm run build && node -r dotenv/config dist/searchSingle.js
+    node -r dotenv/config dist/searchSingle.js
     ```
 
 1. (Optional) Run additional query variations.
 
     ```bash
-    npm run build && node -r dotenv/config dist/searchSingleWithFilter.js
-    npm run build && node -r dotenv/config dist/searchSingleWithFilterGeo.js
-    npm run build && node -r dotenv/config dist/searchHybrid.js
-    npm run build && node -r dotenv/config dist/searchSemanticHybrid.js
+    node -r dotenv/config dist/searchSingleWithFilter.js
+    node -r dotenv/config dist/searchSingleWithFilterGeo.js
+    node -r dotenv/config dist/searchHybrid.js
+    node -r dotenv/config dist/searchSemanticHybrid.js
     ```
 
-> [!NOTE]
-> The `npm run build` command compiles the TypeScript files in `src/` to JavaScript in `dist/`.
+    > [!NOTE]
+    > These commands run `.js` files from the `dist` folder because you previously transpiled from TypeScript to JavaScript with `npm run build`.
 
 ### Output
 

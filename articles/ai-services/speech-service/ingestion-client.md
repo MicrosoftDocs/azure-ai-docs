@@ -1,13 +1,14 @@
 ---
 title: Ingestion Client - Speech service
 titleSuffix: Foundry Tools
-description: Learn about a tool released on GitHub that enables customers push audio files to Speech service easily and quickly 
+description: Learn about a tool released on GitHub that enables customers to push audio files to Speech service easily and quickly 
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the Ingestion Client tool that helps me quickly deploy a call center transcription solution to Azure with a no-code approach.
 ---
 

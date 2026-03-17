@@ -6,9 +6,10 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 ms.custom: mode-api
+ai-usage: ai-assisted
 # Customer intent: As a developer, I want to learn how to configure the Speech CLI datastore.
 ---
 
@@ -24,7 +25,7 @@ For more details about datastore files, including use of default configuration f
 spx help advanced setup
 ```
 
-## nodefaults
+## Override default settings
 
 The following example clears the `@my.defaults` configuration file, adds key-value pairs for **key** and **region** in the file, and uses the configuration in a call to `spx recognize`.
 
@@ -38,7 +39,7 @@ spx config @my.defaults
 spx recognize --nodefaults @my.defaults --file hello.wav
 ```
 
-## Dynamic configuration
+## Write dynamic content to a configuration file
 
 You can also write dynamic content to a configuration file using the `--output` option. 
 
@@ -58,7 +59,7 @@ spx csr dataset create --name "AM" --kind Acoustic --content https://crbn.us/aud
 spx config @my.datasets.txt
 ```
 
-## SPX config add
+## Create a preset configuration
 
 For readability, flexibility, and convenience, you can use a preset configuration with select output options. 
 

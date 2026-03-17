@@ -1,13 +1,9 @@
 ---
-title: Create a knowledge store using REST
-titleSuffix: Azure AI Search
-description: Use the REST APIs to create an Azure AI Search knowledge store for persisting AI enrichments from skillset.
-author: HeidiSteen
-manager: nitinme
-ms.author: heidist
+title: Create a Knowledge Store Using REST
+description: Use the REST APIs to create an Azure AI Search knowledge store for persisting AI enrichments from a skillset.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/21/2025
+ms.date: 02/27/2026
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -19,14 +15,14 @@ ms.custom:
 > [!NOTE]
 > *Knowledge stores* are secondary storage that exists in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge bases, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
-In Azure AI Search, a [knowledge store](knowledge-store-concept-intro.md) is a repository of [AI-generated content](cognitive-search-concept-intro.md) that's used for non-search scenarios. You create the knowledge store using an indexer and skillset, and specify Azure Storage to store the output. After the knowledge store is populated, use tools like [Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer) or [Power BI](knowledge-store-connect-power-bi.md) to explore the content.
+In Azure AI Search, a [knowledge store](knowledge-store-concept-intro.md) is a repository of [skill-generated content](cognitive-search-concept-intro.md) that's used for non-search scenarios. You create the knowledge store using an indexer and skillset, and specify Azure Storage to store the output. After the knowledge store is populated, use tools like [Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer) or [Power BI](knowledge-store-connect-power-bi.md) to explore the content.
 
 In this article, you use the REST API to ingest, enrich, and explore a set of customer reviews of hotel stays in a knowledge store. The knowledge store contains original text content pulled from the source, plus AI-generated content that includes a sentiment score, key phrase extraction, language detection, and text translation of non-English customer comments.
 
 To make the initial data set available, the hotel reviews are first imported into Azure Blob Storage. Post-processing, the results are saved as a knowledge store in Azure Table Storage.
 
 > [!TIP]
-> This article uses REST for detailed explanations of each step. [Download the REST file](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/knowledge-store) if you want to just run the commands. Alternatively, you can also [create a knowledge store in Azure portal](knowledge-store-create-portal.md).
+> This article uses REST for detailed explanations of each step. [Download the REST file](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/knowledge-store) if you want to just run the commands.
 
 ## Prerequisites
 
@@ -34,17 +30,17 @@ To make the initial data set available, the hotel reviews are first imported int
 
 + Azure AI Search. [Create a service](search-create-service-portal.md) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices). You can use the free service for this exercise.
 
-+ Azure Storage. [Create an account](/azure/storage/common/storage-account-create) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/). The account type must be **StorageV2 (general purpose V2)**.
++ Azure Storage. [Create an account](/azure/storage/common/storage-account-create) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2FstorageAccounts/). The account type must be **StorageV2 (general purpose V2)**.
 
 The skillset in this example uses Foundry Tools for enrichments. Because the workload is so small, Foundry Tools is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching a Microsoft Foundry resource.
 
 ## Upload data to Azure Storage and get a connection string
 
-1. [Download HotelReviews_Free.csv](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotelreviews/HotelReviews_data.csv). This CSV contains 19 pieces of customer feedback about a single hotel (originates from Kaggle.com).
+1. [Download HotelReviews_data.csv](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotelreviews/HotelReviews_data.csv). This CSV contains 19 pieces of customer feedback about a single hotel (originates from Kaggle.com).
 
 1. In Azure portal, find your storage account and use **Storage Browser** to create a blob container named **hotel-reviews**.
 
-1. Select **Upload** at the top of the page to load the **HotelReviews-Free.csv** file you downloaded from the previous step.
+1. Select **Upload** at the top of the page to load the **HotelReviews_data.csv** file you downloaded from the previous step.
 
    :::image type="content" source="media/knowledge-store-create-portal/blob-container-storage-explorer.png" alt-text="Screenshot of Storage Browser with uploaded file and left nav pane" border="true":::
 
@@ -57,7 +53,7 @@ The skillset in this example uses Foundry Tools for enrichments. Because the wor
   ```
 
 > [!NOTE]
-> See [Connect using a managed identity](search-how-to-managed-identities.md) if you don't want to provide sensitive data on the connection string. 
+> See [Connect using a managed identity](search-how-to-managed-identities.md) if you don't want to provide sensitive data in the connection string.
 
 ## Copy a key and URL
 
@@ -73,7 +69,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
 ## Create an index
 
-[Create Index (REST)](/rest/api/searchservice/indexes/create) creates  a search index on the search service. A search index is unrelated to a knowledge store, but the indexer requires one. The search index contains the same content as the knowledge store, which you can explore by sending query requests.
+[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on the search service. A search index is unrelated to a knowledge store, but the indexer requires one. The search index contains the same content as the knowledge store, which you can explore by sending query requests.
 
 1. Open a new text file in Visual Studio Code.
 
@@ -82,7 +78,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
    @apiKey = PUT-YOUR-ADMIN-API-KEY-HERE
-   @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
+    @storageConnectionString = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
    @blobContainer = PUT-YOUR-CONTAINER-NAME-HERE (hotel-reviews)
    ```
 
@@ -149,7 +145,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
 ## Create a skillset 
 
-A skillset defines enrichments (skills) and your knowledge store. [Create Skillset](/rest/api/searchservice/indexers/create) creates the object on your search service.
+A skillset defines enrichments (skills) and your knowledge store. [Create Skillset](/rest/api/searchservice/skillsets/create) creates the object on your search service.
 
 1. Paste in the following example to create the skillset.
 
@@ -316,7 +312,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
 ## Create an indexer
 
-[Create Indexer](/rest/api/searchservice/indexers/create) creates and runs the indexer. Indexer execution starts by cracking the documents, extracting text and images, and initializing the skillset. The indexer checks for the other objects that you created: the datasource, the index, and the skillset. 
+[Create Indexer](/rest/api/searchservice/indexers/create) creates and runs the indexer. Indexer execution starts by cracking the documents, extracting text and images, and initializing the skillset. The indexer checks for the other objects that you created: the data source, the index, and the skillset.
 
 1. Paste in the following example to create the indexer.
 
@@ -347,9 +343,9 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
         }
     ],
     "outputFieldMappings": [
-        { "sourceFieldName": "/document/reviews_text/pages/*/Keyphrases/*", "targetFieldName": "Keyphrases" },
-        { "sourceFieldName": "/document/Language", "targetFieldName": "Language" },
-        { "sourceFieldName": "/document/reviews_text/pages/*/Sentiment", "targetFieldName": "Sentiment" }
+        { "sourceFieldName": "/document/reviews_text/pages/*/keyphrases/*", "targetFieldName": "keyphrases" },
+        { "sourceFieldName": "/document/language", "targetFieldName": "language" },
+        { "sourceFieldName": "/document/reviews_text/pages/*/sentiment", "targetFieldName": "sentiment" }
         ]
     }
     ```
@@ -360,7 +356,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
 + The `parameters/configuration` object controls how the indexer ingests the data. In this case, the input data is in a single CSV file that has a header line and comma-separated values. 
 
-+ Field mappings create "AzureSearch_DocumentKey" is a unique identifier for each document that's generated by the blob indexer (based on metadata storage path). 
++ The field mapping for `AzureSearch_DocumentKey` creates a unique identifier for each document generated by the blob indexer (based on the metadata storage path).
 
 + Output field mappings specify how enriched fields are mapped to fields in a search index. Output field mappings aren't used in knowledge stores (knowledge stores use shapes and projections to express the physical data structures).
 
@@ -379,7 +375,7 @@ After several minutes, you can query the index to inspect the content. Even if y
 
 ```http
 ### Query the index (indexer status must be "success" before querying the index)
-POST {{baseUrl}}/indexes/hotel-reviews-kstore-idxr/docs/search?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/hotel-reviews-kstore-idx/docs/search?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -398,7 +394,7 @@ Each table is generated with the IDs necessary for cross-linking the tables in q
 
    :::image type="content" source="media/knowledge-store-create-portal/azure-table-hotel-reviews.png" alt-text="Screenshot of the knowledge store tables in Storage Browser" border="true":::
 
-In this walkthrough, the knowledge store is composed of a various tables showing different ways of shaping and structuring a table. Tables one through three use output from a Shaper skill to determine the columns and rows. Tables four through six are created from inline shaping instructions, embedded within the projection itself. You can use either approach to achieve the same outcome.
+In this walkthrough, the knowledge store is composed of various tables that show different ways of shaping and structuring data. Tables one through three use output from a Shaper skill to determine columns and rows. Tables four through six are created from inline shaping instructions embedded within the projection itself. You can use either approach to achieve the same outcome.
 
 | Table | Description |
 |-------|-------------|
@@ -407,7 +403,7 @@ In this walkthrough, the knowledge store is composed of a various tables showing
 | `hotelReviews3KeyPhrases` | Contains a long list of just the key phrases. |
 | `hotelReviews4InlineProjectionDocument` | Alternative to the first table, using inline shaping instead of the Shaper skill to shape data for the projection. |
 | `hotelReviews5InlineProjectionPages` | Alternative to the second table, using inline shaping. |
-| `hotelreviews6InlineProjectionKeyPhrases` | Alternative to the third table, using inline shaping. |
+| `hotelReviews6InlineProjectionKeyPhrases` | Alternative to the third table, using inline shaping. |
 
 ## Clean up
 

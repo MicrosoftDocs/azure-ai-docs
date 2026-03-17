@@ -1,9 +1,6 @@
 ---
 title: Attach Resource to Skillset for Billing
-titleSuffix: Azure AI Search
 description: Learn how to attach a Microsoft Foundry resource to an AI enrichment pipeline for billing purposes in Azure AI Search.
-author: HeidiSteen 
-ms.author: heidist 
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/04/2025
@@ -273,7 +270,7 @@ Billing goes into effect when API calls to a Foundry resource exceed 20 API call
 
 Keyless and key-based connections are used for billing, but not for connections related to enrichment operations.
 
-For key-based connections, a search service [connects over the internal network](search-security-overview.md#internal-traffic) to a Foundry resource located in the [same physical region](search-region-support.md). Most regions that offer Azure AI Search also offer other Azure services. If you attempt AI enrichment in a region that doesn't have both services, you see this message: "Provided key isn't a valid CognitiveServices type key for the region of your search service."
+For key-based connections, a search service [connects over the internal network](search-security-built-in.md#internal-traffic-protection) to a Foundry resource located in the [same physical region](search-region-support.md). Most regions that offer Azure AI Search also offer other Azure services. If you attempt AI enrichment in a region that doesn't have both services, you see this message: "Provided key isn't a valid CognitiveServices type key for the region of your search service."
 
 For keyless connections, a search service authenticates using its identity and role assignment and targets a Foundry resource. The resource is specified as a fully qualified URI, and the URI includes a unique subdomain.
 

@@ -1,0 +1,45 @@
+items:
+- name: What is Microsoft Foundry?
+  href: what-is-foundry.md
+
+- name: Get started
+  href: toc-files-foundry/get-started/toc.yml
+  
+- name: Agent Service
+  href: toc-files-foundry/agent-service/toc.yml
+
+- name: Foundry Models
+  href: toc-files-foundry/foundry-models/toc.yml
+
+# - name: Integration & orchestration
+#   href: toc-files-foundry/integrations-orchestration/toc.yml
+
+- name: Manage agents, models, & tools
+  href: toc-files-foundry/manage-agents-models-tools/toc.yml
+
+- name: Observability, evaluation, & tracing
+  href: toc-files-foundry/observability-evaluation-tracing/toc.yml
+
+- name: Developer experience 
+  href: toc-files-foundry/developer-environment/toc.yml
+
+- name: API & SDK
+  href: toc-files-foundry/api-sdk/toc.yml
+
+- name: Guardrails and controls
+  href: toc-files-foundry/guardrails/toc.yml
+
+- name: Responsible AI
+  href: toc-files-foundry/responsible-ai/toc.yml
+
+- name: Best practices
+  href: toc-files-foundry/best-practices/toc.yml
+
+- name: Setup & configure
+  href: toc-files-foundry/setup-configure/toc.yml
+
+- name: Security & governance
+  href: toc-files-foundry/security-governance/toc.yml
+
+- name: Operate & support
+  href: toc-files-foundry/operate-support/toc.yml

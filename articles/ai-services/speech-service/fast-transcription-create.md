@@ -9,8 +9,9 @@ ms.author: pafarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 01/31/2026
+ms.date: 03/10/2026
 zone_pivot_groups: fast-transcription-quickstart
+ai-usage: ai-assisted
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
@@ -26,6 +27,8 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 > [!TIP]
 > You can also use the latest LLM-powered speech transcription and speech translation with [LLM speech](./llm-speech.md).
+
+[!INCLUDE [transcription-features](includes/transcription-features.md)]
 
 ::: zone pivot="programming-language-rest"
 
@@ -44,6 +47,14 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 [!INCLUDE [Java SDK quickstart](includes/common/transcription-sdk-java.md)]
 
 ::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+[!INCLUDE [C# SDK quickstart](includes/common/transcription-sdk-csharp.md)]
+
+::: zone-end
+
+[!INCLUDE [error-handling](includes/quickstarts/speech-to-text-basics/error-handling.md)]
 
 ## Related content
 

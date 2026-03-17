@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Analyze text content with TypeScript"
 description: In this quickstart, get started using the Azure AI Content Safety TypeScript SDK to analyze text content for objectionable material.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
 ms.date: 07/11/2025
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 [Reference documentation](https://www.npmjs.com/package/@azure-rest/ai-content-safety) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentsafety/ai-content-safety-rest) | [Package (npm)](https://www.npmjs.com/package/@azure-rest/ai-content-safety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/js/1.0.0) |

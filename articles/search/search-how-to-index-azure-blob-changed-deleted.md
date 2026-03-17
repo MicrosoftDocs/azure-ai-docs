@@ -1,13 +1,10 @@
 ---
-title: Changed and deleted blobs
-titleSuffix: Azure AI Search
+title: Changed and Deleted Blobs
 description: Indexers that index from Azure Storage can pick up new and changed content automatically. This article describes the strategies.
-author: gmndrg
-ms.author: gimondra
-manager: nitinme
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/21/2025
+ms.date: 02/26/2025
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
@@ -142,6 +139,10 @@ You can reverse a soft-delete if the original source file still physically exist
 1. Check the blob or file's `LastModified` timestamp to make it's newer than the last indexer run. You can force an update to the current date and time by resaving the existing metadata.
 
 1. Run the indexer.
+
+## Limitations
+
+Neither native blob soft delete nor soft delete via custom metadata applies when using [one-to-many](search-how-to-index-azure-blob-one-to-many.md) indexing scenarios. To delete the document entry, you must submit a deletion request to the index using the [REST API deletion operation](/rest/api/searchservice/addupdate-or-delete-documents).
 
 ## Next steps
 

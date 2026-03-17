@@ -7,7 +7,8 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: concept-article
-ms.date: 02/21/2025
+ms.date: 03/02/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 ---
 
@@ -54,7 +55,7 @@ In general, we advise a confidence threshold of `0.4` for the Image Analysis 3.2
 
 On rare occasions, image captions can contain embarrassing errors, such as labeling a male-identifying person as "woman" or labeling an adult woman as "girl". We encourage users to consider using the latest Image Analysis 4.0 API which eliminates some errors by supporting gender-neutral captions.
 
-Please report any embarrassing or offensive captions by going to the [Azure portal](https://portal.azure.com) and navigating to the **Feedback** button in the top right.
+Report any embarrassing or offensive captions by going to the [Azure portal](https://portal.azure.com) and navigating to the **Feedback** button in the top right.
 
 
 ## Limitations 

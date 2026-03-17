@@ -1,10 +1,8 @@
 ---
 title: 'Quickstart: Deploy Using an ARM Template'
-titleSuffix: Azure AI Search
 description: Learn how to deploy an Azure AI Search service instance using an Azure Resource Manager template.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.custom:
@@ -22,7 +20,7 @@ In this quickstart, you use an Azure Resource Manager (ARM) template to deploy a
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
-Only those properties included in the template are used in the deployment. If more customization is required, such as [setting up network security](search-security-overview.md#network-security), you can update the service as a post-deployment task. To customize an existing service with the fewest steps, use [Azure CLI](search-manage-azure-cli.md) or [Azure PowerShell](search-manage-powershell.md). If you're evaluating preview features, use the [Management REST API](search-manage-rest.md).
+Only those properties included in the template are used in the deployment. If more customization is required, such as [setting up network security](search-security-best-practices.md#configure-network-security), you can update the service as a post-deployment task. To customize an existing service with the fewest steps, use [Azure CLI](search-manage-azure-cli.md) or [Azure PowerShell](search-manage-powershell.md). If you're evaluating preview features, use the [Management REST API](search-manage-rest.md).
 
 Assuming your environment meets the prerequisites and you're familiar with using ARM templates, select the **Deploy to Azure** button. The template will open in the Azure portal.
 

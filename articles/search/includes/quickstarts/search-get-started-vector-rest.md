@@ -1,7 +1,4 @@
 ---
-manager: nitinme
-author: haileytapia
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/05/2026
@@ -68,7 +65,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
     az account get-access-token --scope https://search.azure.com/.default --query accessToken -o tsv
     ```
 
-1. Replace the placeholder value for `@token` with the access token from the previous step.
+1. Replace the placeholder value for `@token` with the token from the previous step.
 
 ## Run the code
 

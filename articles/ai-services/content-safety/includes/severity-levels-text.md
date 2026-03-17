@@ -1,12 +1,12 @@
 ---
 title: "Severity level tables"
 description: Content safety severity level definition tables
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: include
 ms.date: 12/18/2023
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 

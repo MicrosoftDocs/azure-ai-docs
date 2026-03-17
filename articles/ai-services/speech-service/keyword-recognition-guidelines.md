@@ -7,14 +7,15 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: best-practice
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.reviewer: jagoerge
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about recommendations and guidelines for keyword recognition with the Speech service.
 ---
 
 # Recommendations and guidelines for keyword recognition
 
-This article outlines how to choose your keyword optimize its accuracy characteristics and how to design your user experiences with keyword verification. 
+This article outlines how to choose your keyword, optimize its accuracy characteristics, and design your user experiences with keyword verification. 
 
 ## Choosing an effective keyword
 
@@ -34,7 +35,7 @@ Creating an effective keyword is vital to ensuring your product responds consist
 
 ## User experience recommendations with keyword verification
 
-With a multi-stage keyword recognition scenario where [keyword verification](keyword-recognition-overview.md#keyword-verification) is used, applications can choose when the end-user is notified of a keyword detection. The recommendation for rendering any visual or audible indicator is to rely upon on responses from the keyword verification service:
+With a multi-stage keyword recognition scenario where [keyword verification](keyword-recognition-overview.md#keyword-verification) is used, applications can choose when the end-user is notified of a keyword detection. The recommendation for rendering any visual or audible indicator is to rely on responses from the keyword verification service:
 
 ![User experience guideline when optimizing for accuracy.](media/custom-keyword/kw-verification-ux-accuracy.png)
 

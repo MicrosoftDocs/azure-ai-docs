@@ -1,14 +1,14 @@
 ---
 title: Create a project for personal voice - Speech service
 titleSuffix: Foundry Tools
-description: Learn about how to create a project for personal voice.
+description: Learn how to create a project for personal voice.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to create a project for personal voice.
 ---

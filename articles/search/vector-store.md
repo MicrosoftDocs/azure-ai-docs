@@ -1,9 +1,7 @@
 ---
-title: Vector store
-titleSuffix: Azure AI Search
-description: Describes concepts behind vector storage in Azure AI Search.
-author: robertklee
-ms.author: robertlee
+title: Vector Index Overview
+description: Learn how Azure AI Search stores and manages vector indexes for similarity search, including vector field types, algorithms, and storage requirements.
+ms.reviewer: robertlee
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -245,7 +243,7 @@ Azure provides a [monitoring platform](monitor-azure-cognitive-search.md) that i
 
 ### Secure access to vector data
 
-Azure AI Search implements data encryption, private connections for no-internet scenarios, and role assignments for secure access through Microsoft Entra ID. For more information about enterprise security features, see [Security in Azure AI Search](search-security-overview.md).
+Azure AI Search implements data encryption, private connections for no-internet scenarios, and role assignments for secure access through Microsoft Entra ID. For more information about enterprise security features, see [Data, privacy, and built-in protections](search-security-built-in.md).
 
 ## Related content
 

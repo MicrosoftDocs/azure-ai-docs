@@ -31,7 +31,7 @@ Foundry resource is the next version and renaming of former "Foundry Tools". It 
 
 A Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects act as folders to group related work. 
 
-:::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Foundry resource containing multiple projects, each with deployments and connections.":::
+:::image type="content" source="../foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Foundry resource containing multiple projects, each with deployments and connections.":::
 
 > [!NOTE]
 > Only the default project is available in the Foundry (new) portal. Use the Foundry (classic) portal to interact with all other projects on a Foundry resource.
@@ -108,7 +108,7 @@ Built-in Azure RBAC developer roles for Foundry include:
 >[!NOTE]
 > The Azure AI Owner role will be available to assign in the Azure and Foundry portal soon.
 
-:::image type="content" source="../ai-foundry/media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../ai-foundry/media/how-to/network/detailed-rbac-diagram.png":::
+:::image type="content" source="../foundry/media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../foundry/media/how-to/network/detailed-rbac-diagram.png":::
 
 For larger enterprises with strict role based access requirements, we recommend utilizing the Azure AI User role the least  privilege developer permissions. For smaller enterprises wanting their developers to self-serve within their organization, we recommend utilizing the Azure AI Owner role for developer permissions as well as resource creation permissions. 
 

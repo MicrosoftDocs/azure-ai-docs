@@ -1,10 +1,6 @@
 ---
-title: Connect Using API keys
-titleSuffix: Azure AI Search
-description: Learn how to use an admin or query API key for inbound access to an Azure AI Search service endpoint.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+title: Connect Using API Keys
+description: Learn how to manage and use admin and query API keys for authenticating requests to an Azure AI Search service endpoint.
 ms.service: azure-ai-search
 ai-usage: ai-assisted
 ms.custom:
@@ -358,6 +354,6 @@ It's not possible to use [customer-managed key encryption](search-security-manag
 
 ## Related content
 
-+ [Security in Azure AI Search](search-security-overview.md)
++ [Data, privacy, and built-in protections in Azure AI Search](search-security-built-in.md)
 + [Azure role-based access control in Azure AI Search](search-security-rbac.md)
 + [Manage using PowerShell](search-manage-powershell.md)
