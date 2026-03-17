@@ -10,6 +10,7 @@ ms.author: mopeakande
 ms.custom:
   - build-2025
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer using Microsoft Foundry Models, I want to understand how to access and use Foundry Model endpoints so that I can integrate models into my applications with secure authentication and flexible deployment options.

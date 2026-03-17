@@ -1,84 +1,61 @@
 ---
 title: "Integrate third-party guardrails with Microsoft Foundry"
 description: "Learn how to connect external safety solutions to AI models and agents in Microsoft Foundry using third-party integrations."
-ms.date: 02/24/2026
 ms.custom: ai-assisted, references_regions
-ms.author: pafarley
-author: PatrickFarley
+ms.author: ssalgado
+author: ssalgadodev
+ms.date: 03/16/2026
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-
 ---
 
 # Integrate third-party guardrails
+
 Microsoft Foundry supports third-party safety and security integrations. You can connect external solutions to your AI models and agents at runtime to enhance Foundry Guardrails & Controls with best-in-class security capabilities from trusted partners.
+
 
 ## Prerequisites
 
 Before you set up the integration, ensure you have:
 
 - **Azure subscription**: You need the Owner role on the subscription.
-- **Key Vault**: Create at least one Key Vault with the Key Vault Administrator role assigned to you.
+- **Key Vault**: Create at least one [Key Vault with the Key Vault Administrator role assigned to you](/azure/key-vault/).
 - **Foundry project**: Create a project with the Azure AI User and Azure AI Account Owner roles assigned to you.
-- **Managed Identity**: Create at least one user-assigned Managed Identity and attach it to the Foundry resource in the Azure portal under **Resource Management** > **Identity**.
+- **Managed Identity**: Create at least one [user-assigned Managed Identity](/entra/identity/managed-identities-azure-resources/overview) and attach it to the Foundry resource in the Azure portal under **Resource Management** > **Identity**.
 
-## Palo Alto Networks Prisma AIRS
+### Enablement and data processing 
+Third-party integrations  are enabled via a Bring Your Own License (BYOL) approach, allowing you to utilize existing third-party software licenses from supported partners. Your data is processed outside of Azure AI Foundry using the service you selected. The terms and privacy commitments for your other service is applied to this processing. 
 
-Palo Alto Networks Prisma AIRS delivers runtime security for AI applications, models, and agents. Prisma AIRS scans for threats, blocks unsafe behavior, and provides actionable alerts.
 
-### License and data processing
+## Steps to connect integration
 
-Palo Alto Networks Prisma AIRS uses a Bring Your Own License (BYOL) approach. You can use your existing third-party software licenses from supported partners. Your data is processed outside of Foundry using the service you selected. The terms and privacy commitments for the other service apply to this processing.
+1. Follow the [third-party integrations steps](#third-party-integrations) and retrieve your API key linked to your custom security profile. We recommend that your Foundry project is in the same region as the third-party endpoint. View [supported regions here](#region-availability).
+1. Go to AI Foundry and select **Guardrails**. 
+1. Select the **Integrations** tab, and **add a third-party integration**. Then, select your desired third-party integration. 
+1. Select a [**Keyvault**](/azure/key-vault/) and [**Managed Identity**](/entra/identity/managed-identities-azure-resources/overview). 
+1. Add the endpoint and API keys. To get the endpoint-API key pair, follow the [third-party integrations steps](#third-party-integrations).
 
-### Register and connect to Prisma AIRS
+#### Third-party integrations
 
-To register your Prisma AIRS integration:
+This section links resources to third-party instructions on retrieving API keys and creating custom profiles. In the [steps to connect integration](#steps-to-connect-integration) section, you can use these links to continue connecting your integration. 
 
-1. Follow the [Prisma AIRS onboarding steps](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) to retrieve your API key linked to your custom security profile.
-1. In Foundry, select **Guardrails**.
-1. Select the **Integrations** tab, then select **Add integration** > **Palo Alto Networks Prisma AIRS**.
-1. Select a Key Vault and Managed Identity.
-1. Add the Prisma AIRS endpoint and API key. To get the endpoint and API key pair, complete the [Palo Alto Networks Prisma AIRS onboarding flow](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm).
+| Model   | Onboarding step |
+|--------------------|----------------------|
+| Palo Alto Networks |  [Prisma AIRS](https://docs.paloaltonetworks.com/ai-runtime-security/activation-and-onboarding/ai-runtime-security-api-intercept-overview/onboard-api-runtime-security-api-intercept-in-scm) |
+| Zenity  | [AI Detection and Response](https://app.zenity.io/app/connect/integrations).     |
 
-You only need to return to this step if you rotate your API key or change components such as Managed Identity or Key Vault.
 
-#### Region availability 
+## Attach Integrations to Foundry Guardrails
 
-The following table shows supported regions. We recommend that your Foundry project is in the same region as the Palo Alto Networks Prisma AIRS endpoint. Different regions can cause higher latency and potential timeouts.
+1. Select one or more Foundry Guardrails to attach the integration.
+1. Select **Save** and confirm integration and guardrail attachment in the integrations table.
+1. Confirm the status. Running indicates that a connection has been successfully established.
+1. Error messages point to concrete recommendations (for example, missing Managed Identity).
+1. Follow the main Foundry Guardrail flow to [assign a custom guardrail](guardrails-overview.md) with an active third-party integration to a model or agent.
+1. Test in Playground.
 
-| Azure Region | Recommended integration endpoint |
-|--------------|----------------------------------|
-| West US | US |
-| West US3 | US |
-| West Central US | US |
-| Germany West Central | Europe |
-| West Europe | Europe |
-| France Central | Europe |
-| Switzerland North | Europe |
-| Switzerland West | Europe |
-| Sweden Central | Europe |
-| Italy North | Europe |
-| Norway East | Europe |
-| North Europe | Europe |
-| UK South | Europe |
-| UK West | Europe |
-| South India | India |
-| Southeast Asia | Singapore |
-| East Asia | Singapore |
 
-### Attach and test the integration
-
-To attach the integration to your guardrails:
-
-1. Select one or more Foundry guardrails to attach the integration.
-1. Select **Save**, and confirm the integration and guardrail attachment in the integrations table.
-1. Verify the status. **Running** indicates a successful connection. Error messages provide specific recommendations, such as **Missing Managed Identity**.
-1. [Assign a Foundry custom guardrail](/azure/ai-foundry/guardrails/guardrails-overview) with an active third-party integration to a model or agent.
-1. Test the setup in the playground.
-
-## Test with code
-
-The following example shows how to test the integration using the OpenAI Python SDK. This code sends a request that violates the configured safety policy and demonstrates the content filtering response.
+## Code Examples
 
 ```python
 from openai import OpenAI
@@ -181,6 +158,39 @@ openai.BadRequestError: Error code: 400 -
   }
 }
 ```
+
+#### Region availability 
+
+The following table shows supported regions. We recommend that your Foundry project is in the same region as the third-party endpoint. Different regions can cause higher latency and potential timeouts.
+
+| Azure Region | Recommended Endpoint | Third-party Integration |
+|---|---|---|
+| West US | US | Zenity, Palo Alto Networks Prisma AIRS |
+| West US 2 | US | Zenity |
+| West US 3 | US | Zenity, Palo Alto Networks Prisma AIRS |
+| West Central US | US | Zenity, Palo Alto Networks Prisma AIRS |
+| Central US | US | Zenity |
+| North Central US | US | Zenity |
+| South Central US | US | Zenity |
+| East US | US | Zenity |
+| East US 2 | US | Zenity |
+| Canada Central | US | Zenity |
+| Canada East | US | Zenity |
+| West Europe | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| North Europe | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| France Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Germany West Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Italy North | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Spain Central | Europe | Zenity |
+| Sweden Central | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Norway East | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Switzerland North | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| Switzerland West | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| UK South | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| UK West | Europe | Zenity, Palo Alto Networks Prisma AIRS |
+| South India | India | Palo Alto Networks Prisma AIRS |
+| Southeast Asia | Singapore | Palo Alto Networks Prisma AIRS |
+| East Asia | Singapore | Palo Alto Networks Prisma AIRS |
 
 ## Next steps
 

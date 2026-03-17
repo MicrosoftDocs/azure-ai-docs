@@ -12,6 +12,7 @@ reviewer: achandmsft
 ms.custom:
   - migration
   - classic-and-new
+  - doc-kit-assisted
 zone_pivot_groups: openai-supported-languages
 ai-usage: ai-assisted
 #CustomerIntent: As a developer using Azure AI Inference SDK, I want to migrate my applications to the OpenAI SDK so that I can access broader model support, unified APIs, the latest OpenAI features, simplified authentication, and eliminate the need to frequently update API version parameters.
@@ -108,6 +109,7 @@ Use this checklist to ensure a smooth migration:
 > * Install the OpenAI SDK for your programming language
 > * Update authentication code (API key or Microsoft Entra ID)
 > * Change endpoint URLs from `.services.ai.azure.com/models` to `.openai.azure.com/openai/v1/`
+> * Change the credential scope from `https://cognitiveservices.azure.com/.default` to `https://ai.azure.com/.default`
 > * Update client initialization code
 > * Always specify the `model` parameter with your deployment name
 > * Update request method calls (`complete` → `chat.completions.create`)
@@ -124,7 +126,7 @@ If you experience authentication failures:
 
 - Verify your API key is correct and isn't expired
 - For Microsoft Entra ID, ensure your application has the correct permissions
-- Check that the credential scope is set to `https://cognitiveservices.azure.com/.default`
+- Check that the credential scope is set to `https://ai.azure.com/.default`
 
 ### Endpoint errors
 

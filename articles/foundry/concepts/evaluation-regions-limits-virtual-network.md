@@ -7,9 +7,11 @@ ms.reviewer: skohlmeier
 ms.date: 02/10/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
+ai-usage: ai-assisted
 ms.custom:
   - references_regions
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Rate limits, region support, and enterprise features for evaluation

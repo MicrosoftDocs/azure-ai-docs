@@ -9,8 +9,10 @@ ms.topic: how-to
 ms.date: 02/13/2026
 ms.reviewer: fasantia
 reviewer: santiagxf
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Monitor model deployments in Microsoft Foundry Models

@@ -11,6 +11,7 @@ ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
+  - doc-kit-assisted
 # customer intent: As a developer, I want to create custom evaluators so I can measure domain-specific quality metrics for my AI application's generations.
 ai-usage: ai-assisted
 ---

@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Use the GPT Realtime API via WebRTC (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/realtime-audio-webrtc.md)
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
@@ -44,10 +44,10 @@ You can access the GPT real-time models for global deployments in the [East US 2
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-realtime` (version 2025-08-28)
 - `gpt-realtime-mini` (version 2025-10-06)
-- `gpt-realtime-mini-2025-12-15` (version 2025-12-15)
+- `gpt-realtime-mini` (version 2025-12-15)
 - `gpt-realtime-1.5` (version 2026-02-23)
 
-You should use API version `2025-08-28` in the URL for the Realtime API. The API version is included in the sessions URL.
+Use the `/openai/v1` path in the request URL when calling the Realtime API.
 
 For more information about supported models, see the [models and versions documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models).
 
@@ -175,7 +175,7 @@ def get_token():
     """
     try:
         # Get bearer token using DefaultAzureCredential
-        bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+        bearer_token = get_bearer_token("https://ai.azure.com/.default")
         
         # Construct the Azure OpenAI endpoint URL
         url = f"https://{azure_resource}.openai.azure.com/openai/v1/realtime/client_secrets"
@@ -571,7 +571,7 @@ def get_ephemeral_token():
         Exception: If token generation fails
     """
     # Get bearer token using DefaultAzureCredential
-    bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+    bearer_token = get_bearer_token("https://ai.azure.com/.default")
     
     # Construct the Azure OpenAI endpoint URL
     url = f"https://{azure_resource}.openai.azure.com/openai/v1/realtime/client_secrets"
@@ -816,7 +816,7 @@ def connect_and_negotiate():
         if location_header:
             try:
                 # Get a bearer token for WebSocket authentication
-                bearer_token = get_bearer_token("https://cognitiveservices.azure.com/.default")
+                bearer_token = get_bearer_token("https://ai.azure.com/.default")
                 start_websocket_background(location_header, bearer_token)
             except Exception as e:
                 print(f"Failed to start background WebSocket monitoring: {e}")

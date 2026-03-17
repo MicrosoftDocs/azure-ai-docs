@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Role-based access control for Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/rbac-foundry.md)
 
 > [!TIP]
 > This article is for a Foundry project type. An alternate RBAC article for hub-based projects is available: [Role-based access control for Microsoft Foundry (Hubs and Projects)](hub-rbac-foundry.md).
@@ -153,7 +153,7 @@ For more information on creating a custom role, see the following articles.
 - [Azure portal](/azure/role-based-access-control/custom-roles-portal)
 - [Azure CLI](/azure/role-based-access-control/custom-roles-cli)
 - [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell)
-- [Disable Preview Features with Role-Based Access](../concepts/disable-preview-features-with-rbac.md). This article provides more details on specific permissions in Foundry across control and data plane which you can utilize when building custom roles.
+- [Disable preview features in Microsoft Foundry](../../foundry/how-to/disable-preview-features.md). This article provides more details on specific permissions in Foundry across control and data plane which you can utilize when building custom roles.
 
 ## Notes and limitations
 
@@ -171,7 +171,7 @@ For more information on creating a custom role, see the following articles.
 - [Create a project](../how-to/create-projects.md).
 - [Add a connection in Foundry portal](../how-to/connections-add.md).
 - [Authentication and Authorization in Foundry](../concepts/authentication-authorization-foundry.md).
-- [Disable Preview Features with Role-Based Access](../concepts/disable-preview-features-with-rbac.md).
+- [Disable preview features in Microsoft Foundry](../../foundry/how-to/disable-preview-features.md).
 
 ## Appendix
 

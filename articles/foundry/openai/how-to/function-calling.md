@@ -8,6 +8,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - devx-track-python
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/10/2026
 manager: nitinme
@@ -47,7 +48,7 @@ from zoneinfo import ZoneInfo
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -345,7 +346,7 @@ from zoneinfo import ZoneInfo
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  

@@ -11,6 +11,7 @@ ms.date: 02/13/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Prompt Shields in Microsoft Foundry

@@ -11,6 +11,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - dev-focus
   - classic-and-new
+  - doc-kit-assisted
 # customer intent: As a developer, I want to monitor the status of Microsoft Foundry services so I can stay informed about service health and plan around incidents.
 ---
 

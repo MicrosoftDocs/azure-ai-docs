@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # High availability and resiliency for Microsoft Foundry projects and Agent Services (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/high-availability-resiliency.md)
 
 [!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
@@ -123,7 +123,7 @@ Use Azure role-based access control (RBAC) to limit access to control and data p
 
 In production, don't grant standing delete permissions on these resources to any principal. For data plane access to state stores, only the project's managed identity should have standing write permissions.
 
-You can also destroy data through Agent Service REST APIs. For example, see [Delete Agent](/rest/api/aifoundry/aiagents/delete-agent/delete-agent) or [Delete Thread](/rest/api/aifoundry/aiagents/threads/delete-thread). Built-in AI roles like [Azure AI User](../concepts/rbac-foundry.md#built-in-roles) can delete operational data by using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these [data plane operations](/rest/api/aifoundry/aiagents/operation-groups). Create [custom roles](../concepts/rbac-foundry.md#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
+You can also destroy data through Agent Service REST APIs. Built-in AI roles like [Azure AI User](../concepts/rbac-foundry.md#built-in-roles) can delete operational data by using these APIs or the Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these data plane operations. For more information, see [Azure AI Foundry REST API reference](/rest/api/aifoundry/). Create [custom roles](../concepts/rbac-foundry.md#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
 
 ### Implement the single responsibility principle
 

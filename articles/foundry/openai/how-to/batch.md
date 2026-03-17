@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - references_regions
   - build-2025
+  - doc-kit-assisted
 zone_pivot_groups: openai-fine-tuning-batch
 ai-usage: ai-assisted
 ---

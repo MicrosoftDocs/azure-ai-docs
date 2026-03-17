@@ -20,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Add a new connection to your project (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/connections-add.md)
 
 > [!TIP]
 > An alternate hub-scoped connections article is available: [Create and manage connections (Hubs)](hub-connections-add.md).

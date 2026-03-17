@@ -11,6 +11,7 @@ ms.topic: how-to
 ms.custom:
   - classic-and-new
   - build-2025
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

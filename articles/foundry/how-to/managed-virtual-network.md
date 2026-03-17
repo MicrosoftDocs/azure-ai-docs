@@ -10,6 +10,7 @@ ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Configure managed virtual network for Microsoft Foundry projects

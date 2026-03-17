@@ -11,6 +11,7 @@ ms.author: pafarley
 ms.custom: 
 - azure-ai-agents
 - pilot-ai-workflow-jan-2026
+- doc-kit-assisted
 ai-usage: ai-assisted
 keywords: Azure Speech, speech to text, text to speech, MCP, Model Context Protocol, Foundry Agent Service
 ---

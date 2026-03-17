@@ -12,6 +12,7 @@ recommendations: false
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Migration from Preview to GA version of Realtime API

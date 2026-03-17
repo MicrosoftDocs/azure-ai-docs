@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023, devx-track-azurecli, build-2024, ignite-2024, dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 03/12/2026
 ms.reviewer: meerakurup
@@ -18,10 +19,7 @@ ai-usage: ai-assisted
 
 # How to configure network isolation for Microsoft Foundry
 
-> [!TIP]
-> An alternate hub-focused version of this article is available: [How to configure a private link for a Microsoft Foundry hub](../../foundry-classic/how-to/hub-configure-private-link.md).
-
-When you use a [!INCLUDE [fdp-projects](../includes/fdp-project-name.md)], you can use a private endpoint to secure communication. This article describes how to establish a private connection to your Foundry account and projects using a private endpoint.
+Use a private endpoint to secure communication. This article describes how to establish a private connection to your Foundry account and projects using a private endpoint.
 
 ## Plan for network isolation in Foundry
 
@@ -39,7 +37,7 @@ Consider network isolation in the following three areas within Microsoft Foundry
 
 The following diagram breaks down the inbound and outbound communication.
 
-<!-- :::image type="content" source="../media/how-to/network/plan-network-isolation-diagram.png" alt-text="Diagram of the plan for network isolation in Foundry." lightbox="../media/how-to/network/plan-network-isolation-diagram.png"::: -->
+:::image type="content" source="../media/how-to/network/plan-network-isolation-diagram.png" alt-text="Diagram of the plan for network isolation in Foundry." lightbox="../media/how-to/network/plan-network-isolation-diagram.png":::
 
 ### Inbound access
 
@@ -201,7 +199,7 @@ This section guides you through creating a new Foundry resource with outbound ne
 
 If you're building agents or running evaluations and you want end-to-end network isolation, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). That article provides details on required DNS zones, reference architecture, and known limitations.
 
-<!-- :::image type="content" source="../media/how-to/network/agent-eval-network-diagram.png" alt-text="Diagram of the recommended network isolation for Foundry." lightbox="../media/how-to/network/agent-eval-network-diagram.png"::: -->
+:::image type="content" source="../media/how-to/network/agent-eval-network-diagram.png" alt-text="Diagram of the recommended network isolation for Foundry." lightbox="../media/how-to/network/agent-eval-network-diagram.png":::
 
 ### Create a new resource and project with virtual network injection
 
@@ -266,7 +264,7 @@ To secure egress (outbound) traffic through network injection, configure an Azur
 
 Additionally, you can use a hub-and-spoke networking architecture where a virtual network is created for a shared firewall (the hub) and a separate virtual network for Foundry networking (a spoke). These virtual networks are then peered together. 
 
-<!-- :::image type="content" source="../media/how-to/network/network-hub-spoke-diagram.png" alt-text="Diagram of the firewall configuration for egress traffic from Foundry projects and agents." lightbox="../media/how-to/network/network-hub-spoke-diagram.png"::: -->
+:::image type="content" source="../media/how-to/network/network-hub-spoke-diagram.png" alt-text="Diagram of the firewall configuration for egress traffic from Foundry projects and agents." lightbox="../media/how-to/network/network-hub-spoke-diagram.png":::
 
 ## Limitations and considerations
 

@@ -129,6 +129,23 @@ groups:
     title: Foundry portal
   - id: programming-language-rest
     title: REST
+- id: programming-languages-content-understanding
+# Owner: pafarley
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-rest
+    title: REST
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-typescript
+    title: TypeScript
 - id: cloud-location
   # Owner: lajanuar
   title: Workflow
@@ -1878,11 +1895,15 @@ groups:
     title: Python
   - id: programming-language-java
     title: Java
+  - id: programming-language-csharp
+    title: C#
 # Owner: pafarley
 - id: llm-speech-quickstart
   title: Programming languages
   prompt: Choose an API
   pivots:
+  - id: programming-language-csharp
+    title: C#
   - id: programming-language-rest
     title: REST API
   - id: programming-language-python
@@ -1954,5 +1975,16 @@ groups:
     title: C#
   - id: python
     title: Python
+  - id: rest
+    title: REST
+# Owner: haileytapia
+- id: foundry-memory-store
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: typescript
+    title: TypeScript
   - id: rest
     title: REST
