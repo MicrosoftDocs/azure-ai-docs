@@ -1,7 +1,7 @@
 ### YamlMime:Landing
 
 title: Anomaly Detector API Documentation 
-summary: Starting on the 20th of September, 2023 you won’t be able to create new Anomaly Detector resources. The Anomaly Detector service is being retired on the 1st of October, 2026.
+summary: Beginning September 20, 2023 you can't create new Anomaly Detector resources. The Anomaly Detector service will retire on October 1, 2026.
 
 
 metadata:
@@ -12,7 +12,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-anomaly-detector
   ms.topic: landing-page
-  ms.date: 06/12/2025
+  ms.date: 03/17/2026
   ms.author: mbullwin
 
 
