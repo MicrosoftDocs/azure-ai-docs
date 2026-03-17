@@ -59,6 +59,7 @@ ms.date: 02/18/2026
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 18          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 27          | -           |
+| gpt-image-1.5                  | DataZoneStandard  | 5           | -           |
 | gpt-image-1.5                  | GlobalStandard    | 15          | -           |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
 | model-router                   | DataZoneStandard  | 190         | 190,000     |
