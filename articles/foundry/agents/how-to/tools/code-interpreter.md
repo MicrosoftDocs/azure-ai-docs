@@ -576,6 +576,20 @@ Delete resources you created in this sample when you no longer need them to avoi
 
 For examples of conversation and file cleanup patterns, see [Web search tool (preview)](web-search.md) and [File search tool for agents](file-search.md).
 
+## Sandboxed execution environment
+
+Code Interpreter runs Python code in a Microsoft-managed sandbox. The sandbox is designed for running untrusted code and is implemented using [dynamic sessions (code interpreter sessions) in Azure Container Apps](/azure/container-apps/sessions-code-interpreter), where each session is isolated by a Hyper-V boundary.
+
+Key behaviors to plan for:
+
+- **Region**: The Code Interpreter sandbox runs in the same Azure region as your Foundry project.
+- **Session lifetime**: A Code Interpreter session is active for up to one hour, with an idle timeout (see the *Important* note at the beginning of this article).
+- **Isolation**: Each session runs in an isolated environment. If your agent invokes Code Interpreter concurrently in different conversations, separate sessions are created.
+- **Network isolation and internet access**: The sandbox doesn't inherit your agent subnet configuration, and dynamic sessions are prevented from making outbound network requests.
+- **Files in the sandbox**: Files you attach for analysis are available to the sandboxed Python runtime. Code Interpreter can also generate files (for example, charts) and return them as downloadable outputs.
+
+If you need more control over the sandbox runtime or you need a different isolation model, see the [custom code interpreter](custom-code-interpreter.md).
+
 ## Related content
 
 - [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md)
