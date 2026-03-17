@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/16/2026
+ms.date: 03/17/2026
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -112,7 +112,7 @@ You can pass the following properties to create a remote SharePoint knowledge so
 
 ### Filter expression examples
 
-Not all SharePoint properties are supported in the `filterExpression`. For a list of supported properties, see the [API reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval). For queryable properties, see [queryable properties](/graph/connecting-external-content-manage-schema#queryable).
+Not all SharePoint properties are supported in the `filterExpression`. For a list of supported properties, see the [API reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval). For queryable properties, see [Queryable](/graph/connecting-external-content-manage-schema#queryable).
 
 Learn more about [KQL filters](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) in the syntax reference.
 
@@ -162,7 +162,7 @@ x-ms-query-source-authorization: {{user-access-token}}
 }
 ```
 
-### Query tips for remote SharePoint
+### Write effective queries
 
 Queries that ask about the content itself are more effective than questions about where a file is located or when it was last updated. For example, "Where is the keynote doc for Ignite 2024" might return no results because the content itself doesn't disclose its location. A `filterExpression` on metadata is a better approach for file location or date-specific queries.
 
@@ -193,11 +193,11 @@ Remote SharePoint results include fields that don't appear for other knowledge s
 
 ### Enforce permissions at query time
 
-Remote SharePoint enforces SharePoint permissions at query time. The retrieval engine uses the caller's access token, passed via the `x-ms-query-source-authorization` header, to query SharePoint content on behalf of the user through the Copilot Retrieval API. Only content the user has access to is returned. SharePoint permissions and Microsoft Purview sensitivity labels are honored in requests for content.
+Remote SharePoint knowledge sources can enforce SharePoint permissions at query time. To enable this filtering, include the end user's access token in the retrieve request. The retrieval engine passes the token to the Copilot Retrieval API, which queries SharePoint and returns only content to which the user has access. SharePoint permissions and Microsoft Purview sensitivity labels are honored.
 
-Because remote SharePoint doesn't use a search index, no ingestion-time permissions configuration is needed. The `x-ms-query-source-authorization` header is the only requirement.
+Because remote SharePoint doesn't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
 
-For instructions on calling the retrieve action with the authorization header, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+For instructions on passing the token, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ## Delete a knowledge source
 

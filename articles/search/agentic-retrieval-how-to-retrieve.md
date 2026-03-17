@@ -3,7 +3,7 @@ title: Query Knowledge Base via APIs or MCP
 description: Learn how to Query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/16/2026
+ms.date: 03/17/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -26,13 +26,13 @@ This article explains how to call both retrieval methods with optional permissio
 
 :::zone pivot="csharp"
 
-+ The latest [.NET SDK preview package](/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet-preview&preserve-view=true): `dotnet add package Azure.Search.Documents --prerelease`
++ The latest [`Azure.Search.Documents` preview package](/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet-preview&preserve-view=true): `dotnet add package Azure.Search.Documents --prerelease`
 
 :::zone-end
 
 :::zone pivot="python"
 
-+ The latest [Python SDK preview package](/python/api/overview/azure/search-documents-readme?view=azure-python-preview&preserve-view=true): `pip install --pre azure-search-documents`
++ The latest [`azure-search-documents` preview package](/python/api/overview/azure/search-documents-readme?view=azure-python-preview&preserve-view=true): `pip install --pre azure-search-documents`
 
 :::zone-end
 
@@ -152,8 +152,8 @@ print(result.response[0].content[0].text)
 :::zone pivot="rest"
 
 ```http
-@search-url = <YOUR SEARCH SERVICE URL> # Example: https://my-service.search.windows.net
-@accessToken = <YOUR ACCESS TOKEN> # Run: az account get-access-token --scope https://search.azure.com/.default --query accessToken -o tsv
+@search-url = <YOUR SEARCH SERVICE URL> // Example: https://my-service.search.windows.net
+@accessToken = <YOUR ACCESS TOKEN> // Run: az account get-access-token --scope https://search.azure.com/.default --query accessToken -o tsv
 
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
 Content-Type: application/json
@@ -208,7 +208,9 @@ Pass the following parameters to call the retrieve action.
 
 For knowledge sources that target a search index, all `searchable` fields are in scope for query execution. The implied query type is `semantic`, and there's no search mode.
 
-If the index includes vector fields, you need a valid [vectorizer definition](vector-search-how-to-configure-vectorizer.md) so the agentic retrieval engine can vectorize query inputs. Otherwise, vector fields are ignored.
+If the index includes vector fields, you need a valid vectorizer definition so the agentic retrieval engine can vectorize query inputs. Otherwise, vector fields are ignored.
+
+For more information, see [Create an index for agentic retrieval](agentic-retrieval-how-to-create-index.md).
 
 ## Call the MCP endpoint
 
@@ -241,19 +243,19 @@ The MCP endpoint requires authentication via custom headers. You have two option
 
 ## Enforce permissions at query time
 
-Document-level permissions enforcement works the same across all supported knowledge sources: at query time, the `x-ms-query-source-authorization` header carries the end user's identity so the retrieval engine can filter results to content the user is authorized to access. Without this header, results from permission-enabled knowledge sources are returned unfiltered.
+If your knowledge sources contain permission-protected content, the retrieval engine can filter results so that each user only sees the documents they're authorized to access. You enable this filtering by passing the end user's identity on the retrieve request. Without the identity token, results from permission-enabled knowledge sources are returned unfiltered.
 
-Permissions enforcement requires two parts:
+Permissions enforcement has two parts:
 
-1. **Ingestion time**: For indexed sources only, set `ingestionPermissionOptions` on the knowledge source so that permission metadata is ingested alongside document content. Valid values are `userIds`, `groupIds`, and `rbacScope`. For configuration steps, see the [how-to article](#permissions-by-knowledge-source) for each supported knowledge source.
+1. [**Ingestion time**](#ingestion-time-configuration): For indexed knowledge sources only, set `ingestionPermissionOptions` to ingest permission metadata alongside content.
 
-1. **Query time**: Pass the user's access token in the `x-ms-query-source-authorization` HTTP header on the retrieve request. The token must be scoped to `https://search.azure.com/.default`. For indexed sources, the retrieval engine uses this token to match against ingested permission metadata. For remote sources, the engine queries the underlying data source directly on behalf of the user.
+1. [**Query time**](#query-time-authorization): Pass the user's access token in the `x-ms-query-source-authorization` header.
 
-### Permissions by knowledge source
+### Ingestion-time configuration
 
-The following knowledge sources support permissions enforcement:
+The following table shows which knowledge sources require ingestion-time configuration and how each source enforces permissions.
 
-| Knowledge source | Ingestion configuration needed? | How permissions are enforced |
+| Knowledge source | Requires `ingestionPermissionOptions` | How permissions are enforced |
 |---|---|---|
 | [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestionparameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
 | [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestionparameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
@@ -263,11 +265,13 @@ The following knowledge sources support permissions enforcement:
 > [!IMPORTANT]
 > If `ingestionPermissionOptions` wasn't configured when the indexed knowledge source was created, no permission metadata exists in the index. Results are returned unfiltered, regardless of the header. To fix this, update or recreate the knowledge source with the appropriate `ingestionPermissionOptions` values and [reindex](search-howto-run-reset-indexers.md).
 
-### Pass the authorization header
+### Query-time authorization
+
+To pass the end user's identity, include an access token scoped to `https://search.azure.com/.default` on the retrieve request. This token is separate from the service credential used to access the search service. It doesn't need search service permissions and only represents the user whose content access is evaluated. For more information, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
 
 :::zone pivot="csharp"
 
-Pass the token through the `xMsQuerySourceAuthorization` parameter on the `RetrieveAsync` method. For detailed information about how the retrieval engine resolves user permissions at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
+In the .NET SDK, pass the token as the `xMsQuerySourceAuthorization` parameter on `RetrieveAsync`:
 
 ```csharp
 using Azure;
@@ -275,36 +279,38 @@ using Azure.Identity;
 using Azure.Search.Documents.KnowledgeBases;
 using Azure.Search.Documents.KnowledgeBases.Models;
 
-// Get access token for the user
-var credential = new DefaultAzureCredential();
-var tokenRequestContext = new Azure.Core.TokenRequestContext(
+// Service credential: Authenticates to the search service
+var serviceCredential = new DefaultAzureCredential();
+
+// User identity token: Represents the end user for document-level permissions filtering
+var userTokenContext = new Azure.Core.TokenRequestContext(
     new[] { "https://search.azure.com/.default" }
 );
-var accessToken = await credential.GetTokenAsync(tokenRequestContext);
-string token = accessToken.Token;
+string userToken = (await serviceCredential.GetTokenAsync(userTokenContext)).Token;
 
-// Create knowledge base retrieval client
+// Create the retrieval client with the service credential
 var kbClient = new KnowledgeBaseRetrievalClient(
     endpoint: new Uri("<YOUR SEARCH SERVICE URL>"),
     knowledgeBaseName: "<YOUR KNOWLEDGE BASE NAME>",
-    tokenCredential: new DefaultAzureCredential()
+    tokenCredential: serviceCredential
 );
 
-var retrievalRequest = new KnowledgeBaseRetrievalRequest();
-retrievalRequest.Messages.Add(
+var request = new KnowledgeBaseRetrievalRequest();
+request.Messages.Add(
     new KnowledgeBaseMessage(
         content: new[] {
-            new KnowledgeBaseMessageTextContent("What companies are in the financial sector?")
+            new KnowledgeBaseMessageTextContent(
+                "What companies are in the financial sector?")
         }
     ) { Role = "user" }
 );
 
+// Pass the user identity token for permissions filtering
 var result = await kbClient.RetrieveAsync(
-    retrievalRequest, xMsQuerySourceAuthorization: token
-);
-Console.WriteLine(
-    (result.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text
-);
+    request, xMsQuerySourceAuthorization: userToken);
+
+var text = (result.Value.Response[0].Content[0] as KnowledgeBaseMessageTextContent)!.Text;
+Console.WriteLine(text);
 ```
 
 **Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
@@ -313,42 +319,44 @@ Console.WriteLine(
 
 :::zone pivot="python"
 
-Pass the token through the `x_ms_query_source_authorization` parameter on the retrieve method. For detailed information about how the retrieval engine resolves user permissions at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
+In the Python SDK, pass the token as the `x_ms_query_source_authorization` parameter on `retrieve`:
 
 ```python
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from azure.search.documents.knowledgebases import KnowledgeBaseRetrievalClient
 from azure.search.documents.knowledgebases.models import (
-    KnowledgeBaseMessage,
-    KnowledgeBaseMessageTextContent,
+    KnowledgeBaseMessage, KnowledgeBaseMessageTextContent,
     KnowledgeBaseRetrievalRequest,
 )
 
-# Get access token for the user
-identity_token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://search.azure.com/.default"
-)
-token = identity_token_provider()
+# Service credential: Authenticates to the search service
+service_credential = DefaultAzureCredential()
 
-# Create knowledge base retrieval client
+# User identity token: Represents the end user for document-level permissions filtering
+user_token_provider = get_bearer_token_provider(
+    service_credential, "https://search.azure.com/.default")
+user_token = user_token_provider()
+
+# Create the retrieval client with the service credential
 kb_client = KnowledgeBaseRetrievalClient(
     endpoint="<YOUR SEARCH SERVICE URL>",
     knowledge_base_name="<YOUR KNOWLEDGE BASE NAME>",
-    credential=DefaultAzureCredential(),
+    credential=service_credential,
 )
 
 request = KnowledgeBaseRetrievalRequest(
     messages=[
         KnowledgeBaseMessage(
             role="user",
-            content=[KnowledgeBaseMessageTextContent(text="What companies are in the financial sector?")],
+            content=[KnowledgeBaseMessageTextContent(
+                text="What companies are in the financial sector?")],
         )
     ]
 )
 
+# Pass the user identity token for permissions filtering
 result = kb_client.retrieve(
-    retrieval_request=request, x_ms_query_source_authorization=token
-)
+    retrieval_request=request, x_ms_query_source_authorization=user_token)
 print(result.response[0].content[0].text)
 ```
 
@@ -358,20 +366,27 @@ print(result.response[0].content[0].text)
 
 :::zone pivot="rest"
 
-Include the `x-ms-query-source-authorization` header with the user's access token. For detailed information about how the retrieval engine resolves user permissions at query time, see [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
+In the REST API, include the `x-ms-query-source-authorization` header with the user's access token:
 
 ```http
+@search-url = <YOUR SEARCH SERVICE URL>
+@accessToken = <YOUR ACCESS TOKEN> // Service credential
+@userAccessToken = <USER ACCESS TOKEN> // User identity token
+
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
-x-ms-query-source-authorization: {{user-access-token}} # Run: az account get-access-token --scope https://search.azure.com/.default --query accessToken -o tsv
+x-ms-query-source-authorization: {{userAccessToken}}
 
 {
     "messages": [
         {
             "role": "user",
             "content": [
-                { "type": "text", "text": "What companies are in the financial sector?" }
+                {
+                    "type": "text",
+                    "text": "What companies are in the financial sector?"
+                }
             ]
         }
     ]
@@ -577,7 +592,7 @@ request = KnowledgeBaseRetrievalRequest(
             content=[KnowledgeBaseMessageTextContent(text="What companies are in the financial sector?")],
         )
     ],
-    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort,
+    retrieval_reasoning_effort=KnowledgeRetrievalLowReasoningEffort(),
     output_mode="answerSynthesis",
     max_runtime_in_seconds=30,
     max_output_size=6000,
@@ -744,7 +759,7 @@ In this example, there's no LLM for intelligent query planning or answer synthes
 ```csharp
 var retrievalRequest = new KnowledgeBaseRetrievalRequest();
 retrievalRequest.Intents.Add(
-    new KnowledgeBaseRetrievalIntent("semantic", "what is a brokerage")
+    new KnowledgeRetrievalSemanticIntent("what is a brokerage")
 );
 
 var result = await kbClient.RetrieveAsync(retrievalRequest);
@@ -762,13 +777,12 @@ Console.WriteLine(
 ```python
 from azure.search.documents.knowledgebases.models import (
     KnowledgeBaseRetrievalRequest,
-    KnowledgeBaseRetrievalIntent,
+    KnowledgeRetrievalSemanticIntent,
 )
 
 request = KnowledgeBaseRetrievalRequest(
     intents=[
-        KnowledgeBaseRetrievalIntent(
-            type="semantic",
+        KnowledgeRetrievalSemanticIntent(
             search="what is a brokerage",
         )
     ]

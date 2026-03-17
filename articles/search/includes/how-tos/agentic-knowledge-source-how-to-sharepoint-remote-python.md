@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/16/2026
+ms.date: 03/17/2026
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -26,7 +26,7 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 + A Microsoft 365 Copilot license for query-time access to SharePoint content.
 
-+ The latest preview version of the [`azure-search-documents` client library](https://pypi.org/project/azure-search-documents/11.7.0b2/) for Python.
++ The latest [`azure-search-documents` preview package](https://pypi.org/project/azure-search-documents/11.7.0b2/): `pip install --pre azure-search-documents`
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](../../search-security-rbac.md), but you can use [API keys](../../search-security-api-keys.md) if a role assignment isn't feasible.
 
@@ -116,7 +116,7 @@ You can pass the following properties to create a remote SharePoint knowledge so
 
 ### Filter expression examples
 
-Not all SharePoint properties are supported in the `filterExpression`. For a list of supported properties, see the [API reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval). For queryable properties, see [queryable properties](/graph/connecting-external-content-manage-schema#queryable).
+Not all SharePoint properties are supported in the `filterExpression`. For a list of supported properties, see the [API reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval). For queryable properties, see [Queryable](/graph/connecting-external-content-manage-schema#queryable).
 
 Learn more about [KQL filters](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) in the syntax reference.
 
@@ -174,7 +174,7 @@ result = kb_client.retrieve(
 )
 ```
 
-### Query tips for remote SharePoint
+### Write effective queries
 
 Queries that ask about the content itself are more effective than questions about where a file is located or when it was last updated. For example, "Where is the keynote doc for Ignite 2024" might return no results because the content itself doesn't disclose its location. A `filter_expression` on metadata is a better approach for file location or date-specific queries.
 
@@ -205,11 +205,11 @@ Remote SharePoint results include fields that don't appear for other knowledge s
 
 ### Enforce permissions at query time
 
-Remote SharePoint enforces SharePoint permissions at query time. The retrieval engine uses the caller's access token, passed via the `x_ms_query_source_authorization` parameter, to query SharePoint content on behalf of the user through the Copilot Retrieval API. Only content the user has access to is returned. SharePoint permissions and Microsoft Purview sensitivity labels are honored in requests for content.
+Remote SharePoint knowledge sources can enforce SharePoint permissions at query time. To enable this filtering, include the end user's access token in the retrieve request. The retrieval engine passes the token to the Copilot Retrieval API, which queries SharePoint and returns only content to which the user has access. SharePoint permissions and Microsoft Purview sensitivity labels are honored.
 
-Because remote SharePoint doesn't use a search index, no ingestion-time permissions configuration is needed. The `x_ms_query_source_authorization` parameter is the only requirement.
+Because remote SharePoint doesn't use a search index, no ingestion-time permissions configuration is needed. The access token is the only requirement.
 
-For instructions on calling the retrieve action with the authorization token, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+For instructions on passing the token, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ## Delete a knowledge source
 

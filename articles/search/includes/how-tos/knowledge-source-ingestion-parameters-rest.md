@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/16/2026
+ms.date: 03/17/2026
 ---
 
 For indexed knowledge sources only, you can pass the following `ingestionParameters` properties to control how content is ingested and processed.
@@ -16,4 +16,4 @@ For indexed knowledge sources only, you can pass the following `ingestionParamet
 | `aiServices` | A Microsoft Foundry resource to access Azure Content Understanding in Foundry Tools. Setting this parameter requires that `contentExtractionMode` is set to `standard`. | Object | Only `apiKey` is editable | Yes |
 | `assetStore` | A blob container to store extracted images. Setting this parameter requires that `contentExtractionMode` is set to `standard`. | Object | No | No |
 | `ingestionSchedule` | Adds scheduling information to the generated indexer. You can also [add a schedule](../../search-howto-schedule-indexers.md) later to automate data refresh. | Object | Yes | No |
-| `ingestionPermissionOptions` | The document-level permissions to ingest alongside content. Supported knowledge sources are Blob or ADLS Gen2, OneLake, and indexed SharePoint. When you specify `userIds`, `groupIds`, or `rbacScope`, the generated indexer includes the ingested permissions in the index. To enforce these permissions during knowledge retrieval, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time). | Array | No | No |
+| `ingestionPermissionOptions` | The document-level permissions to ingest alongside content. Specify `userIds`, `groupIds`, or `rbacScope` to store permission metadata in the index. For source-specific guidance, see [Ingest RBAC permissions from blob storage](../../search-blob-indexer-role-based-access.md#configure-a-knowledge-source) and [Ingest ACLs from ADLS Gen2](../../search-indexer-access-control-lists-and-role-based-access.md#configure-a-knowledge-source). To enforce these permissions at query time, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time). | Array | No | No |

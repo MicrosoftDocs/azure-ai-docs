@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/16/2026
+ms.date: 03/17/2026
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -174,7 +174,7 @@ If you're satisfied with the knowledge source, continue to the next step: specif
 After the knowledge base is configured, use the [retrieve action](../../agentic-retrieval-how-to-retrieve.md) to query the knowledge source.
 
 > [!TIP]
-> To enforce document-level permissions, set `ingestionPermissionOptions` when you create this knowledge source, and then pass the user's access token in the `x-ms-query-source-authorization` header at query time. For more information, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
+> To enforce document-level permissions, set `ingestionPermissionOptions` when you create this knowledge source, and then include the user's access token in the retrieve request. For more information, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ## Delete a knowledge source
 

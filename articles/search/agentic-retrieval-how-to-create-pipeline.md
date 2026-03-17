@@ -413,7 +413,7 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 [!INCLUDE [foundry-iq-limitation](../foundry/includes/foundry-iq-limitation.md)]
 
-Optionally, if your knowledge base includes a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
+Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ```python
 from azure.search.documents.indexes.models import RemoteSharePointKnowledgeSource, KnowledgeSourceReference
