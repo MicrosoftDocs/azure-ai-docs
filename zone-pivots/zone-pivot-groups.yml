@@ -1895,11 +1895,15 @@ groups:
     title: Python
   - id: programming-language-java
     title: Java
+  - id: programming-language-csharp
+    title: C#
 # Owner: pafarley
 - id: llm-speech-quickstart
   title: Programming languages
   prompt: Choose an API
   pivots:
+  - id: programming-language-csharp
+    title: C#
   - id: programming-language-rest
     title: REST API
   - id: programming-language-python
