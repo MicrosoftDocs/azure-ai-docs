@@ -43,7 +43,7 @@ The policy field accepts four policy types:
 
 > [!div class="checklist"]
 >
-> * [`SyntheticReplacement `](#syntheticreplacement-policy-type-)
+> * [`SyntheticReplacement `](#syntheticreplacement-policy-type)
 > * [`CharacterMask` (default)](#charactermask-policy-type)
 > * [`NoMask`](#nomask-policy-type)
 > * [`EntityMask`](#entitymask-policy-type)
