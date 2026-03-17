@@ -59,23 +59,12 @@ export CONTENTUNDERSTANDING_KEY="your-key"
 ```
 
 ## Create the client
-Import required libraries and models. Create the client with your resource endpoint and credentials. 
+Import required libraries and models, and then create the client with your resource endpoint and credentials. 
 
 ```python
 import os
 import time
-from azure.ai.contentunderstanding import (
-    ContentUnderstandingClient,
-)
-from azure.ai.contentunderstanding.models import (
-    AnalysisInput,
-    ContentAnalyzer,
-    ContentAnalyzerConfig,
-    ContentFieldSchema,
-    ContentFieldDefinition,
-    ContentFieldType,
-    GenerationMethod,
-)
+from azure.ai.contentunderstanding import ContentUnderstandingClient
 from azure.core.credentials import AzureKeyCredential
 
 endpoint = os.environ["CONTENTUNDERSTANDING_ENDPOINT"]
@@ -91,9 +80,19 @@ client = ContentUnderstandingClient(
 
 # [Document](#tab/document)
 
-The following example creates a custom document analyzer based on the [prebuilt document analyzer](../../concepts/prebuilt-analyzers.md). It defines fields using three extraction methods: `extract` for literal text, `generate` for AI-generated fields or interpretations, and `classify` for categorization.
+The following example creates a custom document analyzer based on the [prebuilt document base analyzer](../../concepts/prebuilt-analyzers.md). It defines fields using three extraction methods: `extract` for literal text, `generate` for AI-generated fields or interpretations, and `classify` for categorization.
 
 ```python
+from azure.ai.contentunderstanding.models import (
+    AnalysisInput,
+    ContentAnalyzer,
+    ContentAnalyzerConfig,
+    ContentFieldSchema,
+    ContentFieldDefinition,
+    ContentFieldType,
+    GenerationMethod,
+)
+
 # Generate a unique analyzer ID
 analyzer_id = f"my_document_analyzer_{int(time.time())}"
 
@@ -177,23 +176,103 @@ if result.field_schema and result.field_schema.fields:
         field_type = field_def.type if field_def.type else "unknown"
         print(f"    - {field_name}: {field_type} ({method})")
 
-# Clean up - delete the analyzer
-print(f"\nCleaning up: deleting analyzer '{analyzer_id}'...")
-client.delete_analyzer(analyzer_id=analyzer_id)
-print(f"Analyzer '{analyzer_id}' deleted successfully.")
+```
+An example output looks like:
 
+```test
+Analyzer 'my_document_analyzer_1773775687' created successfully!
+  Description: Custom analyzer for extracting company information
+  Fields (4):
+    - company_name: ContentFieldType.STRING (GenerationMethod.EXTRACT)
+    - total_amount: ContentFieldType.NUMBER (GenerationMethod.EXTRACT)
+    - document_summary: ContentFieldType.STRING (GenerationMethod.GENERATE)
+    - document_type: ContentFieldType.STRING (GenerationMethod.CLASSIFY)
 ```
 
 > [!TIP]
 > This code is based on the [create_analyzer](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) sample in the SDK repository.
 
-# [Image](#tab/image)
 
-The following example creates a custom image analyzer based on the [prebuilt image analyzer](../../concepts/prebuilt-analyzers.md) for processing charts and graphs.
+Additionally, you can create a classifier analyzer to categorize documents and use its results to route documents to prebuilt or custom analyzers you created. Here is an example of creating a custom analyzer for classification workflows.
 
 ```python
+# [START create_classifier]
+    # Generate a unique analyzer ID
+    analyzer_id = f"my_classifier_{int(time.time())}"
+
+    print(f"Creating classifier '{analyzer_id}'...")
+
+    # Define content categories for classification
+    categories = {
+        "Loan_Application": ContentCategoryDefinition(
+            description="Documents submitted by individuals or businesses to request funding, "
+            "typically including personal or business details, financial history, "
+            "loan amount, purpose, and supporting documentation."
+        ),
+        "Invoice": ContentCategoryDefinition(
+            description="Billing documents issued by sellers or service providers to request "
+            "payment for goods or services, detailing items, prices, taxes, totals, "
+            "and payment terms."
+        ),
+        "Bank_Statement": ContentCategoryDefinition(
+            description="Official statements issued by banks that summarize account activity "
+            "over a period, including deposits, withdrawals, fees, and balances."
+        ),
+    }
+
+    # Create analyzer configuration
+    config = ContentAnalyzerConfig(
+        return_details=True,
+        enable_segment=True,  # Enable automatic segmentation by category
+        content_categories=categories,
+    )
+
+    # Create the classifier analyzer
+    classifier = ContentAnalyzer(
+        base_analyzer_id="prebuilt-document",
+        description="Custom classifier for financial document categorization",
+        config=config,
+        models={"completion": "gpt-4.1"},
+    )
+
+    # Create the classifier
+    poller = client.begin_create_analyzer(
+        analyzer_id=analyzer_id,
+        resource=classifier,
+    )
+    result = poller.result()  # Wait for creation to complete
+
+    # Get the full analyzer details after creation
+    result = client.get_analyzer(analyzer_id=analyzer_id)
+
+    print(f"Classifier '{analyzer_id}' created successfully!")
+    if result.description:
+        print(f"  Description: {result.description}")
+    # [END create_classifier]
+```
+> [!TIP]
+> This code is based on the [create_classifier](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_classifier.py) sample in the SDK repository.
+
+
+
+# [Image](#tab/image)
+
+The following example creates a custom image analyzer based on the [prebuilt image base analyzer](../../concepts/prebuilt-analyzers.md) for processing charts and graphs.
+
+```python
+from azure.ai.contentunderstanding.models import (
+    AnalysisInput,
+    ContentAnalyzer,
+    ContentFieldSchema,
+    ContentFieldDefinition,
+    ContentFieldType,
+    GenerationMethod,
+)
+
+# Generate a unique analyzer ID
 analyzer_id = f"my_image_analyzer_{int(time.time())}"
 
+# Define field schema with custom fields
 field_schema = ContentFieldSchema(
     name="chart_schema",
     description=(
@@ -213,6 +292,7 @@ field_schema = ContentFieldSchema(
     },
 )
 
+# Create the analyzer with field schema
 analyzer = ContentAnalyzer(
     base_analyzer_id="prebuilt-image",
     description=(
@@ -221,17 +301,40 @@ analyzer = ContentAnalyzer(
     field_schema=field_schema,
     models={
         "completion": "gpt-4.1",
-    },
+        "embedding": "text-embedding-3-large",
+    }, # Required when using field_schema
 )
 
+# Create the analyzer
 poller = client.begin_create_analyzer(
     analyzer_id=analyzer_id,
     resource=analyzer,
 )
-result = poller.result()
-print(f"Analyzer '{analyzer_id}' created successfully!")
-```
+result = poller.result() # Wait for creation to complete
 
+# Get the full analyzer details after creation
+result = client.get_analyzer(analyzer_id=analyzer_id)
+print(f"Analyzer '{analyzer_id}' created successfully!")
+
+if result.description:
+    print(f"  Description: {result.description}")
+
+if result.field_schema and result.field_schema.fields:
+    print(f"  Fields ({len(result.field_schema.fields)}):")
+    for field_name, field_def in result.field_schema.fields.items():
+        method = field_def.method if field_def.method else "auto"
+        field_type = field_def.type if field_def.type else "unknown"
+        print(f"    - {field_name}: {field_type} ({method})")
+
+```
+An example output looks like:
+```text
+Analyzer 'my_image_analyzer_1773780317' created successfully!
+  Description: Custom analyzer for charts and graphs
+  Fields (2):
+    - Title: ContentFieldType.STRING (auto)
+    - ChartType: ContentFieldType.STRING (GenerationMethod.CLASSIFY)
+```
 > [!TIP]
 > This code adapts the [create_analyzer](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for image content.
 
@@ -240,8 +343,19 @@ print(f"Analyzer '{analyzer_id}' created successfully!")
 The following example creates a custom audio analyzer based on the [prebuilt audio analyzer](../../concepts/prebuilt-analyzers.md) for processing customer support call recordings.
 
 ```python
+from azure.ai.contentunderstanding.models import (
+    AnalysisInput,
+    ContentAnalyzer,
+    ContentAnalyzerConfig,
+    ContentFieldSchema,
+    ContentFieldDefinition,
+    ContentFieldType,
+    GenerationMethod,
+)
+# Generate a unique analyzer ID
 analyzer_id = f"my_audio_analyzer_{int(time.time())}"
 
+# Define field schema with custom fields
 field_schema = ContentFieldSchema(
     name="call_center_schema",
     description=(
@@ -262,7 +376,7 @@ field_schema = ContentFieldSchema(
         "People": ContentFieldDefinition(
             type=ContentFieldType.ARRAY,
             description="List of people mentioned",
-            items=ContentFieldDefinition(
+            item_definition=ContentFieldDefinition(
                 type=ContentFieldType.OBJECT,
                 properties={
                     "Name": ContentFieldDefinition(
@@ -277,11 +391,13 @@ field_schema = ContentFieldSchema(
     },
 )
 
+# Create analyzer configuration
 config = ContentAnalyzerConfig(
     locales=["en-US", "fr-FR"],
     return_details=True,
 )
 
+# Create the analyzer with field schema
 analyzer = ContentAnalyzer(
     base_analyzer_id="prebuilt-audio",
     description=(
@@ -289,26 +405,63 @@ analyzer = ContentAnalyzer(
     ),
     config=config,
     field_schema=field_schema,
+    models={
+        "completion": "gpt-4.1",
+        "embedding": "text-embedding-3-large",
+    }, # Required when using field_schema
 )
-
+# Create the analyzer
 poller = client.begin_create_analyzer(
     analyzer_id=analyzer_id,
     resource=analyzer,
 )
-result = poller.result()
+result = poller.result() # Wait for creation to complete
+
+# Get the full analyzer details after creation
+result = client.get_analyzer(analyzer_id=analyzer_id)
 print(f"Analyzer '{analyzer_id}' created successfully!")
+
+if result.description:
+    print(f"  Description: {result.description}")
+
+if result.field_schema and result.field_schema.fields:
+    print(f"  Fields ({len(result.field_schema.fields)}):")
+    for field_name, field_def in result.field_schema.fields.items():
+        method = field_def.method if field_def.method else "auto"
+        field_type = field_def.type if field_def.type else "unknown"
+        print(f"    - {field_name}: {field_type} ({method})")
+```
+An example output looks like:
+```text
+Analyzer 'my_audio_analyzer_1773780415' created successfully!
+  Description: Custom analyzer for customer support calls
+  Fields (3):
+    - Summary: ContentFieldType.STRING (GenerationMethod.GENERATE)
+    - Sentiment: ContentFieldType.STRING (GenerationMethod.CLASSIFY)
+    - People: ContentFieldType.ARRAY (auto)
 ```
 
 > [!TIP]
-> This code adapts the [sample_create_analyzer.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for audio content.
+> This code adapts the [create_analyzer](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for audio content.
 
 # [Video](#tab/video)
 
-The following example creates a custom video analyzer based on the [prebuilt video analyzer](../../concepts/prebuilt-analyzers.md) for processing product demos and reviews.
+The following example creates a custom video analyzer based on the [prebuilt video base analyzer](../../concepts/prebuilt-analyzers.md) for processing product demos and reviews.
 
 ```python
+from azure.ai.contentunderstanding.models import (
+    AnalysisInput,
+    ContentAnalyzer,
+    ContentAnalyzerConfig,
+    ContentFieldSchema,
+    ContentFieldDefinition,
+    ContentFieldType,
+    GenerationMethod,
+)
+# Generate a unique analyzer ID
 analyzer_id = f"my_video_analyzer_{int(time.time())}"
 
+# Define field schema with custom fields
 field_schema = ContentFieldSchema(
     name="video_schema",
     description=(
@@ -317,7 +470,7 @@ field_schema = ContentFieldSchema(
     fields={
         "Segments": ContentFieldDefinition(
             type=ContentFieldType.ARRAY,
-            items=ContentFieldDefinition(
+            item_definition=ContentFieldDefinition(
                 type=ContentFieldType.OBJECT,
                 properties={
                     "SegmentId": ContentFieldDefinition(
@@ -345,12 +498,13 @@ field_schema = ContentFieldSchema(
     },
 )
 
+# Create analyzer configuration
 config = ContentAnalyzerConfig(
     locales=["en-US", "fr-FR"],
     return_details=True,
-    segmentation_mode="auto",
 )
 
+# Create the analyzer with field schema
 analyzer = ContentAnalyzer(
     base_analyzer_id="prebuilt-video",
     description=(
@@ -360,19 +514,41 @@ analyzer = ContentAnalyzer(
     field_schema=field_schema,
     models={
         "completion": "gpt-4.1",
-    },
+        "embedding": "text-embedding-3-large",
+    }, # Required when using field_schema
 )
 
+# Create the analyzer
 poller = client.begin_create_analyzer(
     analyzer_id=analyzer_id,
     resource=analyzer,
 )
-result = poller.result()
+result = poller.result() # Wait for creation to complete
+
+# Get the full analyzer details after creation
+result = client.get_analyzer(analyzer_id=analyzer_id)
 print(f"Analyzer '{analyzer_id}' created successfully!")
+
+if result.description:
+    print(f"  Description: {result.description}")
+
+if result.field_schema and result.field_schema.fields:
+    print(f"  Fields ({len(result.field_schema.fields)}):")
+    for field_name, field_def in result.field_schema.fields.items():
+        method = field_def.method if field_def.method else "auto"
+        field_type = field_def.type if field_def.type else "unknown"
+        print(f"    - {field_name}: {field_type} ({method})")
+```
+An example output looks like:
+```text
+Analyzer 'my_video_analyzer_1773780895' created successfully!
+  Description: Custom analyzer for product demo videos
+  Fields (1):
+    - Segments: ContentFieldType.ARRAY (auto)
 ```
 
 > [!TIP]
-> This code adapts the [sample_create_analyzer.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for video content.
+> This code adapts the [create_analyzer](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for video content.
 
 ---
 
@@ -422,7 +598,6 @@ if result.contents and len(result.contents) > 0:
         if doc_type:
             print(f"Document Type: {doc_type.value}")
 ```
-
 > [!TIP]
 > This code adapts the [sample_create_analyzer.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for document content.
 

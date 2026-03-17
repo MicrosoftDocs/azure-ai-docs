@@ -36,6 +36,7 @@ To use Azure Content Understanding, create your Foundry Tool resource in a suppo
 | `westeurope` | West Europe | Europe | Europe |
 | `westus` | West US | United States | US |
 | `westus3` | West US 3 | United States | US |
+| `canadacentral` | Canada Central | Canada | Canada |
 
 
 > [!NOTE]
