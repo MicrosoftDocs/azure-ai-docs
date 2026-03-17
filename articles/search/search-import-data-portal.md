@@ -71,7 +71,7 @@ The following skills might appear in a wizard-generated skillset. After the skil
 | [Entity Recognition](cognitive-search-skill-entity-recognition-v3.md) | ✅ | Available for keyword search only. |
 | [Image Analysis](cognitive-search-skill-image-analysis.md) | ✅ | Available for Azure Storage blobs and Microsoft OneLake files, assuming the default parsing mode. Use an image content type, such as PNG or JPG, or an embedded image in an application file, such as PDF. |
 | [Key Phrase Extraction](cognitive-search-skill-keyphrases.md) | ✅ | Available for keyword search only. |
-| [Language Detection](cognitive-search-skill-language-detection.md) | ❌ | Not applicable. |
+| [Language Detection](cognitive-search-skill-language-detection.md) | ✅ | Available for keyword search only. Automatically added when the skillset includes Entity Recognition, Key Phrase Extraction, or Text Split. Not user configurable. |
 | [Text Translation](cognitive-search-skill-text-translation.md) | ❌ | Not applicable. |
 | [OCR](cognitive-search-skill-ocr.md) | ✅ | Available for Azure Storage blobs and Microsoft OneLake files, assuming the default parsing mode. Use an image content type, such as PNG or JPG, or an embedded image in an application file, such as PDF. |
 | [PII Detection](cognitive-search-skill-pii-detection.md) | ❌ | Not applicable. |
