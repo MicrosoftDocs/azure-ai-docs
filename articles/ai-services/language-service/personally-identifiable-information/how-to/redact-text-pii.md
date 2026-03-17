@@ -43,7 +43,7 @@ The policy field accepts four policy types:
 
 > [!div class="checklist"]
 >
-> * [`SyntheticReplacement 🆕`](#syntheticreplacement-policy-type-)
+> * [`SyntheticReplacement `](#syntheticreplacement-policy-type-)
 > * [`CharacterMask` (default)](#charactermask-policy-type)
 > * [`NoMask`](#nomask-policy-type)
 > * [`EntityMask`](#entitymask-policy-type)
@@ -51,7 +51,7 @@ The policy field accepts four policy types:
 For more information, *see* [REST API PII task parameters](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters).
 
 <!-- markdownlint-disable MD001 -->
-##### syntheticReplacement policy type 🆕
+##### syntheticReplacement policy type 
 
 > [!IMPORTANT]
 > The Azure Language in Foundry Tools Text Personally Identifiable Information (PII) detection **anonymization feature** (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
@@ -157,7 +157,7 @@ The **entityMask** policy type** enables you to mask the detected PII entity tex
 
 To learn more, *see* [Transparency Note for Personally Identifiable Information (PII)](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information).
 
-### ConfidenceScoreThreshold 🆕
+### ConfidenceScoreThreshold 
 
 The PII feature currently redacts all detected entities, regardless of their confidence scores. Thus, entities with low confidence scores are also removed, even if retaining them is preferred. To enhance flexibility, you can configure a confidence threshold that determines the minimum confidence score an entity must have to remain in the output.
 

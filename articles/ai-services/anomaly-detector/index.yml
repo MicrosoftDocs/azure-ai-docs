@@ -30,7 +30,7 @@ landingContent:
           url: overview.md
     - linkListType: whats-new
       links:
-        - text: 🆕What's new in Anomaly Detector?
+        - text: What's new in Anomaly Detector?
           url: whats-new.md
     - linkListType: get-started
       links:
