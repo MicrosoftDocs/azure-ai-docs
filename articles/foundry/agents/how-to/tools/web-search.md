@@ -620,7 +620,7 @@ curl --request POST \
     "tools": [
       {
         "type": "web_search",
-        "custom_search_configurations": [
+        "custom_search_configuration": [
           {
             "project_connection_id": "'$BING_CUSTOM_SEARCH_PROJECT_CONNECTION_ID'",
             "instance_name": "'$BING_CUSTOM_SEARCH_INSTANCE_NAME'",
