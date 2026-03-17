@@ -73,6 +73,8 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 ---
 
+> [!NOTE]
+> Model and region availability may expand in the days ahead. Check this page for updates.
 ## Enable priority processing at the deployment level
 
 You can enable priority processing at the deployment level and [(optionally) at the request level](#enable-priority-processing-at-the-request-level).
