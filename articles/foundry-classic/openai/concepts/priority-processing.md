@@ -74,7 +74,7 @@ Priority processing provides low-latency performance with the flexibility of pay
 ---
 
 > [!NOTE]
-> Model and region availability may expand in the days ahead. Check this page for updates.
+> Model and region availability is expected to expand in the days ahead. Check this page for updates. For pricing information, see [this page](https://azure.microsoft.com/pricing/details/azure-openai/).
 ## Enable priority processing at the deployment level
 
 You can enable priority processing at the deployment level and [(optionally) at the request level](#enable-priority-processing-at-the-request-level).
