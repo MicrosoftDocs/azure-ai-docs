@@ -80,14 +80,18 @@ For Foundry resources, use additional built-in roles to follow least-privilege a
 
 ### Permissions for each built-in role
 
-Use the following table and diagram to see the permissions allowed for each built-in role in Foundry, including the key Azure built-in roles. 
+Use the following table to see the permissions allowed for each built-in role in Microsoft Foundry. 
 
 |Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|
 |---|---|---|---|---|---|---|
 |**Azure AI User**|||✔||✔||
-|**Azure AI Project Manager**|✔||✔|✔ (only assign Azure AI User role)|✔||
+|**Azure AI Project Manager**|||✔|✔ (only assign Azure AI User role)|✔||
 |**Azure AI Account Owner**|✔|✔||✔ (only assign Azure AI User role)|✔|✔|
 |**Azure AI Owner**|✔|✔|✔|✔|✔|✔|
+
+Use the following table to see the permissions allowed for each key Azure built-in roles (Owner, Contributor, Reader). 
+|Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|
+|---|---|---|---|---|---|---|
 |**Owner**|✔|✔||✔ (assign any role to any user)|✔|✔|
 |**Contributor**|✔|✔|||✔|✔|
 |**Reader**|||||✔||
