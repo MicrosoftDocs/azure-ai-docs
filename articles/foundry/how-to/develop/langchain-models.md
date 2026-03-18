@@ -116,21 +116,24 @@ You can also create a runtime-configurable model by specifying `configurable_fie
 
 ```python
 from langchain.chat_models import init_chat_model
+from azure.identity import DefaultAzureCredential
 
 configurable_model = init_chat_model(
     model_provider="azure_ai", 
     temperature=0,
+	credential=DefaultAzureCredential()
 )
 
 
 configurable_model.invoke(
     "what's your name",
     config={"configurable": {"model": "gpt-5-nano"}},  # Run with GPT-5-nano
-)
+).pretty_print()
+
 configurable_model.invoke(
     "what's your name",
     config={"configurable": {"model": "Mistral-Large-3"}}, # Run with Mistral Large
-)
+).pretty_print()
 ```
 
 ```output
@@ -244,6 +247,77 @@ Parrots have colorful feathers primarily due to a combination of evolutionary ..
 
 **References:**
 - [LangChain streaming](https://python.langchain.com/docs/concepts/streaming/)
+
+## Server-side tools
+
+OpenAI Models deployed in Foundry support server-side tool-calling loops: models can interact with web search, code interpreters, and other tools and analyze the results in a single conversational turn.
+If a model invokes a tool server-side, the content of the response message will include content representing the invocation and result of the tool.
+
+Tools that are provided by OpenAI that extend the model's capabilities. To see the full list of supported tools see [built-in tools](https://platform.openai.com/docs/guides/tools).
+
+The following example shows how to use code interpreter:
+
+```python
+from pprint import pprint
+
+tool = {
+    "type": "code_interpreter",
+    "container": { "type": "auto" }
+}
+model_with_coder = model.bind_tools([tool])
+
+response = model_with_coder.invoke("Use python to tell me a joke and plot a random graph")
+
+for block in response.content_blocks:
+    print(f"=========== {block['type']} ============")
+    pprint(block)
+```
+
+```output
+=========== text =============
+{'annotations': [],
+ 'id': 'msg_0f54f91c02a96e3f0069ba92eeeac081938bf06781f9c912fa',
+ 'text': "Here's a joke for you (told with Python!):\n"
+         '\n'
+         '```python\n'
+         'print("Why do programmers prefer dark mode?")\n'
+		 ...
+         'Let me run this and show you the graph!',
+ 'type': 'text'}
+None
+=========== server_tool_call =============
+{'args': {'code': 'import matplotlib.pyplot as plt\n'
+                  ...
+                  'joke'},
+ 'extras': {'container_id': 'cntr_69ba92edc9108190964bc4ab7e3a8bd20611255d6b7320d6',
+            'response_id': 'resp_0f54f91c02a96e3f0069ba92ed88788193a7a80cd09c75ed09'},
+ 'id': 'ci_0f54f91c02a96e3f0069ba92f06900819392e057fef3089324',
+ 'name': 'code_interpreter',
+ 'type': 'server_tool_call'}
+None
+=========== server_tool_result =============
+{'status': 'success',
+ 'tool_call_id': 'ci_0f54f91c02a96e3f0069ba92f06900819392e057fef3089324',
+ 'type': 'server_tool_result'}
+None
+=========== text =============
+{'annotations': [{'type': 'non_standard_annotation',
+                  'value': {'container_id': 'cntr_69ba92edc9108190964bc4ab7e3a8bd20611255d6b7320d6',
+                            'end_index': 0,
+                            'file_id': 'cfile_69ba92f277fc8190a1c29b8436988bdf',
+                            'filename': 'cfile_69ba92f277fc8190a1c29b8436988bdf.png',
+                            'start_index': 0,
+                            'type': 'container_file_citation'}}],
+ 'id': 'msg_0f54f91c02a96e3f0069ba92f35ad881939e0de644441ec074',
+ 'text': "Here's your joke:\n"
+         '\n'
+         '**Why do programmers prefer dark mode?  \n'
+         'Because light attracts bugs!**\n'
+         '\n'
+         "And here's a random graph plotted just for you! If you'd like "
+         'another joke or a different kind of graph, just let me know!',
+ 'type': 'text'}
+```
 
 ## Use Foundry models in agents
 
