@@ -405,6 +405,30 @@ Instruct the server to create a response via model inference. This event can spe
 }
 ```
 
+#### Example with pre-generated assistant message
+
+In some scenarios, you might want to generate an audio response for predefined text instead of having the model generate the text response. Use the `pre_generated_assistant_message` parameter in the `response.create` message. You can only include one text entry in the `content` field.
+
+```json
+{
+  "type": "response.create",
+  "response": {
+    "pre_generated_assistant_message": {
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "repeat what I say"
+        }
+      ]
+    }
+  }
+}
+```
+
+When the service receives this message, it generates an audio response for the predefined text. The message is also added to the conversation context history.
+
 ### response.cancel
 
 Cancel an in-progress response. This immediately stops response generation and related audio output.
@@ -3086,6 +3110,7 @@ The definition of a function tool as used by the realtime endpoint.
 | reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check model documentation for supported values for each model. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br><br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br><br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation. <br><br>Defaults to `"auto"` |
 | metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
+| pre_generated_assistant_message | [RealtimeAssistantMessageItem](#realtimeconversationassistantmessageitem) | Optional. A pre-generated assistant message to use for generating the audio response instead of having the model generate the text. When provided, the server generates an audio response for the predefined text, bypassing model inference for text generation. The message is added to the conversation context history. The message must have the `role` set to `"assistant"` and include `content` with a single text content part. |
 
 ### RealtimeResponseSession
 
