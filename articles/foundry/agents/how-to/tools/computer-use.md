@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/18/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -38,7 +38,7 @@ This guide shows how to integrate the computer use tool into an application loop
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - The latest SDK package:
   - **Python**: `azure-ai-projects`
-  - **C#/.NET**: `Azure.AI.Agents.Persistent` (prerelease)
+  - **C#/.NET**: `Azure.AI.Extensions.OpenAI` (prerelease)
   - **TypeScript**: `@azure/ai-projects`
   - **Java**: `azure-ai-agents` (prerelease)
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
@@ -256,7 +256,7 @@ The following C# code sample demonstrates how to create an agent version with th
 using System;
 using System.Runtime.CompilerServices;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 class ComputerUseDemo

@@ -37,7 +37,7 @@ This series focuses on DR for Foundry projects that use Agent Service in Standar
 
 - **Blast radius boundary**: In most workloads, a single Foundry project is the recovery unit.
 - **State**: Agent definitions, conversation threads (including user-uploaded files), and any file-based knowledge stored in the capability host dependencies (Azure Cosmos DB, Azure AI Search, and Azure Storage).
-- **Data plane APIs**: APIs used to create, update, and invoke agents and threads. For details, see [AI Agents REST API operation groups](/rest/api/aifoundry/aiagents/operation-groups).
+- **Data plane APIs**: APIs used to create, update, and invoke agents and threads. For details, see [Azure AI Foundry REST API reference](/rest/api/aifoundry/).
 
 > [!NOTE]
 > This series doesn't cover the Basic deployment mode. Basic mode uses Microsoft-managed infrastructure with different DR characteristics. For details, see [Basic vs. Standard agent setup](/azure/ai-foundry/agents/concepts/standard-agent-setup).
@@ -51,7 +51,7 @@ Complete these actions before you rely on Agent Service in production:
 1. Choose a recovery strategy per project (for example, warm standby and reconstruction) and document your recovery objectives.
 1. Configure required baseline protections and recovery features on your dependencies. For guidance, see [High availability and resiliency for Foundry projects and agent services](high-availability-resiliency.md).
 1. Treat agent definitions as code. Store agent definitions, knowledge assets, and tool bindings in source control so you can redeploy them quickly.
-1. Automate redeployment of agents and any client updates needed for new agent IDs. Use the [AI Agents REST API](/rest/api/aifoundry/aiagents/operation-groups) or the [Azure AI Projects SDK](/python/api/overview/azure/ai-projects-readme) to script agent creation. Store and version infrastructure as code (IaC) templates for your capability host dependencies.
+1. Automate redeployment of agents and any client updates needed for new agent IDs. Use the [Azure AI Foundry REST API reference](/rest/api/aifoundry/) or the [Azure AI Projects SDK](/python/api/overview/azure/ai-projects-readme) to script agent creation. Store and version infrastructure as code (IaC) templates for your capability host dependencies.
 1. Practice recovery. Run periodic drills so operators can execute the recovery steps under time pressure.
 1. Set up monitoring and alerts. Configure [Azure Monitor](/azure/azure-monitor/overview) alerts for your capability host dependencies (Azure Cosmos DB, Azure AI Search, and Azure Storage) to detect availability degradation early.
 

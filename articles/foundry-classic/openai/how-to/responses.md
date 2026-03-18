@@ -518,6 +518,58 @@ followup_response = client.responses.create(
 print(f"Follow-up Response: {followup_response.output_text}")
 ```
 
+### Server-side compaction
+
+You can also use server-side compaction directly in Responses (`POST /responses` or `client.responses.create`) by setting `context_management` with a `compact_threshold`.
+
+* When the output token count crosses the configured threshold, the Responses API automatically runs compaction.
+* In this mode, you do not need to call `/responses/compact` separately.
+* The response includes an encrypted compaction item.
+* Server-side compaction will work when you set store=false on your Responses create requests.
+
+The compaction item carries forward the essential prior state and reasoning into the next turn using fewer tokens. It is opaque and not intended to be human-readable.
+
+If you are using stateless input-array chaining, append output items as usual. If you are using `previous_response_id`, pass only the new user message on each turn. In both patterns, the compaction item carries the context needed for the next window.
+
+> [!TIP]
+> After appending output items to the previous input items, you can drop items that came before the most recent compaction item to keep requests smaller and reduce long-tail latency. The latest compaction item carries the necessary context to continue the conversation. If you use `previous_response_id` chaining, do not manually prune.
+
+#### Flow
+
+1. Call `responses` as usual. Add `context_management` with `compact_threshold` to enable server-side compaction.
+2. If the output crosses the threshold, the service triggers compaction, emits a compaction item in the output stream, and prunes the context before continuing inference.
+3. Continue the conversation using one of these patterns:
+   1. Stateless input-array chaining: append output items, including compaction items, to the next input array.
+   2. `previous_response_id` chaining: pass only the new user message on each turn and carry the latest response ID forward.
+
+#### Example
+
+```python
+conversation = [
+  {
+    "type": "message",
+    "role": "user",
+    "content": "Let's begin a long coding task.",
+  }
+]
+
+while keep_going:
+  response = client.responses.create(
+    model="gpt-5.3-codex",
+    input=conversation,
+    store=False,
+    context_management=[{"type": "compaction", "compact_threshold": 200000}],
+  )
+
+  conversation.append(
+    {
+      "type": "message",
+       "role": "user",
+      "content": get_next_user_input(),
+    }
+  )
+```
+
 ## Streaming
 
 ```python
@@ -1415,6 +1467,8 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5.4-nano` (Version: `2026-03-17`)
+- `gpt-5.4-mini` (Version: `2026-03-17`)
 - `gpt-5.4-pro` (Version:`2026-03-05`)
 - `gpt-5.4` (Version:`2026-03-05`)
 - `gpt-5.3-chat` (Version: `2026-03-03`)
@@ -1454,7 +1508,6 @@ Not every model is available in the regions supported by the responses API. Chec
 
 > [!NOTE]
 > Not currently supported:
-> - Compaction with `/responses/compact` 
 > - Image generation using multi-turn editing and streaming.
 > - Images can't be uploaded as a file and then referenced as input.
 >

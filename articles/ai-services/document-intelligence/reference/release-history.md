@@ -41,7 +41,7 @@ The v3.1 API introduces new and updated capabilities:
 * Support for [high resolution documents](../concept/add-on-capabilities.md).
 * Custom neural models now require a single labeled sample to train.
 * Custom neural models language expansion. Train a neural model for documents in 30 languages. See [language support](../language-support/custom.md) for the complete list of supported languages.
-* 🆕 [Prebuilt health insurance card model](../prebuilt/health-insurance-card.md).
+*  [Prebuilt health insurance card model](../prebuilt/health-insurance-card.md).
 * [Prebuilt invoice model locale expansion](../prebuilt/invoice.md#supported-languages-and-locales).
 * [Prebuilt receipt model language and locale expansion](../prebuilt/receipt.md#supported-languages-and-locales) with more than 100 languages supported.
 * [Prebuilt ID model](../prebuilt/id-document.md#supported-document-types) now supports European IDs.
@@ -98,9 +98,9 @@ The v3.1 API introduces new and updated capabilities:
 
 **Introducing refreshed documentation for Build 2023**
 
-* [🆕 Document Intelligence Overview](../overview.md?view=doc-intel-3.0.0&preserve-view=true) enhanced navigation, structured access points, and enriched images.
+* [ Document Intelligence Overview](../overview.md?view=doc-intel-3.0.0&preserve-view=true) enhanced navigation, structured access points, and enriched images.
 
-* [🆕 Choose a Document Intelligence model](../concept/choose-model-feature.md?view=doc-intel-3.0.0&preserve-view=true) provides guidance for choosing the best Document Intelligence solution for your projects and workflows.
+* [ Choose a Document Intelligence model](../concept/choose-model-feature.md?view=doc-intel-3.0.0&preserve-view=true) provides guidance for choosing the best Document Intelligence solution for your projects and workflows.
 
 ## April 2023
 
