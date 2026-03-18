@@ -4,7 +4,7 @@ description: "Learn how to migrate from the Assistants API and classic agents to
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 03/04/2026
+ms.date: 03/18/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -524,7 +524,12 @@ string assistantId = "asst_efgh5678";
 
 ThreadRun run =
     await agentsClient.CreateRunAsync(
-        threadId, assistantId);
+        threadId,
+        assistantId,
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account");
 
 while (run.Status == RunStatus.Queued
     || run.Status ==
@@ -543,7 +548,14 @@ const threadId = "thread_abcd1234";
 const assistantId = "asst_efgh5678";
 
 let run = await client.agents.createRun(
-    threadId, assistantId);
+    threadId,
+    assistantId,
+    {
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account",
+    });
 
 while (run.status === "queued"
     || run.status === "in_progress") {
@@ -562,7 +574,13 @@ String assistantId = "asst_efgh5678";
 
 ThreadRun run =
     agentsClient.createRun(
-        threadId, assistantId);
+        threadId,
+        assistantId,
+        new CreateRunOptions()
+            .setAdditionalInstructions(
+                "Please address the user "
+                + "as Jane Doe. The user "
+                + "has a premium account"));
 
 while (RunStatus.QUEUED
         .equals(run.getStatus())
@@ -1246,7 +1264,11 @@ await agentsClient.CreateMessageAsync(
 ThreadRun run =
     await agentsClient.CreateRunAsync(
         thread.Id,
-        agent.Id);
+        agent.Id,
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account");
 
 while (run.Status ==
         RunStatus.Queued
@@ -1310,7 +1332,14 @@ await client.agents.createMessage(
 
 // Create run and poll
 let run = await client.agents.createRun(
-    thread.id, agent.id);
+    thread.id,
+    agent.id,
+    {
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account",
+    });
 
 while (run.status === "queued"
     || run.status === "in_progress") {
@@ -1364,7 +1393,13 @@ agentsClient.createMessage(
 // Create run and poll
 ThreadRun run =
     agentsClient.createRun(
-        thread.getId(), agent.getId());
+        thread.getId(),
+        agent.getId(),
+        new CreateRunOptions()
+            .setAdditionalInstructions(
+                "Please address the user "
+                + "as Jane Doe. The user "
+                + "has a premium account"));
 
 while (RunStatus.QUEUED
         .equals(run.getStatus())
@@ -1446,6 +1481,12 @@ response = openai.responses.create(
         "premium account"
     ),
 )
+
+# Print the response output
+for item in response.output:
+    if item.type == "message":
+        for block in item.content:
+            print(block.text)
 ```
 
 # [C#](#tab/csharp)
@@ -1482,6 +1523,18 @@ var result = responsesClient.CreateResponse(
     + "y-intercept of 9. Please address the "
     + "user as Jane Doe. The user has a "
     + "premium account");
+
+// Print the response output
+foreach (var item in result.OutputItems)
+{
+    if (item is ResponseMessageItem msg)
+    {
+        foreach (var block in msg.Content)
+        {
+            Console.WriteLine(block.Text);
+        }
+    }
+}
 ```
 
 # [JavaScript](#tab/javascript)
@@ -1534,6 +1587,15 @@ const response =
             type: "agent_reference",
         },
     });
+
+// Print the response output
+for (const item of response.output) {
+    if (item.type === "message") {
+        for (const block of item.content) {
+            console.log(block.text);
+        }
+    }
+}
 ```
 
 # [Java](#tab/java)
@@ -1573,6 +1635,19 @@ Response result = responsesClient.createWithAgent(
         + "y-intercept of 9. Please address "
         + "the user as Jane Doe. The user "
         + "has a premium account"));
+
+// Print the response output
+for (ResponseItem item : result.getOutput()) {
+    if (item instanceof ResponseMessageItem) {
+        ResponseMessageItem msg =
+            (ResponseMessageItem) item;
+        for (ContentBlock block
+                : msg.getContent()) {
+            System.out.println(
+                block.getText());
+        }
+    }
+}
 ```
 
 ---

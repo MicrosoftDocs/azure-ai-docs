@@ -34,7 +34,7 @@ This article uses the REST APIs for illustration, but you can also use an Azure 
 
 ## Limitations
 
-+ No Azure portal support in the **Import data (new)** wizard.
++ No Azure portal support in the **Import data** wizard.
 
 + No support for binary fields in the [AML skill](cognitive-search-aml-skill.md) that's used for integrated vectorization of models from the Microsoft Foundry model catalog.
 

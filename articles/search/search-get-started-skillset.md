@@ -8,17 +8,14 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 12/11/2025
+ms.date: 03/13/2026
 ---
 
 # Quickstart: Create a skillset in the Azure portal
 
-> [!IMPORTANT]
-> The **Import data (new)** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](search-import-data-portal.md).
-
 In this quickstart, you learn how a skillset in Azure AI Search adds optical character recognition (OCR), image analysis, language detection, text merging, and entity recognition to generate text-searchable content in an index.
 
-You can run the **Import data (new)** wizard in the Azure portal to apply skills that create and transform textual content during indexing. The input is your raw data, usually blobs in Azure Storage. The output is a searchable index containing AI-generated image text, captions, and entities. You can then query generated content in the Azure portal using [**Search explorer**](search-explorer.md).
+You can run the **Import data** wizard in the Azure portal to apply skills that create and transform textual content during indexing. The input is your raw data, usually blobs in Azure Storage. The output is a searchable index containing AI-generated image text, captions, and entities. You can then query generated content in the Azure portal using [**Search explorer**](search-explorer.md).
 
 Before you run the wizard, you create a few resources and upload sample files.
 
@@ -51,9 +48,9 @@ To run the wizard:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
-1. On the **Overview** page, select **Import data (new)**.
+1. On the **Overview** page, select **Import data**.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot that shows how to open the new import wizard in the Azure portal.":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot that shows how to open the import wizard in the Azure portal.":::
 
 1. Select **Azure Blob Storage** for the data source.
 
