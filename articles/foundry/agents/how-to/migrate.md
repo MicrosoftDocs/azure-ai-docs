@@ -524,7 +524,12 @@ string assistantId = "asst_efgh5678";
 
 ThreadRun run =
     await agentsClient.CreateRunAsync(
-        threadId, assistantId);
+        threadId,
+        assistantId,
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account");
 
 while (run.Status == RunStatus.Queued
     || run.Status ==
@@ -543,7 +548,14 @@ const threadId = "thread_abcd1234";
 const assistantId = "asst_efgh5678";
 
 let run = await client.agents.createRun(
-    threadId, assistantId);
+    threadId,
+    assistantId,
+    {
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account",
+    });
 
 while (run.status === "queued"
     || run.status === "in_progress") {
@@ -562,7 +574,13 @@ String assistantId = "asst_efgh5678";
 
 ThreadRun run =
     agentsClient.createRun(
-        threadId, assistantId);
+        threadId,
+        assistantId,
+        new CreateRunOptions()
+            .setAdditionalInstructions(
+                "Please address the user "
+                + "as Jane Doe. The user "
+                + "has a premium account"));
 
 while (RunStatus.QUEUED
         .equals(run.getStatus())
@@ -1246,7 +1264,11 @@ await agentsClient.CreateMessageAsync(
 ThreadRun run =
     await agentsClient.CreateRunAsync(
         thread.Id,
-        agent.Id);
+        agent.Id,
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account");
 
 while (run.Status ==
         RunStatus.Queued
@@ -1310,7 +1332,14 @@ await client.agents.createMessage(
 
 // Create run and poll
 let run = await client.agents.createRun(
-    thread.id, agent.id);
+    thread.id,
+    agent.id,
+    {
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account",
+    });
 
 while (run.status === "queued"
     || run.status === "in_progress") {
@@ -1364,7 +1393,13 @@ agentsClient.createMessage(
 // Create run and poll
 ThreadRun run =
     agentsClient.createRun(
-        thread.getId(), agent.getId());
+        thread.getId(),
+        agent.getId(),
+        new CreateRunOptions()
+            .setAdditionalInstructions(
+                "Please address the user "
+                + "as Jane Doe. The user "
+                + "has a premium account"));
 
 while (RunStatus.QUEUED
         .equals(run.getStatus())
