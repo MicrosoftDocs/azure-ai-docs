@@ -439,28 +439,7 @@ var fieldSchema = new ContentFieldSchema(
         {
             Type = ContentFieldType.Array,
             Description =
-                "List of people mentioned",
-            Items = new ContentFieldDefinition
-            {
-                Type = ContentFieldType.Object,
-                Properties =
-                    new Dictionary<string,
-                        ContentFieldDefinition>
-                {
-                    ["Name"] =
-                        new ContentFieldDefinition
-                    {
-                        Type =
-                            ContentFieldType.String
-                    },
-                    ["Role"] =
-                        new ContentFieldDefinition
-                    {
-                        Type =
-                            ContentFieldType.String
-                    }
-                }
-            }
+                "List of people mentioned"
         }
     })
 {
@@ -469,6 +448,23 @@ var fieldSchema = new ContentFieldSchema(
         "Schema for analyzing customer"
         + " support calls"
 };
+
+var peopleDef = fieldSchema.Fields["People"];
+peopleDef.ItemDefinition =
+    new ContentFieldDefinition
+    {
+        Type = ContentFieldType.Object
+    };
+peopleDef.ItemDefinition.Properties
+    .Add("Name", new ContentFieldDefinition
+    {
+        Type = ContentFieldType.String
+    });
+peopleDef.ItemDefinition.Properties
+    .Add("Role", new ContentFieldDefinition
+    {
+        Type = ContentFieldType.String
+    });
 
 fieldSchema.Fields["Sentiment"]
     .Enum.Add("Positive");
@@ -568,41 +564,7 @@ var fieldSchema = new ContentFieldSchema(
     {
         ["Segments"] = new ContentFieldDefinition
         {
-            Type = ContentFieldType.Array,
-            Items = new ContentFieldDefinition
-            {
-                Type = ContentFieldType.Object,
-                Properties =
-                    new Dictionary<string,
-                        ContentFieldDefinition>
-                {
-                    ["SegmentId"] =
-                        new ContentFieldDefinition
-                    {
-                        Type =
-                            ContentFieldType.String
-                    },
-                    ["Description"] =
-                        new ContentFieldDefinition
-                    {
-                        Type =
-                            ContentFieldType.String,
-                        Method =
-                            GenerationMethod.Generate,
-                        Description =
-                            "Detailed summary of the "
-                            + "video segment"
-                    },
-                    ["Sentiment"] =
-                        new ContentFieldDefinition
-                    {
-                        Type =
-                            ContentFieldType.String,
-                        Method =
-                            GenerationMethod.Classify
-                    }
-                }
-            }
+            Type = ContentFieldType.Array
         }
     })
 {
@@ -612,9 +574,36 @@ var fieldSchema = new ContentFieldSchema(
         + " demo videos"
 };
 
+var segmentsDef = fieldSchema.Fields["Segments"];
+segmentsDef.ItemDefinition =
+    new ContentFieldDefinition
+    {
+        Type = ContentFieldType.Object
+    };
+segmentsDef.ItemDefinition.Properties
+    .Add("SegmentId", new ContentFieldDefinition
+    {
+        Type = ContentFieldType.String
+    });
+segmentsDef.ItemDefinition.Properties
+    .Add("Description", new ContentFieldDefinition
+    {
+        Type = ContentFieldType.String,
+        Method = GenerationMethod.Generate,
+        Description =
+            "Detailed summary of the "
+            + "video segment"
+    });
+segmentsDef.ItemDefinition.Properties
+    .Add("Sentiment", new ContentFieldDefinition
+    {
+        Type = ContentFieldType.String,
+        Method = GenerationMethod.Classify
+    });
+
 var sentimentDef =
     fieldSchema.Fields["Segments"]
-        .Items.Properties["Sentiment"];
+        .ItemDefinition.Properties["Sentiment"];
 sentimentDef.Enum.Add("Positive");
 sentimentDef.Enum.Add("Neutral");
 sentimentDef.Enum.Add("Negative");
