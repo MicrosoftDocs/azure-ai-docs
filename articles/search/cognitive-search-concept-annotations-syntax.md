@@ -143,7 +143,7 @@ Notice that the cardinality of `"/document/people/*/lastname"` is larger than th
 
 If you're having trouble with specifying skill inputs, these tips might help you move forward:
 
-+ [Run the Import data wizard](search-import-data-portal.md) over your data to review the skillset definitions and field mappings that the wizard generates.
++ [Run the **Import data** wizard](search-import-data-portal.md) over your data to review the skillset definitions and field mappings that the wizard generates.
 
 + [Start a debug session](cognitive-search-how-to-debug-skillset.md) on a skillset to view the structure of an enriched document. You can edit the paths and other parts of the skill definition, and then run the skill to validate your changes.
 
