@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/03/2026
+ms.date: 03/18/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, doc-kit-assisted
@@ -219,7 +219,7 @@ Install the Azure AI Projects client libraries:
 
 ```dotnetcli
 dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.AI.Projects.OpenAI --prerelease
+dotnet add package Azure.AI.Extensions.OpenAI --prerelease
 dotnet add package Azure.Identity
 ```
 
@@ -229,7 +229,7 @@ dotnet add package Azure.Identity
 using System;
 using System.Text.Json;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
