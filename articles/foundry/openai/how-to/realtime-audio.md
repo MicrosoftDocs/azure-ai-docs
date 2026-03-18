@@ -98,6 +98,13 @@ Follow the instructions in this section to get started with the Realtime API via
 
 ::: zone-end
 
+::: zone pivot="programming-language-csharp"
+
+[!INCLUDE [Microsoft Foundry portal quickstart](../includes/realtime-csharp.md)]
+
+::: zone-end
+
+
 ## API support
 
 For the Realtime API, use the GA endpoint with `/openai/v1` in the URL. Don't use date-based API versions or the api-version query parameter.
