@@ -22,6 +22,7 @@ Voice Live provides multiple options to optimize performance and quality by usin
 - Speech output customization:
     - Custom lexicon: Custom lexicon allows you to easily customize pronunciation for both standard Azure text to speech voices and custom voices to improve speech synthesis accuracy for your use case. See [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon) to learn more.
     - Custom voice: Custom voice lets you create a one-of-a-kind, customized, synthetic voice for your applications. With custom voice, you can build a highly natural-sounding voice for your brand or characters by providing human speech samples as fine-tuning data. See [What is custom voice?](./custom-neural-voice.md) to learn more.
+    - Personal voice: Personal voice enables your users to get AI generated replication of their own voices with a short speech sample. See [What is personal voice?](./personal-voice-overview.md) to learn more.
     - Custom avatar: Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand by providing video recording data of your selected actors. See [What is custom text to speech avatar?](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md) to learn more.
 
 ## Speech input customization
@@ -110,6 +111,30 @@ You can use a custom voice for audio output. For information about how to create
 > You pay separately for custom voice training and model hosting.
 > For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=tts).
 
+
+### Azure personal voice
+
+You can use a personal voice for audio output. Personal voice enables your users to get AI generated replication of their own voices with a short speech sample. For information about how to create a personal voice, see [What is personal voice](./personal-voice-overview.md).
+
+```json
+{
+  "voice": {
+    "model": "DragonLatestNeural",  // required, specify the base model for personal voice        
+    "type": "azure-personal",
+    "name": "your-personal-voice-name", // the name of the personal voice
+    "temperature": 0.8
+  }
+}
+```
+
+The `model` property specifies the base model voice name. Supported base model names include `DragonLatestNeural` and `DragonHDOmniLatestNeural`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). For the full schema, see [RealtimeAzurePersonalVoice](./voice-live-api-reference-2026-01-01-preview.md#realtimeazurepersonalvoice).
+
+> [!IMPORTANT]
+> Personal voice access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
+
+> [!NOTE]
+> In order to use a personal voice with Voice Live API, the voice must be available on the same Microsoft Foundry resource you are using to call the Voice Live API.
+> For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=tts).
 
 ### Azure custom avatar
 
