@@ -199,20 +199,19 @@ if (result.FieldSchema?.Fields != null)
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_document_analyzer_ID' created successfully!
   Description: Custom analyzer for extracting company information
   Fields (4):
-    - company_name: String (Extract)
-    - total_amount: Number (Extract)
-    - document_summary: String (Generate)
-    - document_type: String (Classify)
+    - company_name: string (extract)
+    - total_amount: number (extract)
+    - document_summary: string (generate)
+    - document_type: string (classify)
 ```
-
 > [!TIP]
-> This code is based on [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) in the SDK repository.
+> This code is based on [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) in the SDK repository.
 
 
 Optionally, you can create a classifier analyzer to categorize documents and use its results to route documents to prebuilt or custom analyzers you created. Here is an example of creating a custom analyzer for classification workflows.
@@ -399,18 +398,18 @@ if (result.FieldSchema?.Fields != null)
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like: 
 
 ```text
 Analyzer 'my_image_analyzer_ID' created successfully!
   Description: Custom analyzer for charts and graphs
   Fields (2):
-    - Title: String (auto)
-    - ChartType: String (Classify)
+    - Title: string (auto)
+    - ChartType: string (classify)
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for image content.
+> This code adapts the [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for image content.
 
 # [Audio](#tab/audio)
 
@@ -542,19 +541,19 @@ if (result.FieldSchema?.Fields != null)
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_audio_analyzer_ID' created successfully!
   Description: Custom analyzer for customer support calls
   Fields (3):
-    - Summary: String (Generate)
-    - Sentiment: String (Classify)
-    - People: Array (auto)
+    - Summary: string (generate)
+    - Sentiment: string (classify)
+    - People: array (auto)
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for audio content.
+> This code adapts the [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for audio content.
 
 # [Video](#tab/video)
 
@@ -780,13 +779,13 @@ Console.WriteLine(
     + " deleted successfully.");
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Company Name: CONTOSO LTD.
-  Confidence: 0.81
-Total Amount: 610.0
-Summary: This document is an invoice from CONTOSO LTD. ...
+  Confidence: 0.88
+Total Amount: 610
+Summary: This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for consulting services, document fees, and printing fees, detailing service periods, billing and shipping addresses, itemized charges, and the total amount due.
 Document Type: invoice
 
 Cleaning up: deleting analyzer 'my_document_analyzer_ID'...
@@ -852,7 +851,7 @@ Console.WriteLine(
     + " deleted successfully.");
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Title: Distribution of Weekly Working Hours
@@ -927,10 +926,10 @@ Console.WriteLine(
     + " deleted successfully.");
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
-Summary: Maria Smith contacted Contoso to inquire about her current point balance...
+Summary: Maria Smith contacted Contoso to inquire about her current point balance. John Doe, the representative, verified her identity by requesting her date of birth and informed her that her balance is 599 points. Maria confirmed she needed no further information and ended the call.
 Sentiment: Positive
 
 Cleaning up: deleting analyzer 'my_audio_analyzer_ID'...
