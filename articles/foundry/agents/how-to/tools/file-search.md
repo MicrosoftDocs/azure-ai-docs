@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/18/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -42,7 +42,7 @@ In this article, you learn how to:
 - A [basic or standard agent environment](../../../agents/environment-setup.md)
 - The SDK package for your language:
   - **Python**: `azure-ai-projects` (latest)
-  - **.NET**: `Azure.AI.Projects.OpenAI` (prerelease)
+  - **.NET**: `Azure.AI.Extensions.OpenAI` (prerelease)
   - **TypeScript**: `@azure/ai-projects` (latest)
   - **Java**: `azure-ai-agents` (prerelease)
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)
@@ -142,7 +142,7 @@ In this example, you create a local file, upload it to Azure, and use it in the 
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -209,7 +209,7 @@ In this example, you create a local file, upload it to Azure, and use it in the 
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 using OpenAI.Files;
 using OpenAI.VectorStores;
