@@ -549,6 +549,8 @@ items:
         items:
           - name: Monitor and analyze jobs in studio
             href: how-to-track-monitor-analyze-runs.md
+          - name: Monitor and analyze jobs in studio
+            href: ./v1/how-to-track-monitor-analyze-runs.md
           - name: Organize & manage jobs (preview)
             href: how-to-track-monitor-organize-jobs.md
           - name: Visualize training results (preview)

@@ -26,9 +26,7 @@ The [Azure Machine Learning SDK for Python v1](/python/api/overview/azure/ml/int
 > [!IMPORTANT]
 > SDK v1 support ends June 30, 2026. CLI v1 support ended September 30, 2025. Migrate to SDK v2 and CLI v2. For v2 equivalents, see the following articles:
 > * [Log & view metrics and log files (v2)](../how-to-log-view-metrics.md)
-> * [Track experiments with MLflow and CLI (v2)](../how-to-track-monitor-analyze-runs.md)
->
-> For information on using studio, see [Track, monitor, and analyze runs with studio](../how-to-track-monitor-analyze-runs.md).
+> * [Monitor and analyze jobs in Azure Machine Learning studio](../how-to-track-monitor-analyze-runs.md).
 
 This article shows how to do the following tasks:
 
@@ -442,7 +440,7 @@ root_run(current_child_run).log("MyMetric", f"Data from child run {current_child
     ![Screenshot of diagnostic settings for email notification.](../media/how-to-track-monitor-analyze-runs/diagnostic-setting.png)
 
 1. In **Diagnostic Setting**, 
-    1. under the **Category details**, select the **AmlRunStatusChangedEvent**. 
+    1. Under the **Category details**, select the **AmlRunStatusChangedEvent**. 
     1. In the **Destination details**, select **Send to Log Analytics workspace** and specify the **Subscription** and **Log Analytics workspace**. 
 
     > [!NOTE]
