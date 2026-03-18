@@ -193,7 +193,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like:
+An example output looks like: `[TO VERIFY]`
 
 ```text
 Analyzer 'my_document_analyzer_ID' created successfully!
@@ -376,7 +376,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like:
+An example output looks like: `[TO VERIFY]`
 
 ```text
 Analyzer 'my_image_analyzer_ID' created successfully!
@@ -495,7 +495,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like:
+An example output looks like: `[TO VERIFY]`
 
 ```text
 Analyzer 'my_audio_analyzer_ID' created successfully!
@@ -609,7 +609,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like:
+An example output looks like: `[TO VERIFY]`
 
 ```text
 Analyzer 'my_video_analyzer_ID' created successfully!
@@ -699,7 +699,7 @@ console.log(
 );
 ```
 
-An example output looks like:
+An example output looks like: `[TO VERIFY]`
 
 ```text
 Company Name: CONTOSO LTD.
@@ -767,7 +767,7 @@ console.log(
 );
 ```
 
-An example output looks like:
+An example output looks like: `[TO VERIFY]`
 
 ```text
 Title: Distribution of Weekly Working Hours
@@ -832,7 +832,7 @@ console.log(
 );
 ```
 
-An example output looks like:
+An example output looks like: `[TO VERIFY]`
 
 ```text
 Summary: Maria Smith contacted Contoso to inquire about her current point balance...
@@ -895,7 +895,7 @@ console.log(
 );
 ```
 
-An example output looks like:
+An example output looks like: `[TO VERIFY]`
 
 ```text
 Content kind: video
