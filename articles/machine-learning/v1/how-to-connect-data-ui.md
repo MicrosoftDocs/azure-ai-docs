@@ -84,7 +84,7 @@ For more information about creating a new datastore with Azure Machine Learning 
 1. At the top, select **Datastores**.
 1. Select **+Create**.
 1. Complete the form to create and register a new datastore. The form intelligently updates itself based on your selections for Azure storage type. For more information, see [which storage types support identity-based](how-to-identity-based-data-access.md#storage-access-permissions) data access.
-    1. Choose the storage account and container name you want to use.
+    - Choose the storage account and container name you want to use.
 
     The blob reader role (for ADLS Gen 2 and Blob storage) is required. You need permissions to see the contents of the storage.
     Reader role of the subscription and resource group.
@@ -129,7 +129,7 @@ The following steps describe how to create a dataset in [Azure Machine Learning 
 You have different options for your data source. For data already stored in Azure, choose **From Azure storage**. To upload data from your local drive, choose **From local files**. For data stored at a public web location, choose **From web files**. You can also create a data asset from a SQL database, or from [Azure Open Datasets](../../open-datasets/how-to-create-azure-machine-learning-dataset-from-open-dataset.md).
 
 1. At the file selection step, select the location where Azure should store your data, and the data files you want to use.
-    1. Enable **skip validation** if your data is in a virtual network. For more information about virtual network isolation and privacy, see [this](../how-to-enable-studio-virtual-network.md) resource.
+    - Enable **skip validation** if your data is in a virtual network. For more information about virtual network isolation and privacy, see [this](../how-to-enable-studio-virtual-network.md) resource.
 
 1. Follow the steps to set the data parsing settings and schema for your data asset. The settings prepopulate based on file type, and you can further configure your settings before the creation of the data asset.
 
