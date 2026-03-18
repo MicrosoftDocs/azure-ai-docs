@@ -13,10 +13,10 @@ zone_pivot_groups: foundry-portal-and-cli
 ---
 
 # Bring your own model to Foundry Agent Service
-Foundry Agent Service allows you to connect and use models hosted behind your enterprise AI gateways such as **Azure API Management** or other **non-Azure hosted AI model gateways**. This capability, called *bring your own model* (BYOM), allows you to maintain control over your model endpoints while using Foundry agent capabilities.
+Foundry Agent Service allows you to connect and use models hosted behind your AI gateways such as **Azure API Management** or other **non-Azure managed AI model gateways**. This capability, called *bring your own model*, allows you to maintain control over your model endpoints while using Foundry agent capabilities.
 
 > [!IMPORTANT]
-> For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Azure Direct Models. Foundry Agent Service supports the ability to bring-your-own-model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.
+> For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Azure Direct Models. Foundry Agent Service supports the ability to bring your own model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.
 >
 > If you use Foundry Agent Service to interact with BYOM models, you are responsible for implementing your own responsible AI mitigations within Foundry Agent Service, such as metaprompt, content filters, or other safety systems.
 >
@@ -60,7 +60,7 @@ You need the following role assignments:
 
 Use the Foundry portal to create a connection to your model.
 
-You can choose models behind either an existing Azure API Management instance or a non-Azure AI model gateway. You can add one or more models implementing the OpenAI chat completions API.
+You can choose models behind either an existing Azure API Management resource or a non-Azure AI model gateway. You can add one or more models implementing the OpenAI chat completions API.
 
 To add a model connection in the Foundry portal:
 
@@ -162,7 +162,7 @@ After deploying your agent, confirm that the full pipeline works correctly:
 
 1. **Check connection status** — In the Foundry portal, navigate to **Connected resources** in your project settings. Verify the connection shows an **Active** status. If the status is **Inactive**, check the gateway endpoint URL and credentials.
 
-1. **Send a test prompt—Use the SDK to create a conversation and send a request as described in the previous section. A successful response returns the model's reply text, confirming the agent can reach the model through your gateway.
+1. **Send a test prompt**—Use the SDK to create a conversation and send a request as described in the previous section. A successful response returns the model's reply text, confirming the agent can reach the model through your gateway.
 
 1. **Review gateway logs** — Confirm requests are routed correctly. For APIM, check **API Management analytics** in the Azure portal. For other gateways, review your gateway's request logging. You should see incoming requests from the Agent Service endpoint.
 
