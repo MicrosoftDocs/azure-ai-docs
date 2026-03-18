@@ -33,7 +33,7 @@ By using Azure Machine Learning, you can integrate with [GitHub Actions](https:/
 * Deployment of machine learning models as public or private web services
 * Monitoring deployed machine learning models (such as for performance analysis)
 
-In this article, you learn how to use Azure Machine Learning to set up an end-to-end MLOps pipeline that runs a linear regression to predict taxi fares in NYC. The pipeline is made up of components, each serving different functions, which you can register with the workspace, version, and reuse with various inputs and outputs. You're going to use the [recommended Azure architecture for MLOps](/azure/architecture/data-guide/technology-choices/machine-learning-operations-v2) and [Azure MLOps (v2) solution accelerator](https://github.com/Azure/mlops-v2) to quickly set up an MLOps project in Azure Machine Learning.
+In this article, you learn how to use Azure Machine Learning to set up an end-to-end MLOps pipeline that runs a linear regression to predict taxi fares in NYC. The pipeline is made up of components, each serving different functions, which you can register with the workspace, version, and reuse with various inputs and outputs. You use the [recommended Azure architecture for MLOps](/azure/architecture/data-guide/technology-choices/machine-learning-operations-v2) and [Azure MLOps (v2) solution accelerator](https://github.com/Azure/mlops-v2) to quickly set up an MLOps project in Azure Machine Learning.
 
 > [!TIP]
 > Before implementing any solution, review the [recommended Azure architectures](/azure/architecture/data-guide/technology-choices/machine-learning-operations-v2) for MLOps and choose the best architecture for your machine learning project.
@@ -47,7 +47,7 @@ In this article, you learn how to use Azure Machine Learning to set up an end-to
 
 > [!NOTE]
 >
-> Git version 2.27 or newer is required. For more information on installing the Git command, see https://git-scm.com/downloads and select your operating system.
+> Git version 2.27 or newer is required. For more information about installing the Git command, see [Git downloads](https://git-scm.com/downloads) and select your operating system.
 
 > [!IMPORTANT]
 > The CLI commands in this article were tested using Bash. If you use a different shell, you might encounter errors.
@@ -73,7 +73,7 @@ Before you can set up an MLOps project with Machine Learning, you need to set up
 
     :::image type="content" source="./media/how-to-setup-mlops-azureml/ps-cli1-1.png" alt-text="Screenshot of the cloud shell environment dropdown.":::
 
-1. Copy the following bash commands to your computer and update the **projectName**, **subscriptionId**, and **environment** variables with the values for your project. This command also grants the **Contributor** role to the service principal in the subscription provided. GitHub Actions needs this information to properly use resources in that subscription. 
+1. Copy the following bash commands to your computer and update the **projectName**, **subscriptionId**, and **environment** variables with the values for your project. This command also grants the **Contributor** role to the service principal in the subscription you provide. GitHub Actions needs this information to properly use resources in that subscription. 
 
     ``` bash
     projectName="<your project name>"
@@ -93,7 +93,7 @@ Before you can set up an MLOps project with Machine Learning, you need to set up
 
 1. Copy your edited commands into the Azure Shell and run them (**Ctrl** + **Shift** + **v**).
 
-1. After running these commands, you see information related to the service principal. Save this information to a safe location, you use it later in these steps.
+1. After running these commands, you see information related to the service principal. Save this information to a safe location for use later in these steps.
 
     ```json
 
@@ -111,7 +111,7 @@ Before you can set up an MLOps project with Machine Learning, you need to set up
       }
     ```
 
-1. Copy all of this output, braces included. Save this information to a safe location, you use it later in these steps.
+1. Copy all of this output, braces included. Save this information to a safe location for use later in these steps.
 
 1. Close the Cloud Shell once the service principals are created. 
       
@@ -261,7 +261,7 @@ Next, deploy the model training pipeline to your new Machine Learning workspace.
 > [!NOTE] 
 > To check the output of each individual step, for example to view output of a failed run, select a job output, and then select each step in the job to view any output of that step. 
 
-When the trained model is registered in the Machine Learning workspace, you're ready to deploy the model for scoring.
+When you register the trained model in the Machine Learning workspace, you're ready to deploy the model for scoring.
 
 ### Deploy the trained model
 
@@ -291,7 +291,7 @@ This scenario includes prebuilt workflows for two approaches to deploying a trai
  
     :::image type="content" source="./media/how-to-setup-mlops-azureml/github-actions.png" alt-text="Screenshot of GitHub actions page.":::
 
-1. Select the **deploy-batch-endpoint-pipeline** from the workflows and select **Run workflow** to execute the batch endpoint deployment pipeline workflow. The steps in this pipeline create a new AmlCompute cluster on which to execute batch scoring, create the batch endpoint in your Machine Learning workspace, then create a deployment of your model to this endpoint.
+1. Select the **deploy-batch-endpoint-pipeline** from the workflows and select **Run workflow** to execute the batch endpoint deployment pipeline workflow. The steps in this pipeline create a new AmlCompute cluster on which to execute batch scoring, create the batch endpoint in your Machine Learning workspace, and then create a deployment of your model to this endpoint.
 
     :::image type="content" source="./media/how-to-setup-mlops-azureml/github-batch-endpoint.png" alt-text="Screenshot of GitHub action for batch endpoint.":::
 

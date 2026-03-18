@@ -1,7 +1,7 @@
 ---
-title: Generate a Responsible AI insights with YAML and Python
+title: Generate Responsible AI insights with YAML and Python
 titleSuffix: Azure Machine Learning
-description: Learn how to generate a Responsible AI insights with Python and YAML in Azure Machine Learning.
+description: Learn how to generate Responsible AI insights with Python and YAML in Azure Machine Learning.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
@@ -45,14 +45,14 @@ The following sections describe the Responsible AI components and provide exampl
 
 ### Limitations
 
-The current set of components have many limitations on their use:
+The current set of components has many limitations on their use:
 
-- All models must be registered in Azure Machine Learning in MLflow format with a sklearn (scikit-learn) flavor.
-- The models must be loadable in the component environment.
+- You must register all models in Azure Machine Learning in MLflow format with a sklearn (scikit-learn) flavor.
+- You must be able to load the models in the component environment.
 - The models must be pickleable.
-- The models must be supplied to the Responsible AI components by using the `Fetch Registered Model` component, which we provide.
+- You must supply the models to the Responsible AI components by using the `Fetch Registered Model` component.
 - The dataset inputs must be in `mltable` format.
-- A model must be supplied even if only a causal analysis of the data is performed. You can use the `DummyClassifier` and `DummyRegressor` estimators from scikit-learn for this purpose.
+- You must supply a model even if you only perform a causal analysis of the data. You can use the `DummyClassifier` and `DummyRegressor` estimators from scikit-learn for this purpose.
 
 ### RAI Insights dashboard constructor
 
@@ -82,7 +82,7 @@ The constructor component also accepts the following parameters:
 | `categorical_column_names` | The columns in the datasets, which represent categorical data. | Optional list of strings<sup>1</sup> |
 | `classes` | The full list of class labels in the training dataset. | Optional list of strings<sup>1</sup> |
 | `feature_metadata`| Specifies additional information the dashboard might need depending on task type. For forecasting, this information includes specifying which column is the `datetime` column and which column is the `time_series_id` column. For vision, this information might include mean pixel value or location data of an image.| Optional list of strings<sup>1</sup> |
-| `use_model_dependency`| Specifies if the model requires a separate docker container to be served in due to conflicting dependencies with the RAI dashboard. For forecasting, you must enable this value. Typically for other scenarios, don't enable this value.  | Boolean |
+| `use_model_dependency`| Specifies if the model requires a separate Docker container to be served in due to conflicting dependencies with the RAI dashboard. For forecasting, you must enable this value. Typically for other scenarios, don't enable this value.  | Boolean |
 
 <sup>1</sup> Supply the lists as a single JSON-encoded string for `categorical_column_names`, `classes`, and `feature_metadata` inputs.
 
@@ -138,21 +138,21 @@ This component performs a causal analysis on the supplied datasets. It has a sin
 | Parameter name | Description | Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 |---|---|---|
 | `treatment_features` | A list of feature names in the datasets, which are potentially "treatable" to obtain different outcomes. | List of strings<sup>2</sup>. |
-| `heterogeneity_features` | A list of feature names in the datasets, which might affect how the "treatable" features behave. By default, all features will be considered. | Optional list of strings<sup>2</sup>.|
+| `heterogeneity_features` | A list of feature names in the datasets, which might affect how the "treatable" features behave. By default, all features are considered. | Optional list of strings<sup>2</sup>.|
 | `nuisance_model` | The model used to estimate the outcome of changing the treatment features. | Optional string. Must be `linear` or `AutoML`, defaulting to `linear`. |
 | `heterogeneity_model` | The model used to estimate the effect of the heterogeneity features on the outcome. | Optional string. Must be `linear` or `forest`, defaulting to `linear`. |
 | `alpha` | Confidence level of confidence intervals. | Optional floating point number, defaults to 0.05. |
 | `upper_bound_on_cat_expansion` | The maximum expansion of categorical features. | Optional integer, defaults to 50. |
-| `treatment_cost` | The cost of the treatments. If 0, all treatments will have zero cost. If a list is passed, each element is applied to one of the `treatment_features`.<br><br>Each element can be a scalar value to indicate a constant cost of applying that treatment or an array indicating the cost for each sample. If the treatment is a discrete treatment, the array for that feature should be two dimensional, with the first dimension representing samples and the second representing the difference in cost between the non-default values and the default value. | Optional integer or list<sup>2</sup>.|
+| `treatment_cost` | The cost of the treatments. If 0, all treatments have zero cost. If a list is passed, each element applies to one of the `treatment_features`.<br><br>Each element can be a scalar value to indicate a constant cost of applying that treatment or an array indicating the cost for each sample. If the treatment is a discrete treatment, the array for that feature should be two dimensional, with the first dimension representing samples and the second representing the difference in cost between the non-default values and the default value. | Optional integer or list<sup>2</sup>.|
 | `min_tree_leaf_samples` | The minimum number of samples per leaf in the policy tree. | Optional integer, defaults to 2. |
 | `max_tree_depth` | The maximum depth of the policy tree. | Optional integer, defaults to 2. | 
-| `skip_cat_limit_checks` | By default, categorical features need to have several instances of each category in order for a model to be fit robustly. Setting this to `True` will skip these checks. |Optional Boolean, defaults to `False`. |
-| `categories` | The categories to use for the categorical columns. If `auto`, the categories will be inferred for all categorical columns. Otherwise, this argument should have as many entries as there are categorical columns.<br><br>Each entry should be either `auto` to infer the values for that column or the list of values for the column.  If explicit values are provided, the first value is treated as the "control" value for that column against which other values are compared. | Optional, `auto` or list<sup>2</sup>. |
+| `skip_cat_limit_checks` | By default, categorical features need to have several instances of each category in order for a model to be fit robustly. Setting this value to `True` skips these checks. |Optional Boolean, defaults to `False`. |
+| `categories` | The categories to use for the categorical columns. If `auto`, the categories are inferred for all categorical columns. Otherwise, this argument should have as many entries as there are categorical columns.<br><br>Each entry should be either `auto` to infer the values for that column or the list of values for the column.  If explicit values are provided, the first value is treated as the "control" value for that column against which other values are compared. | Optional, `auto` or list<sup>2</sup>. |
 | `n_jobs` | The degree of parallelism to use. | Optional integer, defaults to 1. |
 | `verbose` | Expresses whether to provide detailed output during the computation. | Optional integer, defaults to 1. |
 | `random_state` | Seed for the pseudorandom number generator (PRNG). | Optional integer. |
 
-<sup>2</sup> For the `list` parameters: Several of the parameters accept lists of other types (strings, numbers, even other lists). To pass these into the component, they must first be JSON-encoded into a single string.
+<sup>2</sup> For the `list` parameters: Several of the parameters accept lists of other types (strings, numbers, even other lists). To pass these types into the component, you must first JSON-encode them into a single string.
 
 This component has a single output port, which you can connect to one of the `insight_[n]` input ports of the `Gather RAI Insights Dashboard` component.
 
@@ -192,15 +192,15 @@ This component generates counterfactual points for the supplied test dataset. It
 |---|---|---|
 | `total_CFs` | The number of counterfactual points to generate for each row in the test dataset. | Optional integer, defaults to 10. |
 | `method` | The `dice-ml` explainer to use. | Optional string. Either `random`, `genetic`, or `kdtree`. Defaults to `random`. |
-| `desired_class` | Index identifying the desired counterfactual class. For binary classification, this should be set to `opposite`. | Optional string or integer. Defaults to 0. |
+| `desired_class` | Index identifying the desired counterfactual class. For binary classification, set this value to `opposite`. | Optional string or integer. Defaults to 0. |
 | `desired_range` | For regression problems, identify the desired range of outcomes. | Optional list of two numbers<sup>3</sup>. |
 | `permitted_range` | Dictionary with feature names as keys and the permitted range in a list as values. Defaults to the range inferred from training data. |  Optional string or list<sup>3</sup>.|
 | `features_to_vary` | Either a string `all` or a list of feature names to vary. | Optional string or list<sup>3</sup>.|
 | `feature_importance` | Flag to enable computation of feature importances by using `dice-ml`. |Optional Boolean. Defaults to `True`. |
 
-<sup>3</sup> For the non-scalar parameters: Parameters that are lists or dictionaries should be passed as single JSON-encoded strings.
+<sup>3</sup> For the non-scalar parameters: Pass parameters that are lists or dictionaries as single JSON-encoded strings.
 
-This component has a single output port, which can be connected to one of the `insight_[n]` input ports of the `Gather RAI Insights dashboard` component.
+This component has a single output port, which you can connect to one of the `insight_[n]` input ports of the `Gather RAI Insights dashboard` component.
 
 # [YAML](#tab/yaml)
 
@@ -241,7 +241,7 @@ This component generates an error analysis for the model. It has a single input 
 | `max_depth` | The maximum depth of the error analysis tree. | Optional integer. Defaults to 3. |
 | `num_leaves` | The maximum number of leaves in the error tree. | Optional integer. Defaults to 31. |
 | `min_child_samples` | The minimum number of data points required to produce a leaf. | Optional integer. Defaults to 20. |
-| `filter_features` | A list of one or two features to use for the matrix filter. | Optional list, to be passed as a single JSON-encoded string. |
+| `filter_features` | A list of one or two features to use for the matrix filter. | Optional list, passed as a single JSON-encoded string. |
 
 This component has a single output port, which you can connect to one of the `insight_[n]` input ports of the `Gather RAI Insights Dashboard` component.
 
@@ -379,7 +379,7 @@ scorecard_01:
 
 ```
 
-Where pdf_gen.json is the score card generation configuration JSON file, and *predefined_cohorts_json* is the prebuilt cohorts definition JSON file. 
+Where `pdf_gen.json` is the scorecard generation configuration JSON file, and *predefined_cohorts_json* is the prebuilt cohorts definition JSON file. 
 
 The following examples show a JSON file for cohorts definition and scorecard-generation configuration:
 
@@ -490,7 +490,7 @@ This section lists and defines the parameters that you need to configure the Res
 
 | ModelName | Name of model |
 |---|---|
-| `ModelType` | Values in ['classification', 'regression']. |
+| `ModelType` | Values: `classification`, `regression`. |
 | `ModelSummary` | Enter text that summarizes what the model is for. |
 
 > [!NOTE]
@@ -522,11 +522,11 @@ Threshold: The desired threshold for the selected metric. Allowed mathematical t
 |--|--|
 | `metric` | The primary metric for evaluation fairness. |
 | `sensitive_features` | A list of feature names from the input dataset to designate as sensitive features for the fairness report. |
-| `fairness_evaluation_kind` | Values in ['difference', 'ratio']. |
+| `fairness_evaluation_kind` | Values: `difference`, `ratio`. |
 | `threshold` | The *desired target values* of the fairness evaluation. Allowed mathematical tokens are `>`, `<`, `>=`,  and `<=`, followed by a real number.<br>For example, `metric="accuracy"`, `fairness_evaluation_kind="difference"`.<br>`<= 0.05` means that the target for the difference in accuracy is less than or equal to 0.05. |
 
 > [!NOTE]
-> Your choice of `fairness_evaluation_kind` (selecting 'difference' versus 'ratio') affects the scale of your target value. Choose a meaningful target value.
+> Your choice of `fairness_evaluation_kind` (selecting `difference` versus `ratio`) affects the scale of your target value. Choose a meaningful target value.
 
 Select from the following metrics, paired with `fairness_evaluation_kind`, to configure your fairness assessment component of the scorecard:
 
