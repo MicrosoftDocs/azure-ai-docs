@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/13/2026
+ms.date: 03/18/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -599,6 +599,7 @@ public class AzureAISearchExample {
 Keep these constraints in mind when using the Azure AI Search tool:
 
 - **Virtual network access**: Azure AI Search doesn't support virtual network (vNET) configurations with agents at this time.
+- If you disabled public network access on your Azure AI Search resource, configure the connection to use managed identity (keyless authentication) instead of an API key. API key-based connections can't reach a search service that has public network access disabled.
 - The Azure AI Search tool can only target one index.
 - Your Azure AI Search resource and your Microsoft Foundry Agent must be in the same tenant.
 
