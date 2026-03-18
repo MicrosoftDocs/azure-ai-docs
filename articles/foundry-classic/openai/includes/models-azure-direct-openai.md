@@ -33,13 +33,19 @@ ms.custom: pilot-ai-workflow-jan-2026
 |---|---|
 | `gpt-5.4` | See the [models table](#model-summary-table-and-region-availability) |
 | `gpt-5.4-pro` |  See the [models table](#model-summary-table-and-region-availability)  |
+| `gpt-5.4-mini` | **Global Standard**:<br>East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> South Central US  |
+| `gpt-5.4.nano` | **Global Standard**:<br>East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> South Central US  |
+
 
 - **[Registration is required for access to gpt-5.4 & gpt-5.4-pro](https://aka.ms/OAI/gpt53codexaccess).**
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-5.4` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 1,050,000 Context Window | 128,000 | August 2025 |
-| `gpt-5.4-pro` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Text and image processing. <br> - Functions & tools <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000 <br><br>1,050,000 Context Window (Coming Soon!)   | 128,000 | August 2025 |
+| `gpt-5.4` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 1,050,000 | 128,000 | August 2025 |
+| `gpt-5.4-pro` (2026-03-05) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Text and image processing. <br> - Functions & tools <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 1,050,000 | 128,000 | August 2025 |
+| `gpt-5.4-mini` (2026-03-17) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Computer use](../../../foundry-classic/openai/how-to/computer-use.md) <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | August 2025 |
+| `gpt-5.4-nano` (2026-03-17) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br>- Chat Completions API. <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | August 2025 |
+
 
 ## GPT-5.3
 
