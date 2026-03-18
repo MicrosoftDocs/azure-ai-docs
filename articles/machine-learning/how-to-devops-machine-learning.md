@@ -223,41 +223,36 @@ In step 5, you added a job to submit an Azure Machine Learning job. In this step
 
 # [Using an Azure Resource Manager service connection](#tab/arm)
 
-If you're using a Resource Manager service connection, you can use the Machine Learning extension. You can search for this extension in the [Azure DevOps extensions Marketplace](https://marketplace.visualstudio.com/search?target=AzureDevOps&category=Azure%20Pipelines&visibilityQuery=public&sortBy=Installs) or go directly to the [extension page](https://marketplace.visualstudio.com/items?itemName=ms-air-aiagility.azureml-v2). Install the Machine Learning extension.
-
-> [!IMPORTANT]
-> Don't install the __Machine Learning (classic)__ extension. It's an older extension that doesn't provide the same functionality.
-
-In the Pipeline review window, add a Server Job. In the steps part of the job, select __Show assistant__, and then search for __AzureML__. Select the __AzureML Job Wait__ task, and then provide the information for the job. 
-
-The task has four inputs: `Service Connection`, `Azure Resource Group Name`, `AzureML Workspace Name`, and `AzureML Job Name`. Provide these inputs. The resulting YAML for these steps is similar to the following example: 
+If you're using an Azure Resource Manager service connection, call the API directly using an `InvokeRESTAPI` task. The following YAML example demonstrates how to use the API.
 
 > [!NOTE]
-> * The Azure Machine Learning job wait task runs on a server job, which doesn't use expensive agent pool resources and requires no additional charges. Server jobs (indicated by `pool: server`) run on the same machine as your pipeline. For more information, see [Server jobs](/azure/devops/pipelines/process/phases#server-jobs).
-> * One Azure Machine Learning job wait task can only wait for one job. You need to set up a separate task for each job that you want to wait for.
-> * The Azure Machine Learning job wait task can wait for a maximum of two days. This limit is a hard limit set by Azure DevOps pipelines. 
+> * The `InvokeRESTAPI` can run as an agentless task when `pool: server` selected, this doesn't require an agent or a target computer. Server jobs (indicated by `pool: server`) run on the same machine as your pipeline. For more information, see [Server jobs](/azure/devops/pipelines/process/phases#server-jobs).
+> * The job wait task can wait for a maximum of two days. This limit is a hard limit set by Azure DevOps pipelines. 
 
 ```yml
-- job: WaitForAzureMLJobCompletion
+- job: WaitForJobCompletion
   displayName: Wait for AzureML Job Completion
   pool: server
   timeoutInMinutes: 0
   dependsOn: SubmitAzureMLJob
   variables: 
-    # Save the name of the azureMl job submitted in the previous step to a variable. It will be used as an input to the AzureML Job Wait task.
-    azureml_job_name_from_submit_job: $[ dependencies.SubmitAzureMLJob.outputs['submit_azureml_job_task.JOB_NAME'] ] 
+    job_name_from_submit_task: $[ dependencies.SubmitAzureMLJob.outputs['submit_azureml_job_task.JOB_NAME'] ] 
+    AAD_TOKEN: $[ dependencies.SubmitAzureMLJob.outputs['submit_azureml_job_task.AAD_TOKEN'] ]
   steps:
-  - task: AzureMLJobWaitTask@1
+  - task: InvokeRESTAPI@1
     inputs:
-      serviceConnection: $(service-connection)
-      resourceGroupName: $(resource-group)
-      azureMLWorkspaceName: $(workspace)
-      azureMLJobName: $(azureml_job_name_from_submit_job)
+      connectionType: connectedServiceNameARM
+      azureSubscription: $(service-connection)
+      method: PATCH
+      body: "{ \"Properties\": { \"NotificationSetting\": { \"Webhooks\": { \"ADO_Webhook_$(system.TimelineId)\": { \"WebhookType\": \"AzureDevOps\", \"EventType\": \"RunTerminated\", \"PlanUri\": \"$(system.CollectionUri)\", \"ProjectId\": \"$(system.teamProjectId)\", \"HubName\": \"$(system.HostType)\", \"PlanId\": \"$(system.planId)\", \"JobId\": \"$(system.jobId)\", \"TimelineId\": \"$(system.TimelineId)\", \"TaskInstanceId\": \"$(system.TaskInstanceId)\", \"AuthToken\": \"$(system.AccessToken)\"}}}}}"
+      headers: "{\n\"Content-Type\":\"application/json\", \n\"Authorization\":\"Bearer $(AAD_TOKEN)\" \n}"
+      urlSuffix: "subscriptions/$(subscription_id)/resourceGroups/$(resource-group)/providers/Microsoft.MachineLearningServices/workspaces/$(workspace)/jobs/$(job_name_from_submit_task)?api-version=2024-04-01"
+      waitForCompletion: "true"
 ```
 
 # [Using a generic service connection](#tab/generic)
 
-If you're using the generic service connection, you can't use the task provided by Azure Machine Learning extension. Instead, call the API directly by using an `InvokeRESTAPI` task. The following YAML example demonstrates how to use the API.
+If you're using the generic service connection, the following YAML example demonstrates how to use the API.
 
 ```yml
 - job: WaitForJobCompletion
