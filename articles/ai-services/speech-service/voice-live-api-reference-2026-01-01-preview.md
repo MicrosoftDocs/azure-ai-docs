@@ -2428,13 +2428,15 @@ Configuration for avatar streaming and behavior.
 
 | Field | Type | Description |
 |-------|------|-------------|
+| type | string | Optional. Avatar type. Allowed values: `video-avatar`, `photo-avatar`. Default is `video-avatar` |
 | ice_servers | [RealtimeIceServer](#realtimeiceserver)[] | Optional. ICE servers for WebRTC |
 | character | string | Character name or ID for the avatar |
 | style | string | Optional. Avatar style (emotional tone, speaking style) |
 | customized | boolean | Whether the avatar is customized |
+| model | string | Optional. Base model name for the photo avatar, required if type is `photo-avatar`, valid value is `vasa-1` |
 | video | [RealtimeVideoParams](#realtimevideoparams) | Optional. Video configuration |
 | scene | [RealtimeAvatarScene](#realtimeavatarscene) | Optional. Configuration for the avatar's zoom level, position, rotation and movement amplitude in the video frame |
-| output_protocol | string | Optional. Output protocol for avatar streaming. Default is `webrtc` |
+| output_protocol | string | Optional. Output protocol for avatar streaming. Allowed values: `websocket` and `webrtc`. Default is `webrtc` |
 | output_audit_audio | boolean | Optional. When enabled, forwards audit audio via WebSocket for review/debugging purposes, even when avatar output is delivered via WebRTC. Default is `false` |
 
 #### RealtimeIceServer
@@ -2457,6 +2459,8 @@ Video streaming parameters for avatar.
 | codec | string | Optional. Video codec, currently only `h264` (default: `h264`) |
 | crop | [RealtimeVideoCrop](#realtimevideocrop) | Optional. Cropping settings |
 | resolution | [RealtimeVideoResolution](#realtimevideoresolution) | Optional. Resolution settings |
+| background | [RealtimeVideoBackground](#realtimevideobackground) | Optional. Background settings |
+| gop_size | integer | Optional. Group of Pictures size (default: 10, range: 1–2000) |
 
 #### RealtimeVideoCrop
 
@@ -2475,6 +2479,15 @@ Video resolution specification.
 |-------|------|-------------|
 | width | integer | Width in pixels (must be > 0) |
 | height | integer | Height in pixels (must be > 0) |
+
+#### RealtimeVideoBackground
+
+Video background configuration. Only one of `image_url` or `color` can be set.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| image_url | string | Optional. URL to a background image |
+| color | string | Optional. Background color value |
 
 #### RealtimeAvatarScene
 
@@ -2537,6 +2550,7 @@ Session configuration object used in `session.update` events.
 | reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check [Azure Foundry doc](../../ai-foundry/openai/how-to/reasoning.md#reasoning-effort) for more details. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  |
 | avatar | [RealtimeAvatarConfig](#realtimeavatarconfig) | Optional. Avatar configuration |
 | output_audio_timestamp_types | [RealtimeAudioTimestampType](#realtimeaudiotimestamptype)[] | Optional. Timestamp types for output audio |
+| metadata | map | Optional. Set of up to 16 key-value pairs that can be attached to the session. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. |
 
 #### RealtimeModality
 
