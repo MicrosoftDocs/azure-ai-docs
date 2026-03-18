@@ -100,7 +100,7 @@ Follow the instructions in this section to get started with the Realtime API via
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [Microsoft Foundry portal quickstart](../includes/realtime-csharp.md)]
+[!INCLUDE [C# quickstart](../includes/realtime-csharp.md)]
 
 ::: zone-end
 
