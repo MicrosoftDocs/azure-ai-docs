@@ -23,11 +23,6 @@ ai-usage: ai-assisted
 
 The [Azure Machine Learning SDK for Python v1](/python/api/overview/azure/ml/intro) and [Machine Learning CLI](reference-azure-machine-learning-cli.md) provide various methods to monitor, organize, and track your runs for training and experimentation. Your ML run history is an important part of an explainable and repeatable ML development process.
 
-> [!IMPORTANT]
-> SDK v1 support ends June 30, 2026. CLI v1 support ended September 30, 2025. Migrate to SDK v2 and CLI v2. For v2 equivalents, see the following articles:
-> * [Log & view metrics and log files (v2)](../how-to-log-view-metrics.md)
-> * [Monitor and analyze jobs in Azure Machine Learning studio](../how-to-track-monitor-analyze-runs.md).
-
 This article shows how to do the following tasks:
 
 * Monitor run performance.
