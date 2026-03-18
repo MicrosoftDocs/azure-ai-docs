@@ -11,10 +11,6 @@ ms.author: scottpolly
 author: lgayhardt
 ms.date: 03/12/2026
 ms.custom: responsible-ml, devx-track-python, dev-focus
-ai-usage: ai-assisted
-ms.date: 03/12/2026
-ms.custom: responsible-ml, devx-track-python, dev-focus
-ai-usage: ai-assisted
 ---
 
 # Generate Responsible AI insights with YAML and Python

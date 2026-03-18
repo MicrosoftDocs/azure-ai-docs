@@ -23,7 +23,6 @@ ai-usage: ai-assisted
 Before you begin, make sure you're familiar with [Docker](https://www.docker.com/) and [Azure Machine Learning environments](../concept-environments.md).
 
 ## Step 1: Prepare the Docker context
-## Step 1: Prepare the Docker context
 
 ### Create `image_build` folder
 
