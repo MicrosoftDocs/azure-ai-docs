@@ -32,6 +32,7 @@ specs/
 # Doc-Kit workspace files
 .github/AGENTS.md
 .github/agents/
+.github/hooks/
 .github/instructions/
 .github/prompts/
 .github/skills/
