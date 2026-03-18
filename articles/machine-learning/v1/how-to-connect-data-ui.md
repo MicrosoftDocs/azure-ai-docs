@@ -86,8 +86,8 @@ For more information about creating a new datastore with Azure Machine Learning 
 1. Complete the form to create and register a new datastore. The form intelligently updates itself based on your selections for Azure storage type. For more information, see [which storage types support identity-based](how-to-identity-based-data-access.md#storage-access-permissions) data access.
     1. Choose the storage account and container name you want to use.
 
-The blob reader role (for ADLS Gen 2 and Blob storage) is required. You need permissions to see the contents of the storage.
-Reader role of the subscription and resource group.
+    The blob reader role (for ADLS Gen 2 and Blob storage) is required. You need permissions to see the contents of the storage.
+    Reader role of the subscription and resource group.
 1. Select **No** to **not** **Save credentials with the datastore for data access**.
 
 The following screenshot shows the **Azure blob datastore** creation panel:
