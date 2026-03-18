@@ -3,7 +3,7 @@ title: Debug a Skillset
 description: Learn how to troubleshoot Azure AI Search skillset errors and issues by using a debug session in Azure portal.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/31/2026
+ms.date: 03/13/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
@@ -138,11 +138,11 @@ If skills produce output but the search index is empty, check the field mappings
 
 Select one of the mapping options and expand the details view to review source and target definitions.
 
-+ [**Projection Mappings**](index-projections-concept-intro.md) are found in skillsets that provide integrated vectorization, such as the skills created by the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md). These mappings determine parent-child (chunk) field mappings and whether a secondary index is created for just the chunked content
++ [**Projection mappings**](index-projections-concept-intro.md) are found in skillsets that provide integrated vectorization, such as the skills created by the [**Import data** wizard](search-get-started-portal-import-vectors.md). These mappings determine parent-child (chunk) field mappings and whether a secondary index is created for just the chunked content
 
-+ [**Output Field Mappings**](cognitive-search-output-field-mapping.md) are found in indexers and are used when skillsets invoke built-in or custom skills. These mappings are used to set the data path from a node in the enrichment tree to a field in the search index. For more information about paths, see [enrichment node path syntax](cognitive-search-concept-annotations-syntax.md). 
++ [**Output field mappings**](cognitive-search-output-field-mapping.md) are found in indexers and are used when skillsets invoke built-in or custom skills. These mappings are used to set the data path from a node in the enrichment tree to a field in the search index. For more information about paths, see [enrichment node path syntax](cognitive-search-concept-annotations-syntax.md). 
 
-+ [**Field Mappings**](search-indexer-field-mappings.md) are found in indexer definitions and they establish the data path from raw content in the data source and a field in the index. You can use field mappings to add encoding and decoding steps as well.
++ [**Field mappings**](search-indexer-field-mappings.md) are found in indexer definitions and they establish the data path from raw content in the data source and a field in the index. You can use field mappings to add encoding and decoding steps as well.
 
 This example shows the details for a projection mapping. You can edit the JSON to fix any mapping issues.
 
