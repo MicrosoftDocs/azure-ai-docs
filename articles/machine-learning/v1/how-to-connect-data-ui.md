@@ -92,7 +92,7 @@ For more information about creating a new datastore with Azure Machine Learning 
 
 The following screenshot shows the **Azure blob datastore** creation panel:
 
-:::image type="content" source="media/how-to-connect-data-ui/new-id-based-datastore-form.png" lightbox="media/how-to-connect-data-ui/new-id-based-datastore-form.png" alt-text="Screenshot showing the Azure blob datastore creation panel.":::
+    :::image type="content" source="media/how-to-connect-data-ui/new-id-based-datastore-form.png" lightbox="media/how-to-connect-data-ui/new-id-based-datastore-form.png" alt-text="Screenshot showing the Azure blob datastore creation panel.":::
 
 ---
 
@@ -142,17 +142,17 @@ After you create your dataset, verify that you can view the preview and profile 
 1. Sign in to the [Azure Machine Learning studio](https://ml.azure.com/).
 1. Under **Assets** in the left navigation, select **Data** as shown in the following screenshot:
 
-:::image type="content" source="media\how-to-connect-data-ui\data-data-assets.png" alt-text="Screenshot highlights Create in the Data assets tab.":::
+    :::image type="content" source="media\how-to-connect-data-ui\data-data-assets.png" alt-text="Screenshot highlights Create in the Data assets tab.":::
 
 1. Select the name of the dataset you want to view.
 1. Select the **Explore** tab.
 1. Select the **Preview** tab, as shown in the following screenshot:
 
-:::image type="content" source="media\how-to-connect-data-ui\explore-preview-dataset.png" alt-text="Screenshot shows a preview of a dataset.":::
+    :::image type="content" source="media\how-to-connect-data-ui\explore-preview-dataset.png" alt-text="Screenshot shows a preview of a dataset.":::
 
 1. Select the **Profile** tab, as shown in the following screenshot:
 
-:::image type="content" source="media\how-to-connect-data-ui\explore-generate-profile.png" alt-text="Screenshot shows dataset column metadata in the Profile tab.":::
+    :::image type="content" source="media\how-to-connect-data-ui\explore-generate-profile.png" alt-text="Screenshot shows dataset column metadata in the Profile tab.":::
 
 To verify whether your dataset is ML-ready, use summary statistics across your dataset. For non-numeric columns, these statistics include only basic statistical measures, such as minimum, maximum, and error count. Numeric columns offer statistical moments and estimated quantiles.
 
