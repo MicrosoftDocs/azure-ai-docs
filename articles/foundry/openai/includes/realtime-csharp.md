@@ -196,7 +196,7 @@ Learn more about [finding API keys](/azure/ai-services/cognitive-services-enviro
     - `AZURE_OPENAI_ENDPOINT`
     - `AZURE_OPENAI_DEPLOYMENT_NAME`
     - `AZURE_OPENAI_API_KEY`
-1. Alternatively if you built your solution in *Debug* configuration you might either use *Start Debugging* command in Visual Studio user interface (F5 key) or`dotnet run` command. In both cases the system uses configuration parameters defined in `launchSettings.json` file. To use `dotnet run` command:
+1. Alternatively if you built your solution in *Debug* configuration you might either use *Start Debugging* command in Visual Studio user interface (F5 key) or `dotnet run` command. In both cases the system uses configuration parameters defined in `launchSettings.json` file. To use `dotnet run` command:
     - Open Windows command prompt, go the folder containing `RealtimeAudioQuickstartCSharp.csproj` file and execute `dotnet run` command. 
 1. When prompted for user input, type a message and hit enter to send it to the model. Enter "q" to quit the conversation. Wait a few moments to get the response.
 
