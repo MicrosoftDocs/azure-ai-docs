@@ -151,7 +151,7 @@ You can specify `mini_batch_size`, `node_count`, `process_count_per_node`, `logg
 ### Parameters for creating the ParallelRunStep
 
 Create the `ParallelRunStep` by using the script, environment configuration, and parameters. Specify the compute target that you already attached to your workspace as the target of execution for your inference script. Use `ParallelRunStep` to create the batch inference pipeline step, which takes all the following parameters:
-- `name`: The name of the step. The name must be unique, 3-32 characters, and match the regex `^[a-z]([-a-z0-9]*[a-z0-9])?.
+- `name`: The name of the step. The name must be unique, 3-32 characters, and match the regex `^[a-z]([-a-z0-9]*[a-z0-9])?$`.
 - `parallel_run_config`: A `ParallelRunConfig` object, as defined earlier.
 - `inputs`: One or more single-typed Azure Machine Learning datasets to partition for parallel processing.
 - `side_inputs`: One or more reference data or datasets used as side inputs without needing to be partitioned.
