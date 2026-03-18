@@ -9,7 +9,7 @@ ms.service: azure-machine-learning
 ms.reviewer: jturuk
 ms.subservice: mlops
 ms.date: 03/12/2026
-ms.topic: how-to-guide
+ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom:
   - cli-v2

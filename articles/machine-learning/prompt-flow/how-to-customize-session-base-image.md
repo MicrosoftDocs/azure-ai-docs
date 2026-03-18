@@ -15,7 +15,6 @@ ms.author: lagayhar
 ms.reviewer: sooryar
 ms.date: 03/12/2026
 ms.update-cycle: 365-days
-ai-usage: ai-assisted
 ---
 
 # Customize a  base image for compute session
