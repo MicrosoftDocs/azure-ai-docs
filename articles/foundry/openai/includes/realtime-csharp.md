@@ -18,8 +18,6 @@ Currently Microsoft Entra ID authentication isn't supported for .NET scenario. Y
 
 ## Retrieve resource information
 
-[!INCLUDE [resource authentication](resource-authentication.md)]
-
 You need to retrieve the following information to authenticate your application with your Azure OpenAI resource:
 
 |Variable name | Value |
