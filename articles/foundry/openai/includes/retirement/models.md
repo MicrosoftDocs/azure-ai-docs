@@ -51,6 +51,8 @@ ms.custom: references_regions, build-2025
 | `gpt-5.3-codex` | 2026-02-24 | `Generally Available` | 2027-02-25 | 2027-08-25 | |
 | `gpt-5.4` | 2026-03-05 | `Generally Available` | 2027-03-05 | 2027-09-05 | |
 | `gpt-5.4-pro` | 2026-03-05 | `Generally Available` | 2027-03-05 | 2027-09-05 | |
+| `gpt-5.4-mini` | 2026-03-17 | `Generally Available` | 2027-03-17 | 2027-09-17 | |
+| `gpt-5.4-nano` | 2026-03-17 | `Generally Available` | 2027-03-17 | 2027-09-17 | |
 
 
 
