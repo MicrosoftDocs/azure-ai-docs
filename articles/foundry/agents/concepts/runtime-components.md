@@ -140,7 +140,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create a prompt agent
-var agent = await projectClient.Agents
+AgentVersion agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
@@ -273,7 +273,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create an agent with a web search tool
-var agent = await projectClient.Agents
+AgentVersion agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-tool-agent",
         options: new(
