@@ -18,8 +18,6 @@ ai-usage: ai-assisted
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
 
-
-
 Azure Machine Learning environments define the execution environments for your jobs or deployments and encapsulate the dependencies for your code. Azure Machine Learning uses the environment specification to create the Docker container that your training or scoring code runs in on the specified compute target. You can define an environment from a conda specification, Docker image, or Docker build context.
 
 In this article, learn how to create and manage Azure Machine Learning environments by using the SDK and CLI (v2).
@@ -299,7 +297,7 @@ ml_client.environments.archive(name="docker-image-example", version="1")
 ---
 
 > [!IMPORTANT]
-> Archiving an environment's version doesn't delete the cached image in the container registry. If you wish to delete the cached image associated with a specific environment, you can use the command [az acr repository delete](/cli/azure/acr/repository?view=azure-cli-latest#az-acr-repository-delete) on the environment's associated repository.
+> Archiving an environment's version doesn't delete the cached image in the container registry. If you wish to delete the cached image associated with a specific environment, you can use the command [az acr repository delete](/cli/azure/acr/repository?view=azure-cli-latest#az-acr-repository-delete&preserve-view=true) on the environment's associated repository.
 
 ### Restore
 
