@@ -39,6 +39,7 @@ In this article, you create a gateway connection to your AI model endpoint, depl
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - Access credentials for your enterprise AI gateway (for example, an API Management subscription key, an API key for another non-Azure AI model gateway, or credentials for an OAuth 2.0 provider using client credentials).
 ::: zone pivot="azure-cli"
+To manage connections through the command line:
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.67 or later.
 - [Python 3.10 or later](https://www.python.org/downloads/).
 - The `azure-ai-projects` SDK package (version 2.0.0 or later). For installation steps, see the [quickstart](../../quickstarts/get-started-code.md).
@@ -129,7 +130,7 @@ For detailed connection specifications, see the [connection samples on GitHub](h
 
 ::: zone-end
 
-## Create a prompt agent with the gateway connection
+## Create a prompt agent with the model connection
 
 After creating the connection, create and run a prompt agent that uses models behind your gateway. The key difference from a standard agent is the model deployment name format: `<connection-name>/<model-name>`.
 
