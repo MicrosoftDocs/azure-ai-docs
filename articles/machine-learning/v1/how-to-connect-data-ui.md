@@ -116,15 +116,15 @@ The following steps describe how to create a dataset in [Azure Machine Learning 
 
 1. Under **Assets** in the left navigation, select **Data**. On the **Data assets** tab, select **Create**, as shown in the following screenshot:
 
-:::image type="content" source="media\how-to-connect-data-ui\data-assets-create.png" lightbox="media/how-to-connect-data-ui/new-id-based-datastore-form.png" alt-text="Screenshot showing Create in the Data assets tab.":::
+    :::image type="content" source="media\how-to-connect-data-ui\data-assets-create.png" lightbox="media/how-to-connect-data-ui/new-id-based-datastore-form.png" alt-text="Screenshot showing Create in the Data assets tab.":::
 
 1. Enter a name and optional description for the data asset. Then, under **Type**, select a Dataset type, either **File** or **Tabular**, as shown in the following screenshot:
 
-:::image type="content" source="media\how-to-connect-data-ui\create-data-asset-name-type.png" lightbox="media\how-to-connect-data-ui\create-data-asset-name-type.png" alt-text="Screenshot showing the setting of the name, description, and type of the data asset.":::
+    :::image type="content" source="media\how-to-connect-data-ui\create-data-asset-name-type.png" lightbox="media\how-to-connect-data-ui\create-data-asset-name-type.png" alt-text="Screenshot showing the setting of the name, description, and type of the data asset.":::
 
 1. The **Data source** pane opens next, as shown in the following screenshot:
 
-:::image type="content" source="media\how-to-connect-data-ui\data-assets-source.png" lightbox="media\how-to-connect-data-ui\data-assets-source.png" alt-text="This screenshot showing the data source selection pane.":::
+    :::image type="content" source="media\how-to-connect-data-ui\data-assets-source.png" lightbox="media\how-to-connect-data-ui\data-assets-source.png" alt-text="This screenshot showing the data source selection pane.":::
 
 You have different options for your data source. For data already stored in Azure, choose **From Azure storage**. To upload data from your local drive, choose **From local files**. For data stored at a public web location, choose **From web files**. You can also create a data asset from a SQL database, or from [Azure Open Datasets](../../open-datasets/how-to-create-azure-machine-learning-dataset-from-open-dataset.md).
 
