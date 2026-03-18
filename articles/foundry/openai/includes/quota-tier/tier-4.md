@@ -56,6 +56,9 @@ ms.date: 02/18/2026
 | gpt-5.4                        | DataZoneStandard  | 2,000       | 2,000,000   |
 | gpt-5.4                        | GlobalStandard    | 70,000      | 7,000,000   |
 | gpt-5.4-pro                    | GlobalStandard    | 1,150       | 1,150,000   |
+| gpt-5.4-mini                   | GlobalStandard    | 7,000       | 7,000,000   |
+| gpt-5.4-nano                   | DataZoneStandard  | 31,000      | 31,000,000  |
+| gpt-5.4-nano                   | GlobalStandard    | 90,000      | 90,000,000  |
 | gpt-audio                      | GlobalStandard    | 30000 / 10s | 30,000,000  |
 | gpt-image-1                    | GlobalStandard    | 45          | -           |
 | gpt-image-1-mini               | GlobalStandard    | 84          | -           |
