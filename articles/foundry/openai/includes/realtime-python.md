@@ -103,7 +103,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         """
     
         credential = DefaultAzureCredential()
-        token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
+        token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
         token = token_provider()
     
         # The endpoint of your Azure OpenAI resource is required. You can set it in the AZURE_OPENAI_ENDPOINT

@@ -10,6 +10,7 @@ ms.date: 02/04/2026
 author: aahill
 ms.author: aahi
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Vector stores for file search

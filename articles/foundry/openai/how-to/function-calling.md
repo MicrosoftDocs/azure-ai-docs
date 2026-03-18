@@ -8,6 +8,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - devx-track-python
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/10/2026
 manager: nitinme
@@ -47,7 +48,7 @@ from zoneinfo import ZoneInfo
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -345,7 +346,7 @@ from zoneinfo import ZoneInfo
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -803,6 +804,9 @@ To learn more about our recommendations on how to use Azure OpenAI models respon
 * `gpt-5.3-codex` (`2026-02-24`)
 * `gpt-5.3-chat` (`2026-03-03`)
 * `gpt-5.4` (`2026-03-05`)
+* `gpt-5.4` (`2026-03-05`)
+* `gpt-5.4-mini` (`2026-03-17`)
+* `gpt-5.4-nano` (`2026-03-17`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 

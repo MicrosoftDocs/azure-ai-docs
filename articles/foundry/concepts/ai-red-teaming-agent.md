@@ -7,8 +7,10 @@ ms.date: 02/25/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # AI Red Teaming Agent (preview)

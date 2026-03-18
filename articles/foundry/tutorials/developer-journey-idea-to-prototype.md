@@ -9,6 +9,7 @@ author: jonburchel
 ms.reviewer: dantaylo
 ai-usage: ai-assisted
 #customer intent: As a developer I want to quickly prototype an enterprise-grade agent with real data, tools, evaluation, and a deployment path so I can validate feasibility before scaling.
+ms.custom: doc-kit-assisted
 ---
 
 # Tutorial: Idea to prototype - Build and evaluate an enterprise agent
@@ -534,7 +535,7 @@ The code breaks down into the following main sections:
 > For detailed guidance on batch evaluations, see [Run evaluations in the cloud](../how-to/develop/cloud-evaluation.md). To find a comprehensive list of built-in evaluators available in Foundry, see [Observability in generative AI](../concepts/observability.md). 
 
 > [!NOTE]
-> The C# sample uses a local batch evaluation approach with `ProjectResponsesClient` instead of the cloud `openai_client.evals` API shown in Python. It sends queries to the agent, checks responses against expected keywords, and writes results to `evaluation_results.json`. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for cloud evaluation patterns in C#.
+> The C# sample uses a local batch evaluation approach with `ProjectResponsesClient` instead of the cloud `openai_client.evals` API shown in Python. It sends queries to the agent, checks responses against expected keywords, and writes results to `evaluation_results.json`. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/samples/Evaluations) for cloud evaluation patterns in C#.
 
 ### Configure the evaluation
 

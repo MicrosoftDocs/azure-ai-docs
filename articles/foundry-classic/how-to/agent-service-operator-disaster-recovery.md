@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Foundry Agent Service resource and data loss recovery (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/agent-service-operator-disaster-recovery.md)
 
 This article describes how to recover from human or automation errors that cause Azure resource or data loss for Microsoft Foundry Agent Service projects that use the [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). Incidents include accidental deletion of Foundry accounts or projects, deletion of agents or threads, and loss or corruption of state in Azure Cosmos DB, Azure AI Search, or Azure Storage that supports the capability host.
 

@@ -9,15 +9,17 @@ ms.topic: overview
 ms.date: 11/18/2025
 ms.author: lajanuar
 ---
+
+<!-- markdownlint-disable MD025 -->
 # What is Azure Language in Foundry Tools?
 
-Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Microsoft Foundry, REST APIs, and client libraries. For AI agent development, the service capabilities are also available as tools in Azure Language [MCP server](#azure-language-mcp-server-), which is available both as a remote server in the **Microsoft Foundry Tool Catalog** and as a local server for self-hosted environments.
+Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Microsoft Foundry, REST APIs, and client libraries. For AI agent development, the service capabilities are also available as tools in Azure Language [MCP server](#azure-language-mcp-server), which is available both as a remote server in the **Microsoft Foundry Tool Catalog** and as a local server for self-hosted environments.
 
 ## Available tools
 
 Azure Language provides specialized tools that enable seamless integration between AI agents and language processing services through standardized protocols.
 
-### Azure Language MCP server 🆕
+### Azure Language MCP server 
 
 The MCP (Model Context Protocol) server creates a standardized bridge that connects AI agents directly to Azure Language services through industry-standard protocols. This integration enables developers to build sophisticated conversational applications with reliable natural language processing capabilities while ensuring enterprise-grade compliance, data protection, and processing accuracy throughout their AI workflows. 
 
@@ -31,13 +33,13 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 
 Azure Language offers prebuilt agents that handle specific conversational AI scenarios with built-in governance, routing logic, and quality control mechanisms.
 
-### Azure Language Intent Routing agent 🆕
+### Azure Language Intent Routing agent 
 
 The Intent Routing agent intelligently manages conversation flows by understanding user intentions and delivering accurate responses in conversational AI applications. This agent uses predictable decision-making processes combined with controlled response generation to ensure consistent, reliable interactions that organizations can trust and monitor. 
 
 For more information, *see* [Azure Language Intent Routing agent](concepts/foundry-tools-agents.md#azure-language-intent-routing-agent-preview).
 
-### Azure Language Exact Question Answering agent 🆕
+### Azure Language Exact Question Answering agent 
 
 The Exact Question Answering agent provides reliable, word-for-word responses to your most important business questions. This agent automates frequently asked questions while maintaining human oversight and quality control to ensure accuracy and compliance.
 

@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Harm categories and severity levels in Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/content-filter-severity-levels.md)
 
 Microsoft Foundry guardrails ensure that AI-generated outputs align with ethical guidelines and safety standards. The content filtering system classifies harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.
 
@@ -39,6 +39,7 @@ The following table summarizes the harm categories supported by Foundry guardrai
 | **Sexual** | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one's will.<br><br>This category includes but isn't limited to:<br>• Vulgar content<br>• Prostitution<br>• Nudity and pornography<br>• Abuse<br>• Child exploitation, child abuse, child grooming |
 | **Violence** | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns, and related entities.<br><br>This category includes, but isn't limited to:<br>• Weapons<br>• Bullying and intimidation<br>• Terrorist and violent extremism<br>• Stalking |
 | **Self-Harm** | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one's body or kill oneself.<br><br>This category includes, but isn't limited to:<br>• Eating disorders<br>• Bullying and intimidation |
+| **Task Adherence** | Helps ensure AI Agents consistently behave in alignment with user instructions and task objectives. It identifies discrepancies, such as misaligned tool invocations, improper tool input or output relative to user intent, and inconsistencies between responses and customer input.  |
 
 ## Severity levels
 

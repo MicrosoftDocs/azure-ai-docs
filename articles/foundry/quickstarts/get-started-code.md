@@ -17,6 +17,7 @@ ms.custom:
   - build-aifnd
   - build-2025
   - peer-review-program
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to start using the Microsoft Foundry portal and client libraries.
 ---

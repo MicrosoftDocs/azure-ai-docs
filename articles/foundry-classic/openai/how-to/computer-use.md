@@ -54,7 +54,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from openai import OpenAI
 import json
 
-token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
 
 client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
@@ -386,7 +386,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from playwright.async_api import async_playwright, TimeoutError
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 # Configuration
@@ -800,7 +800,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from playwright.async_api import async_playwright, TimeoutError
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 # Configuration

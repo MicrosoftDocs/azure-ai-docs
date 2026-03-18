@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 03/06/2026
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

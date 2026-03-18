@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-file-search-upload-new
 ---
@@ -137,7 +137,7 @@ The following output comes from the preceding code sample:
 :::zone pivot="csharp"
 ## File search sample with agent
 
-In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search.  The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample8_FileSearch.md) in the Azure SDK for .NET repository on GitHub.
+In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search.  The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample8_FileSearch.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
@@ -204,7 +204,7 @@ The code for 'banana' is 673457. I couldn't find any documented code for 'orange
 
 ## File search sample with agent in streaming scenarios
 
-In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search. The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample11_FileSearch_Streaming.md) in the Azure SDK for .NET repository on GitHub.
+In this example, you create a local file, upload it to Azure, and use it in the newly created `VectorStore` for file search. The code in this example is synchronous and streaming. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample11_FileSearch_Streaming.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;

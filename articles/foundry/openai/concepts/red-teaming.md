@@ -11,8 +11,8 @@ ms.topic: concept-article
 ms.custom:
   - classic-and-new
   - build-2025
+  - doc-kit-assisted
 ai-usage: ai-assisted
-
 ---
 
 # Planning red teaming for large language models (LLMs) and their applications

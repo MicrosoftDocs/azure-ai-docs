@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-custom-code-interpreter
 ---

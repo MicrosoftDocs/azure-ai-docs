@@ -13,6 +13,7 @@ ms.custom:
   - build-aifnd
   - build-2025
   - references-regions
+  - doc-kit-assisted
 ai-usage: ai-assisted 
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Microsoft Foundry.
 ---

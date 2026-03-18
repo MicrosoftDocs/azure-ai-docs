@@ -1,12 +1,12 @@
 ---
-title: "Use the image generation tool in Foundry Agent Service"
+title: "Use the image generation tool (preview) in Foundry Agent Service"
 description: "Generate images from text prompts with the image generation tool in Microsoft Foundry Agent Service. Configure agents, deploy models, and save output."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.custom: dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ms.date: 03/06/2026
 author: alvinashcraft
@@ -14,7 +14,7 @@ ms.author: aashcraft
 zone_pivot_groups: selection-image-generation
 ---
 
-# Use the image generation tool
+# Use the image generation tool (preview)
 
 > [!IMPORTANT] 
 > - The image generation tool requires the `gpt-image-1` model. See the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md?tabs=image) for limitations and responsible AI considerations.
@@ -111,7 +111,7 @@ if image_data and image_data[0]:
 :::zone pivot="csharp"
 ## Sample for image generation in Azure.AI.Projects.OpenAI.
 
-In this example, you generate an image based on a simple prompt. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample2_Image_Generation.md) example in the Azure SDK for .NET repository on GitHub.
+In this example, you generate an image based on a simple prompt. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample2_Image_Generation.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;

@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Web search (preview) (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/web-search.md)
 
 Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations. Web search is available via the `web_search_preview` tool in the **Responses API**.
 
@@ -127,7 +127,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -276,7 +276,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -369,7 +369,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -425,4 +425,4 @@ This command enables Bing web search functionality for all accounts in the subsc
 
 - **No citations returned**: Confirm your request includes `tools: [{"type": "web_search_preview"}]`. If the model doesn't call the tool, prompt more explicitly to browse the web or ask for citations.
 - **Tool is blocked**: Ask your subscription admin to verify the subscription feature setting for blocked tools. See [Manage web search preview tool](#manage-web-search-preview-tool).
-- **Authentication errors**: For API keys, verify you set `AZURE_OPENAI_API_KEY`. For Microsoft Entra ID, verify your token scope is `https://cognitiveservices.azure.com/.default`.
+- **Authentication errors**: For API keys, verify you set `AZURE_OPENAI_API_KEY`. For Microsoft Entra ID, verify your token scope is `https://ai.azure.com/.default`.

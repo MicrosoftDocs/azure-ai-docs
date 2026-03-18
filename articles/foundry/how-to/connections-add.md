@@ -7,6 +7,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 11/06/2025
 ms.reviewer: meerakurup
@@ -14,7 +15,6 @@ ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
 # Customer Intent: As an admin or developer, I want to understand how to add new connections in my project.
-
 ---
 
 # Add a new connection to your project

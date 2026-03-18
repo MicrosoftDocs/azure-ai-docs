@@ -7,6 +7,7 @@ ms.custom:
   - build-2025
   - code01
   - pilot-ai-workflow-jan-2026 
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/02/2026
 ms.reviewer: fniedtner

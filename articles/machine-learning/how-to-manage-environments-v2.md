@@ -84,6 +84,9 @@ You can see the set of available curated environments in the Azure Machine Learn
 
 You can define an environment from a Docker image, a Docker build context, and a conda specification with Docker image. 
 
+> [!NOTE]
+> The image build process uses a Microsoft Entra token to access the Azure Container Registry associated with the workspace. The token lifetime isn't configurable and ranges between 60–90 minutes. If your image build takes longer than this, the build might fail due to an expired token. For more information about token lifetime, see [Access tokens](/entra/identity-platform/access-tokens#token-lifetime).
+
 ### Create an environment from a Docker image
 
 To define an environment from a Docker image, provide the image URI of the image hosted in a registry such as Docker Hub or Azure Container Registry. 

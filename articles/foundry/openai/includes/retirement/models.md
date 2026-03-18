@@ -51,6 +51,8 @@ ms.custom: references_regions, build-2025
 | `gpt-5.3-codex` | 2026-02-24 | `Generally Available` | 2027-02-25 | 2027-08-25 | |
 | `gpt-5.4` | 2026-03-05 | `Generally Available` | 2027-03-05 | 2027-09-05 | |
 | `gpt-5.4-pro` | 2026-03-05 | `Generally Available` | 2027-03-05 | 2027-09-05 | |
+| `gpt-5.4-mini` | 2026-03-17 | `Generally Available` | 2027-03-17 | 2027-09-17 | |
+| `gpt-5.4-nano` | 2026-03-17 | `Generally Available` | 2027-03-17 | 2027-09-17 | |
 
 
 
@@ -77,8 +79,8 @@ ms.custom: references_regions, build-2025
 | `gpt-realtime-mini` | 2025-12-15   | `Generally Available` | n/a | 2026-12-15    |       |
 | `gpt-4o-mini-transcribe` | 2025-12-15   | `Generally Available` | n/a | 2026-12-15    |       |
 | `gpt-4o-mini-tts` | 2025-12-15   | `Generally Available` | n/a | 2026-12-15    |       |
-|`gpt-realtime-1.5-2026-02-23` | 2026-02-23 | `Generally Available` | n/a | No earlier than February 23, 2027  |       |
-|`gpt-audio-1.5-2026-02-23` |2026-02-23| `Generally Available` | n/a | No earlier than February 23, 2027  |       |
+|`gpt-realtime-1.5` | 2026-02-23 | `Generally Available` | n/a | No earlier than February 23, 2027  |       |
+|`gpt-audio-1.5` |2026-02-23| `Generally Available` | n/a | No earlier than February 23, 2027  |       |
 
 # [Image and video](#tab/image)
 
@@ -87,10 +89,10 @@ ms.custom: references_regions, build-2025
 | Model Name | Model Version<sup>1</sup>  | Lifecycle Status | Deprecation Date (No New Customers) | Retirement Date | Replacement Model |
 |:--|:--|:--|:--|:--|:--|
 | `dall-e-3` | 3 | `Generally Available` | n/a | 2026-03-04 | `gpt-image-1.5` |
-| `gpt-image-1` | 2025-04-15 | `Preview` | n/a | No earlier than 2026-03-31 | `gpt-image-1.5` |
+| `gpt-image-1` | 2025-04-15 | `Preview` | n/a | 2026-05-15 | `gpt-image-1.5` |
 | `gpt-image-1-mini` | 2025-10-06 | `Generally Available` | 2026-10-06 | 2027-04-07 |  |
 | `sora` | 2025-05-02 | `Preview` | n/a | No earlier than 2026-02-28 | `sora-2` |
-| `gpt-image-1.5`    | 2025-12-16   | `Preview`    | n/a | No earlier than 2026-12-16 |  |
+| `gpt-image-1.5`    | 2025-12-16   | `Generally Available`    | n/a | No earlier than 2026-12-16 |  |
 | `sora-2` | 2025-10-15 | `Preview` | n/a | No earlier than 2026-04-30 |  |
 
 

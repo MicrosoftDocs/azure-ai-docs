@@ -5,6 +5,7 @@ ms.date: 02/03/2026
 ms.custom:
   - horz-monitor, subject-monitoring, pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-foundry
@@ -27,7 +28,7 @@ Monitoring is available for agents in a [standard agent setup](../concepts/stand
 > [!IMPORTANT]
 > Monitoring support is currently limited to Microsoft Foundry hubs. Foundry projects aren't supported.
 >
-> To learn about Foundry hubs and projects, see [What is Microsoft Foundry?](../../what-is-foundry.md) and [Migrate from hub-based to Foundry projects](../../how-to/migrate-project.md).
+> To learn about Foundry hubs and projects, see [What is Microsoft Foundry?](../../what-is-foundry.md). [Migrate to Foundry (new)](../../../foundry/what-is-foundry.md) to use monitoring with Foundry projects. 
 
 > [!NOTE]
 > If you're using a Foundry project, use Foundry monitoring instead of Azure Monitor metrics.

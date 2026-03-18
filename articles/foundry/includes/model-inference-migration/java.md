@@ -72,7 +72,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
     .credential(BearerTokenCredential.create(
         AuthenticationUtil.getBearerTokenSupplier(
             tokenCredential, 
-            "https://cognitiveservices.azure.com/.default"
+            "https://ai.azure.com/.default"
         )
     ))
     .build();
