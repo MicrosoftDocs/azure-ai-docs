@@ -33,8 +33,8 @@ ms.custom: pilot-ai-workflow-jan-2026
 |---|---|
 | `gpt-5.4` | See the [models table](#model-summary-table-and-region-availability) |
 | `gpt-5.4-pro` |  See the [models table](#model-summary-table-and-region-availability)  |
-| `gpt-5.4-mini` | **Global Standard**:<br>East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> South Central US  |
-| `gpt-5.4.nano` | **Global Standard**:<br>East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> South Central US  |
+| `gpt-5.4-mini` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> South Central US  |
+| `gpt-5.4.nano` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> South Central US  |
 
 - **[Registration is required for access to gpt-5.4 & gpt-5.4-pro](https://aka.ms/OAI/gpt53codexaccess).**
 
