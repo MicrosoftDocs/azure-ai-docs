@@ -32,13 +32,13 @@ Learn more about [finding API keys](/azure/ai-services/cognitive-services-enviro
 
 ## Set up Visual Studio project
 
-1. Create new Visual Studio project (File -> New -> Project...).
+1. Create new Visual Studio project. In Visual Studio interface select File -> New -> Project...
 1. Select *Console App C#* project type.
 1. Use `RealtimeAudioQuickstartCSharp` as *Project name*.
 1. Select .NET Framework to use and finish creating the project.
 1. In *Solution Explorer* window right-click project name (`RealtimeAudioQuickstartCSharp`) and select Add -> New Folder.
 1. Rename the created folder to `Properties`.
-1. Right-click 'Properties' and select Add -> New Item...
+1. Right-click `Properties` and select Add -> New Item...
 1. Use `launchSettings.json` as new item file name.
 1. Replace the contents of `launchSettings.json` file with the following code. Use actual parameters of your resource for environment variable values:
 
@@ -58,7 +58,7 @@ Learn more about [finding API keys](/azure/ai-services/cognitive-services-enviro
     ```
 1. Right-click *Dependencies* and select Manage NuGet Packages...
 1. Select *Browse* tab and search for `openai`.
-1. Install OpenAI NuGet Package and add it to your solution. Make sure, that OpenAI library version is 2.9.1 or later.
+1. Download OpenAI NuGet Package and add it to your solution. Make sure, that OpenAI library version is 2.9.1 or later.
 
 ## Send text, receive audio response
 
@@ -193,11 +193,11 @@ Learn more about [finding API keys](/azure/ai-services/cognitive-services-enviro
     ```
 1. Build the solution
 1. To run the built `RealtimeAudioQuickstartCSharp.exe` you need to create the following environment variables with the values, corresponding to your resource:
-    - 'AZURE_OPENAI_ENDPOINT`
+    - `AZURE_OPENAI_ENDPOINT`
     - `AZURE_OPENAI_DEPLOYMENT_NAME`
     - `AZURE_OPENAI_API_KEY`
 1. Alternatively if you built your solution in *Debug* configuration you might either use *Start Debugging* command in Visual Studio user interface (F5 key) or`dotnet run` command. In both cases the system uses configuration parameters defined in `launchSettings.json` file. To use `dotnet run` command:
-    - Open Windows command prompt and go the folder containing `RealtimeAudioQuickstartCSharp.csproj` file and execute `dotnet run` command. 
+    - Open Windows command prompt, go the folder containing `RealtimeAudioQuickstartCSharp.csproj` file and execute `dotnet run` command. 
 1. When prompted for user input, type a message and hit enter to send it to the model. Enter "q" to quit the conversation. Wait a few moments to get the response.
 
 ## Output
