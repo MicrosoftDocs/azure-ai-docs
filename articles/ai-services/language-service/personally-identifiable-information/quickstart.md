@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 02/06/2026
+ms.date: 03/18/2026
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -89,8 +89,8 @@ If you no longer need the resources you created in this quickstart, delete the i
 
 * [PII overview](overview.md)
 
-* [Recognized`PII` entity types in text](../../concepts/entity-categories.md)
+* [Recognized`PII` entity types in text](concepts/entity-categories.md)
 
-* [Recognized`PII` entity types in conversations](../../concepts/conversations-entity-categories.md)
+* [Recognized`PII` entity types in conversations](concepts/conversations-entity-categories.md)
 
-* [Redaction policies (text)](../../how-to/redact-text-pii.md#redaction-policies)
+* [Redaction policies (text)](how-to/redact-text-pii.md#redaction-policies)
