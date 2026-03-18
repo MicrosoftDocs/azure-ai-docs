@@ -156,7 +156,7 @@ To create a virtual network, use the following steps:
 
     :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/storage-go-to-resource.png" alt-text="Screenshot of the go to new storage resource button.":::
 
-1. From the left navigation, select **Networking** the **Private endpoint connections** tab, and then select **+ Private endpoint**:
+1. From the left navigation, select **Networking**. Select the **Private endpoint connections** tab, and then select **+ Private endpoint**:
 
     > [!NOTE]
     > While you created a private endpoint for Blob storage in the previous steps, you must also create one for File storage.
