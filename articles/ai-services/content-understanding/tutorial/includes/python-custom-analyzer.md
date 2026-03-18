@@ -406,6 +406,7 @@ analyzer = ContentAnalyzer(
     field_schema=field_schema,
     models={
         "completion": "gpt-4.1",
+        "embedding": "text-embedding-3-large",
     },
 )
 # Create the analyzer
@@ -618,7 +619,7 @@ Analyzer 'my_document_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> Check out more samples for running analyzers at [SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples).
+> Check out more examples of running analyzers at [SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples).
 
 # [Image](#tab/image)
 
@@ -669,7 +670,7 @@ Analyzer 'my_image_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> Check out more samples for running analyzers at [SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples).
+> Check out more examples of running analyzers at [SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples).
 
 # [Audio](#tab/audio)
 
@@ -720,7 +721,7 @@ Analyzer 'my_audio_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> Check out more samples for running analyzers at [SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples).
+> Check out more examples of running analyzers at [SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples).
 
 # [Video](#tab/video)
 
@@ -832,7 +833,7 @@ Analyzer 'my_video_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> Check out more samples for running analyzers at [SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples).
+> Check out more examples of running analyzers at [SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples).
 
 ---
 
