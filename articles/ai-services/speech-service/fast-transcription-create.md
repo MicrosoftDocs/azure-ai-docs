@@ -48,6 +48,12 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 ::: zone-end
 
+::: zone pivot="programming-language-csharp"
+
+[!INCLUDE [C# SDK quickstart](includes/common/transcription-sdk-csharp.md)]
+
+::: zone-end
+
 [!INCLUDE [error-handling](includes/quickstarts/speech-to-text-basics/error-handling.md)]
 
 ## Related content
