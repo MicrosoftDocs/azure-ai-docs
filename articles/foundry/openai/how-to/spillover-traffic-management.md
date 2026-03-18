@@ -67,7 +67,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/spillover-ptu-deployment/chat/com
 
 ```
 
-A successful request returns HTTP status `200` with the chat completion response. If spillover occurs, the response includes the `x-ms-spillover-from-<deployment-name>` header.
+A successful request returns HTTP status `200` with the chat completion response. If spillover occurs, the response includes the `x-ms-spillover-from-deployment` header.
 
 **Reference:** [Create chat completion](../latest.md#create-chat-completion)
 
