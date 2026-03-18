@@ -26,17 +26,17 @@ You can store keys using either:
 >
 > + CMK encryption is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-CMK encryption, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
 
-## Encrypt customer managed keys at the Service level (PREVIEW)
+## Encrypt customer managed keys at the service level (preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 Defining CMK at the **service level** means you configure encryption once on the Azure AI Search service itself, and that key automatically applies to all supported data created in that service going forward.
 
-Instead of choosing or attaching a customer‑managed key every time you create an index or object, the service has a default encryption key that it uses automatically so that all newly created objects that support CMK are encrypted by default using the service‑level key.
+Instead of specifying an encryption key each time you create an object, the service automatically applies a service‑level CMK to all newly created objects.
 
 You can override the default by specifying an object‑level key when the object is created.
 
-## Encrypt customer managed keys at the Object level
+## Encrypt customer managed keys at the object level
 
 When CMK is configured at the **object level**, encryption applies only to an individual object at the time of the object's creation.
 
@@ -167,86 +167,90 @@ Role-based access control is recommended over the Access Policy permission model
 
 Wait a few minutes for the role assignment to become operational.
 
-## Step 4 (Optional): Set up a service level encryption key (PREVIEW)
+## Step 4 (Optional): Set up a service level encryption key (preview)
 
-To configure CMK encryption at the service level on the Search service resource, use the [Management REST API: Create or update a search service](https://learn.microsoft.com/en-us/rest/api/searchmanagement/services/create-or-update) to patch the search service with a default encryption key. This key applies to all supported objects created in the service going forward, unless you specify an object-level key at the time of object creation.
+The ability to configure a service-level encryption key on your search service is current a preview feature and requires using a preview API version. Once configured, a service-level customer-managed key will apply to all supported objects created in the service, unless you specify an object-level key at the time of object creation.
 
-This is a Preview feature and requires using a preview API version. Currently service-level encryption isn't supported in the Azure portal, we recommend using the REST API directly.
+### [**Azure portal**](#tab/portal)
 
-Use `PATCH` to update an existing search service, or `PUT` to create a new service with a service-level encryption key, calling the  REST endpoint and API version. The API version must be 2026-03-01-preview or later to support service-level encryption key configuration. See the examples below for how to specify the service-level encryption key with different identity types.
+Currently service-level encryption isn't supported in the Azure portal, we recommend using the REST API directly.
 
-### [**System-managed identity**](#tab/managed-id-sys)
+### [**REST APIs**](#tab/rest)
+
+To configure CMK encryption at the service level on your search service, use [Services - Create Or Update](https://learn.microsoft.com/en-us/rest/api/searchmanagement/services/create-or-update) (Management REST API) with the `PATCH` command to update an existing search service, or the `PUT` command to create a new service, calling the  REST endpoint and API version. The API version must be 2026-03-01-preview or later to support service-level encryption key configuration. See the examples below for how to specify the service-level encryption key with different identity types.
 
 Example using system-assigned managed identity:
 
-```rest
-    PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
-    Content-Type: application/json
-    Authorization: Bearer {{access-token}}
+```html
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-10-01-preview
+Authorization: Bearer {{token}}
+Content-Type: application/json
 
-    {
-      "encryptionWithCmk": {
-          "enforcement": "Enabled",
-          "serviceLevelEncryptionKey": {
-                  " keyVaultUri": "<YOUR-KEY-VAULT-URI>",
-                  " keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
-                  " keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
-                  " identity": { 
-                          "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-                          "userAssignedIdentity": "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>"
-          }       
-      }
-    }
+{
+  "encryptionWithCmk": {
+      "enforcement": "Enabled",
+      "serviceLevelEncryptionKey": {
+              " keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+              " keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+              " keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>"
+  }
+}
 ```
-
-### [**User-managed identity**](#tab/managed-id-user)
 
 Example using user-assigned managed identity:
 
-```rest
-    PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
-    Content-Type: application/json
-    Authorization: Bearer {{access-token}}
+```html
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
 
-    {
-    "encryptionWithCmk": {
-        "enforcement": "Enabled",
-        "serviceLevelEncryptionKey": {
-            " keyVaultUri": "<YOUR-KEY-VAULT-URI>",
-            " keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
-            " keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
-            " identity": { 
-                    "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-                    "userAssignedIdentity": "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>"
-            }
-        }
-    }
+{
+"encryptionWithCmk": {
+  "enforcement": "Enabled",
+  "serviceLevelEncryptionKey": {
+      " keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+      " keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+      " keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
+      " identity": { 
+              "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+              "userAssignedIdentity": "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>"
+      }
+  }
+}
 ```
-
-### [**Application identity**](#tab/register-app)
 
 Example using application Id:
 
-```rest
-    PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
-    Authorization: Bearer {{token}}
-    Content-Type: application/json
-    
-    {
-    "encryptionWithCmk": {
-        "enforcement": "Enabled",
-        "serviceLevelEncryptionKey": {
-              " keyVaultUri": "<YOUR-KEY-VAULT-URI>",
-              " keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
-              " keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
-              "accessCredentials": {
-                      "applicationId": "<YOUR-APPLICATION-ID>",
-                      "applicationSecret": "<YOUR-APPLICATION-SECRET>"
-          }       
-        }
-    }
+```html
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
+Authorization: Bearer {{token}}
+Content-Type: application/json
 
+{
+"encryptionWithCmk": {
+  "enforcement": "Enabled",
+  "serviceLevelEncryptionKey": {
+        " keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+        " keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+        " keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
+        "accessCredentials": {
+                "applicationId": "<YOUR-APPLICATION-ID>",
+                "applicationSecret": "<YOUR-APPLICATION-SECRET>"
+    }       
+  }
+}
 ```
+
+### [**Azure SDKs**](#tab/sdks)
+
+Configuration of service-level CMK is supported in Azure SDK packages that target Search Management REST API version 2026-03-01-preview or later. To confirm support, check the changelog for your package:
+
+- .NET: [Azure.ResourceManager.Search changelog](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.ResourceManager.Search/CHANGELOG.md)
+- Java: [azure-resourcemanager-search changelog](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-resourcemanager-search/CHANGELOG.md)
+- JavaScript: [@azure/arm-search changelog](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/arm-search/CHANGELOG.md)
+- Python: [azure-mgmt-search changelog](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-mgmt-search/CHANGELOG.md)
+
+---
 
 ## Step 5 (Optional): Set up individual object-level encryption keys
 
