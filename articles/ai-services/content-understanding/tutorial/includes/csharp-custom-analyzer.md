@@ -147,7 +147,8 @@ var customAnalyzer = new ContentAnalyzer
 {
     BaseAnalyzerId = "prebuilt-document",
     Description =
-        "Custom analyzer for extracting company information",
+        "Custom analyzer for extracting"
+        + " company information",
     Config = config,
     FieldSchema = fieldSchema
 };
@@ -163,11 +164,155 @@ var operation = await client.CreateAnalyzerAsync(
 
 ContentAnalyzer result = operation.Value;
 Console.WriteLine(
-    $"Analyzer '{analyzerId}' created successfully!");
+    $"Analyzer '{analyzerId}'"
+    + " created successfully!");
+
+// Get the full analyzer details after creation
+var analyzerDetails =
+    await client.GetAnalyzerAsync(analyzerId);
+result = analyzerDetails.Value;
+
+if (result.Description != null)
+{
+    Console.WriteLine(
+        $"  Description: {result.Description}");
+}
+
+if (result.FieldSchema?.Fields != null)
+{
+    Console.WriteLine(
+        $"  Fields"
+        + $" ({result.FieldSchema.Fields.Count}):");
+    foreach (var kvp
+        in result.FieldSchema.Fields)
+    {
+        var method =
+            kvp.Value.Method?.ToString()
+            ?? "auto";
+        var fieldType =
+            kvp.Value.Type?.ToString()
+            ?? "unknown";
+        Console.WriteLine(
+            $"    - {kvp.Key}:"
+            + $" {fieldType} ({method})");
+    }
+}
+```
+
+An example output looks like:
+
+```text
+Analyzer 'my_document_analyzer_ID' created successfully!
+  Description: Custom analyzer for extracting company information
+  Fields (4):
+    - company_name: String (Extract)
+    - total_amount: Number (Extract)
+    - document_summary: String (Generate)
+    - document_type: String (Classify)
 ```
 
 > [!TIP]
 > This code is based on [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) in the SDK repository.
+
+
+Optionally, you can create a classifier analyzer to categorize documents and use its results to route documents to prebuilt or custom analyzers you created. Here is an example of creating a custom analyzer for classification workflows.
+
+```csharp
+// Generate a unique analyzer ID
+string classifierId =
+    $"my_classifier_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}";
+
+Console.WriteLine(
+    $"Creating classifier '{classifierId}'...");
+
+// Define content categories for classification
+var classifierConfig = new ContentAnalyzerConfig
+{
+    ShouldReturnDetails = true,
+    EnableSegment = true
+};
+
+classifierConfig.ContentCategories
+    .Add("Loan_Application",
+        new ContentCategoryDefinition
+        {
+            Description =
+                "Documents submitted by individuals"
+                + " or businesses to request"
+                + " funding, typically including"
+                + " personal or business details,"
+                + " financial history, loan amount,"
+                + " purpose, and supporting"
+                + " documentation."
+        });
+
+classifierConfig.ContentCategories
+    .Add("Invoice",
+        new ContentCategoryDefinition
+        {
+            Description =
+                "Billing documents issued by"
+                + " sellers or service providers"
+                + " to request payment for goods"
+                + " or services, detailing items,"
+                + " prices, taxes, totals, and"
+                + " payment terms."
+        });
+
+classifierConfig.ContentCategories
+    .Add("Bank_Statement",
+        new ContentCategoryDefinition
+        {
+            Description =
+                "Official statements issued by"
+                + " banks that summarize account"
+                + " activity over a period,"
+                + " including deposits,"
+                + " withdrawals, fees,"
+                + " and balances."
+        });
+
+// Create the classifier analyzer
+var classifierAnalyzer = new ContentAnalyzer
+{
+    BaseAnalyzerId = "prebuilt-document",
+    Description =
+        "Custom classifier for financial"
+        + " document categorization",
+    Config = classifierConfig
+};
+
+classifierAnalyzer.Models["completion"] =
+    "gpt-4.1";
+
+var classifierOp =
+    await client.CreateAnalyzerAsync(
+        WaitUntil.Completed,
+        classifierId,
+        classifierAnalyzer);
+
+// Get the full classifier details
+var classifierDetails =
+    await client.GetAnalyzerAsync(classifierId);
+var classifierResult =
+    classifierDetails.Value;
+
+Console.WriteLine(
+    $"Classifier '{classifierId}'"
+    + " created successfully!");
+
+if (classifierResult.Description != null)
+{
+    Console.WriteLine(
+        $"  Description:"
+        + $" {classifierResult.Description}");
+}
+```
+
+> [!TIP]
+> This code adapts the [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for classification workflows.
+
+
 
 # [Image](#tab/image)
 
@@ -219,7 +364,49 @@ var operation = await client.CreateAnalyzerAsync(
 
 ContentAnalyzer result = operation.Value;
 Console.WriteLine(
-    $"Analyzer '{analyzerId}' created successfully!");
+    $"Analyzer '{analyzerId}'"
+    + " created successfully!");
+
+// Get the full analyzer details after creation
+var analyzerDetails =
+    await client.GetAnalyzerAsync(analyzerId);
+result = analyzerDetails.Value;
+
+if (result.Description != null)
+{
+    Console.WriteLine(
+        $"  Description: {result.Description}");
+}
+
+if (result.FieldSchema?.Fields != null)
+{
+    Console.WriteLine(
+        $"  Fields"
+        + $" ({result.FieldSchema.Fields.Count}):");
+    foreach (var kvp
+        in result.FieldSchema.Fields)
+    {
+        var method =
+            kvp.Value.Method?.ToString()
+            ?? "auto";
+        var fieldType =
+            kvp.Value.Type?.ToString()
+            ?? "unknown";
+        Console.WriteLine(
+            $"    - {kvp.Key}:"
+            + $" {fieldType} ({method})");
+    }
+}
+```
+
+An example output looks like:
+
+```text
+Analyzer 'my_image_analyzer_ID' created successfully!
+  Description: Custom analyzer for charts and graphs
+  Fields (2):
+    - Title: String (auto)
+    - ChartType: String (Classify)
 ```
 
 > [!TIP]
@@ -280,12 +467,16 @@ var fieldSchema = new ContentFieldSchema(
 {
     Name = "call_center_schema",
     Description =
-        "Schema for analyzing customer support calls"
+        "Schema for analyzing customer"
+        + " support calls"
 };
 
-fieldSchema.Fields["Sentiment"].Enum.Add("Positive");
-fieldSchema.Fields["Sentiment"].Enum.Add("Neutral");
-fieldSchema.Fields["Sentiment"].Enum.Add("Negative");
+fieldSchema.Fields["Sentiment"]
+    .Enum.Add("Positive");
+fieldSchema.Fields["Sentiment"]
+    .Enum.Add("Neutral");
+fieldSchema.Fields["Sentiment"]
+    .Enum.Add("Negative");
 
 var config = new ContentAnalyzerConfig
 {
@@ -299,10 +490,15 @@ var customAnalyzer = new ContentAnalyzer
 {
     BaseAnalyzerId = "prebuilt-audio",
     Description =
-        "Custom analyzer for customer support calls",
+        "Custom analyzer for customer"
+        + " support calls",
     Config = config,
     FieldSchema = fieldSchema
 };
+
+customAnalyzer.Models["completion"] = "gpt-4.1";
+customAnalyzer.Models["embedding"] =
+    "text-embedding-3-large";
 
 var operation = await client.CreateAnalyzerAsync(
     WaitUntil.Completed,
@@ -311,7 +507,50 @@ var operation = await client.CreateAnalyzerAsync(
 
 ContentAnalyzer result = operation.Value;
 Console.WriteLine(
-    $"Analyzer '{analyzerId}' created successfully!");
+    $"Analyzer '{analyzerId}'"
+    + " created successfully!");
+
+// Get the full analyzer details after creation
+var analyzerDetails =
+    await client.GetAnalyzerAsync(analyzerId);
+result = analyzerDetails.Value;
+
+if (result.Description != null)
+{
+    Console.WriteLine(
+        $"  Description: {result.Description}");
+}
+
+if (result.FieldSchema?.Fields != null)
+{
+    Console.WriteLine(
+        $"  Fields"
+        + $" ({result.FieldSchema.Fields.Count}):");
+    foreach (var kvp
+        in result.FieldSchema.Fields)
+    {
+        var method =
+            kvp.Value.Method?.ToString()
+            ?? "auto";
+        var fieldType =
+            kvp.Value.Type?.ToString()
+            ?? "unknown";
+        Console.WriteLine(
+            $"    - {kvp.Key}:"
+            + $" {fieldType} ({method})");
+    }
+}
+```
+
+An example output looks like:
+
+```text
+Analyzer 'my_audio_analyzer_ID' created successfully!
+  Description: Custom analyzer for customer support calls
+  Fields (3):
+    - Summary: String (Generate)
+    - Sentiment: String (Classify)
+    - People: Array (auto)
 ```
 
 > [!TIP]
@@ -370,7 +609,8 @@ var fieldSchema = new ContentFieldSchema(
 {
     Name = "video_schema",
     Description =
-        "Schema for analyzing product demo videos"
+        "Schema for analyzing product"
+        + " demo videos"
 };
 
 var sentimentDef =
@@ -382,8 +622,7 @@ sentimentDef.Enum.Add("Negative");
 
 var config = new ContentAnalyzerConfig
 {
-    ShouldReturnDetails = true,
-    SegmentationMode = "auto"
+    ShouldReturnDetails = true
 };
 
 config.Locales.Add("en-US");
@@ -393,7 +632,8 @@ var customAnalyzer = new ContentAnalyzer
 {
     BaseAnalyzerId = "prebuilt-video",
     Description =
-        "Custom analyzer for product demo videos",
+        "Custom analyzer for product"
+        + " demo videos",
     Config = config,
     FieldSchema = fieldSchema
 };
@@ -407,7 +647,48 @@ var operation = await client.CreateAnalyzerAsync(
 
 ContentAnalyzer result = operation.Value;
 Console.WriteLine(
-    $"Analyzer '{analyzerId}' created successfully!");
+    $"Analyzer '{analyzerId}'"
+    + " created successfully!");
+
+// Get the full analyzer details after creation
+var analyzerDetails =
+    await client.GetAnalyzerAsync(analyzerId);
+result = analyzerDetails.Value;
+
+if (result.Description != null)
+{
+    Console.WriteLine(
+        $"  Description: {result.Description}");
+}
+
+if (result.FieldSchema?.Fields != null)
+{
+    Console.WriteLine(
+        $"  Fields"
+        + $" ({result.FieldSchema.Fields.Count}):");
+    foreach (var kvp
+        in result.FieldSchema.Fields)
+    {
+        var method =
+            kvp.Value.Method?.ToString()
+            ?? "auto";
+        var fieldType =
+            kvp.Value.Type?.ToString()
+            ?? "unknown";
+        Console.WriteLine(
+            $"    - {kvp.Key}:"
+            + $" {fieldType} ({method})");
+    }
+}
+```
+
+An example output looks like:
+
+```text
+Analyzer 'my_video_analyzer_ID' created successfully!
+  Description: Custom analyzer for product demo videos
+  Fields (1):
+    - Segments: Array (auto)
 ```
 
 > [!TIP]
@@ -419,14 +700,14 @@ Console.WriteLine(
 
 # [Document](#tab/document)
 
-After creating the analyzer, use it to analyze a document and extract the custom fields.
+After creating the analyzer, use it to analyze a document and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```csharp
 var documentUrl = new Uri(
     "https://raw.githubusercontent.com/"
     + "Azure-Samples/"
-    + "azure-ai-content-understanding-python/"
-    + "main/data/receipt.png"
+    + "azure-ai-content-understanding-assets/"
+    + "main/document/invoice.pdf"
 );
 
 var analyzeOperation = await client.AnalyzeAsync(
@@ -448,11 +729,22 @@ if (analyzeResult.Contents?.FirstOrDefault()
             companyField is ContentStringField sf
                 ? sf.Value : null;
         Console.WriteLine(
-            $"Company Name: {name ?? "(not found)"}");
+            $"Company Name: "
+            + $"{name ?? "(not found)"}");
         Console.WriteLine(
-            $"  Confidence: "
-            + $"{companyField.Confidence?.ToString("F2")"
-            + $" ?? "N/A"}");
+            "  Confidence: "
+            + (companyField.Confidence?
+                .ToString("F2") ?? "N/A"));
+    }
+
+    if (content.Fields.TryGetValue(
+        "total_amount", out var totalField))
+    {
+        var total =
+            totalField is ContentNumberField nf
+                ? nf.Value : null;
+        Console.WriteLine(
+            $"Total Amount: {total}");
     }
 
     if (content.Fields.TryGetValue(
@@ -462,7 +754,8 @@ if (analyzeResult.Contents?.FirstOrDefault()
             summaryField is ContentStringField sf
                 ? sf.Value : null;
         Console.WriteLine(
-            $"Summary: {summary ?? "(not found)"}");
+            $"Summary: "
+            + $"{summary ?? "(not found)"}");
     }
 
     if (content.Fields.TryGetValue(
@@ -476,21 +769,43 @@ if (analyzeResult.Contents?.FirstOrDefault()
             + $"{docType ?? "(not found)"}");
     }
 }
+
+// --- Clean up ---
+Console.WriteLine(
+    $"\nCleaning up: deleting analyzer"
+    + $" '{analyzerId}'...");
+await client.DeleteAnalyzerAsync(analyzerId);
+Console.WriteLine(
+    $"Analyzer '{analyzerId}'"
+    + " deleted successfully.");
+```
+
+An example output looks like:
+
+```text
+Company Name: CONTOSO LTD.
+  Confidence: 0.81
+Total Amount: 610.0
+Summary: This document is an invoice from CONTOSO LTD. ...
+Document Type: invoice
+
+Cleaning up: deleting analyzer 'my_document_analyzer_ID'...
+Analyzer 'my_document_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for document content.
+> Check out more examples of running analyzers at [.NET SDK samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples).
 
 # [Image](#tab/image)
 
-After creating the analyzer, use it to analyze an image and extract the custom fields.
+After creating the analyzer, use it to analyze an image and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```csharp
 var imageUrl = new Uri(
     "https://raw.githubusercontent.com/"
     + "Azure-Samples/"
-    + "azure-ai-content-understanding-python/"
-    + "main/data/pieChart.jpg"
+    + "azure-ai-content-understanding-assets/"
+    + "main/image/pieChart.jpg"
 );
 
 var analyzeOperation = await client.AnalyzeAsync(
@@ -526,21 +841,40 @@ if (analyzeResult.Contents?.FirstOrDefault()
             + $"{chartType ?? "(not found)"}");
     }
 }
+
+// --- Clean up ---
+Console.WriteLine(
+    $"\nCleaning up: deleting analyzer"
+    + $" '{analyzerId}'...");
+await client.DeleteAnalyzerAsync(analyzerId);
+Console.WriteLine(
+    $"Analyzer '{analyzerId}'"
+    + " deleted successfully.");
+```
+
+An example output looks like:
+
+```text
+Title: Distribution of Weekly Working Hours
+Chart Type: pie
+
+Cleaning up: deleting analyzer 'my_image_analyzer_ID'...
+Analyzer 'my_image_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for image content.
+> Check out more examples of running analyzers at [.NET SDK samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples).
 
 # [Audio](#tab/audio)
 
-After creating the analyzer, use it to analyze an audio file and extract the custom fields.
+After creating the analyzer, use it to analyze an audio file and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```csharp
 var audioUrl = new Uri(
     "https://raw.githubusercontent.com/"
     + "Azure-Samples/"
-    + "azure-ai-content-understanding-python/"
-    + "main/data/audio.wav"
+    + "azure-ai-content-understanding-assets/"
+    + "main/audio/callCenterRecording.mp3"
 );
 
 var analyzeOperation = await client.AnalyzeAsync(
@@ -561,7 +895,8 @@ if (analyzeResult.Contents?.Count > 0)
             "Summary", out var summaryField))
         {
             var summary =
-                summaryField is ContentStringField sf
+                summaryField
+                    is ContentStringField sf
                     ? sf.Value : null;
             Console.WriteLine(
                 $"Summary: "
@@ -572,7 +907,8 @@ if (analyzeResult.Contents?.Count > 0)
             "Sentiment", out var sentField))
         {
             var sentiment =
-                sentField is ContentStringField sf
+                sentField
+                    is ContentStringField sf
                     ? sf.Value : null;
             Console.WriteLine(
                 $"Sentiment: "
@@ -580,21 +916,41 @@ if (analyzeResult.Contents?.Count > 0)
         }
     }
 }
+
+// --- Clean up ---
+Console.WriteLine(
+    $"\nCleaning up: deleting analyzer"
+    + $" '{analyzerId}'...");
+await client.DeleteAnalyzerAsync(analyzerId);
+Console.WriteLine(
+    $"Analyzer '{analyzerId}'"
+    + " deleted successfully.");
+```
+
+An example output looks like:
+
+```text
+Summary: Maria Smith contacted Contoso to inquire about her current point balance...
+Sentiment: Positive
+
+Cleaning up: deleting analyzer 'my_audio_analyzer_ID'...
+Analyzer 'my_audio_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for audio content.
+> Check out more examples of running analyzers at [.NET SDK samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples).
 
 # [Video](#tab/video)
 
-After creating the analyzer, use it to analyze a video and extract the custom fields.
+After creating the analyzer, use it to analyze a video and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```csharp
 var videoUrl = new Uri(
     "https://raw.githubusercontent.com/"
     + "Azure-Samples/"
-    + "azure-ai-content-understanding-python/"
-    + "main/data/FlightSimulator.mp4"
+    + "azure-ai-content-understanding-assets/"
+    + "main/videos/sdk_samples/"
+    + "FlightSimulator.mp4"
 );
 
 var analyzeOperation = await client.AnalyzeAsync(
@@ -619,22 +975,31 @@ if (analyzeResult.Contents?.Count > 0)
             $"Segments: {segmentsField}");
     }
 }
+
+// --- Clean up ---
+Console.WriteLine(
+    $"\nCleaning up: deleting analyzer"
+    + $" '{analyzerId}'...");
+await client.DeleteAnalyzerAsync(analyzerId);
+Console.WriteLine(
+    $"Analyzer '{analyzerId}'"
+    + " deleted successfully.");
+```
+
+An example output looks like:
+
+```text
+Content type: video
+Segments: [placeholder - video segment data]
+
+Cleaning up: deleting analyzer 'my_video_analyzer_ID'...
+Analyzer 'my_video_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for video content.
+> Check out more examples of running analyzers at [.NET SDK samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples).
 
 ---
 
-## Clean up resources
 
-Delete the analyzer when you no longer need it.
 
-```csharp
-await client.DeleteAnalyzerAsync(analyzerId);
-Console.WriteLine(
-    $"Analyzer '{analyzerId}' deleted successfully.");
-```
-
-> [!NOTE]
-> The document example is based on the [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) sample. Custom analyzers support the same field schema concepts across all content types. For the complete set of samples, see [.NET SDK samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples).

@@ -126,7 +126,8 @@ const analyzer = {
                 type: "number",
                 method: "extract",
                 description:
-                    "Total amount on the document",
+                    "Total amount on the"
+                    + " document",
             },
             document_summary: {
                 type: "string",
@@ -164,10 +165,138 @@ console.log(
     `Analyzer '${analyzerId}' created`
     + ` successfully!`
 );
+
+if (result.description) {
+    console.log(
+        `  Description: ${result.description}`
+    );
+}
+
+if (result.fieldSchema
+    && result.fieldSchema.fields) {
+    const fields = result.fieldSchema.fields;
+    const fieldNames = Object.keys(fields);
+    console.log(
+        `  Fields (${fieldNames.length}):`
+    );
+    for (const name of fieldNames) {
+        const field = fields[name];
+        const method =
+            field.method || "auto";
+        const fieldType =
+            field.type || "unknown";
+        console.log(
+            `    - ${name}: `
+            + `${fieldType} (${method})`
+        );
+    }
+}
+```
+
+An example output looks like:
+
+```text
+Analyzer 'my_document_analyzer_ID' created successfully!
+  Description: Custom analyzer for extracting company information
+  Fields (4):
+    - company_name: string (extract)
+    - total_amount: number (extract)
+    - document_summary: string (generate)
+    - document_type: string (classify)
 ```
 
 > [!TIP]
 > This code is based on the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) sample in the SDK repository.
+
+
+Optionally, you can create a classifier analyzer to categorize documents and use its results to route documents to prebuilt or custom analyzers you created. Here is an example of creating a custom analyzer for classification workflows.
+
+```javascript
+const classifierId =
+    `my_classifier_${Math.floor(
+        Date.now() / 1000
+    )}`;
+
+console.log(
+    `Creating classifier '${classifierId}'...`
+);
+
+const classifierAnalyzer = {
+    baseAnalyzerId: "prebuilt-document",
+    description:
+        "Custom classifier for financial"
+        + " document categorization",
+    config: {
+        returnDetails: true,
+        enableSegment: true,
+        contentCategories: {
+            Loan_Application: {
+                description:
+                    "Documents submitted by"
+                    + " individuals or"
+                    + " businesses to request"
+                    + " funding, typically"
+                    + " including personal or"
+                    + " business details,"
+                    + " financial history,"
+                    + " loan amount, purpose,"
+                    + " and supporting"
+                    + " documentation.",
+            },
+            Invoice: {
+                description:
+                    "Billing documents issued"
+                    + " by sellers or service"
+                    + " providers to request"
+                    + " payment for goods or"
+                    + " services, detailing"
+                    + " items, prices, taxes,"
+                    + " totals, and payment"
+                    + " terms.",
+            },
+            Bank_Statement: {
+                description:
+                    "Official statements"
+                    + " issued by banks that"
+                    + " summarize account"
+                    + " activity over a"
+                    + " period, including"
+                    + " deposits, withdrawals,"
+                    + " fees, and balances.",
+            },
+        },
+    },
+    models: {
+        completion: "gpt-4.1",
+    },
+};
+
+const classifierPoller =
+    client.createAnalyzer(
+        classifierId, classifierAnalyzer
+    );
+await classifierPoller.pollUntilDone();
+
+const classifierResult =
+    await client.getAnalyzer(classifierId);
+
+console.log(
+    `Classifier '${classifierId}' created`
+    + ` successfully!`
+);
+
+if (classifierResult.description) {
+    console.log(
+        `  Description: `
+        + `${classifierResult.description}`
+    );
+}
+```
+
+> [!TIP]
+> This code adapts the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for classification workflows.
+
+
 
 # [Image](#tab/image)
 
@@ -212,10 +341,49 @@ const poller = client.createAnalyzer(
 );
 await poller.pollUntilDone();
 
+const result = await client.getAnalyzer(
+    analyzerId
+);
 console.log(
     `Analyzer '${analyzerId}' created`
     + ` successfully!`
 );
+
+if (result.description) {
+    console.log(
+        `  Description: ${result.description}`
+    );
+}
+
+if (result.fieldSchema
+    && result.fieldSchema.fields) {
+    const fields = result.fieldSchema.fields;
+    const fieldNames = Object.keys(fields);
+    console.log(
+        `  Fields (${fieldNames.length}):`
+    );
+    for (const name of fieldNames) {
+        const field = fields[name];
+        const method =
+            field.method || "auto";
+        const fieldType =
+            field.type || "unknown";
+        console.log(
+            `    - ${name}: `
+            + `${fieldType} (${method})`
+        );
+    }
+}
+```
+
+An example output looks like:
+
+```text
+Analyzer 'my_image_analyzer_ID' created successfully!
+  Description: Custom analyzer for charts and graphs
+  Fields (2):
+    - Title: string (auto)
+    - ChartType: string (classify)
 ```
 
 > [!TIP]
@@ -281,6 +449,10 @@ const analyzer = {
             },
         },
     },
+    models: {
+        completion: "gpt-4.1",
+        embedding: "text-embedding-3-large",
+    },
 };
 
 const poller = client.createAnalyzer(
@@ -288,10 +460,50 @@ const poller = client.createAnalyzer(
 );
 await poller.pollUntilDone();
 
+const result = await client.getAnalyzer(
+    analyzerId
+);
 console.log(
     `Analyzer '${analyzerId}' created`
     + ` successfully!`
 );
+
+if (result.description) {
+    console.log(
+        `  Description: ${result.description}`
+    );
+}
+
+if (result.fieldSchema
+    && result.fieldSchema.fields) {
+    const fields = result.fieldSchema.fields;
+    const fieldNames = Object.keys(fields);
+    console.log(
+        `  Fields (${fieldNames.length}):`
+    );
+    for (const name of fieldNames) {
+        const field = fields[name];
+        const method =
+            field.method || "auto";
+        const fieldType =
+            field.type || "unknown";
+        console.log(
+            `    - ${name}: `
+            + `${fieldType} (${method})`
+        );
+    }
+}
+```
+
+An example output looks like:
+
+```text
+Analyzer 'my_audio_analyzer_ID' created successfully!
+  Description: Custom analyzer for customer support calls
+  Fields (3):
+    - Summary: string (generate)
+    - Sentiment: string (classify)
+    - People: array (auto)
 ```
 
 > [!TIP]
@@ -315,7 +527,6 @@ const analyzer = {
     config: {
         locales: ["en-US", "fr-FR"],
         returnDetails: true,
-        segmentationMode: "auto",
     },
     fieldSchema: {
         name: "video_schema",
@@ -363,10 +574,48 @@ const poller = client.createAnalyzer(
 );
 await poller.pollUntilDone();
 
+const result = await client.getAnalyzer(
+    analyzerId
+);
 console.log(
     `Analyzer '${analyzerId}' created`
     + ` successfully!`
 );
+
+if (result.description) {
+    console.log(
+        `  Description: ${result.description}`
+    );
+}
+
+if (result.fieldSchema
+    && result.fieldSchema.fields) {
+    const fields = result.fieldSchema.fields;
+    const fieldNames = Object.keys(fields);
+    console.log(
+        `  Fields (${fieldNames.length}):`
+    );
+    for (const name of fieldNames) {
+        const field = fields[name];
+        const method =
+            field.method || "auto";
+        const fieldType =
+            field.type || "unknown";
+        console.log(
+            `    - ${name}: `
+            + `${fieldType} (${method})`
+        );
+    }
+}
+```
+
+An example output looks like:
+
+```text
+Analyzer 'my_video_analyzer_ID' created successfully!
+  Description: Custom analyzer for product demo videos
+  Fields (1):
+    - Segments: array (auto)
 ```
 
 > [!TIP]
@@ -378,14 +627,14 @@ console.log(
 
 # [Document](#tab/document)
 
-After creating the analyzer, use it to analyze a document and extract the custom fields.
+After creating the analyzer, use it to analyze a document and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```javascript
 const documentUrl =
     "https://raw.githubusercontent.com/"
     + "Azure-Samples/"
-    + "azure-ai-content-understanding-python/"
-    + "main/data/receipt.png";
+    + "azure-ai-content-understanding-assets/"
+    + "main/document/invoice.pdf";
 
 const analyzePoller = client.analyze(
     analyzerId, [{ url: documentUrl }]
@@ -410,6 +659,15 @@ if (analyzeResult.contents
             );
         }
 
+        const total =
+            content.fields["total_amount"];
+        if (total) {
+            console.log(
+                `Total Amount: `
+                + `${total.value}`
+            );
+        }
+
         const summary =
             content.fields["document_summary"];
         if (summary) {
@@ -428,21 +686,45 @@ if (analyzeResult.contents
         }
     }
 }
+
+// --- Clean up ---
+console.log(
+    `\nCleaning up: deleting analyzer`
+    + ` '${analyzerId}'...`
+);
+await client.deleteAnalyzer(analyzerId);
+console.log(
+    `Analyzer '${analyzerId}' deleted`
+    + ` successfully.`
+);
+```
+
+An example output looks like:
+
+```text
+Company Name: CONTOSO LTD.
+  Confidence: 0.81
+Total Amount: 610.0
+Summary: This document is an invoice from CONTOSO LTD. ...
+Document Type: invoice
+
+Cleaning up: deleting analyzer 'my_document_analyzer_ID'...
+Analyzer 'my_document_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> This code adapts the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for document content.
+> Check out more examples of running analyzers at [JavaScript SDK samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript).
 
 # [Image](#tab/image)
 
-After creating the analyzer, use it to analyze an image and extract the custom fields.
+After creating the analyzer, use it to analyze an image and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```javascript
 const imageUrl =
     "https://raw.githubusercontent.com/"
     + "Azure-Samples/"
-    + "azure-ai-content-understanding-python/"
-    + "main/data/pieChart.jpg";
+    + "azure-ai-content-understanding-assets/"
+    + "main/image/pieChart.jpg";
 
 const analyzePoller = client.analyze(
     analyzerId, [{ url: imageUrl }]
@@ -472,21 +754,42 @@ if (analyzeResult.contents
         }
     }
 }
+
+// --- Clean up ---
+console.log(
+    `\nCleaning up: deleting analyzer`
+    + ` '${analyzerId}'...`
+);
+await client.deleteAnalyzer(analyzerId);
+console.log(
+    `Analyzer '${analyzerId}' deleted`
+    + ` successfully.`
+);
+```
+
+An example output looks like:
+
+```text
+Title: Distribution of Weekly Working Hours
+Chart Type: pie
+
+Cleaning up: deleting analyzer 'my_image_analyzer_ID'...
+Analyzer 'my_image_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> This code adapts the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for image content.
+> Check out more examples of running analyzers at [JavaScript SDK samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript).
 
 # [Audio](#tab/audio)
 
-After creating the analyzer, use it to analyze an audio file and extract the custom fields.
+After creating the analyzer, use it to analyze an audio file and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```javascript
 const audioUrl =
     "https://raw.githubusercontent.com/"
     + "Azure-Samples/"
-    + "azure-ai-content-understanding-python/"
-    + "main/data/audio.wav";
+    + "azure-ai-content-understanding-assets/"
+    + "main/audio/callCenterRecording.mp3";
 
 const analyzePoller = client.analyze(
     analyzerId, [{ url: audioUrl }]
@@ -516,21 +819,43 @@ if (analyzeResult.contents
         }
     }
 }
+
+// --- Clean up ---
+console.log(
+    `\nCleaning up: deleting analyzer`
+    + ` '${analyzerId}'...`
+);
+await client.deleteAnalyzer(analyzerId);
+console.log(
+    `Analyzer '${analyzerId}' deleted`
+    + ` successfully.`
+);
+```
+
+An example output looks like:
+
+```text
+Summary: Maria Smith contacted Contoso to inquire about her current point balance...
+Sentiment: Positive
+
+Cleaning up: deleting analyzer 'my_audio_analyzer_ID'...
+Analyzer 'my_audio_analyzer_ID' deleted successfully.
 ```
 
 > [!TIP]
-> This code adapts the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for audio content.
+> Check out more examples of running analyzers at [JavaScript SDK samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript).
 
 # [Video](#tab/video)
 
-After creating the analyzer, use it to analyze a video and extract the custom fields.
+After creating the analyzer, use it to analyze a video and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```javascript
 const videoUrl =
     "https://raw.githubusercontent.com/"
     + "Azure-Samples/"
-    + "azure-ai-content-understanding-python/"
-    + "main/data/FlightSimulator.mp4";
+    + "azure-ai-content-understanding-assets/"
+    + "main/videos/sdk_samples/"
+    + "FlightSimulator.mp4";
 
 const analyzePoller = client.analyze(
     analyzerId, [{ url: videoUrl }]
@@ -557,18 +882,12 @@ if (analyzeResult.contents
         }
     }
 }
-```
 
-> [!TIP]
-> This code adapts the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for video content.
-
----
-
-## Clean up resources
-
-Delete the analyzer when you no longer need it.
-
-```javascript
+// --- Clean up ---
+console.log(
+    `\nCleaning up: deleting analyzer`
+    + ` '${analyzerId}'...`
+);
 await client.deleteAnalyzer(analyzerId);
 console.log(
     `Analyzer '${analyzerId}' deleted`
@@ -576,5 +895,20 @@ console.log(
 );
 ```
 
-> [!NOTE]
-> The document example is based on the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) sample. Custom analyzers support the same field schema concepts across all content types. For the complete set of samples, see [JavaScript SDK samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript).
+An example output looks like:
+
+```text
+Content kind: video
+Segments: [placeholder - video segment data]
+
+Cleaning up: deleting analyzer 'my_video_analyzer_ID'...
+Analyzer 'my_video_analyzer_ID' deleted successfully.
+```
+
+> [!TIP]
+> Check out more examples of running analyzers at [JavaScript SDK samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript).
+
+---
+
+
+
