@@ -14,7 +14,7 @@ ms.custom:
   - doc-kit-assisted
 recommendations: false
 ai-usage: ai-assisted
-zone_pivot_groups: programming-languages-content-safety-2
+zone_pivot_groups: openai-portal-js-python-ts-cs
 ---
 
 # Use the GPT Realtime API for speech and audio
