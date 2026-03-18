@@ -39,10 +39,10 @@ In this article, you create a gateway connection to your AI model endpoint, depl
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - Access credentials for your enterprise AI gateway (for example, an API Management subscription key, an API key for another non-Azure AI model gateway, or credentials for an OAuth 2.0 provider using client credentials).
 ::: zone pivot="azure-cli"
-To manage connections through the command line:
-- [Azure CLI](/cli/azure/install-azure-cli) version 2.67 or later.
-- [Python 3.10 or later](https://www.python.org/downloads/).
-- The `azure-ai-projects` SDK package (version 2.0.0 or later). For installation steps, see the [quickstart](../../quickstarts/get-started-code.md).
+- To manage connections through the command line:
+    - [Azure CLI](/cli/azure/install-azure-cli) version 2.67 or later.
+    - [Python 3.10 or later](https://www.python.org/downloads/).
+    - The `azure-ai-projects` SDK package (version 2.0.0 or later). For installation steps, see the [quickstart](../../quickstarts/get-started-code.md).
 ::: zone-end
 
 ### Required permissions
@@ -60,7 +60,7 @@ You need the following role assignments:
 
 Use the Foundry portal to create a connection to your model.
 
-You can choose models behind either an existing Azure API Management resource or a non-Azure AI model gateway. You can add one or more models implementing the OpenAI chat completions API.
+You can choose models behind either an existing Azure API Management resource or a non-Azure AI model gateway. By using these steps, you can add several models implementing the OpenAI chat completions API.
 
 To add a model connection in the Foundry portal:
 
