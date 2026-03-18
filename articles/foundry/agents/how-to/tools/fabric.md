@@ -4,7 +4,7 @@ description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agen
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 03/06/2026
+ms.date: 03/18/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
