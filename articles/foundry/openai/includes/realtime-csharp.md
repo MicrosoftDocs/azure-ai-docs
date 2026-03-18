@@ -26,7 +26,7 @@ You need to retrieve the following information to authenticate your application 
 |--------------------------|-------------|
 | `AZURE_OPENAI_ENDPOINT`               | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. |
 | `AZURE_OPENAI_API_KEY` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
-| `AZURE_OPENAI_DEPLOYMENT_NAME` | This value will correspond to the custom name you chose for your deployment when you deployed a model. This value can be found under **Resource Management** > **Model Deployments** in the Azure portal.|
+| `AZURE_OPENAI_DEPLOYMENT_NAME` | This value corresponds to the custom name you chose for your deployment when you deployed a model. This value can be found under **Resource Management** > **Model Deployments** in the Azure portal.|
 
 Learn more about [finding API keys](/azure/ai-services/cognitive-services-environment-variables) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
 
@@ -39,10 +39,10 @@ Learn more about [finding API keys](/azure/ai-services/cognitive-services-enviro
 1. Use `RealtimeAudioQuickstartCSharp` as *Project name*.
 1. Select .NET Framework to use and finish creating the project.
 1. In *Solution Explorer* window right-click project name (`RealtimeAudioQuickstartCSharp`) and select Add -> New Folder.
-1. Rename the created folder to 'Properties'.
+1. Rename the created folder to `Properties`.
 1. Right-click 'Properties' and select Add -> New Item...
 1. Use `launchSettings.json` as new item file name.
-1. Replace the contents of `launchSettings.json` file with the code below. Use actual parameters of your resource for environment variable values:
+1. Replace the contents of `launchSettings.json` file with the following code. Use actual parameters of your resource for environment variable values:
 
     ```json
     {
@@ -59,7 +59,7 @@ Learn more about [finding API keys](/azure/ai-services/cognitive-services-enviro
     }
     ```
 1. Right-click *Dependencies* and select Manage NuGet Packages...
-1. Select *Browse* tab and search for "openai".
+1. Select *Browse* tab and search for `openai`.
 1. Install OpenAI NuGet Package and add it to your solution. Make sure, that OpenAI library version is 2.9.1 or later.
 
 ## Send text, receive audio response
@@ -198,7 +198,7 @@ Learn more about [finding API keys](/azure/ai-services/cognitive-services-enviro
     - 'AZURE_OPENAI_ENDPOINT`
     - `AZURE_OPENAI_DEPLOYMENT_NAME`
     - `AZURE_OPENAI_API_KEY`
-1. Alternatively if you built your solution in *Debug* configuration you may either use *Start Debugging* command in Visual Studio user interface (F5 key) or`dotnet run` command. In both cases the system uses configuration parameters defined in `launchSettings.json` file. To use `dotnet run` command:
+1. Alternatively if you built your solution in *Debug* configuration you might either use *Start Debugging* command in Visual Studio user interface (F5 key) or`dotnet run` command. In both cases the system uses configuration parameters defined in `launchSettings.json` file. To use `dotnet run` command:
     - Open Windows command prompt and go the folder containing `RealtimeAudioQuickstartCSharp.csproj` file and execute `dotnet run` command. 
 1. When prompted for user input, type a message and hit enter to send it to the model. Enter "q" to quit the conversation. Wait a few moments to get the response.
 
