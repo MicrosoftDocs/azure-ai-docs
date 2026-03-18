@@ -92,7 +92,7 @@ For more information about creating a new datastore with Azure Machine Learning 
 
 The following screenshot shows the **Azure blob datastore** creation panel:
 
-    :::image type="content" source="media/how-to-connect-data-ui/new-id-based-datastore-form.png" lightbox="media/how-to-connect-data-ui/new-id-based-datastore-form.png" alt-text="Screenshot showing the Azure blob datastore creation panel.":::
+  :::image type="content" source="media/how-to-connect-data-ui/new-id-based-datastore-form.png" lightbox="media/how-to-connect-data-ui/new-id-based-datastore-form.png" alt-text="Screenshot showing the Azure blob datastore creation panel.":::
 
 ---
 
