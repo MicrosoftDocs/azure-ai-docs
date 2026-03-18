@@ -191,7 +191,7 @@ Learn more about [finding API keys](/azure/ai-services/cognitive-services-enviro
     #pragma warning restore OPENAI002
     #pragma warning restore SCME0001
     ```
-1. Build the solution
+1. Build the solution.
 1. To run the built `RealtimeAudioQuickstartCSharp.exe` you need to create the following environment variables with the values, corresponding to your resource:
     - `AZURE_OPENAI_ENDPOINT`
     - `AZURE_OPENAI_DEPLOYMENT_NAME`
