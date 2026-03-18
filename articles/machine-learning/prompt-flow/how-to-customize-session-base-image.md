@@ -102,7 +102,6 @@ az ml environment create -f environment.yaml --subscription <sub-id> -g <resourc
 
 > [!NOTE]
 > Building the environment image might take several minutes.
-> Building the environment image might take several minutes.
 
 Go to your workspace UI page, then go to the **environment** page, and locate the custom environment you created. 
 

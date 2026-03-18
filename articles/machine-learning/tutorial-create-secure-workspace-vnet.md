@@ -101,7 +101,7 @@ To create a virtual network, use the following steps:
     1. Look at the default **IPv4 address space** value. In the screenshot, the value is **172.16.0.0/16**. **The value might be different for you**. While you can use a different value, the rest of the steps in this tutorial are based on the **172.16.0.0/16 value**.
     
         > [!WARNING]
-        > Don't use the 172.17.0.0/16 IP address range for your VNet. This range is the default subnet range used by the Docker bridge network, and it results in errors if you use it for your VNet. Other ranges might also conflict depending on what you want to connect to the virtual network. For example, if you plan to connect your on-premises network to the VNet, and your on-premises network also uses the 172.16.0.0/16 range. Ultimately, you need to plan your network infrastructure.
+        > Don't use the 172.17.0.0/16 IP address range for your virtual network. This range is the default subnet range used by the Docker bridge network, and it results in errors if you use it for your virtual network. Other ranges might also conflict depending on what you want to connect to the virtual network. For example, if you plan to connect your on-premises network to the virtual network, and your on-premises network also uses the 172.16.0.0/16 range. Ultimately, you need to plan your network infrastructure.
 
     1. Select the **Default** subnet and then select the **edit icon**.
     
@@ -180,7 +180,7 @@ To create a virtual network, use the following steps:
 1. Continue through the tabs selecting defaults until you reach **Review + Create**. Verify that the information is correct, and then select **Create**.
 
 > [!TIP]
-> If you plan to use a [batch endpoint](concept-endpoints.md) or an Azure Machine Learning pipeline that uses a [ParallelRunStep](./tutorial-pipeline-batch-scoring-classification.md), you also need to configure private endpoints that target **queue** and **table** sub-resources. `ParallelRunStep` internally uses queue and table for task scheduling and dispatching.
+> If you plan to use a [batch endpoint](concept-endpoints.md) or an Azure Machine Learning pipeline that uses a [ParallelRunStep](./tutorial-pipeline-batch-scoring-classification.md), you also need to configure private endpoints that target **queue** and **table** subresources. `ParallelRunStep` internally uses queue and table for task scheduling and dispatching.
 
 ## Create a key vault
 
@@ -367,7 +367,7 @@ You can connect to the secured workspace in several ways. The steps in this arti
 | [ExpressRoute](https://azure.microsoft.com/services/expressroute/) | Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider. |
 
 > [!IMPORTANT]
-> When you use a **VPN gateway** or **ExpressRoute**, you need to plan how name resolution works between your on-premises resources and those in the VNet. For more information, see [Use a custom DNS server](how-to-custom-dns.md).
+> When you use a **VPN gateway** or **ExpressRoute**, you need to plan how name resolution works between your on-premises resources and those in the virtual network. For more information, see [Use a custom DNS server](how-to-custom-dns.md).
 
 ### Create a jump box (VM)
 
@@ -500,7 +500,7 @@ When Azure Container Registry is behind the virtual network, Azure Machine Learn
 ## Use the workspace
 
 > [!IMPORTANT]
-> The steps in this article put Azure Container Registry behind the VNet. In this configuration, you can't deploy a model to Azure Container Instances inside the VNet. Don't use Azure Container Instances with Azure Machine Learning in a virtual network. For more information, see [Secure the inference environment (SDK/CLI v1)](./v1/how-to-secure-inferencing-vnet.md).
+> The steps in this article put Azure Container Registry behind the virtual network. In this configuration, you can't deploy a model to Azure Container Instances inside the virtual network. Don't use Azure Container Instances with Azure Machine Learning in a virtual network. For more information, see [Secure the inference environment (SDK/CLI v1)](./v1/how-to-secure-inferencing-vnet.md).
 >
 > As an alternative to Azure Container Instances, try Azure Machine Learning managed online endpoints. For more information, see [Enable network isolation for managed online endpoints](how-to-secure-online-endpoint.md).
 
@@ -526,7 +526,7 @@ After you create the jump box, select the virtual machine in the Azure portal an
 
 You can also configure the jump box to automatically shut down at a specific time. To do so, select **Auto-shutdown**, **Enable**, set a time, and then select **Save**.
 
-:::image type="content" source="./media/tutorial-create-secure-workspace-vnet/virtual-machine-auto-shutdown.png" alt-text="Screenshot of the auto-shutdown option.":::
+:::image type="content" source="./media/tutorial-create-secure-workspace-vnet/virtual-machine-auto-shutdown.png" alt-text="Screenshot of the autoshutdown option.":::
 
 ## Clean up resources
 
