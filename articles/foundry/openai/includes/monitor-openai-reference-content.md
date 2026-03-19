@@ -9,11 +9,11 @@ ms.date: 03/19/2026
 ms.custom: include
 ---
 
-[!INCLUDE [horz-monitor-ref-intro](../~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-intro.md)]
+[!INCLUDE [horz-monitor-ref-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-intro.md)]
 
 See [Monitor Azure OpenAI](../../../foundry-classic/openai/how-to/monitor-openai.md) for details on the data you can collect for Azure OpenAI in Microsoft Foundry Models and how to use it.
 
-[!INCLUDE [horz-monitor-ref-metrics-intro](../~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-intro.md)]
+[!INCLUDE [horz-monitor-ref-metrics-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-intro.md)]
 
 ### Supported metrics for Microsoft.CognitiveServices/accounts
 
@@ -48,13 +48,13 @@ Cognitive Services metrics have the category **Cognitive Services - HTTP Request
 
 The following table lists the metrics available for the Microsoft.CognitiveServices/accounts resource type.
 
-[!INCLUDE [horz-monitor-ref-metrics-tableheader](../~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
+[!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
 
-[!INCLUDE [Microsoft.CognitiveServices/account](../~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-cognitiveservices-accounts-metrics-include.md)]
+[!INCLUDE [Microsoft.CognitiveServices/account](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-cognitiveservices-accounts-metrics-include.md)]
 
-[!INCLUDE [horz-monitor-ref-metrics-dimensions-intro](../~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-dimensions-intro.md)]
+[!INCLUDE [horz-monitor-ref-metrics-dimensions-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-dimensions-intro.md)]
 
-[!INCLUDE [horz-monitor-ref-metrics-dimensions](../~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-dimensions.md)]
+[!INCLUDE [horz-monitor-ref-metrics-dimensions](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-dimensions.md)]
 
 - ApiName
 - FeatureName
@@ -67,13 +67,13 @@ The following table lists the metrics available for the Microsoft.CognitiveServi
 - StreamType
 - UsageChannel
 
-[!INCLUDE [horz-monitor-ref-resource-logs](../~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-resource-logs.md)]
+[!INCLUDE [horz-monitor-ref-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-resource-logs.md)]
 
 ### Supported resource logs for Microsoft.CognitiveServices/accounts
 
-[!INCLUDE [<ResourceType/namespace>](../~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cognitiveservices-accounts-logs-include.md)]
+[!INCLUDE [<ResourceType/namespace>](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cognitiveservices-accounts-logs-include.md)]
 
-[!INCLUDE [horz-monitor-ref-logs-tables](../~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-logs-tables.md)]
+[!INCLUDE [horz-monitor-ref-logs-tables](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-logs-tables.md)]
 
 ### Azure OpenAI microsoft.cognitiveservices/accounts
 
@@ -81,7 +81,7 @@ The following table lists the metrics available for the Microsoft.CognitiveServi
 - [AzureMetrics](/azure/azure-monitor/reference/tables/azuremetrics#columns)
 - [AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics#columns)
 
-[!INCLUDE [horz-monitor-ref-activity-log](../~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-activity-log.md)]
+[!INCLUDE [horz-monitor-ref-activity-log](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-activity-log.md)]
 
 - [AI + machine learning resource provider operations](/azure/role-based-access-control/resource-provider-operations#microsoftsearch)
 
