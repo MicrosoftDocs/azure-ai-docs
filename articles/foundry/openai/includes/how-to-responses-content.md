@@ -47,7 +47,7 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
-[!INCLUDE [Azure key vault](../how-to/~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
@@ -174,7 +174,7 @@ client = OpenAI(
 response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
 ```
 
-[!INCLUDE [Azure key vault](../how-to/~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
