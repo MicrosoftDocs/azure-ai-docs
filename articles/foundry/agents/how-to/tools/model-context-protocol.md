@@ -45,7 +45,18 @@ Before you begin, ensure you have:
 - Azure role-based access control (RBAC): Contributor or Owner role on the Foundry project.
 - The latest SDK package for your language. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
-- Access to a remote MCP server endpoint(such as GitHub's MCP server at `https://api.githubcopilot.com/mcp`).
+- Access to a remote MCP server endpoint (such as GitHub's MCP server at `https://api.githubcopilot.com/mcp`).
+
+## Public and private MCP server endpoints
+
+Agent Service supports both public and private MCP server endpoints:
+
+- **Public endpoints**: Connect to any publicly accessible remote MCP server. This option works with both Basic and Standard agent setups.
+- **Private endpoints**: Connect to MCP servers that aren't exposed to the public internet. Private MCP requires [Standard Agent Setup with private networking](../virtual-networks.md) and a dedicated MCP subnet within your virtual network.
+
+For private MCP servers, deploy your MCP server on Azure Container Apps with internal-only ingress on a dedicated MCP subnet delegated to `Microsoft.App/environments`. To get started, use the [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup) template, which provisions the required network infrastructure including the MCP subnet.
+
+For details about tool support in network-isolated environments, see [Agent tools with network isolation](../../../how-to/configure-private-link.md#agent-tools-with-network-isolation).
 
 ## Authentication
 
@@ -918,6 +929,8 @@ The following steps outline how to connect to a remote MCP server from Foundry A
 
 - **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
 - **Identity passthrough not supported in Teams**: MCP tools that use OAuth identity passthrough don't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, which isn't compatible with identity passthrough (On-Behalf-Of).
+- **Private MCP requires Standard Agent Setup**: Private MCP server connectivity is only available with [Standard Agent Setup with private networking](../virtual-networks.md) (BYO VNet). Basic agent setup doesn't support private MCP endpoints.
+- **Private MCP hosting**: Azure Container Apps on a dedicated MCP subnet is the tested configuration for private MCP servers. Function Apps or App Services as the private MCP server host might work but haven't been internally validated.
 
 ## Common questions and errors
 
@@ -941,7 +954,11 @@ The following are common issues that you might encounter when using MCP tools wi
 
 ## Host a local MCP server
 
-The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](https://github.com/Azure-Samples/mcp-container-ts) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following factors when hosting local MCP servers in the cloud:
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](https://github.com/Azure-Samples/mcp-container-ts) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint.
+
+The remote endpoint can be either a public endpoint or a private endpoint within your VNet. For private MCP servers, deploy your Container App with internal-only ingress (`--internal-only true`) on a dedicated MCP subnet. See [Public and private MCP server endpoints](#public-and-private-mcp-server-endpoints) for setup details.
+
+Consider the following factors when hosting local MCP servers in the cloud:
 
 | Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
 | --- | --- | --- |
@@ -959,6 +976,8 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 - [Get started with agents using code](../../../quickstarts/get-started-code.md)
 - [MCP server authentication](../mcp-authentication.md)
 - [Build and register a Model Context Protocol (MCP) server](../../../mcp/build-your-own-mcp-server.md)
+- [Set up private networking for Foundry Agent Service](../virtual-networks.md)
+- [Configure private link for Foundry](../../../how-to/configure-private-link.md)
 - [MCP tool REST reference](../../../reference/foundry-project-rest-preview.md#openaimcptool)
 - [Security Best Practices for MCP](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
 - [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667)
