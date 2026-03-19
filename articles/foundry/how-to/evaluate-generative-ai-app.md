@@ -15,6 +15,7 @@ author: lgayhardt
 ---
 
 # Run evaluations from the Microsoft Foundry portal
+
 Evaluate the performance and safety of your generative AI models and agents by running them against a test dataset. During an evaluation, the model or agent is tested with the dataset and its performance is measured using built-in and custom evaluators.
 
 Use the Foundry portal to run evaluations, view results, and analyze metrics.
@@ -76,5 +77,5 @@ After you finish configuring, provide a name for your evaluation, review your se
 Learn more about evaluating your generative AI models and agents:
 
 - [View the evaluation results](./evaluate-results.md)
-- [Run evaluations in the cloud by using the Microsoft Foundry SDK](./develop/cloud-evaluation.md)
+- [How to run batch evaluation](./develop/cloud-evaluation.md)
 - [Transparency note for Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md)
