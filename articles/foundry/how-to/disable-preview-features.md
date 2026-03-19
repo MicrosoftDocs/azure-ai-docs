@@ -10,7 +10,6 @@ ms.service: azure-ai-foundry
 ms.custom:
   - dev-focus
   - classic-and-new
-  - doc-kit-assisted
 #customer intent: As an admin, I want to disable preview features in Foundry portals and APIs so that teams use generally available capabilities in production environments.
 ai-usage: ai-assisted
 ---

@@ -16,7 +16,10 @@ ai-usage: ai-assisted
 ---
 
 # Compare models using the model leaderboard (preview)
-This article shows you how to streamline model selection in the Foundry [model catalog](../../foundry-classic/concepts/foundry-models-overview.md) by using the model leaderboards (preview) and side-by-side comparison features in Foundry portal. Evaluate model benchmark scores across quality, safety, cost, and throughput to choose the best model for your scenario.
+
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
+This article shows you how to streamline model selection in the Foundry model catalog by using the model leaderboards (preview) and side-by-side comparison features in Foundry portal. Evaluate model benchmark scores across quality, safety, cost, and throughput to choose the best model for your scenario.
 
 After reading this article, you can identify the best model for your scenario by comparing benchmark scores, viewing trade-off charts, and evaluating models side by side.
 
@@ -27,7 +30,6 @@ Analyze and compare models using:
 - [Leaderboards by scenario](#view-leaderboards-by-scenario) to find the most relevant benchmark leaderboard for your specific scenario
 
 - [Compare models](#compare-models) to evaluate features, performance, and estimated cost in a side-by-side view
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 ## Prerequisites
 
@@ -45,7 +47,7 @@ Use the model catalog to access the leaderboard and identify top-performing mode
 
 1. If you're not already in your project, select it.
 
-1. Select **Discover** from the top navigation bar to browse the [model catalog](../../foundry-classic/concepts/foundry-models-overview.md). The overview page shows a snapshot of the model leaderboard at the top.
+1. Select **Discover** from the top navigation bar to browse the model catalog. The overview page shows a snapshot of the model leaderboard at the top.
 
 1. Sort on different metrics — [quality](../concepts/model-benchmarks.md#quality-benchmarks-of-language-models), [safety](../concepts/model-benchmarks.md#safety-benchmarks-of-language-models), [estimated cost](../concepts/model-benchmarks.md#cost-benchmarks-of-language-models), and [throughput](../concepts/model-benchmarks.md#performance-benchmarks-of-language-models) — to view the top models for each criterion. Select any model to go to its detail page, or select **Go to leaderboard** to view the full list. The model detail page shows the model's overview, benchmarks, and deployment options.
 
@@ -133,7 +135,7 @@ To access benchmark results for a specific metric and dataset:
 For side-by-side model comparisons, [compare models](#compare-models) to evaluate features, performance metrics, and estimated costs across multiple models.
 
 > [!NOTE]
-> The **Try with your own data** option on the benchmarks tab is available only in [Foundry (classic)](). To evaluate a model with your own data in the new portal, see [Evaluate generative AI apps](evaluate-generative-ai-app.md).
+> The **Try with your own data** option on the benchmarks tab is available only in Foundry (classic). To evaluate a model with your own data in the new portal, see [Evaluate generative AI apps](evaluate-generative-ai-app.md).
 
 ## Troubleshooting
 

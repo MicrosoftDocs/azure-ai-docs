@@ -5,7 +5,6 @@ ms.service: azure-ai-foundry
 ms.custom:
   - classic-and-new
   - references_regions
-  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.reviewer: minthigpen

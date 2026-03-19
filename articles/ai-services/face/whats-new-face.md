@@ -24,7 +24,7 @@ The **v1.3-preview.1** public preview introduces a new security enhancement:
 
 - **Abuse detection** – Adds built-in risk assessments, including IP-based checks, to help identify and flag liveness sessions that may be fraudulent. This enables earlier intervention in high-risk scenarios such as identity verification or account onboarding. [Learn more](./concept-liveness-abuse-monitoring.md).  
 
-See the [API Reference](/rest/api/face/liveness-session-operations?view=rest-face-v1.3-preview) for full details.  
+See the [API Reference](/rest/api/face/liveness-session-operations?view=rest-face-v1.3-preview&preserve-view=true) for full details.  
 
 ### Network isolation support for Liveness Detection APIs
 

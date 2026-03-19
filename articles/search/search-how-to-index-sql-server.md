@@ -63,7 +63,7 @@ After you set up the encrypted connection required by Azure AI Search, connect t
 
 ## Configure the network security group
 
-It's a best practice to configure the [network security group (NSG)](/azure/virtual-network/network-security-groups-overview) and corresponding Azure endpoint or Access Control List (ACL) to make your Azure VM accessible to other parties. Chances are you've done this before to allow your own application logic to connect to your SQL Azure VM. It's no different for an Azure AI Search connection to your SQL Azure VM. 
+It's a best practice to configure the [network security group (NSG)](/azure/virtual-network/network-security-groups-overview) and corresponding Azure endpoint or access control list (ACL) to make your Azure VM accessible to other parties. Chances are you've done this before to allow your own application logic to connect to your SQL Azure VM. It's no different for an Azure AI Search connection to your SQL Azure VM. 
 
 The following steps and links provide instructions on NSG configuration for VM deployments. Use these instructions to ACL a search service endpoint based on its IP address.
 

@@ -8,7 +8,6 @@ ms.date: 03/11/2026
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
-  - doc-kit-assisted
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin 

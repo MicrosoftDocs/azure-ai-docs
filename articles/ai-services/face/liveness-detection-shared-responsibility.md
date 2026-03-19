@@ -23,7 +23,7 @@ It's the shared responsibility between Azure and its customers to build a secure
 
 The following diagram shows how customers work with Azure to secure the connections end-to-end. 
 
-:::image type="content" source="media/secure-connection.png" alt-text="Diagram that shows connections in an azure liveness solution." border="false":::
+:::image type="content" source="../computer-vision/media/secure-connection.png" alt-text="Diagram that shows connections in an azure liveness solution." border="false":::
 
 Follow these guidelines to secure the connections:
 - Ensure your backend service acts as the orchestrator in liveness detection applications, using Azure's security infrastructure to initiate liveness detection sessions and examine the results. The customer is responsible for securing their backend service.
@@ -42,7 +42,7 @@ A sophisticated attacker could alter or tamper with the client application, whic
 
 ### Mobile applications
 
-In both Android and iOS platforms, there are native and third-party solutions to check application integrity, such as [iOS App Attest](https://developer.apple.com/documentation/devicecheck/establishing-your-app-s-integrity), and [Android Play Integrity](https://developer.android.com/google/play/integrity). It's the application developer’s responsibility to incorporate the integrity check feature and respond promptly to potential hacks.
+In both Android and iOS platforms, there are native and non-Microsoft solutions to check application integrity, such as [iOS App Attest](https://developer.apple.com/documentation/devicecheck/establishing-your-app-s-integrity), and [Android Play Integrity](https://developer.android.com/google/play/integrity). It's the application developer’s responsibility to incorporate the integrity check feature and respond promptly to potential hacks.
 
 Azure liveness detection implements safeguards against untrustworthy runtime environments. The liveness detection SDK provides a digest of its liveness detection service calls, which can be passed to the application integrity APIs.
 
@@ -71,7 +71,7 @@ These considerations are also applicable to Android and iOS platforms.
 
 Azure Face API supports Virtual Networks and private endpoints. Refer to the [guide](../cognitive-services-virtual-networks.md).
 
-Customer who use a high security baseline can reference a Device Management solution such as [Microsoft Defender for Endpoints](/defender-endpoint/).
+Customers who use a high security baseline can reference a Device Management solution such as [Microsoft Defender for Endpoints](/defender-endpoint/).
 
 ## Keep your solution up to date
 

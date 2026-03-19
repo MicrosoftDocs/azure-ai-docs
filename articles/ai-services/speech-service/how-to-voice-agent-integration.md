@@ -13,7 +13,6 @@ ms.reviewer: pafarley
 zone_pivot_groups: voice-live-howto-agents
 recommendations: false
 ai-usage: ai-assisted
-ms.custom: doc-kit-assisted
 ---
 
 # How to build a voice agent (preview)

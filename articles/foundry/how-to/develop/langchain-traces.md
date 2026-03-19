@@ -9,7 +9,6 @@ author: santiagxf
 ms.reviewer: sgilley
 ms.custom:
   - dev-focus
-  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to trace my LangChain and LangGraph applications with langchain-azure-ai so that I can inspect execution, tool calls, and model usage in Azure Monitor.
 ---

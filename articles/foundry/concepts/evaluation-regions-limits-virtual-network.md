@@ -11,7 +11,6 @@ ai-usage: ai-assisted
 ms.custom:
   - references_regions
   - classic-and-new
-  - doc-kit-assisted
 ---
 
 # Rate limits, region support, and enterprise features for evaluation

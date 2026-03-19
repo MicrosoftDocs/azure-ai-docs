@@ -35,7 +35,6 @@ pip install "azure-ai-projects>=2.0.0"
 
 ```bash
 dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.AI.Projects.OpenAI --prerelease
 dotnet add package Azure.Identity
 ```
 
@@ -87,7 +86,7 @@ openai = project.get_openai_client()
 
 ```csharp
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 AIProjectClient projectClient = new(
@@ -297,10 +296,7 @@ conversation = openai.conversations.create(
 ProjectResponsesClient responsesClient =
     projectClient.OpenAI
         .GetProjectResponsesClientForAgent(
-            new AgentReference
-            {
-                Name = "my-awesome-agent"
-            });
+            "my-awesome-agent");
 
 var result = responsesClient.CreateResponse(
     "Tell me a one line funny story "
@@ -621,10 +617,7 @@ response = openai.responses.create(
 ProjectResponsesClient responsesClient =
     projectClient.OpenAI
         .GetProjectResponsesClientForAgent(
-            new AgentReference
-            {
-                Name = "my-agent"
-            });
+            "my-agent");
 
 var result = responsesClient.CreateResponse(
     "Hi, Agent! Draw a graph for a line "
@@ -1512,10 +1505,7 @@ var agent = await projectClient.Agents
 ProjectResponsesClient responsesClient =
     projectClient.OpenAI
         .GetProjectResponsesClientForAgent(
-            new AgentReference
-            {
-                Name = "my-agent"
-            });
+            "my-agent");
 
 var result = responsesClient.CreateResponse(
     "Hi, Agent! Draw a graph for a line "
@@ -1665,7 +1655,7 @@ After you migrate your code, confirm that everything works correctly:
 | Symptom | Cause | Resolution |
 | --------- | ------- | ------------ |
 | **Python**: `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project.get_openai_client()` to obtain the OpenAI client, then call `openai.conversations.create()`. |
-| **C#**: `Azure.AI.Projects.OpenAI` namespace not found | The `Azure.AI.Projects.OpenAI` NuGet package is missing. | Install `Azure.AI.Projects.OpenAI` alongside `Azure.AI.Projects`. Both packages are required. |
+| **C#**: `Azure.AI.Extensions.OpenAI` namespace not found | The `Azure.AI.Extensions.OpenAI` NuGet package is missing. | Install `Azure.AI.Projects` (which brings in `Azure.AI.Extensions.OpenAI` and `Azure.AI.Projects.Agents` as dependencies). |
 | **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects@2.0.0-beta.5` or later: `npm install @azure/ai-projects@2.0.0-beta.5`. |
 | **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.0.0-beta.2` to your `pom.xml` dependencies. |
 | `create_agent()` is removed | Earlier SDK versions used `create_agent()`, which was removed in v2.0.0. | Replace with `create_version()` (Python/JS) or `CreateAgentVersionAsync()` (C#) or `createAgentVersion()` (Java) and pass a `PromptAgentDefinition` object. |
