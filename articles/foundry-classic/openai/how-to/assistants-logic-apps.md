@@ -1,31 +1,32 @@
 ---
-title: Run Logic App Workflows from AI Assistants
-description: Run logic app workflows as functions from AI assistants in Microsoft Foundry (classic). Connect to 1,400+ services and systems without extra code.
+title: Run Workflows from Assistants in Foundry (classic)
+description: Run automation workflows as functions from assistants in Microsoft Foundry Agent Service (classic). Connect to 1,400+ services and systems without custom code.
 services: cognitive-services, azure-logic-apps
 manager: nitinme
-author: aahill
-ms.author: aahi
+author: alvinashcraft
+ms.author: aashcraft
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 03/04/2026
-recommendations: false
-#Customer intent: As an AI integration developer who works with Microsoft Foundry and Azure Logic Apps, I want to run logic app workflows that perform automation and integration tasks as functions from AI assistants in Foundry.
+ai-usage: ai-assisted
+ms.custom: azure-ai-agents
+#Customer intent: As an AI integration developer who works with Azure Logic Apps and Microsoft Foundry, I want to run workflows to perform tasks as functions from assistants with Foundry Agent Service (classic).
 ---
 
-# Run logic app workflows as functions from AI assistants in Microsoft Foundry (classic)
+# Run workflows as functions from assistants in Foundry Agent Service (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 
-In Foundry, you can extend AI assistants to interact with your business or enterprise systems and to complete real-world tasks. On their own, AI assistants can't manage data in customer databases, submit orders, send notifications, or trigger complex business processes when they need to do so.
+In Microsoft Foundry, you can extend AI assistants to work with your business or enterprise systems and to complete real-world tasks. On their own, assistants can't directly manage data in customer databases, submit orders, send notifications, or trigger complex business processes when they need to do so.
 
-[Azure Logic Apps](/azure/logic-apps/logic-apps-overview) is an integration platform that you can use to build automated workflows by using a visual designer. Rather than writing custom backend code for each integration, create logic app workflows by using a low-code interface where you can use 1,400+ *connectors* to access Azure, Microsoft, and non-Microsoft services, systems, apps, and data sources.
+[Azure Logic Apps](/azure/logic-apps/logic-apps-overview) is an integration platform lets you build automated workflows by using a visual designer. Rather than writing custom backend code for each integration, create logic app workflows from 1,400+ *connectors* that can access Azure, Microsoft, and non-Microsoft services, systems, apps, and data sources, such as SAP, Salesforce, and Oracle.
 
-When you expose a logic app workflow as a callable function, your assistant can choose when to run the workflow based on chat conversation context and user prompts. With so many available integration points, your assistant can interact with nearly any business system or service your organization uses. This pattern provides a practical way to automate multistep tasks and integrate assistant conversations with your enterprise infrastructure. You don't need to build and maintain custom APIs for every business task that your assistant needs to perform. Azure Logic Apps handles authentication, retries, error handling, and monitoring, so you can focus on workflow logic rather than infrastructure.
+When you expose a logic app workflow as a callable function, your assistant chooses when to run the workflow based on chat conversation context and user prompts. With so many integration options, your assistant can work with nearly any business system or service your organization uses. This pattern provides a practical way to automate multistep tasks and integrate assistant conversations with your enterprise infrastructure. You don't need to build and maintain custom APIs for every business task that your assistant needs to perform. Azure Logic Apps handles authentication, retries, error handling, and monitoring, so you can focus on workflow logic rather than infrastructure.
 
-This guide shows how to create and set up a Consumption logic app workflow that accepts inputs from your AI assistant and import the workflow as a callable function for your AI assistant in Foundry.
+This article shows how to create and set up a workflow in Azure Logic Apps as a tool for your assistant in Foundry Agent Service.
 
 ## Prerequisites
 
@@ -53,6 +54,17 @@ This guide shows how to create and set up a Consumption logic app workflow that 
 
   1. [Create a logic app resource and workflow in the Azure portal](#create-logic-app-workflow).
   1. [Import your logic app workflow as a function in the Assistants playground](#import-logic-app-workflow).
+
+- Set up the following environment variables with information from your Foundry project:
+
+  ```bash
+  export PROJECT_ENDPOINT="<your_project_endpoint>"
+  export MODEL_DEPLOYMENT_NAME="<your_model_deployment_name>"
+  export SUBSCRIPTION_ID="<your_Azure_subscription_ID>"
+  export resource_group_name="<your_resource_group_name>"
+  ```
+
+:::zone pivot="portal"
 
 <a id="create-logic-app-workflow"></a>
 
@@ -163,9 +175,133 @@ To confirm that the imported logic app function works as expected, follow these 
 
    :::image type="content" source="../media/how-to/assistants/logic-apps/example-log.png" alt-text="Screenshot that shows log example." lightbox="../media/how-to/assistants/logic-apps/example-log.png":::
 
+:::zone-end
+
+:::zone pivot="python"
+
+## Create a project client
+
+Create a client object to connect to your Foundry project.
+
+```python
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+# Create the project client
+project_client = AIProjectClient(
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+```
+
+## Register the logic app
+
+Provide the trigger name and details to register the logic app resource. To find the `AzureLogicAppTool` utility code, visit the [full sample on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/logic_apps/user_logic_apps.py).
+
+```python
+from user_logic_apps import AzureLogicAppTool
+
+# Logic app details
+LOGIC_APP_NAME = "your_logic_app_name"
+TRIGGER_NAME = "your_trigger_name"
+
+# Register the logic app with the agent tool utility
+subscription_id = os.environ["SUBSCRIPTION_ID"]
+resource_group = os.environ["resource_group_name"]
+
+logic_app_tool = AzureLogicAppTool(subscription_id, resource_group)
+logic_app_tool.register_logic_app(LOGIC_APP_NAME, TRIGGER_NAME)
+print(f"Registered logic app '{LOGIC_APP_NAME}' with trigger '{TRIGGER_NAME}'.")
+```
+
+## Create an agent with the logic app tool
+
+Create an agent and attach the logic app as a function tool.
+
+```python
+from azure.ai.agents.models import ToolSet, FunctionTool
+from user_functions import fetch_current_datetime
+from user_logic_apps import create_send_email_function
+
+# Create the logic app function for the agent toolset
+send_email_func = create_send_email_function(
+    logic_app_tool, LOGIC_APP_NAME
+)
+
+functions_to_use = {fetch_current_datetime, send_email_func}
+
+# Build and assign the toolset
+functions = FunctionTool(functions=functions_to_use)
+toolset = ToolSet()
+toolset.add(functions)
+
+agent = project_client.agents.create_agent(
+    model=os.environ["MODEL_DEPLOYMENT_NAME"],
+    name="SendEmailAgent",
+    instructions="You are a specialized agent for sending emails.",
+    toolset=toolset,
+)
+print(f"Created agent, ID: {agent.id}")
+```
+
+## Create a thread
+
+Create a thread and add a user message to start the conversation.
+
+```python
+RECIPIENT_EMAIL = "your_recipient@example.com"
+
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+
+# Create a message in the thread
+message = project_client.agents.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content=f"Send an email to {RECIPIENT_EMAIL} with the current date and time.",
+)
+print(f"Created message, ID: {message.id}")
+```
+
+## Run the agent and check the output
+
+Create a run and confirm that the agent uses the logic app tool to complete the task.
+
+```python
+# Run the agent on the thread
+run = project_client.agents.runs.create_and_process(
+    thread_id=thread.id, agent_id=agent.id
+)
+print(f"Run finished with status: {run.status}")
+
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
+
+# Fetch and display all messages
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for msg in messages:
+    if msg.text_messages:
+        last_text = msg.text_messages[-1]
+        print(f"{msg.role}: {last_text.text.value}")
+```
+
+## Clean up resources
+
+Delete the agent when you're done to clean up resources.
+
+```python
+# Delete the agent
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
+```
+
+:::zone-end
+
 ## FAQ
 
-### What happens when you import and invoke a logic app as a function in Foundry?
+### What happens when you add a logic app workflow as a function?
 
 Azure Logic Apps publishes an OpenAPI 2.0 definition (swagger) for workflows with a **Request** trigger, based on [workflow annotations](/rest/api/logic/workflows/list-swagger). Foundry uses this swagger file to generate a function specification and populate the function definition that the AI assistant requires. The trigger schema and description come from the configuration you set up in the **Request** trigger. You can edit the swagger by updating your workflow.
 
@@ -181,15 +317,15 @@ To view the function specification in Foundry, follow these steps:
 
    :::image type="content" source="../media/how-to/assistants/logic-apps/view-function-specification.png" alt-text="Screenshot that shows the function specification." lightbox="../media/how-to/assistants/logic-apps/view-function-specification.png":::
 
-### How does authentication work for function calls from Foundry to Azure Logic Apps?
+### How does authentication work for calls from Foundry to Azure Logic Apps?
 
-Azure Logic Apps supports the following types of authentication for inbound calls to the **Request** trigger in a logic app workflow from Foundry:
+Azure Logic Apps supports the following types of authentication for inbound calls from Foundry to the **Request** trigger in a logic app workflow:
 
 - Shared Access Signature (SAS) based authentication
 
   When an AI assistant calls a function that runs a logic app workflow, Foundry sends a request to the *callback URL* in the workflow's **Request** trigger. You can get this callback URL, which includes an SAS, by using [Workflows - List callback Url](/rest/api/logic/workflows/list-callback-url) from the REST API for Azure Logic Apps.
 
-  For SAS authentication, Azure Logic Apps also supports the following:
+  For SAS authentication, Azure Logic Apps also supports the following tasks:
 
   - Create SAS URLs with a specified validity period.
   - Use multiple keys and rotate them as needed.
@@ -200,8 +336,11 @@ Azure Logic Apps supports the following types of authentication for inbound call
 
   Azure Logic Apps supports authentication for calls to request triggers by using OAuth with Microsoft Entra ID. You can specify authentication policies to use when validating OAuth tokens. For more information, see [Enable OAuth 2.0 with Microsoft Entra ID in Azure Logic Apps](/azure/logic-apps/logic-apps-securing-a-logic-app?tabs=azure-portal#enable-oauth-20-with-microsoft-entra-id).
 
-For more information about authentication and security for inbound calls to request-based triggers in Azure Logic Apps, see [Access for inbound calls to request-based triggers](/azure/logic-apps/logic-apps-securing-a-logic-app?tabs=azure-portal#access-for-inbound-calls-to-request-based-triggers).
+For more information about securing inbound calls in Azure Logic Apps, see [Access for inbound calls to request-based triggers](/azure/logic-apps/logic-apps-securing-a-logic-app?tabs=azure-portal#access-for-inbound-calls-to-request-based-triggers).
 
 ## Related content
 
+- [Full sample for Azure Logic Apps integration](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_logic_apps.py)
 - [Learn more about Assistants](../concepts/assistants.md)
+- [Learn more about Azure Logic Apps](/azure/logic-apps/logic-apps-overview)
+- [Agent tools overview](overview.md)
