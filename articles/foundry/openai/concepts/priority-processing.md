@@ -77,12 +77,12 @@ Priority processing provides low-latency performance with the flexibility of pay
 | **Region**     | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
 |:---------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
 | canadaeast     | ❌                      | ❌                      | ❌                      | ❌                      |
-| centralus      | ❌                      | ✅                      | ✅                      | ✅                      |
+| centralus      | ❌                      | ✅                      | ❌                      | ✅                      |
 | eastus         | ❌                      | ❌                      | ✅                      | ✅                      |
 | francecentral  | ❌                      | ❌                      | ✅                      | ✅                      |
 | koreacentral   | ❌                      | ❌                      | ❌                      | ❌                      |
 | polandcentral  | ❌                      | ❌                      | ❌                      | ✅                      |
-| southcentralus | ❌                      | ❌                      | ✅                      | ✅                      |
+| southcentralus | ❌                      | ❌                      | ❌                      | ✅                      |
 | southindia     | ❌                      | ❌                      | ❌                      | ❌                      |
 | swedencentral  | ❌                      | ❌                      | ✅                      | ✅                      |
 | uksouth        | ❌                      | ❌                      | ❌                      | ❌                      |
