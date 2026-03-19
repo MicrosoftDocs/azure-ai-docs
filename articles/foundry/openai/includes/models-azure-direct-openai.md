@@ -314,7 +314,7 @@ OpenAI's MTEB benchmark testing found that even when the third generation model'
 
 ## Image generation models
 
-The image generation models generate images from text prompts that the user provides. GPT-image-1 series models are in limited access preview. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
+The image generation models generate images from text prompts that the user provides. GPT-image-1 series models are in limited access preview.
 
 Registration is required to access `gpt-image-1`, `gpt-image-1-mini`, or `gpt-image-1.5`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
 
@@ -324,7 +324,6 @@ To request access, fill out an application form: [Apply for GPT-image-1 access](
 
 | Model | Region |
 |---|---|
-|`dall-e-3` |  See the [models table](#model-summary-table-and-region-availability)|
 |`gpt-image-1` |  See the [models table](#model-summary-table-and-region-availability)|
 |`gpt-image-1-mini` |  See the [models table](#model-summary-table-and-region-availability) |
 |`gpt-image-1.5` |  See the [models table](#model-summary-table-and-region-availability)|
@@ -501,7 +500,6 @@ These models can be used only with Embedding API requests.
 | `gpt-image-1` | 4,000 |
 | `gpt-image-1-mini` | 4,000 |
 | `gpt-image-1.5` | 4,000 |
-| `dall-e-3`  | 4,000 |
 
 ### Video generation models
 

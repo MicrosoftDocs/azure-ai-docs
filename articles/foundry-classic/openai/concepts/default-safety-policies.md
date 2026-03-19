@@ -54,8 +54,6 @@ Text models in the Azure OpenAI can take in and generate both text and code. The
 
 ### Image generation models
 
-#### [GPT-image-1 series](#tab/gpt-image-1)
-
 | Risk Category   | Prompt/Completion | Severity Threshold |
 |---------------------------------------------------|------------------------|---------------------|
 | Hate and Fairness    | Prompts and Completions| Medium  |
@@ -69,24 +67,7 @@ Text models in the Azure OpenAI can take in and generate both text and code. The
 | Protected Material – Art and Studio Characters    | Prompts | N/A  |
 | Profanity   | Prompts | N/A  |
 
-#### [DALL-E](#tab/dalle)
 
-| Risk Category   | Prompt/Completion | Severity Threshold |
-|---------------------------------------------------|------------------------|---------------------|
-| Hate and Fairness    | Prompts and Completions| Low  |
-| Violence    | Prompts and Completions| Low  |
-| Sexual | Prompts and Completions| Low  |
-| Self-Harm   | Prompts and Completions| Low  |
-| Content Credentials  | Completions  | N/A  |
-| Deceptive Generation of Political Candidates | Prompts | N/A  |
-| Depictions of Public Figures   | Prompts | N/A  |
-| User prompt injection attack (Jailbreak)     | Prompts | N/A  |
-| Protected Material – Art and Studio Characters    | Prompts | N/A  |
-| Profanity   | Prompts | N/A  |
-
-In addition to the above safety configurations, DALL-E 3 also comes with [prompt transformation](./prompt-transformation.md) by default. This transformation occurs on all prompts to enhance the safety of your original prompt, specifically in the risk categories of diversity, deceptive generation of political candidates, depictions of public figures, protected material, and others. 
-
----
 
 ## Audio Models
 
