@@ -230,7 +230,7 @@ cd azureai-model-inference-bicep/infra
 
     __ai-services-deployment-template.bicep__
 
-    :::code language="bicep" source="../how-to/~/azureai-model-inference-bicep/infra/modules/ai-services-deployment-template.bicep":::
+    :::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-deployment-template.bicep":::
 
 1. Run the deployment:
 
