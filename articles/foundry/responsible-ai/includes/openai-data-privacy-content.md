@@ -165,4 +165,4 @@ To learn more about Microsoft's privacy and security commitments see the [Micros
 - Compare [Azure OpenAI in Azure Government](/azure/ai-foundry/openai/azure-government) 
 - [Limited access to Azure OpenAI Service](../openai/limited-access.md)
 - Report abuse of Azure OpenAI Service through the [Report Abuse Portal](https://msrc.microsoft.com/report/abuse)
-- Report problematic to [cscraireport@microsoft.com](../openai/mailto:cscraireport@microsoft.com)
+- Report problematic to [cscraireport@microsoft.com](mailto:cscraireport@microsoft.com)
