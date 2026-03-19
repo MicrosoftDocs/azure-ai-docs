@@ -1279,6 +1279,11 @@
       "source_path": "articles/foundry-classic/foundry-models/how-to/configure-marketplace.md",
       "redirect_url": "/azure/foundry-classic/foundry-models/concepts/models-from-partners",
       "redirect_document_id": false
-    }
+    },
+    {
+      "source_path": "articles/foundry-classic/whats-new-foundry.md",
+      "redirect_url": "/azure/foundry/whats-new-foundry",
+      "redirect_document_id": false
+    }  
   ]
 }
