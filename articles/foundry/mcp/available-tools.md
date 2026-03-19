@@ -134,7 +134,7 @@ Explore and get details about models in the Foundry model catalog.
 
 Example prompts:
 
-- "Show me all GPT-4 models available in the catalog."
+- "Show me all GPT-5.4 models available in the catalog."
 - "List all Microsoft-published models with MIT license."
 - "Get detailed information and code samples for GPT-5-mini."
 
