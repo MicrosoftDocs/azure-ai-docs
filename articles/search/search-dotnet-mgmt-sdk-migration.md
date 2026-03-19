@@ -1,10 +1,6 @@
 ---
 title: Upgrade Management SDKs
-titleSuffix: Azure AI Search
 description: Learn about the management libraries and packages used for control plane operations in Azure AI Search.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.devlang: csharp
 ms.custom:

@@ -6,7 +6,7 @@ ms.custom:
   - classic-and-new
   - references_regions
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 03/06/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -15,6 +15,7 @@ ai-usage: ai-assisted
 ---
 
 # Run AI Red Teaming Agent in the cloud (preview)
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-agent.md) during prototyping and development to help identify safety risks, running them in the cloud allows for the following scenarios:
@@ -33,7 +34,7 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 First, install Microsoft Foundry SDK's project client, which runs the AI Red Teaming Agent in the cloud.
 
 ```bash
-pip install azure-ai-projects>=2.0.0b1 azure-identity
+pip install azure-ai-projects>=2.0.0
 ```
 
 Then, set your environment variables for your Microsoft Foundry resources
@@ -73,7 +74,7 @@ model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # Sample : gpt-4o-mi
 
 If you want to use deployments from your Azure OpenAI or Foundry Tools accounts, you first need to connect these resources to your Foundry project through connections.
 
-1. **Create a connection**: Follow the instructions in [Configure project connections](../../../foundry-classic/foundry-models/how-to/configure-project-connection.md?pivots=ai-foundry-portal#add-a-connection) to connect your Azure OpenAI or AI Services resource to your Foundry project.
+1. **Create a connection**: Follow the instructions in [Add a new connection to your project](../connections-add.md) to connect your Azure OpenAI or AI Services resource to your Foundry project.
 
 2. **Get the connection name**: After connecting the account, you'll see the connection created with a generated name in your Foundry project.
 
@@ -225,7 +226,7 @@ target = AzureAIAgentTarget(
 )
 
 # Create taxonomy for prohibited actions risk category
-taxonomy = project_client.evaluation_taxonomies.create(
+taxonomy = project_client.beta.evaluation_taxonomies.create(
     name=agent_name,
     body=EvaluationTaxonomy(
         description="Taxonomy for red teaming run",

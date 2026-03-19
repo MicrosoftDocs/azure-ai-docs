@@ -1,9 +1,6 @@
 ---
-title: Hybrid Search
-titleSuffix: Azure AI Search
-description: Describes concepts and architecture of hybrid query processing and document retrieval. Hybrid queries combine vector search and full-text search.
-author: haileytap
-ms.author: haileytapia
+title: Hybrid Search Overview
+description: Learn how hybrid search in Azure AI Search combines vector and full-text queries in a single request for more relevant results using reciprocal rank fusion.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

@@ -4,7 +4,7 @@ description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agen
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 02/20/2026
+ms.date: 03/18/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -12,6 +12,7 @@ ms.custom:
   - build-2025
   - dev-focus
   - pilot-ai-workflow-jan-2026
+  - doc-kit-assisted
 zone_pivot_groups: selection-fabric-tool
 ai-usage: ai-assisted
 ---
@@ -32,7 +33,7 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (Preview) | ✔️ (Preview) | ✔️ (Preview) | - | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -50,7 +51,6 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
   - Your model deployment name: `FOUNDRY_MODEL_DEPLOYMENT_NAME`.
   - Your Fabric connection ID (project connection ID): `FABRIC_PROJECT_CONNECTION_ID`.
 - For the REST sample, also set:
-  - `API_VERSION`.
   - `AGENT_TOKEN` (a bearer token). You can get a temporary token with Azure CLI:
 
     ```azurecli
@@ -85,53 +85,12 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 ## Code example
 
 > [!NOTE]
-> - To run this code, you need the latest prerelease package. For more information, see [Get ready to code](../../../quickstarts/get-started-code.md).
+> - The Python, JavaScript, and REST samples use generally available (GA) packages. The C# and Java samples require prerelease packages. For more information, see [Get ready to code](../../../quickstarts/get-started-code.md).
 > - Your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
 
-### Quick verification
-
-Before running the full sample, verify your Fabric connection exists:
-
 ```python
-import os
-
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from dotenv import load_dotenv
-
-load_dotenv()
-
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-):
-    print("Connected to project.")
-    
-    # Verify Fabric connection exists
-    connection_name = os.environ.get("FABRIC_PROJECT_CONNECTION_NAME")
-    if connection_name:
-        try:
-            conn = project_client.connections.get(connection_name)
-            print(f"Fabric connection verified: {conn.name}")
-            print(f"Connection ID: {conn.id}")
-        except Exception as e:
-            print(f"Fabric connection '{connection_name}' not found: {e}")
-    else:
-        # List available connections to help find the right one
-        print("FABRIC_PROJECT_CONNECTION_NAME not set. Available connections:")
-        for conn in project_client.connections.list():
-            print(f"  - {conn.name}")
-```
-
-If this code runs without errors, your credentials and Fabric connection are configured correctly.
-
-### Full sample
-
-```python
-import os
-from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
@@ -141,62 +100,54 @@ from azure.ai.projects.models import (
     ToolProjectConnection,
 )
 
-load_dotenv()
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+FABRIC_CONNECTION_NAME = "my-fabric-connection"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential) as project_client,
-    project_client.get_openai_client() as openai_client,
-):
-    # Get connection ID from connection name
-    fabric_connection = project_client.connections.get(
-        os.environ["FABRIC_PROJECT_CONNECTION_NAME"],
-    )
-    print(f"Fabric connection ID: {fabric_connection.id}")
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
 
-    agent = project_client.agents.create_version(
-        agent_name="MyAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["FOUNDRY_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant.",
-            tools=[
-                MicrosoftFabricPreviewTool(
-                    fabric_dataagent_preview=FabricDataAgentToolParameters(
-                        project_connections=[
-                            ToolProjectConnection(project_connection_id=fabric_connection.id)
-                        ]
-                    )
+# Get connection ID from connection name
+fabric_connection = project.connections.get(FABRIC_CONNECTION_NAME)
+
+# Create an agent with the Fabric data agent tool
+agent = project.agents.create_version(
+    agent_name="MyAgent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful assistant.",
+        tools=[
+            MicrosoftFabricPreviewTool(
+                fabric_dataagent_preview=FabricDataAgentToolParameters(
+                    project_connections=[
+                        ToolProjectConnection(project_connection_id=fabric_connection.id)
+                    ]
                 )
-            ],
-        ),
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+            )
+        ],
+    ),
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-    user_input = input("Enter your question for Fabric (e.g., 'Tell me about sales records'): \n")
+user_input = input("Enter your question for Fabric (e.g., 'Tell me about sales records'): \n")
 
-    response = openai_client.responses.create(
-        tool_choice="required",
-        input=user_input,
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
-    )
+# Send the user query and force the agent to use the Fabric tool
+response = openai.responses.create(
+    tool_choice="required",
+    input=user_input,
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    print(f"Response output: {response.output_text}")
+print(f"Response output: {response.output_text}")
 
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
+# Clean up resources
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
 ```
-
-### What this code does
-
-1. Creates an `AIProjectClient` using `DefaultAzureCredential`.
-1. Creates an agent version configured with the Fabric data agent tool.
-1. Prompts you for a question.
-1. Calls the Responses API with `tool_choice="required"` to force tool use.
-1. Prints the agent response.
-
-### Required inputs
-
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.\n- Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
 
 ### Expected output
 
@@ -208,50 +159,17 @@ For more details, see the [full Python sample for Fabric data agent](https://git
 
 :::zone pivot="csharp"
 
-### Quick verification
-
-Before running the full sample, verify your Fabric connection exists:
-
-```csharp
-using Azure.AI.Projects;
-using Azure.Identity;
-
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var fabricConnectionName = System.Environment.GetEnvironmentVariable("FABRIC_PROJECT_CONNECTION_NAME");
-
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
-
-// Verify Fabric connection exists
-try
-{
-    AIProjectConnection conn = projectClient.Connections.GetConnection(connectionName: fabricConnectionName);
-    Console.WriteLine($"Fabric connection verified: {conn.Name}");
-    Console.WriteLine($"Connection ID: {conn.Id}");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Fabric connection '{fabricConnectionName}' not found: {ex.Message}");
-    // List available connections
-    Console.WriteLine("Available connections:");
-    foreach (var conn in projectClient.Connections.GetConnections())
-    {
-        Console.WriteLine($"  - {conn.Name}");
-    }
-}
-```
-
-If this code runs without errors, your credentials and Fabric connection are configured correctly.
-
-### Full sample
-
 To enable your agent to access the Fabric data agent, use `MicrosoftFabricAgentTool`.
 
 ```csharp
-// Create an Agent client and read the environment variables, which will be used in the next steps.
-var projectEndpoint = System.Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("FOUNDRY_MODEL_DEPLOYMENT_NAME");
-var fabricConnectionName = System.Environment.GetEnvironmentVariable("FABRIC_PROJECT_CONNECTION_NAME");
-AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var fabricConnectionName = "my-fabric-connection";
+
+// Create project client to call Foundry API
+AIProjectClient projectClient = new(
+    endpoint: new Uri(projectEndpoint),
+    tokenProvider: new DefaultAzureCredential());
 
 // Get connection ID from connection name
 AIProjectConnection fabricConnection = projectClient.Connections.GetConnection(connectionName: fabricConnectionName);
@@ -260,7 +178,7 @@ FabricDataAgentToolOptions fabricToolOption = new()
 {
     ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricConnection.Id) }
 };
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { new MicrosoftFabricPreviewTool(fabricToolOption), }
@@ -286,19 +204,6 @@ Console.WriteLine(response.GetOutputText());
 projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
-### What this code does
-
-1. Creates an `AIProjectClient` using `DefaultAzureCredential`.
-1. Configures the Fabric data agent tool by using your project connection ID.
-1. Creates an agent version.
-1. Sends a question through the agent and forces tool usage.
-1. Writes the response text and deletes the agent version.
-
-### Required inputs
-
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
-- Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
-
 ### Expected output
 
 - The response text printed to the console. For the sample question, the response should include the number of public holidays (for example, `62`).
@@ -306,71 +211,28 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 
 :::zone pivot="typescript"
 
-### Quick verification
-
-Before running the full sample, verify your Fabric connection exists:
-
-```typescript
-import { DefaultAzureCredential } from "@azure/identity";
-import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
-
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const fabricConnectionName = process.env["FABRIC_PROJECT_CONNECTION_NAME"] || "<fabric connection name>";
-
-async function verifyConnection(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  console.log("Connected to project.");
-
-  try {
-    const conn = await project.connections.get(fabricConnectionName);
-    console.log(`Fabric connection verified: ${conn.name}`);
-    console.log(`Connection ID: ${conn.id}`);
-  } catch (error) {
-    console.log(`Fabric connection '${fabricConnectionName}' not found: ${error}`);
-    // List available connections
-    console.log("Available connections:");
-    for await (const conn of project.connections.list()) {
-      console.log(`  - ${conn.name}`);
-    }
-  }
-}
-
-verifyConnection().catch(console.error);
-```
-
-If this code runs without errors, your credentials and Fabric connection are configured correctly.
-
-### Full sample
-
 The following TypeScript example demonstrates how to create an AI agent with Microsoft Fabric capabilities by using the `MicrosoftFabricAgentTool` and synchronous Azure AI Projects client. The agent can query Fabric data sources and provide responses based on data analysis. For a JavaScript version of this sample, see the [JavaScript sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentFabric.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 import * as readline from "readline";
-import "dotenv/config";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName =
-  process.env["FOUNDRY_MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
-const fabricConnectionName =
-  process.env["FABRIC_PROJECT_CONNECTION_NAME"] || "<fabric connection name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
+const FABRIC_CONNECTION_NAME = "my-fabric-connection";
 
 export async function main(): Promise<void> {
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = await project.getOpenAIClient();
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   // Get connection ID from connection name
-  const fabricConnection = await project.connections.get(fabricConnectionName);
-  console.log(`Fabric connection ID: ${fabricConnection.id}`);
-
-  console.log("Creating agent with Microsoft Fabric tool...");
+  const fabricConnection = await project.connections.get(FABRIC_CONNECTION_NAME);
 
   // Define Microsoft Fabric tool that connects to Fabric data sources
   const agent = await project.agents.createVersion("MyFabricAgent", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "You are a helpful assistant.",
     tools: [
       {
@@ -403,8 +265,8 @@ export async function main(): Promise<void> {
     );
   });
 
-  console.log("\nSending request to Fabric agent...");
-  const response = await openAIClient.responses.create(
+  // Send the user query and force the agent to use the Fabric tool
+  const response = await openai.responses.create(
     {
       input: userInput,
     },
@@ -419,32 +281,14 @@ export async function main(): Promise<void> {
   console.log(`\nResponse output: ${response.output_text}`);
 
   // Clean up resources by deleting the agent version
-  // This prevents accumulation of unused resources in your project
-  console.log("\nCleaning up resources...");
   await project.agents.deleteVersion(agent.name, agent.version);
   console.log("Agent deleted");
-
-  console.log("\nMicrosoft Fabric agent sample completed!");
 }
 
 main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
 ```
-
-### What this code does
-
-1. Creates an `AIProjectClient` using `DefaultAzureCredential`.
-1. Creates an agent version configured with the Fabric data agent tool.
-1. Prompts you for a question.
-1. Calls the Responses API with `tool_choice: "required"` to force tool use.
-1. Prints the response output text.
-1. Deletes the agent version.
-
-### Required inputs
-
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
-- Authentication: `DefaultAzureCredential` must be able to obtain a token (for example, via `az login`).
 
 ### Expected output
 
@@ -453,8 +297,90 @@ main().catch((err) => {
 - A final confirmation that the agent was deleted.
 :::zone-end
 
+:::zone pivot="java"
+
+## Use Microsoft Fabric in a Java agent
+
+Add the dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-agents</artifactId>
+    <version>2.0.0-beta.1</version>
+</dependency>
+```
+
+### Create an agent with Microsoft Fabric
+
+```java
+import com.azure.ai.agents.AgentsClient;
+import com.azure.ai.agents.AgentsClientBuilder;
+import com.azure.ai.agents.ResponsesClient;
+import com.azure.ai.agents.models.*;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+public class FabricToolExample {
+    public static void main(String[] args) {
+        // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+        String projectEndpoint = "your_project_endpoint";
+        String fabricConnectionId = "your-fabric-connection-id";
+
+        AgentsClientBuilder builder = new AgentsClientBuilder()
+            .credential(new DefaultAzureCredentialBuilder().build())
+            .endpoint(projectEndpoint);
+
+        AgentsClient agentsClient = builder.buildAgentsClient();
+        ResponsesClient responsesClient = builder.buildResponsesClient();
+
+        // Create Microsoft Fabric tool with connection configuration
+        MicrosoftFabricPreviewTool fabricTool = new MicrosoftFabricPreviewTool(
+            new FabricDataAgentToolParameters()
+                .setProjectConnections(Arrays.asList(
+                    new ToolProjectConnection(fabricConnectionId)
+                ))
+        );
+
+        // Create agent with Fabric tool
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+            .setInstructions("You are a data assistant that can query Microsoft Fabric data.")
+            .setTools(Collections.singletonList(fabricTool));
+
+        AgentVersionDetails agent = agentsClient.createAgentVersion("fabric-agent", agentDefinition);
+        System.out.printf("Agent created: %s (version %s)%n", agent.getName(), agent.getVersion());
+
+        // Create a response
+        AgentReference agentReference = new AgentReference(agent.getName())
+            .setVersion(agent.getVersion());
+
+        Response response = responsesClient.createWithAgent(
+            agentReference,
+            ResponseCreateParams.builder()
+                .input("Query the latest sales data from Microsoft Fabric"));
+
+        System.out.println("Response: " + response.output());
+
+        // Clean up
+        agentsClient.deleteAgentVersion(agent.getName(), agent.getVersion());
+    }
+}
+```
+
+:::zone-end
+
 :::zone pivot="rest"
 The following example shows how to call the Foundry Agent REST API by using the Fabric data agent tool.
+
+Get an access token:
+
+```bash
+export AGENT_TOKEN=$(az account get-access-token --scope "https://ai.azure.com/.default" --query accessToken -o tsv)
+```
 
 > [!IMPORTANT]
 > `AGENT_TOKEN` is a credential. Keep it secret and avoid checking it into source control.
@@ -482,16 +408,6 @@ curl --request POST \
   ]
 }'
 ```
-
-### What this code does
-
-1. Calls the Responses API.
-1. Configures the request to use the Fabric data agent tool.
-1. Forces tool usage by using `tool_choice`.
-
-### Required inputs
-
-- Environment variables: `FOUNDRY_PROJECT_ENDPOINT`, `AGENT_TOKEN`, `FOUNDRY_MODEL_DEPLOYMENT_NAME`, `FABRIC_PROJECT_CONNECTION_ID`.
 
 ### Expected output
 

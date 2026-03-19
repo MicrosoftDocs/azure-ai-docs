@@ -7,7 +7,7 @@ author: laujan
 ms.author: lajanuar
 recommendations: false
 ms.topic: overview
-ms.date: 12/10/2025 
+ms.date: 03/06/2026
 keywords: "low code chat bots, multi-turn conversations"
 ms.custom: language-service-question-answering
 ---
@@ -43,6 +43,11 @@ Choose from multiple development approaches based on your technical requirements
 * **Client libraries** - SDK packages for .NET and Python enable programmatic project management and query integration:
   * [.NET (C#) packages](https://www.nuget.org/packages/Azure.AI.Language.QuestionAnswering/) - Runtime and authoring SDKs for C# applications
   * [Python packages](https://pypi.org/project/azure-ai-language-questionanswering/) - Runtime and authoring SDKs for Python applications
+
+
+## Regional availability
+
+For supported regions and availability, see [Custom question answering regional support](../concepts/regional-support.md#custom-question-and-answering).
 
 ## Next steps
 

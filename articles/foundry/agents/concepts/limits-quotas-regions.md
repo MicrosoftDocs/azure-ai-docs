@@ -7,8 +7,8 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 02/12/2026
-ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions
+ms.date: 03/11/2026
+ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -26,27 +26,7 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 
 ## Supported regions
 
-Foundry Agent Service is available in the following Azure regions:
-
-- Australia East
-- Brazil South
-- Canada East
-- East US
-- East US 2
-- France Central
-- Germany West Central
-- Italy North
-- Japan East
-- Norway East
-- South Africa North
-- South Central US
-- South India
-- Sweden Central
-- Switzerland North
-- UK South
-- West Europe
-- West US
-- West US 3
+Foundry Agent Service is available in the same regions as the [Azure OpenAI Responses API](../../openai/how-to/responses.md#region-availability).
 
 > [!IMPORTANT]
 > Not all tools are available in every region. For example, file search isn't available in Italy North and Brazil South. For the full tool-by-region matrix, see [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model).
@@ -146,7 +126,7 @@ Use the following practices to reduce limit-related failures:
 - **Avoid very large messages.** Put long content in uploaded files and query it by using file search.
 - **Plan for long conversations.** Treat threads as session state and rotate to new threads when conversations become very long.
 - **Register only required tools.** Remove unused tools from agent definitions.
-- **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../agents/how-to/metrics.md) to identify growth before you hit limits.
+- **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../observability/how-to/how-to-monitor-agents-dashboard.md) to identify growth before you hit limits.
 
 ## Quotas and limits for models
 
@@ -157,13 +137,13 @@ For current model quotas and limits, see:
 - [Azure OpenAI quotas and limits](../../openai/quotas-limits.md).
 - [Microsoft Foundry Models quotas and limits](../../foundry-models/quotas-limits.md).
 
-To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../../../foundry-classic/openai/how-to/quota.md).
+To view or request more model quota, see [Manage and increase quotas for resources with Microsoft Foundry (Foundry projects)](../../how-to/quota.md).
 
 ## Request a limit increase
 
 The limits in this article are default values for Foundry Agent Service. If your workload requires higher limits:
 
-- **Model quotas.** You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../../../foundry-classic/openai/how-to/quota.md).
+- **Model quotas.** You can request increases for model deployment quotas. See [Manage and increase quotas for resources with Microsoft Foundry](../../how-to/quota.md).
 - **Agent Service limits.** The file, message, and tool limits listed in this article are fixed service limits and can't be increased. Design your application to work within these constraints by using the best practices described earlier.
 
 ## Related content
@@ -171,6 +151,6 @@ The limits in this article are default values for Foundry Agent Service. If your
 - [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
 - [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)
-- [Monitor Foundry Agent Service](../../agents/how-to/metrics.md)
+- [Monitor Foundry Agent Service](../../observability/how-to/how-to-monitor-agents-dashboard.md)
 - [Azure OpenAI quotas and limits](../../openai/quotas-limits.md)
-- [Manage and increase quotas for resources with Microsoft Foundry](../../../foundry-classic/openai/how-to/quota.md)
+- [Manage and increase quotas for resources with Microsoft Foundry](../../how-to/quota.md)

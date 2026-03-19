@@ -1,7 +1,4 @@
 ---
-manager: nitinme
-author: heidisteen
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 03/04/2026
@@ -21,7 +18,7 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 + An [Azure AI Search service](../../search-create-service-portal.md) with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample](../../search-get-started-portal.md) index.
++ An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample index](../../search-get-started-portal.md).
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 

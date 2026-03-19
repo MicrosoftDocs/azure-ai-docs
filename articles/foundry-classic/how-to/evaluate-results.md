@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # See evaluation results in the Microsoft Foundry portal (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/evaluate-results.md)
 
 In this article, you learn to:
 

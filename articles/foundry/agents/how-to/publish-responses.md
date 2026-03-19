@@ -8,7 +8,7 @@ ms.date: 02/13/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -22,34 +22,26 @@ This article focuses on how you invoke your Agent Application using the Response
 - **Test your agent thoroughly** in the Foundry portal before publishing. Confirm it responds correctly and any tools work as expected.
 - **Publish your agent as an Agent Application**: An Agent Application is a managed Azure resource that wraps your agent with a stable endpoint for external consumption. To publish your agent, see [Publish and share agents in Microsoft Foundry](publish-agent.md).
 - [Azure AI User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
-- **Before running the code sample, ensure you have**:
-    - Python 3.8 or later installed
-    - [Azure CLI](/cli/azure/install-azure-cli) installed and configured
-    - Required Python packages installed:
-      ```bash
-      pip install openai azure-identity
-      ```
-    - Authenticated to Azure CLI:
-      ```bash
-      az login
-      ```
-    For more information on setting up your development environment, see [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
+- Install the `openai` and `azure-identity` packages and authenticate as described in [Prepare your development environment](../../how-to/develop/install-cli-sdk.md).
 
 ## Use OpenAI client with Agent Applications endpoint
 
 ```python
-# filepath: Direct OpenAI compatible approach
 from openai import OpenAI 
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider 
 
-# Replace placeholders in base_url with your <foundry-resource-name>, <project-name>, and <app-name>
-openai_client = OpenAI(
+# Replace placeholders with your resource, project, and app names
+BASE_URL = "https://<foundry-resource-name>.services.ai.azure.com/api/projects/<project-name>/applications/<app-name>/protocols/openai"
+
+# Create OpenAI client authenticated with Azure credentials
+openai = OpenAI(
     api_key=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default"),
-    base_url="https://<foundry-resource-name>.services.ai.azure.com/api/projects/<project-name>/applications/<app-name>/protocols/openai",
-    default_query = {"api-version": "2025-11-15-preview"}
+    base_url=BASE_URL,
+    default_query={"api-version": "2025-11-15-preview"}
 )
 
-response = openai_client.responses.create( 
+# Send a request to the published agent
+response = openai.responses.create( 
   input="Write a haiku", 
 ) 
 print(f"Response output: {response.output_text}")

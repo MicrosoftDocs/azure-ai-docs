@@ -10,6 +10,7 @@ ms.reviewer: deeikele
 ms.custom:
   - dev-focus
   - classic-and-new
+  - doc-kit-assisted
 #customer intent: As an admin, I want to enable self-service resource management while staying compliant with security and compliance requirements.
 ai-usage: ai-assisted
 ---

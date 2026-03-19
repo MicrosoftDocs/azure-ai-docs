@@ -7,12 +7,14 @@ ms.reviewer: ailsaleen
 ms.date: 12/09/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
   - ignite-2023
   - build-2024
   - build-aifnd
   - build-2025
+  - doc-kit-assisted
 ---
 
 # Use a screen reader with Microsoft Foundry

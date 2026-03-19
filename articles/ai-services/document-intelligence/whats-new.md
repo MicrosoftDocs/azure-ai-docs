@@ -27,8 +27,6 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 > [!IMPORTANT]
 > Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is retiring. If you're still using the preview API or the associated SDK versions, update your code to target the latest API version `2024-11-30 (GA)`. </br>
 
-## Latest updates
-
 **Content Understanding: The Next Step Forward for Document Intelligence**
 </br>
 In November 2025, the GA version of **Content Understanding** was released (**2025-11-01** API version). Content Understanding is an evolution of Document Intelligence that expands multimodal processing capabilities to support text, images, audio, and video content types.
@@ -39,6 +37,13 @@ Key features include:
 * **Enhanced AI integration**. Seamlessly integrate with Azure AI services for intelligent content processing and decision-making workflows.
 * **Flexible deployment options**. Build applications, automate document workflows, or enable AI-driven analytics with scalable cloud infrastructure.
 * **Unified content extraction**. Utilize a single service to handle diverse content types, reducing complexity and improving operational efficiency.
+
+## March 2026
+
+**Updated prebuilt tax form models**
+
+Prebuilt models for US tax forms have been updated supporting 2025 tax forms including quality improvement to address multi-copy extraction (e.g., multiple W-2s or 1099s in one document). You can now extract data from multi-form filings in a single request and get more comprehensive field coverage.
+
 
 ## June 2025
 

@@ -1,10 +1,7 @@
 ---
-title: "Load an index (.NET tutorial)"
-titleSuffix: Azure AI Search
+title: Load an Index (.NET Tutorial)
 description: Create index and import CSV data into Search index with .NET.
-manager: nitinme
-author: diberry
-ms.author: heidist
+ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial

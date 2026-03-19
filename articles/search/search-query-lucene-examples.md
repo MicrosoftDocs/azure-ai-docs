@@ -1,10 +1,6 @@
 ---
-title: Examples of full Lucene query syntax
-titleSuffix: Azure AI Search
+title: Examples of Full Lucene Query Syntax
 description: Explore query examples that demonstrate the Lucene query syntax for fuzzy search, proximity search, term boosting, regular expression search, and wildcard searches in an Azure AI Search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -21,11 +17,10 @@ The Lucene parser supports complex query formats, such as field-scoped queries, 
 
 > [!NOTE]
 > Many of the specialized query constructions enabled through the full Lucene query syntax are not [text-analyzed](search-lucene-query-architecture.md#stage-2-lexical-analysis), which can be surprising if you expect stemming or lemmatization. Lexical analysis is only performed on complete terms (a term query or phrase query). Query types with incomplete terms (prefix query, wildcard query, regex query, fuzzy query) are added directly to the query tree, bypassing the analysis stage. The only transformation performed on partial query terms is lowercasing. 
->
 
 ## Hotels sample index
 
-The following queries are based on the hotels-sample-index, which you can create by following the instructions in this [quickstart](search-get-started-portal.md).
+The following queries are based on the hotels-sample index, which you can create by following the instructions in [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md).
 
 Example queries are articulated using the REST API and POST requests. You can paste and run them in a [REST client](search-get-started-text.md). Or, use the JSON view of [Search Explorer](search-explorer.md) in the Azure portal. In JSON view, you can paste in the query examples shown here in this article.
 
@@ -39,7 +34,7 @@ Request headers must have the following values:
 URI parameters must include your search service endpoint with the index name, docs collections, search command, and API version, similar to the following example:
 
 ```http
-https://{{service-name}}.search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+https://{{service-name}}.search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 ```
 
 The request body should be formed as valid JSON:
@@ -59,7 +54,7 @@ The request body should be formed as valid JSON:
 
 + `select` set to a comma-delimited list of fields is used for search result composition, including only those fields that are useful in the context of search results.
 
-+ `count` returns the number of documents matching the search criteria. On an empty search string, the count is all documents in the index (50 in the hotels-sample-index).
++ `count` returns the number of documents matching the search criteria. On an empty search string, the count is all documents in the index (50 in the hotels-sample index).
 
 ## Example 1: Fielded search
 

@@ -3,10 +3,14 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 03/06/2026
 ms.author: pafarley
 ms.custom: references_regions
 ---
+
+### February 2026 release
+
+The speech-to-text playground in the Microsoft Foundry new portal now supports the real-time speech-to-text API. You can test real-time transcription directly in the browser without writing any code. Get started with the [Speech to text quickstart](../../get-started-speech-to-text.md).
 
 ### December 2025 release
 

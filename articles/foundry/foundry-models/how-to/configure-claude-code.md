@@ -5,7 +5,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 02/24/2026
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 author: msakande
 ms.author: mopeakande
 ms.reviewer: ambadal

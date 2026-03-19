@@ -73,7 +73,7 @@ Reference: [Foundry Local CLI reference](reference-cli.md)
 
 - **How is the Foundry Local SDK different from the Foundry Local service?**
 
-  The [Foundry Local SDK](reference-sdk.md) is a development toolkit to build software or applications by using the Foundry Local service without using the Foundry Local CLI or REST APIs directly.
+  The [Foundry Local SDK](reference-sdk-current.md) is a development toolkit to build software or applications by using the Foundry Local service without using the Foundry Local CLI or REST APIs directly.
 
 - **How does Foundry Local differ from Microsoft Foundry?**
 

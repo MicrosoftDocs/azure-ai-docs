@@ -1,10 +1,6 @@
 ---
-title: Multi-language indexing for non-English search queries
-titleSuffix: Azure AI Search
+title: Multi-Language Indexing for Non-English Search Queries
 description: Create an index that supports multi-language content and then create queries scoped to that content.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -61,9 +57,6 @@ To add text translation, follow these steps:
 
 1. [Create and run the indexer](search-howto-create-indexers.md), and then apply the guidance in this article to query just the fields of interest.
 
-> [!TIP]
-> Text translation is built into the [Import data wizard](search-get-started-skillset.md). If you have a [supported data source](search-indexer-overview.md#supported-data-sources) with text you'd like to translate, you can step through the wizard to try out the language detection and translation functionality before writing any code.
-
 ## Define fields for content in different languages
 
 In Azure AI Search, queries target a single index. Developers who want to provide language-specific strings in a single search experience typically define dedicated fields to store the values: one field for English strings, one for French, and so on.
@@ -72,7 +65,7 @@ The `analyzer` property on a field definition is used to set the [language analy
 
 ```JSON
 {
-  "name": "hotels-sample-index",
+  "name": "hotels-sample",
   "fields": [
     {
       "name": "Description",
@@ -114,7 +107,7 @@ By default, a search returns all fields that are marked as retrievable. As such,
 #### Example in REST
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "animaux acceptés",
     "searchFields": "Tags, Description_fr",

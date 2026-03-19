@@ -14,6 +14,7 @@ ai-usage: ai-assisted
 
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Learn how to use JSON mode
@@ -40,7 +41,9 @@ Support for JSON mode was first added in API version [`2023-12-01-preview`](http
 Before you run the examples:
 
 - Replace `YOUR-RESOURCE-NAME` with your Azure OpenAI resource name.
-- Replace `YOUR-MODEL_DEPLOYMENT_NAME` 
+- Replace `YOUR-MODEL_DEPLOYMENT_NAME` with the name of your model deployment.
+
+The examples below show JSON mode using the Python and .NET SDKs, and PowerShell for direct REST interaction.
 
 # [Python](#tab/python)
 
@@ -62,6 +65,59 @@ response = client.chat.completions.create(
   ]
 )
 print(response.choices[0].message.content)
+```
+
+### Output
+
+```json
+{
+  "winner": "Los Angeles Dodgers",
+  "event": "World Series",
+  "year": 2020
+}
+```
+
+# [C#](#tab/csharp)
+
+Add the following packages to your project:
+
+```dotnetcli
+dotnet add package OpenAI
+dotnet add package Azure.Identity
+```
+
+```csharp
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel;
+using System.Text.Json;
+
+ChatClient client = new(
+    model: "YOUR-MODEL_DEPLOYMENT_NAME",
+    credential: new ApiKeyCredential(
+        Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")),
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new Uri(
+            "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+    }
+);
+
+ChatCompletionOptions options = new()
+{
+    ResponseFormat = ChatResponseFormat.CreateJsonObjectFormat()
+};
+
+ChatCompletion completion = client.CompleteChat(
+    [
+        new SystemChatMessage(
+            "You are a helpful assistant designed to output JSON."),
+        new UserChatMessage("Who won the world series in 2020?")
+    ],
+    options);
+
+Console.WriteLine(completion.Content[0].Text);
 ```
 
 ### Output
@@ -142,12 +198,12 @@ year team                  player           player_height
 
 ---
 
-There are two key factors that need to be present to successfully use JSON mode:
+Two requirements must both be met to use JSON mode successfully:
 
-- `response_format={ "type": "json_object" }`
-- We told the model to output JSON as part of the system message.
+- Set the response format to `json_object` in your request. In Python, pass `response_format={ "type": "json_object" }`; in .NET, use `ChatResponseFormat.CreateJsonObjectFormat()`; in PowerShell, set `response_format = @{type = 'json_object'}`.
+- Include the word "JSON" somewhere in the messages conversation (typically the system message).
 
-Including guidance to the model that it should produce JSON as part of the messages conversation is **required**. We recommend adding instruction as part of the system message. According to OpenAI failure to add this instruction can cause the model to *"generate an unending stream of whitespace and the request could run continually until it reaches the token limit."*
+Including guidance to the model that it should produce JSON as part of the messages conversation is **required**. We recommend adding this instruction as part of the system message. According to OpenAI, failure to add this instruction can cause the model to *"generate an unending stream of whitespace and the request could run continually until it reaches the token limit."*
 
 Failure to include "JSON" within the messages returns:
 

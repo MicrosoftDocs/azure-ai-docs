@@ -8,6 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Connect an AI gateway to Foundry Agent Service (preview)
@@ -33,7 +34,7 @@ In this article, you create a gateway connection to your AI model endpoint, depl
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.67 or later.
 - [Python 3.10 or later](https://www.python.org/downloads/).
-- The `azure-ai-projects` SDK package (version 2.0.0b3 or later). For installation steps, see the [quickstart](../../quickstarts/get-started-code.md).
+- The `azure-ai-projects` SDK package (version 2.0.0 or later). For installation steps, see the [quickstart](../../quickstarts/get-started-code.md).
 - Access credentials for your enterprise AI gateway (for example, an API Management subscription key or an API key for another non-Azure AI model gateway).
 
 ### Required permissions

@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # How to use function calling with Azure OpenAI in Microsoft Foundry Models (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/function-calling.md)
 
 If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines thatodel a function should be called, it responds with a JSON object including the arguments for the function.
 
@@ -51,7 +51,7 @@ from zoneinfo import ZoneInfo
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -349,7 +349,7 @@ from zoneinfo import ZoneInfo
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -805,12 +805,17 @@ To learn more about our recommendations on how to use Azure OpenAI models respon
 * `gpt-5.2-codex` (`2026-01-14`)
 * `gpt-5.2-chat` (`2026-02-10`)
 * `gpt-5.3-codex` (`2026-02-24`)
+* `gpt-5.3-chat` (`2026-03-03`)
+* `gpt-5.4` (`2026-03-05`)
+* `gpt-5.4-mini` (`2026-03-17`)
+* `gpt-5.4-nano` (`2026-03-17`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
 ### Basic function calling with tools
 
 * All the models that support parallel function calling
+* `gpt-5.4-pro` (`2026-03-05`)
 * `gpt-5-pro` (`2025-10-06`)
 * `codex-mini` (`2025-05-16`)
 * `o3-pro` (`2025-06-10`)

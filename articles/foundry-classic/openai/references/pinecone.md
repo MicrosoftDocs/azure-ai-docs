@@ -100,7 +100,7 @@ index_name = os.environ.get("IndexName")
 embedding_deployment_name = os.environ.get("EmbeddingDeploymentName")
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    DefaultAzureCredential(), "https://ai.azure.com/.default")
 
 client = AzureOpenAI(
     azure_endpoint=endpoint,
