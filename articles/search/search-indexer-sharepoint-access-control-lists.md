@@ -45,8 +45,6 @@ This article explains how to ingest an access control list (ACL) alongside other
   + [Shareable links](/sharepoint/shareable-links-anyone-specific-people-organization) scoped to "Anyone" or "People in your organization." Only links scoped to "Specific people" are supported.
 
   + [SharePoint groups](/sharepoint/modern-experience-sharing-permissions) that can't be resolved to Microsoft Entra groups (such as Owners, Members, Visitors groups).
-  
-  + Coexistence with the [sensitivity labels](search-indexer-sensitivity-labels.md) feature. Test each feature on separate indexers and indexes.
 
 
 ## Support for the SharePoint permission model
@@ -62,7 +60,7 @@ This preview supports only basic ACLs for documents, as shown in the following t
 | Shareable "Anyone links" or "People in your organization links" | Org-wide or public access. | ❌ | Not supported in preview. |
 | External/guest users | Access for guests. | ❌ | Not supported. | 
 | Information Management policies | Policies to define specific permissions requirements. | ❌ | Not supported in preview. | 
-| Purview sensitivity labels  | Document-level security for privacy, categorization, permissions, and encryption  | ❌ | Supported via a separate feature: [preserving and honoring sensitivity labels](search-indexer-sensitivity-labels.md) and not to be tested in the same indexer/index as this ACL feature at this time. | 
+| Purview sensitivity labels  | Document-level security for privacy, categorization, permissions, and encryption  | ❌ | Supported via a separate feature: [preserving and honoring sensitivity labels](search-indexer-sensitivity-labels.md). | 
 
 ## How hierarchical permissions are evaluated
 

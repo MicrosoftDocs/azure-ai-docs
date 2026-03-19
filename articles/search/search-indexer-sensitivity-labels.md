@@ -40,8 +40,6 @@ This functionality is available for the following data sources:
 
 ## Limitations
 
-+ Available in all Azure AI Search regions except West US 2.
-
 + The Azure portal doesn't support this feature.
 
 + [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs aren't supported for Purview-enabled indexes, as they can't yet enforce label-based access control.
