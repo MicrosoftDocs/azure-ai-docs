@@ -8,7 +8,7 @@ ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.reviewer: jturuk
 ms.subservice: mlops
-ms.date: 02/07/2025
+ms.date: 03/19/2026
 ms.topic: concept-article
 ms.custom:
   - cli-v2
@@ -17,6 +17,8 @@ ms.custom:
   - build-2023
   - build-2023-dataai
   - sfi-image-nochange
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Set up MLOps with GitHub
@@ -34,7 +36,7 @@ Azure Machine Learning allows you to integrate with [GitHub Actions](https://doc
 In this article, you learn about using Azure Machine Learning to set up an end-to-end MLOps pipeline that runs a linear regression to predict taxi fares in NYC. The pipeline is made up of components, each serving  different functions, which can be registered with the workspace, versioned, and reused with various inputs and outputs. You're going to be using the [recommended Azure architecture for MLOps](/azure/architecture/data-guide/technology-choices/machine-learning-operations-v2) and [Azure MLOps (v2) solution accelerator](https://github.com/Azure/mlops-v2) to quickly set up an MLOps project in Azure Machine Learning.
 
 > [!TIP]
-> We recommend you understand some of the [recommended Azure architectures](/azure/architecture/data-guide/technology-choices/machine-learning-operations-v2) for MLOps before implementing any solution. You need to pick the best architecture for your given Machine learning project.
+> Before implementing any solution, review the [recommended Azure architectures](/azure/architecture/data-guide/technology-choices/machine-learning-operations-v2) for MLOps and choose the best architecture for your machine learning project.
 
 ## Prerequisites
 
@@ -54,15 +56,18 @@ In this article, you learn about using Azure Machine Learning to set up an end-t
 
 Before you can set up an MLOps project with Machine Learning, you need to set up authentication for GitHub Actions.
 
+> [!IMPORTANT]
+> The recommended, more secure approach is to use [OpenID Connect (OIDC) with federated credentials](/azure/developer/github/connect-from-azure-openid-connect) for GitHub Actions authentication. OIDC eliminates the need to store long-lived secrets in your repository. The service principal approach shown in this article still works but is less secure. For OIDC setup with Azure Machine Learning, see [Use GitHub Actions with Azure Machine Learning](how-to-github-actions-machine-learning.md).
+
 ### Create service principal
-   Create one Prod service principal for this demo. You can add more depending on how many environments, you want to work on (Dev or Prod or Both). Service principals can be created using one of the following methods:
+   Create one prod service principal for this demo. You can add more depending on how many environments you want to work on (dev or prod or both). Service principals can be created using one of the following methods:
 
 # [Create from Azure Cloud Shell](#tab/azure-shell)
 
 1. Launch the [Azure Cloud Shell](https://shell.azure.com).
 
     > [!TIP]
-    > The first time you launch the Cloud Shell, you're prompted to create a storage account for the Cloud Shell.
+    > The first time you launch Cloud Shell, you're prompted to select between a persistent storage account or an ephemeral session (no storage required). Either option works for these steps.
 
 1. If prompted, choose **Bash** as the environment used in the Cloud Shell. You can also change environments in the drop-down on the top navigation bar
 
@@ -83,8 +88,8 @@ Before you can set up an MLOps project with Machine Learning, you need to set up
     echo "Please ensure that the information created here is properly save for future use."
     ```
 
-    > [!NOTE]
-    > The parameter `--json-auth` of the `az ad sp create-for-rbac` command is available in Azure CLI versions >= 2.51.0. Versions earlier than this use `--sdk-auth`.
+    > [!WARNING]
+    > The `--json-auth` parameter (and its predecessor `--sdk-auth`) is deprecated. For new projects, consider using [OpenID Connect (OIDC) with federated credentials](/azure/developer/github/connect-from-azure-openid-connect) instead of storing service principal secrets. If you need `--json-auth` output for existing workflows, it still functions in current Azure CLI versions but might be removed in a future release.
 
 1. Copy your edited commands into the Azure Shell and run them (**Ctrl** + **Shift** + **v**).
 
@@ -106,7 +111,7 @@ Before you can set up an MLOps project with Machine Learning, you need to set up
       }
     ```
 
-1. Copy all of this output, braces included. Save this information to a safe location, it's use later in these steps.
+1. Copy all of this output, braces included. Save this information to a safe location, it's used later in these steps.
 
 1. Close the Cloud Shell once the service principals are created. 
       
@@ -145,7 +150,7 @@ Before you can set up an MLOps project with Machine Learning, you need to set up
 
       :::image type="content" source="./media/how-to-setup-mlops-azureml/github-settings.png" alt-text="Screenshot of GitHub Settings.":::
 
-1. Then select **Secrets**, then **Actions**:
+1. Under **Security**, select **Secrets and variables**, then select **Actions**:
 
       :::image type="content" source="./media/how-to-setup-mlops-azureml/github-secrets.png" alt-text="Screenshot of GitHub Secrets.":::
 
@@ -195,7 +200,7 @@ This config file uses the namespace and postfix values the names of the artifact
 
    :::image type="content" source="./media/how-to-setup-mlops-azureml/github-actions.png" alt-text="Screenshot of the GitHub actions for the repository.":::
 
-    The pre-defined GitHub workflows associated with your project are displayed. For a classical machine learning project, the available workflows look similar to the following screenshot:
+    The predefined GitHub workflows associated with your project are displayed. For a classical machine learning project, the available workflows look similar to the following screenshot:
 
    :::image type="content" source="./media/how-to-setup-mlops-azureml/github-workflows.png" alt-text="Screenshot of the GitHub workflows for the repository.":::
 
@@ -212,7 +217,7 @@ This config file uses the namespace and postfix values the names of the artifact
 
 ## Sample Training and Deployment Scenario      
 
-The solution accelerator includes code and data for a sample end-to-end machine learning pipeline which runs a linear regression to predict taxi fares in NYC. The pipeline is made up of components, each serving different functions, which can be registered with the workspace, versioned, and reused with various inputs and outputs. Sample pipelines and workflows for the Computer Vision and NLP scenarios have different steps and deployment steps.
+The solution accelerator includes code and data for a sample end-to-end machine learning pipeline that runs a linear regression to predict taxi fares in NYC. The pipeline is made up of components, each serving different functions, which can be registered with the workspace, versioned, and reused with various inputs and outputs. Sample pipelines and workflows for the Computer Vision and NLP scenarios have different steps and deployment steps.
 
 This training pipeline contains the following steps:
 
@@ -239,7 +244,7 @@ This training pipeline contains the following steps:
 
 ## Deploying the Model Training Pipeline
 
-Next, you deploy the model training pipeline to your new Machine Learning workspace. This pipeline creates a compute cluster instance, register a training environment defining the necessary Docker image and python packages, register a training dataset, then start the training pipeline described in the last section. When the job is complete, the trained model is registered in the Azure Machine Learning workspace and be available for deployment.
+Next, you deploy the model training pipeline to your new Machine Learning workspace. This pipeline creates a compute cluster instance, register a training environment defining the necessary Docker image and python packages, register a training dataset, then start the training pipeline described in the last section. When the job is complete, the trained model is registered in the Azure Machine Learning workspace and is available for deployment.
 
 1. In your GitHub project repository (example: taxi-fare-regression), select **Actions**  
  
@@ -296,13 +301,13 @@ This scenario includes prebuilt workflows for two approaches to deploying a trai
    
 ## Moving to production
 
-Example scenarios can be trained and deployed both for Dev and Prod branches and environments. When you're satisfied with the performance of the model training pipeline, model, and deployment in Testing, Dev pipelines and models can be replicated and deployed in the Production environment.
+Example scenarios can be trained and deployed both for Development and Production branches and environments. When you're satisfied with the performance of the model training pipeline, model, and deployment in Testing, Dev pipelines and models can be replicated and deployed in the Production environment.
 
 The sample training and deployment Machine Learning pipelines and GitHub workflows can be used as a starting point to adapt your own modeling code and data.
 
 ## Clean up resources
 
-1. If you're not going to continue to use your pipeline, delete your Azure DevOps project. 
+1. If you're not going to continue to use your pipeline, delete your GitHub repository.
 1. In Azure portal, delete your resource group and Machine Learning instance.
 
 ## Next steps
