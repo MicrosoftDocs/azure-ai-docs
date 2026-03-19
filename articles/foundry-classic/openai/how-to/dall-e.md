@@ -11,7 +11,7 @@ ms.topic: how-to
 ms.custom:
   - classic-and-new
   - build-2025
-# Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
+# Customer intent: as an engineer or hobbyist, I want to know how to use image generation models to their full capability.
 zone_pivot_groups: openai-quickstart-dall-e
 ai-usage: ai-assisted
 
@@ -21,6 +21,8 @@ ROBOTS: NOINDEX, NOFOLLOW
 # Azure OpenAI image generation models (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/dall-e.md)
+
+[!INCLUDE [DALL-E retirement notice](../../../foundry/openai/includes/dall-e-retirement.md)]
 
 OpenAI's image generation models create images from user-provided text prompts and optional images. This article explains how to use these models, configure options, and benefit from advanced image generation capabilities in Azure.
 
@@ -32,17 +34,17 @@ Use the tabs at the start of this page to select your preferred API approach and
 
 Use this table to learn the differences between the different image generation models, and to help you choose the best model for your image generation needs.
 
-| Aspect | GPT-Image-1.5 | GPT-Image-1 | GPT-Image-1-Mini | DALL·E 3 |
-|--------|---------------|--------------|------------------|-----------|
-|**Availability** | Limited access preview ([Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Generally available|
-| **Strengths** | Best for realism, instruction following, multimodal context, and improved speed/cost | Best for realism, instruction following, and multimodal context | Best for fast prototyping, bulk generation, or cost-sensitive use cases | Strong prompt adherence, natural text rendering, and stylistic diversity |
-| **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text (primary)** input; limited image editing inputs (with mask). Outputs as **URL or base64**. |
-| **Image Sizes / Resolutions** | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1792, 1792×1024 |
-| **Quality Options** | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = medium) | `standard`, `hd`; style options: `natural`, `vivid` |
-| **Number of Images per Request** | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | Only **1 image** per request (`n` must be 1) |
-| **Editing (inpainting / variations)** | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations |
-| **Face Preservation** | ✅ Advanced **face preservation** for realistic, consistent results | ✅ Advanced **face preservation** for realistic, consistent results | ❌ No dedicated face preservation; better for **non-portrait/general creative** imagery | ❌ No dedicated face preservation |
-| **Performance & Cost** | High-fidelity, **realism-optimized** model; improved efficiency and latency over GPT-Image-1 | High-fidelity, **realism-optimized** model; higher latency and cost | **Cost-efficient** and **faster** for large-scale or iterative generation | Balanced performance; higher latency on complex prompts |
+| Aspect | GPT-Image-1.5 | GPT-Image-1 | GPT-Image-1-Mini |
+|--------|---------------|--------------|------------------|
+|**Availability** | Limited access preview ([Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) |
+| **Strengths** | Best for realism, instruction following, multimodal context, and improved speed/cost | Best for realism, instruction following, and multimodal context | Best for fast prototyping, bulk generation, or cost-sensitive use cases |
+| **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). |
+| **Image Sizes / Resolutions** | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 |
+| **Quality Options** | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = medium) |
+| **Number of Images per Request** | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) |
+| **Editing (inpainting / variations)** | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt |
+| **Face Preservation** | ✅ Advanced **face preservation** for realistic, consistent results | ✅ Advanced **face preservation** for realistic, consistent results | ❌ No dedicated face preservation; better for **non-portrait/general creative** imagery |
+| **Performance & Cost** | High-fidelity, **realism-optimized** model; improved efficiency and latency over GPT-Image-1 | High-fidelity, **realism-optimized** model; higher latency and cost | **Cost-efficient** and **faster** for large-scale or iterative generation |
 
 ## Quickstart
 
@@ -106,7 +108,6 @@ Image generation has default rate limits per deployment:
 
 | Model | Default quota (images/min) |
 |-------|---------------------------|
-| DALL-E 3 | 2 |
 | GPT-image-1 series | 5 |
 
 To view your current quota or request an increase, see [Manage Azure OpenAI quotas](/azure/ai-foundry/openai/how-to/quota).
@@ -122,12 +123,10 @@ The following command shows the most basic way to use an image model with code. 
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
-- Deploy a `dall-e-3` or `gpt-image-1`-series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
-    - GPT-image-1 series models are newer and feature a number of improvements over DALL-E 3. They are available in limited access: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access).
+- Deploy a `gpt-image-1`-series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
+    - GPT-image-1 series models are available in limited access: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access).
 - Python 3.8 or later.
     - Install the required packages: `pip install openai azure-identity`
-
-#### [GPT-image-1 series](#tab/gpt-image-1)
 
 Send a POST request to:
 
@@ -162,47 +161,10 @@ The following is a sample request body. You specify a number of options, defined
 }
 ```
 
-#### [DALL-E 3](#tab/dalle-3)
-
-Send a POST request to:
-
-```
-https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deployment_name>/images/generations?api-version=<api_version>
-```
-
-**URL**:
-
-Replace the following values:
-- `<your_resource_name>` is the name of your Azure OpenAI resource.
-- `<your_deployment_name>` is the name of your DALL-E 3 model deployment.
-- `<api_version>` is the version of the API you want to use. For example, `2024-02-01`.
-
-**Required headers**:
-- `Content-Type`: `application/json`
-- `api-key`: `<your_API_key>`
-
-**Body**:
-
-The following is a sample request body. You specify a number of options, defined in later sections.
-
-```json
-{
-    "prompt": "A multi-colored umbrella on the beach, disposable camera",
-    "size": "1024x1024", 
-    "n": 1,
-    "quality": "hd", 
-    "style": "vivid"
-}
-```
-
----
-
 > [!TIP]
 > For image generation token costs, see [Image tokens](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 
 ### Output
-
-#### [GPT-image-1 series](#tab/gpt-image-1)
 
 The response from a successful image generation API call looks like the following example. The `b64_json` field contains the output image data.
 
@@ -216,26 +178,6 @@ The response from a successful image generation API call looks like the followin
     ]
 } 
 ```
-> [!NOTE]
-> The `response_format` parameter isn't supported for GPT-image-1 series models, which always return base64-encoded images.
-
-#### [DALL-E 3](#tab/dalle-3)
-
-The response from a successful image generation API call looks like the following example. The `url` field contains a URL where you can download the generated image. The URL stays active for 24 hours.
-
-```json
-{ 
-    "created": 1698116662, 
-    "data": [ 
-        { 
-            "url": "<URL_to_generated_image>",
-            "revised_prompt": "<prompt_that_was_used>" 
-        }
-    ]
-} 
-```
-
----
 
 ### Streaming
 
@@ -320,51 +262,9 @@ Use the *stream* parameter to enable streaming responses. When set to `true`, th
 
 Set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
 
-#### [DALL-E 3](#tab/dalle-3)
-
-<!--
-| Parameter Name   | Description       | Values         |
-|------------------|-------------|--------------------------|
-| Size             | Specifies the size of generated images. Square images generate faster.    | `1024x1024` (default), `1792x1024`, `1024x1792`           |
-| Style            | DALL-E 3 offers two style options. The natural style is more similar to the default style of older models, while the vivid style generates more hyper-real and cinematic images. </br></br>The natural style is useful in cases where DALL-E 3 over-exaggerates or confuses a subject that's meant to be more simple, subdued, or realistic.     | `natural`, `vivid` (default)           |
-| Quality          | Controls image quality. `hd` has finer details and better consistency; `standard` is faster.    | `hd`, `standard` (default) |
-| Number (`n`)     | Must be set to 1 for DALL-E 3. To get multiple images, make parallel requests.        | `1`              |
-| Response format  | Format for the returned images. Default is `url`.   | `url`, `b64_json`|
--->
-
-#### Size
-
-Specify the size of the generated images. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for DALL-E 3 models. Square images are faster to generate.
-
-#### Style
-
-DALL-E 3 offers two style options: `natural` and `vivid`. The natural style is more similar to the default style of older models, while the vivid style generates more hyper-real and cinematic images.
-
-The natural style is useful in cases where DALL-E 3 over-exaggerates or confuses a subject that's meant to be more simple, subdued, or realistic.
-
-The default value is `vivid`.
-
-#### Quality
-
-There are two options for image quality: `hd` and `standard`. The hd option creates images with finer details and greater consistency across the image. Standard images are faster to generate.
-
-The default value is `standard`.
-
-#### Number
-
-With DALL-E 3, you can't generate more than one image in a single API call: the `n` parameter must be set to *1*. To generate multiple images at once, make parallel requests.
-
-#### Response format
-
-The format in which DALL-E 3 returns generated images. Must be one of `url` or `b64_json`. This parameter isn't supported for GPT-image-1 series models, which always return base64-encoded images.
-
----
-
 ## Call the image edit API
 
 The Image Edit API enables you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an input image.
-
-#### [GPT-image-1 series](#tab/gpt-image-1)
 
 > [!IMPORTANT]
 > The input image must be less than 50 MB in size and must be a PNG or JPG file.
@@ -445,12 +345,6 @@ Use the *stream* parameter to enable streaming responses. When set to `true`, th
 
 Set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
 
-#### [DALL-E 3](#tab/dalle-3)
-
-DALL-E models don't support the Image Edit API.
-
----
-
 ## Write effective text-to-image prompts
 
 Your prompts should describe the content you want to see in the image and the visual style of the image.
@@ -529,6 +423,5 @@ Image generation can take up to 60 seconds for complex prompts. If you experienc
 * [Image API (preview) reference](/azure/ai-foundry/openai/reference-preview)
 - Learn about [image generation tokens](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#image-generation-models)
 
-<!-- OAI HT guide https://platform.openai.com/docs/guides/images/usage
-dall-e 3 features here: https://cookbook.openai.com/articles/what_is_new_with_dalle_3 -->
+<!-- OAI HT guide https://platform.openai.com/docs/guides/images/usage -->
 
