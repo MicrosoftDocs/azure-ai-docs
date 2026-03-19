@@ -8,9 +8,11 @@ ms.topic: overview
 ms.date: 02/13/2026
 ms.author: pafarley
 author: PatrickFarley
+ai-usage: ai-assisted
 ms.custom:
   - ignite-2024
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Responsible AI for Microsoft Foundry

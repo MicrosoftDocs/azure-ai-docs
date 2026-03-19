@@ -6,11 +6,11 @@ author: ccrestana
 ms.author: cacrest
 ---
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure Machine Learning workspace. To create a workspace, see [Manage Azure Machine Learning workspaces](../how-to-manage-workspace.md).
 - The following permissions in the Azure Machine Learning workspace:
-  - For creating or managing batch endpoints and deployments: Use an Owner, Contributor, or custom role that has been assigned the `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*` permissions.
-  - For creating Azure Resource Manager deployments in the workspace resource group: Use an Owner, Contributor, or custom role that has been assigned the `Microsoft.Resources/deployments/write` permission in the resource group where the workspace is deployed.
+  - For creating or managing batch endpoints and deployments: Use an Owner, Contributor, or custom role that has the `Microsoft.MachineLearningServices/workspaces/batchEndpoints/*` permissions.
+  - For creating Azure Resource Manager deployments in the workspace resource group: Use an Owner, Contributor, or custom role that has the `Microsoft.Resources/deployments/write` permission in the resource group where the workspace is deployed.
 - The Azure Machine Learning CLI or the Azure Machine Learning SDK for Python:
 
   # [Azure CLI](#tab/cli)
@@ -21,7 +21,7 @@ ms.author: cacrest
   az extension add -n ml
   ```
 
-  Pipeline component deployments for batch endpoints are introduced in version 2.7 of the `ml` extension for the Azure CLI. Use the `az extension update --name ml` command to get the latest version.
+  Pipeline component deployments for batch endpoints require version 2.7 or later of the `ml` extension for the Azure CLI (current version: 2.37.0). Use the `az extension update --name ml` command to get the latest version.
 
   # [Python](#tab/python)
 
@@ -31,7 +31,7 @@ ms.author: cacrest
   pip install azure-ai-ml
   ```
 
-  The `ModelBatchDeployment` and `PipelineComponentBatchDeployment` classes are introduced in version 1.7.0 of the SDK. Use the `pip install -U azure-ai-ml` command to get the latest version.
+  The `ModelBatchDeployment` and `PipelineComponentBatchDeployment` classes require version 1.7.0 or later of the SDK (current version: 1.31.0). Use the `pip install -U azure-ai-ml` command to get the latest version.
 
   ---
 

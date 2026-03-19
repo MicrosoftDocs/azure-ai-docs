@@ -1,13 +1,10 @@
 ---
-title: Model complex data types
-titleSuffix: Azure AI Search
+title: Model Complex Data Types
 description: Nested or hierarchical data structures can be modeled in an Azure AI Search index using ComplexType and Collections data types.
-manager: nitinme
-author: bevloh
-ms.author: beloh
 tags: complex data types; compound data types; aggregate data types
 ms.custom:
   - ignite-2023
+ms.reviewer: beloh
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/14/2025
@@ -118,7 +115,7 @@ Use the [Search Index class](/dotnet/api/azure.search.documents.indexes.models.s
 
 The following snippets are from [search-dotnet-getting-started/DotNetHowTo](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo/DotNetHowTo). 
 
-In the Hotels sample index, `Address` is a complex field that isn't a collection (a hotel has one address). `Rooms` is a complex collection field (a hotel has many rooms). Both [Address](https://github.com/Azure-Samples/search-dotnet-getting-started/blob/master/DotNetHowTo/DotNetHowTo/Address.cs) and [Room](https://github.com/Azure-Samples/search-dotnet-getting-started/blob/master/DotNetHowTo/DotNetHowTo/Room.cs) are defined as classes.
+In the hotels-sample index, `Address` is a complex field that isn't a collection (a hotel has one address). `Rooms` is a complex collection field (a hotel has many rooms). Both [Address](https://github.com/Azure-Samples/search-dotnet-getting-started/blob/master/DotNetHowTo/DotNetHowTo/Address.cs) and [Room](https://github.com/Azure-Samples/search-dotnet-getting-started/blob/master/DotNetHowTo/DotNetHowTo/Room.cs) are defined as classes.
 
 ```csharp
 using Azure.Search.Documents.Indexes;
@@ -369,7 +366,7 @@ If you implement the workaround, be sure to test extensively.
 
 ## Next steps
 
-Use an import wizard with sample data to guide you through creating, loading, and querying an index.
+Use the import wizard with sample data to guide you through creating, loading, and querying an index.
 
 > [!div class="nextstepaction"]
 > [Quickstart: Full-text search in the Azure portal](search-get-started-portal.md)

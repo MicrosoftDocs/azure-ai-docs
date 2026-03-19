@@ -1,10 +1,6 @@
 ---
-title: Schedule indexer execution
-titleSuffix: Azure AI Search
+title: Schedule Indexer Execution
 description: Learn how to schedule Azure AI Search indexers to index content at specific intervals, or at specific dates and times.
-author: HeidiSteen
-manager: nitinme
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

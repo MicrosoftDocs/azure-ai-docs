@@ -1,10 +1,8 @@
 ---
-title: Service Configuration in the Azure portal
-titleSuffix: Azure AI Search
+title: Service Configuration in the Azure Portal
 description: Manage your new Azure AI Search service in the Azure portal. This article provides a day-one checklist for configuring RBAC, managed identities, network security, and more.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/08/2025
@@ -68,7 +66,7 @@ Before you move on to network security, consider testing all points of connectio
 By default, a search service accepts authenticated and authorized requests over public internet connections. You have two options for enhancing network security:
 
 + [Configure firewall rules](service-configure-firewall.md) to restrict network access by IP address.
-+ [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the import wizards won't run.
++ [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the **Import data** wizard won't run.
 
 To learn about inbound and outbound calls in Azure AI Search, see [Understand network traffic patterns](search-security-best-practices.md#understand-network-traffic-patterns).
 
@@ -101,7 +99,7 @@ To connect to Azure AI Search, developers need:
 + An endpoint or URL from the **Overview** page.
 + An API key from the **Keys** page or a role assignment. We recommend Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
-We recommend portal access for the [import wizards](search-get-started-portal.md) and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
+We recommend portal access for the [**Import data** wizard](search-get-started-portal.md) and [Search explorer](search-explorer.md). You must be a Contributor or higher to run the wizard.
 
 ## Related content
 

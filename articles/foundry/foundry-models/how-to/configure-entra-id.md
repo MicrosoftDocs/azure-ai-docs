@@ -8,6 +8,7 @@ ms.date: 01/22/2026
 ms.custom:
   - ignite-2024, github-universe-2024, dev-focus, time-to-complete=15
   - classic-and-new
+  - doc-kit-assisted
 author: msakande
 ms.author: mopeakande
 recommendations: false
@@ -26,7 +27,7 @@ This article explains how to configure keyless authentication with Microsoft Ent
 
 To complete this article, you need:
 
-- An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Microsoft Foundry Models](../how-to/quickstart-github-models.md) if that's your case.
+- An Azure subscription. If you're using GitHub Models, you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Microsoft Foundry Models](../how-to/quickstart-github-models.md) if that's your case.
 
 - A Foundry project. This kind of project is managed under a Foundry resource. If you don't have a Foundry project, see [Create a project for Foundry (Foundry projects)](../../how-to/create-projects.md)
 

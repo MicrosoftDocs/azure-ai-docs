@@ -4,7 +4,7 @@ description: "Learn how to use CMKs for enhanced encryption and data security in
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
-ms.date: 02/23/2026
+ms.date: 03/06/2026
 ms.service: azure-ai-services
 ms.topic: how-to
 ms.custom:
@@ -13,6 +13,7 @@ ms.custom:
   - build-aifnd
   - build-2025
   - references-regions
+  - doc-kit-assisted
 ai-usage: ai-assisted 
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Microsoft Foundry.
 ---
@@ -58,6 +59,15 @@ To configure a CMK for Foundry, you need:
   - Contributor or Owner role on the Foundry resource to configure encryption settings.
 
 Before you configure a CMK, be sure to deploy your resources in a supported region. For more information on regional support for Foundry features, see [Microsoft Foundry feature availability across cloud regions](../reference/region-support.md).
+
+## Key Vault networking configurations
+
+When you use private networking with your Foundry resource, the customer-provided Azure Key Vault that hosts the CMK supports the following configurations:
+
+- **Private link endpoint with "Allow trusted Microsoft services" enabled**: The key vault uses a private endpoint for connectivity and also permits access from trusted Microsoft services. This is the recommended configuration for environments that require private connectivity.
+- **"Allow trusted Microsoft services" enabled (without a private endpoint)**: The key vault allows access from trusted Microsoft services over the public endpoint. Enable this setting to ensure that the Foundry resource can access the key vault for encryption operations.
+
+To configure trusted services access on your key vault, see [Configure Azure Key Vault firewalls and virtual networks](/azure/key-vault/general/network-security).
 
 ## Steps to configure a CMK
 

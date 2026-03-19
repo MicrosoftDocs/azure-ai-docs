@@ -1,9 +1,6 @@
 ---
-title: Create a hybrid query
-titleSuffix: Azure AI Search
-description: Learn how to build queries for hybrid search.
-author: HeidiSteen
-ms.author: heidist
+title: Create a Hybrid Query
+description: Learn how to create hybrid queries that target an index in Azure AI Search.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -32,7 +29,7 @@ By the end of this article, you can execute hybrid queries that combine keyword 
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-+ A search index containing `searchable` vector and nonvector fields. We recommend the [**Import data (new)** wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
++ A search index containing `searchable` vector and nonvector fields. We recommend the [**Import data** wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
 
 + **Permissions**: You need **Search Index Data Reader** to query an index. To create or update an index, you need **Search Index Data Contributor**. For more information, see [Connect using roles](search-security-rbac.md).
 
@@ -214,7 +211,7 @@ from azure.search.documents.models import VectorizedQuery
 
 # Set up the client
 endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
-index_name = "hotels-sample-index"
+index_name = "hotels-sample"
 credential = DefaultAzureCredential()
 
 client = SearchClient(endpoint=endpoint, index_name=index_name, credential=credential)
@@ -256,7 +253,7 @@ using Azure.Search.Documents.Models;
 
 // Set up the client
 string endpoint = Environment.GetEnvironmentVariable("AZURE_SEARCH_ENDPOINT");
-string indexName = "hotels-sample-index";
+string indexName = "hotels-sample";
 
 SearchClient client = new SearchClient(
     new Uri(endpoint),

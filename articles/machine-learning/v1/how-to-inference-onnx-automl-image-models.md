@@ -8,8 +8,9 @@ ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
-ms.date: 10/18/2021
-ms.custom: UpdateFrequency5, sdkv1
+ms.date: 03/05/2026
+ms.custom: UpdateFrequency5, sdkv1, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Make predictions with ONNX on computer vision models from AutoML (v1)
@@ -22,6 +23,9 @@ ms.custom: UpdateFrequency5, sdkv1
 [!INCLUDE [cli-version-info](../includes/machine-learning-cli-v1-deprecation.md)] 
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+> [!TIP]
+> An updated version of this article using SDK v2 is available. See [Make predictions with ONNX on computer vision models from AutoML](/azure/machine-learning/how-to-inference-onnx-automl-image-models?view=azureml-api-2&preserve-view=true).
 
 In this article, you learn how to use Open Neural Network Exchange (ONNX) to make predictions on computer vision models generated from automated machine learning (AutoML) in Azure Machine Learning. 
 
@@ -37,13 +41,13 @@ To use ONNX for predictions, you need to:
 
 [ONNX Runtime](https://onnxruntime.ai/index.html) is an open-source project that supports cross-platform inference. ONNX Runtime provides APIs across programming languages (including Python, C++, C#, C, Java, and JavaScript). You can use these APIs to perform inference on input images. After you have the model that has been exported to ONNX format, you can use these APIs on any programming language that your project needs. 
 
-In this guide, you'll learn how to use [Python APIs for ONNX Runtime](https://onnxruntime.ai/docs/get-started/with-python.html) to make predictions on images for popular vision tasks. You can use these ONNX exported models across languages.
+In this guide, you learn how to use [Python APIs for ONNX Runtime](https://onnxruntime.ai/docs/get-started/with-python.html) to make predictions on images for popular vision tasks. You can use these ONNX exported models across languages.
 
 ## Prerequisites
 
 * Get an AutoML-trained computer vision model for any of the supported image tasks: classification, object detection, or instance segmentation. [Learn more about AutoML support for computer vision tasks](how-to-auto-train-image-models.md).
 
-* Install the [onnxruntime](https://onnxruntime.ai/docs/get-started/with-python.html) package. The methods in this article have been tested with versions 1.3.0 to 1.8.0.
+* Install the [onnxruntime](https://onnxruntime.ai/docs/get-started/with-python.html) package. The methods in this article have been tested with versions 1.3.0 to 1.8.0. Newer versions are expected to work and are recommended for security and performance improvements.
 
 
 ## Download ONNX model files
@@ -1435,5 +1439,6 @@ display_detections(img, boxes.copy(), labels, scores, masks.copy(),
 ---
 
 ## Next steps
+* [Make predictions with ONNX on computer vision models from AutoML (SDK v2)](/azure/machine-learning/how-to-inference-onnx-automl-image-models?view=azureml-api-2&preserve-view=true)
 * [Learn more about computer vision tasks in AutoML](how-to-auto-train-image-models.md)
 * [Troubleshoot AutoML experiments](how-to-troubleshoot-auto-ml.md)

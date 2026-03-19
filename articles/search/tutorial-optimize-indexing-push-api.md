@@ -1,9 +1,7 @@
 ---
 title: 'C# Tutorial: Use the Push API to Optimize Indexing'
-titleSuffix: Azure AI Search
 description: Learn how to efficiently index data using Azure AI Search's push API. This tutorial and sample code are in C#.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial

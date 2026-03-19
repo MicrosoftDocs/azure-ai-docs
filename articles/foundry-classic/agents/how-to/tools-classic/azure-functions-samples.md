@@ -15,7 +15,7 @@ zone_pivot_groups: selection-azure-functions-samples
 
 # How to use queue-based Azure Functions with Microsoft Foundry agents (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../../../includes/agents-classic.md)]
 
 This article shows how to use a queue-based integrated tool approach to enable Microsoft Foundry agents to access code deployed to Azure Functions. In this approach, agents access tool code asynchronously in Azure Functions by means of separate input and output message queues in Azure Queue storage. 
 

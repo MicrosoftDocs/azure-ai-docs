@@ -37,7 +37,7 @@ The training process can take some time. As a rough estimate, the expected train
 
 ## How do I build my custom model programmatically?
 
-You can use the [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob) to build your custom models. Follow this [quickstart](quickstart.md?pivots=rest-api) to get started with creating a project and creating a model through APIs for examples of how to call the Authoring API. 
+You can use the [REST API Reference Documentation](/rest/api/aifoundry) to build your custom models. Follow this [quickstart](quickstart.md?pivots=rest-api) to get started with creating a project and creating a model through APIs for examples of how to call the Authoring API. 
 
 When you're ready to start [using your model to make predictions](#how-do-i-use-my-trained-model-to-make-predictions), you can use the REST API, or the client library.
 
@@ -88,7 +88,7 @@ For more information, *see* [Data, privacy, and security for Azure Language in F
 
 ## How to clone my project?
 
-To clone your project, you need to use the export API  to export the project assets, and then import them into a new project. See [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob) reference for both operations.
+To clone your project, you need to use the export API  to export the project assets, and then import them into a new project. See [REST API Reference Documentation](/rest/api/aifoundry) for both operations.
 
 ## Next steps
 

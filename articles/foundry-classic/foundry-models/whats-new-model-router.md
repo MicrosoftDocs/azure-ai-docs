@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 This article provides a summary of the latest releases and major documentation updates for Azure model router, including new supported models, routing features, and deployment options.
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/foundry-models/whats-new-model-router.md)
 
 ## November 2025
 

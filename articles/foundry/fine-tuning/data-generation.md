@@ -4,7 +4,7 @@ description: "Learn how to generate synthetic data using the Microsoft Foundry p
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.custom: ignite-2025
+ms.custom: ignite-2025, doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/11/2026
 author: ssalgadodev

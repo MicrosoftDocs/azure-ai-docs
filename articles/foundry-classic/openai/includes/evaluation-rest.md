@@ -19,7 +19,6 @@ You can create an evaluation by specifying a data source config and the evaluati
 curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -H "aoai-evals: preview" \
   -d '{
     "name": "Math Quiz",
     "data_source_config": {
@@ -58,7 +57,6 @@ You can add new evaluation runs to the evaluation job you had created in the pre
 curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
-  -H "aoai-evals: preview" \
 ```
 
 ### Update Existing Evaluation
@@ -67,7 +65,6 @@ curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs" \
 curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id} \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
-  -H "aoai-evals: preview" \
 ```
 
 ## Evaluation Results
@@ -78,7 +75,6 @@ Once evaluation is complete, you can fetch the evaluation results for the evalua
 curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
-  -H "aoai-evals: preview" \
 ```
 
 ### Single Evaluation Run Result
@@ -89,7 +85,6 @@ Just like how you can create a single evaluation run under an existing evaluatio
 curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs/{run-id}" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
-  -H "aoai-evals: preview" \
 ```
 
 In addition to the parameters in the examples above, you can optionally add these parameters for more specific drill-downs into the evaluation results: 
@@ -113,7 +108,6 @@ To see the list of all evaluation jobs that were created:
 curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
-  -H "aoai-evals: preview" \
 ```
 
 ### Output Details for a Run
@@ -124,7 +118,6 @@ You can view the individual outputs generated from the graders for a single eval
 curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs/{run-id}/output_items" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
-  -H "aoai-evals: preview" \
 ```
 
 If you have a particular output result you would like to see, you can specify the output item ID: 
@@ -133,5 +126,4 @@ If you have a particular output result you would like to see, you can specify th
 curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs/{run-id}/output_items/{output-item-id}" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY"
-  -H "aoai-evals: preview" \
 ```

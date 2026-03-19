@@ -1,6 +1,7 @@
 ---
-title: "Quickstart: Create a Foundry resource using Bicep"
-description: "Learn how to use a Bicep file (template) to create a Microsoft Foundry resource in your Azure subscription."
+title: "Quickstart: Deploy a Foundry resource by using Bicep"
+titleSuffix: Microsoft Foundry
+description: Learn how to use a Bicep file (template) to create a Microsoft Foundry resource in your Azure subscription.
 ms.author: sgilley
 author: sdgilley
 reviewer: deeikele
@@ -13,41 +14,43 @@ ms.custom:
   - "build-aifnd"
   - "build-2025"
   - "dev-focus"
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a Foundry resource by using templates.
 ---
 
-# Quickstart: Create a Microsoft Foundry resource using a Bicep file
-Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resource. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. You use parameters to provide input values when deploying resources by using the file.
+# Quickstart: Deploy a Microsoft Foundry resource by using a Bicep file
+
+In this quickstart, you deploy a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resource and project by using a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) template. Bicep helps you create related resources in one coordinated deployment and reuse the same configuration across environments.
 
 ## Prerequisites
 
 [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
-- A copy of the files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aifoundry-basics` directory.
-
-    # [Azure CLI](#tab/cli)
-
-    ```azurecli
-    git clone https://github.com/Azure-AI-Foundry/foundry-samples
-    cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
-    ```
-
-    # [Azure PowerShell](#tab/powershell)
-
-    ```azurepowershell
-    git clone https://github.com/Azure-AI-Foundry/foundry-samples
-    cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
-    ```
-
-    ---
-
-- The Bicep command-line tools. To install the Bicep CLI, see [Install the Bicep CLI](/azure/azure-resource-manager/bicep/install).
 - [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
+- [Install the Bicep CLI](/azure/azure-resource-manager/bicep/install).
+
+Get the sample files:
+
+# [Azure CLI](#tab/cli)
+
+```azurecli
+git clone https://github.com/Azure-AI-Foundry/foundry-samples
+cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+```azurepowershell
+git clone https://github.com/Azure-AI-Foundry/foundry-samples
+cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
+```
+
+---
 
 ## Deploy the Bicep file
 
-Deploy the Bicep file by using either Azure CLI or Azure PowerShell.
+Deploy the Bicep file by using either Azure CLI or Azure PowerShell:
 
 # [Azure CLI](#tab/cli)
 
@@ -56,7 +59,7 @@ az group create --name exampleRG --location eastus
 az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiFoundryName=myai aiProjectName=myai-proj 
 ```
 
-Reference: [az group create](/cli/azure/group#az-group-create), [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create)
+Reference: [az group create](/cli/azure/group#az-group-create), [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create).
 
 # [Azure PowerShell](#tab/powershell)
 
@@ -65,7 +68,7 @@ New-AzResourceGroup -Name exampleRG -Location eastus
 New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiFoundryName myai -aiProjectName myai-proj
 ```
 
-Reference: [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup), [New-AzResourceGroupDeployment](/powershell/module/az.resources/new-azresourcegroupdeployment)
+Reference: [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup), [New-AzResourceGroupDeployment](/powershell/module/az.resources/new-azresourcegroupdeployment).
 
 ---
 
@@ -127,5 +130,5 @@ Reference: [Remove-AzResourceGroup](/powershell/module/az.resources/remove-azres
 
 ## Related content
 
-- [Get started with the SDK](../quickstarts//get-started-code.md)
+- [Get started with the SDK](../quickstarts/get-started-code.md)
 - [Security configurations samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples) — See example Bicep template configurations for enterprise security configurations, including network isolation, customer-managed key encryption, advanced identity options, and Agents standard setup.

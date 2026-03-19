@@ -13,6 +13,7 @@ ms.custom:
   - build-aifnd
   - build-2025
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-sdk-overview-languages
 # customer intent: As a developer, I want to install the Microsoft Foundry SDK in my development environment

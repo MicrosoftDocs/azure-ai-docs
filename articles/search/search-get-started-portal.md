@@ -1,13 +1,11 @@
 ---
 title: "Quickstart: Full-Text Search in the Azure portal"
-titleSuffix: Azure AI Search
 description: Learn how to create, load, and query your first search index using an import wizard in the Azure portal. This quickstart uses a fictitious hotel dataset for sample data.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/04/2026
+ms.date: 03/13/2026
 ms.custom:
   - mode-ui
   - ignite-2023
@@ -16,10 +14,7 @@ ms.custom:
 
 # Quickstart: Full-text search in the Azure portal
 
-> [!IMPORTANT]
-> The **Import data (new)** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](search-import-data-portal.md).
-
-In this quickstart, you use the **Import data (new)** wizard and sample data about fictitious hotels to get started with [full-text search](search-lucene-query-architecture.md), also known as keyword search. The wizard requires no code to create an index, helping you write interesting queries within minutes.
+In this quickstart, you use the **Import data** wizard and sample data about fictitious hotels to get started with [full-text search](search-lucene-query-architecture.md), also known as keyword search. The wizard requires no code to create an index, helping you write interesting queries within minutes.
 
 The wizard creates multiple objects on your search service, including a searchable index, an indexer, and a data source connection for automated data retrieval. At the end of this quickstart, you review each object.
 
@@ -31,11 +26,11 @@ The wizard creates multiple objects on your search service, including a searchab
 
 + An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage or Azure Data Lake Storage Gen2 (storage account with a hierarchical namespace) on a standard performance (general-purpose v2) account. To avoid bandwidth charges, use the same region as Azure AI Search.
 
-+ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md).
++ Familiarity with the wizard. See [Import data wizard in the Azure portal](search-import-data-portal.md).
 
 ### Check for network access
 
-For this quickstart, all of the preceding resources must have public access enabled so that the Azure portal nodes can access them. Otherwise, the wizard fails. After the wizard runs, you can enable firewalls and private endpoints on the integration components for security. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
+All of the preceding resources must have public access enabled so that the wizard can access them. Otherwise, the wizard fails. After the wizard runs, you can enable firewalls and private endpoints on the integration components for security. For more information, see [Secure connections in the import wizard](search-import-data-portal.md#secure-connections).
 
 ### Check for space
 
@@ -81,9 +76,9 @@ To prepare the sample data for this quickstart:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
-1. On the **Overview** page, select **Import data (new)**.
+1. On the **Overview** page, select **Import data**.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot that shows how to open the new import wizard in the Azure portal.":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot that shows how to open the import wizard in the Azure portal.":::
 
 1. Select your data source: **Azure Blob Storage** or **Azure Data Lake Storage Gen2**.
 

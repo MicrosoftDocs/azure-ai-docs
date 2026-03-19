@@ -3,12 +3,13 @@ title: "Manage hosted agent lifecycle"
 description: "Start, stop, update, and delete hosted agent deployments using the Azure CLI or Python SDK."
 author: aahill
 ms.author: aahi
-ms.date: 02/19/2026
+ms.date: 03/04/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Manage hosted agent lifecycle
@@ -162,7 +163,7 @@ az cognitiveservices agent delete \
 ### Delete using the SDK
 
 ```python
-client.agents.delete_version(agent_name="my-agent", agent_version="1")
+project.agents.delete_version(agent_name="my-agent", agent_version="1")
 ```
 
 ## List and view agents
@@ -213,26 +214,31 @@ Timeouts:
 Test your running agent using the SDK:
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-agent_name = os.environ["AZURE_AI_AGENT_NAME"]
+# Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+AGENT_NAME = "your_agent_name"
 
-with (
-    DefaultAzureCredential() as credential,
-    AIProjectClient(endpoint=endpoint, credential=credential) as client,
-    client.get_openai_client() as openai_client,
-):
-    agent = client.agents.get(agent_name=agent_name)
-    
-    response = openai_client.responses.create(
-        input=[{"role": "user", "content": "Hello! What can you help me with?"}],
-        extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}}
-    )
-    
-    print(f"Response: {response.output_text}")
+# Create project and OpenAI clients
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
+    credential=DefaultAzureCredential(),
+    allow_preview=True,
+)
+openai = project.get_openai_client()
+
+# Get agent details
+agent = project.agents.get(agent_name=AGENT_NAME)
+
+# Chat with the hosted agent
+response = openai.responses.create(
+    input=[{"role": "user", "content": "Hello! What can you help me with?"}],
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}}
+)
+
+print(f"Response: {response.output_text}")
 ```
 
 You can also test agents in the agent playground UI in the Foundry portal.
@@ -258,7 +264,7 @@ You can also test agents in the agent playground UI in the Foundry portal.
 
 - **Forgetting ACR permissions**: The project's managed identity needs explicit pull access to the container registry
 - **Incorrect platform version for docker images**: Always specify `--platform linux/amd64` when doing docker build yourself 
-- **Wrong SDK version**: Hosted agents require `azure-ai-projects>=2.0.0b4`
+- **Wrong SDK version**: Hosted agents require `azure-ai-projects>=2.0.0`
 - **Missing capability host**: Create an account-level capability host before deploying. See [Deploy a hosted agent](deploy-hosted-agent.md#create-an-account-level-capability-host)
 - **Publishing identity mismatch**: After publishing, the agent uses a different identity. Reassign RBAC permissions
 
@@ -272,4 +278,4 @@ You can also test agents in the agent playground UI in the Foundry portal.
 - [What are hosted agents?](../concepts/hosted-agents.md)
 - [Deploy a hosted agent](deploy-hosted-agent.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
-- [Evaluate your AI agents locally](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md)
+- [Evaluate your AI agents](../../observability/concepts/trace-agent-concept.md)

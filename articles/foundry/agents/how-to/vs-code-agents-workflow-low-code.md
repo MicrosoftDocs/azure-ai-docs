@@ -11,6 +11,7 @@ ms.date: 02/25/2026
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
+ms.custom: doc-kit-assisted
 ---
 
 # Add declarative agent workflows in Visual Studio Code

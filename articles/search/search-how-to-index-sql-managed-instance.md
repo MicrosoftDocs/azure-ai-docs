@@ -1,10 +1,6 @@
 ---
-title: Indexer connection to SQL Managed Instances
-titleSuffix: Azure AI Search
+title: Indexer Connection to SQL Managed Instances
 description: Enable public endpoint to allow connections to SQL Managed Instances from an indexer on Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

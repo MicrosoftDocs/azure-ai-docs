@@ -7,6 +7,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: concept-article
 ms.date: 12/31/2025
 ms.reviewer: meerakurup
@@ -150,7 +151,7 @@ For more information on creating a custom role, see the following articles.
 - [Azure portal](/azure/role-based-access-control/custom-roles-portal)
 - [Azure CLI](/azure/role-based-access-control/custom-roles-cli)
 - [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell)
-- [Disable Preview Features with Role-Based Access](../concepts/disable-preview-features-with-rbac.md). This article provides more details on specific permissions in Foundry across control and data plane which you can utilize when building custom roles.
+- [Disable preview features in Microsoft Foundry](../how-to/disable-preview-features.md). This article provides more details on specific permissions in Foundry across control and data plane which you can utilize when building custom roles.
 
 ## Notes and limitations
 
@@ -168,7 +169,7 @@ For more information on creating a custom role, see the following articles.
 - [Create a project](../how-to/create-projects.md).
 - [Check access for a user to a single Azure resource](/azure/role-based-access-control/check-access?tabs=default).
 - [Authentication and Authorization in Foundry](../concepts/authentication-authorization-foundry.md).
-- [Disable Preview Features with Role-Based Access](../concepts/disable-preview-features-with-rbac.md).
+- [Disable preview features in Microsoft Foundry](../how-to/disable-preview-features.md).
 
 ## Appendix
 

@@ -11,6 +11,7 @@ ai-usage: ai-assisted
 ms.custom:
   - references_regions, build-2024, copilot-scenario-highlight, dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Microsoft Foundry feature availability across cloud regions

@@ -8,7 +8,7 @@ ms.reviewer: ankamene
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 02/23/2026
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

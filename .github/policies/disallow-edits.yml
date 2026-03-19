@@ -64,7 +64,7 @@ configuration:
                 - isActivitySender:
                     user: PatrickFarley
                 - isActivitySender:
-                    user: HeidiSteen
+                    user: mattwojo
                 - isActivitySender:
                     user: haileytap
         then:
@@ -79,7 +79,7 @@ configuration:
                 - aahill
                 - laujan
                 - patrickfarley
-                - heidisteen
+                - mattwojo
                 - haileytap
               replyTemplate: ${mentionees} - Please review this PR and sign off when you're ready to merge it.
               assignMentionees: True # This part probably won't work since the bot doesn't have write perms.

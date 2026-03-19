@@ -8,8 +8,9 @@ ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 10/21/2021
-ms.custom: UpdateFrequency5, sdkv1
+ms.date: 03/05/2026
+ms.custom: UpdateFrequency5, sdkv1, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Distributed GPU training guide (SDK v1)
@@ -18,7 +19,10 @@ ms.custom: UpdateFrequency5, sdkv1
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-Learn more about how to use distributed GPU training code in Azure Machine Learning (ML). This article will not teach you about distributed training.  It will help you run your existing distributed training code on Azure Machine Learning. It offers tips and examples for you to follow for each framework:
+> [!TIP]
+> For the current SDK v2 version of this guide, see [Distributed GPU training guide (SDK v2)](../how-to-train-distributed-gpu.md).
+
+Learn more about how to use distributed GPU training code in Azure Machine Learning (ML). This article doesn't teach you about distributed training. It helps you run your existing distributed training code on Azure Machine Learning. It offers tips and examples for you to follow for each framework:
 
 * Message Passing Interface (MPI)
     * Horovod
@@ -77,6 +81,9 @@ run = Experiment(ws, "experiment_name").submit(run_config)
 
 ### Horovod
 
+> [!NOTE]
+> Horovod is in maintenance mode. For new projects, consider using PyTorch native DistributedDataParallel or DeepSpeed instead.
+
 Use the MPI job configuration when you use [Horovod](https://horovod.readthedocs.io/en/stable/index.html) for distributed training with the deep learning framework.
 
 Make sure your code follows these tips:
@@ -113,7 +120,7 @@ When running MPI jobs with Open MPI images, the following environment variables 
 5. `OMPI_COMM_WORLD_LOCAL_SIZE` - number of processes on the node
 
 > [!TIP]
-> Despite the name, environment variable `OMPI_COMM_WORLD_NODE_RANK` does not corresponds to the `NODE_RANK`. To use per-node-launcher, set `process_count_per_node=1` and use `OMPI_COMM_WORLD_RANK` as the `NODE_RANK`.
+> Despite the name, environment variable `OMPI_COMM_WORLD_NODE_RANK` doesn't correspond to the `NODE_RANK`. To use per-node-launcher, set `process_count_per_node=1` and use `OMPI_COMM_WORLD_RANK` as the `NODE_RANK`.
 
 ## PyTorch
 
@@ -200,6 +207,9 @@ run = Experiment(ws, 'experiment_name').submit(run_config)
 
 ### <a name="per-node-launch"></a> Using torch.distributed.launch (per-node-launch)
 
+> [!NOTE]
+> `torch.distributed.launch` is deprecated in PyTorch 1.9+ and replaced by `torchrun`. The code examples in this section apply to older PyTorch versions. For the updated approach, see the [SDK v2 distributed training guide](../how-to-train-distributed-gpu.md).
+
 PyTorch provides a launch utility in [torch.distributed.launch](https://pytorch.org/docs/stable/distributed.html#launch-utility) that you can use to launch multiple processes per node. The `torch.distributed.launch` module spawns multiple training processes on each of the nodes.
 
 The following steps demonstrate how to configure a PyTorch job with a per-node-launcher on Azure Machine Learning.  The job achieves the equivalent of running the following command:
@@ -254,6 +264,9 @@ run = Experiment(ws, 'experiment_name').submit(run_config)
 - [azureml-examples: Distributed training with PyTorch on CIFAR-10](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/workflows/train/pytorch/cifar-distributed)
 
 ### PyTorch Lightning
+
+> [!NOTE]
+> PyTorch Lightning 2.0+ replaced the `gpus` parameter with `devices` and `accelerator='ddp'` with `strategy='ddp'`. The code examples in this section apply to PyTorch Lightning 1.x only.
 
 [PyTorch Lightning](https://pytorch-lightning.readthedocs.io/en/stable/) is a lightweight open-source library that provides a high-level interface for PyTorch. Lightning abstracts away many of the lower-level distributed training configurations required for vanilla PyTorch. Lightning allows you to run your training scripts in single GPU, single-node multi-GPU, and multi-node multi-GPU settings. Behind the scene, it launches multiple processes for you similar to `torch.distributed.launch`.
 
@@ -332,7 +345,7 @@ To run an experiment using multiple nodes with multiple GPUs, there are 2 option
 
 ### Hugging Face Transformers
 
-Hugging Face provides many [examples](https://github.com/huggingface/transformers/tree/master/examples) for using its Transformers library with `torch.distributed.launch` to run distributed training. To run these examples and your own custom training scripts using the Transformers Trainer API, follow the [Using `torch.distributed.launch`](#distributeddataparallel-per-process-launch) section.
+Hugging Face provides many [examples](https://github.com/huggingface/transformers/tree/main/examples) for using its Transformers library with `torch.distributed.launch` to run distributed training. To run these examples and your own custom training scripts using the Transformers Trainer API, follow the [Using `torch.distributed.launch`](#distributeddataparallel-per-process-launch) section.
 
 Sample job configuration code to fine-tune the BERT large model on the text classification MNLI task using the `run_glue.py` script on one node with 8 GPUs:
 
@@ -353,6 +366,9 @@ run_config = ScriptRunConfig(
 ```
 
 You can also use the [per-process-launch](#distributeddataparallel-per-process-launch) option to run distributed training without using `torch.distributed.launch`. One thing to keep in mind if using this method is that the transformers [TrainingArguments](https://huggingface.co/docs/transformers/main_classes/trainer#transformers.TrainingArguments) expect the local rank to be passed in as an argument (`--local_rank`). `torch.distributed.launch` takes care of this when `--use_env=False`, but if you are using per-process-launch you'll need to explicitly pass the local rank in as an argument to the training script `--local_rank=$LOCAL_RANK` as Azure Machine Learning only sets the `LOCAL_RANK` environment variable.
+
+> [!NOTE]
+> Hugging Face Transformers v4.19+ reads `LOCAL_RANK` from the environment automatically. The `--local_rank` argument is no longer required when using recent versions of Transformers.
 
 ## TensorFlow
 
@@ -407,7 +423,10 @@ TF_CONFIG='{
 
 As the number of VMs training a model increases, the time required to train that model should decrease. The decrease in time, ideally, should be linearly proportional to the number of training VMs. For instance, if training a model on one VM takes 100 seconds, then training the same model on two VMs should ideally take 50 seconds. Training the model on four VMs should take 25 seconds, and so on.
 
-InfiniBand can be an important factor in attaining this linear scaling. InfiniBand enables low-latency, GPU-to-GPU communication across nodes in a cluster. InfiniBand requires specialized hardware to operate. Certain Azure VM series, specifically the NC, ND, and H-series, now have RDMA-capable VMs with SR-IOV and InfiniBand support. These VMs communicate over the low latency and high-bandwidth InfiniBand network, which is much more performant than Ethernet-based connectivity. SR-IOV for InfiniBand enables near bare-metal performance for any MPI library (MPI is used by many distributed training frameworks and tooling, including NVIDIA's NCCL software.) These SKUs are intended to meet the needs of computationally intensive, GPU-acclerated machine learning workloads. For more information, see [Accelerating Distributed Training in Azure Machine Learning with SR-IOV](https://techcommunity.microsoft.com/t5/azure-ai/accelerating-distributed-training-in-azure-machine-learning/ba-p/1059050).
+InfiniBand can be an important factor in attaining this linear scaling. InfiniBand enables low-latency, GPU-to-GPU communication across nodes in a cluster. InfiniBand requires specialized hardware to operate. Certain Azure VM series, specifically the NC, ND, and H-series, now have RDMA-capable VMs with SR-IOV and InfiniBand support. These VMs communicate over the low latency and high-bandwidth InfiniBand network, which is much more performant than Ethernet-based connectivity. SR-IOV for InfiniBand enables near bare-metal performance for any MPI library (MPI is used by many distributed training frameworks and tooling, including NVIDIA's NCCL software.) These SKUs are intended to meet the needs of computationally intensive, GPU-accelerated machine learning workloads. For more information, see [Accelerating Distributed Training in Azure Machine Learning with SR-IOV](https://techcommunity.microsoft.com/t5/azure-ai/accelerating-distributed-training-in-azure-machine-learning/ba-p/1059050).
+
+> [!NOTE]
+> For the latest InfiniBand-enabled GPU VM SKUs, including NDm A100 v4 and ND H100 v5 series, see [HPC VM sizes](/azure/virtual-machines/sizes-hpc#rdma-capable-instances).
 
 Typically, VM SKUs with an 'r' in their name contain the required InfiniBand hardware, and those without an 'r' typically do not. ('r' is a reference to RDMA, which stands for "remote direct memory access.") For instance, the VM SKU `Standard_NC24rs_v3` is InfiniBand-enabled, but the SKU  `Standard_NC24s_v3` is not.  Aside from the InfiniBand capabilities, the specs between these two SKUs are largely the same – both have 24 cores, 448 GB RAM, 4 GPUs of the same SKU, etc. [Learn more about RDMA- and InfiniBand-enabled machine SKUs](/azure/virtual-machines/sizes-hpc#rdma-capable-instances).
 

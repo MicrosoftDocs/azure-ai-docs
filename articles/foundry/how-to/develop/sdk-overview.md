@@ -7,9 +7,10 @@ ms.custom:
   - build-2024
   - ignite-2024
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 02/06/2026
+ms.date: 03/06/2026
 ms.reviewer: dantaylo
 ms.author: johalexander
 author: ms-johnalex
@@ -90,15 +91,14 @@ This approach simplifies application configuration. Instead of managing multiple
 
 | SDK Version   | Portal Version  | Status  | Python Package                |
 |---------------|-----------------|---------|-------------------------------|
-| 2.x (preview) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0b1 --pre`  |
+| 2.x (GA) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0`  |
 | 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    |
 
-The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run these commands to install the preview packages for Foundry projects.
+Run this command to install the preview packages for Foundry projects.
 ```bash
-pip install --pre azure-ai-projects
-pip install azure-identity openai
+pip install azure-ai-projects >=2.0.0
 ```
 ::: zone-end
 
@@ -281,7 +281,7 @@ Console.WriteLine(response.GetOutputText());
 
 - [Access Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
 - [Use the Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
-- [Run cloud evaluations](cloud-evaluation.md)
+- [Run batch evaluations](cloud-evaluation.md)
 - [Enable app tracing](../../../foundry-classic/how-to/develop/trace-application.md)
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai&pivots=programming-language-python)
 - Get endpoints and keys for Foundry Tools, local orchestration, and more
@@ -340,7 +340,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -390,7 +390,7 @@ DefaultAzureCredential tokenCredential = new DefaultAzureCredentialBuilder().bui
 String endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
 String deploymentName = "gpt-5.2";
 Supplier<String> bearerTokenSupplier = AuthenticationUtil.getBearerTokenSupplier(
-        tokenCredential, "https://cognitiveservices.azure.com/.default");
+        tokenCredential, "https://ai.azure.com/.default");
 OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
         .baseUrl(endpoint)
         .credential(BearerTokenCredential.create(bearerTokenSupplier))
@@ -412,7 +412,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 ```javascript
 const endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
-const scope = "https://cognitiveservices.azure.com/.default";
+const scope = "https://ai.azure.com/.default";
 const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
 const client = new OpenAI({ baseURL: endpoint, apiKey: azureADTokenProvider });
 const response = await client.responses.create({
@@ -448,7 +448,7 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
    BearerTokenPolicy tokenPolicy = new(
         new DefaultAzureCredential(),
-        "https://cognitiveservices.azure.com/.default");
+        "https://ai.azure.com/.default");
     
    OpenAIResponseClient client = new(
         model: deploymentName,

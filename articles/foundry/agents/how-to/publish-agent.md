@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
 
 # Publish and share agents in Microsoft Foundry
@@ -26,7 +26,10 @@ If you specifically want to build and publish an agent as a digital worker in Ag
 
 During development, you build and test your agent inside a Foundry project. The project gives you and your teammates a shared workspace, but it isn't designed for broad distribution because everyone with project access can interact with all agents and shares the same conversation context and permissions. Publishing is the step that moves an agent out of that shared development space and into a production-ready Azure resource.
 
-When you publish an agent version, Foundry creates an **Agent Application** resource that wraps your agent version with its own invocation URL, authentication policy, unique Entra agent identity, unique Entra agent blueprint, and registers it in the [Entra Agent Registry](/entra/agent-id/identity-platform/what-is-agent-registry) for discoverability and governance. A **Deployment** is also created as a child resource of the application, referencing the specific agent version being published and supporting start/stop lifecycle management.
+When you publish an agent version, Foundry creates an **Agent Application** resource that wraps your agent version with its own invocation URL, authentication policy, unique Entra agent identity, and unique Entra agent blueprint. A **Deployment** is also created as a child resource of the application, referencing the specific agent version being published and supporting start/stop lifecycle management.
+
+> [!NOTE]
+> Foundry Agent Applications are not registered in the Microsoft Entra agent registry.
 
 ### Why publish?
 
@@ -49,7 +52,7 @@ Because the identity changes, **permissions don't transfer automatically**. When
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one agent version created
-- [Azure AI Project Manager role](../../concepts/rbac-foundry.md) on the Foundry project scope to publish agents
+- [Azure AI Project Manager role](../../concepts/rbac-foundry.md) on the Foundry resource scope to publish agents
 - [Azure AI User role](../../concepts/rbac-foundry.md) on the Agent Application scope to chat with a published agent using the Responses API protocol
 - Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) for permission configuration
 - Familiarity with [Agent identity concepts in Foundry](../concepts/agent-identity.md)
@@ -387,14 +390,13 @@ Agents published as Agent Applications have the following limitations:
 
 | Limitation | Description |
 | --- | --- |
-| Microsoft Entra Agent Registry visibility | There's a bug where published agents don't appear in the Entra Agent Registry (EAR). |
 | No UI or CLI management | There isn’t a dedicated UI/CLI for advanced management operations. Use the REST API for management operations not available in the Foundry portal publishing flow. |
 
 ## Troubleshooting
 
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
-| **Publish Agent** is disabled | Missing Azure AI Project Manager role on the project scope | Confirm you have the required role assignment on the Foundry project. |
+| **Publish Agent** is disabled | Missing Azure AI Project Manager role on the Foundry resource scope | Assign the Azure AI Project Manager role on the Foundry resource (account) scope, not just on the project scope. |
 | `403 Forbidden` when invoking the endpoint | Caller lacks invoke permissions on the Agent Application resource | Assign the Azure AI User role on the Agent Application resource to the caller. |
 | `401 Unauthorized` when invoking the endpoint | The access token is missing, expired, or for the wrong resource | Reauthenticate and request a token for `https://ai.azure.com`. |
 | Tool calls fail after publishing | The Agent Application identity doesn’t have the same access as the project identity | Reassign the required RBAC roles to the published agent identity for any downstream Azure resources it must access. |

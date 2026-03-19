@@ -151,6 +151,21 @@ items:
     - name: Speech to text FAQ
       displayName: FAQ,STT,frequently asked questions
       href: faq-stt.yml
+    - name: Reference
+      items:
+      - name: Speech to text REST API reference
+        href: /rest/api/speechtotext/operation-groups
+      - name: Speech Transcription SDK
+        items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.speech.transcription-readme
+          - name: Java
+            displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
+            href: /java/api/overview/azure/ai-speech-transcription-readme
+          - name: Python
+            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
+            href: /python/api/overview/azure/ai-transcription-readme
 - name: Text to speech
   items:
     - name: Text to speech documentation
@@ -297,10 +312,21 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
-    - name: Speech Transcription SDK
-      href: transcription-sdk.md
-    - name: LLM speech REST API reference
-      href: /rest/api/speechtotext/transcriptions/transcribe
+    - name: Reference
+      items:
+      - name: LLM speech REST API reference
+        href: /rest/api/speechtotext/transcriptions/transcribe
+      - name: Speech Transcription SDK
+        items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.speech.transcription-readme
+          - name: Java
+            displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
+            href: /java/api/overview/azure/ai-speech-transcription-readme
+          - name: Python
+            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
+            href: /python/api/overview/azure/ai-transcription-readme
 - name: Voice Live
   items:
     - name: Voice Live overview
@@ -342,7 +368,7 @@ items:
       displayName: FAQ,frequently asked questions
     - name: Reference
       items:
-      - name: Voice Live API reference
+      - name: Voice Live REST API reference
         items:
         - name: '2025-10-01'
           href: voice-live-api-reference-2025-10-01.md
@@ -539,6 +565,9 @@ items:
             href: /python/api/azure-cognitiveservices-speech/
       - name: Speech Transcription SDK
         items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.speech.transcription-readme
           - name: Java
             displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
             href: /java/api/overview/azure/ai-speech-transcription-readme

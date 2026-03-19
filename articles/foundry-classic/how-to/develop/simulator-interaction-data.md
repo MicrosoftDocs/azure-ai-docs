@@ -175,7 +175,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 def call_to_your_ai_application(query: str) -> str:
     # logic to call your application
     # use a try except block to catch any errors
-    token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
 
     deployment = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
     endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")

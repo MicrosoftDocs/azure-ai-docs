@@ -25,7 +25,7 @@ items:
   - name: Configure Azure resources
     href: conversational-language-understanding/how-to/configure-azure-resources.md
     displayName: configuration, fine-tuning, azure ai foundry, azure portal
-  - name: Migrate to Microsoft Foundry 🆕
+  - name: Migrate to Microsoft Foundry 
     href: migration-studio-to-foundry.md
     displayName: migrate, foundry, studio, permissions, roles, access, requisites, requirements
 - name: Azure Language in Foundry Tools capabilities
@@ -41,7 +41,7 @@ items:
         - name: Get started
           href: conversational-language-understanding/quickstart.md
           displayName: getting started, tutorial, conversational ai setup
-        - name: Try multi-turn conversations 🆕
+        - name: Try multi-turn conversations 
           href: conversational-language-understanding/how-to/quickstart-multi-turn-conversations.md
           displayName: slot-filling, intent, entities, entity, association, foundry
     - name: Language support
@@ -62,7 +62,7 @@ items:
         href: /azure/ai-foundry/responsible-ai/clu/clu-data-privacy-security?context=/azure/ai-services/language-service/context/context
     - name: How-to guides
       items:
-        - name: Build a multi-turn conversation model 🆕
+        - name: Build a multi-turn conversation model 
           href:  conversational-language-understanding/how-to/build-multi-turn-model.md
           displayName: slot-filling, intent, entities, entity, association, foundry
         - name: Use containers
@@ -103,7 +103,7 @@ items:
           displayName: disaster recovery, failover, clu
     - name: Concepts
       items:
-        - name: Multi-turn conversations 🆕
+        - name: Multi-turn conversations 
           href:  conversational-language-understanding/concepts/multi-turn-conversations.md
           displayName: slot-filling, intent, entities, entity, association, foundry
         - name: Best practices
@@ -166,7 +166,7 @@ items:
       - name: Create, test, and deploy a knowledge base
         href: question-answering/how-to/create-test-deploy.md
         displayName: knowledge base, test deploy
-      - name: Deploy a CQA agent 🆕
+      - name: Deploy a CQA agent 
         href: question-answering/how-to/deploy-agent.md
         displayName: virtual assistant, chatbot, knowledge base, deployment
       - name: Export/import/refresh
@@ -458,7 +458,7 @@ items:
           href: ../cognitive-services-container-support.md
     - name: Concepts
       items:
-      - name: Recognized entity categories 🆕
+      - name: Recognized entity categories 
         href: named-entity-recognition/concepts/named-entity-categories.md
       - name: Entity Metadata
         href: named-entity-recognition/concepts/entity-metadata.md
@@ -773,7 +773,7 @@ items:
   - name: Developer guide
     href: concepts/developer-guide.md
     displayName: development, sdk guide, programming
-  - name: Azure tools and agents 🆕
+  - name: Azure tools and agents 
     href: concepts/foundry-tools-agents.md
     displayName: mcp, exact, question, answering, intent, routing
   - name: Role-based-access-control

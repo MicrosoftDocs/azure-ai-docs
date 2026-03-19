@@ -9,8 +9,10 @@ ms.subservice: azure-ai-foundry-openai
 ms.reviewer: nitinme
 ms.topic: concept-article
 ms.date: 05/21/2024
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Customer Copyright Commitment Required Mitigations

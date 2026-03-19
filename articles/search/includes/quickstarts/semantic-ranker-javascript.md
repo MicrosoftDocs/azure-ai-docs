@@ -1,6 +1,5 @@
 ---
-author: diberry
-ms.author: haileytapia
+ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -23,7 +22,7 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 + An [Azure AI Search service](../../search-create-service-portal.md) with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample](../../search-get-started-portal.md) index.
++ An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample index](../../search-get-started-portal.md).
 
 + [Node.js 20 LTS](https://nodejs.org/en/download/) or later.
 
