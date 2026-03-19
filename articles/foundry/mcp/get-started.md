@@ -1,6 +1,6 @@
 ---
-title: "Get started using Microsoft Foundry MCP Server with Visual Studio Code"
-description: "Connect to Microsoft Foundry MCP Server from Visual Studio Code, authenticate with Entra ID, and run your first prompts against Foundry services."
+title: "Get started using Foundry MCP Server with Visual Studio Code"
+description: "Connect to Foundry MCP Server from Visual Studio Code, authenticate with Entra ID, and run your first prompts against Foundry services."
 keywords: mcp, model context protocol, foundry mcp server, visual studio code
 author: sdgilley
 ms.author: sgilley
@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Get started with Microsoft Foundry MCP Server (preview) using Visual Studio Code
 
-Microsoft Foundry MCP Server (preview) is a cloud-hosted implementation of the Model Context Protocol (MCP). It exposes curated tools that let your agents perform read and write operations against Foundry services without calling backend APIs directly. You don't need to deploy infrastructure — the server provides a secure, scalable endpoint with built-in authentication through Microsoft Entra ID.
+Foundry MCP Server (preview) is a cloud-hosted implementation of the Model Context Protocol (MCP). It exposes curated tools that let your agents perform read and write operations against Foundry services without calling backend APIs directly. You don't need to deploy infrastructure — the server provides a secure, scalable endpoint with built-in authentication through Microsoft Entra ID.
 
 Use an MCP-compliant client such as Visual Studio Code to connect to the public endpoint, authenticate with Entra ID, and let LLMs access the tools. After you connect, you can build agents that invoke these tools with natural language prompts.
 
