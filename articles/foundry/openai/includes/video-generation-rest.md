@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](/azure/ai-foundry/openai/concepts/models#video-generation-models).
-- Then, you need to deploy a `sora` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
+- Then, you need to deploy a `sora` (Sora 2) model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 
 ## Microsoft Entra ID prerequisites
 
@@ -80,13 +80,13 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
-### Generate video with Sora
+### Generate video with Sora 2
 
-You can generate a video with the Sora model by creating a video generation job, polling for its status, and retrieving the generated video. The following code shows how to do this via the REST API using Python.
+You can generate a video with the Sora 2 model by creating a video generation job, polling for its status, and retrieving the generated video. The following code shows how to do this via the REST API using Python.
 
 ### Choose your input type
 
-Sora supports three input modes:
+Sora 2 supports three input modes:
 
 | Input type | Best for | Example use case |
 |------------|----------|------------------|
@@ -411,7 +411,7 @@ If you encounter issues, check the following common problems and solutions:
 |-------|-------|----------|
 | `401 Unauthorized` | Invalid or expired credentials | For Microsoft Entra ID, run `az login` to refresh your token. For API key, verify `AZURE_OPENAI_API_KEY` is correct. |
 | `403 Forbidden` | Missing role assignment | Assign the **Cognitive Services User** role to your account in the Azure portal. |
-| `404 Not Found` | Incorrect endpoint or deployment name | Verify `AZURE_OPENAI_ENDPOINT` includes your resource name and `AZURE_OPENAI_DEPLOYMENT_NAME` matches your Sora deployment. |
+| `404 Not Found` | Incorrect endpoint or deployment name | Verify `AZURE_OPENAI_ENDPOINT` includes your resource name and `AZURE_OPENAI_DEPLOYMENT_NAME` matches your Sora 2 deployment. |
 | `429 Too Many Requests` | Rate limit exceeded | Wait and retry, or request a quota increase in the Azure portal. |
 | `400 Bad Request` with dimension error | Unsupported resolution | Use a supported resolution: 480×480, 720×720, 1080×1080, 1280×720, or 1920×1080. |
 | Job status `failed` | Content policy violation or internal error | Check `failure_reason` in the response. Modify your prompt if it triggered content filtering. |
