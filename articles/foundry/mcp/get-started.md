@@ -10,7 +10,6 @@ ms.topic: get-started
 ms.service: azure-ai-foundry
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
-ms.custom: doc-kit-assisted
 ---
 
 # Get started with Microsoft Foundry MCP Server (preview) using Visual Studio Code
