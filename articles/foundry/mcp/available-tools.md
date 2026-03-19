@@ -136,7 +136,7 @@ Example prompts:
 
 - "Show me all GPT-4 models available in the catalog."
 - "List all Microsoft-published models with MIT license."
-- "Get detailed information and code samples for GPT-4o-mini."
+- "Get detailed information and code samples for GPT-5-mini."
 
 | Tool | Access | Description | Key inputs | Returns |
 | --- | --- | --- | --- | --- |
@@ -149,7 +149,7 @@ Deploy, inspect, and remove model deployments in a Foundry account.
 
 Example prompts:
 
-- "Deploy GPT-4o-mini as `production-chatbot` with 20 capacity units."
+- "Deploy GPT-5-mini as `production-chatbot` with 20 capacity units."
 - "Show me all my current model deployments."
 - "Delete the `old-test-deployment` that I'm no longer using."
 
@@ -166,7 +166,7 @@ Compare model benchmarks and get recommendations for switching to more cost-effe
 Example prompts:
 
 - "Show me benchmark data for all available models."
-- "Compare benchmark performance between GPT-4 and GPT-3.5-turbo."
+- "Compare benchmark performance between GPT-5.4 and GPT-4."
 - "Find models similar to my current GPT-4 deployment."
 - "What models would give me better quality/cost ratio than what I'm using now?"
 
@@ -220,7 +220,7 @@ Optimize system prompts and developer messages for better LLM performance.
 
 Example prompts:
 
-- "Optimize my system prompt: 'You are a helpful customer service agent' using `gpt-4o`."
+- "Optimize my system prompt: 'You are a helpful customer service agent' using `gpt-5.4`."
 - "Improve my agent instructions to get more concise responses."
 - "Refine my optimized prompt to also handle follow-up questions."
 
@@ -239,8 +239,8 @@ Example prompts:
 
 **Model deployment and optimization:**
 
-1. "Show me all GPT-4 models available in the catalog."
-1. "Deploy GPT-4o as `customer-service-bot` with 15 capacity units."
+1. "Show me all GPT-5.4 models available in the catalog."
+1. "Deploy GPT-5.4 as `customer-service-bot` with 15 capacity units."
 1. "Monitor the request latency for my new deployment."
 1. "Recommend more cost-effective alternatives based on current usage."
 
@@ -267,7 +267,7 @@ For more information, see [Supplemental Terms of Use for Microsoft Azure Preview
 | Error | Cause | Resolution |
 | --- | --- | --- |
 | Access denied | Insufficient Azure RBAC role on the Foundry project or account. | Assign at least **Reader** for read tools or **Contributor** for write tools. See [RBAC for Microsoft Foundry](../concepts/rbac-foundry.md). |
-| Authentication failure | Expired or invalid Entra ID token. | Sign out and sign back in to your Azure account in Visual Studio Code. |
+| Authentication failure | Expired or invalid Entra ID token. | Sign out and sign back in to your Azure account in Visual Studio Code, or the tool you're using. |
 | Quota exceeded | Not enough capacity to create a deployment or run an evaluation. | Use `model_quota_list` to check available quota before the operation. |
 | Resource not found | The specified deployment, dataset, agent, or connection doesn't exist. | Use the corresponding `get` or `list` tool to verify the resource name. |
 | Private endpoint not reachable | Foundry resources use Azure Private Links that the server can't reach. | Remove private endpoint restrictions or use SDKs/REST APIs instead. |
