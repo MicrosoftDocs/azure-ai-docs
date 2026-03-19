@@ -13,13 +13,21 @@ ms.custom:
 
 # Configure customer-managed keys for data encryption in Azure AI Search
 
-Azure AI Search automatically encrypts data at rest with [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). If you need another layer of encryption or the ability to revoke keys and shut down access to content, you can use keys that you create and manage in Azure Key Vault. This article explains how to set up customer-managed key (CMK) encryption.
+Azure AI Search automatically encrypts data at rest with [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). 
 
-You can store keys using either:
+Customer‑managed key (CMK) encryption adds an additional layer of encryption on top of the default Microsoft‑managed encryption. By adding an additional CMK layer, you control the encryption keys used to protect your data, including the ability to:
+
+- Rotate keys on a customer‑defined schedule
+- Disable or revoke keys to immediately block access to encrypted content
+- Audit key usage through Azure Key Vault logging
+
+You can create, store, and manage keys using either:
 
 + Azure Key Vault
 
 + Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. HSM support is new in Azure AI Search. To migrate from Azure Key Vault to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
+
+This article explains how to set up CMK encryption.
 
 > [!IMPORTANT]
 > + CMK provides encryption for data at rest. If you need to protect data in use, consider using [confidential computing](search-security-best-practices.md#optional-enable-confidential-computing).
