@@ -10,7 +10,6 @@ author: sdgilley
 ms.custom:
   - devx-track-ai
   - classic-and-new
-  - doc-kit-assisted
 content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted

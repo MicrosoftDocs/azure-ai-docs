@@ -19,7 +19,7 @@ Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Mode
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - The following Python libraries installed: `os`, `requests`, `json`.
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
-- Then, you need to deploy a `gpt-image-1`-series or `dalle3` model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
+- Then, you need to deploy a `gpt-image-1`-series model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 
 ### Setup 
 
@@ -41,8 +41,6 @@ Go to your resource in the Azure portal. On the navigation pane, select **Keys a
 ### Create a new Python application
 
 Create a new Python file named _quickstart.py_. Open the new file in your preferred editor or IDE.
-
-#### [GPT-image-1 series](#tab/gpt-image-1)
 
 1. Replace the contents of _quickstart.py_ with the following code. Change the value of `prompt` to your preferred text. Also set `deployment` to the deployment name you chose when you deployed the GPT-image-1 series model.
     
@@ -134,63 +132,16 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
 tbd
 -->
 
-#### [DALL-E 3](#tab/dalle-3)
-
-1. Replace the contents of _quickstart.py_ with the following code. Change the value of `prompt` to your preferred text.
-
-    You also need to replace `<dalle3>` in the URL with the deployment name you chose when you deployed the DALL-E 3 model. Entering the model name will result in an error unless you chose a deployment name that is identical to the underlying model name. If you encounter an error, double check to make sure that you don't have a doubling of the `/` at the separation between your endpoint and `/openai/deployments`.
-    
-    ```python
-    import requests
-    import time
-    import os
-    api_base = os.environ['AZURE_OPENAI_ENDPOINT']  # Enter your endpoint here
-    api_key = os.environ['AZURE_OPENAI_API_KEY']         # Enter your API key here
-
-    api_version = '2024-02-01'
-    url = f"{api_base}/openai/deployments/<dalle3>/images/generations?api-version={api_version}"
-    headers= { "api-key": api_key, "Content-Type": "application/json" }
-    body = {
-        # Enter your prompt text here
-        "prompt": "A multi-colored umbrella on the beach, disposable camera",
-        "size": "1024x1024", # supported values are “1792x1024”, “1024x1024” and “1024x1792” 
-        "n": 1, #The number of images to generate. Only n=1 is supported for DALL-E 3.
-        "quality": "hd", # Options are “hd” and “standard”; defaults to standard 
-        "style": "vivid" # Options are “natural” and “vivid”; defaults to “vivid”
-    }
-    submission = requests.post(url, headers=headers, json=body)
-    
-    image_url = submission.json()['data'][0]['url']
-    
-    print(image_url)
-    ```
-
-    The script makes a synchronous image generation API call.
-
-    > [!IMPORTANT]
-    > Remember to remove the key from your code when you're done, and never post your key publicly. For production, use a secure way of storing and accessing your credentials. For more information, see [Azure Key Vault](/azure/key-vault/general/overview).
-
-1. Run the application with the `python` command:
-
-    ```console
-    python quickstart.py
-    ```
-
-    Wait a few moments to get the response.
-
----
-
 ### Output
 
-The output from a successful image generation API call looks like the following example. The `url` field contains a URL where you can download the generated image. The URL stays active for 24 hours.
+The output from a successful image generation API call looks like the following example. The `b64_json` field contains the base64-encoded output image data.
 
 ```json
 { 
     "created": 1698116662, 
     "data": [ 
         { 
-            "url": "<URL_to_generated_image>",
-            "revised_prompt": "<prompt_that_was_used>" 
+            "b64_json": "<base64 image data>"
         }
     ]
 } 
@@ -198,8 +149,7 @@ The output from a successful image generation API call looks like the following 
 
 A successful response includes:
 - A `created` timestamp (Unix epoch time)
-- A `data` array with at least one image object
-- Either a `url` (temporary link valid for 24 hours) or `b64_json` (base64-encoded image data)
+- A `data` array with at least one image object- Either a `b64_json` (base64-encoded image data) value for each generated image
 
 #### Common errors
 

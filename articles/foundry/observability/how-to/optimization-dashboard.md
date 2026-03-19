@@ -7,8 +7,7 @@ ms.date: 02/25/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
-ai-usage: ai-assisted 
-ms.custom: doc-kit-assisted
+ai-usage: ai-assisted
 ---
  
 

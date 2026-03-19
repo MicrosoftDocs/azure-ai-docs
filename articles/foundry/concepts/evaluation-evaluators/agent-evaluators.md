@@ -12,10 +12,10 @@ ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
-  - doc-kit-assisted
 ---
 
 # Agent evaluators
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 AI agents are powerful productivity assistants that can create workflows for business needs. However, observability can be a challenge due to their complex interaction patterns. Agent evaluators provide systematic observability into agentic workflows by measuring quality, safety, and performance.
@@ -164,7 +164,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
@@ -325,6 +325,6 @@ When using conversation array format, `query` and `response` follow the OpenAI m
 ## Related content
 
 - [More examples for agent quality evaluator](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators)
-- [How to run agent evaluation](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md)
+- [Evaluate your AI agents](../../observability/how-to/evaluate-agent.md)
 - [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)

@@ -99,7 +99,7 @@ sections:
       - question: |
          What measures are in place to ensure that translations are accurate and reliable in real-world scenarios?
         answer: |
-          In addition to ongoing testing and evaluation, we also utilize speech and translation services trusted by customers for years in practical, real-world applications. For more information, *see* [Customer story: Berlitz empowered 500,000 language learners using Azure Speech in Foundry Tools](https://www.microsoft.com/customers/story/1650519804730300378-berlitz-language-azure-ai-speech-usa).
+          In addition to ongoing testing and evaluation, we also utilize speech and translation services trusted by customers for years in practical, real-world applications. For more information, *see* [Customer story: Berlitz empowered 500,000 language learners using Azure Speech in Foundry Tools](https://www.berlitz.com/blog/news/microsoft-recognizes-berlitz-s-use-of-ai-to-improve-language-learning).
 
   - name: Ongoing Monitoring, Accountability, and Transparency
     questions:
