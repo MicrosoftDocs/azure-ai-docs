@@ -7,7 +7,7 @@ ms.custom:
   - ai-learning-hub
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 02/13/2026
+ms.date: 03/19/2026
 ms.reviewer: changliu2
 ms.author: lagayhar  
 author: lgayhardt
@@ -70,14 +70,14 @@ Quality index values range from zero to one, where higher values indicate better
 
 | Dataset Name | Category |
 |--|--|
-| [arena_hard](https://github.com/lmarena/arena-hard-auto) | QA |
 | [bigbench_hard](https://github.com/suzgunmirac/BIG-Bench-Hard) (downsampled to 1,000 examples) | Reasoning |
+| [chembench](https://github.com/lamalab-org/chembench) | Chemistry |
+| [frontierscience](https://github.com/medicalsphere/FrontierScience)| Scientific reasoning |
 | [gpqa](https://github.com/idavidrein/gpqa) | QA |
-| [humanevalplus](https://github.com/evalplus/evalplus) | Coding |
-| [ifeval](https://github.com/google-research/google-research/tree/master/instruction_following_eval) | Reasoning |
-| [math](https://github.com/hendrycks/math) | Math |
 | [mbppplus](https://github.com/evalplus/evalplus) | Coding |
 | [mmlu_pro](https://github.com/TIGER-AI-Lab/MMLU-Pro) (downsampled to 1,000 examples) | General knowledge |
+| [musr](https://github.com/zayne-sprague/musr)| Reasoning |
+| [tau2_telecom](https://github.com/sierra-research/tau2-bench/tree/main/data/tau2/domains/telecom) | Customer service |
 
 See more details in accuracy scores:
 
