@@ -16,6 +16,7 @@ ai-usage: ai-assisted
 ---
 
 # Custom evaluators (preview)
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
@@ -412,7 +413,7 @@ project_client.beta.evaluators.delete_version(
 client.evals.delete(eval_id=eval_object.id)
 ```
 
-For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md).
+For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
 
 For additional examples including listing, updating, and deleting evaluators, see the [evaluator catalog management Python SDK sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog.py).
 
@@ -447,5 +448,5 @@ For detailed steps on running evaluations from the portal, see [Run evaluations 
 
 ## Related content
 
-- [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md)
+- [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
 - [Built-in evaluators](../built-in-evaluators.md)
