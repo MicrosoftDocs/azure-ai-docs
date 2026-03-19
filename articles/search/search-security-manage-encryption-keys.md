@@ -185,7 +185,7 @@ Currently service-level encryption isn't supported in the Azure portal, we recom
 
 ### [**REST APIs**](#tab/rest)
 
-To configure CMK encryption at the service level on your search service, use [Services - Create Or Update](https://learn.microsoft.com/en-us/rest/api/searchmanagement/services/create-or-update) (Management REST API) with the `PATCH` command to update an existing search service, or the `PUT` command to create a new service, calling the  REST endpoint and API version. The API version must be 2026-03-01-preview or later to support service-level encryption key configuration. See the examples below for how to specify the service-level encryption key with different identity types.
+To configure CMK encryption at the service level on your search service, use [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update) (Management REST API) with the `PATCH` command to update an existing search service, or the `PUT` command to create a new service, calling the  REST endpoint and API version. The API version must be 2026-03-01-preview or later to support service-level encryption key configuration. See the examples below for how to specify the service-level encryption key with different identity types.
 
 Example using system-assigned managed identity:
 
