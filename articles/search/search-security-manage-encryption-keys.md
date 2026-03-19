@@ -186,7 +186,7 @@ To configure CMK encryption at the service level on your search service, use [Se
 Example using system-assigned managed identity:
 
 ```http
-PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-10-01-preview
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
