@@ -397,25 +397,25 @@ Before running the commands below, ensure the following:
 * You're signed in to Azure using `az login`
 * You have **Owner** or **Contributor** access to the subscription
 
-### Disable web search preview
+### Enable web search preview
 
-To disable the `web_search_preview` tool for all accounts in a subscription:
+To enable the `web_search_preview` tool for all accounts in a subscription:
 
 ```bash
 az feature register --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
 ```
 
-This command disables web search across all accounts in the specified subscription.
+This command enables web search across all accounts in the specified subscription.
 
-### Enable web search preview
+### Disable web search preview
 
-To enable the `web_search_preview` tool:
+To disable the `web_search_preview` tool:
 
 ```bash
 az feature unregister --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
 ```
 
-This command enables Bing web search functionality for all accounts in the subscription.
+This command disables Bing web search functionality for all accounts in the subscription.
 
 ## Troubleshooting
 
