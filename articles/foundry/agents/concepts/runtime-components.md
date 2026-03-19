@@ -54,8 +54,7 @@ pip install azure-identity
 # [C#](#tab/csharp)
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.AI.Projects.OpenAI --prerelease
+dotnet add package Azure.AI.Projects --version 2.0.0-beta.2
 dotnet add package Azure.Identity
 ```
 
@@ -141,7 +140,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create a prompt agent
-var agent = await projectClient.Agents
+AgentVersion agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
@@ -149,7 +148,7 @@ var agent = await projectClient.Agents
             {
                 Instructions = "You are a helpful assistant.",
             }));
-Console.WriteLine($"Agent: {agent.Value.Name}, Version: {agent.Value.Version}");
+Console.WriteLine($"Agent: {agent.Name}, Version: {agent.Version}");
 ```
 
 # [JavaScript](#tab/javascript)
@@ -274,7 +273,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create an agent with a web search tool
-var agent = await projectClient.Agents
+AgentVersion agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-tool-agent",
         options: new(
@@ -283,7 +282,7 @@ var agent = await projectClient.Agents
                 Instructions = "You are a helpful assistant that can search the web.",
                 Tools = { ResponseTool.CreateWebSearchTool() },
             }));
-Console.WriteLine($"Agent: {agent.Value.Name}, Version: {agent.Value.Version}");
+Console.WriteLine($"Agent: {agent.Name}, Version: {agent.Version}");
 ```
 
 # [JavaScript](#tab/javascript)
@@ -420,7 +419,7 @@ print(follow_up.output_text)
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 // Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
@@ -432,17 +431,20 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Generate a response using the agent
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName });
+ProjectResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What is the largest city in France?");
 Console.WriteLine(response.GetOutputText());
 
 // Ask a follow-up question using the previous response
 ResponseResult followUp = await responsesClient.CreateResponseAsync(
-    "What is the population of that city?",
-    previousResponseId: response.Id);
+    new CreateResponseOptions
+    {
+        PreviousResponseId = response.Id,
+        InputItems = { ResponseItem.CreateUserMessageItem(
+            "What is the population of that city?") },
+    });
 Console.WriteLine(followUp.GetOutputText());
 ```
 
@@ -600,7 +602,7 @@ for item in response.output:
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 var projectEndpoint = "your_project_endpoint";
 var agentName = "your_agent_name";
@@ -609,9 +611,8 @@ AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
     tokenProvider: new DefaultAzureCredential());
 
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName });
+ProjectResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What happened in the news today?");
 
@@ -799,7 +800,7 @@ print(follow_up.output_text)
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 var projectEndpoint = "your_project_endpoint";
 var agentName = "your_agent_name";
@@ -809,37 +810,31 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Generate a response without storing
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName });
+ProjectResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
-    "What is the largest city in France?",
-    store: false);
+    new CreateResponseOptions
+    {
+        InputItems = { ResponseItem.CreateUserMessageItem(
+            "What is the largest city in France?") },
+        Store = false,
+    });
 Console.WriteLine(response.GetOutputText());
 
 // Carry forward context client-side by passing previous output as input
 ResponseResult followUp = await responsesClient.CreateResponseAsync(
-    new ResponseCreationOptions
+    new CreateResponseOptions
     {
-        Instructions = null,
-        Input = ResponseInput.FromItems(
-            new ResponseInputItem.Message
-            {
-                Role = "user",
-                Content = "What is the largest city in France?"
-            },
-            new ResponseInputItem.Message
-            {
-                Role = "assistant",
-                Content = response.GetOutputText()
-            },
-            new ResponseInputItem.Message
-            {
-                Role = "user",
-                Content = "What is the population of that city?"
-            }
-        ),
-        Store = false
+        InputItems =
+        {
+            ResponseItem.CreateUserMessageItem(
+                "What is the largest city in France?"),
+            ResponseItem.CreateAssistantMessageItem(
+                response.GetOutputText()),
+            ResponseItem.CreateUserMessageItem(
+                "What is the population of that city?"),
+        },
+        Store = false,
     });
 Console.WriteLine(followUp.GetOutputText());
 ```
@@ -1005,7 +1000,7 @@ print(f"Conversation ID: {conversation.id}")
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 // Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
@@ -1257,7 +1252,7 @@ print(follow_up.output_text)
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 var projectEndpoint = "your_project_endpoint";
 var agentName = "your_agent_name";
@@ -1271,10 +1266,9 @@ ProjectConversation conversation
     = await projectClient.OpenAI.Conversations.CreateProjectConversationAsync();
 
 // First turn
-ResponsesClient responsesClient
+ProjectResponsesClient responsesClient
     = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName },
-        conversation.Id);
+        agentName, conversation);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What is the largest city in France?");
 Console.WriteLine(response.GetOutputText());
@@ -1449,7 +1443,7 @@ for event in stream:
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 // Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
@@ -1461,13 +1455,16 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Stream a response using the agent
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName });
-await foreach (var update in responsesClient.CreateResponseStreamingAsync(
-    "Explain how agents work in one paragraph."))
+ProjectResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+await foreach (StreamingResponseUpdate update
+    in responsesClient.CreateResponseStreamingAsync(
+        "Explain how agents work in one paragraph."))
 {
-    Console.Write(update.Text);
+    if (update is StreamingResponseOutputTextDeltaUpdate textDelta)
+    {
+        Console.Write(textDelta.Delta);
+    }
 }
 ```
 
@@ -1601,7 +1598,7 @@ print(response.output_text)
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 var projectEndpoint = "your_project_endpoint";
 var agentName = "your_agent_name";
@@ -1611,12 +1608,15 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Start a background response using the agent
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName });
+ProjectResponsesClient responsesClient
+    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
-    "Write a detailed analysis of renewable energy trends.",
-    background: true);
+    new CreateResponseOptions
+    {
+        InputItems = { ResponseItem.CreateUserMessageItem(
+            "Write a detailed analysis of renewable energy trends.") },
+        Background = true,
+    });
 
 // Poll until the response completes
 while (response.Status is "queued" or "in_progress")

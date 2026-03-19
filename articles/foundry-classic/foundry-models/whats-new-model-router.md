@@ -20,6 +20,12 @@ This article provides a summary of the latest releases and major documentation u
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/foundry-models/whats-new-model-router.md)
 
+## March 2026
+
+### Four new models added
+
+Version `2025-11-18` of model router adds support for four new models: `gpt-5.2`, `gpt-5.2-chat`, `Deepseek-v3.2`, and `claude-opus-4-6`. To use `claude-opus-4-6` in your model router deployment, you need to first deploy it to your Foundry resource (see [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?tabs=python)). Then enable it with [model subset configuration](/azure/ai-foundry/openai/how-to/model-router) in your model router deployment. `Deepseek-v3.2` and `claude-opus-4-6` model router support is in preview.
+
 ## November 2025
 
 ### Anthropic models added

@@ -180,7 +180,7 @@ items:
           href: vector-search-how-to-truncate-dimensions.md
   - name: Indexers and workflows
     items:
-    - name: Index via portal wizards
+    - name: Index via portal wizard
       href: search-import-data-portal.md
     - name: Indexers
       items:
@@ -322,10 +322,8 @@ items:
       items:
       - name: What is a knowledge store?
         href: knowledge-store-concept-intro.md
-      - name: Create a knowledge store (REST)
+      - name: Create a knowledge store
         href: knowledge-store-create-rest.md
-      - name: Create a knowledge store (portal)
-        href: knowledge-store-create-portal.md
       - name: Connect with Power BI
         href: knowledge-store-connect-power-bi.md
       - name: Projections
@@ -630,12 +628,16 @@ items:
   items:
   - name: Enable diagnostic logging
     href: search-monitor-enable-logging.md
-  - name: Monitor data
-    href: monitor-azure-cognitive-search.md
-  - name: Monitor queries
-    href: search-monitor-queries.md
-  - name: Monitor indexer-based indexing
-    href: search-monitor-indexers.md
+  - name: Monitor and troubleshoot
+    items:
+    - name: Monitor data
+      href: monitor-azure-cognitive-search.md
+    - name: Monitor queries
+      href: search-monitor-queries.md
+    - name: Monitor indexer-based indexing
+      href: search-monitor-indexers.md
+    - name: Troubleshoot storage metrics
+      href: troubleshoot-storage-metrics.md
   - name: Visualize resource logs
     href: search-monitor-logs-powerbi.md
   - name: Analyze search performance

@@ -8,9 +8,8 @@ ms.subservice: enterprise-readiness
 ms.reviewer: shshubhe
 ms.author: scottpolly
 author: s-polly
-ms.date: 03/19/2026
-ms.topic: tutorial
-ai-usage: ai-assisted
+ms.date: 03/12/2026
+ms.topic: how-to
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ms.custom:
   - subject-rbac-steps
@@ -34,7 +33,7 @@ In this tutorial, you accomplish the following tasks:
 > * Create an Azure Key Vault behind the VNet. Use this service to store secrets used by the workspace, such as the security information needed to access the storage account.
 > * Create an Azure Container Registry (ACR). Use this service as a repository for Docker images. Docker images provide the compute environments needed when training a machine learning model or deploying a trained model as an endpoint.
 > * Create an Azure Machine Learning workspace.
-> * Create a jump box. A jump box is an Azure Virtual Machine that's behind the VNet. Since the VNet restricts access from the public internet, use the jump box as a way to connect to resources behind the VNet.
+> * Create a jump box. A jump box is an Azure Virtual Machine that is behind the VNet. Since the VNet restricts access from the public internet, use the jump box as a way to connect to resources behind the VNet.
 > * Configure Azure Machine Learning studio to work behind a VNet. The studio provides a web interface for Azure Machine Learning.
 > * Create an Azure Machine Learning compute cluster. Use a compute cluster when training machine learning models in the cloud. In configurations where Azure Container Registry is behind the VNet, it also builds Docker images.
 > * Connect to the jump box and use the Azure Machine Learning studio.
@@ -46,12 +45,12 @@ After completing this tutorial, you have the following architecture:
 
 * An Azure Virtual Network, which contains three subnets:
     * **Training**: Contains the Azure Machine Learning workspace, dependency services, and resources used for training models.
-    * **Scoring**: For the steps in this tutorial, you don't use this subnet. However, if you continue using this workspace for other tutorials, use this subnet when deploying models to [endpoints](concept-endpoints.md).
+    * **Scoring**: For the steps in this tutorial, it isn't used. However if you continue using this workspace for other tutorials, use this subnet when deploying models to [endpoints](concept-endpoints.md).
     * **AzureBastionSubnet**: Used by the Azure Bastion service to securely connect clients to Azure Virtual Machines.
 * An Azure Machine Learning workspace that uses a private endpoint to communicate by using the virtual network.
 * An Azure Storage Account that uses private endpoints to allow storage services such as blob and file to communicate by using the virtual network.
 * An Azure Container Registry that uses a private endpoint to communicate by using the virtual network.
-* Azure Bastion, which you use to securely communicate by using your browser with the jump box VM inside the virtual network.
+* Azure Bastion, which you use your browser to securely communicate with the jump box VM inside the virtual network.
 * An Azure Virtual Machine that you can remotely connect to and access resources secured inside the virtual network.
 * An Azure Machine Learning compute instance and compute cluster.
 
@@ -100,10 +99,10 @@ To create a virtual network, use the following steps:
     >
     > The workspace and other dependency services go into the training subnet. They can still be used by resources in other subnets, such as the scoring subnet.
 
-    1. Look at the default **IPv4 address space** value. In the screenshot, the value is `172.16.0.0/16`. **The value might be different for you**. While you can use a different value, the rest of the steps in this tutorial are based on the `172.16.0.0/16` value.
+    1. Look at the default **IPv4 address space** value. In the screenshot, the value is **172.16.0.0/16**. **The value might be different for you**. While you can use a different value, the rest of the steps in this tutorial are based on the **172.16.0.0/16 value**.
     
         > [!WARNING]
-        > Don't use the `172.17.0.0/16` IP address range for your virtual network. This range is the default subnet range used by the Docker bridge network, and it results in errors if you use it for your virtual network. Other ranges might also conflict depending on what you want to connect to the virtual network. For example, if you plan to connect your on-premises network to the VNet, and your on-premises network also uses the `172.16.0.0/16` range. Ultimately, you need to plan your network infrastructure.
+        > Don't use the 172.17.0.0/16 IP address range for your virtual network. This range is the default subnet range used by the Docker bridge network, and it results in errors if you use it for your virtual network. Other ranges might also conflict depending on what you want to connect to the virtual network. For example, if you plan to connect your on-premises network to the virtual network, and your on-premises network also uses the 172.16.0.0/16 range. Ultimately, you need to plan your network infrastructure.
 
     1. Select the **Default** subnet and then select the **edit icon**.
     
@@ -154,11 +153,11 @@ To create a virtual network, use the following steps:
 
 1. Select **Review + create**. Verify that the information is correct, and then select **Create**.
 
-1. When the storage account is created, select **Go to resource**:
+1. Once the storage account is created, select **Go to resource**:
 
     :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/storage-go-to-resource.png" alt-text="Screenshot of the go to new storage resource button.":::
 
-1. From the left navigation, select **Networking**, select the **Private endpoint connections** tab, and then select **+ Private endpoint**:
+1. From the left navigation, select **Networking**. Select the **Private endpoint connections** tab, and then select **+ Private endpoint**:
 
     > [!NOTE]
     > While you created a private endpoint for Blob storage in the previous steps, you must also create one for File storage.
@@ -182,7 +181,7 @@ To create a virtual network, use the following steps:
 1. Continue through the tabs selecting defaults until you reach **Review + Create**. Verify that the information is correct, and then select **Create**.
 
 > [!TIP]
-> If you plan to use a [batch endpoint](concept-endpoints.md) or an Azure Machine Learning [pipeline component batch deployment](how-to-use-batch-scoring-pipeline.md), you also need to configure private endpoints that target **queue** and **table** sub-resources. Batch processing internally uses queue and table for task scheduling and dispatching.
+> If you plan to use a [batch endpoint](concept-endpoints.md) or an Azure Machine Learning pipeline that uses a [ParallelRunStep](./tutorial-pipeline-batch-scoring-classification.md), you also need to configure private endpoints that target **queue** and **table** subresources. `ParallelRunStep` internally uses queue and table for task scheduling and dispatching.
 
 ## Create a key vault
 
@@ -212,9 +211,9 @@ To create a virtual network, use the following steps:
 
 1. Select **Review + create**. Verify that the information is correct, and then select **Create**.
 
-1. After the key vault is created, select **Go to resource**.
+1. When the key vault is created, select **Go to resource**.
 
-1. From the left navigation, select **Networking** the **Firewalls and virtual networks** tab. Then enable the checkbox for **Allow trusted Microsoft services to bypass this firewall** and select **Apply**.
+1. From the left navigation, select **Networking**. On the **Firewalls and virtual networks** tab, select the checkbox for **Allow trusted Microsoft services to bypass this firewall** and select **Apply**.
 
 ## Create a container registry
 
@@ -300,7 +299,7 @@ To create a virtual network, use the following steps:
 
 ## Enable studio
 
-Azure Machine Learning studio is a web-based application that you use to easily manage your workspace. However, it needs some extra configuration before you can use it with resources secured inside a virtual network. Use the following steps to enable studio:
+Azure Machine Learning studio is a web-based application that you use to manage your workspace. However, it needs some extra configuration before you can use it with resources secured inside a virtual network. Use the following steps to enable studio:
 
 1. When you use an Azure Storage Account that has a private endpoint, add the service principal for the workspace as a __Reader__ for the storage private endpoints. From the Azure portal, select your storage account and then select __Networking__. Next, select __Private endpoint connections__.
 
@@ -313,7 +312,7 @@ Azure Machine Learning studio is a web-based application that you use to easily 
         :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/storage-private-endpoint-selected.png" alt-text="Screenshot of the endpoint links in the private endpoint column.":::
 
     1. Select __Access control (IAM)__ from the left side.
-    1. Select __+ Add__, and then select __Add role assignment__.
+    1. Select __+ Add__, and then select __Add role assignment (Preview)__.
 
         ![Access control (IAM) page with Add role assignment menu open.](~/reusable-content/ce-skilling/azure/media/role-based-access-control/add-role-assignment-menu-generic.png)
 
@@ -347,7 +346,7 @@ Azure Machine Learning studio is a web-based application that you use to easily 
 
     :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/monitor-private-endpoint-basics.png" alt-text="Screenshot of the Azure Monitor private endpoint basics.":::
 
-1. Select `Microsoft.insights/privateLinkScopes` as the **Resource type**. Select the Private Link Scope you created earlier as the **Resource**. Select `azuremonitor` as the **Target sub-resource**. Finally, select **Next: Virtual Network** to continue.
+1. Select `Microsoft.insights/privateLinkScopes` as the **Resource type**. Select the Private Link Scope you created earlier as the **Resource**. Select `azuremonitor` as the **Target sub-resource**. Select **Next: Virtual Network** to continue.
 
     :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/monitor-private-endpoint-resource.png" alt-text="Screenshot of the Azure Monitor private endpoint resources.":::
 
@@ -369,7 +368,7 @@ You can connect to the secured workspace in several ways. The steps in this arti
 | [ExpressRoute](https://azure.microsoft.com/services/expressroute/) | Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider. |
 
 > [!IMPORTANT]
-> When you use a **VPN gateway** or **ExpressRoute**, plan how name resolution works between your on-premises resources and those in the VNet. For more information, see [Use a custom DNS server](how-to-custom-dns.md).
+> When you use a **VPN gateway** or **ExpressRoute**, you need to plan how name resolution works between your on-premises resources and those in the virtual network. For more information, see [Use a custom DNS server](how-to-custom-dns.md).
 
 ### Create a jump box (VM)
 
@@ -502,7 +501,9 @@ When Azure Container Registry is behind the virtual network, Azure Machine Learn
 ## Use the workspace
 
 > [!IMPORTANT]
-> The steps in this article put Azure Container Registry behind the VNet. In this configuration, you can't deploy a model to Azure Container Instances inside the VNet. Azure Container Instances deployment is deprecated for Azure Machine Learning. Use Azure Machine Learning managed online endpoints instead. For more information, see [Enable network isolation for managed online endpoints](how-to-secure-online-endpoint.md).
+> The steps in this article put Azure Container Registry behind the virtual network. In this configuration, you can't deploy a model to Azure Container Instances inside the virtual network. Don't use Azure Container Instances with Azure Machine Learning in a virtual network. For more information, see [Secure the inference environment (SDK/CLI v1)](./v1/how-to-secure-inferencing-vnet.md).
+>
+> As an alternative to Azure Container Instances, try Azure Machine Learning managed online endpoints. For more information, see [Enable network isolation for managed online endpoints](how-to-secure-online-endpoint.md).
 
 At this point, you can use the studio to interactively work with notebooks on the compute instance and run training jobs on the compute cluster. For a tutorial on using the compute instance and compute cluster, see [Tutorial: Azure Machine Learning in a day](tutorial-azure-ml-in-a-day.md).
 
@@ -511,10 +512,10 @@ At this point, you can use the studio to interactively work with notebooks on th
 > [!WARNING]
 > While it's running (started), the compute instance and jump box continue charging your subscription. To avoid excess cost, __stop__ them when they're not in use.
 
-The compute cluster dynamically scales between the minimum and maximum node count set when you created it. If you accept the defaults, the minimum is 0, which effectively turns off the cluster when not in use.
+The compute cluster dynamically scales between the minimum and maximum node count set when you create it. If you accept the defaults, the minimum is 0, which effectively turns off the cluster when not in use.
 ### Stop the compute instance
 
-From Studio, select **Compute**, **Compute clusters**, and then select the compute instance. Finally, select **Stop** from the top of the page.
+From studio, select **Compute**, **Compute clusters**, and then select the compute instance. Finally, select **Stop** from the top of the page.
 
 :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/compute-instance-stop.png" alt-text="Screenshot of the stop button for the compute instance.":::
 
@@ -526,11 +527,11 @@ After you create the jump box, select the virtual machine in the Azure portal an
 
 You can also configure the jump box to automatically shut down at a specific time. To do so, select **Auto-shutdown**, **Enable**, set a time, and then select **Save**.
 
-:::image type="content" source="./media/tutorial-create-secure-workspace-vnet/virtual-machine-auto-shutdown.png" alt-text="Screenshot of the auto-shutdown option.":::
+:::image type="content" source="./media/tutorial-create-secure-workspace-vnet/virtual-machine-auto-shutdown.png" alt-text="Screenshot of the autoshutdown option.":::
 
 ## Clean up resources
 
-If you plan to continue using the secured workspace and other resources, skip this section.
+If you plan to keep using the secured workspace and other resources, skip this section.
 
 To delete all resources created in this tutorial, use the following steps:
 

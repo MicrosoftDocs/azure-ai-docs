@@ -33,11 +33,11 @@ The indexer retries two times for the following HTTP status codes:
 
 ## AML skill for models in Microsoft Foundry
 
-Azure AI Search provides the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), which is also available in the [**Import data (new)** wizard](search-import-data-portal.md#skills), for query-time connections to the model catalog. If you want to use this vectorizer for queries, the AML skill is the *indexing counterpart* for generating embeddings using a model from the model catalog.
+Azure AI Search provides the [Microsoft Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), which is also available in the [**Import data** wizard](search-import-data-portal.md#skills), for query-time connections to the model catalog. If you want to use this vectorizer for queries, the AML skill is the *indexing counterpart* for generating embeddings using a model from the model catalog.
 
 During indexing, the AML skill can connect to the model catalog to generate vectors for the index. At query time, queries can use a vectorizer to connect to the same model to vectorize text strings. You should use the AML skill and the Microsoft Foundry model catalog vectorizer together so that the same embedding model is used for indexing and queries. For more information, see [Use embedding models from the Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md).
 
-We recommend using the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) to generate a skillset that includes an AML skill for deployed embedding models in Foundry. The wizard generates the AML skill definition for inputs, outputs, and mappings, providing an easy way to test a model before writing any code.
+We recommend using the [**Import data** wizard](search-get-started-portal-import-vectors.md) to generate a skillset that includes an AML skill for deployed embedding models in Foundry. The wizard generates the AML skill definition for inputs, outputs, and mappings, providing an easy way to test a model before writing any code.
 
 ## Prerequisites
 

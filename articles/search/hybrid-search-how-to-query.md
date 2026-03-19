@@ -29,7 +29,7 @@ By the end of this article, you can execute hybrid queries that combine keyword 
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-+ A search index containing `searchable` vector and nonvector fields. We recommend the [**Import data (new)** wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
++ A search index containing `searchable` vector and nonvector fields. We recommend the [**Import data** wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
 
 + **Permissions**: You need **Search Index Data Reader** to query an index. To create or update an index, you need **Search Index Data Contributor**. For more information, see [Connect using roles](search-security-rbac.md).
 
