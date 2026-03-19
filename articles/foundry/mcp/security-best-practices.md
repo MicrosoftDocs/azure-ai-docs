@@ -1,6 +1,6 @@
 ---
-title: "Explore Microsoft Foundry MCP Server best practices and security guidance"
-description: "Security guidance for Microsoft Foundry MCP Server, including identity, RBAC, Conditional Access policies, network isolation, and data residency."
+title: "Explore Foundry MCP Server best practices and security guidance"
+description: "Security guidance for Foundry MCP Server, including identity, RBAC, Conditional Access policies, network isolation, and data residency."
 keywords: mcp, foundry mcp server, security, entra id, rbac
 author: sdgilley
 ms.author: sgilley
@@ -12,8 +12,8 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Microsoft Foundry MCP Server best practices and security guidance
-Microsoft Foundry MCP Server (preview) tools automate read and write operations across Foundry resources, including deployments, datasets, evaluations, monitoring, and analytics. This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools.
+# Foundry MCP Server best practices and security guidance
+Foundry MCP Server (preview) tools automate read and write operations across Foundry resources, including deployments, datasets, evaluations, monitoring, and analytics. This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools.
 
 In this article, you learn about:
 
@@ -159,7 +159,7 @@ Use this section to quickly diagnose common MCP Server issues.
 
 If you receive a `401 Unauthorized` error or the sign-in prompt doesn't appear:
 
-1. Sign out of your Azure account in Visual Studio Code.
+1. Sign out of your Azure account in Visual Studio Code, or the tool that you're using.
 1. Sign back in with a Microsoft account that has access to your Azure subscription.
 1. Verify your access token is valid by running `az account get-access-token --resource https://mcp.ai.azure.com` in the terminal.
 
