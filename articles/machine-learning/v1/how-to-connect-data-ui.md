@@ -100,7 +100,7 @@ The following screenshot shows the **Azure blob datastore** creation panel:
 
 After you create a datastore, create a dataset to interact with your data. Datasets package your data into a lazily evaluated consumable object for machine learning tasks, for example, training. For more information about datasets, see [Create Azure Machine Learning datasets](how-to-create-register-datasets.md).
 
-Datasets have two types: FileDataset and TabularDataset. Use a [TabularDataset](how-to-create-register-datasets.md#tabulardataset) when your data is structured with columns and rows, such as .csv, .tsv, .parquet, or .json files, or SQL query results. Use a [FileDataset](how-to-create-register-datasets.md#filedataset) when you need to reference complete files, such as images, text files, or any format that doesn't fit a tabular structure.
+Datasets have two types: FileDataset and TabularDataset. Use a [TabularDataset](how-to-create-register-datasets.md#tabulardataset) when your data is structured with columns and rows, such as `.csv`, `.tsv`, `.parquet`, or `.json` files, or SQL query results. Use a [FileDataset](how-to-create-register-datasets.md#filedataset) when you need to reference complete files, such as images, text files, or any format that doesn't fit a tabular structure.
 
 The following steps describe how to create a dataset in [Azure Machine Learning studio](https://ml.azure.com).
 
