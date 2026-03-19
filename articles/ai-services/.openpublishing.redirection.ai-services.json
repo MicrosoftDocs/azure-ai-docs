@@ -3152,13 +3152,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/computer-vision/face/context/context.yml",
-      "redirect_url": "/azure/ai-services/face/context/context.json",
+      "redirect_url": "/azure/ai-services/face/context/context.yml",
       "redirect_document_id": true
-    },
-    {
-      "source_path_from_root": "/articles/ai-services/computer-vision/face/context/context.json",
-      "redirect_url": "/azure/ai-services/face/context/context.json",
-      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/computer-vision/identity-api-reference.md",
