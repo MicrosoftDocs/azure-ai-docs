@@ -1,6 +1,10 @@
-author: PatrickFarley ms.service: azure-ai-speech ms.topic: include
-
+---
+author: PatrickFarley 
+ms.service: azure-ai-speech 
+ms.topic: include
 ms.author: pafarley
+---
+
 ### Vowels for ta-IN
 
 | `ipa` | `viseme` | Example 1 | Example 2 | Example 3 |
