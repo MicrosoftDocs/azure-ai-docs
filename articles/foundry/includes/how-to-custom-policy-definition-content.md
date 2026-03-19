@@ -80,7 +80,7 @@ For more information, see [What is Azure Policy?](/azure/governance/policy/overv
       For a complete, ready-to-use version of this policy, see the full sample:
 
       :::code language="json" source="~/foundry-samples-main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json"
-      :::
+      
 
   This policy denies creation of Foundry connections when the connection `category` isn't in the `allowedCategories` parameter. It applies to both `Microsoft.CognitiveServices/accounts/connections` and `Microsoft.CognitiveServices/accounts/projects/connections`.
 
