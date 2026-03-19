@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Foundry docs: What's new for November 2025"
-description: "Discover key changes and updates in Microsoft Foundry documentation for November 2025."
+title: "Microsoft Foundry docs: What's new for March 2026"
+description: "Discover key changes and updates in Microsoft Foundry documentation for March 2026."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
@@ -8,55 +8,35 @@ ms.subject: ai-foundry
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ms.custom:
-  - December-2025
   - classic-and-new
   - doc-kit-assisted
-ms.date: 12/12/2025
+ms.date: 03/19/2026
 ---
 
 # What's new in Microsoft Foundry documentation?
-Welcome! This article highlights key changes and updates in Microsoft Foundry documentation for December 2025.
+Welcome! This article highlights key changes and updates in Microsoft Foundry documentation for March 2026.
 
-This month marks a significant update to our documentation structure. With the introduction of the new Microsoft Foundry portal,
+With the introduction of the new Microsoft Foundry portal,
 we now maintain two corresponding versions of the documentation to support each portal experience. This dual-version approach ensures that users can access accurate, version-specific guidance tailored to their portal environment.
 
 ## New articles
 
 Available in Foundry (new) only:
-- [Developer journey: Idea to prototype](tutorials/developer-journey-idea-to-prototype.md)
-- [Publish agents in Microsoft Foundry](agents/how-to/publish-agent.md)
-- [Agent memory concepts](agents/concepts/what-is-memory.md)
-- [Build your own MCP server](mcp/build-your-own-mcp-server.md)
-- [Manage agent identities with Microsoft Entra ID](agents/concepts/agent-identity.md)
-- [Optimization model upgrade](observability/how-to/optimization-model-upgrade.md)
-- [Cluster analysis](observability/how-to/cluster-analysis.md)
-- [Optimization dashboard](observability/how-to/optimization-dashboard.md)
-- [Human evaluation](observability/how-to/human-evaluation.md)
-- [Azure Language tools and agents](../ai-services/language-service/concepts/foundry-tools-agents.md)
-- [Azure Language CLU Multi-turn conversations](../ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations.md)<br>
+- [Foundry IQ (preview)](foundry/agents/concepts/what-is-foundry-iq.md)
+- [Connect a Foundry IQ knowledge base to Foundry Agent Service](foundry/agents/how-to/foundry-iq-connect.md)
+- [Fireworks models on Microsoft Foundry (preview)](foundry/how-to/fireworks/enable-fireworks-models.md)
+- [Manage hosted agent lifecycle](foundry/agents/how-to/manage-hosted-agent.md)
+- [Deploy your first hosted agent](foundry/agents/quickstarts/quickstart-hosted-agent.md)
+- [Configure Claude Code for Microsoft Foundry](foundry/foundry-models/how-to/configure-claude-code.md)
+- [Quotas and limits for Microsoft Foundry Agent Service](foundry/agents/concepts/limits-quotas-regions.md)
+<br>
 
-Available in both Foundry (new) and Foundry (classic):
-- [Install CLI SDK](how-to/develop/install-cli-sdk.md)
-- [SDK overview](how-to/develop/sdk-overview.md)
-- [High availability and resiliency](how-to/high-availability-resiliency.md)
-- [Agent service disaster recovery](how-to/agent-service-disaster-recovery.md)
-- [Agent service operator disaster recovery](how-to/agent-service-operator-disaster-recovery.md)
-- [Agent service platform disaster recovery](how-to/agent-service-platform-disaster-recovery.md)
-- [Integrate with other apps](how-to/integrate-with-other-apps.md)
-- [Create a custom photo avatar](../ai-services/speech-service/text-to-speech-avatar/custom-photo-avatar-create.md)
-- [Customize voice live](../ai-services/speech-service/voice-live-how-to-customize.md)
-- [Bring your own model](../ai-services/speech-service/how-to-bring-your-own-model.md)
-- [Use the LLM-speech API](../ai-services/speech-service/llm-speech.md)
-- [Priority processing for Foundry Models](openai/concepts/priority-processing.md)
-- [Classification in Content Understanding Studio](../ai-services/content-understanding/how-to/classification-content-understanding-studio.md)
-- [Foundry playgrounds](concepts/concept-playgrounds.md)
-- [Use Claude in Foundry Models](foundry-models/how-to/use-foundry-models-claude.md)
-- [Monitor and manage agents with Foundry control plane](control-plane/overview.md)  
 
 ### Updated articles
-
-All articles were updated in some way this month:  
-- Articles that apply to the new version were updated to add version-specific information. 
-- Articles that apply to both the new Microsoft Foundry and classic versions include banners that you can use to switch between the two versions to see the relevant content for each. 
-- Articles that apply only to the classic version include a banner indicating this limitation.
-
+Available in Foundry (new) only:
+- [Customer-managed keys for Microsoft Foundry](foundry/concepts/encryption-keys-portal.md)
+- [Guardrails and safety for Microsoft Foundry](foundry/guardrails/guardrails-overview.md)
+- [Add a declarative agent workflows in Visual Studio Code](foundry/agents/how-to/vs-code-agents-workflow-low-code.md)
+- [Agent evaluators](foundry/concepts/evaluation-evaluators/agent-evaluators.md)
+- [Deploy and use Claude models on Microsoft Foundry (preview)](foundry/foundry-models/how-to/use-foundry-models-claude.md)
+- [Disable preview features in Microsoft Foundry](foundry/how-to/disable-preview-features.md)
