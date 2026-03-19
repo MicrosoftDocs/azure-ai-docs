@@ -392,7 +392,7 @@ Add the Azure AI Agents dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
@@ -431,8 +431,8 @@ parameters.put("properties", BinaryData.fromString(
     "{\"location\": {\"type\": \"string\", "
     + "\"description\": \"The location to look up.\"}}"));
 
-AzureFunctionDefinitionFunction function =
-    new AzureFunctionDefinitionFunction("GetWeather", parameters)
+AzureFunctionDefinitionDetails function =
+    new AzureFunctionDefinitionDetails("GetWeather", parameters)
         .setDescription("Get the weather in a location.");
 
 AzureFunctionTool azureFnTool = new AzureFunctionTool(
@@ -462,8 +462,8 @@ System.out.printf("Agent created (id: %s, name: %s, version: %s)%n",
 AgentReference agentReference = new AgentReference(agent.getName())
     .setVersion(agent.getVersion());
 
-Response response = responsesClient.createWithAgent(
-    agentReference,
+Response response = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions().setAgentReference(agentReference),
     ResponseCreateParams.builder()
         .input("What is the weather in Seattle, WA?"));
 
