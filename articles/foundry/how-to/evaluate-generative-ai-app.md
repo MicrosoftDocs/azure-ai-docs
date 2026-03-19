@@ -6,7 +6,6 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new
-  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 03/04/2026
 ms.reviewer: dlozier

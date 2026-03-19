@@ -10,7 +10,6 @@ ms.topic: reference
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
-  - doc-kit-assisted
 ---
 
 # Built-in evaluators reference
