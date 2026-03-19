@@ -8,9 +8,8 @@ ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.reviewer: jturuk
 ms.subservice: mlops
-ms.date: 03/12/2026
-ms.topic: how-to
-ai-usage: ai-assisted
+ms.date: 03/19/2026
+ms.topic: concept-article
 ms.custom:
   - cli-v2
   - sdk-v2
@@ -19,6 +18,7 @@ ms.custom:
   - build-2023-dataai
   - sfi-image-nochange
   - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Set up MLOps with GitHub
@@ -36,6 +36,7 @@ By using Azure Machine Learning, you can integrate with [GitHub Actions](https:/
 In this article, you learn how to use Azure Machine Learning to set up an end-to-end MLOps pipeline that runs a linear regression to predict taxi fares in NYC. The pipeline is made up of components, each serving different functions, which you can register with the workspace, version, and reuse with various inputs and outputs. You use the [recommended Azure architecture for MLOps](/azure/architecture/data-guide/technology-choices/machine-learning-operations-v2) and [Azure MLOps (v2) solution accelerator](https://github.com/Azure/mlops-v2) to quickly set up an MLOps project in Azure Machine Learning.
 
 > [!TIP]
+> Before implementing any solution, review the [recommended Azure architectures](/azure/architecture/data-guide/technology-choices/machine-learning-operations-v2) for MLOps and choose the best architecture for your machine learning project.
 > Before implementing any solution, review the [recommended Azure architectures](/azure/architecture/data-guide/technology-choices/machine-learning-operations-v2) for MLOps and choose the best architecture for your machine learning project.
 
 ## Prerequisites
@@ -59,14 +60,18 @@ Before you can set up an MLOps project with Machine Learning, you need to set up
 > [!IMPORTANT]
 > The recommended, more secure approach is to use [OpenID Connect (OIDC) with federated credentials](/azure/developer/github/connect-from-azure-openid-connect) for GitHub Actions authentication. OIDC eliminates the need to store long-lived secrets in your repository. The service principal approach shown in this article still works but is less secure. For OIDC setup with Azure Machine Learning, see [Use GitHub Actions with Azure Machine Learning](how-to-github-actions-machine-learning.md).
 
+> [!IMPORTANT]
+> The recommended, more secure approach is to use [OpenID Connect (OIDC) with federated credentials](/azure/developer/github/connect-from-azure-openid-connect) for GitHub Actions authentication. OIDC eliminates the need to store long-lived secrets in your repository. The service principal approach shown in this article still works but is less secure. For OIDC setup with Azure Machine Learning, see [Use GitHub Actions with Azure Machine Learning](how-to-github-actions-machine-learning.md).
+
 ### Create service principal
-   Create one prod service principal for this demo. You can add more depending on how many environments you want to work on (dev or prod or both). Create service principals by using one of the following methods:
+   Create one prod service principal for this demo. You can add more depending on how many environments you want to work on (dev or prod or both). Service principals can be created using one of the following methods:
 
 # [Create from Azure Cloud Shell](#tab/azure-shell)
 
 1. Launch the [Azure Cloud Shell](https://shell.azure.com).
 
     > [!TIP]
+    > The first time you launch Cloud Shell, you're prompted to select between a persistent storage account or an ephemeral session (no storage required). Either option works for these steps.
     > The first time you launch Cloud Shell, you're prompted to select between a persistent storage account or an ephemeral session (no storage required). Either option works for these steps.
 
 1. If prompted, choose **Bash** as the environment used in the Cloud Shell. You can also change environments in the drop-down on the top navigation bar.
@@ -88,6 +93,8 @@ Before you can set up an MLOps project with Machine Learning, you need to set up
     echo "Please ensure that the information created here is properly save for future use."
     ```
 
+    > [!WARNING]
+    > The `--json-auth` parameter (and its predecessor `--sdk-auth`) is deprecated. For new projects, consider using [OpenID Connect (OIDC) with federated credentials](/azure/developer/github/connect-from-azure-openid-connect) instead of storing service principal secrets. If you need `--json-auth` output for existing workflows, it still functions in current Azure CLI versions but might be removed in a future release.
     > [!WARNING]
     > The `--json-auth` parameter (and its predecessor `--sdk-auth`) is deprecated. For new projects, consider using [OpenID Connect (OIDC) with federated credentials](/azure/developer/github/connect-from-azure-openid-connect) instead of storing service principal secrets. If you need `--json-auth` output for existing workflows, it still functions in current Azure CLI versions but might be removed in a future release.
 
@@ -200,7 +207,7 @@ This config file uses the namespace and postfix values to name the artifacts and
 
    :::image type="content" source="./media/how-to-setup-mlops-azureml/github-actions.png" alt-text="Screenshot of the GitHub actions for the repository.":::
 
-    You see the predefined GitHub workflows associated with your project. For a classical machine learning project, the available workflows look similar to the following screenshot:
+    The predefined GitHub workflows associated with your project are displayed. For a classical machine learning project, the available workflows look similar to the following screenshot:
 
    :::image type="content" source="./media/how-to-setup-mlops-azureml/github-workflows.png" alt-text="Screenshot of the GitHub workflows for the repository.":::
 

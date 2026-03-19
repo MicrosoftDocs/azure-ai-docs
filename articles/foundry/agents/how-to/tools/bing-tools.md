@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/18/2026
+ms.date: 03/19/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -59,7 +59,7 @@ Before you begin, make sure you have:
   - Python: `azure-ai-projects`
   - C#: `Azure.AI.Extensions.OpenAI` (prerelease)
   - TypeScript/JavaScript: `@azure/ai-projects`
-  - Java: `com.azure:azure-ai-agents:2.0.0-beta.1`
+  - Java: `com.azure:azure-ai-agents:2.0.0-beta.3`
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
   - For REST samples, environment variables set up:
     - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
@@ -954,7 +954,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 ```
 
@@ -1004,8 +1004,8 @@ public class BingGroundingExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("What are the latest developments in AI?"));
 

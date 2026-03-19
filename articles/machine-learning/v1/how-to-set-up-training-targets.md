@@ -8,9 +8,10 @@ ms.author: scottpolly
 ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.date: 03/12/2026
+ms.date: 03/19/2026
 ms.topic: how-to
-ms.custom: UpdateFrequency5,sdkv1
+ms.custom: UpdateFrequency5,sdkv1,dev-focus
+ai-usage: ai-assisted
 ---
 
 # Configure and submit training jobs
@@ -19,18 +20,21 @@ ms.custom: UpdateFrequency5,sdkv1
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-In this article, you learn how to configure and submit Azure Machine Learning jobs to train your models. Snippets of code explain the key parts of configuration and submission of a training script. Then use one of the [example notebooks](#notebook-examples) to find the full end-to-end working examples.
+> [!TIP]
+> For new projects, use SDK v2 instead. See [Submit a training job (SDK v2)](../how-to-train-model.md) for the equivalent workflow using `CommandJob` in the `azure-ai-ml` package.
 
-When training, it's common to start on your local computer, and then later scale out to a cloud-based cluster. With Azure Machine Learning, you can run your script on various compute targets without having to change your training script.
+In this article, you learn how to configure and submit Azure Machine Learning jobs to train your models. Snippets of code explain the key parts of configuration and submission of a training script. To find full end-to-end working examples, see one of the [example notebooks](#notebook-examples).
+
+When training, it's common to start on your local computer, and then later scale out to a cloud-based cluster. By using Azure Machine Learning, you can run your script on various compute targets without having to change your training script.
 
 All you need to do is define the environment for each compute target within a **script job configuration**. Then, when you want to run your training experiment on a different compute target, specify the job configuration for that compute.
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today
-* The [Azure Machine Learning SDK for Python (v1)](/python/api/overview/azure/ml/install) (>= 1.13.0)
-* An [Azure Machine Learning workspace](../how-to-manage-workspace.md), `ws`
-* A compute target, `my_compute_target`. [Create a compute target](../how-to-create-attach-compute-studio.md) 
+* If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
+* The [Azure Machine Learning SDK for Python (v1)](/python/api/overview/azure/ml/install) (>= 1.13.0) — SDK v1 is deprecated. For new projects, use [SDK v2](/python/api/overview/azure/ai-ml-readme).
+* An [Azure Machine Learning workspace](../how-to-manage-workspace.md), `ws`.
+* A compute target, `my_compute_target`. [Create a compute target](../how-to-create-attach-compute-studio.md). 
 
 ## What's a script run configuration?
 
@@ -62,7 +66,7 @@ Or you can:
 
 ## Select a compute target
 
-Select the compute target where your training script will run on. If no compute target is specified in the ScriptRunConfig, or if `compute_target='local'`, Azure Machine Learning will execute your script locally. 
+Select the compute target where your training script runs on. If no compute target is specified in the ScriptRunConfig, or if `compute_target='local'`, Azure Machine Learning executes your script locally. 
 
 The example code in this article assumes that you have already created a compute target `my_compute_target` from the "Prerequisites" section.
 
@@ -169,7 +173,7 @@ run.wait_for_completion(show_output=True)
 >
 > To create artifacts during training (such as model files, checkpoints, data files, or plotted images) write to the `./outputs` folder.
 >
-> Similarly, you can write any logs from your training job to the `./logs` folder. To utilize Azure Machine Learning's [TensorBoard integration](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/track-and-monitor-experiments/tensorboard/export-run-history-to-tensorboard/export-run-history-to-tensorboard.ipynb), make sure you write your TensorBoard logs to this folder. While your job is in progress, you'll be able to launch TensorBoard and stream these logs. Later, you'll also be able to restore the logs from any of your previous jobs.
+> Similarly, you can write any logs from your training job to the `./logs` folder. To utilize Azure Machine Learning's [TensorBoard integration](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/track-and-monitor-experiments/tensorboard/export-run-history-to-tensorboard/export-run-history-to-tensorboard.ipynb), make sure you write your TensorBoard logs to this folder. While your job is in progress, you are able to launch TensorBoard and stream these logs. Later, you'll also be able to restore the logs from any of your previous jobs.
 >
 > For example, to download a file written to the *outputs* folder to your local machine after your remote training job: 
 > `run.download_file(name='outputs/my_output_file', output_file_path='my_destination_path')`
@@ -189,44 +193,30 @@ See these notebooks for examples of configuring jobs for various training scenar
 
 ## Troubleshooting
 
-* **AttributeError: 'RoundTripLoader' object has no attribute 'comment_handling'**: This error comes from the new version (v0.17.5) of `ruamel-yaml`, an `azureml-core` dependency, that introduces a breaking change to `azureml-core`. In order to fix this error, uninstall `ruamel-yaml` by running `pip uninstall ruamel-yaml` and installing a different version of `ruamel-yaml`; the supported versions are v0.15.35 to v0.17.4 (inclusive). You can do so by running `pip install "ruamel-yaml>=0.15.35,<0.17.5"`.
+* **AttributeError: 'RoundTripLoader' object has no attribute 'comment_handling'**: This error occurs when an incompatible version of `ruamel-yaml` is installed alongside `azureml-core`. To fix this error, upgrade to the latest version of `azureml-core`: `pip install -U azureml-core`.
 
 
 * **Job fails with `jwt.exceptions.DecodeError`**: Exact error message: `jwt.exceptions.DecodeError: It is required that you pass in a value for the "algorithms" argument when calling decode()`. 
     
-    Consider upgrading to the latest version of azureml-core: `pip install -U azureml-core`.
+    Upgrade to the latest version of azureml-core, which pins a compatible PyJWT version automatically: `pip install -U azureml-core`.
+
+
+ * **ModuleErrors (No module named)**:  If you're running into ModuleErrors while submitting experiments in Azure Machine Learning, the training script is expecting a package to be installed but it isn't added. Once you provide the package name, Azure Machine Learning installs the package in the environment used for your training job.
+
+    When using `ScriptRunConfig`, specify required packages in your [Environment](/python/api/azureml-core/azureml.core.environment%28class%29) definition. You can add packages via `conda_dependencies` or use a `pip_requirements_file` / `conda_dependencies_file`. For more information, see [Create & use software environments](how-to-use-environments.md).
     
-    If you run into this issue for local jobs, check the version of PyJWT installed in your environment where . you're starting jobs. The supported versions of PyJWT are < 2.0.0. Uninstall PyJWT from the environment if the version is >= 2.0.0. You may check the version of PyJWT, uninstall, and install the right version as follows:
-
-    1. Start a command shell, activate conda environment where azureml-core is installed.
-    2. Enter `pip freeze` and look for `PyJWT`, if found, the version listed should be < 2.0.0
-    3. If the listed version isn't a supported version, `pip uninstall PyJWT` in the command shell and enter y for confirmation.
-    4. Install using `pip install 'PyJWT<2.0.0'`
-
-    If you're submitting a user-created environment with your job, consider using the latest version of azureml-core in that environment. Versions >= 1.18.0 of azureml-core already pin PyJWT < 2.0.0. If you need to use a version of azureml-core < 1.18.0 in the environment you submit, make sure to specify PyJWT < 2.0.0 in your pip dependencies.
-
-
- * **ModuleErrors (No module named)**:  If . you're running into ModuleErrors while submitting experiments in Azure Machine Learning, the training script is expecting a package to be installed but it isn't added. Once you provide the package name, Azure Machine Learning installs the package in the environment used for your training job.
-
-    If you're using Estimators to submit experiments, you can specify a package name via `pip_packages` or `conda_packages` parameter in the estimator based on from which source you want to install the package. You can also specify a yml file with all your dependencies using `conda_dependencies_file`or list all your pip requirements in a txt file using `pip_requirements_file` parameter. If you have your own Azure Machine Learning Environment object that you want to override the default image used by the estimator, you can specify that environment via the `environment` parameter of the estimator constructor.
-    
-    Azure Machine Learning maintained docker images and their contents can be seen in [Azure Machine Learning Containers](https://github.com/Azure/AzureML-Containers).
-    Framework-specific dependencies  are listed in the respective framework documentation:
-    *  [Chainer](/python/api/azureml-train-core/azureml.train.dnn.chainer#remarks)
-    * [PyTorch](/python/api/azureml-train-core/azureml.train.dnn.pytorch#remarks)
-    * [TensorFlow](/python/api/azureml-train-core/azureml.train.dnn.tensorflow#remarks)
-    *  [SKLearn](/python/api/azureml-train-core/azureml.train.sklearn.sklearn#remarks)
+    Azure Machine Learning maintained Docker images and their contents can be seen in [Azure Machine Learning Containers](https://github.com/Azure/AzureML-Containers).
     
     > [!Note]
-    > If you think a particular package is common enough to be added in Azure Machine Learning maintained images and environments please raise a GitHub issue in [Azure Machine Learning Containers](https://github.com/Azure/AzureML-Containers). 
+    > If you think a particular package is common enough to be added in Azure Machine Learning maintained images and environments, raise a GitHub issue in [Azure Machine Learning Containers](https://github.com/Azure/AzureML-Containers). 
  
-* **NameError (Name not defined), AttributeError (Object has no attribute)**: This exception should come from your training scripts. You can look at the log files from Azure portal to get more information about the specific name not defined or attribute error. From the SDK, you can use `run.get_details()` to look at the error message. This will also list all the log files generated for your job. Please make sure to take a look at your training script and fix the error before resubmitting your job. 
+* **NameError (Name not defined), AttributeError (Object has no attribute)**: This exception should come from your training scripts. You can look at the log files from Azure portal to get more information about the specific name not defined or attribute error. From the SDK, you can use `run.get_details()` to look at the error message. This will also list all the log files generated for your job. Make sure to take a look at your training script and fix the error before resubmitting your job. 
 
 
 * **Job or experiment deletion**:  Experiments can be archived by using the [Experiment.archive](/python/api/azureml-core/azureml.core.experiment%28class%29#archive--) 
-method, or from the Experiment tab view in Azure Machine Learning studio client via the "Archive experiment" button. This action hides the experiment from list queries and views, but does not delete it.
+method, or from the Experiment tab view in Azure Machine Learning studio client via the "Archive experiment" button. This action hides the experiment from list queries and views, but doesn't delete it.
 
-    Permanent deletion of individual experiments or jobs is not currently supported. For more information on deleting Workspace assets, see [Export or delete your Machine Learning service workspace data](../how-to-export-delete-data.md).
+    Permanent deletion of individual experiments or jobs isn't currently supported. For more information on deleting Workspace assets, see [Export or delete your Machine Learning service workspace data](../how-to-export-delete-data.md).
 
 * **Metric Document is too large**: Azure Machine Learning has internal limits on the size of metric objects that can be logged at once from a training job. If you encounter a "Metric Document is too large" error when logging a list-valued metric, try splitting the list into smaller chunks, for example:
 
@@ -237,11 +227,12 @@ method, or from the Experiment tab view in Azure Machine Learning studio client 
 
     Internally, Azure Machine Learning concatenates the blocks with the same metric name into a contiguous list.
 
-* **Compute target takes a long time to start**: The Docker images for compute targets are loaded from Azure Container Registry (ACR). By default, Azure Machine Learning creates an ACR that uses the *basic* service tier. Changing the ACR for your workspace to standard or premium tier may reduce the time it takes to build and load images. For more information, see [Azure Container Registry service tiers](/azure/container-registry/container-registry-skus).
+* **Compute target takes a long time to start**: The Docker images for compute targets are loaded from Azure Container Registry (ACR). By default, Azure Machine Learning creates an ACR that uses the *basic* service tier. Changing the ACR for your workspace to standard or premium tier might reduce the time it takes to build and load images. For more information, see [Azure Container Registry service tiers](/azure/container-registry/container-registry-skus).
 
 ## Next steps
 
-* [Tutorial: Train and deploy a model](tutorial-1st-experiment-sdk-train.md) uses a managed compute target to  train a model.
+* [Train models with Azure Machine Learning (SDK v2)](../how-to-train-model.md) covers the equivalent workflow using the current SDK.
+* [Tutorial: Train and deploy a model](tutorial-1st-experiment-sdk-train.md) uses a managed compute target to train a model (SDK v1).
 * See how to train models with specific ML frameworks, such as [Scikit-learn](../how-to-train-scikit-learn.md), [TensorFlow](../how-to-train-tensorflow.md), and [PyTorch](../how-to-train-pytorch.md).
 * Learn how to [efficiently tune hyperparameters](../how-to-tune-hyperparameters.md) to build better models.
 * Once you have a trained model, learn [how and where to deploy models](../how-to-deploy-online-endpoints.md).

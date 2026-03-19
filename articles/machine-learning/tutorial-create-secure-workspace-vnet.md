@@ -16,6 +16,7 @@ ms.custom:
   - cliv2
   - build-2023
   - sfi-image-nochange
+  - dev-focus
 ---
 # Tutorial: How to create a secure workspace with an Azure Virtual Network
 
@@ -326,7 +327,7 @@ Azure Machine Learning studio is a web-based application that you use to manage 
 ## Secure Azure Monitor and Application Insights
 
 > [!NOTE]
-> For more information on securing Azure Monitor and Application Insights, see the following links:
+> For more information about securing Azure Monitor and Application Insights, see the following articles:
 > * [Migrate to workspace-based Application Insights resources](/azure/azure-monitor/app/convert-classic-resource).
 > * [Configure your Azure Monitor private link](/azure/azure-monitor/logs/private-link-configure).
 
@@ -374,7 +375,7 @@ You can connect to the secured workspace in several ways. The steps in this arti
 Use the following steps to create an Azure Virtual Machine to use as a jump box. By using Azure Bastion, you can connect to the VM desktop through your browser. From the VM desktop, you can use the browser on the VM to connect to resources inside the virtual network, such as Azure Machine Learning studio. Or you can install development tools on the VM. 
 
 > [!TIP]
-> The following steps create a Windows 11 enterprise VM. Depending on your requirements, you might want to select a different VM image. The Windows 11 (or 10) enterprise image is useful if you need to join the VM to your organization's domain.
+> The following steps create a Windows 11 Enterprise VM. Depending on your requirements, you might want to select a different VM image. The Windows 11 (or 10) Enterprise image is useful if you need to join the VM to your organization's domain.
 
 1. In the [Azure portal](https://portal.azure.com), select the portal menu in the upper left corner. From the menu, select **+ Create a resource** and then enter **Virtual Machine**. Select the **Virtual Machine** entry, and then select **Create**.
 
@@ -544,8 +545,8 @@ To delete all resources created in this tutorial, use the following steps:
 ## Next steps
 
 :::moniker range="azureml-api-2"
-Now that you have a secure workspace and can access studio, learn how to [deploy a model to an online endpoint with network isolation](how-to-secure-online-endpoint.md).
+After you set up a secure workspace and access studio, learn how to [deploy a model to an online endpoint with network isolation](how-to-secure-online-endpoint.md).
 :::moniker-end
 :::moniker range="azureml-api-1"
-Now that you have a secure workspace, learn how to [deploy a model](./v1/how-to-deploy-and-where.md).
+After you set up a secure workspace, learn how to [deploy a model](./v1/how-to-deploy-and-where.md).
 :::moniker-end
