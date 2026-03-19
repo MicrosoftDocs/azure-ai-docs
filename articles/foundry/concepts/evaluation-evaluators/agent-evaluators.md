@@ -15,6 +15,7 @@ ms.custom:
 ---
 
 # Agent evaluators
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 AI agents are powerful productivity assistants that can create workflows for business needs. However, observability can be a challenge due to their complex interaction patterns. Agent evaluators provide systematic observability into agentic workflows by measuring quality, safety, and performance.
@@ -93,6 +94,7 @@ The following tools currently have limited support. Avoid using `tool_call_accur
 - Bing Grounding
 - Bing Custom Search
 - SharePoint Grounding
+- Code Interpreter
 - Fabric Data Agent
 - Web Search
 
@@ -162,7 +164,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
@@ -206,6 +208,30 @@ Task Navigation Efficiency measures whether the agent took an optimal sequence o
 | `exact_match` | Agent's trajectory must match the ground truth exactly (order and content) |
 | `in_order_match` | All ground truth steps must appear in the agent's trajectory in correct order (extra steps allowed) |
 | `any_order_match` | All ground truth steps must appear in the agent's trajectory, order doesn't matter (extra steps allowed) |
+
+**Actions format:**
+
+The `actions` field takes a list of message objects that follow the OpenAI message schema. Each message represents a step the agent took during the conversation:
+
+```python
+actions = [
+    {
+        "role": "assistant",
+        "content": [
+            {"type": "function_call", "name": "call_tool_A", "arguments": "{\"param\": \"value\"}"}
+        ]
+    },
+    {
+        "role": "assistant",
+        "content": [
+            {"type": "function_call", "name": "call_tool_B", "arguments": "{}"}
+        ]
+    },
+]
+```
+
+> [!NOTE]
+> The `actions` and `expected_actions` fields use different formats. `actions` requires OpenAI message-schema dictionaries (representing the agent's actual behavior), while `expected_actions` uses a simple list of tool names (representing the ground truth).
 
 **Expected actions format:**
 
@@ -299,6 +325,6 @@ When using conversation array format, `query` and `response` follow the OpenAI m
 ## Related content
 
 - [More examples for agent quality evaluator](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators)
-- [How to run agent evaluation](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md)
-- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+- [Evaluate your AI agents](../../observability/how-to/evaluate-agent.md)
+- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)

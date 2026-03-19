@@ -1,6 +1,5 @@
 ---
 title: Azure Files Indexer
-titleSuffix: Azure AI Search
 description: Set up an Azure Files indexer to automate indexing of file shares in Azure AI Search.
 ms.reviewer: magottei
 ms.service: azure-ai-search
@@ -24,8 +23,7 @@ To configure and run the indexer, you can use:
 
 + [Search Service preview REST APIs](/rest/api/searchservice), any preview version.
 + An Azure SDK package, any version.
-+ [**Import data** wizard](search-get-started-portal.md) in the Azure portal.
-+ [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
++ [**Import data** wizard](search-import-data-portal.md) in the Azure portal.
 
 ## Prerequisites
 

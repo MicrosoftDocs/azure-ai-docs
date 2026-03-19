@@ -13,10 +13,11 @@ ms.custom:
   - devx-track-azurecli
   - devx-track-python
   - ignite-2024
-  - update-code11
+  - update-code12
   - build-aifnd
   - build-2025
   - peer-review-program
+  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to start using the Microsoft Foundry portal and client libraries.
 ---

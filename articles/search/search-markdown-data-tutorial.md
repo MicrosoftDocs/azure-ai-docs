@@ -1,6 +1,5 @@
 ---
 title: 'Tutorial: Index Markdown Blobs'
-titleSuffix: Azure AI Search
 description: Learn how to index and search Markdown in Azure blobs using Azure AI Search REST APIs.
 ms.reviewer: mdonovan
 ms.service: azure-ai-search

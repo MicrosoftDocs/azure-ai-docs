@@ -1,8 +1,7 @@
 ---
 title: What's New
-titleSuffix: Azure AI Search
-description: Announcements of new and enhanced features, including a service rename of Azure Cognitive Search to Azure AI Search.
-ms.date: 02/11/2026
+description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
+ms.date: 03/13/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -17,6 +16,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## March 2026
+
+| Item | Description |
+|--|--|
+| [**Import data** wizard unification](search-import-data-portal.md) | The **Import data** and **Import data (new)** wizards have been unified into a single **Import data** wizard that supports keyword search, RAG, and multimodal RAG. |
 
 ## February 2026
 

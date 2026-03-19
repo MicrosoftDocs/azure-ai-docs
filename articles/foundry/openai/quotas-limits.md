@@ -13,8 +13,8 @@ ms.custom:
   - ignite-2023
   - references_regions
   - build-2025
+  - doc-kit-assisted
 ai-usage: ai-assisted
-
 ---
 
 # Azure OpenAI in Microsoft Foundry Models quotas and limits
@@ -107,8 +107,6 @@ The following section provides you with a quick guide to the default quotas and 
 | Limit name | Limit value |
 |--|--|
 | Azure OpenAI resources per region, per Azure subscription | 30. |
-| Default DALL-E 2 quota limits | 2 concurrent requests. |
-| Default DALL-E 3 quota limits| 6 requests per minute |
 | Default GPT-image-1 quota limits | 9 requests per minute |
 | Default GPT-image-1-mini quota limits | 12 requests per minute |
 | Default GPT-image-1.5 quota limits | 9 requests per minute |

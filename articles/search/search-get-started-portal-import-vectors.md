@@ -1,6 +1,5 @@
 ---
-title: "Quickstart: Vector Search in the Azure Portal"
-titleSuffix: Azure AI Search
+title: "Quickstart: Vector Search in the Azure portal"
 description: Learn how to use a wizard to automate data chunking and vectorization in a search index.
 author: mattwojo
 ms.author: mattwoj
@@ -9,12 +8,12 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 03/02/2026
+ms.date: 03/13/2026
 ---
 
 # Quickstart: Vector search in the Azure portal
 
-In this quickstart, you use the **Import data (new)** wizard in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize the chunks at indexing and query time.
+In this quickstart, you use the **Import data** wizard in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize the chunks at indexing and query time.
 
 This quickstart uses text-based PDFs and simple images from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo. However, you can use different files and still complete this quickstart.
 
@@ -31,11 +30,11 @@ This quickstart uses text-based PDFs and simple images from the [azure-search-sa
 
 + A [supported embedding model](#supported-embedding-models).
 
-+ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md).
++ Familiarity with the wizard. See [Import data wizard in the Azure portal](search-import-data-portal.md).
 
 ### Supported data sources
 
-The wizard [supports several Azure data sources](search-import-data-portal.md#supported-data-sources-and-scenarios). However, this quickstart only covers the data sources that work with whole files, which are described in the following table.
+The wizard [supports several Azure data sources](search-import-data-portal.md#data-sources). However, this quickstart only covers the data sources that work with whole files, which are described in the following table.
 
 | Data source | Description |
 |--|--|
@@ -64,7 +63,7 @@ The portal supports the following embedding models for integrated vectorization.
 
 ### Public endpoint requirements
 
-For this quickstart, all of the preceding resources must have public access enabled so that the Azure portal nodes can access them. Otherwise, the wizard fails. After the wizard runs, you can enable firewalls and private endpoints on the integration components for security. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
+All of the preceding resources must have public access enabled so that the wizard can access them. Otherwise, the wizard fails. After the wizard runs, you can enable firewalls and private endpoints on the integration components for security. For more information, see [Secure connections in the import wizard](search-import-data-portal.md#secure-connections).
 
 If private endpoints are already present and you can't disable them, the alternative option is to run the respective end-to-end flow from a script or program on a virtual machine. The virtual machine must be on the same virtual network as the private endpoint. Here's a [Python code sample](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/integrated-vectorization) for integrated vectorization. The same [GitHub repo](https://github.com/Azure/azure-search-vector-samples/tree/main) has samples in other programming languages.
 
@@ -213,9 +212,9 @@ The wizard supports several embedding models from Azure OpenAI and the Microsoft
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
-1. On the **Overview** page, select **Import data (new)**.
+1. On the **Overview** page, select **Import data**.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
 1. Select your data source: **Azure Blob Storage**, **ADLS Gen2**, or **OneLake**.
 
@@ -551,4 +550,4 @@ To query your vector index:
 
 ## Next step
 
-This quickstart introduced you to the **Import data (new)** wizard, which creates all of the necessary objects for integrated vectorization. To explore each step in detail, see [Set up integrated vectorization in Azure AI Search](search-how-to-integrated-vectorization.md).
+This quickstart introduced you to the **Import data** wizard, which creates all of the necessary objects for integrated vectorization. To explore each step in detail, see [Set up integrated vectorization in Azure AI Search](search-how-to-integrated-vectorization.md).

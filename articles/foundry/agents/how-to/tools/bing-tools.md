@@ -6,12 +6,13 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/18/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
  - dev-focus
  - pilot-ai-workflow-jan-2026
+ - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-bing-grounding-new
 ---
@@ -56,7 +57,7 @@ Before you begin, make sure you have:
 - An AI model deployed in your project.
 - SDK installed for your preferred language. C# and Java require the prerelease version:
   - Python: `azure-ai-projects`
-  - C#: `Azure.AI.Projects.OpenAI` (prerelease)
+  - C#: `Azure.AI.Extensions.OpenAI` (prerelease)
   - TypeScript/JavaScript: `@azure/ai-projects`
   - Java: `com.azure:azure-ai-agents:2.0.0-beta.1`
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
@@ -339,9 +340,9 @@ Full response: Microsoft Foundry Agent Service enables you to build...
 
 :::zone pivot="csharp"
 
-The following C# examples demonstrate how to create an agent with Grounding with Bing Search tool, and how to use the agent to respond to user queries. These examples use synchronous calls for simplicity. For asynchronous examples, see the [agent tools C# samples](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples).
+The following C# examples demonstrate how to create an agent with Grounding with Bing Search tool, and how to use the agent to respond to user queries. These examples use synchronous calls for simplicity. For asynchronous examples, see the [agent tools C# samples](https://aka.ms/azsdk/Azure.AI.Extensions.OpenAI/net/samples).
 
-To enable your Agent to use Bing search API, use `BingGroundingAgentTool`.
+To enable your Agent to use Bing search API, use `BingGroundingTool`.
 
 #### Grounding with Bing Search
 

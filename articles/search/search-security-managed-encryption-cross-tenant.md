@@ -1,6 +1,5 @@
 ---
 title: Cross-Tenant CMKs
-titleSuffix: Azure AI Search
 description: Set up CMK encryption in Azure AI Search that uses a key from an Azure Key Vault in another tenant.
 ms.reviewer: magottei
 ms.service: azure-ai-search

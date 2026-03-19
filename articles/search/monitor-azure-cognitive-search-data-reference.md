@@ -1,6 +1,5 @@
 ---
 title: Monitoring Data Reference
-titleSuffix: Azure AI Search
 description: This article contains important reference material you need when you monitor Azure AI Search.
 ms.date: 07/25/2025
 ms.update-cycle: 365-days
@@ -193,7 +192,7 @@ The following operations can appear in a resource log.
 | DebugSessions.RetrieveProjectedIndexerExecutionHistoricalData  | Execution history for enrichments projected to a knowledge store. |
 | Indexers.* | Applies to an indexer. Can be Create, Delete, Get, List, and Status. |
 | Indexes.* | Applies to a search index. Can be Create, Delete, Get, List.  |
-| indexes.Prototype | This index is created by the Import Data wizard. |
+| indexes.Prototype | The index metadata is defined by the **Import data** wizard based on data inputs. |
 | Indexing.Index  | This operation is a call to [Index Documents](/rest/api/searchservice/documents). |
 | Metadata.GetMetadata | A request for search service system data.  |
 | Query.Autocomplete | An autocomplete query against an index. See [Query types and composition](search-query-overview.md). |

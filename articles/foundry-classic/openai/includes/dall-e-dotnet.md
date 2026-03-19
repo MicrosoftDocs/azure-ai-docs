@@ -99,7 +99,7 @@ To run the quickstart, follow these steps:
     //AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
     
     // This must match the custom deployment name you chose for your model
-    ImageClient chatClient = openAIClient.GetImageClient("dalle-3");
+    ImageClient chatClient = openAIClient.GetImageClient("gpt-image-1");
     
     var imageGeneration = await chatClient.GenerateImageAsync(
             "a happy monkey sitting in a tree, in watercolor",

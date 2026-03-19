@@ -1,6 +1,5 @@
 ---
 title: Key Phrase Extraction Cognitive Skill
-titleSuffix: Azure AI Search
 description: Evaluates unstructured text, and for each record, returns a list of key phrases in an AI enrichment pipeline in Azure AI Search.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

@@ -1,7 +1,6 @@
 ---
 title: Indexer Overview
-titleSuffix: Azure AI Search
-description: Crawl Azure SQL Database, SQL Managed Instance, Azure Cosmos DB, or Azure storage to extract searchable data and populate an Azure AI Search index.
+description: Learn how indexers in Azure AI Search crawl Azure SQL, Cosmos DB, Blob Storage, and other data sources to extract and populate a search index automatically.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -129,7 +128,7 @@ Indexers require a *data source* object that provides a connection string and po
 You can create a data source using any of these approaches:
 
 + Using the Azure portal, on the **Data sources** tab of your search service pages, select **Add data source** to specify the data source definition.
-+ Using the Azure portal, the [Import data wizard](search-import-data-portal.md) outputs a data source.
++ Using the Azure portal, the [**Import data** wizard](search-import-data-portal.md) outputs a data source.
 + Using the REST APIs, call [Create Data Source](/rest/api/searchservice/data-sources/create).
 + Using the Azure SDK for .NET, call [SearchIndexerDataSourceConnection class](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection)
 

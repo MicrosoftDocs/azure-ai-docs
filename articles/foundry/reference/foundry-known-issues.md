@@ -10,6 +10,7 @@ ms.author: scottpolly
 ms.reviewer: bgilmore
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Known issues - Microsoft Foundry

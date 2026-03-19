@@ -1,7 +1,6 @@
 ---
-title: Vector Search
-titleSuffix: Azure AI Search
-description: Describes concepts, scenarios, and availability of vector capabilities in Azure AI Search.
+title: Vector Search Overview
+description: Learn about vector search in Azure AI Search for similarity matching across text, images, and multilingual content using numeric embeddings and vector indexes.
 ms.reviewer: robertlee
 ms.service: azure-ai-search
 ms.custom:
@@ -68,7 +67,7 @@ Vector search is available in [all regions](search-region-support.md) and on [al
 
 For portal and programmatic access to vector search, you can use:
 
-+ The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
++ The [**Import data** wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 + The [Search Service REST APIs](/rest/api/searchservice).
 + The Azure SDKs for [.NET](https://www.nuget.org/packages/Azure.Search.Documents), [Python](https://pypi.org/project/azure-search-documents), and [JavaScript](https://www.npmjs.com/package/@azure/search-documents).
 + [Other Azure offerings](#azure-integration-and-related-services), such as Microsoft Foundry.

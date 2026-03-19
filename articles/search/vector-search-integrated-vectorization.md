@@ -1,7 +1,6 @@
 ---
-title: Integrated Vectorization
-titleSuffix: Azure AI Search
-description: Add a vector embedding step in an Azure AI Search skillset to vectorize content during indexing or queries.
+title: Integrated Vectorization Overview
+description: Learn how integrated vectorization in Azure AI Search automatically chunks and generates embeddings during indexing and query execution using built-in skills.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -109,7 +108,7 @@ A more common scenario - data chunking and vectorization during indexing:
 Optionally, [create secondary indexes](index-projections-concept-intro.md) for advanced scenarios where chunked content is in one index, and nonchunked in another index. Chunked indexes (or secondary indexes) are useful for RAG apps.
 
 > [!TIP]
-> [Try the **Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal to explore integrated vectorization before writing any code.
+> [Try the **Import data** wizard](search-get-started-portal-import-vectors.md) in the Azure portal to explore integrated vectorization before writing any code.
 
 ### Secure connections to vectorizers and models
 

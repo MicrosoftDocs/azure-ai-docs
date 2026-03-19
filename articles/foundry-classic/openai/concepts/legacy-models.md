@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Retired Azure OpenAI models in Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/legacy-models.md)
 
 Azure OpenAI offers a variety of models for different use cases. The following models are no longer available for deployment.
 
@@ -38,7 +38,7 @@ These models are retired and are no longer available for use or for new deployme
 | `gpt-35-turbo-16k`     - 0613 |         | April  30, 2025                    | `gpt-4.1-mini` version: `2025-04-14` |
 | `babbage-002` | | January 27, 2025 |  |
 | `davinci-002` | | January 27, 2025 | |
-| `dall-e-2`|  | January 27, 2025 | `dall-e-3` |
+| `dall-e-2`|  | January 27, 2025 | `gpt-image-1` |
 | `ada` | July 6, 2023 | June 14, 2024 |  |
 | `babbage` | July 6, 2023 | June 14, 2024 |  |
 | `curie` | July 6, 2023 | June 14, 2024 | |

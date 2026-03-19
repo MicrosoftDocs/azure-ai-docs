@@ -1,6 +1,5 @@
 ---
 title: Create an Indexer
-titleSuffix: Azure AI Search
 description: Configure an indexer to automate data import and indexing from Azure data sources into a search index in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -164,7 +163,7 @@ When you're ready to create an indexer on a remote search service, you need a se
 
 1. Choose from the following options:
 
-   + [**Import wizards**](search-import-data-portal.md): The wizards are unique in that they create all of the required elements. Other approaches require a predefined data source and index.
+   + [**Import data**](search-import-data-portal.md): This wizard creates all of the required elements, including the indexer. Other approaches require a predefined data source and index.
 
        :::image type="content" source="media/search-how-to-create-indexers/portal-indexer-client.png" alt-text="Screenshot that shows the Import data wizard." border="true":::
 

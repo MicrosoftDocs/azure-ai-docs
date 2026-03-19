@@ -7,6 +7,7 @@ description: "Learn how to set up human evaluation for your Microsoft Foundry ag
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: peichengshi
+ai-usage: ai-assisted
 ---
 # Set up human evaluation for your agents (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]

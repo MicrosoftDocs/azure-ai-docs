@@ -6,7 +6,7 @@ ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 ms.date: 01/06/2026
 ai-usage: ai-assisted
 ---

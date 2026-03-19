@@ -8,8 +8,10 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 ms.date: 04/16/2025
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Transparency note for Azure OpenAI
@@ -30,7 +32,6 @@ Azure OpenAI provides customers with a fully managed Foundry Tool that lets deve
 | Model group | Text / code | Vision | Audio / Speech |
 | --- | --- | --- | --- |
 | GPT-3 & Codex | ✅ |  |  |
-| DALL-E 2 & 3  |  | ✅ |  |
 | GPT-image-1 |  | ✅ |  |
 |  Whisper|  |  | ✅ |
 |  GPT-4 Turbo with Vision| ✅ | ✅ |  |
@@ -84,11 +85,7 @@ Learn more about the training and modeling techniques in OpenAI's [GPT-3](https:
 
 #### [Vision models](#tab/image)
 
-The fully managed service provides API access to Azure OpenAI DALL·E 2, DALL·E 3, GPT-image-1, GPT-4 Turbo with Vision, GPT-4o, and o1 APIs.
-
-**Azure OpenAI DALL·E APIs** enable the generation of rich imagery from text prompts and image inputs in an application. This powerful, multimodal AI model was developed by [OpenAI](https://openai.com/dall-e-2/) and can generate images that capture both the semantics and style of the text input.
-
-You can learn more about the training and modeling techniques for DALL·E in the [OpenAI DALL·E research paper](https://arxiv.org/abs/2204.06125) and about DALL·E 3 safety from the [OpenAI DALL·E 3 system card](https://cdn.openai.com/papers/DALL_E_3_System_Card.pdf).
+The fully managed service provides API access to Azure OpenAI GPT-image-1, GPT-4 Turbo with Vision, GPT-4o, and o1 APIs.
 
 **Azure OpenAI GPT-4 Turbo with Vision** can accept multimodal (image and text) inputs and generate natural language and code responses. This API enables a richer and more comprehensive understanding of image and video inputs.  
 
@@ -106,8 +103,6 @@ The following guidance is drawn from Microsoft research insights and [best pract
 | --- | --- |
 | Text-to-image | A capability that enables users to generate images that are based on text prompts. |
 | prompt | The text you send to the service in the API call. This text is then input into the model. For example, a user might input the following prompt for image generation:<br><br> Text prompt: `Image of a botanical garden in the style of Picasso, rendered`<br><br>Generated image: Rendered image of a botanical garden in the style of Picasso. |
-|Prompt transformation | **DALL·E 3 only**: The process by which all prompts sent to the service APIs are enhanced by using a static metaprompt put in place by OpenAI. This process helps you enhance the quality of your images. |
-| Style (natural or vivid) | **DALL·E 3 only**: DALL·E 3 enables you to choose from two styles when you generate your images. This choice can be made in the API request.<br>Natural Style: Closely resembles DALL·E 2 because generations are more simplistic and realistic. <br>Vivid Style: On by default, this style offers richer and more cinematic image generation.  |
 | Metaprompt | Sometimes referred to as the system message or system prompt, it's a message written by the developer, in this case, OpenAI, to prime the model with context, instructions, or other information with certain bounds primarily used to enforce safety instructions.  |
 | Zero-shot translation | A machine learning capability of executing on novel categories or samples.<br><br>In the case of the latest image generation models, it's the model's ability to execute on a user-generated text prompt on which it wasn't explicitly trained. This capability allows the model to execute and generalize to any text input. |
 | GPT-4 Turbo with Vision | The content you send to the service in the API call. GPT-4 Turbo with Vision takes in text, image, or text and image interleaved prompts. This prompt is then input into the model. For example, a user might input the following prompt into the system: <br><br>Prompt: `How can I use [Image of a tomato] to make this? [Image of tomato soup]`<br><br>Completion: `Here is a list of recipes using tomatoes from which you can make the best tomato soup!` |
@@ -208,7 +203,7 @@ The Computer Use (Preview) model enables text-to-action capabilities, allowing u
 
 ### Image generation APIs in Azure OpenAI Service
 
-The DALL·E 2, DALL·E 3, and GPT-image-1 APIs use natural language prompts to generate new content. These models were trained on pairs of images and corresponding captions that were drawn from publicly available sources and other sources that OpenAI has licensed.
+The Image generation APIs use natural language prompts to generate new content. These models were trained on pairs of images and corresponding captions that were drawn from publicly available sources and other sources that OpenAI has licensed.
 
 These generative AI models present myriad opportunities for developers, artists, designers, educators, and others. The models can bridge the gap between what you can imagine and what you can create. They allow for cross-domain, general understanding, and zero-shot translation between text prompt and images, often with a high degree of realism. 
 
@@ -222,19 +217,6 @@ The main capabilities of the Azure OpenAI image generation APIs are:
 
     > [!TIP]
     > Public figures who wish for their depiction not to be generated can opt out by emailing [support@openai.com](mailto:support@openai.com).
-
-- **Prompt transformation**: For DALL·E 3 models: Before a prompt is sent to the model to generate images, a safety and quality mitigation is applied to the prompt. Prompt transformation enhances the prompt with the goal of generating more diverse and higher-quality images. 
-
-    Prompt transformation is applied to every Azure OpenAI DALL·E 3 generation.
-
-    
-    After prompt transformation is applied to the original prompt, Guardrails (previously content filters) is applied as a secondary step prior to image generation; see [Guardrails (previously content filters)](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new) for more information.  
-    
-    Learn more about image generation prompting in [OpenAI's documentation](https://platform.openai.com/docs/guides/images/introduction). 
-
-    | **Example text prompt** | **Example generated image without prompt transformation** | **Example generated image with prompt transformation** |
-    |---|---|---|
-    |"Watercolor painting of the Seattle skyline" | ![Watercolor painting of the Seattle skyline (simple).](./media/generated-seattle.png) | ![Watercolor painting of the Seattle skyline, with more detail and structure.](./media/generated-seattle-prompt-transformed.png) |
 
 - **Image-to-image**: For GPT-image-1 models: The model takes in an image and text prompt and returns a new or altered image based on the text instructions.
 
@@ -413,9 +395,9 @@ When choosing a use case for deep research, users should factor in the following
 
 ### Intended use cases
 
-#### DALL·E and GPT-image-1 in Azure OpenAI
+#### GPT-image-1 in Azure OpenAI
 
-The DALL·E and GPT-image-1 APIs in Azure OpenAI service can be used for various image-generation scenarios. The following list isn't comprehensive, but it illustrates the diversity of tasks that can be supported with appropriate mitigations.
+The GPT-image-1 API in Azure OpenAI service can be used for various image-generation scenarios. The following list isn't comprehensive, but it illustrates the diversity of tasks that can be supported with appropriate mitigations.
 - **Accessibility features:** Use to generate image-based visual descriptions.
 - **Art and design:** Use to generate imagery, for artistic purposes only, for designs, artistic inspiration, mood boards, or design layouts.
 - **Communication:** Use to create imagery for business-related communication, documentation, essays, newsletters, blog posts, social media, or memos.
@@ -461,7 +443,7 @@ The capabilities of Computer Use are best suited for developing agentic AI syste
 
 ### Considerations when choosing a use case
 
-We encourage customers to use the Azure OpenAI DALL·E 2, DALL·E 3, GPT-4 Turbo with Vision, GPT-4o, and Computer Use models in their innovative solutions or applications as approved in their [Limited access registration form](/azure/ai-foundry/responsible-ai/openai/limited-access). However, here are some considerations when choosing a use case:
+We encourage customers to use the Azure OpenAI GPT-image-1, GPT-4 Turbo with Vision, GPT-4o, and Computer Use models in their innovative solutions or applications as approved in their [Limited access registration form](/azure/ai-foundry/responsible-ai/openai/limited-access). However, here are some considerations when choosing a use case:
 
 - **Do not use for tracking or facial recognition, identification, or verification purposes.** Examples include using models for surveillance of individuals and using models to verify two individuals pictured in two separate locations are the same person.  
 - **Not suitable for scenarios where up-to-date, factually accurate information is crucial** unless you have human reviewers or are using the models to search your own documents and have verified suitability for your scenario. The service doesn't have information about events that occur after its training date, likely has missing knowledge about some topics, and might not always produce factually accurate information. 
@@ -528,12 +510,12 @@ When it comes to large-scale natural language models, vision models, and speech 
 Large-scale natural language, image, and speech models trained with such data can potentially behave in ways that are unfair, unreliable, or offensive, in turn causing harms. Some of the ways are listed here. We emphasize that these types of harms are not mutually exclusive. A single model can exhibit more than one type of harm, potentially relating to multiple different groups of people. For example:
 
 - **Allocation:** These models can be used in ways that lead to unfair allocation of resources or opportunities. For example, automated résumé screening systems can withhold employment opportunities from one gender if they are trained on résumé data that reflects the existing gender imbalance in a particular industry. Or the image generation models could be used to create imagery in the style of a known artist, which could affect the value of the artist's work or the artist's life opportunities. GPT-4 vision models could be used to identify individual behaviors and patterns that might have negative impacts on life opportunities.
-- **Quality of service:** The Azure OpenAI models are trained primarily on English text and images with English text descriptions. Languages other than English will experience worse performance. English language varieties with less representation in the training data might experience worse performance than standard American English. The publicly available images used to train the image generation models might reinforce public bias and other undesirable content. The DALL·E models are also unable to consistently generate comprehensible text at this time. Speech models might introduce other limitations, for example, translations using the Whisper model in Azure OpenAI are limited to English output only. Broadly speaking, with Speech-to-Text models, be sure to properly specify a language (or locale) for each audio input to improve accuracy in transcription. Additionally, acoustic quality of the audio input, non-speech noise, overlapped speech, vocabulary, accents, and insertion errors might also affect the quality of your transcription or translation.  
-- **Stereotyping:** These models can reinforce stereotypes. For example, when translating "He is a nurse" and "She is a doctor" into a genderless language such as Turkish and then back into English, many machine translation systems yield the stereotypical (and incorrect) results of "She is a nurse" and "He is a doctor." With DALL·E, when generating an image based on the prompt "Fatherless children," the model could generate images of Black children only, reinforcing harmful stereotypes that might exist in publicly available images. The GPT-4 vision models might also reinforce stereotypes based on the contents of the input image, by relying on components of the image and making assumptions that might not always be true.
+- **Quality of service:** The Azure OpenAI models are trained primarily on English text and images with English text descriptions. Languages other than English will experience worse performance. English language varieties with less representation in the training data might experience worse performance than standard American English. The publicly available images used to train the image generation models might reinforce public bias and other undesirable content. Speech models might introduce other limitations, for example, translations using the Whisper model in Azure OpenAI are limited to English output only. Broadly speaking, with Speech-to-Text models, be sure to properly specify a language (or locale) for each audio input to improve accuracy in transcription. Additionally, acoustic quality of the audio input, non-speech noise, overlapped speech, vocabulary, accents, and insertion errors might also affect the quality of your transcription or translation.  
+- **Stereotyping:** These models can reinforce stereotypes. For example, when translating "He is a nurse" and "She is a doctor" into a genderless language such as Turkish and then back into English, many machine translation systems yield the stereotypical (and incorrect) results of "She is a nurse" and "He is a doctor." When generating an image based on the prompt "Fatherless children," the model could generate images of Black children only, reinforcing harmful stereotypes that might exist in publicly available images. The GPT-4 vision models might also reinforce stereotypes based on the contents of the input image, by relying on components of the image and making assumptions that might not always be true.
 - **Demeaning:** The natural language and vision models in the Azure OpenAI service can demean people. For example, an open-ended content generation system with inappropriate or insufficient mitigations might produce content that is offensive or demeaning to a particular group of people. 
 - **Overrepresentation and underrepresentation:** The natural language and vision models in the Azure OpenAI service can over- or under-represent groups of people, or even erase their representation entirely. For example, if text prompts that contain the word "gay" are detected as potentially harmful or offensive, this identification could lead to the underrepresentation or even erasure of legitimate image generations by or about the LGBTQIA+ community.
 - **Inappropriate or offensive content:** The natural language and vision models in the Azure OpenAI service can produce other types of inappropriate or offensive content. Examples include the ability to generate text that is inappropriate in the context of the text or image prompt; the ability to create images that potentially contain harmful artifacts such as hate symbols; images that elicit harmful connotations; images that relate to contested, controversial, or ideologically polarizing topics; images that are manipulative; images that contain sexually charged content that is not caught by sexual-related guardrails; and images that relate to sensitive or emotionally charged topics. For example, a well-intentioned text prompt aimed to create an image of the New York skyline with clouds and airplanes flying over it might unintentionally generate images that illicit sentiments related to the events surrounding 9/11. 
-- **Disinformation and misinformation about sensitive topics:** Because DALL·E and GPT-image-1 are powerful image generation models, they can be used to produce disinformation and misinformation that can be harmful. For example, a user could prompt the model to generate an image of a political leader engaging in activity of a violent or sexual (or simply inaccurate) nature that might lead to consequential harms, including but not limited to public protests, political change, or fake news. The GPT-4 visions models could also be used in a similar vein. The model might reinforce disinformation or misinformation about sensitive topics if the prompt contains such information without mitigation.
+- **Disinformation and misinformation about sensitive topics:** Because GPT-image-1 is a powerful image generation model, it can be used to produce disinformation and misinformation that can be harmful. For example, a user could prompt the model to generate an image of a political leader engaging in activity of a violent or sexual (or simply inaccurate) nature that might lead to consequential harms, including but not limited to public protests, political change, or fake news. The GPT-4 visions models could also be used in a similar vein. The model might reinforce disinformation or misinformation about sensitive topics if the prompt contains such information without mitigation.
 - **Information reliability:** Language and vision model responses can generate nonsensical content or fabricate content that might sound reasonable but is inaccurate with respect to external validation sources. Even when drawing responses from trusted source information, responses might misrepresent that content. Transcriptions or translations might result in inaccurate text. 
 - **False information:** Azure OpenAI doesn't fact-check or verify content that is provided by customers or users. Depending on how you have developed your application, it might produce false information unless you have built in mitigations (**see Best practices for improving system performance**). 
 

@@ -1,6 +1,5 @@
 ---
 title: GenAI Prompt Skill Best Practices
-titleSuffix: Azure AI Search
 description: Tips and guidance to ensure responsible use of AI when utilizing the GenAI Prompt skill.
 ms.reviewer: arjagann
 ms.service: azure-ai-search

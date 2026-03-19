@@ -6,10 +6,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/18/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-function-calling-new
 ---
@@ -38,7 +38,7 @@ Before you start, make sure you have:
 - A Foundry project and a deployed model.
 - The SDK package for your language:
   - Python: `azure-ai-projects` (latest)
-  - .NET: `Azure.AI.Projects.OpenAI` (prerelease)
+  - .NET: `Azure.AI.Extensions.OpenAI` (prerelease)
   - TypeScript: `@azure/ai-projects` (latest)
   - Java: `azure-ai-agents` (prerelease)
   
@@ -159,12 +159,12 @@ Agent response: Your horoscope for Aquarius: Next Tuesday you will befriend a ba
 :::zone pivot="csharp"
 ## Use agents with functions example
 
-In this example, you use local functions with agents. Use the functions to give the Agent specific information in response to a user question. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample9_Function.md) example in the Azure SDK for .NET repository on GitHub.
+In this example, you use local functions with agents. Use the functions to give the Agent specific information in response to a user question. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample9_Function.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 class FunctionCallingDemo

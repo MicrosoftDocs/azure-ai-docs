@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Model versions in Microsoft Foundry Models (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/concepts/model-versions.md)
 
 Microsoft Foundry Models regularly release new model versions that incorporate the latest features and improvements from model providers. This article explains how model versioning works, what update policies are available for your deployments, and how Azure OpenAI and partner model versions are managed.
 

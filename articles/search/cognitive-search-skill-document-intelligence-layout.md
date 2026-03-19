@@ -1,6 +1,5 @@
 ---
 title: Document Layout Skill
-titleSuffix: Azure AI Search
 description: Analyze a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format) in an enrichment pipeline in Azure AI Search.
 ms.reviewer: rawan
 ms.service: azure-ai-search
@@ -39,7 +38,7 @@ Supported regions vary by modality and how the skill connects to the Azure Docum
 
 | Approach | Requirement |
 |----------|-------------|
-| [**Import data (new)** wizard](search-import-data-portal.md) | Create an Azure AI Search service and [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) in one of the following regions: East US, West Europe, or North Central US. | 
+| [**Import data** wizard](search-import-data-portal.md) | Create an Azure AI Search service and [Azure AI multi-service account](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne) in one of the following regions: East US, West Europe, or North Central US. | 
 | Programmatic, using a [Microsoft Foundry resource key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Create an Azure AI Search service and Microsoft Foundry resource in the same region. The region must support both [Azure AI Search and Azure Document Intelligence](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
 | Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | No same-region requirement. Create an Azure AI Search service and Microsoft Foundry resource in any region where [each service is available](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
 

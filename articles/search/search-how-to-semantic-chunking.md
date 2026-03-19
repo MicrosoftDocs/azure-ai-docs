@@ -1,6 +1,5 @@
 ---
 title: Chunk and Vectorize by Document Layout
-titleSuffix: Azure AI Search
 description: Chunk textual content by headings and semantically coherent fragments, generate embeddings, and send the results to a searchable index.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -24,7 +23,7 @@ In this article, learn how to:
 > + Generate embeddings for each chunk
 > + Use index projections to map embeddings to fields in a search index
 
-For illustration purposes, this article uses the [sample health plan PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) uploaded to Azure Blob Storage and then indexed using the **Import data (new)** wizard.
+For illustration purposes, this article uses the [sample health plan PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) uploaded to Azure Blob Storage and then indexed using the **Import data** wizard.
 
 ## Prerequisites
 
@@ -53,7 +52,7 @@ You must use a [supported data source](search-indexer-overview.md#supported-data
 You can use the Azure portal, REST APIs, or an Azure SDK package to [create a data source](search-how-to-index-azure-blob-storage.md).
 
 > [!TIP]
-> To try the Document Layout skill and structure-aware chunking on your own search service, upload the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to your supported data source. The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) is an easy code-free approach for trying out this skill. Be sure to select the **default parsing mode** to use structure-aware chunking. Otherwise, the [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md) is used.
+> To try the Document Layout skill and structure-aware chunking on your own search service, upload the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to your supported data source. The [**Import data** wizard](search-get-started-portal-import-vectors.md) is an easy code-free approach for trying out this skill. Be sure to select the **default parsing mode** to use structure-aware chunking. Otherwise, the [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md) is used.
 
 ## Create an index for one-to-many indexing
 
@@ -61,7 +60,7 @@ The following example shows a single search document designed around chunks. Whe
 
 The Document Layout skill outputs headings and content. In this example, `header_1` through `header_3` store document headings, as detected by the skill. Other content, such as paragraphs, is stored in `chunk`. The `text_vector` field is a vector representation of the chunk field content.
 
-You can use the **Import data (new)** wizard in the Azure portal, REST APIs, or an Azure SDK to [create an index](search-how-to-load-search-index.md). The following index is very similar to what the wizard creates by default. You might have more fields if you add image vectorization.
+You can use the **Import data** wizard in the Azure portal, REST APIs, or an Azure SDK to [create an index](search-how-to-load-search-index.md). The following index is very similar to what the wizard creates by default. You might have more fields if you add image vectorization.
 
 If you aren't using the wizard, the index must exist on the search service before you create the skillset or run the indexer.
 

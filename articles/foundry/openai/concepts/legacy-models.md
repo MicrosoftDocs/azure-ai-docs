@@ -8,6 +8,7 @@ ms.date: 02/12/2026
 ms.custom:
   - references_regions, build-2023, build-2023-dataai
   - classic-and-new
+  - doc-kit-assisted
 manager: nitinme
 author: mrbullwinkle 
 ms.author: mbullwin 
@@ -34,7 +35,7 @@ These models are retired and are no longer available for use or for new deployme
 | `gpt-35-turbo-16k`     - 0613 |         | April  30, 2025                    | `gpt-4.1-mini` version: `2025-04-14` |
 | `babbage-002` | | January 27, 2025 |  |
 | `davinci-002` | | January 27, 2025 | |
-| `dall-e-2`|  | January 27, 2025 | `dall-e-3` |
+| `dall-e-2`|  | January 27, 2025 | `gpt-image-1` |
 | `ada` | July 6, 2023 | June 14, 2024 |  |
 | `babbage` | July 6, 2023 | June 14, 2024 |  |
 | `curie` | July 6, 2023 | June 14, 2024 | |

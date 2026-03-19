@@ -20,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Azure OpenAI in Microsoft Foundry Models quotas and limits (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/openai/quotas-limits.md)
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
 
@@ -111,8 +111,6 @@ The following section provides you with a quick guide to the default quotas and 
 | Limit name | Limit value |
 |--|--|
 | Azure OpenAI resources per region, per Azure subscription | 30. |
-| Default DALL-E 2 quota limits | 2 concurrent requests. |
-| Default DALL-E 3 quota limits| 6 requests per minute |
 | Default GPT-image-1 quota limits | 9 requests per minute |
 | Default GPT-image-1-mini quota limits | 12 requests per minute |
 | Default GPT-image-1.5 quota limits | 9 requests per minute |

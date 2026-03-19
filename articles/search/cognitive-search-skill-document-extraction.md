@@ -1,6 +1,5 @@
 ---
 title: Document Extraction Cognitive Skill
-titleSuffix: Azure AI Search
 description: Extracts content from a file within the enrichment pipeline.
 ms.reviewer: gimondra
 ms.service: azure-ai-search

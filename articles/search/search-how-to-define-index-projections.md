@@ -1,6 +1,5 @@
 ---
 title: Define Index Projections
-titleSuffix: Azure AI Search
 description: Index projections specify how parent-child content is mapped to fields in a search index when you use integrated vectorization for data chunking.
 ms.service: azure-ai-search
 ms.custom:
@@ -299,7 +298,7 @@ If a parent document is completely deleted from the datasource, the correspondin
 
 ### Projected key value
 
-To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [**Import data (new)** wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
+To ensure data integrity for updated and deleted content, data refresh in one-to-many indexing relies on a *projected key value* on the "many" side. If you're using integrated vectorization or the [**Import data** wizard](search-import-data-portal.md), the projected key value is the `parent_id` field in a chunked or "many" side of the index.
 
 A projected key value is a unique identifier that the indexer generates for each document. It ensures uniqueness and allows for change and deletion tracking to work correctly. This key contains the following segments:
 

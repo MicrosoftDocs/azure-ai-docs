@@ -1,6 +1,5 @@
 ---
 title: Model SQL Relational Data for Import and Indexing
-titleSuffix: Azure AI Search
 description: Learn how to model relational data, denormalized into a flat result set, for indexing and full text search in Azure AI Search.
 ms.service: azure-ai-search
 ms.custom:
@@ -155,11 +154,11 @@ As noted in [Model complex types](search-howto-complex-data-types.md): "the docu
 
 ## Next steps
 
-Using your own data set, you can use the [Import data wizard](search-import-data-portal.md) to create and load the index. The wizard detects the embedded JSON collection, such as the one contained in *Rooms*, and infers an index schema that includes a complex type collection. 
+Using your own data set, you can use the [**Import data** wizard](search-import-data-portal.md) to create and load the index. The wizard detects the embedded JSON collection, such as the one contained in *Rooms*, and infers an index schema that includes a complex type collection. 
 
   ![Index inferred by Import data wizard](media/index-sql-relational-data/search-index-rooms-complex-collection.png "Screenshot of the an index inferred by Import data wizard.")
 
-Try the following quickstart to learn the basic steps of the Import data wizard.
+Try the following quickstart to learn the basic steps of the **Import data** wizard.
 
 > [!div class="nextstepaction"]
 > [Quickstart: Create a search index using Azure portal](search-get-started-portal.md)

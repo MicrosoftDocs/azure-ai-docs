@@ -8,6 +8,7 @@ ms.date: 01/22/2026
 ms.custom:
   - ignite-2024, github-universe-2024, dev-focus, time-to-complete=15
   - classic-and-new
+  - doc-kit-assisted
 author: msakande
 ms.author: mopeakande
 recommendations: false

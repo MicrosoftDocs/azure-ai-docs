@@ -118,7 +118,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
@@ -221,5 +221,5 @@ The `document_retrieval` evaluator returns multiple metrics for retrieval qualit
 
 - [More examples for quality evaluators](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
 - [How to run agent evaluation](../../observability/how-to/evaluate-agent.md)
-- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)

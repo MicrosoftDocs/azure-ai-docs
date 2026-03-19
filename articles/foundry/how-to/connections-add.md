@@ -7,6 +7,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 11/06/2025
 ms.reviewer: meerakurup
@@ -14,7 +15,6 @@ ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
 # Customer Intent: As an admin or developer, I want to understand how to add new connections in my project.
-
 ---
 
 # Add a new connection to your project
@@ -37,7 +37,7 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 |Azure AI Search||Azure AI Search is an Azure resource that supports information retrieval over vector and textual data stored in search indexes. Required for Standard Agent deployment.|
 |Azure Storage||Azure Storage is a cloud storage solution for storing unstructured data such as documents, images, videos, and application installers. Required for Standard Agent deployment.|
 |Azure Cosmos DB|✅|Azure Cosmos DB is a globally distributed, multi-model database service that offers low latency, high availability, and scalability across multiple regions. Required for Standard Agent deployment. Connection creation is supported only through code.|
-|Azure OpenAI||Azure OpenAI provides access to OpenAI models, including GPT-5, GPT-4o, DALLE-3, and Embeddings, with Azure security and enterprise capabilities.|
+|Azure OpenAI||Azure OpenAI provides access to OpenAI models, including GPT-5, GPT-4o, GPT-image-1, and Embeddings, with Azure security and enterprise capabilities.|
 |Application Insights||Azure Application Insights helps detect performance anomalies, diagnose issues, and understand application behavior.|
 |Azure Key Vault||Azure service for securely storing and accessing secrets. (See limitations below.)|
 |Foundry||Connect to other Foundry resources.|

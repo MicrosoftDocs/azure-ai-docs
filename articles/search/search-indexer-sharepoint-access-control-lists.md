@@ -1,45 +1,48 @@
 ---
 title: Use a SharePoint Indexer to Ingest Permission Metadata
-titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) from SharePoint in Microsoft 365 files.
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/09/2025
+ms.date: 03/05/2026
 ---
 
 # Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-This article explains how to ingest an Access Control List (ACL) alongside other content from SharePoint in Microsoft 365 using an Azure AI Search indexer. Permissions from SharePoint are preserved as permission metadata for each indexed document. When users query an index containing content from SharePoint, their search results consist of only those documents for which they have permission to access.
+This article explains how to ingest an access control list (ACL) alongside other content from SharePoint in Microsoft 365 using an Azure AI Search indexer. Permissions from SharePoint are preserved as permission metadata for each indexed document. When users query an index containing content from SharePoint, their search results consist of only those documents for which they have permission to access.
 
+:::image type="content" source="media/search-indexer-sharepoint-access-control-lists/security-trimmed-rag-sharepoint.png" alt-text="Architecture diagram showing a security-trimmed RAG solution where a SharePoint indexer ingests documents and ACL permission metadata from a SharePoint site, stores them in an Azure AI Search index, and a RAG orchestrator filters query results so each user retrieves only documents they're authorized to access." lightbox="media/search-indexer-sharepoint-access-control-lists/security-trimmed-rag-sharepoint.png":::
 
 > [!IMPORTANT]
-> For scenarios that require the full SharePoint permissions model, sensitivity labels, and out-of-the-box security trimming, use a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md). This approach calls SharePoint directly via the [Copilot retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) so governance remains fully in SharePoint and query results automatically respect all applicable permissions and labels.
-
+> For scenarios that require the full SharePoint permissions model, sensitivity labels, and out-of-the-box security trimming, use a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md). This approach calls SharePoint directly via the [Copilot retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview). Governance remains fully in SharePoint, and query results automatically respect all applicable permissions and labels.
 
 ## Prerequisites
 
-+ [Azure AI Search](search-create-service-portal.md) (Basic or higher).
++ [Azure AI Search](search-create-service-portal.md) on a billable tier (Basic or higher) in any region.
 
 + SharePoint in Microsoft 365 sites, libraries, folders, and files with configured permissions.
 
-+ Follow all configuration steps mentioned in the [SharePoint indexer documentation](search-how-to-index-sharepoint-online.md). Make sure that you apply the specific requirements in this document for ACL ingestion configuration.
++ Complete all configuration steps in the [SharePoint indexer documentation](search-how-to-index-sharepoint-online.md), applying the ACL-specific requirements described in this article.
 
-+ Configure [Application permissions](search-how-to-index-sharepoint-online.md#step-2-decide-which-permissions-the-indexer-requires) with `Files.Read.All` and `Sites.FullControl.All` (or `Sites.Selected` instead of `Sites.FullControl.All`), to index only the content and permissions of specific sites. Then, grant the application full control permissions for just those selected sites.
++ Configure [application permissions](search-how-to-index-sharepoint-online.md#step-2-decide-which-permissions-the-indexer-requires) with `Files.Read.All` and `Sites.FullControl.All` (or `Sites.Selected` instead of `Sites.FullControl.All`) to index only the content and permissions of specific sites. Then, grant the application full control permissions for those selected sites.
 
-  
++ REST API version 2025-11-01-preview or an equivalent preview SDK package.
+
 ## Limitations
 
-- During public preview, this functionality applies to initial ingestion only: ACLs are captured on the first ingestion of each file. If permissions change in the source, you must [explicitly reindex those documents or their respective ACLs](#synchronize-permissions-between-indexed-and-source-content).
++ During public preview, ACL ingestion applies to initial indexing only. ACLs are captured on the first ingestion of each file. If permissions change in the source, you must [explicitly reindex those documents or their respective ACLs](#synchronize-permissions-between-indexed-and-source-content).
   
-- Not supported in this preview:
++ The Azure portal doesn't support this feature.
+
++ The following aren't supported in this preview:
+
   + [SharePoint Information Management policies](/sharepoint/intro-to-info-mgmt-policies) applicable to user access.
-  + Document [shareable](/sharepoint/shareable-links-anyone-specific-people-organization) "Anyone links" or "People in your organization links". Only "specific people links" sync are supported.
+
+  + [Shareable links](/sharepoint/shareable-links-anyone-specific-people-organization) scoped to "Anyone" or "People in your organization." Only links scoped to "Specific people" are supported.
+
   + [SharePoint groups](/sharepoint/modern-experience-sharing-permissions) that can't be resolved to Microsoft Entra groups (such as Owners, Members, Visitors groups).
-  + Azure portal is out of support during preview; use REST API version 2025-11-01-preview or SDK preview packages.
-  + This feature must not be tested in combination with [sensitivity labels preservation and honoring](search-indexer-sensitivity-labels.md) feature at this time. Both features must be tested on different indexers and indexes accordingly, since their coexistence is not supported currently.
 
 
 ## Support for the SharePoint permission model
@@ -55,8 +58,7 @@ This preview supports only basic ACLs for documents, as shown in the following t
 | Shareable "Anyone links" or "People in your organization links" | Org-wide or public access. | ❌ | Not supported in preview. |
 | External/guest users | Access for guests. | ❌ | Not supported. | 
 | Information Management policies | Policies to define specific permissions requirements. | ❌ | Not supported in preview. | 
-| Purview sensitivity labels  | Document-level security for privacy, categorization, permissions, and encryption  | ❌ | Supported via a separate feature: [preserving and honoring sensitivity labels](search-indexer-sensitivity-labels.md) and not to be tested in the same indexer/index as this ACL feature at this time. | 
-
+| Purview sensitivity labels  | Document-level security for privacy, categorization, permissions, and encryption  | ❌ | Supported via a separate feature: [preserving and honoring sensitivity labels](search-indexer-sensitivity-labels.md). | 
 
 ## How hierarchical permissions are evaluated
 
@@ -129,7 +131,7 @@ PUT https://{service}.search.windows.net/skillsets/{skillset}?api-version=2025-1
           { "name": "chunkId",           "source": "/document/chunks/*/id" },     // if you create an id per chunk
           { "name": "content",           "source": "/document/chunks/*/text" },   // chunk text
           { "name": "parentId",          "source": "/document/id" },              // parent doc id
-          { "name": "UserIds",  "source": "/document/metadata_user_ids" } // <-- parent → child
+          { "name": "UserIds",  "source": "/document/metadata_user_ids" }, // <-- parent → child
           { "name": "GroupIds",  "source": "/document/metadata_group_ids" } // <-- parent → child
         ]
       }
@@ -159,13 +161,11 @@ Besides your required [indexer configuration](search-how-to-index-sharepoint-onl
 
 During public preview when the configuration is completed, and ACLs are captured during the first indexer run and for new files only. To pick up later changes:
 
-
 | Change  Scope | 	Recommended | Trigger | What refreshes | 
 |--------|-------------|---------|---------|
 | Single/few files	| Update | LastModified |	Content and ACLs |
 | Many items	| Update | [/resetdocs (preview)](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2025-11-01-preview&preserve-view=true) with document keys	| Content and ACLs |
 | Entire site/library (as defined in the data source configuration) |	Update | /resync (preview) with permissions |	Only ACLs (no content refresh) |
-
 
 ### Reset specific documents
 
@@ -192,11 +192,9 @@ POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=
 > [!IMPORTANT]
 > If you change SharePoint permissions without triggering an update mechanism, the index serves stale ACL data for previously ingested files.
 
-After indexing your data and ACLs, you can [query the index](search-query-access-control-rbac-enforcement.md). .
+After indexing your data and ACLs, you can [query the index](search-query-access-control-rbac-enforcement.md).
 
+## Related content
 
-## See also
-
-[Index SharePoint content in Azure AI Search (preview)](search-how-to-index-sharepoint-online.md)
-
-[Query-Time ACL enforcement](search-query-access-control-rbac-enforcement.md)
++ [Index SharePoint content in Azure AI Search (preview)](search-how-to-index-sharepoint-online.md)
++ [Query-time ACL enforcement](search-query-access-control-rbac-enforcement.md)

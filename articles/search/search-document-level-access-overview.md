@@ -1,8 +1,7 @@
 ---
 title: Document-Level Access Control
-titleSuffix: Azure AI Search
 description: Conceptual overview of document-level permissions in Azure AI Search.
-ms.date: 11/18/2025
+ms.date: 03/05/2026
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
@@ -12,31 +11,31 @@ ms.custom:
   
 # Document-level access control in Azure AI Search  
   
-Azure AI Search supports document-level access control, enabling organizations to enforce fine-grained permissions at the document level, from data ingestion through query execution. This capability is essential for building secure AI agentic systems grounding data, Retrieval-Augmented Generation (RAG) applications, and enterprise search solutions that require authorization checks at the document level.  
+Azure AI Search supports document-level access control, enabling organizations to enforce fine-grained permissions at the document level, from data ingestion through query execution. This capability is essential for building secure AI agentic systems grounding data, retrieval-augmented generation (RAG) applications, and enterprise search solutions that require authorization checks at the document level.  
   
 ## Approaches for document-level access control
 
 | Approach | Description |
 |----------|-------------|
 | Security filters | String comparison. Your application passes in a user or group identity as a string, which populates a filter on a query, excluding any documents that don't match on the string. <br><br>Security filters are a technique for achieving document-level access control. This approach isn't bound to an API so you can use any version or package. |
-| POSIX-like ACL  / RBAC scopes (preview) | Microsoft Entra security principal behind the query token is compared to the permission metadata of documents returned in search results, excluding any documents that don't match on permissions. Access Control Lists (ACL) permissions apply to Azure Data Lake Storage (ADLS) Gen2 directories and files. Role-based access control (RBAC) scopes apply to ADLS Gen2 content and to Azure blobs. <br><br>Built-in support for identity-based access at the document level is in preview, available in REST APIs and preview Azure SDK packages that provide the feature. Be sure to check the [SDK package change log](#retrieve-acl-permissions-metadata-during-data-ingestion-process-preview) for evidence of feature support.|
+| POSIX-like ACL  / RBAC scopes (preview) | Microsoft Entra security principal behind the query token is compared to the permission metadata of documents returned in search results, excluding any documents that don't match on permissions. Access control lists (ACL) permissions apply to Azure Data Lake Storage (ADLS) Gen2 directories and files. Role-based access control (RBAC) scopes apply to ADLS Gen2 content and to Azure blobs. <br><br>Built-in support for identity-based access at the document level is in preview, available in REST APIs and preview Azure SDK packages that provide the feature. Be sure to check the [SDK package change log](#retrieve-acl-permissions-metadata-during-data-ingestion-process-preview) for evidence of feature support.|
 | Microsoft Purview sensitivity labels (preview) | Indexer extracts sensitivity labels defined in Microsoft Purview from supported data sources (Azure Blob Storage, ADLS Gen2, SharePoint in Microsoft 365, OneLake). These labels are stored as metadata and evaluated at query time to enforce user access based on Microsoft Entra tokens and Purview policy assignments. This approach aligns Azure AI Search authorization with your enterprise's Microsoft Information Protection model.|
-| SharePoint in Microsoft 365 ACLs (preview) | When configured, Azure AI Search indexers extract SharePoint document permissions directly from in Microsoft 365 ACLs during initial ingestion. Access checks use Microsoft Entra user and group memberships. Supported group types include Microsoft Entra security groups, Microsoft 365 groups, and mail-enabled security groups. SharePoint groups are not yet supported in preview. |
+| SharePoint in Microsoft 365 ACLs (preview) | When configured, Azure AI Search indexers extract SharePoint document permissions directly from Microsoft 365 ACLs during initial ingestion. Access checks use Microsoft Entra user and group memberships. Supported group types include Microsoft Entra security groups, Microsoft 365 groups, and mail-enabled security groups. SharePoint groups aren't yet supported in preview. |
 
 ## Pattern for security trimming using filters  
 
-For scenarios where native ACL/RBAC scopes integration isn't viable, we recommend security string filters for trimming results based on exclusion criteria. The pattern includes the following components:
+For scenarios where native ACL/RBAC scopes integration isn't viable, security string filters are recommended for trimming results based on exclusion criteria. The pattern includes the following components:
 
 - To store user or group identities, create a string field in the index.
 - Load the index using source documents that include associated ACLs.
 - Include a filter expression in your query logic for matching on the string.
 - At query time, get the identity of the caller.
 - Pass in the identity of the caller as the filter string.
-- Results are trimmed to exclude any matches that fail to include the user or group identity string,
+- Results are trimmed to exclude any matches that fail to include the user or group identity string.
 
 You can use push or pull model APIs. Because this approach is API agnostic, you just need to ensure that the index and query have valid strings (identities) for the filtration step.
 
-This approach is useful for systems with custom access models or non-Microsoft security frameworks. For more information this approach, see [Security filters for trimming results in Azure AI Search](search-security-trimming-for-azure-search.md).
+This approach is useful for systems with custom access models or non-Microsoft security frameworks. For more information about this approach, see [Security filters for trimming results in Azure AI Search](search-security-trimming-for-azure-search.md).
 
 ## Pattern for native support for POSIX-like ACL and RBAC scope permissions (preview)
 
@@ -92,9 +91,9 @@ SharePoint ACL support is available in preview through the SharePoint indexer us
 
 The pattern includes the following components:
 
-- Use the SharePoint in Microsoft 365 indexer with application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL setup instructions](https://aka.ms/azs-sharepoint-indexer-acls) for enablement and limitations.
+- Use the SharePoint in Microsoft 365 indexer with application permissions to read SharePoint site content and full permissions to read ACLs. Follow the [SharePoint indexer ACL configuration steps](search-indexer-sharepoint-access-control-lists.md#configure-your-search-service-for-acl-ingestion-and-honoring-at-query-time) for enablement and limitations.
 - During initial indexing, SharePoint ACL entries (users and groups) are stored as permission metadata in the search index.
-- For incremental indexing of ACLs, review the [SharePoint ACL resync available mechanisms](https://aka.ms/azs-sharepoint-indexer-acls) available during public preview.
+- For incremental indexing of ACLs, review the [SharePoint ACL synchronization options](search-indexer-sharepoint-access-control-lists.md#synchronize-permissions-between-indexed-and-source-content) available during public preview.
 - At query time, Azure AI Search checks the Microsoft Entra principal in the query token against SharePoint ACL metadata stored in the index. It excludes any documents the caller isn't authorized to access.
 
 During preview, only the following principal types are supported in SharePoint ACLs:
@@ -106,7 +105,7 @@ During preview, only the following principal types are supported in SharePoint A
 
 SharePoint groups aren't supported in the preview release. 
 
-For configuration details and full limitations, see [How to index SharePoint in Microsoft 365 document-level permissions (preview)](https://aka.ms/azs-sharepoint-indexer-acls).
+For configuration details and full limitations, see [How to index SharePoint in Microsoft 365 document-level permissions (preview)](search-indexer-sharepoint-access-control-lists.md).
 
 
 ## Pattern for Microsoft Purview sensitivity labels (preview)
@@ -131,7 +130,7 @@ For more information, see [Use Azure AI Search indexers to ingest Microsoft Purv
 
 ### Enforce document-level permissions at query time
 
-With native [token-based querying](https://aka.ms/azs-query-preserving-permissions), Azure AI Search validates a user's [Microsoft Entra token](/Entra/identity/devices/concept-tokens-microsoft-Entra-id), trimming result sets to include only documents the user is authorized to access. 
+With native [token-based querying](search-query-access-control-rbac-enforcement.md), Azure AI Search validates a user's [Microsoft Entra token](/Entra/identity/devices/concept-tokens-microsoft-Entra-id), trimming result sets to include only documents the user is authorized to access. 
 
 You can achieve automatic trimming by attaching the user's Microsoft Entra token to your query request. For more information, see [Query-time ACL and RBAC enforcement in Azure AI Search](search-query-access-control-rbac-enforcement.md).
 
@@ -139,7 +138,7 @@ You can achieve automatic trimming by attaching the user's Microsoft Entra token
   
 Document-level access control is critical for safeguarding sensitive information in AI-driven applications. It helps organizations build systems that align with their access policies, reducing the risk of exposing unauthorized or confidential data. By integrating access rules directly into the search pipeline, AI systems can provide responses grounded in secure and authorized information.  
 
-By offloading permission enforcement to Azure AI Search, developers can focus on building high-quality retrieval and ranking systems. This approach helps reducing the need to handle nested groups, write custom filters, or manually trim search results.  
+By offloading permission enforcement to Azure AI Search, developers can focus on building high-quality retrieval and ranking systems. This approach helps reduce the need to handle nested groups, write custom filters, or manually trim search results.  
 
 Document-level permissions in Azure AI Search provide a structured framework for enforcing access controls that align with organizational policies. By using Microsoft Entra-based ACLs and RBAC roles, organizations can create systems that support robust compliance and promote trust among users. These built-in capabilities reduce the need for custom coding, offering a standardized approach to document-level security.  
 
@@ -157,6 +156,6 @@ Take a closer look at document-level access control in Azure AI Search with more
 
 - [How to index document-level permissions using push API](search-index-access-control-lists-and-rbac-push-api.md)
 - [How to index document-level permissions using the ADLS Gen2 indexer](search-indexer-access-control-lists-and-role-based-access.md)
-- [How to index document-level permissions using the SharePoint in Microsoft 365 indexer](https://aka.ms/azs-sharepoint-indexer-acls)
+- [How to index document-level permissions using the SharePoint in Microsoft 365 indexer](search-indexer-sharepoint-access-control-lists.md)
 - [How to index sensitivity labels using indexers](search-indexer-sensitivity-labels.md)
-- [How to query using Microsoft Entra token-based permissions](https://aka.ms/azs-query-preserving-permissions)
+- [How to query using Microsoft Entra token-based permissions](search-query-access-control-rbac-enforcement.md)

@@ -9,6 +9,7 @@ ms.topic: concept-article
 ms.date: 02/13/2026
 ms.author: pafarley
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Limited Access features for Foundry Tools

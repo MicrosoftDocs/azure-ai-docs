@@ -21,7 +21,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Get started with provisioned deployments in Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/provisioned-get-started.md)
 
 The following guide walks you through key steps in creating a provisioned deployment with your Microsoft Foundry resource. For more details on the concepts discussed here, see:
 * [Foundry Provisioned Throughput Onboarding Guide](./provisioned-throughput-onboarding.md)

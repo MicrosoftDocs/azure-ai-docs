@@ -8,6 +8,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - openai, pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
 author: msakande
 ms.author: mopeakande

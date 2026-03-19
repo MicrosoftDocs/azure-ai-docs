@@ -1,6 +1,5 @@
 ---
 title: Vector Index Limits
-titleSuffix: Azure AI Search
 description: Learn about the factors that affect the size of a vector index.
 ms.reviewer: robertlee
 ms.service: azure-ai-search
@@ -232,3 +231,4 @@ Most of this article provides information about the size of vectors in memory. F
 
 + [Vector search in Azure AI Search](vector-search-overview.md)
 + [Choose an approach for optimizing vector storage and processing](vector-search-how-to-configure-compression-storage.md)
++ [Troubleshoot storage and metric discrepancies](troubleshoot-storage-metrics.md)

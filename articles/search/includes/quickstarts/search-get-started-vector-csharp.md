@@ -13,7 +13,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 > [!TIP]
 > + Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-vector-search) on GitHub.
-> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md).
+> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data** wizard](../../search-get-started-portal-import-vectors.md).
 
 ## Prerequisites
 

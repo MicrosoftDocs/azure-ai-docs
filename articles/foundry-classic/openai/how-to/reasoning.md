@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/17/2026
 author: mrbullwinkle
 ms.author: mbullwin
 ai-usage: ai-assisted
@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Azure OpenAI reasoning models (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/reasoning.md)
 
 Azure OpenAI reasoning models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
@@ -57,7 +57,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "o4-mini",
@@ -94,7 +94,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -277,7 +277,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "o4-mini",
@@ -315,7 +315,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-  DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+  DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -497,7 +497,7 @@ using Azure.Identity;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 OpenAIResponseClient client = new(
     model: "o4-mini",
@@ -555,7 +555,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -733,7 +733,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -919,13 +919,15 @@ print(response.model_dump_json(indent=2))
 
 | Model | Region | Limited access |
 |---|---|---|
+| `gpt-5.4-mini` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central | No access request needed. |
+| `gpt-5.4.nano` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2 <br> South Central US  | No access request needed. |
 | `gpt-5.4-pro` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
 | `gpt-5.4` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
 | `gpt-5.3-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/OAI/gpt53codexaccess). If you already have access to a limited access model no request is required. |
 | `gpt-5.2-codex`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
 | `gpt-5.2`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)   | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
-`gpt-5.1-codex-max` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.|
-| `gpt-5.1`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required. |
+`gpt-5.1-codex-max` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | Access is no longer restricted for this model.  |
+| `gpt-5.1`| [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  |  Access is no longer restricted for this model.   |
 | `gpt-5.1-chat` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability) | No access request needed.  |
 | `gpt-5.1-codex` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | Access is no longer restricted for this model. |
 | `gpt-5.1-codex-mini` | [Model availability](../../foundry-models/concepts/models-sold-directly-by-azure.md#global-standard-model-availability)  | No access request needed. | 
@@ -945,21 +947,21 @@ print(response.model_dump_json(indent=2))
 
 # [GPT-5 Reasoning Models](#tab/gpt-5)
 
-| **Feature**  | **gpt-5.4-pro**  | **gpt-5.4**, **2026-03-05** | **gpt-5.3-codex**, **2026-02-24** | **gpt-5.2-codex**, **2026-01-14**  | **gpt-5.2**, **2025-12-11** | **gpt-5.1-codex-max**, **2025-12-04** | **gpt-5.1**, **2025-11-13** | **gpt-5.1-chat**, **2025-11-13** | **gpt-5.1-codex**, **2025-11-13** | **gpt-5.1-codex-mini**, **2025-11-13** | **gpt-5-pro**, **2025-10-06** | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
-|:-------------------|:---:|:---:|---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:--------------------------:|:--------------------------:|:------:|:--------:|:--------:|
-| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
-| **[Structured Outputs](./structured-outputs.md)** | |  ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models)**| 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br><br> 1,050,000 Context Window (Coming Soon!)  | 1,050,000 Context Window | 400,000 <br><br>Input: 272,000 <br> Output: 128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
-| **[Reasoning effort](#reasoning-effort)**<sup>7</sup> | ✅  | ✅ | ✅ | ✅ | ✅| ✅<sup>6</sup> | ✅<sup>4</sup> | ✅  | ✅  | ✅  | ✅<sup>5</sup>| ✅| ✅| ✅|✅|
-| **[Image input](./gpt-with-vision.md)** | ✅  | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Chat Completions API | - | ✅ | - | - | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
-| Responses API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅|  ✅  | ✅  | ✅ |
-| Functions/Tools | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
-| Parallel Tool Calls<sup>1</sup> | - | ✅ |✅| ✅| ✅ | ✅  | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
-| `max_completion_tokens` <sup>2</sup> | - | ✅ | -| - | ✅ | - | ✅ | ✅ | - | - | -  | - |  ✅ | ✅ | ✅ |
-| System Messages <sup>3</sup> | ✅ | ✅ |✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ |
-| [Reasoning summary](#reasoning-summary) | ✅ | ✅ |✅ |✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Streaming | ✅  | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅|
+| **Feature**  | **gpt-5.4-nano**, **2026-03-17** | **gpt-5.4-mini**, **2026-03-17** | **gpt-5.4-pro**  | **gpt-5.4**, **2026-03-05** | **gpt-5.3-codex**, **2026-02-24** | **gpt-5.2-codex**, **2026-01-14**  | **gpt-5.2**, **2025-12-11** | **gpt-5.1-codex-max**, **2025-12-04** | **gpt-5.1**, **2025-11-13** | **gpt-5.1-chat**, **2025-11-13** | **gpt-5.1-codex**, **2025-11-13** | **gpt-5.1-codex-mini**, **2025-11-13** | **gpt-5-pro**, **2025-10-06** | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
+|:-------------------|:----:|:----:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:--------------------------:|:--------------------------:|:------:|:--------:|:--------:|
+| **[Developer Messages](#developer-messages)** | ✅| ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
+| **[Structured Outputs](./structured-outputs.md)** |✅ |✅ |  ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **[Context Window](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models)**| 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br>| 400,000 <br><br>Input: 272,000 <br> Output: 128,000 <br>| 1,050,000<br><br>Input:<br>922,000<br>Output:<br>128,000 | 1,050,000 <br><br>Input:<br>922,000<br>Output:<br>128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000  | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 128,000 <br><br>Input: 111,616 <br> Output: 16,384 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
+| **[Reasoning effort](#reasoning-effort)**<sup>7</sup> | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅| ✅<sup>6</sup> | ✅<sup>4</sup> | ✅  | ✅  | ✅  | ✅<sup>5</sup>| ✅| ✅| ✅|✅|
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Chat Completions API | ✅ | ✅ | - | ✅ | - | - | ✅ | - | ✅| ✅ | - | - | - | - | ✅ | ✅ | ✅ |
+| Responses API | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅|  ✅  | ✅  | ✅ |
+| Functions/Tools | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |✅ |
+| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | - | ✅ |✅| ✅| ✅ | ✅  | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
+| `max_completion_tokens` <sup>2</sup> | ✅ | ✅ | - | ✅ | -| - | ✅ | - | ✅ | ✅ | - | - | -  | - |  ✅ | ✅ | ✅ |
+| System Messages <sup>3</sup> | ✅ | ✅ | ✅ | ✅ |✅ | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅| ✅ |
+| [Reasoning summary](#reasoning-summary) | ✅ | ✅ | ✅ | ✅ |✅ |✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Streaming | ✅ | ✅ | ✅  | ✅ | ✅ | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |- | ✅ | ✅ | ✅ | ✅ |
 
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
 <sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API. <br><br>

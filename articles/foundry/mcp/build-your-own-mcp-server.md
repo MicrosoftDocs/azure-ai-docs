@@ -10,7 +10,7 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 02/05/2026
 ai-usage: ai-assisted
-ms.custom: ai-assisted
+ms.custom: ai-assisted, doc-kit-assisted
 ---
 
 # Build and register a Model Context Protocol (MCP) server

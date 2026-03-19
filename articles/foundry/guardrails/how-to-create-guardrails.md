@@ -8,7 +8,8 @@ ms.date: 02/13/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
-ms.custom: azure-ai-guardrails
+ai-usage: ai-assisted
+ms.custom: azure-ai-guardrails, doc-kit-assisted
 # customer intent: As a developer, I want a comprehensive guide to guardrails and controls in Microsoft Foundry so that I can implement complete safety measures for my models and agents.
 ---
 

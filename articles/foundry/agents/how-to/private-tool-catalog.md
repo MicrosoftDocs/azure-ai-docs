@@ -8,7 +8,7 @@ ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 #CustomerIntent: As a platform admin, I want to create a private tool catalog so that developers in my organization can discover and use approved MCP server tools.
 ---

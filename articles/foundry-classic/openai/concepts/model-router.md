@@ -4,7 +4,7 @@ description: "Learn about the model router feature in Azure OpenAI in Microsoft 
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 02/10/2026
+ms.date: 03/18/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
@@ -12,6 +12,7 @@ ms.custom:
   - classic-and-new
   - build-2025
   - dev-focus
+  - doc-kit-assisted
 ai-usage: ai-assisted
 
 ROBOTS: NOINDEX, NOFOLLOW
@@ -19,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Model router for Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/model-router.md)
 
 Model router is a trained language model that intelligently routes your prompts in real time to the most suitable large language model (LLM). You deploy model router like any other Foundry model. Thus, it delivers high performance while saving on costs, reducing latencies, and increasing responsiveness, while maintaining comparable quality, all packaged as a single model deployment.
 
@@ -34,6 +35,9 @@ To try model router quickly, follow [How to use model router](../how-to/model-ro
 ## How model router works
 As a trained language model, model router analyzes your prompts in real time based on complexity, reasoning, task type, and other attributes. It does not store your prompts. It routes only to eligible models based on your access and deployment types, honoring data zone boundaries.
 
+> [!IMPORTANT]
+> The effective context window is limited by the smallest underlying model. For larger contexts, use [model subset](#model-subset) to select models that support your requirements.
+
 - In Balanced mode (default), it considers all underlying models within a small quality range (for example, 1% to 2% compared with the highest-quality model for that prompt) and picks the most cost-effective model.
 - In Cost mode, it considers a larger quality band (for example, 5% to 6% compared with the highest-quality model for that prompt) and chooses the most cost-effective model.
 - In Quality mode, it picks the highest quality rated model for the prompt, ignoring the cost.
@@ -42,6 +46,14 @@ As a trained language model, model router analyzes your prompts in real time bas
 
 Model router optimizes costs and latencies while maintaining comparable quality. Smaller and cheaper models are used when they're sufficient for the task, but larger and more expensive models are available for more complex tasks. Also, reasoning models are available for tasks that require complex reasoning, and non-reasoning models are used otherwise. Model router provides a single deployment and chat experience that combines the best features from all of the underlying chat models.
 
+The latest version, `2025-11-18` includes several capabilities:
+1. Support Global Standard and Data Zone Standard deployments.
+1. Adds support for new models: `grok-4`, `grok-4-fast-reasoning`, `DeepSeek-V3.1`, `DeepSeek-V3.2`, `gpt-oss-120b`, `Llama-4-Maverick-17B-128E-Instruct-FP8`, `gpt-4o`, `gpt-4o-mini`, `gpt-5.2`, `gpt-5.2-chat`, `claude-haiku-4-5`, `claude-sonnet-4-5`, `claude-opus-4-1`, and `claude-opus-4-6`.
+1. Quick deploy or Custom deploy with **routing mode** and **model subset** options.
+1. **Routing mode**: Optimize the routing logic for your needs. Supported options: `Quality`, `Cost`, `Balanced` (default).
+1. **Model subset**: Select your preferred models to create your model subset for routing.
+1. Support for agentic scenarios including tools so you can now use it in the Foundry Agent Service.
+
 ## Versioning 
 
 Each version of model router is associated with a specific set of underlying models and their versions. This set is fixed&mdash;only newer versions of model router can expose new underlying models.
@@ -49,6 +61,24 @@ Each version of model router is associated with a specific set of underlying mod
 If you select **Auto-update** at the deployment step (see [Model updates](../how-to/working-with-models.md#model-updates)), then your model router model automatically updates when new versions become available. When that happens, the set of underlying models also changes, which could affect the overall performance of the model and costs.
 
 [!INCLUDE [model-router-supported](../../../foundry/openai/includes/model-router-supported.md)]
+
+## Routing mode
+
+With the latest version, if you choose custom deployment, you can select the **routing mode** to optimize for quality or cost while maintaining a baseline level of performance. Setting a routing mode is optional, and if you don't set one, your deployment defaults to the Balanced mode.
+
+Available routing modes:
+
+| Mode | Description |
+|------|-----------|
+| Balanced (default) | Considers both cost and quality dynamically. Perfect for general-purpose scenarios |
+| Quality | Prioritizes for maximum accuracy. Best for complex reasoning or critical outputs |
+| Cost | Prioritizes for more cost savings. Ideal for high-volume, budget-sensitive workloads |
+
+## Model subset
+
+The latest version of model router supports model subsets: For custom deployments, you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics.
+
+When new base models become available, they're not included in your selection unless you explicitly add them to your deployment's inclusion list.
 
 ## Limitations
 
@@ -69,6 +99,8 @@ Also see [Azure OpenAI in Microsoft Foundry models](../../foundry-models/concept
 | `model-router` <br> `(2025-11-18)` | GlobalStandard   | 250           | 250,000       | 400                         | 400,000                      |
 
 Also see [Quotas and limits](../quotas-limits.md) for rate limit information.
+
+To overcome the limits on context window and parameters, use the Model subset feature to select your models for routing that support your desired properties.
 
 > [!NOTE]
 > The context window limit listed for model router is the limit of the smallest underlying model. Other underlying models are compatible with larger context windows, which means an API call with a larger context will succeed only if the prompt happens to be routed to the right model. To review context windows for the underlying models, see [Azure OpenAI in Microsoft Foundry models](../../foundry-models/concepts/models-sold-directly-by-azure.md).

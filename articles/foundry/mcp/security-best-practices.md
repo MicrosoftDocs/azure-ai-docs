@@ -10,6 +10,7 @@ ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Microsoft Foundry MCP Server best practices and security guidance

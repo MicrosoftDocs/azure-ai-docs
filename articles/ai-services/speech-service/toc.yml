@@ -157,6 +157,9 @@ items:
         href: /rest/api/speechtotext/operation-groups
       - name: Speech Transcription SDK
         items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.speech.transcription-readme
           - name: Java
             displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
             href: /java/api/overview/azure/ai-speech-transcription-readme
@@ -309,14 +312,15 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
-    - name: Speech Transcription SDK
-      href: transcription-sdk.md
     - name: Reference
       items:
       - name: LLM speech REST API reference
         href: /rest/api/speechtotext/transcriptions/transcribe
       - name: Speech Transcription SDK
         items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.speech.transcription-readme
           - name: Java
             displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
             href: /java/api/overview/azure/ai-speech-transcription-readme
@@ -561,6 +565,9 @@ items:
             href: /python/api/azure-cognitiveservices-speech/
       - name: Speech Transcription SDK
         items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.speech.transcription-readme
           - name: Java
             displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
             href: /java/api/overview/azure/ai-speech-transcription-readme

@@ -1,6 +1,5 @@
 ---
 title: Use a Blob Indexer or Knowledge Source to Ingest RBAC Scopes Metadata
-titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search knowledge sources and indexers for ingesting Azure Role-Based Access (RBAC) metadata on Azure blobs.
 ms.reviewer: vaishalishah
 ms.service: azure-ai-search
@@ -41,7 +40,7 @@ This article focuses on the indexing automation approaches, built on this founda
 
 + You should understand how indexers and knowledge sources work and how to create an index. This article explains the configuration settings for the data source and indexer, but doesn't provide steps for creating the index. For more information about indexes designed for permission filters, see [Create an index with permission filter fields](search-index-access-control-lists-and-rbac-push-api.md#create-an-index-with-permission-filter-fields).
 
-+ This functionality is currently not supported in the Azure portal, this includes Permission filters created through the [Import wizards](search-import-data-portal.md). Use a programmatic approach to create or modify existing objects for document-level access. 
++ This functionality isn't currently supported in the Azure portal, which includes permission filters created through the [**Import data** wizard](search-import-data-portal.md). Use a programmatic approach to create or modify existing objects for document-level access. 
 
 ## Configure Blob storage
 

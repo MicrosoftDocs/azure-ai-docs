@@ -1,6 +1,5 @@
 ---
 title: Multi-Language Indexing for Non-English Search Queries
-titleSuffix: Azure AI Search
 description: Create an index that supports multi-language content and then create queries scoped to that content.
 ms.service: azure-ai-search
 ms.custom:
@@ -57,9 +56,6 @@ To add text translation, follow these steps:
 1. [Attach a Microsoft Foundry resource](cognitive-search-attach-cognitive-services.md) to your skillset.
 
 1. [Create and run the indexer](search-howto-create-indexers.md), and then apply the guidance in this article to query just the fields of interest.
-
-> [!TIP]
-> Text translation is built into the [Import data wizard](search-get-started-skillset.md). If you have a [supported data source](search-indexer-overview.md#supported-data-sources) with text you'd like to translate, you can step through the wizard to try out the language detection and translation functionality before writing any code.
 
 ## Define fields for content in different languages
 

@@ -13,6 +13,7 @@ recommendations: false
 ms.custom:
   - pilot-ai-workflow-jan-2026
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -108,7 +109,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -151,7 +152,7 @@ OpenAIClient client = new(
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 OpenAIClient client = new(
     authenticationPolicy: tokenPolicy,
     options: new OpenAIClientOptions()
@@ -186,7 +187,7 @@ const client = new OpenAI();
 ```javascript
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
@@ -255,7 +256,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
 Credential tokenCredential = BearerTokenCredential.create(
         AuthenticationUtil.getBearerTokenSupplier(
                 new DefaultAzureCredentialBuilder().build(),
-                "https://cognitiveservices.azure.com/.default"));
+                "https://ai.azure.com/.default"));
 OpenAIClient client = OpenAIOkHttpClient.builder()
         .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
         .credential(tokenCredential)
@@ -308,7 +309,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -339,7 +340,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "MAI-DS-R1", // Replace with your model deployment name.
@@ -363,7 +364,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider

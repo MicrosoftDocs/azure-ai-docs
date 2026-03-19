@@ -1,6 +1,5 @@
 ---
 title: Connect to SQL Managed Instance
-titleSuffix: Azure AI Search
 description: Configure an indexer connection to access content in an Azure SQL Managed instance that's protected through a private endpoint.
 ms.reviewer: magottei
 ms.service: azure-ai-search
@@ -189,7 +188,7 @@ Here are some reminders for testing:
 
 + If you use a REST client, use the [Management REST API](/rest/api/searchmanagement/) and the [2021-04-01-Preview API version](/rest/api/searchmanagement/management-api-versions) to create the shared private link. Use the [Search REST API](/rest/api/searchservice/) and a [stable API version](/rest/api/searchservice/search-service-api-versions) to create and invoke indexers and data sources.
 
-+ You can use the Import data wizard to create an indexer, data source, and index. However, the generated indexer won't have the correct execution environment setting.
++ You can use the **Import data** wizard to create an indexer, data source, and index. However, the generated indexer won't have the correct execution environment setting.
 
 + You can edit data source and indexer JSON in Azure portal to change properties, including the execution environment and the connection string.
 

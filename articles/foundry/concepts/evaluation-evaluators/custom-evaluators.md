@@ -16,6 +16,7 @@ ai-usage: ai-assisted
 ---
 
 # Custom evaluators (preview)
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
@@ -31,7 +32,7 @@ You can create two types of custom evaluators:
 | **Scoring method** | Continuous: float from 0.0 to 1.0 (higher is better). | Ordinal, continuous, or binary. You define the min/max range for ordinal and continuous scores. Higher is better for numeric scores. |
 | **Output contract** | A single float value between 0.0 and 1.0. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. |
 
-After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [cloud evaluation runs](../../how-to/develop/cloud-evaluation.md).
+After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [batch evaluation runs](../../how-to/develop/cloud-evaluation.md).
 
 ## Code-based evaluators
 
@@ -412,7 +413,7 @@ project_client.beta.evaluators.delete_version(
 client.evals.delete(eval_id=eval_object.id)
 ```
 
-For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md).
+For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
 
 For additional examples including listing, updating, and deleting evaluators, see the [evaluator catalog management Python SDK sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog.py).
 
@@ -443,9 +444,9 @@ After you create a custom evaluator, use it in an evaluation run from the portal
 1. Supply the required initialization parameters. For prompt-based evaluators, provide the **model deployment** and **threshold**. For code-based evaluators, provide the **pass threshold**.
 1. Complete the wizard and start the evaluation run.
 
-For detailed steps on running evaluations from the portal, see [Run evaluations from the portal](../../how-to/evaluate-generative-ai-app.md#create-an-evaluation-with-built-in-evaluation-metrics).
+For detailed steps on running evaluations from the portal, see [Run evaluations from the portal](../../how-to/evaluate-generative-ai-app.md#create-an-evaluation).
 
 ## Related content
 
-- [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md)
+- [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
 - [Built-in evaluators](../built-in-evaluators.md)

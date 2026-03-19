@@ -1,6 +1,5 @@
 ---
 title: JavaScript Samples
-titleSuffix: Azure AI Search
 description: Find Azure AI Search demo JavaScript code samples that use the Azure .NET SDK for JavaScript.
 ms.service: azure-ai-search
 ms.custom:

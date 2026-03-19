@@ -1,7 +1,6 @@
 ---
-title: Data Import and Data Ingestion
-titleSuffix: Azure AI Search
-description: Populate and upload data to an index in Azure AI Search from external data sources.
+title: Data Import and Ingestion
+description: Learn about data import in Azure AI Search, including the push and pull models for loading content into a search index from external data sources.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -90,7 +89,7 @@ With these automated approaches, you connect your index to a data source (usuall
 
 Use the following tools and APIs for indexer-based indexing:
 
-+ Azure portal: [Import wizards](search-import-data-portal.md)
++ Azure portal: [**Import data** wizard](search-import-data-portal.md)
 + REST APIs: [Create Indexer (REST)](/rest/api/searchservice/indexers/create), [Create Data Source (REST)](/rest/api/searchservice/data-sources/create), [Create Index (REST)](/rest/api/searchservice/indexes/create)
 + Azure SDK for .NET: [SearchIndexer](/dotnet/api/azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/dotnet/api/azure.search.documents.indexes.models.searchindex),
 + Azure SDK for Python: [SearchIndexer](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexer), [SearchIndexerDataSourceConnection](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindexerdatasourceconnection), [SearchIndex](/python/api/azure-search-documents/azure.search.documents.indexes.models.searchindex),

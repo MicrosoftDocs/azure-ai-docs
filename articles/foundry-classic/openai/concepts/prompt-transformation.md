@@ -1,6 +1,6 @@
 ---
 title: "Azure OpenAI prompt transformation concepts (classic)"
-description: "Learn about the prompt transformation feature in Azure OpenAI DALL-E 3, how it works, and why it's necessary. (classic)"
+description: "Learn about the prompt transformation feature in Azure OpenAI image generation models, how it works, and why it's necessary. (classic)"
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-foundry
@@ -17,7 +17,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Prompt transformation (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/prompt-transformation.md)
+
+[!INCLUDE [DALL-E retirement notice](../../../foundry/openai/includes/dall-e-retirement.md)]
 
 ## Scope
 

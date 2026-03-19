@@ -1,6 +1,5 @@
 ---
 title: Connect to Azure SQL
-titleSuffix: Azure AI Search
 description: Learn how to set up an indexer connection to Azure SQL Database  using a managed identity.
 ms.reviewer: gimondra
 ms.service: azure-ai-search
