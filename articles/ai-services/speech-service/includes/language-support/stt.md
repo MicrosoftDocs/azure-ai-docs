@@ -84,7 +84,7 @@ ms.author: pafarley
 | `fi-FI` | Finnish (Finland) | ✅ |
 | `fil-PH` | Filipino (Philippines) | ✅ |
 | `fr-BE` | French (Belgium) |   |
-| `fr-CA` | French (Canada)<sup>1</sup> |   |
+| `fr-CA` | French (Canada) |   |
 | `fr-CH` | French (Switzerland) |   |
 | `fr-FR` | French (France) | ✅ |
 | `ga-IE` | Irish (Ireland) | ✅ |
@@ -152,10 +152,8 @@ ms.author: pafarley
 | `zh-CN-sichuan` | Chinese (Southwestern Mandarin, Simplified) |   |
 | `zh-HK` | Chinese (Cantonese, Traditional) | ✅ |
 | `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | ✅ |
-| `zu-ZA` | isiZulu (South Africa) | ✅ |
+| `zu-ZA` | Zulu (South Africa) | ✅ |
 
-
-<sup>1</sup> The model is bilingual and also supports English.
 
 ### Custom speech
 
