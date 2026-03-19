@@ -77,7 +77,7 @@ Quality index values range from zero to one, where higher values indicate better
 | [mbppplus](https://github.com/evalplus/evalplus) | Coding |
 | [mmlu_pro](https://github.com/TIGER-AI-Lab/MMLU-Pro) (downsampled to 1,000 examples) | General knowledge |
 | [musr](https://github.com/zayne-sprague/musr)| Reasoning |
-| [tau2_telecom](https://github.com/sierra-research/tau2-bench/tree/main/data/tau2/domains/telecom) | Customer service |
+| [tau2_telecom](https://github.com/sierra-research/tau2-bench/tree/main/data/tau2/domains/telecom) | Agentic and tool call selection |
 
 See more details in accuracy scores:
 
