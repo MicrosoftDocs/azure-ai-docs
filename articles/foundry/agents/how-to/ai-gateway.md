@@ -38,12 +38,10 @@ In this article, you create a gateway connection to your AI model endpoint, depl
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - Access credentials for your enterprise AI gateway (for example, an API Management subscription key, an API key for another non-Azure AI model gateway, or credentials for an OAuth 2.0 provider using client credentials).
-::: zone pivot="azure-cli"
 - To manage connections through the command line:
     - [Azure CLI](/cli/azure/install-azure-cli) version 2.67 or later.
     - [Python 3.10 or later](https://www.python.org/downloads/).
     - The `azure-ai-projects` SDK package (version 2.0.0 or later). For installation steps, see the [quickstart](../../quickstarts/get-started-code.md).
-::: zone-end
 
 ### Required permissions
 
@@ -169,6 +167,8 @@ After deploying your agent, confirm that the full pipeline works correctly:
 > [!TIP]
 > If any step fails, see the [Troubleshoot common issues](#troubleshoot-common-issues) section for resolution steps.
 
+::: zone pivot="azure-cli"
+
 ## Connection type details
 
 This section provides reference details about each connection type and their configuration options.
@@ -201,6 +201,8 @@ Model Gateway connections provide a unified interface for connecting to various 
 - **Dynamic discovery** — Models are discovered at runtime using API endpoints. Best for frequently changing deployments and provider-managed catalogs.
 
 Supported authentication types are API key and OAuth 2.0. API keys are stored securely and referenced through the credential system.
+
+::: zone-end
 
 ## Troubleshoot common issues
 
