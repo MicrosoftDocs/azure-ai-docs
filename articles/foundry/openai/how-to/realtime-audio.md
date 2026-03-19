@@ -14,7 +14,7 @@ ms.custom:
   - doc-kit-assisted
 recommendations: false
 ai-usage: ai-assisted
-zone_pivot_groups: openai-portal-js-python-ts
+zone_pivot_groups: openai-portal-js-python-ts-cs
 ---
 
 # Use the GPT Realtime API for speech and audio
@@ -97,6 +97,13 @@ Follow the instructions in this section to get started with the Realtime API via
 [!INCLUDE [Microsoft Foundry portal quickstart](../includes/realtime-portal.md)]
 
 ::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+[!INCLUDE [C# quickstart](../includes/realtime-csharp.md)]
+
+::: zone-end
+
 
 ## API support
 

@@ -30,7 +30,6 @@ Make sure you install the correct version of the packages as shown here.
         
     ```bash
     dotnet add package Azure.AI.Projects --prerelease
-    dotnet add package Azure.AI.Projects.OpenAI --prerelease
     dotnet add package Azure.Identity
     ```
 

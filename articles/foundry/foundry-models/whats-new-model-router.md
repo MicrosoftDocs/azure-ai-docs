@@ -4,7 +4,7 @@ description: "Learn about the latest news and features updates for Azure model r
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 02/10/2026
+ms.date: 03/18/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: whats-new
@@ -17,6 +17,12 @@ ms.custom:
 
 # What's new in model router in Microsoft Foundry Models?
 This article provides a summary of the latest releases and major documentation updates for Azure model router, including new supported models, routing features, and deployment options.
+
+## March 2026
+
+### Four new models added
+
+Version `2025-11-18` of model router adds support for four new models: `gpt-5.2`, `gpt-5.2-chat`, `Deepseek-v3.2`, and `claude-opus-4-6`. To use `claude-opus-4-6` in your model router deployment, you need to first deploy it to your Foundry resource (see [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?tabs=python)). Then enable it with [model subset configuration](/azure/ai-foundry/openai/how-to/model-router) in your model router deployment. `Deepseek-v3.2` and `claude-opus-4-6` model router support is in preview.
 
 ## November 2025
 

@@ -19,7 +19,7 @@ In this article, you learn how to configure an [indexer](search-indexer-overview
 This article uses the [Search Service REST APIs](/rest/api/searchservice) to demonstrate how to configure and run the indexer. However, you can also use:
 
 + An Azure SDK package (any version)
-+ [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal
++ [**Import data** wizard](search-get-started-portal-import-vectors.md) in the Azure portal
 
 > [!NOTE]
 > Azure AI Search can ingest role-based access control (RBAC) scope during indexing and transfer those permissions to indexed content in a search index. For more information, see [Use a blob indexer or knowledge source to ingest RBAC scopes metadata](search-blob-indexer-role-based-access.md).

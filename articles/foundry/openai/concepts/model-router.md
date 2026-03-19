@@ -4,7 +4,7 @@ description: "Learn about the model router feature in Azure OpenAI in Microsoft 
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 02/10/2026
+ms.date: 03/18/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
@@ -38,9 +38,9 @@ As a trained language model, model router analyzes your prompts in real time bas
 
 Model router optimizes costs and latencies while maintaining comparable quality. Smaller and cheaper models are used when they're sufficient for the task, but larger and more expensive models are available for more complex tasks. Also, reasoning models are available for tasks that require complex reasoning, and non-reasoning models are used otherwise. Model router provides a single deployment and chat experience that combines the best features from all of the underlying chat models.
 
-The latest version, `2025-11-18` adds several capabilities:
+The latest version, `2025-11-18` includes several capabilities:
 1. Support Global Standard and Data Zone Standard deployments.
-1. Adds support for new models: `grok-4`, `grok-4-fast-reasoning`, `DeepSeek-V3.1`, `gpt-oss-120b`, `Llama-4-Maverick-17B-128E-Instruct-FP8`, `claude-haiku-4-5`, `claude-opus-4-1`, and `claude-sonnet-4-5`.
+1. Adds support for new models: `grok-4`, `grok-4-fast-reasoning`, `DeepSeek-V3.1`, `DeepSeek-V3.2`, `gpt-oss-120b`, `Llama-4-Maverick-17B-128E-Instruct-FP8`, `gpt-4o`, `gpt-4o-mini`, `gpt-5.2`, `gpt-5.2-chat`, `claude-haiku-4-5`, `claude-sonnet-4-5`, `claude-opus-4-1`, and `claude-opus-4-6`.
 1. Quick deploy or Custom deploy with **routing mode** and **model subset** options.
 1. **Routing mode**: Optimize the routing logic for your needs. Supported options: `Quality`, `Cost`, `Balanced` (default).
 1. **Model subset**: Select your preferred models to create your model subset for routing.
