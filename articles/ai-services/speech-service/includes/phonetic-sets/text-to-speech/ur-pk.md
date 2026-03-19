@@ -1,6 +1,10 @@
-author: PatrickFarley ms.service: azure-ai-speech ms.topic: include
-
+---
+author: PatrickFarley 
+ms.service: azure-ai-speech 
+ms.topic: include
 ms.author: pafarley
+---
+
 ### Phones for ur-PK
 
 | `ipa` | `viseme` | Example 1 | Example 2 | Example 3 |
