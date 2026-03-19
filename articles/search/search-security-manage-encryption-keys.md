@@ -177,11 +177,7 @@ Wait a few minutes for the role assignment to become operational.
 
 ## Step 4 (Optional): Set up a service level encryption key (preview)
 
-The ability to configure a service-level encryption key on your search service is current a preview feature and requires using a preview API version. Once configured, a service-level customer-managed key will apply to all supported objects created in the service, unless you specify an object-level key at the time of object creation.
-
-### [**Azure portal**](#tab/portal)
-
-Currently service-level encryption isn't supported in the Azure portal, we recommend using the REST API directly.
+To [encrypt CMK at the service level (preview)](#encrypt-customer-managed-keys-at-the-service-level-preview), you will need to use a preview API version. Once configured, a service-level customer-managed key will apply to all supported objects created in the service, unless you specify an object-level key at the time of object creation.
 
 ### [**REST APIs**](#tab/rest)
 
@@ -189,7 +185,7 @@ To configure CMK encryption at the service level on your search service, use [Se
 
 Example using system-assigned managed identity:
 
-```html
+```http
 PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-10-01-preview
 Authorization: Bearer {{token}}
 Content-Type: application/json
@@ -207,7 +203,7 @@ Content-Type: application/json
 
 Example using user-assigned managed identity:
 
-```html
+```http
 PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -229,7 +225,7 @@ Authorization: Bearer {{access-token}}
 
 Example using application Id:
 
-```html
+```http
 PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
 Authorization: Bearer {{token}}
 Content-Type: application/json
@@ -249,6 +245,10 @@ Content-Type: application/json
 }
 ```
 
+### [**Azure portal**](#tab/portal)
+
+Currently service-level encryption isn't supported in the Azure portal, we recommend using the REST API directly.
+
 ### [**Azure SDKs**](#tab/sdks)
 
 Configuration of service-level CMK is supported in Azure SDK packages that target Search Management REST API version 2026-03-01-preview or later. To confirm support, check the changelog for your package:
@@ -262,29 +262,9 @@ Configuration of service-level CMK is supported in Azure SDK packages that targe
 
 ## Step 5 (Optional): Set up individual object-level encryption keys
 
-Encryption is applied when an object is created or updated. If you configure a service‑level encryption key (currently in preview), that key is used by default for all supported objects. You can also configure customer‑managed keys on individual objects by using the Azure portal, [Search Service REST APIs](/rest/api/searchservice/), or an Azure SDK. When both are configured, an object‑level key specified at creation time overrides the service‑level key for that object.
+To [encrypt CMK at the object level](#encrypt-customer-managed-keys-at-the-object-level), specify a customer-managed key in the object definition when you create an index, indexer, data source, skillset, or synonym map. Encryption is applied when an object is created or updated. If you configure a service‑level encryption key (step 4), that key is used by default for all supported objects.
 
-### [**Azure portal**](#tab/portal)
-
-When you create a new object in the Azure portal, you can specify a predefined customer-managed key in a key vault. The Azure portal lets you enable CMK encryption for:
-
-+ Indexes
-+ Data sources
-+ Indexers
-
-Requirements for using the Azure portal are that the key vault and key must exist, and you completed the previous steps for authorized access to the key.
-
-In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in the REST API examples to provide a customer-managed key on a skillset.
-
-1. Sign in to the [Azure portal](https://portal.azure.com) and open your search service page.
-
-1. Under **Search management**, select **Indexes**, **Indexers**, or **Data Sources**.
-
-1. Add a new object. In the object definition, select **Microsoft-managed encryption**.
-
-1. Select **Customer-managed keys** and choose your subscription, vault, key, and version.
-
-:::image type="content" source="media/search-security-manage-encryption-keys/assign-key-vault.png" alt-text="Screenshot of the encryption key page in the Azure portal.":::
+You can configure customer‑managed keys on individual objects by using the Azure portal, [Search Service REST APIs](/rest/api/searchservice/), or an Azure SDK. When both service-level and object-level CMK is configured, an object‑level key specified at creation time overrides the service‑level key for that object.
 
 ### [**REST APIs**](#tab/rest)
 
@@ -356,9 +336,33 @@ After you create the encrypted object on the search service, you can use it as y
 
 None of these key vault details are considered secret and could be easily retrieved by browsing to the relevant Azure Key Vault page in Azure portal.
 
-### [**Python**](#tab/python)
+### [**Azure portal**](#tab/portal)
 
-This example shows the Python representation of an `encryptionKey` in an object definition. The same definition applies to indexes, data sources, skillets, indexers, and synonym maps. To try this example on your search service and key vault, download the notebook from [azure-search-python-samples](https://github.com/Azure-Samples/azure-search-python-samples).
+When you create a new object in the Azure portal, you can specify a predefined customer-managed key in a key vault. The Azure portal lets you enable CMK encryption for:
+
++ Indexes
++ Data sources
++ Indexers
+
+Requirements for using the Azure portal are that the key vault and key must exist, and you completed the previous steps for authorized access to the key.
+
+In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in the REST API examples to provide a customer-managed key on a skillset.
+
+1. Sign in to the [Azure portal](https://portal.azure.com) and open your search service page.
+
+1. Under **Search management**, select **Indexes**, **Indexers**, or **Data Sources**.
+
+1. Add a new object. In the object definition, select **Microsoft-managed encryption**.
+
+1. Select **Customer-managed keys** and choose your subscription, vault, key, and version.
+
+:::image type="content" source="media/search-security-manage-encryption-keys/assign-key-vault.png" alt-text="Screenshot of the encryption key page in the Azure portal.":::
+
+### [**Azure SDKs**](#tab/sdks)
+
+Configuration of object-level CMK is supported in Azure SDK packages, including [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java), [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js), and [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python).
+
+The example below demonstrates the **Python** representation of an `encryptionKey` in an object definition. The same definition applies to indexes, data sources, skillets, indexers, and synonym maps. To try this example on your search service and key vault, download the notebook from [azure-search-python-samples](https://github.com/Azure-Samples/azure-search-python-samples).
 
 1. Install some packages.
 
