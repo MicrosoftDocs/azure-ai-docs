@@ -9,7 +9,6 @@ author: santiagxf
 ms.reviewer: sgilley
 ms.custom:
   - dev-focus
-  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to use langchain-azure-ai with Foundry Memory so that my application can retrieve long-term user context across sessions.
 ---
