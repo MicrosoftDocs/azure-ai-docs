@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 03/02/2026
 ai-usage: ai-assisted
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 
 #customer intent: As a developer, I want to ensure compliance and security of my assets within Microsoft Foundry so that I avoid any security and compliance issues.
 ---

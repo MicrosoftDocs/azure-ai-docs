@@ -548,7 +548,7 @@ items:
       - name: Track and monitor
         items:
           - name: Monitor and analyze jobs in studio
-            href: how-to-track-monitor-analyze-runs.md
+            href: ./v1/how-to-track-monitor-analyze-runs.md
           - name: Organize & manage jobs (preview)
             href: how-to-track-monitor-organize-jobs.md
           - name: Visualize training results (preview)
@@ -1030,9 +1030,6 @@ items:
             href: ./v1/how-to-troubleshoot-prebuilt-docker-image-inference.md
       - name: Monitor web services
         items:
-          - name: Collect & evaluate model data
-            href: ./v1/how-to-enable-data-collection.md
-            displayName: track production
           - name: Monitor with Application Insights
             href: ./v1/how-to-enable-app-insights.md
       - name: Deploy designer models

@@ -3,6 +3,7 @@ title: Microsoft Foundry Models overview
 description: Discover and deploy AI models with Microsoft Foundry Models. Browse 1,900+ models from OpenAI, Meta, and more to build scalable AI solutions. Explore now.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
+ai-usage: ai-assisted
 ms.custom:
   - build-2025
   - ai-learning-hub

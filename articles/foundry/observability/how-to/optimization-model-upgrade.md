@@ -9,6 +9,7 @@ ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
 #CustomerIntent: As a developer or AI engineer, I want to identify deprecated or outdated models and upgrade them so that my agents use the best available model version.
+ms.custom: doc-kit-assisted
 ---
 
 # Upgrade or switch models with Ask AI (preview)

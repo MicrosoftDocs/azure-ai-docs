@@ -13,6 +13,7 @@ ms.date: 03/04/2026
 ms.custom:
   - dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 #CustomerIntent: As a developer, I want to manage traffic bursts on my provisioned deployments by routing overage traffic to standard deployments using spillover.
 ---
@@ -66,7 +67,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/spillover-ptu-deployment/chat/com
 
 ```
 
-A successful request returns HTTP status `200` with the chat completion response. If spillover occurs, the response includes the `x-ms-spillover-from-<deployment-name>` header.
+A successful request returns HTTP status `200` with the chat completion response. If spillover occurs, the response includes the `x-ms-spillover-from-deployment` header.
 
 **Reference:** [Create chat completion](../latest.md#create-chat-completion)
 
@@ -98,9 +99,9 @@ When a request results in one of these non-`200` response codes, Azure OpenAI au
 
 The following HTTP response headers indicate that a specific request spilled over:
 
-- `x-ms-spillover-from-<deployment-name>`. This header contains the PTU deployment name. The presence of this header indicates that the request is a spillover request.
+- `x-ms-spillover-from-deployment`. This header contains the PTU deployment name. The presence of this header indicates that the request is a spillover request.
 
-- `x-ms-<deployment-name>`. This header contains the name of the deployment that serves the request. If the request spills over, the deployment name is the name of the standard deployment.
+- `x-ms-deployment-name`. This header contains the name of the deployment that serves the request. If the request spills over, the deployment name is the name of the standard deployment.
 
 For a request that spills over, if the standard deployment request fails for any reason, the original PTU response is used in the response to the customer. The customer sees a header `x-ms-spillover-error` that contains the response code of the spillover request (such as `429` or `500`) so that they know the reason for the failed spillover.
 

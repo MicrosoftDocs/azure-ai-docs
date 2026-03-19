@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: references_regions
@@ -14,6 +14,9 @@ zone_pivot_groups: selection-deep-research
 ---
 
 # How to use the Deep Research tool (classic)
+
+> [!IMPORTANT]
+> The Deep Research tool is deprecated. We recommend that you use the `o3-deep-research` model with [web search](../../../../foundry/agents/how-to/tools/web-search.md) or an MCP tool instead. For migration guidance, see the [web search tool documentation](../../../../foundry/agents/how-to/tools/web-search.md).
 
 > [!NOTE]
 > * The **parent** Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.

@@ -6,13 +6,13 @@ ms.custom:
   - classic-and-new
   - build-2024
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: concept-article
 ms.date: 01/06/2026
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
-
 ---
 
 # Microsoft Foundry architecture

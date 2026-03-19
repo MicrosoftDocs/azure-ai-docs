@@ -10,6 +10,7 @@ ms.topic: how-to
 ms.custom:
   - dev-focus
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -22,14 +23,14 @@ You can upgrade your Azure OpenAI resource to a Foundry resource. You keep your 
 
 When you upgrade your Azure OpenAI resource to a Foundry resource, you get access to the following capabilities.
 
-| Feature | Azure OpenAI | Foundry |
+|Feature|Azure OpenAI|Foundry|
 |---|---|---|
-| Models sold directly by Azure | Azure OpenAI only | Azure OpenAI, Black Forest Labs, DeepSeek, Meta, xAI, Mistral, Microsoft  |
-| Partner and community models sold through Marketplace - Stability, Cohere, and others |  | ✅ |
-| Azure OpenAI API - batch, stored completions, fine-tuning, evaluation, and more | ✅ | ✅ |
-| Agent service | | ✅ |
-| Azure Foundry API |  | ✅ |
-| Foundry Tools - Speech, Vision, Language, Content Understanding | | ✅ |
+|Models sold directly by Azure|Azure OpenAI only|Azure OpenAI, Black Forest Labs, DeepSeek, Meta, xAI, Mistral, Microsoft|
+|Partner and community models sold through Marketplace - Stability, Cohere, and others||✅|
+|Azure OpenAI API - batch, stored completions, fine-tuning, evaluation, and more|✅|✅|
+|Agent service||✅|
+|Azure Foundry API||✅|
+|Foundry Tools - Speech, Vision, Language, Content Understanding||✅|
 
 Your existing resource configurations and state stay the same, including:
 
@@ -48,7 +49,7 @@ Your existing resource configurations and state stay the same, including:
 * The Foundry resource type doesn't support configuring Weights & Biases.
 * Private network setups require [additional DNS zone configurations](#private-network-configuration) next to your existing Azure OpenAI DNS Zone before all Foundry capabilities can be used.
 
-## Support level post-upgrade 
+## Support level post-upgrade
 
 The upgrade converts your Azure OpenAI resource type to Foundry resource type. Both services are generally available and supported before and after the upgrade. Upgrading your Azure OpenAI resource is an opt-in capability. If needed, you can [roll back to your previous setup](#roll-back-to-azure-openai).
 
@@ -186,13 +187,13 @@ Microsoft Foundry provides a broader set of models and capabilities than an Azur
 
 However, **IT administrators should review any wildcard role assignments or policies that don't restrict access to a specific resource kind.** These broad definitions might unintentionally grant users access to Foundry-only features immediately after upgrade.
 
-If you plan to roll out non-OpenAI features gradually, update your RBAC role assignments, Azure Policy definitions, and any custom roles before you perform the upgrade. For details on permissions, see [Role Based Access Control](../concepts/rbac-foundry.md).
+If you plan to roll out non-OpenAI features gradually, update your RBAC role assignments, Azure Policy definitions, and any custom roles before you perform the upgrade. For details on permissions, see [Role-based access control](../concepts/rbac-foundry.md).
 
 Post-upgrade behavior depends on your existing governance setup:
 
 |Governance control|Access before upgrade|Access after upgrade|
 |---|---|---|
-|[Cognitive Services User (RBAC role)](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-user)|OpenAI features|All Foundry features |
+|[Cognitive Services User (RBAC role)](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-user)|OpenAI features|All Foundry features|
 |[Cognitive Services OpenAI User (RBAC role)](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-openai-user)|OpenAI features|OpenAI features|
 |[Custom RBAC roles](/azure/role-based-access-control/custom-roles)|Only features you defined|Only features you defined|
 |Model access (no policy applied)|OpenAI models|Any Foundry model|
@@ -294,7 +295,7 @@ Azure resource limits and organizational configurations might require extra step
 
 |Issue|Solution or mitigation|
 |---|---|
-|User principal lacks account or write permissions|Get a privileged Azure RBAC role to manage top-level Azure resource. For example, **Owner**, **Contributor**, or **Azure AI Administrator**.| 
+|User principal lacks account or write permissions|Get a privileged Azure RBAC role to manage top-level Azure resource. For example, **Owner**, **Contributor**, or **Azure AI Administrator**.|
 |Managed identity isn't enabled on the Azure OpenAI resource|Configure managed identity on your resource by using templates or Azure portal.|
 |No permissions to create agents, while you're the owner or contributor on the resource.|An EntraID data plane role is required for development actions including agents. Examples include **Azure AI User**, **Azure AI Project Manager**, or **Azure AI Owner** roles. **Owner** and **Contributor** roles only grant access to management operations in Azure such as managing deployments.|
 |An Azure Policy conflict occurred.|Your organization might put constraints on resource configurations. Inspect the details of the policy violation error. Then upgrade your resource via template options for further customization. For example, network configurations for Agents can only be configured via template options such as Azure Bicep.|
@@ -323,5 +324,4 @@ If you're not sure who upgraded your resource to Foundry, you can [view the acti
 
 ## Related content
 
-* [Choose an Azure resource type for AI foundry](../../foundry-classic/concepts/resource-types.md)
 * [Bicep samples for Foundry common infrastructure configurations](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep)

@@ -8,6 +8,7 @@ ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2024, github-universe-2024
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: concept-article
 ms.date: 02/20/2026
 ms.author: mopeakande

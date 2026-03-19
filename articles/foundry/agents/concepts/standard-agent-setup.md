@@ -11,6 +11,7 @@ ms.date: 02/13/2026
 ms.custom:
   - azure-ai-agents
   - classic-and-new
+  - doc-kit-assisted
 ai-usage: ai-assisted
 ---
 

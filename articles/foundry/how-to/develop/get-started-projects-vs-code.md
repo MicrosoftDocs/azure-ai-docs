@@ -7,7 +7,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 02/18/2026
+ms.date: 03/12/2026
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -15,12 +15,11 @@ author: ms-johnalex
 # customer intent: As an AI app developer, I want to learn how to use the Microsoft Foundry for Visual Studio Code extension so that I can create projects and deploy models using Microsoft Foundry capabilities directly in VS Code.
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Work with the Microsoft Foundry for Visual Studio Code extension
 In this article, learn how to install and use the [Microsoft Foundry](../../what-is-foundry.md) for Visual Studio Code extension. Create projects, deploy models from the Foundry model catalog, and interact with model playgrounds from within VS Code.
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 ## Prerequisites
 

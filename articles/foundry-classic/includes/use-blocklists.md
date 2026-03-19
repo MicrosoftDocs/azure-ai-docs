@@ -11,7 +11,7 @@ ms.custom: include
 
 ---
 
-[!INCLUDE [version-banner](./version-banner.md)]
+[!INCLUDE [classic-banner](./classic-banner.md)]
 
 ## Create a blocklist
 

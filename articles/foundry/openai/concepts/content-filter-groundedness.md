@@ -11,6 +11,7 @@ ai-usage: ai-assisted
 
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Groundedness detection filter

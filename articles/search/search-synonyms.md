@@ -1,10 +1,6 @@
 ---
-title: Add synonyms to expand queries for equivalent terms
-titleSuffix: Azure AI Search
+title: Add Synonyms to Expand Queries for Equivalent Terms
 description: Create a synonym map to expand the scope of a search query over an Azure AI Search index. The query can search on equivalent terms provided in the synonym map, even if the query doesn't explicitly include the term.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -157,7 +153,7 @@ Use the [Create or Update Index (REST API)](/rest/api/searchservice/indexes/crea
 ```http
 PUT /indexes?api-version=2025-09-01
 {
-    "name":"hotels-sample-index",
+    "name":"hotels-sample",
     "fields":[
         {
             "name":"description",

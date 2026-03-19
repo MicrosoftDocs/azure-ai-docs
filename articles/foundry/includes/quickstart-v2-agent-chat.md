@@ -14,19 +14,19 @@ Use the previously created agent named "MyAgent" to interact by asking a questio
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/quickstart-chat-with-agent.py":::
+:::code language="python" source="~/foundry-samples-main/samples/python/quickstart/chat-with-agent/quickstart-chat-with-agent.py":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/quickstart-chat-with-agent.cs":::
+:::code language="csharp" source="~/foundry-samples-main/samples/csharp/quickstart/chat-with-agent/quickstart-chat-with-agent.cs":::
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/src/quickstart-chat-with-agent.ts":::
+:::code language="typescript" source="~/foundry-samples-main/samples/typescript/quickstart/chat-with-agent/src/quickstart-chat-with-agent.ts":::
 
 # [Java](#tab/java) 
 
-:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/ChatWithAgent.java" :::
+:::code language="java" source="~/foundry-samples-main/samples/java/quickstart/chat-with-agent/src/main/java/com/azure/ai/agents/ChatWithAgent.java" :::
 
 # [REST API](#tab/rest)
 

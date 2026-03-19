@@ -1,10 +1,6 @@
 ---
-title: Add language analyzers to string fields
-titleSuffix: Azure AI Search
+title: Add Language Analyzers to String Fields
 description: Configure multi-lingual lexical analysis for non-English text queries and indexes in Azure AI Search.
-author: HeidiSteen
-manager: nitinme
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -68,7 +64,7 @@ The following example illustrates a language analyzer specification in an index:
 
 ```json
 {
-  "name": "hotels-sample-index",
+  "name": "hotels-sample",
   "fields": [
     {
       "name": "Description",

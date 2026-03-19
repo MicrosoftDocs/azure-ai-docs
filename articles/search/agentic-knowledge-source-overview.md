@@ -1,10 +1,6 @@
 ---
 title: What is a Knowledge Source?
-titleSuffix: Azure AI Search
 description: Learn about the knowledge source object used for agentic retrieval workloads in Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 02/02/2026

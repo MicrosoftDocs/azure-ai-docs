@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.date: 02/02/2026
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents,  pilot-ai-workflow-jan-2026
+ms.custom: azure-ai-agents,  pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted  
 ---
 

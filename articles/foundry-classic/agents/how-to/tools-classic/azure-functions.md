@@ -14,7 +14,7 @@ ms.custom: azure-ai-agents
 
 # Use Azure Functions with Foundry Agent Service (classic)
 
-[!INCLUDE [classic-banner](../../../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../../../includes/agents-classic.md)]
 
 [Azure Functions](/azure/azure-functions/functions-overview) is a serverless compute service that you can use to extend your Foundry Agent Service agents with custom tools built using code. This approach is especially useful when you need your agent to integrate with systems within your enterprise.
 

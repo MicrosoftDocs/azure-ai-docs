@@ -20,7 +20,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Microsoft Foundry SDKs and Endpoints (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/sdk-overview.md)
 
 A Foundry resource provides unified access to models, agents, and tools. This article explains which SDK and endpoint to use for your scenario.
 
@@ -51,7 +51,7 @@ A Foundry resource provides unified access to models, agents, and tools. This ar
   - **Azure AI Project Manager** (for managing Foundry projects)
   - **Contributor** or **Owner** (for subscription-level permissions)
   
-  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/foundry/concepts/rbac-azure-ai-foundry).
 
 - Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](install-cli-sdk.md).
 
@@ -365,7 +365,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -452,7 +452,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 
 const deployment = "gpt-4o"
 const endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
-const scope = "https://cognitiveservices.azure.com/.default";
+const scope = "https://ai.azure.com/.default";
 const apiVersion = "2024-04-01-preview";
 
 const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
