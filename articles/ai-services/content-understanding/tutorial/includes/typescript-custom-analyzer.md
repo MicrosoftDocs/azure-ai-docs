@@ -180,19 +180,18 @@ if (result.description) {
     );
 }
 
-if (result.fieldSchema
-    && result.fieldSchema.fields) {
+if (result.fieldSchema?.fields) {
     const fields = result.fieldSchema.fields;
-    const fieldNames = Object.keys(fields);
     console.log(
-        `  Fields (${fieldNames.length}):`
+        `  Fields`
+        + ` (${Object.keys(fields).length}):`
     );
-    for (const name of fieldNames) {
-        const field = fields[name];
+    for (const [name, fieldDef]
+        of Object.entries(fields)) {
         const method =
-            field.method || "auto";
+            fieldDef.method ?? "auto";
         const fieldType =
-            field.type || "unknown";
+            fieldDef.type ?? "unknown";
         console.log(
             `    - ${name}: `
             + `${fieldType} (${method})`
@@ -201,7 +200,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_document_analyzer_ID' created successfully!
@@ -302,7 +301,7 @@ if (classifierResult.description) {
 ```
 
 > [!TIP]
-> This code adapts the [createAnalyzer.ts](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/typescript/src/createAnalyzer.ts) pattern for classification workflows.
+> This code is based on the [createClassifier.ts](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/typescript/src/createClassifier.ts) sample for classification workflows.
 
 
 
@@ -366,19 +365,18 @@ if (result.description) {
     );
 }
 
-if (result.fieldSchema
-    && result.fieldSchema.fields) {
+if (result.fieldSchema?.fields) {
     const fields = result.fieldSchema.fields;
-    const fieldNames = Object.keys(fields);
     console.log(
-        `  Fields (${fieldNames.length}):`
+        `  Fields`
+        + ` (${Object.keys(fields).length}):`
     );
-    for (const name of fieldNames) {
-        const field = fields[name];
+    for (const [name, fieldDef]
+        of Object.entries(fields)) {
         const method =
-            field.method || "auto";
+            fieldDef.method ?? "auto";
         const fieldType =
-            field.type || "unknown";
+            fieldDef.type ?? "unknown";
         console.log(
             `    - ${name}: `
             + `${fieldType} (${method})`
@@ -387,7 +385,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_image_analyzer_ID' created successfully!
@@ -437,7 +435,7 @@ const fieldSchema: ContentFieldSchema = {
             type: "array",
             description:
                 "List of people mentioned",
-            items: {
+            itemDefinition: {
                 type: "object",
                 properties: {
                     Name: { type: "string" },
@@ -485,19 +483,18 @@ if (result.description) {
     );
 }
 
-if (result.fieldSchema
-    && result.fieldSchema.fields) {
+if (result.fieldSchema?.fields) {
     const fields = result.fieldSchema.fields;
-    const fieldNames = Object.keys(fields);
     console.log(
-        `  Fields (${fieldNames.length}):`
+        `  Fields`
+        + ` (${Object.keys(fields).length}):`
     );
-    for (const name of fieldNames) {
-        const field = fields[name];
+    for (const [name, fieldDef]
+        of Object.entries(fields)) {
         const method =
-            field.method || "auto";
+            fieldDef.method ?? "auto";
         const fieldType =
-            field.type || "unknown";
+            fieldDef.type ?? "unknown";
         console.log(
             `    - ${name}: `
             + `${fieldType} (${method})`
@@ -506,7 +503,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_audio_analyzer_ID' created successfully!
@@ -538,7 +535,7 @@ const fieldSchema: ContentFieldSchema = {
     fields: {
         Segments: {
             type: "array",
-            items: {
+            itemDefinition: {
                 type: "object",
                 properties: {
                     SegmentId: {
@@ -603,19 +600,18 @@ if (result.description) {
     );
 }
 
-if (result.fieldSchema
-    && result.fieldSchema.fields) {
+if (result.fieldSchema?.fields) {
     const fields = result.fieldSchema.fields;
-    const fieldNames = Object.keys(fields);
     console.log(
-        `  Fields (${fieldNames.length}):`
+        `  Fields`
+        + ` (${Object.keys(fields).length}):`
     );
-    for (const name of fieldNames) {
-        const field = fields[name];
+    for (const [name, fieldDef]
+        of Object.entries(fields)) {
         const method =
-            field.method || "auto";
+            fieldDef.method ?? "auto";
         const fieldType =
-            field.type || "unknown";
+            fieldDef.type ?? "unknown";
         console.log(
             `    - ${name}: `
             + `${fieldType} (${method})`
@@ -624,7 +620,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_video_analyzer_ID' created successfully!
@@ -714,13 +710,13 @@ console.log(
 );
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Company Name: CONTOSO LTD.
-  Confidence: 0.81
-Total Amount: 610.0
-Summary: This document is an invoice from CONTOSO LTD. ...
+  Confidence: 0.818
+Total Amount: 610
+Summary: This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for consulting, document, and printing services provided during the service period 10/14/2019 - 11/14/2019. It details line items, subtotal, sales tax, total, previous unpaid balance, and the final amount due.
 Document Type: invoice
 
 Cleaning up: deleting analyzer 'my_document_analyzer_ID'...
@@ -782,7 +778,7 @@ console.log(
 );
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Title: Distribution of Weekly Working Hours
@@ -847,10 +843,10 @@ console.log(
 );
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
-Summary: Maria Smith contacted Contoso to inquire about her current point balance...
+Summary: Maria Smith contacted Contoso to inquire about her current point balance. John Doe, the representative, verified her identity by requesting her date of birth and then provided her with her point balance of 599 points. Maria confirmed she did not need further assistance, and the call ended amicably.
 Sentiment: Positive
 
 Cleaning up: deleting analyzer 'my_audio_analyzer_ID'...
@@ -887,13 +883,39 @@ if (analyzeResult.contents
     if (content.fields) {
         const segments =
             content.fields["Segments"];
-        if (segments) {
+        if (segments && segments.value) {
+            const segArray =
+                segments.value as any[];
             console.log(
-                `Segments: `
-                + JSON.stringify(
-                    segments, null, 2
-                )
+                `Segments`
+                + ` (${segArray.length}):`
             );
+            for (const segment
+                of segArray) {
+                const segId =
+                    segment.value
+                        ?.SegmentId?.value
+                    ?? "N/A";
+                const desc =
+                    segment.value
+                        ?.Description?.value
+                    ?? "N/A";
+                const sent =
+                    segment.value
+                        ?.Sentiment?.value
+                    ?? "N/A";
+                console.log(
+                    `  Segment: ${segId}`
+                );
+                console.log(
+                    `    Description:`
+                    + ` ${desc}`
+                );
+                console.log(
+                    `    Sentiment:`
+                    + ` ${sent}`
+                );
+            }
         }
     }
 }
@@ -910,11 +932,59 @@ console.log(
 );
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
-Content kind: video
-Segments: [placeholder - video segment data]
+Content kind: audioVisual
+Segments (16):
+  Segment: 00:00:00.000-00:00:01.467
+    Description: The video opens with a scenic aerial view of an island surrounded by blue water, featuring a small airplane flying over it. The screen displays the logos for 'Flight Simulator' and 'Microsoft Azure AI', indicating a collaboration or integration between the two.
+    Sentiment: Positive
+  Segment: 00:00:01.467-00:00:03.233
+    Description: A man is shown sitting in a modern office environment, likely preparing to speak or introduce the topic. The background includes plants and geometric wall lights, giving a professional and contemporary feel.
+    Sentiment: Neutral
+  Segment: 00:00:03.233-00:00:07.367
+    Description: The video transitions to a close-up of a digital audio waveform, visually representing sound data. This segment aligns with the audio discussing the importance of good data for neural TTS (Text-to-Speech) and the creation of a universal TTS model using extensive audio data.
+    Sentiment: Positive
+  Segment: 00:00:07.367-00:00:08.200
+    Description: Another man appears in a similar office setting, possibly continuing the explanation or providing additional commentary.
+    Sentiment: Neutral
+  Segment: 00:00:08.200-00:00:11.367
+    Description: The scene shifts to an outdoor view of a large facility surrounded by green fields and blue skies, likely representing a data center or infrastructure supporting the TTS technology.
+    Sentiment: Positive
+  Segment: 00:00:11.367-00:00:13.567
+    Description: Inside a data center, rows of servers are shown, emphasizing the technological backbone and scale of the operation required for processing large amounts of audio data.
+    Sentiment: Positive
+  Segment: 00:00:13.567-00:00:16.100
+    Description: The first man returns, continuing his explanation in the office setting. The audio mentions the accumulation of data to capture audio nuances and generate natural voices.
+    Sentiment: Positive
+  Segment: 00:00:16.100-00:00:19.433
+    Description: A biplane is seen flying over a coastal landscape, showcasing the immersive visuals of Flight Simulator. This segment highlights the realism and beauty of the simulation.
+    Sentiment: Positive
+  Segment: 00:00:19.433-00:00:23.967
+    Description: A plane flies past a castle set against a mountainous backdrop, further demonstrating the detailed environments in Flight Simulator.
+    Sentiment: Positive
+  Segment: 00:00:23.967-00:00:30.033
+    Description: A bald man is interviewed in a modern office space, likely discussing the benefits of cognitive services offerings, such as higher fidelity and more human-like voices.
+    Sentiment: Positive
+  Segment: 00:00:30.033-00:00:33.200
+    Description: The interview continues with the bald man, focusing on his commentary about the product's features and advantages.
+    Sentiment: Positive
+  Segment: 00:00:33.200-00:00:35.267
+    Description: The video shifts to an overhead view of an airplane on the runway, preparing for movement, possibly referencing the realism of in-game operations.
+    Sentiment: Neutral
+  Segment: 00:00:35.267-00:00:37.700
+    Description: A ground crew member directs an Airbus aircraft, highlighting the detailed simulation of airport operations in Flight Simulator.
+    Sentiment: Positive
+  Segment: 00:00:37.700-00:00:39.200
+    Description: Two ground crew members walk near an aircraft on the tarmac, reinforcing the realistic airport environment and operations.
+    Sentiment: Neutral
+  Segment: 00:00:39.200-00:00:42.033
+    Description: A close-up of an Airbus aircraft at the gate, with sunlight and clouds in the background, further showcasing the visual fidelity of Flight Simulator.
+    Sentiment: Positive
+  Segment: 00:00:42.033-00:00:43.866
+    Description: The video concludes with the Microsoft logo and branding, signaling the end of the product demo and reinforcing the partnership.
+    Sentiment: Positive
 
 Cleaning up: deleting analyzer 'my_video_analyzer_ID'...
 Analyzer 'my_video_analyzer_ID' deleted successfully.
