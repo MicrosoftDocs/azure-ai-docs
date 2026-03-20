@@ -7,7 +7,7 @@ ms.author: scottpolly
 ms.reviewer: bozhlin
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 03/19/2026
+ms.date: 03/20/2026
 ms.topic: how-to
 ms.custom:
   - build-spring-2022
@@ -59,6 +59,7 @@ Otherwise, if you [specify a user-assigned managed identity in Azure Machine Lea
 |Azure Relay|Azure Relay Owner|Only applicable for Arc-enabled Kubernetes cluster. Azure Relay isn't created for AKS cluster without Arc connected.|
 |Kubernetes - Azure Arc or Azure Kubernetes Service|Reader <br> Kubernetes Extension Contributor <br> Azure Kubernetes Service Cluster Admin |Applicable for both Arc-enabled Kubernetes cluster and AKS cluster.|
 |Azure Kubernetes Service|Contributor|Required only for AKS clusters that use the Trusted Access feature. The workspace uses user-assigned managed identity. See [Azure Machine Learning access to AKS clusters with special configurations](https://github.com/Azure/AML-Kubernetes/blob/master/docs/azureml-aks-ta-support.md) for details.|
+|Azure Kubernetes Service|Contributor|Required only for AKS clusters that use the Trusted Access feature. The workspace uses user-assigned managed identity. See [Get secure access for Azure resources in AKS by using Trusted Access](/azure/aks/trusted-access-feature) for details.|
 
 
 > [!TIP]
@@ -81,7 +82,7 @@ The following CLI v2 commands show how to attach an AKS and Azure Arc-enabled Ku
 **AKS cluster**
 
 ```azurecli
-az ml compute attach --resource-group <resource-group-name> --workspace-name <workspace-name> --type Kubernetes --name k8s-compute --resource-id "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.ContainerService/managedclusters/<cluster-name>" --identity-type SystemAssigned --namespace <Kubernetes namespace to run Azure Machine Learning workloads> --no-wait
+az ml compute attach --resource-group <resource-group-name> --workspace-name <workspace-name> --type Kubernetes --name k8s-compute --resource-id "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.ContainerService/managedClusters/<cluster-name>" --identity-type SystemAssigned --namespace <Kubernetes namespace to run Azure Machine Learning workloads> --no-wait
 ```
 
 **Arc Kubernetes cluster**
@@ -126,47 +127,65 @@ When you attach a Kubernetes cluster, you make it available to your workspace fo
 ### [Azure SDK](#tab/sdk)
 
 The following Python SDK v2 code shows how to attach an AKS and Azure Arc-enabled Kubernetes cluster, and use it as a compute target with managed identity enabled.
+The following Python SDK v2 code shows how to attach an AKS and Azure Arc-enabled Kubernetes cluster, and use it as a compute target with managed identity enabled.
 
 **AKS cluster**
 
 ```python
-from azure.ai.ml import load_compute
+from azure.ai.ml.entities import KubernetesCompute, IdentityConfiguration
 
-# for AKS cluster, the resource_id should be something like '/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.ContainerService/managedClusters/<CLUSTER_NAME>'
-compute_params = [
-    {"name": "<COMPUTE_NAME>"},
-    {"type": "kubernetes"},
-    {
-        "resource_id": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.ContainerService/managedClusters/<CLUSTER_NAME>"
-    },
-]
-k8s_compute = load_compute(source=None, params_override=compute_params)
+k8s_compute = KubernetesCompute(
+    name="<COMPUTE_NAME>",
+    resource_id=(
+        "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>"
+        "/providers/Microsoft.ContainerService"
+        "/managedClusters/<CLUSTER_NAME>"
+    ),
+    namespace="<NAMESPACE>",
+    identity=IdentityConfiguration(type="SystemAssigned"),
+)
 ml_client.begin_create_or_update(k8s_compute).result()
 ```
 
 **Arc Kubernetes cluster**
 
 ```python
-from azure.ai.ml import load_compute
+from azure.ai.ml.entities import (
+    KubernetesCompute,
+    IdentityConfiguration,
+    ManagedIdentityConfiguration,
+)
 
-# for arc connected cluster, the resource_id should be something like '/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Kubernetes/connectedClusters/<CLUSTER_NAME>'
-compute_params = [
-    {"name": "<COMPUTE_NAME>"},
-    {"type": "kubernetes"},
-    {
-        "resource_id": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Kubernetes/connectedClusters/<CLUSTER_NAME>"
-    },
-]
-k8s_compute = load_compute(source=None, params_override=compute_params)
+k8s_compute = KubernetesCompute(
+    name="<COMPUTE_NAME>",
+    resource_id=(
+        "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>"
+        "/providers/Microsoft.Kubernetes"
+        "/connectedClusters/<CLUSTER_NAME>"
+    ),
+    namespace="<NAMESPACE>",
+    identity=IdentityConfiguration(
+        type="UserAssigned",
+        user_assigned_identities=[
+            ManagedIdentityConfiguration(
+                resource_id=(
+                    "/subscriptions/<SUBSCRIPTION_ID>"
+                    "/resourceGroups/<RESOURCE_GROUP>"
+                    "/providers/Microsoft.ManagedIdentity"
+                    "/userAssignedIdentities/<IDENTITY_NAME>"
+                )
+            )
+        ],
+    ),
+)
 ml_client.begin_create_or_update(k8s_compute).result()
-
 ```
    
 ---
 
 ## Assign managed identity to the compute target
 
-A common challenge for developers is managing secrets and credentials used to secure communication between different components of a solution. [Managed identities](/entra/identity/managed-identities-azure-resources/overview) eliminate the need for developers to manage credentials.
+A common challenge for developers is the management of secrets and credentials used to secure communication between different components of a solution. [Managed identities](/entra/identity/managed-identities-azure-resources/overview) eliminate the need for developers to manage credentials.
 
 To access Azure Container Registry (ACR) for a Docker image, and a Storage Account for training data, attach Kubernetes compute with a system-assigned or user-assigned managed identity enabled.
 

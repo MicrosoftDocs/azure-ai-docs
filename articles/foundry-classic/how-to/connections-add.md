@@ -28,13 +28,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 In this article, you learn how to add a new connection in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more. 
+Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more.
 
-## Prerequisites
-
-* If you don't have one, [create a project](./create-projects.md).
-* Make sure you can open your project in Microsoft Foundry.
-* Make sure you have permissions to add connections to the project or resource.
+[!INCLUDE [connections-add 1](../../foundry/includes/how-to-connections-add-1.md)]
 
 ## Connection types
 
@@ -72,9 +68,7 @@ Foundry stores connections details in a managed Azure Key Vault if no Key Vault 
 
 It supports three connection types: __Jobs__, __Genie__, and __Other__. You can choose the Job or Genie space to associate with the connection in the Foundry UI. You can also use the Other connection type to let your agent access workspace operations in Azure Databricks. Authentication uses Microsoft Entra ID for users or service principals. For examples of using this connector, see [Jobs](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_job.py) and [Genie](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_genie.py). Usage of this connection is available only via the Foundry SDK and is integrated into agents as a FunctionTool. Usage of this connection in Foundry Playground isn't currently supported.
 
-## Create a new connection 
-
-Use the portal or a Bicep template to add a connection.
+[!INCLUDE [connections-add 2](../../foundry/includes/how-to-connections-add-2.md)]
 
 ## [Foundry portal](#tab/foundry-portal)
 
@@ -106,9 +100,7 @@ Follow these steps to create a new connection that's available for the current p
 
 ## [Bicep](#tab/bicep)
 
-Use [Connection templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) to create connections through infrastructure deployment.
-
-After deployment, return to your project and verify that the new connection appears in connected resources.
+[!INCLUDE [connections-add 3](../../foundry/includes/how-to-connections-add-3.md)]
 
 ---
 

@@ -22,55 +22,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/sdk-overview.md)
 
-A Foundry resource provides unified access to models, agents, and tools. This article explains which SDK and endpoint to use for your scenario.
-
-| SDK | What it's for | Endpoint |
-| --- | --- | --- |
-| **Foundry SDK** | Foundry-specific capabilities with OpenAI-compatible interfaces. Includes access to Foundry direct models through the Responses API (not Chat Completions). | `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>` |
-| **OpenAI SDK** | Latest OpenAI SDK models and features with the full OpenAI API surface. Foundry direct models available through Chat Completions API (not Responses). | `https://<resource-name>.openai.azure.com/openai/v1` |
-| **Foundry Tools SDKs** | Prebuilt solutions (Vision, Speech, Content Safety, and more). | Tool-specific endpoints (varies by service). |
-| **Agent Framework** | Multi-agent orchestration in code. Cloud-agnostic. | Uses the project endpoint via the Foundry SDK. |
-
-**Choose your SDK**:
-- Use **Foundry SDK** when building apps with agents, evaluations, or Foundry-specific features
-- Use **OpenAI SDK** when maximum OpenAI compatibility is required, or using Foundry direct models via Chat Completions
-- Use **Foundry Tools SDKs** when working with specific AI services (Vision, Speech, Language, etc.)
-- Use **Agent Framework** when building multi-agent systems in code (local orchestration)
-
-> [!NOTE]
-> **Resource types:** A Foundry resource provides all endpoints previously listed. An Azure OpenAI resource provides only the `/openai/v1` endpoint.
->
-> **Authentication:** Samples here use Microsoft Entra ID (`DefaultAzureCredential`). API keys work on `/openai/v1`. Pass the key as `api_key` instead of a token provider.
-
-## Prerequisites
-
-- [!INCLUDE [azure-subscription](../../../foundry/includes/azure-subscription.md)]
-
-- Have one of the following Azure RBAC roles to create and manage Foundry resources:
-  - **Azure AI User** (least-privilege role for development)
-  - **Azure AI Project Manager** (for managing Foundry projects)
-  - **Contributor** or **Owner** (for subscription-level permissions)
-  
-  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/foundry/concepts/rbac-azure-ai-foundry).
-
-- Install the required language runtimes, global tools, and VS Code extensions as described in [Prepare your development environment](install-cli-sdk.md).
-
-> [!IMPORTANT]
-> Before starting, make sure your development environment is ready.  
-> This article focuses on **scenario-specific steps** like SDK installation, authentication, and running sample code.
->
-
-### Verify prerequisites
-
-Before proceeding, confirm:
-
-- [ ] Azure subscription is active: `az account show`
-- [ ] You have the required RBAC role: Check Azure portal → Foundry resource → Access control (IAM)
-- [ ] Language runtime installed:
-  - Python: `python --version` (≥3.8)
-  - Node.js: `node --version` (≥18)
-  - .NET: `dotnet --version` (≥6.0)
-  - Java: `java --version` (≥11)
+[!INCLUDE [sdk-overview 1](../../../foundry/includes/how-to-develop-sdk-overview-1.md)]
 
 ## Foundry SDK
 
@@ -311,46 +263,7 @@ Console.WriteLine(result.Content[0].Text);
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai&pivots=programming-language-python)
 - Get endpoints and keys for Foundry Tools, local orchestration, and more
 
-## Troubleshooting
-
-### Authentication errors
-
-If you see `DefaultAzureCredential failed to retrieve a token`:
-
-1. **Verify Azure CLI is authenticated**:
-   ```bash
-   az account show
-   az login  # if not logged in
-   ```
-
-2. **Check RBAC role assignment**:
-   - Confirm you have at least the Azure AI User role on the Foundry project
-   - See [Assign Azure roles](/azure/role-based-access-control/role-assignments-portal)
-
-3. **For managed identity in production**:
-   - Ensure the managed identity has the appropriate role assigned
-   - See [Configure managed identities](../../concepts/authentication-authorization-foundry.md#identity-types)
-
-### Endpoint configuration errors
-
-If you see `Connection refused` or `404 Not Found`:
-
-- **Verify resource and project names** match your actual deployment
-- **Check endpoint URL format**: Should be `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>`
-- **For custom subdomains**: Replace `<resource-name>` with your custom subdomain
-
-### SDK version mismatches
-
-If code samples fail with `AttributeError` or `ModuleNotFoundError`:
-
-- **Check SDK version**:
-  ```bash
-  pip show azure-ai-projects  # Python
-  npm list @azure/ai-projects  # JavaScript
-  dotnet list package  # .NET
-  ```
-- **Verify moniker alignment**: 2.x SDK requires Foundry portal, 1.x SDK requires Foundry classic
-- **Reinstall with correct version flags**: See installation commands in each language section above
+[!INCLUDE [sdk-overview 2](../../../foundry/includes/how-to-develop-sdk-overview-2.md)]
 
 ## OpenAI SDK
 
@@ -518,76 +431,4 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet).
 ::: zone-end
 
-## Using the Agent Framework for local orchestration
-
-Microsoft Agent Framework is an open-source SDK for building multi-agent systems in code (for example, .NET and Python) with a cloud-provider-agnostic interface.
-
-Use Agent Framework when you want to define and orchestrate agents locally. Pair it with the Foundry SDK when you want those agents to run against Foundry models or when you want Agent Framework to orchestrate agents hosted in Foundry.
-
-For more information, see the [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview).
-
-## Foundry Tools SDKs
-
-Foundry Tools (formerly Azure AI Services) are prebuilt point solutions with dedicated SDKs. Use the following endpoints to work with Foundry Tools.
-
-### Which endpoint should you use?
-
-Choose an endpoint based on your needs:
-
-Use the Azure AI Services endpoint to access Computer Vision, Content Safety, Document Intelligence, Language, Translation, and Token Foundry Tools.
-
-Foundry Tools endpoint: `https://<your-resource-name>.cognitiveservices.azure.com/`
-
-> [!NOTE]
-> Endpoints use either your resource name or a custom subdomain. If your organization set up a custom subdomain, replace `your-resource-name` with `your-custom-subdomain` in all endpoint examples.
-
-For Speech and Translation Foundry Tools, use the endpoints in the following tables. Replace placeholders with your resource information.
-
-#### Speech Endpoints
-
-| Foundry Tool | Endpoint |
-| --- | --- |
-|Speech to Text (Standard)|`https://<YOUR-RESOURCE-REGION>.stt.speech.microsoft.com`|
-|Text to Speech (Neural)|`https://<YOUR-RESOURCE-REGION>.tts.speech.microsoft.com`|
-|Custom Voice|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
-
-#### Translation Endpoints
-
-| Foundry Tool | Endpoint |
-| --- | --- |
-|Text Translation|`https://api.cognitive.microsofttranslator.com/`|
-|Document Translation|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
-
-The following sections include quickstart links for the Foundry Tools SDKs and reference information.
-
-<!-- ::: zone pivot="programming-language-cpp"
-[!INCLUDE [C++ include](../../../foundry/includes/sdk/cpp.md)]
-::: zone-end -->
-
-::: zone pivot="programming-language-csharp"
-[!INCLUDE [C# include](../../../foundry/includes/sdk/csharp.md)]
-::: zone-end
-
-<!-- ::: zone pivot="programming-language-go"
-[!INCLUDE [Go include](../../../foundry/includes/sdk/go.md)]
-::: zone-end -->
-
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](../../../foundry/includes/sdk/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](../../../foundry/includes/sdk/javascript.md)]
-::: zone-end
-
-<!-- ::: zone pivot="programming-language-objectivec"
-[!INCLUDE [ObjectiveC include](../../../foundry/includes/sdk/objective-c.md)]
-::: zone-end -->
-
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](../../../foundry/includes/sdk/python.md)]
-::: zone-end
-
-<!-- ::: zone pivot="programming-language-swift"
-[!INCLUDE [Swift include](../../../foundry/includes/sdk/swift.md)]
-::: zone-end -->
+[!INCLUDE [sdk-overview 3](../../../foundry/includes/how-to-develop-sdk-overview-3.md)]

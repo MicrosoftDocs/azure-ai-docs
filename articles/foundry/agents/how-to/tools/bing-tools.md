@@ -35,7 +35,7 @@ The grounding process involves several key steps:
 > - See the [manage section](#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search) for information about how Azure admins can manage access to use of Grounding with Bing Search and Grounding with Bing Custom Search.
 
 >[!NOTE]
-> Start with the [web search tool (preview)](./web-search.md). Learn more about the differences between web search and Grounding with Bing Search (or Grounding with Bing Custom Search) in the [web grounding overview](./web-overview.md).
+> Start with the [web search tool](./web-search.md). Learn more about the differences between web search and Grounding with Bing Search (or Grounding with Bing Custom Search) in the [web grounding overview](./web-overview.md).
 
 ### Usage support
 
@@ -1173,7 +1173,7 @@ Admins can use RBAC role assignments to enable or disable the use of Grounding w
 ## Next steps
 
 - [Tool use best practices](../../concepts/tool-best-practice.md) - Learn optimization strategies for agent tools
-- [Web search tool (preview)](web-search.md) - Use web search without configuring Bing tool parameters
+- [Web search tool](web-search.md) - Use web search without configuring Bing tool parameters
 - [Manage Grounding with Bing in Microsoft Foundry and Azure](../manage-grounding-with-bing.md) - Control and disable Grounding with Bing features
 - [Connect OpenAPI tools to agents](openapi.md) - Integrate custom APIs with your agents
 - [Discover tools in the Foundry Tools (preview)](../../concepts/tool-catalog.md) - Explore all available agent tools in Foundry Agent Service
