@@ -37,7 +37,7 @@ Access to new API calls that are still in preview will be controlled by passing 
 
 Examples:
 
-- When `/openai/v1/evals` was previously in preview it required passing an `"aoai-evals":"preview"` header. **/evals is no longer in prevew.**
+- When `/openai/v1/evals` was previously in preview it required passing an `"aoai-evals":"preview"` header. **/evals is no longer in preview.**
 - `/openai/v1/fine_tuning/alpha/graders/` is in preview and requires no custom header due to the presence of `alpha` in the API path.
 
 For the initial v1 Generally Available (GA) API launch, only a subset of the inference and authoring API capabilities are supported. All GA features are supported for use in production. Support for more capabilities is being added rapidly.

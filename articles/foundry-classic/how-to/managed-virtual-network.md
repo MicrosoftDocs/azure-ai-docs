@@ -10,6 +10,7 @@ ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
+  - references_regions
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
