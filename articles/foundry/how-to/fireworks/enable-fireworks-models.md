@@ -65,7 +65,7 @@ While in preview, **Fireworks requires an administrator to enable the preview fe
 
 1. From the left menu, under **Settings**, select **Preview features**.
 
-1. Search for and select the **Fireworks.Enable.Deploy** preview feature.
+1. Search for and select the **Fireworks.EnableDeploy** preview feature.
 
 1. Review the terms provided in the **Description** and the [data privacy](#data-privacy) section in this documentation.
 
