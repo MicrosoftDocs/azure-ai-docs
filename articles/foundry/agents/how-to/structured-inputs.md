@@ -1373,59 +1373,102 @@ print(response.output_text)
 
 Structured inputs support full [Handlebars](https://handlebarsjs.com/) template syntax beyond simple variable substitution. You can use conditionals, loops, and other built-in helpers to create dynamic instruction logic within a single agent definition.
 
-The following example shows an agent definition that uses conditionals and loops to adapt behavior based on runtime inputs:
+The following example creates a weather assistant whose behavior adapts based on runtime inputs. The instructions template uses `{{#if}}` for conditional sections and `{{#each}}` to iterate over a list of user preferences:
 
-```json
-{
-  "name": "adaptive-support-agent",
-  "definition": {
-    "kind": "prompt",
-    "model": "gpt-4o",
-    "instructions": "You are a support agent for {{companyName}}. {{#if isPremiumUser}}This is a premium customer — prioritize their request and offer advanced troubleshooting.{{else}}This is a standard customer — follow the standard support workflow.{{/if}} The customer's preferred language is {{language}}. {{#if specializations}}The customer has expertise in: {{#each specializations}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}.{{/if}}",
-    "structured_inputs": {
-      "companyName": {
-        "type": "string",
-        "description": "Company name for branding"
-      },
-      "isPremiumUser": {
-        "type": "boolean",
-        "description": "Whether the customer has a premium plan"
-      },
-      "language": {
-        "type": "string",
-        "description": "Customer's preferred language",
-        "default_value": "English"
-      },
-      "specializations": {
-        "type": "array",
-        "description": "Customer's areas of expertise"
-      }
-    }
-  }
-}
-```
+```python
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import PromptAgentDefinition, StructuredInputDefinition
+from azure.identity import DefaultAzureCredential
 
-At runtime, the template resolves based on the supplied values:
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
 
-```json
-{
-  "agent_reference": {
-    "type": "agent_reference",
-    "name": "adaptive-support-agent"
-  },
-  "input": [{"type": "message", "role": "user", "content": "I need help configuring my deployment."}],
-  "structured_inputs": {
-    "companyName": "Contoso",
-    "isPremiumUser": true,
-    "language": "English",
-    "specializations": ["Kubernetes", "Azure DevOps", "Terraform"]
-  }
-}
+# Create clients to call Foundry API
+project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
+openai = project.get_openai_client()
+
+# Define instructions with conditionals and loops
+instructions = """You are a weather assistant. Provide a helpful weather summary for the user.
+
+The user asked about: {{location}}
+Use the following units: {{units}}
+
+{{#if includeForecast}}
+Include a brief multi-day forecast in your response.
+{{else}}
+Focus only on the current conditions.
+{{/if}}
+
+{{#if preferences}}
+The user has these additional preferences:
+{{#each preferences}}
+- {{this}}
+{{/each}}
+{{/if}}
+
+Keep the final answer clear and easy to read."""
+
+agent = project.agents.create_version(
+    agent_name="weather-assistant",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions=instructions,
+        structured_inputs={
+            "location": StructuredInputDefinition(
+                description="City or region to check weather for",
+                required=True,
+                schema={"type": "string"},
+            ),
+            "units": StructuredInputDefinition(
+                description="Temperature units (Celsius or Fahrenheit)",
+                default_value="Celsius",
+                schema={"type": "string"},
+            ),
+            "includeForecast": StructuredInputDefinition(
+                description="Whether to include a multi-day forecast",
+                default_value="false",
+                schema={"type": "boolean"},
+            ),
+            "preferences": StructuredInputDefinition(
+                description="Additional user preferences",
+                schema={"type": "array"},
+            ),
+        },
+    ),
+)
+
+# Supply values at runtime — conditionals and loops resolve automatically
+conversation = openai.conversations.create()
+response = openai.responses.create(
+    conversation=conversation.id,
+    input="What's the weather like?",
+    extra_body={
+        "agent_reference": {"name": agent.name, "type": "agent_reference"},
+        "structured_inputs": {
+            "location": "Seattle, WA",
+            "units": "Fahrenheit",
+            "includeForecast": True,
+            "preferences": ["Highlight UV index", "Include wind speed"],
+        },
+    },
+)
+print(response.output_text)
 ```
 
 With these values, the resolved instructions become:
 
-> You are a support agent for Contoso. This is a premium customer — prioritize their request and offer advanced troubleshooting. The customer's preferred language is English. The customer has expertise in: Kubernetes, Azure DevOps, Terraform.
+> You are a weather assistant. Provide a helpful weather summary for the user.
+>
+> The user asked about: Seattle, WA
+> Use the following units: Fahrenheit
+>
+> Include a brief multi-day forecast in your response.
+>
+> The user has these additional preferences:
+> - Highlight UV index
+> - Include wind speed
+>
+> Keep the final answer clear and easy to read.
 
 The following table summarizes the supported Handlebars helpers:
 
