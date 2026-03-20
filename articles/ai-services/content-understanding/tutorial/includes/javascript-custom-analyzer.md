@@ -172,19 +172,18 @@ if (result.description) {
     );
 }
 
-if (result.fieldSchema
-    && result.fieldSchema.fields) {
+if (result.fieldSchema?.fields) {
     const fields = result.fieldSchema.fields;
-    const fieldNames = Object.keys(fields);
     console.log(
-        `  Fields (${fieldNames.length}):`
+        `  Fields`
+        + ` (${Object.keys(fields).length}):`
     );
-    for (const name of fieldNames) {
-        const field = fields[name];
+    for (const [name, fieldDef]
+        of Object.entries(fields)) {
         const method =
-            field.method || "auto";
+            fieldDef.method ?? "auto";
         const fieldType =
-            field.type || "unknown";
+            fieldDef.type ?? "unknown";
         console.log(
             `    - ${name}: `
             + `${fieldType} (${method})`
@@ -193,7 +192,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_document_analyzer_ID' created successfully!
@@ -294,7 +293,7 @@ if (classifierResult.description) {
 ```
 
 > [!TIP]
-> This code adapts the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for classification workflows.
+> This code adapts the [createClassifier.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createClassifier.js) pattern for classification workflows.
 
 
 
@@ -355,19 +354,18 @@ if (result.description) {
     );
 }
 
-if (result.fieldSchema
-    && result.fieldSchema.fields) {
+if (result.fieldSchema?.fields) {
     const fields = result.fieldSchema.fields;
-    const fieldNames = Object.keys(fields);
     console.log(
-        `  Fields (${fieldNames.length}):`
+        `  Fields`
+        + ` (${Object.keys(fields).length}):`
     );
-    for (const name of fieldNames) {
-        const field = fields[name];
+    for (const [name, fieldDef]
+        of Object.entries(fields)) {
         const method =
-            field.method || "auto";
+            fieldDef.method ?? "auto";
         const fieldType =
-            field.type || "unknown";
+            fieldDef.type ?? "unknown";
         console.log(
             `    - ${name}: `
             + `${fieldType} (${method})`
@@ -376,7 +374,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_image_analyzer_ID' created successfully!
@@ -435,7 +433,7 @@ const analyzer = {
                 type: "array",
                 description:
                     "List of people mentioned",
-                items: {
+                itemDefinition: {
                     type: "object",
                     properties: {
                         Name: {
@@ -474,19 +472,18 @@ if (result.description) {
     );
 }
 
-if (result.fieldSchema
-    && result.fieldSchema.fields) {
+if (result.fieldSchema?.fields) {
     const fields = result.fieldSchema.fields;
-    const fieldNames = Object.keys(fields);
     console.log(
-        `  Fields (${fieldNames.length}):`
+        `  Fields`
+        + ` (${Object.keys(fields).length}):`
     );
-    for (const name of fieldNames) {
-        const field = fields[name];
+    for (const [name, fieldDef]
+        of Object.entries(fields)) {
         const method =
-            field.method || "auto";
+            fieldDef.method ?? "auto";
         const fieldType =
-            field.type || "unknown";
+            fieldDef.type ?? "unknown";
         console.log(
             `    - ${name}: `
             + `${fieldType} (${method})`
@@ -495,7 +492,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_audio_analyzer_ID' created successfully!
@@ -536,7 +533,7 @@ const analyzer = {
         fields: {
             Segments: {
                 type: "array",
-                items: {
+                itemDefinition: {
                     type: "object",
                     properties: {
                         SegmentId: {
@@ -588,19 +585,18 @@ if (result.description) {
     );
 }
 
-if (result.fieldSchema
-    && result.fieldSchema.fields) {
+if (result.fieldSchema?.fields) {
     const fields = result.fieldSchema.fields;
-    const fieldNames = Object.keys(fields);
     console.log(
-        `  Fields (${fieldNames.length}):`
+        `  Fields`
+        + ` (${Object.keys(fields).length}):`
     );
-    for (const name of fieldNames) {
-        const field = fields[name];
+    for (const [name, fieldDef]
+        of Object.entries(fields)) {
         const method =
-            field.method || "auto";
+            fieldDef.method ?? "auto";
         const fieldType =
-            field.type || "unknown";
+            fieldDef.type ?? "unknown";
         console.log(
             `    - ${name}: `
             + `${fieldType} (${method})`
@@ -609,7 +605,7 @@ if (result.fieldSchema
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_video_analyzer_ID' created successfully!
@@ -699,13 +695,13 @@ console.log(
 );
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Company Name: CONTOSO LTD.
-  Confidence: 0.81
-Total Amount: 610.0
-Summary: This document is an invoice from CONTOSO LTD. ...
+  Confidence: 0.739
+Total Amount: 610
+Summary: This document is an invoice from CONTOSO LTD. to Microsoft Corporation for consulting, document, and printing services provided during the service period. It details line items, subtotal, sales tax, total, previous unpaid balance, and the final amount due.
 Document Type: invoice
 
 Cleaning up: deleting analyzer 'my_document_analyzer_ID'...
@@ -767,7 +763,7 @@ console.log(
 );
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Title: Distribution of Weekly Working Hours
@@ -832,10 +828,10 @@ console.log(
 );
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
-Summary: Maria Smith contacted Contoso to inquire about her current point balance...
+Summary: Maria Smith contacted Contoso to inquire about her current point balance. John Doe, the representative, verified her identity by requesting her date of birth and then provided her with her point balance of 599 points. Maria confirmed she needed no further information and ended the call.
 Sentiment: Positive
 
 Cleaning up: deleting analyzer 'my_audio_analyzer_ID'...
@@ -872,13 +868,37 @@ if (analyzeResult.contents
     if (content.fields) {
         const segments =
             content.fields["Segments"];
-        if (segments) {
+        if (segments && segments.value) {
             console.log(
-                `Segments: `
-                + JSON.stringify(
-                    segments, null, 2
-                )
+                `Segments`
+                + ` (${segments.value.length}):`
             );
+            for (const segment
+                of segments.value) {
+                const segId =
+                    segment.value
+                        ?.SegmentId?.value
+                    ?? "N/A";
+                const desc =
+                    segment.value
+                        ?.Description?.value
+                    ?? "N/A";
+                const sent =
+                    segment.value
+                        ?.Sentiment?.value
+                    ?? "N/A";
+                console.log(
+                    `  Segment: ${segId}`
+                );
+                console.log(
+                    `    Description:`
+                    + ` ${desc}`
+                );
+                console.log(
+                    `    Sentiment:`
+                    + ` ${sent}`
+                );
+            }
         }
     }
 }
@@ -895,11 +915,18 @@ console.log(
 );
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
-Content kind: video
-Segments: [placeholder - video segment data]
+Content kind: audioVisual
+Segments (16):
+  Segment: 00:00:00.000-00:00:01.467
+    Description: The video opens with a scenic aerial view of an island, featuring a small airplane flying over turquoise waters. ...
+    Sentiment: Positive
+  Segment: 00:00:01.467-00:00:03.233
+    Description: A man is shown sitting in a modern office setting, likely preparing to speak or introduce the topic. ...
+    Sentiment: Neutral
+  ...
 
 Cleaning up: deleting analyzer 'my_video_analyzer_ID'...
 Analyzer 'my_video_analyzer_ID' deleted successfully.
