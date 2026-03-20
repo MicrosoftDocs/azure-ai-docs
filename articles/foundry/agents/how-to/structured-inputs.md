@@ -640,13 +640,7 @@ import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.AgentsServiceVersion;
 import com.azure.ai.agents.ResponsesClient;
-import com.azure.ai.agents.models.AgentReference;
-import com.azure.ai.agents.models.AgentVersionDetails;
-import com.azure.ai.agents.models.AzureCreateResponseOptions;
-import com.azure.ai.agents.models.CodeInterpreterTool;
-import com.azure.ai.agents.models.CodeInterpreterToolAutoContainer;
-import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.ai.agents.models.StructuredInputDefinition;
+import com.azure.ai.agents.models.*;
 import com.azure.core.util.BinaryData;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
@@ -671,7 +665,7 @@ public class CodeInterpreterStructuredInputExample {
 
         // Create code interpreter tool with a template placeholder
         CodeInterpreterTool tool = new CodeInterpreterTool()
-            .setContainer(new CodeInterpreterToolAutoContainer()
+            .setContainer(new AutoCodeInterpreterToolParameter()
                 .setFileIds(Arrays.asList("{{analysis_file_id}}")));
 
         Map<String, StructuredInputDefinition> inputDefs = new LinkedHashMap<>();
