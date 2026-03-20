@@ -1,5 +1,5 @@
 ---
-title: "Use Structured Inputs With Microsoft Foundry Agents"
+title: "Customize Agent Behavior at Runtime with Structured Inputs"
 description: "Learn how to customize agent behavior at runtime using structured inputs. Define placeholders with handlebar templates, dynamically configure agent instructions and tools, and pass values at runtime to your agent."
 services: cognitive-services
 manager: nitinme
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer building AI agents, I want to use structured inputs with handlebar templates so that I can dynamically configure agent instructions and tool resources at runtime.
 ---
 
-# Use structured inputs with Microsoft Foundry agents
+# Customize agent behavior at runtime with structured inputs
 
 By using structured inputs, you can define placeholder values in Microsoft Foundry agent definitions by using handlebar template syntax (`{{variableName}}`). At runtime, supply actual values to customize agent instructions, tool resource configurations, and response parameters without creating separate agent versions for each configuration.
 
