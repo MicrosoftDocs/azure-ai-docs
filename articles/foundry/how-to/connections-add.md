@@ -82,7 +82,13 @@ Follow these steps to create a new connection that's available for the current p
     > [!TIP]
     > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-foundry.md).
 
+## [Bicep](#tab/bicep)
+
 [!INCLUDE [connections-add 3](../includes/how-to-connections-add-3.md)]
+
+---
+
+[!INCLUDE [connections-add 4](../includes/how-to-connections-add-4.md)]
 
 ## Related content
 

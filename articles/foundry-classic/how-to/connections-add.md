@@ -98,7 +98,13 @@ Follow these steps to create a new connection that's available for the current p
 
 1. After the service is connected, select __Close__.
 
+## [Bicep](#tab/bicep)
+
 [!INCLUDE [connections-add 3](../../foundry/includes/how-to-connections-add-3.md)]
+
+---
+
+[!INCLUDE [connections-add 4](../../foundry/includes/how-to-connections-add-4.md)]
 
 ## Related content
 
