@@ -387,7 +387,7 @@ print(response.output_text)
 
 ### Domain filtering
 
-You can limit results to a specific set of domains using domain filtering. You can allow-list up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use microsoft.com instead of https://www.microsoft.com/. Subsomains are also included in the search. Domain filtering works in the `web_search_tool` only with responses API. 
+You can limit results to a specific set of domains using domain filtering. You can allow-list up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use microsoft.com instead of https://www.microsoft.com/. Subdomains are also included in the search. Domain filtering works in the `web_search_tool` only with responses API. 
 
 #### REST API - Entra ID
 
