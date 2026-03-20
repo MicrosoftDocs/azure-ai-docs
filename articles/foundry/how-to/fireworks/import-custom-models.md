@@ -171,76 +171,48 @@ Be sure to replace the placeholders in the request body and URL with your detail
 
 Use the Azure CLI Cognitive Services tooling to create the deployment. This example uses `GlobalProvisionedManaged` for a `qwen3-14b` deployment. For that model, the minimum capacity is `80`.
 
-First, get the Azure Resource Manager (ARM) resource ID for the Foundry project. Use that value as the model source when you create the deployment.
+Use the Azure Resource Manager (ARM) resource ID for the Foundry project as the model source when you create the deployment.
 
 ```powershell
-$foundryResource = "<foundry-resource-name>"
-$resourceGroup = "<resource-group>"
-$foundryProject = "<foundry-project-name>"
-$modelName = "<registered-model-name>"
-
-$projectResourceId = az cognitiveservices account project show `
-  --name $foundryResource `
-  --resource-group $resourceGroup `
-  --project-name $foundryProject `
-  --query "id" `
-  -o tsv
-
-$deploymentName = "<your-model-deployment-name>"
-$modelVersion = "1"
-$modelFormat = "FireworksCustom"
-$modelSource = $projectResourceId
-$skuName = "GlobalProvisionedManaged"
-$skuCapacity = 80
-
 az cognitiveservices account deployment create `
-  --name $foundryResource `
-  --resource-group $resourceGroup `
-  --deployment-name $deploymentName `
-  --model-name $modelName `
-  --model-version $modelVersion `
-  --model-format $modelFormat `
-  --model-source $modelSource `
-  --sku-name $skuName `
-  --sku-capacity $skuCapacity
+  --name "<foundry-resource-name>" `
+  --resource-group "<resource-group>" `
+  --deployment-name "<your-model-deployment-name>" `
+  --model-name "<registered-model-name>" `
+  --model-version "1" `
+  --model-format "FireworksCustom" `
+  --model-source $(az cognitiveservices account project show `
+    --name "<foundry-resource-name>" `
+    --resource-group "<resource-group>" `
+    --project-name "<foundry-project-name>" `
+    --query "id" `
+    -o tsv) `
+  --sku-name "GlobalProvisionedManaged" `
+  --sku-capacity 80
 ```
 
 # [Bash](#tab/bash)
 
 Use the Azure CLI Cognitive Services tooling to create the deployment. This example uses `GlobalProvisionedManaged` for a `qwen3-14b` deployment. For that model, the minimum capacity is `80`.
 
-First, get the Azure Resource Manager (ARM) resource ID for the Foundry project. Use that value as the model source when you create the deployment.
+Use the Azure Resource Manager (ARM) resource ID for the Foundry project as the model source when you create the deployment.
 
 ```bash
-foundryResource="<foundry-resource-name>"
-resourceGroup="<resource-group>"
-foundryProject="<foundry-project-name>"
-modelName="<registered-model-name>"
-
-projectResourceId=$(az cognitiveservices account project show \
-  --name "$foundryResource" \
-  --resource-group "$resourceGroup" \
-  --project-name "$foundryProject" \
-  --query "id" \
-  -o tsv)
-
-deploymentName="<your-model-deployment-name>"
-modelVersion="1"
-modelFormat="FireworksCustom"
-modelSource="$projectResourceId"
-skuName="GlobalProvisionedManaged"
-skuCapacity=80
-
 az cognitiveservices account deployment create \
-  --name "$foundryResource" \
-  --resource-group "$resourceGroup" \
-  --deployment-name "$deploymentName" \
-  --model-name "$modelName" \
-  --model-version "$modelVersion" \
-  --model-format "$modelFormat" \
-  --model-source "$modelSource" \
-  --sku-name "$skuName" \
-  --sku-capacity "$skuCapacity"
+  --name "<foundry-resource-name>" \
+  --resource-group "<resource-group>" \
+  --deployment-name "<your-model-deployment-name>" \
+  --model-name "<registered-model-name>" \
+  --model-version "1" \
+  --model-format "FireworksCustom" \
+  --model-source "$(az cognitiveservices account project show \
+    --name "<foundry-resource-name>" \
+    --resource-group "<resource-group>" \
+    --project-name "<foundry-project-name>" \
+    --query "id" \
+    -o tsv)" \
+  --sku-name "GlobalProvisionedManaged" \
+  --sku-capacity 80
 ```
 
 ### Test your deployment
