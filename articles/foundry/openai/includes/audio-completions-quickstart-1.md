@@ -44,5 +44,5 @@ ms.custom: include
 
 If you want to clean up and remove an Azure OpenAI resource, you can delete the resource. Before deleting the resource, you must first delete any deployed models.
 
-- [Azure portal](../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
-- [Azure CLI](../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
+- [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
+- [Azure CLI](../../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
