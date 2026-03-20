@@ -48,7 +48,7 @@ Azure Speech offers MAI-Voice-1 as an advanced neural voice model optimized for 
 | **High fidelity audio** | The model produces high-quality neural speech with natural prosody and clarity suitable for production-grade applications. |
 | **Real-time synthesis** | MAI-Voice-1 supports real-time speech synthesis using the Azure Speech SDK and APIs. |
 
-## Supported speaking styles
+### Supported speaking styles
 
 - Empathetic
 - Excitement
