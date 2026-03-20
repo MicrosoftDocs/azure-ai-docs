@@ -40,7 +40,10 @@ Structured inputs use handlebar template syntax (`{{variableName}}`) to create p
 Structured inputs support two categories of overrides:
 
 - **Instruction overrides**: Parameterize agent instructions, response-level instructions, and system or developer messages.
-- **Tool resource overrides**: Dynamically configure tool properties such as file search vector store IDs, code interpreter file IDs and containers, and MCP server URLs and headers.
+- **Tool resource overrides**: Dynamically configure tool properties at runtime, including:
+  - File search vector store IDs
+  - Code interpreter file IDs and containers
+  - Model Context Protocol (MCP) server URLs and headers
 
 For array fields like `file_ids` and `vector_store_ids`, the system automatically removes empty string values at runtime. This feature enables flexible input counts – define more template slots than needed and leave unused ones empty.
 
