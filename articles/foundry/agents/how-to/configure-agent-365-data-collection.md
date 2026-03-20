@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Configure Agent 365 data collection for Microsoft Foundry
 
-When Microsoft Agent 365 (A365) is enabled for your organization, Foundry resources can send agent activity data to the Agent 365 control plane. This data powers agent registry, analytics, and security features in Agent 365.
+When Microsoft Agent 365 (A365) is enabled for your organization, Foundry resources can send agent activity data to the Agent 365 control plane. This data powers agent registry, analytics, and security features in Agent 365. For an overview of how Foundry integrates with Agent 365 and how data flows between the two platforms, see [Microsoft Agent 365 integration with Foundry](../concepts/agent-365-integration.md).
 
 This article explains how the enablement model works, how to opt out an individual Foundry resource, and how to use Azure Policy to enforce a consistent configuration across an Azure subscription.
 
