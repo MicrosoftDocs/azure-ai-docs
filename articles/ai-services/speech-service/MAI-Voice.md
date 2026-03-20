@@ -103,7 +103,7 @@ xml
 ```
 
 ### Sample code (Python)
-```
+```python
 import azure.cognitiveservices.speech as speechsdk
 
 speech_config = speechsdk.SpeechConfig(
