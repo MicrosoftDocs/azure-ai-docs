@@ -115,7 +115,7 @@ When building a new multi-agent solution, start with building singleton agents w
 
 See the [Agent Framework transparency FAQ](https://github.com/microsoft/agent-framework/blob/main/TRANSPARENCY_FAQ.md) to learn about additional considerations and risks when creating multi-agent orchestrations using Microsoft Agent Framework. 
 
-Foundry workflows extend multi-agent orchestration by providing a visual designer and YAML-based configuration for building, testing, and deploying agentic processes. Each workflow can coordinate multiple agents, enabling modular automation andtracability. he workflow designer supports versioning, change logs, and visual monitoring, making it easier to manage complex logic and ensure transparency. 
+Foundry workflows extend multi-agent orchestration by providing a visual designer and YAML-based configuration for building, testing, and deploying agentic processes. Each workflow can coordinate multiple agents, enabling modular automation andtracability. The workflow designer supports versioning, change logs, and visual monitoring, making it easier to manage complex logic and ensure transparency. 
 
 <sup>1</sup>*Wireline compatible* means that an API can communicate and exchange data in a way that is fully compatible with an existing protocol, existing data formats and communication standards, in this case the Responses API protocol. It means that two systems can work together seamlessly without needing changes to their core implementation.
 
