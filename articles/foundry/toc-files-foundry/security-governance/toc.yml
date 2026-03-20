@@ -44,6 +44,14 @@ items:
   - name: Create custom policy definitions
     href: ../../how-to/custom-policy-definition.md
 
+# Monitor
+- name: Monitor
+  items:
+  - name: Diagnostic logging
+    href: ../../../ai-services/diagnostic-logging.md?context=/azure/foundry/context/context
+  - name: Configure Agent 365 data collection
+    href: ../../agents/how-to/configure-agent-365-data-collection.md
+
 # Reliability and Recovery
 - name: High availability and disaster recovery
   items:

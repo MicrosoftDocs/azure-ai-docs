@@ -155,6 +155,8 @@ items:
     href: ../../observability/how-to/how-to-monitor-agents-dashboard.md
   - name: Evaluate agent quality
     href: ../../observability/how-to/evaluate-agent.md
+  - name: Microsoft Agent 365 integration
+    href: ../../agents/concepts/agent-365-integration.md
 
 # Reference
 - name: Reference
