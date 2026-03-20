@@ -136,11 +136,9 @@ When the deployment completes, the status shows **Succeeded** in your deployment
 
 ### Deployment examples
 
-Use the following examples to automate parts of the deployment workflow after the custom model is registered.
+Use the following examples to automate parts of the deployment workflow after the custom model is registered. Each example deploys the custom model with `80` units of Global Provisioned throughput. Be sure to replace any placeholders with your details.
 
 # [REST API](#tab/rest-api)
-
-Use the Azure AI Foundry management API to create a deployment for the imported model. This example deploys the custom model with 80 units of Global Provisioned throughput.
 
 ```http
 PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/deployments/{deployment-name}?api-version=2025-06-01
@@ -165,19 +163,13 @@ Content-Type: application/json
 }
 ```
 
-Be sure to replace the placeholders in the request body and URL with your details.
-
 # [PowerShell](#tab/powershell)
-
-Use the Azure CLI Cognitive Services tooling to create the deployment. This example deploys the custom model with 80 units of Global Provisioned throughput.
-
-Use the Azure Resource Manager (ARM) resource ID for the Foundry project as the model source when you create the deployment.
 
 ```powershell
 az cognitiveservices account deployment create `
   --name "<foundry-resource-name>" `
   --resource-group "<resource-group>" `
-  --deployment-name "<your-model-deployment-name>" `
+  --deployment-name "<deployment-name>" `
   --model-name "<registered-model-name>" `
   --model-version "1" `
   --model-format "FireworksCustom" `
@@ -188,15 +180,11 @@ az cognitiveservices account deployment create `
 
 # [Bash](#tab/bash)
 
-Use the Azure CLI Cognitive Services tooling to create the deployment. This example deploys the custom model with 80 units of Global Provisioned throughput.
-
-Use the Azure Resource Manager (ARM) resource ID for the Foundry project as the model source when you create the deployment.
-
 ```bash
 az cognitiveservices account deployment create \
   --name "<foundry-resource-name>" \
   --resource-group "<resource-group>" \
-  --deployment-name "<your-model-deployment-name>" \
+  --deployment-name "<deployment-name>" \
   --model-name "<registered-model-name>" \
   --model-version "1" \
   --model-format "FireworksCustom" \
