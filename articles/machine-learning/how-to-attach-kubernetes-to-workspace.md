@@ -17,8 +17,6 @@ ms.custom:
   - sfi-image-nochange
   - dev-focus
 ai-usage: ai-assisted
-  - dev-focus
-ai-usage: ai-assisted
 ---
 
 # Attach a Kubernetes cluster to Azure Machine Learning workspace

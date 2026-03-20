@@ -18,7 +18,6 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
   - dev-focus
-ai-usage: ai-assisted
 ---
 
 # Use multistep pipeline components in pipeline jobs
