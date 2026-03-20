@@ -19,49 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/manage-costs.md)
 
-This article shows you how to estimate expenses before deployment, track spending in real time, and set up alerts to avoid budget surprises.
-
-## Prerequisites
-
-Before you begin, ensure you have:
-
-- **Azure subscription:** An active Azure subscription with the resources you want to monitor.
-- **Role-based access control (RBAC):** One or both of the following roles at the subscription or resource group scope:
-  - [**Cost Management Reader**](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) – View costs and usage data.
-  - [**AI User**](rbac-foundry.md#built-in-roles) – View Foundry resource data and costs.
-- **Supported Azure account type:** One of the [supported account types for Cost Management](/azure/cost-management-billing/costs/understand-cost-mgt-data).
-
-If you need to grant these roles to team members, see [Assign access to Cost Management data](/azure/cost-management-billing/costs/assign-access-acm-data) and [Foundry RBAC roles](rbac-foundry.md).
-
-> [!NOTE]
-> Foundry doesn't have a dedicated page in the Azure pricing calculator because Foundry is composed of several optional Azure services. This article shows how to use the calculator to estimate costs for these services.
-
-## Estimate costs before using Foundry
-
-Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs before you add Foundry resources.
-
-1. Go to the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
-1. Search for and select a product, such as Azure Speech in Foundry or Azure Language in Foundry.
-1. Select additional products to estimate costs for multiple services. For example, add Azure AI Search to include potential search costs.
-1. As you add resources to your project, return to the calculator and update estimates.
-
-**Reference:** [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/)
-
-## Costs associated with Foundry
-
-When you create a Foundry resource, you pay for the Azure services you use, such as Azure OpenAI, Azure Speech in Foundry, Content Safety, Azure Vision in Foundry, Azure Document Intelligence, and Azure Language in Foundry. Costs vary by service and feature. For details, see the [Foundry Tools pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/).
-
-## Understand billing models for Foundry
-
-Foundry resources run on Azure infrastructure and accrue costs when deployed. When you create or use Foundry resources, you're charged based on the services you use.
-
-Two billing models are available:
-
-- **Pay-as-you-go (Serverless API):** You're billed according to your usage of each Azure service.
-- **Commitment tiers:** You commit to using service features for a fixed fee, providing predictable costs. For details, see [Commitment tier pricing](/azure/ai-services/commitment-tier).
-
-> [!NOTE]
-> If you use the resource above the quota provided by the commitment plan, you pay for the extra usage as described in the overage amount in the Azure portal when you buy a commitment plan.
+[!INCLUDE [manage-costs 1](../../foundry/includes/concepts-manage-costs-1.md)]
 
 ## Understand the billing model for Foundry Models
 
@@ -282,30 +240,7 @@ Azure Marketplace offers serverless API deployments. Model publishers might appl
    | paygo-finetuned-model-inference-input-tokens | Fine-tuned model | Costs associated with the tokens used as input for inference of a fine tuned model. |
    | paygo-finetuned-model-inference-output-tokens | Fine-tuned model | Costs associated with the tokens generated as output for the inference of a fine tuned model. |
 
-## Create budgets
-
-**Prevent cost overruns with automated alerts.** [Create budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets) that track your spending limits and [set up alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending) to notify you when costs approach or exceed thresholds.
-
-**Best practice:** Create budgets and alerts for Azure subscriptions and resource groups as part of an overall cost monitoring strategy.
-
-Create budgets with filters for specific resources or services in Azure if you want more granularity in your monitoring. Filters help ensure that you don't accidentally create new resources that cost more money. For more about filter options when you create a budget, see [Group and filter options](/azure/cost-management-billing/costs/group-filter).
-
-> [!IMPORTANT]
-> While OpenAI has an option for hard limits that prevent you from going over your budget, Azure OpenAI doesn't currently provide this functionality. You can start automation from action groups as part of your budget notifications to take more advanced actions, but this functionality requires additional custom development.
-
-## Export cost data
-
-You can [export your cost data](/azure/cost-management-billing/costs/tutorial-export-acm-data) to a storage account. Exporting data is helpful when you or others need to do additional data analysis for costs. For example, finance teams can analyze the data by using Excel or Power BI. You can export your costs on a daily, weekly, or monthly schedule and set a custom date range. Exporting cost data is the recommended way to retrieve cost datasets.
-
-## Other costs that might accrue
-
-Enabling capabilities such as sending data to Azure Monitor Logs and alerting incur extra costs for those services. These costs are visible under those other services and at the subscription level, but aren't visible when scoped just to your Foundry resource.
-
-### Using Azure Prepayment
-
-You can pay for Models Sold Directly by Azure charges with your Azure Prepayment (previously called monetary commitment) credit. However, you can't use Azure Prepayment credit to pay for charges for other provider models because they're billed through Azure Marketplace.
-
-For more information, see [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
+[!INCLUDE [manage-costs 2](../../foundry/includes/concepts-manage-costs-2.md)]
 
 ## Related content
 
