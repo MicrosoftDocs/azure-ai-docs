@@ -21,7 +21,6 @@ Azure Speech continues to advance text to speech technology with **MAI-Voice-1**
 
 Similar to Azure Neural HD voices, MAI-Voice-1 understands input text holistically and automatically adapts tone, emotion, and speaking style. This enables more human-like and conversational speech without requiring extensive manual tuning.
 
-## MAI-Voice-1 overview
 
 Azure Speech offers MAI-Voice-1 as an advanced neural voice model optimized for expressive, conversational, and long-form scenarios.
 
