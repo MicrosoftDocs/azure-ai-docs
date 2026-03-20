@@ -34,8 +34,6 @@ The following examples show async function calling with the Voice Live API. Befo
 
 #### [Python](#tab/python)
 
-For more information, see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-voicelive/samples/async_function_calling_sample.py).
-
 ```python
 # -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
