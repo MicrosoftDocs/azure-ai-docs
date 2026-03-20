@@ -136,11 +136,11 @@ When the deployment completes, the status shows **Succeeded** in your deployment
 
 ### Deployment examples
 
-Use the following examples to automate parts of the deployment workflow after the custom model is registered. The REST API example creates a deployment by using the management API. The PowerShell and Bash examples use the Azure CLI Cognitive Services tooling to create the same deployment from a terminal.
+Use the following examples to automate parts of the deployment workflow after the custom model is registered.
 
 # [REST API](#tab/rest-api)
 
-Use the Azure AI Foundry management API to create a deployment for the imported model. This example uses `GlobalProvisionedManaged` for a `qwen3-14b` deployment. For that model, the minimum capacity is `80`.
+Use the Azure AI Foundry management API to create a deployment for the imported model. This example deploys the custom model with 80 units of Global Provisioned throughput.
 
 ```http
 PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/deployments/{deployment-name}?api-version=2025-06-01
@@ -169,7 +169,7 @@ Be sure to replace the placeholders in the request body and URL with your detail
 
 # [PowerShell](#tab/powershell)
 
-Use the Azure CLI Cognitive Services tooling to create the deployment. This example uses `GlobalProvisionedManaged` for a `qwen3-14b` deployment. For that model, the minimum capacity is `80`.
+Use the Azure CLI Cognitive Services tooling to create the deployment. This example deploys the custom model with 80 units of Global Provisioned throughput.
 
 Use the Azure Resource Manager (ARM) resource ID for the Foundry project as the model source when you create the deployment.
 
@@ -181,19 +181,14 @@ az cognitiveservices account deployment create `
   --model-name "<registered-model-name>" `
   --model-version "1" `
   --model-format "FireworksCustom" `
-  --model-source $(az cognitiveservices account project show `
-    --name "<foundry-resource-name>" `
-    --resource-group "<resource-group>" `
-    --project-name "<foundry-project-name>" `
-    --query "id" `
-    -o tsv) `
+  --model-source "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/projects/{foundry-project}" `
   --sku-name "GlobalProvisionedManaged" `
   --sku-capacity 80
 ```
 
 # [Bash](#tab/bash)
 
-Use the Azure CLI Cognitive Services tooling to create the deployment. This example uses `GlobalProvisionedManaged` for a `qwen3-14b` deployment. For that model, the minimum capacity is `80`.
+Use the Azure CLI Cognitive Services tooling to create the deployment. This example deploys the custom model with 80 units of Global Provisioned throughput.
 
 Use the Azure Resource Manager (ARM) resource ID for the Foundry project as the model source when you create the deployment.
 
@@ -205,12 +200,7 @@ az cognitiveservices account deployment create \
   --model-name "<registered-model-name>" \
   --model-version "1" \
   --model-format "FireworksCustom" \
-  --model-source "$(az cognitiveservices account project show \
-    --name "<foundry-resource-name>" \
-    --resource-group "<resource-group>" \
-    --project-name "<foundry-project-name>" \
-    --query "id" \
-    -o tsv)" \
+  --model-source "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/projects/{foundry-project}" \
   --sku-name "GlobalProvisionedManaged" \
   --sku-capacity 80
 ```
