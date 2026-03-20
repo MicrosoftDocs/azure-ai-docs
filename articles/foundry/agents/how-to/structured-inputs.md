@@ -116,9 +116,6 @@ response = openai.responses.create(
     },
 )
 print(response.output_text)
-
-# Clean up
-project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 ```
 
 ### Expected output
@@ -476,9 +473,6 @@ response = openai.responses.create(
     tool_choice="required",
 )
 print(response.output_text)
-
-# Clean up
-project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 ```
 
 ### Expected output
@@ -832,9 +826,6 @@ response = openai.responses.create(
     },
 )
 print(response.output_text)
-
-# Clean up
-project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 ```
 
 ### Expected output
@@ -1130,7 +1121,7 @@ This example combines a static vector store (`vs_base_kb`) with a dynamic one (`
 
 By using structured inputs, you can dynamically configure MCP server connections at runtime. You can set the server URL, authentication headers, and server label. By using this approach, a single agent definition can connect to different MCP servers depending on the context.
 
-The following REST example shows an agent with fully configurable MCP server properties:
+The following JSON shows the request body for the [Create Agent Version](/rest/api/aifoundry/aiproject#agents---create-agent-version) operation (`POST /agents?api-version=v1`). The agent definition includes MCP tool properties with handlebar template placeholders:
 
 ```json
 {
@@ -1181,7 +1172,7 @@ The following REST example shows an agent with fully configurable MCP server pro
 }
 ```
 
-At runtime, supply the actual server configuration values in the response request:
+At runtime, supply the actual server configuration values in the request body for the Create Response operation (`POST /openai/v1/responses`):
 
 ```json
 {
@@ -1200,7 +1191,81 @@ At runtime, supply the actual server configuration values in the response reques
 }
 ```
 
-The SDK patterns for MCP structured inputs follow the same approach shown in the previous examples. Define the template placeholders in the MCP tool properties, declare the structured input schemas in the agent definition, and supply the values at runtime. For more information about connecting to MCP servers, see [Connect agents to MCP servers](tools/model-context-protocol.md).
+The SDK patterns for MCP structured inputs follow the same approach shown in the previous examples. Define the template placeholders in the MCP tool properties, declare the structured input schemas in the agent definition, and supply the values at runtime.
+
+The following Python example shows the complete pattern:
+
+```python
+from azure.ai.projects import AIProjectClient
+from azure.ai.projects.models import (
+    MCPTool,
+    PromptAgentDefinition,
+    StructuredInputDefinition,
+)
+from azure.identity import DefaultAzureCredential
+
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+
+# Create clients to call Foundry API
+project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
+openai = project.get_openai_client()
+
+# Create MCP tool with template placeholders
+tool = MCPTool(
+    server_label="{{server_label}}",
+    server_url="{{server_url}}",
+    require_approval="never",
+    headers={"Authorization": "{{auth_token}}", "X-Project-ID": "{{project_id}}"},
+)
+
+# Create agent with structured inputs for MCP configuration
+agent = project.agents.create_version(
+    agent_name="mcp-dynamic-agent",
+    definition=PromptAgentDefinition(
+        model="gpt-5-mini",
+        instructions="You are a helpful development assistant for {{project_name}}.",
+        tools=[tool],
+        structured_inputs={
+            "project_name": StructuredInputDefinition(
+                description="Project name", required=True, schema={"type": "string"},
+            ),
+            "server_label": StructuredInputDefinition(
+                description="MCP server label", required=True, schema={"type": "string"},
+            ),
+            "server_url": StructuredInputDefinition(
+                description="MCP server URL", required=True, schema={"type": "string"},
+            ),
+            "auth_token": StructuredInputDefinition(
+                description="Authentication token", required=True, schema={"type": "string"},
+            ),
+            "project_id": StructuredInputDefinition(
+                description="Project identifier", required=True, schema={"type": "string"},
+            ),
+        },
+    ),
+)
+
+# Supply MCP server configuration at runtime
+conversation = openai.conversations.create()
+response = openai.responses.create(
+    conversation=conversation.id,
+    input="List recent commits",
+    extra_body={
+        "agent_reference": {"name": agent.name, "type": "agent_reference"},
+        "structured_inputs": {
+            "project_name": "CloudSync API",
+            "server_label": "cloudsync-repo",
+            "server_url": "https://gitmcp.io/myorg/cloudsync-api",
+            "auth_token": "Bearer ghp_xxxxxxxxxxxx",
+            "project_id": "proj_12345",
+        },
+    },
+)
+print(response.output_text)
+```
+
+For more information about connecting to MCP servers, see [Connect agents to MCP servers](tools/model-context-protocol.md).
 
 ## Use structured inputs in the Responses API
 
@@ -1268,6 +1333,41 @@ Use handlebar templates in system and developer message content to inject runtim
 ```
 
 In SDK code, pass these values by using the same `extra_body` (Python), `body` (TypeScript), or `AzureCreateResponseOptions` (Java/C#) patterns shown in the previous examples.
+
+The following Python example shows how to use response-level instructions with structured inputs:
+
+```python
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+
+# Create clients to call Foundry API
+project = AIProjectClient(endpoint=PROJECT_ENDPOINT, credential=DefaultAzureCredential())
+openai = project.get_openai_client()
+
+# Pass structured inputs with response-level instructions
+response = openai.responses.create(
+    model="gpt-5-mini",
+    instructions="You are assisting {{customerName}} from {{companyName}} located in {{location}}.",
+    input=[
+        {
+            "type": "message",
+            "role": "user",
+            "content": "Hello, who am I?",
+        }
+    ],
+    extra_body={
+        "structured_inputs": {
+            "customerName": "Bob Johnson",
+            "companyName": "Tech Corp",
+            "location": "San Francisco",
+        },
+    },
+)
+print(response.output_text)
+```
 
 ## Related content
 
