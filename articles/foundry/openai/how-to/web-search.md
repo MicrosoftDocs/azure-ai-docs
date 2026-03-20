@@ -385,38 +385,6 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-## Manage web search tool
-
-You can enable or disable the `web_search` tool in the Responses API at the subscription level using Azure CLI. This setting applies to all accounts within the specified subscription.
-
-### Prerequisites
-
-Before running the commands below, ensure the following:
-
-* [Azure CLI](/cli/azure/install-azure-cli) is installed. 
-* You're signed in to Azure using `az login`
-* You have **Owner** or **Contributor** access to the subscription
-
-### Disable web search
-
-To disable the `web_search` tool for all accounts in a subscription:
-
-```bash
-az feature register --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
-```
-
-This command disables web search across all accounts in the specified subscription.
-
-### Enable web search
-
-To enable the `web_search` tool:
-
-```bash
-az feature unregister --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
-```
-
-This command enables Bing web search functionality for all accounts in the subscription.
-
 ### Domain filtering
 
 You can limit results to a specific set of domains using domain filtering. You can allow-list up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use microsoft.com instead of https://www.microsoft.com/. Subsomains are also included in the search. Domain filtering works in the `web_search_tool` only with responses API. 
@@ -555,6 +523,38 @@ print(response.output_text)
 > [!IMPORTANT]
 > Live internet access is not supported. The parameter `external_web_access` if passed will be ignored.
 
+
+## Manage web search tool
+
+You can enable or disable the `web_search` tool in the Responses API at the subscription level using Azure CLI. This setting applies to all accounts within the specified subscription.
+
+### Prerequisites
+
+Before running the commands below, ensure the following:
+
+* [Azure CLI](/cli/azure/install-azure-cli) is installed. 
+* You're signed in to Azure using `az login`
+* You have **Owner** or **Contributor** access to the subscription
+
+### Disable web search
+
+To disable the `web_search` tool for all accounts in a subscription:
+
+```bash
+az feature register --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
+```
+
+This command disables web search across all accounts in the specified subscription.
+
+### Enable web search
+
+To enable the `web_search` tool:
+
+```bash
+az feature unregister --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
+```
+
+This command enables Bing web search functionality for all accounts in the subscription.
 
 ## Troubleshooting
 
