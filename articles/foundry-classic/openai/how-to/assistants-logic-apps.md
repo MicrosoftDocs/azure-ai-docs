@@ -180,7 +180,7 @@ To confirm that the imported logic app function works as expected, follow these 
 
 :::zone pivot="python"
 
-## Create a project client
+## 1: Create a project client
 
 Create a client object to connect to your Foundry project.
 
@@ -196,7 +196,7 @@ project_client = AIProjectClient(
 )
 ```
 
-## Register the logic app
+## 2: Register the logic app
 
 Provide the trigger name and details to register the logic app resource. To find the `AzureLogicAppTool` utility code, visit the [full sample on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/logic_apps/user_logic_apps.py).
 
@@ -216,7 +216,7 @@ logic_app_tool.register_logic_app(LOGIC_APP_NAME, TRIGGER_NAME)
 print(f"Registered logic app '{LOGIC_APP_NAME}' with trigger '{TRIGGER_NAME}'.")
 ```
 
-## Create an agent with the logic app tool
+## 3: Create an agent with the logic app tool
 
 Create an agent and attach the logic app as a function tool.
 
@@ -246,7 +246,7 @@ agent = project_client.agents.create_agent(
 print(f"Created agent, ID: {agent.id}")
 ```
 
-## Create a thread
+## 4: Create a thread
 
 Create a thread and add a user message to start the conversation.
 
@@ -266,7 +266,7 @@ message = project_client.agents.messages.create(
 print(f"Created message, ID: {message.id}")
 ```
 
-## Run the agent and check the output
+## 5: Run the agent and check the output
 
 Create a run and confirm that the agent uses the logic app tool to complete the task.
 
@@ -288,7 +288,7 @@ for msg in messages:
         print(f"{msg.role}: {last_text.text.value}")
 ```
 
-## Clean up resources
+## 6: Clean up resources
 
 Delete the agent when you're done to clean up resources.
 
