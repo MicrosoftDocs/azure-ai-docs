@@ -17,7 +17,6 @@ ms.custom:
   - ignite-2023
   - dev-focus
 ai-usage: ai-assisted
-  - dev-focus
 ---
 
 # Use multistep pipeline components in pipeline jobs
