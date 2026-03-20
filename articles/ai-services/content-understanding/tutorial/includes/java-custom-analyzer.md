@@ -43,7 +43,7 @@ This guide shows you how to use the Content Understanding Java SDK to create a c
     <dependency>
         <groupId>com.azure</groupId>
         <artifactId>azure-ai-contentunderstanding</artifactId>
-        <version>1.0.0-beta.1</version>
+        <version>1.0.0</version>
     </dependency>
     ```
 
@@ -196,58 +196,53 @@ System.out.println(
     "Analyzer '" + analyzerId
     + "' created successfully!");
 
-// Get the full analyzer details after creation
-ContentAnalyzer analyzerResult =
-    client.getAnalyzer(analyzerId);
-
-if (analyzerResult.getDescription() != null) {
+if (result.getDescription() != null) {
     System.out.println(
         "  Description: "
-        + analyzerResult.getDescription());
+        + result.getDescription());
 }
 
-if (analyzerResult.getFieldSchema() != null
-    && analyzerResult.getFieldSchema()
+if (result.getFieldSchema() != null
+    && result.getFieldSchema()
         .getFields() != null) {
-    Map<String, ContentFieldDefinition> f =
-        analyzerResult.getFieldSchema()
-            .getFields();
     System.out.println(
-        "  Fields (" + f.size() + "):");
-    for (Map.Entry<String,
-        ContentFieldDefinition> entry
-        : f.entrySet()) {
-        String method = entry.getValue()
-            .getMethod() != null
-            ? entry.getValue().getMethod()
-                .toString()
-            : "auto";
-        String fieldType = entry.getValue()
-            .getType() != null
-            ? entry.getValue().getType()
-                .toString()
-            : "unknown";
-        System.out.println(
-            "    - " + entry.getKey() + ": "
-            + fieldType + " (" + method + ")");
-    }
+        "  Fields ("
+        + result.getFieldSchema()
+            .getFields().size() + "):");
+    result.getFieldSchema().getFields()
+        .forEach((fieldName, fieldDef) -> {
+            String method =
+                fieldDef.getMethod() != null
+                    ? fieldDef.getMethod()
+                        .toString()
+                    : "auto";
+            String type =
+                fieldDef.getType() != null
+                    ? fieldDef.getType()
+                        .toString()
+                    : "unknown";
+            System.out.println(
+                "    - " + fieldName
+                + ": " + type
+                + " (" + method + ")");
+        });
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_document_analyzer_ID' created successfully!
   Description: Custom analyzer for extracting company information
   Fields (4):
-    - company_name: STRING (EXTRACT)
-    - total_amount: NUMBER (EXTRACT)
-    - document_summary: STRING (GENERATE)
-    - document_type: STRING (CLASSIFY)
+    - total_amount: number (extract)
+    - company_name: string (extract)
+    - document_summary: string (generate)
+    - document_type: string (classify)
 ```
 
 > [!TIP]
-> This code is based on the [Sample04_CreateAnalyzer.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample04_CreateAnalyzer.java) sample in the SDK repository.
+> This code is based on the [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample04_CreateAnalyzer.java) sample in the SDK repository.
 
 
 Optionally, you can create a classifier analyzer to categorize documents and use its results to route documents to prebuilt or custom analyzers you created. Here is an example of creating a custom analyzer for classification workflows.
@@ -306,7 +301,7 @@ ContentAnalyzer classifier =
             + " document categorization")
         .setConfig(new ContentAnalyzerConfig()
             .setReturnDetails(true)
-            .setEnableSegment(true)
+            .setSegmentEnabled(true)
             .setContentCategories(categories))
         .setModels(classifierModels);
 
@@ -332,7 +327,7 @@ if (classifierResult.getDescription() != null) {
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample04_CreateAnalyzer.java) pattern for classification workflows.
+> This code is based on the [CreateClassifier](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample05_CreateClassifier.java) sample for classification workflows.
 
 
 
@@ -394,56 +389,51 @@ System.out.println(
     "Analyzer '" + analyzerId
     + "' created successfully!");
 
-// Get the full analyzer details after creation
-ContentAnalyzer analyzerResult =
-    client.getAnalyzer(analyzerId);
-
-if (analyzerResult.getDescription() != null) {
+if (result.getDescription() != null) {
     System.out.println(
         "  Description: "
-        + analyzerResult.getDescription());
+        + result.getDescription());
 }
 
-if (analyzerResult.getFieldSchema() != null
-    && analyzerResult.getFieldSchema()
+if (result.getFieldSchema() != null
+    && result.getFieldSchema()
         .getFields() != null) {
-    Map<String, ContentFieldDefinition> f =
-        analyzerResult.getFieldSchema()
-            .getFields();
     System.out.println(
-        "  Fields (" + f.size() + "):");
-    for (Map.Entry<String,
-        ContentFieldDefinition> entry
-        : f.entrySet()) {
-        String method = entry.getValue()
-            .getMethod() != null
-            ? entry.getValue().getMethod()
-                .toString()
-            : "auto";
-        String fieldType = entry.getValue()
-            .getType() != null
-            ? entry.getValue().getType()
-                .toString()
-            : "unknown";
-        System.out.println(
-            "    - " + entry.getKey() + ": "
-            + fieldType + " (" + method + ")");
-    }
+        "  Fields ("
+        + result.getFieldSchema()
+            .getFields().size() + "):");
+    result.getFieldSchema().getFields()
+        .forEach((fieldName, fieldDef) -> {
+            String method =
+                fieldDef.getMethod() != null
+                    ? fieldDef.getMethod()
+                        .toString()
+                    : "auto";
+            String type =
+                fieldDef.getType() != null
+                    ? fieldDef.getType()
+                        .toString()
+                    : "unknown";
+            System.out.println(
+                "    - " + fieldName
+                + ": " + type
+                + " (" + method + ")");
+        });
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_image_analyzer_ID' created successfully!
   Description: Custom analyzer for charts and graphs
   Fields (2):
-    - Title: STRING (auto)
-    - ChartType: STRING (CLASSIFY)
+    - Title: string (auto)
+    - ChartType: string (classify)
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample04_CreateAnalyzer.java) pattern for image content.
+> This code adapts the [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample04_CreateAnalyzer.java) pattern for image content.
 
 # [Audio](#tab/audio)
 
@@ -499,7 +489,7 @@ ContentFieldDefinition peopleDef =
 peopleDef.setType(ContentFieldType.ARRAY);
 peopleDef.setDescription(
     "List of people mentioned");
-peopleDef.setItems(personItemDef);
+peopleDef.setItemDefinition(personItemDef);
 fields.put("People", peopleDef);
 
 ContentFieldSchema fieldSchema =
@@ -538,57 +528,52 @@ System.out.println(
     "Analyzer '" + analyzerId
     + "' created successfully!");
 
-// Get the full analyzer details after creation
-ContentAnalyzer analyzerResult =
-    client.getAnalyzer(analyzerId);
-
-if (analyzerResult.getDescription() != null) {
+if (result.getDescription() != null) {
     System.out.println(
         "  Description: "
-        + analyzerResult.getDescription());
+        + result.getDescription());
 }
 
-if (analyzerResult.getFieldSchema() != null
-    && analyzerResult.getFieldSchema()
+if (result.getFieldSchema() != null
+    && result.getFieldSchema()
         .getFields() != null) {
-    Map<String, ContentFieldDefinition> f =
-        analyzerResult.getFieldSchema()
-            .getFields();
     System.out.println(
-        "  Fields (" + f.size() + "):");
-    for (Map.Entry<String,
-        ContentFieldDefinition> entry
-        : f.entrySet()) {
-        String method = entry.getValue()
-            .getMethod() != null
-            ? entry.getValue().getMethod()
-                .toString()
-            : "auto";
-        String fieldType = entry.getValue()
-            .getType() != null
-            ? entry.getValue().getType()
-                .toString()
-            : "unknown";
-        System.out.println(
-            "    - " + entry.getKey() + ": "
-            + fieldType + " (" + method + ")");
-    }
+        "  Fields ("
+        + result.getFieldSchema()
+            .getFields().size() + "):");
+    result.getFieldSchema().getFields()
+        .forEach((fieldName, fieldDef) -> {
+            String method =
+                fieldDef.getMethod() != null
+                    ? fieldDef.getMethod()
+                        .toString()
+                    : "auto";
+            String type =
+                fieldDef.getType() != null
+                    ? fieldDef.getType()
+                        .toString()
+                    : "unknown";
+            System.out.println(
+                "    - " + fieldName
+                + ": " + type
+                + " (" + method + ")");
+        });
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_audio_analyzer_ID' created successfully!
   Description: Custom analyzer for customer support calls
   Fields (3):
-    - Summary: STRING (GENERATE)
-    - Sentiment: STRING (CLASSIFY)
-    - People: ARRAY (auto)
+    - People: array (auto)
+    - Summary: string (generate)
+    - Sentiment: string (classify)
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample04_CreateAnalyzer.java) pattern for audio content.
+> This code adapts the [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample04_CreateAnalyzer.java) pattern for audio content.
 
 # [Video](#tab/video)
 
@@ -634,7 +619,7 @@ Map<String, ContentFieldDefinition> fields =
 ContentFieldDefinition segmentsDef =
     new ContentFieldDefinition();
 segmentsDef.setType(ContentFieldType.ARRAY);
-segmentsDef.setItems(segItemDef);
+segmentsDef.setItemDefinition(segItemDef);
 fields.put("Segments", segmentsDef);
 
 ContentFieldSchema fieldSchema =
@@ -671,55 +656,50 @@ System.out.println(
     "Analyzer '" + analyzerId
     + "' created successfully!");
 
-// Get the full analyzer details after creation
-ContentAnalyzer analyzerResult =
-    client.getAnalyzer(analyzerId);
-
-if (analyzerResult.getDescription() != null) {
+if (result.getDescription() != null) {
     System.out.println(
         "  Description: "
-        + analyzerResult.getDescription());
+        + result.getDescription());
 }
 
-if (analyzerResult.getFieldSchema() != null
-    && analyzerResult.getFieldSchema()
+if (result.getFieldSchema() != null
+    && result.getFieldSchema()
         .getFields() != null) {
-    Map<String, ContentFieldDefinition> f =
-        analyzerResult.getFieldSchema()
-            .getFields();
     System.out.println(
-        "  Fields (" + f.size() + "):");
-    for (Map.Entry<String,
-        ContentFieldDefinition> entry
-        : f.entrySet()) {
-        String method = entry.getValue()
-            .getMethod() != null
-            ? entry.getValue().getMethod()
-                .toString()
-            : "auto";
-        String fieldType = entry.getValue()
-            .getType() != null
-            ? entry.getValue().getType()
-                .toString()
-            : "unknown";
-        System.out.println(
-            "    - " + entry.getKey() + ": "
-            + fieldType + " (" + method + ")");
-    }
+        "  Fields ("
+        + result.getFieldSchema()
+            .getFields().size() + "):");
+    result.getFieldSchema().getFields()
+        .forEach((fieldName, fieldDef) -> {
+            String method =
+                fieldDef.getMethod() != null
+                    ? fieldDef.getMethod()
+                        .toString()
+                    : "auto";
+            String type =
+                fieldDef.getType() != null
+                    ? fieldDef.getType()
+                        .toString()
+                    : "unknown";
+            System.out.println(
+                "    - " + fieldName
+                + ": " + type
+                + " (" + method + ")");
+        });
 }
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_video_analyzer_ID' created successfully!
   Description: Custom analyzer for product demo videos
   Fields (1):
-    - Segments: ARRAY (auto)
+    - Segments: array (auto)
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample04_CreateAnalyzer.java) pattern for video content.
+> This code adapts the [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/src/samples/java/com/azure/ai/contentunderstanding/samples/Sample04_CreateAnalyzer.java) pattern for video content.
 
 ---
 
@@ -776,7 +756,8 @@ if (analyzeResult.getContents() != null
                 .get("total_amount") : null;
     if (totalField != null) {
         System.out.println(
-            "Total Amount: " + totalField);
+            "Total Amount: "
+            + totalField.getValue());
     }
 
     ContentField summaryField =
@@ -814,13 +795,13 @@ System.out.println(
     + "' deleted successfully.");
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Company Name: CONTOSO LTD.
-  Confidence: 0.81
+  Confidence: 0.781
 Total Amount: 610.0
-Summary: This document is an invoice from CONTOSO LTD. ...
+Summary: This document is an invoice from CONTOSO LTD. to Microsoft Corporation for consulting services, document fees, and printing fees, detailing service dates, itemized charges, taxes, and the total amount due.
 Document Type: invoice
 
 Cleaning up: deleting analyzer 'my_document_analyzer_ID'...
@@ -890,10 +871,10 @@ System.out.println(
     + "' deleted successfully.");
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
-Title: Distribution of Weekly Working Hours
+Title: Weekly Working Hours Distribution
 Chart Type: pie
 
 Cleaning up: deleting analyzer 'my_image_analyzer_ID'...
@@ -964,10 +945,10 @@ System.out.println(
     + "' deleted successfully.");
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
-Summary: Maria Smith contacted Contoso to inquire about her current point balance...
+Summary: Maria Smith contacted Contoso to inquire about her current point balance. John Doe, the customer service representative, confirmed her identity by requesting her date of birth and provided her point balance. The conversation ended politely with no further requests.
 Sentiment: Positive
 
 Cleaning up: deleting analyzer 'my_audio_analyzer_ID'...
@@ -1009,9 +990,48 @@ if (analyzeResult.getContents() != null
     if (content.getFields() != null) {
         ContentField segmentsField =
             content.getFields().get("Segments");
-        if (segmentsField != null) {
+        if (segmentsField
+            instanceof ContentArrayField) {
+            ContentArrayField segments =
+                (ContentArrayField) segmentsField;
             System.out.println(
-                "Segments: " + segmentsField);
+                "Segments (" + segments.size()
+                + "):");
+            for (int i = 0;
+                i < segments.size(); i++) {
+                ContentField seg = segments.get(i);
+                if (seg instanceof
+                    ContentObjectField) {
+                    ContentObjectField obj =
+                        (ContentObjectField) seg;
+                    ContentField idField =
+                        obj.getFieldOrDefault(
+                            "SegmentId");
+                    ContentField descField =
+                        obj.getFieldOrDefault(
+                            "Description");
+                    ContentField sentField =
+                        obj.getFieldOrDefault(
+                            "Sentiment");
+                    String segId = idField != null
+                        ? String.valueOf(
+                            idField.getValue())
+                        : "N/A";
+                    String desc = descField != null
+                        ? String.valueOf(
+                            descField.getValue())
+                        : "N/A";
+                    String sent = sentField != null
+                        ? String.valueOf(
+                            sentField.getValue())
+                        : "N/A";
+                    System.out.println(
+                        "  Segment " + segId
+                        + ": " + desc
+                        + " (Sentiment: "
+                        + sent + ")");
+                }
+            }
         }
     }
 }
@@ -1026,11 +1046,14 @@ System.out.println(
     + "' deleted successfully.");
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
-Content kind: video
-Segments: [placeholder - video segment data]
+Content kind: audioVisual
+Segments (16):
+  Segment 00:00:00.000-00:00:01.467: The video opens with a scenic aerial view of an island... (Sentiment: Positive)
+  Segment 00:00:01.467-00:00:03.233: A man is shown in an interview setting... (Sentiment: Neutral)
+  ...
 
 Cleaning up: deleting analyzer 'my_video_analyzer_ID'...
 Analyzer 'my_video_analyzer_ID' deleted successfully.
