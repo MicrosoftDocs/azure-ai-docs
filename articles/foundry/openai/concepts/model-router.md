@@ -72,6 +72,10 @@ The latest version of model router supports model subsets: For custom deployment
 
 When new base models become available, they're not included in your selection unless you explicitly add them to your deployment's inclusion list.
 
+## Automatic failover
+
+Model router now includes built-in automatic failover. When a routed model experiences endpoint instability, model router transparently redirects the request to the next most appropriate model, so transient issues with any single model don't disrupt your application. Failover is enabled by default for all model router deployments — no configuration is required. Your selected routing mode (Balanced, Cost, or Quality) and model subset settings continue to apply during failover, so routing behavior stays consistent with your deployment configuration.
+
 ## Limitations
 
 ### Resource limitations
@@ -119,11 +123,10 @@ For detailed deployment troubleshooting, see [How to use model router](../how-to
 
 ## Billing information
 
-Starting November 2025, the model router usage will be charged for input prompts at the rate listed on the pricing page.
+Model router usage is charged for input prompts at the rate listed on the pricing page.
 
 You can monitor the costs of your model router deployment in the Azure portal.
 
-## Next step
 
 > [!DIV class="nextstepaction"]
 > [How to use model router](../how-to/model-router.md)

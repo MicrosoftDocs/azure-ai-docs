@@ -22,7 +22,11 @@ This article provides a summary of the latest releases and major documentation u
 
 ### Four new models added
 
-Version `2025-11-18` of model router adds support for four new models: `gpt-5.2`, `gpt-5.2-chat`, `Deepseek-v3.2`, and `claude-opus-4-6`. To use `claude-opus-4-6` in your model router deployment, you need to first deploy it to your Foundry resource (see [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?tabs=python)). Then enable it with [model subset configuration](/azure/ai-foundry/openai/how-to/model-router) in your model router deployment. `Deepseek-v3.2` and `claude-opus-4-6` model router support is in preview.
+Version `2025-11-18` of model router adds support for four new models: `gpt-5.2`, `gpt-5.2-chat`, `Deepseek-v3.2`, and `claude-opus-4-6`. To use `claude-opus-4-6` in your model router deployment, you need to first deploy it to your Foundry resource (see [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude?tabs=python)). `Deepseek-v3.2` and `claude-opus-4-6` model router support is in preview.
+
+### Automatic failover
+
+Model router now includes built-in automatic failover. When a routed model experiences endpoint instability, model router transparently redirects the request to the next most appropriate model, so transient issues with any single model don't disrupt your application. Failover is enabled by default for all model router deployments — no configuration is required. Your selected routing mode (Balanced, Cost, or Quality) and model subset settings continue to apply during failover, so routing behavior stays consistent with your deployment configuration. For more information on routing modes and model subsets, see the [Model router concepts guide](../openai/concepts/model-router.md).
 
 ## November 2025
 
