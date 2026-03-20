@@ -27,7 +27,7 @@ ms.author: pafarley
 | `ɑ̃` | 2 |  | بانہیں | ماں |
 | `ɔ̃` | 3 |  | چونسٹھ | بھوں |
 
-### Consonant for ur-PK
+### Consonants for ur-PK
 
 | `ipa` | `viseme` | Example 1 | Example 2 | Example 3 |
 |-------|----------|-----------|-----------|-----------|
