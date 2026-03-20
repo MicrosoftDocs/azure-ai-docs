@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Include file
+description: Include file
 author: scottpolly
 ms.author: scottpolly
 ms.service: azure-ai-foundry
@@ -34,7 +34,7 @@ ms.custom: include
 
 ::: zone-end
 
-::: zone pivot="programming-language-javascript"
+::: zone pivot="programming-language-JavaScript"
 
 [!INCLUDE [JavaScript](language-overview/javascript.md)]
 
