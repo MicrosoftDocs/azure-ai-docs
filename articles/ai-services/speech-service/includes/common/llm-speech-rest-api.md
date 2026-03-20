@@ -114,12 +114,12 @@ Here are some best practices for prompts:
 - Prompts should preferably be written in English.
 - Prompts can guide output formatting. By default, responses use a display format optimized for readability. To enforce lexical formatting, include: `Output must be in lexical format.`
 - Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit the number of phrases per prompt.
-- Prompts that aren’t related to speech tasks (e.g., `Tell me a story.`) are typically disregarded.
+- Prompts that aren’t related to speech tasks (for example, `Tell me a story.`) are typically disregarded.
 
 
 #### More configuration options
 
-You can combine additional configuration options with [fast transcription](../../fast-transcription-create.md) to enable enhanced features such as `diarization`, `profanityFilterMode`, and `channels`.
+You can combine extra configuration options with [fast transcription](../../fast-transcription-create.md) to enable enhanced features such as `diarization`, `profanityFilterMode`, and `channels`.
 
 ```azurecli-interactive
 curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
@@ -166,9 +166,9 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-There are a few additional limits using the mai-transcribe model:
-- The audio file should be less tahn 20 minutes long and less than 70MB in size;
-- Diarization is not supported
+There are a few extra limits using the mai-transcribe model:
+- The audio file should be less than 20 minutes long and less than 70 MB in size;
+- Diarization isn't supported.
 
 
 #### Sample response
@@ -267,6 +267,6 @@ In the JSON response, the `combinedPhrases` property contains the full transcrib
 ```
 
 The response format is consistent with other existing speech-to-text outputs, such as fast transcription and batch transcription. Key differences include: 
-- Word-level `durationMilliseconds` and `offsetMilliseconds` are not supported for `translate` task.
-- Diarization is not supported for `translate` task, only the `speaker1` label is returned.
-- `confidence` is not available and always `0`.
+- Word-level `durationMilliseconds` and `offsetMilliseconds` aren't supported for `translate` task.
+- Diarization isn't supported for `translate` task, only the `speaker1` label is returned.
+- `confidence` isn't available and always `0`.
