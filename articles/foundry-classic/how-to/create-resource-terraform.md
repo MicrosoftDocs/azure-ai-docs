@@ -40,91 +40,10 @@ The following table shows which actions each provider supports:
 
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
 
-## Prerequisites
-
-[!INCLUDE [azure-subscription](../../foundry/includes/azure-subscription.md)]
-
-- [!INCLUDE [rbac-create](../../foundry/includes/rbac-create.md)]
-- [Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
-
-## Create a basic Foundry configuration
-
-# [AzAPI Provider](#tab/azapi)
-
-1. Create a directory to test and run the sample Terraform code. Make this directory your current directory.
-
-1. Create a file named `providers.tf` and add the following code.
-
-    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic/code/providers.tf":::
-
-1. Create a file named `main.tf` and add the following code.
-
-    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic/code/main.tf":::
-
-1. Create a file named `variables.tf` and add the following code.
-
-    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic/code/variables.tf"::: 
-
-# [AzureRM Provider](#tab/azurerm)
-
-1. Create a directory to test and run the sample Terraform code. Make this directory your current directory.
-
-1. Create a file named `providers.tf` and add the following code.
-
-    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic-azurerm/code/providers.tf":::
-
-1. Create a file named `main.tf` and add the following code.
-
-    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic-azurerm/code/main.tf":::
-
-1. Create a file named `variables.tf` and add the following code.
-
-    :::code language="Terraform" source="~/foundry-samples-main/infrastructure/infrastructure-setup-terraform/00-basic-azurerm/code/variables.tf"::: 
-
----
-
-**References:**
-- [AzAPI provider documentation](/azure/developer/terraform/overview-azapi-provider)
-- [AzureRM cognitive_account resource](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
-- [Foundry Terraform samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform)
-
-## Initialize Terraform
-
-[!INCLUDE [terraform-init.md](~/azure-dev-docs-pr/articles/terraform/includes/terraform-init.md)]
-
-## Create a Terraform execution plan
-
-[!INCLUDE [terraform-plan.md](~/azure-dev-docs-pr/articles/terraform/includes/terraform-plan.md)]
-
-## Apply a Terraform execution plan
-
-[!INCLUDE [terraform-apply-plan.md](~/azure-dev-docs-pr/articles/terraform/includes/terraform-apply-plan.md)]
+[!INCLUDE [create-resource-terraform 1](../../foundry/includes/how-to-create-resource-terraform-1.md)]
 
 ## Verify your deployment
 
 Run `terraform state identities -json` to display the deployed resources. The last part of the `id` shows the resource names.
 
-## Customize security and compliance
-
-To meet security and compliance requirements, customize Foundry with security configurations and by bringing your own storage resources. For example, when using the Agent service, you can opt to bring your own Azure Cosmos DB database, Azure AI Search instance, and Azure Storage Account to store your threads and messages.
-
-For advanced setup samples, see the following repositories:
-
-- [Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform) repository contains example Terraform configurations for the most common enterprise security configurations.
-- [Terraform Azure Verified Module (Cognitive Services account)](https://registry.terraform.io/modules/Azure/avm-res-cognitiveservices-account/azurerm/latest) is a generic module set to manage the Azure resource type used by Foundry, Azure OpenAI, Azure Speech, Azure Language.
-- [Terraform Azure Verified Pattern Module (Foundry)](https://registry.terraform.io/modules/Azure/avm-ptn-aiml-ai-foundry/azurerm/latest) is a reference implementation for Foundry.
-- [Terraform Azure Verified Pattern Module (Azure AI and ML Landing Zone)](https://registry.terraform.io/modules/Azure/avm-ptn-aiml-landing-zone/azurerm/latest) provides a reference for the set of resources typically created alongside Foundry for an end-to-end sample.
-
-## Clean up resources
-
-[!INCLUDE [terraform-plan-destroy.md](~/azure-dev-docs-pr/articles/terraform/includes/terraform-plan-destroy.md)]
-
-## Troubleshoot Terraform on Azure
-
-[Troubleshoot common problems when using Terraform on Azure](/azure/developer/terraform/troubleshoot).
-
-## Next steps
-
-- [See AzureRM reference docs for Foundry](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
-- [Learn more about AzAPI provider](/azure/developer/terraform/overview-azapi-provider)
-
+[!INCLUDE [create-resource-terraform 2](../../foundry/includes/how-to-create-resource-terraform-2.md)]
