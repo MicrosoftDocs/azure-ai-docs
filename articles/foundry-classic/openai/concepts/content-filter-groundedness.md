@@ -18,4 +18,4 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/content-filter-groundedness.md)
 
-[!INCLUDE [groundedness-detection-overview](../../../ai-services/content-safety/includes/groundedness-detection-overview.md)]
+[!INCLUDE [content-filter-groundedness content](../../../foundry/openai/includes/concepts-content-filter-groundedness-content.md)]

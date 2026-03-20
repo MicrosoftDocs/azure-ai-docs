@@ -31,6 +31,7 @@ An Azure Machine Learning Responsible AI scorecard is a PDF report that's genera
 ## Where to find your Responsible AI scorecard
 
  Responsible AI scorecards link to your Responsible AI dashboards. To view your Responsible AI scorecard, go into your model registry by selecting the **Model** in Azure Machine Learning studio. Then select the registered model that you generated a Responsible AI dashboard and scorecard for. After you select your model, select the **Responsible AI** tab to view a list of generated dashboards. Select which dashboard you want to export a Responsible AI scorecard PDF for by selecting **Responsible AI Insights** then **View all PDF scorecards**.
+ Responsible AI scorecards link to your Responsible AI dashboards. To view your Responsible AI scorecard, go into your model registry by selecting the **Model** in Azure Machine Learning studio. Then select the registered model that you generated a Responsible AI dashboard and scorecard for. After you select your model, select the **Responsible AI** tab to view a list of generated dashboards. Select which dashboard you want to export a Responsible AI scorecard PDF for by selecting **Responsible AI Insights** then **View all PDF scorecards**.
 
 :::image type="content" source="./media/how-to-responsible-ai-scorecard/scorecard-studio.png" alt-text="Screenshot of the Responsible AI (preview) pane in Azure Machine Learning studio, with the Responsible AI scorecard (preview) tab highlighted." lightbox = "./media/how-to-responsible-ai-scorecard/scorecard-studio.png":::
 
@@ -78,3 +79,4 @@ Finally, you can see your dataset's causal insights summarized, which can help y
 - Learn more about the [concepts and techniques behind the Responsible AI dashboard](concept-responsible-ai-dashboard.md).
 - View [sample YAML and Python notebooks](https://aka.ms/RAIsamples) to generate a Responsible AI dashboard with YAML or Python.
 - Learn about how the Responsible AI dashboard and scorecard were used by the UK National Health Service (NHS) in a [real-life customer story](https://aka.ms/NHSCustomerStory).
+- Explore the [Responsible AI Toolbox](https://responsibleaitoolbox.ai/) open-source tools that power the Responsible AI dashboard.

@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 03/20/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ai-usage: ai-assisted
@@ -14,19 +14,18 @@ ms.custom:
   - doc-kit-assisted
 ---
 
-# Web search (preview)
-Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations. Web search is available via the `web_search_preview` tool in the **Responses API**.
+# Web search
+Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations. Web search is available via the `web_search` tool in the **Responses API**.
 
 > [!NOTE]
-> Some SDKs may expose both `web_search_preview` and `web_search` tool types.
-> Only `web_search_preview` is currently supported for Web search in the Azure OpenAI Responses API.
-> The `web_search` tool type is not supported at this time and should not be used.
+> `web_search` is now the recommended tool for Web search in the Azure OpenAI Responses API.
+> The preview version of the web search tool (`web_search_preview`) while supported is not recommended.
 
 > [!IMPORTANT]
-> * Web Search (preview) uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
+> * Web Search uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
 > * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When Customer uses Grounding with Bing Search and/or Grounding with Bing Custom Search, Customer Data will flow outside Customer’s compliance and Geo boundary.
 > * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs; learn more about [pricing](https://www.microsoft.com/bing/apis/grounding-pricing).
-> * [Learn more](#manage-web-search-preview-tool) about how Azure admins can manage access to the use of Web search (preview).
+> * [Learn more](#manage-web-search-tool) about how Azure admins can manage access to the use of Web search.
 
 ## Prerequisites
 
@@ -79,7 +78,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
      "model": "gpt-4.1",
-     "tools": [{"type": "web_search_preview"}],
+     "tools": [{"type": "web_search"}],
      "input": "Please perform a web search on the latest trends in renewable energy"
     }'
 ```
@@ -92,7 +91,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
      "model": "gpt-4.1",
-     "tools": [{"type": "web_search_preview"}],
+     "tools": [{"type": "web_search"}],
      "input": "Please perform a web search on the latest trends in renewable energy"
     }'
 ```
@@ -110,7 +109,7 @@ client = OpenAI(
 
 response = client.responses.create(   
   model="gpt-4.1", # Replace with your model deployment name
-  tools=[{"type": "web_search_preview"}], 
+  tools=[{"type": "web_search"}], 
   input="Please perform a web search on the latest trends in renewable energy"
 )
 
@@ -134,7 +133,7 @@ client = OpenAI(
 
 response = client.responses.create(   
   model="gpt-4.1", # Replace with your model deployment name
-  tools=[{"type": "web_search_preview"}], 
+  tools=[{"type": "web_search"}], 
   input="Please perform a web search on the latest trends in renewable energy"
 )
 
@@ -206,7 +205,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
     "model": "gpt-4.1",
     "tools": [
         {
-            "type": "web_search_preview",
+            "type": "web_search",
             "user_location": {
                 "type": "approximate",
                 "country": "IN"
@@ -227,7 +226,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
      "model": "gpt-4.1",
      "tools": [
         {
-            "type": "web_search_preview",
+            "type": "web_search",
             "user_location": {
                 "type": "approximate",
                 "country": "IN"
@@ -253,7 +252,7 @@ response = client.responses.create(
   model="gpt-4.1", # Replace with your model deployment name
   tools= [
         {
-            "type": "web_search_preview",
+            "type": "web_search",
             "user_location": {
                 "type": "approximate",
                 "country": "IN"
@@ -285,7 +284,7 @@ response = client.responses.create(
   model="gpt-4.1", # Replace with your model deployment name
   tools= [
         {
-            "type": "web_search_preview",
+            "type": "web_search",
             "user_location": {
                 "type": "approximate",
                 "country": "IN"
@@ -313,7 +312,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -d '{
      "model": "o3-deep-research",
      "tools": [
-                {"type": "web_search_preview"},
+                {"type": "web_search"},
                 { "type": "code_interpreter", "container": { "type": "auto" }}
               ],
      "input": "Research the economic impact of semaglutide on global healthcare systems. Include specific figures, trends, statistics, and measurable outcomes. Prioritize reliable, up-to-date sources: peer-reviewed research, health organizations (e.g., WHO, CDC), regulatory agencies, or pharmaceutical earnings reports. Include inline citations and return all source metadata. Be analytical, avoid generalities, and ensure that each section supports data-backed reasoning that could inform healthcare policy or financial modeling."
@@ -329,7 +328,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -d '{
      "model": "o3-deep-research",
      "tools": [
-                {"type": "web_search_preview"},
+                {"type": "web_search"},
                 { "type": "code_interpreter", "container": { "type": "auto" }}
               ],
      "input": "Research the economic impact of semaglutide on global healthcare systems. Include specific figures, trends, statistics, and measurable outcomes. Prioritize reliable, up-to-date sources: peer-reviewed research, health organizations (e.g., WHO, CDC), regulatory agencies, or pharmaceutical earnings reports. Include inline citations and return all source metadata. Be analytical, avoid generalities, and ensure that each section supports data-backed reasoning that could inform healthcare policy or financial modeling."
@@ -350,7 +349,7 @@ client = OpenAI(
 response = client.responses.create(   
   model="o3-deep-research", # Replace with your model deployment name
   tools=[
-            {"type": "web_search_preview"},
+            {"type": "web_search"},
             { "type": "code_interpreter", "container": { "type": "auto" }}
         ], 
   input="Research the economic impact of semaglutide on global healthcare systems. Include specific figures, trends, statistics, and measurable outcomes. Prioritize reliable, up-to-date sources: peer-reviewed research, health organizations (e.g., WHO, CDC), regulatory agencies, or pharmaceutical earnings reports. Include inline citations and return all source metadata. Be analytical, avoid generalities, and ensure that each section supports data-backed reasoning that could inform healthcare policy or financial modeling."
@@ -377,7 +376,7 @@ client = OpenAI(
 response = client.responses.create(   
   model="o3-deep-research", # Replace with your model deployment name
   tools=[
-            {"type": "web_search_preview"},
+            {"type": "web_search"},
             { "type": "code_interpreter", "container": { "type": "auto" }}
         ], 
   input="Research the economic impact of semaglutide on global healthcare systems. Include specific figures, trends, statistics, and measurable outcomes. Prioritize reliable, up-to-date sources: peer-reviewed research, health organizations (e.g., WHO, CDC), regulatory agencies, or pharmaceutical earnings reports. Include inline citations and return all source metadata. Be analytical, avoid generalities, and ensure that each section supports data-backed reasoning that could inform healthcare policy or financial modeling."
@@ -386,9 +385,9 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-## Manage web search preview tool
+## Manage web search tool
 
-You can enable or disable the `web_search_preview` tool in the Responses API at the subscription level using Azure CLI. This setting applies to all accounts within the specified subscription.
+You can enable or disable the `web_search` tool in the Responses API at the subscription level using Azure CLI. This setting applies to all accounts within the specified subscription.
 
 ### Prerequisites
 
@@ -398,9 +397,9 @@ Before running the commands below, ensure the following:
 * You're signed in to Azure using `az login`
 * You have **Owner** or **Contributor** access to the subscription
 
-### Disable web search preview
+### Disable web search
 
-To disable the `web_search_preview` tool for all accounts in a subscription:
+To disable the `web_search` tool for all accounts in a subscription:
 
 ```bash
 az feature register --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
@@ -408,9 +407,9 @@ az feature register --name OpenAI.BlockedTools.web_search --namespace Microsoft.
 
 This command disables web search across all accounts in the specified subscription.
 
-### Enable web search preview
+### Enable web search
 
-To enable the `web_search_preview` tool:
+To enable the `web_search` tool:
 
 ```bash
 az feature unregister --name OpenAI.BlockedTools.web_search --namespace Microsoft.CognitiveServices --subscription "<subscription-id>"
@@ -420,6 +419,6 @@ This command enables Bing web search functionality for all accounts in the subsc
 
 ## Troubleshooting
 
-- **No citations returned**: Confirm your request includes `tools: [{"type": "web_search_preview"}]`. If the model doesn't call the tool, prompt more explicitly to browse the web or ask for citations.
-- **Tool is blocked**: Ask your subscription admin to verify the subscription feature setting for blocked tools. See [Manage web search preview tool](#manage-web-search-preview-tool).
+- **No citations returned**: Confirm your request includes `tools: [{"type": "web_search"}]`. If the model doesn't call the tool, prompt more explicitly to browse the web or ask for citations.
+- **Tool is blocked**: Ask your subscription admin to verify the subscription feature setting for blocked tools. See [Manage web search tool](#manage-web-search-tool).
 - **Authentication errors**: For API keys, verify you set `AZURE_OPENAI_API_KEY`. For Microsoft Entra ID, verify your token scope is `https://ai.azure.com/.default`.

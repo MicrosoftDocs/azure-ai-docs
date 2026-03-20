@@ -273,7 +273,7 @@ For more information, see [Supplemental Terms of Use for Microsoft Azure Preview
 | Resource not found | The specified deployment, dataset, agent, or connection doesn't exist. | Use the corresponding `get` or `list` tool to verify the resource name. |
 | Private endpoint not reachable | Foundry resources use Azure Private Links that the server can't reach. | Remove private endpoint restrictions or use SDKs/REST APIs instead. |
 
-For more troubleshooting guidance, see [Foundry MCP Server security and best practices](security-best-practices.md#troubleshooting-and-faqs).
+For more troubleshooting guidance, see [Foundry MCP Server security and best practices](security-best-practices.md#troubleshooting).
 
 ## Related content
 

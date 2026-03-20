@@ -9,12 +9,14 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 03/20/2026
+ms.date: 03/19/2026
 ms.custom:
   - sdkv2
   - cliv2
   - devx-track-python
   - ignite-2023
+  - dev-focus
+ai-usage: ai-assisted
   - dev-focus
 ai-usage: ai-assisted
 ---
@@ -23,7 +25,7 @@ ai-usage: ai-assisted
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-It's common to use pipeline components to develop complex machine learning pipelines. You can group multiple steps into a pipeline component that you use as a single step to do tasks like data preprocessing or model training.
+It's common to use pipeline components to develop complex machine learning pipelines. You can group multiple steps into a single pipeline component that you use as one step to handle tasks like data preprocessing or model training.
 
 This article shows you how to nest multiple steps in components that you use to build complex Azure Machine Learning pipeline jobs. You can develop and test these multistep components standalone, which helps you share your work and collaborate better with team members.
 
@@ -94,8 +96,12 @@ To access components in Azure Machine Learning studio, you need to register the 
 You reference pipeline components as child jobs in a pipeline job just like you reference other types of components. You can provide runtime settings like `default_datastore` and `default_compute` at the pipeline job level.
 
 You need to promote any parameters you want to change during runtime as pipeline job inputs. Otherwise, hard-code them in the pipeline component. Promoting compute definition to a pipeline level input supports heterogeneous pipelines that use different compute targets in different steps.
+You need to promote any parameters you want to change during runtime as pipeline job inputs. Otherwise, you hard-code them in the pipeline component. Promoting compute definition to a pipeline level input supports heterogeneous pipelines that can use different compute targets in different steps.
 
-To submit the pipeline job, edit the `cpu-cluster` in the `default_compute` section before running the `az ml job create -f pipeline.yml` command.
+To submit the pipeline job, edit the `cpu-cluster` in the `default_compute` section before running the `az ml job create --file pipeline.yml` command.
+
+> [!NOTE]
+> To use [serverless compute](how-to-use-serverless-compute.md), replace `default_compute: azureml:cpu-cluster` with `default_compute: azureml:serverless` in the pipeline YAML.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_pipeline_component/pipeline_with_train_eval_pipeline_component/pipeline.yml" highlight="17,18,27,28,40,50,55":::
 
@@ -111,7 +117,7 @@ You can use the pipeline component as a step like other components in the pipeli
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component/pipeline_with_train_eval_pipeline_component/pipeline_with_train_eval_pipeline_component.ipynb?name=pipeline-component-pipeline-job)]
 
 >[!NOTE]
->To share or reuse components across jobs in the workspace, register the components. Use [`ml_client.components.create_or_update`](/python/api/azure-ai-ml/azure.ai.ml.operations.componentoperations#azure-ai-ml-operations-componentoperations-create-or-update) to register pipeline components.
+>To share or reuse components across jobs in the workspace, register the components. Use [`ml_client.components.create_or_update`](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update) to register pipeline components.
 
 Find other Python SDK v2 pipeline component-related notebooks and information at [Pipeline component](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component) in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository.
 
