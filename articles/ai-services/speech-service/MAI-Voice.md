@@ -62,7 +62,7 @@ Azure Speech offers MAI-Voice-1 as an advanced neural voice model optimized for 
 - Surprise
 - Curiosity
 
-## Using MAI-Voice-1
+## Use MAI-Voice-1
 
 MAI-Voice-1 uses the same Azure Speech SDKs and APIs as other Azure Neural and HD voices.
 
