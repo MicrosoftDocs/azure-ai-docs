@@ -28,7 +28,7 @@ Azure Speech offers MAI-Voice-1 as an advanced neural voice model optimized for 
 |------|-------------|---------------------|----------|
 | **MAI-Voice-1** | 2 prebuilt English (US) voices | Emotionally rich, highly expressive, consistent persona quality, SSML style control | Conversational AI, creative applications, long-form narration |
 
-### Prebuilt voices
+## Prebuilt voices
 
 | Voice ID | Gender |
 |--------|--------|
