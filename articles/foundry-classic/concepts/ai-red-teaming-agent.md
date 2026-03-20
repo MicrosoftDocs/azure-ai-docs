@@ -30,11 +30,11 @@ When thinking about AI-related safety risks developing trustworthy AI systems, M
 
 AI Red Teaming Agent can be used to run automated scans and simulate adversarial probing to help accelerate the identification and evaluation of known risks at scale. This helps teams "shift left" from costly reactive incidents to more proactive testing frameworks that can catch issues before deployment. Manual AI red teaming process is time and resource intensive. It relies on the creativity of safety and security expertise to simulate adversarial probing. This process can create a bottleneck for many organizations to accelerate AI adoption. With the AI Red Teaming Agent, organizations can now leverage Microsoft's deep expertise to scale and accelerate their AI development with Trustworthy AI at the forefront.
 
-We encourage teams to use the AI Red Teaming Agent to run automated scans throughout the design, development, and pre-deployment stage:
+We encourage teams to use the AI Red Teaming Agent to run automated scans throughout the design, development, and predeployment stage:
 
 - Design: Picking out the safest foundational model on your use case.
 - Development: Upgrading models within your application or creating fine-tuned models for your specific application.
-- Pre-deployment: Before deploying GenAI applications to productions.
+- Predeployment: Before deploying GenAI applications to productions.
 
 In production, we recommend implementing **safety mitigations** such as [Azure AI Content Safety filters](../../ai-services/content-safety/overview.md) or implementing safety system messages using our [templates](../openai/concepts/safety-system-message-templates.md).
 
