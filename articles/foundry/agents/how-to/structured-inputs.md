@@ -1,6 +1,6 @@
 ---
 title: "Use Structured Inputs With Microsoft Foundry Agents"
-description: "Learn how to use structured inputs with Microsoft Foundry agents to define handlebar template placeholders in agent definitions. Supply runtime values for instructions, tool resources, and response parameters."
+description: "Learn how to customize agent behavior at runtime using structured inputs. Define placeholders with handlebar templates, dynamically configure agent instructions and tools, and pass values at runtime to your agent."
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
