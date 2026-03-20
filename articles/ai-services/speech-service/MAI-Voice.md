@@ -8,7 +8,7 @@ ms.author: pafarley
 ms.reviewer: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: overview
+ms.topic: article
 ms.date: 03/20/2026
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech MAI voices in Azure Speech in Foundry Tools.
