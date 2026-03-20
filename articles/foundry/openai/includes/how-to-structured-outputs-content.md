@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Include file
+description: Include file
 author: scottpolly
 ms.author: scottpolly
 ms.service: azure-ai-foundry
@@ -109,7 +109,7 @@ A schema may have up to 100 object properties total, with up to five levels of n
 
 ### additionalProperties: false must always be set in objects
 
-This property controls if an object can have additional key value pairs that weren't defined in the JSON Schema. In order to use structured outputs, you must set this value to false.
+This property controls if an object can have other key value pairs that weren't defined in the JSON Schema. In order to use structured outputs, you must set this value to false.
 
 ### Key ordering
 
@@ -327,7 +327,7 @@ Example of explicit recursion:
 }
 ```
 > [!NOTE]
-> Currently structured outputs are not supported with:
+> Currently structured outputs aren't supported with:
 > - [Bring your own data](../../../foundry-classic/openai/concepts/use-your-data.md) scenarios.
 > - [Assistants](../../../foundry-classic/openai/how-to/assistant.md) or [Foundry Agents Service](../../agents/overview.md).
 > - `gpt-4o-audio-preview` and `gpt-4o-mini-audio-preview` version: `2024-12-17`.
@@ -358,4 +358,4 @@ Example of explicit recursion:
 
 ## API support
 
-Support for structured outputs was first added in API version `2024-08-01-preview`. It is available in the latest preview APIs as well as the latest GA API: `v1`.
+Support for structured outputs was first added in API version `2024-08-01-preview`. It's available in the latest preview APIs as well as the latest GA API: `v1`.

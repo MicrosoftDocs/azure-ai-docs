@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Include file
+description: Include file
 author: scottpolly
 ms.author: scottpolly
 ms.service: azure-ai-foundry
