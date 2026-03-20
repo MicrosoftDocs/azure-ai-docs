@@ -54,31 +54,18 @@ Select the tabs to see content for the relevant model type.
 
 As part of the fully managed Azure OpenAI Service, the **GPT-3** models analyze and generate natural language, Codex models analyze and generate code and plain text code commentary, and **GPT-4** and **reasoning models** (including o-series models and GPT-5) can understand and generate natural language and code. These models use an autoregressive architecture, meaning they use data from prior observations to predict the most probable next word. This process is then repeated by appending the newly generated content to the original text to produce the complete generated response. Because the response is conditioned on the input text, these models can be applied to various tasks simply by changing the input text.
 
-The GPT-3 series of models are pretrained on a wide body of publicly available free text data. This data is sourced from a combination of web crawling (specifically, a filtered version of [Common Crawl](https://commoncrawl.org/the-data/), which includes a broad range of text from the internet and comprises 60 percent of the weighted pretraining dataset) and higher-quality datasets, including an expanded version of the WebText dataset, two internet-based books corpora and English-language Wikipedia. The GPT-4 base model was trained using publicly available data (such as internet data) and data that was licensed by OpenAI. The model was fine-tuned using reinforcement learning with human feedback (RLHF).
+The GPT-3 series of models are pretrained on a wide body of publicly available free text data. This data is sourced from a combination of web crawling (specifically, a filtered version of [Common Crawl](https://commoncrawl.org/the-data/), which includes a broad range of text from the internet and comprises 60 percent of the weighted pretraining dataset) and higher-quality datasets, including an expanded version of the WebText dataset, two internet-based books corpora, and English-language Wikipedia. The GPT-4 base model was trained using publicly available data (such as internet data) and data that was licensed by OpenAI. The model was fine-tuned using reinforcement learning with human feedback (RLHF).
 
 The Computer Use (Preview) model accepts text input on the first turn, and screenshot image on the second and following turns, and outputs commands to the keyboard and mouse. The Computer Use model and the Computer Use Tool enable developers to build agentic AI systems. 
 
 Learn more about the training and modeling techniques in OpenAI's [GPT-3](https://arxiv.org/abs/2005.14165), [GPT-4](https://arxiv.org/abs/2303.08774), and [Codex](https://arxiv.org/abs/2107.03374) research papers.
 
-**Fine tuning** refers to using _Supervised Fine Tuning_ to adjust a base model's weights to provide better responses based on a provided training set. All use cases and considerations for large language models apply to fine-tuned models, but there are additional considerations as well.
+**Fine tuning** refers to using _Supervised Fine Tuning_ to adjust a base model's weights to provide better responses based on a provided training set. All use cases and considerations for large language models apply to fine-tuned models, but there are other considerations as well.
 
 > [!IMPORTANT]
-> Fine-tuning is only available for text and code models, not vision or speech models.
+> Fine-tuning is only available for text and code models, not vision, or speech models.
 
-### Key terms
-
-| **Term** | **Definition** |
-| --- | --- |
-| Prompt | The text you send to the service in the API call. This text is then input into the model. For example, one might input the following prompt:<br><br>`Convert the questions to a command:`<br>`Q: Ask Constance if we need some bread`<br>`A: send-msg 'find constance' Do we need some bread?`<br>`Q: Send a message to Greg to figure out if things are ready for Wednesday.`<br>`A:` |
-| Completion or Generation | The text Azure OpenAI outputs in response. For example, the service may respond with the following answer to the above prompt: `send-msg 'find greg' figure out if things are ready for Wednesday.` |
-| Token | Azure OpenAI processes text by breaking it down into tokens. Tokens can be words or just chunks of characters. For example, the word `hamburger` gets broken up into the tokens `ham`, `bur` and `ger`, while a short and common word like `pear` is a single token. Many tokens start with a whitespace, for example ` hello` and ` bye`. |
-|Fine tuning| Supervised fine-tuning (SFT), reinforcement fine-tuning (RFT), and direct preference optimization (DPO, or preference fine-tuning) for large language models refer to the process of taking a pre-trained language model, often trained on a massive dataset, and further training it on a more specific task with labeled data. This involves adjusting the weights of the model using this smaller, specific dataset so that the model becomes more specialized in the tasks it can perform, enhancing its performance and accuracy. |
-| Model Weights| Model weights are parameters within the model that are learned from the data during the training process. They determine the output of the model for a given input. These weights are adjusted in response to the error the model made in its predictions, with the aim of minimizing this error. |
-|Ungrounded content|  Content that is generated by the model that is non-factual or inaccurate from what was present in the source materials. |
-| Agentic AI systems | Autonomous AI systems that sense and act upon their environment to achieve goals. |
-| Autonomy  | The ability to independently execute actions and exercise control over system behavior with limited or no direct human supervision. |
-| Computer Use tool | A tool that when used with the Computer Use model captures mouse and keyboard actions generated by the mode and directly translates them into executable commands. This makes it possible for developers to automate computer use tasks. |
-| Deep research | A fine-tuned version of the o-series reasoning models that is designed for deep research tasks. It takes a high-level query and returns a structured, citation-rich report by leveraging an agentic model capable of decomposing the task, performing web searches, and synthesizing results. |
+[!INCLUDE [transparency-note-key-terms](../../../foundry/responsible-ai/includes/transparency-note-key-terms.md)]
 
 #### [Vision models](#tab/image)
 
@@ -196,11 +183,11 @@ Azure OpenAI Evaluation is a UI-based experience to evaluate data, including gen
 
 Azure OpenAI Evaluation has an optional step of generating responses. If the user opts into this step, we provide a prompt (System/User Message) to instruct the model how to generate responses. 
 
-Azure OpenAI Evaluation includes 9 categories of tests to score results. Some require ground truth data (like factuality), while others do not (schema validation). Graders are a mixture of CPU-based and model-based. Here is the list of testing criteria: Factuality, Sentiment, Valid JSON or XML, Criteria Match, Custom Prompt, Semantic Similarity, Contains string, Matches Schema and Text quality.
+Azure OpenAI Evaluation includes 9 categories of tests to score results. Some require ground truth data (like factuality), while others do not (schema validation). Graders are a mixture of CPU-based and model-based. Here's the list of testing criteria: Factuality, Sentiment, Valid JSON or XML, Criteria Match, Custom Prompt, Semantic Similarity, Contains string, Matches Schema and Text quality.
 
 **Text-to-action**
 
-The Computer Use (Preview) model enables text-to-action capabilities, allowing users to provide natural language instructions that the model translates into actionable steps within graphical user interfaces. Given a command like "Fill out the customer support form with this information," the model identifies the relevant fields, inputs the correct data, and submits the form. It can navigate web interfaces, extract and input structured or unstructured data, automate workflows, and enforce compliance with security policies. By understanding intent and executing actions accordingly, it streamlines business operations, making automation more accessible and efficient. 
+The Computer Use (Preview) model enables text-to-action capabilities, allowing users to provide natural language instructions that the model translates into actionable steps within graphical user interfaces. Given a command like "Fill out the customer support form with this information," the model identifies the relevant fields, inputs the correct data, and submits the form. It can navigate web interfaces, extract, and input structured or unstructured data, automate workflows, and enforce compliance with security policies. By understanding intent and executing actions accordingly, it streamlines business operations, making automation more accessible and efficient. 
 
 #### [Vision models](#tab/image)
 
@@ -242,16 +229,16 @@ The main capabilities of the Azure OpenAI image generation APIs are:
 
 GPT-4 Turbo with Vision and GPT-4o use natural language and image prompts to generate natural language or code responses. The models accept text only, image only, and interleaved text and image inputs. These models are part of the GPT family and are extensions of GPT-4.
 
-The Azure Vision in Foundry Tools Service provides Video enhancement for GPT-4 Turbo with Vision (Preview), which can also accept video inputs to generate natural language or code responses. This capability is not available with the latest GPT-4 Turbo with Vision model release.
+The Azure Vision in Foundry Tools Service provides Video enhancement for GPT-4 Turbo with Vision (Preview), which can also accept video inputs to generate natural language or code responses. This capability isn't available with the latest GPT-4 Turbo with Vision model release.
 
 | **Example prompt** | **Example completion** |
 |---|---|
-| "What is this used for?"<br><br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/tomatoes.png" alt-text="Photo of tomatoes."::: |These are tomatoes. They are commonly used as a food ingredient in various dishes, both raw and cooked. Tomatoes can be used in salads, sandwiches, sauces, soups, juices, and many other culinary applications. They are also known for their rich nutritional content, including vitamins, minerals, and antioxidants. |
+| "What is this used for?"<br><br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/tomatoes.png" alt-text="Photo of tomatoes."::: |These are tomatoes. They're commonly used as a food ingredient in various dishes, both raw and cooked. Tomatoes can be used in salads, sandwiches, sauces, soups, juices, and many other culinary applications. They're also known for their rich nutritional content, including vitamins, minerals, and antioxidants. |
 |How can I use<br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/tomatoes.png" alt-text="Same photo of tomatoes.":::<br>to make this?<br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/soup.png" alt-text="Photo of tomato soup."::: | You can use tomatoes to make tomato soup by following these general steps: <br>Ingredients: <ul><li>Tomatoes </li><li>Onion</li><li>Garlic</li><li> Olive oil or butter</li><li> Chicken or vegetable broth</li><li> Salt</li><li> Pepper</li><li> Optional: herbs like basil, oregano, or thyme </li></ul> <br>Instructions: <ol><li>Preparation:<ul><li> Wash the tomatoes thoroughly. </li><li>Cut the tomatoes into halves or quarters. </li><li>Peel and chop onions and garlic… </li></ul></li></ol>|
 
 ### Computer Use in Azure OpenAI Service (Preview)
 
-The Computer Use model is built upon a fine-tuned version of GPT-4o's vision capabilities which allows it to interpret and interact with graphical user interfaces (GUIs) through screenshots. By analyzing visual elements like buttons, text fields, and menus, it can understand application layouts, detect relevant interface components, and execute actions accordingly. This enables precise automation of web and software interactions, allowing for tasks such as data extraction, form completion, and workflow execution based on real-time visual context. 
+The Computer Use model is built upon a fine-tuned version of GPT-4o's vision capabilities, which allows it to interpret and interact with graphical user interfaces (GUIs) through screenshots. By analyzing visual elements like buttons, text fields, and menus, it can understand application layouts, detect relevant interface components, and execute actions accordingly. This enables precise automation of web and software interactions, allowing for tasks such as data extraction, form completion, and workflow execution based on real-time visual context. 
 
 ### Face blurring
 
@@ -267,11 +254,11 @@ Blurring helps protect the privacy of the individuals and groups involved and pr
 > **Computer Use (preview) does not use face blurring**, as it has the potential to obscure UI elements and degrade performance. Computer Use is not designed (or intended) to be a general-purpose image reasoning engine. The model doesn't perform facial recognition or individual identification and is not suitable for any such use cases.
 
 > [!CAUTION]
-> **GPT-image-1 does not use face blurring.** In certain jurisdictions, the way the model processes image input of people may be considered processing of biometric data, in which case you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the data, all as appropriate and required under applicable law. For more information on how Azure OpenAI Service processes data, see [Data, privacy, and security for Azure OpenAI Service](/azure/ai-foundry/responsible-ai/openai/data-privacy).
+> **GPT-image-1 does not use face blurring.** In certain jurisdictions, the way the model processes image input of people may be considered processing of biometric data, in which case you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the data, all as appropriate, and required under applicable law. For more information on how Azure OpenAI Service processes data, see [Data, privacy, and security for Azure OpenAI Service](/azure/ai-foundry/responsible-ai/openai/data-privacy).
 
 ### Computer Use in Azure OpenAI Service (preview)
 
-The Computer Use model is built upon a fine-tuned version of GPT-4o's vision capabilities which allows it to interpret and interact with graphical user interfaces (GUIs) through screenshots. By analyzing visual elements like buttons, text fields, and menus, it can understand application layouts, detect relevant interface components, and execute actions accordingly. This enables precise automation of web and software interactions, allowing for tasks such as data extraction, form completion, and workflow execution based on real-time visual context. 
+The Computer Use model is built upon a fine-tuned version of GPT-4o's vision capabilities, which allows it to interpret and interact with graphical user interfaces (GUIs) through screenshots. By analyzing visual elements like buttons, text fields, and menus, it can understand application layouts, detect relevant interface components, and execute actions accordingly. This enables precise automation of web and software interactions, allowing for tasks such as data extraction, form completion, and workflow execution based on real-time visual context. 
 
 #### [Audio / speech models](#tab/speech)
 
@@ -292,7 +279,7 @@ Azure OpenAI service provides these functionalities through two REST APIs:
 
 The service provides the ability to synchronously process single audio files as fast as possible. This is limited to less than 15 to 30 minutes of audio depending on audio compression.
 
-The service provides highly readable transcripts that often remove disfluencies and provide more accurate sentence boundaries, punctuation, and capitalization. You can also leverage prompts to improve the quality of the model outputs as fit for your scenario. See [Best practices for improving system information](#best-practices-for-improving-system-performance) for more information.
+The service provides highly readable transcripts that often remove disfluencies and provide more accurate sentence boundaries, punctuation, and capitalization. You can also use prompts to improve the quality of the model outputs as fit for your scenario. See [Best practices for improving system information](#best-practices-for-improving-system-performance) for more information.
 
 For greater detail on 4o model's capabilities, see the [OpenAI 4o System Card](https://openai.com/index/gpt-4o-system-card/). 
 
@@ -312,18 +299,18 @@ Text models can be used in multiple scenarios. The following list isn't comprehe
 - **Question-answering** : Users can ask questions and receive answers from trusted source documents such as internal company documentation. The application doesn't generate answers ungrounded in trusted source documentation.
 - **Reason over structured and unstructured data** : Users can analyze inputs using classification, sentiment analysis of text, or entity extraction. Examples include analyzing product feedback sentiment, analyzing support calls and transcripts, and refining text-based search with embeddings.
 - **Search** : Users can search trusted source documents such as internal company documentation. The application doesn't generate results ungrounded in trusted source documentation.
-- **Summarization** : Users can submit content to be summarized for predefined topics built into the application and cannot use the application as an open-ended summarizer. Examples include summarization of internal company documentation, call center transcripts, technical reports, and product reviews.
-- **Writing assistance on specific topics** : Users can create new content or rewrite content submitted by the user as a writing aid for business content or pre-defined topics. Users can only rewrite or create content for specific business purposes or predefined topics and cannot use the application as a general content creation tool for all topics. Examples of business content include proposals and reports. For journalistic use, see above  **Journalistic content** use case.
-- **Data generation for fine-tuning**: Users can use a model in Azure OpenAI to generate data which is used solely to fine-tune (i) another Azure OpenAI model, using the fine-tuning capabilities of Azure OpenAI, and/or (ii) another Azure AI custom model, using the fine-tuning capabilities of the Foundry Tool. Generating data and fine-tuning models is limited to internal users only; the fine-tuned model may only be used for inferencing in the applicable Foundry Tool and, for Azure OpenAI service, only for customer's permitted use case(s) under this form.
+- **Summarization** : Users can submit content to be summarized for predefined topics built into the application and can't use the application as an open-ended summarizer. Examples include summarization of internal company documentation, call center transcripts, technical reports, and product reviews.
+- **Writing assistance on specific topics** : Users can create new content or rewrite content submitted by the user as a writing aid for business content or predefined topics. Users can only rewrite or create content for specific business purposes or predefined topics and cannot use the application as a general content creation tool for all topics. Examples of business content include proposals and reports. For journalistic use, see above  **Journalistic content** use case.
+- **Data generation for fine-tuning**: Users can use a model in Azure OpenAI to generate data, which is used solely to fine-tune (i) another Azure OpenAI model, using the fine-tuning capabilities of Azure OpenAI, and/or (ii) another Azure AI custom model, using the fine-tuning capabilities of the Foundry Tool. Generating data and fine-tuning models is limited to internal users only; the fine-tuned model may only be used for inferencing in the applicable Foundry Tool and, for Azure OpenAI service, only for customer's permitted use case(s) under this form.
 
 #### Fine-tuned use cases
 
-The following are additional use cases we recommend for fine-tuned models. Fine tuning is most appropriate for: 
+The following are other use cases we recommend for fine-tuned models. Fine tuning is most appropriate for: 
 - **Steering the style, format, tone or qualitative aspects of responses** via examples of the desired responses. 
 - **Ensuring the model reliably produces a desired output** such as providing responses in a specific format or ensuring responses are grounded by information in the prompt. 
-- **Use cases with many edge cases** that cannot be covered within examples in the prompt, such as complex natural language to code examples. 
+- **Use cases with many edge cases** that can't be covered within examples in the prompt, such as complex natural language to code examples. 
 - **Improving performance at specific skills or tasks** such as classification, summarization, or formatting – that can be hard to describe within a prompt. 
-- **Reducing costs or latency** by utilizing shorter prompts, or swapping a fine-tuned version of a smaller/faster model for a more general-purpose model (e.g. fine tuned GPT-3.5-Turbo for GPT-4). 
+- **Reducing costs or latency** by utilizing shorter prompts, or swapping a fine-tuned version of a smaller/faster model for a more general-purpose model (for example, fine tuned GPT-3.5-Turbo for GPT-4). 
 
 As with base models, the use case prohibitions outlined in the [Azure OpenAI Code of conduct](/legal/ai-code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) apply to fine-tuned models as well.  
 
