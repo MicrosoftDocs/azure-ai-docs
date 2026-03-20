@@ -159,8 +159,7 @@ Content-Type: application/json
       "name": "<registered-model-name>",
       "format": "FireworksCustom",
       "version": "1",
-      "source": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/a
-  ccounts/{foundry-account}/projects/{foundry-project}"
+      "source": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/projects/{foundry-project}"
     }
   }
 }
