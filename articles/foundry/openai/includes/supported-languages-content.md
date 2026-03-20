@@ -11,7 +11,7 @@ ms.custom: include
 
 ## Prerequisites
 
-- An Azue OpenAI model deployed
+- An Azure OpenAI model deployed
 - One of the following authentication methods:
 	- Microsoft Entra ID (recommended).
 	- An API key.
