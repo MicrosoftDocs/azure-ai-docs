@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Include file
+description: Include file
 author: scottpolly
 ms.author: scottpolly
 ms.service: azure-ai-foundry
@@ -53,7 +53,7 @@ Your example file requires at least 10 examples.
 
 ### Image detail control
 
-You can control the fidelity of image processing using the `detail` parameter in the `image_url` object. Note that the detail parameter impacts the cost of your training job; Low is lower cost but might lose fine visual details.
+You can control the fidelity of image processing using the `detail` parameter in the `image_url` object. The detail parameter impacts the cost of your training job; Low is lower cost but might lose fine visual details.
 
 - `low` — Downscales images to 512×512 pixels. Uses fewer tokens and reduces training cost.
 - `high` — Processes images at full resolution. Provides more visual detail but increases token usage.

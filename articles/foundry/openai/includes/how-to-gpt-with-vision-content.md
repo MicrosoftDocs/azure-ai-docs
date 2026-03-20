@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Include file
+description: Include file
 author: scottpolly
 ms.author: scottpolly
 ms.service: azure-ai-foundry
@@ -58,7 +58,7 @@ Get started using images in your chats with Azure OpenAI in Microsoft Foundry Mo
 
 ## API details
 
-The following commands show how to call the Chat Completion API with vision-enabled models. For more details, see the [API reference](https://aka.ms/gpt-v-api-ref).
+The following commands show how to call the Chat Completion API with vision-enabled models. For more information, see the [API reference](https://aka.ms/gpt-v-api-ref).
 
 #### [REST](#tab/rest)
 
@@ -77,7 +77,7 @@ The following is a sample request body. The format is the same as the chat compl
 > Remember to set a `"max_tokens"` or `max_completion_tokens` value, or the return output will be cut off. For o-series reasoning models, use `max_completion_tokens` instead of `max_tokens`.
 
 > [!IMPORTANT]
-> When uploading images, there is a limit of 10 images per chat request.
+> When uploading images, there's a limit of 10 images per chat request.
 
 > [!NOTE]
 > Supported image formats include JPEG, PNG, GIF (first frame only), and WEBP.
@@ -200,7 +200,7 @@ The following is a sample request body. The format is the same as the chat compl
 
 You can optionally define a `"detail"` parameter in the `"image_url"` field. Choose one of three values, `low`, `high`, or `auto`, to adjust the way the model interprets and processes images. 
 - `auto` setting: The default setting. The model decides between low or high based on the size of the image input.
-- `low` setting: the model does not activate the "high res" mode, instead processes a lower resolution 512x512 version, resulting in quicker responses and reduced token consumption for scenarios where fine detail isn't crucial.
+- `low` setting: the model doesn't activate the "high res" mode, instead processes a lower resolution 512x512 version, resulting in quicker responses and reduced token consumption for scenarios where fine detail isn't crucial.
 - `high` setting: the model activates "high res" mode. Here, the model initially views the low-resolution image and then generates detailed 512x512 segments from the input image. Each segment uses double the token budget, allowing for a more detailed interpretation of the image.
 
 You set the value using the format shown in this example:
