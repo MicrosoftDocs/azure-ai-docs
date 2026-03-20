@@ -1,6 +1,6 @@
 ---
 title: Run Workflows from Assistants in Foundry (classic)
-description: Run workflows in Azure Logic Apps from assistants in Microsoft Foundry Agent Service (classic). Connect to 1,400+ services and systems without custom code.
+description: description: Run workflows in Azure Logic Apps from assistants in Microsoft Foundry Agent Service (classic). Integrate and automate business tasks by using 1,400+ connectors for services and systems without custom code.
 services: cognitive-services, azure-logic-apps
 manager: nitinme
 author: alvinashcraft
@@ -15,13 +15,13 @@ ms.custom: azure-ai-agents
 #Customer intent: As an AI integration developer who works with Azure Logic Apps and Microsoft Foundry, I want to run workflows to perform tasks as functions from assistants with Foundry Agent Service (classic).
 ---
 
-# Run workflows as functions from assistants in Foundry Agent Service (classic)
+# Run workflows in Azure Logic Apps from assistants in Foundry Agent Service (classic)
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 
-To extend assistants in Foundry so they can work with your business or enterprise systems and complete real-world tasks, run workflows in Azure Logic Apps as assistant functions that automate real-world business tasks. On their own, assistants can't directly manage data in customer databases, submit orders, send notifications, or trigger complex business processes when they need to do so.
+To extend assistants in Foundry so they can work with your business or enterprise systems and automate real-world tasks, you can run workflows in Azure Logic Apps as assistant functions. These functions automate business tasks without requiring custom code. On their own, assistants can't directly manage data in customer databases, submit orders, send notifications, or trigger complex business processes when they need to do so.
 
 [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) is an integration platform lets you build automated workflows by using a visual designer. Rather than writing custom backend code for each integration, you can create logic app workflows from 1,400+ *connectors* that access Azure, Microsoft, and non-Microsoft services, systems, apps, and data sources, such as SAP, Salesforce, and Oracle.
 
