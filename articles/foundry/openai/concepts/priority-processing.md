@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/20/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: seramasu
@@ -77,17 +77,17 @@ Priority processing provides low-latency performance with the flexibility of pay
 | **Region**     | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
 |:---------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
 | canadaeast     | ❌                      | ❌                      | ❌                      | ❌                      |
-| centralus      | ❌                      | ✅                      | ❌                      | ✅                      |
-| eastus         | ❌                      | ❌                      | ✅                      | ✅                      |
+| centralus      | ✅                      | ✅                      | ✅                      | ✅                      |
+| eastus         | ✅                      | ✅                      | ✅                      | ✅                      |
 | francecentral  | ❌                      | ❌                      | ✅                      | ✅                      |
 | koreacentral   | ❌                      | ❌                      | ❌                      | ❌                      |
 | polandcentral  | ❌                      | ❌                      | ❌                      | ✅                      |
-| southcentralus | ❌                      | ❌                      | ❌                      | ✅                      |
+| southcentralus | ✅                      | ✅                      | ✅                      | ✅                      |
 | southindia     | ❌                      | ❌                      | ❌                      | ❌                      |
 | swedencentral  | ❌                      | ❌                      | ✅                      | ✅                      |
 | uksouth        | ❌                      | ❌                      | ❌                      | ❌                      |
 | westeurope     | ❌                      | ❌                      | ❌                      | ✅                      |
-| westus3        | ❌                      | ❌                      | ❌                      | ✅                      |
+| westus3        | ✅                      | ✅                      | ✅                      | ✅                      |
 
 
 ---
