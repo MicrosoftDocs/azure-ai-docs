@@ -1369,6 +1369,73 @@ response = openai.responses.create(
 print(response.output_text)
 ```
 
+## Advanced template syntax
+
+Structured inputs support full [Handlebars](https://handlebarsjs.com/) template syntax beyond simple variable substitution. You can use conditionals, loops, and other built-in helpers to create dynamic instruction logic within a single agent definition.
+
+The following example shows an agent definition that uses conditionals and loops to adapt behavior based on runtime inputs:
+
+```json
+{
+  "name": "adaptive-support-agent",
+  "definition": {
+    "kind": "prompt",
+    "model": "gpt-4o",
+    "instructions": "You are a support agent for {{companyName}}. {{#if isPremiumUser}}This is a premium customer — prioritize their request and offer advanced troubleshooting.{{else}}This is a standard customer — follow the standard support workflow.{{/if}} The customer's preferred language is {{language}}. {{#if specializations}}The customer has expertise in: {{#each specializations}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}.{{/if}}",
+    "structured_inputs": {
+      "companyName": {
+        "type": "string",
+        "description": "Company name for branding"
+      },
+      "isPremiumUser": {
+        "type": "boolean",
+        "description": "Whether the customer has a premium plan"
+      },
+      "language": {
+        "type": "string",
+        "description": "Customer's preferred language",
+        "default_value": "English"
+      },
+      "specializations": {
+        "type": "array",
+        "description": "Customer's areas of expertise"
+      }
+    }
+  }
+}
+```
+
+At runtime, the template resolves based on the supplied values:
+
+```json
+{
+  "agent_reference": {
+    "type": "agent_reference",
+    "name": "adaptive-support-agent"
+  },
+  "input": [{"type": "message", "role": "user", "content": "I need help configuring my deployment."}],
+  "structured_inputs": {
+    "companyName": "Contoso",
+    "isPremiumUser": true,
+    "language": "English",
+    "specializations": ["Kubernetes", "Azure DevOps", "Terraform"]
+  }
+}
+```
+
+With these values, the resolved instructions become:
+
+> You are a support agent for Contoso. This is a premium customer — prioritize their request and offer advanced troubleshooting. The customer's preferred language is English. The customer has expertise in: Kubernetes, Azure DevOps, Terraform.
+
+The following table summarizes the supported Handlebars helpers:
+
+| Helper | Syntax | Description |
+|--------|--------|-------------|
+| Conditional | `{{#if value}}...{{else}}...{{/if}}` | Render content based on a truthy or falsy value |
+| Negation | `{{#unless value}}...{{/unless}}` | Render content when a value is falsy |
+| Loop | `{{#each array}}{{this}}{{/each}}` | Iterate over array items |
+| Last item check | `{{#unless @last}}, {{/unless}}` | Conditionally render separators between loop items |
+
 ## Related content
 
 - [Code Interpreter tool for Foundry agents](tools/code-interpreter.md)
