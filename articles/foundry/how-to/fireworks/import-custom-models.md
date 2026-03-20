@@ -131,13 +131,16 @@ With the model registered, you can deploy it to Fireworks' cloud for inference.
 
 When the deployment completes, the status shows **Succeeded** in your deployment list.
 
+> [!NOTE]
+> You can only have one active model deployment of a custom model at a time in a given project.
+
 ### Deployment examples
 
 Use the following examples to automate parts of the deployment workflow after the custom model is registered. The REST API example creates a deployment by using the management API. The PowerShell and Bash examples use the Azure CLI Cognitive Services tooling to create the same deployment from a terminal.
 
 # [REST API](#tab/rest-api)
 
-Use the Azure AI Foundry management API to create a deployment for the imported model:
+Use the Azure AI Foundry management API to create a deployment for the imported model. This example uses `GlobalProvisionedManaged` for a `qwen3-14b` deployment. For that model, the minimum capacity is `80`.
 
 ```http
 PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/deployments/{deployment-name}?api-version=2025-06-01
@@ -148,28 +151,28 @@ Content-Type: application/json
 ```json
 {
   "sku": {
-    "name": "Standard",
-    "capacity": 10
+    "name": "GlobalProvisionedManaged",
+    "capacity": 80
   },
   "properties": {
     "model": {
-      "format": "<registered-model-format>",
       "name": "<registered-model-name>",
-      "version": "<registered-model-version>"
+      "format": "FireworksCustom",
+      "version": "1",
+      "source": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/a
+  ccounts/{foundry-account}/projects/{foundry-project}"
     }
   }
 }
 ```
 
-Wait until the deployment returns `Succeeded` in `properties.provisioningState` before you send inference requests.
-
-Reference: [Deployments - Create Or Update](/rest/api/aifoundry/accountmanagement/deployments/create-or-update?view=rest-aifoundry-accountmanagement-2025-06-01)
+Be sure to replace the placeholders in the request body and URL with your details.
 
 # [PowerShell](#tab/powershell)
 
 Use the Azure CLI Cognitive Services tooling to create the deployment. This example uses `GlobalProvisionedManaged` for a `qwen3-14b` deployment. For that model, the minimum capacity is `80`.
 
-First, get the ARM resource ID for the Foundry project. Use that value as the model source when you create the deployment.
+First, get the Azure Resource Manager (ARM) resource ID for the Foundry project. Use that value as the model source when you create the deployment.
 
 ```powershell
 $foundryResource = "<foundry-resource-name>"
@@ -184,7 +187,7 @@ $projectResourceId = az cognitiveservices account project show `
   --query "id" `
   -o tsv
 
-$deploymentName = "hermes-4-14b-fw"
+$deploymentName = "<your-model-deployment-name>"
 $modelVersion = "1"
 $modelFormat = "FireworksCustom"
 $modelSource = $projectResourceId
@@ -203,17 +206,11 @@ az cognitiveservices account deployment create `
   --sku-capacity $skuCapacity
 ```
 
-Currently, you can deploy only one instance of a custom model at a time.
-
-Reference: [az cognitiveservices account project show](/cli/azure/cognitiveservices/account/project#az-cognitiveservices-account-project-show)
-
-Reference: [az cognitiveservices account deployment create](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-create)
-
 # [Bash](#tab/bash)
 
 Use the Azure CLI Cognitive Services tooling to create the deployment. This example uses `GlobalProvisionedManaged` for a `qwen3-14b` deployment. For that model, the minimum capacity is `80`.
 
-First, get the ARM resource ID for the Foundry project. Use that value as the model source when you create the deployment.
+First, get the Azure Resource Manager (ARM) resource ID for the Foundry project. Use that value as the model source when you create the deployment.
 
 ```bash
 foundryResource="<foundry-resource-name>"
@@ -228,7 +225,7 @@ projectResourceId=$(az cognitiveservices account project show \
   --query "id" \
   -o tsv)
 
-deploymentName="hermes-4-14b-fw"
+deploymentName="<your-model-deployment-name>"
 modelVersion="1"
 modelFormat="FireworksCustom"
 modelSource="$projectResourceId"
@@ -246,14 +243,6 @@ az cognitiveservices account deployment create \
   --sku-name "$skuName" \
   --sku-capacity "$skuCapacity"
 ```
-
-Currently, you can deploy only one instance of a custom model at a time.
-
-Reference: [az cognitiveservices account project show](/cli/azure/cognitiveservices/account/project#az-cognitiveservices-account-project-show)
-
-Reference: [az cognitiveservices account deployment create](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-create)
-
----
 
 ### Test your deployment
 
