@@ -37,7 +37,7 @@ Azure Speech offers MAI-Voice-1 as an advanced neural voice model optimized for 
 
 **Usage**: Available for third-party developers. Microsoft holds full licensing rights for commercial use.
 
-### Key features of MAI-Voice-1
+## Key features
 
 | Key features | Description |
 |-------------|-------------|
