@@ -284,7 +284,7 @@ Save the following JSON as a file (for example, `agent365-policy.json`):
 
 ### Deploy the policy
 
-### [Azure CLI](#tab/azure-cli)
+### [Azure CLI](#tab/policy-azure-cli)
 
 ```azurecli
 # Create the policy definition
@@ -304,7 +304,7 @@ az policy assignment create \
   --params '{ "agents365IngestionEndpoint": { "value": "<entra-tenant-id>.agent365.com" }, "loggingEnabled": { "value": "disabled" } }'
 ```
 
-### [Azure PowerShell](#tab/azure-powershell)
+### [Azure PowerShell](#tab/policy-azure-powershell)
 
 ```azurepowershell
 # Create the policy definition
