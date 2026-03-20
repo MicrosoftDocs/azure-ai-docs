@@ -138,7 +138,7 @@ When the deployment completes, the status shows **Succeeded** in your deployment
 
 Use the following examples to automate parts of the deployment workflow after the custom model is registered. Each example deploys the custom model with `80` units of Global Provisioned throughput. Be sure to replace any placeholders with your details.
 
-# [REST API](#tab/rest-api)
+#### [REST API](#tab/rest-api)
 
 ```http
 PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/deployments/{deployment-name}?api-version=2025-06-01
@@ -163,7 +163,7 @@ Content-Type: application/json
 }
 ```
 
-# [PowerShell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 ```powershell
 az cognitiveservices account deployment create `
@@ -178,7 +178,7 @@ az cognitiveservices account deployment create `
   --sku-capacity 80
 ```
 
-# [Bash](#tab/bash)
+#### [Bash](#tab/bash)
 
 ```bash
 az cognitiveservices account deployment create \
