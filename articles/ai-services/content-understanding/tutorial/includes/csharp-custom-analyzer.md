@@ -435,12 +435,6 @@ var fieldSchema = new ContentFieldSchema(
             Description =
                 "Overall sentiment of the call"
         },
-        ["People"] = new ContentFieldDefinition
-        {
-            Type = ContentFieldType.Array,
-            Description =
-                "List of people mentioned"
-        }
     })
 {
     Name = "call_center_schema",
@@ -448,23 +442,6 @@ var fieldSchema = new ContentFieldSchema(
         "Schema for analyzing customer"
         + " support calls"
 };
-
-var peopleDef = fieldSchema.Fields["People"];
-peopleDef.ItemDefinition =
-    new ContentFieldDefinition
-    {
-        Type = ContentFieldType.Object
-    };
-peopleDef.ItemDefinition.Properties
-    .Add("Name", new ContentFieldDefinition
-    {
-        Type = ContentFieldType.String
-    });
-peopleDef.ItemDefinition.Properties
-    .Add("Role", new ContentFieldDefinition
-    {
-        Type = ContentFieldType.String
-    });
 
 fieldSchema.Fields["Sentiment"]
     .Enum.Add("Positive");
@@ -542,10 +519,9 @@ An example output looks like:
 ```text
 Analyzer 'my_audio_analyzer_ID' created successfully!
   Description: Custom analyzer for customer support calls
-  Fields (3):
+  Fields (2):
     - Summary: string (generate)
     - Sentiment: string (classify)
-    - People: array (auto)
 ```
 
 > [!TIP]
@@ -559,34 +535,17 @@ The following example creates a custom video analyzer based on the [prebuilt vid
 string analyzerId =
     $"my_video_analyzer_{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}";
 
-var fieldSchema = new ContentFieldSchema(
-    new Dictionary<string, ContentFieldDefinition>
-    {
-        ["Segments"] = new ContentFieldDefinition
-        {
-            Type = ContentFieldType.Array
-        }
-    })
+var segmentItemDef = new ContentFieldDefinition
 {
-    Name = "video_schema",
-    Description =
-        "Schema for analyzing product"
-        + " demo videos"
+    Type = ContentFieldType.Object
 };
-
-var segmentsDef = fieldSchema.Fields["Segments"];
-segmentsDef.ItemDefinition =
+segmentItemDef.Properties.Add("SegmentId",
     new ContentFieldDefinition
-    {
-        Type = ContentFieldType.Object
-    };
-segmentsDef.ItemDefinition.Properties
-    .Add("SegmentId", new ContentFieldDefinition
     {
         Type = ContentFieldType.String
     });
-segmentsDef.ItemDefinition.Properties
-    .Add("Description", new ContentFieldDefinition
+segmentItemDef.Properties.Add("Description",
+    new ContentFieldDefinition
     {
         Type = ContentFieldType.String,
         Method = GenerationMethod.Generate,
@@ -594,12 +553,30 @@ segmentsDef.ItemDefinition.Properties
             "Detailed summary of the "
             + "video segment"
     });
-segmentsDef.ItemDefinition.Properties
-    .Add("Sentiment", new ContentFieldDefinition
+segmentItemDef.Properties.Add("Sentiment",
+    new ContentFieldDefinition
     {
         Type = ContentFieldType.String,
         Method = GenerationMethod.Classify
     });
+
+var segmentsDef = new ContentFieldDefinition
+{
+    Type = ContentFieldType.Array
+};
+segmentsDef.ItemDefinition = segmentItemDef;
+
+var fieldSchema = new ContentFieldSchema(
+    new Dictionary<string, ContentFieldDefinition>
+    {
+        ["Segments"] = segmentsDef
+    })
+{
+    Name = "video_schema",
+    Description =
+        "Schema for analyzing product"
+        + " demo videos"
+};
 
 var sentimentDef =
     fieldSchema.Fields["Segments"]
@@ -669,8 +646,7 @@ if (result.FieldSchema?.Fields != null)
     }
 }
 ```
-
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
 Analyzer 'my_video_analyzer_ID' created successfully!
@@ -680,7 +656,7 @@ Analyzer 'my_video_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for video content.
+> This code adapts the [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for video content.
 
 ---
 
@@ -953,14 +929,49 @@ var analyzeResult = analyzeOperation.Value;
 if (analyzeResult.Contents?.Count > 0)
 {
     var content = analyzeResult.Contents[0];
-    Console.WriteLine(
-        $"Content type: {content.Kind}");
     if (content.Fields != null
         && content.Fields.TryGetValue(
-            "Segments", out var segmentsField))
+            "Segments", out var segmentsField)
+        && segmentsField
+            is ContentArrayField segmentsArr)
     {
         Console.WriteLine(
-            $"Segments: {segmentsField}");
+            $"Segments ({segmentsArr.Count}):");
+        for (int i = 0;
+            i < segmentsArr.Count; i++)
+        {
+            if (segmentsArr[i]
+                is ContentObjectField segObj
+                && segObj.Value != null)
+            {
+                Console.WriteLine(
+                    $"  Segment {i + 1}:");
+                if (segObj.Value.TryGetValue(
+                    "Description",
+                    out var descField))
+                {
+                    var desc =
+                        descField
+                            is ContentStringField sf
+                            ? sf.Value : null;
+                    Console.WriteLine(
+                        $"    Description: "
+                        + $"{desc ?? "(none)"}");
+                }
+                if (segObj.Value.TryGetValue(
+                    "Sentiment",
+                    out var sentField))
+                {
+                    var sent =
+                        sentField
+                            is ContentStringField sf
+                            ? sf.Value : null;
+                    Console.WriteLine(
+                        $"    Sentiment: "
+                        + $"{sent ?? "(none)"}");
+                }
+            }
+        }
     }
 }
 
@@ -974,11 +985,58 @@ Console.WriteLine(
     + " deleted successfully.");
 ```
 
-An example output looks like: `[TO VERIFY]`
+An example output looks like:
 
 ```text
-Content type: video
-Segments: [placeholder - video segment data]
+Segments (16):
+  Segment 1:
+    Description: The video opens with a scenic aerial view of an island, featuring a small airplane flying over the landscape. The screen displays the logos for 'Flight Simulator' and 'Microsoft Azure AI,' indicating a collaboration or integration between the two.
+    Sentiment: Positive
+  Segment 2:
+    Description: A man is shown sitting in a modern office environment, likely preparing to speak or introduce the topic. The background features geometric wall lights and a plant, giving a professional and contemporary feel.
+    Sentiment: Neutral
+  Segment 3:
+    Description: The segment displays a close-up of audio waveforms on a screen, visually representing sound data. The accompanying audio discusses the importance of good data for neural TTS (Text-to-Speech) to achieve a high-quality voice.
+    Sentiment: Neutral
+  Segment 4:
+    Description: Another man appears in a similar office setting, possibly continuing the explanation or providing additional commentary about the TTS model.
+    Sentiment: Neutral
+  Segment 5:
+    Description: The video transitions to an outdoor scene showing a large facility surrounded by fields under a clear sky. This likely represents the data centers or infrastructure used for building the universal TTS model.
+    Sentiment: Neutral
+  Segment 6:
+    Description: The segment moves inside a data center, showing rows of servers and high-tech equipment. This visual emphasizes the scale and technological sophistication behind the TTS model's development.
+    Sentiment: Neutral
+  Segment 7:
+    Description: The first man returns, continuing his explanation in the office setting. The transcript mentions accumulating large amounts of data to capture audio nuances and generate natural voices.
+    Sentiment: Positive
+  Segment 8:
+    Description: A biplane is shown flying over a picturesque landscape, highlighting the realism and immersive experience of the Flight Simulator. This visual connects the product's capabilities to the natural-sounding voices enabled by Azure AI.
+    Sentiment: Positive
+  Segment 9:
+    Description: The segment features a plane flying near a castle surrounded by lush greenery and mountains. The visuals reinforce the immersive environments possible in Flight Simulator, enhanced by advanced AI voice technology.
+    Sentiment: Positive
+  Segment 10:
+    Description: A bald man is interviewed in a modern office space, likely discussing the benefits of cognitive services offerings, such as higher fidelity and more human-like voices, as mentioned in the transcript.
+    Sentiment: Positive
+  Segment 11:
+    Description: The interview continues with the bald man, focusing on the advantages of Azure AI's TTS technology. The transcript notes that the voices sound much more like actual human voices.
+    Sentiment: Positive
+  Segment 12:
+    Description: The video shifts to an overhead view of an airplane on the runway, possibly preparing for pushback. This visual ties into the transcript mentioning 'Orlando ground 9555 requesting the end of pushback.'
+    Sentiment: Neutral
+  Segment 13:
+    Description: A ground crew member directs an Airbus aircraft, with pilots visible in the cockpit. The transcript includes communication about pushback, demonstrating realistic voice interactions in the simulator.
+    Sentiment: Neutral
+  Segment 14:
+    Description: Ground crew members are seen walking near airplanes on the tarmac, reinforcing the realism and operational detail in the Flight Simulator environment.
+    Sentiment: Neutral
+  Segment 15:
+    Description: A close-up of an Airbus aircraft at the gate, with the transcript confirming the end of pushback. This segment highlights the simulator's attention to detail and realistic voice communications.
+    Sentiment: Neutral
+  Segment 16:
+    Description: The video concludes with the Microsoft logo and branding, signaling the end of the product demo and reinforcing the partnership between Flight Simulator and Microsoft Azure AI.
+    Sentiment: Positive
 
 Cleaning up: deleting analyzer 'my_video_analyzer_ID'...
 Analyzer 'my_video_analyzer_ID' deleted successfully.
