@@ -34,7 +34,7 @@ ms.custom: include
 
 ::: zone-end
 
-::: zone pivot="programming-language-JavaScript"
+::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [JavaScript](language-overview/javascript.md)]
 
