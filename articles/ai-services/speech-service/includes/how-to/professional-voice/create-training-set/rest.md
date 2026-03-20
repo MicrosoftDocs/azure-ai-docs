@@ -33,7 +33,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "projectId": "ProjectId",
   "locale": "en-US",
   "voiceKind": "Female"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/trainingsets/JessicaTrainingSetId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/trainingsets/JessicaTrainingSetId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -61,6 +61,7 @@ https://contoso.blob.core.windows.net/voicecontainer/jessica300/*.txt.
 Construct the request body according to the following instructions:
 
 - Set the required `kind` property to `AudioAndScript`. The kind determines the type of training set. 
+- Optionally, set the `processAs` property to specify the processing method. Supported values are `Segmented` (default) and `Contextual`. `Contextual` is an enhanced mode that retains the audio as a whole to keep the contextual information for more natural intonations. If not specified, the default `Segmented` mode is used. For more information, see [training data types](../../../../how-to-custom-voice-training-data.md).
 - Set the required `audios` property. Within the `audios` property, set the following properties:
   - Set the required `containerUrl` property to the URL of the Azure Blob Storage container that contains the audio files. Use [shared access signatures (SAS) for a container](/azure/storage/blobs/sas-service-create-dotnet-container#create-a-service-sas-for-a-container) with both read and list permissions.
   - Set the required `extensions` property to the extensions of the audio files. 
@@ -78,6 +79,7 @@ Make an HTTP POST request using the URI as shown in the following [TrainingSets_
 ```azurecli-interactive
 curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
   "kind": "AudioAndScript",
+  "processAs": "Contextual",
   "audios": {
     "containerUrl": "https://contoso.blob.core.windows.net/voicecontainer?mySasToken",
     "prefix": "jessica300/",
@@ -92,13 +94,13 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type
       ".txt"
     ]
   }
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/trainingsets/JessicaTrainingSetId:upload?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/trainingsets/JessicaTrainingSetId:upload?api-version=2026-01-01"
 ```
 
 The response header contains the `Operation-Location` property. Use this URI to get details about the [TrainingSets_UploadData](/rest/api/aiservices/speechapi/training-sets/upload-data) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2026-01-01
 Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
