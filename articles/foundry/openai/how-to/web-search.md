@@ -19,7 +19,7 @@ Web search enables models to retrieve and ground responses with real-time inform
 
 > [!NOTE]
 > `web_search` is now the recommended tool for Web search in the Azure OpenAI Responses API.
-> Preview versions of the web search tool (`web_search_preview`) while supported is not recommended.
+> The preview version of the web search tool (`web_search_preview`) while supported is not recommended.
 
 > [!IMPORTANT]
 > * Web Search uses Grounding with Bing Search and/or Grounding with Bing Custom Search, which are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
