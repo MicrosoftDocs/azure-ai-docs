@@ -28,7 +28,7 @@ You can disable Grounding with Bing Search, Grounding with Bing Custom Search, o
 
 ## Disable web search tool
 
-You can disable the web search tool for all accounts in a subscription. For more information, see [Disable Bing Web Search](../how-to/tools/web-search.md#disable-bing-web-search).
+You can disable the web search tool for all accounts in a subscription. For more information, see [Disable Web Search](./tools/web-search.md#disable-web-search).
 
 ## Disable web knowledge
 

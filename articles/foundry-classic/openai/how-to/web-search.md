@@ -388,6 +388,144 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
+### Domain filtering
+
+You can limit results to a specific set of domains using domain filtering. You can allow-list up to 100 URLs. You can omit the HTTP or HTTPS prefix when formatting the URLs. For example, use microsoft.com instead of https://www.microsoft.com/. Subdomains are also included in the search. Domain filtering works in the `web_search_tool` only with responses API. 
+
+#### REST API - Entra ID
+
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+	  "model": "gpt-5",
+	  "reasoning": { "effort": "low" },
+	  "tools": [
+	    {
+	      "type": "web_search",
+	      "filters": {
+		"allowed_domains": [
+		  "pubmed.ncbi.nlm.nih.gov",
+		  "clinicaltrials.gov",
+		  "www.who.int",
+		  "www.cdc.gov",
+		  "www.fda.gov"
+		]
+	      }
+	    }
+	  ],
+	  "tool_choice": "auto",
+	  "include": ["web_search_call.action.sources"],
+	  "input": "Please perform a web search on how semaglutide is used in the treatment of diabetes."
+	}'
+```
+
+#### REST API - Key
+
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+	  "model": "gpt-5",
+	  "reasoning": { "effort": "low" },
+	  "tools": [
+	    {
+	      "type": "web_search",
+	      "filters": {
+		"allowed_domains": [
+		  "pubmed.ncbi.nlm.nih.gov",
+		  "clinicaltrials.gov",
+		  "www.who.int",
+		  "www.cdc.gov",
+		  "www.fda.gov"
+		]
+	      }
+	    }
+	  ],
+	  "tool_choice": "auto",
+	  "include": ["web_search_call.action.sources"],
+	  "input": "Please perform a web search on how semaglutide is used in the treatment of diabetes."
+	}'
+```
+
+#### Python - API Key
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+response = client.responses.create(   
+  model="gpt-5", # Replace with your model deployment name
+  tools= [
+	    {
+	      "type": "web_search",
+	      "filters": {
+		"allowed_domains": [
+		  "pubmed.ncbi.nlm.nih.gov",
+		  "clinicaltrials.gov",
+		  "www.who.int",
+		  "www.cdc.gov",
+		  "www.fda.gov"
+		]
+	      }
+	    }
+	  ],
+  tool_choice = "auto",
+  include = ["web_search_call.action.sources"],
+  input="Please perform a web search on how semaglutide is used in the treatment of diabetes."
+)
+
+print(response.output_text)
+```
+
+#### Python - Entra ID
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+response = client.responses.create(   
+  model="gpt-5", # Replace with your model deployment name
+  tools= [
+	    {
+	      "type": "web_search",
+	      "filters": {
+		"allowed_domains": [
+		  "pubmed.ncbi.nlm.nih.gov",
+		  "clinicaltrials.gov",
+		  "www.who.int",
+		  "www.cdc.gov",
+		  "www.fda.gov"
+		]
+	      }
+	    }
+	  ],
+  tool_choice = "auto",
+  include = ["web_search_call.action.sources"],
+  input="Please perform a web search on how semaglutide is used in the treatment of diabetes."
+)
+
+print(response.output_text)
+```
+
+> [!IMPORTANT]
+> Live internet access is not supported. The parameter `external_web_access` if passed will be ignored.
+
 ## Manage web search tool
 
 You can enable or disable the `web_search` tool in the Responses API at the subscription level using Azure CLI. This setting applies to all accounts within the specified subscription.
