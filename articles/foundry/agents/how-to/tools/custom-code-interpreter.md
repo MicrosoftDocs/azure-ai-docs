@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/18/2026
+ms.date: 03/19/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -300,7 +300,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 ```
 
@@ -312,9 +312,9 @@ import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.ai.agents.models.McpTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.core.util.BinaryData;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -342,7 +342,7 @@ public class CustomCodeInterpreterExample {
         McpTool customCodeInterpreter = new McpTool("custom-code-interpreter")
             .setServerUrl(mcpServerUrl)
             .setProjectConnectionId(mcpConnectionId)
-            .setRequireApproval(BinaryData.fromString("\"never\""));
+            .setRequireApproval("never");
 
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a helpful assistant that can run Python code to analyze data and solve problems.")
@@ -356,8 +356,8 @@ public class CustomCodeInterpreterExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Calculate the factorial of 10 using Python."));
 
