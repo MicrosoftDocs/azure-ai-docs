@@ -1051,9 +1051,22 @@ An example output looks like:
 ```text
 Content kind: audioVisual
 Segments (16):
-  Segment 00:00:00.000-00:00:01.467: The video opens with a scenic aerial view of an island... (Sentiment: Positive)
-  Segment 00:00:01.467-00:00:03.233: A man is shown in an interview setting... (Sentiment: Neutral)
-  ...
+  Segment 00:00:00.000-00:00:01.467: The video opens with a scenic aerial view of an island, featuring a small aircraft flying above the landscape. The screen displays the logos for 'Flight Simulator' and 'Microsoft Azure AI,' indicating a collaboration or integration between the two products. (Sentiment: Positive)
+  Segment 00:00:01.467-00:00:03.233: A man is shown in an interview setting, sitting in a modern office environment. The transcript begins discussing neural TTS (Text-to-Speech) and the importance of good data for achieving a high-quality voice. (Sentiment: Neutral)
+  Segment 00:00:03.233-00:00:07.367: The visuals shift to a digital audio waveform, emphasizing the technical aspect of TTS. The transcript explains that a universal TTS model was built using 3,000 hours of data, highlighting the scale and quality of the dataset. (Sentiment: Positive)
+  Segment 00:00:07.367-00:00:08.200: Another man appears in an interview setting, continuing the discussion about the accumulation of data for the universal TTS model. The transcript notes that the model captures audio nuances for more natural voice generation. (Sentiment: Positive)
+  Segment 00:00:08.200-00:00:11.367: The video transitions to an outdoor scene showing a large facility, likely a data center, set in a rural landscape. This visually supports the scale of infrastructure required for the TTS model. (Sentiment: Neutral)
+  Segment 00:00:11.367-00:00:13.567: Inside a data center, rows of servers are shown, reinforcing the technological backbone of the TTS system. The transcript continues to emphasize the accumulation of data and the model's capabilities. (Sentiment: Neutral)
+  Segment 00:00:13.567-00:00:16.100: The interview returns to the first man, who elaborates on the universal model's ability to generate natural voices. The transcript mentions the model's ability to capture nuances, supporting the visuals. (Sentiment: Positive)
+  Segment 00:00:16.100-00:00:19.433: A biplane is seen flying over a coastal landscape, visually connecting the Flight Simulator experience to the advanced AI voice technology discussed earlier. (Sentiment: Positive)
+  Segment 00:00:19.433-00:00:23.967: A scenic view of a castle with a plane flying overhead, further showcasing the immersive environments possible in Flight Simulator. The transcript highlights the naturalness of the generated voices. (Sentiment: Positive)
+  Segment 00:00:23.967-00:00:30.033: A bald man is interviewed in a modern office setting. The transcript discusses the high fidelity of cognitive services offerings, noting that the voices sound much more like actual human voices. (Sentiment: Positive)
+  Segment 00:00:30.033-00:00:33.200: The interview with the bald man continues, reinforcing the message about the realism and fidelity of the AI-generated voices. (Sentiment: Positive)
+  Segment 00:00:33.200-00:00:35.267: The video shows an overhead view of an airplane on the tarmac, possibly preparing for pushback. The transcript transitions to a simulated ATC (Air Traffic Control) exchange, demonstrating the practical application of TTS in Flight Simulator. (Sentiment: Neutral)
+  Segment 00:00:35.267-00:00:37.700: A ground crew member directs an Airbus aircraft, visually representing the realism and immersion of Flight Simulator. The transcript includes ATC communication, showing the integration of natural-sounding AI voices. (Sentiment: Positive)
+  Segment 00:00:37.700-00:00:39.200: Ground crew members are seen walking on the tarmac near aircraft, continuing the realistic airport environment. The transcript features further ATC communication. (Sentiment: Neutral)
+  Segment 00:00:39.200-00:00:42.033: A close-up of an Airbus aircraft at the gate, reinforcing the realism and detail in Flight Simulator. The transcript continues with ATC exchanges, demonstrating the natural voice output. (Sentiment: Positive)
+  Segment 00:00:42.033-00:00:43.866: The video ends with the Microsoft logo and branding, signifying the conclusion of the demo and reinforcing the partnership between Flight Simulator and Microsoft Azure AI. (Sentiment: Positive)
 
 Cleaning up: deleting analyzer 'my_video_analyzer_ID'...
 Analyzer 'my_video_analyzer_ID' deleted successfully.

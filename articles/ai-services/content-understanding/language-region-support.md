@@ -24,15 +24,15 @@ To use Azure Content Understanding, create your Foundry resource in a supported 
 
 | Identifier      | Region         | Geography       |
 |-----------------|----------------|-----------------|
-| `australiaeast` | Australia East | Australia |
+| `australiaeast` | Australia East | Asia Pacific |
 | `eastus` | East US | United States |
 | `eastus2` | East US 2 | United States |
-| `japaneast` | Japan East | Japan |
+| `japaneast` | Japan East | Asia Pacific |
 | `northeurope` | North Europe | Europe |
 | `southcentralus` | South Central US | United States |
 | `southeastasia` | Southeast Asia | Asia Pacific |
-| `swedencentral` | Sweden Central | Sweden |
-| `uksouth` | UK South | United Kingdom |
+| `swedencentral` | Sweden Central | Europe |
+| `uksouth` | UK South | Europe |
 | `westeurope` | West Europe | Europe |
 | `westus` | West US | United States |
 | `westus3` | West US 3 | United States |
