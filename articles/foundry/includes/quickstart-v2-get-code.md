@@ -33,7 +33,7 @@ Sign in using the CLI `az login` command to authenticate before running your C# 
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/typescript/quickstart/src)
+> [Get the code](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/typescript/quickstart/create-agent/src/quickstart-create-agent.ts)
 
 Sign in using the CLI `az login` command to authenticate before running your TypeScript scripts.
 
@@ -41,7 +41,7 @@ Sign in using the CLI `az login` command to authenticate before running your Typ
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/)
+> [Get the code](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/java/quickstart/create-agent/src/main/java/com/azure/ai/agents/CreateAgent.java)
 
 Sign in using the CLI `az login` command to authenticate before running your Java scripts.
 

@@ -51,7 +51,7 @@ Previously, Foundry project's capabilities required the management of multiple A
 
 New capabilities include:
 
-- **Access to [Foundry API](/rest/api/aifoundry/aiprojects/)** which is designed to build and evaluate API-first agentic applications that compose Agents, Evaluations, Models Indexes, Data in a unified experience, and with a consistent contract across model providers.
+- **Access to [Foundry API](/rest/api/aifoundry/aiproject/)** which is designed to build and evaluate API-first agentic applications that compose Agents, Evaluations, Models Indexes, Data in a unified experience, and with a consistent contract across model providers.
 
 - **[Microsoft Foundry SDK](./develop/sdk-overview.md)** wraps the Foundry API making it easy to integrate capabilities into code whether your application is built in Python, C#, JavaScript/TypeScript or Java.
 
