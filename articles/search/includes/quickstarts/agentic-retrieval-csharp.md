@@ -31,8 +31,6 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
 
 + [.NET 8](https://dotnet.microsoft.com/download/dotnet/8.0) or later.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download).
-
 + [Git](https://git-scm.com/downloads) to clone the sample repository.
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
@@ -47,11 +45,10 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
     ```bash
     cd azure-search-dotnet-samples/quickstart-agentic-retrieval
-    code .
     ```
 
 1. In `sample.env`, replace the placeholder values for `SEARCH_ENDPOINT` and `AOAI_ENDPOINT` with the URLs you obtained in [Get endpoints](#get-endpoints).
