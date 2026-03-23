@@ -29,15 +29,17 @@ Claude models in Foundry include:
 
 To learn more about the individual models, see [Available Claude models](#available-claude-models).
 
-[!INCLUDE [claude-usage-restriction](claude-usage-restriction.md)]
-
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go). See [subscription type and region support](#subscription-type-and-region-support) for more details.
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the supported regions: **East US2** or **Sweden Central**.
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md).
 - **Contributor** or **Owner** role on the resource group to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
+
+## Subscription type and region support
+
+[!INCLUDE [claude-usage-restriction](claude-usage-restriction.md)]
 
 ## Deploy Claude models
 
@@ -66,7 +68,7 @@ The following examples show how to send requests to Claude Sonnet 4.6 using Micr
 - Deployment name you chose during deployment creation. This name can be different from the model ID.
 
 > [!NOTE]
-> The `thinking` parameter supports types: `enabled` and `disabled`. For, Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level.
+> The `thinking` parameter supports types: `enabled` and `disabled`. For Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level.
 >
 > The `effort` parameter, which controls the quality/cost tradeoff for responses, supports effort levels: `low`, `medium`, and `high`. For Opus 4.6 and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
 
