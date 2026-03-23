@@ -37,7 +37,7 @@ To learn more about the individual models, see [Available Claude models](#availa
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md).
 - **Contributor** or **Owner** role on the resource group to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
-#### Subscription type and region support
+## Subscription type and region support
 
 [!INCLUDE [claude-usage-restriction](claude-usage-restriction.md)]
 
