@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing you to integrate your custom models into the voice interaction workflow. BYOM is useful for the following scenarios:
 
 - **Fine-tuned models**: Use your custom Azure OpenAI or Azure Foundry models
-- **Any Foundry model not pre-deployed by Voice Live**: Use models from the [Foundry model catalog](/azure/ai-foundry/foundry-models/concepts/models-from-partners) such as [Anthropic Claude](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude), Grok, [Fireworks](/azure/ai-foundry/how-to/fireworks/enable-fireworks-models) custom weights, or a [model router](/azure/ai-foundry/openai/how-to/model-router) deployment
+- **Any Foundry model not pre-deployed by Voice Live**: Use models from the [Foundry model catalog](/azure/foundry/foundry-models/concepts/models-from-partners) such as [Anthropic Claude](/azure/foundry/foundry-models/how-to/use-foundry-models-claude), Grok, [Fireworks](/azure/foundry/how-to/fireworks/enable-fireworks-models) custom weights, or a [model router](/azure/foundry/openai/how-to/model-router) deployment
 - **Provisioned throughput**: Use your PTU (Provisioned Throughput Units) deployments for consistent performance
 - **Content safety**: Apply customized content safety configurations with your LLM
 
@@ -23,7 +23,7 @@ The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 > You can integrate any model deployed in your Azure Foundry resource with the Voice Live API. To use model deployments from a different Foundry resource, see [Resource overrides](#resource-overrides).
 
 > [!TIP]
-> When you use your own model deployment with Voice Live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/ai-foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Microsoft Foundry portal](https://ai.azure.com/).
+> When you use your own model deployment with Voice Live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Microsoft Foundry portal](https://ai.azure.com/).
 
 ## Authentication setup
 
