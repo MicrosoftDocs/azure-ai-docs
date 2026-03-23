@@ -19,7 +19,7 @@ Before you begin, ensure you have:
 - **Azure subscription:** An active Azure subscription with the resources you want to monitor.
 - **Role-based access control (RBAC):** One or both of the following roles at the subscription or resource group scope:
   - [**Cost Management Reader**](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) – View costs and usage data.
-   - [**AI User**](../concepts/rbac-foundry.md#built-in-roles) – View Foundry resource data and usage context.
+  - [**Azure AI User**](../concepts/rbac-foundry.md#built-in-roles) – View Foundry resource data and usage context.
 - **Supported Azure account type:** One of the [supported account types for Cost Management](/azure/cost-management-billing/costs/understand-cost-mgt-data).
 - **Region and model availability check:** Confirm required model and feature availability in your target regions before deployment. For details, see [Feature availability across cloud regions](../reference/region-support.md).
 - **Resource topology awareness:** Know whether your cost views are scoped to subscription, resource group, or resource, and keep the same scope when you compare estimate versus actual cost.
@@ -30,7 +30,7 @@ If you need to grant these roles to team members, see [Assign access to Cost Man
 Use this task-to-role mapping as a starting point:
 
 - **View Cost Management data:** [Cost Management Reader](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader).
-- **View Foundry resources and related usage context:** [AI User](../concepts/rbac-foundry.md#built-in-roles).
+- **View Foundry resources and related usage context:** [Azure AI User](../concepts/rbac-foundry.md#built-in-roles).
 - **Create or modify custom roles:** **Owner** at the target scope.
 
 > [!NOTE]
