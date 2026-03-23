@@ -90,7 +90,7 @@ To add a model connection in the Foundry portal:
     1. Enable the **Deployment path** setting if your gateway exposes the chat completions API on a path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
        Leave the setting disabled if your gateway uses a standard path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
 1. Select **Add**.
-   The connection is created and appears in the list on the **External models** tab.
+   The connection is created and appears in the list on the **Admin-connected models** tab.
 
 ### External model deployments
 
@@ -98,7 +98,7 @@ Foundry automatically deploys models you add through a connection, so you can us
 
 * Each model added in the connection wizard corresponds to a *deployment* in Foundry. Foundry automatically routes requests from agents to these deployments through the connected gateway.
 
-* To see a list of deployments, select the **Models** > **Customer-managed deployments** tab in the left pane of your Foundry project. You manage these deployments at the project level, and any agent within the project can use them.
+* To see a list of deployments, select the **Models** > **Admin-connected deployments** tab in the left pane of your Foundry project. You manage these deployments at the project level, and any agent within the project can use them.
 
 * Select a model deployment to see its details, including the connection it belongs to and the model information you provided in the connection setup. You can also access the playground from the deployment details page to test the model with sample prompts.
 
