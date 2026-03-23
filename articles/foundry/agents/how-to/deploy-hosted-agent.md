@@ -177,7 +177,7 @@ Use the SDK for programmatic deployments or CI/CD integration.
     docker build -t myagent:v1 .
     ```
 
-    See sample Dockerfiles for [Python](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agents-in-workflow/Dockerfile) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
+    See sample Dockerfiles for [Python](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agents-in-workflow/Dockerfile) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentFramework/AgentsInWorkflows/Dockerfile).
 
 1. Push to Azure Container Registry:
 
