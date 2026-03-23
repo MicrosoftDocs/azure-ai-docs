@@ -5,7 +5,7 @@ description: "Learn how agent identities and agent identity blueprints work in M
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 01/20/2026
+ms.date: 03/23/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -41,6 +41,33 @@ At a high level, Foundry does the following:
 2. Assigns RBAC roles (or other permission models, depending on the target system) to the agent identity.
 3. When the agent invokes a tool, Foundry requests an access token for the downstream service and uses that token to authenticate the tool call.
 
+### Runtime token exchange
+
+When an agent invokes a tool, a multi-step OAuth 2.0 token exchange occurs automatically between Agent Service, Microsoft Entra ID, and the downstream resource. Developers don't manage tokens directly — Agent Service handles the entire exchange.
+
+The exchange progresses through four stages:
+
+- **Blueprint authentication**: Agent Service presents the blueprint's OAuth credentials (a client secret, certificate, or federated credential) to Microsoft Entra ID. This proves that Agent Service is authorized to act on behalf of the blueprint and its agent identities.
+
+- **Agent identity token issuance**: Microsoft Entra ID validates the blueprint credentials and issues a token for the specific agent identity. This token is distinct from human user or managed identity tokens — it identifies the agent as an independent actor in the directory.
+
+- **Scoped token request**: Agent Service presents the agent identity token back to Microsoft Entra ID and requests a new access token scoped to the **audience** of the downstream service. The audience is the OAuth resource identifier for the target service (for example, `https://storage.azure.com` for Azure Storage).
+
+- **Authenticated tool call**: Agent Service passes the scoped access token to the MCP server or A2A endpoint. The downstream resource validates the token and checks the agent identity's RBAC role assignments before granting or denying access.
+
+The following table lists common audience values for Azure services:
+
+| Downstream service | Audience value |
+| --- | --- |
+| Azure Storage | `https://storage.azure.com` |
+| Azure Logic Apps | `https://logic.azure.com` |
+| Azure Cosmos DB | `https://cosmos.azure.com` |
+| Microsoft Graph | `https://graph.microsoft.com` |
+| Azure Key Vault | `https://vault.azure.net` |
+
+> [!IMPORTANT]
+> An incorrect audience value causes authentication failures even when RBAC roles are correctly assigned. The audience must match the resource identifier of the downstream service, not the URL of the MCP server itself.
+
 ### Terms used in this article
 
 | Term | What it means in Foundry |
@@ -71,8 +98,8 @@ Agent identities help address specific security challenges that AI agents pose:
 
 Agent identities support two key authentication scenarios:
 
-* **Attended (delegated access or on-behalf-of flow)**: The agent operates on behalf of a human user. It uses delegated permissions that the user grants. The agent can then act under the user's authority to access resources or APIs as that user.
-* **Unattended**: The agent acts under its own authority. It acts as a service or an application identity by using its app-assigned roles, RBAC, or Microsoft Graph permissions. Or it acts as an autonomous identity with user-like claims that allow the agent to authenticate and operate independently.
+* **Attended (delegated access or on-behalf-of flow)**: The agent operates on behalf of a human user, using the OAuth 2.0 on-behalf-of (OBO) flow. The user first authenticates to the application, and the application passes the user's token to Agent Service. Agent Service then exchanges that token for one that carries both the agent identity and the user's delegated permissions. This approach means the agent can only access resources that the user has consented to and is authorized for.
+* **Unattended (application-only flow)**: The agent acts under its own authority, using the OAuth 2.0 client credentials flow. Agent Service authenticates the blueprint to Microsoft Entra ID, obtains a token for the agent identity, and requests a scoped access token for the downstream resource. The agent's access is governed entirely by its own RBAC role assignments, Microsoft Graph app-level permissions, or other authorization policies — no human user is involved.
 
 ### Agent identity blueprint
 
@@ -100,6 +127,28 @@ For example, an organization might use an AI agent called the "Contoso Sales Age
 * The publisher or organization responsible for the blueprint: "Contoso."
 * The roles that the agent might perform: "sales manager" or "sales rep."
 * Microsoft Graph permissions or delegated scopes: "read the signed-in user's calendar."
+
+### Federated identity credentials
+
+The blueprint's OAuth credentials determine how Agent Service authenticates to Microsoft Entra ID during the [runtime token exchange](#runtime-token-exchange). Blueprints support three credential types:
+
+| Credential type | How it works | Trade-offs |
+| --- | --- | --- |
+| Client secret | A shared secret string stored in the blueprint's Entra ID registration. | Simplest to configure, but requires manual rotation and secure storage. |
+| Certificate | An X.509 certificate used for assertion-based authentication. | Stronger than client secrets, but requires certificate lifecycle management. |
+| Federated credential (managed identity) | A trust relationship between the blueprint and a managed identity or service principal. No secret is stored in the blueprint. | Recommended for production. Azure manages credential rotation automatically. |
+
+The federated credential option is the most relevant to Foundry. When Foundry provisions an agent identity blueprint for your project, the blueprint establishes a trust relationship with the project's managed identity. The authentication chain works as follows:
+
+- The **agent identity blueprint** has a federated credential trust relationship with the project's **managed identity**.
+- At runtime, Agent Service uses the managed identity to authenticate the blueprint to **Microsoft Entra ID**. No client secret or certificate is needed.
+- Entra ID validates the federated credential and issues a token for the **agent identity** (the service principal).
+- The agent identity token is then exchanged for a **scoped access token** targeting the downstream resource's audience.
+
+This chain eliminates stored secrets in the blueprint configuration. Azure manages credential rotation through the managed identity's infrastructure, and each layer — managed identity, agent identity, and downstream resource — has independent, least-privilege role assignments.
+
+> [!NOTE]
+> The managed identity authenticates the *blueprint* to Entra ID. It doesn't directly access the downstream resource. The agent identity — not the managed identity — is the principal that requires RBAC role assignments on the target resource.
 
 ## Foundry integration
 
@@ -138,6 +187,39 @@ Agents access remote resources and tools by using agent identities for authentic
 * **Published agents**: Authenticate by using the unique agent identity that's associated with the agent application.
 
 When you [publish an agent](../how-to/publish-agent.md), you must reassign RBAC permissions to the new agent identity for any resources that the agent needs to access. This reassignment ensures that the published agent maintains appropriate access while operating under its distinct identity.
+
+### Assign permissions to the agent identity
+
+The agent identity is a service principal in Microsoft Entra ID. You assign RBAC roles to it the same way you assign roles to any other service principal or managed identity. Use the `agentIdentityId` from your project or agent application's JSON view as the assignee.
+
+For example, to grant an agent identity read/write access to a storage account, assign the **Storage Blob Data Contributor** role at the storage account scope:
+
+```azurecli
+az role assignment create \
+    --assignee "<agentIdentityId>" \
+    --role "Storage Blob Data Contributor" \
+    --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account>"
+```
+
+To verify the assignment:
+
+```azurecli
+az role assignment list \
+    --assignee "<agentIdentityId>" \
+    --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account>" \
+    --output table
+```
+
+Common role assignments for agent tools:
+
+| Tool scenario | Required role | Target scope |
+| --- | --- | --- |
+| MCP server that reads/writes blobs | Storage Blob Data Contributor | Storage account |
+| MCP server that triggers logic apps | Logic Apps Standard Reader | Logic App resource |
+| A2A tool that queries Cosmos DB | Cosmos DB Data Reader | Cosmos DB account |
+
+> [!IMPORTANT]
+> When you publish an agent, it receives a new distinct `agentIdentityId`. Repeat these role assignments for the new identity. The shared project identity roles don't carry over to the published agent's identity.
 
 ### Supported tools
 
