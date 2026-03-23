@@ -162,7 +162,7 @@ with (
             response = openai.responses.create(
                 conversation=conversation.id,
                 extra_body={"agent_reference": {"name": agent.name, "id": agent.id, "type": "agent_reference"}},
-                input="What is the capital of France?",
+                input="What is the largest city in France?",
             )
             print(f"Response: {response.output_text}")
 
