@@ -4,13 +4,15 @@ description: "Learn how to perform data analytics in Microsoft Foundry Agents us
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 03/06/2026
+ms.date: 03/23/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - build-2025
+  - doc-kit-assisted
 zone_pivot_groups: selection-fabric-data-agent
+ai-usage: ai-assisted
 ---
 
 # Use the Microsoft Fabric data agent (preview) (classic)
@@ -35,14 +37,21 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 | ✔️ | ✔️ |  |  | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
-* You have created and published a Fabric data agent endpoint
 
-* Developers and end users have at least `Azure AI User` RBAC role. 
+* Create and publish a Fabric data agent endpoint.
+* Developers and end users have at least `Azure AI User` RBAC role.
+* Developers and end users have at least `READ` access to the Fabric data agent. Users also need the minimum permission on each underlying data source:
 
-* Developers and end users have at least `READ` access to the Fabric data agent and the underlying data sources it connects with.
+    | Data source | Minimum permission |
+    | --- | --- |
+    | Power BI semantic model | `Build` (includes Read). Read alone isn't sufficient because the agent generates model queries that require Build. |
+    | Lakehouse | Read on the lakehouse item (and table access, if enforced). |
+    | Warehouse | Read (`SELECT` on relevant tables). |
+    | KQL database | Reader role on the database. |
 
-* Your Fabric Data Agent and Foundry Agent need to be in the same tenant.
+    For full details, see [Underlying data source permissions](/fabric/data-science/data-agent-sharing#underlying-data-source-permissions).
 
+* Your Fabric data agent and Foundry agent are in the same tenant.
 * Your Foundry Project endpoint.
 
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
