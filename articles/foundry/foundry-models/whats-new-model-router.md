@@ -16,6 +16,7 @@ ms.custom:
 ---
 
 # What's new in model router in Microsoft Foundry Models?
+
 This article provides a summary of the latest releases and major documentation updates for Azure model router, including new supported models, routing features, and deployment options.
 
 ## March 2026

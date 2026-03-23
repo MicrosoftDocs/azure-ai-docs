@@ -31,7 +31,7 @@ ms.author: cacrest
   pip install azure-ai-ml
   ```
 
-  The `ModelBatchDeployment` and `PipelineComponentBatchDeployment` classes require version 1.7.0 or later of the SDK (current version: 1.31.0). Use the `pip install -U azure-ai-ml` command to get the latest version.
+  The `ModelBatchDeployment` and `PipelineComponentBatchDeployment` classes require version 1.7.0 or later of the SDK (current version: 1.32.0). Use the `pip install -U azure-ai-ml` command to get the latest version.
 
   ---
 

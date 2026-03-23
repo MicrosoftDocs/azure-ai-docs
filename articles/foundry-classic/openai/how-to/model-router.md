@@ -42,9 +42,7 @@ In the **Create new deployment**, find `model-router` in the **Models** list and
 > - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
 > - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
 
-## Test model router with the Completions API
-
-You can use model router through the [chat completions API](/azure/ai-foundry/openai/chatgpt-quickstart) in the same way you'd use other OpenAI chat models. Set the `model` parameter to the name of our model router deployment, and set the `messages` parameter to the messages you want to send to the model.
+[!INCLUDE [model-router 1](../../../foundry/openai/includes/how-to-model-router-1.md)]
 
 ## Test model router in the playground
 

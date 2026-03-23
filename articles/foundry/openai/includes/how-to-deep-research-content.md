@@ -26,7 +26,7 @@ To start, call the **Responses API** with the model set to your o3-deep-research
   - API key, or
   - Microsoft Entra ID.
 - At least one data source configured in your request:
-  - `web_search_preview` (see [Web search (preview)](../how-to/web-search.md)), and/or
+  - `web_search_preview` (see [Web search](../how-to/web-search.md)), and/or
   - A remote MCP server (see [Research with your own data](#research-with-your-own-data)).
 
 ## Start a deep research task
@@ -379,4 +379,4 @@ Enabling web search and MCP servers introduces security risks. Follow these best
 > [Use the Azure OpenAI Responses API](../how-to/responses.md)
 
 > [!div class="nextstepaction"]
-> [Web search (preview)](../how-to/web-search.md)
+> [Web search](../how-to/web-search.md)
