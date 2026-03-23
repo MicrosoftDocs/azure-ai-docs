@@ -82,7 +82,13 @@ When new base models become available, they're not included in your selection un
 
 ## Automatic failover
 
-Model router now includes built-in automatic failover. When a routed model experiences endpoint instability, model router transparently redirects the request to the next most appropriate model, so transient issues with any single model don't disrupt your application. Failover is enabled by default for all model router deployments — no configuration is required. Your selected routing mode (Balanced, Cost, or Quality) and model subset settings continue to apply during failover, so routing behavior stays consistent with your deployment configuration.
+Model router now includes built-in automatic failover. When using the default deployment to route to all supported models, model router transparently redirects the request to the next most appropriate model, so transient issues with any single model don't disrupt your application. Failover is enabled by default — no additional configuration is required.
+
+For custom deployment configurations:
+
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal documentation** - [For the new features, switch to the new Foundry portal](../../../foundry/openai/concepts/model-router.md)
+- Your selected routing mode (Balanced, Cost, or Quality) continues to apply during failover.
+- Your configured model subset also works as your fallback set to prevent your prompts getting processed by unapproved models. Therefore, be sure to select model subsets with atleast two models to benefit from the fallback capability.
 
 ## Limitations
 
