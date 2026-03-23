@@ -43,11 +43,11 @@ A legacy approach that uses a client secret is still supported but no longer rec
 
 | Tenant | Role | Purpose |
 | ------ | ---- | ------- |
-| Tenant A (search service) | Owner or Contributor on the search service | Configure encryption and assign identities |
-| Tenant A (search service) | Application Developer or Application Administrator | Create the multitenant app registration and federated identity credential |
-| Tenant B (key vault) | Global Administrator or Privileged Role Administrator | Grant admin consent for the multitenant application |
-| Tenant B (key vault) | Key Vault Crypto Officer | Create keys in the key vault |
-| Tenant B (key vault) | User Access Administrator | Assign Key Vault roles to the service principal |
+| Tenant A (search service) | [Owner or Contributor on the search service](/azure/search/search-security-rbac#built-in-roles-used-in-search) | Configure encryption and assign identities |
+| Tenant A (search service) | Application Developer or Application Administrator | [Create the multitenant app registration and federated identity credential](#create-a-multitenant-microsoft-entra-application-in-tenant-a) |
+| Tenant B (key vault) | [Global Administrator or Privileged Role Administrator](/azure/role-based-access-control/built-in-roles#privileged) | Grant admin consent for the multitenant application |
+| Tenant B (key vault) | [Key Vault Crypto Officer](/azure/role-based-access-control/built-in-roles/security#key-vault-crypto-officer) | Create keys in the key vault |
+| Tenant B (key vault) | [User Access Administrator](/azure/role-based-access-control/built-in-roles/privileged#user-access-administrator) | Assign Key Vault roles to the service principal |
 
 ## Create a multitenant Microsoft Entra application in tenant A
 
