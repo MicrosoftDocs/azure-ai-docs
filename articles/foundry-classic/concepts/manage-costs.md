@@ -67,60 +67,7 @@ Access cost information from the [!INCLUDE [classic-link](../../foundry/includes
 > [!IMPORTANT]
 > Your Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
 
-### Configure permissions to view costs
-
-To view Foundry costs, assign roles based on the task and scope. For cost reporting, assign the [Cost Management Reader role](/azure/role-based-access-control/built-in-roles/management-and-governance#cost-management-reader) at the required scope. Assign the [Azure AI User role](rbac-foundry.md#built-in-roles) when users also need to inspect Foundry resources and usage context.
-
-If built-in roles don't meet your needs, you can create a custom role with least-privilege permissions. Validate role actions in your environment because available actions can evolve over time.
-
-Example read permissions:
-
-* `Microsoft.Consumption/*/read`
-* `Microsoft.CostManagement/*/read`
-* `Microsoft.Resources/subscriptions/read`
-* `Microsoft.CognitiveServices/accounts/AIServices/usage/read`
-
-> [!NOTE]
-> You need the **Owner** role at the subscription or resource group scope to create custom roles in that scope.
-> 
-
-To create a custom role, use one of the following articles:
-
-* [Azure portal](/azure/role-based-access-control/custom-roles-portal)
-* [Azure CLI](/azure/role-based-access-control/custom-roles-cli)
-* [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell)
-
-For more information about custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles).
-
-To create a custom role, construct a role definition JSON file that specifies permissions and scope for the role. The following example is an illustrative starting point for a custom Foundry Cost Reader role:
-
-```json
-{
-    "Name": "Foundry Cost Reader",
-    "IsCustom": true,
-    "Description": "Can see cost metrics in Foundry",
-    "Actions": [
-        "Microsoft.Consumption/*/read",
-        "Microsoft.CostManagement/*/read",
-        "Microsoft.Resources/subscriptions/read",
-        "Microsoft.CognitiveServices/accounts/AIServices/usage/read"
-    ],
-    "NotActions": [],
-    "DataActions": [],
-    "NotDataActions": [],
-    "AssignableScopes": [
-        "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<foundryResourceName>"
-    ]
-}
-```
-
-Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` with your actual values.
-
-> [!NOTE]
-> Validate custom role definitions in a nonproduction environment before broad rollout, and verify each action against your tenant's supported resource provider operations.
-
-> [!NOTE]
-> This custom role example doesn't grant access to Foundry resources by itself. Assign an additional role such as [Azure AI User](rbac-foundry.md#built-in-roles) if users also need Foundry resource visibility.
+[!INCLUDE [manage-costs-permissions](../../foundry/includes/concepts-manage-costs-permissions.md)]
 
 ## Monitor in Azure portal
 
@@ -185,26 +132,7 @@ You can get more detailed billing information by grouping costs by resource:
 
    :::image type="content" source="../../foundry/foundry-models/media/manage-cost/cost-by-resource-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Foundry resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by resource." lightbox="../../foundry/foundry-models/media/manage-cost/cost-by-resource-saas.png":::
 
-It's important to understand scope when you evaluate costs associated with Foundry resources. If your resources are part of the same resource group, you can scope Cost Analysis at that level to understand the effect on costs. If your resources are spread across multiple resource groups, you can scope to the subscription level.
-
-When scoped at a higher level, you often need to add more filters to focus on Azure OpenAI usage. When scoped at the subscription level, you see many other resources that you might not care about in the context of Azure OpenAI cost management. When you scope at the subscription level, navigate to the full **Cost analysis tool** under the **Cost Management** service.
-
-Here's an example of how to use the **Cost analysis tool** to see your accumulated costs for a subscription or resource group:
-
-1. Search for *Cost Management* in the top Azure search bar to navigate to the full service experience, which includes more options such as creating budgets.
-1. If necessary, select **change** if the **Scope:** isn't pointing to the resource group or subscription you want to analyze.
-1. On the left, select **Reporting + analytics** > **Cost analysis**.
-1. On the **All views** tab, select **Accumulated costs**.
-
-:::image type="content" source="../../foundry/openai/media/manage-costs/cost-analyzer.png" alt-text="Screenshot of cost analysis dashboard showing how to access accumulated costs." lightbox="../../foundry/openai/media/manage-costs/cost-analyzer.png":::
-
-The cost analysis dashboard shows the accumulated costs that are analyzed depending on what you specified for **Scope**.
-
-:::image type="content" source="../../foundry/openai/media/manage-costs/subscription.png" alt-text="Screenshot of cost analysis dashboard with scope set to subscription." lightbox="../../foundry/openai/media/manage-costs/subscription.png":::
-
-If you try to add a filter by service, you can't find Azure OpenAI in the list. This situation occurs because Azure OpenAI usage appears under the broader **Cognitive Services** service classification in Cost Management. If you want to focus on Azure OpenAI usage across a subscription, use **Service tier: Azure OpenAI**:
-
-:::image type="content" source="../../foundry/openai/media/manage-costs/service-tier.png" alt-text="Screenshot of cost analysis dashboard with service tier highlighted." lightbox="../../foundry/openai/media/manage-costs/service-tier.png":::
+[!INCLUDE [manage-costs-scope](../../foundry/includes/concepts-manage-costs-scope.md)]
 
 ### Monitor costs for models in Azure Marketplace
 
@@ -250,16 +178,7 @@ Azure Marketplace offers serverless API deployments. Model publishers might appl
 
 [!INCLUDE [manage-costs 2](../../foundry/includes/concepts-manage-costs-2.md)]
 
-## Troubleshoot common cost analysis issues
-
-- **Costs don't match your estimate:** Confirm that all dependent resources (for example, storage, networking, and Marketplace resources) are included in your Cost Management scope.
-- **Can't see cost data:** Confirm you have both cost visibility permissions and Foundry access permissions at the correct scope.
-- **Unexpected meter charges:** Group by **Meter** and **Resource** to identify which service generated the charge, then compare with deployment and traffic patterns.
-- **Region rollout cost variance:** Validate region/model availability before deployment and recheck assumptions if you deploy in different regions.
-- **Tag filters return incomplete results:** Verify required tags are applied to all participating resources and inherited consistently from your deployment process.
-- **Budget alerts are noisy or delayed:** Recalibrate alert thresholds after observing normal usage for a full trend window, then separate warning and critical thresholds.
-- **Policy or scope drift changes cost visibility:** Confirm your selected scope and policy assignments still include all resources used by the workload.
-- **Data appears delayed after test runs:** Wait for ingestion latency, then recheck the same time window before concluding there is a billing discrepancy.
+[!INCLUDE [manage-costs-troubleshoot](../../foundry/includes/concepts-manage-costs-troubleshoot.md)]
 
 ## Related content
 
