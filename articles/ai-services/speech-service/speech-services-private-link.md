@@ -7,9 +7,10 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 03/23/2026
 ms.reviewer: pafarley
-ms.custom: devx-track-azurepowershell, devx-track-azurecli
+ms.custom: devx-track-azurepowershell, devx-track-azurecli, dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn how to use Speech service with private endpoints provided by Azure Private Link.
 ---
 
@@ -60,7 +61,7 @@ This article describes the usage of private endpoints with the Speech service. U
 
 ## Turn on private endpoints
 
-We recommend using the [private DNS zone](/azure/dns/private-dns-overview) attached to the virtual network with the necessary updates for the private endpoints. You can create a private DNS zone during the provisioning process. If you use your own DNS server, you might also need to change your DNS configuration.
+Use the [private DNS zone](/azure/dns/private-dns-overview) attached to the virtual network with the necessary updates for the private endpoints. You can create a private DNS zone during the provisioning process. If you use your own DNS server, you might also need to change your DNS configuration.
 
 Decide on a DNS strategy before you provision private endpoints for a production Speech resource. Test your DNS changes, especially if you use your own DNS server.
 
@@ -210,7 +211,7 @@ Follow instructions in this section to adjust existing applications and solution
 > [!NOTE]
 > A Foundry resource for Speech without private endpoints that uses a custom domain name also has a special way of interacting with the Speech service.
 > This way differs from the scenario of a Foundry resource for Speech that uses a private endpoint.
-> This is important to consider because you may decide to remove private endpoints later. See [Adjust an application to use a Speech resource without private endpoints](#adjust-an-application-to-use-a-speech-resource-without-private-endpoints) later in this article.
+> This is important to consider because you might decide to remove private endpoints later. See [Adjust an application to use a Speech resource without private endpoints](#adjust-an-application-to-use-a-speech-resource-without-private-endpoints) later in this article.
 
 ### Usage with the REST APIs
 
@@ -266,7 +267,7 @@ curl -s -H "Ocp-Apim-Subscription-Key: <your-speech-key>" \
   "https://<your-custom-name>.cognitiveservices.azure.com/speechtotext/v3.1/transcriptions" | head -c 200
 ```
 
-Expected output: A JSON response containing a `values` array (which may be empty for a new resource).
+Expected output: A JSON response containing a `values` array (which might be empty for a new resource).
 
 > [!TIP]
 > Some customers develop applications that use the region part of the regional endpoint's DNS name (for example, to send the request to the Speech resource deployed in a particular Azure region). A custom domain for a Speech resource contains *no* information about the region where the resource is deployed. So the application logic described earlier doesn't work and needs to be altered.
@@ -319,7 +320,7 @@ See a detailed explanation in the [Construct endpoint URL](#construct-endpoint-u
 
 Using the Speech SDK with a custom domain name and private-endpoint-enabled Speech resources requires you to review and likely change your application code.
 
-We use `my-private-link-speech.cognitiveservices.azure.com` as a sample Speech resource DNS name (custom domain) for this section.
+This section uses `my-private-link-speech.cognitiveservices.azure.com` as a sample Speech resource DNS name (custom domain).
 
 #### Construct endpoint URL
 
@@ -431,7 +432,7 @@ Using the Speech SDK with custom-domain-enabled Speech resources *without* priva
 
 ## Adjust an application to use a Foundry resource for Speech without private endpoints
 
-In this article, we noted several times that enabling a custom domain for a Foundry resource for Speech is irreversible. Such a resource uses a different way of communicating with Speech service, compared to the ones that are using [regional endpoint names](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints).
+In this article, several instances note that enabling a custom domain for a Foundry resource for Speech is irreversible. Such a resource uses a different way of communicating with Speech service, compared to the ones that are using [regional endpoint names](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints).
 
 This section explains how to use a Foundry resource with a custom domain name but without any private endpoints with the Speech service REST APIs and [Speech SDK](speech-sdk.md). This might be a resource that was once used in a private endpoint scenario but then had its private endpoints deleted.
 
@@ -532,7 +533,7 @@ If `nslookup` returns a public IP instead of your private endpoint IP:
 
 ### Forbidden or BadRequest when using authorization tokens
 
-When using the `Authorization` header with a bearer token in a private endpoint scenario, the Speech service may return `Forbidden` or `BadRequest`. This happens when the **Networking** setting is not set to **All networks**. Use the `Ocp-Apim-Subscription-Key` header with your resource key instead.
+When using the `Authorization` header with a bearer token in a private endpoint scenario, the Speech service might return `Forbidden` or `BadRequest`. This happens when the **Networking** setting is not set to **All networks**. Use the `Ocp-Apim-Subscription-Key` header with your resource key instead.
 
 ### Speech Studio not accessible
 
