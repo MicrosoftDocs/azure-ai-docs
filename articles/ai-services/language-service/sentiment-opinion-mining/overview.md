@@ -6,11 +6,15 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 11/18/2025
+ms.date: 03/23/2026
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---
+<!-- markdownlint-disable MD025 -->
 # What is sentiment analysis and opinion mining?
+
+> [!IMPORTANT]
+> Sentiment analysis and opinion mining is retiring from Azure Language effective **March 20, 2029**. After this date, these features are no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
 
 Sentiment analysis and opinion mining are features offered by [Azure Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. These features help you discover what people think about your brand or topic by analyzing text for signs of positive or negative sentiment. They can also link these sentiments to specific aspects of the text.
 

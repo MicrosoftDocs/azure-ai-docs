@@ -6,12 +6,15 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 01/17/2026
+ms.date: 03/23/2026
 ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
 <!-- markdownlint-disable MD025 -->
 # What is orchestration workflow?
+
+> [!IMPORTANT]
+> Orchestration workflow is retiring from Azure Language effective **March 20, 2029**. After this date, the orchestration workflow feature is no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
 
 Orchestration workflow is one of the features offered by [Azure Language in Foundry Tools](../overview.md). This cloud-based API service uses machine learning to facilitate the development of orchestration models that seamlessly integrate [Conversational Language Understanding (CLU)](../conversational-language-understanding/overview.md) and [Custom question Answering](../question-answering/overview.md) projects.
 Developers can create an orchestration workflow to iteratively tag utterances, train models, and evaluate their performance before deployment.
