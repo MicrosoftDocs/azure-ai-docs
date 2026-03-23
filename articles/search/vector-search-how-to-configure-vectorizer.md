@@ -308,7 +308,7 @@ The following table lists common vectorizer errors and how to resolve them.
 |-------|-------|------------|
 | **Authentication failure** (401/403) | Invalid API key or missing RBAC role assignment for the embedding model. | Verify your API key or confirm that the search service identity has the `Cognitive Services OpenAI User` role on the Azure OpenAI resource. |
 | **Dimension mismatch** | The vectorizer model produces embeddings with a different dimension count than the vector field expects. | Ensure the `dimensions` property on the vector field matches the output dimensions of the embedding model (for example, 1536 for `text-embedding-ada-002`). |
-| **Rate limiting** (429) | The embedding model provider is throttling requests. | Review [Azure OpenAI quota limits](azure/foundry/openai/quotas-limits) and consider increasing your tokens-per-minute (TPM) allocation or reducing batch size. |
+| **Rate limiting** (429) | The embedding model provider is throttling requests. | Review [Azure OpenAI quota limits](/azure/foundry/openai/quotas-limits) and consider increasing your tokens-per-minute (TPM) allocation or reducing batch size. |
 | **Vectorizer not found** | The vector profile references a vectorizer name that doesn't exist in the index. | Confirm that the `vectorizer` property in the vector profile matches the `name` of a vectorizer in the `vectorizers` array. |
 | **Empty results** | Text-to-vector conversion succeeded but the query returns no matches. | Verify the `fields` parameter in the vector query matches the name of a searchable vector field. Increase `k` to return more results. |
 
