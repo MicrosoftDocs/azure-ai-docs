@@ -2,9 +2,9 @@
 title: "Add client-side tracing to Foundry agents"
 description: "Instrument AI agents with OpenTelemetry client-side tracing using the Microsoft Foundry SDK. Export traces to Azure Monitor or the console in Python and C#."
 ai-usage: ai-assisted
-author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: ychen
+author: aahill
+ms.author: aahi
+ms.reviewer: lagayhar
 ms.date: 03/23/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
