@@ -23,14 +23,14 @@ ai-usage: ai-assisted
 > 🔍 [View the new Fabric data agent documentation](../../../../foundry/agents/how-to/tools/fabric.md).
 > Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
-Integrate your Microsoft Foundry Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
+Integrate your Microsoft Foundry Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, so users can interact with the data through chat and uncover data-driven and actionable insights. 
 
-You need to first build and publish a Fabric data agent and then connect your Fabric data agent with the published endpoint. When a user sends a query, the will first determine if the Fabric data agent should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, the agent will generate responses based on queries returned from Fabric data agents. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
+You need to first build and publish a Fabric data agent, and then connect your Fabric data agent with the published endpoint. When a user sends a query, the agent first determines if it should use the Fabric data agent. If so, it uses the end user’s identity to generate queries over data they have access to. Lastly, the agent generates responses based on queries returned from Fabric data agents. By using Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
 ## Usage support
 
 > [!NOTE] 
-> The Fabric data agent only supports user identity authentication. Service Principal Name (SPN) authentication is not supported.
+> The Fabric data agent only supports user identity authentication. Service Principal Name (SPN) authentication isn't supported.
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
@@ -39,7 +39,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 ## Prerequisites
 
 * Create and publish a Fabric data agent endpoint.
-* Developers and end users have at least `Azure AI User` RBAC role.
+* Developers and end users have at least the `Azure AI User` RBAC role.
 * Developers and end users have at least `READ` access to the Fabric data agent. Users also need the minimum permission on each underlying data source:
 
     | Data source | Minimum permission |
@@ -58,11 +58,11 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
 
-* The name of your Microsoft Fabric connection name. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+* The name of your Microsoft Fabric connection name. You can find it in the Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**.
     
     :::image type="content" source="../../media/tools/fabric-connection.png" alt-text="A screenshot showing the SharePoint connection name. " lightbox="../../media/tools/fabric-connection.png":::
 
-    Save this endpoint to an environment variable named `FABRIC_CONNECTION_ID`
+    Save this endpoint to an environment variable named `FABRIC_CONNECTION_ID`.
 
 * The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
 
@@ -73,31 +73,31 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 ## Setup  
 
 > [!NOTE]
-> * The model you selected in Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
-> * To help your model invoke your Microsoft Fabric tool in the expected way, make sure you update agent instructions with descriptions of your Fabric data agent and what data it can access. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as `gpt-4o-mini`. You can also use `tool_choice` parameter in SDK or API to force Fabric tool to be invoked at each run. 
+> * The model you select in Foundry Agent setup is only used for agent orchestration and response generation. It doesn't affect which model Fabric data agent uses for NL2SQL operation.
+> * To help your model invoke your Microsoft Fabric tool in the expected way, make sure you update agent instructions with descriptions of your Fabric data agent and what data it can access. An example is "for customer and product sales related data, please use the Fabric tool". Use a smaller AI model such as `gpt-4o-mini`. You can also use the `tool_choice` parameter in SDK or API to force Fabric tool to be invoked at each run. 
 
 1. Create a Foundry Agent by following the steps in the [quickstart](../../quickstart.md).
 
-1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
+1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910).
 
     > [!NOTE]
-    > * Make sure you have **published** the data agent in Fabric.
+    > * Make sure you **publish** the data agent in Fabric.
 
 :::zone pivot="portal"
 
-You can add the Microsoft Fabric tool to an agent programmatically using the code examples listed at the top of this article, or the Foundry portal. If you want to use the portal: 
+Add the Microsoft Fabric tool to an agent programmatically by using the code examples listed at the top of this article, or by using the Foundry portal. To use the portal: 
 
-1. Navigate to the **Agents** screen for your agent in [Foundry](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
+1. Go to the **Agents** screen for your agent in [Foundry](https://ai.azure.com/?cid=learnDocs). Scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
    
     :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 
 1. Select **Microsoft Fabric** and follow the prompts to add the tool. You can add only one per agent.
 
-1. Click to add new connections. Once you have added a connection, you can directly select from existing list.
+1. Select to add new connections. After you add a connection, you can directly select from the existing list.
 
-   1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published Fabric data agent endpoint. Your Fabric data agent endpoint would look like `https://<environment>.fabric.microsoft.com/groups/<workspace_id>/aiskills/<artifact-id>`
+   1. To create a new connection, you need to find `workspace-id` and `artifact-id` in your published Fabric data agent endpoint. Your Fabric data agent endpoint looks like `https://<environment>.fabric.microsoft.com/groups/<workspace_id>/aiskills/<artifact-id>`.
 
-   1. Then, you can add both to your connection. Make sure you have checked `is secret` for both of them
+   1. Add both values to your connection. Make sure you check `is secret` for both of them.
    
         :::image type="content" source="../../media/tools/fabric-foundry.png" alt-text="A screenshot showing the fabric connection in the Foundry portal." lightbox="../../media/tools/fabric-foundry.png":::
 
@@ -107,7 +107,7 @@ You can add the Microsoft Fabric tool to an agent programmatically using the cod
 
 ## Create a project client
 
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+Create a client object that holds the connection string for connecting to your AI project and other resources.
 
 ```python
 import os
@@ -197,7 +197,7 @@ for msg in messages:
 
 ## Create a project client
 
-Create a client object, which will contain the project endpoint connecting to your AI project and other resources.
+Create a client object that holds the project endpoint for connecting to your AI project and other resources.
 
 ```csharp
 using Azure.AI.Agents.Persistent;
@@ -256,7 +256,7 @@ ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
 
 ## Wait for the agent to complete and print the output
 
-Wait for the agent to complete the run and print output to console. Observe that the model uses the Fabric data agent tool to provide a response to the user's question.
+Wait for the agent to complete the run and print the output to the console. Observe that the model uses the Fabric data agent tool to provide a response to the user's question.
 
 ```csharp
 // Wait for the agent to finish running
@@ -410,10 +410,10 @@ for await (const m of messagesIterator) {
 -->
 :::zone pivot="rest"
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`. For `API_VERSION`, make sure you are using `2025-05-15-preview`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION`. For `API_VERSION`, make sure you use `2025-05-15-preview`.
 > [!IMPORTANT]
-> The following samples are applicable if you are using **Foundry Project** resource with Microsoft Fabric tool through REST API call
-> Your connection ID should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>`
+> The following samples apply if you use **Foundry Project** resource with Microsoft Fabric tool through REST API call.
+> Your connection ID should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>`.
 
 ### Create an agent with the Microsoft Fabric tool enabled
 
@@ -499,4 +499,4 @@ curl --request GET \
 
 ## Next steps
 
-[See the full sample for Fabric data agent.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_fabric.py)
+[See the full sample for Fabric data agent](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_fabric.py).
