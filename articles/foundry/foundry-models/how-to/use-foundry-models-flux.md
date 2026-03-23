@@ -4,7 +4,7 @@ description: "Deploy Black Forest Labs FLUX image generation models in Microsoft
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 03/11/2026
+ms.date: 03/23/2026
 ms.custom:
   - doc-kit-assisted
   - classic-and-new
@@ -19,15 +19,15 @@ ai-usage: ai-assisted
 
 # Deploy and use FLUX models in Microsoft Foundry
 
-Black Forest Labs (BFL) FLUX models bring state-of-the-art image generation to Microsoft Foundry, enabling you to generate and edit high-quality images from text prompts and reference images. BFL models are optimized for photorealism, prompt fidelity, and compositional control, making them well suited for creative, e-commerce, media, and design-centric applications. FLUX models support a range of capabilities including text-to-image generation, multi-reference image editing, and in-context generation and editing.
-
-In this article, you learn how to:
+Black Forest Labs (BFL) FLUX models bring state-of-the-art image generation to Microsoft Foundry, enabling you to generate and edit high-quality images from text prompts and reference images. In this article, you learn how to:
 
 - Deploy FLUX models in Microsoft Foundry
 - Authenticate by using Microsoft Entra ID or API keys
 - Generate images by using the BFL provider-specific API or the Image API
 - Edit images by combining text prompts with reference images
 - Choose the right FLUX model for your use case
+
+FLUX models are optimized for photorealism, prompt fidelity, and compositional control, making them well suited for creative, e-commerce, media, and design-centric applications. They support a range of capabilities including text-to-image generation, multi-reference image editing, and in-context generation and editing.
 
 FLUX models in Foundry include:
 
@@ -47,7 +47,7 @@ To learn more about each model, see [Available FLUX models](#available-flux-mode
 - A [Microsoft Foundry project](../../how-to/create-projects.md). FLUX models are available for global standard deployment in all regions.
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure that you have the [permissions required to subscribe to model offerings](configure-marketplace.md).
 - **Contributor** or **Owner** role on the resource group to deploy models. For more information, see [Azure RBAC roles](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles).
-- For FLUX.2 \[flex\]: Approved registration. Use the [registration form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu) before you attempt deployment.
+- **For FLUX.2 \[flex\]**: Approved registration. Use the [registration form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu) before you attempt deployment.
 
 ## Deploy FLUX models
 
@@ -58,7 +58,7 @@ After deployment, use the [Foundry playground](../../concepts/concept-playground
 > [!NOTE]
 > Support for **multiple reference images** is available for FLUX.2 \[pro\] and FLUX.2 \[flex\] through the API, but not in the playground.
 
-## Generate images with FLUX models
+## Overview of image generation with FLUX models
 
 After you deploy a FLUX model, use either the **BFL provider-specific API** or the **Image API** to generate images:
 
@@ -67,7 +67,7 @@ After you deploy a FLUX model, use either the **BFL provider-specific API** or t
 
 To authenticate, you need your **resource endpoint** and either a **Microsoft Entra ID token** or an **API key**. You can find these values in the **Keys and Endpoint** section of your resource in the Azure portal, or on the deployment details page in the [Foundry portal](https://ai.azure.com).
 
-### Use the BFL provider-specific API
+## Use the BFL provider-specific API with FLUX models
 
 The BFL provider-specific API endpoint has the following form:
 
@@ -75,7 +75,10 @@ The BFL provider-specific API endpoint has the following form:
 https://<resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/<model-path>?api-version=preview
 ```
 
-The model paths are:
+For each model, replace the model path `<model-path>` in the endpoint as follows:
+
+> [!IMPORTANT]
+> The model ID and `<model-path>` are not identical. Be sure to use the model path in the endpoint URL.
 
 | Model | Model path |
 | -- | -- |
@@ -84,11 +87,13 @@ The model paths are:
 | FLUX.1 Kontext \[pro\] | `flux-kontext-pro` |
 | FLUX1.1 \[pro\] | `flux-pro-1.1` |
 
-#### Image generation (text to image)
+### Image generation (text to image)
 
 The following examples use FLUX.2 \[pro\] to generate an image from a text prompt. For a FLUX.2 \[flex\]-specific example with its additional parameters (`guidance`, `steps`), see [FLUX.2 \[flex\] image generation](#flux2-flex-image-generation).
 
 # [Python](#tab/python)
+
+#### Use API key authentication
 
 1. **Install the `requests` library:**
 
@@ -203,7 +208,7 @@ Replace `Bearer $AZURE_API_KEY` with `Bearer $AZURE_AUTH_TOKEN`, where `AZURE_AU
 
 ---
 
-#### Image editing with reference images (FLUX.2 models)
+### Image editing with reference images (FLUX.2 models)
 
 FLUX.2 \[pro\] and FLUX.2 \[flex\] support multi-reference image editing, which lets you pass multiple base64-encoded images alongside a text prompt. The model applies stylistic or content changes across all reference images.
 
@@ -274,7 +279,7 @@ curl -X POST https://<resource-name>.api.cognitive.microsoft.com/providers/black
 
 ---
 
-### Use the Image API
+### Use the Image API with FLUX models
 
 `FLUX.1-Kontext-pro` and `FLUX-1.1-pro` are also available through the Image API, which uses the same endpoint format as the Azure OpenAI images API. The Image API endpoint has the following form:
 
@@ -288,7 +293,7 @@ For image editing (in-context generation), `FLUX.1-Kontext-pro` also supports:
 https://<resource-name>.services.ai.azure.com/openai/deployments/<deployment-name>/images/edits?api-version=preview
 ```
 
-#### Image generation (text to image)
+### Image generation (text to image)
 
 # [Python](#tab/python)
 
@@ -356,7 +361,7 @@ curl -X POST https://<resource-name>.services.ai.azure.com/openai/deployments/$D
 
 ---
 
-#### Image editing with the Image API (FLUX.1 Kontext \[pro\])
+### Image editing with the Image API (FLUX.1 Kontext \[pro\])
 
 `FLUX.1-Kontext-pro` also supports the `images/edits` endpoint, which lets you pass a reference image alongside a text prompt for in-context editing.
 
@@ -425,9 +430,7 @@ FLUX.2 \[flex\] (`FLUX.2-flex`) offers fine-grained control with more stable thr
 | `guidance` | Controls how closely the output follows the prompt. Range: 1.5–10, default: 4.5. Higher values increase prompt adherence. |
 | `steps` | Number of inference steps. Maximum: 50, default: 50. Higher values produce more detail but are slower. |
 
-#### <a name="flux2-flex-image-generation"></a>FLUX.2 \[flex\] image generation
-
-The following example shows a FLUX.2 \[flex\]-specific request using the `guidance` and `steps` parameters:
+The following example shows a FLUX.2 \[flex\]-specific request for image generation using the `guidance` and `steps` parameters:
 
 ```sh
 curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1/flux-2-flex?api-version=preview \
