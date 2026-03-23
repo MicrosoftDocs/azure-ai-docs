@@ -4,7 +4,7 @@ description: "Learn about Microsoft Foundry Models from partners and community, 
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 03/13/2026
+ms.date: 03/23/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: partner-tools
