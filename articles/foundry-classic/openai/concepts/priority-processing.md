@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 03/23/2026
 ms.author: mopeakande
 author: msakande
 ms.reviewer: seramasu
@@ -31,40 +31,58 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 ### Global standard model availability
 
-| **Region**     | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
-|:---------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
-| canadaeast     | ❌                      | ✅                      | ✅                      | ✅                      |
-| centralus      | ❌                      | ✅                      | ✅                      | ✅                      |
-| eastus         | ❌                      | ✅                      | ✅                      | ✅                      |
-| francecentral  | ❌                      | ✅                      | ✅                      | ✅                      |
-| koreacentral   | ❌                      | ✅                      | ✅                      | ✅                      |
-| polandcentral  | ✅                      | ✅                      | ✅                      | ✅                      |
-| southcentralus | ✅                      | ✅                      | ✅                      | ✅                      |
-| southindia     | ❌                      | ✅                      | ✅                      | ✅                      |
-| swedencentral  | ✅                      | ✅                      | ✅                      | ✅                      |
-| uksouth        | ❌                      | ✅                      | ✅                      | ✅                      |
-| westeurope     | ❌                      | ✅                      | ❌                      | ✅                      |
-| westus3        | ❌                      | ✅                      | ❌                      | ✅                      |
+| **Region**             | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
+|:-----------------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
+| australiaeast          | -                       | ✅                      | ✅                      | ✅                      |
+| brazilsouth            | -                       | ✅                      | ✅                      | ✅                      |
+| canadacentral          | -                       | ✅                      | ✅                      | ✅                      |
+| canadaeast             | -                       | ✅                      | ✅                      | ✅                      |
+| centralus              | -                       | ✅                      | ✅                      | ✅                      |
+| eastus                 | -                       | ✅                      | ✅                      | ✅                      |
+| eastus2                | ✅                      | ✅                      | ✅                      | ✅                      |
+| francecentral          | -                       | ✅                      | ✅                      | ✅                      |
+| germanywestcentral     | -                       | ✅                      | ✅                      | ✅                      |
+| italynorth             | -                       | ✅                      | ✅                      | ✅                      |
+| japaneast              | -                       | ✅                      | ✅                      | ✅                      |
+| koreacentral           | -                       | ✅                      | ✅                      | ✅                      |
+| northcentralus         | -                       | ✅                      | ✅                      | ✅                      |
+| norwayeast             | -                       | ✅                      | ✅                      | ✅                      |
+| polandcentral          | ✅                      | ✅                      | ✅                      | ✅                      |
+| southafricanorth       | -                       | ✅                      | ✅                      | ✅                      |
+| southcentralus         | ✅                      | ✅                      | ✅                      | ✅                      |
+| southeastasia          | -                       | ✅                      | ✅                      | ✅                      |
+| southindia             | -                       | ✅                      | ✅                      | ✅                      |
+| spaincentral           | -                       | ✅                      | ✅                      | ✅                      |
+| swedencentral          | ✅                      | ✅                      | ✅                      | ✅                      |
+| switzerlandnorth       | -                       | ✅                      | ✅                      | ✅                      |
+| switzerlandwest        | -                       | ✅                      | ✅                      | ✅                      |
+| uaenorth               | -                       | ✅                      | ✅                      | ✅                      |
+| uksouth                | -                       | ✅                      | ✅                      | ✅                      |
+| westeurope             | -                       | ✅                      | -                       | ✅                      |
+| westus                 | -                       | ✅                      | ✅                      | ✅                      |
+| westus3                | -                       | ✅                      | -                       | ✅                      |
 
 
 # [Data Zone standard](#tab/datazone-standard)
 
 ### Data zone standard model availability
 
-| **Region**     | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
-|:---------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
-| canadaeast     | ❌                      | ❌                      | ❌                      | ❌                      |
-| centralus      | ✅                      | ✅                      | ✅                      | ✅                      |
-| eastus         | ✅                      | ✅                      | ✅                      | ✅                      |
-| francecentral  | ❌                      | ❌                      | ✅                      | ✅                      |
-| koreacentral   | ❌                      | ❌                      | ❌                      | ❌                      |
-| polandcentral  | ❌                      | ❌                      | ❌                      | ✅                      |
-| southcentralus | ✅                      | ✅                      | ✅                      | ✅                      |
-| southindia     | ❌                      | ❌                      | ❌                      | ❌                      |
-| swedencentral  | ❌                      | ❌                      | ✅                      | ✅                      |
-| uksouth        | ❌                      | ❌                      | ❌                      | ❌                      |
-| westeurope     | ❌                      | ❌                      | ❌                      | ✅                      |
-| westus3        | ✅                      | ✅                      | ✅                      | ✅                      |
+| **Region**             | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
+|:-----------------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
+| centralus              | ✅                      | ✅                      | ✅                      | ✅                      |
+| eastus                 | ✅                      | ✅                      | ✅                      | ✅                      |
+| eastus2                | ✅                      | ✅                      | ✅                      | ✅                      |
+| francecentral          | -                       | -                       | ✅                      | ✅                      |
+| germanywestcentral     | -                       | -                       | -                       | ✅                      |
+| italynorth             | -                       | -                       | -                       | ✅                      |
+| northcentralus         | ✅                      | ✅                      | ✅                      | ✅                      |
+| polandcentral          | -                       | -                       | -                       | ✅                      |
+| southcentralus         | ✅                      | ✅                      | ✅                      | ✅                      |
+| spaincentral           | -                       | -                       | -                       | ✅                      |
+| swedencentral          | -                       | -                       | ✅                      | ✅                      |
+| westeurope             | -                       | -                       | -                       | ✅                      |
+| westus                 | ✅                      | ✅                      | ✅                      | ✅                      |
+| westus3                | ✅                      | ✅                      | ✅                      | ✅                      |
 
 ---
 
