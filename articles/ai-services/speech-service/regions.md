@@ -242,6 +242,9 @@ The regions in the following tables support most of the core features of Azure S
 | `westus2` | Global standard | Global standard | Data zone standard | Standard | Data zone standard | Data zone standard | Data zone standard | - | - | Global standard | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | Regional | Regional | ✅ |
 | `westus3` | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | Global standard | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
 
+> [!NOTE]
+> Models `gpt-5.4-mini` and `gpt-5.4-nano` are supported and tested with Voice Live but aren't pre-deployed. To use them, deploy them in your Foundry resource and connect via [Bring Your Own Model (BYOM)](./how-to-bring-your-own-model.md).
+
 # [Keyword recognition](#tab/keyword-recognition)
 
 | Region | Custom keyword advanced models | Keyword verification |
