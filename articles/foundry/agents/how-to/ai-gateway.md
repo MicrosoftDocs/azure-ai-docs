@@ -3,7 +3,7 @@ title: "Bring Your Own Model to Foundry Agent Service"
 description: "Connect and bring your own models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
-ms.date: 03/17/2026
+ms.date: 03/23/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -66,13 +66,19 @@ To add a model connection in the Foundry portal:
 1. Select **Operate** > **Admin console**.
 1. Open the **All projects** tab.
 1. In the list of projects, find your project and select the link in the **Parent resource** column.
-1. Select the **External models** tab, and then select **Add model connection**.
+1. Select the **Admin-connected models** tab, and then select **Add model connection**.
     :::image type="content" source="../media/ai-gateway/add-model-connection.png" alt-text="Screenshot of external models in the Foundry portal.":::
 
     The **Add model connection** wizard opens.
-1. On the **Connection Type** page, do the following:
-    1. Enter a **Connection name** of your choice.
-    1. In **Target URL**, enter a URL to an Azure API Management instance or another gateway (self-hosted, non-Azure hosted, or custom solution) for your model endpoints. The URL can include a specific path if needed.
+1. On the **Connection Type** page, select the connection type that matches your gateway:
+    - Select **Azure API Management** if you are connecting to an existing Azure API Management resource. Select the API Management service name and the OpenAI-compatible chat completions **Model API** deployed there.
+
+        :::image type="content" source="../media/ai-gateway/add-api-management-model.png" alt-text="Screenshot of selecting an API Management resource in the Foundry portal.":::
+    - Select **Other source** if you are connecting to a self-hosted, non-Azure hosted, or custom solution.
+        1. Enter a **Connection name** of your choice.
+        1. In **Target URL**, enter a URL to the gateway for your model endpoints. The URL can include a specific path if needed.
+
+        :::image type="content" source="../media/ai-gateway/add-other-model.png" alt-text="Screenshot of selecting another model source in the Foundry portal.":::
 1. On the **Authentication** page, select either **API Key** or **OAuth2** and enter the required credentials for your connection. 
     1. If needed to authenticate with an API key, optionally configure a **Custom Auth Header** to include in requests to your gateway. 
     1. Optionally configure other **Custom headers** to include in requests to your gateway.
