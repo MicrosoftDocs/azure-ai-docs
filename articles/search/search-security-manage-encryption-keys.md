@@ -498,7 +498,7 @@ The example below demonstrates the **Python** representation of an `encryptionKe
 > [!Important]
 > Encrypted content in Azure AI Search is configured to use a specific key with a specific *version*. If you change the key or version, the object must be updated to use it **before** you delete the previous one. Failing to do so renders the object unusable. You won't be able to decrypt the content if the key is lost.
 
-## Step 5: Test encryption
+## Step 6: Test encryption
 
 To verify encryption is working, revoke the encryption key, query the index (it should be unusable), and then reinstate the encryption key.
 

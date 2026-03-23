@@ -55,7 +55,7 @@ A multitenant Microsoft Entra application enables the search service to authenti
 
 To create the multitenant Microsoft Entra application:
 
-1. Sign in to Tenant A where you deployed your Azure AI Search service.
+1. Sign in to Tenant A where you deployed your Azure AI Search service using [Azure CLI](/cli/azure/what-is-azure-cli?view=azure-cli-latest).
 
     ```azurecli
     az login --tenant "$TENANT_A_ID"
@@ -79,9 +79,11 @@ To create the multitenant Microsoft Entra application:
 
 ## Create a user-assigned managed identity
 
-Create a user-assigned managed identity (UAMI) and assign it to the Azure AI Search service. The managed identity acts as the workload identity for cross-tenant authentication.
+You will need to create a user-assigned managed identity (UAMI) and assign it to the Azure AI Search service. The managed identity acts as the workload identity for cross-tenant authentication.
 
-Configure a multitenant Microsoft Entra application with a federated identity credential (FIC) that trusts the managed identity. At runtime, Azure AI Search uses the managed identity and federated identity flow to obtain access tokens and call the customer’s Azure Key Vault for customer-managed key (CMK) operations, without using client secrets.
+You will also need to configure a multitenant Microsoft Entra application with a federated identity credential (FIC) that trusts the managed identity. At runtime, Azure AI Search uses the managed identity and federated identity flow to obtain access tokens and call the customer’s Azure Key Vault for customer-managed key (CMK) operations, without using client secrets.
+
+To create the user-assigned managed identity and assign it to the search service:
 
 1. Create the managed identity and capture its resource ID:
 
@@ -105,36 +107,40 @@ Configure a multitenant Microsoft Entra application with a federated identity cr
 
 ## Add a federated identity credential
 
-Add a federated identity credential (FIC) on the multitenant Microsoft Entra application to allow Azure AI Search to exchange its user-assigned managed identity (UAMI) token for an application access token, enabling access to Azure Key Vault without using a client secret.
+You will also need to add a federated identity credential (FIC) on the multitenant Microsoft Entra application to allow Azure AI Search to exchange its UAMI token for an application access token, enabling access to Azure Key Vault without using a client secret.
 
 > [!IMPORTANT]
 > An application can have a maximum of 20 federated identity credentials. If you manage multiple Tenant B key vaults, you might need to share federated identities. For more information, see [Important considerations and restrictions](/entra/workload-id/workload-identity-federation-considerations).
 
-Get the principal ID of the UAMI and create a FIC configuration file:
+To get the principal ID of the UAMI and create a FIC configuration file:
 
-```azurecli
-# Retrieve the managed identity’s principal (object) ID
-UAMI_PRINCIPAL_ID=$(az identity show -g "$TENANT_A_RG" -n "$UAMI_NAME" --query principalId -o tsv)
+1. Retrieve the managed identity’s principal (object) ID:
 
-# Create the federated identity credential JSON
-cat > fic.json <<EOF
-{
-  "name": "search-uami-fic",
-  "issuer": "https://login.microsoftonline.com/$TENANT_A_ID/v2.0",
-  "subject": "$UAMI_PRINCIPAL_ID",
-  "audiences": ["api://AzureADTokenExchange"],
-  "description": "Trust Azure AI Search UAMI to act as this app for Key Vault access"
-}
-EOF
-```
+    ```azurecli
+    UAMI_PRINCIPAL_ID=$(az identity show -g "$TENANT_A_RG" -n "$UAMI_NAME" --query principalId -o tsv)
+    ```
 
-Add the federated credential to the application:
+2. Create the federated identity credential JSON:
 
-```azurecli
-az ad app federated-credential create \
-  --id "$APP_ID" \
-  --parameters fic.json
-```
+    ```azurecli
+    cat > fic.json <<EOF
+    {
+      "name": "search-uami-fic",
+      "issuer": "https://login.microsoftonline.com/$TENANT_A_ID/v2.0",
+      "subject": "$UAMI_PRINCIPAL_ID",
+      "audiences": ["api://AzureADTokenExchange"],
+      "description": "Trust Azure AI Search UAMI to act as this app for Key Vault access"
+    }
+    EOF
+    ```
+
+3. Add the federated credential to the application:
+
+    ```azurecli
+    az ad app federated-credential create \
+      --id "$APP_ID" \
+      --parameters fic.json
+    ```
 
 ## Grant consent for the application
 
@@ -144,7 +150,7 @@ Install the multitenant application in Tenant B so that you create a service pri
 
 Grant admin consent by opening the following URL in Tenant B. You need to be a Global Administrator or Privileged Role Administrator.
 
-```
+```html
 https://login.microsoftonline.com/<TENANT_B_ID>/adminconsent?client_id=<APP_ID>
 ```
 
