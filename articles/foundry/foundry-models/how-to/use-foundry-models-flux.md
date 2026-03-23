@@ -335,7 +335,7 @@ https://<resource-name>.services.ai.azure.com/openai/deployments/<deployment-nam
 
     **Expected output:** A URL to the generated image.
 
-    **Reference:** [OpenAI Python client](https://github.com/openai/openai-python)
+    **Reference:** [OpenAI Python client](https://github.com/openai/openai-python), [Image generations - Create](../../openai/reference-preview.md)
 
 # [REST API](#tab/rest-api)
 
@@ -391,7 +391,7 @@ print(result.data[0].url)
 
 **Expected output:** A URL to the edited image with the new background.
 
-**Reference:** [OpenAI Python client](https://github.com/openai/openai-python)
+**Reference:** [OpenAI Python client](https://github.com/openai/openai-python), [Image generations - Edit](../../openai/reference-preview.md)
 
 # [REST API](#tab/rest-api)
 

@@ -17,6 +17,7 @@ ms.custom: pilot-ai-workflow-jan-2026
 ## Black Forest Labs models sold directly by Azure
 
 Black Forest Labs (BFL) FLUX models bring state-of-the-art image generation to Microsoft Foundry, enabling you to generate and edit high-quality images from text prompts and reference images. FLUX models support a range of capabilities including text-to-image generation, multi-reference image editing, and in-context generation and editing. 
+
 You can run these models through the BFL service provider API and through the [images/generations and images/edits endpoints](../../openai/reference-preview.md). 
 
 To work with FLUX models in Foundry, see [Deploy and use FLUX models in Microsoft Foundry](../how-to/use-foundry-models-flux.md).
