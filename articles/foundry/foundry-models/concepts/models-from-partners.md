@@ -48,6 +48,9 @@ To learn more about attributes of Foundry Models from partners and community, se
 
 You can access models from partners and community with pay-as-you-go billing only if your Azure subscription belongs to a billing account in a country/region where the model offer is available. Availability varies per model provider and model SKU. For more information, see [Region availability for models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md).
 
+> [!IMPORTANT]
+> For a list of supported regions, see [supported geographic locations](/partner-center/marketplace-offers/marketplace-geo-availability-currencies?tabs=g--h--i--j--k#supported-geographic-locations). Note that, Anthropic's "Supported Regions Policy" may apply for the availability in your region, check [supported regions](https://aka.ms/supported_anthropic_regions) for details.
+
 ## Anthropic
 
 Anthropic's flagship product is Claude, a frontier AI model trusted by leading enterprises and millions of users worldwide for complex tasks including coding, agents, financial analysis, research, and office tasks. Claude delivers exceptional performance while maintaining high safety standards.
