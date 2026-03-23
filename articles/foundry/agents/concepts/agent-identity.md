@@ -1,5 +1,5 @@
 ---
-title: "Manage agent identities with Microsoft Entra ID"
+title: "Agent identity concepts in Microsoft Foundry"
 description: "Learn how agent identities and agent identity blueprints work in Microsoft Foundry, including RBAC, authentication for tools, and governance."
 #customer intent: As a security administrator, I want to know how an agent identity eliminates the need for passwords and certificates so that I can reduce security risks in my environment.
 author: sdgilley
@@ -80,6 +80,9 @@ The following table lists common audience values for Azure services:
 ## Key concepts
 
 The Agent ID platform framework introduces formal *agent identities* and *agent identity blueprints* in Microsoft Entra ID to represent AI agents. You can use this framework to securely communicate with AI agents. This framework also enables those AI agents to securely communicate with web services, other AI agents, and various systems.
+
+> [!NOTE]
+> The Microsoft Entra Agent ID framework is currently in preview. Features and APIs might change before general availability.
 
 ### Agent identity
 
@@ -225,84 +228,26 @@ Common role assignments for agent tools:
 
 Currently, the tools that support authentication with an agent identity are:
 
-* **Model Context Protocol (MCP)**: Use your agent's identity to authenticate with MCP servers that support agent identity authentication. For details, see [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md) and [MCP server authentication](../how-to/mcp-authentication.md).
-* **Agent-to-Agent (A2A)**: Enable secure communication between agents by using agent identities. For details, see [Agent-to-Agent tool (preview)](../how-to/tools/agent-to-agent.md) and [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md).
+* **Model Context Protocol (MCP)**: Use your agent's identity to authenticate with MCP servers that support agent identity authentication (preview). For details, see [Model Context Protocol](../how-to/tools/model-context-protocol.md) and [MCP server authentication](../how-to/mcp-authentication.md).
+* **Agent-to-Agent (A2A)**: Enable secure communication between agents by using agent identities (preview). For details, see [Agent-to-Agent tool](../how-to/tools/agent-to-agent.md) and [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md).
 
 Other tools and integrations might use different authentication methods (for example, key-based authentication or OAuth identity passthrough). Use the tool documentation to confirm supported authentication.
 
-### Configure MCP tool authentication
+### Configure tool connections
 
-To configure an MCP tool to authenticate by using an agent identity:
+To connect an MCP server or A2A endpoint with agent identity authentication, create a project connection that specifies the authentication type and the target audience for the downstream service. The authentication type depends on the tool:
 
-1. Ensure that you have an MCP server that you want to configure as a tool for your agent.
+| Tool type | Auth type value | Connection category |
+| --- | --- | --- |
+| MCP server | `AgenticIdentityToken` | `RemoteTool` |
+| A2A endpoint | `AgenticIdentity` | `RemoteA2A` |
 
-1. Get the ID for the agent identity. In the Azure portal, go to your Foundry project. On the **Overview** pane, select **JSON View** and choose the latest API version. Copy the `agentIdentityId` value.
+When the agent invokes the tool, Agent Service uses the agent identity to obtain an access token scoped to the **audience** value, then passes that token to the tool endpoint for authentication.
 
-1. Create a connection to your remote MCP server that uses `AgenticIdentityToken` as the authentication type. The **Audience** box specifies which service or API the token is intended to access. For example:
+For step-by-step configuration instructions, see:
 
-   * For an MCP server that lists blobs in your storage account, set the audience as `https://storage.azure.com`.
-   * For an Azure Logic Apps MCP server, set the audience as `https://logic.azure.com`.
-
-    You can create the connection by using either the REST API or the Foundry portal:
-
-    #### [REST API](#tab/rest-api)
-
-    To get an access token, run the commands `az login` and then `az account get-access-token`.
-
-    ```http
-    PUT https://management.azure.com/subscriptions/{{subscription_id}}/resourceGroups/{{resource_group}}/providers/Microsoft.CognitiveServices/accounts/{{account_name}}/projects/{{project_name}}/connections/{{mcp_connection_name}}?api-version={{api_version}}
-    Authorization: Bearer {{token}}
-    Content-Type: application/json
-    
-    {
-        "tags": null,
-        "location": null,
-        "name": "{YOUR_CONNECTION_NAME}",
-        "type": "CognitiveServices/accounts/projects/connections",
-        "properties": {
-        "authType": "AgenticIdentityToken",
-        "group": "ServicesAndApps",
-        "category": "RemoteTool",
-        "expiryTime": null,
-        "target": "{YOUR_MCP_REMOTE_URL}",
-        "isSharedToAll": true,
-        "sharedUserList": [],
-        "audience": "{YOUR_AUDIENCE}",
-        "Credentials": {},
-        "metadata": {
-            "ApiType": "Azure"
-        }
-        }
-    }
-    ```
-    
-    #### [Foundry portal](#tab/foundry-portal)
-    1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
-
-    1. Select **Build**.
-
-    1. Select **Agents**.
-
-    1. Select the agent that you want to use.
-
-    1. Under **Tools**, select **+ Add**.
-
-    1. On the **Custom** tab, select **Model Context Protocol (MCP)**.
-
-    1. Under **Authentication**, select **Microsoft Entra**. Under  **Type**, select **Agent identity**.
-
-    1. Fill in the endpoint and audience information, and then select **Connect**.
-
-    ---
-
-1. Assign to the agent identity the required permissions for its actions by using the `agentIdentityId` value that you copied. For example:
-
-   * For an MCP server that lists blob containers, assign the **Storage Blob Data Contributor** role at the **Azure Storage Account** scope.
-   * For an Azure Logic Apps MCP server, assign the **Logic Apps Standard Reader** role on the **Logic App** resource.
-
-1. Connect the tool. If you're using code, create an agent with the MCP tool. (For details, see the MCP documentation.) If you're using the Foundry portal, the MCP tool is automatically added to the agent.
-
-When the agent invokes the MCP server, it uses the available agent identity to obtain an authorization token for the **audience** value. It then passes the token to the MCP server for authentication.
+- [Set up MCP server authentication](../how-to/mcp-authentication.md#use-agent-identity-authentication-preview)
+- [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md)
 
 ## Security considerations
 
@@ -327,10 +272,12 @@ These issues commonly cause tool authentication failures when using agent identi
 
 For tool-specific troubleshooting, see the tool documentation:
 
-- [Model Context Protocol (preview)](../how-to/tools/model-context-protocol.md)
-- [Agent-to-Agent tool (preview)](../how-to/tools/agent-to-agent.md)
+- [Model Context Protocol](../how-to/tools/model-context-protocol.md)
+- [Agent-to-Agent tool](../how-to/tools/agent-to-agent.md)
 
 ## Manage agent identities
+
+Agent identities persist as long as the associated Foundry project or agent application resource exists. When you delete a Foundry project, the associated agent identity blueprint and shared agent identity are removed. Published agents have their own identity lifecycle tied to the agent application resource — deleting the agent application removes its distinct identity.
 
 You can view and manage all agent identities in your tenant through the Microsoft Entra admin center. Go to the [tab for agent identities](https://entra.microsoft.com/?Microsoft_AAD_RegisteredApps=stage1&exp.EnableAgentIDUX=true#view/Microsoft_AAD_RegisteredApps/AllAgents.MenuView/~/allAgentIds) to see an inventory of all agents in your tenant, including Foundry agents, Microsoft Copilot Studio agents, and others.
 
@@ -350,3 +297,5 @@ For more information about Microsoft Entra Agent ID features, see [Microsoft Ent
 * [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
 * [Azure role-based access control in Foundry](../../concepts/rbac-foundry.md)
 * [MCP server authentication](../how-to/mcp-authentication.md)
+* [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md)
+* [Microsoft Entra Agent ID documentation](/entra/agent-id/overview)
