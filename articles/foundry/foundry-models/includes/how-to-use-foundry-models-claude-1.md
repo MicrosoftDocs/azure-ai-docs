@@ -68,7 +68,7 @@ The following examples show how to send requests to Claude Sonnet 4.6 using Micr
 - Deployment name you chose during deployment creation. This name can be different from the model ID.
 
 > [!NOTE]
-> The `thinking` parameter supports types: `enabled` and `disabled`. For, Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level.
+> The `thinking` parameter supports types: `enabled` and `disabled`. For Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level.
 >
 > The `effort` parameter, which controls the quality/cost tradeoff for responses, supports effort levels: `low`, `medium`, and `high`. For Opus 4.6 and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
 
