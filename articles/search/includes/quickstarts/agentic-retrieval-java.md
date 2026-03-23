@@ -59,7 +59,7 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     mv sample.env .env
     ```
 
-1. Install the dependencies, including the [Azure AI Search client library](/java/api/overview/azure/search) and [Azure Identity client library](https://mvnrepository.com/artifact/com.azure/azure-identity) for Java.
+1. Install the dependencies.
 
     ```bash
     mvn clean dependency:copy-dependencies

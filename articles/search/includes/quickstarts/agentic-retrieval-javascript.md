@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 02/23/2026
+ms.date: 03/23/2026
 ms.custom: dev-focus
 ai-usage: ai-assisted
 ---
@@ -59,11 +59,13 @@ Although you can use your own data, this quickstart uses [sample JSON documents]
     mv sample.env .env
     ```
 
-1. Install the dependencies, including the [Azure AI Search client library](/javascript/api/overview/azure/search-documents-readme) and [Azure Identity client library](/javascript/api/overview/azure/identity-readme) for JavaScript.
+1. Install the dependencies.
 
     ```bash
     npm install
     ```
+
+   When the installation completes, you should see a `node_modules` folder in the project directory.
 
 1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 

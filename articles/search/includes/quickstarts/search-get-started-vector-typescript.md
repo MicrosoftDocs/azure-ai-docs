@@ -69,7 +69,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
    When the installation completes, you should see a `node_modules` folder in the project directory.
 
-1. Build the TypeScript files.
+1. Compile the TypeScript files to JavaScript.
 
    ```bash
    npm run build
@@ -111,7 +111,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
     ```
 
     > [!NOTE]
-    > These commands run `.js` files from the `dist` folder because you previously transpiled from TypeScript to JavaScript with `npm run build`.
+    > These commands run the compiled `.js` files from the `dist` folder. TypeScript code must be transpiled to JavaScript before Node.js can execute it, which is why you previously ran `npm run build`.
 
 ### Output
 
