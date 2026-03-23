@@ -242,7 +242,7 @@ if __name__ == "__main__":
     from_agent_framework(agent).run()
 ```
 
-Refer to the [samples repo](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agent) for code samples in LangGraph and custom code. 
+Refer to the [samples repo](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents) for code samples in LangGraph and custom code. 
 
 When you run your agent locally by using the hosting adapter, it automatically starts a web server on `localhost:8088`. You can test your agent by using any REST client.
 
@@ -392,7 +392,7 @@ To build your agent as a Docker container and upload it to Azure Container Regis
     ```bash
     docker build --platform linux/amd64 -t <YOUR_IMAGE_NAME>:<YOUR_TAG> .
     ```
-    Refer to sample Dockerfile for [Python](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agents-in-workflow/Dockerfile) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentsInWorkflows/Dockerfile).
+    Refer to sample Dockerfile for [Python](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/agents-in-workflow/Dockerfile) and [C#](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/csharp/hosted-agents/AgentFramework/AgentsInWorkflows/Dockerfile).
    
 1. Sign in to Azure Container Registry:
 
@@ -847,7 +847,7 @@ Agent retrieved: your-agent-name (version: 1)
 Agent response: Hello! I'm your hosted agent. I can help you with...
 ```
 
-For more information, see [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview).
+For more information, see [Azure AI Projects SDK for Python](/python/api/overview/azure/ai-projects-readme).
 
 ### Use tools with hosted agents
 

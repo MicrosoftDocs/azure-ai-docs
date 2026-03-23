@@ -25,8 +25,6 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 - [Java 21 (LTS)](/java/openjdk/install) and [Maven](https://maven.apache.org/download.cgi).
 
-- [Visual Studio Code](https://code.visualstudio.com/download).
-
 - [Git](https://git-scm.com/downloads) to clone the sample repository.
 
 - The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
@@ -47,11 +45,10 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
    git clone https://github.com/Azure-Samples/azure-search-java-samples
    ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
    ```bash
    cd azure-search-java-samples/quickstart-vector-search
-   code .
    ```
 
 1. In `src/main/resources/application.properties`, replace the placeholder value for `azure.search.endpoint` with the URL you obtained in [Get endpoint](#get-endpoint).
