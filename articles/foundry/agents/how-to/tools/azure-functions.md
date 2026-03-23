@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/18/2026
+ms.date: 03/23/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, doc-kit-assisted
@@ -912,3 +912,9 @@ When you're done working with your function app and related resources, use this 
 ```shell
 azd down --purge
 ```
+
+## Related content
+
+- [Azure Functions overview](/azure/azure-functions/functions-overview)
+- [Use function calling with Foundry agents](function-calling.md)
+- [Host MCP servers in Azure Functions](/azure/azure-functions/functions-create-ai-enabled-apps#remote-mcp-servers)
