@@ -279,7 +279,7 @@ curl -X POST https://<resource-name>.api.cognitive.microsoft.com/providers/black
 
 ---
 
-### Use the Image API with FLUX models
+## Use the Image API with FLUX models
 
 `FLUX.1-Kontext-pro` and `FLUX-1.1-pro` are also available through the Image API, which uses the same endpoint format as the Azure OpenAI images API. The Image API endpoint has the following form:
 
