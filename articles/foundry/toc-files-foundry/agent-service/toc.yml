@@ -147,6 +147,8 @@ items:
       href: ../../observability/concepts/trace-agent-concept.md
     - name: Set up tracing
       href: ../../observability/how-to/trace-agent-setup.md
+    - name: Add client-side tracing
+      href: ../../observability/how-to/trace-agent-client-side.md
     - name: Tracing integrations
       href: ../../observability/how-to/trace-agent-framework.md
   - name: Optimize agent prompts 
