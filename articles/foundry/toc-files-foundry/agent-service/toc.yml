@@ -59,18 +59,18 @@ items:
     items:
     - name: Web search overview
       href: ../../agents/how-to/tools/web-overview.md
-    - name: Web search tool (preview)
+    - name: Web search tool
       href: ../../agents/how-to/tools/web-search.md
     - name: Grounding with Bing tools
       href: ../../agents/how-to/tools/bing-tools.md
-    - name: Model Context Protocol (MCP)
-      items:
-      - name: Connect to MCP server
-        href: ../../agents/how-to/tools/model-context-protocol.md
-      - name: MCP authentication
-        href: ../../agents/how-to/mcp-authentication.md
-      - name: Build your own MCP server
-        href: ../../mcp/build-your-own-mcp-server.md
+  - name: Model Context Protocol (MCP)
+    items:
+    - name: Connect to MCP server
+      href: ../../agents/how-to/tools/model-context-protocol.md
+    - name: MCP authentication
+      href: ../../agents/how-to/mcp-authentication.md
+    - name: Build your own MCP server
+      href: ../../mcp/build-your-own-mcp-server.md
   - name: Additional tools
     items:
     - name: Agent2Agent (A2A) (preview)

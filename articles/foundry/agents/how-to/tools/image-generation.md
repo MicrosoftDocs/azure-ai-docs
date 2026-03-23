@@ -8,7 +8,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
-ms.date: 03/06/2026
+ms.date: 03/19/2026
 author: alvinashcraft
 ms.author: aashcraft
 zone_pivot_groups: selection-image-generation
@@ -109,14 +109,14 @@ if image_data and image_data[0]:
 :::zone-end
 
 :::zone pivot="csharp"
-## Sample for image generation in Azure.AI.Projects.OpenAI.
+## Sample for image generation in Azure.AI.Extensions.OpenAI
 
 In this example, you generate an image based on a simple prompt. The code in this example is synchronous. For an asynchronous example, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample2_Image_Generation.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -400,7 +400,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 ```
 
@@ -448,8 +448,8 @@ public class ImageGenerationExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Generate an image of a sunset over a mountain range"));
 

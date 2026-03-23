@@ -4,7 +4,7 @@ description: "Learn how to migrate from the Assistants API and classic agents to
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 03/04/2026
+ms.date: 03/18/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -35,7 +35,6 @@ pip install "azure-ai-projects>=2.0.0"
 
 ```bash
 dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.AI.Projects.OpenAI --prerelease
 dotnet add package Azure.Identity
 ```
 
@@ -52,7 +51,7 @@ npm install @azure/identity
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.2</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
@@ -87,7 +86,7 @@ openai = project.get_openai_client()
 
 ```csharp
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 AIProjectClient projectClient = new(
@@ -297,10 +296,7 @@ conversation = openai.conversations.create(
 ProjectResponsesClient responsesClient =
     projectClient.OpenAI
         .GetProjectResponsesClientForAgent(
-            new AgentReference
-            {
-                Name = "my-awesome-agent"
-            });
+            "my-awesome-agent");
 
 var result = responsesClient.CreateResponse(
     "Tell me a one line funny story "
@@ -339,8 +335,9 @@ ResponsesClient responsesClient =
 
 AgentReference agentRef = new AgentReference("my-agent");
 
-Response result = responsesClient.createWithAgent(
-    agentRef,
+Response result = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions()
+        .setAgentReference(agentRef),
     ResponseCreateParams.builder()
         .input("Tell me a one line funny story about unicorns"));
 ```
@@ -482,8 +479,9 @@ await openAIClient.conversations.items.create(
 // In Java, send follow-up input directly
 AgentReference agentRef = new AgentReference("my-agent");
 
-Response result = responsesClient.createWithAgent(
-    agentRef,
+Response result = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions()
+        .setAgentReference(agentRef),
     ResponseCreateParams.builder()
         .input("Follow-up question "
         + "about the same topic"));
@@ -524,7 +522,12 @@ string assistantId = "asst_efgh5678";
 
 ThreadRun run =
     await agentsClient.CreateRunAsync(
-        threadId, assistantId);
+        threadId,
+        assistantId,
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account");
 
 while (run.Status == RunStatus.Queued
     || run.Status ==
@@ -543,7 +546,14 @@ const threadId = "thread_abcd1234";
 const assistantId = "asst_efgh5678";
 
 let run = await client.agents.createRun(
-    threadId, assistantId);
+    threadId,
+    assistantId,
+    {
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account",
+    });
 
 while (run.status === "queued"
     || run.status === "in_progress") {
@@ -562,7 +572,13 @@ String assistantId = "asst_efgh5678";
 
 ThreadRun run =
     agentsClient.createRun(
-        threadId, assistantId);
+        threadId,
+        assistantId,
+        new CreateRunOptions()
+            .setAdditionalInstructions(
+                "Please address the user "
+                + "as Jane Doe. The user "
+                + "has a premium account"));
 
 while (RunStatus.QUEUED
         .equals(run.getStatus())
@@ -603,10 +619,7 @@ response = openai.responses.create(
 ProjectResponsesClient responsesClient =
     projectClient.OpenAI
         .GetProjectResponsesClientForAgent(
-            new AgentReference
-            {
-                Name = "my-agent"
-            });
+            "my-agent");
 
 var result = responsesClient.CreateResponse(
     "Hi, Agent! Draw a graph for a line "
@@ -639,8 +652,9 @@ const response =
 ```java
 AgentReference agentRef = new AgentReference("my-agent");
 
-Response result = responsesClient.createWithAgent(
-    agentRef,
+Response result = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions()
+        .setAgentReference(agentRef),
     ResponseCreateParams.builder()
         .input("Hi, Agent! Draw a graph for a line "
         + "with a slope of 4 and "
@@ -1246,7 +1260,11 @@ await agentsClient.CreateMessageAsync(
 ThreadRun run =
     await agentsClient.CreateRunAsync(
         thread.Id,
-        agent.Id);
+        agent.Id,
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account");
 
 while (run.Status ==
         RunStatus.Queued
@@ -1310,7 +1328,14 @@ await client.agents.createMessage(
 
 // Create run and poll
 let run = await client.agents.createRun(
-    thread.id, agent.id);
+    thread.id,
+    agent.id,
+    {
+        additionalInstructions:
+            "Please address the user as "
+            + "Jane Doe. The user has a "
+            + "premium account",
+    });
 
 while (run.status === "queued"
     || run.status === "in_progress") {
@@ -1364,7 +1389,13 @@ agentsClient.createMessage(
 // Create run and poll
 ThreadRun run =
     agentsClient.createRun(
-        thread.getId(), agent.getId());
+        thread.getId(),
+        agent.getId(),
+        new CreateRunOptions()
+            .setAdditionalInstructions(
+                "Please address the user "
+                + "as Jane Doe. The user "
+                + "has a premium account"));
 
 while (RunStatus.QUEUED
         .equals(run.getStatus())
@@ -1446,6 +1477,12 @@ response = openai.responses.create(
         "premium account"
     ),
 )
+
+# Print the response output
+for item in response.output:
+    if item.type == "message":
+        for block in item.content:
+            print(block.text)
 ```
 
 # [C#](#tab/csharp)
@@ -1471,10 +1508,7 @@ var agent = await projectClient.Agents
 ProjectResponsesClient responsesClient =
     projectClient.OpenAI
         .GetProjectResponsesClientForAgent(
-            new AgentReference
-            {
-                Name = "my-agent"
-            });
+            "my-agent");
 
 var result = responsesClient.CreateResponse(
     "Hi, Agent! Draw a graph for a line "
@@ -1482,6 +1516,18 @@ var result = responsesClient.CreateResponse(
     + "y-intercept of 9. Please address the "
     + "user as Jane Doe. The user has a "
     + "premium account");
+
+// Print the response output
+foreach (var item in result.OutputItems)
+{
+    if (item is ResponseMessageItem msg)
+    {
+        foreach (var block in msg.Content)
+        {
+            Console.WriteLine(block.Text);
+        }
+    }
+}
 ```
 
 # [JavaScript](#tab/javascript)
@@ -1534,6 +1580,15 @@ const response =
             type: "agent_reference",
         },
     });
+
+// Print the response output
+for (const item of response.output) {
+    if (item.type === "message") {
+        for (const block of item.content) {
+            console.log(block.text);
+        }
+    }
+}
 ```
 
 # [Java](#tab/java)
@@ -1565,14 +1620,28 @@ ResponsesClient responsesClient =
 
 AgentReference agentRef = new AgentReference("my-agent");
 
-Response result = responsesClient.createWithAgent(
-    agentRef,
+Response result = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions()
+        .setAgentReference(agentRef),
     ResponseCreateParams.builder()
         .input("Hi, Agent! Draw a graph for a line "
         + "with a rate of change of 4 and "
         + "y-intercept of 9. Please address "
         + "the user as Jane Doe. The user "
         + "has a premium account"));
+
+// Print the response output
+for (ResponseItem item : result.getOutput()) {
+    if (item instanceof ResponseMessageItem) {
+        ResponseMessageItem msg =
+            (ResponseMessageItem) item;
+        for (ContentBlock block
+                : msg.getContent()) {
+            System.out.println(
+                block.getText());
+        }
+    }
+}
 ```
 
 ---
@@ -1590,9 +1659,9 @@ After you migrate your code, confirm that everything works correctly:
 | Symptom | Cause | Resolution |
 | --------- | ------- | ------------ |
 | **Python**: `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project.get_openai_client()` to obtain the OpenAI client, then call `openai.conversations.create()`. |
-| **C#**: `Azure.AI.Projects.OpenAI` namespace not found | The `Azure.AI.Projects.OpenAI` NuGet package is missing. | Install `Azure.AI.Projects.OpenAI` alongside `Azure.AI.Projects`. Both packages are required. |
+| **C#**: `Azure.AI.Extensions.OpenAI` namespace not found | The `Azure.AI.Extensions.OpenAI` NuGet package is missing. | Install `Azure.AI.Projects` (which brings in `Azure.AI.Extensions.OpenAI` and `Azure.AI.Projects.Agents` as dependencies). |
 | **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects@2.0.0-beta.5` or later: `npm install @azure/ai-projects@2.0.0-beta.5`. |
-| **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.0.0-beta.2` to your `pom.xml` dependencies. |
+| **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.0.0-beta.3` to your `pom.xml` dependencies. |
 | `create_agent()` is removed | Earlier SDK versions used `create_agent()`, which was removed in v2.0.0. | Replace with `create_version()` (Python/JS) or `CreateAgentVersionAsync()` (C#) or `createAgentVersion()` (Java) and pass a `PromptAgentDefinition` object. |
 | Old thread data isn't available | The migration tool doesn't migrate state data (past runs, threads, or messages). | Start new conversations after migration. Historical data remains accessible through the previous API until it's deprecated. |
 | `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](../concepts/limits-quotas-regions.md). |

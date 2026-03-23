@@ -4,7 +4,7 @@ description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agen
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 03/06/2026
+ms.date: 03/19/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -307,7 +307,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 ```
 
@@ -358,8 +358,8 @@ public class FabricToolExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Query the latest sales data from Microsoft Fabric"));
 

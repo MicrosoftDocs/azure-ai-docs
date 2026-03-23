@@ -88,8 +88,8 @@ To run the sample:
     
     func main() {
     	azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
-    	modelDeploymentID := "dall-e-3"
-    
+    	modelDeploymentID := "gpt-image-1"
+
     	credential, err := azidentity.NewDefaultAzureCredential(nil)
     	if err != nil {
     		log.Printf("ERROR: %s", err)
@@ -175,8 +175,8 @@ To run the sample:
     
     func main() {
     	azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
-    	modelDeploymentID := "dall-e-3"
-    
+    	modelDeploymentID := "gpt-image-1"
+
     	azureOpenAIKey := os.Getenv("AZURE_OPENAI_API_KEY")
     	credential := azcore.NewKeyCredential(azureOpenAIKey)
     
