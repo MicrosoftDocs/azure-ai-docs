@@ -67,7 +67,7 @@ After you deploy a FLUX model, use either the **BFL provider-specific API** or t
 
 To authenticate, you need your **resource endpoint** and either a **Microsoft Entra ID token** or an **API key**. You can find these values in the **Keys and Endpoint** section of your resource in the Azure portal, or on the deployment details page in the [Foundry portal](https://ai.azure.com).
 
-## Use the BFL provider-specific API with FLUX models
+## Use the BFL API with FLUX models
 
 The BFL provider-specific API endpoint has the following form:
 

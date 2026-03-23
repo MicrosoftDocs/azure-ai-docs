@@ -21,8 +21,7 @@ You can run these models through the BFL service provider API and through the [i
 
 To work with FLUX models in Foundry, see [Deploy and use FLUX models in Microsoft Foundry](../how-to/use-foundry-models-flux.md).
 
-> [!NOTE]
-> [Registration is required for access to FLUX.2 [flex]](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu).
+- [Registration is required for access to FLUX.2 [flex]](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu).
 
 | Model  | Type & API endpoint| Capabilities | Deployment type (region availability) | 
 | ------ | ------------------ | ------------ | ------------------------------------- |
