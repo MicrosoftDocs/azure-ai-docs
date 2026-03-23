@@ -51,9 +51,9 @@ A legacy approach that uses a client secret is still supported but no longer rec
 
 ## Create a multitenant Microsoft Entra application in tenant A
 
-Register a multitenant Microsoft Entra application in Tenant A. This application enables the search service to authenticate to a key vault in a different tenant. You can reuse the same application for multiple key vault tenants. Each tenant gets its own service principal with a different object ID.
+A multitenant Microsoft Entra application enables the search service to authenticate to a key vault in a different tenant. You can reuse the same application for multiple key vault tenants. Each tenant gets its own service principal with a different object ID.
 
-To create the multitenant application:
+To create the multitenant Microsoft Entra application:
 
 1. Sign in to Tenant A where you deployed your Azure AI Search service.
 
