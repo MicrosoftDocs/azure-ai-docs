@@ -1,13 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle
+ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 System messages help you steer an Azure OpenAI chat model toward the behavior, tone, and output format you want. This article explains what system messages are, how they affect responses, and how to design them for consistency and safety.

@@ -1,13 +1,12 @@
 ---
 title: Include file
 description: Include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle
+ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 Structured outputs make a model follow a [JSON Schema](https://json-schema.org/overview/what-is-jsonschema) definition that you provide as part of your inference API call. This is in contrast to the older [JSON mode](../how-to/json-mode.md) feature, which guaranteed valid JSON would be generated, but was unable to ensure strict adherence to the supplied schema. Structured outputs are recommended for function calling, extracting structured data, and building complex multi-step workflows.

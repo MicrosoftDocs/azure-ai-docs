@@ -1,13 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle #ChrisHMSFT
+ms.author: mbullwin #chrhoder
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 Azure OpenAI in Microsoft Foundry Models is powered by a diverse set of models with different capabilities and price points. [Model availability varies by region](../../foundry-models/concepts/models-sold-directly-by-azure.md).

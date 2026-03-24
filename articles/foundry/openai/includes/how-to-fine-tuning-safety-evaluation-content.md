@@ -1,13 +1,12 @@
 ---
 title: Include file
 description: Include file
-author: scottpolly
-ms.author: scottpolly
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 The advanced capabilities of fine-tuned models come with increased responsible AI challenge related to harmful content, manipulation, human-like behavior, privacy issues, and more. Learn more about risks, capabilities, and limitations in the [Overview of Responsible AI practices](/azure/ai-foundry/responsible-ai/openai/overview) and [Transparency Note](/azure/ai-foundry/responsible-ai/openai/transparency-note). To help mitigate the risks associated with advanced fine-tuned models, we have implemented extra evaluation steps to help detect and prevent harmful content in the training and outputs of fine-tuned models. These steps are grounded in the [Microsoft Responsible AI Standard](https://www.microsoft.com/ai/responsible-ai) and [Azure Microsoft Foundry Models content filtering](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).

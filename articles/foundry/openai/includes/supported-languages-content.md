@@ -1,13 +1,12 @@
 ---
 title: Include file
 description: Include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle
+ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 ## Prerequisites

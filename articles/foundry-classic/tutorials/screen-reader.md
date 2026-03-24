@@ -4,9 +4,10 @@ description: "This quickstart guides you in how to get oriented and navigate Mic
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: ailsaleen
-ms.date: 12/09/2025
+ms.date: 03/24/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
   - ignite-2023
@@ -20,7 +21,11 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/tutorials/screen-reader.md)
 
-This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA, or Apple's VoiceOver. In this quickstart, you learn about the basic structure of Microsoft Foundry and how to navigate around efficiently. 
+This article is for people who use screen readers such as [Microsoft's Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1#WindowsVersion=Windows_11), JAWS, NVDA, or Apple's VoiceOver. In this article, you learn the basic structure of Microsoft Foundry and how to navigate efficiently.
+
+## Prerequisites
+
+[!INCLUDE [screen-reader-prereqs](../../foundry/includes/screen-reader-prereqs.md)]
 
 ## Get oriented in Foundry portal 
 
@@ -40,7 +45,7 @@ For efficient navigation, you can use landmarks to move between these sections o
 You can switch between the classic and new Foundry portal experiences using the **New Foundry** toggle in the top banner.
 
 To switch to the new Foundry experience:
-1. In the top banner, press <kbd>Tab</kbd> until you hear "New Foundry toggle button, not pressed".
+1. In the top banner, press <kbd>Tab</kbd> until focus reaches the **New Foundry** toggle.
 1. Select the toggle to switch to the new Foundry experience.
 1. The page reloads with the new portal interface.
 
@@ -72,7 +77,7 @@ For more information about the navigation, see [What is Foundry](../what-is-foun
 
 ## Projects 
 
-To work in the Foundry portal, first [create a project](../how-to/create-projects.md): 
+To work in the Foundry portal, first [create a project](../how-to/create-projects.md):
 1. In [!INCLUDE [classic-link](../../foundry/includes/classic-link.md)], select **Foundry** from the top breadcrumbs.
 1. Press <kbd>Tab</kbd> until you hear *Create an agent*, then select this button. This action creates a project for use with an agent.
 1. Enter the information requested in the **Create a project** dialog. 
@@ -85,20 +90,21 @@ If you already have some projects, you can also create a new project without cre
 1. Press <kbd>Tab</kbd> until you hear *Create new*. This path creates a project but doesn't deploy a model.
 1. When the project is created, you are in the project home page.
 
-## Using the playground 
+## Using the playground
 
-The playground is where you can interact with models and experiment with different prompts and parameters. Different playgrounds are available depending on which model you want to interact with. 
+The playground is where you can interact with models and experiment with different prompts and parameters. Different playgrounds are available depending on which model you want to interact with.
 
 After you select a project, go to the navigation landmark. Press the down arrow until you hear *Playgrounds*.
 
-### Chat playground structure 
+### Chat playground structure
 
-In this mode, the playground consists of the command toolbar and two main sections: one section for configuring your system message and other parameters, and another section for chatting with the model. If you add your own data in the playground, the **Add your data** pane also appears. 
+In this mode, the playground consists of the command toolbar and two main sections: one section for configuring your system message and other parameters, and another section for chatting with the model. If you add your own data in the playground, the **Add your data** pane also appears.
 
-### Chat session pane  
+### Chat session pane
 
-The chat session pane is where you can chat with the model and test out your assistant. 
-- After you send a message, the model might take some time to respond, especially if the response is long. When the model finishes composing a response, you hear a screen reader announcement "Message received from the chatbot". 
+The chat session pane is where you can chat with the model and test out your assistant.
+- After you send a message, the model might take some time to respond, especially if the response is long. When the model finishes composing a response, you hear a screen reader announcement "Message received from the chatbot".
+- If you don't hear the announcement, move to the conversation region by heading navigation and read the most recent message.
 
 ## Distinguishing project types
 
@@ -107,9 +113,9 @@ Foundry has two different project types—see [What is Foundry?](../what-is-foun
 - Look for either **(Foundry)** or **Foundry project** for a [!INCLUDE [fdp-project-name](../../foundry/includes/fdp-project-name.md)]. 
 - Look for **(Hub)** for a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
-## Using prompt flow 
+## Using prompt flow
 
-Prompt flow is available only in a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. 
+Prompt flow is available only in a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
 Prompt flow is a tool that creates executable flows by linking LLMs, prompts, and Python tools through a visualized graph. Use prompt flow to prototype, experiment, and iterate on your AI applications before you deploy them. 
 
@@ -117,50 +123,64 @@ After you select a project, go to the navigation landmark. Press the Down arrow 
 
 The prompt flow UI in Foundry portal is composed of the following main sections: the command toolbar, flow (includes list of the flow nodes), files, and graph view. The flow, files, and graph sections each have their own H2 headings that you can use for navigation.
 
-### Flow section 
+### Flow section
 
-- This section is the main working area where you can edit your flow. For example, you can add a new node, edit the prompt, or select input data. 
-- You can also work in code instead of the editor. To view the flow in code, select the **Raw file mode** toggle button. 
-- Each node has its own H3 heading, which you can use for navigation. 
+- This section is the main working area where you can edit your flow. For example, you can add a new node, edit the prompt, or select input data.
+- You can also work in code instead of the editor. To view the flow in code, select the **Raw file mode** toggle button.
+- Each node has its own H3 heading, which you can use for navigation.
 
-### Files section 
+### Files section
 
-- This section contains the file structure of the flow. Each flow has a folder that contains a `flow.dag.yaml` file, source code files, and system folders. 
+- This section contains the file structure of the flow. Each flow has a folder that contains a `flow.dag.yaml` file, source code files, and system folders.
 - You can export or import a flow easily for testing, deployment, or collaborative purposes by navigating to the **Add** and **Zip and download all files** buttons.
 
-### Graph view section 
+### Graph view section
 
-- The graph is a visual representation of the flow. This view isn't editable or interactive. 
+- The graph is a visual representation of the flow. This view isn't editable or interactive.
 - You hear the following alt text to describe the graph: "Graph view of [flow name]—for visualization only." We don't currently provide a full screen reader description for this graphical chart. To get all equivalent information, you can read and edit the flow by going to the Flow section or by selecting the **Raw file mode** toggle button.  
 
  
-## Evaluations  
+## Evaluations
 
 Evaluation is a tool that helps you assess the performance of your generative AI application. Use it to prototype, experiment, and iterate on your applications before deploying.
 
-### Create an evaluation 
+### Create an evaluation
 
-To review evaluation metrics, first create an evaluation. 
+To review evaluation metrics, first create an evaluation.
 
 1. After you select a project, go to the navigation landmark. Press the down arrow until you hear *Evaluation* and select this link.
 1. Press the Tab key until you hear *new evaluation* and select this button. 
 1. Enter the information requested in the **Create a new evaluation** dialog. After you complete this step, your focus returns to the evaluations list.
 
-### View evaluations 
+### View evaluations
 
-After you create an evaluation, access it from the list of evaluations. 
+After you create an evaluation, access it from the list of evaluations.
 
 Evaluation runs are listed as links within the Evaluations grid. Selecting a link takes you to a dashboard view with information about your specific evaluation run. 
 
 To export the data from your evaluation run so you can view it in an application of your choosing, select your evaluation run link, then go to the **Export result** button and select it. 
 
-You can also use a dashboard view to compare evaluation runs. From the main Evaluations list page, go to the **Switch to dashboard view** button. 
- 
-## Technical support for customers with disabilities 
+You can also use a dashboard view to compare evaluation runs. From the main Evaluations list page, go to the **Switch to dashboard view** button.
 
-Microsoft wants to provide the best possible experience for all customers. If you have a disability or have questions related to accessibility, contact the Microsoft Disability Answer Desk for technical assistance. The Disability Answer Desk support team is trained in using many popular assistive technologies. They can offer assistance in English, Spanish, French, and American Sign Language. Go to the Microsoft Disability Answer Desk site to find the contact details for your region. 
+## Verify your navigation setup
 
-If you're a government, commercial, or enterprise customer, contact the Enterprise Disability Answer Desk. 
+After you complete the steps in this article, verify the following outcomes:
+
+- You can move between major page landmarks, such as banner, navigation, and main content.
+- You can identify your current portal experience (new or classic) and switch experiences if needed.
+- You can return to your previous location after switching views or opening dialogs.
+- You can locate your selected project and move to key areas such as **Model catalog**, **Playgrounds**, or **Management center**.
+
+## Troubleshoot screen reader navigation
+
+[!INCLUDE [screen-reader-troubleshoot](../../foundry/includes/screen-reader-troubleshoot.md)]
+
+## Technical support for customers with disabilities
+
+[!INCLUDE [screen-reader-tech-support](../../foundry/includes/screen-reader-tech-support.md)]
+
+If you're a government, commercial, or enterprise customer, contact the Enterprise Disability Answer Desk.
+
 ## Related content
 
 * Learn how to build generative AI applications in the [Foundry](../what-is-foundry.md).

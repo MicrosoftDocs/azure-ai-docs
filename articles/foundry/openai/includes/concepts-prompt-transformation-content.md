@@ -1,13 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 [!INCLUDE [DALL-E retirement notice](dall-e-retirement.md)]

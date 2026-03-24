@@ -1,13 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 Fine-tuning involves two cost components: a one-time training cost and ongoing hosting and inference costs. This guide explains how to estimate and manage both.
