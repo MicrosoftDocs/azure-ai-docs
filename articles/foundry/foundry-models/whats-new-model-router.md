@@ -20,3 +20,4 @@ ms.custom:
 This article provides a summary of the latest releases and major documentation updates for Azure model router, including new supported models, routing features, and deployment options.
 
 [!INCLUDE [whats-new-model-router 1](includes/whats-new-model-router-1.md)]
+

@@ -151,5 +151,4 @@ The following example response was generated using API version `2025-11-18`:
   }
 }
 ```
-
 [!INCLUDE [model-router 2](../../../foundry/openai/includes/how-to-model-router-2.md)]
