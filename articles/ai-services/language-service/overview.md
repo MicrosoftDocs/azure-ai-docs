@@ -35,7 +35,7 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 Core capabilities are the primary, actively evolving features recommended for new development and long-term planning. These features are recommended for new solutions and future-focused scenarios.
 
    * [Language detection](#language-detection)
-   * [Named entity recognition (custom)](#named-entity-recognition-custom)
+   * [Named entity recognition (custom)](#named-entity-recognition-custom-ner)
    * [Named entity recognition (prebuilt)](#named-entity-recognition-prebuilt)
    * [PII detection](#personally-identifiable-information-pii-detection)
    * [Text analytics for health](#text-analytics-for-health)
