@@ -7,6 +7,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 11/21/2025
 ai-usage: ai-assisted
+
+ms.custom: classic-and-new
 ---
 
 ## Prerequisites

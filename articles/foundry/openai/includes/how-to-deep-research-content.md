@@ -6,7 +6,8 @@ ms.author: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
+
 ---
 
 The o3-deep-research model is designed for advanced research tasks. It can browse, analyze, and synthesize information from hundreds of sources to produce a comprehensive, citation-rich report. This model uses multi-step reasoning, web search, and remote Model Context Protocol (MCP) servers to gather and process data. It can also run code for complex analysis.
