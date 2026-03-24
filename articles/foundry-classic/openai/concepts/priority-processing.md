@@ -26,7 +26,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 [!INCLUDE [priority-processing 1](../../../foundry/openai/includes/concepts-priority-processing-1.md)]
 
-## Priority processing support
+## Priority processing availability by deployment type
+
+Priority processing can be enabled in Global standard deployments or Data Zone standard (US) deployments. For pricing information, see [the Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/azure-openai/).
 
 # [Global standard](#tab/global-standard)
 
@@ -79,9 +81,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 | westus3                | ✅                      | ✅                      | ✅                      | ✅                      |
 
 ---
-
-> [!NOTE]
-> Model and region availability is expected to expand in the days ahead. Check this page for updates. For pricing information, see [this page](https://azure.microsoft.com/pricing/details/azure-openai/).
 
 ## Enable priority processing at the deployment level
 
