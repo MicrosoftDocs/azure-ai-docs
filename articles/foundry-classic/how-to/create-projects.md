@@ -55,11 +55,11 @@ Use the following tabs to select the method you want to use to create a Foundry 
 [!INCLUDE [create-projects-prereq-python](../../foundry/includes/create-projects-prereq-python.md)]
 
 - (Optional) If you're working in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure operated by 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region you want to authenticate to. This example authenticates to the Azure Government - US region:
-
-```python
-from azure.identity import AzureAuthorityHosts
-DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
-```
+    
+    ```python
+    from azure.identity import AzureAuthorityHosts
+    DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
+    ```
 
 # [Azure CLI](#tab/azurecli)
 
