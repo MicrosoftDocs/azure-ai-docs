@@ -34,56 +34,19 @@ If your organization requires customized Azure configurations like alternative n
 
 * [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 
-Before you choose a method, verify the following prerequisites:
-
-1. Confirm that you're signed in to the correct Microsoft Entra tenant.
-1. Confirm that your selected Azure subscription is active.
-1. Confirm that your role assignment allows project and resource creation.
-
 Use the following tabs to select the method you want to use to create a Foundry project:
 
 # [Foundry portal](#tab/foundry)
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- No other prerequisites necessary when using the portal.
 
 # [Python SDK](#tab/python)
 
-- [Set up your development environment](develop/install-cli-sdk.md?tabs=python).
-- Run `az login` or `az login --use-device-code` in your environment before running code.
-- **Quick validation**: Before creating a project, verify your SDK and authentication by testing the client:
-
-```python
-from azure.identity import DefaultAzureCredential
-from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
-
-# Test authentication by instantiating the client
-credential = DefaultAzureCredential()
-subscription_id = "<your-subscription-id>"  # Replace with your subscription ID
-client = CognitiveServicesManagementClient(credential, subscription_id)
-print("✓ Authentication successful! Ready to create a project.")
-```
-
-- Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
-- Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
-- Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
-
-:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
-
-- (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into `DefaultAzureCredential`:
-
-```python
-DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
-```
+[!INCLUDE [create-projects-prereq-python](../includes/create-projects-prereq-python.md)]
 
 # [Azure CLI](#tab/azurecli)
 
-- Install the [Azure CLI](/cli/azure/install-azure-cli).
-- Set the default value for `subscription`.
-
-```azurecli
-# Set your default subscription
-az account set --subscription "{subscription-name}"
-```
+[!INCLUDE [create-projects-prereq-cli](../includes/create-projects-prereq-cli.md)]
 
 ---
 
@@ -106,24 +69,11 @@ To create a Foundry project, follow these steps:
 
 ### Advanced options
 
-1. You create a Foundry project on a `Foundry` resource. The portal automatically creates this resource when you create the project. Select an existing **Resource group** to use, or leave the default to create a new resource group.
-
-    > [!TIP]
-    > Especially for getting started, create a new resource group for your project. The resource group makes it easy to manage the project and all its resources together.
-
-1. Select a **Location** or use the default. The location is the region where the project resources are hosted. 
-
-1. Select **Create**. You see the progress of resource creation. The project is created when the process is complete.
+[!INCLUDE [create-projects-advanced-options](../includes/create-projects-advanced-options.md)]
 
 # [Python SDK](#tab/python)
 
-To create a Foundry project:
-
-- Add the following code to create a Foundry project by using the variables and `client` connection from the prerequisites section.
-
-    :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_resource_project":::
-
-    References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
+[!INCLUDE [create-projects-create-python](../includes/create-projects-create-python.md)]
 
 # [Azure CLI](#tab/azurecli)
 
@@ -143,19 +93,11 @@ On the **Home** project page, you see the project endpoint and API key for the p
 
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="show_project":::
-
-References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
+[!INCLUDE [create-projects-view-python](../includes/create-projects-view-python.md)]
 
 # [Azure CLI](#tab/azurecli)
 
-To view settings for the project, use the `az cognitiveservices account connection show` command. For example:
-
-```azurecli
-az cognitiveservices account connection show \
---name my-foundry-project \
---resource-group my-foundry-rg
-```
+[!INCLUDE [create-projects-view-cli](../includes/create-projects-view-cli.md)]
 
 ---
 
@@ -171,46 +113,11 @@ az cognitiveservices account connection show \
 
 # [Python SDK](#tab/python)
 
-This code uses the variables and `client connection` from the Prerequisites. First, create the client connection:
-
-```python
-client.projects.begin_delete(
-    resource_group_name, foundry_resource_name, foundry_project_name
-)
-```
-
-References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
-
-Delete a Foundry resource and all of its projects:
-
-```python
-# Delete projects
-projects = client.projects.list(resource_group_name, foundry_resource_name)
-
-for project in projects: 
-    print("Deleting project:", project.name)
-    client.projects.begin_delete(resource_group_name, foundry_resource_name,
-        project_name=project.name.split('/')[-1]
-    ).wait()
-
-# Delete resource
-print("Deleting resource:", foundry_resource_name)
-client.accounts.begin_delete(resource_group_name, foundry_resource_name).wait()
-```
-
-References: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient).
+[!INCLUDE [create-projects-delete-python](../includes/create-projects-delete-python.md)]
 
 # [Azure CLI](#tab/azurecli)
 
-Run the following command:
-
-```azurecli
-az cognitiveservices account project delete \
---name my-foundry-rg \
---project-name my-foundry-project
-```
-
-References: [az cognitiveservices account project delete](/cli/azure/cognitiveservices/account/project#az-cognitiveservices-account-project-delete).
+[!INCLUDE [create-projects-delete-cli](../includes/create-projects-delete-cli.md)]
 
 ---
 
