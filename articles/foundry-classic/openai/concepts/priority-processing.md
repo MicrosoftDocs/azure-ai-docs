@@ -73,15 +73,8 @@ ROBOTS: NOINDEX, NOFOLLOW
 | centralus              | ✅                      | ✅                      | ✅                      | ✅                      |
 | eastus                 | ✅                      | ✅                      | ✅                      | ✅                      |
 | eastus2                | ✅                      | ✅                      | ✅                      | ✅                      |
-| francecentral          | -                       | -                       | ✅                      | ✅                      |
-| germanywestcentral     | -                       | -                       | -                       | ✅                      |
-| italynorth             | -                       | -                       | -                       | ✅                      |
 | northcentralus         | ✅                      | ✅                      | ✅                      | ✅                      |
-| polandcentral          | -                       | -                       | -                       | ✅                      |
 | southcentralus         | ✅                      | ✅                      | ✅                      | ✅                      |
-| spaincentral           | -                       | -                       | -                       | ✅                      |
-| swedencentral          | -                       | -                       | ✅                      | ✅                      |
-| westeurope             | -                       | -                       | -                       | ✅                      |
 | westus                 | ✅                      | ✅                      | ✅                      | ✅                      |
 | westus3                | ✅                      | ✅                      | ✅                      | ✅                      |
 
