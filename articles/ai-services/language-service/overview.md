@@ -77,13 +77,13 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 
 [Conversational language understanding (CLU)](./conversational-language-understanding/overview.md) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it.
 
-:::image type="content" source="media/studio-examples/conversational-language-understanding.png" alt-text="A screenshot of a conversational language understanding example." lightbox="media/studio-examples/conversational-language-understanding.png":::
+:::image type="content" source="media/overview/conversational-language-understanding.png" alt-text="A screenshot of a conversational language understanding example." lightbox="media/overview/conversational-language-understanding.png":::
 
 ### Custom text classification
 
-[Custom text classification](./custom-text-classification/overview.md) enables you to build custom AI models to classify unstructured text documents into custom classes you define.
+[Custom text classification](./custom-text-classification/overview.md) enables you to build custom AI models to classify unstructured text documents into custom classes you define. Creating a custom text classification project typically involves several different steps:
 
-:::image type="content" source="media/studio-examples/single-classification.png" alt-text="A screenshot of a custom text classification example." lightbox="media/studio-examples/single-classification.png":::
+:::image type="content" source="media/overview/text-classification.png" alt-text="A screenshot of a custom text classification example." lightbox="media/overview/text-classification.png":::
 
 ### Entity linking
 
@@ -92,7 +92,7 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 
 [Entity linking](./entity-linking/overview.md) is a preconfigured feature that disambiguates the identity of entities (words or phrases) found in unstructured text and returns links to Wikipedia.
 
-:::image type="content" source="media/studio-examples/entity-linking.png" alt-text="A screenshot of an entity linking example." lightbox="media/studio-examples/entity-linking.png":::
+:::image type="content" source="media/overview/entity-linking.png" alt-text="A screenshot of an entity linking example." lightbox="media/overview/entity-linking.png":::
 
 ### Key phrase extraction
 
@@ -104,13 +104,13 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 
 [Orchestration workflow](./language-detection/overview.md) is a custom feature that enables you to connect [Conversational Language Understanding (CLU)](./conversational-language-understanding/overview.md), [question answering](./question-answering/overview.md), and [LUIS](../LUIS/what-is-luis.md) applications.
 
-:::image type="content" source="media/studio-examples/orchestration-workflow.png" alt-text="A screenshot of an orchestration workflow example." lightbox="media/studio-examples/orchestration-workflow.png":::
+:::image type="content" source="media/overview/orchestration-workflow.png" alt-text="A screenshot of an orchestration workflow example." lightbox="media/overview/orchestration-workflow.png":::
 
 ### Question answering
 
 [Question answering](./question-answering/overview.md) is a custom feature that identifies the most suitable answer for user inputs. This feature is typically utilized to develop conversational client applications, including social media platforms, chat bots, and speech-enabled desktop applications.
 
-:::image type="content" source="media/studio-examples/question-answering.png" alt-text="A screenshot of a question answering example." lightbox="media/studio-examples/question-answering.png":::
+:::image type="content" source="media/overview/question-answering.png" alt-text="A screenshot of a question answering example." lightbox="media/overview/question-answering.png":::
 
 ### Sentiment analysis and opinion mining
 
@@ -121,20 +121,27 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 ### Summarization
 
 [Summarization](./summarization/overview.md) condenses information for text and conversations (chat and transcripts).
-Text summarization generates a summary, supporting two approaches: Extractive summarization creates a summary by selecting key sentences from the document and preserving their original positions. In contrast, abstractive summarization generates a summary by producing new, concise, and coherent sentences or phrases that aren't directly copied from the original document.
-Conversation summarization recaps and segments long meetings into timestamped chapters. Call center summarization summarizes customer issues and resolution.
 
 ##### Conversation summarization
+
+Conversation summarization recaps and segments long meetings into timestamped chapters.
 
 :::image type="content" source="media/overview/conversation-summarization.png" alt-text="A screenshot of conversation summarization  in Foundry." lightbox="media/overview/conversation-summarization.png":::
 
 ##### Call center summarization
 
+Call center summarization summarizes customer issues and resolution.
+
 :::image type="content" source="media/overview/call-center-summarization.png" alt-text="A screenshot of call center summarization in Foundry." lightbox="media/overview/call-center-summarization.png":::
 
 ##### Text summarization
 
-:::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Foundry." lightbox="media/overview/text-summarization.png":::
+Text summarization generates a summary, supporting two approaches:
+
+   * **Extractive summarization** creates a summary by selecting key sentences from the document and preserving their original positions.
+   * **Abstractive summarization** generates a summary by producing new, concise, and coherent sentences or phrases that aren't directly copied from the original document.
+
+   :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Foundry." lightbox="media/overview/text-summarization.png":::
 
 ## Azure Language agents
 
