@@ -1,13 +1,13 @@
 ---
 manager: nitinme
-author: santiagxf
-ms.author: fasantia 
+author: ssalgadodev
+ms.author: ssalgado
+ms.reviewer: fasantia
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.date: 1/21/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
-
 ms.custom: classic-and-new
 ---
 

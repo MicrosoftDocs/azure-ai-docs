@@ -1,13 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle
+ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 Azure OpenAI models are continually refreshed with newer and more capable models. As part of this process, we deprecate and retire older models. This article provides information about models that are currently available, deprecated, and retired.
