@@ -70,7 +70,12 @@ Core capabilities are the primary, actively evolving features recommended for ne
 
 [Personally identifiable information (PII) detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
 
+***Conversation PII detection*** 
+
 :::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Foundry." lightbox="media/overview/conversation-pii.png":::
+
+***Text PII detection***
+
 :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Foundry." lightbox="media/overview/text-pii.png":::
 
 ### Text analytics for health
