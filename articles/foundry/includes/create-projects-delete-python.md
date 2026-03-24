@@ -12,7 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-This code uses the variables and `client connection` from the Prerequisites. First, create the client connection:
+This code uses the variables and `client` connection from the prerequisites. To delete a single project:
 
 ```python
 client.projects.begin_delete(

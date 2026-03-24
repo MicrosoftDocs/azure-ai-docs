@@ -16,7 +16,8 @@ Run the following command:
 
 ```azurecli
 az cognitiveservices account project delete \
---name my-foundry-rg \
+--name my-foundry-resource \
+--resource-group my-foundry-rg \
 --project-name my-foundry-project
 ```
 

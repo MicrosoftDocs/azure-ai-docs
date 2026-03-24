@@ -12,10 +12,11 @@ ms.custom:
   - classic-and-new
 ---
 
-To view settings for the project, use the `az cognitiveservices account connection show` command. For example:
+To view settings for the project, use the `az cognitiveservices account project show` command. For example:
 
 ```azurecli
-az cognitiveservices account connection show \
---name my-foundry-project \
---resource-group my-foundry-rg
+az cognitiveservices account project show \
+--name my-foundry-resource \
+--resource-group my-foundry-rg \
+--project-name my-foundry-project
 ```

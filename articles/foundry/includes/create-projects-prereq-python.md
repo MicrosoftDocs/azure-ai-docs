@@ -12,7 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-- [Set up your development environment](develop/install-cli-sdk.md?tabs=python).
+- [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=python).
 - Run `az login` or `az login --use-device-code` in your environment before running code.
 - Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
 - Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.

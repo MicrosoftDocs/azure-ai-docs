@@ -74,7 +74,7 @@ Use one of the following methods.
 
 # [Foundry portal](#tab/foundry)
 
-These steps provide a way to create a new Azure resource with basic, default settings. 
+These steps provide a way to create a new Azure resource with basic default settings. 
 
 To create a Foundry project, follow these steps:
 
@@ -110,8 +110,8 @@ To create a Foundry project, follow these steps:
 On the **Home** project page, you find information about the project.
 
 - **Name**: The name of the project appears in the upper left corner. 
-- **Subscription**: The subscription that hosts the hub that hosts the project.
-- **Resource group**: The resource group that hosts the hub that hosts the project.
+- **Subscription**: The subscription that hosts the resource that hosts the project.
+- **Resource group**: The resource group that hosts the resource that hosts the project.
 
 # [Python SDK](#tab/python)
 
