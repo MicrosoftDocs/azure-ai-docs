@@ -224,7 +224,7 @@ request with `ainvoke`.
 - [Async credentials in Azure Identity](/python/api/overview/azure/identity-readme)
 - [LangChain runnable interface](https://python.langchain.com/docs/concepts/runnables/)
 
-## Reasoning 
+## Reasoning
 
 Many models can perform multi-step reasoning to arrive at a conclusion. This involves breaking down complex problems into smaller, more manageable steps.
 
@@ -331,9 +331,6 @@ These products are part of Contoso's main offerings as detailed in their product
 Annotations: [{'file_id': 'assistant-MvU5SEqUcUBumoLUV5BXxn', 'filename': 'product_info.md', 'type': 'file_citation', 'file_index': 395}]
 ```
 
-> [!TIP]
-> Using image generation tool in Microsoft Foundry requires passing the model deployment name used for generation as part of a header, `x-ms-oai-image-generation-deployment`. When using `langchain-azure-ai`, this is handled automatically for you. However, if you plan to use this tool with `langchain-openai`, you must pass the header manually.
-
 ## Use Foundry models in agents
 
 Use `create_agent` with models connected to Foundry to create ReAct-style agent loops:
@@ -344,7 +341,6 @@ from langchain.agents import create_agent
 agent = create_agent(
     model="azure_ai:gpt-5.2", 
     system_prompt="You're an informational agent. Answer questions cheerfully.", 
-    tools=[]
 )
 
 response = agent.invoke({"messages": "what's your name?"})
@@ -357,27 +353,28 @@ response["messages"][-1].pretty_print()
 I’m ChatGPT, your AI assistant.
 ```
 
-Server-side tools can also be used but they require to call `bind_tools`.
+Server-side tools can also be used, but they require calling `bind_tools`.
 
 ```python
+from langchain.chat_models import init_chat_model
 from langchain.agents import create_agent
 from langchain_azure_ai.tools.builtin import ImageGenerationTool
 
 model = init_chat_model("azure_ai:gpt-5.2")
 tools = [ImageGenerationTool(model="gpt-image-1.5", size="1024x1024")]
-model_with_image_gen = model.bind_tools(tools)
+model_with_tools = model.bind_tools(tools)
 
 agent = create_agent(
-    model=model,
+    model=model_with_tools,
     tools=tools,
     system_prompt="You're an informational agent. Answer questions with graphics.", 
 )
 ```
 
 > [!TIP]
-> The image generation tool in Microsoft Foundry requires passing the model deployment name for image generation
+> The image generation tool in Foundry requires passing the model deployment name for image generation
 > as part of a header, `x-ms-oai-image-generation-deployment`. When using `langchain-azure-ai`, this is handled
-> automatically for you. However, if you plan to use this tool with `langchain-openai`, you must pass the header
+> automatically. However, if you plan to use this tool with `langchain-openai`, you must pass the header
 > manually.
 
 ## Use embedding models
