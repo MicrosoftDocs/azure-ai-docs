@@ -253,7 +253,7 @@ OpenAI models deployed in Foundry support server-side tool-calling loops: models
 If a model invokes a tool server-side, the content of the response message will include content representing the invocation and result of the tool.
 
 > [!IMPORTANT]
-> Tools in the namespace `langchain_azure_ai.tools.builtin` are only supported in OpenAI models.
+> Tools in the namespace `langchain_azure_ai.tools.builtin` are only supported in OpenAI models. 
 
 These are tools provided by OpenAI that extend the model's capabilities. To see the full list of supported tools, see [built-in tools](https://platform.openai.com/docs/guides/tools).
 
@@ -331,6 +331,9 @@ These products are part of Contoso's main offerings as detailed in their product
 Annotations: [{'file_id': 'assistant-MvU5SEqUcUBumoLUV5BXxn', 'filename': 'product_info.md', 'type': 'file_citation', 'file_index': 395}]
 ```
 
+> [!TIP]
+> Using image generation tool in Microsoft Foundry requires passing the model deployment name used for generation as part of a header, `x-ms-oai-image-generation-deployment`. When using `langchain-azure-ai`, this is handled automatically for you. However, if you plan to use this tool with `langchain-openai`, you must pass the header manually.
+
 ## Use Foundry models in agents
 
 Use `create_agent` with models connected to Foundry to create ReAct-style agent loops:
@@ -354,6 +357,28 @@ response["messages"][-1].pretty_print()
 I’m ChatGPT, your AI assistant.
 ```
 
+Server-side tools can also be used but they require to call `bind_tools`.
+
+```python
+from langchain.agents import create_agent
+from langchain_azure_ai.tools.builtin import ImageGenerationTool
+
+model = init_chat_model("azure_ai:gpt-5.2")
+tools = [ImageGenerationTool(model="gpt-image-1.5", size="1024x1024")]
+model_with_image_gen = model.bind_tools(tools)
+
+agent = create_agent(
+    model=model,
+    tools=tools,
+    system_prompt="You're an informational agent. Answer questions with graphics.", 
+)
+```
+
+> [!TIP]
+> The image generation tool in Microsoft Foundry requires passing the model deployment name for image generation
+> as part of a header, `x-ms-oai-image-generation-deployment`. When using `langchain-azure-ai`, this is handled
+> automatically for you. However, if you plan to use this tool with `langchain-openai`, you must pass the header
+> manually.
 
 ## Use embedding models
 
