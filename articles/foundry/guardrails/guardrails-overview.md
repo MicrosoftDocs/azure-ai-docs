@@ -56,12 +56,12 @@ The following table summarizes which risks are applicable to models and agents:
 | [Sexual](/azure/foundry/openai/concepts/content-filter-severity-levels#harm-category-descriptions) | ✅ | ✅ |
 | [Self-harm](/azure/foundry/openai/concepts/content-filter-severity-levels#harm-category-descriptions) | ✅ | ✅ |
 | [Violence](/azure/foundry/openai/concepts/content-filter-severity-levels#harm-category-descriptions) | ✅ | ✅ |
-| User prompt attacks | ✅ | ✅ |
-| Indirect attacks | ✅ | ✅ |
-| Spotlighting (Preview) | ✅ | ❌ |
-| Protected material for code | ✅ | ✅ |
-| Protected material for text | ✅ | ✅ |
-| Groundedness (Preview) | ✅ | ❌ |
+| [User prompt attacks](/azure/foundry/openai/concepts/content-filter-prompt-shields#examples-1) | ✅ | ✅ |
+| [Indirect attacks](/azure/foundry/openai/concepts/content-filter-prompt-shields#examples-1) | ✅ | ✅ |
+| [Spotlighting](/azure/foundry/openai/concepts/content-filter-prompt-shields#spotlighting-preview) (Preview) | ✅ | ❌ |
+| [Protected material for code](/azure/ai-services/content-safety/quickstart-protected-material-code?pivots=programming-language-foundry-portal) | ✅ | ✅ |
+| [Protected material for text](/azure/foundry/openai/concepts/content-filter-protected-material?tabs=text) | ✅ | ✅ |
+| [Groundedness](/azure/foundry/openai/concepts/content-filter-groundedness) (Preview) | ✅ | ❌ |
 | Personally identifiable information (Preview) | ✅ | ✅ |
 
 ### Severity levels
