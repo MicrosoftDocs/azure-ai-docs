@@ -39,13 +39,13 @@ This article explains how to assign built-in roles for service administration, d
 
 Roles are a collection of permissions that affect the control plane or data plane:
 
-+ **Control plane:** Operations authorized through Azure Resource Manager that create, configure, and manage the search service and its object definitions. Uses the [Search Management REST APIs](/rest/api/searchmanagement/) for service provisioning and configuration, [Search Service REST APIs](/rest/api/searchservice/) for object definitions, and [Azure RBAC REST APIs](/rest/api/authorization/) for role assignments. Equivalent Azure SDK client libraries are also available.
++ **Control plane:** Operations that create, configure, and manage the search service and its object definitions. Available through the [Search Management REST APIs](/rest/api/searchmanagement/) for service provisioning and configuration, [Search Service REST APIs](/rest/api/searchservice/) for object definitions, and [Azure RBAC REST APIs](/rest/api/authorization/) for role assignments. Equivalent Azure SDK client libraries are also available.
 
-+ **Data plane:** Operations that target content hosted on a search service, such as loading documents, running queries, and knowledge base retrieval. Uses the [Search Service REST APIs](/rest/api/searchservice/) or an equivalent Azure SDK client library.
++ **Data plane:** Operations that target content hosted on a search service, such as loading documents, querying indexes, and retrieving from knowledge bases. Available through the [Search Service REST APIs](/rest/api/searchservice/) or an equivalent Azure SDK client library.
 
 ### Role descriptions
 
-Azure AI Search provides the following built-in roles. Combine these roles to get sufficient permissions for your use case. If built-in roles don't meet your needs, [create a custom role](#create-a-custom-role).
+The following built-in roles grant permissions to Azure AI Search. Control plane roles are always available, while data plane roles require role-based access to be enabled on your search service.
 
 | Role | Plane | Description |
 | -- | -- | -- |
@@ -57,7 +57,7 @@ Azure AI Search provides the following built-in roles. Combine these roles to ge
 | [Search Index Data Reader](/azure/role-based-access-control/built-in-roles#search-index-data-reader) | Data | Read-only data access. Can query indexes and retrieve from knowledge bases. Can't load documents, modify object definitions, or retrieve admin keys. To scope to specific indexes, see [Grant access to a single index](#grant-access-to-a-single-index). |
 
 > [!NOTE]
-> If you disable role-based access, control plane roles remain available. Data plane roles become unusable because they only grant data permissions.
+> Combine the built-in roles to get sufficient permissions for your use case. If these roles don't meet your needs, [create a custom role](#create-a-custom-role).
 
 ### Summary of permissions
 
@@ -95,9 +95,6 @@ In this section, you assign roles for:
 + [Service administration](#assign-roles-for-service-administration)
 + [Development](#assign-roles-for-development)
 + [Read-only access](#assign-roles-for-read-only-access)
-
-> [!IMPORTANT]
-> If you configure role-based access for a search service and include an API key in a request, the service uses that key for authentication.
 
 ### Assign roles for service administration
 
@@ -196,11 +193,6 @@ New-AzRoleAssignment -SignInName <email> `
 ### Assign roles for read-only access
 
 Use the following role for apps and processes that only need read access to indexes and knowledge bases. Supported operations include [search](/rest/api/searchservice/documents/search-post), [autocomplete](/rest/api/searchservice/documents/autocomplete-post), and [suggestions](/rest/api/searchservice/documents/suggest-post) for indexes and [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve) for knowledge bases.
-
-This section provides basic steps for setting up the role assignment. For comprehensive instructions, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
-
-> [!NOTE]
-> If you need to debug queries that are predicated on a Microsoft identity, use Search Index Data Contributor or [create a custom role](#create-a-custom-role) with [elevated permissions](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results).
 
 | Role | ID |
 | -- | -- |
@@ -472,11 +464,9 @@ In PowerShell, use `New-AzRoleAssignment`, providing the Azure user or group nam
 
 If built-in roles don't provide the right combination of permissions, you can create a [custom role](/azure/role-based-access-control/custom-roles) to support the operations you require.
 
-The following example clones **Search Index Data Reader** and then adds the ability to list indexes by name. Normally, listing the indexes on a search service is considered an administrative right.
+The following examples clone **Search Index Data Reader** and then add the ability to list indexes by name. Normally, listing the indexes on a search service is considered an administrative right.
 
 ### [**Azure portal**](#tab/custom-role-portal)
-
-The following steps are derived from [Create or update Azure custom roles using the Azure portal](/azure/role-based-access-control/custom-roles-portal). The search service portal page supports cloning from an existing role.
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
 
@@ -492,10 +482,10 @@ The following steps are derived from [Create or update Azure custom roles using 
 
 1. With **Actions** selected at the top, set the following permissions:
 
-   + Under Microsoft.Search/operations, select **Read : List all available operations**. 
-   + Under Microsoft.Search/searchServices/indexes, select **Read : Read Index**.
+   + Under `Microsoft.Search/operations`, select **Read : List all available operations**. 
+   + Under `Microsoft.Search/searchServices/indexes`, select **Read : Read Index**.
 
-1. Switch to **Data Actions** at the top, and under Microsoft.Search/searchServices/indexes/documents, select **Read : Read Documents**.
+1. Switch to **Data Actions** at the top, and under `Microsoft.Search/searchServices/indexes/documents`, select **Read : Read Documents**.
 
    The JSON definition looks like the following example:
 
@@ -526,7 +516,9 @@ The following steps are derived from [Create or update Azure custom roles using 
 
 1. Select **Add** to close the pane.
 
-1. Select **Review + create** to create the role. You can now assign users and groups to the role.
+1. Select **Review + create** to create the role.
+
+   You can now assign users and groups to the role. For more information about these steps, see [Create or update Azure custom roles using the Azure portal](/azure/role-based-access-control/custom-roles-portal).
 
 ### [**Azure PowerShell**](#tab/custom-role-ps)
 
@@ -596,26 +588,28 @@ To create a Conditional Access policy for Azure AI Search:
 
 1. Search for **Microsoft Entra Conditional Access**.
 
-1. From the left pane, select **Policies**.
+1. On the **Overview** page, select **Create new policy**.
 
-1. Select **New policy**.
+1. Under **Cloud apps or actions**, add **Azure AI Search** as a cloud app, depending on how you want to set up your policy.
 
-1. In the **Cloud apps or actions** section of the policy, add **Azure AI Search** as a cloud app depending on how you want to set up your policy.
-
-1. Update the remaining parameters of the policy. For example, specify which users and groups this policy applies to. 
+1. Update the remaining parameters of your policy. For example, specify which users and groups to which the policy applies. 
 
 1. Save the policy.
 
 > [!IMPORTANT]
-> If your search service has a managed identity assigned to it, the specific search service shows up as a cloud app that you can include or exclude as part of the Conditional Access policy. You can't enforce Conditional Access policies on a specific search service. Instead, make sure you select the general **Azure AI Search** cloud app.
+> If your search service has a managed identity assigned to it, the specific search service appears as a cloud app. However, selecting that specific search service doesn't enforce the policy. Instead, select the general **Azure AI Search** cloud app to apply Conditional Access policies to your search service.
 
 ## Troubleshooting
 
 When you develop applications that use role-based access control for authentication, you might encounter some common problems:
 
++ The default configuration for a search service is [key-based authentication](search-security-api-keys.md). If you don't change this setting to **Both** or **Role-based access control**, all requests that use role-based authentication are automatically denied, regardless of the underlying permissions.
+
++ If your request includes an API key alongside role-based credentials, the service authenticates using the key. Remove the API key from your request headers to use role-based authentication.
+
 + If the authorization token comes from a [managed identity](/entra/identity/managed-identities-azure-resources/overview) and you recently assigned the appropriate permissions, it [might take several hours](/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations#limitation-of-using-managed-identities-for-authorization) for the permissions assignments to take effect.
 
-+ The default configuration for a search service is [key-based authentication](search-security-api-keys.md). If you don't change this setting to **Both** or **Role-based access control**, all requests that use role-based authentication are automatically denied, regardless of the underlying permissions.
++ If queries with document-level permissions don't return expected results, use Search Index Data Contributor or [create a custom role](#create-a-custom-role) with [elevated permissions](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) to investigate.
 
 ## Next step
 
