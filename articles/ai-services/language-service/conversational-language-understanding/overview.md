@@ -14,7 +14,7 @@ ms.custom: language-service-clu
 # What is conversational language understanding?
 
 > [!IMPORTANT]
-> Conversational Language Understanding (CLU) is retiring from Azure Language effective **March 20, 2029**. After this date, the CLU feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
+> Conversational Language Understanding (CLU) is retiring from Azure Language effective **March 20, 2029**. After this date, the CLU feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
 
 Conversational language understanding is one of the custom features offered by [Azure Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application.
 

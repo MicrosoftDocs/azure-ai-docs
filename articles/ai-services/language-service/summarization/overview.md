@@ -14,7 +14,7 @@ ms.custom: language-service-summarization, build-2024, ignite-2024
 # What is summarization?
 
 > [!IMPORTANT]
-> Summarization is retiring from Azure Language effective **March 20, 2029**. After this date, the summarization feature is no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
+> Summarization is retiring from Azure Language effective **March 20, 2029**. After this date, the summarization feature is no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
 
 [!INCLUDE [availability](includes/regional-availability.md)]
 
