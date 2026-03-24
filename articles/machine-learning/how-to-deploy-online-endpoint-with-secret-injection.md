@@ -10,7 +10,8 @@ ms.author: scottpolly
 ms.reviewer: jturuk
 ms.date: 01/10/2024
 ms.topic: how-to
-ms.custom: how-to, ignite-2023, sdkv2, devx-track-azurecli
+ms.custom: how-to, ignite-2023, sdkv2, devx-track-azurecli, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Access secrets from online deployment using secret injection (preview)
@@ -186,6 +187,9 @@ Choose the user identity that you'll use to create the online endpoint and onlin
     1. Verify that the right role shows up under the __Current role assignments__ tab.
 
 ## Create an endpoint
+
+> [!TIP]
+> This example uses key-based authentication for simplicity. For production deployments, Microsoft recommends Microsoft Entra token-based authentication (`aad_token`), which provides enhanced security through identity-based access control. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
 
 ### [System-assigned identity](#tab/sai)
 

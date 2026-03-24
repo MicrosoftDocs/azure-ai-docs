@@ -10,8 +10,9 @@ ms.author: scottpolly
 ms.reviewer: fasantia
 ms.date: 03/31/2022
 ms.topic: how-to
-ms.custom: deploy, mlflow, devplatv2, no-code-deployment, devx-track-azurecli, cliv2
+ms.custom: deploy, mlflow, devplatv2, no-code-deployment, devx-track-azurecli, cliv2, dev-focus
 ms.devlang: azurecli
+ai-usage: ai-assisted
 ---
 
 # Progressive rollout of MLflow models to Online Endpoints
@@ -198,6 +199,9 @@ We are going to exploit this functionality by deploying multiple versions of the
     ```
 
 1. Configure the endpoint
+
+    > [!TIP]
+    > This example uses key-based authentication for simplicity. For production deployments, Microsoft recommends Microsoft Entra token-based authentication (`aad_token`), which provides enhanced security through identity-based access control. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
 
     # [Azure CLI](#tab/cli)
     
