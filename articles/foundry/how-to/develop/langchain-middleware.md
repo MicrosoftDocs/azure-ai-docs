@@ -59,7 +59,7 @@ model = AzureAIOpenAIApiChatModel(
 )
 ```
 
-## Connect to content safety middleware
+## Connect to content safety
 
 Use classes in the namespace `langchain_azure_ai.agents.middleware.*` to add
 Content Safety capabilities to your agents. The package automatically
@@ -179,7 +179,8 @@ Invoke the agent:
 
 ```python
 result = agent.invoke(
-    {"messages": [("human", "I hate you. I want to hurt myself.")]},
+    {"messages": [("human", "<some user input that may violate "
+                    "content safety policies>")]},
 )
 
 print(result["messages"][0].content[0]["text"])
