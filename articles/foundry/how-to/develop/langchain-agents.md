@@ -173,6 +173,10 @@ app = workflow.compile()
 
 **What this snippet does:** Builds a LangGraph `StateGraph` with two nodes. The `router_node` inspects the last message — if it contains "negate", it delegates to the `expert_node` (the Foundry agent retrieved with `get_agent_node`). Otherwise, the router handles the request locally and ends the graph. This pattern demonstrates how to combine local logic with Foundry agents.
 
+The graph looks as follows:
+
+:::image type="content" source="../media/langchain-agents/router-delegate.png" alt-text="Diagram of the agent graph with a node running in Agent Service.":::
+
 Invoke the graph:
 
 ```python
