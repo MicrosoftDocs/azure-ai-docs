@@ -542,7 +542,7 @@ Follow these steps to create a console application and install the Voice Live SD
                 var turnDetectionConfig = new ServerVadTurnDetection
                 {
                     Threshold = 0.5f,
-                    PrefixPadding = TimeSpan.FromMilliseconds(300),
+                    PrefixPadding = TimeSpan.FromMilliseconds(400),
                     SilenceDuration = TimeSpan.FromMilliseconds(500)
                 };
     
