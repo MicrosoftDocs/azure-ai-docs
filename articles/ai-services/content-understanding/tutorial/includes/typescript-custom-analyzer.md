@@ -157,7 +157,7 @@ const analyzer: ContentAnalyzer = {
     fieldSchema,
     models: {
         completion: "gpt-4.1",
-        embedding: "text-embedding-3-large",
+        embedding: "text-embedding-3-large", // Required when using field_schema and prebuilt-document base analyzer
     },
 } as unknown as ContentAnalyzer;
 

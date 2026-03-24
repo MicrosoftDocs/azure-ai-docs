@@ -35,13 +35,12 @@ Create a JSON file named `receipt.json` with the following content:
   "baseAnalyzerId": "prebuilt-document",
   "models": {
       "completion": "gpt-4.1",
-      "embedding": "text-embedding-ada-002"
+      "embedding": "text-embedding-3-large"
 
     },
   "config": {
     "returnDetails": true,
     "enableFormula": false,
-    "disableContentFiltering": false,
     "estimateFieldSourceAndConfidence": true,
     "tableFormat": "html"
   },
@@ -86,9 +85,7 @@ Create a JSON file named `categorize.json` with the following content:
 
   //Specify the model the analyzer should use. This is one of the supported completion models and one of the supported embeddings model. The specific deployment used during analyze is set on the resource or provided in the analyze request.
   "models": {
-      "completion": "gpt-4.1",
-      "embedding": "text-embedding-ada-002"
-
+      "completion": "gpt-4.1"
     },
   "config": {
     // Enable splitting of the input into segments. Set this property to false if you only expect a single document within the input file. When specified and enableSegment=false, the whole content will be classified into one of the categories.
@@ -137,9 +134,6 @@ Create a JSON file named `request_body.json` with the following content:
   "models": {
       "completion": "gpt-4.1"
     },
-  "config": {
-    "disableContentFiltering": false
- },
  "fieldSchema": {
     "fields": {
       "Title": {
@@ -166,8 +160,7 @@ Create a JSON file named `request_body.json` with the following content:
   "baseAnalyzerId": "prebuilt-audio",
   "config": {
     "locales": ["en-US", "fr-FR"],
-    "returnDetails": true,
-    "disableContentFiltering": false
+    "returnDetails": true
   },
   "fieldSchema": {
     "fields": {
@@ -211,11 +204,7 @@ Create a JSON file named `request_body.json` with the following content:
   "config": {
     "locales": ["en-US", "fr-FR"],
     "returnDetails": true,
-    "enableFace": false,
-    "disableFaceBlurring": false,
-    "personDirectoryId": null,
-    "segmentationMode": "auto",
-    "disableContentFiltering": false
+    "disableFaceBlurring": false
   },
    "fieldSchema": {
     "fields": {

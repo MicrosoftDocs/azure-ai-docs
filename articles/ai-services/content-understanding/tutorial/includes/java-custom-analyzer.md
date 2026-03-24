@@ -167,7 +167,7 @@ fieldSchema.setFields(fields);
 
 Map<String, String> models = new HashMap<>();
 models.put("completion", "gpt-4.1");
-models.put("embedding", "text-embedding-3-large");
+models.put("embedding", "text-embedding-3-large"); // Required when using field_schema and prebuilt-document base analyzer
 
 ContentAnalyzer customAnalyzer =
     new ContentAnalyzer()

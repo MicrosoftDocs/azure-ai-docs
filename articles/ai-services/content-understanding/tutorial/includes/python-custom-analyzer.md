@@ -84,7 +84,6 @@ The following example creates a custom document analyzer based on the [prebuilt 
 
 ```python
 from azure.ai.contentunderstanding.models import (
-    AnalysisInput,
     ContentAnalyzer,
     ContentAnalyzerConfig,
     ContentFieldSchema,
@@ -152,7 +151,7 @@ analyzer = ContentAnalyzer(
     models={
         "completion": "gpt-4.1",
         "embedding": "text-embedding-3-large",
-    }, # Required when using field_schema
+    }, # Required when using field_schema and prebuilt-document base analyzer
 )
 
 # Create the analyzer
@@ -196,59 +195,64 @@ Analyzer 'my_document_analyzer_ID' created successfully!
 Optionally, you can create a classifier analyzer to categorize documents and use its results to route documents to prebuilt or custom analyzers you created. Here is an example of creating a custom analyzer for classification workflows.
 
 ```python
-# [START create_classifier]
-    # Generate a unique analyzer ID
-    analyzer_id = f"my_classifier_{int(time.time())}"
+import time
+from azure.ai.contentunderstanding.models import (
+    ContentAnalyzer,
+    ContentAnalyzerConfig,
+    ContentCategoryDefinition,
+)
 
-    print(f"Creating classifier '{analyzer_id}'...")
+# Generate a unique analyzer ID
+analyzer_id = f"my_classifier_{int(time.time())}"
 
-    # Define content categories for classification
-    categories = {
-        "Loan_Application": ContentCategoryDefinition(
-            description="Documents submitted by individuals or businesses to request funding, "
-            "typically including personal or business details, financial history, "
-            "loan amount, purpose, and supporting documentation."
-        ),
-        "Invoice": ContentCategoryDefinition(
-            description="Billing documents issued by sellers or service providers to request "
-            "payment for goods or services, detailing items, prices, taxes, totals, "
-            "and payment terms."
-        ),
-        "Bank_Statement": ContentCategoryDefinition(
-            description="Official statements issued by banks that summarize account activity "
-            "over a period, including deposits, withdrawals, fees, and balances."
-        ),
-    }
+print(f"Creating classifier '{analyzer_id}'...")
 
-    # Create analyzer configuration
-    config = ContentAnalyzerConfig(
-        return_details=True,
-        enable_segment=True,  # Enable automatic segmentation by category
-        content_categories=categories,
-    )
+# Define content categories for classification
+categories = {
+    "Loan_Application": ContentCategoryDefinition(
+        description="Documents submitted by individuals or businesses to request funding, "
+        "typically including personal or business details, financial history, "
+        "loan amount, purpose, and supporting documentation."
+    ),
+    "Invoice": ContentCategoryDefinition(
+        description="Billing documents issued by sellers or service providers to request "
+        "payment for goods or services, detailing items, prices, taxes, totals, "
+        "and payment terms."
+    ),
+    "Bank_Statement": ContentCategoryDefinition(
+        description="Official statements issued by banks that summarize account activity "
+        "over a period, including deposits, withdrawals, fees, and balances."
+    ),
+}
 
-    # Create the classifier analyzer
-    classifier = ContentAnalyzer(
-        base_analyzer_id="prebuilt-document",
-        description="Custom classifier for financial document categorization",
-        config=config,
-        models={"completion": "gpt-4.1"},
-    )
+# Create analyzer configuration
+config = ContentAnalyzerConfig(
+    return_details=True,
+    enable_segment=True,  # Enable automatic segmentation by category
+    content_categories=categories,
+)
 
-    # Create the classifier
-    poller = client.begin_create_analyzer(
-        analyzer_id=analyzer_id,
-        resource=classifier,
-    )
-    result = poller.result()  # Wait for creation to complete
+# Create the classifier analyzer
+classifier = ContentAnalyzer(
+    base_analyzer_id="prebuilt-document",
+    description="Custom classifier for financial document categorization",
+    config=config,
+    models={"completion": "gpt-4.1"},
+)
 
-    # Get the full analyzer details after creation
-    result = client.get_analyzer(analyzer_id=analyzer_id)
+# Create the classifier
+poller = client.begin_create_analyzer(
+    analyzer_id=analyzer_id,
+    resource=classifier,
+)
+result = poller.result()  # Wait for creation to complete
 
-    print(f"Classifier '{analyzer_id}' created successfully!")
-    if result.description:
-        print(f"  Description: {result.description}")
-    # [END create_classifier]
+# Get the full analyzer details after creation
+result = client.get_analyzer(analyzer_id=analyzer_id)
+
+print(f"Classifier '{analyzer_id}' created successfully!")
+if result.description:
+    print(f"  Description: {result.description}")
 ```
 > [!TIP]
 > This code is based on the [create_classifier](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_classifier.py) sample in the SDK repository.
@@ -261,7 +265,6 @@ The following example creates a custom image analyzer based on the [prebuilt ima
 
 ```python
 from azure.ai.contentunderstanding.models import (
-    AnalysisInput,
     ContentAnalyzer,
     ContentFieldSchema,
     ContentFieldDefinition,
@@ -343,7 +346,6 @@ The following example creates a custom audio analyzer based on the [prebuilt aud
 
 ```python
 from azure.ai.contentunderstanding.models import (
-    AnalysisInput,
     ContentAnalyzer,
     ContentAnalyzerConfig,
     ContentFieldSchema,
@@ -449,7 +451,6 @@ The following example creates a custom video analyzer based on the [prebuilt vid
 
 ```python
 from azure.ai.contentunderstanding.models import (
-    AnalysisInput,
     ContentAnalyzer,
     ContentAnalyzerConfig,
     ContentFieldSchema,
@@ -558,6 +559,8 @@ After creating the analyzer, use it to analyze a document and extract the custom
 
 ```python
 # --- Use the custom document analyzer ---
+from azure.ai.contentunderstanding.models import AnalysisInput
+
 print("\nAnalyzing document...")
 document_url = (
     "https://raw.githubusercontent.com/"
@@ -626,6 +629,8 @@ Analyzer 'my_document_analyzer_ID' deleted successfully.
 After creating the analyzer, use it to analyze an image and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```python
+from azure.ai.contentunderstanding.models import AnalysisInput
+
 # --- Use the custom image analyzer ---
 print("\nAnalyzing image...")
 image_url = (
@@ -677,6 +682,8 @@ Analyzer 'my_image_analyzer_ID' deleted successfully.
 After creating the analyzer, use it to analyze an audio file and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```python
+from azure.ai.contentunderstanding.models import AnalysisInput
+
 print("\nAnalyzing audio...")
 audio_url = (
     "https://raw.githubusercontent.com/"
@@ -728,6 +735,8 @@ Analyzer 'my_audio_analyzer_ID' deleted successfully.
 After creating the analyzer, use it to analyze a video and extract the custom fields. Delete the analyzer when you no longer need it.
 
 ```python
+from azure.ai.contentunderstanding.models import AnalysisInput
+
 print("\nAnalyzing video...")
 video_url = (
     "https://raw.githubusercontent.com/"

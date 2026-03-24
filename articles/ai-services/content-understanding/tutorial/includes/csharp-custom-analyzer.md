@@ -155,7 +155,7 @@ var customAnalyzer = new ContentAnalyzer
 
 customAnalyzer.Models["completion"] = "gpt-4.1";
 customAnalyzer.Models["embedding"] =
-    "text-embedding-3-large";
+    "text-embedding-3-large"; // Required when using field_schema and prebuilt-document base analyzer
 
 var operation = await client.CreateAnalyzerAsync(
     WaitUntil.Completed,
@@ -309,7 +309,7 @@ if (classifierResult.Description != null)
 ```
 
 > [!TIP]
-> This code adapts the [Sample04_CreateAnalyzer.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for classification workflows.
+> This code is based on the [CreateClassifier.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample05_CreateClassifier.md) for classification workflows.
 
 
 
