@@ -51,6 +51,7 @@ Some risks in Preview aren't yet supported for agents. When controls involving t
 
 The following table summarizes which risks are applicable to models and agents:
 
+| Risk | Applicable to Models | Applicable to Agents (Preview) |
 |------|---------------------|-------------------------------|
 | [Hate](/azure/foundry/openai/concepts/content-filter-severity-levels#harm-category-descriptions) | ✅ | ✅ |
 | [Sexual](/azure/foundry/openai/concepts/content-filter-severity-levels#harm-category-descriptions) | ✅ | ✅ |
