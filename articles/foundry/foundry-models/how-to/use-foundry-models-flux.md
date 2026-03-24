@@ -34,7 +34,7 @@ FLUX models in Foundry include:
 | Model ID | Model name | Key capabilities |
 | -- | -- | -- |
 | `FLUX.2-flex` | FLUX.2 \[flex\] | Text-to-image generation; multi-reference image editing with up to 10 reference images |
-| `FLUX.2-pro` | FLUX.2 \[pro\] | Text-to-image generation; multi-reference image editing with up to 8 reference images |
+| `FLUX.2-pro` | FLUX.2 \[pro\] | Text-to-image generation; multi-reference image editing with up to eight reference images |
 | `FLUX.1-Kontext-pro` | FLUX.1 Kontext \[pro\] | In-context generation and editing; character consistency |
 | `FLUX-1.1-pro` | FLUX1.1 \[pro\] | Fast text-to-image generation |
 
@@ -78,7 +78,7 @@ https://<resource-name>.api.cognitive.microsoft.com/providers/blackforestlabs/v1
 For each model, replace the model path `<model-path>` in the endpoint as follows:
 
 > [!IMPORTANT]
-> The model ID and `<model-path>` are not identical. Be sure to use the model path in the endpoint URL.
+> The model ID and `<model-path>` aren't identical. Be sure to use the model path in the endpoint URL.
 
 | Model | Model path |
 | -- | -- |
@@ -212,7 +212,7 @@ Replace `Bearer $AZURE_API_KEY` with `Bearer $AZURE_AUTH_TOKEN`, where `AZURE_AU
 
 FLUX.2 \[pro\] and FLUX.2 \[flex\] support multi-reference image editing, which lets you pass multiple base64-encoded images alongside a text prompt. The model applies stylistic or content changes across all reference images.
 
-- FLUX.2 \[pro\]: Up to 8 reference images
+- FLUX.2 \[pro\]: Up to eight reference images
 - FLUX.2 \[flex\]: Up to 10 reference images
 
 # [Python](#tab/python)
@@ -453,7 +453,7 @@ curl -X POST https://<your-resource-name>.api.cognitive.microsoft.com/providers/
 
 ### FLUX.2 \[pro\]
 
-FLUX.2 \[pro\] (`FLUX.2-pro`) delivers state-of-the-art image quality at maximum speed, making it the best choice for production workloads at scale. Note that it exhibits higher response times compared to FLUX.1 Kontext \[pro\] and FLUX.2 \[flex\], and throughput decreases at higher resolutions. It accepts text and image input (32,000 tokens and up to 8 images) and outputs one image in PNG or JPG format. Maximum output resolution is **4 MP**.
+FLUX.2 \[pro\] (`FLUX.2-pro`) delivers state-of-the-art image quality at maximum speed, making it the best choice for production workloads at scale. Note that it exhibits higher response times compared to FLUX.1 Kontext \[pro\] and FLUX.2 \[flex\], and throughput decreases at higher resolutions. It accepts text and image input (32,000 tokens and up to eight images) and outputs one image in PNG or JPG format. Maximum output resolution is **4 MP**.
 
 The BFL provider API supports all parameters for FLUX.2 \[pro\], including `guidance`, `steps`, `seed`, `aspect_ratio`, `safety_tolerance`, and `output_format`.
 
