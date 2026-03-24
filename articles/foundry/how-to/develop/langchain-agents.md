@@ -55,8 +55,6 @@ The class `AgentServiceFactory` is your starting point to compose agents in Lang
 The factory creates LangGraph-compatible nodes that run through Agent Service and that can be used to compose more complex solutions
 with LangGraph.
 
-Create and configure agents in the Foundry portal or Foundry SDK and then reference them by name with `get_agent_node` to compose graphs. You can also create agents programmatically with `create_prompt_agent` when you need to define agents entirely in code.
-
 Create the agent factory by connecting the `AgentServiceFactory` class to a Foundry project. All agents you create or reference through this factory are managed
 within the project and visible in the Foundry portal (new).
 
@@ -80,7 +78,7 @@ factory = AgentServiceFactory(
 
 ## Use an existing agent
 
-If you already have agents created in Microsoft Foundry, reference them by name using `get_agent_node`. This approach is recommended because it keeps agent configuration centralized in the Foundry and lets your code focus on orchestration.
+We recommend creating and configuring agents in the Foundry portal or Foundry SDK and then reference them by name with `get_agent_node` to compose graphs. This approach is recommended because it keeps agent configuration centralized in the Foundry and lets your code focus on orchestration. You can also create agents programmatically with `create_prompt_agent` when you need to define agents entirely in code.
 
 ```python
 echo_node = factory.get_agent_node(
