@@ -8,7 +8,7 @@ ms.custom:
   - doc-kit-assisted
 ms.topic: concept-article
 ms.date: 03/19/2026
-ms.reviewer: changliu2
+ms.reviewer: skohlmeier
 ms.author: lagayhar  
 author: lgayhardt
 ai-usage: ai-assisted
@@ -204,7 +204,7 @@ Use the following table to find your use case in the **Scenario** column, then r
 | Knowledge in sensitive domains | [WMDP](https://github.com/centerforaisafety/wmdp) (biosecurity, chemical security, cybersecurity) | Accuracy across three sensitive domain subsets. Higher accuracy indicates more knowledge of sensitive capabilities. See [Sensitive domain knowledge](#sensitive-domain-knowledge). |
 | Toxicity detection | [ToxiGen](https://github.com/microsoft/TOXIGEN) (annotated) | F1 score for toxic content detection ability. Higher is better. See [Toxic content detection](#toxic-content-detection). |
 | Reasoning | [BIG-Bench Hard](https://github.com/suzgunmirac/BIG-Bench-Hard) (1000 subsample) | Reasoning capabilities assessment. Higher values are better. |
-| Coding | [BigCodeBench](https://github.com/bigcode-project/bigcodebench) (instruct), [HumanEvalPlus](https://github.com/evalplus/evalplus), [LiveBench (coding)](https://github.com/LiveBench/LiveBench), [MBPPPlus](https://github.com/evalplus/evalplus) | Measures accuracy on code-related tasks.  Higher values are better.|
+| Coding | [BigCodeBench](https://github.com/bigcode-project/bigcodebench) (instruct), [LiveBench (coding)](https://github.com/LiveBench/LiveBench), [LiveCodeBench medium](https://huggingface.co/datasets/livecodebench/code_generation_lite) [MBPPPlus](https://github.com/evalplus/evalplus) | Measures accuracy on code-related tasks.  Higher values are better.|
 | General knowledge | [MMLU-Pro](https://github.com/TIGER-AI-Lab/MMLU-Pro) (1K English subsample) | 1,000‑example English-only subsample of MMLU-Pro. |
 | Question & answering | [Arena-Hard](https://github.com/lmarena/arena-hard-auto), [GPQA](https://github.com/idavidrein/gpqa) (diamond) | Adversarial human preference QA (Arena-Hard) and graduate‑level multi‑discipline QA (GPQA diamond).  Higher values are better.|
 | Math | [MATH](https://github.com/hendrycks/math) (500 subsample) | Measures mathematical reasoning capabilities of language models.  Higher values are better.|
