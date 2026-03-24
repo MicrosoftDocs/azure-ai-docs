@@ -8,8 +8,9 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
-  - build-2025
+  - build-2025, classic-and-new
 ai-usage: ai-assisted
+
 ---
 
 ## Prerequisites

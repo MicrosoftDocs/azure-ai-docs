@@ -7,6 +7,8 @@ ms.subservice: azure-ai-foundry-model-inference
 ms.date: 1/21/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
+
+ms.custom: classic-and-new
 ---
 
 [!INCLUDE [Header](intro.md)]
