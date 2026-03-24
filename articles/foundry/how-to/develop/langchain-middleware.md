@@ -288,8 +288,6 @@ try:
         ),
         middleware=[
             AzurePromptShieldMiddleware(
-                endpoint="https://<resource>.services.ai.azure.com",
-                credential=DefaultAzureCredential(),
                 exit_behavior="error",
             )
         ],

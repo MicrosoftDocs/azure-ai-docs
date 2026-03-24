@@ -58,17 +58,23 @@ pip install -U "langchain-azure-ai[opentelemetry]"
 
 Use this map to pick the right namespace for your solution:
 
+
+
+
+
+
+
 | Capability | Namespace | Typical use |
 |---|---|---|
-| Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes to build complex graph and flows for LangGraph and LangChain. |
-| Foundry Content Safety | `langchain_azure_ai.agents.middleware` | Use Foundry Content Safety and Moderation to make sure you can deploy solution with the right guardrails. |
-| Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat models. |
-| Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. |
+| Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes to build complex graph and flows for LangGraph and LangChain. [See detailed examples](langchain-agents.md). |
+| Foundry Content Safety | `langchain_azure_ai.agents.middleware` | Use Foundry Content Safety and Moderation to make sure you can deploy solution with the right guardrails. [See detailed examples](langchain-middleware.md). |
+| Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat models. [See detailed examples](langchain-models.md). |
+| Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. [See detailed examples](langchain-models.md#use-embedding-models).|
 | Vector stores | `langchain_azure_ai.vectorstores` | Use Azure AI Search and Cosmos DB vector integrations. |
 | Retrievers | `langchain_azure_ai.retrievers` | Run retrieval over Azure-backed indexes and stores. |
-| Chat history stores | `langchain_azure_ai.chat_message_histories` | Persist and replay chat history across sessions. Use memory-powered histories to retrieve consolidated pass chat history. |
+| Chat history stores | `langchain_azure_ai.chat_message_histories` | Persist and replay chat history across sessions. Use memory-powered histories to retrieve consolidated pass chat history. [See detailed examples](langchain-memory.md). |
 | Tools | `langchain_azure_ai.tools` | Add tools such as Document Intelligence, Vision, health text analytics, and Logic Apps. |
-| Callbacks and tracing | `langchain_azure_ai.callbacks` | Capture run events and emit OpenTelemetry traces. |
+| Callbacks and tracing | `langchain_azure_ai.callbacks` | Capture run events and emit OpenTelemetry traces. [See detailed examples](langchain-traces.md). |
 | Query constructors | `langchain_azure_ai.query_constructors` | Build backend-specific query filters for retrieval scenarios. |
 
 See the section [Learn each capability in detail](#learn-each-capability-in-detail) for specific walkthroughs. 
