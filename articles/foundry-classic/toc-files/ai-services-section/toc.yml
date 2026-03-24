@@ -145,7 +145,7 @@ items:
 - name: Foundry Tool Security
   items:
   - name: Security features
-    href: ../../../ai-services/security-features.md
+    href: ../../../ai-services/security-features.md?context=/azure/foundry-classic/context/context
   - name: Authenticate requests
     href: ../../../ai-services/authentication.md
   - name: Disable local authentication
