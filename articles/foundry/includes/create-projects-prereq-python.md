@@ -32,10 +32,11 @@ ms.custom:
 
 - Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
 
-:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
+    :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
 
 - (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into `DefaultAzureCredential`:
 
-```python
-DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
-```
+    ```python
+    DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+    ```
+    
