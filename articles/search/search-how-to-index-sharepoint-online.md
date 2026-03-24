@@ -151,7 +151,7 @@ Using application permissions means that the indexer accesses the SharePoint sit
 
     + If the indexer is using delegated API permissions, select **Delegated permissions** and then select `Delegated - Files.Read.All`, `Delegated - Sites.Read.All`, and `Delegated - User.Read`.
 
-      <!-- RESTORE THIS SCREENSHOT -->
+
       :::image type="content" source="media/search-howto-index-sharepoint-online/delegated-api-permissions.png" alt-text="Screenshot showing delegated API permissions." lightbox="media/search-howto-index-sharepoint-online/delegated-api-permissions.png":::
 
       Delegated permissions allow the search client to connect to SharePoint under the security identity of the current user.
@@ -160,7 +160,7 @@ Using application permissions means that the indexer accesses the SharePoint sit
 
     Tenant admin consent is required when using application API permissions. Some tenants are locked down in such a way that tenant admin consent is required for delegated API permissions as well. If either of these conditions apply, you'll need to have a tenant admin grant consent for this Microsoft Entra application before creating the indexer.
 
-    <!-- RESTORE THIS SCREENSHOT -->
+
     :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-grant-admin-consent.png" alt-text="Screenshot showing Microsoft Entra app grant admin consent." lightbox="media/search-howto-index-sharepoint-online/aad-app-grant-admin-consent.png":::
 
 1. Select the **Authentication** tab.
