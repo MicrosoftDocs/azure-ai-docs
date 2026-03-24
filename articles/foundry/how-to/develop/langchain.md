@@ -61,6 +61,7 @@ Use this map to pick the right namespace for your solution:
 | Capability | Namespace | Typical use |
 |---|---|---|
 | Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes to build complex graph and flows for LangGraph and LangChain. |
+| Foundry Content Safety | `langchain_azure_ai.agents.middleware` | Use Foundry Content Safety and Moderation to make sure you can deploy solution with the right guardrails. |
 | Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat models. |
 | Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. |
 | Vector stores | `langchain_azure_ai.vectorstores` | Use Azure AI Search and Cosmos DB vector integrations. |
@@ -165,6 +166,7 @@ The same project-endpoint pattern is also used by other classes.
 Start with these guides in this documentation set:
 
 - [Use Foundry Models with LangChain and LangGraph](langchain-models.md)
+- [Use Foundry Content Safety middleware](langchain-middleware.md)
 - [Use Foundry Agent Service with LangGraph](langchain-agents.md)
 - [Use Foundry Memory with LangChain and LangGraph](langchain-memory.md)
 - [Use Foundry Observability to trace apps](langchain-traces.md)
