@@ -59,11 +59,11 @@ The following table summarizes which risks are applicable to models and agents:
 | [Violence](/azure/foundry/openai/concepts/content-filter-severity-levels#harm-category-descriptions) | ✅ | ✅ |
 | [User prompt attacks](/azure/foundry/openai/concepts/content-filter-prompt-shields#examples-1) | ✅ | ✅ |
 | [Indirect attacks](/azure/foundry/openai/concepts/content-filter-prompt-shields#examples-1) | ✅ | ✅ |
-| [Spotlighting](/azure/foundry/openai/concepts/content-filter-prompt-shields#spotlighting-preview) (Preview) | ✅ | ❌ |
+| [Spotlighting (Preview)](/azure/foundry/openai/concepts/content-filter-prompt-shields#spotlighting-preview) | ✅ | ❌ |
 | [Protected material for code](/azure/ai-services/content-safety/quickstart-protected-material-code?pivots=programming-language-foundry-portal) | ✅ | ✅ |
 | [Protected material for text](/azure/foundry/openai/concepts/content-filter-protected-material?tabs=text) | ✅ | ✅ |
-| [Groundedness](/azure/foundry/openai/concepts/content-filter-groundedness) (Preview) | ✅ | ❌ |
-| [Personally identifiable information](/azure/foundry/openai/concepts/content-filter-personal-information) (Preview) | ✅ | ✅ |
+| [Groundedness (Preview)](/azure/foundry/openai/concepts/content-filter-groundedness) | ✅ | ❌ |
+| [Personally identifiable information (Preview)](/azure/foundry/openai/concepts/content-filter-personal-information) | ✅ | ✅ |
 | [Task Adherence](/azure/foundry/guardrails/how-to-task-adherence?pivots=programming-language-foundry-portal) | ✅ | ✅ |
 
 ### Severity levels
