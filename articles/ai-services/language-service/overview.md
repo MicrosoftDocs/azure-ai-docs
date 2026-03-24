@@ -30,7 +30,15 @@ Azure Language provides both remote and local MCP server options:
 
 For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-preview).
 
-## Core features
+## Core capabilities
+
+Core capabilities are the primary, actively evolving features recommended for new development and long-term planning. These features are recommended for new solutions and future-focused scenarios.
+
+   * [Language detection](#language-detection)
+   * [Named entity recognition (custom)](#named-entity-recognition-custom)
+   * [Named entity recognition (prebuilt)](#named-entity-recognition-prebuilt)
+   * [PII detection](#personally-identifiable-information-pii-detection)
+   * [Text analytics for health](#text-analytics-for-health)
 
 > [!TIP]
 > Unsure which feature to use? See [Which Language feature should I use](#which-core-language-feature-should-i-use) to help you decide.
@@ -43,24 +51,24 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 
 :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of language detection in Foundry." lightbox="media/overview/language-detection.png":::
 
-### Named Entity Recognition (custom)
+### Named entity recognition (custom NER)
 
 [Custom NER](custom-named-entity-recognition/overview.md) enables you to build custom AI models to extract custom entity categories (labels for words or phrases), using unstructured text that you provide.
 
 :::image type="content" source="media/studio-examples/custom-named-entity-recognition.png" alt-text="A screenshot of a custom NER example." lightbox="media/studio-examples/custom-named-entity-recognition.png":::
 
-### Named Entity Recognition (prebuilt)
+### Named entity recognition (prebuilt)
 
 [Named entity recognition](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into predefined types.
 
 :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Foundry." lightbox="media/overview/named-entity-recognition.png":::
 
-### Personally Identifiable Information (PII) detection
+### Personally identifiable information (PII) detection
 
 > [!IMPORTANT]
-> The Azure Language in Foundry Tools Text Personally Identifiable Information (PII) detection anonymization feature (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+> The Azure Language in Foundry Tools text personally identifiable information (PII) detection anonymization feature (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
 
-[Personally Identifiable Information (PII) detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
+[Personally identifiable information (PII) detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
 
 :::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Foundry." lightbox="media/overview/conversation-pii.png":::
 :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Foundry." lightbox="media/overview/text-pii.png":::
@@ -72,6 +80,17 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 :::image type="content" source="media/overview/text-analytics-for-health.png" alt-text="A screenshot of text analytics for health in Foundry." lightbox="media/overview/text-analytics-for-health.png":::
 
 ## Foundational capabilities
+
+Foundational capabilities are established features that provide a stable, supported base for existing workloads and scenarios. These features are supported for existing implementations and established use cases.
+
+   * [Conversational language understanding](#conversational-language-understanding)
+   * [Custom text classification](#custom-text-classification)
+   * [Entity linking](#entity-linking)
+   * [Key phrase extraction](#key-phrase-extraction)
+   * [Orchestration workflow](#orchestration-workflow)
+   * [Question answering](#question-answering)
+   * [Sentiment analysis and opinion mining](#sentiment-analysis-and-opinion-mining)
+   * [Summarization](#summarization)
 
 ### Conversational language understanding
 
@@ -88,7 +107,7 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 ### Entity linking
 
 > [!IMPORTANT]
-> Entity Linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or [Foundry models](../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
+> Entity linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the entity linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named entity recognition**](named-entity-recognition/overview.md) or [Foundry models](../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
 
 [Entity linking](./entity-linking/overview.md) is a preconfigured feature that disambiguates the identity of entities (words or phrases) found in unstructured text and returns links to Wikipedia.
 
@@ -102,7 +121,7 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 
 ### Orchestration workflow
 
-[Orchestration workflow](./language-detection/overview.md) is a custom feature that enables you to connect [Conversational Language Understanding (CLU)](./conversational-language-understanding/overview.md), [question answering](./question-answering/overview.md), and [LUIS](../LUIS/what-is-luis.md) applications.
+[Orchestration workflow](./language-detection/overview.md) is a custom feature that enables you to connect [conversational language understanding (CLU)](./conversational-language-understanding/overview.md) AND  [custom question answering (CQA)](./question-answering/overview.md) applications.
 
 :::image type="content" source="media/overview/orchestration-workflow.png" alt-text="A screenshot of an orchestration workflow example." lightbox="media/overview/orchestration-workflow.png":::
 
@@ -185,7 +204,7 @@ This section helps you decide which foundational Language feature you should use
 | Classify documents into one or more categories. | Unstructured text | [Custom text classification](./custom-text-classification/overview.md) | ✓ |
 | Detect the language that a text was written in. | Unstructured text | [Language detection](./language-detection/overview.md) | |
 | Predict the intention of user inputs and extract information from them. | Unstructured user inputs | [Conversational language understanding](./conversational-language-understanding/overview.md) | ✓ |
-| Connect apps from conversational language understanding, LUIS, and question answering. | Unstructured user inputs | [Orchestration workflow](./orchestration-workflow/overview.md) | ✓ |
+| Connect apps from conversational language understanding and custom question answering. | Unstructured user inputs | [Orchestration workflow](./orchestration-workflow/overview.md) | ✓ |
 | Build a conversational application that responds to user inputs. | Unstructured user inputs | [Question answering](./question-answering/overview.md) | ✓ |
 
 \* If a feature is customizable, you can train an AI model using our tools to fit your data specifically. Otherwise a feature is preconfigured, meaning the AI models it uses can't be changed. You just send your data, and use the feature's output in your applications.
@@ -216,8 +235,8 @@ Use Language containers to deploy API features on-premises. These Docker contain
 * [Sentiment analysis](sentiment-opinion-mining/how-to/use-containers.md)
 * [Language detection](language-detection/how-to/use-containers.md)
 * [Key phrase extraction](key-phrase-extraction/how-to/use-containers.md)
-* [Custom Named Entity Recognition](custom-named-entity-recognition/how-to/use-containers.md)
-* [Text Analytics for health](text-analytics-for-health/how-to/use-containers.md)
+* [Custom named entity recognition](custom-named-entity-recognition/how-to/use-containers.md)
+* [Text analytics for health](text-analytics-for-health/how-to/use-containers.md)
 * [Summarization](summarization/how-to/use-containers.md)
 
 ## Responsible AI

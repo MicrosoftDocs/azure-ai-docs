@@ -28,7 +28,7 @@ items:
   - name: Migrate to Microsoft Foundry
     href: migration-studio-to-foundry.md
     displayName: migrate, foundry, studio, permissions, roles, access, requisites, requirements
-- name: Azure Language core capabilities
+- name: Core capabilities
   items:
 
   - name: Language detection
@@ -277,7 +277,7 @@ items:
       - name: Fast Healthcare Interoperability Resources structuring
         href: text-analytics-for-health/concepts/fhir.md
 
-- name: Azure Language foundational capabilities
+- name: Foundational capabilities
   items:
   - name: "Conversational language understanding (CLU)"
     items:
