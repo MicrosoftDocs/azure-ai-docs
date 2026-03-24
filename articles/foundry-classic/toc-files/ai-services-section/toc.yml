@@ -121,9 +121,9 @@ items:
 - name: Deploy Containers
   items:
   - name: Foundry Tools container overview
-    href: ../../../ai-services/cognitive-services-containers/overview.md
+    href: ../../../ai-services/cognitive-services-container-support.md
   - name: FAQ for Foundry Tools containers
-    href: ../../../ai-services/containers/container-faq.md
+    href: ../../../ai-services/containers/container-faq.yml
   - name: Use containers in disconnected environments
     href: ../../../ai-services/containers/disconnected-containers.md
   - name: Container recipes
@@ -167,6 +167,6 @@ items:
   - name: Security baseline
     href: /security/benchmark/azure/baselines/cognitive-services-security-baseline
 - name: Purchase commitment tier pricing
-  href: ../../../ai-services/what-are-ai-services.md?context=/azure/foundry-classic/context/context
+  href: ../../../ai-services/commitment-tier.md
 - name: Custom subdomains for Foundry Tools
-  href: ../../../ai-services/cognitive-services-custom-subdomains.md
+  href: ../../../ai-services/custom-subdomains.md
