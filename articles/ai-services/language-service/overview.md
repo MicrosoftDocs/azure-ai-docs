@@ -33,7 +33,7 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 ## Core features
 
 > [!TIP]
-> Unsure which feature to use? See [Which Language feature should I use](#which-language-feature-should-i-use) to help you decide.
+> Unsure which feature to use? See [Which Language feature should I use](#which-core-language-feature-should-i-use) to help you decide.
 
 [**Microsoft Foundry**](https://ai.azure.com/) enables you to use most of the following service features without the need to write code.
 
@@ -88,7 +88,7 @@ For more information, *see* [Azure Language MCP server](concepts/foundry-tools-a
 ### Entity linking
 
 > [!IMPORTANT]
-> Entity Linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or [Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
+> Entity Linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or [Foundry models](../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
 
 [Entity linking](./entity-linking/overview.md) is a preconfigured feature that disambiguates the identity of entities (words or phrases) found in unstructured text and returns links to Wikipedia.
 
