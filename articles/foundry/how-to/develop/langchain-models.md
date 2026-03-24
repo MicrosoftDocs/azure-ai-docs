@@ -469,7 +469,7 @@ You can configure the following environment variables. Those values can also be 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Use Foundry Agent Service with LangGraph](langchain-agents.md)
+> [Use Foundry Content Safety with LangGraph](langchain-middleware.md)
 
 ## Related content
 
