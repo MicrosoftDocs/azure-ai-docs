@@ -147,7 +147,7 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
           Then grant the application full control only for those selected sites.
 
      
-Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret or secretless configuration is also required for authentication. Setting up the authentication mechanism is described later in this article under [authentication modes for application API permissions only](#available-authentication-methods-for-application-api-permissions-only).
+          Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret or secretless configuration is also required for authentication. Setting up the authentication mechanism is described later in this article under [authentication modes for application API permissions only](#available-authentication-methods-for-application-api-permissions-only).
 
     + If the indexer is using delegated API permissions, select **Delegated permissions** and then select `Delegated - Files.Read.All`, `Delegated - Sites.Read.All`, and `Delegated - User.Read`.
 
