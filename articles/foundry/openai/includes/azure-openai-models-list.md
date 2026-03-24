@@ -1,18 +1,19 @@
 ---
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: msakande
+ms.author: mopeakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 01/14/2026
+ms.custom: classic-and-new
 ---
 
 Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, refer to [Azure OpenAI in Azure Government](../../../foundry-classic/openai/azure-government.md).
 
 | Models | Description |
 |--|--|
-| [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) | **NEW** `gpt-5.4`, `gpt-5.4-pro` |
+| [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) | **NEW** `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
 | [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) | **NEW** `gpt-5.3-codex` |
 | [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | **NEW** `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` (**Preview**)|
 | [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) | **NEW** `gpt-5.1`, `gpt-5.1-chat`, `gpt-5.1-codex`, `gpt-5.1-codex-mini`|

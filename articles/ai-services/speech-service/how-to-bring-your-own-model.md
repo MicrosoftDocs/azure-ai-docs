@@ -19,7 +19,7 @@ The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 - **Content safety**: Apply customized content safety configurations with your LLM
 
 > [!IMPORTANT]
-> You can integrate any model that was deployed in the same Azure Foundry resource you're using to call the Voice Live API.
+> You can integrate any model deployed in your Azure Foundry resource with the Voice Live API. To use model deployments from a different Foundry resource, see [Resource overrides](#resource-overrides).
 
 > [!TIP]
 > When you use your own model deployment with Voice Live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/ai-foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Microsoft Foundry portal](https://ai.azure.com/).
@@ -45,6 +45,41 @@ identity_principal_id=$(az cognitiveservices account show --name ${foundry_resou
 az role assignment create --assignee-object-id ${identity_principal_id} --role "Azure AI User" --scope /subscriptions/${subscription_id}/resourceGroups/${resource_group}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource}
 ```
 
+### Cross-resource authentication
+
+When you use [resource overrides](#resource-overrides), authentication setup is mandatory regardless of your authentication method (API key or Microsoft Entra ID). You must configure permissions for both the Voice Live Foundry resource and the model Foundry resource. Run the following commands to configure the necessary permissions:
+
+```bash
+export subscription_id_for_model=<your-subscription-id-for-model-resource>
+export resource_group_for_model=<your-resource-group-for-model-resource>
+export foundry_resource_for_model=<your-foundry-resource-for-model>
+
+export subscription_id_for_voice_live=<your-subscription-id-for-voice-live-resource>
+export resource_group_for_voice_live=<your-resource-group-for-voice-live-resource>
+export foundry_resource_for_voice_live=<your-foundry-resource-for-voice-live>
+
+# Enable system-assigned managed identity for the Voice Live Foundry resource
+az cognitiveservices account identity assign \
+    --name ${foundry_resource_for_voice_live} \
+    --resource-group ${resource_group_for_voice_live} \
+    --subscription ${subscription_id_for_voice_live}
+
+# Get the system-assigned managed identity object ID
+# for the Voice Live resource
+identity_principal_id=$(az cognitiveservices account show \
+    --name ${foundry_resource_for_voice_live} \
+    --resource-group ${resource_group_for_voice_live} \
+    --subscription ${subscription_id_for_voice_live} \
+    --query "identity.principalId" -o tsv)
+
+# Assign the Azure AI User role to the Voice Live resource's
+# system identity on the model Foundry resource
+az role assignment create \
+    --assignee-object-id ${identity_principal_id} \
+    --role "Azure AI User" \
+    --scope /subscriptions/${subscription_id_for_model}/resourceGroups/${resource_group_for_model}/providers/Microsoft.CognitiveServices/accounts/${foundry_resource_for_model}
+```
+
 ## Choose BYOM integration mode
 
 The Voice Live API supports two BYOM integration modes:
@@ -52,7 +87,7 @@ The Voice Live API supports two BYOM integration modes:
 | Mode     | Description           | Example Models |
 | ------- | ------------------ | ------------- |
 | `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions              | `gpt-realtime`, `gpt-realtime-mini` |
-| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-4.1`, `gpt-5-chat`, `grok-3`         |
+| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `gpt-5.3-chat`, `grok-4`         |
 
 ## Integrate BYOM
 
@@ -65,6 +100,14 @@ wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?ap
 ```
 
 Get the `<your-model-deployment>` value from the Foundry portal. It corresponds to the name you gave the model at deployment time.
+
+To use a model deployment from a different Foundry resource, add the `foundry-resource-override` parameter:
+
+```curl
+wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=<your-byom-mode>&model=<your-model-deployment>&foundry-resource-override=<foundry-resource>
+```
+
+The `<foundry-resource>` value is the resource name without the domain suffix. For example, if the Foundry resource endpoint is `https://my-foundry-resource.services.ai.azure.com`, then use `my-foundry-resource`.
 
 #### [Python SDK](#tab/python)
 
@@ -81,7 +124,12 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
         type=str,
         choices=["byom-azure-openai-realtime", "byom-azure-openai-chat-completion"],
         default=os.environ.get("VOICELIVE_BYOM_MODE", "byom-azure-openai-chat-completion"),
-
+    )
+   parser.add_argument(
+        "--foundry-resource-override",
+        help="Override the Foundry resource for cross-resource BYOM",
+        type=str,
+        default=os.environ.get("VOICELIVE_FOUNDRY_RESOURCE_OVERRIDE"),
     )
    ```
 
@@ -92,11 +140,12 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
     assistant = BasicVoiceAssistant(
     ...
     byom=args.byom,
+    foundry_resource_override=args.foundry_resource_override,
     ...
     )
     ```
         
-1. In the `BasicVoiceAssistant` class, add the `byom` field:
+1. In the `BasicVoiceAssistant` class, add the `byom` and `foundry_resource_override` fields:
 
     ```python
     class BasicVoiceAssistant:
@@ -109,7 +158,8 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
         model: str,
         voice: str,
         instructions: str,
-        byom: Literal["byom-azure-openai-realtime", "byom-azure-openai-chat-completion"] | None = None
+        byom: Literal["byom-azure-openai-realtime", "byom-azure-openai-chat-completion"] | None = None,
+        foundry_resource_override: str | None = None
     ):
 
         self.endpoint = endpoint
@@ -122,6 +172,7 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
         self.session_ready = False
         self.conversation_started = False
         self.byom = byom
+        self.foundry_resource_override = foundry_resource_override
 
     async def start(self):
         """Start the voice assistant session."""
@@ -129,13 +180,15 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
             logger.info(f"Connecting to VoiceLive API with model {self.model}")
 
             # Connect to VoiceLive WebSocket API
+            query_params = {"profile": self.byom} if self.byom else None
+            if query_params and self.foundry_resource_override:
+                query_params["foundry-resource-override"] = self.foundry_resource_override
+
             async with connect(
                 endpoint=self.endpoint,
                 credential=self.credential,
                 model=self.model,
-                query={
-                    "profile": self.byom
-                } if self.byom else None
+                query=query_params
             ) as connection:
             ...
     ```
@@ -143,6 +196,12 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
 
     ```shell
     python voice-live-quickstart.py --byom "byom-azure-openai-chat-completion" --model "your-model-name"
+    ```
+
+    To use a model from a different Foundry resource, add the `--foundry-resource-override` argument:
+
+    ```shell
+    python voice-live-quickstart.py --byom "byom-azure-openai-chat-completion" --model "your-model-name" --foundry-resource-override "my-foundry-resource"
     ```
 
 #### [C# SDK](#tab/csharp)
@@ -184,6 +243,10 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
             () => "byom-azure-openai-chat-completion",
             "BYOM integration mode. Supported modes: byom-azure-openai-realtime, byom-azure-openai-chat-completion");
 
+        var foundryResourceOverrideOption = new Option<string?>(
+            "--foundry-resource-override",
+            "Override the Foundry resource for cross-resource BYOM");
+
         var voiceOption = new Option<string>(
             "--voice",
             () => "en-US-AvaNeural",
@@ -206,6 +269,7 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
         rootCommand.AddOption(endpointOption);
         rootCommand.AddOption(modelOption);
         rootCommand.AddOption(byomOption);
+        rootCommand.AddOption(foundryResourceOverrideOption);
         rootCommand.AddOption(voiceOption);
         rootCommand.AddOption(instructionsOption);
         rootCommand.AddOption(useTokenCredentialOption);
@@ -216,17 +280,19 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
             string endpoint,
             string model,
             string byom,
+            string? foundryResourceOverride,
             string voice,
             string instructions,
             bool useTokenCredential,
             bool verbose) =>
         {
-            await RunVoiceAssistantAsync(apiKey, endpoint, model, byom, voice, instructions, useTokenCredential, verbose).ConfigureAwait(false);
+            await RunVoiceAssistantAsync(apiKey, endpoint, model, byom, foundryResourceOverride, voice, instructions, useTokenCredential, verbose).ConfigureAwait(false);
         },
         apiKeyOption,
         endpointOption,
         modelOption,
         byomOption,
+        foundryResourceOverrideOption,
         voiceOption,
         instructionsOption,
         useTokenCredentialOption,
@@ -244,6 +310,7 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
         string endpoint,
         string model,
         string byom,
+        string? foundryResourceOverride,
         string voice,
         string instructions,
         bool useTokenCredential,
@@ -260,6 +327,7 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
         endpoint = configuration["VoiceLive:Endpoint"] ?? endpoint;
         model = configuration["VoiceLive:Model"] ?? model;
         byom = configuration["VoiceLive:Byom"] ?? byom;
+        foundryResourceOverride ??= configuration["VoiceLive:FoundryResourceOverride"];
         voice = configuration["VoiceLive:Voice"] ?? voice;
         instructions = configuration["VoiceLive:Instructions"] ?? instructions;
     ...  
@@ -276,6 +344,10 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
             var uriBuilder = new UriBuilder(endpoint);
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
             query["profile"] = byom;
+            if (!string.IsNullOrEmpty(foundryResourceOverride))
+            {
+                query["foundry-resource-override"] = foundryResourceOverride;
+            }
             uriBuilder.Query = query.ToString();
             endpoint = uriBuilder.ToString();
             logger.LogInformation("BYOM profile parameter added to endpoint: profile={Profile}", byom);
@@ -365,6 +437,11 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
     ```shell
     dotnet run --byom "byom-azure-openai-chat-completion" --model "your-model-name"
     ```
+
+    To use a model from a different Foundry resource, add the `--foundry-resource-override` argument:
+
+    ```shell
+    dotnet run --byom "byom-azure-openai-chat-completion" --model "your-model-name" --foundry-resource-override "my-foundry-resource"
 
 #### [Java SDK](#tab/java)
 
@@ -603,6 +680,17 @@ Use the [JavaScript SDK quickstart code](./voice-live-quickstart.md?tabs=windows
     ```
 
 ---
+
+## Resource overrides
+
+By default, the Voice Live API uses LLM deployments in the same Foundry resource as the Voice Live service. If your model deployments are in a different Foundry resource, specify the `foundry-resource-override` query parameter to redirect the API to the correct resource. This supports cross-region scenarios where the Voice Live service and the model deployments are in different regions.
+
+The `foundry-resource-override` value is the resource name without the domain suffix. For example, if the Foundry resource endpoint is `https://my-foundry-resource.services.ai.azure.com`, use `my-foundry-resource`.
+
+See each tab in the [Integrate BYOM](#integrate-byom) section for implementation details.
+
+> [!IMPORTANT]
+> When you use resource overrides, you must configure [cross-resource authentication](#cross-resource-authentication) regardless of your authentication method (API key or Microsoft Entra ID).
 
 ## Related content
 

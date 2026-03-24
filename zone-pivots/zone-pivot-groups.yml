@@ -1247,6 +1247,21 @@ groups:
     title: Java
   - id: rest-api
     title: REST API
+# owner pafarley
+- id: openai-portal-js-python-ts-cs
+  title: Programming languages
+  prompt: Choose your preferred usage method
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-typescript
+    title: TypeScript
+  - id: programming-language-csharp
+    title: C#
 # owner: aahi
 - id: selection-logic-apps
   title: Selections

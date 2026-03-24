@@ -13,7 +13,6 @@ ms.reviewer: pafarley
 zone_pivot_groups: voice-live-quickstart-agents
 recommendations: false
 ai-usage: ai-assisted
-ms.custom: doc-kit-assisted
 ---
 
 # Quickstart: Voice Agent with Foundry Agent Service (new)

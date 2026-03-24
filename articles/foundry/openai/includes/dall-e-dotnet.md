@@ -10,6 +10,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 01/29/2026
 ai-usage: ai-assisted
+
+ms.custom: classic-and-new
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for C#.
@@ -99,7 +101,7 @@ To run the quickstart, follow these steps:
     //AzureOpenAIClient openAIClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
     
     // This must match the custom deployment name you chose for your model
-    ImageClient chatClient = openAIClient.GetImageClient("dalle-3");
+    ImageClient chatClient = openAIClient.GetImageClient("gpt-image-1");
     
     var imageGeneration = await chatClient.GenerateImageAsync(
             "a happy monkey sitting in a tree, in watercolor",

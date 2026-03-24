@@ -118,7 +118,7 @@ Alternatively, you can create a custom connection by using Azure Machine Learnin
     ```
 
 > [!NOTE]
-> The previous code snippets use a token in the `Authorization` header when making REST API calls. You can get the token by running `az account get-access-token`. For more information on getting a token, see [Get an access token](how-to-authenticate-online-endpoint.md#get-the-microsoft-entra-token-for-control-plane-operations).
+> The previous code snippets use a token in the `Authorization` header when making REST API calls. You can get the token by running `az account get-access-token`. For more information on getting a token, see [Get an access token](how-to-authenticate-online-endpoint.md#get-a-control-plane-token).
 
 #### (Optional) Use Azure Key Vault as a secret store
 

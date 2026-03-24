@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/19/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -44,7 +44,7 @@ The following table shows SDK and setup support. ✔️ (GA) indicates general a
   - Python (GA): `pip install "azure-ai-projects>=2.0.0"`
   - C# (Preview): `Azure.AI.Projects` prerelease NuGet package
   - TypeScript (GA): `@azure/ai-projects` npm package
-  - Java (Preview): `com.azure:azure-ai-agents:2.0.0-beta.1` Maven dependency
+  - Java (Preview): `com.azure:azure-ai-agents:2.0.0-beta.3` Maven dependency
 - Values to update in code:
   - Project endpoint URL (for example, `https://<resource>.ai.azure.com/api/projects/<project>`).
   - Model deployment name (for example, `gpt-5-mini`).
@@ -162,7 +162,7 @@ This example creates an agent that can call a remote A2A endpoint. For the conne
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 var projectEndpoint = "https://<resource>.ai.azure.com/api/projects/<project>";
@@ -546,7 +546,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 ```
 
@@ -559,6 +559,7 @@ import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
 import com.azure.ai.agents.models.A2APreviewTool;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
@@ -594,8 +595,8 @@ public class AgentToAgentExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("What can the secondary agent do?"));
 

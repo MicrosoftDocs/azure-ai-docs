@@ -6,10 +6,11 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
-  - ignite-2023
+  - ignite-2023, classic-and-new
 ms.topic: include
 ms.date: 01/29/2026
 ai-usage: ai-assisted
+
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for Python.
@@ -23,7 +24,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Py
 - An Azure OpenAI resource created in a compatible region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
     - Access the Azure OpenAI resource endpoint and keys in the Azure portal.
 - A deployed image generation model:
-    - **DALL-E 3**: Deploy a `dalle3` model. Generally available.
+    - **GPT-image-1 series**: Deploy a `gpt-image-1`-series model. Available in limited access.
     - **GPT-image-1 series**: Deploy a `gpt-image-1` model. Requires [limited access registration](https://aka.ms/oai/access).
 
 For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
@@ -73,13 +74,13 @@ from PIL import Image
 import json
 
 client = AzureOpenAI(
-    api_version="2024-02-01",  
+    api_version="2025-04-01-preview",  
     api_key=os.environ["AZURE_OPENAI_API_KEY"],  
     azure_endpoint=os.environ['AZURE_OPENAI_ENDPOINT']
 )
 
 result = client.images.generate(
-    model="dalle3", # the name of your DALL-E 3 deployment
+    model="gpt-image-1", # the name of your GPT-image-1 series deployment
     prompt="a close-up of a bear walking through the forest",
     n=1
 )
@@ -109,7 +110,7 @@ image.show()
 
 1. Make sure the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables are set.
 1. Change the value of `prompt` to your preferred text.
-1. Change the value of `model` to the name of your deployed DALL-E 3 model.
+1. Change the value of `model` to the name of your deployed GPT-image-1 series model.
 
 > [!IMPORTANT]
 > Remember to remove the key from your code when you're done, and never post your key publicly. For production, use a secure way of storing and accessing your credentials. For more information, see [Azure Key Vault](/azure/key-vault/general/overview).

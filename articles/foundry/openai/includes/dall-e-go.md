@@ -7,6 +7,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 08/28/2023
+
+ms.custom: classic-and-new
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for Go.
@@ -88,8 +90,8 @@ To run the sample:
     
     func main() {
     	azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
-    	modelDeploymentID := "dall-e-3"
-    
+    	modelDeploymentID := "gpt-image-1"
+
     	credential, err := azidentity.NewDefaultAzureCredential(nil)
     	if err != nil {
     		log.Printf("ERROR: %s", err)
@@ -175,8 +177,8 @@ To run the sample:
     
     func main() {
     	azureOpenAIEndpoint := os.Getenv("AZURE_OPENAI_ENDPOINT")
-    	modelDeploymentID := "dall-e-3"
-    
+    	modelDeploymentID := "gpt-image-1"
+
     	azureOpenAIKey := os.Getenv("AZURE_OPENAI_API_KEY")
     	credential := azcore.NewKeyCredential(azureOpenAIKey)
     

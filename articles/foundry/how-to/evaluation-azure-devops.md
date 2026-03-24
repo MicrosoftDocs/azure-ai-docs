@@ -10,7 +10,6 @@ author: lgayhardt
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
-  - doc-kit-assisted
 ---
 
 # How to run an evaluation in Azure DevOps (preview)

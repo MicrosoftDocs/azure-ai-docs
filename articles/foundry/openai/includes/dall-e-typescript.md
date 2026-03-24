@@ -9,6 +9,8 @@ ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 10/23/2024
+
+ms.custom: classic-and-new
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for JavaScript.
@@ -69,7 +71,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 > [!CAUTION]
 > To use the recommended keyless authentication with the SDK, make sure that the `AZURE_OPENAI_API_KEY` environment variable isn't set. 
 
-### Generate images with DALL-E
+### Generate images
 
 #### [Microsoft Entra ID](#tab/typescript-keyless)
 
@@ -87,7 +89,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     // Required Azure OpenAI deployment name and API version
     const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01";
-    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "dall-e-3";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-image-1";
     
     // keyless authentication    
     const credential = new DefaultAzureCredential();
@@ -171,7 +173,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     // Required Azure OpenAI deployment name and API version
     const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01";
-    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "dall-e-3";
+    const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-image-1";
     
     // The prompt to generate images from
     const prompt = "a monkey eating a banana";

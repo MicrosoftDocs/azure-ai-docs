@@ -1,19 +1,18 @@
 ---
 title: Create and manage files in your workspace
 titleSuffix: Azure Machine Learning
-description: In this article, you learn how create and manage files in your workspace in Azure Machine Learning studio.
-services: machine-learning
+description: In this article, you learn how to create and manage files in your workspace in Azure Machine Learning studio.
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: kritifaujdar
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 09/03/2024
+ms.date: 03/23/2026
 #Customer intent: As a data scientist, I want to create and manage the files in my workspace in Azure Machine Learning studio.
 ---
 
-# How to create and manage files in your workspace
+# Create and manage files in your workspace
 
 Learn how to create and manage the files in your Azure Machine Learning workspace. These files are stored in the default workspace storage. Files and folders can be shared with anyone else with read access to the workspace, and can be used from any compute instances in the workspace.
 
@@ -51,7 +50,7 @@ To create a new file in a different folder:
 1. Select **Create new file**.
 
 > [!IMPORTANT]
-> Content in notebooks and scripts can potentially read data from your sessions and access data without your organization in Azure. Only load files from trusted sources. For more information, see [Secure code best practices](concept-secure-code-best-practice.md#azure-machine-learning-studio-notebooks).
+> Content in notebooks and scripts can potentially read data from your sessions and access data within your organization in Azure. Only load files from trusted sources. For more information, see [Secure code best practices](concept-secure-code-best-practice.md#azure-machine-learning-studio-notebooks).
 
 ## Customize your file editing experience
 

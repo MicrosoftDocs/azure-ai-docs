@@ -4,7 +4,7 @@ description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agen
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 03/06/2026
+ms.date: 03/23/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -43,7 +43,16 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 
 - Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910).
 - Assign developers and end users at least the `Azure AI User` Azure RBAC role. For more information, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
-- Give developers and end users at least `READ` access to the Fabric data agent and the underlying data sources it connects to.
+- Give developers and end users at least `READ` access to the Fabric data agent. Users also need the minimum permission on each underlying data source:
+
+    | Data source | Minimum permission |
+    |---|---|
+    | Power BI semantic model | `Build` (includes Read). Read alone isn't sufficient because the agent generates model queries that require Build. |
+    | Lakehouse | Read on the lakehouse item (and table access, if enforced). |
+    | Warehouse | Read (`SELECT` on relevant tables). |
+    | KQL database | Reader role on the database. |
+
+    For full details, see [Underlying data source permissions](/fabric/data-science/data-agent-sharing#underlying-data-source-permissions).
 - Ensure your Fabric data agent and Foundry project are in the same tenant.
 - Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
 - Get these values before you run the samples:
@@ -307,7 +316,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 ```
 
@@ -358,8 +367,8 @@ public class FabricToolExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Query the latest sales data from Microsoft Fabric"));
 
