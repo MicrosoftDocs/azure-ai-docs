@@ -4,7 +4,7 @@ description: "This article describes how to create a Microsoft Foundry project s
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 01/09/2026
+ms.date: 03/24/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -21,6 +21,9 @@ ai-usage: ai-assisted
 ---
 
 # Create a project for Microsoft Foundry
+
+Use this article to create a Foundry project and confirm that your environment is ready before you start building agents, evaluations, and files.
+
 This article describes how to create a Foundry project in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work—such as agents, evaluations, and files—as you build stateful apps and explore new ideas.
 
 If your organization requires customized Azure configurations like alternative names, security controls, or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
@@ -31,60 +34,67 @@ If your organization requires customized Azure configurations like alternative n
 
 * [!INCLUDE [rbac-create](../includes/rbac-create.md)]
 
-* Use the following tabs to select the method you want to use to create a Foundry project:
+Before you choose a method, verify the following prerequisites:
 
-    # [Foundry portal](#tab/foundry)
-    
-    - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-    
-    # [Python SDK](#tab/python)
-    
-    - [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
-    - Run `az login` or `az login --use-device-code` in your environment before running code.
-    - **Quick validation**: Before creating a project, verify your SDK and authentication are working by testing the client:
-    
-      ```python
-      from azure.identity import DefaultAzureCredential
-      from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
-      
-      # Test authentication by instantiating the client
-      credential = DefaultAzureCredential()
-      subscription_id = "<your-subscription-id>"  # Replace with your subscription ID
-      client = CognitiveServicesManagementClient(credential, subscription_id)
-      print("✓ Authentication successful! Ready to create a project.")
-      ```
-    
-    
-    - Complete these steps to start your Python script:
-        1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
-        1. Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
-        1. Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
-        
-            :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
-    
-        1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into the `DefaultAzureCredential`.
-                
-            ```python
-            DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
-            ```    
-    
-    # [Azure CLI](#tab/azurecli)
-    
-    - Install the [Azure CLI](/cli/azure/install-azure-cli). 
-    - Set default values for `subscription`.
-    
-      ```azurecli
-        # Set your default subscription
-        az account set --subscription "{subscription-name}"
-       ```
-    
-    ---
+1. Confirm that you're signed in to the correct Microsoft Entra tenant.
+1. Confirm that your selected Azure subscription is active.
+1. Confirm that your role assignment allows project and resource creation.
 
-## Create a Foundry project
+Use the following tabs to select the method you want to use to create a Foundry project:
 
 # [Foundry portal](#tab/foundry)
 
-These steps provide a way to create a new Azure resource with basic, defaulted, settings. 
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+
+# [Python SDK](#tab/python)
+
+- [Set up your development environment](develop/install-cli-sdk.md?tabs=python).
+- Run `az login` or `az login --use-device-code` in your environment before running code.
+- **Quick validation**: Before creating a project, verify your SDK and authentication by testing the client:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+
+# Test authentication by instantiating the client
+credential = DefaultAzureCredential()
+subscription_id = "<your-subscription-id>"  # Replace with your subscription ID
+client = CognitiveServicesManagementClient(credential, subscription_id)
+print("✓ Authentication successful! Ready to create a project.")
+```
+
+- Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1`. If you're in a notebook cell, use `%pip install` instead.
+- Use `pip show azure-mgmt-cognitiveservices` to check that your version is 13.7 or greater.
+- Start your script with the following code to create the `client` connection and variables used throughout this article. This example creates the project in East US:
+
+:::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_client":::
+
+- (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you want to use into `DefaultAzureCredential`:
+
+```python
+DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+```
+
+# [Azure CLI](#tab/azurecli)
+
+- Install the [Azure CLI](/cli/azure/install-azure-cli).
+- Set the default value for `subscription`.
+
+```azurecli
+# Set your default subscription
+az account set --subscription "{subscription-name}"
+```
+
+---
+
+## Create a Foundry project
+
+Use one of the following methods.
+
+
+# [Foundry portal](#tab/foundry)
+
+These steps provide a way to create a new Azure resource with basic default settings. 
 
 To create a Foundry project, follow these steps:
 
@@ -92,7 +102,7 @@ To create a Foundry project, follow these steps:
 
 1. The project you're working on appears in the upper-left corner.
 1. To create a new project, select the project name, and then select **Create new project**.
-1. Give your project a name and select **Create project**. Or see next section for advanced options.
+1. Give your project a name and select **Create project**. Or see the next section for advanced options.
 
 ### Advanced options
 
@@ -109,7 +119,7 @@ To create a Foundry project, follow these steps:
 
 To create a Foundry project:
 
-- Add the following code to create a Foundry project by using the variables and `client` connection from the [Prerequisites](#prerequisites).
+- Add the following code to create a Foundry project by using the variables and `client` connection from the prerequisites section.
 
     :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_resource_project":::
 
@@ -117,7 +127,7 @@ To create a Foundry project:
 
 # [Azure CLI](#tab/azurecli)
 
-[!INCLUDE [create-project-cli](../includes/create-project-cli.md)]
+[!INCLUDE [create-project-CLI](../includes/create-project-cli.md)]
 
 ---
 
@@ -153,7 +163,7 @@ az cognitiveservices account connection show \
 
 # [Foundry portal](#tab/foundry)
 
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 1. In the upper-right navigation, select **Operate**.
 1. In the left pane, select **Admin**.
 1. Select your project.
@@ -207,8 +217,12 @@ References: [az cognitiveservices account project delete](/cli/azure/cognitivese
 > [!IMPORTANT]
 > Use with caution. You can't recover a project after it's deleted.
 
+> [!div class="nextstepaction"]
+> [Create your first connection](connections-add.md)
+
 ## Related content
 
 - [Microsoft Foundry Quickstart](../quickstarts/get-started-code.md)
 - [What is Foundry?](../what-is-foundry.md)
+- [Create resources using Bicep template](create-resource-template.md)
 
