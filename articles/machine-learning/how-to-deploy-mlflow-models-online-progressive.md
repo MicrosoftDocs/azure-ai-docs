@@ -8,7 +8,7 @@ ms.subservice: core
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: fasantia
-ms.date: 03/31/2022
+ms.date: 03/24/2026
 ms.topic: how-to
 ms.custom: deploy, mlflow, devplatv2, no-code-deployment, devx-track-azurecli, cliv2, dev-focus
 ms.devlang: azurecli
@@ -17,13 +17,13 @@ ai-usage: ai-assisted
 
 # Progressive rollout of MLflow models to Online Endpoints
 
-In this article, you learn how you can progressively update and deploy MLflow models to Online Endpoints without causing service disruption. You use blue-green deployment, also known as a safe rollout strategy, to introduce a new version of a web service to production. This strategy will allow you to roll out your new version of the web service to a small subset of users or requests before rolling it out completely.
+In this article, you learn how you can progressively update and deploy MLflow models to Online Endpoints without causing service disruption. You use blue-green deployment, also known as a safe rollout strategy, to introduce a new version of a web service to production. This strategy allows you to roll out your new version of the web service to a small subset of users or requests before rolling it out completely.
 
 ## About this example
 
-Online Endpoints have the concept of __Endpoint__ and __Deployment__. An endpoint represents the API that customers use to consume the model, while the deployment indicates the specific implementation of that API. This distinction allows users to decouple the API from the implementation and to change the underlying implementation without affecting the consumer. This example will use such concepts to update the deployed model in endpoints without introducing service disruption. 
+Online Endpoints have the concept of __Endpoint__ and __Deployment__. An endpoint represents the API that customers use to consume the model, while the deployment indicates the specific implementation of that API. This distinction allows users to decouple the API from the implementation and to change the underlying implementation without affecting the consumer. This example uses such concepts to update the deployed model in endpoints without introducing service disruption. 
 
-The model we will deploy is based on the [UCI Heart Disease Data Set](https://archive.ics.uci.edu/ml/datasets/Heart+Disease). The database contains 76 attributes, but we are using a subset of 14 of them. The model tries to predict the presence of heart disease in a patient. It is integer valued from 0 (no presence) to 1 (presence). It has been trained using an `XGBBoost` classifier and all the required preprocessing has been packaged as a `scikit-learn` pipeline, making this model an end-to-end pipeline that goes from raw data to predictions.
+The model you deploy is based on the [UCI Heart Disease Data Set](https://archive.ics.uci.edu/ml/datasets/Heart+Disease). The database contains 76 attributes, but this example uses a subset of 14 of them. The model tries to predict the presence of heart disease in a patient. It's integer valued from 0 (no presence) to 1 (presence). It has been trained using an `XGBoost` classifier and all the required preprocessing has been packaged as a `scikit-learn` pipeline, making this model an end-to-end pipeline that goes from raw data to predictions.
 
 The information in this article is based on code samples contained in the [azureml-examples](https://github.com/azure/azureml-examples) repository. To run the commands locally without having to copy/paste files, clone the repo, and then change directories to `sdk/using-mlflow/deploy`.
 
@@ -38,7 +38,7 @@ Before following the steps in this article, make sure you have the following pre
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the owner or contributor role for the Azure Machine Learning workspace, or a custom role allowing Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*. For more information, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
 
-Additionally, you will need to:
+Additionally, you need to:
 
 # [Azure CLI](#tab/cli)
 
@@ -60,13 +60,13 @@ Additionally, you will need to:
     pip install mlflow azureml-mlflow
     ```
 
-- If you are not running in Azure Machine Learning compute, configure the MLflow tracking URI or MLflow's registry URI to point to the workspace you are working on. Learn how to [configure MLflow for Azure Machine Learning](how-to-use-mlflow-configure-tracking.md).
+- If you aren't running in Azure Machine Learning compute, configure the MLflow tracking URI or MLflow's registry URI to point to the workspace you're working on. Learn how to [configure MLflow for Azure Machine Learning](how-to-use-mlflow-configure-tracking.md).
 
 ---
 
 ### Connect to your workspace
 
-First, let's connect to Azure Machine Learning workspace where we are going to work on.
+First, connect to the Azure Machine Learning workspace where you perform deployment tasks.
 
 # [Azure CLI](#tab/cli)
 
@@ -77,7 +77,7 @@ az configure --defaults workspace=<workspace> group=<resource-group> location=<l
 
 # [Python (Azure Machine Learning SDK)](#tab/sdk)
 
-The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with all the artifacts you create when you use Azure Machine Learning. In this section, we'll connect to the workspace in which you'll perform deployment tasks.
+The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with all the artifacts you create when you use Azure Machine Learning. In this section, you connect to the workspace in which you perform deployment tasks.
 
 1. Import the required libraries:
 
@@ -121,7 +121,7 @@ The workspace is the top-level resource for Azure Machine Learning, providing a 
 
 ### Registering the model in the registry
 
-Ensure your model is registered in Azure Machine Learning registry. Deployment of unregistered models is not supported in Azure Machine Learning. You can register a new model using the MLflow SDK:
+Ensure your model is registered in the Azure Machine Learning registry. Deployment of unregistered models isn't supported in Azure Machine Learning. You can register a new model using the MLflow SDK:
 
 # [Azure CLI](#tab/cli)
 
@@ -159,7 +159,7 @@ version = registered_model.version
 
 Online endpoints are endpoints that are used for online (real-time) inferencing. Online endpoints contain deployments that are ready to receive data from clients and can send responses back in real time.
 
-We are going to exploit this functionality by deploying multiple versions of the same model under the same endpoint. However, the new deployment will receive 0% of the traffic at the begging. Once we are sure about the new model to work correctly, we are going to progressively move traffic from one deployment to the other.
+You can exploit this functionality by deploying multiple versions of the same model under the same endpoint. The new deployment receives 0% of the traffic at the beginning. Once you're sure the new model works correctly, you progressively move traffic from one deployment to the other.
 
 1. Endpoints require a name, which needs to be unique in the same region. Let's ensure to create one that doesn't exist:
 
@@ -201,7 +201,7 @@ We are going to exploit this functionality by deploying multiple versions of the
 1. Configure the endpoint
 
     > [!TIP]
-    > This example uses key-based authentication for simplicity. For production deployments, Microsoft recommends Microsoft Entra token-based authentication (`aad_token`), which provides enhanced security through identity-based access control. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
+    > This example uses key-based authentication for simplicity and is suitable for development and testing scenarios only. For production deployments, use Microsoft Entra token-based authentication (`aad_token`), which provides enhanced security through identity-based access control. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
 
     # [Azure CLI](#tab/cli)
     
@@ -225,7 +225,7 @@ We are going to exploit this functionality by deploying multiple versions of the
     
     # [Python (MLflow SDK)](#tab/mlflow)
 
-    We can configure the properties of this endpoint using a configuration file. We configure the authentication mode of the endpoint to be "key" in the following example:
+    You can configure the properties of this endpoint using a configuration file. The following example configures the authentication mode of the endpoint to be "key":
     
     ```python
     endpoint_config = {
@@ -236,7 +236,7 @@ We are going to exploit this functionality by deploying multiple versions of the
     }
     ```
 
-    Let's write this configuration into a `JSON` file:
+    Write this configuration into a `JSON` file:
 
     ```python
     endpoint_config_path = "endpoint_config.json"
@@ -272,24 +272,24 @@ We are going to exploit this functionality by deploying multiple versions of the
     # [Azure CLI](#tab/cli)
     
     ```azurecli
-    ENDPOINT_SECRET_KEY=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME | jq -r ".accessToken")
+    ENDPOINT_SECRET_KEY=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME -o tsv --query primaryKey)
     ```
     
     # [Python (Azure Machine Learning SDK)](#tab/sdk)
     
     ```python
-    endpoint_secret_key = ml_client.online_endpoints.list_keys(
+    endpoint_secret_key = ml_client.online_endpoints.get_keys(
         name=endpoint_name
-    ).access_token
+    ).primary_key
     ```
     
     # [Python (MLflow SDK)](#tab/mlflow)
 
-    This functionality is not available in the MLflow SDK. Go to [Azure Machine Learning studio](https://ml.azure.com), navigate to the endpoint, and retrieve the secret key from there.
+    This functionality isn't available in the MLflow SDK. Go to [Azure Machine Learning studio](https://ml.azure.com), navigate to the endpoint, and retrieve the secret key from there.
 
 ### Create a blue deployment
 
-So far, the endpoint is empty. There are no deployments on it. Let's create the first one by deploying the same model we were working on before. We will call this deployment "default", representing our "blue deployment".
+So far, the endpoint is empty. There are no deployments on it. Create the first one by deploying the same model you registered earlier. This deployment is called "default", representing the "blue deployment".
 
 1. Configure the deployment
 
@@ -365,7 +365,7 @@ So far, the endpoint is empty. There are no deployments on it. Let's create the 
     ```
     
     > [!TIP]
-    > We set the flag `--all-traffic` in the create command, which will assign all the traffic to the new deployment.
+    > The flag `--all-traffic` in the create command assigns all the traffic to the new deployment.
     
     # [Python (Azure Machine Learning SDK)](#tab/sdk)
     
@@ -386,7 +386,7 @@ So far, the endpoint is empty. There are no deployments on it. Let's create the 
 
 1. Assign all the traffic to the deployment
     
-    So far, the endpoint has one deployment, but none of its traffic is assigned to it. Let's assign it.
+    So far, the endpoint has one deployment, but none of its traffic is assigned to it. Assign it now.
 
     # [Azure CLI](#tab/cli)
     
@@ -466,7 +466,7 @@ So far, the endpoint is empty. There are no deployments on it. Let's create the 
     
     # [Python (Azure Machine Learning SDK)](#tab/sdk)
     
-    The following code samples 5 observations from the training dataset, removes the `target` column (as the model will predict it), and creates a request in the file `sample.json` that can be used with the model deployment.
+    The following code samples 5 observations from the training dataset, removes the `target` column (as the model predicts it), and creates a request in the file `sample.json` that can be used with the model deployment.
 
     ```python
     samples = (
@@ -486,7 +486,7 @@ So far, the endpoint is empty. There are no deployments on it. Let's create the 
     
     # [Python (MLflow SDK)](#tab/mlflow)
 
-    The following code samples 5 observations from the training dataset, removes the `target` column (as the model will predict it), and creates a request.
+    The following code samples 5 observations from the training dataset, removes the `target` column (as the model predicts it), and creates a request.
 
     ```python
     samples = (
@@ -525,7 +525,7 @@ So far, the endpoint is empty. There are no deployments on it. Let's create the 
 
 ### Create a green deployment under the endpoint
 
-Let's imagine that there is a new version of the model created by the development team and it is ready to be in production. We can first try to fly this model and once we are confident, we can update the endpoint to route the traffic to it.
+Imagine a new version of the model is created by the development team and is ready for production. You can first test this model and once you're confident, update the endpoint to route the traffic to it.
 
 1. Register a new model version
 
@@ -536,7 +536,7 @@ Let's imagine that there is a new version of the model created by the developmen
     az ml model create --name $MODEL_NAME --type "mlflow_model" --path "model"
     ```
     
-    Let's get the version number of the new model:
+    Get the version number of the new model:
 
     ```azurecli
     VERSION=$(az ml model show -n heart-classifier --label latest | jq -r ".version")
@@ -581,7 +581,7 @@ Let's imagine that there is a new version of the model created by the developmen
     instance_count: 1
     ```
     
-    We will name the deployment as follows:
+    Name the deployment as follows:
 
     ```azurecli
     GREEN_DEPLOYMENT_NAME="xgboost-model-$VERSION"
@@ -634,7 +634,7 @@ Let's imagine that there is a new version of the model created by the developmen
     ```
     
     > [!TIP]
-    > We are using the same hardware confirmation indicated in the `deployment-config-file`. However, there is no requirements to have the same configuration. You can configure different hardware for different models depending on the requirements.
+    > This example uses the same hardware configuration indicated in the `deployment-config-file`. However, there's no requirement to have the same configuration. You can configure different hardware for different models depending on the requirements.
     
     Write the configuration to a file:
 
@@ -706,11 +706,11 @@ Let's imagine that there is a new version of the model created by the developmen
     ---
 
     > [!TIP]
-    > Notice how now we are indicating the name of the deployment we want to invoke.
+    > Notice how the name of the deployment to invoke is now specified.
 
 ## Progressively update the traffic
 
-One we are confident with the new deployment, we can update the traffic to route some of it to the new deployment. Traffic is configured at the endpoint level:
+Once you're confident with the new deployment, you can update the traffic to route some of it to the new deployment. Traffic is configured at the endpoint level:
 
 1. Configure the traffic:
 
@@ -839,10 +839,10 @@ One we are confident with the new deployment, we can update the traffic to route
     ---
 
     > [!TIP]
-    > Notice that at this point, the former "blue deployment" has been deleted and the new "green deployment" has taken the place of the "blue deployment".
+    > At this point, the former "blue deployment" has been deleted and the new "green deployment" has taken the place of the "blue deployment".
 
 
-## Clean-up resources
+## Clean up resources
 
 # [Azure CLI](#tab/cli)
 
@@ -865,7 +865,7 @@ deployment_client.delete_endpoint(endpoint_name)
 ---
 
 > [!IMPORTANT]
-> Notice that deleting an endpoint also deletes all the deployments under it.
+> Deleting an endpoint also deletes all the deployments under it.
 
 ## Next steps
 
