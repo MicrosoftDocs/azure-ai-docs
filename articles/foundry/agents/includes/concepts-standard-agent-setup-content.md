@@ -1,13 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: fosteramanda
+ms.author: fosteramanda
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 Standard agent setup uses customer-managed, single-tenant Azure resources to store agent state and keep all agent data under your control. Use standard setup when you need full data sovereignty, compliance with enterprise security policies, or project-level isolation.

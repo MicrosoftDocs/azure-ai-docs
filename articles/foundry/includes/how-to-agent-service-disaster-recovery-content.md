@@ -1,13 +1,13 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: jonburchel
+ms.author: jburchel
+ms.reviewer: ckittel
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 Use this article as the starting point for disaster recovery (DR) planning for Foundry Agent Service in the [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). It explains what you can and can't recover, what to prepare before an incident, and where to find recovery procedures for platform outages and resource or data loss.

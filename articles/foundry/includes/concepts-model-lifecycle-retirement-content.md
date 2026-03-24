@@ -1,13 +1,13 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: msakande
+ms.author: mopeakande
+ms.reviewer: rasavage
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
-
 ---
 
 Microsoft Foundry Models are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
