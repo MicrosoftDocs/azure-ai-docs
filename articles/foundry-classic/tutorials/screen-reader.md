@@ -4,7 +4,7 @@ description: "This quickstart guides you in how to get oriented and navigate Mic
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: ailsaleen
-ms.date: 12/09/2025
+ms.date: 03/24/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
