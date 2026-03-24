@@ -134,7 +134,7 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
         - `Files.Read.All`
         - `Sites.Read.All`
         
-:::image type="content" source="media/search-howto-index-sharepoint-online/application-api-permissions.png" alt-text="Screenshot of application API permissions." lightbox="media/search-howto-index-sharepoint-online/application-api-permissions.png":::
+        :::image type="content" source="media/search-howto-index-sharepoint-online/application-api-permissions.png" alt-text="Screenshot of application API permissions." lightbox="media/search-howto-index-sharepoint-online/application-api-permissions.png":::
 
 
       - If you're enabling content indexing and [basic ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md), select:
