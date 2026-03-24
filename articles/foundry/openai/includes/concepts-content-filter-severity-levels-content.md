@@ -6,7 +6,8 @@ ms.author: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
+
 ---
 
 Microsoft Foundry guardrails ensure that AI-generated outputs align with ethical guidelines and safety standards. The content filtering system classifies harmful content into four categories — hate, sexual, violence, and self-harm — each graded at four severity levels (safe, low, medium, and high) for both text and image content. Use these categories and levels to configure guardrail controls that detect and mitigate risks associated with harmful content in your model deployments and agents.

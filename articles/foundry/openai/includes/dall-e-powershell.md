@@ -8,6 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 01/29/2026
 ai-usage: ai-assisted
+
+ms.custom: classic-and-new
 ---
 
 Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Models image generation APIs with PowerShell.

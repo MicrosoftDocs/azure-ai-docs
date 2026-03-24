@@ -6,7 +6,8 @@ ms.author: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
+
 ---
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.

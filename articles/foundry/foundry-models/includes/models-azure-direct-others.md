@@ -8,7 +8,8 @@ ms.date: 03/23/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
+
 ---
 
 > [!NOTE]

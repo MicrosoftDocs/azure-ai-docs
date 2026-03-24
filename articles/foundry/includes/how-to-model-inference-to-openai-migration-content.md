@@ -6,7 +6,8 @@ ms.author: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
+
 ---
 
 This article provides guidance on migrating your applications from the Azure AI Inference SDK to the OpenAI SDK. The OpenAI SDK offers broader compatibility, access to the latest OpenAI features, and simplified code with unified patterns across Azure OpenAI and Foundry Models.

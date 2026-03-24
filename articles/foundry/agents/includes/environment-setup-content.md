@@ -6,7 +6,8 @@ ms.author: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
+
 ---
 
 In this article, you deploy the infrastructure needed to create agents with Foundry Agent Service. After completing this setup, you can create and configure agents using either the SDK of your choice or the Foundry portal.

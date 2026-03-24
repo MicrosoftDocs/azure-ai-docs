@@ -6,7 +6,8 @@ ms.author: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
+
 ---
 
 Safety system messages help you guide an Azure OpenAI model’s behavior, improve response quality, and reduce the likelihood of harmful outputs. They work best as one layer in a broader safety strategy.

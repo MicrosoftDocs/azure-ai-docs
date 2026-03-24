@@ -6,7 +6,8 @@ ms.author: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
+
 ---
 
 This tutorial will walk you through using the Azure OpenAI [embeddings](../../../foundry-classic/openai/concepts/understand-embeddings.md) API to perform **document search** where you'll query a knowledge base to find the most relevant document.
