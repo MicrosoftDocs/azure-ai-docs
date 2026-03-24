@@ -11,6 +11,8 @@ items:
     href: ../../how-to/create-resource-template.md
   - name: Create using Terraform template
     href: ../../how-to/create-resource-terraform.md
+  - name: Create using ARM template
+    href: ../../../ai-services/create-account-resource-manager-template.md
   - name: Recover or purge deleted resources
     href: ../../../ai-services/recover-purge-resources.md?context=/azure/foundry-classic/context/context
 - name: Manage AI Hub resources

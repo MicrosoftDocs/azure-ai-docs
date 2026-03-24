@@ -1,9 +1,9 @@
 items:
 - name: Use Foundry Tools in Microsoft Foundry portal
-  href: ../../../ai-services/connect-services-foundry-portal.md?context=/azure/foundry-classic/context/context
+  href: ../../../ai-services/connect-services-foundry-portal.md
   displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
 - name: What are Foundry Tools?
-  href: ../../../ai-services/what-are-ai-services.md?context=/azure/foundry-classic/context/context
+  href: ../../../ai-services/what-are-ai-services.md
 - name:  Content Understanding
   items:
   - name: What is Azure Content Understanding?
@@ -118,3 +118,55 @@ items:
       href: /azure/ai-services/computer-vision/concept-face-recognition?context=/azure/foundry-classic/context/context
     - name: Liveness detection tutorial
       href: /azure/ai-services/computer-vision/tutorials/liveness?context=/azure/foundry-classic/context/context
+- name: Deploy Containers
+  items:
+  - name: Foundry Tools container overview
+    href: ../../../ai-services/cognitive-services-containers/overview.md
+  - name: FAQ for Foundry Tools containers
+    href: ../../../ai-services/containers/container-faq.md
+  - name: Use containers in disconnected environments
+    href: ../../../ai-services/containers/disconnected-containers.md
+  - name: Container recipes
+    items:
+    - name: Container reuse
+      href: ../../../ai-services/containers/container-reuse-recipe.md
+    - name: Deploy to Azure Container Instance
+      href: ../../../ai-services/containers/azure-container-instance-recipe.md
+    - name: Deploy with Docker Compose
+      href: ../../../ai-services/containers/docker-compose-recipe.md
+  - name: Other Container Services
+    items:
+    - name: Azure Container Instances
+      href: /azure/container-instances/container-instances-tutorial-prepare-app
+    - name: Azure Container Registry
+      href: /azure/container-registry/container-registry-get-started-azure-cli
+    - name: Azure Kubernetes Service (AKS)
+      href: /azure/aks/tutorial-kubernetes-prepare-app
+- name: Foundry Tool Security
+  items:
+  - name: Security features
+    href: ../../../ai-services/security-features.md
+  - name: Authenticate requests
+    href: ../../../ai-services/authentication.md
+  - name: Disable local authentication
+    href: ../../../ai-services/disable-local-auth.md
+  - name: Use Azure key vault
+    href: ../../../ai-services/use-key-vault.md
+  - name: Rotate keys
+    href: ../../../ai-services/rotate-keys.md
+  - name: Use environment variables
+    href: ../../../ai-services/cognitive-services-environment-variables.md
+  - name: Configure customer-managed keys
+    href: ../../../ai-services/encryption/cognitive-services-encryption-keys-portal.md
+  - name: Use virtual networks
+    href: ../../../ai-services/cognitive-services-virtual-networks.md
+  - name: Configure data loss prevention
+    href: ../../../ai-services/cognitive-services-data-loss-prevention.md
+  - name: Security controls by Azure Policy
+    href: ../../../ai-services//security-controls-policy.md
+  - name: Security baseline
+    href: /security/benchmark/azure/baselines/cognitive-services-security-baseline
+- name: Purchase commitment tier pricing
+  href: ../../../ai-services/what-are-ai-services.md?context=/azure/foundry-classic/context/context
+- name: Custom subdomains for Foundry Tools
+  href: ../../../ai-services/cognitive-services-custom-subdomains.md
