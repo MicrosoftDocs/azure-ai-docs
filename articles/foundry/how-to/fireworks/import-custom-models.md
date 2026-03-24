@@ -4,7 +4,7 @@ description: Learn how to import, register, and deploy your own custom model wei
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 03/11/2026
+ms.date: 03/20/2026
 author: ssalgadodev 
 ms.author: ssalgado
 ai-usage: ai-assisted
@@ -37,7 +37,7 @@ Before you begin, make sure your Azure environment is set up and that you have t
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * The **Fireworks on Foundry** preview feature enabled in your subscription. For setup steps, see [Use Fireworks models on Foundry](enable-fireworks-models.md#enable-fireworks-on-foundry).
-* The **Azure AI Owner** role (or equivalent) on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
+* The **Cognitive Services Contributor** role or equivalent permissions on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
 * [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (`azd`) installed locally. The import workflow uses `azd` to upload model weights.
 
 ## Region availability
@@ -130,6 +130,70 @@ With the model registered, you can deploy it to Fireworks' cloud for inference.
 1. Select **Deploy**.
 
 When the deployment completes, the status shows **Succeeded** in your deployment list.
+
+> [!NOTE]
+> You can only have one active model deployment of a custom model at a time in a given project.
+
+### Deployment examples
+
+Use the following examples to automate parts of the deployment workflow after the custom model is registered. Each example deploys the custom model with `80` units of Global Provisioned throughput. Be sure to replace any placeholders with your details.
+
+#### [REST API](#tab/rest-api)
+
+```http
+PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/deployments/{deployment-name}?api-version=2025-06-01
+Authorization: Bearer <access-token>
+Content-Type: application/json
+```
+
+```json
+{
+  "sku": {
+    "name": "GlobalProvisionedManaged",
+    "capacity": 80
+  },
+  "properties": {
+    "model": {
+      "name": "<registered-model-name>",
+      "format": "FireworksCustom",
+      "version": "1",
+      "source": "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/projects/{foundry-project}"
+    }
+  }
+}
+```
+
+#### [PowerShell](#tab/powershell)
+
+```powershell
+az cognitiveservices account deployment create `
+  --name "<foundry-resource-name>" `
+  --resource-group "<resource-group>" `
+  --deployment-name "<deployment-name>" `
+  --model-name "<registered-model-name>" `
+  --model-version "1" `
+  --model-format "FireworksCustom" `
+  --model-source "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/projects/{foundry-project}" `
+  --sku-name "GlobalProvisionedManaged" `
+  --sku-capacity 80
+```
+
+#### [Bash](#tab/bash)
+
+```bash
+az cognitiveservices account deployment create \
+  --name "<foundry-resource-name>" \
+  --resource-group "<resource-group>" \
+  --deployment-name "<deployment-name>" \
+  --model-name "<registered-model-name>" \
+  --model-version "1" \
+  --model-format "FireworksCustom" \
+  --model-source "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{foundry-account}/projects/{foundry-project}" \
+  --sku-name "GlobalProvisionedManaged" \
+  --sku-capacity 80
+```
+
+---
 
 ### Test your deployment
 

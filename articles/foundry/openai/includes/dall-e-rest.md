@@ -6,9 +6,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
-  - ignite-2023
+  - ignite-2023, classic-and-new
 ms.topic: include
 ms.date: 02/20/2025
+
 ---
 
 Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Models image generation REST APIs by using Python.

@@ -9,6 +9,8 @@ ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 10/23/2024
+
+ms.custom: classic-and-new
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for JavaScript.
