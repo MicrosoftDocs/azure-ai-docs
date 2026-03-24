@@ -1904,6 +1904,8 @@ groups:
   title: Programming languages
   prompt: Choose an API
   pivots:
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-rest
