@@ -4,7 +4,7 @@ description: "Learn how to migrate from the Assistants API and classic agents to
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 03/18/2026
+ms.date: 03/25/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -14,6 +14,7 @@ ai-usage: ai-assisted
 ---
 
 # Migrate to the new agents developer experience
+
 > [!TIP]
 > A [migration tool](https://aka.ms/agent/migrate/tool) is available to help automate migration from the Assistants API to Agents.
 
@@ -191,7 +192,7 @@ The following table compares agent tools available in classic agents and the new
 | MCP | Yes (Public Preview) | Yes (GA) |
 | OpenAPI | Yes (GA) | Yes (GA) |
 | SharePoint Grounding | Yes (Public Preview) | Yes (Public Preview) |
-| Web Search | No | Yes (Public Preview) |
+| Web Search | No | Yes (GA) |
 
 > [!IMPORTANT]
 > In the new API, the conversations and responses APIs use the **OpenAI client** (or its language equivalent). In Python, call `project.get_openai_client()`. In C#, use `projectClient.OpenAI.GetProjectResponsesClientForAgent()`. In JavaScript, call `projectClient.getOpenAIClient()`. In Java, use `AgentsClientBuilder` to build a `ResponsesClient`. Agent creation and versioning remain on the **project client**. The examples in each section show which client to use.
