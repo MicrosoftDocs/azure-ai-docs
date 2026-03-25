@@ -171,13 +171,16 @@ AgentReference agentRef = new(name: agent.Name, version: agent.Version);
 ProjectResponsesClient responseClient =
     projectClient.OpenAI.GetProjectResponsesClientForAgent(agentRef);
 
-// [TO VERIFY] Verify the StructuredInputs extension property usage
 CreateResponseOptions responseOptions = new()
 {
     Input = [ResponseItem.CreateUserMessageItem("Hello! Can you confirm my details?")]
 };
-responseOptions.StructuredInputs["userName"] = BinaryData.FromObjectAsJson("Alice Smith");
-responseOptions.StructuredInputs["userRole"] = BinaryData.FromObjectAsJson("Senior Developer");
+responseOptions.Patch.Set(
+    "$.structured_inputs[\"userName\"]"u8,
+    BinaryData.FromObjectAsJson("Alice Smith"));
+responseOptions.Patch.Set(
+    "$.structured_inputs[\"userRole\"]"u8,
+    BinaryData.FromObjectAsJson("Senior Developer"));
 
 ResponseResult response = responseClient.CreateResponse(responseOptions);
 Console.WriteLine(response.GetOutputText());
@@ -193,7 +196,7 @@ projectClient.Agents.DeleteAgentVersion(
 Hello Alice Smith! I can confirm your details: your name is Alice Smith and your role is Senior Developer. How can I help you today?
 ```
 
-The `StructuredInputs` dictionary on the agent definition maps template names to their schemas. At runtime, the `StructuredInputs` extension property on `CreateResponseOptions` provides the actual values.
+The `StructuredInputs` dictionary on the agent definition maps template names to their schemas. At runtime, use the `Patch.Set` method on `CreateResponseOptions` to supply the actual values via the `$.structured_inputs` JSON path.
 
 :::zone-end
 
@@ -526,7 +529,7 @@ PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 AgentVersion agent = projectClient.Agents.CreateAgentVersion(
     agentName: "code-interp-structured", options: new(agentDefinition));
 
-// Supply the actual file ID at runtime [TO VERIFY]
+// Supply the actual file ID at runtime
 AgentReference agentRef = new(name: agent.Name, version: agent.Version);
 ProjectResponsesClient responseClient =
     projectClient.OpenAI.GetProjectResponsesClientForAgent(agentRef);
@@ -536,8 +539,9 @@ CreateResponseOptions responseOptions = new()
     Input = [ResponseItem.CreateUserMessageItem(
         "Read numbers.csv and return the sum of x.")]
 };
-responseOptions.StructuredInputs["analysis_file_id"] =
-    BinaryData.FromObjectAsJson("<uploaded-file-id>");
+responseOptions.Patch.Set(
+    "$.structured_inputs[\"analysis_file_id\"]"u8,
+    BinaryData.FromObjectAsJson("<uploaded-file-id>"));
 
 ResponseResult response = responseClient.CreateResponse(responseOptions);
 Console.WriteLine(response.GetOutputText());
@@ -875,7 +879,7 @@ PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 AgentVersion agent = projectClient.Agents.CreateAgentVersion(
     agentName: "file-search-structured", options: new(agentDefinition));
 
-// Supply the actual vector store ID at runtime [TO VERIFY]
+// Supply the actual vector store ID at runtime
 AgentReference agentRef = new(name: agent.Name, version: agent.Version);
 ProjectResponsesClient responseClient =
     projectClient.OpenAI.GetProjectResponsesClientForAgent(agentRef);
@@ -884,8 +888,9 @@ CreateResponseOptions responseOptions = new()
 {
     Input = [ResponseItem.CreateUserMessageItem("Tell me about Contoso products")]
 };
-responseOptions.StructuredInputs["vector_store_id"] =
-    BinaryData.FromObjectAsJson("<vector-store-id>");
+responseOptions.Patch.Set(
+    "$.structured_inputs[\"vector_store_id\"]"u8,
+    BinaryData.FromObjectAsJson("<vector-store-id>"));
 
 ResponseResult response = responseClient.CreateResponse(responseOptions);
 Console.WriteLine(response.GetOutputText());
