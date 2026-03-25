@@ -48,11 +48,11 @@ Connections are a way to authenticate and consume both Microsoft and other resou
 |API key||API key connections handle authentication to your specified target on an individual basis.|
 |Custom key||Custom connections let you securely store and access keys while storing related properties, such as targets and versions. These connections are useful when you have many targets or scenarios where you don't need a credential to access the target. LangChain scenarios are a common example. You manage authentication for custom connections.|
 |Grounding with Bing Search||Connects to Bing Search to provide real-time web grounding for queries. Enables agents to reference current web data in responses.|
-|Serverless Model|✅|Serverless Model connections allow serverless API deployment. Connection creation is supported only through code.|
-|Azure Databricks|✅|Azure Databricks connections let Foundry Agents access workflows and Genie Spaces during runtime. Connection creation is supported only through code.|
-|SharePoint|✅|SharePoint is a Microsoft platform for document storage and collaboration. It lets agents access and manage organizational documents. Connection creation is supported only through code.|
-|Microsoft Fabric|✅|AI skills let you create conversational Q&A systems on Fabric using generative AI. Connection creation is supported only through code.|
-|Grounding with Bing Custom Search|✅|Integrates with a custom Bing search instance for tailored web grounding. Connection creation is supported only through code.|
+|Serverless Model|✅|Serverless Model connections allow serverless API deployment. |
+|Azure Databricks|✅|Azure Databricks connections let Foundry Agents access workflows and Genie Spaces during runtime. |
+|SharePoint|✅|SharePoint is a Microsoft platform for document storage and collaboration. It lets agents access and manage organizational documents. |
+|Microsoft Fabric|✅|AI skills let you create conversational Q&A systems on Fabric using generative AI. |
+|Grounding with Bing Custom Search|✅|Integrates with a custom Bing search instance for tailored web grounding. |
 
 ### Azure Key Vault limitations
 
