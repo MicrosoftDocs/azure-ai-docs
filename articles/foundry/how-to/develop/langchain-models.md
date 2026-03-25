@@ -79,6 +79,9 @@ from langchain.chat_models import init_chat_model
 model = init_chat_model("azure_ai:gpt-4.1")
 ```
 
+> [!IMPORTANT]
+> Using `init_chat_model` requires `langchain>=1.2.13`. If you can't update your version, [configure clients directly](#configure-clients-directly).
+
 All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `AZURE_AI_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Azure AI User**.
 
 **What this snippet does:** Creates a chat model client by using the
