@@ -598,6 +598,9 @@ In the last section, you'll deploy a model from registry to an online endpoint i
 
 Online endpoints let you deploy models and submit inference requests through the REST APIs. For more information, see [How to deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).
 
+> [!TIP]
+> This example uses key-based authentication for simplicity. For production deployments, Microsoft recommends Microsoft Entra token-based authentication (`aad_token`), which provides enhanced security through identity-based access control. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
+
 # [Azure CLI](#tab/cli)
 
 Create an online endpoint. 

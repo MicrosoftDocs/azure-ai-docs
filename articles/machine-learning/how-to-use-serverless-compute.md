@@ -60,10 +60,14 @@ The following example shows a minimal command job that runs on serverless comput
 
 ```python
 from azure.ai.ml import command, MLClient
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
 # Initialize the ML client
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 ml_client = MLClient(
     credential=credential,
     subscription_id="<Azure-subscription-ID>",
@@ -169,10 +173,14 @@ Serverless compute supports two identity options for accessing storage and other
     ```python
     from azure.ai.ml import command
     from azure.ai.ml import MLClient     # Handle to the workspace.
-    from azure.identity import DefaultAzureCredential     # Authentication package.
+    from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential     # Authentication package.
     from azure.ai.ml.entities import UserIdentityConfiguration 
 
-    credential = DefaultAzureCredential()
+    try:
+        credential = DefaultAzureCredential()
+        credential.get_token("https://management.azure.com/.default")
+    except Exception:
+        credential = InteractiveBrowserCredential()
     # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
     ml_client = MLClient(
         credential=credential,
@@ -258,10 +266,14 @@ Serverless compute supports two identity options for accessing storage and other
     ```python
     from azure.ai.ml import command
     from azure.ai.ml import MLClient     # Handle to the workspace.
-    from azure.identity import DefaultAzureCredential    # Authentication package.
+    from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential    # Authentication package.
     from azure.ai.ml.entities import ManagedIdentityConfiguration
     
-    credential = DefaultAzureCredential()
+    try:
+        credential = DefaultAzureCredential()
+        credential.get_token("https://management.azure.com/.default")
+    except Exception:
+        credential = InteractiveBrowserCredential()
     # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
     ml_client = MLClient(
         credential=credential,
@@ -303,9 +315,13 @@ Here's an example:
 ```python
 from azure.ai.ml import command 
 from azure.ai.ml import MLClient # Handle to the workspace.
-from azure.identity import DefaultAzureCredential # Authentication package.
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential # Authentication package.
 
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
 ml_client = MLClient(
     credential=credential,
@@ -348,10 +364,14 @@ You can override these defaults. If you want to specify the VM type or number of
     ```python
     from azure.ai.ml import command 
     from azure.ai.ml import MLClient # Handle to the workspace.
-    from azure.identity import DefaultAzureCredential # Authentication package.
+    from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential # Authentication package.
     from azure.ai.ml.entities import JobResourceConfiguration 
 
-    credential = DefaultAzureCredential()
+    try:
+        credential = DefaultAzureCredential()
+        credential.get_token("https://management.azure.com/.default")
+    except Exception:
+        credential = InteractiveBrowserCredential()
     # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
     ml_client = MLClient(
         credential=credential,
@@ -391,8 +411,12 @@ You can override these defaults. If you want to specify the VM type or number of
     ```python
     from azure.ai.ml import command
     from azure.ai.ml import MLClient    # Handle to the workspace.
-    from azure.identity import DefaultAzureCredential    # Authentication package.
-    credential = DefaultAzureCredential()
+    from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential    # Authentication package.
+    try:
+        credential = DefaultAzureCredential()
+        credential.get_token("https://management.azure.com/.default")
+    except Exception:
+        credential = InteractiveBrowserCredential()
     # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
     ml_client = MLClient(
         credential=credential,
@@ -428,11 +452,15 @@ Here's an example that shows all fields specified, including the identity the jo
 ```python
 from azure.ai.ml import command
 from azure.ai.ml import MLClient      # Handle to the workspace.
-from azure.identity import DefaultAzureCredential     # Authentication package.
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential     # Authentication package.
 from azure.ai.ml.entities import JobResourceConfiguration
 from azure.ai.ml.entities import UserIdentityConfiguration 
 
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
 ml_client = MLClient(
     credential=credential,
