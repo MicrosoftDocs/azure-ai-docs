@@ -1,12 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle
+ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 The o3-deep-research model is designed for advanced research tasks. It can browse, analyze, and synthesize information from hundreds of sources to produce a comprehensive, citation-rich report. This model uses multi-step reasoning, web search, and remote Model Context Protocol (MCP) servers to gather and process data. It can also run code for complex analysis.
@@ -26,7 +26,7 @@ To start, call the **Responses API** with the model set to your o3-deep-research
   - API key, or
   - Microsoft Entra ID.
 - At least one data source configured in your request:
-  - `web_search_preview` (see [Web search (preview)](../how-to/web-search.md)), and/or
+  - `web_search_preview` (see [Web search](../how-to/web-search.md)), and/or
   - A remote MCP server (see [Research with your own data](#research-with-your-own-data)).
 
 ## Start a deep research task
@@ -379,4 +379,4 @@ Enabling web search and MCP servers introduces security risks. Follow these best
 > [Use the Azure OpenAI Responses API](../how-to/responses.md)
 
 > [!div class="nextstepaction"]
-> [Web search (preview)](../how-to/web-search.md)
+> [Web search](../how-to/web-search.md)

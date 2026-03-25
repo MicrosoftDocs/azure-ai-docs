@@ -67,7 +67,7 @@ To use the Azure Language MCP server with agents:
 * An Azure Language resource.
 * A configured connection in your Foundry project so the agent can authenticate to the Azure Language endpoint.
 
-For connection setup details, see [Create a connection](../../../ai-foundry/how-to/connections-add.md?view=foundry&preserve-view=true).
+For connection setup details, see [Create a connection](../../../foundry/how-to/connections-add.md).
 
 ### Security considerations
 
@@ -189,7 +189,7 @@ Both the intent routing agent and the exact question answering agent require a c
 1. For Foundry and AI hub resources, find the resource key on the resource overview page in the Foundry portal management center.
 1. For any resource type, you can also find the key in the Azure portal.
 
-For detailed connection instructions, see [Create a connection](../../../ai-foundry/how-to/connections-add.md?view=foundry&preserve-view=true).
+For detailed connection instructions, see [Create a connection](../../../foundry/how-to/connections-add.md).
 
 To verify the connection is working, send a test message to the agent. If the agent returns a response from your CQA knowledge base, the connection is configured correctly.
 

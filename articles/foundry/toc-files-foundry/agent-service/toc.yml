@@ -61,7 +61,7 @@ items:
     items:
     - name: Web search overview
       href: ../../agents/how-to/tools/web-overview.md
-    - name: Web search tool (preview)
+    - name: Web search tool
       href: ../../agents/how-to/tools/web-search.md
     - name: Grounding with Bing tools
       href: ../../agents/how-to/tools/bing-tools.md

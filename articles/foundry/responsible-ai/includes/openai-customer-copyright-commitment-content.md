@@ -1,12 +1,13 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle
+ms.author: mbullwin
+ms.reviewer: nitinme
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 [!INCLUDE [non-english-translation](non-english-translation.md)]

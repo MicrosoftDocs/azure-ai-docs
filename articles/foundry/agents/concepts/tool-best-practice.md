@@ -213,7 +213,7 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 
 - [Azure AI Search](../how-to/tools/ai-search.md)
 - [File search](../how-to/tools/file-search.md)
-- [Web search (preview)](../how-to/tools/web-search.md)
+- [Web search](../how-to/tools/web-search.md)
 - [Grounding with Bing tools](../how-to/tools/bing-tools.md)
 - [SharePoint (preview)](../how-to/tools/sharepoint.md)
 

@@ -1,12 +1,12 @@
 ---
 title: Include file
 description: Include file
-author: scottpolly
-ms.author: scottpolly
+author: PatrickFarley #dereklegenzoff
+ms.author: pafarley #delegenz
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are the [o-series reasoning models](../how-to/reasoning.md), GPT-5 series, GPT-4.1 series, GPT-4.5, GPT-4o series.
