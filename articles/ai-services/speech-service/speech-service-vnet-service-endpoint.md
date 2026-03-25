@@ -85,7 +85,7 @@ In this scenario, private endpoints aren't enabled and one of these statements i
 - The **Selected Networks and Private Endpoints** option is selected in the networking settings of the Speech resource, but no allowed virtual networks are configured.
 - The **All networks** option is selected in the networking settings of the Speech resource.
 
-This scenario is equivalent to [using a Foundry resource for Speech that has a custom domain name and that doesn't have private endpoints](speech-services-private-link.md#adjust-an-application-to-use-a-foundry-resource-for-speech-without-private-endpoints).
+This scenario is equivalent to [using a Foundry resource for Speech that has a custom domain name and that doesn't have private endpoints](speech-services-private-link.md#adjust-an-application-to-use-a-speech-resource-without-private-endpoints).
 
 [!INCLUDE [](includes/speech-studio-vnet.md)]
 
