@@ -25,7 +25,6 @@ To use Azure Content Understanding, create your Foundry resource in a supported 
 | Identifier      | Region         | Geography       |
 |-----------------|----------------|-----------------|
 | `australiaeast` | Australia East | Asia Pacific |
-| `canadacentral` | Canada Central | Canada |
 | `eastus` | East US | United States |
 | `eastus2` | East US 2 | United States |
 | `japaneast` | Japan East | Asia Pacific |
