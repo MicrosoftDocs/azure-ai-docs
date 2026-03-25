@@ -1,12 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 Models that use the chat completions API support [tool calling](../how-to/function-calling.md). Functions defined in your chat completion calls don't always perform as expected. Fine-tuning your model with tool calling examples can improve model output:

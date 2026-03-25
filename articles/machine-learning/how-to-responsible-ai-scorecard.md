@@ -9,7 +9,7 @@ ms.topic:  how-to
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: mesameki
-ms.date: 03/19/2026
+ms.date: 03/20/2026
 ms.custom: responsible-ml, dev-focus
 ai-usage: ai-assisted
 ---
@@ -22,11 +22,18 @@ An Azure Machine Learning Responsible AI scorecard is a PDF report that's genera
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
+## Prerequisites
+
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+- [!INCLUDE [workspace and compute instance](includes/prerequisite-workspace-compute-instance.md)]
+- A registered model with a generated Responsible AI dashboard and scorecard. To create one, see [Generate Responsible AI insights in the studio UI](how-to-responsible-ai-insights-ui.md) or [Generate Responsible AI insights with YAML and Python](how-to-responsible-ai-insights-sdk-cli.md).
+
 ## Where to find your Responsible AI scorecard
 
  Responsible AI scorecards link to your Responsible AI dashboards. To view your Responsible AI scorecard, go into your model registry by selecting the **Model** in Azure Machine Learning studio. Then select the registered model that you generated a Responsible AI dashboard and scorecard for. After you select your model, select the **Responsible AI** tab to view a list of generated dashboards. Select which dashboard you want to export a Responsible AI scorecard PDF for by selecting **Responsible AI Insights** then **View all PDF scorecards**.
+ Responsible AI scorecards link to your Responsible AI dashboards. To view your Responsible AI scorecard, go into your model registry by selecting the **Model** in Azure Machine Learning studio. Then select the registered model that you generated a Responsible AI dashboard and scorecard for. After you select your model, select the **Responsible AI** tab to view a list of generated dashboards. Select which dashboard you want to export a Responsible AI scorecard PDF for by selecting **Responsible AI Insights** then **View all PDF scorecards**.
 
-:::image type="content" source="./media/how-to-responsible-ai-scorecard/scorecard-studio.png" alt-text="Screenshot of the Responsible AI preview pane in Azure Machine Learning studio, with the Responsible AI scorecard preview tab highlighted." lightbox = "./media/how-to-responsible-ai-scorecard/scorecard-studio.png":::
+:::image type="content" source="./media/how-to-responsible-ai-scorecard/scorecard-studio.png" alt-text="Screenshot of the Responsible AI (preview) pane in Azure Machine Learning studio, with the Responsible AI scorecard (preview) tab highlighted." lightbox = "./media/how-to-responsible-ai-scorecard/scorecard-studio.png":::
 
 1. Select **Responsible AI scorecard (preview)** to display a list of all Responsible AI scorecards that are generated for this dashboard.
 

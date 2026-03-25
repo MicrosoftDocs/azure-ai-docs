@@ -19,8 +19,6 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 
 - [.NET 8](https://dotnet.microsoft.com/download) or later.
 
-- [Visual Studio Code](https://code.visualstudio.com/download).
-
 - [Git](https://git-scm.com/downloads) to clone the sample repository.
 
 - The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
@@ -41,11 +39,10 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
     git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
     ```bash
     cd azure-search-dotnet-samples/quickstart-keyword-search/AzureSearchQuickstart
-    code .
     ```
 
 1. In `Program.cs`, replace the placeholder value for `serviceEndpoint` with the URL you obtained in [Get endpoint](#get-endpoint).

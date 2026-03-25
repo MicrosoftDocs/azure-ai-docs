@@ -47,6 +47,7 @@ Both pipeline components and pipeline jobs contain groups of steps or components
 
 # [Python SDK](#tab/python)
 
+- Python 3.10 or later.
 - Install the [Azure Machine Learning SDK v2 for Python](/python/api/overview/azure/ai-ml-readme).
 - Understand how to [create and run Azure Machine Learning pipelines and components with the Python SDK v2](how-to-create-component-pipeline-python.md).
 
@@ -92,6 +93,7 @@ To access components in Azure Machine Learning studio, you need to register the 
 
 You reference pipeline components as child jobs in a pipeline job just like you reference other types of components. You can provide runtime settings like `default_datastore` and `default_compute` at the pipeline job level.
 
+You need to promote any parameters you want to change during runtime as pipeline job inputs. Otherwise, hard-code them in the pipeline component. Promoting compute definition to a pipeline level input supports heterogeneous pipelines that use different compute targets in different steps.
 You need to promote any parameters you want to change during runtime as pipeline job inputs. Otherwise, you hard-code them in the pipeline component. Promoting compute definition to a pipeline level input supports heterogeneous pipelines that can use different compute targets in different steps.
 
 To submit the pipeline job, edit the `cpu-cluster` in the `default_compute` section before running the `az ml job create --file pipeline.yml` command.

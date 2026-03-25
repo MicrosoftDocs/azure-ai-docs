@@ -1,12 +1,12 @@
 ---
 title: Include file
 description: Include file
-author: scottpolly
-ms.author: scottpolly
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 Learn how to fine-tune Azure OpenAI models with image data to customize visual understanding for your use case. Vision fine-tuning lets you include image inputs in your training examples, following the same chat completions format used for text fine-tuning.

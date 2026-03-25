@@ -44,9 +44,25 @@ foundry model run qwen2.5-0.5b
 
 Reference: [Foundry Local CLI reference](reference/reference-cli.md)
 
+## Supported capabilities
+
+Foundry Local is a unified local AI runtime that supports multiple AI tasks through a single SDK:
+
+| Capability | Model aliases | SDK API |
+|------------|--------------|---------|
+| Chat completions (text generation) | `phi-3.5-mini`, `qwen2.5-0.5b`, `phi-4-mini`, etc. | Chat client |
+| Audio transcription (speech-to-text) | `whisper-tiny`, `whisper-small`, `whisper-base` | Audio client |
+
+> [!TIP]
+> One SDK handles both chat and audio — no need for separate tools like `whisper.cpp`, `llama.cpp`, or `ollama`. Foundry Local automatically selects the best hardware acceleration (NPU > GPU > CPU) for your device.
+
 ## Key features
 
  - **On-device inference**: Run models locally to reduce costs and help keep data on your device.
+
+- **Chat and audio in one runtime**: Text generation and speech-to-text through a single SDK. No need to install and manage separate inference engines.
+
+- **Zero hardware detection code**: Foundry Local automatically selects the best execution provider for your hardware — NPU, GPU, or CPU — with no platform-specific code required.
 
 - **Model customization**: Select a preset model or use your own to meet specific needs.
 
@@ -62,6 +78,8 @@ Foundry Local is ideal when you need to:
 - Operate in limited or offline environments
 - Reduce cloud inference costs
 - Get low latency AI responses for real-time applications
+- Transcribe audio on-device for privacy-sensitive applications (for example, voice journals, meeting notes, medical dictation)
+- Build apps that combine speech-to-text and text generation in a single pipeline
 - Experiment with AI models before you deploy to the cloud
 
 ## Frequently asked questions
@@ -98,6 +116,8 @@ Follow the [Get started with Foundry Local](get-started.md) guide to set up Foun
 ## Related content
 
 - [Get started with Foundry Local](get-started.md)
+- [Transcribe audio files with Foundry Local](how-to/how-to-transcribe-audio.md)
+- [Integrate inference SDKs with Foundry Local](how-to/how-to-integrate-with-inference-sdks.md)
 - [Foundry Local CLI reference](reference/reference-cli.md)
 - [Foundry Local REST API reference](reference/reference-rest.md)
 - [Foundry Local SDK reference](reference/reference-sdk-current.md)

@@ -314,6 +314,9 @@ version = registered_model.version
 
 1. Use the following code to configure the name and authentication mode of the endpoint that you want to deploy the model to:
 
+    > [!TIP]
+    > This example uses key-based authentication for simplicity. For production deployments, Microsoft recommends Microsoft Entra token-based authentication (`aad_token`), which provides enhanced security through identity-based access control. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
+
     # [Azure CLI](#tab/cli)
 
     Set an endpoint name by running the following command. First replace `YOUR_ENDPOINT_NAME` with a unique name.

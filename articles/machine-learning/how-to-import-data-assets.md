@@ -9,8 +9,9 @@ ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: soumyapatro
-ms.date: 03/19/2026
-ms.custom: data4ml
+ms.date: 03/20/2026
+ms.custom: data4ml, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Import data assets (preview)
@@ -35,6 +36,8 @@ To create and work with data assets, you need:
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An Azure Machine Learning workspace. [Create workspace resources](quickstart-create-resources.md).
+
+* Python 3.10 or later.
 
 * The [Azure Machine Learning CLI/SDK installed](how-to-configure-cli.md).
 
@@ -108,13 +111,14 @@ Next, run the following command in the CLI:
 from azure.ai.ml.entities import DataImport
 from azure.ai.ml.data_transfer import Database
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
 # Supported connections include:
 # Connection: azureml:<workspace_connection_name>
 # Supported paths include:
 # path: azureml://datastores/<data_store_name>/paths/<my_path>/${{name}}
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 data_import = DataImport(
     name="<name>",
@@ -130,7 +134,7 @@ ml_client.data.import_data(data_import=data_import)
 > [!NOTE]
 > The example seen here describes the process for a Snowflake database. However, this process covers other external database formats, like Azure SQL, etc.
 
-1. Navigate to the [Azure Machine Learning studio](https://ml.azure.com).
+1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
 
 1. Under **Assets** in the left navigation, select **Data**. Next, select the **Data Import** tab. Then select Create, as shown in this screenshot:
 
@@ -144,18 +148,18 @@ ml_client.data.import_data(data_import=data_import)
 
    :::image type="content" source="media/how-to-import-data-assets/select-snowflake-data-asset-type.png" lightbox="media/how-to-import-data-assets/select-snowflake-data-asset-type.png" alt-text="Screenshot that shows selection of a Snowflake data asset type.":::
 
-1. At the Create data import screen, fill in the values, and select Next, as shown in this screenshot:
+1. At the **Create data import** screen, fill in the values, and select **Next**, as shown in the following screenshot:
 
    :::image type="content" source="media/how-to-import-data-assets/create-snowflake-data-import.png" lightbox="media/how-to-import-data-assets/create-snowflake-data-import.png" alt-text="Screenshot that shows details of the data source selection.":::
 
-1. Fill in the values at the Choose a datastore to output screen, and select Next, as shown in this screenshot. **Workspace managed datastore** is selected by default; the path is automatically assigned by the system when you choose managed datastore. If you select **Workspace managed datastore**, the **Auto delete setting** dropdown appears. It offers a data deletion time window of 30 days by default, and [how to manage imported data assets](./how-to-manage-imported-data-assets.md) explains how to change this value.
+1. Fill in the values at the **Choose a datastore to output** screen, and select **Next**, as shown in the following screenshot. **Workspace managed datastore** is selected by default; the path is automatically assigned by the system when you choose managed datastore. If you select **Workspace managed datastore**, the **Auto delete setting** dropdown appears. It offers a data deletion time window of 30 days by default, and [how to manage imported data assets](./how-to-manage-imported-data-assets.md) explains how to change this value.
 
    :::image type="content" source="media/how-to-import-data-assets/choose-snowflake-datastore-to-output.png" lightbox="media/how-to-import-data-assets/choose-snowflake-datastore-to-output.png" alt-text="Screenshot that shows details of the data source to output.":::
 
    > [!NOTE]
    > To choose your own datastore, select **Other datastores**. In that case, you must select the path for the location of the data cache.
 
-1. You can add a schedule. Select **Add schedule** as shown in this screenshot:
+1. You can add a schedule. Select **Add schedule** as shown in the following screenshot:
    
    :::image type="content" source="media/how-to-import-data-assets/create-data-import-add-schedule.png" lightbox="media/how-to-import-data-assets/create-data-import-add-schedule.png" alt-text="Screenshot that shows the selection of the Add schedule button.":::
    
@@ -169,17 +173,17 @@ ml_client.data.import_data(data_import=data_import)
      - **Time zone**: the trigger time calculation is based on this time zone; (UTC) Coordinated Universal Time by default.
      - **Recurrence** or **Cron expression**: select recurrence to specify the recurring pattern. Under **Recurrence**, you can specify the recurrence frequency - by minutes, hours, days, weeks, or months.
      - **Start**: the schedule first becomes active on this date. By default, the creation date of this schedule.
-     - **End**: the schedule will become inactive after this date. By default, it's NONE, which means that the schedule will always be active until you manually disable it.
+     - **End**: the schedule becomes inactive after this date. By default, it's **NONE**, which means that the schedule is always active until you manually disable it.
      - **Tags**: the selected schedule tags.
 
    > [!NOTE]
-   > **Start** specifies the start date and time with the timezone of the schedule. If start is omitted, the start time equals the schedule creation time. For a start time in the past, the first job runs at the next calculated run time.
+   > **Start** specifies the start date and time with the timezone of the schedule. If you omit **Start**, the start time equals the schedule creation time. For a start time in the past, the first job runs at the next calculated run time.
 
-   The next screenshot shows the last screen of this process. Review your choices, and select Create. At this screen, and the other screens in this process, select Back to move to earlier screens to change your choices of values.
+   The following screenshot shows the last screen of this process. Review your choices, and select **Create**. At this screen, and the other screens in this process, select **Back** to move to earlier screens to change your choices of values.
 
    :::image type="content" source="media/how-to-import-data-assets/create-snowflake-data-import-review-values-and-create.png" lightbox="media/how-to-import-data-assets/create-snowflake-data-import-review-values-and-create.png" alt-text="Screenshot that shows all parameters of the data import.":::
    
-   This screenshot shows the panel for a **Cron** schedule:
+   The following screenshot shows the panel for a **Cron** schedule:
    
    :::image type="content" source="media/how-to-import-data-assets/create-data-import-cron-expression-schedule.png" lightbox="media/how-to-import-data-assets/create-data-import-cron-expression-schedule.png" alt-text="Screenshot that shows selection of the Add schedule button.":::
 
@@ -194,7 +198,7 @@ ml_client.data.import_data(data_import=data_import)
          `MINUTES HOURS DAYS MONTHS DAYS-OF-WEEK`
 
          - A single wildcard (`*`), which covers all values for the field. A `*`, in days, means all days of a month (which varies with month and year).
-         - The `expression: "15 16 * * 1"` in the sample above means the 16:15PM on every Monday.
+         - The `expression: "15 16 * * 1"` in the sample above means the 4:15 PM on every Monday.
          - The next table lists the valid values for each field:
  
             | Field          |   Range  | Comment                                                   |
@@ -211,13 +215,13 @@ ml_client.data.import_data(data_import=data_import)
       > `DAYS` and `MONTH` aren't supported. If you pass one of these values, it is ignored as `*`.
 
       - **Start**: the schedule first becomes active on this date. By default, the creation date of this schedule.
-      - **End**: the schedule will become inactive after this date. By default, it's NONE, which means that the schedule will always be active until you manually disable it.
+      - **End**: the schedule becomes inactive after this date. By default, it's **NONE**, which means that the schedule is always active until you manually disable it.
       - **Tags**: the selected schedule tags.
 
    > [!NOTE]
-   > **Start** specifies the start date and time with the timezone of the schedule. If start is omitted, the start time equals the schedule creation time. For a start time in the past, the first job runs at the next calculated run time.
+   > **Start** specifies the start date and time with the timezone of the schedule. If you omit **Start**, the start time equals the schedule creation time. For a start time in the past, the first job runs at the next calculated run time.
 
-   The next screenshot shows the last screen of this process. Review your choices, and select Create. At this screen, and the other screens in this process, select Back to move to earlier screens to change your choices of values.
+   The following screenshot shows the last screen of this process. Review your choices, and select **Create**. At this screen, and the other screens in this process, select **Back** to move to earlier screens to change your choices of values.
 
    :::image type="content" source="media/how-to-import-data-assets/create-snowflake-data-import-review-values-and-create.png" lightbox="media/how-to-import-data-assets/create-snowflake-data-import-review-values-and-create.png" alt-text="Screenshot that shows all parameters of the cron data import.":::
 
@@ -265,13 +269,14 @@ Next, execute this command in the CLI:
 from azure.ai.ml.entities import DataImport
 from azure.ai.ml.data_transfer import FileSystem
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
 # Supported connections include:
 # Connection: azureml:<workspace_connection_name>
 # Supported paths include:
 # path: azureml://datastores/<data_store_name>/paths/<my_path>/${{name}}
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 data_import = DataImport(
     name="<name>",
@@ -284,33 +289,33 @@ ml_client.data.import_data(data_import=data_import)
 
 # [Studio](#tab/azure-studio)
 
-1. Navigate to the [Azure Machine Learning studio](https://ml.azure.com).
+1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
 
-1. Under **Assets** in the left navigation, select **Data**. Next, select the Data Import tab. Then select Create as shown in this screenshot:
+1. Under **Assets** in the left navigation, select **Data**. Next, select the Data Import tab. Then select **Create** as shown in the following screenshot:
 
    :::image type="content" source="media/how-to-import-data-assets/create-new-data-import.png" lightbox="media/how-to-import-data-assets/create-new-data-import.png" alt-text="Screenshot showing creation of a data import in Azure Machine Learning studio UI.":::
 
-1. At the Data Source screen, select S3, and then select Next, as shown in this screenshot:
+1. At the **Data Source** screen, select **S3**, and then select **Next**, as shown in the following screenshot:
 
    :::image type="content" source="media/how-to-import-data-assets/select-source-for-s3-data-asset.png" lightbox="media/how-to-import-data-assets/select-source-for-s3-data-asset.png" alt-text="Screenshot showing selection of an S3 data asset.":::
 
-1. At the Data Type screen, fill in the values. The **Type** value defaults to **Folder (uri_folder)**. Then select Next, as shown in this screenshot:
+1. At the **Data Type** screen, fill in the values. The **Type** value defaults to **Folder (uri_folder)**. Then select **Next**, as shown in the following screenshot:
 
    :::image type="content" source="media/how-to-import-data-assets/select-s3-data-asset-type.png" lightbox="media/how-to-import-data-assets/select-s3-data-asset-type.png" alt-text="Screenshot showing selection of a Snowflake data asset type.":::
 
-1. At the Create data import screen, fill in the values, and select Next, as shown in this screenshot:
+1. At the **Create data import** screen, fill in the values, and select **Next**, as shown in the following screenshot:
 
    :::image type="content" source="media/how-to-import-data-assets/create-s3-data-import.png" lightbox="media/how-to-import-data-assets/create-s3-data-import.png" alt-text="Screenshot showing details of the data source selection.":::
 
-1. Fill in the values at the Choose a datastore to output screen, and select Next, as shown in this screenshot. **Workspace managed datastore** is selected by default; the path is automatically assigned by the system when you choose managed datastore. If you select **Workspace managed datastore**, the **Auto delete setting** dropdown appears. It offers a data deletion time window of 30 days by default, and [how to manage imported data assets](./how-to-manage-imported-data-assets.md) explains how to change this value.
+1. Fill in the values at the **Choose a datastore to output** screen, and select **Next**, as shown in the following screenshot. **Workspace managed datastore** is selected by default; the path is automatically assigned by the system when you choose managed datastore. If you select **Workspace managed datastore**, the **Auto delete setting** dropdown appears. It offers a data deletion time window of 30 days by default, and [how to manage imported data assets](./how-to-manage-imported-data-assets.md) explains how to change this value.
 
    :::image type="content" source="media/how-to-import-data-assets/choose-s3-datastore-to-output.png" lightbox="media/how-to-import-data-assets/choose-s3-datastore-to-output.png" alt-text="Screenshot showing details of the data source to output.":::
 
-1. You can add a schedule. Select **Add schedule** as shown in this screenshot:
+1. You can add a schedule. Select **Add schedule** as shown in the following screenshot:
    
    :::image type="content" source="media/how-to-import-data-assets/create-data-import-add-schedule.png" lightbox="media/how-to-import-data-assets/create-data-import-add-schedule.png" alt-text="Screenshot showing selection of the Add schedule button.":::
    
-1. A new panel opens, where you can define a **Recurrence** schedule, or a **Cron** schedule. This screenshot shows the panel for a **Recurrence** schedule:
+1. A new panel opens, where you can define a **Recurrence** schedule, or a **Cron** schedule. The following screenshot shows the panel for a **Recurrence** schedule:
    
    :::image type="content" source="media/how-to-import-data-assets/create-data-import-recurrence-schedule.png" lightbox="media/how-to-import-data-assets/create-data-import-recurrence-schedule.png" alt-text="A screenshot showing selection of the Add schedule button.":::
 
@@ -320,21 +325,21 @@ ml_client.data.import_data(data_import=data_import)
      - **Time zone**: the trigger time calculation is based on this time zone; (UTC) Coordinated Universal Time by default.
      - **Recurrence** or **Cron expression**: select recurrence to specify the recurring pattern. Under **Recurrence**, you can specify the recurrence frequency - by minutes, hours, days, weeks, or months.
      - **Start**: the schedule first becomes active on this date. By default, the creation date of this schedule.
-     - **End**: the schedule will become inactive after this date. By default, it's NONE, which means that the schedule will always be active until you manually disable it.
+     - **End**: the schedule becomes inactive after this date. By default, it's **NONE**, which means that the schedule is always active until you manually disable it.
      - **Tags**: the selected schedule tags.
 
    > [!NOTE]
-   > **Start** specifies the start date and time with the timezone of the schedule. If start is omitted, the start time equals the schedule creation time. For a start time in the past, the first job runs at the next calculated run time.
+   > **Start** specifies the start date and time with the timezone of the schedule. If you omit **Start**, the start time equals the schedule creation time. For a start time in the past, the first job runs at the next calculated run time.
 
-1. As shown in the next screenshot, review your choices at the last screen of this process, and select Create. At this screen, and the other screens in this process, select Back to move to earlier screens if you'd like to change your choices of values.
+1. Review your choices at the last screen of this process, and select **Create**. At this screen, and the other screens in this process, select **Back** to move to earlier screens if you'd like to change your choices of values.
 
    :::image type="content" source="media/how-to-import-data-assets/choose-s3-datastore-to-output.png" lightbox="media/how-to-import-data-assets/choose-s3-datastore-to-output.png" alt-text="Screenshot showing details of the data source to output.":::
 
-1. The next screenshot shows the last screen of this process. Review your choices, and select Create. At this screen, and the other screens in this process, select Back to move to earlier screens to change your choices of values.
+1. Review your choices, and select **Create**. At this screen, and the other screens in this process, select **Back** to move to earlier screens to change your choices of values.
 
    :::image type="content" source="media/how-to-import-data-assets/create-s3-data-import-review-values-and-create.png" lightbox="media/how-to-import-data-assets/create-s3-data-import-review-values-and-create.png" alt-text="Screenshot showing all parameters of the data import.":::
 
-   This screenshot shows the panel for a **Cron** schedule:
+   The following screenshot shows the panel for a **Cron** schedule:
 
    :::image type="content" source="media/how-to-import-data-assets/create-data-import-cron-expression-schedule.png" lightbox="media/how-to-import-data-assets/create-data-import-cron-expression-schedule.png" alt-text="Screenshot showing the selection of the Add schedule button.":::
 
@@ -349,7 +354,7 @@ ml_client.data.import_data(data_import=data_import)
          `MINUTES HOURS DAYS MONTHS DAYS-OF-WEEK`
 
          - A single wildcard (`*`), which covers all values for the field. A `*`, in days, means all days of a month (which varies with month and year).
-         - The `expression: "15 16 * * 1"` in the sample above means the 16:15PM on every Monday.
+         - The `expression: "15 16 * * 1"` in the sample above means the 4:15 PM on every Monday.
          - The next table lists the valid values for each field:
  
             | Field          |   Range  | Comment                                                   |
@@ -366,13 +371,13 @@ ml_client.data.import_data(data_import=data_import)
       > `DAYS` and `MONTH` aren't supported. If you pass one of these values, it is ignored as `*`.
 
       - **Start**: the schedule first becomes active on this date. By default, the creation date of this schedule.
-      - **End**: the schedule will become inactive after this date. By default, it's NONE, which means that the schedule will always be active until you manually disable it.
+      - **End**: the schedule becomes inactive after this date. By default, it's **NONE**, which means that the schedule is always active until you manually disable it.
       - **Tags**: the selected schedule tags.
 
    > [!NOTE]
-   > **Start** specifies the start date and time with the timezone of the schedule. If start is omitted, the start time equals the schedule creation time. For a start time in the past, the first job runs at the next calculated run time.
+   > **Start** specifies the start date and time with the timezone of the schedule. If you omit **Start**, the start time equals the schedule creation time. For a start time in the past, the first job runs at the next calculated run time.
 
-   The next screenshot shows the last screen of this process. Review your choices, and select Create. At this screen, and the other screens in this process, select Back to move to earlier screens to change your choices of values.
+   The following screenshot shows the last screen of this process. Review your choices, and select **Create**. At this screen, and the other screens in this process, select **Back** to move to earlier screens to change your choices of values.
 
    :::image type="content" source="media/how-to-import-data-assets/create-s3-data-import-review-values-and-create.png" lightbox="media/how-to-import-data-assets/create-s3-data-import-review-values-and-create.png" alt-text="Screenshot showing all parameters of the S3 cron data import.":::
 
@@ -380,9 +385,9 @@ ml_client.data.import_data(data_import=data_import)
 
 ## Check the import status of external data sources
 
-The data import action is an asynchronous action. It can take a long time. After submission of an import data action via the CLI or SDK, the Azure Machine Learning service might need several minutes to connect to the external data source. Then, the service would start the data import, and handle data caching and registration. The time needed for a data import also depends on the size of the source data set.
+The data import action is an asynchronous action. It can take a long time. After you submit an import data action via the CLI or SDK, the Azure Machine Learning service might need several minutes to connect to the external data source. Then, the service starts the data import, and handles data caching and registration. The time needed for a data import also depends on the size of the source data set.
 
-The next example returns the status of the submitted data import activity. The command or method uses the "data asset" name as the input to determine the status of the data materialization.
+The following example returns the status of the submitted data import activity. The command or method uses the data asset name as the input to determine the status of the data materialization.
 
 # [Azure CLI](#tab/cli)
 
@@ -395,8 +400,9 @@ The next example returns the status of the submitted data import activity. The c
 ```python
 from azure.ai.ml.entities import DataImport
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 ml_client.data.list_materialization_status(name="<name>")
 
