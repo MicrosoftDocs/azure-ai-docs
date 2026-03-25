@@ -147,7 +147,7 @@ items:
   - name: Security features
     href: ../../../ai-services/security-features.md?context=/azure/foundry-classic/context/context
   - name: Authenticate requests
-    href: ../../../ai-services/authentication.md
+    href: ../../../ai-services/authentication.md?context=/azure/foundry-classic/context
   - name: Disable local authentication
     href: ../../../ai-services/disable-local-auth.md
   - name: Use Azure key vault
