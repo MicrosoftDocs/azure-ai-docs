@@ -30,8 +30,6 @@ You need:
 
 ## Set up environment
 
-### Speech SDK
-
 To use real-time avatar synthesis, install the Speech SDK for your preferred platform and programming language. See [Install the Speech SDK](/azure/ai-services/speech-service/quickstarts/setup-platform).
 
 ### Network requirement
@@ -40,10 +38,10 @@ Real-time avatar uses WebRTC to stream video from the server to the client. Ensu
 
 | Rule | Source IP | Source Port | Destination FQDN | Destination IP | Destination Port | Protocol |
 |------|-----------|-------------|-------------------|----------------|------------------|----------|
-| Allow access to TURN (relay) server for WebRTC connection through UDP | IP range of end user client machines where browsers with avatar to be played (set to Any if not sure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 3478 | UDP |
-| Allow access to TURN (relay) server for WebRTC connection through TCP | IP range of end user client machines where browsers with avatar to be played (set to Any if not sure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 443 | TCP |
+| Allow access to TURN relay server for WebRTC connection over UDP | IP range of end-user client machines where browsers play the avatar (set to **Any** if unsure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 3478 | UDP |
+| Allow access to TURN relay server for WebRTC connection over TCP | IP range of end-user client machines where browsers play the avatar (set to **Any** if unsure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 443 | TCP |
 
-* Refer to [WebRTC security](https://webrtc-security.github.io) for the security ensurance of WebRTC protocol.
+* For more information about WebRTC protocol security, see [WebRTC security](https://webrtc-security.github.io).
 
 ### Supported platforms and browsers
 
