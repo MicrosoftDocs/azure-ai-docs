@@ -8,7 +8,7 @@ author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 03/25/2026
 ai-usage: ai-assisted
 ms.custom: ai-assisted, doc-kit-assisted
 ---
@@ -34,6 +34,8 @@ This approach enables you to securely integrate internal APIs and services into 
 > Agent Service connects only to publicly accessible MCP server endpoints.
 
 ## Understand the request flow
+
+Remote MCP servers can be either custom-built (as described in this article) or Microsoft-provided offerings available in the Foundry **Add Tools** catalog, such as Azure DevOps MCP Server (preview). The connection and governance experience in Foundry is similar for both, with differences in provider-specific authentication and scope.
 
 The high-level flow looks like this:
 
@@ -163,6 +165,9 @@ If you registered your MCP server in Azure API Center, users with appropriate ac
 
 1. Follow the configuration guidance displayed in the tool catalog to add the server to your agent.
 
+> [!TIP]
+> Foundry also surfaces Microsoft-provided MCP servers in the **Add Tools** catalog. For example, you can select **Azure DevOps MCP Server (preview)** and connect your organization to enable agent access. After you select a catalog MCP server, you can limit which tools are enabled for the agent by selecting a subset of available tools. This enforces least privilege and governance as part of the Foundry configuration flow.
+
 ### Connect using a custom MCP tool
 
 If you don't register your MCP server in the organizational catalog, add it directly as a custom tool:
@@ -197,6 +202,9 @@ After you deploy and connect the server, verify that the server is discoverable 
 1. Confirm the tool call succeeds.
 
    If the tool call fails, open the Function App logs in Azure portal to confirm the MCP endpoint was invoked and to diagnose errors.
+
+> [!TIP]
+> You can perform quick validation from Foundry by issuing test chat prompts in the agent or tool configuration experience. This helps confirm that selected tools are discovered and callable before rolling out to broader users.
 
 ## Troubleshooting
 
