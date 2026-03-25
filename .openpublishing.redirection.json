@@ -1294,6 +1294,11 @@
       "source_path": "articles/ai-services/responsible-use-of-ai-overview.md",
       "redirect_url": "/azure/foundry/responsible-use-of-ai-overview",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/whats-new-ai-services.md",
+      "redirect_url": "/azure/foundry/whats-new-foundry",
+      "redirect_document_id": false
     }
   ]
 }
