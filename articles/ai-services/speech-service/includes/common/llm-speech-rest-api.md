@@ -142,7 +142,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 
 Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM speech, and can be omitted from the request. Learn more from [configuration options of fast transcription](../../fast-transcription-create.md#request-configuration-options). 
 
-#### Use the mai-transcribe model
+#### Use the mai-transcribe model (Preview)
 
 You can also use the mai-transcribe-1 model provided by Microsoft AI (MAI) with the LLM Speech API. 
 
@@ -167,7 +167,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 ```
 
 There are a few extra limits using the mai-transcribe model:
-- The audio file should be less than 20 minutes long and less than 70 MB in size;
+- The audio file should be less than 70 MB in size;
 - Diarization isn't supported.
 
 
