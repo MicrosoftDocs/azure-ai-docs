@@ -10,6 +10,7 @@ ms.subservice: automl
 ms.topic: how-to
 ms.date: 03/11/2025
 ms.custom: sdkv2
+ai-usage: ai-assisted
 ---
 
 # Make predictions with ONNX on computer vision models from AutoML
@@ -64,11 +65,15 @@ With the SDK, you can select the best child run (by primary metric) with the exp
 
 The following code returns the best child run based on the relevant primary metric.
 ```python
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 from azure.ai.ml import MLClient
 mlflow_client = MlflowClient()
 
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 ml_client = None
 try:
     ml_client = MLClient.from_config(credential)

@@ -12,9 +12,17 @@ ms.custom: include
 
 ## Model subset
 
-The latest version of model router supports model subsets: For custom deployments, you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics.
+The latest version of model router supports model subsets: You can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics.
 
 When new base models become available, they're not included in your selection unless you explicitly add them to your deployment's inclusion list.
+
+## Automatic failover
+
+Model router now includes built-in automatic failover. When using the default deployment to route to all supported models, model router transparently redirects the request to the next most appropriate model, so transient issues with any single model don't disrupt your application. Failover is enabled by default — no additional configuration is required.
+
+For custom deployment configurations:
+- Your selected routing mode (Balanced, Cost, or Quality) continues to apply during failover.
+- Your configured model subset also works as your fallback set to prevent your prompts getting processed by unapproved models. Therefore, be sure to select model subsets with at least two models to benefit from the fallback capability.
 
 ## Limitations
 
@@ -63,7 +71,7 @@ For detailed deployment troubleshooting, see [How to use model router](../how-to
 
 ## Billing information
 
-Starting November 2025, the model router usage will be charged for input prompts at the rate listed on the pricing page.
+Model router usage is charged for input prompts at the rate listed on the pricing page.
 
 You can monitor the costs of your model router deployment in the Azure portal.
 

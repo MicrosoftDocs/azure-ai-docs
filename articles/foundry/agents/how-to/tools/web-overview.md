@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 02/12/2026
+ms.date: 03/25/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -17,6 +17,7 @@ ai-usage: ai-assisted
 ---
 
 # Web grounding tools overview
+
 Web grounding tools in Microsoft Foundry Agent Service connect your agents to real-time public web data, overcoming the knowledge cutoff that limits large language models. For example, you can ask questions such as "what is the top AI news today" and receive current, cited answers.
 
 ## How web grounding works
@@ -49,23 +50,25 @@ Before using any web grounding tool, ensure you have:
 
 If you're just getting started, use [Web Search](./web-search.md). It requires no extra Azure resources and is the simplest way to add web grounding to your agent.
 
+If you're migrating from Grounding with Bing Search on the classic agents platform, both [Web Search](./web-search.md) and [Grounding with Bing Search](./bing-tools.md) are GA options on the new agents API. Web Search requires no separate Bing resource. Grounding with Bing Search offers more parameters and supports non-OpenAI models deployed directly on Azure.
+
 The following use cases help you compare the available tools. Use case 1 covers general web search, where both Web Search and Grounding with Bing Search can retrieve results from the public web. Use case 2 covers domain-restricted search, which only Grounding with Bing Custom Search supports.
 
 ### Use case 1: Grounding from general web indexed by Bing
 
-|                           | [Web Search](./web-search.md) (recommended)                                                                                                                    | [Grounding with Bing Search](./bing-tools.md)                                                                                   |
-|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| **Stage**                 | GA                                                                                                                                           | GA                                                                                                            |
-| **Grounding with Bing resource** | Managed by Microsoft                                                                                                                           | Managed by you — requires creating a Grounding with Bing Search resource first                               |
+|                           | [Web Search](./web-search.md) (recommended) | [Grounding with Bing Search](./bing-tools.md) |
+| ------------------------- | ------------------------------------------- | --------------------------------------------- |
+| **Stage**                 | GA                                          | GA                                            |
+| **Grounding with Bing resource** | Managed by Microsoft | Managed by you — requires creating a Grounding with Bing Search resource first |
 | **Supported parameters**  | - `user_location`: Provides geo‑relevant results<br>- `search_context_size`: low/medium/high (default: medium)<br> Learn more about [Web Search parameters](./web-search.md#optional-parameters-for-general-web-search) | - `count`: the maximum of results returned by Bing <br>- `freshness`: specifies the period for the search results<br>- `market`: specifies the region for the search results <br>- `set_lang`: specifies the language for the search results <br> Learn more about [Bing Search parameters](./bing-tools.md#optional-parameters) |
 | **Data boundary** | Data flows outside Azure compliance boundary | Data flows outside Azure compliance boundary |
-| **Supported models**      | Azure OpenAI models                                                                       | Azure OpenAI models and Azure direct models (non-OpenAI models deployed directly on Azure)                                                                          |
+| **Supported models** | Azure OpenAI models | Azure OpenAI models and Azure direct models (non-OpenAI models deployed directly on Azure) |
 
 ### Use case 2: Grounding from specific domains you defined
 
-|                               | [Web Search](./web-search.md) (recommended) | [Grounding with Bing Custom Search](./bing-tools.md)                                                                 |
-|-------------------------------|---------------------------------------------|--------------------------------------------------------------------------------------------------|
-| **Stage**                     | GA                                          | Preview                                                                                  |
+|                               | [Web Search](./web-search.md) (recommended) | [Grounding with Bing Custom Search](./bing-tools.md) |
+| ----------------------------- | ------------------------------------------- | ---------------------------------------------------- |
+| **Stage**                     | GA                                          | Preview                                              |
 | **Restrict to custom domains**       | Supported — use `custom_search_configuration` to pre‑define allowed or blocked domains (requires creating a Bing Custom Search resource + instance)  | Supported — use `custom_search_configuration` to pre‑define allowed or blocked domains (requires creating a Bing Custom Search resource + instance) |
 | **Other parameters**          | - `user_location`: Provides geo‑relevant results<br>- `search_context_size`: low/medium/high (default: medium)<br> Learn more about [Web Search parameters](./web-search.md#domain-restricted-search-with-bing-custom-search) | - `count`: the maximum number of results returned by Bing <br>- `freshness`: specifies the period for the search results<br>- `market`: specifies the region for the search results <br>- `set_lang`: specifies the language for the search results <br> Learn more about [Bing Custom Search parameters](./bing-tools.md#optional-parameters) |
 | **Supported models**          | Azure OpenAI models                         | Azure OpenAI models and Azure direct models |

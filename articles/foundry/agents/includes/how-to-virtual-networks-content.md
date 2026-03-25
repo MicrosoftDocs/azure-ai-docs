@@ -1,12 +1,13 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: aahill
+ms.author: aahi
+ms.reviewer: fosteramanda
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 Foundry Agent Service offers a **Standard Setup with private networking** environment, where you bring your own (BYO) private virtual network. This setup creates an isolated network environment that enables secure access to data while maintaining full control over your network infrastructure.

@@ -34,7 +34,7 @@ Evaluators measure the quality, safety, and reliability of AI responses througho
 
 For a complete list of built-in evaluators, see [Built-in evaluators reference](built-in-evaluators.md).
 
-### Monitoring (preview)
+### Monitoring
 
 Production monitoring ensures your deployed AI applications maintain quality and performance in real-world conditions. Integrated with Azure Monitor Application Insights, Microsoft Foundry delivers real-time dashboards tracking operational metrics, token consumption, latency, error rates, and quality scores. Teams can set up alerts when outputs fail quality thresholds or produce harmful content, enabling rapid issue resolution.
 

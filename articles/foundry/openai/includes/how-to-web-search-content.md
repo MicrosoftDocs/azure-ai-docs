@@ -6,7 +6,8 @@ ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/20/2026
-ms.custom: include
+ms.custom: include, classic-and-new
+
 ---
 
 Web search enables models to retrieve and ground responses with real-time information from the public web before generating output. When enabled, the model can return up-to-date answers with inline citations. Web search is available via the `web_search` tool in the **Responses API**.

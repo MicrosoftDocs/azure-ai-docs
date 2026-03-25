@@ -1,12 +1,13 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: msakande
+ms.author: mopeakande
+ms.reviewer: rasavage
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 03/19/2026
-ms.custom: include
+ms.date: 03/24/2026
+ms.custom: include, classic-and-new
 ---
 
 Microsoft Foundry Models are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
@@ -82,6 +83,12 @@ To learn more about the Azure OpenAI models lifecycle, including information for
 
 The following tables list the timelines for models that are on track for retirement. The lifecycle stages go into effect at 00:00:00 UTC on the specified dates.
 
+#### Bayer
+
+| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
+|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [E.L.Y.Crop-Protection](https://ai.azure.com/explore/models/E.L.Y.Crop-Protection/version/1/registry/azureml/?cid=learnDocs) | March 16, 2026 | April 16, 2026 | July 31, 2026 | N/A |
+
 #### Cohere
 
 | Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
@@ -90,14 +97,30 @@ The following tables list the timelines for models that are on track for retirem
 | [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs) | February 12, 2026 | March 12, 2026 | May 12, 2026 | [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere/?cid=learnDocs) |
 | [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere/?cid=learnDocs) | February 12, 2026 | March 12, 2026 | May 12, 2026 | [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere/?cid=learnDocs) |
 
+#### Deci AI
+
+| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
+|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [deci-decidiffusion-v1-0](https://ai.azure.com/explore/models/deci-decidiffusion-v1-0/version/7/registry/azureml/?cid=learnDocs) | March 16, 2026 | April 16, 2026 | July 31, 2026 | N/A |
+
 #### Meta
 
 | Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
 | [Meta-Llama-3.1-405B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-405B-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | N/A |
+| [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/6/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | N/A |
 | [Meta-Llama-3.1-8B](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B/version/1/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | N/A |
 | [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | [Llama-4-Maverick-17B-128E-Instruct-FP8](https://ai.azure.com/explore/models/Llama-4-Maverick-17B-128E-Instruct-FP8/version/1/registry/azureml-meta/?cid=learnDocs), [Llama-4-Scout-17B-16E-Instruct](https://ai.azure.com/explore/models/Llama-4-Scout-17B-16E-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) |
 | [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) | February 13, 2026 | March 13, 2026 | June 13, 2026 | [Llama-4-Maverick-17B-128E-Instruct-FP8](https://ai.azure.com/explore/models/Llama-4-Maverick-17B-128E-Instruct-FP8/version/1/registry/azureml-meta/?cid=learnDocs), [Llama-4-Scout-17B-16E-Instruct](https://ai.azure.com/explore/models/Llama-4-Scout-17B-16E-Instruct/version/1/registry/azureml-meta/?cid=learnDocs) |
+
+#### Microsoft
+
+| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
+|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [financial-reports-analysis](https://ai.azure.com/explore/models/financial-reports-analysis/version/2/registry/azureml/?cid=learnDocs) | March 16, 2026 | April 16, 2026 | July 31, 2026 | N/A |
+| [financial-reports-analysis-v2](https://ai.azure.com/explore/models/financial-reports-analysis-v2/version/1/registry/azureml/?cid=learnDocs) | March 16, 2026 | April 16, 2026 | July 31, 2026 | N/A |
+| [supply-chain-trade-regulations](https://ai.azure.com/explore/models/supply-chain-trade-regulations/version/3/registry/azureml/?cid=learnDocs) | March 16, 2026 | April 16, 2026 | July 31, 2026 | N/A |
+| [supply-chain-trade-regulations-v2](https://ai.azure.com/explore/models/supply-chain-trade-regulations-v2/version/1/registry/azureml/?cid=learnDocs) | March 16, 2026 | April 16, 2026 | July 31, 2026 | N/A |
 
 #### Moonshot AI
 
