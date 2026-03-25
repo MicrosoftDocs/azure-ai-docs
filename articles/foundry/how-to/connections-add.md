@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 11/06/2025
+ms.date: 03/24/2026
 ms.reviewer: meerakurup
 ms.author: sgilley
 author: sdgilley
@@ -23,9 +23,13 @@ ai-usage: ai-assisted
 
 In this article, you learn how to add a new connection in [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more.
+Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more.
 
-[!INCLUDE [connections-add 1](../includes/how-to-connections-add-1.md)]
+## Prerequisites
+
+* If you don't have one, [create a project](../how-to/create-projects.md).
+* Make sure you can open your project in Microsoft Foundry.
+* Make sure you have permissions to add connections to the project or resource. Adding connections requires the **Azure AI User**, **Azure AI Owner**, or Azure **Contributor** role (or higher). For details, see [Role-based access control](../concepts/rbac-foundry.md).
 
 ## Connection types
 
@@ -82,6 +86,8 @@ Follow these steps to create a new connection that's available for the current p
     > [!TIP]
     > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-foundry.md).
 
+1. Confirm that your new connection appears in the connected resources list.
+
 ## [Bicep](#tab/bicep)
 
 [!INCLUDE [connections-add 3](../includes/how-to-connections-add-3.md)]
@@ -99,7 +105,7 @@ For more on how to set private endpoints to your connected resources, see the fo
 |Azure Storage|[Use private endpoints](/azure/storage/common/storage-private-endpoints)|
 |Azure Cosmos DB|[Configure Azure Private Link for Azure Cosmos DB](/azure/cosmos-db/how-to-configure-private-endpoints?tabs=arm-bicep)|
 |Azure AI Search|[Create a private endpoint for a secure connection](/azure/search/service-create-private-endpoint)|
-|Azure OpenAI|[Securing Azure OpenAI inside a virtual network with private endpoints](/azure/ai-foundry/openai/how-to/network)|
+|Azure OpenAI|[Configure virtual networks for Azure AI services](/azure/ai-services/cognitive-services-virtual-networks)|
 |Application Insights|[Use Azure Private Link to connect networks to Azure Monitor](/azure/azure-monitor/logs/private-link-security)|
 
 > [!NOTE]
@@ -107,4 +113,5 @@ For more on how to set private endpoints to your connected resources, see the fo
 
 ## Related content
 
-- [How to create vector indexes](../../foundry-classic/how-to/index-add.md)
+- [Role-based access control in Foundry](../concepts/rbac-foundry.md)
+- [Configure network isolation](configure-private-link.md)
