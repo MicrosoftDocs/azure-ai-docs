@@ -1299,6 +1299,11 @@
       "source_path": "articles/ai-services/whats-new-ai-services.md",
       "redirect_url": "/azure/foundry/whats-new-foundry",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/language-support.md",
+      "redirect_url": "/azure/ai-services/language-service",
+      "redirect_document_id": true
     }
   ]
 }
