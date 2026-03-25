@@ -15,7 +15,7 @@ ms.custom:
 
 You can use Microsoft Entra ID security principals and role assignments for outbound connections from Azure AI Search to other Azure resources providing data, applied AI, or vectorization during indexing or queries.
 
-To use roles on an outbound connection, first configure your search service to use either a [system-assigned or user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) as the security principal for your search service in a Microsoft Entra tenant. Once you have a managed identity, you can assign roles for authorized access. Managed identities and role assignments eliminate the need for passing secrets and credentials in a connection string or code.
+To use roles on an outbound connection, first configure your search service to use either a [system-assigned or user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) as the security principal for your search service in a Microsoft Entra tenant. After you have a managed identity, you can assign roles for authorized access. Managed identities and role assignments eliminate the need for passing secrets and credentials in a connection string or code.
 
 ## Prerequisites
 
@@ -195,7 +195,7 @@ Instead of the Azure portal, you can use the Search Management REST APIs to assi
 
 ## Assign a role
 
-Once you have a managed identity, assign roles that determine search service permissions on the Azure resource. 
+After you have a managed identity, assign roles that determine search service permissions on the Azure resource. 
 
 + Read permissions are needed for indexer data connections and for accessing a customer-managed key in Azure Key Vault.
 

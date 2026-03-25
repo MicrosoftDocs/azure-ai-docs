@@ -87,7 +87,7 @@ To enable answer synthesis in a retrieve request:
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview  HTTP/1.1
 Content-Type: application/json
 api-key: {{api-key}}
-        
+
 {
     "messages": [
         {

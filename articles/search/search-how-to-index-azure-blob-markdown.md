@@ -23,7 +23,7 @@ In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and Microsoft 
 
 ## Prerequisites
 
-+ A supported data source: Azure Blob storage, Azure File storage, Microsoft OneLake.
++ A supported data source: Azure Blob Storage, Azure File Storage, Microsoft OneLake.
 
   For OneLake, make sure you meet all of the requirements of the [OneLake indexer](search-how-to-index-onelake-files.md#prerequisites).
 
@@ -198,7 +198,7 @@ This Markdown file would result in three search documents after indexing, due to
     },
     "ordinal_position": 3
   }
-}   
+}
 ```
 
 ### Map one-to-many fields in a search index
@@ -431,9 +431,10 @@ An example of a strong use case might look something like this: all Markdown fil
 ]
 ```
 
-Here you would extract only the relevant pieces from that document. To most effectively use this functionality, documents you plan to index should share the same hierarchical header structure.
+Here, you'd extract only the relevant pieces from that document. To most effectively use this functionality, documents you plan to index should share the same hierarchical header structure.
 
 The resulting search document in the index would look as follows:
+
 ```http
 {
   "content": "Content for section 1.\r\n",
@@ -445,7 +446,6 @@ The resulting search document in the index would look as follows:
 
 > [!NOTE]
 > These examples specify how to use these parsing modes entirely with or without field mappings, but you can apply both in one scenario if it suits your needs.
-> 
 
 ## Managing stale documents from Markdown re-indexing
 
@@ -454,6 +454,7 @@ When using one-to-many parsing mode, re-indexing a modified Markdown file can re
 ### Behavior overview
 
 #### One-to-many parsing mode
+
 In `oneToMany` mode, each Markdown section (based on headers) is indexed as a separate search document. When the file is re-indexed:
 
 * **No automatic deletion**: The indexer overwrites existing documents with new ones, but it does not delete documents that no longer correspond to any content in the updated file.
@@ -476,7 +477,7 @@ Steps:
 1. Mark the blob as deleted by setting a metadata field.
 2. Let the indexer run. It deletes all documents in the index associated with that blob.
 3. Remove the soft-delete marker and re-index the file.
-     
+
 #### Option 2. Use the delete API
 
 Before re-indexing a modified Markdown file, explicitly delete the existing documents associated with that file using the [delete API](/rest/api/searchservice/documents#indexactiontype). You can either:
@@ -493,7 +494,7 @@ Steps:
     api-key: [admin key]
 
 
-      {  
+      {
           "filter": "metadata_storage_path eq 'https://<storage-account>.blob.core.windows.net/<container-name>/<file-name>.md'",
           "select": "id"
       }
@@ -505,17 +506,17 @@ Steps:
       Content-Type: application/json
       api-key: [admin key]
 
-      {  
-        "value": [  
-          {  
-            "@search.action": "delete",  
-            "id": "aHR0c...jI1"  
+      {
+        "value": [
+          {
+            "@search.action": "delete",
+            "id": "aHR0c...jI1"
           },
-          {  
-            "@search.action": "delete",  
-            "id": "aHR0...MQ2"  
-          }  
-        ]  
+          {
+            "@search.action": "delete",
+            "id": "aHR0...MQ2"
+          }
+        ]
       }
       ```
   3. Re-index the updated file.
