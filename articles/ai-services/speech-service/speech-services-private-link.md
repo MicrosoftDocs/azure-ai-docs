@@ -430,7 +430,7 @@ Using the Speech SDK with custom-domain-enabled Speech resources *without* priva
 [!INCLUDE [](includes/speech-studio-vnet.md)]
 
 
-## Adjust an application to use a Foundry resource for Speech without private endpoints
+## Adjust an application to use a Speech resource without private endpoints
 
 In this article, several instances note that enabling a custom domain for a Foundry resource for Speech is irreversible. Such a resource uses a different way of communicating with Speech service, compared to the ones that are using [regional endpoint names](../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints).
 
