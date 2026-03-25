@@ -81,12 +81,13 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         DefaultAzureCredential, 
         getBearerTokenProvider 
     } from "@azure/identity";
+    import * as fs from "fs";
     
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
     
     // Required Azure OpenAI deployment name and API version
-    const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2025-04-01-preview";
     const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-image-1";
     
     // keyless authentication    
@@ -112,11 +113,16 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         size: "1024x1024",
         n: numberOfImagesToGenerate,
         model: "",
-        style: "vivid", // or "natural"
+        quality: "high",
+        // output_format: "png",  // "png" or "jpeg" (GPT-image-1 only)
+        // background: "transparent",  // "auto" or "transparent" (GPT-image-1 only, requires PNG)
       });
     
+      // GPT-image-1 models always return base64-encoded images
       for (const image of results.data) {
-        console.log(`Image generation result URL: ${image.url}`);
+        const imageBuffer = Buffer.from(image.b64_json!, "base64");
+        fs.writeFileSync("generated_image.png", imageBuffer);
+        console.log("Image saved to generated_image.png");
       }
     }
     
@@ -164,13 +170,14 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```typescript
     import { AzureOpenAI } from "openai";
+    import * as fs from "fs";
     
     // You will need to set these environment variables or edit the following values
     const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "Your endpoint";
     const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
     
     // Required Azure OpenAI deployment name and API version
-    const apiVersion = process.env.OPENAI_API_VERSION || "2024-07-01";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2025-04-01-preview";
     const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-image-1";
     
     // The prompt to generate images from
@@ -195,11 +202,16 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         size: "1024x1024",
         n: numberOfImagesToGenerate,
         model: "",
-        style: "vivid", // or "natural"
+        quality: "high",
+        // output_format: "png",  // "png" or "jpeg" (GPT-image-1 only)
+        // background: "transparent",  // "auto" or "transparent" (GPT-image-1 only, requires PNG)
       });
     
+      // GPT-image-1 models always return base64-encoded images
       for (const image of results.data) {
-        console.log(`Image generation result URL: ${image.url}`);
+        const imageBuffer = Buffer.from(image.b64_json!, "base64");
+        fs.writeFileSync("generated_image.png", imageBuffer);
+        console.log("Image saved to generated_image.png");
       }
     }
     
@@ -239,12 +251,11 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ### Output
 
-The URL of the generated image is printed to the console.
+The generated image is saved to `generated_image.png` in the current directory.
 
 ```console
-== Batch Image Generation ==
-Image generation result URL: <SAS URL>
-Image generation result URL: <SAS URL>
+== Image Generation ==
+Image saved to generated_image.png
 ```
 
 > [!NOTE]

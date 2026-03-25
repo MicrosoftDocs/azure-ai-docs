@@ -70,6 +70,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         size   = '1024x1024'
         n      = 1
         quality = 'high'
+        output_format = 'png'
+        # background = 'transparent'  # 'auto' or 'transparent' (requires PNG output)
+        # output_compression = 100    # 0-100 compression level (JPEG output only)
     } | ConvertTo-Json
     
     # Call the API to generate the image and retrieve the response
