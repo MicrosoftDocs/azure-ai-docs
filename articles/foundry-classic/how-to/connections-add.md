@@ -30,7 +30,11 @@ In this article, you learn how to add a new connection in [Microsoft Foundry por
 
 Connections are a way to authenticate and consume both Microsoft and other resources within your Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools. Certain connections can be created in the Foundry UI while others require deployment through code in Bicep template. See our [foundry-samples on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections). Read the table descriptions below to learn more.
 
-[!INCLUDE [connections-add 1](../../foundry/includes/how-to-connections-add-1.md)]
+## Prerequisites
+
+* If you don't have one, [create a project](../how-to/create-projects.md).
+* Make sure you can open your project in Microsoft Foundry.
+* Make sure you have permissions to add connections to the project or resource. Adding connections requires the **Azure AI User**, **Azure AI Owner**, or Azure **Contributor** role (or higher). For details, see [Role-based access control](../concepts/rbac-foundry.md).
 
 ## Connection types
 
