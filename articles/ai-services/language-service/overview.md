@@ -15,24 +15,11 @@ ms.author: lajanuar
 
 Azure Language is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text. Use this service to help build intelligent applications using the web-based Microsoft Foundry, REST APIs, and client libraries. For AI agent development, the service capabilities are also available as tools in Azure Language [MCP server](#azure-language-mcp-server), which is available both as a remote server in the **Microsoft Foundry Tool Catalog** and as a local server for self-hosted environments.
 
-## Available tools
+## Core capabilities
 
-Azure Language provides specialized tools that enable seamless integration between AI agents and language processing services through standardized protocols.
+**Recommended for new development**
 
-### Azure Language MCP server
-
-The MCP (Model Context Protocol) server creates a standardized bridge that connects AI agents directly to Azure Language services through industry-standard protocols. This integration enables developers to build sophisticated conversational applications with reliable natural language processing capabilities while ensuring enterprise-grade compliance, data protection, and processing accuracy throughout their AI workflows.
-
-Azure Language provides both remote and local MCP server options:
-
-* **Remote server**: Available through Foundry Tool Catalog for cloud-hosted deployments.
-* **Local server**: Available for developers who prefer to host the server in their own environment.
-
-For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-preview).
-
-## Core capabilities (recommended for new development)
-
-Core capabilities are the primary, actively evolving features recommended for new development and long-term planning. These features are recommended for new solutions and future-focused scenarios.
+Core capabilities are the primary, actively evolving features of Azure Language. These features receive ongoing investment and feature updates, and are recommended for new development and long-term planning. If you are starting a new project or designing a future architecture, use core capabilities as the foundation for your natural language processing workflows.
 
 * [Language detection](#language-detection)
 * [Named entity recognition (custom)](#named-entity-recognition-custom-ner)
@@ -41,7 +28,7 @@ Core capabilities are the primary, actively evolving features recommended for ne
 * [Text analytics for health](#text-analytics-for-health)
 
 > [!TIP]
-> Unsure which feature to use? See [Which Language feature should I use](#which-core-language-feature-should-i-use) to help you decide.
+> Unsure which feature to use? See [Which Azure Language core feature should I use](#which-core-language-feature-should-i-use) to help you decide.
 
 [**Microsoft Foundry**](https://ai.azure.com/) enables you to use most of the following service features without the need to write code.
 
@@ -70,7 +57,7 @@ Core capabilities are the primary, actively evolving features recommended for ne
 
 [Personally identifiable information (PII) detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
 
-***Conversation PII detection*** 
+***Conversation PII detection***
 
 :::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Foundry." lightbox="media/overview/conversation-pii.png":::
 
@@ -84,7 +71,9 @@ Core capabilities are the primary, actively evolving features recommended for ne
 
 :::image type="content" source="media/overview/text-analytics-for-health.png" alt-text="A screenshot of text analytics for health in Foundry." lightbox="media/overview/text-analytics-for-health.png":::
 
-## Legacy capabilities (supported for existing implementations)
+## Legacy capabilities
+
+**Supported for existing implementations**
 
 Legacy capabilities are established features that provide a stable, supported base for existing workloads and scenarios. These features are supported for existing implementations and established use cases.
 
@@ -166,6 +155,21 @@ Text summarization generates a summary, supporting two approaches:
 * **Abstractive summarization** generates a summary by producing new, concise, and coherent sentences or phrases that aren't directly copied from the original document.
 
    :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Foundry." lightbox="media/overview/text-summarization.png":::
+
+## Available tools
+
+Azure Language provides specialized tools that enable seamless integration between AI agents and language processing services through standardized protocols.
+
+### Azure Language MCP server
+
+The MCP (Model Context Protocol) server creates a standardized bridge that connects AI agents directly to Azure Language services through industry-standard protocols. This integration enables developers to build sophisticated conversational applications with reliable natural language processing capabilities while ensuring enterprise-grade compliance, data protection, and processing accuracy throughout their AI workflows.
+
+Azure Language provides both remote and local MCP server options:
+
+* **Remote server**: Available through Foundry Tool Catalog for cloud-hosted deployments.
+* **Local server**: Available for developers who prefer to host the server in their own environment.
+
+For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-preview).
 
 ## Azure Language agents
 

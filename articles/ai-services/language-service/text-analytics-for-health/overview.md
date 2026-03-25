@@ -1,5 +1,5 @@
 ---
-title: What is the Text Analytics for health in Azure Language in Foundry Tools?
+title: What is the Text Analytics for health in Azure Language?
 titleSuffix: Foundry Tools
 description: An overview of Text Analytics for health in Azure Language, which helps you extract medical information from unstructured text, like clinical documents.
 #services: cognitive-services
@@ -11,11 +11,11 @@ ms.date: 12/15/2025
 ms.author: lajanuar
 ms.custom: language-service-health
 ---
-# What is Text Analytics for health?
+# What is Text Analytics for health in Azure Language?
 
 [!INCLUDE [service notice](includes/service-notice.md)]
 
-Text Analytics for health is one of the prebuilt features offered by [Azure Language in Foundry Tools](../overview.md). Text Analytics for health uses machine learning to identify and label medical information in unstructured text such as doctor's notes, clinical documents, and electronic health records. It extracts key data from sources like discharge summaries to support healthcare analysis.
+Text Analytics for health is an Azure Language prebuilt [core capability](../overview.md#core-capabilities). Text Analytics for health uses machine learning to identify and label medical information in unstructured text such as doctor's notes, clinical documents, and electronic health records. It extracts key data from sources like discharge summaries to support healthcare analysis.
 
 > [!TIP]
 > Try out Text Analytics for health [in Microsoft Foundry portal](https://ai.azure.com/). There you can [utilize a currently existing Language Studio resource or create a new Foundry resource](../../../ai-services/connect-services-foundry-portal.md) in order to use this service.
