@@ -3,7 +3,7 @@ title: Create an Index for Agentic Retrieval
 description: Create an index that has fields and configurations that work for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 03/25/2026
 ---
 
 # Create an index for agentic retrieval in Azure AI Search

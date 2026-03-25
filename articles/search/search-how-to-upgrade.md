@@ -6,7 +6,7 @@ ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 08/08/2025
+ms.date: 03/25/2026
 ms.update-cycle: 180-days
 ---
 

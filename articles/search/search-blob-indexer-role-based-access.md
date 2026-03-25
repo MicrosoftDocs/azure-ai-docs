@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search knowledge sources and indexe
 ms.reviewer: vaishalishah
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 03/25/2026
 ---
 
 # Use a blob indexer or knowledge source to ingest RBAC scopes metadata

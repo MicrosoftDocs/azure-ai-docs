@@ -3,7 +3,7 @@ title: Configure a Managed Identity
 description: Create a managed identity for your search service, and use Microsoft Entra authentication and role-based-access controls for connections to other cloud services.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 03/25/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023

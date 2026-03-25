@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 11/06/2025
+ms.date: 03/25/2026
 ---
 
 # Choose a service tier for Azure AI Search

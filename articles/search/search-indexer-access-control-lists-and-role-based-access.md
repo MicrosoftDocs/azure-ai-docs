@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/05/2026
+ms.date: 03/25/2026
 ---
 
 # Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights
