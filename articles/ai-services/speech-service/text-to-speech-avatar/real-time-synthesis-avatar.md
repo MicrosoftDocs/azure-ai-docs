@@ -41,7 +41,7 @@ Real-time avatar uses WebRTC to stream video from the server to the client. Ensu
 | Allow access to TURN relay server for WebRTC connection over UDP | IP range of end-user client machines where browsers play the avatar (set to **Any** if unsure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 3478 | UDP |
 | Allow access to TURN relay server for WebRTC connection over TCP | IP range of end-user client machines where browsers play the avatar (set to **Any** if unsure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 443 | TCP |
 
-* For more information about WebRTC protocol security, see [WebRTC security](https://webrtc-security.github.io).
+For more information about WebRTC protocol security, see [WebRTC security](https://webrtc-security.github.io).
 
 ### Supported platforms and browsers
 
