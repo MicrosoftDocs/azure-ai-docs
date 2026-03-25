@@ -1304,6 +1304,16 @@
       "source_path": "articles/ai-services/language-support.md",
       "redirect_url": "/azure/ai-services/language-service",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/ai-services/reference/sdk-package-resources.md",
+      "redirect_url": "/azure/foundry/how-to/develop/sdk-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/ai-services/reference/rest-api-resources.md",
+      "redirect_url": "/azure/foundry/reference/foundry-project",
+      "redirect_document_id": true
     }
   ]
 }
