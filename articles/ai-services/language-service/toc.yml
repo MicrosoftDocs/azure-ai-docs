@@ -277,7 +277,7 @@ items:
       - name: Fast Healthcare Interoperability Resources structuring
         href: text-analytics-for-health/concepts/fhir.md
 
-- name: Foundational capabilities
+- name: Legacy capabilities
   items:
   - name: "Conversational language understanding (CLU)"
     items:

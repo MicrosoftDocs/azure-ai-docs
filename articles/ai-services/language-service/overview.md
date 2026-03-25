@@ -30,15 +30,15 @@ Azure Language provides both remote and local MCP server options:
 
 For more information, *see* [Azure Language MCP server](concepts/foundry-tools-agents.md#azure-language-mcp-server-preview).
 
-## Core capabilities
+## Core capabilities (recommended for new development)
 
 Core capabilities are the primary, actively evolving features recommended for new development and long-term planning. These features are recommended for new solutions and future-focused scenarios.
 
-   * [Language detection](#language-detection)
-   * [Named entity recognition (custom)](#named-entity-recognition-custom-ner)
-   * [Named entity recognition (prebuilt)](#named-entity-recognition-prebuilt)
-   * [PII detection](#personally-identifiable-information-pii-detection)
-   * [Text analytics for health](#text-analytics-for-health)
+* [Language detection](#language-detection)
+* [Named entity recognition (custom)](#named-entity-recognition-custom-ner)
+* [Named entity recognition (prebuilt)](#named-entity-recognition-prebuilt)
+* [PII detection](#personally-identifiable-information-pii-detection)
+* [Text analytics for health](#text-analytics-for-health)
 
 > [!TIP]
 > Unsure which feature to use? See [Which Language feature should I use](#which-core-language-feature-should-i-use) to help you decide.
@@ -84,18 +84,18 @@ Core capabilities are the primary, actively evolving features recommended for ne
 
 :::image type="content" source="media/overview/text-analytics-for-health.png" alt-text="A screenshot of text analytics for health in Foundry." lightbox="media/overview/text-analytics-for-health.png":::
 
-## Foundational capabilities
+## Legacy capabilities (supported for existing implementations)
 
-Foundational capabilities are established features that provide a stable, supported base for existing workloads and scenarios. These features are supported for existing implementations and established use cases.
+Legacy capabilities are established features that provide a stable, supported base for existing workloads and scenarios. These features are supported for existing implementations and established use cases.
 
-   * [Conversational language understanding](#conversational-language-understanding)
-   * [Custom text classification](#custom-text-classification)
-   * [Entity linking](#entity-linking)
-   * [Key phrase extraction](#key-phrase-extraction)
-   * [Orchestration workflow](#orchestration-workflow)
-   * [Question answering](#question-answering)
-   * [Sentiment analysis and opinion mining](#sentiment-analysis-and-opinion-mining)
-   * [Summarization](#summarization)
+* [Conversational language understanding](#conversational-language-understanding)
+* [Custom text classification](#custom-text-classification)
+* [Entity linking](#entity-linking)
+* [Key phrase extraction](#key-phrase-extraction)
+* [Orchestration workflow](#orchestration-workflow)
+* [Question answering](#question-answering)
+* [Sentiment analysis and opinion mining](#sentiment-analysis-and-opinion-mining)
+* [Summarization](#summarization)
 
 ### Conversational language understanding
 
@@ -162,8 +162,8 @@ Call center summarization summarizes customer issues and resolution.
 
 Text summarization generates a summary, supporting two approaches:
 
-   * **Extractive summarization** creates a summary by selecting key sentences from the document and preserving their original positions.
-   * **Abstractive summarization** generates a summary by producing new, concise, and coherent sentences or phrases that aren't directly copied from the original document.
+* **Extractive summarization** creates a summary by selecting key sentences from the document and preserving their original positions.
+* **Abstractive summarization** generates a summary by producing new, concise, and coherent sentences or phrases that aren't directly copied from the original document.
 
    :::image type="content" source="media/overview/text-summarization.png" alt-text="A screenshot of text summarization in Foundry." lightbox="media/overview/text-summarization.png":::
 
@@ -196,9 +196,9 @@ This section helps you decide which core Language feature you should use for you
 
 \* If a feature is customizable, you can train an AI model using our tools to fit your data specifically. Otherwise a feature is preconfigured, meaning the AI models it uses can't be changed. You just send your data, and use the feature's output in your applications.
 
-### Which foundational Language feature should I use?
+### Which legacy Language feature should I use?
 
-This section helps you decide which foundational Language feature you should use for your application:
+This section helps you decide which legacy Language feature you should use for your application:
 
 | What do you want to do? | Document format | Your best solution | Is this solution customizable?* |
 | --------- | --------- | --------- | --------- |
