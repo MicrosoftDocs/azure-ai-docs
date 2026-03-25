@@ -169,4 +169,4 @@ items:
 - name: Purchase commitment tier pricing
   href: ../../../ai-services/commitment-tier.md
 - name: Custom subdomains for Foundry Tools
-  href: ../../../ai-services/custom-subdomains.md
+  href: ../../../ai-services/cognitive-services-custom-subdomains.md
