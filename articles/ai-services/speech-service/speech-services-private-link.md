@@ -202,7 +202,7 @@ If you plan to access the resource by using only a private endpoint, you can ski
 > [!NOTE]
 > The resolved IP address points to a virtual network proxy endpoint, which dispatches network traffic to the private endpoint for the Speech resource. The behavior is different for a resource with a custom domain name but *without* private endpoints. See the [DNS configuration section](#dns-configuration) for details.
 
-## Adjust an application to use a Foundry resource for Speech with a private endpoint
+## Adjust an application to use a Speech resource with a private endpoint
 
 A Foundry resource for Speech with a custom domain interacts with the Speech service in a different way. This is true for a custom-domain-enabled Speech resource both with and without private endpoints. Information in this section applies to both scenarios.
 

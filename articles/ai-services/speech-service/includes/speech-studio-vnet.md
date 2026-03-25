@@ -12,7 +12,7 @@ ms.author: pafarley
 
 ### Reach Speech Studio from a virtual network
 
-To use Speech Studio from a virtual machine within an Azure virtual network, allow outgoing connections to the required set of [service tags](/azure/virtual-network/service-tags-overview) for that virtual network. See details in [supported regions and service offerings](../cognitive-services-virtual-networks.md#supported-regions-and-service-offerings).
+To use Speech Studio from a virtual machine within an Azure virtual network, allow outgoing connections to the required set of [service tags](/azure/virtual-network/service-tags-overview) for that virtual network. See details in [supported regions and service offerings](../../cognitive-services-virtual-networks.md#supported-regions-and-service-offerings).
 
 Access to the Speech resource endpoint is *not* equal to access to the Speech Studio web portal. Access to Speech Studio through private or VNet service endpoints is not supported.
 
