@@ -30,7 +30,22 @@ You need:
 
 ## Set up environment
 
-To use real-time avatar synthesis, install the Speech SDK for JavaScript for your webpage. See [Install the Speech SDK](/azure/ai-services/speech-service/quickstarts/setup-platform?pivots=programming-language-javascript&tabs=windows%2Cubuntu%2Cdotnetcli%2Cdotnet%2Cjre%2Cmaven%2Cbrowser%2Cmac%2Cpypi#install-the-speech-sdk-for-javascript).
+### Speech SDK
+
+To use real-time avatar synthesis, install the Speech SDK for your preferred platform and programming language. See [Install the Speech SDK](/azure/ai-services/speech-service/quickstarts/setup-platform).
+
+### Network requirement
+
+Real-time avatar uses WebRTC to stream video from the server to the client. Ensure your network allows WebRTC traffic. If you have a firewall, add rules to allow outbound traffic to the TURN (relay) server used by WebRTC. If you're using the default Communication Service TURN server, allow traffic to `relay.communication.microsoft.com` on UDP port 3478 and TCP port 443. Below are the firewall rules you need to add to outbound traffic:
+
+| Rule | Source IP | Source Port | Destination FQDN | Destination IP | Destination Port | Protocol |
+|------|-----------|-------------|-------------------|----------------|------------------|----------|
+| Allow access to TURN (relay) server for WebRTC connection through UDP | IP range of end user client machines where browsers with avatar to be played (set to Any if not sure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 3478 | UDP |
+| Allow access to TURN (relay) server for WebRTC connection through TCP | IP range of end user client machines where browsers with avatar to be played (set to Any if not sure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 443 | TCP |
+
+* Refer to [WebRTC security](https://webrtc-security.github.io) for the security ensurance of WebRTC protocol.
+
+### Supported platforms and browsers
 
 Real-time avatar works on these platforms and browsers:
 
