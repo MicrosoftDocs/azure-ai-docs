@@ -897,6 +897,7 @@ Console.WriteLine(connection.Id);
 | Tool returns "index not found" | Wrong connection endpoint | Confirm the project connection points to the Azure AI Search resource that contains the index. |
 | Search returns no results | Query doesn't match indexed content | Verify the index contains the expected data. Use Azure AI Search's test query feature to validate. |
 | Slow search performance | Index not optimized | Review index configuration, consider adding semantic ranking, or optimize the index schema. |
+| "Unable to connect to Azure AI Search Resource. Please ensure the Azure AI Search Connection has the correct endpoint and the search resource has appropriate network settings for the agents setup. Cannot connect to host ... \[DNS server returned answer with no data\]" | The Azure AI Search connection uses key-based authentication with a private virtual network | Switch the Azure AI Search connection to use Microsoft Entra project managed identity (keyless authentication). Key-based authentication isn't supported with private virtual networking. See the [Limitations](#limitations) section. |
 
 ## Related content
 
