@@ -131,8 +131,6 @@ The agent replaces the `{{userName}}` and `{{userRole}}` placeholders in the ins
 
 :::zone pivot="csharp"
 
-<!-- NOTE: C# structured inputs code is synthesized from SDK type signatures. Verify against the latest Azure.AI.Projects.Agents and Azure.AI.Extensions.OpenAI packages before use. -->
-
 ```csharp
 using System;
 using Azure.AI.Projects;
@@ -201,8 +199,6 @@ The `StructuredInputs` dictionary on the agent definition maps template names to
 :::zone-end
 
 :::zone pivot="typescript"
-
-<!-- NOTE: TypeScript structured inputs code is synthesized from SDK type signatures. Verify against the latest @azure/ai-projects package before use. -->
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -491,8 +487,6 @@ The `{{analysis_file_id}}` placeholder in the tool's `file_ids` array is replace
 
 :::zone pivot="csharp"
 
-<!-- NOTE: C# structured inputs code is synthesized from SDK type signatures. Verify against the latest Azure.AI.Projects.Agents and Azure.AI.Extensions.OpenAI packages before use. -->
-
 ```csharp
 using System;
 using Azure.AI.Projects;
@@ -560,8 +554,6 @@ The sum of x in numbers.csv is 6.
 :::zone-end
 
 :::zone pivot="typescript"
-
-<!-- NOTE: TypeScript structured inputs code is synthesized from SDK type signatures. Verify against the latest @azure/ai-projects package before use. -->
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -845,8 +837,6 @@ The `{{vector_store_id}}` placeholder is replaced with the actual vector store I
 
 :::zone pivot="csharp"
 
-<!-- NOTE: C# structured inputs code is synthesized from SDK type signatures. Verify against the latest Azure.AI.Projects.Agents and Azure.AI.Extensions.OpenAI packages before use. -->
-
 ```csharp
 using System;
 using Azure.AI.Projects;
@@ -909,8 +899,6 @@ Based on the product information, Contoso offers several product lines including
 :::zone-end
 
 :::zone pivot="typescript"
-
-<!-- NOTE: TypeScript structured inputs code is synthesized from SDK type signatures. Verify against the latest @azure/ai-projects package before use. -->
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
