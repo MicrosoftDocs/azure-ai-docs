@@ -21,4 +21,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/openai/whisper-quickstart.md)
 
+[!INCLUDE [classic-links](../includes/classic-links.md)]
+
 [!INCLUDE [whisper-quickstart content](../../foundry/openai/includes/whisper-quickstart-content.md)]
