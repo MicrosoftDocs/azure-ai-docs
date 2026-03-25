@@ -126,6 +126,8 @@ items:
     href: ../../../ai-services/containers/container-faq.yml
   - name: Use containers in disconnected environments
     href: ../../../ai-services/containers/disconnected-containers.md?context=/azure/foundry-classic/context/context
+  - name: FAQ for disconnected containers
+    href: ../../../ai-services/containers/disconnected-container-faq.md?context=/azure/foundry-classic/context/context
   - name: Container recipes
     items:
     - name: Container reuse
