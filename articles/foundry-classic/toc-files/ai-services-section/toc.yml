@@ -121,19 +121,19 @@ items:
 - name: Deploy Containers
   items:
   - name: Foundry Tools container overview
-    href: ../../../ai-services/cognitive-services-container-support.md
+    href: ../../../ai-services/cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
   - name: FAQ for Foundry Tools containers
     href: ../../../ai-services/containers/container-faq.yml
   - name: Use containers in disconnected environments
-    href: ../../../ai-services/containers/disconnected-containers.md
+    href: ../../../ai-services/containers/disconnected-containers.md?context=/azure/foundry-classic/context/context
   - name: Container recipes
     items:
     - name: Container reuse
-      href: ../../../ai-services/containers/container-reuse-recipe.md
+      href: ../../../ai-services/containers/container-reuse-recipe.md?context=/azure/foundry-classic/context/context
     - name: Deploy to Azure Container Instance
-      href: ../../../ai-services/containers/azure-container-instance-recipe.md
+      href: ../../../ai-services/containers/azure-container-instance-recipe.md?context=/azure/foundry-classic/context/context
     - name: Deploy with Docker Compose
-      href: ../../../ai-services/containers/docker-compose-recipe.md
+      href: ../../../ai-services/containers/docker-compose-recipe.md?context=/azure/foundry-classic/context/context
   - name: Other Container Services
     items:
     - name: Azure Container Instances
