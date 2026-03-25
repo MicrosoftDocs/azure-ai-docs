@@ -6,11 +6,15 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 11/18/2025
+ms.date: 03/23/2026
 ms.author: lajanuar
 ms.custom: language-service-summarization, build-2024, ignite-2024
 ---
+<!-- markdownlint-disable MD025 -->
 # What is summarization?
+
+> [!IMPORTANT]
+> Summarization is retiring from Azure Language effective **March 31, 2029**. After this date, the summarization feature is no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
 
 [!INCLUDE [availability](includes/regional-availability.md)]
 

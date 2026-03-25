@@ -4,7 +4,7 @@ titleSuffix: Foundry Tools
 description: Foundry Tools for Language and Speech can help you realize partial or full automation of telephony-based customer interactions, and provide accessibility across multiple channels.
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 02/25/2026
+ms.date: 03/23/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.reviewer: jagoerge
@@ -64,7 +64,7 @@ You might want to further customize and fine-tune models to extract more informa
 | [Custom NER (named entity recognition)](../language-service/custom-named-entity-recognition/overview.md) | Improve the detection and extraction of entities in transcriptions. |
 | [Custom text classification](../language-service/custom-text-classification/overview.md) | Classify and label transcribed utterances with either single or multiple classifications. |
 
-You can find an overview of all Language service features and customization options [here](../language-service/overview.md#available-features).
+You can find an overview of all Language service features and customization options [here](../language-service/overview.md).
 
 ## Next steps
 

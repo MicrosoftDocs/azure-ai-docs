@@ -13,7 +13,7 @@ ms.custom: language-service-entity-linking
 # What is entity linking in Azure Language in Foundry Tools?
 
 > [!IMPORTANT]
-> Entity Linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Language [**Named Entity Recognition**](../named-entity-recognition/overview.md) or consider other alternative solutions.
+> Entity Linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named Entity Recognition**](../named-entity-recognition/overview.md) or [Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
 
 
 Entity linking is one of the features offered by [Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. Entity linking identifies and disambiguates the identity of entities found in text. For example, in the sentence "*We went to Seattle last week.*", the word "*Seattle*" would be identified, with a link to more information on Wikipedia.

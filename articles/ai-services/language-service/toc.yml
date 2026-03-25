@@ -25,12 +25,260 @@ items:
   - name: Configure Azure resources
     href: conversational-language-understanding/how-to/configure-azure-resources.md
     displayName: configuration, fine-tuning, azure ai foundry, azure portal
-  - name: Migrate to Microsoft Foundry 
+  - name: Migrate to Microsoft Foundry
     href: migration-studio-to-foundry.md
     displayName: migrate, foundry, studio, permissions, roles, access, requisites, requirements
-- name: Azure Language in Foundry Tools capabilities
+- name: Core capabilities
   items:
 
+  - name: Language detection
+    items:
+    - name: Overview
+      href: language-detection/overview.md
+      displayName: language detection, language identification, automatic detection
+    - name: Quickstart
+      href: language-detection/quickstart.md
+    - name: Language support
+      href: language-detection/language-support.md
+    - name: Responsible use of AI
+      items:
+      - name: Transparency note for language detection
+        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-language-detection.md
+        displayName: Transparency note for language detection, language detection transparency, Responsible AI, Responsible use of AI
+      - name: Integration and responsible use
+        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
+        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+        displayName: Data privacy, logging, data retention
+    - name: How-to guides
+      items:
+      - name: Call the API
+        href: language-detection/how-to/call-api.md
+      - name: Use containers
+        items:
+        - name: Use Docker containers
+          href: language-detection/how-to/use-containers.md
+        - name: Configure containers
+          href: concepts/configure-containers.md
+        - name: Use container instances
+          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+        - name: Use containers in disconnected environments
+          href: ../containers/disconnected-containers.md
+        - name: Azure AI containers overview
+          href: ../cognitive-services-container-support.md
+
+  - name: Named Entity Recognition (custom)
+    items:
+    - name: Overview
+      href: custom-named-entity-recognition/overview.md
+    - name: Quickstart
+      href: custom-named-entity-recognition/quickstart.md
+    - name: Language support
+      href: custom-named-entity-recognition/language-support.md
+    - name: FAQ
+      href: custom-named-entity-recognition/faq.md
+    - name: Glossary
+      href: custom-named-entity-recognition/glossary.md
+    - name: How-to guides
+      items:
+      - name: Create projects
+        href: custom-named-entity-recognition/how-to/create-project.md
+      - name: Data selection and schema design
+        href: custom-named-entity-recognition/how-to/design-schema.md
+      - name: Label data
+        href: custom-named-entity-recognition/how-to/tag-data.md
+      - name: Auto label your data (preview)
+        href: custom-named-entity-recognition/how-to/use-autolabeling.md
+      - name: Label data with Azure Machine Learning
+        href: custom/azure-machine-learning-labeling.md
+      - name: Train a model
+        href: custom-named-entity-recognition/how-to/train-model.md
+      - name: Model performance (preview)
+        href: custom-named-entity-recognition/how-to/view-model-evaluation.md
+      - name: Deploy a model
+        href: custom-named-entity-recognition/how-to/deploy-model.md
+      - name: Extract entities from text
+        href: custom-named-entity-recognition/how-to/call-api.md
+      - name: Back up and recover your models
+        href: custom-named-entity-recognition/fail-over.md
+      - name: Use Custom NER containers
+        items:
+        - name: Use Custom NER Docker containers
+          href: custom-named-entity-recognition/how-to/use-containers.md
+        - name: Configure containers
+          href: concepts/configure-containers.md
+        - name: Use container instances
+          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+        - name: Azure AI containers overview
+          href: ../cognitive-services-container-support.md
+      - name: Concepts
+        items:
+          - name: Evaluation metrics
+            href: custom-named-entity-recognition/concepts/evaluation-metrics.md
+          - name: Accepted data formats
+            href: custom-named-entity-recognition/concepts/data-formats.md
+          - name: Deploy to multiple regions
+            href: concepts/custom-features/multi-region-deployment.md
+          - name: Project versioning
+            href: concepts/custom-features/project-versioning.md
+
+  - name: Named Entity Recognition (prebuilt)
+    items:
+    - name: Overview
+      href: named-entity-recognition/overview.md
+      displayName: named entity recognition, introduction, entity extraction
+    - name: Quickstart
+      href: named-entity-recognition/quickstart.md
+    - name: Language support
+      href: named-entity-recognition/language-support.md
+    - name: Responsible use of AI
+      items:
+      - name: Transparency note for NER
+        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition.md
+        displayName: Transparency note for NER, Named Entity Recognition transparency, Responsible AI, Responsible use of AI
+      - name: Integration and responsible use
+        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
+        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+        displayName: Data privacy, logging, data retention
+    - name: How-to guides
+      items:
+      - name: Call NER
+        href: named-entity-recognition/how-to-call.md
+      - name: Use skill parameters
+        href: named-entity-recognition/how-to/skill-parameters.md
+      - name: Use containers
+        items:
+        - name: Use Docker containers
+          href: named-entity-recognition/how-to/use-containers.md
+        - name: Configure containers
+          href: concepts/configure-containers.md
+        - name: Use container instances
+          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+        - name: Use containers in disconnected environments
+          href: ../containers/disconnected-containers.md
+        - name: Azure AI containers overview
+          href: ../cognitive-services-container-support.md
+    - name: Concepts
+      items:
+      - name: Recognized entity categories
+        href: named-entity-recognition/concepts/named-entity-categories.md
+      - name: Entity Metadata
+        href: named-entity-recognition/concepts/entity-metadata.md
+      - name: API version mapping
+        href: named-entity-recognition/concepts/ga-preview-mapping.md
+    - name: Tutorials
+      items:
+      - name: Extract information in Excel using Power Automate
+        href: named-entity-recognition/tutorials/extract-excel-information.md
+        displayName: excel integration, power automate, ner automation, extract entities
+
+  - name: Personally identifiable information (PII) recognition
+    items:
+    - name: Overview
+      href: personally-identifiable-information/overview.md
+      displayName: personally identifiable information, document
+    - name: Quickstart
+      href: personally-identifiable-information/quickstart.md
+    - name: Language support
+      href: personally-identifiable-information/language-support.md
+    - name: Responsible use of AI
+      items:
+      - name: Transparency note for PII
+        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information.md
+        displayName: Transparency note for PII, Personally Identifiable Information transparency, Responsible AI, Responsible use of AI
+      - name: Integration and responsible use
+        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
+        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+        displayName: Data privacy, logging, data retention
+    - name: How-to guides
+      items:
+      - name: Redact PII from text
+        href: personally-identifiable-information/how-to/redact-text-pii.md
+      - name: Redact PII from conversations
+        href: personally-identifiable-information/how-to/redact-conversation-pii.md
+      - name: Redact PII from native documents
+        href: personally-identifiable-information/how-to/redact-document-pii.md
+      - name:  Adapt PII to your domain
+        href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
+      - name: Use Docker containers
+        items:
+          - name: Install and run containers
+            href: personally-identifiable-information/how-to/use-containers.md
+          - name: Configure containers
+            href: concepts/configure-containers.md
+          - name: Use container instances
+            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+          - name: Use containers in disconnected environments
+            href: ../containers/disconnected-containers.md
+          - name: Azure AI containers overview
+            href: ../cognitive-services-container-support.md
+    - name: Recognized entity categories
+      items:
+      - name: PII in text
+        items:
+        - name: Extended format
+          href: personally-identifiable-information/concepts/entity-categories.md
+        - name: List format
+          href: personally-identifiable-information/concepts/entity-categories-list.md
+      - name: PII in conversations
+        items:
+        - name: Extended format
+          href: personally-identifiable-information/concepts/conversations-entity-categories.md
+        - name: List format
+          href: personally-identifiable-information/concepts/conversations-entities-list.md
+
+  - name: Text Analytics for health
+    items:
+    - name: Overview
+      href: text-analytics-for-health/overview.md
+      displayName: text analytics for health, healthcare nlp, medical text analysis, clinical text, health entities
+    - name: Quickstart
+      href: text-analytics-for-health/quickstart.md
+    - name: Language support
+      href: text-analytics-for-health/language-support.md
+    - name: Responsible use of AI
+      items:
+      - name: Transparency note for Text Analytics for health
+        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-health.md
+        displayName: Transparency note for Text Analytics health, Text Analytics for health transparency, Responsible AI, Responsible use of AI
+      - name: Integration and responsible use
+        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
+        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+        displayName: Data privacy, logging, data retention
+    - name: How-to guides
+      items:
+      - name: How to call the API
+        href: text-analytics-for-health/how-to/call-api.md
+      - name: Use containers
+        items:
+        - name: Use Docker containers
+          href: text-analytics-for-health/how-to/use-containers.md
+        - name: Configure Docker containers
+          href: text-analytics-for-health/how-to/configure-containers.md
+        - name: Use container instances
+          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+        - name: Azure AI containers overview
+          href: ../cognitive-services-container-support.md
+    - name: Concepts
+      items:
+      - name: Recognized entity categories
+        href: text-analytics-for-health/concepts/health-entity-categories.md
+      - name: Relation extraction
+        href: text-analytics-for-health/concepts/relation-extraction.md
+      - name: Assertion detection
+        href: text-analytics-for-health/concepts/assertion-detection.md
+      - name: Fast Healthcare Interoperability Resources structuring
+        href: text-analytics-for-health/concepts/fhir.md
+
+- name: Legacy capabilities
+  items:
   - name: "Conversational language understanding (CLU)"
     items:
     - name: Overview
@@ -41,7 +289,7 @@ items:
         - name: Get started
           href: conversational-language-understanding/quickstart.md
           displayName: getting started, tutorial, conversational ai setup
-        - name: Try multi-turn conversations 
+        - name: Try multi-turn conversations
           href: conversational-language-understanding/how-to/quickstart-multi-turn-conversations.md
           displayName: slot-filling, intent, entities, entity, association, foundry
     - name: Language support
@@ -62,7 +310,7 @@ items:
         href: /azure/ai-foundry/responsible-ai/clu/clu-data-privacy-security?context=/azure/ai-services/language-service/context/context
     - name: How-to guides
       items:
-        - name: Build a multi-turn conversation model 
+        - name: Build a multi-turn conversation model
           href:  conversational-language-understanding/how-to/build-multi-turn-model.md
           displayName: slot-filling, intent, entities, entity, association, foundry
         - name: Use containers
@@ -103,7 +351,7 @@ items:
           displayName: disaster recovery, failover, clu
     - name: Concepts
       items:
-        - name: Multi-turn conversations 
+        - name: Multi-turn conversations
           href:  conversational-language-understanding/concepts/multi-turn-conversations.md
           displayName: slot-filling, intent, entities, entity, association, foundry
         - name: Best practices
@@ -166,7 +414,7 @@ items:
       - name: Create, test, and deploy a knowledge base
         href: question-answering/how-to/create-test-deploy.md
         displayName: knowledge base, test deploy
-      - name: Deploy a CQA agent 
+      - name: Deploy a CQA agent
         href: question-answering/how-to/deploy-agent.md
         displayName: virtual assistant, chatbot, knowledge base, deployment
       - name: Export/import/refresh
@@ -339,42 +587,7 @@ items:
         - name: How to call the API
           href: entity-linking/how-to/call-api.md
           displayName: entity linking, entity recognition
-  - name: Language detection
-    items:
-    - name: Overview
-      href: language-detection/overview.md
-      displayName: language detection, language identification, automatic detection
-    - name: Quickstart
-      href: language-detection/quickstart.md
-    - name: Language support
-      href: language-detection/language-support.md
-    - name: Responsible use of AI
-      items:
-      - name: Transparency note for language detection
-        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-language-detection.md
-        displayName: Transparency note for language detection, language detection transparency, Responsible AI, Responsible use of AI
-      - name: Integration and responsible use
-        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
-        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
-    - name: How-to guides
-      items:
-      - name: Call the API
-        href: language-detection/how-to/call-api.md
-      - name: Use containers
-        items:
-        - name: Use Docker containers
-          href: language-detection/how-to/use-containers.md
-        - name: Configure containers
-          href: concepts/configure-containers.md
-        - name: Use container instances
-          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-        - name: Use containers in disconnected environments
-          href: ../containers/disconnected-containers.md
-        - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
+
 
   - name: Key phrase extraction
     items:
@@ -418,112 +631,7 @@ items:
         href: key-phrase-extraction/tutorials/integrate-power-bi.md
         displayName: business intelligence, data visualization
 
-  - name: Named Entity Recognition (prebuilt)
-    items:
-    - name: Overview
-      href: named-entity-recognition/overview.md
-      displayName: named entity recognition, introduction, entity extraction
-    - name: Quickstart
-      href: named-entity-recognition/quickstart.md
-    - name: Language support
-      href: named-entity-recognition/language-support.md
-    - name: Responsible use of AI
-      items:
-      - name: Transparency note for NER
-        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition.md
-        displayName: Transparency note for NER, Named Entity Recognition transparency, Responsible AI, Responsible use of AI
-      - name: Integration and responsible use
-        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
-        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
-    - name: How-to guides
-      items:
-      - name: Call NER
-        href: named-entity-recognition/how-to-call.md
-      - name: Use skill parameters
-        href: named-entity-recognition/how-to/skill-parameters.md
-      - name: Use containers
-        items:
-        - name: Use Docker containers
-          href: named-entity-recognition/how-to/use-containers.md
-        - name: Configure containers
-          href: concepts/configure-containers.md
-        - name: Use container instances
-          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-        - name: Use containers in disconnected environments
-          href: ../containers/disconnected-containers.md
-        - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
-    - name: Concepts
-      items:
-      - name: Recognized entity categories 
-        href: named-entity-recognition/concepts/named-entity-categories.md
-      - name: Entity Metadata
-        href: named-entity-recognition/concepts/entity-metadata.md
-      - name: API version mapping
-        href: named-entity-recognition/concepts/ga-preview-mapping.md
-    - name: Tutorials
-      items:
-      - name: Extract information in Excel using Power Automate
-        href: named-entity-recognition/tutorials/extract-excel-information.md
-        displayName: excel integration, power automate, ner automation, extract entities
 
-  - name: Named Entity Recognition (custom)
-    items:
-    - name: Overview
-      href: custom-named-entity-recognition/overview.md
-    - name: Quickstart
-      href: custom-named-entity-recognition/quickstart.md
-    - name: Language support
-      href: custom-named-entity-recognition/language-support.md
-    - name: FAQ
-      href: custom-named-entity-recognition/faq.md
-    - name: Glossary
-      href: custom-named-entity-recognition/glossary.md
-    - name: How-to guides
-      items:
-      - name: Create projects
-        href: custom-named-entity-recognition/how-to/create-project.md
-      - name: Data selection and schema design
-        href: custom-named-entity-recognition/how-to/design-schema.md
-      - name: Label data
-        href: custom-named-entity-recognition/how-to/tag-data.md
-      - name: Auto label your data (preview)
-        href: custom-named-entity-recognition/how-to/use-autolabeling.md
-      - name: Label data with Azure Machine Learning
-        href: custom/azure-machine-learning-labeling.md
-      - name: Train a model
-        href: custom-named-entity-recognition/how-to/train-model.md
-      - name: Model performance (preview)
-        href: custom-named-entity-recognition/how-to/view-model-evaluation.md
-      - name: Deploy a model
-        href: custom-named-entity-recognition/how-to/deploy-model.md
-      - name: Extract entities from text
-        href: custom-named-entity-recognition/how-to/call-api.md
-      - name: Back up and recover your models
-        href: custom-named-entity-recognition/fail-over.md
-      - name: Use Custom NER containers
-        items:
-        - name: Use Custom NER Docker containers
-          href: custom-named-entity-recognition/how-to/use-containers.md
-        - name: Configure containers
-          href: concepts/configure-containers.md
-        - name: Use container instances
-          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-        - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
-      - name: Concepts
-        items:
-          - name: Evaluation metrics
-            href: custom-named-entity-recognition/concepts/evaluation-metrics.md
-          - name: Accepted data formats
-            href: custom-named-entity-recognition/concepts/data-formats.md
-          - name: Deploy to multiple regions
-            href: concepts/custom-features/multi-region-deployment.md
-          - name: Project versioning
-            href: concepts/custom-features/project-versioning.md
 
   - name: Orchestration workflow
     items:
@@ -582,62 +690,7 @@ items:
       - name: Glossary
         href: orchestration-workflow/glossary.md
 
-  - name: Personally Identifiable Information detection
-    items:
-    - name: Overview
-      href: personally-identifiable-information/overview.md
-      displayName: personally identifiable information, document
-    - name: Quickstart
-      href: personally-identifiable-information/quickstart.md
-    - name: Language support
-      href: personally-identifiable-information/language-support.md
-    - name: Responsible use of AI
-      items:
-      - name: Transparency note for PII
-        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information.md
-        displayName: Transparency note for PII, Personally Identifiable Information transparency, Responsible AI, Responsible use of AI
-      - name: Integration and responsible use
-        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
-        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
-    - name: How-to guides
-      items:
-      - name: Redact PII from text
-        href: personally-identifiable-information/how-to/redact-text-pii.md
-      - name: Redact PII from conversations
-        href: personally-identifiable-information/how-to/redact-conversation-pii.md
-      - name: Redact PII from native documents
-        href: personally-identifiable-information/how-to/redact-document-pii.md
-      - name:  Adapt PII to your domain
-        href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
-      - name: Use Docker containers
-        items:
-          - name: Install and run containers
-            href: personally-identifiable-information/how-to/use-containers.md
-          - name: Configure containers
-            href: concepts/configure-containers.md
-          - name: Use container instances
-            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-          - name: Use containers in disconnected environments
-            href: ../containers/disconnected-containers.md
-          - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
-    - name: Recognized entity categories
-      items:
-      - name: PII in text
-        items:
-        - name: Extended format
-          href: personally-identifiable-information/concepts/entity-categories.md
-        - name: List format
-          href: personally-identifiable-information/concepts/entity-categories-list.md
-      - name: PII in conversations
-        items:
-        - name: Extended format
-          href: personally-identifiable-information/concepts/conversations-entity-categories.md
-        - name: List format
-          href: personally-identifiable-information/concepts/conversations-entities-list.md
+
   - name: Sentiment analysis and opinion mining
     items:
       - name: Overview
@@ -723,57 +776,14 @@ items:
           href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
           displayName: Data privacy, logging, data retention
 
-  - name: Text Analytics for health
-    items:
-    - name: Overview
-      href: text-analytics-for-health/overview.md
-      displayName: text analytics for health, healthcare nlp, medical text analysis, clinical text, health entities
-    - name: Quickstart
-      href: text-analytics-for-health/quickstart.md
-    - name: Language support
-      href: text-analytics-for-health/language-support.md
-    - name: Responsible use of AI
-      items:
-      - name: Transparency note for Text Analytics for health
-        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-health.md
-        displayName: Transparency note for Text Analytics health, Text Analytics for health transparency, Responsible AI, Responsible use of AI
-      - name: Integration and responsible use
-        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
-        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
-    - name: How-to guides
-      items:
-      - name: How to call the API
-        href: text-analytics-for-health/how-to/call-api.md
-      - name: Use containers
-        items:
-        - name: Use Docker containers
-          href: text-analytics-for-health/how-to/use-containers.md
-        - name: Configure Docker containers
-          href: text-analytics-for-health/how-to/configure-containers.md
-        - name: Use container instances
-          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-        - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
-    - name: Concepts
-      items:
-      - name: Recognized entity categories
-        href: text-analytics-for-health/concepts/health-entity-categories.md
-      - name: Relation extraction
-        href: text-analytics-for-health/concepts/relation-extraction.md
-      - name: Assertion detection
-        href: text-analytics-for-health/concepts/assertion-detection.md
-      - name: Fast Healthcare Interoperability Resources structuring
-        href: text-analytics-for-health/concepts/fhir.md
+
 
 - name: Concepts
   items:
   - name: Developer guide
     href: concepts/developer-guide.md
     displayName: development, sdk guide, programming
-  - name: Azure tools and agents 
+  - name: Azure tools and agents
     href: concepts/foundry-tools-agents.md
     displayName: mcp, exact, question, answering, intent, routing
   - name: Role-based-access-control

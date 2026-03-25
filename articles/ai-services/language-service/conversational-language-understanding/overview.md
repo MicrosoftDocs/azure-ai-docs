@@ -6,15 +6,19 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 12/05/2025
+ms.date: 03/23/2026
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
+<!-- markdownlint-disable MD025 -->
 # What is conversational language understanding?
 
-Conversational language understanding is one of the custom features offered by [Azure Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application. 
+> [!IMPORTANT]
+> Conversational Language Understanding (CLU) is retiring from Azure Language effective **March 31, 2029**. After this date, the CLU feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
 
-Conversational language understanding (CLU) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it. CLU only provides the intelligence to understand the input text for the client application and doesn't perform any actions. Developers can iteratively label utterances, train, and evaluate model performance before making it available for consumption by creating a CLU project. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Microsoft Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
+Conversational language understanding is one of the custom features offered by [Azure Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application.
+
+Conversational language understanding (CLU) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it. CLU only provides the intelligence to understand the input text for the client application and doesn't perform any actions. Developers can iteratively label utterances, train, and evaluate model performance before making it available for consumption by creating a CLU project. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Microsoft Foundry](https://ai.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md).
 
 This documentation contains the following article types:
 
@@ -27,7 +31,7 @@ This documentation contains the following article types:
 
 CLU can be used in multiple scenarios across various industries. Some examples are:
 
-### Multi-turn conversations 
+### Multi-turn conversations
 
 Use CLU with entity slot filling to enable natural, progressive information gathering across multiple conversation turns. Instead of overwhelming users with complex forms, your application can collect required details as they emerge naturally in dialogue. This approach is ideal for scenarios like booking systems, customer service workflows, or any application where complete information needs to be gathered through conversational exchanges.
 
@@ -70,7 +74,7 @@ Option 1 (LLM-powered quick deploy):
 
 2. **Deploy the model**: Deploying a model with the LLM-based training config makes it available for use via the Runtime API.
 
-3. **Predict intents and entities**: Use your custom model deployment to predict custom intents and prebuilt entities from user's utterances. 
+3. **Predict intents and entities**: Use your custom model deployment to predict custom intents and prebuilt entities from user's utterances.
 
 Option 2 (Custom machine learned model)
 
@@ -78,7 +82,7 @@ Follow these steps to get the most out of your trained model:
 
 1. **Define your schema**: Know your data and define the actions and relevant information that needs to be recognized from user's input utterances. In this step, you create the [intents](glossary.md#intent) that you want to assign to user's utterances, and the relevant [entities](glossary.md#entity) you want extracted.
 
-2. **Label your data**: The quality of data labeling is a key factor in determining model performance. 
+2. **Label your data**: The quality of data labeling is a key factor in determining model performance.
 
 3. **Train the model**: Your model starts learning from your labeled data.
 
@@ -101,16 +105,16 @@ As you use CLU, see the following reference documentation and samples for Azure 
 |C# (Runtime)    | [C# documentation](/dotnet/api/overview/azure/ai.language.conversations-readme)        | [C# samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/cognitivelanguage/Azure.AI.Language.Conversations/samples)        |
 |Python (Runtime)| [Python documentation](/python/api/overview/azure/ai-language-conversations-readme?view=azure-python-preview&preserve-view=true)        | [Python samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/cognitivelanguage/azure-ai-language-conversations/samples) |
 
-## Responsible AI 
+## Responsible AI
 
-An AI system includes the technology, the individuals who operate the system, the people who experience its effects, and the broader environment where the system functions all play a role. Read the transparency note for CLU to learn about responsible AI use and deployment in your systems. 
+An AI system includes the technology, the individuals who operate the system, the people who experience its effects, and the broader environment where the system functions all play a role. Read the transparency note for CLU to learn about responsible AI use and deployment in your systems.
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 
 ## Next steps
 
-* Use the [quickstart article](quickstart.md) to start using conversational language understanding.  
+* Use the [quickstart article](quickstart.md) to start using conversational language understanding.
 
-* As you go through the project development lifecycle, review the [glossary](glossary.md) to learn more about the terms used throughout the documentation for this feature. 
+* As you go through the project development lifecycle, review the [glossary](glossary.md) to learn more about the terms used throughout the documentation for this feature.
 
 * Remember to view the [service limits](service-limits.md) for information such as [regional availability](service-limits.md#regional-availability).

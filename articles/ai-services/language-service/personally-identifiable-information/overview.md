@@ -1,20 +1,20 @@
 ---
-title: What is the Personally Identifying Information (PII) detection feature in Azure Language in Foundry Tools?
+title: What is the Personally Identifying Information (PII) detection feature in Azure Language?
 titleSuffix: Foundry Tools
 description: An overview of the PII detection feature in Azure Language, which helps you extract entities and sensitive information (PII) in text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 01/18/2026
+ms.date: 03/25/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
 <!-- markdownlint-disable MD025 -->
-# What is Azure Language PII detection?
+# What is PII detection in Azure Language?
 
-Azure Language in Foundry Tools Personally Identifiable Information (PII) detection is a feature offered by [Azure Language](../overview.md). The PII detection service is a cloud-based API that utilizes machine learning and AI algorithms to help you develop intelligent applications with advanced natural language understanding. Azure Language PII detection uses Named Entity Recognition (NER) to **identify and redact** sensitive information from input data. The service classifies sensitive personal data into predefined categories. These categories include phone numbers, email addresses, and identification documents. This classification helps to efficiently detect and eliminate such information.
+Personally Identifiable Information (PII) detection is an Azure Language [core capability](../overview.md#core-capabilities). The PII detection service is a cloud-based API that uses machine learning to **identify and redact** sensitive information from input data. The service classifies sensitive personal data into predefined categories such as phone numbers, email addresses, and identification documents.
 
 > [!TIP]
 > Try PII detection [in Microsoft Foundry portal](https://ai.azure.com/). There you can [utilize a currently existing Language Studio resource or create a new Foundry resource](../../../ai-services/connect-services-foundry-portal.md).
