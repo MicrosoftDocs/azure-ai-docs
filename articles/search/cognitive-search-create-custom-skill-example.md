@@ -309,7 +309,7 @@ namespace SampleSkills
 }
 ```
 
-**Reference:** [HttpTrigger attribute](/azure/azure-functions/functions-bindings-http-webhook-trigger), [ILogger interface](/dotnet/api/microsoft.extensions.logging.ilogger), [HttpClient class](/dotnet/api/system.net.http.httpclient), [JsonConvert.DeserializeObject](/dotnet/api/newtonsoft.json.jsonconvert.deserializeobject)
+**Reference:** [HttpTrigger attribute](/azure/azure-functions/functions-bindings-http-webhook-trigger), [ILogger interface](/dotnet/api/microsoft.extensions.logging.ilogger), [HttpClient class](/dotnet/api/system.net.http.httpclient), [JsonConvert.DeserializeObject](https://www.newtonsoft.com/json/help/html/M_Newtonsoft_Json_JsonConvert_DeserializeObject.htm)
 
 Make sure to enter your own *key* value in the `key` constant based on the key you got when signing up for the Bing Entity search API.
 
