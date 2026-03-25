@@ -502,7 +502,6 @@ fieldSchema.setFields(fields);
 
 Map<String, String> models = new HashMap<>();
 models.put("completion", "gpt-4.1");
-models.put("embedding", "text-embedding-3-large");
 
 ContentAnalyzer customAnalyzer =
     new ContentAnalyzer()

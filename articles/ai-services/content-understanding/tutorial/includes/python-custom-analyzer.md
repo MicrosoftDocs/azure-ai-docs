@@ -408,7 +408,6 @@ analyzer = ContentAnalyzer(
     field_schema=field_schema,
     models={
         "completion": "gpt-4.1",
-        "embedding": "text-embedding-3-large",
     },
 )
 # Create the analyzer

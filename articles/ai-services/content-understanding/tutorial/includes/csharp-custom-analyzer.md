@@ -469,8 +469,6 @@ var customAnalyzer = new ContentAnalyzer
 };
 
 customAnalyzer.Models["completion"] = "gpt-4.1";
-customAnalyzer.Models["embedding"] =
-    "text-embedding-3-large";
 
 var operation = await client.CreateAnalyzerAsync(
     WaitUntil.Completed,
