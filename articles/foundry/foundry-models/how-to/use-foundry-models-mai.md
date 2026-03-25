@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As a developer or AI practitioner, I want to deploy and use MAI-image-2 in Microsoft Foundry so I can generate high-quality photorealistic images in my applications.
 ---
 
-# Deploy and use MAI-image-2 in Microsoft Foundry
+# Deploy and use MAI-image-2 in Microsoft Foundry (preview)
 
 MAI-image-2 (Preview) is a Microsoft AI-owned, enterprise-ready text-to-image generation model designed for production-quality creative and design workflows. In this article, you learn how to:
 
