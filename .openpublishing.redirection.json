@@ -1289,6 +1289,11 @@
       "source_path": "articles/ai-services/create-account-resource-manager-template.md",
       "redirect_url": "/azure/foundry-classic/how-to/create-resource-template",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/responsible-use-of-ai-overview.md",
+      "redirect_url": "/azure/foundry/responsible-use-of-ai-overview",
+      "redirect_document_id": false
     }
   ]
 }
