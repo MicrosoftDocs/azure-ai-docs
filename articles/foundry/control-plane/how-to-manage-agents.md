@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Manage agents in Foundry Control Plane
 
-Microsoft Foundry Control Plane provides centralized management and observability for agents that run across supported platforms and infrastructures. 
+Microsoft Foundry Control Plane provides centralized management and observability for agents that run across supported platforms and infrastructures. With Foundry Control Plane, you can manage agents that are distributed across multiple projects within a subscription.
 
 This article explains how to view your agent inventory, monitor agent health, and perform lifecycle operations by using the Foundry portal.
 
