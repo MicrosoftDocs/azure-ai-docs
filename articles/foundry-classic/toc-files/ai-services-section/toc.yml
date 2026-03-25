@@ -166,6 +166,8 @@ items:
     href: ../../../ai-services//security-controls-policy.md
   - name: Security baseline
     href: /security/benchmark/azure/baselines/cognitive-services-security-baseline?context=/azure/foundry-classic/context/context
+- name: Enable diagnostic logging for Foundry Tools
+  href: ../../../ai-services/diagnostic-logging.md?context=/azure/foundry-classic/context/context
 - name: Purchase commitment tier pricing
   href: ../../../ai-services/commitment-tier.md
 - name: Custom subdomains for Foundry Tools
