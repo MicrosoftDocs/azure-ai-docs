@@ -98,8 +98,9 @@ The **extract PII from conversations** feature detects and masks personally iden
 1. Select a sample transcript, use the paperclip icon to upload your transcript, or input conversation turn text.
 
     > [!TIP]
-    > For best results, format your conversation with each turn on a new line and include speaker labels if possible.<br>
-    > If participant id, colon, message, or new line are not used consistently, the output may be unexpected. Here is an example of well-formatted conversational input:
+    >
+    > * For best results, format your conversation with each turn on a new line and include speaker labels if possible.
+    > * If participant id, colon, message, or new line are not used consistently, the output may be unexpected. Here is an example of well-formatted conversational input:
     >
     > Speaker 1: Hello, how are you?<br>
     > Speaker 2: I'm good, thank you! How about you?<br>
