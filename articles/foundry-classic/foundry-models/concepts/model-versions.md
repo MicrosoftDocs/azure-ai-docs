@@ -48,7 +48,7 @@ Version upgrade policies include the following options:
 * Deployments set to **Upgrade once new default version becomes available** automatically update to use the new default version.
 * Deployments set to **Once the current version expires** automatically update when their current version is retired.
 
-For example, a deployment of `gpt-4o` might target version `2024-08-06`. When version `2024-11-20` becomes available, deployments set to auto-update switch to the new version automatically.
+For example, a deployment of `gpt-4o` might target version `2024-08-06`. When version 2024-11-20 is designated as the default version, deployments configured to auto-update are updated within two weeks of that default-version change.
 
 To check the current version of a deployment, use either of the following methods:
 
