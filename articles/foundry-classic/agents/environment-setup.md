@@ -20,4 +20,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/agents/environment-setup.md)
 
+[!INCLUDE [classic-links](../includes/classic-links.md)]
+
 [!INCLUDE [environment-setup content](../../foundry/agents/includes/environment-setup-content.md)]

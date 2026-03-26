@@ -5,7 +5,7 @@ ms.reviewer: wli
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 08/27/2025
+ms.date: 03/25/2026
 ---
 
 # Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results
@@ -103,8 +103,7 @@ For demo purposes, the permission field has `retrievable` enabled so that you ca
     },
     {
       "name": "AzureSearch_DocumentKey", "type": "Edm.String",
-      "searchable": true, "filterable": false, "retrievable": true
-      "stored": true,
+      "searchable": true, "filterable": false, "retrievable": true, "stored": true,
       "key": true
     },
     { 

@@ -22,4 +22,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/model-lifecycle-retirement.md)
 
+[!INCLUDE [classic-links](../includes/classic-links.md)]
+
 [!INCLUDE [model-lifecycle-retirement content](../../foundry/includes/concepts-model-lifecycle-retirement-content.md)]
