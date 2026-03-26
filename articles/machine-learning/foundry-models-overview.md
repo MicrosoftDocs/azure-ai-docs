@@ -39,7 +39,7 @@ Understanding the distinction between these categories helps you choose the righ
  
 ## Models sold directly by Azure  
  
-Microsoft hosts and sells these models under Microsoft Product Terms. These models undergo rigorous evaluation and are deeply integrated into Azure's AI ecosystem. They come from a variety of top providers and offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade service level agreements (SLAs).
+Microsoft hosts and sells these models under Microsoft Product Terms. These models undergo rigorous evaluation and are deeply integrated into Azure's AI ecosystem. They come from various top providers and offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade service level agreements (SLAs).
  
 Characteristics of these direct models: 
 
@@ -53,7 +53,7 @@ These models also have the benefit of fungible provisioned throughput, meaning y
 
 ## Models from partners and community
 
-These models constitute the vast majority of the Foundry Models. Trusted third-party organizations, partners, research labs, and community contributors provide these models. They offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
+These models constitute most of the Foundry Models. Trusted organizations, partners, research labs, and community contributors provide these models. They offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
 
 Characteristics of models from partners and community: 
 * Developed and supported by external partners and community contributors 
@@ -62,7 +62,7 @@ Characteristics of models from partners and community:
 * Community-driven innovation and rapid availability of cutting-edge models 
 * Standard Azure AI integration, with support and maintenance managed by the respective providers 
 
-You can deploy models as Managed Compute or Standard (pay-go) deployment options. The model provider selects how the models are deployable.   
+You can deploy models as Managed Compute or Standard (pay-as-you-go) deployment options. The model provider selects how the models are deployable.   
  
 ## Choosing between direct models and partner and community models 
 
@@ -81,34 +81,34 @@ The model catalog organizes models into different collections:
 
 To request adding a model to the model catalog, use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR_frVPkg_MhOoQxyrjmm7ZJUM09WNktBMURLSktOWEdDODBDRjg2NExKUy4u).
 
-## Overview of Model Catalog capabilities
+## Overview of model catalog capabilities
 
-The model catalog in Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other tha Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
+The model catalog in Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
 
-You can search and discover models that meet your need through keyword search and filters. Model catalog also offers the model performance leaderboard and benchmark metrics for select models. You can access them by selecting **Browse leaderboard** and **Compare Models**. Benchmark data is also accessible from the model card Benchmark tab.
+You can search and discover models that meet your need through keyword search and filters. The model catalog also offers the model performance leaderboard and benchmark metrics for select models. You can access them by selecting **Browse leaderboard** and **Compare Models**. Benchmark data is also accessible from the model card Benchmark tab.
  
-On the model catalog filters, you'll find:
+On the model catalog filters, you find:
 
-* Collection: you can filter models based on the model provider collection.
-* Industry: you can filter for the models that are trained on industry specific dataset.
-* Capabilities: you can filter for unique model features such as reasoning and tool calling.
-* Deployment options: you can filter for the models that support a specific deployment options.
-  * Standard: this option allows you to pay per API call.
+* Collection: filter models based on the model provider collection.
+* Industry: filter for the models that are trained on industry specific dataset.
+* Capabilities: filter for unique model features such as reasoning and tool calling.
+* Deployment options: filter for the models that support a specific deployment options.
+  * Standard: pay per API call.
   * Provisioned: best suited for real-time scoring for large consistent volume.
   * Batch: best suited for cost-optimized batch jobs, and not latency. No playground support is provided for the batch deployment.
-  * Managed compute: this option allows you to deploy a model on an Azure virtual machine. You will be billed for hosting and inferencing.
-* Inference tasks: you can filter models based on the inference task type.
-* Fine-tune tasks: you can filter models based on the fine-tune task type.
-* Licenses: you can filter models based on the license type.
+  * Managed compute: deploy a model on an Azure virtual machine. You're billed for hosting and inferencing.
+* Inference tasks: filter models based on the inference task type.
+* Fine-tune tasks: filter models based on the fine-tuned task type.
+* Licenses: filter models based on the license type.
 
-On the model card, you'll find:
+On the model card, you find:
 
-* Quick facts: you will see key information about the model at a quick glance.
-* Details: this page contains the detailed information about the model, including description, version info, supported data type, etc.
-* Benchmarks: you will find performance benchmark metrics for select models.
-* Existing deployments: if you have already deployed the model, you can find it under Existing deployments tab.
-* License: you will find legal information related to model licensing.
-* Artifacts: this tab will be displayed for open models only. You can see the model assets and download them via user interface.
+* Quick facts: key information about the model at a quick glance.
+* Details: detailed information about the model, including description, version info, supported data type, and more.
+* Benchmarks: performance benchmark metrics for select models.
+* Existing deployments: if you already deployed the model, you can find it under **Existing deployments** tab.
+* License: legal information related to model licensing.
+* Artifacts: displayed for open models only. You can see the model assets and download them through the user interface.
 
 ## Model deployment: Managed compute and serverless deployments
 
@@ -119,31 +119,31 @@ The deployment options and features available for each model vary, as described 
 ### Capabilities of model deployment options
 <!-- docutune:disable -->
 
-Features | Managed compute | Serverless deployments
+| Features | Managed compute | Serverless deployments |
 --|--|--
-Deployment experience and billing | Model weights are deployed to dedicated virtual machines with managed compute. A managed compute, which can have one or more deployments, makes available a REST API for inference. You're billed for the virtual machine core hours that the deployments use. | Access to models is through a deployment that provisions an API to access the model. The API provides access to the model that Microsoft hosts and manages, for inference. You're billed for inputs and outputs to the APIs, typically in tokens. Pricing information is provided before you deploy.
-API authentication | Keys and Microsoft Entra authentication. | Keys and Microsoft Entra authentication.
-Content safety | Use Azure AI Content Safety service APIs. | Azure AI Content Safety filters are available integrated with inference APIs. Azure AI Content Safety filters are billed separately.
-Network isolation | [Configure managed networks for Foundry hubs](../ai-foundry/how-to/configure-managed-network.md).  | Serverless deployments follow your hub's public network access (PNA) flag setting. For more information, see the [Network isolation for models deployed via standard deployments](#network-isolation-for-models-deployed-via-standard-deployments) section later in this article.
+| Deployment experience and billing | Deploy model weights to dedicated virtual machines by using managed compute. A managed compute can have one or more deployments and makes available a REST API for inference. You're billed for the virtual machine core hours that the deployments use. | Access models through a deployment that provisions an API to access the model. The API provides access to the model that Microsoft hosts and manages, for inference. You're billed for inputs and outputs to the APIs, typically in tokens. Pricing information is provided before you deploy. |
+| API authentication | Keys and Microsoft Entra authentication. | Keys and Microsoft Entra authentication. |
+| Content safety | Use Azure AI Content Safety service APIs. | Azure AI Content Safety filters are available integrated with inference APIs. Azure AI Content Safety filters are billed separately. |
+| Network isolation | [Configure managed networks for Foundry hubs](../ai-foundry/how-to/configure-managed-network.md).  | Serverless deployments follow your hub's public network access (PNA) flag setting. For more information, see the [Network isolation for models deployed via standard deployments](#network-isolation-for-models-deployed-via-standard-deployments) section later in this article. |
 
 ## Managed compute
 
-The capability to deploy models with managed compute builds on platform capabilities of Azure Machine Learning to enable seamless integration, across the entire GenAIOps (sometimes called LLMOps) lifecycle, of the wide collection of models in the model catalog. 
+The capability to deploy models by using managed compute builds on platform capabilities of Azure Machine Learning to enable seamless integration, across the entire GenAIOps (sometimes called LLMOps) lifecycle, of the wide collection of models in the model catalog. 
 
 :::image type="content" source="media/concept-model-catalog/llm-ops-life-cycle.png" alt-text="A diagram showing the LLMops life cycle." lightbox="media/concept-model-catalog/llm-ops-life-cycle.png":::
 
 
 ### Availability of models for deployment as managed compute  
 
-The models are made available through [Azure Machine Learning registries](concept-machine-learning-registries-mlops.md) that enable ML first approach to [hosting and distributing Machine Learning assets](how-to-share-models-pipelines-across-workspaces-with-registries.md) such as model weights, container runtimes for running the models, pipelines for evaluating and fine-tuning the models and datasets for benchmarks and samples. These ML Registries build on top of highly scalable and enterprise ready infrastructure that: 
+You can access these models through [Azure Machine Learning registries](concept-machine-learning-registries-mlops.md). They enable an ML-first approach to [hosting and distributing Machine Learning assets](how-to-share-models-pipelines-across-workspaces-with-registries.md) such as model weights, container runtimes for running the models, pipelines for evaluating and fine-tuning the models, and datasets for benchmarks and samples. These ML Registries build on highly scalable and enterprise-ready infrastructure that: 
 
-* Delivers low latency access model artifacts to all Azure regions with built-in geo-replication. 
+* Delivers low-latency access to model artifacts in all Azure regions with built-in geo-replication. 
 
-* Supports enterprise security requirements as [limiting access to models with Azure Policy](how-to-regulate-registry-deployments.md) and [secure deployment with managed virtual networks](how-to-network-isolation-model-catalog.md).
+* Supports enterprise security requirements such as [limiting access to models with Azure Policy](how-to-regulate-registry-deployments.md) and [secure deployment with managed virtual networks](how-to-network-isolation-model-catalog.md).
 
 ### Deployment of models for inference with managed compute
 
-Models available for deployment with managed compute can be deployed to Azure Machine Learning online endpoints for real-time inference or can be used for Azure Machine Learning batch inference to batch process your data. Deploying to managed compute requires you to have Virtual Machine quota in your Azure Subscription for the specific SKUs needed to optimally run the model.  Some models allow you to deploy to [temporarily shared quota for testing the model](how-to-use-foundation-models.md). Learn more about deploying models: 
+Deploy models available for deployment with managed compute to Azure Machine Learning online endpoints for real-time inference, or use them for Azure Machine Learning batch inference to batch process your data. Deploying to managed compute requires Virtual Machine quota in your Azure Subscription for the specific SKUs needed to optimally run the model. Some models allow you to deploy to [temporarily shared quota for testing the model](how-to-use-foundation-models.md). Learn more about deploying models: 
 
 * [Deploy Meta Llama models](how-to-deploy-models-llama.md) 
 * [Deploy Open models Created by Azure AI](how-to-use-foundation-models.md)
@@ -160,25 +160,25 @@ Prompt flow offers capabilities for prototyping, experimenting, iterating, and d
 
 ## Serverless deployments
 
-Certain models in the model catalog can be deployed as serverless deployments. Models are hosted in Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and significantly simplify the provisioning experience. Most serverless deployments use token-based pricing.   
+You can deploy certain models in the model catalog as serverless deployments. Microsoft hosts the models in managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and significantly simplify the provisioning experience. Most serverless deployments use token-based pricing.   
 
-### How are third-party models made available as serverless deployments?   
+### How are non-Microsoft models made available as serverless deployments?
 
 :::image type="content" source="media/concept-model-catalog/model-publisher-cycle.png" alt-text="A diagram showing model publisher service cycle." lightbox="media/concept-model-catalog/model-publisher-cycle.png":::
 
-Models available for serverless deployment are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API. Model providers define the license terms and set the price for their models, while the Azure Machine Learning service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed as serverless deployments. Learn more about data processing at the [data privacy](concept-data-privacy.md) article. 
+Model providers offer models for serverless deployment, but Microsoft hosts these models in Azure infrastructure and provides access through APIs. Model providers set the license terms and price for their models. The Azure Machine Learning service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed as serverless deployments. For more information about data processing, see the [data privacy](concept-data-privacy.md) article. 
 
 
 > [!NOTE]
-> Cloud Solution Provider (CSP) subscriptions do not have the ability to purchase standard deployment models.
+> Cloud Solution Provider (CSP) subscriptions can't purchase standard deployment models.
 
 ### Billing
 
-The discovery, subscription, and consumption experience for models deployed as serverless deployments is in Foundry portal and Azure Machine Learning studio. Users accept license terms for use of the models. Pricing information for consumption is provided during deployment.
+Foundry portal and Azure Machine Learning studio provide the discovery, subscription, and consumption experience for models deployed as serverless deployments. Users accept license terms for use of the models. Pricing information for consumption is provided during deployment.
 
-Models from non-Microsoft providers are billed through Azure Marketplace, in accordance with the [Microsoft Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms).
+You pay for models from non-Microsoft providers through Azure Marketplace, in accordance with the [Microsoft Commercial Marketplace Terms of Use](/legal/marketplace/marketplace-terms).
 
-Models from Microsoft are billed via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but they aren't subject to Azure service terms. Use of these models is subject to the provided license terms.  
+You pay for models from Microsoft via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but these services aren't subject to Azure service terms. Use of these models is subject to the provided license terms.  
 
 ### Fine-tuning models
 
@@ -186,19 +186,19 @@ For models available as serverless deployments that support fine-tuning, you can
 
 ### RAG with models deployed as standard deployments
 
-Foundry enables users to make use of Vector Indexes and Retrieval Augmented Generation. Models that can be deployed as standard deployments can be used to generate embeddings and inferencing based on custom data to generate answers specific to their use case. For more information, see [Retrieval augmented generation and indexes](concept-retrieval-augmented-generation.md). 
+Foundry enables users to make use of Vector Indexes and Retrieval Augmented Generation. You can use models that you deploy as standard deployments to generate embeddings and inferencing based on custom data to generate answers specific to your use case. For more information, see [Retrieval augmented generation and indexes](concept-retrieval-augmented-generation.md). 
 
 ### Regional availability of offers and models
 
-Serverless deployments are available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a Hub/Project in the Azure region where the model is available for deployment or fine-tuning, as applicable. See [Region availability for models in standard deployments](concept-endpoint-serverless-availability.md) for detailed information.
+Users can access serverless deployments only if their Azure subscription belongs to a billing account in a country or region where the model provider makes the offer available. If the offer is available in the relevant region, the user must have a Hub or Project in the Azure region where the model is available for deployment or fine-tuning, as applicable. For detailed information, see [Region availability for models in standard deployments](concept-endpoint-serverless-availability.md).
 
-### Content safety for models deployed via standard deployments
+### Content safety for models deployed through standard deployments
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 [!INCLUDE [content-safety-serverless-models](../foundry-classic/includes/content-safety-serverless-models.md)]
 
-### Network isolation for models deployed via standard deployments
+### Network isolation for models deployed through standard deployments
 
 Endpoints for models deployed as standard deployments follow the public network access (PNA) flag setting of the workspace in which the deployment exists. To secure your serverless deployment endpoint, disable the PNA flag on your workspace. You can secure inbound communication from a client to your endpoint by using a private endpoint for the workspace.
 
@@ -206,14 +206,14 @@ To set the PNA flag for the workspace:
 
 * Go to the [Azure portal](https://ms.portal.azure.com/).
 * Search for _Azure Machine Learning_, and select your workspace from the list of workspaces.
-* On the Overview page, use the left pane to go to **Settings** > **Networking**.
-* Under the **Public access** tab, you can configure settings for the public network access flag.
-* Save your changes. Your changes might take up to five minutes to propagate.
+* On the **Overview** page, use the left pane to go to **Settings** > **Networking**.
+* Under the **Public access** tab, configure settings for the public network access flag.
+* Save your changes. It might take up to five minutes for your changes to propagate.
 
 #### Limitations
 
-* If you have a workspace with a private endpoint created before July 11, 2024, new serverless deployment endpoints added to this workspace won't follow its networking configuration. Instead, you need to create a new private endpoint for the workspace and create new serverless deployments in the workspace so that the new deployments can follow the workspace's networking configuration.
-* If you have a workspace with serverless deployments created before July 11, 2024, and you enable a private endpoint on this workspace, the existing serverless deployments won't follow the workspace's networking configuration. To bring serverless deployments in the workspace into networking compliance, you need to create the deployments again.
+* If you have a workspace with a private endpoint created before July 11, 2024, new serverless deployment endpoints added to this workspace don't follow its networking configuration. Instead, you need to create a new private endpoint for the workspace and create new serverless deployments in the workspace so that the new deployments can follow the workspace's networking configuration.
+* If you have a workspace with serverless deployments created before July 11, 2024, and you enable a private endpoint on this workspace, the existing serverless deployments don't follow the workspace's networking configuration. To bring serverless deployments in the workspace into networking compliance, you need to create the deployments again.
 * Currently [On Your Data](#rag-with-models-deployed-as-standard-deployments) support isn't available for serverless deployments in private workspaces, since private workspaces have the PNA flag disabled.
 * Any network configuration change (for example, enabling or disabling the PNA flag) might take up to five minutes to propagate.
   
