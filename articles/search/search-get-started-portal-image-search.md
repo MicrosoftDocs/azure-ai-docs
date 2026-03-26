@@ -150,7 +150,7 @@ This quickstart uses a sample multimodal PDF, but you can also use your own file
 
 To prepare the sample data for this quickstart:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
+1. Go to your Azure Storage account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Data storage** > **Containers**.
 
@@ -169,7 +169,7 @@ To deploy the models required for your chosen [embedding method](#supported-embe
 
 ## Start the wizard
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the **Overview** page, select **Import data**.
 
@@ -413,7 +413,7 @@ Hybrid search combines full-text queries and vector queries. When you issue a hy
 
 To query your multimodal index:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Search management** > **Indexes**.
 

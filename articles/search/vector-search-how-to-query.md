@@ -182,7 +182,7 @@ Use Search Explorer to formulate a vector query. Search Explorer has **Query vie
 
 Otherwise, if you don't have a vectorizer, you must use the JSON view and formulate the vector query in JSON by pasting a vector array as the query input.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left menu, select **Search management** > **Indexes**, and then select your index.
 
@@ -343,7 +343,7 @@ A prerequisite is a search index that has a [vectorizer configured and assigned]
 
 Search Explorer supports integrated vectorization at query time. If your index contains vector fields and has a vectorizer, you can use the built-in text-to-vector conversion.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left menu, select **Search management** > **Indexes**, and then select your index.
 

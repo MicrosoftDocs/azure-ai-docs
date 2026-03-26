@@ -60,7 +60,7 @@ In Azure AI Search, set a native blob soft deletion detection policy on the data
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the Azure AI Search service Overview page, go to **New Data Source**, a visual editor for specifying a data source definition. 
 
