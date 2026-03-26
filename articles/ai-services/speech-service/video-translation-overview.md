@@ -79,6 +79,30 @@ This diagram provides a high-level overview of the workflow.
 1. Once the translation is complete, you can download the translated video and subtitles. The translated video will have the original speech replaced with the translated speech, and the subtitles will be synchronized with the translated speech.
 1. You can also delete the translation and iteration if you no longer need them. Deleting a translation will remove all associated iterations and data.
 
+## Data retention
+
+Translation data, including videos and associated iterations, has a defined retention period that varies by access method:
+
+### REST API
+
+Starting from API version 2026-03-01, each translation includes an `expiresDateTime` property that indicates when the data expires. The expiration date is calculated based on the last action performed on the translation or any of its iterations, plus a predefined retention duration:
+
+- **API version 2026-03-01 or later**: Translation data is retained for **31 days** from the last action.
+- **API version 2025-05-20 or earlier**: Translation data is retained for **300 days** from the last action.
+
+After the expiration date, the translation and all associated data are automatically deleted. To extend the retention period, perform any action on the translation or its iterations (such as creating a new iteration or updating the translation), which updates the `lastActionDateTime` and recalculates the `expiresDateTime`.
+
+### Azure AI Foundry portal and Speech Studio
+
+Projects created through Azure AI Foundry portal or Speech Studio follow a different retention policy:
+
+- **Retention period**: Projects are automatically deleted after **360 days** of inactivity (no changes or updates to the project or its tasks).
+- **Advance notification**: For projects scheduled for deletion within the next 3 months, a notification message appears in the portal 3 months before the deletion date. This gives you time to take action if you want to keep the project.
+- **Extending retention**: To prevent deletion, make any change to the project or its associated tasks. This resets the 360-day retention period from the date of the last activity.
+
+> [!TIP]
+> Regularly review your projects and update them as needed to maintain active projects. If you no longer need a project, you can manually delete it to free up resources immediately.
+
 ## Supported regions and languages
 
 For the most up-to-date information about regional availability for video translation, see the [Azure Speech regions table](regions.md?tabs=speech-translation).

@@ -113,7 +113,9 @@ You should receive a response body in the following format:
 ```
 
 > [!NOTE]
-> Starting from API version 2026-03-01, translations include an `expiresDateTime` property indicating data retention duration. For translations created with API version 2026-03-01 and later, the data retention duration is 31 days. For translations created with API version 2025-05-20 and earlier, the data retention duration is 300 days.
+> Starting from API version 2026-03-01, the translation response includes an `expiresDateTime` property that indicates when the translation data expires. The expiration date is calculated based on the `lastActionDateTime` property of the translation or any of its iterations, plus a predefined retention duration. The retention policy depends on the API version used to create the translation:
+> - **API version 2026-03-01 or later**: Retention duration is **31 days** from the last action.
+> - **API version 2025-05-20 or earlier**: Retention duration is **300 days** from the last action.
 
 You can use the operation ID that you specified and use the [Get operation by operation ID](#get-operation-by-operation-id) API periodically until the returned status is `Succeeded` or `Failed`. This operation allows you to monitor the progress of your creating the iteration process. The status property should progress from `NotStarted` to `Running`, and finally to `Succeeded` or `Failed`. 
 
