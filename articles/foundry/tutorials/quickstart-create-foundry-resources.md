@@ -60,8 +60,10 @@ Create a Foundry project to organize your work. The project contains models, age
 
 1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 1. Create a project.
-    * If this is your first use of Foundry, you'll be asked to create a project to continue. 
-    * If you already have a project, select its name in the upper-left corner, and then select **Create new project**.
+    * If this is your first use of Foundry, you'll be asked to create or search for a project to continue. Select **Create a new project** in the dropdown.
+        :::image type="content" source="../media/quickstart-create-foundry-resources/initial-foundry.png" alt-text="Screenshot":::
+    * If you already have a project loaded, select its name in the upper-left corner, and then select **Create new project**.
+        :::image type="content" source="../media/quickstart-create-foundry-resources/create-from-project.png" alt-text="Screenshot":::
 1. Enter a project name, such as `my-foundry-project`.
 1. Select **Advanced options** to configure the resource group and location:
    - **Resource group**: Create a new resource group or select an existing one. If you create a new resource group, you can more easily manage the project and all its resources together.
