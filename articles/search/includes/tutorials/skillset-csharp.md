@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/21/2025
+ms.date: 03/25/2026
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -11,7 +11,7 @@ ms.custom:
 
 Learn how to use the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/) to create an [AI enrichment pipeline](../../cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
 
-Skillsets add AI processing to raw content, making it more uniform and searchable. Once you know how skillsets work, you can support a broad range of transformations, from image analysis to natural language processing to customized processing that you provide externally.
+Skillsets add AI processing to raw content, making it more uniform and searchable. After you understand how skillsets work, you can support a broad range of transformations, from image analysis to natural language processing to customized processing that you provide externally.
 
 In this tutorial, you:
 
@@ -27,7 +27,7 @@ This tutorial uses C# and the [**Azure.Search.Documents**](/dotnet/api/overview/
 
 The [indexer](../../search-indexer-overview.md) drives each step in the pipeline, starting with content extraction of sample data (unstructured text and images) in a blob container on Azure Storage.
 
-Once content is extracted, the [skillset](../../cognitive-search-working-with-skillsets.md) executes built-in skills from Microsoft to find and extract information. These skills include Optical Character Recognition (OCR) on images, language detection on text, key phrase extraction, and entity recognition (organizations). New information created by the skillset is sent to fields in an [index](../../search-what-is-an-index.md). Once the index is populated, you can use the fields in queries, facets, and filters.
+After content is extracted, the [skillset](../../cognitive-search-working-with-skillsets.md) executes built-in skills from Microsoft to find and extract information. These skills include Optical Character Recognition (OCR) on images, language detection on text, key phrase extraction, and entity recognition (organizations). New information created by the skillset is sent to fields in an [index](../../search-what-is-an-index.md). After the index is populated, you can use the fields in queries, facets, and filters.
 
 ## Prerequisites
 
@@ -106,7 +106,7 @@ For this project, install version 11 or later of the `Azure.Search.Documents` an
     1. Right-click on `appsettings.json` and select **Properties**. 
     1. Change the value of **Copy to Output Directory** to **Copy if newer**.
 
-1. Copy the below JSON into your new JSON file.
+1. Copy the following JSON into your new JSON file.
 
     ```json
     {
@@ -159,12 +159,12 @@ public static void Main(string[] args)
 ```
 
 > [!NOTE]
-> The clients connect to your search service. In order to avoid opening too many connections, you should try to share a single instance in your application if possible. The methods are thread-safe to enable such sharing.
+> The clients connect to your search service. To avoid opening too many connections, try to share a single instance in your application if possible. The methods are thread-safe to enable such sharing.
 > 
 
 ### Add a function to exit the program during failure
 
-This tutorial is meant to help you understand each step of the indexing pipeline. If there's a critical issue that prevents the program from creating the data source, skillset, index, or indexer the program will output the error message and exit so that the issue can be understood and addressed.
+This tutorial is meant to help you understand each step of the indexing pipeline. If there's a critical issue that prevents the program from creating the data source, skillset, index, or indexer, the program outputs the error message and exits so that the issue can be understood and addressed.
 
 Add `ExitProgram` to `Main` to handle scenarios that require the program to exit.
 
@@ -353,7 +353,7 @@ private static LanguageDetectionSkill CreateLanguageDetectionSkill()
 
 ### Text split skill
 
-The below [`SplitSkill`](/dotnet/api/azure.search.documents.indexes.models.splitskill) splits text by pages and limits the page length to 4,000 characters as measured by `String.Length`. The algorithm tries to split the text into chunks that are at most `maximumPageLength` in size. In this case, the algorithm does its best to break the sentence on a sentence boundary, so the size of the chunk might be slightly less than `maximumPageLength`.
+The following [`SplitSkill`](/dotnet/api/azure.search.documents.indexes.models.splitskill) splits text by pages and limits the page length to 4,000 characters as measured by `String.Length`. The algorithm tries to split the text into chunks that are at most `maximumPageLength` in size. In this case, the algorithm does its best to break the sentence on a sentence boundary, so the size of the chunk might be slightly less than `maximumPageLength`.
 
 ```csharp
 private static SplitSkill CreateSplitSkill()
@@ -535,7 +535,7 @@ We'll add the model class to a new C# file. Right select on your project and sel
 
 Make sure to indicate that you want to use types from the `Azure.Search.Documents.Indexes` and `System.Text.Json.Serialization` namespaces.
 
-Add the below model class definition to `DemoIndex.cs` and include it in the same namespace where you create the index.
+Add the following model class definition to `DemoIndex.cs` and include it in the same namespace where you create the index.
 
 ```csharp
 using Azure.Search.Documents.Indexes;
@@ -727,7 +727,7 @@ When content is extracted, you can set `imageAction` to extract text from images
 
 ## Monitor indexing
 
-Once the indexer is defined, it runs automatically when you submit the request. Depending on which skills you defined, indexing can take longer than you expect. To find out whether the indexer is still running, use the `GetStatus` method.
+After the indexer is defined, it runs automatically when you submit the request. Depending on which skills you defined, indexing can take longer than you expect. To find out whether the indexer is still running, use the `GetStatus` method.
 
 ```csharp
 private static void CheckIndexerOverallStatus(SearchIndexerClient indexerClient, SearchIndexer indexer)
