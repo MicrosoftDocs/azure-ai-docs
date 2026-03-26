@@ -728,7 +728,7 @@ If you use tracing in Microsoft Foundry, confirm the tool invocation occurred. F
 | --- | --- | --- |
 | Agent returns function call but no final answer. | Tool output not returned to model. | Execute the function, then call `responses.create` with the tool output and `previous_response_id` to continue. |
 | No function call occurs. | Function not in agent definition or poor naming. | Confirm the function tool is added to the agent. Use clear, descriptive names and parameter descriptions. |
-| Arguments aren't valid JSON. | Schema mismatch or model hallucination. | Verify JSON schema uses correct types and required properties. Handle parsing errors gracefully in your app. |
+| Arguments aren't valid JSON. | Schema mismatch or model generated incorrect information. | Verify JSON schema uses correct types and required properties. Handle parsing errors gracefully in your app. |
 | Required fields are missing. | Schema doesn't enforce required properties. | Add `"required": [...]` array to your parameter schema. Set `strict: true` for stricter validation. |
 | Tool outputs fail due to expiration. | Run expired (10-minute limit). | Return tool outputs promptly. For slow operations, return a status and poll separately. |
 | Function called with wrong parameters. | Ambiguous function description. | Improve the function `description` field. Add detailed parameter descriptions with examples. |

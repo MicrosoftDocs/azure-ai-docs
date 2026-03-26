@@ -1252,7 +1252,7 @@ You need to:
 [Microsoft Entra ID](/entra/fundamentals/what-is-entra) is a cloud-based identity and access management service that your employees can use to access external resources. By using Microsoft Entra ID, you can add extra security to your APIs without needing to use API keys. When you set up managed identity authentication, the agent authenticates through the Foundry tool it uses.
 
 > [!IMPORTANT]
-> Managed identity authentication only works when the target service accepts Microsoft Entra ID tokens. If the target API uses a custom authentication scheme that doesn't support Entra ID, use [API key](#authenticate-with-api-key) or [Bearer token](#set-up-a-bearer-token-connection) authentication instead.
+> Managed identity authentication only works when the target service accepts Microsoft Entra ID tokens. If the target API uses a custom authentication scheme that doesn't support Microsoft Entra ID, use [API key](#authenticate-with-api-key) or [Bearer token](#set-up-a-bearer-token-connection) authentication instead.
 
 ### Understand the audience URI
 
@@ -1270,7 +1270,7 @@ The following table lists audience URIs for common Azure services:
 | Azure AI Search | `https://search.azure.com` |
 | Azure Logic Apps | `https://logic.azure.com` |
 | Azure API Management (management plane) | `https://management.azure.com` |
-| API protected by an Entra app registration (including APIM with OAuth) | The **Application ID URI** from your app registration (for example, `api://<client-id>`) |
+| API protected by a Microsoft Entra app registration (including APIM with OAuth) | The **Application ID URI** from your app registration (for example, `api://<client-id>`) |
 
 > [!TIP]
 > If you use Azure API Management to protect a custom API with an OAuth 2.0 validation policy, the audience is the **Application ID URI** from the app registration that protects the API — not `https://management.azure.com`. The management plane audience only applies to Azure Resource Manager operations on the APIM resource itself.
@@ -1282,7 +1282,7 @@ For more information about how agents authenticate with Microsoft Entra ID, see 
 Use the following steps to determine and verify the correct audience value:
 
 - **For Azure services**: Check the service's documentation for its Microsoft Entra ID resource identifier. Most Azure services list the audience URI in their authentication documentation.
-- **For APIs protected by an Entra app registration**: In the Azure portal, go to **Microsoft Entra ID** > **App registrations** > select your app > **Expose an API**. The **Application ID URI** at the top of the page is your audience value.
+- **For APIs protected by a Microsoft Entra app registration**: In the Azure portal, go to **Microsoft Entra ID** > **App registrations** > select your app > **Expose an API**. The **Application ID URI** at the top of the page is your audience value.
 - **To verify a token's audience**: Decode the access token at [https://jwt.ms](https://jwt.ms) and check the `aud` claim. The `aud` value must match the audience your target service expects.
 
 ### Set up managed identity authentication
@@ -1313,7 +1313,7 @@ To set up authentication by using Managed Identity:
 | API key isn't included in requests. | OpenAPI spec missing `securitySchemes` or `security` sections. | Verify your OpenAPI spec includes both `components.securitySchemes` and a top-level `security` section. Ensure the scheme `name` matches the key name in your project connection. |
 | Agent doesn't call the OpenAPI tool. | Tool choice not set or `operationId` not descriptive. | Use `tool_choice="required"` to force tool invocation. Ensure `operationId` values are descriptive so the model can choose the right operation. |
 | Authentication fails for managed identity. | Managed identity not enabled or missing role assignment. | Enable system-assigned managed identity on your Foundry resource. Assign the required role (Reader or higher) on the target service. |
-| Managed identity returns 401 even though the role is assigned. | Audience URI doesn't match what the target service expects. | Verify the audience URI matches the target service's resource identifier. For Azure services, check the service documentation. For Entra-protected APIs, use the Application ID URI from your app registration. Decode the token at [https://jwt.ms](https://jwt.ms) and confirm the `aud` claim matches. See [Understand the audience URI](#understand-the-audience-uri). |
+| Managed identity returns 401 even though the role is assigned. | Audience URI doesn't match what the target service expects. | Verify the audience URI matches the target service's resource identifier. For Azure services, check the service documentation. For Microsoft Entra-protected APIs, use the Application ID URI from your app registration. Decode the token at [https://jwt.ms](https://jwt.ms) and confirm the `aud` claim matches. See [Understand the audience URI](#understand-the-audience-uri). |
 | Managed identity token rejected by target API. | Target service doesn't accept Microsoft Entra ID tokens. | Confirm the target service supports Microsoft Entra ID authentication. If it doesn't, use API key or Bearer token authentication instead. |
 | Request fails with 400 Bad Request. | OpenAPI spec doesn't match actual API. | Validate your OpenAPI spec against the actual API. Check parameter names, types, and required fields. |
 | Request fails with 401 Unauthorized. | API key or token invalid or expired. | Regenerate the API key/token and update your project connection. Verify the connection ID is correct. |
@@ -1329,8 +1329,8 @@ The following table helps you choose the right authentication method for your Op
 | Authentication method | Best for | Setup complexity |
 | --- | --- | --- |
 | Anonymous | Public APIs with no authentication | Low |
-| API key | Third-party APIs with key-based access | Medium |
-| Managed identity | Azure services and Microsoft Entra ID-protected APIs. Requires the target service to accept Entra ID tokens and support Azure RBAC or Entra-based access control. | Medium-High |
+| API key | Non-Microsoft APIs with key-based access | Medium |
+| Managed identity | Azure services and Microsoft Entra ID-protected APIs. Requires the target service to accept Microsoft Entra ID tokens and support Azure RBAC or Microsoft Entra-based access control. | Medium-High |
 
 ## Related content
 
