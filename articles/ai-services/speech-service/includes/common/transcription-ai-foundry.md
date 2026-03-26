@@ -12,13 +12,13 @@ You can try fast transcription in [Microsoft Foundry](https://ai.azure.com/?cid=
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../../../ai-foundry/how-to/create-projects.md).
+- A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../../foundry/how-to/create-projects.md).
 
 ## Try fast transcription
 
 #### [Foundry (new) portal](#tab/new-foundry)
 
-1. [!INCLUDE [foundry-sign-in](../../../../../foundry/includes/foundry-sign-in.md)]
+1. [!INCLUDE [foundry-sign-in](../../../../foundry/includes/foundry-sign-in.md)]
 1. Select **Build** from the top right menu.
 1. Select **Models** on the left pane.
 1. The **AI Services** tab shows the Foundry models that can be used out of the box in the Foundry portal. Select **Azure Speech - Speech to text** to open the Speech to Text playground.
@@ -30,6 +30,6 @@ You can try fast transcription in [Microsoft Foundry](https://ai.azure.com/?cid=
 
 #### [Foundry (classic) portal](#tab/classic-foundry)
 
-Fast transcription isn't available in the Foundry (classic) portal. Use the [Foundry (new) portal](#tab/new-foundry) instead.
+Fast transcription isn't available in the Foundry (classic) portal. Use the Foundry (new) portal instead.
 
 ---
