@@ -65,7 +65,7 @@ The following keyboard actions help you navigate a pipeline graph:
 
 ## Action shortcuts
 
-Use the following shortcuts with the access key. For more information on access keys, see the Microsoft guidance on [Keyboard functionality](https://learn.microsoft.com/windows/apps/design/accessibility/keyboard-accessibility#keyboard-shortcuts).
+Use the following shortcuts with the access key. For more information on access keys, see the Microsoft guidance on [Keyboard functionality](/windows/apps/design/accessibility/keyboard-accessibility#keyboard-shortcuts) .
 
 | Keystroke | Action |
 |-|-|
