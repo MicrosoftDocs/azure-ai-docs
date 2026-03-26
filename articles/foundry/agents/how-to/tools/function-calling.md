@@ -104,7 +104,7 @@ tools: list[Tool] = [func_tool]
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant that can use function tools.",
         tools=tools,
     ),
@@ -295,7 +295,7 @@ class FunctionCallingDemo
     {
         AIProjectClient projectClient = new(endpoint: new Uri(ProjectEndpoint), tokenProvider: new DefaultAzureCredential());
         // Create an agent version with the defined functions as tools.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a weather bot. Use the provided functions to help answer questions. "
                     + "Customize your responses to the user's preferences as much as possible and use friendly "
@@ -535,7 +535,7 @@ export async function main(): Promise<void> {
   // Create agent with function tools
   const agent = await project.agents.createVersion("function-tool-agent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: "You are a helpful assistant that can use function tools.",
     tools: [funcTool],
   });
@@ -676,7 +676,7 @@ public class FunctionCallingExample {
         FunctionTool weatherFunction = new FunctionTool("get_weather", parameters, true);
 
         // Create agent with function tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a weather assistant. Use the get_weather function to retrieve weather information.")
             .setTools(Arrays.asList(weatherFunction));
 

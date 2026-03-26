@@ -199,7 +199,7 @@ openapi_mi_auth_tool = {
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant.",
         tools=[weather_tool],
     ),
@@ -291,7 +291,7 @@ class OpenAPIDemo
         OpenAPITool openapiTool = new(toolDefinition);
 
         // Create the agent definition and the agent version.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a helpful assistant.",
             Tools = { openapiTool }
@@ -380,7 +380,7 @@ class OpenAPIConnectedDemo
         OpenAPITool openapiTool = new(toolDefinition);
 
         // Create the agent definition and the agent version.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a helpful assistant.",
             Tools = { openapiTool }
@@ -498,7 +498,7 @@ public class OpenApiAgentJavaSample {
             new OpenApiAnonymousAuthDetails())
             .setDescription("Get request metadata from an OpenAPI endpoint.");
 
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("Use the OpenAPI tool for HTTP request metadata.")
             .setTools(Arrays.asList(new OpenApiTool(toolDefinition)));
 
@@ -908,7 +908,7 @@ export async function main(): Promise<void> {
   // Create an agent with the OpenAPI weather tool
   const agent = await project.agents.createVersion("MyOpenApiAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions:
       "You are a helpful assistant that can call external APIs defined by OpenAPI specs to answer user questions.",
     tools: [createWeatherTool(weatherSpec)],
@@ -1054,7 +1054,7 @@ export async function main(): Promise<void> {
   // Create an agent with the OpenAPI project-connection tool
   const agent = await project.agents.createVersion("MyOpenApiConnectionAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions:
       "You are a travel assistant that consults the TripAdvisor Content API via project connection to answer user questions about locations.",
     tools: [createTripAdvisorTool(tripAdvisorSpec)],
