@@ -85,16 +85,16 @@ Translation data, including videos and associated iterations, has a defined rete
 
 ### REST API
 
-Starting from API version 2026-03-01, each translation includes an `expiresDateTime` property that indicates when the data expires. The expiration date is calculated based on the last action performed on the translation or any of its iterations, plus a predefined retention duration:
+Starting from API version 2026-03-01, each translation includes an `expiresDateTime` property that indicates when the data expires.
 
 - **API version 2026-03-01 or later**: Translation data is retained for **31 days** from the last action.
 - **API version 2025-05-20 or earlier**: Translation data is retained for **300 days** from the last action.
 
-After the expiration date, the translation and all associated data are automatically deleted. To extend the retention period, perform any action on the translation or its iterations (such as creating a new iteration or updating the translation), which updates the `lastActionDateTime` and recalculates the `expiresDateTime`.
+After the retention period expires, the translation and all associated data are automatically deleted. To extend the retention period, create a new iteration for the translation.
 
-### Azure AI Foundry portal and Speech Studio
+### Azure AI Foundry portal and Speech Studio portal
 
-Projects created through Azure AI Foundry portal or Speech Studio follow a different retention policy:
+Projects created through Azure AI Foundry portal or Speech Studio portal follow a different retention policy:
 
 - **Retention period**: Projects are automatically deleted after **360 days** of inactivity (no changes or updates to the project or its tasks).
 - **Advance notification**: For projects scheduled for deletion within the next 3 months, a notification message appears in the portal 3 months before the deletion date. This gives you time to take action if you want to keep the project.
