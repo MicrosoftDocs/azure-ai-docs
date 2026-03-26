@@ -211,7 +211,7 @@ Analyzer 'my_document_analyzer_ID' created successfully!
     - document_type: string (classify)
 ```
 > [!TIP]
-> This code is based on [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) in the SDK repository.
+> This code is based on [Create Analyzer sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) in the SDK repository.
 
 
 Optionally, you can create a classifier analyzer to categorize documents and use its results to route documents to prebuilt or custom analyzers you created. Here is an example of creating a custom analyzer for classification workflows.
