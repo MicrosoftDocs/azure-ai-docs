@@ -26,6 +26,8 @@ To access on-premises or custom virtual network resources from the managed virtu
 - Read the [How an application gateway works](/azure/application-gateway/how-application-gateway-works) article to understand how the Application Gateway can secure the connection to your non-Azure resources. 
 - Set up your Azure Machine Learning workspace's managed virtual network and select your isolation mode, either Allow Internet Outbound or Allow Only Approved Outbound. For more information, see [Managed virtual network isolation](how-to-managed-network.md).
 - Get the private HTTP(S) endpoint of the resource to access.
+- If you intend to deploy the Application Gateway into a subscription other than the one where your Azure Machine Learning workspace is deployed, you must register the Microsoft.MachineLearningServices resource provider on that subscription. Failure to register the resource provider will result in a “resource was not found” error when attempting to save the outbound rule.
+- You must ensure that RBAC permissions are correctly configured for the managed identity of the workspace. Specifically, the workspace must have the Azure AI Enterprise Network Connection Approver role (or equivalent permissions) to approve private endpoint connections on the target resources.
 
 ## Supported resources
 
