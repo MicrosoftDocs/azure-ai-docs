@@ -8,15 +8,19 @@ ms.subservice: core
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 09/16/2022
+ms.date: 03/26/2026
 ms.reviewer: sehan
-ms.custom: migration
+ms.custom: migration, dev-focus
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-1 || azureml-api-2'
 ---
 
 # Upgrade deployment endpoints to SDK v2
 
-With SDK/CLI v1, you can deploy models on ACI or AKS as web services. Your existing v1 model deployments and web services will continue to function as they are, but Using SDK/CLI v1 to deploy models on ACI or AKS as web services is now considered as **legacy**. For new model deployments, we recommend upgrading to v2. 
+> [!IMPORTANT]
+> This article references Azure Machine Learning SDK v1. SDK v1 is deprecated as of March 31, 2025. Support for it will end on June 30, 2026. Your existing workflows using SDK v1 will continue to operate after the end-of-support date, but they could be exposed to security risks or breaking changes. We recommend that you transition to SDK v2 before June 30, 2026. For more information, see [What is Azure Machine Learning CLI and Python SDK v2?](concept-v2.md).
+
+With SDK/CLI v1, you can deploy models on ACI or AKS as web services. Your existing v1 model deployments and web services will continue to function as they are, but using SDK/CLI v1 to deploy models on ACI or AKS as web services is now **deprecated**. For new model deployments, we recommend upgrading to v2. 
 
 In v2, we offer [managed endpoints or Kubernetes endpoints](./concept-endpoints.md?view=azureml-api-2&preserve-view=true). For a comparison of v1 and v2, see [Endpoints and deployment](./how-to-migrate-from-v1.md#endpoint-and-deployment-endpoint-and-web-service-in-v1).
 
@@ -91,7 +95,7 @@ For more information on registering models, see [Register a model from a local f
         from azure.ai.ml.entities import Environment
         env = Environment(
             conda_file="../model-1/environment/conda.yml",
-            image="mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:20210727.v1",
+            image="mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04",
         )
         
         # configure an inference configuration with a scoring script
@@ -203,7 +207,7 @@ For more information on concepts for endpoints and deployments, see [What are on
 |[azureml.core.webservice.AciWebservice class](/python/api/azureml-core/azureml.core.webservice.aciwebservice?view=azure-ml-py&preserve-view=true#azureml-core-webservice-aciwebservice-deploy-configuration)|[azure.ai.ml.entities.OnlineDeployment class](/python/api/azure-ai-ml/azure.ai.ml.entities.onlinedeployment?view=azure-python-&preserve-view=true) (and [azure.ai.ml.entities.ManagedOnlineEndpoint class](/en-us/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlineendpoint))|
 |[Model.deploy](/python/api/azureml-core/azureml.core.model(class)?view=azure-ml-py&preserve-view=true#azureml-core-model-deploy) or [Webservice.deploy](/python/api/azureml-core/azureml.core.webservice%28class%29?view=azure-ml-py&preserve-view=true#azureml-core-webservice-deploy) |[ml_client.begin_create_or_update(online_deployment)](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-begin-create-or-update)|
 [Webservice.run](/python/api/azureml-core/azureml.core.webservice%28class%29?view=azure-ml-py&preserve-view=true#azureml-core-webservice-run)|[ml_client.online_endpoints.invoke](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-invoke)|
-[Webservice.delete](/python/api/azureml-core/azureml.core.webservice%28class%29?view=azure-ml-py&preserve-view=true#azureml-core-webservice-delete)|[ml_client.online_endpoints.delete](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-begin-delete)|
+[Webservice.delete](/python/api/azureml-core/azureml.core.webservice%28class%29?view=azure-ml-py&preserve-view=true#azureml-core-webservice-delete)|[ml_client.online_endpoints.begin_delete](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-begin-delete)|
 
 ## Related documents
 
@@ -211,7 +215,7 @@ For more information, see
 
 v2 docs:
 * [What are endpoints?](concept-endpoints.md)
-* [Deploy machine learning models to managed online endpoint using Python SDK v2](how-to-deploy-managed-online-endpoint-sdk-v2.md)
+* [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
 
 v1 docs:
 * [MLOps: ML model management v1](v1/concept-model-management-and-deployment.md)
