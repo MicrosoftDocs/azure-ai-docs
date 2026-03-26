@@ -22,6 +22,8 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/how-to/use-foundry-models-claude.md)
 
+[!INCLUDE [classic-links](../../includes/classic-links.md)]
+
 [!INCLUDE [use-foundry-models-claude 1](../../../foundry/foundry-models/includes/how-to-use-foundry-models-claude-1.md)]
 
 [!INCLUDE [use-foundry-models-claude 2](../../../foundry/foundry-models/includes/how-to-use-foundry-models-claude-2.md)]
