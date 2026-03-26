@@ -151,7 +151,7 @@ Models available for deployment with managed compute can be deployed to Azure Ma
 
 ### Building generative AI apps with managed compute
 
-Prompt flow offers capabilities for prototyping, experimenting, iterating, and deploying your AI applications. You can use models deployed with managed compute in prompt flow with the [LLM tool](./prompt-flow/tools-reference/llm-tool.md), which supports all models available through the Azure AI model inference API. You can also use the REST API exposed by managed computes in popular LLM tools like LangChain with the [langchain-azure-ai package](https://learn.microsoft.com/azure/foundry/how-to/develop/langchain-models). 
+Prompt flow offers capabilities for prototyping, experimenting, iterating, and deploying your AI applications. You can use models deployed with managed compute in prompt flow with the [LLM tool](./prompt-flow/tools-reference/llm-tool.md), which supports all models available through the Azure AI model inference API. You can also use the REST API exposed by managed computes in popular LLM tools like LangChain with the [langchain-azure-ai package](../foundry/how-to/develop/langchain-models.md). 
 
 ### Content safety for models deployed as managed compute
 
