@@ -6,14 +6,55 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: whats-new
-ms.date: 02/26/2026
+ms.date: 03/26/2026
 ms.author: pafarley
 ---
 
 
 # What's new in Azure Face in Foundry Tools
 
-Learn what's new in Azure Face. Check this page to stay up to date with new features, enhancements, fixes, and documentation updates. 
+Learn what's new in Azure Face. Check this page to stay up to date with new features, enhancements, fixes, and documentation updates.
+
+## March 2026
+
+### Face liveness service reliability updates
+
+The Face liveness detection service received reliability and performance improvements.
+
+### Face liveness client-side SDK 1.4.7 and 1.4.8 releases
+
+Versions **1.4.7** and **1.4.8** of the Liveness SDK introduce several improvements:
+
+- **Government region support** – Added support for the client to route to government region endpoints.
+- Improved UI responsiveness to provide smoother active user instructions.
+- Optimized client logic to improve the user experience and reduce the need for retries during active checks.
+- Upgraded Gradle version on Android SDK to address compatibility issues (1.4.8).
+
+For platform-specific details, samples, and migration guidance, see the full [SDK release notes](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases).
+
+## November 2025
+
+### Face liveness client-side SDK 1.4.6 release
+
+Version **1.4.6** is a refresh of the Liveness Web SDK with a few improvements:
+
+- Stability fixes for the Web SDK to reduce errors during initialization.
+- New loading animation that displays when network speeds are slow during initialization.
+- Fixed several low-memory-related issues.
+
+For more information, see the [SDK release notes](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.4.6).
+
+## October 2025
+
+### Face liveness client-side SDK 1.4.5 release
+
+Version **1.4.5** of the Liveness SDK adds a new capability along with continued stability improvements across versions 1.4.2 through 1.4.5:
+
+- **Custom branding** – Developers can now customize the branding and logo displayed in the Web SDK liveness check experience.
+- Improved face tracking stability in edge cases.
+- Stability fixes across both Web and Mobile SDKs.
+
+For more information, see the [SDK release notes](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.4.5).
 
 ## August 2025
 
