@@ -31,7 +31,7 @@ In this document, you learn how to configure a private endpoint for your Azure M
 By using Azure Private Link, you can restrict connections to your workspace to an Azure Virtual Network. You restrict a workspace to only accept connections from a virtual network by creating a private endpoint. The private endpoint is a set of private IP addresses within your virtual network. You can then limit access to your workspace to only occur over the private IP addresses. A private endpoint helps reduce the risk of data exfiltration. To learn more about private endpoints, see the [Azure Private Link](/azure/private-link/private-link-overview) article.
 
 > [!WARNING]
-> Securing a workspace with private endpoints doesn't ensure end-to-end security by itself. You must secure all of the individual components of your solution. For example, if you use a private endpoint for the workspace, but your Azure Storage Account isn't behind the VNet, traffic between the workspace and storage doesn't use the VNet for security.
+> Securing a workspace with private endpoints doesn't ensure end-to-end security by itself. You must secure all of the individual components of your solution. For example, if you use a private endpoint for the workspace, but your Azure Storage Account isn't behind the virtual network, traffic between the workspace and storage doesn't use the virtual network for security.
 >
 > For more information on securing resources used by Azure Machine Learning, see the following articles:
 >
@@ -39,7 +39,7 @@ By using Azure Private Link, you can restrict connections to your workspace to a
 > * [Secure workspace resources](how-to-secure-workspace-vnet.md).
 > * [Secure training environments](how-to-secure-training-vnet.md).
 > * [Secure the inference environment](how-to-secure-inferencing-vnet.md).
-> * [Use Azure Machine Learning studio in a VNet](how-to-enable-studio-virtual-network.md).
+> * [Use Azure Machine Learning studio in a virtual network](how-to-enable-studio-virtual-network.md).
 > * [API platform network isolation](how-to-configure-network-isolation-with-v2.md).
 
 ## Prerequisites
@@ -47,7 +47,7 @@ By using Azure Private Link, you can restrict connections to your workspace to a
 * You must have an existing virtual network to create the private endpoint in. 
 
     > [!WARNING]
-    > Don't use the 172.17.0.0/16 IP address range for your VNet. This range is the default subnet range used by the Docker bridge network, and it results in errors if used for your VNet. Other ranges might also conflict depending on what you want to connect to the virtual network. For example, if you plan to connect your on-premises network to the VNet, and your on-premises network also uses the 172.16.0.0/16 range. Ultimately, it's up to **you** to plan your network infrastructure.
+    > Don't use the 172.17.0.0/16 IP address range for your virtual network. This range is the default subnet range used by the Docker bridge network, and it results in errors if used for your virtual network. Other ranges might also conflict depending on what you want to connect to the virtual network. For example, if you plan to connect your on-premises network to the virtual network, and your on-premises network also uses the 172.16.0.0/16 range. Ultimately, it's up to **you** to plan your network infrastructure.
 
 * [Disable network policies for private endpoints](/azure/private-link/disable-private-endpoint-network-policy) before adding the private endpoint.
 
@@ -266,11 +266,11 @@ az network private-endpoint delete \
 In some situations, you might want to allow someone to connect to your secured workspace over a public endpoint, instead of through the virtual network. Or you might want to remove the workspace from the virtual network and re-enable public access.
 
 > [!IMPORTANT]
-> Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the VNet that the private endpoints connect to are still secured. It enables public access only to the workspace, in addition to the private access through any private endpoints.
+> Enabling public access doesn't remove any private endpoints that exist. All communications between components behind the virtual network that the private endpoints connect to are still secured. It enables public access only to the workspace, in addition to the private access through any private endpoints.
 
 > [!WARNING]
 > When connecting over the public endpoint while the workspace uses a private endpoint to communicate with other resources:
-> * __Some features of studio can't access your data__. This problem happens when the _data is stored on a service that is secured behind the VNet_. For example, an Azure Storage Account. To resolve this problem, add your client device's IP address to the [Azure Storage Account's firewall](/azure/storage/common/storage-network-security?toc=%2fazure%2fstorage%2fblobs%2ftoc.json#grant-access-from-an-internet-ip-range).
+> * __Some features of studio can't access your data__. This problem happens when the _data is stored on a service that is secured behind the virtual network_. For example, an Azure Storage Account. To resolve this problem, add your client device's IP address to the [Azure Storage Account's firewall](/azure/storage/common/storage-network-security?toc=%2fazure%2fstorage%2fblobs%2ftoc.json#grant-access-from-an-internet-ip-range).
 > * Using Jupyter, JupyterLab, RStudio, or Posit Workbench (formerly RStudio Workbench) on a compute instance, including running notebooks, __isn't supported__.
 
 To enable public access, use the following steps:
@@ -409,7 +409,7 @@ To add multiple private endpoints, use the same steps described in the [Add a pr
 To isolate the development clients so they don't have direct access to the compute resources used by Azure Machine Learning, use the following steps:
 
 > [!NOTE]
-> These steps assume that you have an existing workspace, Azure Storage Account, Azure Key Vault, and Azure Container Registry. Each of these services has a private endpoint in an existing VNet.
+> These steps assume that you have an existing workspace, Azure Storage Account, Azure Key Vault, and Azure Container Registry. Each of these services has a private endpoint in an existing virtual network.
 
 1. Create another virtual network for the clients. This virtual network might contain Azure Virtual Machines that act as your clients, or it might contain a VPN Gateway used by on-premises clients to connect to the virtual network.
 1. Add a new private endpoint for the Azure Storage Account, Azure Key Vault, and Azure Container Registry used by your workspace. These private endpoints should exist in the client virtual network.
@@ -426,7 +426,7 @@ The following diagram illustrates this configuration. The __Workload__ virtual n
 If you want to create an isolated Azure Kubernetes Service used by the workspace, use the following steps:
 
 > [!NOTE]
-> These steps assume that you have an existing workspace, Azure Storage Account, Azure Key Vault, and Azure Container Registry. Each of these services has a private endpoint in an existing VNet.
+> These steps assume that you have an existing workspace, Azure Storage Account, Azure Key Vault, and Azure Container Registry. Each of these services has a private endpoint in an existing virtual network.
 
 1. Create an Azure Kubernetes Service instance. During creation, AKS creates a virtual network that contains the AKS cluster.
 1. Add a new private endpoint for the Azure Storage Account, Azure Key Vault, and Azure Container Registry used by your workspace. These private endpoints should exist in the client virtual network.
@@ -440,7 +440,7 @@ If you want to create an isolated Azure Kubernetes Service used by the workspace
 
 Enabling inbound access from selected IP addresses is affected by the ingress setting on your managed online endpoints. The following table shows the possible configurations for your workspace and managed online endpoint network configurations, and how it affects both. For more information, see [Network isolation with managed online endpoints](concept-secure-online-endpoint.md).
 
-| Workspace</br>public network access | Managed online endpoint</br>public network access | Does the workspace</br>respect the selected IPs? | Does the online endpoint</br>respect the selected IPs? |
+| Workspace public network access | Managed online endpoint public network access | Does the workspace respect the selected IPs? | Does the online endpoint respect the selected IPs? |
 | --- | --- | --- | --- |
 | Disabled | Disabled | No (all public traffic rejected) | No |
 | Disabled | Enabled | No (all public traffic rejected) | Not supported |
