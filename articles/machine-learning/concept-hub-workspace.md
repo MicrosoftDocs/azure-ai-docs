@@ -70,7 +70,7 @@ Once a hub is created, there are multiple ways to create a project workspace usi
 1. [Using Azure CLI](/cli/azure/ml/workspace)
 
 > [!NOTE]
-> When creating a workspace using a hub, there's no need to specify security settings or [associated resources](concept-workspace.md#associated-resources) because those are inherited from the hub. For example, if public network access is disabled on the hub, it's also disabled on new workspace that is created.
+> When creating a workspace using a hub, there's no need to specify security settings or [associated resources](concept-workspace.md#associated-resources) because those are inherited from the hub. For example, if public network access is disabled on the hub, it's also disabled on the new workspace that is created.
 
 :::image type="content" source="media/concept-hub-workspace/project-workspace-create.png" alt-text="Screenshot of creating a workspace hub in Azure Machine Learning studio.":::
 
