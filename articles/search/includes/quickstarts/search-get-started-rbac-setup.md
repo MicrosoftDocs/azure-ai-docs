@@ -10,7 +10,7 @@ In this section, you enable RBAC on your Azure AI Search service and assign the 
 
 To configure access:
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings > Keys**.
 
@@ -34,7 +34,7 @@ In this section, you retrieve the subscription ID and endpoint of your Azure AI 
 
 To get your service information:
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview**.
 
