@@ -29,19 +29,34 @@ scanning as middleware in your agent graphs.
 - Python 3.10 or later.
 - Azure CLI signed in (`az login`) so `DefaultAzureCredential` can authenticate.
 
-### Configure your environment
-
-Install the `langchain-azure-ai` package to use Microsoft Foundry middleware
-capabilities in LangChain.
+Install the required packages:
 
 ```bash
-pip install langchain-azure-ai[tools,opentelemetry] azure-identity
+pip install -U langchain-azure-ai[tools,opentelemetry] azure-identity
 ```
+
+### Configure your environment
+
+Set one of the following connection patterns:
+
+* Project endpoint with Microsoft Entra ID (recommended).
+* Direct endpoint with an API key.
 
 Set your environment variable:
 
-```bash
-export AZURE_AI_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
+```python
+import os
+
+# Option 1: Project endpoint (recommended)
+os.environ["AZURE_AI_PROJECT_ENDPOINT"] = (
+	"https://<resource>.services.ai.azure.com/api/projects/<project>"
+)
+
+# Option 2: Direct endpoint + API key
+os.environ["AZURE_CONTENT_SAFETY_ENDPOINT"] = (
+	"https://<resource>.services.ai.azure.com"
+)
+os.environ["AZURE_CONTENT_SAFETY_API_KEY"] = "<your-api-key>"
 ```
 
 Import the common classes and initialize the model used throughout this article:
@@ -49,14 +64,11 @@ Import the common classes and initialize the model used throughout this article:
 ```python
 from IPython import display
 from langchain.agents import create_agent
-from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
+from langchain.chat_models import init_chat_model
 from langchain_azure_ai.agents.middleware import print_content_safety_annotations
 from azure.identity import DefaultAzureCredential
 
-model = AzureAIOpenAIApiChatModel(
-    model="gpt-4.1",
-    credential=DefaultAzureCredential(),
-)
+model = init_chat_model("azure_ai:gpt-4.1", credential=DefaultAzureCredential())
 ```
 
 ## Connect to content safety
@@ -68,11 +80,23 @@ environment variable. Microsoft Entra ID is the default authentication
 method, but key-based authentication is also available.
 
 ```python
-import os
 from langchain_azure_ai.agents.middleware import AzureContentModerationMiddleware
 
 middleware = AzureContentModerationMiddleware(
     project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    # ...
+)
+```
+
+Or:
+
+```python
+from langchain_azure_ai.agents.middleware import AzureContentModerationMiddleware
+
+middleware = AzureContentModerationMiddleware(
+    endpoint=os.environ["AZURE_CONTENT_SAFETY_ENDPOINT"],
+    credential=os.environ["AZURE_CONTENT_SAFETY_API_KEY"],
+    # ...
 )
 ```
 
