@@ -537,7 +537,7 @@ When using the `Authorization` header with a bearer token in a private endpoint 
 
 ### Speech Studio not accessible
 
-If Speech Studio doesn't work with your network-restricted Speech resource, check that your public IP address is in the **Firewall** allowlist. If you only allow VNet access, Speech Studio doesn't work — use the REST API instead.
+If Speech Studio doesn't work with your network-restricted Speech resource, check that your public IP address is in the **Firewall** allow list. If you only allow VNet access, Speech Studio doesn't work — use the REST API instead.
 
 ## Pricing
 
