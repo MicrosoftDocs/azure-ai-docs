@@ -48,8 +48,8 @@ This guide shows you how to use the Content Understanding .NET SDK to create a c
 ## Set up environment variables
 
 To authenticate with the Content Understanding service, set the environment variables with your own values before running the sample:
-1) `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
-2) `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
+- `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
+- `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
 
 ### Windows
 
@@ -309,7 +309,7 @@ if (classifierResult.Description != null)
 ```
 
 > [!TIP]
-> This code is based on the [CreateClassifier.md](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample05_CreateClassifier.md) for classification workflows.
+> This code is based on the [Create Classifier Sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample05_CreateClassifier.md) for classification workflows.
 
 
 
@@ -409,7 +409,7 @@ Analyzer 'my_image_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code adapts the [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for image content.
+> This code adapts the [Create Analyzer sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for image content.
 
 # [Audio](#tab/audio)
 
@@ -523,7 +523,7 @@ Analyzer 'my_audio_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code adapts the [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for audio content.
+> This code adapts the [Create Analyzer sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for audio content.
 
 # [Video](#tab/video)
 
@@ -654,7 +654,7 @@ Analyzer 'my_video_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code adapts the [CreateAnalyzer](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for video content.
+> This code adapts the [Create Analyzer sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/contentunderstanding/Azure.AI.ContentUnderstanding/samples/Sample04_CreateAnalyzer.md) pattern for video content.
 
 ---
 

@@ -49,8 +49,8 @@ This guide shows you how to use the Content Understanding JavaScript SDK to crea
 ## Set up environment variables
 
 To authenticate with the Content Understanding service, set the environment variables with your own values before running the sample:
-1) `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
-2) `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
+- `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
+- `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
 
 ### Windows
 
@@ -205,7 +205,7 @@ Analyzer 'my_document_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code is based on the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) sample in the SDK repository.
+> This code is based on the [create Analyzer sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) in the SDK repository.
 
 
 Optionally, you can create a classifier analyzer to categorize documents and use its results to route documents to prebuilt or custom analyzers you created. Here is an example of creating a custom analyzer for classification workflows.
@@ -293,7 +293,7 @@ if (classifierResult.description) {
 ```
 
 > [!TIP]
-> This code is based on the [createClassifier.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createClassifier.js) sample for classification workflows.
+> This code is based on the [create Classifier sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createClassifier.js) for classification workflows.
 
 
 
@@ -385,7 +385,7 @@ Analyzer 'my_image_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code adapts the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for image content.
+> This code adapts the [create Analyzer sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for image content.
 
 # [Audio](#tab/audio)
 
@@ -503,7 +503,7 @@ Analyzer 'my_audio_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code adapts the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for audio content.
+> This code adapts the [create Analyzer sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for audio content.
 
 # [Video](#tab/video)
 
@@ -614,7 +614,7 @@ Analyzer 'my_video_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code adapts the [createAnalyzer.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for video content.
+> This code adapts the [create Analyzer sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/contentunderstanding/ai-content-understanding/samples/v1/javascript/createAnalyzer.js) pattern for video content.
 
 ---
 

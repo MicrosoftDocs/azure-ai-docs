@@ -41,8 +41,8 @@ This guide shows you how to use the Content Understanding Python SDK to create a
 ## Set up environment variables
 
 To authenticate with the Content Understanding service, set the environment variables with your own values before running the sample:
-1) `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
-2) `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
+- `CONTENTUNDERSTANDING_ENDPOINT` - the endpoint to your Content Understanding resource.
+- `CONTENTUNDERSTANDING_KEY` - your Content Understanding API key (optional if using [Microsoft Entra ID](../../concepts/secure-communications.md) DefaultAzureCredential).
 
 ### Windows
 
@@ -189,7 +189,7 @@ Analyzer 'my_document_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code is based on the [create_analyzer](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) sample in the SDK repository.
+> This code is based on the [create analyzer sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) in the SDK repository.
 
 
 Optionally, you can create a classifier analyzer to categorize documents and use its results to route documents to prebuilt or custom analyzers you created. Here is an example of creating a custom analyzer for classification workflows.
@@ -255,7 +255,7 @@ if result.description:
     print(f"  Description: {result.description}")
 ```
 > [!TIP]
-> This code is based on the [create_classifier](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_classifier.py) sample in the SDK repository.
+> This code is based on the [create classifier sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_classifier.py) in the SDK repository.
 
 
 
@@ -338,7 +338,7 @@ Analyzer 'my_image_analyzer_ID' created successfully!
     - ChartType: ContentFieldType.STRING (GenerationMethod.CLASSIFY)
 ```
 > [!TIP]
-> This code adapts the [create_analyzer](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for image content.
+> This code adapts the [create analyzer sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for image content.
 
 # [Audio](#tab/audio)
 
@@ -442,7 +442,7 @@ Analyzer 'my_audio_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code adapts the [create_analyzer](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for audio content.
+> This code adapts the [create analyzer sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for audio content.
 
 # [Video](#tab/video)
 
@@ -546,7 +546,7 @@ Analyzer 'my_video_analyzer_ID' created successfully!
 ```
 
 > [!TIP]
-> This code adapts the [create_analyzer](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for video content.
+> This code adapts the [create analyzer sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/contentunderstanding/azure-ai-contentunderstanding/samples/sample_create_analyzer.py) pattern for video content.
 
 ---
 
