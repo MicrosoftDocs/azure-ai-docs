@@ -28,7 +28,6 @@ This article compares scenarios in SDK v1 and SDK v2.
 :::moniker range="azureml-api-1"
 > [!IMPORTANT]
 > Azure Machine Learning SDK v1 was deprecated on March 31, 2025. Support ends on June 30, 2026. Migrate to SDK v2 before that date. For more information, see [What is Azure Machine Learning CLI and Python SDK v2?](concept-v2.md)
-:::
 
 * SDK v1: The following example shows an AutoML classification task. For the complete code, see the [examples repo](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/classification-credit-card-fraud/auto-ml-classification-credit-card-fraud.ipynb).
 
@@ -73,6 +72,7 @@ This article compares scenarios in SDK v1 and SDK v2.
     azureml_url = remote_run.get_portal_url()
     print(azureml_url)
     ```
+:::moniker-end
 
 * SDK v2: The following example shows an AutoML classification task. For the complete code, see the [examples repo](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-classification-task-bankmarketing/automl-classification-task-bankmarketing.ipynb).
 
