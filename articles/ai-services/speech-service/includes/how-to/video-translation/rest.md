@@ -113,7 +113,7 @@ You should receive a response body in the following format:
 ```
 
 > [!NOTE]
-> Starting from API version 2026-03-01, the translation response includes an `expiresDateTime` property that indicates when the translation data expires. The expiration date is calculated based on the `lastActionDateTime` property of the translation or any of its iterations, plus a predefined retention duration. The retention policy depends on the API version used to create the translation:
+> Starting from API version 2026-03-01, the translation response includes an `expiresDateTime` property that indicates when the translation data expires. The retention policy depends on the API version used to create the translation:
 > - **API version 2026-03-01 or later**: Retention duration is **31 days** from the last action.
 > - **API version 2025-05-20 or earlier**: Retention duration is **300 days** from the last action.
 
