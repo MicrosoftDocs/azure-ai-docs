@@ -93,7 +93,7 @@ Verify that the detected entities match the PII in your input text. You can use 
 
 The **extract PII from conversations** feature detects and masks personally identifying information within conversational text. This feature is designed to handle the unique structure and context of conversations, such as dialogues or chat logs.
 
-1. In the **Playground** tab, select **Azure Language—Conversational PII redaction** from the drop-down menu.
+1. On the **Playground** tab, select **Azure Language—Conversational PII redaction** from the drop-down menu.
 
 1. Select a sample transcript, use the paperclip icon to upload your transcript, or input conversation turn text.
 
