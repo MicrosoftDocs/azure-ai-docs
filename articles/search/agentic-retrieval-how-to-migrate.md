@@ -654,7 +654,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + Knowledge agent is renamed to knowledge base.
 
-  | Previous Route | New Route |
+  | Previous route | New route |
   |-----|-----|
   | `/agents` | `/knowledgebases` |
   | `/agents/agent-name` | `/knowledgebases/knowledge-base-name` |
