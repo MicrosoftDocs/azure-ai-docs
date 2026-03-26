@@ -1,5 +1,5 @@
 ---
-title: 'What are hub workspaces?'
+title: 'What is an Azure Machine Learning hub workspace?'
 titleSuffix: Azure Machine Learning
 description: Hubs provide a central way to govern security, connectivity, and compute resources for a team with multiple workspaces. Project workspaces that are created using a hub obtain the same security settings and shared resource access.
 services: machine-learning
@@ -9,7 +9,9 @@ ms.topic: concept-article
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: namanjoshi
-ms.date: 05/12/2025
+ms.date: 03/26/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-2 || azureml-api-1'
 #Customer intent: As an IT administrator, I want to understand the purpose of a hub workspace for Azure Machine Learning.
 ---
@@ -44,7 +46,7 @@ Project workspaces that are created using a hub obtain the hub's security settin
 | Network settings | One [managed virtual network](how-to-managed-network.md) is shared between hub and project workspaces. To access content in the hub and project workspaces, create a single private link endpoint on the hub workspace. |
 | Encryption settings | Encryption settings pass down from hub to project. |
 | Storage for encrypted data | When you bring your customer-managed keys for encryption, hub and project workspaces share the same managed resource group for storing encrypted service data. |
-| Connections | Project workspaces can consume shared connections created on the hub. This feature is currently only supported in [Microsoft Foundry]()  |
+| Connections | Project workspaces can consume shared connections created on the hub. This feature is currently only supported in Microsoft Foundry. |
 | Compute instance | Reuse a compute instance across all project workspaces associated to the same hub. |
 | Compute quota | Any compute quota consumed by project workspaces is deducted from the hub workspace quota balance. |
 | Storage | Associated resource for storing workspace data. Project workspaces use designated containers starting with a prefix {workspaceGUID}, and have a conditional [Azure Attribute Based Access](/azure/role-based-access-control/conditions-overview) role assignment for the workspace identity for accessing these containers only. |
@@ -58,14 +60,17 @@ Data that is uploaded in one project workspace, is stored in isolation from data
 
 Once a hub is created, there are multiple ways to create a project workspace using it:
 
+> [!NOTE]
+> Hub-based project workspaces are accessible in the [Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs). If you're starting a new project, see [Microsoft Foundry](/azure/foundry/what-is-foundry) for the updated resource model.
+
 1. [Using ML Studio](how-to-manage-workspace.md?tabs=mlstudio)
-1. [Using Foundry](/azure/ai-studio/how-to/create-projects)
-2. [Using Azure SDK](how-to-manage-workspace.md?tabs=python)
-4. [Using automation templates](how-to-create-workspace-template.md)
-5. [Using Azure CLI](/cli/azure/ml/workspace)
+1. [Using Foundry](/azure/foundry-classic/how-to/hub-create-projects)
+1. [Using Azure SDK](how-to-manage-workspace.md?tabs=python)
+1. [Using automation templates](how-to-create-workspace-template.md)
+1. [Using Azure CLI](/cli/azure/ml/workspace)
 
 > [!NOTE]
-> When creating a workspace using a hub, there's no need to specify security settings or [associated resources](concept-workspace.md#associated-resources) because those are inherited from the hub. For example, if public network access is disabled on the hub, it is also disabled on new workspace that is created.
+> When creating a workspace using a hub, there's no need to specify security settings or [associated resources](concept-workspace.md#associated-resources) because those are inherited from the hub. For example, if public network access is disabled on the hub, it's also disabled on new workspace that is created.
 
 :::image type="content" source="media/concept-hub-workspace/project-workspace-create.png" alt-text="Screenshot of creating a workspace hub in Azure Machine Learning studio.":::
 
@@ -96,7 +101,7 @@ Features that are supported using hub/project workspaces differ from regular wor
 |Parallel run step|X|-|-|-|
 |Batch Endpoints|X|-|-|-|
 
-All the features which require compute clusters to run will not be supported for hub workspaces (unless the feature is supported on serverless compute).
+All the features which require compute clusters to run won't be supported for hub workspaces (unless the feature is supported on serverless compute).
 
 ## Converting a regular workspace into a hub workspace
 
@@ -111,4 +116,4 @@ To learn more about setting up Azure Machine Learning, see:
 
 To learn more about hub workspace support in [Foundry portal](https://ai.azure.com/?cid=learnDocs), see:
 
-+ [How to configure a managed network for hubs](/azure/ai-studio/how-to/configure-managed-network)
++ [How to configure a managed network for hubs](/azure/foundry-classic/how-to/configure-managed-network)
