@@ -1,7 +1,7 @@
 ---
-title: "Quickstart: Detect personally identifiable information (PII) in text"
+title: "Quickstart: Detect personally identifiable information (PII)"
 titleSuffix: Foundry Tools
-description: Use Azure Language in Foundry Tools to detect and redact personally identifiable information (PII) in text with client libraries, the REST API, or the Microsoft Foundry portal.
+description: Use Azure Language in Foundry Tools to detect and redact personally identifiable information (PII) with client libraries, the REST API, or the Microsoft Foundry portal.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
