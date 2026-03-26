@@ -472,6 +472,7 @@ annotation is added.
 Adjust the system prompt to instruct the model to rely exclusively on
 retrieved information:
 
+```python
 SYSTEM_PROMPT = (
     "You are an AI assistant that always answers "
     "questions using a knowledge retrieval tool and "
@@ -486,7 +487,6 @@ SYSTEM_PROMPT = (
     "instead of making up an answer."
 )
 
-```python
 agent = create_agent(
     model=model,
     tools=[knowledge_retriever],
@@ -517,7 +517,7 @@ No content-safety annotations found.
 
 ### Configure grounding
 
-You can change how grouding content, questions, and answers are collected
+You can change how context, questions, and answers are collected
 by the middleware. This is useful when:
 
 * Your application stores retrieved documents in a custom state key.
