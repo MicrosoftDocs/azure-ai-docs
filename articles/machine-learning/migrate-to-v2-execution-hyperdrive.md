@@ -8,9 +8,10 @@ ms.subservice: core
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 09/16/2022
+ms.date: 03/26/2026
 ms.reviewer: xunwan
-ms.custom: migration
+ms.custom: migration, dev-focus
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-1 || azureml-api-2'
 ---
 
@@ -25,6 +26,9 @@ A sweep job is another type of job, which defines sweep settings and can be init
 To upgrade, you'll need to change your code for defining and submitting your hyperparameter tuning experiment to SDK v2. What you run _within_ the job doesn't need to be upgraded to SDK v2. However, it's recommended to remove any code specific to Azure Machine Learning from your model training scripts. This separation allows for an easier transition between local and cloud and is considered best practice for mature MLOps. In practice, this means removing `azureml.*` lines of code. Model logging and tracking code should be replaced with MLflow. For more information, see [how to use MLflow in v2](how-to-use-mlflow-cli-runs.md).
 
 This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
+
+> [!IMPORTANT]
+> Azure Machine Learning SDK v1 (`azureml-core`, `azureml.train.hyperdrive`) was deprecated on March 31, 2025. Support ends on June 30, 2026. Existing workflows continue to operate but might be exposed to security risks or breaking changes. Migrate to SDK v2 before that date. For more information, see [What is Azure Machine Learning CLI and Python SDK v2?](/azure/machine-learning/concept-v2)
 
 ## Run hyperparameter tuning in an experiment
 
@@ -86,12 +90,20 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     from azure.ai.ml import command, Input
     from azure.ai.ml.sweep import Choice, Uniform, MedianStoppingPolicy
     from azure.identity import DefaultAzureCredential
-    
+
+    ml_client = MLClient(
+        DefaultAzureCredential(),
+        subscription_id="<subscription-id>",
+        resource_group_name="<resource-group>",
+        workspace_name="<workspace>",
+    )
+
     # Create your command
     command_job_for_sweep = command(
         code="./src",
         command="python main.py --iris-csv ${{inputs.iris_csv}} --learning-rate ${{inputs.learning_rate}} --boosting ${{inputs.boosting}}",
-        environment="AzureML-lightgbm-3.2-ubuntu18.04-py37-cpu@latest",
+        # Verify the current LightGBM environment name at https://ml.azure.com/registries/azureml/environments
+        environment="AzureML-lightgbm-3.3-ubuntu20.04-py310-cpu@latest",
         inputs={
             "iris_csv": Input(
                 type="uri_file",
@@ -134,6 +146,9 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     ```
 
 ## Run hyperparameter tuning in a pipeline
+
+> [!NOTE]
+> The following SDK v1 pipeline example uses the `azureml-pipeline-steps` and `azureml-train-core` packages, which are **retired**. This code is shown as a migration reference only. Don't use it in new workloads.
 
 * SDK v1
 
@@ -212,6 +227,18 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
 * SDK v2
 
     ```python
+    from azure.ai.ml import MLClient, Input, load_component
+    from azure.ai.ml.dsl import pipeline
+    from azure.ai.ml.sweep import Choice, Uniform
+    from azure.identity import DefaultAzureCredential
+
+    ml_client = MLClient(
+        DefaultAzureCredential(),
+        subscription_id="<subscription-id>",
+        resource_group_name="<resource-group>",
+        workspace_name="<workspace>",
+    )
+
     train_component_func = load_component(path="./train.yml")
     score_component_func = load_component(path="./predict.yml")
     
