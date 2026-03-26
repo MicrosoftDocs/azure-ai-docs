@@ -200,7 +200,7 @@ You can browse all environments in the Azure Machine Learning studio. Make sure 
 :::image type="content" source="./media/how-to-share-models-pipelines-across-workspaces-with-registries/environment-in-registry.png" lightbox="./media/how-to-share-models-pipelines-across-workspaces-with-registries/environment-in-registry.png" alt-text="Screenshot of environments in the registry.":::
 
 > [!NOTE]
-> The registry resource's system-assigned managed identity has `AcrPull` permission on the Azure Container Registry (ACR) instance associated with that registry. When a workspace compute needs to pull an environment image, the registry returns an access token for the image to the workspace compute. Neither the workspace nor the compute managed identity has direct access to the registry's ACR.
+> The registry resource's system-assigned managed identity has `AcrPull` permission on the Azure Container Registry (ACR) instance associated with that registry. When a workspace compute needs to pull an environment image, the AzureML Registry creates and returns an ACR token with an appropriate scope map allowing the image to be pulled by the workspace compute. Neither the workspace nor the compute managed identity has direct access to the registry's ACR.
 
  
 ## Create a component in registry
