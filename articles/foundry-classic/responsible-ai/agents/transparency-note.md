@@ -17,4 +17,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/agents/transparency-note.md)
 
+[!INCLUDE [classic-links](../../includes/classic-links.md)]
+
 [!INCLUDE [transparency-note content](../../../foundry/responsible-ai/includes/agents-transparency-note-content.md)]

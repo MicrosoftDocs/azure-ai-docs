@@ -19,4 +19,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/bring-your-own-azure-storage-speech-language-services.md)
 
+[!INCLUDE [classic-links](../includes/classic-links.md)]
+
 [!INCLUDE [bring-your-own-azure-storage-speech-language-services content](../../foundry/includes/how-to-bring-your-own-azure-storage-speech-language-services-content.md)]
