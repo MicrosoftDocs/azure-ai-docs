@@ -56,7 +56,7 @@ When you enable a system-assigned managed identity, Microsoft Entra ID creates a
 
 ### [**Azure portal**](#tab/portal-sys)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Identity**.
 
@@ -203,7 +203,7 @@ After you have a managed identity, assign roles that determine search service pe
 
 The following steps illustrate the role assignment workflow. This example is for Azure OpenAI. For other Azure resources, see [Connect to Azure Storage](search-howto-managed-identities-storage.md), [Connect to Azure Cosmos DB](search-howto-managed-identities-cosmos-db.md), or [Connect to  Azure SQL](search-howto-managed-identities-sql.md).
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account, and go to your Azure OpenAI resource.
+1. Go to your Azure OpenAI resource in the [Azure portal](https://portal.azure.com).
 
 1. Select **Access control** from the left menu.
 

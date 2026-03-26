@@ -107,7 +107,7 @@ connection_id = azs_connection.id
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="""You are a helpful assistant. You must always provide citations for
         answers using the tool and render them as: `[message_idx:search_idx†source]`.""",
         tools=[
@@ -209,7 +209,7 @@ AzureAISearchToolIndex index = new()
 };
 
 // Create the agent definition with the Azure AI Search tool.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
     Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
@@ -291,7 +291,7 @@ AzureAISearchToolIndex index = new()
 };
 
 // Create the agent definition with the Azure AI Search tool.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
     Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
@@ -428,7 +428,7 @@ export async function main(): Promise<void> {
   // Define Azure AI Search tool that searches indexed content
   const agent = await project.agents.createVersion("MyAISearchAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions:
       "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `[message_idx:search_idx†source]`.",
     tools: [
@@ -571,7 +571,7 @@ public class AzureAISearchExample {
         );
 
         // Create agent with AI Search tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a helpful assistant that can search through indexed documents. "
                 + "Always provide citations for answers using the tool.")
             .setTools(Collections.singletonList(aiSearchTool));

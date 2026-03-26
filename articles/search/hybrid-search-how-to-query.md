@@ -92,7 +92,7 @@ Results are returned in plain text, including vectors in fields marked as `retri
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and find your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management** > **Indexes**, select an index that has vectors and non-vector content. [Search Explorer](search-explorer.md) is the first tab.
 
