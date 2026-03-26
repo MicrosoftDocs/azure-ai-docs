@@ -18,28 +18,28 @@ author: s-polly
 
 # Explore Microsoft Foundry Models in Azure Machine Learning
 
-Microsoft Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models—whether you're building a custom copilot, building an agent, enhancing an existing application, or exploring new AI capabilities. 
+Microsoft Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models. Whether you're building a custom copilot, creating an agent, enhancing an existing application, or exploring new AI capabilities, Foundry Models has you covered. 
 
-With Foundry Models, you can: 
+By using Foundry Models, you can: 
 
 * Explore a rich catalog of cutting-edge models from Microsoft, OpenAI, DeepSeek,  Hugging Face, Meta, and more. 
-* Compare and evaluate models side-by-side using real-world tasks and your own data. 
+* Compare and evaluate models side-by-side by using real-world tasks and your own data. 
 * Deploy with confidence, thanks to built-in tools for fine-tuning, observability, and responsible AI. 
-* Choose your path—bring your own model, use a hosted one, or integrate seamlessly with Azure services. 
-* Whether you're a developer, data scientist, or enterprise architect, Foundry Models gives you the flexibility and control to build AI solutions that scale—securely, responsibly, and fast.
+* Choose your path - bring your own model, use a hosted one, or integrate seamlessly with Azure services. 
+* Whether you're a developer, data scientist, or enterprise architect, Foundry Models gives you the flexibility and control to build AI solutions that scale - securely, responsibly, and fast.
 
-Foundry offers a comprehensive catalog of AI models. There are 1,900+ models ranging from Foundation Models, Reasoning Models, Small Language Models, Multimodal Models, Domain Specific Models, Industry Models and more.
+Foundry offers a comprehensive catalog of AI models. There are more than 1,900 models ranging from Foundation Models, Reasoning Models, Small Language Models, Multimodal Models, Domain Specific Models, Industry Models, and more.
 
-Our catalog is organized into two main categories: 
+The catalog is organized into two main categories: 
 
 * [Models Sold Directly by Azure](#models-sold-directly-by-azure)
 * [Models from Partners and Community](#models-from-partners-and-community)
 
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
  
-## Models Sold Directly by Azure  
+## Models sold directly by Azure  
  
-These are models that are hosted and sold by Microsoft under Microsoft Product Terms. These models have undergone rigorous evaluation and are deeply integrated into Azure's AI ecosystem. The models come from a variety of top providers and they offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs).
+Microsoft hosts and sells these models under Microsoft Product Terms. These models undergo rigorous evaluation and are deeply integrated into Azure's AI ecosystem. They come from a variety of top providers and offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade service level agreements (SLAs).
  
 Characteristics of these direct models: 
 
@@ -49,27 +49,27 @@ Characteristics of these direct models:
 - Adherence to Microsoft's Responsible AI standards 
 - Enterprise-grade scalability, reliability, and security
 
-These Models also have the benefit of fungible Provisioned Throughput, meaning you can flexibly use your quota and reservations across any of these models.
+These models also have the benefit of fungible provisioned throughput, meaning you can flexibly use your quota and reservations across any of these models.
 
-## Models from Partners and Community
+## Models from partners and community
 
-These models constitute the vast majority of the Foundry Models. These models are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
+These models constitute the vast majority of the Foundry Models. Trusted third-party organizations, partners, research labs, and community contributors provide these models. They offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
 
-Characteristics of Models from Partners and Community: 
+Characteristics of models from partners and community: 
 * Developed and supported by external partners and community contributors 
 * Diverse range of specialized models catering to niche or broad use cases 
 * Typically validated by providers themselves, with integration guidelines provided by Azure 
 * Community-driven innovation and rapid availability of cutting-edge models 
 * Standard Azure AI integration, with support and maintenance managed by the respective providers 
 
-Models are deployable as Managed Compute or Standard (pay-go) deployment options. The model provider selects how the models are deployable.   
+You can deploy models as Managed Compute or Standard (pay-go) deployment options. The model provider selects how the models are deployable.   
  
-## Choosing Between direct models and partner & community models 
+## Choosing between direct models and partner and community models 
 
-When selecting models from Foundry Models, consider the following: 
-* Use Case and Requirements: Models sold directly by Azure are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Azure Ecosystem Models excel in specialized use cases and innovation-led scenarios.
-* Support Expectations: Models sold directly by Azure come with robust Microsoft-provided support and maintenance. These models are supported by their providers, with varying levels of SLA and support structures.
-* Innovation and Specialization: Models from Partners and Community offer rapid access to specialized innovations and niche capabilities often developed by leading research labs and emerging AI providers.
+When selecting models from Foundry Models, consider the following factors: 
+* Use case and requirements: Models sold directly by Azure are ideal for scenarios that require deep Azure integration, guaranteed support, and enterprise SLAs. Azure ecosystem models excel in specialized use cases and innovation-led scenarios.
+* Support expectations: Models sold directly by Azure come with robust Microsoft-provided support and maintenance. Providers support their models, with varying levels of SLA and support structures.
+* Innovation and specialization: Models from partners and community offer rapid access to specialized innovations and niche capabilities, often developed by leading research labs and emerging AI providers.
 
 ## Model collections
 
@@ -79,7 +79,7 @@ The model catalog organizes models into different collections:
 
 * **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Foundry](../ai-foundry/how-to/deploy-models-managed.md).
 
-You can submit a request to add a model to the model catalog by using [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR_frVPkg_MhOoQxyrjmm7ZJUM09WNktBMURLSktOWEdDODBDRjg2NExKUy4u).
+To request adding a model to the model catalog, use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR_frVPkg_MhOoQxyrjmm7ZJUM09WNktBMURLSktOWEdDODBDRjg2NExKUy4u).
 
 ## Overview of Model Catalog capabilities
 
