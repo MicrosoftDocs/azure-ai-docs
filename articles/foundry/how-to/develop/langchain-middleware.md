@@ -323,6 +323,9 @@ the source data supports. This capability is useful in retrieval-augmented
 generation (RAG) patterns to ensure the model's response stays faithful to
 retrieved documents.
 
+Use `langchain_azure_ai.agents.middleware.AzureGroundednessMiddleware` to
+evaluate AI generated content against grounding sources.
+
 The following example:
 
 1. Creates an in-memory vector store with sample documents.
@@ -383,16 +386,18 @@ LangChain tool so agents can query it during execution.
 ```python
 from langchain_azure_ai.agents.middleware import AzureGroundednessMiddleware
 
+SYSTEM_PROMPT = (
+    "You are an AI assistant that can answer questions "
+    "using a knowledge retrieval tool. If the user's "
+    "question relates to LangChain, RAG, or related "
+    "topics, you should use the 'knowledge_retriever' "
+    "tool to find relevant information before answering."
+)
+
 agent = create_agent(
     model=model,
     tools=[knowledge_retriever],
-    system_prompt=(
-        "You are an AI assistant that can answer questions "
-        "using a knowledge retrieval tool. If the user's "
-        "question relates to LangChain, RAG, or related "
-        "topics, you should use the 'knowledge_retriever' "
-        "tool to find relevant information before answering."
-    ),
+    system_prompt=SYSTEM_PROMPT,
     middleware=[
         AzureGroundednessMiddleware(
             exit_behavior="continue",
@@ -401,6 +406,11 @@ agent = create_agent(
     ],
 )
 ```
+
+By default, `AzureGroundednessMiddleware` automatically gathers the answer from 
+the last `AIMessage`, the question from the last `HumanMessage`, and the grounding
+sources from `SystemMessage` / `ToolMessage` content and `AIMessage` citation 
+annotations in the conversation history. See [configure grounding](#configure-grounding).
 
 The following diagram shows how groundedness middleware integrates into the agent graph:
 
@@ -462,23 +472,25 @@ annotation is added.
 Adjust the system prompt to instruct the model to rely exclusively on
 retrieved information:
 
+SYSTEM_PROMPT = (
+    "You are an AI assistant that always answers "
+    "questions using a knowledge retrieval tool and "
+    "does not rely on its own knowledge. If the user's "
+    "question relates to LangChain, RAG, or related "
+    "topics, you should use the 'knowledge_retriever' "
+    "tool to find relevant information to create the "
+    "answer. You answer strictly to the point and with "
+    "the information you have. Nothing else. If the "
+    "retrieved information is not sufficient to answer "
+    "the question, you should say you don't know "
+    "instead of making up an answer."
+)
+
 ```python
 agent = create_agent(
     model=model,
     tools=[knowledge_retriever],
-    system_prompt=(
-        "You are an AI assistant that always answers "
-        "questions using a knowledge retrieval tool and "
-        "does not rely on its own knowledge. If the user's "
-        "question relates to LangChain, RAG, or related "
-        "topics, you should use the 'knowledge_retriever' "
-        "tool to find relevant information to create the "
-        "answer. You answer strictly to the point and with "
-        "the information you have. Nothing else. If the "
-        "retrieved information is not sufficient to answer "
-        "the question, you should say you don't know "
-        "instead of making up an answer."
-    ),
+    system_prompt=SYSTEM_PROMPT,
     middleware=[
         AzureGroundednessMiddleware(
             exit_behavior="continue",
@@ -501,6 +513,86 @@ print_content_safety_annotations(final_message)
 
 ```output
 No content-safety annotations found.
+```
+
+### Configure grounding
+
+You can change how grouding content, questions, and answers are collected
+by the middleware. This is useful when:
+
+* Your application stores retrieved documents in a custom state key.
+* You want to restrict grounding sources to a specific subset of messages (e.g. only tool results, excluding the system prompt).
+* You need access to the run-scoped execution context (e.g. `runtime.context` or `runtime.store`) to build the inputs.
+
+The following example uses an LLM (gpt-5-nano) to extract the most relevant question
+from the chat history, and only grounds with `ToolMessage` messages:
+
+```python
+from langchain.chat_models import init_chat_model
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, ToolMessage
+from langchain_azure_ai.agents.middleware import AzureGroundednessMiddleware, GroundednessInput
+
+QUESTION_EXTRACTION_INSTRUCTION = (
+    "You are a question-extraction assistant. Given the conversation history that "
+    "follows, identify the single, self-contained question the user is currently "
+    "asking. The latest user message may be a follow-up that references earlier "
+    "context (e.g. 'What about the second one?'). Resolve any pronouns, references, "
+    "or ellipsis using earlier turns. Output ONLY the fully self-contained question — "
+    "no preamble, explanation, or extra text."
+)
+
+def tool_only_extractor(state, runtime):
+    """Return grounding inputs using an LLM-identified question and ToolMessage sources."""
+    messages = state["messages"]
+
+    # Extract answer from the latest AIMessage
+    answer = None
+    for msg in reversed(messages):
+        if isinstance(msg, AIMessage):
+            content = msg.content
+            if isinstance(content, str):
+                answer = content or None
+            elif isinstance(content, list):
+                parts = [b["text"] for b in content if isinstance(b, dict) and b.get("type") == "text"]
+                answer = " ".join(parts) or None
+            break
+
+    # Use only tool call results as grounding sources
+    sources = [
+        msg.content
+        for msg in messages
+        if isinstance(msg, ToolMessage) and isinstance(msg.content, str) and msg.content
+    ]
+
+    if not answer or not sources:
+        return None
+
+    # Ask the LLM to resolve the user's question from the conversation history.
+    # We pass the conversation messages directly — no manual formatting needed.
+    question_response = init_chat_model("azure_ai:gpt-5-nano").invoke(
+        [SystemMessage(content=QUESTION_EXTRACTION_INSTRUCTION)]
+        + [m for m in messages if isinstance(m, (HumanMessage, AIMessage))]
+    )
+    question = (
+        question_response.content.strip()
+        if isinstance(question_response.content, str)
+        else None
+    )
+
+    return GroundednessInput(answer=answer, sources=sources, question=question)
+
+agent = create_agent(
+    model=model,
+    tools=[knowledge_retriever],
+    system_prompt=SYSTEM_PROMPT,
+    middleware=[
+        AzureGroundednessMiddleware(
+            exit_behavior="continue",
+            task="QnA",
+            context_extractor=tool_only_extractor,
+        )
+    ],
+)
 ```
 
 ## Protected material detection
