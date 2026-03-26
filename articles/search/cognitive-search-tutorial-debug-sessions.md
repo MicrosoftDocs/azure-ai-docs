@@ -59,7 +59,7 @@ This tutorial uses API keys for authentication and authorization. You need the s
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
-1. On the **Overview** page, copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. On the **Overview** page, copy the endpoint URL. An example endpoint might look like `https://mydemo.search.windows.net`.
 
 1. On **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
 
