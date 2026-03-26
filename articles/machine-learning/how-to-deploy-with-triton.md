@@ -122,6 +122,9 @@ cd azureml-examples/sdk/python/endpoints/online/triton/single-model/
 
 Configure the endpoint and deployment resources that define how Triton serves your model. The endpoint specifies the name and authentication mode, while the deployment defines the model, VM type, and instance count.
 
+> [!TIP]
+> This example uses key-based authentication for simplicity. For production deployments, Microsoft recommends Microsoft Entra token-based authentication (`aad_token`), which provides enhanced security through identity-based access control. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
+
 # [Azure CLI](#tab/azure-cli)
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]

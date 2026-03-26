@@ -508,5 +508,4 @@ See the [GitHub sample for image generation with FLUX models in Microsoft Foundr
 - [Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md)
 - [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md)
 - [Configure Microsoft Entra ID authentication](configure-entra-id.md)
-- [Explore available models in Foundry](../concepts/models-sold-directly-by-azure.md)
 - [BFL API documentation](https://docs.bfl.ai)
