@@ -9,15 +9,16 @@ ms.topic: concept-article
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: keli19
-ms.date: 01/09/2020
-ms.custom: designer
+ms.date: 03/26/2026
+ms.custom: designer, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Use a keyboard to use Azure Machine Learning designer
 
 Learn how to use a keyboard and screen reader to use Azure Machine Learning designer. For a list of keyboard shortcuts that work everywhere in the Azure portal, see [Keyboard shortcuts in the Azure portal](/azure/azure-portal/azure-portal-keyboard-shortcuts)
 
-This workflow has been tested with [Narrator](https://support.microsoft.com/help/22798/windows-10-complete-guide-to-narrator) and [JAWS](https://www.freedomscientific.com/products/software/jaws/), but it should work with other standard screen readers.
+This workflow has been tested with [Narrator](https://support.microsoft.com/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1) and [JAWS](https://www.freedomscientific.com/products/software/jaws/), but it should work with other standard screen readers.
 
 ## Navigate the pipeline graph
 
@@ -64,7 +65,7 @@ The following keyboard actions help you navigate a pipeline graph:
 
 ## Action shortcuts
 
-Use the following shortcuts with the access key. For more information on access keys, see https://en.wikipedia.org/wiki/Access_key.
+Use the following shortcuts with the access key. For more information on access keys, see the Microsoft guidance on [Keyboard functionality](https://learn.microsoft.com/windows/apps/design/accessibility/keyboard-accessibility#keyboard-shortcuts).
 
 | Keystroke | Action |
 |-|-|
@@ -81,5 +82,5 @@ Use the following shortcuts with the access key. For more information on access 
 
 ## Next steps
 
-- [Turn on high contrast or change theme](/azure/azure-portal/set-preferences#choose-a-theme-or-enable-high-contrast)
+- [Turn on high contrast or change theme](/azure/azure-portal/set-preferences#choose-a-theme)
 - [Accessibility related tools at Microsoft](https://www.microsoft.com/accessibility)
