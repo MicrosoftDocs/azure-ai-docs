@@ -9,6 +9,16 @@ ms.reviewer: pafarley
 ms.custom: references_regions
 ---
 
+### March 2026 release
+#### Public preview of MAI-Voice-1
+
+MAI-Voice-1 is a new neural text-to-speech model built on Microsoft's in-house speech foundation models. It produces expressive, natural speech with consistent voice persona quality and supports emotion and style control via SSML `mstts:express-as`. MAI-Voice-1 is available in the East US region. For more information, see [MAI-Voice-1 in Azure Speech](../../MAI-Voice.md).
+
+| **Locale (BCP-47)** | **Voice name**                    |
+| ------------------- | --------------------------------- |
+| `en-US`             | `en-us-Noa:MAI-Voice-1` (Female) |
+| `en-US`             | `en-us-Teo:MAI-Voice-1` (Male)   |
+
 ### December 2025 release
 #### Public preview of new voice type Dragon HD Omni
 
