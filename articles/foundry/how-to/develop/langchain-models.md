@@ -25,7 +25,7 @@ verification workflows.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
 - The **Azure AI User** role on the Foundry project.
 - A deployed chat model that supports OpenAI-compatible APIs, such as

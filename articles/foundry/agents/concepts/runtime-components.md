@@ -40,7 +40,7 @@ You provide user input (and optionally conversation history), the service genera
 
 To run the samples in this article, you need:
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - The Foundry Agent Service SDK for your language:
 
