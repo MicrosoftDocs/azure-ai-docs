@@ -114,16 +114,16 @@ items:
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
-        - name: Concepts
-          items:
-            - name: Evaluation metrics
-              href: custom-named-entity-recognition/concepts/evaluation-metrics.md
-            - name: Accepted data formats
-              href: custom-named-entity-recognition/concepts/data-formats.md
-            - name: Deploy to multiple regions
-              href: concepts/custom-features/multi-region-deployment.md
-            - name: Project versioning
-              href: concepts/custom-features/project-versioning.md
+      - name: Concepts
+        items:
+          - name: Evaluation metrics
+            href: custom-named-entity-recognition/concepts/evaluation-metrics.md
+          - name: Accepted data formats
+            href: custom-named-entity-recognition/concepts/data-formats.md
+          - name: Deploy to multiple regions
+            href: concepts/custom-features/multi-region-deployment.md
+          - name: Project versioning
+            href: concepts/custom-features/project-versioning.md
 
     - name: Prebuilt named entity recognition (NER)
       items:
