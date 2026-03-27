@@ -56,7 +56,7 @@ Vision models can take both text and images at the same time as part of the inpu
 | Identification of Individuals and Inference of Sensitive Attributes | Prompts                | N/A                 |
 | User prompt injection attack (Jailbreak)                            | Prompts                | N/A                 |
 
-### Azure OpenAI: DALL-E 3 and DALL-E 2
+### Azure OpenAI: Image generation models
 
 | Risk Category                                     | Prompt/Completion      | Severity Threshold |
 |---------------------------------------------------|------------------------|---------------------|

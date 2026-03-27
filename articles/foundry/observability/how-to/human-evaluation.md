@@ -8,7 +8,6 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: peichengshi
 ai-usage: ai-assisted
-ms.custom: doc-kit-assisted
 ---
 # Set up human evaluation for your agents (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]

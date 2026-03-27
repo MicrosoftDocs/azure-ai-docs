@@ -27,7 +27,7 @@ This documentation contains the following article types:
 
 CLU can be used in multiple scenarios across various industries. Some examples are:
 
-### Multi-turn conversations 🆕
+### Multi-turn conversations 
 
 Use CLU with entity slot filling to enable natural, progressive information gathering across multiple conversation turns. Instead of overwhelming users with complex forms, your application can collect required details as they emerge naturally in dialogue. This approach is ideal for scenarios like booking systems, customer service workflows, or any application where complete information needs to be gathered through conversational exchanges.
 

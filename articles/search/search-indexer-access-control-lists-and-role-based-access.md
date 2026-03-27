@@ -4,55 +4,50 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 03/25/2026
 ---
 
 # Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The permission model in Azure Data Lake Storage (ADLS) Gen2 allows for per-user access to specific directories or files. Preview APIs in Azure AI Search now support ingestion of user permissions alongside document ingestion so that you can use those permissions to control access to search results. If a user lacks permissions on a specific directory or file in ADLS Gen2, that user doesn't have access to the corresponding documents in Azure AI Search results.
+Azure Data Lake Storage (ADLS) Gen2 supports per-user access to directories and files through [access control lists](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) (ACLs) and [role-based access control](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) (Azure RBAC). [Attribute-based access control](/azure/storage/blobs/data-lake-storage-access-control-model#attribute-based-access-control-azure-abac) (Azure ABAC) isn't supported.
 
-+ 2025-05-01-preview and later, ADLS Gen2 permissions can be ingested using the [ADLS Gen2 indexer](search-how-to-index-azure-data-lake-storage.md).
-+ 2025-11-01-preview provides equivalent support for [ADLS Gen2 blob knowledge sources](agentic-knowledge-source-how-to-blob.md) in Azure Storage.
+Preview APIs in Azure AI Search can ingest this permission metadata alongside document content. Users who lack access to a directory or file in storage don't see the corresponding documents in search results. This is one of several strategies for [document-level access control](search-document-level-access-overview.md) in Azure AI Search.
 
-You can use the push APIs to upload and index content and permission metadata manually, or you can use an indexer or knowledge source to automate data ingestion. 
+This article explains how to configure an ADLS Gen2 indexer or ADLS Gen2 blob knowledge source to automatically *pull* permission metadata into a search index. It supplements [Index data from ADLS Gen2](search-how-to-index-azure-data-lake-storage.md) and [Create a blob knowledge source for ADLS Gen2](agentic-knowledge-source-how-to-blob.md) with information specific to permission ingestion. To manually *push* permission metadata, see [Index document ACLs using the push API](search-index-access-control-lists-and-rbac-push-api.md).
 
-This article focuses on the indexing automation approaches, built on this foundation:
-
-+ [The ADLS Gen2 access control model](/azure/storage/blobs/data-lake-storage-access-control-model) that provides [Access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [Role-based access control (Azure RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac). There's no support for Attribute-based access control (Azure ABAC).
-
-+ [An ADLS Gen2 indexer](#configure-adls-gen2) or [ADLS Gen2 blob knowledge source](#configure-a-knowledge-source) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
-
-+ [An index in Azure AI Search](search-how-to-create-search-index.md) containing the ingested documents and corresponding permissions. Permission metadata is stored as fields in the index. To set up [queries that respect the permission filters](search-query-access-control-rbac-enforcement.md), use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
-
-This functionality helps align [document-level permissions](search-security-trimming-for-azure-search.md) in the search index with the access controls defined in ADLS Gen2, allowing users to retrieve content in a way that reflects their existing permissions.
-
-This article supplements [**Index data from ADLS  Gen2**](search-how-to-index-azure-data-lake-storage.md) and [**ADLS Gen2 blob knowledge sources**](agentic-knowledge-source-how-to-blob.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index. 
+:::image type="content" source="media/search-indexer-access-control-lists-and-role-based-access/security-trimmed-rag-adls-gen2.png" alt-text="Architecture diagram showing a security-trimmed RAG solution where an ADLS Gen2 indexer ingests documents and ACL and RBAC permission metadata from an ADLS Gen2 container, stores them in an Azure AI Search index, and a RAG orchestrator filters query results so each user retrieves only documents they're authorized to access." lightbox="media/search-indexer-access-control-lists-and-role-based-access/security-trimmed-rag-adls-gen2.png":::
 
 ## Prerequisites
 
-+ [Microsoft Entra ID authentication and authorization](/entra/identity/authentication/overview-authentication). Services and apps must be in the same tenant. Users can be in different tenants as long as all of the tenants are Microsoft Entra ID. Role assignments are used for each authenticated connection.
++ [Microsoft Entra ID authentication and authorization](/entra/identity/authentication/overview-authentication). Services and apps must be in the same tenant. Users can be in different tenants as long as all tenants use Microsoft Entra ID. Role assignments are used for each authenticated connection.
 
-+ Azure AI Search, any region, but you must have a billable tier (basic and higher) for managed identity support. The search service must be [configured for role-based access](search-security-enable-roles.md) and it must [have a managed identity (either system or user)](search-how-to-managed-identities.md).
++ Azure AI Search on a billable tier (Basic or higher) in any region. The search service must have [role-based access enabled](search-security-enable-roles.md) and a [system-assigned or user-assigned managed identity](search-how-to-managed-identities.md).
 
 + ADLS Gen2 blobs in a hierarchical namespace, with user permissions granted through ACLs or roles.
 
++ REST API version 2025-05-01-preview or later for indexer permission ingestion. REST API version 2025-11-01-preview for knowledge source support. Use the latest preview REST API or a preview SDK package that supports [permission filters](search-query-access-control-rbac-enforcement.md).
+
 ## Limitations
 
-+ [Limits on Azure role assignments and ACL entries](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries) in ADLS Gen2 impose a maximum number of role assignments and ACL entries.
++ The Azure portal doesn't support this feature.
 
-+ The `owning users`, `owning groups`, `Other` (`all`),  [ACL identities categories](/azure/storage/blobs/data-lake-storage-access-control#users-and-identities) aren't supported during public preview. Use `named users` and `named groups` assignments instead.
++ [ADLS Gen2 limits on role assignments and ACL entries](/azure/storage/blobs/data-lake-storage-access-control-model#limits-on-azure-role-assignments-and-acl-entries) apply.
+
++ The `owning users`, `owning groups`, and `Other` (`all`) [ACL identity categories](/azure/storage/blobs/data-lake-storage-access-control#users-and-identities) aren't supported during public preview. Use `named users` and `named groups` assignments instead.
   
 + The following indexer features don't support permission inheritance in indexed documents originating from ADLS Gen2. If you use any of these features in a skillset or indexer, document-level permissions aren't included in the indexed content.
 
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
+
   + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
+
   + [Knowledge store](knowledge-store-concept-intro.md)
+
   + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
+
   + [Debug sessions](cognitive-search-debug-session.md)
- 
-+ This functionality is currently not supported in the Azure portal.
 
 ## Support for the permission model
 
@@ -63,7 +58,11 @@ This section compares document-level access control features between ADLS Gen2 a
 | [RBAC](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) | Coarse-grained access at container level | Yes | AI Search honors RBAC for access to all documents in the entire container. |
 | [ABAC](/azure/storage/blobs/data-lake-storage-access-control-model#attribute-based-access-control-azure-abac) | Attribute-based conditions on top of RBAC | No | AI Search doesn't evaluate ABAC conditions for document-level access. |
 | [ACL](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) | Fine-grained permissions at directory/file (document) level  | Yes | AI Search uses document-level ACLs for [permission filters](./search-query-access-control-rbac-enforcement.md). |
-| [Security Groups](/azure/storage/blobs/data-lake-storage-access-control-model#security-groups) | Group-based permission assignments  | Yes  | Supported if security groups are mapped inside the document-level ACL. |
+| [Security groups](/azure/storage/blobs/data-lake-storage-access-control-model#security-groups) | Group-based permission assignments  | Yes  | Supported if security groups are mapped inside the document-level ACL. |
+
+At query time, Azure AI Search evaluates container-level RBAC first and then checks document-level ACL entries. Access is granted if any mechanism permits it.
+
+:::image type="content" source="media/search-indexer-access-control-lists-and-role-based-access/rbac-acl-authorization-decision-flow.png" alt-text="Flowchart and truth table showing how Azure AI Search evaluates authorization by checking container-level RBAC first, then ACL group and user entries, granting access if any mechanism permits it and denying access only when all checks fail." lightbox="media/search-indexer-access-control-lists-and-role-based-access/rbac-acl-authorization-decision-flow.png":::
 
 ## About ACL hierarchical permissions
 
@@ -120,7 +119,7 @@ Here's a diagram of the ACL assignment structure for the [fictitious directory h
 
 ### Updating ACL assignments over time
 
-Over time, as any new ACL assignments are added or modified, repeat the above steps to ensure proper propagation and permissions alignment. Updated permissions in ADLS Gen2 are updated in the search index when you re-ingest the content using the indexer or knowledge source.
+Over time, as any new ACL assignments are added or modified, repeat the preceding steps to ensure proper propagation and permissions alignment. Updated permissions in ADLS Gen2 are updated in the search index when you re-ingest the content using the indexer or knowledge source.
 
 ## Configure Azure AI Search
 
@@ -199,9 +198,9 @@ This section supplements  [**Index data from ADLS  Gen2**](search-how-to-index-a
 
 + Data Source type must be `adlsgen2`.
 
-+ Data source must have `indexerPermissionOptions` with `userIds`, `groupIds` and/or `rbacScope`.
++ Data source must have `indexerPermissionOptions` with `userIds`, `groupIds`, and/or `rbacScope`.
 
-  + For`rbacScope`, configure the [connection string](search-how-to-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
+  + For `rbacScope`, configure the [connection string](search-how-to-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
   
   + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity-preview), you must also specify the `identity` property.
 
@@ -251,7 +250,7 @@ In Azure AI Search, make sure your index contains field definitions for the perm
 Recommended schema attributes for ACL (UserIds, GroupIds) and RBAC Scope:
 
 + User identifier (ID) field with `userIds` permissionFilter value.
-+ Group IDs filed with `groupIds` permissionFilter value.
++ Group IDs field with `groupIds` permissionFilter value.
 + RBAC scope field with `rbacScope` permissionFilter value.
 + Property `permissionFilterOption` to enable filtering at querying time.
 + Use string fields for permission metadata
@@ -352,7 +351,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 
 To manage blob deletion effectively, make sure [deletion tracking](search-how-to-index-azure-blob-changed-deleted.md) is enabled before your indexer runs for the first time. This feature lets the system detect deleted blobs in your source and remove them from the index.
 
-## See also
+## Related content
 
 + [Connect to Azure AI Search using roles](search-security-rbac.md)
 + [Query-time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)

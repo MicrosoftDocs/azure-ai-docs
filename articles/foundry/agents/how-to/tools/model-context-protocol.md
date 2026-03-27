@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/25/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -45,7 +45,18 @@ Before you begin, ensure you have:
 - Azure role-based access control (RBAC): Contributor or Owner role on the Foundry project.
 - The latest SDK package for your language. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
-- Access to a remote MCP server endpoint(such as GitHub's MCP server at `https://api.githubcopilot.com/mcp`).
+- Access to a remote MCP server endpoint (such as GitHub's MCP server at `https://api.githubcopilot.com/mcp`).
+
+## Public and private MCP server endpoints
+
+Agent Service supports both public and private MCP server endpoints:
+
+- **Public endpoints**: Connect to any publicly accessible remote MCP server. This option works with both Basic and Standard agent setups.
+- **Private endpoints**: Connect to MCP servers that aren't exposed to the public internet. Private MCP requires [Standard Agent Setup with private networking](../virtual-networks.md) and a dedicated MCP subnet within your virtual network.
+
+For private MCP servers, deploy your MCP server on Azure Container Apps with internal-only ingress on a dedicated MCP subnet delegated to `Microsoft.App/environments`. To get started, use the [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup) template, which provisions the required network infrastructure including the MCP subnet.
+
+For details about tool support in network-isolated environments, see [Agent tools with network isolation](../../../how-to/configure-private-link.md#agent-tools-with-network-isolation).
 
 ## Authentication
 
@@ -57,6 +68,9 @@ To learn about supported authentication options (key-based, Microsoft Entra iden
 
 > [!NOTE]
 > Set `project_connection_id` to the ID of your project connection.
+
+> [!TIP]
+> When you add the Azure DevOps MCP Server (preview) through the **Add Tools** catalog, authentication to Azure DevOps is established during the organization connection step and stored as a project connection. Use least-privilege access and review scopes when connecting the organization.
 
 <!-- The verbiage in the following section is required. Do not remove or modify. -->
 ## Considerations for using non-Microsoft services and servers
@@ -79,6 +93,9 @@ When you use MCP servers, follow these practices:
 - Require approval for high-risk operations (especially tools that write data or change resources).
 - Review the requested tool name and arguments before you approve.
 - Log approvals and tool calls for auditing and troubleshooting.
+
+> [!TIP]
+> When you add the Azure DevOps MCP Server through the **Add Tools** catalog, the tool selection configuration maps to the `allowed_tools` behavior described in this article. Selecting a subset of tools in the catalog UI is equivalent to specifying an `allowed_tools` list in code.
 
 ## Create an agent in Python with the MCP tool
 
@@ -196,7 +213,7 @@ The following example shows how to use the GitHub MCP server as a tool for an ag
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -305,7 +322,7 @@ Before running the sample:
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -714,7 +731,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 ```
 
@@ -726,9 +743,9 @@ import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.ai.agents.models.McpTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.core.util.BinaryData;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -752,7 +769,7 @@ public class McpToolExample {
         McpTool mcpTool = new McpTool("api-specs")
             .setServerUrl("https://gitmcp.io/Azure/azure-rest-api-specs")
             .setProjectConnectionId(mcpConnectionName)
-            .setRequireApproval(BinaryData.fromString("\"always\""));
+            .setRequireApproval("always");
 
         // Create agent with MCP tool
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
@@ -766,8 +783,8 @@ public class McpToolExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Summarize the Azure REST API specifications"));
 
@@ -892,6 +909,8 @@ curl -X DELETE "$FOUNDRY_PROJECT_ENDPOINT/agents/<AGENT_NAME>-mcp?api-version=v1
 
 You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label` value within the same agent and a `server_url` value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
 
+In addition to connecting arbitrary remote MCP servers by URL, some MCP servers can be added directly from the Foundry **Add Tools** catalog. For example, Azure DevOps MCP Server (preview) is available as a catalog entry. Catalog entries simplify connection setup and align with the same approval and auditing mechanisms documented in this article.
+
 For more information on using MCP, see:
 
 - [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website.
@@ -914,10 +933,24 @@ The following steps outline how to connect to a remote MCP server from Foundry A
 1. If the model tries to invoke a tool in your MCP server with approval required, you get a response output item type as `mcp_approval_request`. In the response output item, you can get more details on which tool in the MCP server is called and arguments to be passed. Review the tool and arguments so that you can make an informed decision for approval.
 1. Submit your approval to the agent by using `previous_response_id` and setting `approve` to `true`.
 
+### Connect to Azure DevOps MCP Server
+
+Azure DevOps MCP Server (preview) is available as a catalog entry in Foundry. To add it:
+
+1. In [Foundry portal](https://ai.azure.com), go to your project.
+1. Select **Add Tools** > **Catalog** and search for "Azure DevOps."
+1. Select **Azure DevOps MCP Server (preview)** and select **Create**.
+1. Enter your Azure DevOps organization name and select **Connect**.
+1. Choose which Azure DevOps tools to expose to your agent. You can select a subset of tools to control exactly what the agent can access.
+
+This catalog-based setup creates the MCP tool for use by agents without requiring code changes. You can validate connectivity and tool behavior in the Foundry chat testing experience before integrating the tool into production code.
+
 ## Known limitations
 
 - **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
 - **Identity passthrough not supported in Teams**: MCP tools that use OAuth identity passthrough don't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, which isn't compatible with identity passthrough (On-Behalf-Of).
+- **Private MCP requires Standard Agent Setup**: Private MCP server connectivity is only available with [Standard Agent Setup with private networking](../virtual-networks.md) (BYO VNet). Basic agent setup doesn't support private MCP endpoints.
+- **Private MCP hosting**: Azure Container Apps on a dedicated MCP subnet is the tested configuration for private MCP servers. Function Apps or App Services as the private MCP server host might work but haven't been internally validated.
 
 ## Common questions and errors
 
@@ -941,7 +974,11 @@ The following are common issues that you might encounter when using MCP tools wi
 
 ## Host a local MCP server
 
-The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](https://github.com/Azure-Samples/mcp-container-ts) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following factors when hosting local MCP servers in the cloud:
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](https://github.com/Azure-Samples/mcp-container-ts) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint.
+
+The remote endpoint can be either a public endpoint or a private endpoint within your VNet. For private MCP servers, deploy your Container App with internal-only ingress (`--internal-only true`) on a dedicated MCP subnet. See [Public and private MCP server endpoints](#public-and-private-mcp-server-endpoints) for setup details.
+
+Consider the following factors when hosting local MCP servers in the cloud:
 
 | Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
 | --- | --- | --- |
@@ -959,6 +996,8 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 - [Get started with agents using code](../../../quickstarts/get-started-code.md)
 - [MCP server authentication](../mcp-authentication.md)
 - [Build and register a Model Context Protocol (MCP) server](../../../mcp/build-your-own-mcp-server.md)
+- [Set up private networking for Foundry Agent Service](../virtual-networks.md)
+- [Configure private link for Foundry](../../../how-to/configure-private-link.md)
 - [MCP tool REST reference](../../../reference/foundry-project-rest-preview.md#openaimcptool)
 - [Security Best Practices for MCP](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
 - [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667)

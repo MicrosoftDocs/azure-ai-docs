@@ -6,6 +6,8 @@ ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: structured-outputs
+
+ms.custom: classic-and-new
 ---
 
 ## Getting started

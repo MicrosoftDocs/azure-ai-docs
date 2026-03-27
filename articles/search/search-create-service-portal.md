@@ -17,7 +17,7 @@ ms.custom:
 
 [Azure AI Search](search-what-is-azure-search.md) is an information retrieval platform for the enterprise. It supports traditional search and conversational, AI-driven search for "chat with your data" experiences across your proprietary content.
 
-The easiest way to create a search service is through the [Azure portal](https://portal.azure.com/), which is covered in this article.
+The easiest way to create a search service is through the [Azure portal](https://portal.azure.com), which is covered in this article.
 
 [![Animated GIF showing how to create an Azure AI Search service in the Azure portal.](./media/search-create-service-portal/AnimatedGif-AzureSearch-small.gif)](./media/search-create-service-portal/AnimatedGif-AzureSearch.gif#lightbox)
 
@@ -51,7 +51,7 @@ To try Azure AI Search for free, [start a trial subscription](https://azure.micr
 
 ## Find the Azure AI Search offering
 
-1. Sign in to the [Azure portal](https://portal.azure.com/).
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
 1. In the upper-left corner of your dashboard, select **Create a resource**.
 
@@ -165,7 +165,7 @@ When you create a search service, key-based authentication is the default, but i
 
 To enable role-based access for your service:
 
-1. Go to your search service in the [Azure portal](https://portal.azure.com/).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Keys**. You can connect to your service using [API keys](search-security-api-keys.md), [Azure roles](search-security-rbac.md), or both. Select **Both** until you assign roles, after which you can select **Role-based access control**.
 
@@ -184,7 +184,7 @@ Adding resources will increase your monthly bill. Use the [pricing calculator](h
 
 To scale your service:
 
-1. Go to your search service in the [Azure portal](https://portal.azure.com/).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Scale**.
 
@@ -215,7 +215,7 @@ You must have Owner or Contributor permissions for the subscription to request q
 
 To request more subscription quota:
 
-1. Go to your dashboard in the [Azure portal](https://portal.azure.com/).
+1. Go to your dashboard in the [Azure portal](https://portal.azure.com).
 
 1. Use the search box to find the **Quotas** service.
 
