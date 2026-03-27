@@ -57,7 +57,7 @@ An example flow is:
 
 Before you begin, make sure you have:
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Contributor or Owner role on a resource group.
 - A Foundry project with a configured endpoint.
 - An AI model deployed in your project (for example, `gpt-4o`).

@@ -15,7 +15,7 @@ Images can be provided either as publicly accessible URLs or data URIs containin
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource. See [Create an Azure AI Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource).
 - Familiarity with the [fine-tuning workflow](../how-to/fine-tuning.md). Vision fine-tuning follows the same process with image-specific data formatting.
 - Fine-tuning access for the supported models in a [supported region](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).

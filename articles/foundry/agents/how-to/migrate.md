@@ -22,7 +22,7 @@ Foundry Agent Service provides an upgraded developer experience for building int
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - The Foundry Agent Service SDK for your language, and corresponding identity package for authentication. Install the packages for your language and sign in with `az login` or use `DefaultAzureCredential`:
 
