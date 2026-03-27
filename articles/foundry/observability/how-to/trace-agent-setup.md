@@ -50,7 +50,7 @@ If you don’t see the message bar or Connect button, here’s an alternative wa
 1. Navigate to the **Connected resources** tab then select **Add connection**.
      :::image type="content" source="../../media/observability/tracing/connected-resources-add-connection.png" alt-text="Screenshot of project details with connected resources tab select highlighting add connection." lightbox="../../media/observability/tracing/connected-resources-add-connection.png":::
 1. Select **Application Insights** in the *Choose a connection* menu.
-    :::image type="content" source="../../media/observability/tracing/connected-resources-add-connection.png" alt-text="Screenshot of Choose a connection with Application Insights highlighted." lightbox="../../media/observability/tracing/connected-resources-add-connection.png":::
+    :::image type="content" source="../../media/observability/tracing/choose-connection.png" alt-text="Screenshot of Choose a connection with Application Insights highlighted." lightbox="../../media/observability/tracing/choose-connection.png":::
 
 > [!IMPORTANT]
 > Make sure you have the permissions you need to query telemetry.
