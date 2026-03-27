@@ -1,6 +1,6 @@
 ---
-title: "Deploy and use MAI-image-2 model in Microsoft Foundry"
-description: "Deploy MAI-image-2, a Microsoft AI-owned text-to-image generation model in Microsoft Foundry, to generate high-quality photorealistic images from text prompts."
+title: "Deploy and use MAI-Image-2 model in Microsoft Foundry"
+description: "Deploy MAI-Image-2, a text-to-image generation model in Microsoft Foundry, to generate high-quality images from natural language prompts."
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -14,16 +14,16 @@ ms.reviewer: malpande
 reviewer: mpande98
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer or AI practitioner, I want to deploy and use MAI-image-2 in Microsoft Foundry so I can generate high-quality photorealistic images in my applications.
+#CustomerIntent: As a developer or AI practitioner, I want to deploy and use MAI-Image-2 in Microsoft Foundry so I can generate high-quality images from natural language prompts for creative and design workflows.
 ---
 
-# Deploy and use MAI-image-2 in Microsoft Foundry (preview)
+# Deploy and use MAI-Image-2 in Microsoft Foundry (preview)
 
-MAI-image-2 (Preview) is a text-to-image generation model designed to create high-quality, visually rich images from natural language prompts. It uses a diffusion-based generative approach to progressively refine images, enabling strong alignment between the input text and the generated output. The model is optimized to produce diverse and coherent images across a wide range of creative and design scenarios, making it well suited for tasks such as concept visualization, creative content generation, and image design workflows.
+MAI-Image-2 (Preview) is a text-to-image generation model designed to create high-quality, visually rich images from natural language prompts. It uses a diffusion-based generative approach to progressively refine images, enabling strong alignment between the input text and the generated output. The model is optimized to produce diverse and coherent images across a wide range of creative and design scenarios, making it well suited for tasks such as concept visualization, creative content generation, and image design workflows.
 
 In this article, you learn how to:
 
-- Deploy MAI-image-2 in Microsoft Foundry
+- Deploy MAI-Image-2 in Microsoft Foundry
 - Authenticate by using Microsoft Entra ID or API keys
 - Generate images by using the MAI image generation API
 
@@ -37,12 +37,12 @@ In this article, you learn how to:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI-image-2 is available for **global standard deployment in all regions**.
-- **Contributor** or **Owner** role on the resource group to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
+- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI-Image-2 is available for **global standard deployment in all regions**.
+- **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
-## Deploy MAI-image-2
+## Deploy MAI-Image-2
 
-MAI-image-2 is available for [global standard deployment](../concepts/deployment-types.md#global-standard) in all regions. To deploy the model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
+MAI-Image-2 is available for [global standard deployment](../concepts/deployment-types.md#global-standard) in all regions. To deploy the model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
 
 Alternatively, you can deploy the model by using the Azure CLI:
 
@@ -62,9 +62,9 @@ az cognitiveservices account deployment create \
 
 After deployment, use the [Foundry playground](../../concepts/concept-playgrounds.md) to interactively test the model with text prompts.
 
-## Overview of image generation with MAI-image-2
+## Overview of image generation with MAI-Image-2
 
-After you deploy MAI-image-2, use the **MAI image generation API** to generate images. This is a Microsoft-managed endpoint that accepts a text prompt and returns a PNG image.
+After you deploy MAI-Image-2, use the **MAI image generation API** to generate images. This is a Microsoft-managed endpoint that accepts a text prompt and returns a PNG image.
 
 #### API endpoint
 
@@ -96,7 +96,7 @@ See [the Microsoft model collection in the Foundry portal](https://ai.azure.com/
 
 ## Generate images
 
-The following examples show how to generate an image from a text prompt using MAI-image-2 with the MAI image generation API.
+The following examples show how to generate an image from a text prompt using MAI-Image-2 with the MAI image generation API.
 
 # [Python](#tab/python)
 
@@ -218,22 +218,33 @@ Where `AZURE_AUTH_TOKEN` is a valid Microsoft Entra ID token scoped to `https://
 
 ## API quotas and limits
 
-MAI-image-2 has the following rate limits measured in Requests Per Minute (RPM). The tier available to you depends on your subscription and deployment configuration.
+MAI-Image-2 has the following rate limits measured in Requests Per Minute (RPM). The tier available to you depends on your subscription and deployment configuration.
 
 | Model | Deployment Type | Tier | Requests Per Minute (RPM) |
 | -- | -- | -- | -- |
-| MAI-image-2 | Global Standard | 1 | 9 |
-| MAI-image-2 | Global Standard | 2 | 15 |
-| MAI-image-2 | Global Standard | 3 | 30 |
-| MAI-image-2 | Global Standard | 4 | 45 |
-| MAI-image-2 | Global Standard | 5 | 60 |
-| MAI-image-2 | Global Standard | 6 | 90 |
+| MAI-Image-2 | Global Standard | 1 | 9 |
+| MAI-Image-2 | Global Standard | 2 | 15 |
+| MAI-Image-2 | Global Standard | 3 | 30 |
+| MAI-Image-2 | Global Standard | 4 | 45 |
+| MAI-Image-2 | Global Standard | 5 | 60 |
+| MAI-Image-2 | Global Standard | 6 | 90 |
 
 To request a quota increase, submit the [quota increase request form](https://aka.ms/oai/stuquotarequest). Requests are processed in the order they're received, and priority goes to customers who actively use their existing quota allocation.
 
+## Troubleshoot
+
+Use the following table to resolve common errors when working with MAI-Image-2:
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| `401 Unauthorized` | Invalid API key or expired token | Regenerate the key in the Azure portal. For Entra ID authentication, ensure the token scope is `https://cognitiveservices.azure.com/.default`. |
+| `404 Not Found` | Incorrect deployment name or endpoint URL | Verify the deployment name and endpoint in the Foundry portal under **Deployments**. |
+| `400 Bad Request` | `width` or `height` value outside the supported range | Use values between 256 and 1024 inclusive. |
+| `429 Too Many Requests` | Rate limit exceeded | Wait and retry, or [request a quota increase](https://aka.ms/oai/stuquotarequest). |
+
 ## Responsible AI considerations
 
-When using MAI-image-2 in Foundry, consider these responsible AI practices:
+When using MAI-Image-2 in Foundry, consider these responsible AI practices:
 
 - **Be aware of known limitations**: Despite technical mitigations such as data filtering and content classifiers applied at the system level, image generation models can produce harmful or unexpected content based on user requests. Common risk areas include violent or gory content, sexual content or nudity, depictions of public figures, and replication of trademarked or other protected material.
 - **Configure content safety**: Apply additional mitigations appropriate to your use case, because no generative model is immune to adversarial prompts.
