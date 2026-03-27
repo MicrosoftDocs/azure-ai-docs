@@ -48,18 +48,6 @@ Azure Speech offers MAI-Voice-1 as an advanced neural voice model optimized for 
 | **High fidelity audio** | The model produces high-quality neural speech with natural prosody and clarity suitable for production-grade applications. |
 | **Real-time synthesis** | MAI-Voice-1 supports real-time speech synthesis using the Azure Speech SDK and APIs. |
 
-### Supported speaking styles
-
-- Empathetic
-- Excitement
-- Joy
-- Friendly
-- Neutral
-- Encouragement
-- Confusion
-- Sadness
-- Surprise
-- Curiosity
 
 ## Use MAI-Voice-1
 
@@ -83,20 +71,6 @@ xml
        xml:lang="en-US">
   <voice name="en-us-Noa:MAI-Voice-1">
     Hello world, it’s great to meet you.
-  </voice>
-</speak>
-```
-
-### Styled SSML (Excitement)
-```
-<speak version="1.0"
-       xmlns="http://www.w3.org/2001/10/synthesis"
-       xmlns:mstts="http://www.w3.org/2001/mstts"
-       xml:lang="en-US">
-  <voice name="en-us-Noa:MAI-Voice-1">
-    <mstts:express-as style="excitement">
-      Hello world, this is MAI-Voice-1!
-    </mstts:express-as>
   </voice>
 </speak>
 ```
@@ -135,6 +109,27 @@ ssml = """
 
 synthesizer.speak_ssml_async(ssml).get()
 ```
+## Personal Voice (MAI-voice-1 Prompt Mode) 
+Steps to Access: 
+1. To access personal voice (voice cloning) using MAI-Voice-1:
+2. Apply for gated access via [Azure AI Custom Neural Voice and Custom Avatar Limited Access Review](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xURFZNMk5NQzVHNFNQVzJIWDVWTDZVVVEzMSQlQCN0PWcu).
+3. Once approved, access personal voice APIs at [cognitive-services-speech-sdk/samples/custom-voice](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/custom-voice/python/personal_voice_sample.py).
+4. Upload audio consent and prompt to create a personal voice
+5. Synthesize text using the created voice and MAI-Voice-1 model using the following SSML 
 
+ 
+```
+<speak version='1.0'
+       xmlns='http://www.w3.org/2001/10/synthesis'
+       xmlns:mstts='http://www.w3.org/2001/mstts'
+       xml:lang='en-US'> 
+       <voice name='MAI-voice-1'> 
+          <mstts:ttsembedding speakerProfileId='your speaker profile ID here'> 
+          I'm happy to hear that you find me amazing and that I have made your trip planning easier and more fun.  
+          </mstts:ttsembedding> 
+       </voice>
+</speak>  
+```
+ 
 ## Summary
 MAI-Voice-1 extends the Azure Speech HD voice portfolio by introducing higher emotional expressiveness and stronger persona consistency. It complements existing HD voice models by targeting next-generation conversational and creative use cases while leveraging the same SDKs and SSML patterns used across Azure Neural and HD voices.
