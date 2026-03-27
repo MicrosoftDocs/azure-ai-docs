@@ -22,8 +22,9 @@ Azure Language is a cloud-based service that provides Natural Language Processin
 Core capabilities are the primary, actively evolving features of Azure Language. These features receive ongoing investment and feature updates, and are recommended for new development and long-term planning. If you are starting a new project or designing a future architecture, use core capabilities as the foundation for your natural language processing workflows.
 
 * [Language detection](#language-detection)
-* [Named entity recognition (custom)](#named-entity-recognition-custom-ner)
-* [Named entity recognition (prebuilt)](#named-entity-recognition-prebuilt)
+* **Named entity recognition**
+  * [Custom](#custom-named-entity-recognition-cner)
+  * [Prebuilt)](#prebuilt-named-entity-recognition-ner)
 * [PII detection](#personally-identifiable-information-pii-detection)
 * [Text analytics for health](#text-analytics-for-health)
 
@@ -38,15 +39,15 @@ Core capabilities are the primary, actively evolving features of Azure Language.
 
 :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of language detection in Foundry." lightbox="media/overview/language-detection.png":::
 
-### Named entity recognition (custom NER)
+### Custom named entity recognition (CNER)
 
-[Custom NER](custom-named-entity-recognition/overview.md) enables you to build custom AI models to extract custom entity categories (labels for words or phrases), using unstructured text that you provide.
+[Custom named entity recognition (CNER)](custom-named-entity-recognition/overview.md) enables you to build custom AI models to extract custom entity categories (labels for words or phrases), using unstructured text that you provide.
 
 :::image type="content" source="media/studio-examples/custom-named-entity-recognition.png" alt-text="A screenshot of a custom NER example." lightbox="media/studio-examples/custom-named-entity-recognition.png":::
 
-### Named entity recognition (prebuilt)
+### Prebuilt named entity recognition (NER)
 
-[Named entity recognition](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into predefined types.
+[Prebuilt named entity recognition (NER)](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into predefined types.
 
 :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Foundry." lightbox="media/overview/named-entity-recognition.png":::
 
