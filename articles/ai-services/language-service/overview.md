@@ -22,9 +22,9 @@ Azure Language is a cloud-based service that provides Natural Language Processin
 Core capabilities are the primary, actively evolving features of Azure Language. These features receive ongoing investment and feature updates, and are recommended for new development and long-term planning. If you are starting a new project or designing a future architecture, use core capabilities as the foundation for your natural language processing workflows.
 
 * [Language detection](#language-detection)
-* **Named entity recognition**
-  * [Custom](#custom-named-entity-recognition-cner)
-  * [Prebuilt)](#prebuilt-named-entity-recognition-ner)
+* **Named entity recognition (NER**
+  * [Custom NER](#custom-named-entity-recognition-cner)
+  * [Prebuilt NER](#prebuilt-named-entity-recognition-ner)
 * [PII detection](#personally-identifiable-information-pii-detection)
 * [Text analytics for health](#text-analytics-for-health)
 
