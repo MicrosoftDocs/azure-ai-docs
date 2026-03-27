@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/25/2026
+ms.date: 03/30/2026
 ms.author: lajanuar
 ---
 
@@ -22,8 +22,9 @@ Azure Language is a cloud-based service that provides Natural Language Processin
 Core capabilities are the primary, actively evolving features of Azure Language. These features receive ongoing investment and feature updates, and are recommended for new development and long-term planning. If you are starting a new project or designing a future architecture, use core capabilities as the foundation for your natural language processing workflows.
 
 * [Language detection](#language-detection)
-* [Named entity recognition (custom)](#named-entity-recognition-custom-ner)
-* [Named entity recognition (prebuilt)](#named-entity-recognition-prebuilt)
+* **Named entity recognition (NER)**
+  * [Custom NER](#custom-ner)
+  * [Prebuilt NER](#prebuilt-ner)
 * [PII detection](#personally-identifiable-information-pii-detection)
 * [Text analytics for health](#text-analytics-for-health)
 
@@ -38,15 +39,15 @@ Core capabilities are the primary, actively evolving features of Azure Language.
 
 :::image type="content" source="media/overview/language-detection.png" alt-text="A screenshot of language detection in Foundry." lightbox="media/overview/language-detection.png":::
 
-### Named entity recognition (custom NER)
+### Custom NER
 
-[Custom NER](custom-named-entity-recognition/overview.md) enables you to build custom AI models to extract custom entity categories (labels for words or phrases), using unstructured text that you provide.
+[Custom named entity recognition (CNER)](custom-named-entity-recognition/overview.md) enables you to build custom AI models to extract custom entity categories (labels for words or phrases), using unstructured text that you provide.
 
 :::image type="content" source="media/studio-examples/custom-named-entity-recognition.png" alt-text="A screenshot of a custom NER example." lightbox="media/studio-examples/custom-named-entity-recognition.png":::
 
-### Named entity recognition (prebuilt)
+### Prebuilt NER
 
-[Named entity recognition](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into predefined types.
+[Prebuilt named entity recognition (NER)](./named-entity-recognition/overview.md) identifies different entries in text and categorizes them into predefined types.
 
 :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Foundry." lightbox="media/overview/named-entity-recognition.png":::
 
@@ -100,9 +101,6 @@ Legacy capabilities are established features that provide a stable, supported ba
 
 ### Entity linking
 
-> [!IMPORTANT]
-> Entity linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the entity linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named entity recognition**](named-entity-recognition/overview.md) or [Foundry models](../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
-
 [Entity linking](./entity-linking/overview.md) is a preconfigured feature that disambiguates the identity of entities (words or phrases) found in unstructured text and returns links to Wikipedia.
 
 :::image type="content" source="media/overview/entity-linking.png" alt-text="A screenshot of an entity linking example." lightbox="media/overview/entity-linking.png":::
@@ -115,7 +113,7 @@ Legacy capabilities are established features that provide a stable, supported ba
 
 ### Orchestration workflow
 
-[Orchestration workflow](./language-detection/overview.md) is a custom feature that enables you to connect [conversational language understanding (CLU)](./conversational-language-understanding/overview.md) AND  [custom question answering (CQA)](./question-answering/overview.md) applications.
+[Orchestration workflow](./orchestration-workflow/overview.md) is a custom feature that enables you to connect [conversational language understanding (CLU)](./conversational-language-understanding/overview.md) AND  [custom question answering (CQA)](./question-answering/overview.md) applications.
 
 :::image type="content" source="media/overview/orchestration-workflow.png" alt-text="A screenshot of an orchestration workflow example." lightbox="media/overview/orchestration-workflow.png":::
 

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/23/2026
+ms.date: 03/30/2026
 ms.author: lajanuar
 ms.custom: language-service-summarization, build-2024, ignite-2024
 ---
@@ -15,8 +15,6 @@ ms.custom: language-service-summarization, build-2024, ignite-2024
 
 > [!IMPORTANT]
 > Summarization is retiring from Azure Language effective **March 31, 2029**. After this date, the summarization feature is no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
-
-[!INCLUDE [availability](includes/regional-availability.md)]
 
 Summarization is a feature offered by [Azure Language in Foundry Tools](../overview.md), a combination of generative Large Language models and task-optimized encoder models that offer summarization solutions with higher quality, cost efficiency, and lower latency.
 Use this article to learn more about this feature, and how to use it in your applications.
@@ -61,9 +59,10 @@ The text summarization API request is processed upon receipt of the request by c
 If we use the preceding example, the API might return these summaries:
 
 **Extractive summarization**:
-- "At Microsoft, we are on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding."
-- "We believe XYZ-code enables us to fulfill our long-term vision: cross-domain transfer learning, spanning modalities and languages."
-- "The goal is to have pretrained models that can jointly learn representations to support a broad range of downstream AI tasks, much in the way humans do today."
+
+* "At Microsoft, we are on a quest to advance AI beyond existing techniques, by taking a more holistic, human-centric approach to learning and understanding."
+* "We believe XYZ-code enables us to fulfill our long-term vision: cross-domain transfer learning, spanning modalities and languages."
+* "The goal is to have pretrained models that can jointly learn representations to support a broad range of downstream AI tasks, much in the way humans do today."
 
 **Abstractive summarization**:
 - "Microsoft is taking a more holistic, human-centric approach to learning and understanding. We believe XYZ-code enables us to fulfill our long-term vision: cross-domain transfer learning, spanning modalities and languages. Over the past five years, we achieved human performance on benchmarks in conversational speech recognition."
@@ -106,8 +105,8 @@ As an example, consider the following example conversation:
 
 Conversation summarization feature would simplify the text as follows:
 
-|Example summary  | Remark | Conversation aspect |
-|---------|----|----|
+| Example summary | Remark | Conversation aspect |
+| ---------| ---- | ---- |
 | Customer is unable to set up wifi connection for Smart Brew 300 espresso machine |  a customer issue in a customer-and-agent conversation     | issue  |
 | The agent suggested several troubleshooting steps, including checking the wifi connection, checking the Contoso Coffee app, and performing a factory reset. However, none of these steps resolved the issue. The agent then put the customer on hold to look for another solution.   | solutions tried in a customer-and-agent conversation | resolution |
 | The customer contacted the agent for assistance with setting up a wifi connection for their Smart Brew 300 espresso machine. The agent guided the customer through several troubleshooting steps, including a wifi connection check, checking the power light, and a factory reset. Despite following these steps, the issue persisted. The agent then decided to explore other potential solutions | Summarizes a conversation into one paragraph | recap |
@@ -153,17 +152,17 @@ For more information, *see* [**Summarize native documents**](how-to/document-sum
 
 ## Input requirements and service limits
 
-# [Text summarization](#tab/text-summarization)
+### [Text summarization](#tab/text-summarization)
 
 * Summarization takes text for analysis. For more information, see [Data and service limits](../concepts/data-limits.md) in the how-to guide.
 * Summarization works with various written languages. For more information, see [language support](language-support.md?tabs=text-summarization).
 
-# [Conversation summarization](#tab/conversation-summarization)
+### [Conversation summarization](#tab/conversation-summarization)
 
 * Conversation summarization takes structured text for analysis. For more information, see [data and service limits](../concepts/data-limits.md).
 * Conversation summarization works with various spoken languages. For more information, see [language support](language-support.md?tabs=conversation-summarization).
 
-# [Document summarization](#tab/document-summarization)
+### [Document summarization](#tab/document-summarization)
 
 * Summarization takes text for analysis. For more information, see [Data and service limits](../concepts/data-limits.md) in the how-to guide.
 * Summarization works with various written languages. For more information, see [language support](language-support.md?tabs=document-summarization).

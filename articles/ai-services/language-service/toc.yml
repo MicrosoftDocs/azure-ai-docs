@@ -68,50 +68,52 @@ items:
         - name: Azure AI containers overview
           href: ../cognitive-services-container-support.md
 
-  - name: Named Entity Recognition (custom)
+  - name: Named Entity Recognition
     items:
-    - name: Overview
-      href: custom-named-entity-recognition/overview.md
-    - name: Quickstart
-      href: custom-named-entity-recognition/quickstart.md
-    - name: Language support
-      href: custom-named-entity-recognition/language-support.md
-    - name: FAQ
-      href: custom-named-entity-recognition/faq.md
-    - name: Glossary
-      href: custom-named-entity-recognition/glossary.md
-    - name: How-to guides
+    - name: Custom named entity recognition (CNER)
       items:
-      - name: Create projects
-        href: custom-named-entity-recognition/how-to/create-project.md
-      - name: Data selection and schema design
-        href: custom-named-entity-recognition/how-to/design-schema.md
-      - name: Label data
-        href: custom-named-entity-recognition/how-to/tag-data.md
-      - name: Auto label your data (preview)
-        href: custom-named-entity-recognition/how-to/use-autolabeling.md
-      - name: Label data with Azure Machine Learning
-        href: custom/azure-machine-learning-labeling.md
-      - name: Train a model
-        href: custom-named-entity-recognition/how-to/train-model.md
-      - name: Model performance (preview)
-        href: custom-named-entity-recognition/how-to/view-model-evaluation.md
-      - name: Deploy a model
-        href: custom-named-entity-recognition/how-to/deploy-model.md
-      - name: Extract entities from text
-        href: custom-named-entity-recognition/how-to/call-api.md
-      - name: Back up and recover your models
-        href: custom-named-entity-recognition/fail-over.md
-      - name: Use Custom NER containers
+      - name: Overview
+        href: custom-named-entity-recognition/overview.md
+      - name: Quickstart
+        href: custom-named-entity-recognition/quickstart.md
+      - name: Language support
+        href: custom-named-entity-recognition/language-support.md
+      - name: FAQ
+        href: custom-named-entity-recognition/faq.md
+      - name: Glossary
+        href: custom-named-entity-recognition/glossary.md
+      - name: How-to guides
         items:
-        - name: Use Custom NER Docker containers
-          href: custom-named-entity-recognition/how-to/use-containers.md
-        - name: Configure containers
-          href: concepts/configure-containers.md
-        - name: Use container instances
-          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-        - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
+        - name: Create projects
+          href: custom-named-entity-recognition/how-to/create-project.md
+        - name: Data selection and schema design
+          href: custom-named-entity-recognition/how-to/design-schema.md
+        - name: Label data
+          href: custom-named-entity-recognition/how-to/tag-data.md
+        - name: Auto label your data (preview)
+          href: custom-named-entity-recognition/how-to/use-autolabeling.md
+        - name: Label data with Azure Machine Learning
+          href: custom/azure-machine-learning-labeling.md
+        - name: Train a model
+          href: custom-named-entity-recognition/how-to/train-model.md
+        - name: Model performance (preview)
+          href: custom-named-entity-recognition/how-to/view-model-evaluation.md
+        - name: Deploy a model
+          href: custom-named-entity-recognition/how-to/deploy-model.md
+        - name: Extract entities from text
+          href: custom-named-entity-recognition/how-to/call-api.md
+        - name: Back up and recover your models
+          href: custom-named-entity-recognition/fail-over.md
+        - name: Use CNER containers
+          items:
+          - name: Use CNER Docker containers
+            href: custom-named-entity-recognition/how-to/use-containers.md
+          - name: Configure containers
+            href: concepts/configure-containers.md
+          - name: Use container instances
+            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+          - name: Azure AI containers overview
+            href: ../cognitive-services-container-support.md
       - name: Concepts
         items:
           - name: Evaluation metrics
@@ -123,57 +125,57 @@ items:
           - name: Project versioning
             href: concepts/custom-features/project-versioning.md
 
-  - name: Named Entity Recognition (prebuilt)
-    items:
-    - name: Overview
-      href: named-entity-recognition/overview.md
-      displayName: named entity recognition, introduction, entity extraction
-    - name: Quickstart
-      href: named-entity-recognition/quickstart.md
-    - name: Language support
-      href: named-entity-recognition/language-support.md
-    - name: Responsible use of AI
+    - name: Prebuilt named entity recognition (NER)
       items:
-      - name: Transparency note for NER
-        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition.md
-        displayName: Transparency note for NER, Named Entity Recognition transparency, Responsible AI, Responsible use of AI
-      - name: Integration and responsible use
-        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
-        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
-    - name: How-to guides
-      items:
-      - name: Call NER
-        href: named-entity-recognition/how-to-call.md
-      - name: Use skill parameters
-        href: named-entity-recognition/how-to/skill-parameters.md
-      - name: Use containers
+      - name: Overview
+        href: named-entity-recognition/overview.md
+        displayName: named entity recognition, introduction, entity extraction
+      - name: Quickstart
+        href: named-entity-recognition/quickstart.md
+      - name: Language support
+        href: named-entity-recognition/language-support.md
+      - name: Responsible use of AI
         items:
-        - name: Use Docker containers
-          href: named-entity-recognition/how-to/use-containers.md
-        - name: Configure containers
-          href: concepts/configure-containers.md
-        - name: Use container instances
-          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-        - name: Use containers in disconnected environments
-          href: ../containers/disconnected-containers.md
-        - name: Azure AI containers overview
-          href: ../cognitive-services-container-support.md
-    - name: Concepts
-      items:
-      - name: Recognized entity categories
-        href: named-entity-recognition/concepts/named-entity-categories.md
-      - name: Entity Metadata
-        href: named-entity-recognition/concepts/entity-metadata.md
-      - name: API version mapping
-        href: named-entity-recognition/concepts/ga-preview-mapping.md
-    - name: Tutorials
-      items:
-      - name: Extract information in Excel using Power Automate
-        href: named-entity-recognition/tutorials/extract-excel-information.md
-        displayName: excel integration, power automate, ner automation, extract entities
+        - name: Transparency note for NER
+          href: ../../ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition.md
+          displayName: Transparency note for NER, Named Entity Recognition transparency, Responsible AI, Responsible use of AI
+        - name: Integration and responsible use
+          href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
+          displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+        - name: Data, privacy, and security
+          href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+          displayName: Data privacy, logging, data retention
+      - name: How-to guides
+        items:
+        - name: Call NER
+          href: named-entity-recognition/how-to-call.md
+        - name: Use skill parameters
+          href: named-entity-recognition/how-to/skill-parameters.md
+        - name: Use containers
+          items:
+          - name: Use Docker containers
+            href: named-entity-recognition/how-to/use-containers.md
+          - name: Configure containers
+            href: concepts/configure-containers.md
+          - name: Use container instances
+            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+          - name: Use containers in disconnected environments
+            href: ../containers/disconnected-containers.md
+          - name: Azure AI containers overview
+            href: ../cognitive-services-container-support.md
+      - name: Concepts
+        items:
+        - name: Recognized entity categories
+          href: named-entity-recognition/concepts/named-entity-categories.md
+        - name: Entity Metadata
+          href: named-entity-recognition/concepts/entity-metadata.md
+        - name: API version mapping
+          href: named-entity-recognition/concepts/ga-preview-mapping.md
+      - name: Tutorials
+        items:
+        - name: Extract information in Excel using Power Automate
+          href: named-entity-recognition/tutorials/extract-excel-information.md
+          displayName: excel integration, power automate, ner automation, extract entities
 
   - name: Personally identifiable information (PII) recognition
     items:
@@ -389,7 +391,7 @@ items:
       - name: Glossary
         href: conversational-language-understanding/glossary.md
 
-  - name: Custom question answering
+  - name: Custom question answering (CQA)
     items:
     - name: Overview
       href: question-answering/overview.md
@@ -698,7 +700,7 @@ items:
         displayName: sentiment analysis introduction, opinion mining overview, sentiment detection
       - name: Quickstart
         href: sentiment-opinion-mining/quickstart.md
-      - name: language-detection/how-to/use-containers.mdanguage support
+      - name: Language support
         href: sentiment-opinion-mining/language-support.md
       - name: Responsible use of AI
         items:
