@@ -7,7 +7,7 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: tutorial
-ms.date: 03/02/2026
+ms.date: 03/23/2026
 ai-usage: ai-assisted
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
@@ -27,7 +27,7 @@ In this tutorial, you learn how to run a frontend application with an app server
 
 - Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Your Azure account must have a **Cognitive Services Contributor** role assigned so you can agree to the responsible AI terms and create a resource. To get this role assigned to your account, follow the steps in the [Assign roles](/azure/role-based-access-control/role-assignments-steps) documentation, or contact your administrator. 
-- Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**. 
+- After you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**. 
     - You need the key and endpoint from the resource you create to connect your application to the Face service.
 - Access to the gated artifacts required for Azure Vision in Foundry Tools Face Client SDK for Mobile (iOS and Android) and Web. 
     - To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the gated artifacts. For more information, see the [Face Limited Access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
@@ -43,7 +43,7 @@ In this tutorial, you learn how to run a frontend application with an app server
 
 ## Prepare the frontend application
 
-We provide SDKs in multiple languages to simplify integration with your frontend application. Refer to the README for your chosen SDK in the following sections to integrate both the UI and required code.
+SDKs are available in multiple languages to simplify integration with your frontend application. See the README for your chosen SDK in the following sections to integrate both the UI and required code.
 
 > [!IMPORTANT]
 > Each frontend SDK requires access to a gated asset to successfully compile. See the following instructions to set up this access.
@@ -289,7 +289,7 @@ The following steps describe the liveness orchestration process:
 
 1. The SDK starts the camera, guides the user to position correctly, and then prepares the payload to call the liveness detection service endpoint. 
  
-1. The SDK calls Azure Vision Face service to perform the liveness detection. Once the service responds, the SDK notifies the frontend application that the liveness check is complete. Note: The service response doesn't contain the liveness decision. You need to query this information from the app server.
+1. The SDK calls Azure Vision Face service to perform the liveness detection. When the service responds, the SDK notifies the frontend application that the liveness check is complete. The service response doesn't contain the liveness decision. Query this information from the app server.
 
 1. The frontend application relays the liveness check completion to the app server. 
 

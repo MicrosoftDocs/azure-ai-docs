@@ -21,4 +21,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/integrate-with-other-apps.md)
 
+[!INCLUDE [classic-links](../includes/classic-links.md)]
+
 [!INCLUDE [integrate-with-other-apps content](../../foundry/includes/how-to-integrate-with-other-apps-content.md)]

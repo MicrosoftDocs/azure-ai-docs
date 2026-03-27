@@ -262,7 +262,7 @@ The result of the API call is a JSON document. The following snippet is an excer
   "value": [
     {
       "properties": {
-        "category": "Azure Active Directory",
+        "category": "Microsoft Entra ID",
         "endpoints": [
           {
             "domainName": "login.microsoftonline.com",

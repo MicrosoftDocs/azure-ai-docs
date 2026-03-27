@@ -43,7 +43,7 @@ The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-project
 
 ## Foundry (classic) portal
 
-[!INCLUDE [classic-link](../foundry/includes/classic-link.md)] (classic) portal supports hub-based projects, Foundry projects, and Azure OpenAI resources. Use the classic portal when you need features not yet available in the current portal, such as prompt flow or managed compute model deployments.
+[!INCLUDE [foundry-link](../foundry/includes/foundry-link.md)] (classic) portal supports hub-based projects, Foundry projects, and Azure OpenAI resources. Use the classic portal when you need features not yet available in the current portal, such as prompt flow or managed compute model deployments.
 
 The Foundry (classic) portal provides access to all resource types, including hub-based projects, Foundry projects, and Azure OpenAI resources. To use the classic portal, turn off the **New Foundry** toggle in the portal banner.
 
