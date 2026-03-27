@@ -13,11 +13,9 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 
 <!-- CustomerIntent: As a developer building AI agents, I want to configure tracing for my agent framework so that I can debug issues and monitor performance in production. -->
 
-# Configure tracing for AI agent frameworks
+# Configure tracing for AI agent frameworks (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
-[!INCLUDE [trace-agent-preview](../../includes/trace-agent-preview.md)]
 
 When AI agents behave unexpectedly in production, tracing gives you the visibility to quickly identify the root cause. Tracing captures detailed telemetry—including LLM calls, tool invocations, and agent decision flows—so you can debug issues, monitor latency, and understand agent behavior across requests.
 
