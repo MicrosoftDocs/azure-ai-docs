@@ -125,57 +125,57 @@ items:
             - name: Project versioning
               href: concepts/custom-features/project-versioning.md
 
-        - name: Prebuilt named Entity Recognition (NER)
+    - name: Prebuilt named entity recognition (NER)
+      items:
+      - name: Overview
+        href: named-entity-recognition/overview.md
+        displayName: named entity recognition, introduction, entity extraction
+      - name: Quickstart
+        href: named-entity-recognition/quickstart.md
+      - name: Language support
+        href: named-entity-recognition/language-support.md
+      - name: Responsible use of AI
+        items:
+        - name: Transparency note for NER
+          href: ../../ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition.md
+          displayName: Transparency note for NER, Named Entity Recognition transparency, Responsible AI, Responsible use of AI
+        - name: Integration and responsible use
+          href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
+          displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+        - name: Data, privacy, and security
+          href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+          displayName: Data privacy, logging, data retention
+      - name: How-to guides
+        items:
+        - name: Call NER
+          href: named-entity-recognition/how-to-call.md
+        - name: Use skill parameters
+          href: named-entity-recognition/how-to/skill-parameters.md
+        - name: Use containers
           items:
-          - name: Overview
-            href: named-entity-recognition/overview.md
-            displayName: named entity recognition, introduction, entity extraction
-          - name: Quickstart
-            href: named-entity-recognition/quickstart.md
-          - name: Language support
-            href: named-entity-recognition/language-support.md
-          - name: Responsible use of AI
-            items:
-            - name: Transparency note for NER
-              href: ../../ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition.md
-              displayName: Transparency note for NER, Named Entity Recognition transparency, Responsible AI, Responsible use of AI
-            - name: Integration and responsible use
-              href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
-              displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-            - name: Data, privacy, and security
-              href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-              displayName: Data privacy, logging, data retention
-          - name: How-to guides
-            items:
-            - name: Call NER
-              href: named-entity-recognition/how-to-call.md
-            - name: Use skill parameters
-              href: named-entity-recognition/how-to/skill-parameters.md
-            - name: Use containers
-              items:
-              - name: Use Docker containers
-                href: named-entity-recognition/how-to/use-containers.md
-              - name: Configure containers
-                href: concepts/configure-containers.md
-              - name: Use container instances
-                href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-              - name: Use containers in disconnected environments
-                href: ../containers/disconnected-containers.md
-              - name: Azure AI containers overview
-                href: ../cognitive-services-container-support.md
-          - name: Concepts
-            items:
-            - name: Recognized entity categories
-              href: named-entity-recognition/concepts/named-entity-categories.md
-            - name: Entity Metadata
-              href: named-entity-recognition/concepts/entity-metadata.md
-            - name: API version mapping
-              href: named-entity-recognition/concepts/ga-preview-mapping.md
-          - name: Tutorials
-            items:
-            - name: Extract information in Excel using Power Automate
-              href: named-entity-recognition/tutorials/extract-excel-information.md
-              displayName: excel integration, power automate, ner automation, extract entities
+          - name: Use Docker containers
+            href: named-entity-recognition/how-to/use-containers.md
+          - name: Configure containers
+            href: concepts/configure-containers.md
+          - name: Use container instances
+            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+          - name: Use containers in disconnected environments
+            href: ../containers/disconnected-containers.md
+          - name: Azure AI containers overview
+            href: ../cognitive-services-container-support.md
+      - name: Concepts
+        items:
+        - name: Recognized entity categories
+          href: named-entity-recognition/concepts/named-entity-categories.md
+        - name: Entity Metadata
+          href: named-entity-recognition/concepts/entity-metadata.md
+        - name: API version mapping
+          href: named-entity-recognition/concepts/ga-preview-mapping.md
+      - name: Tutorials
+        items:
+        - name: Extract information in Excel using Power Automate
+          href: named-entity-recognition/tutorials/extract-excel-information.md
+          displayName: excel integration, power automate, ner automation, extract entities
 
   - name: Personally identifiable information (PII) recognition
     items:
