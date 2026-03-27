@@ -4,7 +4,6 @@ titleSuffix: Foundry Local
 description: "Foundry Local is an on-device AI inference solution that lets you run AI models locally through a CLI, SDK, or REST API."
 keywords: Foundry Tools, cognitive
 ms.service: azure-ai-foundry
-ms.subservice: foundry-local
 ms.topic: overview
 ms.date: 01/06/2026
 ms.reviewer: samkemp

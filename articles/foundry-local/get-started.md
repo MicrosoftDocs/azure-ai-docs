@@ -4,7 +4,6 @@ titleSuffix: Foundry Local
 description: "Learn how to install, configure, and run your first AI model with Foundry Local"
 ms.date: 01/06/2026
 ms.service: azure-ai-foundry
-ms.subservice: foundry-local
 ms.topic: quickstart
 ms.reviewer: samkemp
 ms.author: jburchel
@@ -237,6 +236,6 @@ Reference: [Best practices and troubleshooting](reference/reference-best-practic
 - [Integrate inference SDKs with Foundry Local](how-to/how-to-integrate-with-inference-sdks.md)
 - [Foundry Local documentation](index.yml)
 - [Best practices and troubleshooting](reference/reference-best-practice.md)
-- [Foundry Local API reference](reference/reference-catalog-api.md)
+- [Foundry Local REST API reference](reference/reference-rest.md)
 - [Compile Hugging Face models](how-to/how-to-compile-hugging-face-models.md)
 - [Foundry Local on Windows Server 2025](reference/windows-server-frequently-asked-questions.md)

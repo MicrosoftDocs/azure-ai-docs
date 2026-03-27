@@ -4,7 +4,6 @@ titleSuffix: Foundry Local
 description: "Learn how to create a chat application using Foundry Local and Open WebUI"
 keywords: Foundry Tools, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
-ms.subservice: foundry-local
 ms.topic: how-to
 ms.date: 01/06/2026
 ms.author: jburchel

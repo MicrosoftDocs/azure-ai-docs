@@ -3,7 +3,6 @@ title: "Foundry Local REST API Reference"
 titleSuffix: Foundry Local
 description: "Complete reference guide for the Foundry Local REST API."
 ms.service: azure-ai-foundry
-ms.subservice: foundry-local
 ms.author: nakersha
 ms.reviewer: jonburchel
 author: natke

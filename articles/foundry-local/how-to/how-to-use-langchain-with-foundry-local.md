@@ -4,7 +4,6 @@ titleSuffix: Foundry Local
 description: "Learn how to build a LangChain application using Foundry Local"
 keywords: Foundry Tools, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
-ms.subservice: foundry-local
 ms.topic: how-to
 ms.date: 01/05/2026
 ms.reviewer: eneros

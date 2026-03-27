@@ -2,7 +2,6 @@
 title: Include file
 description: Include file
 ms.service: azure-ai-foundry
-ms.subservice: foundry-local
 ms.topic: include
 ms.date: 01/05/2026
 ms.author: jburchel

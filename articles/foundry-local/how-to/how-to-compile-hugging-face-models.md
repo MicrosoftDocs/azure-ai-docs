@@ -3,7 +3,6 @@ title: "Compile Hugging Face models to run on Foundry Local"
 titleSuffix: Foundry Local
 description: "Learn how to compile and run Hugging Face models with Foundry Local."
 ms.service: azure-ai-foundry
-ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
 ms.author: jburchel

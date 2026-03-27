@@ -3,7 +3,6 @@ title: "Use tool calling with Foundry Local"
 titleSuffix: Foundry Local
 description: "Learn how to write applications with Foundry Local that make use of tool calling"
 ms.service: azure-ai-foundry
-ms.subservice: foundry-local
 ms.topic: how-to
 ms.author: nakersha
 ms.reviewer: metang

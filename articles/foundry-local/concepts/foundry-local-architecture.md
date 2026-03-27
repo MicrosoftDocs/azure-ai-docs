@@ -3,7 +3,6 @@ title: "Foundry Local architecture"
 titleSuffix: Foundry Local
 description: "Learn about the architecture and components of Foundry Local"
 ms.service: azure-ai-foundry
-ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: concept-article
 ms.author: jburchel
