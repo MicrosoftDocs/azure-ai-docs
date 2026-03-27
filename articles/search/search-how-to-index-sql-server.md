@@ -31,7 +31,7 @@ Azure AI Search requires an encrypted channel for all indexer requests over a pu
 
 1. Check the properties of the certificate to verify the subject name is the fully qualified domain name (FQDN) of the Azure VM. 
 
-   You can use a tool like CertUtils or the Certificates snap-in to view the properties. You can get the FQDN from the VM service page Essentials section, in the **Public IP address/DNS name label** field, in the [Azure portal](https://portal.azure.com/).
+   You can use a tool like CertUtils or the Certificates snap-in to view the properties. You can get the FQDN from the VM service page Essentials section, in the **Public IP address/DNS name label** field, in the [Azure portal](https://portal.azure.com).
   
    The FQDN is typically formatted as `<your-VM-name>.<region>.cloudapp.azure.com`
 

@@ -19,4 +19,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../foundry/foundry-status-dashboard-documentation.md)
 
+[!INCLUDE [classic-links](includes/classic-links.md)]
+
 [!INCLUDE [foundry-status-dashboard-documentation content](../foundry/includes/foundry-status-dashboard-documentation-content.md)]

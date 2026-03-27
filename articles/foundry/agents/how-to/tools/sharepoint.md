@@ -114,7 +114,7 @@ sharepoint_tool= SharepointPreviewTool(
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="""You are a helpful agent that can use SharePoint tools to assist users. 
         Use the available SharePoint tools to answer questions and perform tasks.""",
         tools=[sharepoint_tool],
@@ -207,7 +207,7 @@ SharePointGroundingToolOptions sharepointToolOption = new()
 {
     ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
 };
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { new SharepointPreviewTool(sharepointToolOption), }
@@ -358,7 +358,7 @@ export async function main(): Promise<void> {
   // Create agent with SharePoint tool
   const agent = await project.agents.createVersion("MyAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions:
       "You are a helpful agent that can use SharePoint tools to assist users. Use the available SharePoint tools to answer questions and perform tasks.",
     // Define SharePoint tool that searches SharePoint content
@@ -504,7 +504,7 @@ public class SharePointGroundingExample {
         );
 
         // Create agent with SharePoint tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a helpful assistant that can search through SharePoint documents.")
             .setTools(Collections.singletonList(sharepointTool));
 

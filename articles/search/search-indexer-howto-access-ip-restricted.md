@@ -32,7 +32,7 @@ This article explains how to find the IP address of your search service and conf
 
 ## Get a search service IP address
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview**.
 
