@@ -1314,11 +1314,6 @@
       "source_path": "articles/ai-services/reference/rest-api-resources.md",
       "redirect_url": "/azure/foundry/reference/foundry-project",
       "redirect_document_id": true
-    },
-    {
-      "source_path": "articles/ai-services/context/context.yml",
-      "redirect_url": "/azure/foundry",
-      "redirect_document_id": true
     }
   ]
 }
