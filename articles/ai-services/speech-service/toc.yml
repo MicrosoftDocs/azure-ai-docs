@@ -289,6 +289,8 @@ items:
     - name: OpenAI text to speech voices
       href: openai-voices.md
       displayName: tts
+    - name: MAI-Voice
+      href: mai-voice.md
     - name: Text to speech FAQ
       displayName: FAQ,TTS,frequently asked questions
       href: faq-tts.yml

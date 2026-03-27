@@ -1,11 +1,9 @@
 ---
-title: What are MAI-Voice?
+title: What is MAI-Voice?
 titleSuffix: Foundry Tools
 description: Learn about neural text to speech MAI voices that you can use with speech synthesis.
 author: PatrickFarley
-reviewer: patrickfarley
 ms.author: pafarley
-ms.reviewer: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article
@@ -17,16 +15,15 @@ ms.custom: references_regions
 
 # MAI-Voice-1 in Azure Speech
 
-Azure Speech continues to advance text to speech technology with **MAI-Voice-1**, a next-generation neural text to speech (TTS) model available through Azure AI Speech in **public preview**. Built on Microsoft’s latest in-house speech foundation models, MAI-Voice-1 delivers highly expressive, natural, and emotionally rich speech output while maintaining consistent voice persona quality.
+MAI-Voice-1 is a neural text-to-speech model available through Azure AI Speech in **public preview**. It's built on Microsoft's in-house speech foundation models and produces expressive, natural speech output with consistent voice persona quality.
 
 Similar to Azure Neural HD voices, MAI-Voice-1 understands input text holistically and automatically adapts tone, emotion, and speaking style. This enables more human-like and conversational speech without requiring extensive manual tuning.
-
 
 Azure Speech offers MAI-Voice-1 as an advanced neural voice model optimized for expressive, conversational, and long-form scenarios.
 
 | Model | Voice Count | Key Characteristics | Best For |
 |------|-------------|---------------------|----------|
-| **MAI-Voice-1** | 2 prebuilt English (US) voices | Emotionally rich, highly expressive, consistent persona quality, SSML style control | Conversational AI, creative applications, long-form narration |
+| **MAI-Voice-1** | two prebuilt English (US) voices | Emotionally rich, highly expressive, consistent persona quality, SSML style control | Conversational AI, creative applications, long-form narration |
 
 ## Prebuilt voices
 
