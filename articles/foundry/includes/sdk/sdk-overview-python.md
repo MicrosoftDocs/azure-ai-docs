@@ -10,7 +10,9 @@ ms.date: 03/27/2026
 ms.custom: include, classic-and-new
 ---
 
-| SDK Version   | Portal Version  | Status  | Python Package                |
+
+| SDK Version   | Portal Version  | Status  | Python Package    |
+| -- | -- | --| -- |
 | 2.x  | Foundry (new)   | Stable | `azure-ai-projects>=2.0.0`  |
 | 1.x  | Foundry (classic) | Stable  | `azure-ai-projects==1.0.0`    |
 
