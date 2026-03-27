@@ -19,18 +19,19 @@ ai-usage: ai-assisted
 
 # Deploy and use MAI-image-2 in Microsoft Foundry (preview)
 
-MAI-image-2 (Preview) is a Microsoft AI-owned, enterprise-ready text-to-image generation model designed for production-quality creative and design workflows. In this article, you learn how to:
+MAI-image-2 (Preview) is a text-to-image generation model designed to create high-quality, visually rich images from natural language prompts. It uses a diffusion-based generative approach to progressively refine images, enabling strong alignment between the input text and the generated output. The model is optimized to produce diverse and coherent images across a wide range of creative and design scenarios, making it well suited for tasks such as concept visualization, creative content generation, and image design workflows.
+
+In this article, you learn how to:
 
 - Deploy MAI-image-2 in Microsoft Foundry
 - Authenticate by using Microsoft Entra ID or API keys
 - Generate images by using the MAI image generation API
 
-MAI-image-2 (`mai-image-2`) is optimized for photorealism and compositional diversity, making it well suited for logos, marketing assets, diagrams, and presentation visuals. Its key capabilities include:
+## Key model capabilities
 
-- **Production-ready output**: Generates high-fidelity visuals for logos, marketing, diagrams, and slides.
-- **Enterprise-ready by design**: A Microsoft-owned model optimized for quality, safety, reliability, and integration.
-- **Creative range**: Generates visually diverse outputs across styles and compositions, reducing repetitive or templated results.
-- **Photorealistic and cinematic quality**: Produces highly realistic imagery with strong lighting, reflections, natural environments, and fine visual detail.
+- **Text-to-image generation:** Generates high-quality images from natural language prompts, enabling users to translate textual descriptions into visually coherent outputs suitable for a wide range of creative and design use cases.
+- **Photorealistic image synthesis:** Capable of generating realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
+- **General-purpose image generation:** Designed as a general-purpose image generation model that can be applied across multiple creative, design, and visualization workflows rather than being optimized for a single narrow domain.
 
 ## Prerequisites
 
