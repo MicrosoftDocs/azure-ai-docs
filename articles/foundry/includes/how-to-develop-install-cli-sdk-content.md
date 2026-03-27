@@ -28,7 +28,7 @@ In this article, you install language runtimes, Azure CLI, Azure Developer CLI, 
 - To use project but not create new resources, you need at least:
   - **Azure AI User** on the projects you use (least-privilege role for development)
 
-  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-foundry).
+  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
 ## Install your programming language
 

@@ -12,7 +12,7 @@ ms.custom: include
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry account and project. For more information, see the [Microsoft Foundry Quickstart](../quickstarts/get-started-code.md).
 - Azure CLI installed (optional, for applying resource locks via command line).
 - Appropriate RBAC roles:

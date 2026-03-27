@@ -23,7 +23,7 @@ right deep-dive documentation for each capability.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
 - The **Azure AI User** role on the Foundry project (least-privilege role for
   development). If you also create or manage resources, use **Contributor** or

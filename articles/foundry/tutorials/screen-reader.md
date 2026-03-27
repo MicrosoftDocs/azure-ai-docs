@@ -129,4 +129,4 @@ After you complete the steps in this article, verify the following outcomes:
 ## Related content
 
 * Learn how to build generative AI applications in the [Foundry](../what-is-foundry.md).
-* Get answers to frequently asked questions in the [Azure AI FAQ article](../../foundry-classic/faq.yml).
+

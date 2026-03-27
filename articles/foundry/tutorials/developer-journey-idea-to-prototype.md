@@ -651,7 +651,7 @@ Batch evaluations provide structured results that you can view in the Foundry po
 You can also view detailed results in the Foundry portal by selecting **Evaluation** from your project and selecting the evaluation run. The portal provides visualizations, filtering, and export options.
 
 > [!TIP]
-> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../how-to/evaluation-azure-devops.md), and [Continuously evaluate your AI agents](../../foundry-classic/how-to/continuous-evaluation-agents.md) for integration patterns.
+> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../how-to/evaluation-azure-devops.md), and [Continuously evaluate your AI agents](../observability/how-to/how-to-monitor-agents-dashboard.md) for integration patterns.
 
 ## Troubleshooting
 
@@ -678,7 +678,7 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 
 ### Suggested additional enhancements
 - Add more data sources ([Azure AI Search](../agents/how-to/tools/ai-search.md), [other sources](../how-to/connections-add.md)).
-- Implement advanced evaluation methods ([AI-assisted evaluation](../../foundry-classic/how-to/develop/evaluate-sdk.md)).
+- Implement advanced evaluation methods ([AI-assisted evaluation](../observability/how-to/evaluate-agent.md)).
 - Create [custom tools](../agents/how-to/private-tool-catalog.md) for business-specific operations.
 - Add [conversation memory and personalization](/azure/cosmos-db/gen-ai/azure-agent-service).
 
@@ -686,8 +686,8 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 
 - [Implement safety assessment with red-team testing](../how-to/develop/run-scans-ai-red-teaming-agent.md).
 - [Create comprehensive evaluation datasets with quality metrics](../fine-tuning/data-generation.md).
-- [Apply organization-wide governance policies and model comparison](../../foundry-classic/how-to/built-in-policy-model-deployment.md).
-- [Configure fleet monitoring, CI/CD integration, and production deployment endpoints](../../foundry-classic/concepts/deployments-overview.md).
+- [Apply organization-wide governance policies and model comparison](../how-to/model-deployment-policy.md).
+- [Configure fleet monitoring, CI/CD integration, and production deployment endpoints](../foundry-models/concepts/deployment-types.md).
 
 ### Stage 3: Production to adoption
 
