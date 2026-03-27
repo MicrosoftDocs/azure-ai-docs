@@ -204,6 +204,9 @@ items:
     - name: High definition (HD) voices
       href: high-definition-voices.md
       displayName: hd voice
+    - name: MAI-Voice-1
+      href: MAI-Voice.md
+      displayName: mai voice, neural voice
     - name: Voice conversion (preview)
       href: voice-conversion.md
       displayName: voice conversion
