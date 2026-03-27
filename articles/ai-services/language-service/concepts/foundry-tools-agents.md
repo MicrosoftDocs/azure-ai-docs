@@ -62,7 +62,7 @@ The MCP server exposes Azure Language features through an agent-friendly endpoin
 
 To use the Azure Language MCP server with agents:
 
-* An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A Foundry resource and project. You need Contributor or Owner role on the resource group.
 * An Azure Language resource.
 * A configured connection in your Foundry project so the agent can authenticate to the Azure Language endpoint.
@@ -92,7 +92,7 @@ The agent prioritizes deterministic behavior, making it suitable for enterprise 
 
 Before you set up the intent routing agent, make sure you have the following resources and configurations in place:
 
-* **Azure subscription**: [Create one for free](https://azure.microsoft.com/free/cognitive-services). You need Contributor or Owner role on the resource group.
+* **Azure subscription**: [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You need Contributor or Owner role on the resource group.
 
 * **Foundry resource**: You need an active Foundry resource to host your agent.
 
@@ -142,7 +142,7 @@ In addition to creating the agent from the exact question answering agent templa
 
 Before you set up the exact question answering agent, make sure you have the following resources and configurations in place:
 
-* **Azure subscription**: [Create one for free](https://azure.microsoft.com/free/cognitive-services). You need Contributor or Owner role on the resource group.
+* **Azure subscription**: [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You need Contributor or Owner role on the resource group.
 
 * **Foundry resource**: You need an active Foundry resource to host your agent.
 
