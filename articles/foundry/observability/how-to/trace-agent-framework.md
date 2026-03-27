@@ -17,6 +17,8 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
+[!INCLUDE [trace-agent-preview](../../includes/trace-agent-preview.md)]
+
 When AI agents behave unexpectedly in production, tracing gives you the visibility to quickly identify the root cause. Tracing captures detailed telemetry—including LLM calls, tool invocations, and agent decision flows—so you can debug issues, monitor latency, and understand agent behavior across requests.
 
 Microsoft Foundry provides tracing integrations for popular agent frameworks that require minimal code changes. In this article, you learn how to:
