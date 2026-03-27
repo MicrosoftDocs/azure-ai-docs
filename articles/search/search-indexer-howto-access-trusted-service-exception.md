@@ -33,7 +33,7 @@ In Azure AI Search, indexers that access Azure blobs can use the [trusted servic
 
 ## Check service identity
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Identity**.
 
@@ -43,7 +43,7 @@ In Azure AI Search, indexers that access Azure blobs can use the [trusted servic
 
 ## Check network settings
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your storage account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/).
+1. Go to your storage account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Security + networking** > **Networking**.
 

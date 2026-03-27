@@ -127,7 +127,7 @@ fabric_connection = project.connections.get(FABRIC_CONNECTION_NAME)
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant.",
         tools=[
             MicrosoftFabricPreviewTool(
@@ -187,7 +187,7 @@ FabricDataAgentToolOptions fabricToolOption = new()
 {
     ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricConnection.Id) }
 };
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { new MicrosoftFabricPreviewTool(fabricToolOption), }
@@ -241,7 +241,7 @@ export async function main(): Promise<void> {
   // Define Microsoft Fabric tool that connects to Fabric data sources
   const agent = await project.agents.createVersion("MyFabricAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: "You are a helpful assistant.",
     tools: [
       {
@@ -356,7 +356,7 @@ public class FabricToolExample {
         );
 
         // Create agent with Fabric tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a data assistant that can query Microsoft Fabric data.")
             .setTools(Collections.singletonList(fabricTool));
 

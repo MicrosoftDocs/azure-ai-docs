@@ -43,16 +43,11 @@ This approach simplifies application configuration. Instead of managing multiple
 > This article applies to a **[!INCLUDE [fdp](../../../foundry/includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
 
 > [!NOTE]
-> **SDK versions:** The 2.x preview SDK targets the new Foundry portal and API. The 1.x GA SDK targets Foundry classic. Make sure the samples you follow match your installed package.
+> **SDK versions:** The 2.x GA SDK targets the new Foundry portal and API. The 1.x GA SDK targets Foundry classic. Make sure the samples you follow match your installed package.
 
 ::: zone pivot="programming-language-python"
 
-| SDK Version   | Portal Version  | Status  | Python Package                |
-|---------------|-----------------|---------|-------------------------------|
-| 2.x (preview) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0b1 --pre`  |
-| 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    |
-
-The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+[!INCLUDE [sdk-overview-python](../../../foundry/includes/sdk/sdk-overview-python.md)]
 
 Run this command to install the stable packages for Foundry classic projects.
 ```bash
