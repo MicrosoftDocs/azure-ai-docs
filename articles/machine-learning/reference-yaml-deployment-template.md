@@ -32,7 +32,7 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `description` | string | Description of the deployment template. | | |
 | `tags` | object | Dictionary of tags for the deployment template. | | |
 | `type` | string | Type of the deployment template. | | |
-| `deployment_template_type` | string | **Required.** The deployment template type. | | |
+| `deployment_template_type` | string | **Required.** The deployment template type. "Managed" is the only currently allowed value. | | |
 | `environment` | string | **Required.** The environment to use for the deployment template. This value must be a reference to an existing versioned environment in a registry. Use the `azureml://registries/<registry-name>/environments/<environment-name>/versions/<version>` syntax. <br><br> **Note:** Workspace-scoped environments (using `azureml:<name>:<version>` syntax) and inline environment definitions are not supported for deployment templates. | | |
 | `environment_variables` | object | Dictionary of environment variable key-value pairs to set for the deployment. You can access these environment variables from your scoring scripts. | | |
 | `instance_count` | integer | **Required.** The number of instances to use for the deployment. Specify the value based on the workload you expect. | | |
@@ -81,7 +81,7 @@ $schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.j
 name: my-deployment-template
 version: 1
 description: Basic deployment template example
-deployment_template_type: ManagedOnlineEndpoint
+deployment_template_type: Managed
 environment: azureml://registries/my-registry/environments/my-environment/versions/1
 instance_count: 1
 default_instance_type: Standard_DS3_v2
@@ -96,7 +96,7 @@ $schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.j
 name: my-deployment-template
 version: 1
 description: Deployment template with environment variables and health probes
-deployment_template_type: ManagedOnlineEndpoint
+deployment_template_type: Managed
 environment: azureml://registries/azureml/environments/minimal-ubuntu20.04-py38-cpu-inference/versions/latest
 environment_variables:
   MODEL_PATH: /var/azureml-app/model
@@ -129,13 +129,13 @@ $schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.j
 name: my-deployment-template-restricted
 version: 1
 description: Deployment template with instance type restrictions
-deployment_template_type: ManagedOnlineEndpoint
+deployment_template_type: Managed
 environment: azureml://registries/my-registry/environments/my-environment/versions/1
 instance_count: 1
 default_instance_type: Standard_DS3_v2
 scoring_path: /score
 scoring_port: 5001
-allowed_instance_types: Standard_DS3_v2
+allowed_instance_types: Standard_DS3_v2 Standard_DS3_v2
 ```
 
 ## YAML: with model mount path
