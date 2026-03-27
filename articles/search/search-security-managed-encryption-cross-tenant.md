@@ -4,10 +4,11 @@ description: Configure cross-tenant customer-managed key encryption in Azure AI 
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: mcarter
-ms.date: 03/26/2026
+ms.date: 03/27/2026
 ms.topic: how-to
 ms.service: azure-ai-search
 ms.custom: doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 # Configure customer-managed keys across different tenants
@@ -18,21 +19,21 @@ This scenario is common for SaaS providers that host Azure AI Search in their ow
 
 There are two possible approaches to enable cross-tenant CMK encryption for Azure AI Search:
 
-1. **Use a Microsoft Entra multitenant application with a federated identity credential (FIC)** (preview): This is the recommended approach, but currently requires use of a preview API (version `2026-03-01-preview` or later). This approach allows Azure AI Search to access encryption keys in another tenant without the need for client secrets, enhancing security and simplifying management.
+1. **Use a Microsoft Entra multitenant application with a federated identity credential (FIC)** (preview): This approach is recommended, but currently requires use of a preview API (version `2026-03-01-preview` or later). This approach allows Azure AI Search to access encryption keys in another tenant without the need for client secrets, enhancing security and simplifying management.
 
-1. **Use a Microsoft Entra multitenant application with client secrets**: This approach is less secure and more complex to manage, as it requires handling client secrets. It is not recommended unless the first approach is not feasible for your scenario.
+1. **Use a Microsoft Entra multitenant application with client secrets**: This approach is less secure and more complex to manage, as it requires handling client secrets. Don't use this approach unless the first approach isn't feasible for your scenario.
 
 ## Option 1: Use a Microsoft Entra multitenant application with a federated identity credential (preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-To configure cross-tenant CMK encryption using a Microsoft Entra multitenant application with a federated identity credential (FIC)  paired with a user-assigned managed identity, so Azure AI Search can access encryption keys in another tenant without client secrets, follow these steps.
+To configure cross-tenant CMK encryption by using a Microsoft Entra multitenant application with a federated identity credential (FIC) paired with a user-assigned managed identity, so Azure AI Search can access encryption keys in another tenant without client secrets, follow these steps.
 
 ### Prerequisites for option 1
 
-- A tenant (Tenant A) that contains Azure AI Search. To configure customer-managed keys (CMK), the search service must be on a [billable tier](search-sku-tier.md#tier-descriptions) (Basic or higher) in any region and must be [enabled for role-based access control](search-security-enable-roles.md).
+- A tenant (Tenant A) that contains the Azure AI Search service you want to encrypt. To configure customer-managed keys (CMK), the search service must be on a [billable tier](search-sku-tier.md#tier-descriptions) (Basic or higher).
 
-- A separate tenant (Tenant B) that contains Azure Key Vault. The key vault must have [soft delete](../key-vault/general/soft-delete-overview.md), [purge protection](../key-vault/general/soft-delete-overview.md#purge-protection), and [role-based access control](../key-vault/general/rbac-guide.md) enabled.
+- A separate tenant (Tenant B) that contains the Azure Key Vault with the encryption keys you want to use. The key vault must have [soft delete](../key-vault/general/soft-delete-overview.md), [purge protection](../key-vault/general/soft-delete-overview.md#purge-protection), and [role-based access control](../key-vault/general/rbac-guide.md) enabled.
 
 - The [Azure CLI](/cli/azure/install-azure-cli) installed and signed in.
 
@@ -54,7 +55,7 @@ A multitenant Microsoft Entra application enables the search service to authenti
 
 To create the multitenant Microsoft Entra application:
 
-1. Sign in to Tenant A where you deployed your Azure AI Search service using [Azure CLI](/cli/azure/what-is-azure-cli?view=azure-cli-latest).
+1. Sign in to Tenant A where you deployed your Azure AI Search service by using [Azure CLI](/cli/azure/what-is-azure-cli?view=azure-cli-latest).
 
     ```azurecli
     az login --tenant "$TENANT_A_ID"
@@ -78,7 +79,7 @@ To create the multitenant Microsoft Entra application:
 
 ### Create a user-assigned managed identity
 
-You will need to create a user-assigned managed identity (UAMI) and assign it to the Azure AI Search service. The managed identity acts as the workload identity for cross-tenant authentication.
+Create a user-assigned managed identity (UAMI) and assign it to the Azure AI Search service. The managed identity acts as the workload identity for cross-tenant authentication.
 
 You will also need to configure a multitenant Microsoft Entra application with a federated identity credential (FIC) that trusts the managed identity. At runtime, Azure AI Search uses the managed identity and federated identity flow to obtain access tokens and call the customer’s Azure Key Vault for customer-managed key (CMK) operations, without using client secrets.
 
@@ -106,7 +107,7 @@ To create the user-assigned managed identity and assign it to the search service
 
 ### Add a federated identity credential
 
-You will also need to add a federated identity credential (FIC) on the multitenant Microsoft Entra application to allow Azure AI Search to exchange its UAMI token for an application access token, enabling access to Azure Key Vault without using a client secret.
+Add a federated identity credential (FIC) on the multitenant Microsoft Entra application so Azure AI Search can exchange its UAMI token for an application access token. This token grants access to Azure Key Vault without using a client secret.
 
 > [!IMPORTANT]
 > An application can have a maximum of 20 federated identity credentials. If you manage multiple Tenant B key vaults, you might need to share federated identities. For more information, see [Important considerations and restrictions](/entra/workload-id/workload-identity-federation-considerations).
@@ -119,7 +120,7 @@ To get the principal ID of the UAMI and create a FIC configuration file:
     UAMI_PRINCIPAL_ID=$(az identity show -g "$TENANT_A_RG" -n "$UAMI_NAME" --query principalId -o tsv)
     ```
 
-2. Create the federated identity credential JSON:
+1. Create the federated identity credential JSON:
 
     ```azurecli
     cat > fic.json <<EOF
@@ -133,7 +134,7 @@ To get the principal ID of the UAMI and create a FIC configuration file:
     EOF
     ```
 
-3. Add the federated credential to the application:
+1. Add the federated credential to the application:
 
     ```azurecli
     az ad app federated-credential create \
@@ -143,7 +144,7 @@ To get the principal ID of the UAMI and create a FIC configuration file:
 
 ### Grant consent for the application
 
-Install the multitenant application in Tenant B so that you create a service principal. You need administrator-level permissions in Tenant B to perform these steps.
+Install the multitenant application in Tenant B to create a service principal. You need administrator-level permissions in Tenant B to perform these steps.
 
 #### Consent Option A: Admin consent URL
 
@@ -210,6 +211,9 @@ To complete this step, you need the key vault name, key name, and key version fr
 ### Create an encrypted index
 
 Create a search index in Tenant A with the `encryptionKey` property configured for cross-tenant access. The `identity` block specifies the user-assigned managed identity and the federated identity client ID, replacing the `accessCredentials` property.
+
+> [!NOTE]
+> The following REST examples use an admin API key (`api-key`) for authentication. This authentication method requires local authentication to be enabled on the search service, which is the default. If your service has local authentication disabled (`disableLocalAuth: true`), use a bearer token from a Microsoft Entra identity that holds the [Search Index Data Contributor](/azure/search/search-security-rbac) role instead.
 
 Sign back in to Tenant A:
 
@@ -293,19 +297,19 @@ Tenant A and Tenant B need to exchange specific values during setup:
 
 ## Option 2: Use a Microsoft Entra multitenant application with client secrets
 
-To configure cross-tenant CMK encryption using a Microsoft Entra multitenant application that uses `accessCredentials` with an application ID and client secret, follow these steps. *This approach is less secure and more complex to manage, as it requires handling client secrets. It is not recommended unless the FIC approach (option 1) is not feasible for your scenario.*
+To configure cross-tenant CMK encryption using a Microsoft Entra multitenant application that uses `accessCredentials` with an application ID and client secret, follow these steps. *This approach is less secure and more complex to manage, as it requires handling client secrets. It isn't recommended unless the FIC approach (option 1) isn't feasible for your scenario.*
 
 ### Prerequisites for option 2
 
-- A tenant containing the search service that has content you want to encrypt. Azure AI Search must be [configured for role-based access](search-security-enable-roles.md). Support for CMK requires Basic pricing tier or higher.
+- A tenant (Tenant A) containing the Azure AI Search service with the content you want to encrypt. Configuring customer-managed keys (CMK) requires the Basic pricing tier or higher.
 
-- A separate tenant having the Azure Key Vault and the encryption keys you want to use. Azure Key Vault must be [configured for role-based access](/azure/key-vault/general/rbac-guide).
+- A separate tenant with the Azure Key Vault and the encryption keys you want to use. Azure Key Vault must be [configured for role-based access](/azure/key-vault/general/rbac-guide).
 
 - The [Azure CLI](/cli/azure/install-azure-cli) installed and signed in.
 
 ### Create a multitenant Microsoft Entra application in tenant A
 
-Use the Azure CLI to send requests. We refer to the tenant containing Azure AI Search as *tenant A*.
+Use the Azure CLI to send requests. The tenant containing Azure AI Search is *tenant A*.
 
 1. Get the tenant ID:
 
@@ -329,7 +333,7 @@ Use the Azure CLI to send requests. We refer to the tenant containing Azure AI S
 
 1. Save the password output from this step. The password output is a required input for [setting up CMK](search-security-manage-encryption-keys.md) in Azure AI Search.
 
-1. To specify when the client secret expires, you can specify an end-date parameter to this command.
+1. To specify when the client secret expires, specify an end-date parameter to this command.
 
    `az ad app credential reset --id <multitenant-app-id> --end-date <end-date>`
 
@@ -337,25 +341,25 @@ Use the Azure CLI to send requests. We refer to the tenant containing Azure AI S
 
 ### Create a service principal in tenant B for the multitenant application
 
-We refer to the tenant containing Azure Key Vault as *tenant B*. In tenant B, create a service principal for the multitenant application in tenant A.
+The tenant containing Azure Key Vault is *tenant B*. In tenant B, create a service principal for the multitenant application in tenant A.
 
 1. Sign in to tenant B:
 
    `az login --tenant <tenant-B-id>`
 
-1. Create the service principal using the multitenant app ID output from the first step:
+1. Create the service principal by using the multitenant app ID output from the first step:
 
    `az ad sp create --id <multitenant-app-id>` 
 
-   This service principal is an instance of the multitenant application in tenant A. Roles assigned to this service principal in tenant B are also assigned to the multitenant application in tenant A.
+   This service principal is an instance of the multitenant application in tenant A. When you assign roles to this service principal in tenant B, you also assign those roles to the multitenant application in tenant A.
 
-1. Verify the link between tenant A and B by reviewing the "appOwnerOrganizationId" in the following command:
+1. Verify the link between tenant A and B by reviewing the `appOwnerOrganizationId` in the following command:
 
    `az ad sp show --id <multitenant-app-id>`
 
-   This command displays the service principal details in JSON. Look for the "appOwnerOrganizationId" field in the output to confirm it matches tenant A's ID.
+   This command displays the service principal details in JSON. Look for the `appOwnerOrganizationId` field in the output to confirm it matches tenant A's ID.
 
-1. Save the object ID of the service principal (from the `"id"` field) from this step. The object ID is a required input for setting up CMK in Azure AI Search.
+1. Save the object ID of the service principal (from the `"id"` field) from this step. You need the object ID to set up CMK in Azure AI Search.
 
 1. Get the resource ID for Azure Key Vault:
 
@@ -373,7 +377,7 @@ We refer to the tenant containing Azure Key Vault as *tenant B*. In tenant B, cr
 
 Create a test index in the search service (tenant A) to validate the setup. Use the multitenant app ID and the credentials you added in the "access credentials" object to authenticate to the key vault in the other tenant. 
 
-You can use this sample index schema for testing. You can use the Azure portal to add an index and provide this JSON, or use a [REST client](search-get-started-text.md) to send a Create Index request.
+Use this sample index schema for testing. You can use the Azure portal to add an index and provide this JSON, or use a [REST client](search-get-started-text.md) to send a Create Index request.
 
 ```json
 {
