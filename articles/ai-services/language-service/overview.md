@@ -100,9 +100,6 @@ Legacy capabilities are established features that provide a stable, supported ba
 
 ### Entity linking
 
-> [!IMPORTANT]
-> Entity linking is retiring from Azure Language in Foundry Tools effective **September 1, 2028**. After this date, the entity linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure Language [**Named entity recognition**](named-entity-recognition/overview.md) or [Foundry models](../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
-
 [Entity linking](./entity-linking/overview.md) is a preconfigured feature that disambiguates the identity of entities (words or phrases) found in unstructured text and returns links to Wikipedia.
 
 :::image type="content" source="media/overview/entity-linking.png" alt-text="A screenshot of an entity linking example." lightbox="media/overview/entity-linking.png":::
@@ -115,7 +112,7 @@ Legacy capabilities are established features that provide a stable, supported ba
 
 ### Orchestration workflow
 
-[Orchestration workflow](./language-detection/overview.md) is a custom feature that enables you to connect [conversational language understanding (CLU)](./conversational-language-understanding/overview.md) AND  [custom question answering (CQA)](./question-answering/overview.md) applications.
+[Orchestration workflow](./orchestration-workflow/overview.md) is a custom feature that enables you to connect [conversational language understanding (CLU)](./conversational-language-understanding/overview.md) AND  [custom question answering (CQA)](./question-answering/overview.md) applications.
 
 :::image type="content" source="media/overview/orchestration-workflow.png" alt-text="A screenshot of an orchestration workflow example." lightbox="media/overview/orchestration-workflow.png":::
 

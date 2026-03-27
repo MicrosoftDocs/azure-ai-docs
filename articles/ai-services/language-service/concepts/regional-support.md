@@ -161,6 +161,8 @@ Custom text classification is only available in some Azure regions. Some regions
 
 ## Summarization
 
+[!INCLUDE [availability](../summarization/includes/regional-availability.md)]
+
 |Region                |Text abstractive summarization|Conversation summarization               |
 |----------------------|------------------------------|-----------------------------------------|
 |AustraliaEast|✓|✓|

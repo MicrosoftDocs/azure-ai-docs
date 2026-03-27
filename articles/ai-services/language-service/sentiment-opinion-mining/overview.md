@@ -11,10 +11,10 @@ ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---
 <!-- markdownlint-disable MD025 -->
-# What is sentiment analysis and opinion mining?
+# What are sentiment analysis and opinion mining?
 
 > [!IMPORTANT]
-> Sentiment analysis and opinion mining is retiring from Azure Language effective **March 31, 2029**. After this date, these features are no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
+> Sentiment analysis and opinion mining are retiring from Azure Language effective **March 31, 2029**. After this date, these features are no longer supported. During the support window, we recommend that users migrate existing workloads and direct all new projects to [Microsoft Foundry models](../../../foundry/concepts/foundry-models-overview.md), which offer enhanced capabilities for natural language understanding and can be easily integrated into your applications.
 
 Sentiment analysis and opinion mining are features offered by [Azure Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. These features help you discover what people think about your brand or topic by analyzing text for signs of positive or negative sentiment. They can also link these sentiments to specific aspects of the text.
 
@@ -40,10 +40,10 @@ Opinion mining is a feature of sentiment analysis, also known as aspect-based se
 
 As you use sentiment analysis, see the following reference documentation and samples for Azure Language:
 
-|Development option / language  |Reference documentation |Samples  |
-|---------|---------|---------|
-|REST APIs (Authoring)   | [REST API documentation](https://aka.ms/ct-authoring-swagger)        |         |
-|REST APIs (Runtime)    | [REST API documentation](https://aka.ms/ct-runtime-swagger)        |         |
+| Development option / language | Reference documentation | Samples |
+| -- | -- | -- |
+| REST APIs (Authoring) | [REST API documentation](https://aka.ms/ct-authoring-swagger) | |
+| REST APIs (Runtime) | [REST API documentation](https://aka.ms/ct-runtime-swagger) | |
 
 ---
 
