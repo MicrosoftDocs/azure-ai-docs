@@ -104,9 +104,9 @@ items:
           href: custom-named-entity-recognition/how-to/call-api.md
         - name: Back up and recover your models
           href: custom-named-entity-recognition/fail-over.md
-        - name: Use Custom NER containers
+        - name: Use CNER containers
           items:
-          - name: Use Custom NER Docker containers
+          - name: Use CNER Docker containers
             href: custom-named-entity-recognition/how-to/use-containers.md
           - name: Configure containers
             href: concepts/configure-containers.md
