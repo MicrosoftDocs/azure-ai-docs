@@ -23,8 +23,8 @@ Core capabilities are the primary, actively evolving features of Azure Language.
 
 * [Language detection](#language-detection)
 * **Named entity recognition (NER)**
-  * [Custom NER](#custom-named-entity-recognition-cner)
-  * [Prebuilt NER](#prebuilt-named-entity-recognition-ner)
+  * [Custom NER](#custom-ner)
+  * [Prebuilt NER](#prebuilt-ner)
 * [PII detection](#personally-identifiable-information-pii-detection)
 * [Text analytics for health](#text-analytics-for-health)
 
