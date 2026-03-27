@@ -74,7 +74,7 @@ You can find our examples on [azureml-examples](https://github.com/Azure/azureml
 This tool will automatically create new managed online endpoint based on your existing web services. Your original services won't be affected. You can safely route the traffic to the new endpoint and then delete the old one.
 
 > [!WARNING]
-> The Azure CLI ML extension v1 (`azure-cli-ml`) reached end-of-support on September 30, 2025. The migration script was authored when CLI v1 was current. If the script uses `azure-cli-ml` commands, it might not function as expected. We recommend verifying the script contents before running it. For a fully supported path, redeploy manually using the [CLI v2 or SDK v2 method](#with-our-clihow-to-deploy-online-endpointsmd-or-sdkhow-to-deploy-managed-online-endpoint-sdk-v2md).
+> The Azure CLI ML extension v1 (`azure-cli-ml`) reached end-of-support on September 30, 2025. The migration script was authored when CLI v1 was current. If the script uses `azure-cli-ml` commands, it might not function as expected. We recommend verifying the script contents before running it. For a fully supported path, redeploy manually using the [CLI v2 or SDK v2 method](#with-our-cli-or-sdk).
 
 > [!NOTE]
 > The upgrade script is a sample script and is provided without a service level agreement (SLA).
