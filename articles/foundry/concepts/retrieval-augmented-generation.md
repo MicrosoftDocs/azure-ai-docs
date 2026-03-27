@@ -49,7 +49,6 @@ To get started, choose one of these paths based on your needs:
 
 ## Related content
 
-- [Azure OpenAI On Your Data (classic)](../../foundry-classic/openai/concepts/use-your-data.md)
 - [File search tool for agents](../agents/how-to/tools/file-search.md)
 - [Quickstart: Agentic retrieval](../../search/search-get-started-agentic-retrieval.md)
 - [File search tool for agents](../agents/how-to/tools/file-search.md)
