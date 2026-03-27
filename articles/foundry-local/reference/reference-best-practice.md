@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 ---
 
 # Best practices and troubleshooting guide for Foundry Local
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
+
 This article lists best practices and troubleshooting tips for Foundry Local.
 
 ## Prerequisites

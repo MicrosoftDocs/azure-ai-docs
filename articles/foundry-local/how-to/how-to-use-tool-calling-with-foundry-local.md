@@ -14,7 +14,6 @@ ms.date: 11/17/2025
 ---
 
 # How to use tool calling with Foundry Local
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 Foundry Local can make use of tool calling, a technique where you prompt the model with definitions of available tools that together with a text prompt, allow the model to work out which tools should be called and with what input data. The application then calls those tools and adds the results to a subsequent model prompt to answer the user's query.
 

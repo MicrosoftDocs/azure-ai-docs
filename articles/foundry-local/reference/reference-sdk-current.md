@@ -17,8 +17,6 @@ ai-usage: ai-assisted
 
 # Foundry Local SDK reference
 
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
-
 The Foundry Local SDK enables you to ship AI features in your applications that are capable of leveraging local AI models through a simple and intuitive API. The SDK abstracts away the complexities of managing AI models and provides a seamless experience for integrating local AI capabilities into your applications. This reference documents SDK implementations for JavaScript and C#. More languages will be added in the future.
 
 The SDK does not require the Foundry Local CLI to be installed on the end users machine, allowing you to ship your applications without additional setup steps for your users - your applications is self-contained. The extra benefits of the Foundry Local SDK include:

@@ -1,7 +1,7 @@
 items:
-- name: Foundry Local (preview) documentation
+- name: Foundry Local documentation
   href: index.yml
-- name: What is Foundry Local (preview)?
+- name: What is Foundry Local?
   href: what-is-foundry-local.md
 - name: Get Started
   href: get-started.md
@@ -30,8 +30,6 @@ items:
 - name: Reference
   expanded: true
   items:
-  - name: Foundry Local CLI
-    href: reference/reference-cli.md
   - name: Foundry Local SDK
     expanded: true
     items:
@@ -41,12 +39,13 @@ items:
       href: reference/reference-sdk-legacy.md
     - name: Guidance for migrating from the legacy SDK
       href: reference/reference-sdk-migration.md
-  - name: APIs
+  - name: Foundry Local CLI (preview)
+    expanded: true
     items:
-    - name: REST API
+    - name: CLI guide
+      href: reference/reference-cli.md
+    - name: CLI REST API
       href: reference/reference-rest.md
-    - name: Catalog API
-      href: reference/reference-catalog-api.md
   - name: Foundry Local on Windows Server 2025
     href: reference/windows-server-frequently-asked-questions.md      
   - name: Best practice and troubleshooting

@@ -17,7 +17,6 @@ ai-usage: ai-assisted
 ---
 
 # What is Foundry Local?
-[!INCLUDE [foundry-local-preview](./includes/foundry-local-preview.md)]
 
 Foundry Local is an on-device AI inference solution that you use to run AI models locally through a CLI, SDK, or REST API.
 

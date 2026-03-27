@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 ---
 
 # Foundry Local architecture
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 Foundry Local provides efficient, secure, and scalable AI model inference directly on your device. This article explains the core components of Foundry Local and how they work together to deliver AI capabilities.
 

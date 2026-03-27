@@ -16,7 +16,6 @@ zone_pivot_groups: foundry-local-sdk-vnext
 ---
     
 # Transcribe recorded audio files with Foundry Local
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 Use Foundry Local's native audio transcription API to convert a local audio file into text. In this article, you create a console application that downloads a Whisper model, loads it, and streams transcription output.
 

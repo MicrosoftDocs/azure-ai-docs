@@ -17,8 +17,6 @@ ai-usage: ai-assisted
 
 # Foundry Local SDK migration guide
 
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
-
 This guide provides instructions for migrating your code from the legacy version of the Foundry Local SDK to the current version. The new SDK removes the dependency on the Foundry Local CLI and therefore allows you to ship your applications without requiring your users to install the CLI or set up a local Foundry environment. The new SDK also includes improvements to the API for better usability and performance.
 
 <!-- markdownlint-disable MD044 -->
