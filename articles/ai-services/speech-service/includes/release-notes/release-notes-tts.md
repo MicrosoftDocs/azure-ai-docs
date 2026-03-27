@@ -37,6 +37,16 @@ Starting in March 2026, Neural HD voices expand beyond their original regions an
 - France Central  
 - Sweden Central  
 
+
+#### Neural HD Multi‑Talker voices expansion
+Neural HD Multi‑Talker voices now support multi‑speaker synthesis across additional input languages, extending beyond en‑US to include **fr‑FR, es‑ES, de‑DE, it‑IT, pt‑BR, ko‑KR, ja‑JP, and zh‑CN**.
+A new model, `en‑MultiTalker‑1:DragonHDLatestNeural`, introduces an expanded set of speakers, enabling more flexible dialogue creation for podcasts, storytelling, and role‑based narration.
+
+| **Gender** | **Speaker names**                     |
+|-----------|----------------------------------------|
+| Female    | Ada, Ava, Emma, Jane                   |
+| Male      | Andrew, Brian, Davis, Steffan           |
+
 #### Neural HD pricing update
 Effective March 2026, Neural HD pricing is reduced, check out details at [Pricing](https://azure.microsoft.com/en-us/pricing/details/speech/).
 
