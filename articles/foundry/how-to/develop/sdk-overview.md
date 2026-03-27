@@ -37,19 +37,9 @@ This approach simplifies application configuration. Instead of managing multiple
 
 ### Install the SDK
 
-> [!NOTE]
-> **SDK versions:** The 2.x preview SDK targets the new Foundry portal and API. The 1.x GA SDK targets Foundry classic. Make sure the samples you follow match your installed package.
+[!INCLUDE [sdk-overview-python](../../includes/sdk/sdk-overview-python.md)]
 
-::: zone pivot="programming-language-python"
-
-| SDK Version   | Portal Version  | Status  | Python Package                |
-|---------------|-----------------|---------|-------------------------------|
-| 2.x (GA) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0`  |
-| 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    |
-
-The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
-
-Run this command to install the preview packages for Foundry projects.
+Run this command to install the packages for Foundry projects.
 ```bash
 pip install azure-ai-projects >=2.0.0
 ```
