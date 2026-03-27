@@ -38,18 +38,6 @@ Speech offers MAI-Voice-1 as an advanced neural voice model optimized for expres
 | **High fidelity audio** | The model produces high-quality neural speech with natural prosody and clarity suitable for production-grade applications. |
 | **Real-time synthesis** | MAI-Voice-1 supports real-time speech synthesis using the Speech SDK and APIs. |
 
-### Supported speaking styles
-
-- Empathetic
-- Excitement
-- Joy
-- Friendly
-- Neutral
-- Encouragement
-- Confusion
-- Sadness
-- Surprise
-- Curiosity
 
 
 ## Use MAI-Voice-1
@@ -63,48 +51,10 @@ MAI-Voice-1 uses the same Azure Speech SDKs and APIs as other Azure Neural and H
 - Your Speech resource key and region from the **Keys and Endpoint** page in the Azure portal.
 - The Azure Speech SDK installed: `pip install azure-cognitiveservices-speech`
 
-## SSML examples
 
-### Basic SSML
 
-The following SSML synthesizes a greeting using the `en-us-Noa:MAI-Voice-1` voice.
 
-```xml
-<speak version="1.0"
-       xmlns="http://www.w3.org/2001/10/synthesis"
-       xml:lang="en-US">
-  <voice name="en-us-Noa:MAI-Voice-1">
-    Hello world, it's great to meet you.
-  </voice>
-</speak>
-```
-
-Submit this SSML to the Speech REST API or SDK to receive synthesized audio.
-
-**Reference**: [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup.md) | [`<voice>` element](speech-synthesis-markup-voice.md)
-
-### Styled SSML (excitement)
-
-The following SSML applies an `excitement` speaking style using the `mstts:express-as` element.
-
-```xml
-<speak version="1.0"
-       xmlns="http://www.w3.org/2001/10/synthesis"
-       xmlns:mstts="http://www.w3.org/2001/mstts"
-       xml:lang="en-US">
-  <voice name="en-us-Noa:MAI-Voice-1">
-    <mstts:express-as style="excitement">
-      Hello world, this is MAI-Voice-1!
-    </mstts:express-as>
-  </voice>
-</speak>
-```
-
-Submit this SSML to receive audio with an excited speaking style applied.
-
-**Reference**: [`mstts:express-as`](speech-synthesis-markup-voice.md#use-speaking-styles-and-roles) | [Supported styles](speech-synthesis-markup-voice.md)
-
-### Python example
+## Python example
 
 The following Python code synthesizes speech using `en-us-Teo:MAI-Voice-1` and saves it to `output.mp3`. Replace `<key>` with your Speech resource key.
 
@@ -145,6 +95,50 @@ synthesizer.speak_ssml_async(ssml).get()
 On success, an `output.mp3` file containing the synthesized speech is saved to the current directory.
 
 **Reference**: [`SpeechConfig`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechconfig) | [`AudioOutputConfig`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.audio.audiooutputconfig) | [`SpeechSynthesizer`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechsynthesizer) | [`speak_ssml_async`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechsynthesizer#azure-cognitiveservices-speech-speechsynthesizer-speak-ssml-async)
+
+
+## SSML examples
+
+### Basic SSML
+
+The following SSML synthesizes a greeting using the `en-us-Noa:MAI-Voice-1` voice.
+
+```xml
+<speak version="1.0"
+       xmlns="http://www.w3.org/2001/10/synthesis"
+       xml:lang="en-US">
+  <voice name="en-us-Noa:MAI-Voice-1">
+    Hello world, it's great to meet you.
+  </voice>
+</speak>
+```
+
+Submit this SSML to the Speech REST API or SDK to receive synthesized audio.
+
+**Reference**: [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup.md) | [`<voice>` element](speech-synthesis-markup-voice.md)
+
+## Personal Voice (MAI-voice-1 prompt mode) 
+
+Steps to Access: 
+1. To access personal voice (voice cloning) using MAI-Voice-1:
+2. Apply for gated access via [Azure AI Custom Neural Voice and Custom Avatar Limited Access Review](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xURFZNMk5NQzVHNFNQVzJIWDVWTDZVVVEzMSQlQCN0PWcu).
+3. Once approved, access personal voice APIs at [cognitive-services-speech-sdk/samples/custom-voice](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/custom-voice/python/personal_voice_sample.py).
+4. Upload audio consent and prompt to create a personal voice
+5. Synthesize text using the created voice and MAI-Voice-1 model using the following SSML 
+
+
+```
+<speak version='1.0'
+       xmlns='http://www.w3.org/2001/10/synthesis'
+       xmlns:mstts='http://www.w3.org/2001/mstts'
+       xml:lang='en-US'> 
+       <voice name='MAI-voice-1'> 
+          <mstts:ttsembedding speakerProfileId='your speaker profile ID here'> 
+          I'm happy to hear that you find me amazing and that I have made your trip planning easier and more fun.  
+          </mstts:ttsembedding> 
+       </voice>
+</speak>  
+```
 
 ## Prebuilt voices
 
