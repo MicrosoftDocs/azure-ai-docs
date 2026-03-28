@@ -33,7 +33,7 @@ The SDK doesn't require the Foundry Local CLI to be installed on the end users m
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C#](../includes/sdk-current-reference/csharp.md)]
 ::: zone-end
-::: zone pivot="programming-language-JavaScript"
+::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/sdk-current-reference/javascript.md)]
 ::: zone-end
 ::: zone pivot="programming-language-python"

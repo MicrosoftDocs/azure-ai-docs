@@ -38,7 +38,7 @@ ai-usage: ai-assisted
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/sdk-legacy-reference/python.md)]
 ::: zone-end
-::: zone pivot="programming-language-JavaScript"
+::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/sdk-legacy-reference/javascript.md)]
 ::: zone-end
 ::: zone pivot="programming-language-csharp"
