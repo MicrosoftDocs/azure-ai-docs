@@ -18,9 +18,16 @@ ai-usage: ai-assisted
 
 
 > [!WARNING]
-> The Foundry Local SDK was updated to remove the dependency on the Foundry Local CLI and improve the API for better usability and performance. This reference documents the legacy version of the SDK that relies on the CLI, which is no longer recommended for new development. Refer to the [current SDK reference](./reference-sdk-current.md) for the latest version of the SDK.
+> This reference applies to earlier versions of the Foundry Local SDK that depend on the Foundry Local CLI for service management. Starting with the versions listed below, the SDK embeds the runtime directly and no longer requires the CLI. For new development, use the [current SDK reference](./reference-sdk-current.md).
 >
-> **The legacy SDK will be deprecated on 31 August 2026.**
+> | Language | Package | CLI-dependent versions | Embedded versions |
+> |---|---|---|---|
+> | C# | Microsoft.AI.Foundry.Local | 0.3.0 and earlier | 0.8.0 and later |
+> | JavaScript | foundry-local-sdk | 0.5.0 and earlier | 0.9.0 and later |
+> | Python | foundry-local-sdk | 0.5.1 and earlier | 1.0.0 and later |
+> | Rust | foundry-local (legacy) → foundry-local-sdk | 0.x | 1.0.0 and later |
+>
+> **Support for CLI-dependent versions ends 31 August 2026.**
 
 <!-- markdownlint-disable MD044 -->
 
