@@ -1,7 +1,7 @@
 ---
 title: "Foundry Local architecture"
 titleSuffix: Foundry Local
-description: "Learn about the architecture and components of Foundry Local"
+description: "Learn how Foundry Local embeds AI inference directly inside your application as a native library."
 ms.service: azure-ai-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: concept-article
@@ -15,112 +15,82 @@ ai-usage: ai-assisted
 
 # Foundry Local architecture
 
-Foundry Local provides efficient, secure, and scalable AI model inference directly on your device. This article explains the core components of Foundry Local and how they work together to deliver AI capabilities.
+Foundry Local is an embedded AI runtime that ships as a single native library inside your application. Rather than connecting to a separate service or daemon, your code loads the Foundry Local Core API in-process and calls it through language-specific SDKs for C#, JavaScript, Python, and Rust. The result is a self-contained application that runs small language models on local hardware with no external dependencies.
 
-## Prerequisites
+This article explains the components that make up the Foundry Local runtime and how they work together to deliver on-device AI inference.
 
-- Install Foundry Local. For setup steps, see [Get started with Foundry Local](../get-started.md).
-- Use a local terminal where the `foundry` CLI is available.
+## Architecture overview
 
-## Quick verification
+The following diagram shows how Foundry Local fits inside your application. Your code interacts with the Core API through direct function calls. The Core API in turn delegates to ONNX Runtime for inference, Foundry Catalog for model acquisition, and WinML (on Windows) for execution provider registration.
 
-Use the following quick checks to confirm the service is running and reachable.
+:::image type="content" source="../media/architecture/new-sdk-architecture.png" alt-text="Diagram showing application code calling the Foundry Local Core API, which delegates to ONNX Runtime, Foundry Catalog, and WinML.":::
 
-1. Get the service status and local endpoint:
+Because the entire runtime is embedded, your application packages everything it needs. End users receive a single distributable with no separate installer or background service to manage.
 
-  ```bash
-  foundry service status
-  ```
+## Foundry Local Core API
 
-  This command prints the service status and the dynamically assigned local endpoint.
+The Foundry Local Core API is the central component of the runtime. It's a platform-specific native library — `.dll` on Windows, `.so` on Linux, and `.dylib` on macOS — that your application loads in-process.
 
-  Reference: [Foundry Local CLI Reference](../reference/reference-cli.md#service-commands)
+The Core API handles:
 
-1. Call the local REST status endpoint:
+- **Model lifecycle management** — downloading, loading, running inference, and unloading models through a single interface.
+- **Hardware abstraction** — detecting available hardware, selecting the best execution provider, and managing the local model cache, so your application code doesn't need to handle these details.
+- **Thread-safe, session-based inference** — supporting concurrent requests from multiple threads without requiring external synchronization.
 
-  ```bash
-  curl http://localhost:PORT/openai/status
-  ```
+Language SDKs for C#, JavaScript, Python, and Rust wrap this native library and expose idiomatic APIs for each ecosystem. Your application code calls the SDK, which makes direct in-process function calls to the Core API.
 
-  Replace `PORT` with the port shown by `foundry service status`. A successful response is JSON that includes `Endpoints`, `ModelDirPath`, and `PipeName`.
+## ONNX Runtime
 
-  Reference: [Foundry Local REST API Reference](../reference/reference-rest.md#get-openaistatus)
+ONNX Runtime is the inference engine that executes AI models. The Core API calls into ONNX Runtime for all model execution.
 
-Foundry Local offers these key benefits:
+ONNX Runtime provides:
 
-> [!div class="checklist"]
->
-> - **Low latency**: Run models locally to minimize processing time and deliver faster results.
-> - **Data privacy**: Process sensitive data locally without sending it to the cloud for inference, helping meet data protection requirements.
-> - **Flexibility**: Support for diverse hardware configurations lets you choose the optimal setup for your needs.
-> - **Scalability**: Deploy across various devices, from laptops to servers, to suit different use cases.
-> - **Cost-effectiveness**: Reduce cloud computing costs, especially for high-volume applications.
-> - **Offline operation**: Work without an internet connection in remote or disconnected environments.
-> - **Seamless integration**: Easily incorporate into existing development workflows for smooth adoption.
+- **Graph partitioning and optimization** — analyzing model graphs and applying optimizations before execution.
+- **Plugin execution providers** — loading hardware-specific acceleration plugins at runtime to target GPUs, NPUs, or other accelerators.
+- **Cross-hardware execution** — running models across the best available hardware while managing memory and data transfer between execution providers.
+- **CPU fallback** — the CPU execution provider is always available, so models run on any device even without specialized hardware.
 
-Foundry Local can still use the network for operations like downloading models and execution providers. If you report a problem, you might choose to share logs (for example, by using `foundry zip-logs`).
+ONNX Runtime supports quantized models, which reduce memory usage and improve inference speed on resource-constrained devices.
 
-## Key components
+## Foundry Catalog
 
-The Foundry Local architecture consists of these main components:
+The Foundry Catalog is a cloud-hosted model registry that the Core API integrates with for model acquisition.
 
-:::image type="content" source="../media/architecture/foundry-local-arch.png" alt-text="Diagram showing Foundry Local service and ONNX Runtime using locally cached models and device execution providers.":::
+The catalog provides:
 
-### Foundry Local service
+- **Hardware-optimized model variants** — pre-compiled ONNX models tuned for specific hardware configurations (CPU, GPU, NPU).
+- **Download on first use** — models are pulled from the catalog the first time your application requests them, then cached locally for subsequent runs.
+- **Local caching** — downloaded models are stored on disk, so they're available immediately without re-downloading.
+- **Version-aware updates** — the catalog tracks model versions and pulls updates when newer versions are available.
 
-The Foundry Local Service includes an OpenAI-compatible REST server that provides a standard interface for working with the inference engine. You can also manage models over REST. Developers use this API to send requests, run models, and get results programmatically.
+> [!NOTE]
+> Foundry Local uses the network to download models and execution providers from the catalog. After the initial download, models run entirely offline from the local cache.
 
-- **Endpoint**: The endpoint is _dynamically allocated_ when the service starts. Find it by running the `foundry service status` command, or by calling `GET /openai/status`. When using Foundry Local in your applications, use an integration SDK that automatically handles endpoint discovery. For more details, see [Integrate with inference SDKs](../how-to/how-to-integrate-with-inference-sdks.md) and the [Foundry Local REST API Reference](../reference/reference-rest.md).
-- **Use Cases**:
-  - Connect Foundry Local to your custom applications
-  - Execute models through HTTP requests
+You aren't limited to models in the Foundry Catalog. You can also compile and optimize your own models in the ONNX format. For details, see [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md).
 
-### ONNX runtime
+## WinML (Windows only)
 
-The ONNX Runtime is a core component that executes AI models. It runs optimized ONNX models efficiently on local hardware like CPUs, GPUs, or NPUs.
+On Windows, Foundry Local integrates with WinML for execution provider registration. WinML is a Windows-native machine learning platform that bridges the gap between ONNX Runtime and the hardware acceleration plugins available on the system.
 
-**Features**:
+WinML handles:
 
-- Works with multiple hardware providers (NVIDIA, AMD, Intel, Qualcomm) and device types (NPUs, CPUs, GPUs)
-- Offers a consistent interface for running models across different hardware
-- Delivers high performance
-- Supports quantized models for faster inference
+- **EP plugin acquisition** — sourcing hardware-matched execution provider plugins from the OS and Windows Update.
+- **Runtime registration** — registering acquired execution providers with ONNX Runtime so they're available during inference.
+- **Driver compatibility** — negotiating driver versions and handling compatibility checks to ensure stable execution.
 
-### Model management
+On Linux and macOS, execution provider registration follows a different path that doesn't involve WinML.
 
-Foundry Local provides robust tools for managing AI models, ensuring that they're readily available for inference and easy to maintain. You handle model management through the **Model Cache** and the **Command-Line Interface (CLI)**.
+## Optional REST API
 
-#### Model cache
+For scenarios that require HTTP-based communication, the Foundry Local SDK can start an optional OpenAI-compatible REST endpoint within your application process. This is useful for integrating with tools that communicate over HTTP, such as LangChain or Open WebUI.
 
-The model cache stores downloaded AI models locally on your device, which ensures models are ready for inference without needing to download them repeatedly. You can manage the cache by using either the Foundry CLI or REST API.
+The REST API isn't required for native SDK usage. When you call the SDK directly, your application makes in-process function calls with no HTTP overhead.
 
-- **Purpose**: Speeds up inference by keeping models locally available
-- **Key Commands**:
-  - `foundry cache list`: Shows all models in your local cache
-  - `foundry cache remove <model-name>`: Removes a specific model from the cache
-  - `foundry cache cd <path>`: Changes the storage location for cached models
+## Hardware abstraction
 
-#### Model lifecycle
+Foundry Local abstracts the underlying hardware so your application code doesn't need to detect devices or select execution providers. The Core API automatically identifies available hardware and chooses the best execution provider for each model.
 
-1. **Download**: Download models from the Foundry model catalog and save them to your local disk.
-1. **Load**: Load models into the Foundry Local service memory for inference. Set a TTL (time-to-live) to control how long the model stays in memory (default: 600 seconds).
-1. **Run**: Execute model inference for your requests.
-1. **Unload**: Remove models from memory to free up resources when no longer needed.
-1. **Delete**: Remove models from your local cache to reclaim disk space.
-
-#### Model compilation using Olive
-
-Before you can use models with Microsoft Foundry Local, you must compile and optimize them in the [ONNX](https://onnx.ai) format. Microsoft provides a selection of published models in the Foundry model catalog that are already optimized for Foundry Local. However, you aren't limited to those models - by using [Olive](https://microsoft.github.io/Olive/). Olive is a powerful framework for preparing AI models for efficient inference. It converts models into the ONNX format, optimizes their graph structure, and applies techniques like quantization to improve performance on local hardware.
-
-> [!TIP]
-> To learn more about compiling models for Foundry Local, see [How to compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md).
-
-### Hardware abstraction layer
-
-The hardware abstraction layer ensures that Foundry Local runs on various devices by abstracting the underlying hardware. To optimize performance based on the available hardware, Foundry Local supports:
-
-- **multiple _execution providers_**, such as NVIDIA CUDA, AMD, Qualcomm, Intel.
-- **multiple _device types_**, such as CPU, GPU, NPU.
+Supported execution providers include NVIDIA CUDA, AMD, Qualcomm, and Intel. Supported device types include CPU, GPU, and NPU.
 
 > [!NOTE]
 > For Intel NPU support on Windows, install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable hardware acceleration.
@@ -128,58 +98,19 @@ The hardware abstraction layer ensures that Foundry Local runs on various device
 > [!NOTE]
 > For Qualcomm NPU support, install the [Qualcomm NPU driver](https://softwarecenter.qualcomm.com/catalog/item/QHND). If you encounter the error `Qnn error code 5005: "Failed to load from EpContext model. qnn_backend_manager."`, this error typically indicates an outdated driver or NPU resource conflicts. Try rebooting to clear NPU resource conflicts, especially after using Windows Copilot+ features.
 
-### Developer experiences
+## Model lifecycle
 
-The Foundry Local architecture is designed to provide a seamless developer experience, enabling easy integration and interaction with AI models.
-Developers can choose from various interfaces to interact with the system, including:
+The Foundry Local SDK manages the complete model lifecycle through the Core API. Each phase happens in-process within your application:
 
-#### Command-Line Interface (CLI)
+- **Download** — the SDK requests a model by alias. If the model isn't in the local cache, the Core API downloads it from the Foundry Catalog and stores it on disk.
+- **Load** — the SDK loads the model into memory, which initializes the ONNX Runtime session and selects the appropriate execution provider for the available hardware.
+- **Inference** — your application sends prompts to the loaded model and receives responses. The Core API supports both synchronous and streaming inference modes.
+- **Unload** — when inference is complete, the SDK unloads the model from memory to free up resources. Cached model files remain on disk for future use.
 
-The Foundry CLI is a powerful tool for managing models, the inference engine, and the local cache.
-
-**Examples**:
-
-- `foundry model list`: Lists all available models in the local cache.
-- `foundry model run <model-name>`: Runs a model.
-- `foundry service status`: Checks the status of the service.
-
-> [!TIP]
-> To learn more about the CLI commands, read [Foundry Local CLI Reference](../reference/reference-cli.md).
-
-#### Inferencing SDK integration
-
-Foundry Local supports integration with various SDKs in most languages, such as the OpenAI SDK, enabling developers to use familiar programming interfaces to interact with the local inference engine.
-
-> [!TIP]
-> To learn more about integrating with inferencing SDKs, read [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md).
-
-#### AI Toolkit for Visual Studio Code
-
-The AI Toolkit for Visual Studio Code provides a user-friendly interface for developers to interact with Foundry Local. It allows users to run models, manage the local cache, and visualize results directly within the IDE.
-
-**Features**:
-
-- Model management: Download, load, and run models from within the IDE.
-- Interactive console: Send requests and view responses in real-time.
-- Visualization tools: Graphical representation of model performance and results.
-
-**Prerequisites:**
-
-- You have installed [Foundry Local](../get-started.md) and have a model service running.
-- You have installed the [AI Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio) extension.
-
-**Connect a Foundry Local model to AI Toolkit:**
-
-1. **Add model in AI Toolkit**: Open AI Toolkit from the activity bar of Visual Studio Code. In the 'My Models' panel, select the 'Add model for remote interface' button and then select 'Add a custom model' from the dropdown menu.
-
-2. **Enter the chat-compatible endpoint URL**: Enter `http://localhost:PORT/v1/chat/completions`, where `PORT` is the port number of your Foundry Local endpoint. Find the port by running `foundry service status`. Foundry Local dynamically assigns a port, so it might not always be the same.
-3. **Provide the model name**: Enter the exact model name you want to use, for example `phi-3.5-mini`. List downloaded and cached models with `foundry cache list`, or use `foundry model list` to see models available for local use. You'll also be asked to enter a display name, which is only for your local use. To avoid confusion, use the same value as the model name.
-4. **Authentication**: If your local setup doesn't require authentication, leave the authentication headers field blank.
-
-After completing these steps, your Foundry Local model appears in the **My Models** list in AI Toolkit. To start using it, right-click the model and select **Load in Playground**.
+This lifecycle is the same across all supported languages. The SDK handles each phase through a consistent API pattern: get a model from the catalog, download and load it, create a client, and run inference.
 
 ## Related content
 
 - [Get started with Foundry Local](../get-started.md)
-- [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md)
-- [Foundry Local CLI Reference](../reference/reference-cli.md)
+- [Foundry Local SDK reference](../reference/reference-sdk-current.md)
+- [Use native chat completions API](../how-to/how-to-use-native-chat-completions.md)
