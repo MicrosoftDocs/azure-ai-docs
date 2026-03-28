@@ -94,9 +94,9 @@ To learn more, see [Built in evaluators](../concepts/built-in-evaluators.md).
 
 ## Related content
 
-- Improve low metrics with prompt iteration or [fine-tuning](../../foundry-classic/concepts/fine-tuning-overview.md).
+- Improve low metrics with prompt iteration or [fine-tuning](../openai/how-to/fine-tuning.md).
 - [How to run batch evaluation](./develop/cloud-evaluation.md).
 
 Learn how to evaluate your generative AI applications:
 
-- [Evaluate your generative AI apps with the Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md).
+- [Evaluate your generative AI apps with the Foundry portal or SDK](./evaluate-generative-ai-app.md).
