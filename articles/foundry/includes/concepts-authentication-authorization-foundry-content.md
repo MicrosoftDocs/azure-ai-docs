@@ -19,7 +19,7 @@ Foundry supports two authentication methods: Microsoft Entra ID and API keys. Mi
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, [create a free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have one, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource with a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains) configured.
 - Understanding of [Azure RBAC concepts](/azure/role-based-access-control/overview).
 - To assign roles, you need the **Owner** role or **User Access Administrator** role at the appropriate scope.

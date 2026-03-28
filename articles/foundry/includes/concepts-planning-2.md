@@ -25,8 +25,4 @@ ms.custom: include
 
   - Overview of connections: [Add a new connection in Foundry](../how-to/connections-add.md)
 
-- Governance
 
-  - Model access control with Azure Policy: [Control model deployment with built-in policies](../../foundry-classic/how-to/built-in-policy-model-deployment.md)
-  - Cost management: [Plan and manage costs for Foundry](../../foundry-classic/how-to/costs-plan-manage.md)
-  - Azure Monitor for usage tracking: [Monitor your Generative AI applications](../../foundry-classic/how-to/monitor-applications.md)

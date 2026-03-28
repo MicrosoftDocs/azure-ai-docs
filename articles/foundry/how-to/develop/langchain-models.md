@@ -25,7 +25,7 @@ verification workflows.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
 - The **Azure AI User** role on the Foundry project.
 - A deployed chat model that supports OpenAI-compatible APIs, such as
@@ -78,6 +78,9 @@ from langchain.chat_models import init_chat_model
 
 model = init_chat_model("azure_ai:gpt-4.1")
 ```
+
+> [!IMPORTANT]
+> Using `init_chat_model` requires `langchain>=1.2.13`. If you can't update your version, [configure clients directly](#configure-clients-directly).
 
 All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `AZURE_AI_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Azure AI User**.
 

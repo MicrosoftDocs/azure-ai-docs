@@ -43,6 +43,8 @@ landingContent:
         links:
           - text: Integrate with Inferencing SDKs
             url: how-to/how-to-integrate-with-inference-sdks.md
+          - text: Transcribe audio files
+            url: how-to/how-to-transcribe-audio.md
           - text: Integrate with LangChain
             url: how-to/how-to-use-langchain-with-foundry-local.md
           - text: Integrate with Open Web UI

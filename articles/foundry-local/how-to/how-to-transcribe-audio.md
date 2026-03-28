@@ -1,7 +1,7 @@
 ---
 title: "Transcribe audio files with Foundry Local"
 titleSuffix: Foundry Local
-description: "This article provides instructions on how to transcribe audio using Foundry Local."
+description: "This article provides instructions on how to transcribe audio using Foundry Local with C# and JavaScript."
 ms.service: azure-ai-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
@@ -24,7 +24,6 @@ Use Foundry Local's native audio transcription API to convert a local audio file
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/audio-transcription/javascript.md)]
 ::: zone-end
-
 
 ## Related content
 

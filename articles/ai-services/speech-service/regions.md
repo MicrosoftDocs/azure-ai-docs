@@ -114,41 +114,41 @@ The regions in the following tables support most of the core features of Azure S
 
 # [Text to speech](#tab/tts)
 
-| Region | Neural text to speech | Batch synthesis API | HD voices | Azure OpenAI voices | Custom voice | Custom voice training | Custom voice high-performance endpoint | Personal voice | Voice conversion | Voices and styles in preview |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| `australiaeast` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | |
-| `brazilsouth` | ✅ | ✅ | | | ✅ | | ✅ | | | |
-| `canadacentral` | ✅ | ✅ | ✅ | | ✅ | | | | | |
-| `canadaeast` | ✅ | | | | | | | | | |
-| `centralindia` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | | | |
-| `centralus` | ✅ | ✅ | | | ✅ | | ✅ | | | |
-| `eastasia` | ✅ | ✅ | | | ✅ | | | ✅ | | |
-| `eastus` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `eastus2` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | | |
-| `francecentral` | ✅ | ✅ | ✅ | | ✅ | | | | | |
-| `germanywestcentral` | ✅ | ✅ | | | ✅ | | | | | |
-| `italynorth` | ✅ | | | | ✅ | | ✅ | | | |
-| `japaneast` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | |
-| `japanwest` | ✅ | | | | ✅ | | | | | |
-| `koreacentral` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | |
-| `northcentralus` | ✅ | ✅ | | ✅ | ✅ | | ✅ | | | |
-| `northeurope` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | |
-| `norwayeast` | ✅ | ✅ | | | ✅ | | | | | |
-| `qatarcentral` | ✅ | | | | | | | | | |
-| `southafricanorth` | ✅ | ✅ | | | ✅ | | | | | |
-| `southcentralus` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | |
-| `southeastasia` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `swedencentral` | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | | |
-| `switzerlandnorth` | ✅ | ✅ | | | ✅ | | | | | |
-| `switzerlandwest` | ✅ | | | | ✅ | | | | | |
-| `uaenorth` | ✅ | ✅ | | | ✅ | | | | | |
-| `uksouth` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | |
-| `ukwest` | ✅ | | | | | | | | | |
-| `westcentralus` | ✅ | | | | ✅ | | | | | |
-| `westeurope` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `westus` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | |
-| `westus2` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | | |
-| `westus3` | ✅ | | | | ✅ | | ✅ | | | |
+| Region | Neural text to speech | Batch synthesis API | HD voices | Azure OpenAI voices | Custom voice | Custom voice training | Custom voice high-performance endpoint | Custom voice HD endpoint | Personal voice | Voice conversion | Voices and styles in preview |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| `australiaeast` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
+| `brazilsouth` | ✅ | ✅ | | | ✅ | | ✅ | | | | |
+| `canadacentral` | ✅ | ✅ | | | ✅ | | | | | | |
+| `canadaeast` | ✅ | | | | | | | | | | |
+| `centralindia` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
+| `centralus` | ✅ | ✅ | | | ✅ | | ✅ | | | | |
+| `eastasia` | ✅ | ✅ | | | ✅ | | | | ✅ | | |
+| `eastus` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `eastus2` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | | |
+| `francecentral` | ✅ | ✅ | | | ✅ | | | | | | |
+| `germanywestcentral` | ✅ | ✅ | | | ✅ | | | | | | |
+| `italynorth` | ✅ | | | | ✅ | | ✅ | | | | |
+| `japaneast` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
+| `japanwest` | ✅ | | | | ✅ | | | | | | |
+| `koreacentral` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
+| `northcentralus` | ✅ | ✅ | | ✅ | ✅ | | ✅ | | | | |
+| `northeurope` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
+| `norwayeast` | ✅ | ✅ | | | ✅ | | | | | | |
+| `qatarcentral` | ✅ | | | | | | | | | | |
+| `southafricanorth` | ✅ | ✅ | | | ✅ | | | | | | |
+| `southcentralus` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | | |
+| `southeastasia` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `swedencentral` | ✅ | ✅ | | ✅ | ✅ | | ✅ | ✅ | ✅ | | |
+| `switzerlandnorth` | ✅ | ✅ | | | ✅ | | | | | | |
+| `switzerlandwest` | ✅ | | | | ✅ | | | | | | |
+| `uaenorth` | ✅ | ✅ | | | ✅ | | | | | | |
+| `uksouth` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
+| `ukwest` | ✅ | | | | | | | | | | |
+| `westcentralus` | ✅ | | | | ✅ | | | | | | |
+| `westeurope` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `westus` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | | |
+| `westus2` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | | |
+| `westus3` | ✅ | | | | ✅ | | ✅ | | | | |
 
 # [Text-to-speech avatar](#tab/ttsavatar)
 
@@ -241,6 +241,9 @@ The regions in the following tables support most of the core features of Azure S
 | `westus` | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | Global standard | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
 | `westus2` | Global standard | Global standard | Data zone standard | Standard | Data zone standard | Data zone standard | Data zone standard | - | - | Global standard | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | Regional | Regional | ✅ |
 | `westus3` | - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | Global standard | - | - | - | Data zone standard | Data zone standard | Data zone standard | - | - | - | ✅ |
+
+> [!NOTE]
+> Models `gpt-5.4-mini` and `gpt-5.4-nano` are supported and tested with Voice Live but aren't pre-deployed. To use them, deploy them in your Foundry resource and connect via [Bring Your Own Model (BYOM)](./how-to-bring-your-own-model.md).
 
 # [Keyword recognition](#tab/keyword-recognition)
 

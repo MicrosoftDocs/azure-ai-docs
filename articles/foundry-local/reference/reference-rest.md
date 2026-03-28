@@ -172,6 +172,56 @@ Response body
 ```
 
 
+## POST /v1/audio/transcriptions
+
+This endpoint transcribes audio files to text.
+It's compatible with the [OpenAI Audio Transcriptions API](https://platform.openai.com/docs/api-reference/audio/createTranscription).
+
+**Request format:** `multipart/form-data`
+
+**Request fields:**
+
+- `file` (file, required)  
+  The audio file to transcribe. Supported formats include MP3, WAV, FLAC, OGG, and WebM.
+- `model` (string, required)  
+  The model ID to use for transcription. Use the ID returned when loading a Whisper model (for example, after loading `whisper-tiny`).
+- `language` (string, optional)  
+  The language of the audio in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format (for example, `"en"`). Providing this improves accuracy and speed.
+- `temperature` (number, optional)  
+  Sampling temperature between 0 and 1. Lower values produce more deterministic results.
+- `response_format` (string, optional)  
+  The format of the response. Options: `json` (default), `text`, `verbose_json`.
+
+**Response body:**
+
+- `text` (string)  
+  The transcribed text.
+
+**Example:**
+
+Request
+
+```bash
+curl -X POST http://localhost:<PORT>/v1/audio/transcriptions \
+  -F "file=@recording.wav" \
+  -F "model=<MODEL_ID>" \
+  -F "language=en"
+```
+
+> [!IMPORTANT]
+> Replace `<PORT>` with the dynamic port of the Foundry Local service and `<MODEL_ID>` with the model ID returned when the model was loaded. In the SDK, use `manager.endpoint` (JS) or `config.Web.Urls` (C#) to get the endpoint — never hardcode the port.
+
+Response body
+
+```json
+{
+  "text": "This is the transcribed text from the audio file."
+}
+```
+
+> [!TIP]
+> Available Whisper model aliases include `whisper-tiny`, `whisper-base`, and `whisper-small`. Use these aliases with the SDK to download and load models — for example, `manager.catalog.getModel("whisper-tiny")` in JavaScript.
+
 ## GET /openai/status
 
 Get server status information.

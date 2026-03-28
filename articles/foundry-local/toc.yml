@@ -17,7 +17,7 @@ items:
     href: how-to/how-to-use-native-chat-completions.md
   - name: Use chat completions via REST server
     href: how-to/how-to-integrate-with-inference-sdks.md
-  - name: Transcribe recorded audio files
+  - name: Transcribe audio (speech-to-text)
     href: how-to/how-to-transcribe-audio.md
   - name: Integrate with LangChain
     href: how-to/how-to-use-langchain-with-foundry-local.md
