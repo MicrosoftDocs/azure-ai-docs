@@ -33,7 +33,7 @@ User data never leaves the device, responses start immediately with zero network
 
 - **OpenAI-compatible API** — Supports OpenAI request and response formats for both chat completions and audio transcription. If your application already uses the OpenAI SDK, point it to a Foundry Local endpoint with minimal code changes.
 
-- **Optional local server** — An OpenAI-compatible web server for serving models to multiple processes, integrating with tools like [Open WebUI](how-to/how-to-chat-application-with-open-web-ui.md), or experimenting through REST calls. For most embedded application scenarios, use the SDK directly — it runs inference in-process without the overhead of a separate server.
+- **Optional local server** — An OpenAI-compatible web server for serving models to multiple processes, integrating with tools like [LangChain](how-to/how-to-use-langchain-with-foundry-local.md), or experimenting through REST calls. For most embedded application scenarios, use the SDK directly — it runs inference in-process without the overhead of a separate server.
 
 ## Motivation for on-device AI
 

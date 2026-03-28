@@ -290,6 +290,38 @@ Foundry Local automatically downloads these execution providers on first run. Th
 | `QNNExecutionProvider` (Qualcomm) | Snapdragon(R) X Elite - X1Exxxxx - Qualcomm(R) Hexagon(TM) NPU with minimum driver version 30.0.140.0 and later versions<br>Snapdragon(R) X Plus - X1Pxxxxx - Qualcomm(R) Hexagon(TM) NPU with minimum driver version 30.0.140.0 and later versions | To view the QNN License, download the Qualcomm® Neural Processing SDK, extract the ZIP, and open the LICENSE.pdf file. |
 | `VitisAIExecutionProvider` (AMD) | Min: Adrenalin Edition 25.6.3 with NPU driver 32.00.0203.280<br>Max: Adrenalin Edition 25.9.1 with NPU driver 32.00.0203.297 | No additional license required |
 
+## Use Open WebUI with the local server
+
+Connect [Open WebUI](https://github.com/open-webui/open-webui) to Foundry Local for a browser-based chat interface that runs entirely on your device.
+
+1. Start a model and leave the terminal open:
+
+   ```bash
+   foundry model run qwen2.5-0.5b
+   ```
+
+1. Get your local endpoint URL:
+
+   ```bash
+   foundry service status
+   ```
+
+   Copy the endpoint URL. Foundry Local assigns a dynamic port each time the service starts.
+
+1. Install and launch [Open WebUI](https://github.com/open-webui/open-webui), then open `http://localhost:8080` in your browser.
+
+1. Connect Open WebUI to Foundry Local:
+
+   1. Go to **Settings** > **Admin Settings** > **Connections** and enable **Direct Connections**.
+   1. Go to **Settings** > **Connections** > **Manage Direct Connections** and select **+**.
+   1. Set **URL** to `http://localhost:PORT/v1` (replace `PORT` with the port from step 2) and **Auth** to **None**.
+   1. Select **Save**.
+
+1. Select a model from the dropdown and start chatting.
+
+> [!TIP]
+> If no models appear, run `foundry model run <model>` in a terminal and reload Open WebUI. If the connection fails, confirm the port with `foundry service status`.
+
 ## Upgrade Foundry Local
 
 Run the command for your operating system to upgrade Foundry Local.
