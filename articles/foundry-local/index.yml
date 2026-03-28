@@ -61,7 +61,7 @@ landingContent:
             url: reference/reference-cli.md
           - text: CLI REST (preview) reference
             url: reference/reference-rest.md         
-          - text: Best practice and troubleshooting
+          - text: CLI (preview) best practice and troubleshooting
             url: reference/reference-best-practice.md
   
   # Card
