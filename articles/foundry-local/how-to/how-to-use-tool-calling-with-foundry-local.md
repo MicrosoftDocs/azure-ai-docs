@@ -8,7 +8,7 @@ ms.author: nakersha
 ms.reviewer: metang
 author: natke
 reviewer: metang
-zone_pivot_groups: foundry-local-sdk-vnext
+zone_pivot_groups: foundry-local-sdk
 ms.date: 11/17/2025
 ---
 
@@ -31,6 +31,12 @@ In the `Task` column, you can see that the `tools` task indicates that tool call
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/tool-calling/javascript.md)]
+::: zone-end
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python](../includes/tool-calling/python.md)]
+::: zone-end
+::: zone pivot="programming-language-rust"
+[!INCLUDE [Rust](../includes/tool-calling/rust.md)]
 ::: zone-end
 
 ## Related content

@@ -8,7 +8,7 @@ ms.author: jburchel
 author: jonburchel
 ms.topic: concept-article
 ms.date: 01/05/2026
-zone_pivot_groups: foundry-local-sdk-vnext
+zone_pivot_groups: foundry-local-sdk
 reviewer: maanavdalal
 ms.reviewer: maanavd
 ai-usage: ai-assisted
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 # Foundry Local SDK reference
 
-The Foundry Local SDK enables you to ship AI features in your applications that are capable of leveraging local AI models through a simple and intuitive API. The SDK abstracts away the complexities of managing AI models and provides a seamless experience for integrating local AI capabilities into your applications. This reference documents SDK implementations for JavaScript and C#. More languages will be added in the future.
+The Foundry Local SDK enables you to ship AI features in your applications that are capable of leveraging local AI models through a simple and intuitive API. The SDK abstracts away the complexities of managing AI models and provides a seamless experience for integrating local AI capabilities into your applications. This reference documents SDK implementations for C#, JavaScript, Python, and Rust.
 
 The SDK does not require the Foundry Local CLI to be installed on the end users machine, allowing you to ship your applications without additional setup steps for your users - your applications is self-contained. The extra benefits of the Foundry Local SDK include:
 
@@ -30,11 +30,17 @@ The SDK does not require the Foundry Local CLI to be installed on the end users 
 
 <!-- markdownlint-disable MD044 -->
 
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [C#](../includes/sdk-current-reference/csharp.md)]
+::: zone-end
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/sdk-current-reference/javascript.md)]
 ::: zone-end
-::: zone pivot="programming-language-csharp"
-[!INCLUDE [C#](../includes/sdk-current-reference/csharp.md)]
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python](../includes/sdk-current-reference/python.md)]
+::: zone-end
+::: zone pivot="programming-language-rust"
+[!INCLUDE [Rust](../includes/sdk-current-reference/rust.md)]
 ::: zone-end
 
 <!-- markdownlint-enable MD044 -->

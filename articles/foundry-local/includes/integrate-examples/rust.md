@@ -11,7 +11,6 @@ ai-usage: ai-assisted
 
 ## Prerequisites
 
-- Foundry Local installed and running. For installation instructions, see [Get started with Foundry Local](../../get-started.md).
 - [Rust and Cargo](https://www.rust-lang.org/tools/install) installed.
 
 ## Create project
@@ -28,7 +27,7 @@ cd hello-foundry-local
 Install the following Rust crates using Cargo:
 
 ```bash
-cargo add foundry-local anyhow env_logger serde_json
+cargo add foundry-local-sdk anyhow serde_json
 cargo add reqwest --features json
 cargo add tokio --features full
 ```
@@ -40,26 +39,31 @@ The following example demonstrates how to run inference by sending a request to 
 Copy-and-paste the following code into the Rust file named `main.rs`:
 
 ```rust
-use foundry_local::FoundryLocalManager;
+use foundry_local_sdk::{FoundryLocalConfig, FoundryLocalManager};
 use anyhow::Result;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    // Create a FoundryLocalManager instance with default options
-    let mut manager = FoundryLocalManager::builder()
-        .alias_or_model_id("qwen2.5-0.5b") // Specify the model to use   
-        .bootstrap(true) // Start the service if not running
-        .build()
-        .await?;
-    
+    // Create a FoundryLocalManager instance with web service configuration
+    let config = FoundryLocalConfig::new("app-name")
+        .with_web_urls("http://localhost:5000");
+    let manager = FoundryLocalManager::create(config)?;
+
+    // Get and prepare the model
+    let model = manager.catalog().get_model("qwen2.5-0.5b").await?;
+    model.download(None).await?;
+    model.load().await?;
+
+    // Start the web service
+    manager.start_web_service().await?;
+
     // Use the OpenAI compatible API to interact with the model
     let client = reqwest::Client::new();
-    let endpoint = manager.endpoint()?;
-    let response = client.post(format!("{}/chat/completions", endpoint))
+    let endpoint = manager.urls()[0].trim_end_matches('/');
+    let response = client.post(format!("{}/v1/chat/completions", endpoint))
         .header("Content-Type", "application/json")
-        .header("Authorization", format!("Bearer {}", manager.api_key()))
         .json(&serde_json::json!({
-            "model": manager.get_model_info("qwen2.5-0.5b", true).await?.id,
+            "model": model.id(),
             "messages": [{"role": "user", "content": "What is the golden ratio?"}],
         }))
         .send()
@@ -67,7 +71,7 @@ async fn main() -> Result<()> {
 
     let result = response.json::<serde_json::Value>().await?;
     println!("{}", result["choices"][0]["message"]["content"]);
-    
+
     Ok(())
 }
 ```

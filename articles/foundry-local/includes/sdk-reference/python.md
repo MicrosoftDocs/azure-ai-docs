@@ -15,8 +15,7 @@ ai-usage: ai-assisted
 
 ### Prerequisites
 
-- Install Foundry Local and ensure the `foundry` command is available on your `PATH`.
-- Use Python 3.9 or later.
+- Use Python 3.11 or later.
 
 ### Installation
 
@@ -28,19 +27,20 @@ pip install foundry-local-sdk
 
 ### Quickstart
 
-Use this snippet to verify that the SDK can start the service and reach the local catalog.
+Use this snippet to verify that the SDK can initialize and read the local catalog.
 
 ```python
-from foundry_local import FoundryLocalManager
+from foundry_local_sdk import Configuration, FoundryLocalManager
 
-manager = FoundryLocalManager()
-manager.start_service()
+config = Configuration(app_name="app-name")
+FoundryLocalManager.initialize(config)
+manager = FoundryLocalManager.instance
 
-catalog = manager.list_catalog_models()
-print(f"Catalog models available: {len(catalog)}")
+models = manager.catalog.list_models()
+print(f"Catalog models available: {len(models)}")
 ```
 
-This example prints a non-zero number when the service is running and the catalog is available.
+This example prints a non-zero number when the catalog is available.
 
 References:
 
@@ -53,14 +53,20 @@ The `FoundryLocalManager` class provides methods to manage models, cache, and th
 #### Initialization
 
 ```python
-from foundry_local import FoundryLocalManager
+from foundry_local_sdk import Configuration, FoundryLocalManager
 
-# Initialize and optionally bootstrap with a model
-manager = FoundryLocalManager(alias_or_model_id=None, bootstrap=True)
+# Configure and initialize the manager
+config = Configuration(
+    app_name="app-name",
+    web={"urls": "http://localhost:5000"},
+)
+FoundryLocalManager.initialize(config)
+manager = FoundryLocalManager.instance
 ```
 
-- `alias_or_model_id`: (optional) Alias or Model ID to download and load at startup.
-- `bootstrap`: (default True) If True, starts the service if not running and loads the model if provided.
+- `Configuration`: Configures the SDK with app name and optional web service settings.
+- `FoundryLocalManager.initialize(config)`: Initializes the singleton manager instance.
+- `FoundryLocalManager.instance`: Returns the initialized manager instance.
 
 ### A note on aliases
 
@@ -77,60 +83,27 @@ Many methods outlined in this reference have an `alias_or_model_id` parameter in
 
 ### Service Management
 
-| Method                 | Signature          | Description                                     |
-| ---------------------- | ------------------ | ----------------------------------------------- |
-| `is_service_running()` | `() -> bool`       | Checks if the Foundry Local service is running. |
-| `start_service()`      | `() -> None`       | Starts the Foundry Local service.               |
-| `service_uri`          | `@property -> str` | Returns the service URI.                        |
-| `endpoint`             | `@property -> str` | Returns the service endpoint.                   |
-| `api_key`              | `@property -> str` | Returns the API key (from env or default).      |
+| Method                   | Signature          | Description                                     |
+| ------------------------ | ------------------ | ----------------------------------------------- |
+| `start_web_service()`    | `() -> None`       | Starts the web service for HTTP-based inference. |
+| `urls`                   | `@property -> list[str]` | Returns the list of web service URLs.     |
 
 ### Catalog Management
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list_catalog_models()` | `() -> list[FoundryModelInfo]` | Lists all available models in the catalog. |
-| `refresh_catalog()` | `() -> None` | Refreshes the model catalog. |
-| `get_model_info()` | `(alias_or_model_id: str, raise_on_not_found=False) -> FoundryModelInfo \| None` | Gets model info by alias or ID. |
+| `catalog` | `@property -> Catalog` | Returns the catalog instance for model operations. |
+| `catalog.list_models()` | `() -> list[Model]` | Lists all available models in the catalog. |
+| `catalog.get_model()` | `(alias_or_model_id: str) -> Model` | Gets a model by alias or ID. |
 
-### Cache Management
-
-| Method | Signature | Description |
-| --- | --- | --- |
-| `get_cache_location()` | `() -> str` | Returns the model cache directory path. |
-| `list_cached_models()` | `() -> list[FoundryModelInfo]` | Lists models downloaded to the local cache. |
-
-### Model Management
+### Model Operations
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `download_model()` | `(alias_or_model_id: str, token: str = None, force: bool = False) -> FoundryModelInfo` | Downloads a model to the local cache. |
-| `load_model()` | `(alias_or_model_id: str, ttl: int = 600) -> FoundryModelInfo` | Loads a model into the inference server. |
-| `unload_model()` | `(alias_or_model_id: str, force: bool = False) -> None` | Unloads a model from the inference server. |
-| `list_loaded_models()` | `() -> list[FoundryModelInfo]` | Lists all models currently loaded in the service. |
-
-### FoundryModelInfo
-
-The methods `list_catalog_models()`, `list_cached_models()`, and `list_loaded_models()` return a list of `FoundryModelInfo` objects. You can use the information contained in this object to further refine the list. Or get the information for a model directly by calling the `get_model_info(alias_or_model_id)` method.
-
-These objects contain the following fields:
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `alias` | `str` | Alias of the model. |
-| `id` | `str` | Unique identifier of the model. |
-| `version` | `str` | Version of the model. |
-| `execution_provider` | `str` | The accelerator ([execution provider](#execution-providers)) used to run the model. |
-| `device_type` | `DeviceType` | Device type of the model: CPU, GPU, NPU. |
-| `uri` | `str` | URI of the model. |
-| `file_size_mb` | `int` | Size of the model on disk in MB. |
-| `supports_tool_calling` | `bool` | Whether the model supports tool calling. |
-| `prompt_template` | `dict \| None` | Prompt template for the model. |
-| `provider` | `str` | Provider of the model (where the model is published). |
-| `publisher` | `str` | Publisher of the model (who published the model). |
-| `license` | `str` | The name of the license of the model. |
-| `task` | `str` | Task of the model. One of `chat-completions` or `automatic-speech-recognition`. |
-| `ep_override` | `str \| None` | Override for the execution provider, if different from the model's default. |
+| `model.download()` | `(progress_callback=None) -> None` | Downloads the model to the local cache. Accepts an optional callback for progress updates. |
+| `model.load()` | `() -> None` | Loads the model for inference. |
+| `model.unload()` | `() -> None` | Unloads the model from the inference server. |
+| `model.id` | `@property -> str` | Returns the model ID. |
 
 
 ### Execution Providers
@@ -150,34 +123,30 @@ One of:
 The following code demonstrates how to use the `FoundryLocalManager` class to manage models and interact with the Foundry Local service.
 
 ```python
-from foundry_local import FoundryLocalManager
+from foundry_local_sdk import Configuration, FoundryLocalManager
 
-# By using an alias, the most suitable model will be selected
-# to your end-user's device.
+# By using an alias, the most suitable model is selected
+# for your end-user's device.
 alias = "qwen2.5-0.5b"
 
-# Create a FoundryLocalManager instance. This will start the Foundry.
-manager = FoundryLocalManager()
+# Initialize the Foundry Local SDK
+config = Configuration(app_name="app-name")
+FoundryLocalManager.initialize(config)
+manager = FoundryLocalManager.instance
 
 # List available models in the catalog
-catalog = manager.list_catalog_models()
-print(f"Available models in the catalog: {catalog}")
+models = manager.catalog.list_models()
+print(f"Available models in the catalog: {models}")
 
-# Download and load a model
-model_info = manager.download_model(alias)
-model_info = manager.load_model(alias)
-print(f"Model info: {model_info}")
+# Get, download, and load a model
+model = manager.catalog.get_model(alias)
+model.download(lambda progress: print(f"\rDownloading: {progress:.2f}%", end="", flush=True))
+print()
+model.load()
+print(f"Model ID: {model.id}")
 
-# List models in cache
-local_models = manager.list_cached_models()
-print(f"Models in cache: {local_models}")
-
-# List loaded models
-loaded = manager.list_loaded_models()
-print(f"Models running in the service: {loaded}")
-
-# Unload a model
-manager.unload_model(alias)
+# Unload the model
+model.unload()
 ```
 
 This example lists models, downloads and loads one model, and then unloads it.
@@ -198,27 +167,38 @@ The following code demonstrates how to integrate the `FoundryLocalManager` with 
 
 ```python
 import openai
-from foundry_local import FoundryLocalManager
+from foundry_local_sdk import Configuration, FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded
+# By using an alias, the most suitable model is downloaded
 # to your end-user's device.
 alias = "qwen2.5-0.5b"
 
-# Create a FoundryLocalManager instance. This will start the Foundry
-# Local service if it is not already running and load the specified model.
-manager = FoundryLocalManager(alias)
+# Initialize the Foundry Local SDK with web service configuration
+config = Configuration(
+    app_name="app-name",
+    web={"urls": "http://localhost:5000"},
+)
+FoundryLocalManager.initialize(config)
+manager = FoundryLocalManager.instance
 
-# The remaining code uses the OpenAI Python SDK to interact with the local model.
+# Get and prepare the model
+model = manager.catalog.get_model(alias)
+model.download(lambda progress: print(f"\rDownloading: {progress:.2f}%", end="", flush=True))
+print()
+model.load()
+
+# Start the web service
+manager.start_web_service()
 
 # Configure the client to use the local Foundry service
 client = openai.OpenAI(
-    base_url=manager.endpoint,
-    api_key=manager.api_key  # API key is not required for local usage
+    base_url=f"{manager.urls[0].rstrip('/')}/v1",
+    api_key="local"
 )
 
 # Set the model to use and generate a streaming response
 stream = client.chat.completions.create(
-    model=manager.get_model_info(alias).id,
+    model=model.id,
     messages=[{"role": "user", "content": "Why is the sky blue?"}],
     stream=True
 )

@@ -16,8 +16,7 @@ ai-usage: ai-assisted
 
 Before starting this tutorial, you need:
 
-- **Foundry Local** installed on your computer. Read the [Get started with Foundry Local](../../get-started.md) guide for installation instructions.
-- **Python 3.10 or later** installed on your computer. You can download Python from the [official website](https://www.python.org/downloads/).
+- **Python 3.11 or later** installed on your computer. You can download Python from the [official website](https://www.python.org/downloads/).
 
 ## Install Python packages
 
@@ -36,26 +35,36 @@ pip install foundry-local-sdk
 Create a new Python file named `translation_app.py` in your favorite IDE and add the following code:
 
 ```python
-import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-from foundry_local import FoundryLocalManager
+from foundry_local_sdk import Configuration, FoundryLocalManager
 
-# By using an alias, the most suitable model will be downloaded
+# By using an alias, the most suitable model is downloaded
 # to your end-user's device.
-# TIP: You can find a list of available models by running the
-# following command: `foundry model list`.
 alias = "qwen2.5-0.5b"
 
-# Create a FoundryLocalManager instance. This will start the Foundry
-# Local service if it is not already running and load the specified model.
-manager = FoundryLocalManager(alias)
+# Initialize the Foundry Local SDK with web service configuration
+config = Configuration(
+    app_name="app-name",
+    web={"urls": "http://localhost:5000"},
+)
+FoundryLocalManager.initialize(config)
+manager = FoundryLocalManager.instance
+
+# Get and prepare the model
+model = manager.catalog.get_model(alias)
+model.download(lambda progress: print(f"\rDownloading: {progress:.2f}%", end="", flush=True))
+print()
+model.load()
+
+# Start the web service
+manager.start_web_service()
 
 # Configure ChatOpenAI to use your locally-running model
 llm = ChatOpenAI(
-    model=manager.get_model_info(alias).id,
-    base_url=manager.endpoint,
-    api_key=manager.api_key,
+    model=model.id,
+    base_url=f"{manager.urls[0].rstrip('/')}/v1",
+    api_key="local",
     temperature=0.6,
     streaming=False
 )

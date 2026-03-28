@@ -18,7 +18,7 @@ keywords:
   - Foundry Local
   - on-device AI
   - local inference
-zone_pivot_groups: foundry-local-sdk-vnext
+zone_pivot_groups: foundry-local-sdk
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
@@ -33,6 +33,12 @@ In this quickstart, you create a console application that downloads a local AI m
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](./includes/native-chat-completions/javascript.md)]
+::: zone-end
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python](./includes/native-chat-completions/python.md)]
+::: zone-end
+::: zone pivot="programming-language-rust"
+[!INCLUDE [Rust](./includes/native-chat-completions/rust.md)]
 ::: zone-end
 
 ## Related content

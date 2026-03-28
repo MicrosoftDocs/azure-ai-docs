@@ -11,6 +11,7 @@ author: jonburchel
 reviewer: samuel100
 ms.date: 01/06/2026
 ai-usage: ai-assisted
+zone_pivot_groups: foundry-local-sdk
 ---
 
 # Compile Hugging Face models to run on Foundry Local
@@ -34,8 +35,7 @@ This guide shows how to:
 
 ## Prerequisites
 
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later
-- Python 3.10 or later
+- Python 3.10 or later (required for Olive compilation)
 - A Hugging Face account and token with access to `meta-llama/Llama-3.2-1B-Instruct`
 
 ## Install Olive
@@ -155,7 +155,13 @@ This section walks through a manual compilation. The Olive `auto-opt` command do
 
 ## Run the compiled model
 
+::: zone pivot="programming-language-csharp"
+
 Use the Foundry Local C# SDK to load and run your compiled model with the native chat completions API. This approach doesn't require a REST server — the SDK communicates directly with the runtime.
+
+### Prerequisites
+
+- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later
 
 ### Set up the project
 
@@ -230,8 +236,225 @@ Run the application:
 dotnet run
 ```
 
-> [!TIP]
-> For other language SDKs (JavaScript, Python, Rust), see [Use native chat completions API with Foundry Local](../how-to/how-to-use-native-chat-completions.md). The only difference from the standard example is how you obtain the model — instead of fetching from the catalog with `GetModelAsync`, you use `GetCachedModelsAsync` to discover models in your custom `ModelCacheDir` and select the compiled model from that list.
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+Use the Foundry Local JavaScript SDK to load and run your compiled model with the native chat completions API.
+
+### Prerequisites
+
+- [Node.js 20](https://nodejs.org/en/download/) or later installed.
+
+### Set up the project
+
+[!INCLUDE [project-setup](../includes/javascript-project-setup.md)]
+
+### Run inference on the compiled model
+
+Copy and paste the following code into a JavaScript file named `app.js`:
+
+```javascript
+import { FoundryLocalManager } from 'foundry-local-sdk';
+
+// Initialize the Foundry Local SDK with custom model cache directory
+const manager = FoundryLocalManager.create({
+    appName: 'run-compiled-model',
+    logLevel: 'info',
+    modelCacheDir: '../models/llama'
+});
+
+// List cached models to find your compiled model
+const cachedModels = await manager.catalog.getCachedModels();
+console.log('Cached models:');
+for (const m of cachedModels) {
+    console.log(`  ${m.id}`);
+}
+
+// Select your compiled model from the cached list
+const model = cachedModels.find(m => m.id.includes('llama-3.2:1'));
+if (!model) {
+    throw new Error('Compiled model not found. Verify the modelCacheDir path.');
+}
+
+// Load the model
+await model.load();
+
+// Create a chat client
+const chatClient = model.createChatClient();
+
+// Generate a response
+const completion = await chatClient.completeChat([
+    { role: 'user', content: 'What is the golden ratio?' }
+]);
+
+console.log(completion.choices[0]?.message?.content);
+
+// Unload the model
+await model.unload();
+```
+
+Run the application:
+
+```bash
+node app.js
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-python"
+
+Use the Foundry Local Python SDK to load and run your compiled model with the native chat completions API.
+
+### Prerequisites
+
+- [Python 3.11](https://www.python.org/downloads/) or later installed.
+- `foundry-local-sdk` package installed (`pip install foundry-local-sdk`).
+
+### Run inference on the compiled model
+
+Copy and paste the following code into a Python file named `app.py`:
+
+```python
+import asyncio
+from foundry_local_sdk import Configuration, FoundryLocalManager
+
+
+async def main():
+    # Point model_cache_dir at the directory containing your compiled model
+    config = Configuration(
+        app_name="run-compiled-model",
+        model_cache_dir="../models/llama",
+    )
+    FoundryLocalManager.initialize(config)
+    manager = FoundryLocalManager.instance
+
+    # List cached models to find your compiled model
+    cached_models = manager.catalog.get_cached_models()
+    print("Cached models:")
+    for m in cached_models:
+        print(f"  {m.id}")
+
+    # Select your compiled model from the cached list
+    model = next((m for m in cached_models if "llama-3.2:1" in m.id), None)
+    if model is None:
+        raise Exception("Compiled model not found. Verify the model_cache_dir path.")
+
+    # Load the model
+    model.load()
+
+    # Get a chat client
+    client = model.get_chat_client()
+
+    # Stream the response
+    messages = [{"role": "user", "content": "What is the golden ratio?"}]
+    for chunk in client.complete_streaming_chat(messages):
+        content = chunk.choices[0].message.content
+        if content:
+            print(content, end="", flush=True)
+    print()
+
+    # Tidy up - unload the model
+    model.unload()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+Run the application:
+
+```bash
+python app.py
+```
+
+::: zone-end
+
+::: zone pivot="programming-language-rust"
+
+Use the Foundry Local Rust SDK to load and run your compiled model with the native chat completions API.
+
+### Prerequisites
+
+- [Rust and Cargo](https://www.rust-lang.org/tools/install) installed (Rust 1.70.0 or later).
+
+### Set up the project
+
+[!INCLUDE [project-setup](../includes/rust-project-setup.md)]
+
+Add `anyhow` to your dependencies:
+
+```bash
+cargo add anyhow
+```
+
+### Run inference on the compiled model
+
+Replace the contents of `src/main.rs` with the following code:
+
+```rust
+use foundry_local_sdk::{
+    ChatCompletionRequestMessage, ChatCompletionRequestUserMessage,
+    FoundryLocalConfig, FoundryLocalManager,
+};
+use std::io::Write;
+use tokio_stream::StreamExt;
+
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
+    // Point model_cache_dir at the directory containing your compiled model
+    let config = FoundryLocalConfig::new("run-compiled-model")
+        .with_model_cache_dir("../models/llama");
+    let manager = FoundryLocalManager::create(config)?;
+
+    // List cached models to find your compiled model
+    let cached_models = manager.catalog().get_cached_models().await?;
+    println!("Cached models:");
+    for m in &cached_models {
+        println!("  {}", m.id());
+    }
+
+    // Select your compiled model from the cached list
+    let model = cached_models
+        .iter()
+        .find(|m| m.id().contains("llama-3.2:1"))
+        .ok_or_else(|| anyhow::anyhow!("Compiled model not found. Verify the model_cache_dir path."))?;
+
+    // Load the model
+    model.load().await?;
+
+    // Create a chat client
+    let client = model.create_chat_client().temperature(0.7).max_tokens(256);
+
+    // Stream the response
+    let messages: Vec<ChatCompletionRequestMessage> = vec![
+        ChatCompletionRequestUserMessage::new("What is the golden ratio?").into(),
+    ];
+
+    let mut stream = client.complete_streaming_chat(&messages, None).await?;
+    while let Some(chunk) = stream.next().await {
+        let chunk = chunk?;
+        if let Some(content) = &chunk.choices[0].message.content {
+            print!("{}", content);
+            std::io::stdout().flush()?;
+        }
+    }
+    println!();
+
+    // Tidy up - unload the model
+    model.unload().await?;
+
+    Ok(())
+}
+```
+
+Run the application:
+
+```bash
+cargo run
+```
+
+::: zone-end
 
 ## Troubleshooting
 
