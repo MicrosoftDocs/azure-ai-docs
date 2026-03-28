@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 To improve your ability to ship applications using on-device AI, there are substantial changes to the architecture of the JavaScript SDK. In this section, we outline the key changes to help you migrate your applications to the latest version of the SDK.
 
 > [!NOTE]
-> In the JavaScript SDK version `0.9.0` and later, there are breaking changes in the API from previous versions.
+> In the JavaScript SDK version `0.9.0` and later, there are breaking changes in the API from previous versions (`<=0.5.0`).
 
 The following diagram shows how the previous architecture relied heavily on using a REST webserver to manage models and inference like chat completions:
 

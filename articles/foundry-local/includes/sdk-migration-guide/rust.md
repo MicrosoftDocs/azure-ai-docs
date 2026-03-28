@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 To improve your ability to ship applications using on-device AI, there are substantial changes to the architecture of the Rust SDK. In this section, we outline the key changes to help you migrate your applications to the latest version of the SDK.
 
 > [!NOTE]
-> In the latest Rust SDK version, there are breaking changes in the API from previous versions. The crate name has changed from `foundry-local` to `foundry-local-sdk`.
+> In the latest Rust SDK version (`1.0.0`), there are breaking changes in the API from the previous version. The crate name has changed from `foundry-local` to `foundry-local-sdk`.
 
 The following diagram shows how the previous architecture relied heavily on using a REST webserver to manage models and inference like chat completions:
 
