@@ -72,12 +72,6 @@ async fn main() -> anyhow::Result<()> {
 }
 ```
 
-Add `anyhow` to your dependencies:
-
-```bash
-cargo add anyhow
-```
-
 > [!NOTE]
 > Replace `"Recording.mp3"` with the path to the audio file that you want to transcribe.
 

@@ -23,7 +23,7 @@ Use Foundry Local in your Rust project by following these Windows-specific or Cr
     ```bash
     cargo add foundry-local-sdk --features winml
     cargo add tokio --features full
-    cargo add tokio-stream
+    cargo add tokio-stream anyhow
     ```
 
 ### [Cross-Platform](#tab/xplatform)
@@ -37,7 +37,7 @@ Use Foundry Local in your Rust project by following these Windows-specific or Cr
     ```bash
     cargo add foundry-local-sdk
     cargo add tokio --features full
-    cargo add tokio-stream
+    cargo add tokio-stream anyhow
     ```
 
 ---

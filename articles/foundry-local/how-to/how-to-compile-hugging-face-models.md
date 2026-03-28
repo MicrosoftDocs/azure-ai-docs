@@ -382,12 +382,6 @@ Use the Foundry Local Rust SDK to load and run your compiled model with the nati
 
 [!INCLUDE [project-setup](../includes/rust-project-setup.md)]
 
-Add `anyhow` to your dependencies:
-
-```bash
-cargo add anyhow
-```
-
 ### Run inference on the compiled model
 
 Replace the contents of `src/main.rs` with the following code:

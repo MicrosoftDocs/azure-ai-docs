@@ -88,12 +88,6 @@ async fn main() -> anyhow::Result<()> {
 }
 ```
 
-Add `anyhow` to your dependencies:
-
-```bash
-cargo add anyhow
-```
-
 Run the code by using the following command:
 
 ```bash
