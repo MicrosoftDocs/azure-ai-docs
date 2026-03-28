@@ -26,6 +26,9 @@ Use Foundry Local in your Rust project by following these Windows-specific or Cr
     cargo add tokio-stream anyhow
     ```
 
+> [!NOTE]
+> The Windows package uses the Windows Machine Learning (WinML) framework for hardware acceleration and automatic execution provider management.
+
 ### [Cross-Platform](#tab/xplatform)
 
 1. Create a new Rust project and navigate into it:
