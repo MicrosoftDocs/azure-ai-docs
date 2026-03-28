@@ -9,7 +9,7 @@ ms.author: jburchel
 ms.reviewer: samkemp
 author: jonburchel
 reviewer: samuel100
-ms.date: 01/05/2026
+ms.date: 03/28/2026
 ai-usage: ai-assisted
 ---
 
@@ -19,7 +19,7 @@ Foundry Local is an embedded AI runtime that ships as a single native library in
 
 This article explains the components that make up the Foundry Local runtime and how they work together to deliver on-device AI inference.
 
-## Architecture overview
+## Component overview
 
 The following diagram shows how Foundry Local fits inside your application. Your code interacts with the Core API through direct function calls. The Core API calls into Open Neural Network Exchange (ONNX) Runtime for inference, integrates with the Foundry Catalog for model acquisition, and integrates with WinML on Windows for execution provider registration.
 
@@ -37,11 +37,20 @@ The Core API handles:
 - **Hardware abstraction** — detecting available hardware, selecting the best execution provider, and managing the local model cache, so your application code doesn't need to handle these details.
 - **Thread-safe, session-based inference** — supporting concurrent requests from multiple threads without requiring external synchronization.
 
-Language SDKs for C#, JavaScript, Python, and Rust wrap this native library and expose idiomatic APIs for each ecosystem. Your application code calls the SDK, which makes direct in-process function calls to the Core API.
+Language SDKs for C#, JavaScript, Python, and Rust wrap this native library and expose idiomatic APIs for each ecosystem:
+
+| Language | Package |
+|---|---|
+| C# | [Microsoft.AI.Foundry.Local](https://www.nuget.org/packages/Microsoft.AI.Foundry.Local) (NuGet) |
+| JavaScript | [foundry-local-sdk](https://www.npmjs.com/package/foundry-local-sdk) (npm) |
+| Python | [foundry-local-sdk](https://pypi.org/project/foundry-local-sdk/) (PyPI) |
+| Rust | [foundry-local-sdk](https://crates.io/crates/foundry-local-sdk) (crates.io) |
+
+Your application code calls the SDK, which makes direct in-process function calls to the Core API.
 
 ## ONNX Runtime
 
-ONNX Runtime is the inference engine that executes AI models. The Core API calls into ONNX Runtime for all model execution.
+[ONNX Runtime](https://onnxruntime.ai/) is the inference engine that executes AI models. The Core API calls into ONNX Runtime for all model execution.
 
 ONNX Runtime provides:
 
@@ -51,6 +60,14 @@ ONNX Runtime provides:
 - **CPU fallback** — the CPU execution provider is always available, so models run on any device even without specialized hardware.
 
 ONNX Runtime supports quantized models, which reduce memory usage and improve inference speed on resource-constrained devices.
+
+### WebGPU and Apple Silicon
+
+On macOS with Apple Silicon, Foundry Local uses the WebGPU execution provider to access the GPU. ONNX Runtime implements WebGPU through [Dawn](https://dawn.googlesource.com/dawn), Google's open-source WebGPU implementation. Dawn acts as a translation layer that compiles WebGPU compute shaders into Metal Shading Language (MSL), which then runs natively on the Apple Silicon GPU through Apple's [Metal](https://developer.apple.com/metal/) framework.
+
+This approach enables GPU-accelerated inference on macOS without requiring a dedicated Metal execution provider. The translation chain is: ONNX model → ONNX Runtime (WebGPU execution provider) → Dawn → Metal → Apple Silicon GPU. Key optimizations include half-precision (FP16) arithmetic for faster throughput, GPU-side tensor management to minimize CPU-to-GPU data transfers, and graph capture for repeated inference passes.
+
+On Windows, the same WebGPU execution provider targets Direct3D through Dawn, which means your application code doesn't need platform-specific logic to benefit from GPU acceleration.
 
 ## Foundry Catalog
 
@@ -70,7 +87,7 @@ You aren't limited to models in the Foundry Catalog. You can also compile and op
 
 ## WinML (Windows only)
 
-On Windows, Foundry Local integrates with WinML for execution provider registration. WinML is a Windows-native machine learning platform that bridges the gap between ONNX Runtime and the hardware acceleration plugins available on the system.
+On Windows, Foundry Local integrates with [WinML](/windows/ai/windows-ml/) for execution provider registration. WinML is a Windows-native machine learning platform that bridges the gap between ONNX Runtime and the hardware acceleration plugins available on the system.
 
 WinML handles:
 
@@ -95,6 +112,7 @@ The following table summarizes the supported execution providers and device type
 | Execution provider | Device type | Platform |
 |---|---|---|
 | NVIDIA CUDA | GPU | Windows, Linux |
+| WebGPU (via Dawn) | GPU | Windows, Linux, macOS |
 | AMD | GPU | Windows |
 | Qualcomm | NPU | Windows |
 | Intel | NPU | Windows |
@@ -110,22 +128,11 @@ The CPU execution provider is always available as a fallback. If no GPU or NPU i
 The Foundry Local SDK manages the complete model lifecycle through the Core API. Each phase happens in-process within your application:
 
 - **Download** — the SDK requests a model by alias. If the model isn't in the local cache, the Core API downloads it from the Foundry Catalog and stores it on disk.
-- **Load** — the SDK loads the model into memory, which initializes the ONNX Runtime session and selects the appropriate execution provider for the available hardware.
+- **Load** — the SDK loads the model into memory, which initializes the ONNX Runtime session and selects the appropriate execution provider for the available hardware. For details on how execution providers are selected, see [Hardware abstraction](#hardware-abstraction).
 - **Inference** — your application sends prompts to the loaded model and receives responses. The Core API supports both synchronous and streaming inference modes.
 - **Unload** — when inference is complete, the SDK unloads the model from memory to free up resources. Cached model files remain on disk for future use.
 
 This lifecycle is the same across all supported languages. The SDK handles each phase through a consistent API pattern: get a model from the catalog, download and load it, create a client, and run inference.
-
-## Troubleshooting
-
-The following table describes common issues and their resolutions:
-
-| Issue | Cause | Resolution |
-|---|---|---|
-| Inference runs on CPU instead of GPU/NPU | Missing or outdated hardware driver | Install the correct driver for your hardware. See the [Hardware abstraction](#hardware-abstraction) section for driver links. |
-| Qualcomm error code 5005: `Failed to load from EpContext model. qnn_backend_manager.` | Outdated Qualcomm NPU driver or NPU resource conflict | Update the [Qualcomm NPU driver](https://softwarecenter.qualcomm.com/catalog/item/QHND) and reboot to clear NPU resource conflicts, especially after running Windows Copilot+ features. |
-| Model download fails on first use | No network connectivity | Foundry Local requires network access for the initial model download. After the first download, models run from the local cache without network access. |
-| Model not found in catalog | Incorrect model alias or unsupported model | Verify the model alias against the [Foundry Catalog](../get-started.md). You can also use custom ONNX models compiled outside the catalog. |
 
 ## Related content
 
