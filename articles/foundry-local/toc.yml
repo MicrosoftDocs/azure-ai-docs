@@ -40,10 +40,9 @@ items:
   - name: Foundry Local CLI (preview)
     expanded: true
     items:
-    - name: CLI guide
+    - name: CLI (preview) guide
       href: reference/reference-cli.md
-    - name: CLI REST API
+    - name: CLI REST (preview) API
       href: reference/reference-rest.md   
-  - name: Best practice and troubleshooting
-    href: reference/reference-best-practice.md
- 
+    - name: CLI (preview) best practice and troubleshooting
+      href: reference/reference-best-practice.md
