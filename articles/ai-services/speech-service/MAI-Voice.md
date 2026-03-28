@@ -15,7 +15,8 @@ ms.custom: references_regions
 ---
 
 
-# MAI-Voice-1 in Azure Speech
+# MAI-Voice-1 in Azure Speech (Public Preview)
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 Azure Speech continues to advance text to speech technology with **MAI-Voice-1**, a next-generation neural text to speech (TTS) model available through Azure AI Speech in **public preview**. Built on Microsoft’s latest in-house speech foundation models, MAI-Voice-1 delivers highly expressive, natural, and emotionally rich speech output while maintaining consistent voice persona quality.
 
