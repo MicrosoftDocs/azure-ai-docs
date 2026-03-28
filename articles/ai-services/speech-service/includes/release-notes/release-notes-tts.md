@@ -18,6 +18,8 @@ Key enhancements include:
 - Improved expressive range and stability across domains
 - Styles and paralinguistic tags supported via **SSML and plain text input**
 - Enhanced tagging and metadata to simplify voice evaluation and selection
+
+> [!NOTE]
 > Styles and paralinguistic features are available on all `HDLatestNeural` voices, except for voices with primary locale as `en‑IN`.
 
 #### Neural HD Omni quality and expressiveness update
