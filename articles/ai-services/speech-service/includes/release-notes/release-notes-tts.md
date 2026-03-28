@@ -25,6 +25,7 @@ Key enhancements include:
 #### Neural HD Omni quality and expressiveness update
 Neural HD Omni voices receive a quality upgrade with added support for expressive styles and paralinguistic tags across the Omni voice set. This enhancement improves emotional control and conversational naturalness while preserving each voice’s unique character, making it well suited for customer service, accessibility, and creative scenarios.
 
+> [!NOTE]
 > Styles and paralinguistic features are available on all `HDOmniLatestNeural` voices.
 
 #### Neural HD Flash – low‑latency HD voices
@@ -38,7 +39,6 @@ Starting in March 2026, Neural HD voices expand beyond their original regions an
 - Canada Central  
 - France Central  
 - Sweden Central  
-
 
 #### Neural HD Multi‑Talker voices expansion
 Neural HD Multi‑Talker voices now support multi‑speaker synthesis across additional input languages, extending beyond en‑US to include **fr‑FR, es‑ES, de‑DE, it‑IT, pt‑BR, ko‑KR, ja‑JP, and zh‑CN**.
