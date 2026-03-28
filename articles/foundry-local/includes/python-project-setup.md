@@ -17,24 +17,23 @@ Use Foundry Local in your Python project by following these steps:
     mkdir app-name
     cd app-name
     python -m venv .venv
+    source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
     ```
-1. Activate the virtual environment:
-
-    ### [macOS/Linux](#tab/macos-linux)
-
-    ```bash
-    source .venv/bin/activate
-    ```
+1. Install the Foundry Local SDK package:
 
     ### [Windows](#tab/windows)
 
     ```bash
-    .venv\Scripts\activate
+    pip install foundry-local-sdk-winml
     ```
 
-    ---
+    > [!NOTE]
+    > The Windows package uses the Windows Machine Learning (WinML) framework for hardware acceleration and automatic execution provider management.
 
-1. Install the Foundry Local SDK package:
+    ### [Cross-Platform](#tab/xplatform)
+
     ```bash
     pip install foundry-local-sdk
     ```
+
+    ---
