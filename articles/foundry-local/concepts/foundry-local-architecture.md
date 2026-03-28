@@ -113,15 +113,13 @@ The following table summarizes the supported execution providers and device type
 |---|---|---|
 | NVIDIA CUDA | GPU | Windows, Linux |
 | WebGPU (via Dawn) | GPU | Windows, Linux, macOS |
-| AMD | GPU | Windows |
+| AMD Vitis | NPU | Windows |
 | Qualcomm | NPU | Windows |
-| Intel | NPU | Windows |
-| CPU (default) | CPU | Windows, Linux, macOS |
+| Intel OpenVino | GPU | Windows |
+| CPU  | CPU | Windows, Linux, macOS |
 
-The CPU execution provider is always available as a fallback. If no GPU or NPU is detected, or if the required driver isn't installed, Foundry Local runs inference on the CPU automatically.
+The CPU execution provider is always available as a fallback. If no GPU or NPU is detected, Foundry Local runs inference on the CPU automatically.
 
-> [!NOTE]
-> NPU acceleration requires device-specific drivers. Intel NPU support on Windows requires the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html). Qualcomm NPU support requires the [Qualcomm NPU driver](https://softwarecenter.qualcomm.com/catalog/item/QHND). Without these drivers, inference falls back to the CPU execution provider.
 
 ## Model lifecycle
 

@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 
 > [!WARNING]
-> This reference applies to earlier versions of the Foundry Local SDK that depend on the Foundry Local CLI for service management. Starting with the versions listed below, the SDK embeds the runtime directly and no longer requires the CLI. For new development, use the [current SDK reference](./reference-sdk-current.md).
+> This reference applies to earlier versions of the Foundry Local SDK that depend on the Foundry Local CLI for service management. Starting with the versions listed below, the SDK embeds the runtime directly and no longer requires the CLI. **For new development, use the [current SDK reference](./reference-sdk-current.md)**.
 >
 > | Language | Package | CLI-dependent versions | Embedded versions |
 > |---|---|---|---|
