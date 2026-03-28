@@ -21,7 +21,7 @@ You can find the sample in this article in the [Foundry Local SDK Samples GitHub
 
 [!INCLUDE [project-setup](../rust-project-setup.md)]
 
-Add additional dependencies for HTTP and JSON:
+Add extra dependencies for HTTP and JSON:
 
 ```bash
 cargo add anyhow reqwest --features reqwest/json
@@ -30,16 +30,16 @@ cargo add serde serde_json --features serde/derive
 
 ## Understanding tool choice settings
 
-When using tool calling with Foundry Local, the tool choice parameter controls whether and how the model invokes the tools you provide. It is sent as part of the chat completion request alongside your tool definitions.
+The tool choice parameter controls whether and how the model invokes the tools you provide. Tool choice is sent as part of the chat completion request alongside your tool definitions.
 
 Different models have different capabilities when it comes to tool calling, but in general you can expect the following behavior for each option:
 
 | Option | Value | Behavior | Reliability |
 |--------|-------|----------|-------------|
 | **Auto** | `"auto"` | The model decides whether to call a tool or respond directly, based on the user's message and the available tool definitions. | Reliable across all tool-calling models |
-| **None** | `"none"` | The model will not call any tools, even if tools are provided in the request. | Reliable across all tool-calling models |
-| **Required** | `"required"` | The model must call at least one tool. It will not return a plain text response. | Best-effort — may be ignored by smaller models |
-| **Specific function** | `{"type": "function", "function": {"name": "my_function"}}` | The model must call the specified function. | Best-effort — may be ignored by smaller models |
+| **None** | `"none"` | The model doesn't call any tools, even if tools are provided in the request. | Reliable across all tool-calling models |
+| **Required** | `"required"` | The model must call at least one tool. | Best effort (tool call could be ignored by smaller models) |
+| **Specific function** | `{"type": "function", "function": {"name": "my_function"}}` | The model must call the specified function. | Best-effort (tool call could be ignored by smaller models) |
 
 ## Use chat completions with tool calling
 

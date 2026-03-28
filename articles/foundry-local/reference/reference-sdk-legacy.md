@@ -18,14 +18,18 @@ ai-usage: ai-assisted
 
 
 > [!WARNING]
-> This reference applies to earlier versions of the Foundry Local SDK that depend on the Foundry Local CLI for service management. Starting with the versions listed below, the SDK embeds the runtime directly and no longer requires the CLI. **For new development, use the [current SDK reference](./reference-sdk-current.md)**.
+> This reference applies to earlier versions of the Foundry Local SDK that depend on the Foundry Local CLI for service management. 
 >
-> | Language | Package | CLI-dependent versions | Embedded versions |
-> |---|---|---|---|
-> | C# | Microsoft.AI.Foundry.Local | 0.3.0 and earlier | 0.8.0 and later |
-> | JavaScript | foundry-local-sdk | 0.5.0 and earlier | 0.9.0 and later |
-> | Python | foundry-local-sdk | 0.5.1 and earlier | 1.0.0 and later |
-> | Rust | foundry-local (legacy) → foundry-local-sdk | 0.x | 1.0.0 and later |
+> **For new development, use the [current SDK reference](./reference-sdk-current.md)**.
+>
+> The following table shows the SDK versions where there was a dependency on the CLI:
+>
+> | Language | Package | CLI-dependent versions |
+> |---|---|---|
+> | C# | Microsoft.AI.Foundry.Local | 0.3.0 and earlier | 
+> | JavaScript | foundry-local-sdk | 0.5.0 and earlier |
+> | Python | foundry-local-sdk | 0.5.1 and earlier |
+> | Rust | foundry-local / foundry-local-sdk | 0.x |
 >
 > **Support for CLI-dependent versions ends 31 August 2026.**
 
@@ -34,7 +38,7 @@ ai-usage: ai-assisted
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/sdk-legacy-reference/python.md)]
 ::: zone-end
-::: zone pivot="programming-language-javascript"
+::: zone pivot="programming-language-JavaScript"
 [!INCLUDE [JavaScript](../includes/sdk-legacy-reference/javascript.md)]
 ::: zone-end
 ::: zone pivot="programming-language-csharp"
