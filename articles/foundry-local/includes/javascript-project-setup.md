@@ -22,7 +22,7 @@ Use Foundry Local in your JavaScript project by following these Windows-specific
     ```
 1. Install the Foundry Local SDK package:
     ```bash
-    npm install --winml foundry-local-sdk
+    npm install foundry-local-sdk-winml
     npm install openai
     ```
 

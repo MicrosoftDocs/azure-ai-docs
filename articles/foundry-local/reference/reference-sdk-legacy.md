@@ -16,8 +16,11 @@ ai-usage: ai-assisted
 
 # Foundry Local Legacy SDK reference
 
+
 > [!WARNING]
 > The Foundry Local SDK was updated to remove the dependency on the Foundry Local CLI and improve the API for better usability and performance. This reference documents the legacy version of the SDK that relies on the CLI, which is no longer recommended for new development. Refer to the [current SDK reference](./reference-sdk-current.md) for the latest version of the SDK.
+>
+> **The legacy SDK will be deprecated on 31 August 2026.**
 
 <!-- markdownlint-disable MD044 -->
 

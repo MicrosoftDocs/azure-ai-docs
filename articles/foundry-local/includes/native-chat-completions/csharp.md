@@ -12,11 +12,6 @@ ai-usage: ai-assisted
 ## Prerequisites
 
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
-- Azure role-based access control (RBAC): Not applicable.
-
-## Samples repository
-
-You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
 
 ## Set up project
 
@@ -101,79 +96,15 @@ Console.WriteLine();
 await model.UnloadAsync();
 ```
 
-References:
-
-- [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
-- [Foundry Local C# SDK API Reference](https://aka.ms/fl-csharp-api-ref)
-- [CancellationToken](/dotnet/api/system.threading.cancellationtoken)
-
-### Optional: list model aliases available on your device
-
-If you don't know which model alias to use, list the models available for your hardware.
-
-```csharp
-// List available models and aliases
-Console.WriteLine("Available models for your hardware:");
-var models = await catalog.ListModelsAsync();
-foreach (var availableModel in models)
-{
-    foreach (var variant in availableModel.Variants)
-    {
-        Console.WriteLine($"  - Alias: {variant.Alias}");
-    }
-}
-```
-
-References:
-
-- [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
-
 Run the code by using the following command:
 
-### [Windows](#tab/windows)
-
-For x64 Windows, use the following command:
-
 ```bash
-dotnet run -r:win-x64
+dotnet run
 ```
 
-For arm64 Windows, use the following command:
-
-```bash
-dotnet run -r:win-arm64
-```
-
-
-### [Cross-Platform](#tab/xplatform)
-
-For macOS, use the following command:
-
-```bash
-dotnet run -r:osx-arm64
-```
-
-For Linux, use the following command:
-
-```bash
-dotnet run -r:linux-x64
-```
-
-For Windows, use the following command:
-
-```bash
-dotnet run -r:win-x64
-```
 
 > [!NOTE]
 > If you're targeting Windows, use the Windows-specific instructions under the Windows tab for the best performance and experience.
-
-**What to expect**
-
-- On first run, the app downloads and then loads the model.
-- The app prints a streaming response to the prompt.
-
----
 
 ## Troubleshooting
 

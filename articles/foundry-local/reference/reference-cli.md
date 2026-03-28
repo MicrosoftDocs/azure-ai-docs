@@ -8,8 +8,8 @@ ms.author: jburchel
 ms.reviewer: samkemp
 author: jonburchel
 reviewer: samuel100
-ms.topic: concept-article
-ms.date: 01/05/2026
+ms.topic: reference
+ms.date: 03/27/2026
 ai-usage: ai-assisted
 ---
 
@@ -20,11 +20,37 @@ This article provides a comprehensive reference for the Foundry Local command-li
 
 ## Prerequisites
 
-- Install Foundry Local. For setup steps, see [Get started with Foundry Local](../get-started.md).
-- Use a local terminal where the `foundry` CLI is available.
+- [Install Foundry Local](#install-foundry-local).
+- A local terminal where the `foundry` CLI is available.
 - Ensure you have internet access for first-time downloads (execution providers and models).
 - Azure RBAC: Not applicable (runs locally).
 - If you have an Intel NPU on Windows, install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) for optimal NPU acceleration.
+
+## Install Foundry Local
+
+Install Foundry Local by using the package manager for your operating system.
+
+- **Windows**: Open a terminal and run:
+  ```bash
+  winget install Microsoft.FoundryLocal
+  ```
+- **macOS**: Open a terminal and run:
+  ```bash
+  brew tap microsoft/foundrylocal
+  brew install foundrylocal
+  ```
+  Alternatively, download the installer from the [Foundry Local GitHub repository](https://aka.ms/foundry-local-installer).
+
+Verify the installation:
+
+```bash
+foundry --version
+```
+
+Make sure you have admin rights to install software.
+
+> [!TIP]
+> If you see a service connection error after installation (for example, `Request to local service failed`), run `foundry service restart`.
 
 ## Quick verification
 
@@ -189,6 +215,25 @@ Reference: [Model list filtering](#model-list-filtering)
 > - Only one filter can be used per command.
 > - Unrecognized filter keys result in an error.
 
+### Run a model interactively
+
+Run a model and interact with it directly in the terminal:
+
+```bash
+foundry model run qwen2.5-0.5b
+```
+
+Foundry Local downloads the model on first run, then starts an interactive session. Enter a prompt to get a response:
+
+```text
+Why is the sky blue?
+```
+
+:::image type="content" source="../media/get-started-output.png" alt-text="Screenshot of output from Foundry Local run command." lightbox="../media/get-started-output.png":::
+
+> [!TIP]
+> Replace `qwen2.5-0.5b` with any model alias from the catalog. Run `foundry model list` to view available models. Foundry Local downloads the variant that best matches your hardware — for example, a CUDA variant for NVIDIA GPUs or an NPU variant for Qualcomm NPUs.
+
 ## Service commands
 
 The following table summarizes the commands related to managing and running the Foundry Local service:
@@ -245,5 +290,55 @@ Foundry Local automatically downloads these execution providers on first run. Th
 | `QNNExecutionProvider` (Qualcomm) | Snapdragon(R) X Elite - X1Exxxxx - Qualcomm(R) Hexagon(TM) NPU with minimum driver version 30.0.140.0 and later versions<br>Snapdragon(R) X Plus - X1Pxxxxx - Qualcomm(R) Hexagon(TM) NPU with minimum driver version 30.0.140.0 and later versions | To view the QNN License, download the Qualcomm® Neural Processing SDK, extract the ZIP, and open the LICENSE.pdf file. |
 | `VitisAIExecutionProvider` (AMD) | Min: Adrenalin Edition 25.6.3 with NPU driver 32.00.0203.280<br>Max: Adrenalin Edition 25.9.1 with NPU driver 32.00.0203.297 | No additional license required |
 
+## Upgrade Foundry Local
 
+Run the command for your operating system to upgrade Foundry Local.
 
+- **Windows**:
+  ```bash
+  winget upgrade --id Microsoft.FoundryLocal
+  ```
+- **macOS**:
+  ```bash
+  brew upgrade foundrylocal
+  ```
+
+## Uninstall Foundry Local
+
+Run the command for your operating system to uninstall Foundry Local.
+
+- **Windows**:
+  ```bash
+  winget uninstall Microsoft.FoundryLocal
+  ```
+- **macOS**:
+  ```bash
+  brew rm foundrylocal
+  brew untap microsoft/foundrylocal
+  brew cleanup --scrub
+  ```
+
+## Troubleshooting
+
+### Service connection problems
+
+If you see this error when you run a command like `foundry model list`:
+
+```text
+Exception: Request to local service failed.
+Uri: http://127.0.0.1:0/foundry/list
+
+The requested address is not valid in its context. (127.0.0.1:0)
+
+Please check service status with 'foundry service status'.
+```
+
+Restart the service:
+
+```bash
+foundry service restart
+```
+
+This command fixes cases where the service runs but isn't accessible because of a port binding problem.
+
+For more troubleshooting guidance, see [Best practices and troubleshooting](reference-best-practice.md).

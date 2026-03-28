@@ -38,31 +38,12 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
       </PropertyGroup>
     
       <ItemGroup>
-        <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="0.9.0" />
+        <PackageReference Include="Microsoft.AI.Foundry.Local.WinML" Version="1.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
         <PackageReference Include="OpenAI" Version="2.5.0" />
       </ItemGroup>
     
     </Project>
-    ```
-1. Create a `nuget.config` file in the project root with the following content so that the packages restore correctly:
-    ```xml
-    <?xml version="1.0" encoding="utf-8"?>
-    <configuration>
-      <packageSources>
-        <clear />
-        <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
-        <add key="ORT" value="https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/ORT/nuget/v3/index.json" />
-      </packageSources>
-      <packageSourceMapping>
-        <packageSource key="nuget.org">
-          <package pattern="*" />
-        </packageSource>
-        <packageSource key="ORT">
-          <package pattern="*Foundry*" />
-        </packageSource>
-      </packageSourceMapping>
-    </configuration>
     ```
 
 ### [Cross-Platform](#tab/xplatform)
@@ -88,31 +69,12 @@ Use Foundry Local in your C# project by following these Windows-specific or Cros
         </PropertyGroup>
     
         <ItemGroup>
-          <PackageReference Include="Microsoft.AI.Foundry.Local" Version="0.9.0" />
+          <PackageReference Include="Microsoft.AI.Foundry.Local" Version="1.0.0" />
           <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
           <PackageReference Include="OpenAI" Version="2.5.0" />
         </ItemGroup>
     
     </Project>
-    ```
-1. Create a `nuget.config` file in the project root with the following content so that the packages restore correctly:
-    ```xml
-    <?xml version="1.0" encoding="utf-8"?>
-    <configuration>
-      <packageSources>
-        <clear />
-        <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
-        <add key="ORT" value="https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/ORT/nuget/v3/index.json" />
-      </packageSources>
-      <packageSourceMapping>
-        <packageSource key="nuget.org">
-          <package pattern="*" />
-        </packageSource>
-        <packageSource key="ORT">
-          <package pattern="*Foundry*" />
-        </packageSource>
-      </packageSourceMapping>
-    </configuration>
     ```
 
 ---

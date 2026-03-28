@@ -6,6 +6,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/foundry-local/reference/windows-server-frequently-asked-questions.md",
+            "redirect_url": "/azure/foundry-local/what-is-foundry-local",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/foundry-local/reference/reference-catalog-api.md",
             "redirect_url": "/azure/foundry-local/reference/reference-rest",
             "redirect_document_id": false

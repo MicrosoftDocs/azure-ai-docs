@@ -376,7 +376,7 @@ References:
 ## Troubleshooting
 
 - If the `foundry` command isn't found, install Foundry Local. See [Get started with Foundry Local](../get-started.md).
-- If Foundry Local starts but requests fail, run `foundry service restart`. For an example error and fix, see the troubleshooting section in [Get started with Foundry Local](../get-started.md).
+- If Foundry Local starts but requests fail, run `foundry service restart`. For an example error and fix, see the troubleshooting section in [Foundry Local CLI reference](../reference/reference-cli.md).
 - If the `huggingface-cli` command isn't found, install it by running `pip install -U huggingface_hub`, and then run `huggingface-cli login`.
 - If `olive auto-opt` fails with an authentication or access error, confirm your token and model access request is approved.
 

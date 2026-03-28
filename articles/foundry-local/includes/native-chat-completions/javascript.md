@@ -12,10 +12,6 @@ ai-usage: ai-assisted
 ## Prerequisites
 - [Node.js 20](https://nodejs.org/en/download/) or later installed.
 
-## Samples repository
-
-You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
-
 ## Set up project
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]
