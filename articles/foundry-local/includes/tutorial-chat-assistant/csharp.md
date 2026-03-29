@@ -279,17 +279,18 @@ Model loaded and ready.
 
 Chat assistant ready! Type 'quit' to exit.
 
-You: What is the capital of France?
-Assistant: The capital of France is Paris! It's known for landmarks like the Eiffel Tower,
-the Louvre Museum, and Notre-Dame Cathedral.
+You: What is photosynthesis?
+Assistant: Photosynthesis is the process plants use to convert sunlight, water, and carbon
+dioxide into glucose and oxygen. It mainly happens in the leaves, inside structures
+called chloroplasts.
 
-You: What's it famous for besides those?
-Assistant: Beyond those iconic landmarks, Paris is famous for its café culture, world-class
-cuisine, fashion industry, and the Seine River. It's also home to the Musée d'Orsay
-and the Palace of Versailles is just outside the city.
+You: Why is it important for other living things?
+Assistant: It's essential because photosynthesis produces the oxygen that most living things
+breathe. It also forms the base of the food chain — animals eat plants or eat other
+animals that depend on plants for energy.
 
 You: quit
 Model unloaded. Goodbye!
 ```
 
-Notice how the assistant remembers context from previous turns — when you ask "What's it famous for besides those?", it knows you're still talking about Paris.
+Notice how the assistant remembers context from previous turns — when you ask "Why is it important for other living things?", it knows you're still talking about photosynthesis.
