@@ -25,6 +25,8 @@ items:
     href: how-to/how-to-compile-hugging-face-models.md
   - name: Use tool calling
     href: how-to/how-to-use-tool-calling-with-foundry-local.md  
+  - name: Use the Foundry Local CLI
+    href: how-to/how-to-use-foundry-local-cli.md
 - name: Reference
   expanded: true
   items:
