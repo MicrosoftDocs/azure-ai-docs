@@ -32,7 +32,6 @@ In this tutorial, you learn how to:
 ## Prerequisites
 
 - A Windows, macOS, or Linux computer with at least 8 GB of RAM.
-- Foundry Local installed on your device. See [Get started with Foundry Local](../get-started.md) if you haven't installed it yet.
 
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C#](../includes/tutorial-chat-assistant/csharp.md)]
