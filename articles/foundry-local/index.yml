@@ -39,6 +39,11 @@ landingContent:
           - text: Get started with Foundry Local
             url: get-started.md
 
+      - linkListType: tutorial
+        links:
+          - text: Build a multi-turn chat assistant
+            url: tutorials/tutorial-build-chat-assistant.md
+
       - linkListType: how-to-guide
         links:
           - text: Integrate with Inferencing SDKs
