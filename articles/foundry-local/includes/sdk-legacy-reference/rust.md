@@ -15,7 +15,7 @@ The Rust SDK for Foundry Local provides a way to manage models, control the cach
 
 ### Prerequisites
 
-- Install Foundry Local and ensure the `foundry` command is available on your `PATH`.
+- Install Foundry Local CLI and ensure the `foundry` command is available on your `PATH`.
 - Use Rust 1.70.0 or later.
 
 ### Installation

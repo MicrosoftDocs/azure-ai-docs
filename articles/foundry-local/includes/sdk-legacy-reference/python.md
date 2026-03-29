@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 ### Prerequisites
 
-- Install Foundry Local and ensure the `foundry` command is available on your `PATH`.
+- Install Foundry Local CLI and ensure the `foundry` command is available on your `PATH`.
 - Use Python 3.9 or later.
 
 ### Installation
