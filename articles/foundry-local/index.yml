@@ -43,6 +43,12 @@ landingContent:
         links:
           - text: Build a multi-turn chat assistant
             url: tutorials/tutorial-build-chat-assistant.md
+          - text: Build an AI assistant with tool calling
+            url: tutorials/tutorial-build-tool-calling-assistant.md
+          - text: Build a voice-to-text note taker
+            url: tutorials/tutorial-build-voice-to-text-note-taker.md
+          - text: Build a document summarizer
+            url: tutorials/tutorial-build-document-summarizer.md
 
       - linkListType: how-to-guide
         links:

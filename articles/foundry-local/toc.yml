@@ -10,6 +10,12 @@ items:
   items:
   - name: Build a multi-turn chat assistant
     href: tutorials/tutorial-build-chat-assistant.md
+  - name: Build an AI assistant with tool calling
+    href: tutorials/tutorial-build-tool-calling-assistant.md
+  - name: Build a voice-to-text note taker
+    href: tutorials/tutorial-build-voice-to-text-note-taker.md
+  - name: Build a document summarizer
+    href: tutorials/tutorial-build-document-summarizer.md
 - name: Concepts
   expanded: true
   items:
