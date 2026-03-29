@@ -70,13 +70,7 @@ In this tutorial, you learn how to:
 
 ## Clean up resources
 
-The model weights remain in your local cache after you unload a model. This means the next time you run the application, the download step is skipped and the model loads faster.
-
-If you want to free disk space, use the [Foundry Local CLI](../reference/reference-cli.md) to remove cached models:
-
-```bash
-foundry model cache delete phi-3.5-mini
-```
+The model weights remain in your local cache after you unload a model. This means the next time you run the application, the download step is skipped and the model loads faster. No extra cleanup is needed unless you want to reclaim disk space.
 
 ## Related content
 
