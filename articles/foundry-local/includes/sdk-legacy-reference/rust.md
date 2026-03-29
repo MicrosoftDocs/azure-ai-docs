@@ -29,7 +29,7 @@ foundry-local = "0.1.0"
 Alternatively, you can add the Foundry Local crate using `cargo`:
 
 ```bash
-cargo add foundry-local
+cargo add foundry-local@0
 ```
 
 ### Quickstart

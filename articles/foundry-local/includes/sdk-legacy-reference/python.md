@@ -23,7 +23,7 @@ ai-usage: ai-assisted
 Install the Python package:
 
 ```bash
-pip install foundry-local-sdk
+pip install foundry-local-sdk==0.5.1
 ```
 
 ### Quickstart
