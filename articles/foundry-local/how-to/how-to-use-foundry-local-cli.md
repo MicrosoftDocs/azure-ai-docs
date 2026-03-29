@@ -1,5 +1,5 @@
 ---
-title: Use the Foundry Local CLI
+title: Use the Foundry Local CLI (preview)
 titleSuffix: Foundry Local
 description: Learn how to use the Foundry Local command-line interface to browse models, run interactive chat sessions, and manage your local model cache.
 ms.service: azure-ai-foundry
@@ -13,7 +13,7 @@ ms.date: 03/29/2026
 ai-usage: ai-assisted
 ---
 
-# Use the Foundry Local CLI
+# Use the Foundry Local CLI (preview)
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 The Foundry Local command-line interface (CLI) lets you browse the model catalog, run models interactively, and manage your local cache directly from the terminal. The CLI is useful for exploring available models, testing prompts, and preparing your environment before writing application code.
@@ -23,9 +23,36 @@ The Foundry Local command-line interface (CLI) lets you browse the model catalog
 
 ## Prerequisites
 
-- Install the Foundry Local CLI. For setup steps, see [Install Foundry Local](../reference/reference-cli.md#install-foundry-local).
-- A terminal where the `foundry` command is available.
+- A terminal (PowerShell, Terminal, or similar).
 - Internet access for first-time model and execution provider downloads.
+
+## Install the Foundry Local CLI
+
+Install Foundry Local by using the package manager for your operating system.
+
+### [Windows](#tab/windows)
+
+```bash
+winget install Microsoft.FoundryLocal
+```
+
+### [macOS](#tab/macos)
+
+```bash
+brew tap microsoft/foundrylocal
+brew install foundrylocal
+```
+
+---
+
+Verify the installation:
+
+```bash
+foundry --version
+```
+
+> [!TIP]
+> If you see a service connection error after installation (for example, `Request to local service failed`), run `foundry service restart`.
 
 ## Browse the model catalog
 
