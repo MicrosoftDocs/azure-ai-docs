@@ -208,7 +208,7 @@ To check BYOS configuration of a Foundry resource for Speech with Azure portal, 
 1.  Select *Storage* menu in the *Resource Management* group.
 1.  Check that:
     1. *Attached storage* field contains the Azure resource ID of the BYOS-associated Storage account.
-    1. *Identity type* has *System Assigned* selected.
+    1. *Identity type* has *System Assigned* selected. Note: *User Assigned* identity is not supported for BYOS..
 
 If *Storage* menu item is missing in the *Resource Management* group, the selected Speech resource isn't BYOS-enabled.
 
@@ -326,7 +326,7 @@ If you perform all actions in the section, your Storage account is in the follow
 - External network traffic is allowed.
 - Access to Storage account using Storage account key is prohibited.
 - Access to Storage account blob storage using [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) is prohibited. (Except for [User delegation SAS](/azure/storage/common/shared-key-authorization-prevent#understand-how-disallowing-shared-key-affects-sas-tokens))
-- Access to the BYOS-enabled Speech resource is allowed using the resource [system assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) and [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas).
+- Access to the BYOS-enabled Speech resource is allowed using the resource [system assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) and [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas). Note: *User Assigned* identity is not supported for BYOS. Also, if you want to change the identity from user assigned to system assigned, you need to redeploy the Speech service as well. 
 
 These are the most restricted security settings possible for the text to speech scenario. You can further customize them according to your needs.
 
