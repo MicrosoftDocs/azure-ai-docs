@@ -14,6 +14,7 @@ ai-usage: ai-assisted
 ---
 
 # Use the Foundry Local CLI
+[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 The Foundry Local command-line interface (CLI) lets you browse the model catalog, run models interactively, and manage your local cache directly from the terminal. The CLI is useful for exploring available models, testing prompts, and preparing your environment before writing application code.
 
