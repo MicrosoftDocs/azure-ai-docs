@@ -35,27 +35,6 @@ In this tutorial, you learn how to:
 - Foundry Local installed on your device. See [Get started with Foundry Local](../get-started.md) if you haven't installed it yet.
 
 ::: zone pivot="programming-language-csharp"
-
-- [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later.
-
-::: zone-end
-::: zone pivot="programming-language-javascript"
-
-- [Node.js 18](https://nodejs.org/) or later.
-
-::: zone-end
-::: zone pivot="programming-language-python"
-
-- [Python 3.10](https://www.python.org/downloads/) or later.
-
-::: zone-end
-::: zone pivot="programming-language-rust"
-
-- [Rust 1.75](https://www.rust-lang.org/tools/install) or later with Cargo.
-
-::: zone-end
-
-::: zone pivot="programming-language-csharp"
 [!INCLUDE [C#](../includes/tutorial-chat-assistant/csharp.md)]
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
