@@ -5,6 +5,11 @@ items:
   href: what-is-foundry-local.md
 - name: Get Started
   href: get-started.md
+- name: Tutorials
+  expanded: true
+  items:
+  - name: Build a multi-turn chat assistant
+    href: tutorials/tutorial-build-chat-assistant.md
 - name: Concepts
   expanded: true
   items:
