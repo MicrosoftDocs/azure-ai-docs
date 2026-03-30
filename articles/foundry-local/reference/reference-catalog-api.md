@@ -2,7 +2,7 @@
 title: "Catalog API reference"
 titleSuffix: Foundry Local
 description: "Complete reference guide for the Foundry Local Model Catalog API."
-ms.service: azure-ai-foundry
+ms.service: azure
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: reference

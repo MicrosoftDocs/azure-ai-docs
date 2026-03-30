@@ -2,7 +2,7 @@
 title: "Best practices and troubleshooting guide for Foundry Local"
 titleSuffix: Foundry Local
 description: "Guidance on best practices and troubleshooting for Foundry Local."
-ms.service: azure-ai-foundry
+ms.service: azure
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: troubleshooting

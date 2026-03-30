@@ -2,7 +2,7 @@
 title: "Use native chat completions"
 titleSuffix: Foundry Local
 description: "This article provides instructions on how to use native chat completions API in Foundry Local."
-ms.service: azure-ai-foundry
+ms.service: azure
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
