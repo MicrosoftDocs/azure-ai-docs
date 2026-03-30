@@ -15,7 +15,7 @@ In this article, learn the steps for defining a schema for a [**search index**](
 
 ## Prerequisites
 
-+ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
++ An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An [Azure AI Search service](search-create-service-portal.md), any region and tier, but it must be a billable tier (Basic or higher) for role-based access.
 

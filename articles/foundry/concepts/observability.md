@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 02/10/2026
+ms.date: 03/27/2026
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -15,8 +15,6 @@ ms.custom:
 ---
 
 # Observability in generative AI
-
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 The AI application lifecycle requires robust evaluation frameworks to ensure AI systems deliver accurate, relevant, and reliable outputs. Without rigorous assessment, AI systems risk generating responses that are inaccurate, inconsistent, poorly grounded, or potentially harmful. Observability enables teams to measure and improve both the quality and safety of AI outputs throughout the development lifecycle—from model selection through production monitoring.
 
@@ -40,7 +38,7 @@ Production monitoring ensures your deployed AI applications maintain quality and
 
 For details on setting up production monitoring, see [Monitor agents dashboard](../observability/how-to/how-to-monitor-agents-dashboard.md).
 
-### Tracing (preview)
+### Tracing
 
 Distributed tracing captures the execution flow of AI applications, providing visibility into LLM calls, tool invocations, agent decisions, and inter-service dependencies. Built on OpenTelemetry standards and integrated with Application Insights, tracing enables debugging complex agent behaviors, identifying performance bottlenecks, and understanding multi-step reasoning chains. Microsoft Foundry supports tracing for popular frameworks including LangChain, Semantic Kernel, and the OpenAI Agents SDK.
 

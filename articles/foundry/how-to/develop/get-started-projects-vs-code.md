@@ -64,5 +64,5 @@ The Foundry extension organizes your workspace into three main sections.
 
 ## Next steps
 
-- [Explore Foundry models](../../../foundry-classic/concepts/foundry-models-overview.md)
+- [Explore Foundry models](../../concepts/foundry-models-overview.md)
 - [Deploy models with Foundry](../../foundry-models/how-to/deploy-foundry-models.md)

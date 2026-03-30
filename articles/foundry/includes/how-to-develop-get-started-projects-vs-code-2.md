@@ -48,7 +48,7 @@ The selected project now displays **Default** after the project name.
 
 ## Work with models
 
-The Foundry extension lets you discover, deploy, and interact with models from the [Foundry model catalog](../../foundry-classic/concepts/foundry-models-overview.md) directly in VS Code.
+The Foundry extension lets you discover, deploy, and interact with models from the [Foundry model catalog](../concepts/foundry-models-overview.md) directly in VS Code.
 
 ### Browse the model catalog
 
