@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 03/11/2026
+ms.date: 03/30/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -54,7 +54,7 @@ pip install azure-identity
 # [C#](#tab/csharp)
 
 ```bash
-dotnet add package Azure.AI.Projects --version 2.0.0-beta.2
+dotnet add package Azure.AI.Projects
 dotnet add package Azure.Identity
 ```
 
@@ -144,7 +144,7 @@ AgentVersion agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
-            new PromptAgentDefinition("gpt-5-mini")
+            new DeclarativeAgentDefinition("gpt-5-mini")
             {
                 Instructions = "You are a helpful assistant.",
             }));
@@ -277,7 +277,7 @@ AgentVersion agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-tool-agent",
         options: new(
-            new PromptAgentDefinition("gpt-5-mini")
+            new DeclarativeAgentDefinition("gpt-5-mini")
             {
                 Instructions = "You are a helpful assistant that can search the web.",
                 Tools = { ResponseTool.CreateWebSearchTool() },

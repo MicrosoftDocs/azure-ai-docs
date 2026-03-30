@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 02/23/2026
+ms.date: 03/30/2026
 ms.custom: include
 ---
 
@@ -29,7 +29,7 @@ Make sure you install the correct version of the packages as shown here.
     Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Foundry projects (new) API**.
         
     ```bash
-    dotnet add package Azure.AI.Projects --prerelease
+    dotnet add package Azure.AI.Projects
     dotnet add package Azure.Identity
     ```
 

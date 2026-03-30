@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -21,11 +21,11 @@ Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 and 3.1
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 > [!NOTE]
 > For Java, use the `com.azure:azure-ai-agents` package for OpenAPI agent tools. The `com.azure:azure-ai-projects` package doesn't currently expose OpenAPI agent tool types.
@@ -41,7 +41,7 @@ Before you begin, make sure you have:
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - SDK installed for your preferred language:
   - Python: `azure-ai-projects`
-  - C#: `Azure.AI.Extensions.OpenAI` (prerelease)
+  - C#: `Azure.AI.Extensions.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
   - Java: `com.azure:azure-ai-agents` (prerelease)
 
@@ -291,7 +291,7 @@ class OpenAPIDemo
         OpenAPITool openapiTool = new(toolDefinition);
 
         // Create the agent definition and the agent version.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+        DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a helpful assistant.",
             Tools = { openapiTool }
@@ -380,7 +380,7 @@ class OpenAPIConnectedDemo
         OpenAPITool openapiTool = new(toolDefinition);
 
         // Create the agent definition and the agent version.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+        DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a helpful assistant.",
             Tools = { openapiTool }

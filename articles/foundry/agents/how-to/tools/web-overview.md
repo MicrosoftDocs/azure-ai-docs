@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 03/25/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -34,7 +34,7 @@ The grounding process involves several key steps:
 Before using any web grounding tool, ensure you have:
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
-- The latest prerelease SDK package for your language (Python: `azure-ai-projects`, C#: `Azure.AI.Projects.OpenAI`, JavaScript: `@azure/ai-projects`). See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
+- The latest SDK package for your language (Python: `azure-ai-projects`, C#: `Azure.AI.Extensions.OpenAI`, JavaScript: `@azure/ai-projects`). See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
 - An Azure OpenAI model deployment in your Foundry project.
 
 > [!NOTE]

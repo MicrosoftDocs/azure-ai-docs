@@ -4,7 +4,7 @@ description: "Learn how to migrate from the Assistants API and classic agents to
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 03/25/2026
+ms.date: 03/30/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -35,7 +35,7 @@ pip install "azure-ai-projects>=2.0.0"
 # [C#](#tab/csharp)
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Projects
 dotnet add package Azure.Identity
 ```
 
@@ -905,7 +905,7 @@ var agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
-            new PromptAgentDefinition("gpt-4.1")
+            new DeclarativeAgentDefinition("gpt-4.1")
             {
                 Instructions =
                     "You politely help with math "
@@ -1137,7 +1137,7 @@ var agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
-            new PromptAgentDefinition("gpt-4.1")
+            new DeclarativeAgentDefinition("gpt-4.1")
             {
                 Instructions =
                     "You politely help with math "
@@ -1493,7 +1493,7 @@ var agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
-            new PromptAgentDefinition("gpt-4.1")
+            new DeclarativeAgentDefinition("gpt-4.1")
             {
                 Instructions =
                     "You politely help with math "

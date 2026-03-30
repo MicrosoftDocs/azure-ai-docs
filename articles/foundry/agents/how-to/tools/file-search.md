@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -31,18 +31,18 @@ In this article, you learn how to:
 
 ## Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md)
 - The SDK package for your language:
   - **Python**: `azure-ai-projects` (latest)
-  - **.NET**: `Azure.AI.Extensions.OpenAI` (prerelease)
+  - **.NET**: `Azure.AI.Extensions.OpenAI`
   - **TypeScript**: `@azure/ai-projects` (latest)
   - **Java**: `azure-ai-agents` (prerelease)
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)
@@ -170,7 +170,7 @@ VectorStoreCreationOptions options = new()
 VectorStore vectorStore = vctStoreClient.CreateVectorStore(options: options);
 
 // Create an Agent capable of using File search.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful agent that can help fetch data from files you know about.",
     Tools = { ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }), }
@@ -280,7 +280,7 @@ class FileSearchStreamingDemo
         VectorStore vectorStore = projectClient.OpenAI.VectorStores.CreateVectorStore(options);
 
         // Create an agent capable of using File search.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+        DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
         {
             Instructions = "You are a helpful agent that can help fetch data from files you know about.",
             Tools = { ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }), }

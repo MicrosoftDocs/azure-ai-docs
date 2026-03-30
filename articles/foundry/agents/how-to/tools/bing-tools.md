@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -39,11 +39,11 @@ The grounding process involves several key steps:
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -55,9 +55,9 @@ Before you begin, make sure you have:
   - **Azure AI Project Manager** role to create project connections in Foundry. For more information, see [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md).
 - A Foundry project created with a configured endpoint.
 - An AI model deployed in your project.
-- SDK installed for your preferred language. C# and Java require the prerelease version:
+- SDK installed for your preferred language:
   - Python: `azure-ai-projects`
-  - C#: `Azure.AI.Extensions.OpenAI` (prerelease)
+  - C#: `Azure.AI.Extensions.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
   - Java: `com.azure:azure-ai-agents:2.0.0-beta.3`
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
@@ -110,7 +110,7 @@ If you already have a project connection ID for the Bing resource you want to us
 ## Code examples
 
 > [!NOTE]
-> - You need the latest SDK package. C# and Java require the prerelease version. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> - You need the latest SDK package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 > - For SDK samples, use the project connection name. For REST samples, use the project connection ID in the format`/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
@@ -364,7 +364,7 @@ BingGroundingTool bingGroundingAgentTool = new(new BingGroundingSearchToolOption
   searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
     )
 );
-PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful agent.",
     Tools = { bingGroundingAgentTool, }
@@ -447,7 +447,7 @@ BingGroundingTool bingGroundingAgentTool = new(new BingGroundingSearchToolOption
   searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
     )
 );
-PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful agent.",
     Tools = { bingGroundingAgentTool }
