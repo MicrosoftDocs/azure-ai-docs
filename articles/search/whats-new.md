@@ -1,7 +1,7 @@
 ---
 title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
-ms.date: 03/13/2026
+ms.date: 03/30/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -21,6 +21,10 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 | Item | Description |
 |--|--|
+| [Search Management 2026-03-01-preview](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) | New preview REST API version providing programmatic access to the control plane operations described in this table. |
+| [Service-level CMK encryption](search-security-manage-encryption-keys.md) (preview) | New `serviceLevelEncryptionKey` enables customer-managed key (CMK) encryption at the service level. All newly created objects are automatically encrypted using the service-level key. However, you can override this setting by specifying an object-level key when creating an individual object. |
+| [Cross-tenant CMK encryption via federated identity](search-security-managed-encryption-cross-tenant.md) (preview) | New `federatedIdentityClientId` property enables cross-tenant CMK encryption at the service level via a Microsoft Entra multitenant application, a federated identity credential, and a user-assigned managed identity. We recommend this approach over client secrets because federated identity credentials don't require secret rotation or expiration. |
+| `knowledgeRetrieval` property (preview) | Search Management 2026-03-01-preview adds a `knowledgeRetrieval` property to the search service definition. This property doesn't affect any data plane versions, including Search Service 2025-11-01-preview. Ignore for now. |
 | [**Import data** wizard unification](search-import-data-portal.md) | The **Import data** and **Import data (new)** wizards have been unified into a single **Import data** wizard that supports keyword search, RAG, and multimodal RAG. |
 
 ## February 2026

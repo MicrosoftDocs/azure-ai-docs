@@ -6,7 +6,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 12/17/2025
+ms.date: 03/30/2026
 ---
 
 # Preview features in Azure AI Search
@@ -15,7 +15,7 @@ This article identifies all data plane and control plane features in public prev
 
 Preview API versions are cumulative and roll up to the next preview. We recommend always using the latest preview APIs for full access to all preview features.
 
-Preview features are removed from this list if they're retired or transition to general availability. For announcements regarding general availability and retirement, see [Service Updates](https://azure.microsoft.com/updates/?product=search) or [What's New](whats-new.md).
+Preview features are removed from this list if they're retired or transition to general availability. For announcements regarding general availability and retirement, see [What's new in Azure AI Search](whats-new.md).
 
 ## Data plane preview features
 
@@ -29,7 +29,7 @@ Preview features are removed from this list if they're retired or transition to 
 | [**Strict postfiltering for vector queries**](vector-search-filters.md) | Adds the `strictPostFilter` mode to the `vectorFilterMode` parameter. When specified, filters are applied after the global top-`k` vector results are identified, ensuring that returned documents are a subset of the unfiltered results. | [Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
 | [**Multivector support**](vector-search-multi-vector-fields.md) | Index multiple child vectors within a single document field. You can now use vector types in nested fields of complex collections, effectively allowing multiple vectors to be associated with a single document.| [Create or Update Index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
 | [**Document-level access control**](search-document-level-access-overview.md) | Flow document-level permissions from blobs in Azure Data Lake Storage (ADLS) Gen2 to searchable documents in an index. Queries can now filter results based on user identity for selected data sources. | [Create or Update Index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
-| [**GenAI Prompt skill**](cognitive-search-skill-genai-prompt.md) | Skill that connects to a large language model (LLM) for information using a prompt you provide. With this skill, you can populate a searchable field using content from an LLM. A primary use case for this skill is *image verbalization*, using an LLM to describe images and send the description to a searchable field in your index. | [Create or Update Skillset (preview)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
+| [**GenAI Prompt skill**](cognitive-search-skill-genai-prompt.md) | Skill that connects to an LLM for information using a prompt you provide. With this skill, you can populate a searchable field using content from an LLM. A primary use case for this skill is *image verbalization*, using an LLM to describe images and send the description to a searchable field in your index. | [Create or Update Skillset (preview)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
 | [**flightingOptIn parameter in a semantic configuration**](semantic-how-to-configure.md#opt-in-for-prerelease-semantic-ranking-models) | Opt in to use prerelease semantic ranking models if one is available in a search service region. | [Create or Update Index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-03-01-preview&preserve-view=true) |
 | [**Facet hierarchies, aggregations, and facet filters**](search-faceted-navigation-examples.md) | New facet query parameters support nested facets. For numeric facetable fields, you can sum the values of each field. You can also specify filters on a facet to add inclusion or exclusion criteria. | [Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true) |
 | [**Query rewrite in the semantic reranker**](semantic-how-to-query-rewrite.md) | Set options on a semantic query to rewrite the query input into a revised or expanded query that generates more relevant results from the L2 ranker. | [Search Documents (preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&preserve-view=true)|
@@ -55,16 +55,19 @@ Preview features are removed from this list if they're retired or transition to 
 
 ## Control plane preview features
 
-Currently, there are no control plane features in preview.
+| Feature | Description | Availability |
+|--|--|--|
+| [**Service-level CMK encryption**](search-security-manage-encryption-keys.md) | Encrypt all objects on a search service using a single customer-managed key (CMK). All newly created objects are automatically encrypted using the service-level key. However, you can override this setting by specifying an object-level key when creating an individual object. | [Services - Create or Update (preview)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) |
+| [**Cross-tenant CMK encryption via federated identity**](search-security-managed-encryption-cross-tenant.md) | Configure cross-tenant CMK encryption at the service level using a Microsoft Entra multitenant application, a federated identity credential, and a user-assigned managed identity. This approach eliminates the need for client secrets. | [Services - Create or Update (preview)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) |
 
 ## Preview features in Azure SDKs
 
-Preview features in Azure SDKs are available through preview packages. To determine which preview features are available in a specific package version, see the SDK's change log:
+Preview features in Azure SDKs are available through preview packages. To determine which preview features are available in a specific package version, see the SDK's changelog:
 
-+ [Change log for Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md)
-+ [Change log for Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
-+ [Change log for Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md)
-+ [Change log for Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
++ [Changelog for Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md)
++ [Changelog for Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
++ [Changelog for Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md)
++ [Changelog for Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
 
 ## Using preview features
 
@@ -80,18 +83,18 @@ If you write code against a preview API, you should prepare to upgrade that code
 
 ## How to call a preview REST API
 
-Preview REST APIs are accessed through the api-version parameter on the URI. Older previews are still operational but become stale over time and aren't updated with new features or bug fixes.
+Preview REST APIs are accessed through the `api-version` parameter on the URI. Older previews are still operational but become stale over time and aren't updated with new features or bug fixes.
 
-For data plane operations on content, [**`2025-11-01-preview`**](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) is the most recent preview version. The following example shows the syntax for [Indexes GET (preview)](/rest/api/searchservice/indexes/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true):
+For data plane operations on content, [**`2025-11-01-preview`**](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) is the most recent preview version. The following example shows how to call [Indexes - Get](/rest/api/searchservice/indexes/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API) for this preview version:
 
-```rest
-GET {endpoint}/indexes('{indexName}')?api-version=2025-11-01-Preview
+```http
+GET {endpoint}/indexes('{indexName}')?api-version=2025-11-01-preview
 ```
 
-For management operations on the search service, [**`2025-05-01-preview`**](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-05-01-preview&preserve-view=true) is the most recent preview version. The following example shows the syntax for Update Service 2025-05-01-preview version.
+For management operations on the search service, [**`2026-03-01-preview`**](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) is the most recent preview version. The following example shows how to call [Services - Update](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) (REST API) for this preview version:
 
-```rest
-PATCH https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2025-05-01-preview
+```http
+PATCH https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2026-03-01-preview
 
 {
   "tags": {
@@ -104,11 +107,10 @@ PATCH https://management.azure.com/subscriptions/subid/resourceGroups/rg1/provid
 }
 ```
 
-## See also
+## Related content
 
-+ [Quickstart: Full-text search using REST APIs](search-get-started-text.md)
-+ [Search REST API overview](/rest/api/searchservice/)
-+ [Search REST API versions](/rest/api/searchservice/search-service-api-versions)
-+ [Manage using the REST APIs](search-manage-rest.md)
-+ [Management REST API overview](/rest/api/searchmanagement/)
-+ [Management REST API versions](/rest/api/searchmanagement/management-api-versions)
++ [Search Service REST API overview](/rest/api/searchservice/)
++ [Search Service REST API versions](/rest/api/searchservice/search-service-api-versions)
++ [Search Management REST API overview](/rest/api/searchmanagement/)
++ [Search Management REST API versions](/rest/api/searchmanagement/management-api-versions)
++ [Manage your Azure AI Search service using REST APIs](search-manage-rest.md)
