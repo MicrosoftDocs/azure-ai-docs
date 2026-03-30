@@ -57,7 +57,7 @@ An example flow is:
 
 Before you begin, make sure you have:
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Contributor or Owner role on a resource group.
 - A Foundry project with a configured endpoint.
 - An AI model deployed in your project (for example, `gpt-4o`).
@@ -152,7 +152,7 @@ tool = BrowserAutomationPreviewTool(
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="""You are an Agent helping with browser automation tasks. 
         You can answer questions, provide information, and assist with various tasks 
         related to web browsing using the Browser Automation tool available to you.""",
@@ -252,7 +252,7 @@ BrowserAutomationPreviewTool playwrightTool = new(
     ));
 
 // Create the Agent version with the Browser Automation tool.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are an Agent helping with browser automation tasks.\n" +
     "You can answer questions, provide information, and assist with various tasks\n" +
@@ -408,7 +408,7 @@ export async function main(): Promise<void> {
 
   const agent = await project.agents.createVersion("MyAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: `You are an Agent helping with browser automation tasks. 
             You can answer questions, provide information, and assist with various tasks 
             related to web browsing using the Browser Automation tool available to you.`,
@@ -541,7 +541,7 @@ public class BrowserAutomationExample {
         );
 
         // Create agent with browser automation tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a helpful assistant that can interact with web pages.")
             .setTools(Collections.singletonList(browserTool));
 

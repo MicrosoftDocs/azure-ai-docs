@@ -34,51 +34,13 @@ Priority processing can be enabled in Global standard deployments or Data Zone s
 
 ### Global standard model availability
 
-| **Region**             | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
-|:-----------------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
-| australiaeast          | -                       | ✅                      | ✅                      | ✅                      |
-| brazilsouth            | -                       | ✅                      | ✅                      | ✅                      |
-| canadacentral          | -                       | ✅                      | ✅                      | ✅                      |
-| canadaeast             | -                       | ✅                      | ✅                      | ✅                      |
-| centralus              | -                       | ✅                      | ✅                      | ✅                      |
-| eastus                 | -                       | ✅                      | ✅                      | ✅                      |
-| eastus2                | ✅                      | ✅                      | ✅                      | ✅                      |
-| francecentral          | -                       | ✅                      | ✅                      | ✅                      |
-| germanywestcentral     | -                       | ✅                      | ✅                      | ✅                      |
-| italynorth             | -                       | ✅                      | ✅                      | ✅                      |
-| japaneast              | -                       | ✅                      | ✅                      | ✅                      |
-| koreacentral           | -                       | ✅                      | ✅                      | ✅                      |
-| northcentralus         | -                       | ✅                      | ✅                      | ✅                      |
-| norwayeast             | -                       | ✅                      | ✅                      | ✅                      |
-| polandcentral          | ✅                      | ✅                      | ✅                      | ✅                      |
-| southafricanorth       | -                       | ✅                      | ✅                      | ✅                      |
-| southcentralus         | ✅                      | ✅                      | ✅                      | ✅                      |
-| southeastasia          | -                       | ✅                      | ✅                      | ✅                      |
-| southindia             | -                       | ✅                      | ✅                      | ✅                      |
-| spaincentral           | -                       | ✅                      | ✅                      | ✅                      |
-| swedencentral          | ✅                      | ✅                      | ✅                      | ✅                      |
-| switzerlandnorth       | -                       | ✅                      | ✅                      | ✅                      |
-| switzerlandwest        | -                       | ✅                      | ✅                      | ✅                      |
-| uaenorth               | -                       | ✅                      | ✅                      | ✅                      |
-| uksouth                | -                       | ✅                      | ✅                      | ✅                      |
-| westeurope             | -                       | ✅                      | ✅                       | ✅                      |
-| westus                 | -                       | ✅                      | ✅                      | ✅                      |
-| westus3                | -                       | ✅                      | ✅                       | ✅                      |
-
+[!INCLUDE [standard-global-priority-processing](../../../foundry/openai/includes/model-matrix/standard-global-priority-processing.md)]
 
 # [Data Zone standard](#tab/datazone-standard)
 
 ### Data zone standard model availability
 
-| **Region**             | **gpt-5.4, 2026-03-05** | **gpt-5.2, 2025-12-11** | **gpt-5.1, 2025-11-13** | **gpt-4.1, 2025-04-14** |
-|:-----------------------|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
-| centralus              | ✅                      | ✅                      | ✅                      | ✅                      |
-| eastus                 | ✅                      | ✅                      | ✅                      | ✅                      |
-| eastus2                | ✅                      | ✅                      | ✅                      | ✅                      |
-| northcentralus         | ✅                      | ✅                      | ✅                      | ✅                      |
-| southcentralus         | ✅                      | ✅                      | ✅                      | ✅                      |
-| westus                 | ✅                      | ✅                      | ✅                      | ✅                      |
-| westus3                | ✅                      | ✅                      | ✅                      | ✅                      |
+[!INCLUDE [datazone-standard-priority-processing](../../../foundry/openai/includes/model-matrix/datazone-standard-priority-processing.md)]
 
 ---
 

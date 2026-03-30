@@ -19,4 +19,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/prompt-transformation.md)
 
+[!INCLUDE [classic-links](../../includes/classic-links.md)]
+
 [!INCLUDE [prompt-transformation content](../../../foundry/openai/includes/concepts-prompt-transformation-content.md)]

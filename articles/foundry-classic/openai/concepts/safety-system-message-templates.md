@@ -21,4 +21,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/safety-system-message-templates.md)
 
+[!INCLUDE [classic-links](../../includes/classic-links.md)]
+
 [!INCLUDE [safety-system-message-templates content](../../../foundry/openai/includes/concepts-safety-system-message-templates-content.md)]

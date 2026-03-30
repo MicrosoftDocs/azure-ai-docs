@@ -78,7 +78,7 @@ openai = project.get_openai_client()
 agent = project.agents.create_version(
     agent_name="agent-image-generation",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="Generate images based on user prompts.",
         tools=[ImageGenTool(model=IMAGE_MODEL, quality="low", size="1024x1024")],
     ),
@@ -139,7 +139,7 @@ AIProjectClient projectClient = new(
 // when creating this tool. The ImageGenerationTool parameters include
 // the image generation model, image quality and resolution.
 // Supported image generation models include gpt-image-1.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
 Instructions = "Generate images based on user prompts.",
 Tools = {
@@ -330,7 +330,7 @@ export async function main(): Promise<void> {
   // Create Agent with image generation tool
   const agent = await project.agents.createVersion("agent-image-generation", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: "Generate images based on user prompts",
     tools: [
       {
@@ -437,7 +437,7 @@ public class ImageGenerationExample {
             .setSize(ImageGenToolSize.fromString("1024x1024"));
 
         // Create agent with image generation tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a creative assistant that can generate images based on descriptions.")
             .setTools(Collections.singletonList(imageGenTool));
 

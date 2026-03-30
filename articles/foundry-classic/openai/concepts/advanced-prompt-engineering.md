@@ -21,4 +21,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/advanced-prompt-engineering.md)
 
+[!INCLUDE [classic-links](../../includes/classic-links.md)]
+
 [!INCLUDE [advanced-prompt-engineering content](../../../foundry/openai/includes/concepts-advanced-prompt-engineering-content.md)]

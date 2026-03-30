@@ -117,7 +117,7 @@ Once you reset an indexer, you can't undo the action.
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. On the **Overview** page, select the **Indexers** tab.
 1. Select an indexer.
 1. Select the **Reset** command, and then select **Yes** to confirm the action.

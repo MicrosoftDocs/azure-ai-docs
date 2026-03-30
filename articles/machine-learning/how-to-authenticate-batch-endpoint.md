@@ -72,13 +72,19 @@ To execute a batch endpoint by using the identity of the currently signed-in use
 
     ```python
     from azure.ai.ml import MLClient
-    from azure.identity import InteractiveBrowserCredential
+    from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
+
+    try:
+        credential = DefaultAzureCredential()
+        credential.get_token("https://management.azure.com/.default")
+    except Exception:
+        credential = InteractiveBrowserCredential()
 
     subscription_id = "<subscription>"
     resource_group = "<resource-group>"
     workspace = "<workspace>"
 
-    ml_client = MLClient(InteractiveBrowserCredential(), subscription_id, resource_group, workspace)
+    ml_client = MLClient(credential, subscription_id, resource_group, workspace)
     ```
 
 1. After you authenticate, use the following command to run a batch deployment job:
