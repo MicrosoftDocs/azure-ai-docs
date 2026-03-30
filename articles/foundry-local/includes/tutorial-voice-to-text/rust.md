@@ -25,7 +25,7 @@ In this step, you load a speech-to-text model and transcribe an audio file. The 
 
 ## Summarize the transcription
 
-Now use a chat model to organize the raw transcription into structured notes. Load the `phi-3.5-mini` model and send the transcription as context with a system prompt that instructs the model to produce clean, summarized notes.
+Now use a chat model to organize the raw transcription into structured notes. Load the `qwen2.5-0.5b` model and send the transcription as context with a system prompt that instructs the model to produce clean, summarized notes.
 
 Add the following code after the transcription step, inside the `main` function:
 

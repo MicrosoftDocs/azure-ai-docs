@@ -231,7 +231,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 const manager = FoundryLocalManager.create({ appName: "foundry_local_samples" });
 
 // Load both models
-const chatModel = await manager.catalog.getModel("phi-3.5-mini");
+const chatModel = await manager.catalog.getModel("qwen2.5-0.5b");
 await chatModel.download();
 await chatModel.load();
 
