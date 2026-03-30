@@ -43,35 +43,8 @@ Copy-and-paste the following code into a C# file named `Program.cs`:
 Reference: [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
 Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
 
-Run the code using the following command:
-
-### [Windows](#tab/windows)
-
-For x64 Windows, use the following command:
+## Run the application
 
 ```bash
-dotnet run -r win-x64
+dotnet run
 ```
-
-For arm64 Windows, use the following command:
-
-```bash
-dotnet run -r win-arm64
-```
-
-
-### [Cross-Platform](#tab/xplatform)
-
-For macOS, use the following command:
-
-```bash
-dotnet run -r osx-arm64
-```
-
-For Linux, use the following command:
-
-```bash
-dotnet run -r linux-x64
-```
-
----

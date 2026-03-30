@@ -36,47 +36,14 @@ Copy and paste the following code into a C# file named `Program.cs`:
 
 The sample includes a `Recording.mp3` file. To transcribe a different audio file, pass the file path as an argument.
 
-Run the code by using the following command:
-
-### [Windows](#tab/windows)
-
-If your architecture is `x64`, use the following command:
+## Run the application
 
 ```bash
-dotnet run -r:win-x64
-```
-
-If your architecture is `arm64`, use the following command:
-
-```bash
-dotnet run -r:win-arm64
+dotnet run
 ```
 
 To transcribe a custom audio file:
 
 ```bash
-dotnet run -r:win-x64 -- path/to/audio.mp3
+dotnet run -- path/to/audio.mp3
 ```
-
-
-### [Cross-Platform](#tab/xplatform)
-
-For macOS, use the following command:
-
-```bash
-dotnet run -r:osx-arm64
-```
-
-For Linux, use the following command:
-
-```bash
-dotnet run -r:linux-x64
-```
-
-To transcribe a custom audio file:
-
-```bash
-dotnet run -r:osx-arm64 -- path/to/audio.mp3
-```
-
----

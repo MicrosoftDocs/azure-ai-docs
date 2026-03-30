@@ -44,35 +44,9 @@ Copy and paste the following code into a C# file named `Program.cs`:
 
 ## Run the native chat completions example
 
-#### [Windows](#tab/windows)
-
-For x64 Windows, use the following command:
-
 ```bash
-dotnet run -r:win-x64
+dotnet run
 ```
-
-For arm64 Windows, use the following command:
-
-```bash
-dotnet run -r:win-arm64
-```
-
-#### [Cross-Platform](#tab/xplatform)
-
-For macOS, use the following command:
-
-```bash
-dotnet run -r:osx-arm64
-```
-
-For Linux, use the following command:
-
-```bash
-dotnet run -r:linux-x64
-```
-
----
 
 ## Use OpenAI Web server for tool calling
 
@@ -85,33 +59,6 @@ If you prefer to use the OpenAI SDKs to call the Foundry Local web service, you 
 
 ## Run the OpenAI web service example
 
-### [Windows](#tab/windows)
-
-For x64 Windows, use the following command:
-
 ```bash
-dotnet run -r:win-x64
+dotnet run
 ```
-
-For arm64 Windows, use the following command:
-
-```bash
-dotnet run -r:win-arm64
-```
-
-
-### [Cross-Platform](#tab/xplatform)
-
-For macOS, use the following command:
-
-```bash
-dotnet run -r:osx-arm64
-```
-
-For Linux, use the following command:
-
-```bash
-dotnet run -r:linux-x64
-```
-
----
