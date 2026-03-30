@@ -42,7 +42,7 @@ The following table shows SDK and setup support.
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
   - **C#**: Install the `Azure.AI.Projects` NuGet package
   - **JavaScript/TypeScript**: `npm install @azure/ai-projects`
-  - **Java**: Add the `com.azure:azure-ai-agents:2.0.0-beta.3` dependency to your `pom.xml`
+  - **Java**: Add the `com.azure:azure-ai-agents:2.0.0` dependency to your `pom.xml`
 - An Azure subscription and Microsoft Foundry project with:
   - Project endpoint
   - Model deployment name
@@ -528,7 +528,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

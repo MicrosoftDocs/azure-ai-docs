@@ -59,7 +59,7 @@ Before you begin, make sure you have:
   - Python: `azure-ai-projects`
   - C#: `Azure.AI.Extensions.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
-  - Java: `com.azure:azure-ai-agents:2.0.0-beta.3`
+  - Java: `com.azure:azure-ai-agents:2.0.0`
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
   - For REST samples, environment variables set up:
     - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
@@ -954,7 +954,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

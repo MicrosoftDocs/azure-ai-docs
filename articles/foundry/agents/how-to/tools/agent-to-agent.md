@@ -44,7 +44,7 @@ The following table shows SDK and setup support. The following table shows SDK a
   - Python (GA): `pip install "azure-ai-projects>=2.0.0"`
   - C#: `Azure.AI.Projects` NuGet package
   - TypeScript (GA): `@azure/ai-projects` npm package
-  - Java (Preview): `com.azure:azure-ai-agents:2.0.0-beta.3` Maven dependency
+  - Java: `com.azure:azure-ai-agents:2.0.0` Maven dependency
 - Values to update in code:
   - Project endpoint URL (for example, `https://<resource>.ai.azure.com/api/projects/<project>`).
   - Model deployment name (for example, `gpt-4.1-mini`).
@@ -78,7 +78,7 @@ Use your connection name in code. Your code uses this name to retrieve the full 
 ## Code example
 
 > [!NOTE]
-> The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 
 :::zone pivot="python"
 ## Create an agent with the A2A tool
@@ -546,7 +546,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

@@ -40,7 +40,7 @@ Before you start, make sure you have:
   - Python: `azure-ai-projects` (latest)
   - .NET: `Azure.AI.Extensions.OpenAI`
   - TypeScript: `@azure/ai-projects` (latest)
-  - Java: `azure-ai-agents` (prerelease)
+  - Java: `azure-ai-agents`
   
   For installation and authentication steps, see the [quickstart](../../../quickstarts/get-started-code.md).
 
@@ -629,7 +629,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

@@ -48,7 +48,7 @@ The following table shows SDK and setup support.
 
 ## Code examples
 
-Before you start, install the latest SDK package. The .NET and Java SDKs are currently in preview. For package installation instructions, see the [quickstart](../../../quickstarts/get-started-code.md).
+Before you start, install the latest SDK package. The .NET SDK is currently in preview. For package installation instructions, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 :::zone pivot="python"
 ## Create an agent with the image generation tool
@@ -400,7 +400,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

@@ -36,7 +36,7 @@ The following table shows SDK and setup support.
 ## Prerequisites
 
 - Basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md) for details.
-- Latest SDK package installed for your language. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
+- Latest SDK package installed for your language. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
 - Azure AI model deployment configured in your project.
 - For file operations: CSV or other supported files to upload for analysis.
 
@@ -355,7 +355,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

@@ -72,7 +72,7 @@ For Python examples, install the required packages:
 pip install "azure-ai-projects>=2.0.0"
 ```
 
-The .NET and Java SDKs are currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
+The .NET SDK is currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 
 ### Configuration
 
@@ -111,7 +111,7 @@ After the connection is created, you can view the **Project connection ID** on t
 After you run a sample, verify the tool was called by using tracing in Microsoft Foundry. For guidance on validating tool invocation, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md). If you use streaming, you can also look for `browser_automation_preview_call` events.
 
 > [!NOTE]
-> - The .NET and Java SDKs are currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
+> - The .NET SDK is currently in preview. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 > - This article assumes you already created the Playwright workspace connection. See the prerequisites section.
 
 :::zone pivot="python"
@@ -503,7 +503,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

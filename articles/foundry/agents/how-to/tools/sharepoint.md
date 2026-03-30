@@ -51,7 +51,7 @@ The following table shows SDK and setup support.
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
   - **C#**: Install the `Azure.AI.Projects` NuGet package
   - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
-  - **Java (Preview)**: Add `com.azure:azure-ai-agents:2.0.0-beta.3` to your `pom.xml`
+  - **Java**: Add `com.azure:azure-ai-agents:2.0.0` to your `pom.xml`
 - Environment variables configured:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
@@ -464,7 +464,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

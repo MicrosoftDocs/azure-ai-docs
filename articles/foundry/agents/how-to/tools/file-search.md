@@ -44,7 +44,7 @@ The following table shows SDK and setup support.
   - **Python**: `azure-ai-projects` (latest)
   - **.NET**: `Azure.AI.Extensions.OpenAI`
   - **TypeScript**: `@azure/ai-projects` (latest)
-  - **Java**: `azure-ai-agents` (prerelease)
+  - **Java**: `azure-ai-agents`
 - **Storage Blob Data Contributor** role on your project's storage account (required for uploading files to your project's storage)
 - **Azure AI Owner** role on your Foundry resource (required for creating agent resources)
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
@@ -433,7 +433,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

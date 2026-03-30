@@ -40,7 +40,7 @@ The following table shows SDK and setup support.
 ## Prerequisites
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md)
-- The latest SDK package. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
+- The latest SDK package. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Your Foundry project endpoint URL and a model deployment name.
 
@@ -740,7 +740,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

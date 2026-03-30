@@ -40,7 +40,7 @@ The following table shows SDK and setup support.
   - **Python**: `azure-ai-projects`
   - **C#/.NET**: `Azure.AI.Extensions.OpenAI`
   - **TypeScript**: `@azure/ai-projects`
-  - **Java**: `azure-ai-agents` (prerelease)
+  - **Java**: `azure-ai-agents`
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
 - A virtual machine or sandboxed environment for safe testing. Don't run on machines with access to sensitive data.
 
@@ -68,7 +68,7 @@ After Microsoft grants access, you need to create a deployment for the model.
 > [!WARNING] 
 > Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-You need the latest SDK package. The .NET and Java SDKs are currently in preview.
+You need the latest SDK package. The .NET SDK is currently in preview.
 
 :::zone pivot="python"
 ### Screenshot initialization for computer use tool execution
@@ -636,7 +636,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

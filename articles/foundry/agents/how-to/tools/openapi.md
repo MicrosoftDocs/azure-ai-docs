@@ -43,7 +43,7 @@ Before you begin, make sure you have:
   - Python: `azure-ai-projects`
   - C#: `Azure.AI.Extensions.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
-  - Java: `com.azure:azure-ai-agents` (prerelease)
+  - Java: `com.azure:azure-ai-agents`
 
 ### Environment variables
 
@@ -73,7 +73,7 @@ Before you begin, make sure you have:
 ## Code example
 
 > [!NOTE]
-> - You need the latest SDK package. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> - You need the latest SDK package. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 > - If you use API key for authentication, your connection ID should be in the format of `/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 > [!IMPORTANT]

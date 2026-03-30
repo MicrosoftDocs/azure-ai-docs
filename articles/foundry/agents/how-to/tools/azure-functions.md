@@ -121,7 +121,7 @@ tool = AzureFunctionTool(
 agent = project.agents.create_version(
     agent_name="azure-function-agent-get-weather",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-5.1",
         instructions="You are a helpful support agent. Answer the user's questions to the best of your ability.",
         tools=[tool],
     ),
@@ -392,7 +392,7 @@ Add the Azure AI Agents dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
@@ -445,7 +445,7 @@ AzureFunctionTool azureFnTool = new AzureFunctionTool(
     )
 );
 
-PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5.1")
     .setInstructions("You are a helpful support agent. Answer the user's "
         + "questions to the best of your ability.")
     .setTools(Collections.singletonList(azureFnTool));
@@ -570,7 +570,7 @@ const agent = await project.agents.createVersion(
   "azure-function-agent-get-weather",
   {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-5.1",
     instructions:
       "You are a helpful support agent. Answer the user's questions to the best of your ability.",
     tools: [
@@ -713,7 +713,7 @@ curl --request POST \
     "description": "Agent with Azure Function tool",
     "definition": {
       "kind": "prompt",
-      "model": "gpt-5-mini",
+      "model": "gpt-5.1",
       "instructions": "You are a helpful support agent. Answer the user's questions to the best of your ability.",
       "tools": [
         { 
