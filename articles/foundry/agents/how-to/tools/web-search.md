@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -35,12 +35,12 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md)
-- The latest SDK package. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
+- The latest SDK package. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md#install-and-authenticate) for details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Your Foundry project endpoint URL and a model deployment name.
 
@@ -740,7 +740,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

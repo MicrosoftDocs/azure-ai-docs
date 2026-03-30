@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -28,7 +28,7 @@ You can run agents with function tools in the Microsoft Foundry portal. However,
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Before you start, make sure you have:
   - Python: `azure-ai-projects` (latest)
   - .NET: `Azure.AI.Extensions.OpenAI` (prerelease)
   - TypeScript: `@azure/ai-projects` (latest)
-  - Java: `azure-ai-agents` (prerelease)
+  - Java: `azure-ai-agents`
   
   For installation and authentication steps, see the [quickstart](../../../quickstarts/get-started-code.md).
 
@@ -629,7 +629,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
