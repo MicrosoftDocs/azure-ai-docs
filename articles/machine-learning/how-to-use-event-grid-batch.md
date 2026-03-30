@@ -47,7 +47,7 @@ The following steps describe the high-level steps in this solution:
 
 > [!IMPORTANT]
 >
-> When you use a logic app workflow that connects with Event Grid to invoke batch endpoint, you generate one job per *each blob file* created in the storage account. Keep in mind that batch endpoints distribute the work at the file level, so no parallelization happens. Instead, you use the batch endpoints's capability to execute multiple jobs on the same compute cluster. If you need to run jobs on entire folders in an automatic fashion, switch to [Invoking batch endpoints from Azure Data Factory](how-to-use-batch-azure-data-factory.md).
+> When you use a logic app workflow that connects with Event Grid to invoke batch endpoint, you generate one job per *each blob file* created in the storage account. Keep in mind that batch endpoints distribute the work at the file level, so no parallelization happens. Instead, you use the batch endpoint's capability to execute multiple jobs on the same compute cluster. If you need to run jobs on entire folders in an automatic fashion, switch to [Invoking batch endpoints from Azure Data Factory](how-to-use-batch-azure-data-factory.md).
 
 ## Prerequisites
 
