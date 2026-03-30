@@ -14,7 +14,9 @@ ai-usage: ai-assisted
 ---
 
 
-# MAI-Voice-1 in Azure Speech
+# MAI-Voice-1 in Azure Speech (preview)
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 MAI-Voice-1 is a neural text-to-speech model available through Azure Speech in Foundry Tools in **public preview**. It's built on Microsoft's in-house speech foundation models and produces expressive, natural speech output with consistent voice persona quality.
 
@@ -24,7 +26,7 @@ Speech offers MAI-Voice-1 as an advanced neural voice model optimized for expres
 
 | Model | Voice Count | Key Characteristics | Best For |
 |------|-------------|---------------------|----------|
-| **MAI-Voice-1** | two prebuilt English (US) voices | Emotionally rich, highly expressive, consistent persona quality, SSML style control | Conversational AI, creative applications, long-form narration |
+| **MAI-Voice-1** | six prebuilt English (US) voices | Emotionally rich, highly expressive, consistent persona quality, SSML style control | Conversational AI, creative applications, long-form narration |
 
 
 ## Key features
@@ -83,8 +85,8 @@ ssml = """
 <speak version='1.0'
        xmlns='http://www.w3.org/2001/10/synthesis'
        xml:lang='en-US'>
-  <voice name='en-us-Teo:MAI-Voice-1'>
-    Hello from MAI Voice.
+  <voice name='en-us-Jasper:MAI-Voice-1'>
+  <mstts:express-as style="excitement">hello world.</mstts:express-as> 
   </voice>
 </speak>
 """
@@ -104,13 +106,12 @@ On success, an `output.mp3` file containing the synthesized speech is saved to t
 The following SSML synthesizes a greeting using the `en-us-Noa:MAI-Voice-1` voice.
 
 ```xml
-<speak version="1.0"
-       xmlns="http://www.w3.org/2001/10/synthesis"
-       xml:lang="en-US">
-  <voice name="en-us-Noa:MAI-Voice-1">
-    Hello world, it's great to meet you.
-  </voice>
+<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
+    <voice name='en-US-Jasper:MAI-Voice-1'>
+        <mstts:express-as style="excitement">hello world.</mstts:express-as>   
+    </voice>
 </speak>
+
 ```
 
 Submit this SSML to the Speech REST API or SDK to receive synthesized audio.
@@ -142,10 +143,16 @@ Steps to Access:
 
 ## Prebuilt voices
 
-| Voice ID | Gender |
-|--------|--------|
-| `en-us-Noa:MAI-Voice-1` | Female |
-| `en-us-Teo:MAI-Voice-1` | Male |
+| Voice ID | Gender | Recommended use case |
+|--------|--------|----------|
+| `en-us-Jasper:MAI-Voice-1` | Male | General Conversation, Sales, Emotional styles |
+| `en-us-June:MAI-Voice-1` | Female | General Conversation, Customer Service, Professional, Emotional styles |
+| `en-us-Grant:MAI-Voice-1` | Male | General Conversation, Professional, Emotional styles |
+| `en-us-Iris:MAI-Voice-1` | Female | General Conversation, Narration, Emotional styles |
+| `en-us-Reed:MAI-Voice-1` | Male | General Conversation |
+| `en-us-Joy:MAI-Voice-1` | Female | General Conversation |
+
+
 
 **Usage**: Available for third-party developers. Microsoft holds full licensing rights for commercial use.
 
