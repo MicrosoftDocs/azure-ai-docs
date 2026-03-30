@@ -34,47 +34,19 @@ cargo add tokio --features full
 
 ## Update the `main.rs` file
 
-The following example demonstrates how to run inference by sending a request to the Foundry Local service. The code initializes the Foundry Local service, loads a model, and generates a response using the `reqwest` library.
+The following example demonstrates how to run inference by sending a request to the Foundry Local web service. The code includes the following steps:
+
+1. Initializes a `FoundryLocalManager` instance with a configuration.
+1. Gets a model from the catalog using an alias.
+1. Downloads and loads the model variant.
+1. Starts the web service to expose an OpenAI-compatible REST endpoint.
+1. Uses `reqwest` to send a streaming chat completion request.
+1. Parses Server-Sent Events (SSE) chunks and prints the response.
+1. Cleans up by stopping the web service and unloading the model.
 
 Copy-and-paste the following code into the Rust file named `main.rs`:
 
-```rust
-use foundry_local_sdk::{FoundryLocalConfig, FoundryLocalManager};
-use anyhow::Result;
-
-#[tokio::main]
-async fn main() -> Result<()> {
-    // Create a FoundryLocalManager instance with web service configuration
-    let config = FoundryLocalConfig::new("app-name")
-        .with_web_urls("http://localhost:5000");
-    let manager = FoundryLocalManager::create(config)?;
-
-    // Get and prepare the model
-    let model = manager.catalog().get_model("qwen2.5-0.5b").await?;
-    model.download(None).await?;
-    model.load().await?;
-
-    // Start the web service
-    manager.start_web_service().await?;
-
-    // Use the OpenAI compatible API to interact with the model
-    let client = reqwest::Client::new();
-    let endpoint = manager.urls()[0].trim_end_matches('/');
-    let response = client.post(format!("{}/v1/chat/completions", endpoint))
-        .header("Content-Type", "application/json")
-        .json(&serde_json::json!({
-            "model": model.id(),
-            "messages": [{"role": "user", "content": "What is the golden ratio?"}],
-        }))
-        .send()
-        .await?;
-
-    let result = response.json::<serde_json::Value>().await?;
-    println!("{}", result["choices"][0]["message"]["content"]);
-
-    Ok(())
-}
-```
+:::code language="rust" source="~/foundry-local-main/samples/rust/foundry-local-webserver/src/main.rs" id="complete_code":::
 
 Reference: [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
 Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
@@ -85,5 +57,5 @@ Run the code using the following command:
 cargo run
 ```
 
-You should see a text response printed in your terminal. On the first run, Foundry Local might download execution providers and the model, which can take a few minutes.
+You should see a streaming response printed in your terminal. On the first run, Foundry Local might download execution providers and the model, which can take a few minutes.
 
