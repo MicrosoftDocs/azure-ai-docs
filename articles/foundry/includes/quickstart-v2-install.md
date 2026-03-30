@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 02/23/2026
+ms.date: 03/30/2026
 ms.custom: include
 ---
 
@@ -52,7 +52,7 @@ Make sure you install the correct version of the packages as shown here.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
