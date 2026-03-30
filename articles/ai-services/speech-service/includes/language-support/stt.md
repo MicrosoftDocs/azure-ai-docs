@@ -84,7 +84,7 @@ ms.author: pafarley
 | `fi-FI` | Finnish (Finland) | ✅ |
 | `fil-PH` | Filipino (Philippines) | ✅ |
 | `fr-BE` | French (Belgium) |   |
-| `fr-CA` | French (Canada)<sup>1</sup> |   |
+| `fr-CA` | French (Canada) |   |
 | `fr-CH` | French (Switzerland) |   |
 | `fr-FR` | French (France) | ✅ |
 | `ga-IE` | Irish (Ireland) | ✅ |
@@ -138,7 +138,7 @@ ms.author: pafarley
 | `sw-KE` | Kiswahili (Kenya) | ✅ |
 | `sw-TZ` | Kiswahili (Tanzania) |   |
 | `ta-IN` | Tamil (India) | ✅ |
-| `te-IN` | Telugu (India) |   |
+| `te-IN` | Telugu (India) | ✅ |
 | `th-TH` | Thai (Thailand) | ✅ |
 | `tr-TR` | Turkish (Türkiye) | ✅ |
 | `uk-UA` | Ukrainian (Ukraine) | ✅ |
@@ -151,11 +151,9 @@ ms.author: pafarley
 | `zh-CN-shandong` | Chinese (Jilu Mandarin, Simplified) |   |
 | `zh-CN-sichuan` | Chinese (Southwestern Mandarin, Simplified) |   |
 | `zh-HK` | Chinese (Cantonese, Traditional) | ✅ |
-| `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) |   |
-| `zu-ZA` | isiZulu (South Africa) | ✅ |
+| `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | ✅ |
+| `zu-ZA` | Zulu (South Africa) | ✅ |
 
-
-<sup>1</sup> The model is bilingual and also supports English.
 
 ### Custom speech
 

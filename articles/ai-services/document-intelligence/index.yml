@@ -70,9 +70,9 @@ landingContent:
      linkLists:
          - linkListType: concept
            links:
-             - text: 🆕 Retrieval-Augmented Generation (RAG)
+             - text:  Retrieval-Augmented Generation (RAG)
                url:  concept/retrieval-augmented-generation.md
-             - text: 🆕 Batch document analysis
+             - text:  Batch document analysis
                url:  concept-batch-analysis.md
              - text: Accuracy and confidence scores
                url: concept/accuracy-confidence.md

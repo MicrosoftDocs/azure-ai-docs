@@ -88,7 +88,7 @@ Required operations are **Wrap**, **Unwrap**, **Encrypt**, and **Decrypt**.
 
 You can [create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal), [Azure CLI](/azure/key-vault/general/quick-create-cli), or [Azure PowerShell](/azure/key-vault/general/quick-create-powershell).
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open your key vault overview page.
+1. Go to your key vault in the [Azure portal](https://portal.azure.com).
 
 1. Select **Objects** > **Keys** on the left, and then select **Generate/Import**.
 
@@ -160,7 +160,7 @@ If you configured your search service to use a managed identity, assign roles th
 
 Role-based access control is recommended over the Access Policy permission model. For more information or migration steps, start with [Azure role-based access control (Azure RBAC) vs. access policies (legacy)](/azure/key-vault/general/rbac-access-policy).
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and find your key vault.
+1. Go to your key vault in the [Azure portal](https://portal.azure.com).
 
 1. Select **Access control (IAM)** and select **Add role assignment**.
 
@@ -201,7 +201,7 @@ Content-Type: application/json
 }
 ```
 
-Example using user-assigned managed identity:
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 ```http
 PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview

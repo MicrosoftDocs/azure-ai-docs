@@ -5,11 +5,13 @@ description: Learn about Azure Content Understanding in Foundry Tools document s
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 03/23/2026
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Azure Content Understanding in Foundry Tools document solutions
@@ -29,7 +31,7 @@ Document analyzers can process complex documents in various formats and template
 
 ## Key benefits
 
-Content Understanding delivers powerful document analysis capabilities that are designed to address critical enterprise and business scenarios, such as RAG and robotic process automation. Key benefits include:
+Content Understanding delivers powerful document analysis capabilities that are designed to address critical enterprise and business scenarios, such as retrieval-augmented generation (RAG) and robotic process automation. Key benefits include:
 
 - **Intelligent search enablement:** Transform unstructured documents into structured, searchable data assets to improve information discoverability and accessibility across your organization.
 - **Grounded data extraction:** Maintain clear traceability and localization of extracted data to facilitate efficient human-in-the-loop review processes and ensure transparency and compliance.
@@ -53,7 +55,7 @@ Content extraction forms the foundation of Content Understanding document analys
   - **Mathematical formulas**: Captures and preserves complex mathematical expressions in LaTeX format.
   - **Image elements**: Locates and extracts images, figures, diagrams, and charts along with their related captions and annotations.
   - **Hyperlink elements**: Detects hyperlinks embedded within the document.
-  - **Annotation elements**: Associates contents with its annotations such as strikethrough, underline, highlight.
+  - **Annotation elements**: Associates contents with its annotations such as strikethrough, underline, and highlight.
   - **Figure elements**: Detects and extracts figure elements into structured output.
 - Structure analysis
   - **Paragraphs**: Detects and categorizes text segments based on their document context and role.
@@ -66,7 +68,9 @@ Content extraction forms the foundation of Content Understanding document analys
 
 With field extraction, you can extract, classify, and generate structured data from various documents and forms that are customized to meet your requirements. The process of transforming unstructured content into organized, actionable information simplifies data management, improves searchability, and supports automated workflows.
 
-For instance, you can seamlessly extract customer details, billing addresses, and itemized charges from invoices. You can also identify contractual parties, renewal dates, and payment terms in legal agreements. To maximize efficiency, you can use prebuilt analyzer templates, such as templates that are tailored for invoices. You can also design bespoke analyzers from scratch to enhance precision through the labeling of more sample documents.
+For example, you can extract customer details, billing addresses, and itemized charges from invoices. You can also identify contractual parties, renewal dates, and payment terms in legal agreements.
+
+To maximize efficiency, use prebuilt analyzer templates, such as templates tailored for invoices. You can also design custom analyzers from scratch to enhance precision through labeling of more sample documents.
 
 The confidence and grounding API is an opt-in feature. To opt in for confidence and grounding for field extraction, set `estimateFieldSourceAndConfidence = true` in the analyzer config or `estimateSourceAndConfidence = true` for a specific field. 
 
@@ -89,7 +93,7 @@ For a list of supported languages and regions, see [Language and region support]
 
 ## Data, privacy, and security
 
-Developers who use Content Understanding should review the Microsoft policies on customer data. For more information, see [Data, privacy, and security](/azure/ai-foundry/responsible-ai/content-understanding/data-privacy).
+If you use Content Understanding, review the Microsoft policies on customer data. For more information, see [Data, privacy, and security](/azure/ai-foundry/responsible-ai/content-understanding/data-privacy).
 
 ## Related content
 

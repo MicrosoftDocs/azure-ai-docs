@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/19/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -35,7 +35,7 @@ The grounding process involves several key steps:
 > - See the [manage section](#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search) for information about how Azure admins can manage access to use of Grounding with Bing Search and Grounding with Bing Custom Search.
 
 >[!NOTE]
-> Start with the [web search tool (preview)](./web-search.md). Learn more about the differences between web search and Grounding with Bing Search (or Grounding with Bing Custom Search) in the [web grounding overview](./web-overview.md).
+> Start with the [web search tool](./web-search.md). Learn more about the differences between web search and Grounding with Bing Search (or Grounding with Bing Custom Search) in the [web grounding overview](./web-overview.md).
 
 ### Usage support
 
@@ -57,9 +57,9 @@ Before you begin, make sure you have:
 - An AI model deployed in your project.
 - SDK installed for your preferred language. C# and Java require the prerelease version:
   - Python: `azure-ai-projects`
-  - C#: `Azure.AI.Projects.OpenAI` (prerelease)
+  - C#: `Azure.AI.Extensions.OpenAI` (prerelease)
   - TypeScript/JavaScript: `@azure/ai-projects`
-  - Java: `com.azure:azure-ai-agents:2.0.0-beta.1`
+  - Java: `com.azure:azure-ai-agents:2.0.0-beta.3`
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
   - For REST samples, environment variables set up:
     - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL.
@@ -146,7 +146,7 @@ bing_connection = project.connections.get(BING_CONNECTION_NAME)
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant.",
         tools=[
             BingGroundingTool(
@@ -261,7 +261,7 @@ bing_custom_search_tool = BingCustomSearchPreviewTool(
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="""You are a helpful agent that can use Bing Custom Search tools to assist users. 
         Use the available Bing Custom Search tools to answer questions and perform tasks.""",
         tools=[bing_custom_search_tool],
@@ -342,7 +342,7 @@ Full response: Microsoft Foundry Agent Service enables you to build...
 
 The following C# examples demonstrate how to create an agent with Grounding with Bing Search tool, and how to use the agent to respond to user queries. These examples use synchronous calls for simplicity. For asynchronous examples, see the [agent tools C# samples](https://aka.ms/azsdk/Azure.AI.Extensions.OpenAI/net/samples).
 
-To enable your Agent to use Bing search API, use `BingGroundingAgentTool`.
+To enable your Agent to use Bing search API, use `BingGroundingTool`.
 
 #### Grounding with Bing Search
 
@@ -364,7 +364,7 @@ BingGroundingTool bingGroundingAgentTool = new(new BingGroundingSearchToolOption
   searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
     )
 );
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful agent.",
     Tools = { bingGroundingAgentTool, }
@@ -447,7 +447,7 @@ BingGroundingTool bingGroundingAgentTool = new(new BingGroundingSearchToolOption
   searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
     )
 );
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful agent.",
     Tools = { bingGroundingAgentTool }
@@ -684,7 +684,7 @@ export async function main(): Promise<void> {
 
   const agent = await project.agents.createVersion("MyBingGroundingAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: "You are a helpful assistant.",
     tools: [
       {
@@ -814,7 +814,7 @@ export async function main(): Promise<void> {
 
   const agent = await project.agents.createVersion("MyAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions:
       "You are a helpful agent that can use Bing Custom Search tools to assist users. Use the available Bing Custom Search tools to answer questions and perform tasks.",
     tools: [
@@ -954,7 +954,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 ```
 
@@ -993,7 +993,7 @@ public class BingGroundingExample {
         );
 
         // Create agent with Bing grounding tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a helpful assistant. Use Bing to find up-to-date information.")
             .setTools(Collections.singletonList(bingTool));
 
@@ -1004,8 +1004,8 @@ public class BingGroundingExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("What are the latest developments in AI?"));
 
@@ -1173,7 +1173,7 @@ Admins can use RBAC role assignments to enable or disable the use of Grounding w
 ## Next steps
 
 - [Tool use best practices](../../concepts/tool-best-practice.md) - Learn optimization strategies for agent tools
-- [Web search tool (preview)](web-search.md) - Use web search without configuring Bing tool parameters
+- [Web search tool](web-search.md) - Use web search without configuring Bing tool parameters
 - [Manage Grounding with Bing in Microsoft Foundry and Azure](../manage-grounding-with-bing.md) - Control and disable Grounding with Bing features
 - [Connect OpenAPI tools to agents](openapi.md) - Integrate custom APIs with your agents
 - [Discover tools in the Foundry Tools (preview)](../../concepts/tool-catalog.md) - Explore all available agent tools in Foundry Agent Service

@@ -227,7 +227,7 @@
         },
         {
             "source_path_from_root": "/articles/search/knowledge-store-view-storage-explorer.md",
-            "redirect_url": "/azure/search/knowledge-store-create-portal#view-kstore",
+            "redirect_url": "/azure/search/knowledge-store-create-rest",
             "redirect_document_id": false
         },
         {
@@ -272,13 +272,18 @@
         },
         {
             "source_path_from_root": "/articles/search/knowledge-store-connect-powerbi.md",
-            "redirect_url": "/azure/search/knowledge-store-create-portal",
+            "redirect_url": "/azure/search/knowledge-store-connect-power-bi",
             "redirect_document_id": true
         },
         {
             "source_path_from_root": "/articles/search/knowledge-store-howto.md",
             "redirect_url": "/azure/search/knowledge-store-create-rest",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/knowledge-store-create-portal.md",
+            "redirect_url": "/azure/search/knowledge-store-create-rest",
+            "redirect_document_id": true
         },
         {
             "source_path_from_root": "/articles/search/policy-samples.md",

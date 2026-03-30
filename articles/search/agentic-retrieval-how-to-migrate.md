@@ -3,7 +3,7 @@ title: Migrate Agentic Retrieval Code
 description: Learn how to migrate your agentic retrieval code to the latest REST API version. This article focuses on breaking changes and backwards compatibility.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 03/25/2026
 ---
 
 # Migrate agentic retrieval code to the latest version
@@ -91,7 +91,7 @@ This procedure creates a new 2025-11-01-preview `searchIndex` knowledge source a
     POST {{url}}/knowledge-sources/search-index-ks?api-version=2025-08-01-preview
     api-key: {{key}}
     Content-Type: application/json
-    
+
     {
         "name": "search-index-ks",
         "kind": "searchIndex",
@@ -118,7 +118,7 @@ This procedure creates a new 2025-11-01-preview `searchIndex` knowledge source a
     PUT {{url}}/knowledge-sources/search-index-ks-11-01?api-version=2025-11-01-preview
     api-key: {{key}}
     Content-Type: application/json
-    
+
     {
         "name": "search-index-ks-11-01",
         "kind": "searchIndex",
@@ -217,7 +217,7 @@ This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at 
     POST {{url}}/knowledge-sources/azure-blob-ks?api-version=2025-08-01-preview
     api-key: {{key}}
     Content-Type: application/json
-    
+
     {
         "name": "azure-blob-ks",
         "kind": "azureBlob",
@@ -263,7 +263,7 @@ This procedure creates a new 2025-11-01-preview `azureBlob` knowledge source at 
     PUT {{url}}/knowledge-sources/azure-blob-ks-11-01?api-version=2025-11-01-preview
     api-key: {{key}}
     Content-Type: application/json
-    
+
     {
         "name": "azure-blob-ks",
         "kind": "azureBlob",
@@ -357,7 +357,7 @@ The response includes the full definition of the new object. For more informatio
     PUT {{url}}/knowledgebases/earth-at-night?api-version=2025-08-01-preview  HTTP/1.1
     api-key: {{key}}
     Content-Type: application/json
-    
+
     {
         "name": "earth-at-night",
         "description": "A sample knowledge agent that retrieves from the earth-at-night knowledge source.",
@@ -422,7 +422,7 @@ The response includes the full definition of the new object. For more informatio
     PUT {{url}}/knowledgebases/earth-at-night-11-01?api-version={{api-version}}
     api-key: {{key}}
     Content-Type: application/json
-    
+
     {
       "name": "earth-at-night-11-01",
       "description": "A sample knowledge base at the same functional level as the previous knowledge agent.",
@@ -564,7 +564,7 @@ To create a `searchIndex` knowledge source, use the 2025-08-01-preview of [Knowl
 PUT https://{{search-url}}/knowledgeSources/{{source-name}}?api-version=2025-08-01-preview  HTTP/1.1
     Content-Type: application/json
     api-key: {{api-key}}
-    
+
     {
         "name": "{{source-name}}",
         "description": "My description of the knowledge source",
@@ -589,8 +589,8 @@ POST https://{{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
     { 
         "name": "{{agent-name}}", 
-        "knowledgeSources": [  
-            {  
+        "knowledgeSources": [
+            {
                 "name": "{{source-name}}",
                 "rerankerThreshold": 2.5, // Use the previous value
                 "includeReferenceSourceData": true // Use the previous value
@@ -610,7 +610,7 @@ To test your agent's output with a query, use the 2025-08-01-preview of [Knowled
 POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview  HTTP/1.1
     Content-Type: application/json
     api-key: {{api-key}}
-        
+
     {
       "messages": [
             {
@@ -653,8 +653,8 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 #### [**Breaking changes**](#tab/breaking-1)
 
 + Knowledge agent is renamed to knowledge base.
-  
-  | Previous Route | New Route |
+
+  | Previous route | New route |
   |-----|-----|
   | `/agents` | `/knowledgebases` |
   | `/agents/agent-name` | `/knowledgebases/knowledge-base-name` |
@@ -662,7 +662,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + Knowledge agent (base) `outputConfiguration` is renamed to `outputMode` and changed from an object to a string enumerator. Several properties are impacted:
 
-  + `includeActivity` is moved from `outputConfiguration` onto the retrieval request object directly.  
+  + `includeActivity` is moved from `outputConfiguration` onto the retrieval request object directly.
   + `attemptFastPath` in `outputConfiguration` is removed entirely. The new `minimal` reasoning effort is the replacement.
 
 + Knowledge agent (base) `requestLimits` is removed. Its child properties of `maxRuntimeInSeconds` and `maxOutputSize` are moved onto the retrieval request object directly.
