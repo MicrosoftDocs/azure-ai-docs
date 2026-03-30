@@ -187,7 +187,7 @@ To enable service-level CMK encryption, we recommend that you use the [Search Ma
 
 To configure CMK encryption at the service level on your search service, use [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update) (Management REST API) with the `PATCH` command to update an existing search service, or the `PUT` command to create a new service, calling the REST endpoint and API version. The API version must be 2026-03-01-preview or later to support service-level configuration. 
 
-In this example, be sure to replace `{{subscription-id}}`, `{{resource-group}}`, `{{search-service}}`, and `{{token}}` with your subscription ID, resource group name, search service name, and access token, respectively. The definitions for a key are the same and the same options are supported.
+In this example, be sure to replace `{{subscription-id}}`, `{{resource-group}}`, `{{search-service}}`, and `{{token}}` with your subscription ID, resource group name, search service name, and access token, respectively. The definitions for a key are the same as when configuring object-level CMK and the same options are supported.
 
 ```http
 PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
