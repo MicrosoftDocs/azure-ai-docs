@@ -86,7 +86,7 @@ To call the API:
 1. Send a JSON payload with your model name and messages.
 
 For full schema details, see:
-- [Swagger for Foundry inference API](/rest/api/aifoundry/)
+- [Swagger for Foundry REST API](/rest/api/aifoundry/)
 - [Swagger for OpenAI v1 compatibility](../openai/latest.md)
 
 The following examples use Microsoft Entra ID authentication. Replace the placeholder values with your own.
