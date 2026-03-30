@@ -40,7 +40,7 @@ Different models have different capabilities when it comes to tool calling, but 
 
 Copy and paste the following code into a C# file named `Program.cs`:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/ToolCallingFoundryLocalSdk/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/tool-calling-foundry-local-sdk/Program.cs" id="complete_code":::
 
 ## Run the native chat completions example
 
@@ -90,7 +90,7 @@ If you prefer to use the OpenAI SDKs to call the Foundry Local web service, you 
 > [!TIP]
 > Use `options.ToolChoice = ChatToolChoice.CreateAutoChoice();` (the default) for the most reliable behavior. Write clear tool names and descriptions so the model calls the correct tool on its own.
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/ToolCallingFoundryLocalWebServer/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/tool-calling-foundry-local-web-server/Program.cs" id="complete_code":::
 
 ## Run the OpenAI web service example
 

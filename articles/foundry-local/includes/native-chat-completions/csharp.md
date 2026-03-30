@@ -33,7 +33,7 @@ The following example demonstrates how to use the native chat completions API in
 
 Copy and paste the following code into a C# file named `Program.cs`:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/HelloFoundryLocalSdk/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/native-chat-completions/Program.cs" id="complete_code":::
 
 Run the code by using the following command:
 

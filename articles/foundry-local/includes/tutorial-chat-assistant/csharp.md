@@ -14,7 +14,7 @@ The Foundry Local SDK provides a model catalog that lists all available models. 
 
 1. Open `Program.cs` and replace its contents with the following code to initialize the SDK and select a model:
 
-    :::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialChatAssistant/Program.cs" id="init":::
+    :::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-chat-assistant/Program.cs" id="init":::
 
     The `GetModelAsync` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `DownloadAsync` method fetches the model weights to your local cache, and `LoadAsync` makes the model ready for inference.
 
@@ -24,7 +24,7 @@ A system prompt sets the assistant's personality and behavior. It's the first me
 
 Add a system prompt to shape how the assistant responds:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialChatAssistant/Program.cs" id="system_prompt":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-chat-assistant/Program.cs" id="system_prompt":::
 
 > [!TIP]
 > Experiment with different system prompts to change the assistant's behavior. For example, you can instruct it to respond as a pirate, a teacher, or a domain expert.
@@ -40,7 +40,7 @@ Add a conversation loop that:
 - Sends the complete history to the model.
 - Appends the assistant's response to the history for the next turn.
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialChatAssistant/Program.cs" id="conversation_loop":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-chat-assistant/Program.cs" id="conversation_loop":::
 
 Each call to `CompleteChatAsync` receives the full message history. This is how the model "remembers" previous turns — it doesn't store state between calls.
 
@@ -50,7 +50,7 @@ Streaming prints each token as it's generated, which makes the assistant feel mo
 
 Update the conversation loop to use streaming:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialChatAssistant/Program.cs" id="streaming":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-chat-assistant/Program.cs" id="streaming":::
 
 The streaming version accumulates the full response so it can be added to the conversation history after the stream completes.
 
@@ -58,7 +58,7 @@ The streaming version accumulates the full response so it can be added to the co
 
 Replace the contents of `Program.cs` with the following complete code:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialChatAssistant/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-chat-assistant/Program.cs" id="complete_code":::
 
 ## Run the application
 

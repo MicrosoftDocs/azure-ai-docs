@@ -37,7 +37,7 @@ maintained alongside production code so they stay accurate as the application ev
 
 Now open `Program.cs` and add the following code to read the document:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialDocumentSummarizer/Program.cs" id="file_reading":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-document-summarizer/Program.cs" id="file_reading":::
 
 The code accepts an optional file path as a command-line argument and falls back to `document.txt` if none is provided.
 
@@ -47,7 +47,7 @@ Initialize the Foundry Local SDK, load a model, and send the document content al
 
 Replace the contents of `Program.cs` with the following code:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialDocumentSummarizer/Program.cs" id="summarization":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-document-summarizer/Program.cs" id="summarization":::
 
 The `GetModelAsync` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `DownloadAsync` method fetches the model weights to your local cache (and skips the download if they're already cached), and `LoadAsync` makes the model ready for inference. The system prompt tells the model to produce bullet-point summaries focused on key ideas.
 
@@ -127,7 +127,7 @@ Each file is read, paired with the same system prompt, and sent to the model ind
 
 Replace the contents of `Program.cs` with the following complete code:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialDocumentSummarizer/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-document-summarizer/Program.cs" id="complete_code":::
 
 ## Run the application
 

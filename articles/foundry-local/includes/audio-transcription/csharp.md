@@ -34,7 +34,7 @@ The following example demonstrates how to use the native audio transcription API
 
 Copy and paste the following code into a C# file named `Program.cs`:
 
-:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/AudioTranscriptionExample/Program.cs" id="complete_code":::
+:::code language="csharp" source="~/foundry-local-main/samples/cs/audio-transcription-example/Program.cs" id="complete_code":::
 
 > [!NOTE]
 > You need to replace `"Recording.mp3"` with the path to the audio file that you want to transcribe.
