@@ -2,7 +2,8 @@
 title: Foundry Local SDK Migration Guide
 titleSuffix: Foundry Local
 description: Migration guide for updating from Foundry Local SDK legacy version to the current version.
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.author: jburchel
 author: jonburchel

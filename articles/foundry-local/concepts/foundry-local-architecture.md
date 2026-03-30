@@ -2,7 +2,8 @@
 title: "Foundry Local architecture overview"
 titleSuffix: Foundry Local
 description: "Learn how Foundry Local embeds AI inference directly inside your application as a native library."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: concept-article
 ms.author: jburchel

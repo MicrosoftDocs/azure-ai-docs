@@ -3,7 +3,8 @@ title: "What is Foundry Local?"
 titleSuffix: Foundry Local
 description: "Foundry Local is an embeddable, end-to-end AI runtime that handles model acquisition, hardware acceleration, and inference — all shipped inside your app."
 keywords: Foundry Local, on-device AI, local inference
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
+ms.subservice: foundry-local
 ms.topic: overview
 ms.date: 03/27/2026
 ms.reviewer: samkemp
