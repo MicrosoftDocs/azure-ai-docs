@@ -21,7 +21,7 @@ Azure Vision gives you access to advanced algorithms that process images and ret
 
 | Service|Description|
 |---|---|
-| [Face](overview-identity.md) | The Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as identification, touchless access control, and face blurring for privacy. Follow the [Face quickstart](quickstarts-sdk/identity-client-library.md) to get started. |
+| [Face](../face/overview-identity.md) | The Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as identification, touchless access control, and face blurring for privacy. Follow the [Face quickstart](../face/quickstarts-sdk/identity-client-library.md) to get started. |
 |[Image Analysis (legacy)](overview-image-analysis.md)| The Image Analysis service extracts many visual features from images, such as objects, faces, adult content, and auto-generated text descriptions. Follow the [Image Analysis quickstart](quickstarts-sdk/image-analysis-client-library-40.md) to get started.|
 | [Optical Character Recognition (OCR) (legacy)](overview-ocr.md)|The Optical Character Recognition (OCR) service extracts text from images. You can use the Read API to extract printed and handwritten text from photos and documents. It uses deep-learning-based models and works with text on various surfaces and backgrounds. These surfaces and backgrounds include business documents, invoices, receipts, posters, business cards, letters, and whiteboards. The OCR APIs support extracting printed text in [several languages](./language-support.md). Follow the [OCR quickstart](quickstarts-sdk/client-library.md) to get started.|
 
@@ -36,7 +36,7 @@ Azure Vision can power many digital asset management (DAM) scenarios. DAM is the
 To get started building Azure Vision into your app, follow a quickstart.
 * [Quickstart: Optical character recognition (OCR)](quickstarts-sdk/client-library.md)
 * [Quickstart: Image Analysis](quickstarts-sdk/image-analysis-client-library.md)
-* [Quickstart: Azure Face](/azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library)
+* [Quickstart: Azure Face](/azure/ai-services/face/quickstarts-sdk/identity-client-library)
 
 ## Image requirements
 
@@ -57,4 +57,4 @@ Follow a quickstart to implement and run a service in your preferred development
 
 * [Quickstart: Optical character recognition (OCR)](quickstarts-sdk/client-library.md)
 * [Quickstart: Image Analysis](quickstarts-sdk/image-analysis-client-library-40.md)
-* [Quickstart: Face](quickstarts-sdk/identity-client-library.md)
+* [Quickstart: Face](../face/quickstarts-sdk/identity-client-library.md)

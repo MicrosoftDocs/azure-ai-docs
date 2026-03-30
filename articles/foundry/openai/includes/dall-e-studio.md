@@ -1,14 +1,15 @@
 ---
 title: 'Quickstart: Generate images with Azure OpenAI in Microsoft Foundry Models and Microsoft Foundry'
 titleSuffix: Azure OpenAI
-description: Learn how to generate images with Azure OpenAI in the DALL-E playground (Preview) in Microsoft Foundry.
+description: Learn how to generate images with Azure OpenAI in the image generation playground in Microsoft Foundry.
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
-  - ignite-2023
+  - ignite-2023, classic-and-new
 ms.topic: include
 ms.date: 12/05/2024
+
 ---
 
 Use this guide to get started generating images with Azure OpenAI in your browser with Microsoft Foundry.
@@ -22,7 +23,7 @@ Use this guide to get started generating images with Azure OpenAI in your browse
 
 Browse to [Foundry](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
-From the Foundry landing page, create or select a new project. Navigate to the **Models + endpoints** page on the left nav. Select **Deploy model** and then choose one of the DALL-E models from the list. Complete the deployment process. 
+From the Foundry landing page, create or select a new project. Navigate to the **Models + endpoints** page on the left nav. Select **Deploy model** and then choose one of the GPT-Image-1 series models from the list. Complete the deployment process. 
 
 On the model's page, select **Open in playground**.
 

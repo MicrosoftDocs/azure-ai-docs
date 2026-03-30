@@ -37,7 +37,7 @@ The default failure mode for unauthorized requests is `http401WithBearerChalleng
 
 ### [**Azure portal**](#tab/config-svc-portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Select **Settings** and then select **Keys** in the left pane.
 
@@ -150,7 +150,7 @@ It's possible to disable role-based access control for data plane operations and
 
 To disable role-based access control in the Azure portal:
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Select **Settings** and then select **Keys** in the left pane.
 
@@ -166,7 +166,7 @@ Owner or Contributor permissions are required to disable security features.
 
 ### [**Azure portal**](#tab/disable-keys-portal)
 
-1. In the Azure portal, navigate to your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. In the left-navigation pane, select **Keys**.
 

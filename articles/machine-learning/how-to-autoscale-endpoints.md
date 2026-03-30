@@ -10,6 +10,7 @@ ms.author: scottpolly
 ms.reviewer: jturuk
 ms.custom: devplatv2, cliv2, update-code
 ms.date: 02/11/2026
+ai-usage: ai-assisted
 
 #customer intent: As a developer, I want to autoscale online endpoints in Azure Machine Learning so I can control resource usage in my deployment based on metrics or schedules.
 ---
@@ -67,7 +68,7 @@ For more information, see the [az monitor autoscale](/cli/azure/monitor/autoscal
 
    ```python
    from azure.ai.ml import MLClient
-   from azure.identity import DefaultAzureCredential
+   from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
    from azure.mgmt.monitor import MonitorManagementClient
    from azure.mgmt.monitor.models import AutoscaleProfile, ScaleRule, MetricTrigger, ScaleAction, Recurrence, RecurrentSchedule
    import random 
@@ -88,7 +89,11 @@ For more information, see the [az monitor autoscale](/cli/azure/monitor/autoscal
 1. Get Azure Machine Learning and Azure Monitor clients:
 
    ```python
-   credential = DefaultAzureCredential()
+   try:
+       credential = DefaultAzureCredential()
+       credential.get_token("https://management.azure.com/.default")
+   except Exception:
+       credential = InteractiveBrowserCredential()
    ml_client = MLClient(
        credential, subscription_id, resource_group, workspace
    )

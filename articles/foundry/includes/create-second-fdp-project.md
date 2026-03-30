@@ -45,18 +45,14 @@ While not all Foundry capabilities support organizing work in projects yet, your
 * To add a project to a Foundry resource:
     
     # [Foundry portal](#tab/foundry)
-    
-  
-    The Foundry (new) portal displays only the **default** project for each Foundry resource. You can't create multiple projects, or view any of the nondefault projects in the Foundry (new) portal.
         
-    <!-- 1. Select **Operate** in the upper-right navigation.
+    1. Select **Operate** in the upper-right navigation.
     1. Select **Admin** in the left pane.
     1. Select the Parent resource you want to add a project to.
-    1. Select **Add project**. -->
+    1. Select **Add project**.
           
     # [Python SDK](#tab/python)
 
-    While this code can add additional projects to a resource, you won't be able to view them in the Foundry (new) portal. Only the default project for a resource is available in the Foundry (new) portal.    
     Add this code to your script to create a new project on your existing resource:
 
     :::code language="python" source="~/foundry-samples-main/samples-classic/python/quickstart/create_project.py" id="create_additional":::
@@ -64,7 +60,6 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
     # [Azure CLI](#tab/azurecli)
 
-    While this code can add additional projects to a resource, you won't be able to view them in the Foundry (new) portal. Only the default project for a resource is available in the Foundry (new) portal.
     To add a new project to `my-foundry-resource`:
     
     ```azurecli

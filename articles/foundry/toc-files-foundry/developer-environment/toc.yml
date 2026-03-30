@@ -19,6 +19,8 @@ items:
     href: ../../how-to/develop/langchain.md
   - name: Use Foundry Models
     href: ../../how-to/develop/langchain-models.md
+  - name: Use Foundry Content Moderation
+    href: ../../how-to/develop/langchain-middleware.md
   - name: Use Foundry Agent Service
     href: ../../how-to/develop/langchain-agents.md
   - name: Use Foundry Memory

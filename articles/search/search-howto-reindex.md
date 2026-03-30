@@ -353,7 +353,7 @@ Support for an index description is provided in the preview REST API, the Azure 
 
 The Azure portal supports the latest preview API.
 
-1. Sign in to the Azure portal and find your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management** > **Indexes**, select an index.
 

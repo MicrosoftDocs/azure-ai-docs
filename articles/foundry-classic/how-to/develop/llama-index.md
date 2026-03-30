@@ -20,7 +20,7 @@ author: sdgilley
 In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the model catalog in Microsoft Foundry.
 
 <!-- ::: moniker range="foundry-classic" -->
-You can use models deployed to [!INCLUDE [classic-link](../../../foundry/includes/classic-link.md)] with LlamaIndex in two ways:
+You can use models deployed to [!INCLUDE [foundry-link](../../../foundry/includes/foundry-link.md)] with LlamaIndex in two ways:
 <!-- ::: moniker-end
 
 -->

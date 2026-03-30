@@ -40,7 +40,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 Now create an agent and interact with it.
 1. Still in the **Build** section, select **Agents** in the left pane.
-1. Select **Create agent** and give it a name.
+1. Select **Create agent** and give it a name, such as "MyAgent".
 
 ---
 

@@ -13,7 +13,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
 > [!TIP]
 > + Want to get started right away? Download the [source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-vector-ts) on GitHub.
-> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data (new)** wizard](../../search-get-started-portal-import-vectors.md).
+> + This quickstart omits the vectorization step and provides inline embeddings. For [integrated vectorization](../../vector-search-integrated-vectorization.md) over your own content, try the [**Import data** wizard](../../search-get-started-portal-import-vectors.md).
 
 ## Prerequisites
 
@@ -26,8 +26,6 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 - [Node.js 20 LTS](https://nodejs.org/en/download/) or later to run the compiled code.
 
 - [TypeScript](https://www.typescriptlang.org/download/) to compile TypeScript to JavaScript.
-
-- [Visual Studio Code](https://code.visualstudio.com/download).
 
 - [Git](https://git-scm.com/downloads) to clone the sample repository.
 
@@ -49,11 +47,10 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
    git clone https://github.com/Azure-Samples/azure-search-javascript-samples
    ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
    ```bash
    cd azure-search-javascript-samples/quickstart-vector-ts
-   code .
    ```
 
 1. In `sample.env`, replace the placeholder value for `AZURE_SEARCH_ENDPOINT` with the URL you obtained in [Get endpoint](#get-endpoint).
@@ -72,7 +69,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
 
    When the installation completes, you should see a `node_modules` folder in the project directory.
 
-1. Build the TypeScript files.
+1. Compile the TypeScript files to JavaScript.
 
    ```bash
    npm run build
@@ -114,7 +111,7 @@ In Azure AI Search, a vector index has an index schema that defines vector and n
     ```
 
     > [!NOTE]
-    > These commands run `.js` files from the `dist` folder because you previously transpiled from TypeScript to JavaScript with `npm run build`.
+    > These commands run the compiled `.js` files from the `dist` folder. TypeScript code must be transpiled to JavaScript before Node.js can execute it, which is why you previously ran `npm run build`.
 
 ### Output
 

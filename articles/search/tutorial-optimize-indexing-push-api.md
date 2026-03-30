@@ -56,7 +56,7 @@ This tutorial requires an Azure AI Search service, which you can [create in the 
 
 This tutorial uses key-based authentication. Copy an admin API key to paste into the `appsettings.json` file.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview** and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`
 

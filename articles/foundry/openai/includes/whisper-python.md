@@ -1,12 +1,13 @@
 ---
 services: ai-services
-author: mrbullwinkle
-ms.author: mbullwin
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 11/21/2025
 ai-usage: ai-assisted
+ms.custom: classic-and-new
 ---
 
 ## Prerequisites

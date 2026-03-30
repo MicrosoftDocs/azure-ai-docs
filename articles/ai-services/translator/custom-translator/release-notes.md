@@ -295,11 +295,11 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 #### Custom Translator platform upgrade
 
-&emsp; 🆕 ***Model Upgrade Wizard*** is now available in **Workspace settings** to help guide customers through the V1-model-upgrade-to-new-platform process. For more information, *see* [Custom Translator platform upgrade](platform-upgrade.md).
+&emsp;  ***Model Upgrade Wizard*** is now available in **Workspace settings** to help guide customers through the V1-model-upgrade-to-new-platform process. For more information, *see* [Custom Translator platform upgrade](platform-upgrade.md).
 
 #### Custom Translator copy model
 
-&emsp; 🆕 ***Copy Model*** is now available in **Model details** to enable the copying of models from one workspace to another. This feature enables model lifecycle management (development → testing → production) and/or scaling. For more information, *see* [Copy a custom model](how-to/copy-model.md).
+&emsp;  ***Copy Model*** is now available in **Model details** to enable the copying of models from one workspace to another. This feature enables model lifecycle management (development → testing → production) and/or scaling. For more information, *see* [Copy a custom model](how-to/copy-model.md).
 
 #### Restrict access to published models
 

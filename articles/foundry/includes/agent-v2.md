@@ -1,13 +1,13 @@
 ---
 title: Include file
 description: Include file
-author: sdgilley
-ms.reviewer: sgilley
-ms.author: sgilley
+author: jonburchel
+ms.reviewer: dantaylo
+ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 11/04/2025
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 > [!TIP]

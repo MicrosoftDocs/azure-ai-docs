@@ -218,7 +218,7 @@ In this example, the trace doesn't include any details beyond the HTTP post. The
 
 If you build your agent by using custom code, instrument your solution to emit traces according to the OpenTelemetry standard and send them to Application Insights. Instrumentation gives Foundry access to detailed information about what your agent is doing.
 
-Send traces to the Application Insights resource of your project by using its instrumentation key. To get the instrumentation key associated with your project, follow the instructions at [Enable tracing in your project](../../foundry-classic/how-to/develop/trace-application.md#enable-tracing-in-your-project).
+Send traces to the Application Insights resource of your project by using its instrumentation key. To get the instrumentation key associated with your project, follow the instructions at [Connect Application Insights to your Foundry project](../observability/how-to/trace-agent-setup.md#connect-application-insights-to-your-foundry-project).
 
 In this example, you configure an agent developed with LangGraph to emit traces in the OpenTelemetry standard. The tracer captures all agent operations, including tool calls and model interactions. The tracer then sends the operations to Application Insights for monitoring.
 

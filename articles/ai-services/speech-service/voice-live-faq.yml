@@ -151,7 +151,7 @@ sections:
       - question: |
           Does this service provide an SDK?
         answer: |
-          Yes, SDKs for Python and C#. See [Voice Live - Reference - Voice Live SDK](./voice-live.md).
+          Yes, SDKs for Python, C#, Java (Preview) and JavaScript/TypeScript (Preview) are available. See [Voice Live - Reference - Voice Live SDK](./voice-live-sdk.md).
       - question: |
           Does this service include content filtering?
         answer: |

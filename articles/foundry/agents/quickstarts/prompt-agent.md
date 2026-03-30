@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 In this quickstart, you create a prompt agent in Foundry Agent Service and have a conversation with it. A prompt agent is a declaratively defined agent that combines model configuration, instructions, tools, and natural language prompts to drive behavior.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Prerequisites
 

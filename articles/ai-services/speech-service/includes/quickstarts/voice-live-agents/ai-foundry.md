@@ -49,7 +49,7 @@ To try out the Voice Live demo, follow these steps:
 > [!NOTE]
 > This document refers to the [Microsoft Foundry (classic)](../../../../../ai-foundry/what-is-foundry.md#microsoft-foundry-portals) portal.
 >
-> 🔄 [Switch to the Microsoft Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
+> 🔄 [Switch to the Microsoft Foundry (new) documentation]() if you're using the new portal.
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live overview documentation](../../../voice-live.md).

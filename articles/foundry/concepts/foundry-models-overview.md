@@ -8,7 +8,6 @@ ms.custom:
   - build-2025
   - ai-learning-hub
   - classic-and-new
-  - doc-kit-assisted
 ms.topic: concept-article
 ms.date: 03/04/2026
 ms.reviewer: rasavage

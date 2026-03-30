@@ -73,12 +73,6 @@ items:
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
 
-  - name: Azure OpenAI supported programming languages
-    href: ../../openai/supported-languages.md
-  - name: Deploy and use Claude models in Microsoft Foundry 
-    displayName: Claude in Foundry Models
-    href: ../../foundry-models/how-to/use-foundry-models-claude.md
-
 - name: Quota limits and region availability
   items:
   - name: Manage quotas for Foundry resources
@@ -151,6 +145,17 @@ items:
   - name: Troubleshoot deployments and monitoring
     displayName: How to troubleshoot your deployments and monitors in Microsoft Foundry portal
     href: ../../../foundry-classic/how-to/troubleshoot-deploy-and-monitor.md?context=/azure/foundry/context/context
+
+- name: Model support
+  items:
+  - name: Azure OpenAI supported programming languages
+    href: ../../openai/supported-languages.md
+  - name: Claude models in Microsoft Foundry 
+    displayName: Claude in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-claude.md
+  - name: FLUX models in Microsoft Foundry 
+    displayName: FLUX in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-flux.md
 
 - name: Develop with AI models
   items:

@@ -1,7 +1,7 @@
 items:
-- name: Microsoft Foundry (classic) Documentation
+- name: Microsoft Foundry (classic) portal Documentation
   href: index.yml
-- name: What is Microsoft Foundry (classic)?
+- name: What is Microsoft Foundry (classic) portal?
   href: what-is-foundry.md
 - name: Get started
   expanded: true

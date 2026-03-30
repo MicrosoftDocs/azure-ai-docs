@@ -1198,7 +1198,7 @@ For large multipage documents, use the `pages` query parameter to indicate speci
 
 ## The Get Analyze Layout Result operation
 
-The second step is to call the [Get Analyze Layout Result](https://westcentralus.dev.cognitive.microsoft.com/docs/services/form-recognizer-api-v2-1/operations/GetAnalyzeLayoutResult) operation. This operation takes as input the Result ID that the `Analyze Layout` operation created. It returns a JSON response that contains a **status** field with the following possible values.
+The second step is to call the `Get Analyze Layout Result` operation. This operation takes as input the Result ID that the `Analyze Layout` operation created. It returns a JSON response that contains a **status** field with the following possible values.
 
 |Field| Type | Possible values |
 |:-----|:----:|:----|

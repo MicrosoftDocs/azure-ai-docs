@@ -182,6 +182,9 @@ The identities of the subnet and the virtual network are also transmitted with e
 
 Each Foundry Tools resource supports up to 100 virtual network rules, which can be combined with IP network rules. For more information, see [Grant access from an internet IP range](#grant-access-from-an-internet-ip-range) later in this article.
 
+> [!NOTE]
+> When configuring IP network rules for your Cognitive Services endpoint, only the IP addresses included in the allowed list can successfully access the endpoint. Requests from IP addresses not listed will be blocked. This ensures that the endpoint is only accessible from authorized networks, reducing exposure to unauthorized or unlisted IPs.
+
 ### Set required permissions
 
 To apply a virtual network rule to a Foundry resource, you need the appropriate permissions for the subnets to add. The required permission is the default *Contributor* role or the *Cognitive Services Contributor* role. Required permissions can also be added to custom role definitions.

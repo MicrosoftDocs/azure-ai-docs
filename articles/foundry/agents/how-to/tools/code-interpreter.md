@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/19/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -20,10 +20,10 @@ Code Interpreter enables a Microsoft Foundry agent to run Python code in a sandb
 
 In this article, you create an agent that uses Code Interpreter, upload a CSV file for analysis, and download a generated chart.
 
-When enabled, your agent can write and run Python code iteratively to solve data analysis and math tasks, and to generate charts.
+When you enable Code Interpreter, your agent can write and run Python code iteratively to solve data analysis and math tasks, and to generate charts.
 
 > [!IMPORTANT]
-> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for Azure OpenAI usage. If your agent calls Code Interpreter simultaneously in two different conversations, two Code Interpreter sessions are created. Each session is active by default for one hour with an idle timeout of 30 minutes.
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for Azure OpenAI usage. If your agent calls Code Interpreter simultaneously in two different conversations, it creates two Code Interpreter sessions. Each session is active by default for one hour with an idle timeout of 30 minutes.
 
 ### Usage support
 
@@ -149,12 +149,12 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 :::zone pivot="csharp"
 ## Create a chart with Code Interpreter in C#
 
-The following C# sample shows how to create an agent with the code interpreter tool and use it to generate a bar chart. The agent writes and executes Python code (using matplotlib) in a sandboxed container. For asynchronous usage, refer to the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample7_CodeInterpreter.md) in the Azure SDK for .NET repository on GitHub.
+The following C# sample shows how to create an agent with the code interpreter tool and use it to generate a bar chart. The agent writes and executes Python code (using matplotlib) in a sandboxed container. For asynchronous usage, see the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample7_CodeInterpreter.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -206,7 +206,7 @@ The sample code produces output similar to the following example:
 Here is the bar chart showing quarterly revenue for 2025. The chart displays Q1 ($2.1M), Q2 ($2.8M), Q3 ($3.2M), and Q4 ($2.9M) with a blue color scheme, data labels on each bar, and the title "Quarterly Revenue 2025".
 ```
 
-The agent creates a Code Interpreter session, writes Python code using matplotlib to generate the bar chart, executes the code in a sandboxed environment, and returns the chart as a generated file. For an example that uploads a CSV file and downloads the generated chart, select **Python** or **TypeScript** from the language selector at the top of this article.
+The agent creates a Code Interpreter session, writes Python code by using matplotlib to generate the bar chart, runs the code in a sandboxed environment, and returns the chart as a generated file. For an example that uploads a CSV file and downloads the generated chart, select **Python** or **TypeScript** from the language selector at the top of this article.
 
 :::zone-end
 
@@ -355,7 +355,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0-beta.3</version>
 </dependency>
 ```
 
@@ -367,6 +367,7 @@ import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.ai.agents.models.CodeInterpreterTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.identity.DefaultAzureCredentialBuilder;
@@ -402,8 +403,8 @@ public class CodeInterpreterChartExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Create a bar chart showing quarterly revenue for 2025: "
                     + "Q1=$2.1M, Q2=$2.8M, Q3=$3.2M, Q4=$2.9M. "
@@ -425,7 +426,7 @@ public class CodeInterpreterChartExample {
 Response: Here is the bar chart showing quarterly revenue for 2025 with Q1 ($2.1M), Q2 ($2.8M), Q3 ($3.2M), and Q4 ($2.9M) displayed in blue with data labels.
 ```
 
-The agent creates a Code Interpreter session, writes Python code using matplotlib to generate the chart, and executes the code in a sandboxed environment. For an example that uploads a CSV file and downloads the generated chart, select **Python** or **TypeScript** from the language selector at the top of this article. For more examples, see the [Azure AI Agents Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/).
+The agent creates a Code Interpreter session, writes Python code by using matplotlib to generate the chart, and executes the code in a sandboxed environment. For an example that uploads a CSV file and downloads the generated chart, select **Python** or **TypeScript** from the language selector at the top of this article. For more examples, see the [Azure AI Agents Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/).
 
 :::zone-end
 
@@ -574,7 +575,21 @@ Delete resources you created in this sample when you no longer need them to avoi
 - Delete the conversation.
 - Delete uploaded files.
 
-For examples of conversation and file cleanup patterns, see [Web search tool (preview)](web-search.md) and [File search tool for agents](file-search.md).
+For examples of conversation and file cleanup patterns, see [Web search tool](web-search.md) and [File search tool for agents](file-search.md).
+
+## Sandboxed execution environment
+
+Code Interpreter runs Python code in a Microsoft-managed sandbox. The sandbox is designed for running untrusted code and uses [dynamic sessions (code interpreter sessions) in Azure Container Apps](/azure/container-apps/sessions-code-interpreter). Each session is isolated by a Hyper-V boundary.
+
+Key behaviors to plan for:
+
+- **Region**: The Code Interpreter sandbox runs in the same Azure region as your Foundry project.
+- **Session lifetime**: A Code Interpreter session is active for up to one hour, with an idle timeout (see the *Important* note at the beginning of this article).
+- **Isolation**: Each session runs in an isolated environment. If your agent invokes Code Interpreter concurrently in different conversations, separate sessions are created.
+- **Network isolation and internet access**: The sandbox doesn't inherit your agent subnet configuration, and dynamic sessions can't make outbound network requests.
+- **Files in the sandbox**: The sandboxed Python runtime has access to files you attach for analysis. Code Interpreter can also generate files, such as charts, and return them as downloadable outputs.
+
+If you need more control over the sandbox runtime or you need a different isolation model, see [Custom code interpreter tool for agents](custom-code-interpreter.md).
 
 ## Related content
 

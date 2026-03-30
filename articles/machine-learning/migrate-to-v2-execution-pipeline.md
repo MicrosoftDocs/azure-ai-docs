@@ -8,7 +8,7 @@ ms.subservice: core
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 09/16/2022
+ms.date: 03/26/2026
 ms.reviewer: lochen
 ms.custom:
   - migration
@@ -18,19 +18,24 @@ monikerRange: 'azureml-api-1 || azureml-api-2'
 
 # Upgrade pipelines to SDK v2
 
-In SDK v2, "pipelines" are consolidated into jobs.
+In SDK v2, pipelines are consolidated into jobs.
 
 A job has a type. Most jobs are command jobs that run a `command`, like `python main.py`. What runs in a job is agnostic to any programming language, so you can run `bash` scripts, invoke `python` interpreters, run a bunch of `curl` commands, or anything else.
 
-A `pipeline` is another type of job, which defines child jobs that may have input/output relationships, forming a directed acyclic graph (DAG).
+A `pipeline` is another type of job, which defines child jobs that might have input/output relationships, forming a directed acyclic graph (DAG).
 
-To upgrade, you'll need to change your code for defining and submitting the pipelines to SDK v2. What you run _within_ the child job doesn't need to be upgraded to SDK v2. However, it's recommended to remove any code specific to Azure Machine Learning from your model training scripts. This separation allows for an easier transition between local and cloud and is considered best practice for mature MLOps. In practice, this means removing `azureml.*` lines of code. Model logging and tracking code should be replaced with MLflow. For more information, see [how to use MLflow in v2](how-to-use-mlflow-cli-runs.md).
+To upgrade, change your code for defining and submitting the pipelines to SDK v2. You don't need to upgrade what you run _within_ the child job to SDK v2. However, remove any code specific to Azure Machine Learning from your model training scripts. This separation allows for an easier transition between local and cloud and is considered best practice for mature MLOps. In practice, this best practice means removing `azureml.*` lines of code. Replace model logging and tracking code with MLflow. For more information, see [how to use MLflow in v2](how-to-use-mlflow-cli-runs.md).
 
-This article gives a comparison of scenario(s) in SDK v1 and SDK v2. In the following examples, we'll build three steps (train, score and evaluate) into a dummy pipeline job. This demonstrates how to build pipeline jobs using SDK v1 and SDK v2, and how to consume data and transfer data between steps.
+This article gives a comparison of scenarios in SDK v1 and SDK v2. In the following examples, you build three steps (train, score, and evaluate) into a dummy pipeline job. This comparison demonstrates how to build pipeline jobs using SDK v1 and SDK v2, and how to consume data and transfer data between steps.
 
 ## Run a pipeline
 
 * SDK v1
+
+    > [!IMPORTANT]
+    > Azure Machine Learning SDK v1 (`azureml-core`) is deprecated as of March 31, 2025.
+    > Support ends June 30, 2026. The following code is shown for comparison only. Use the SDK v2 example for new work.
+    > For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
 
     ```python
     # import required libraries
@@ -157,6 +162,9 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2. In the foll
     # Retrieve an already attached Azure Machine Learning Compute.
     cluster_name = "cpu-cluster"
     print(ml_client.compute.get(cluster_name))
+    # Tip: You can skip provisioning a cluster by using serverless compute.
+    # Replace `default_compute=cluster_name` with `default_compute="serverless"`
+    # in the @pipeline decorator below. See: https://learn.microsoft.com/azure/machine-learning/how-to-use-serverless-compute
     
     # Import components that are defined with Python function
     with open("src/components.py") as fin:
@@ -221,7 +229,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2. In the foll
 |[azureml.pipeline.core.Pipeline](/python/api/azureml-pipeline-core/azureml.pipeline.core.pipeline?view=azure-ml-py&preserve-view=true)|[azure.ai.ml.dsl.pipeline](/python/api/azure-ai-ml/azure.ai.ml.dsl#azure-ai-ml-dsl-pipeline)|
 |[OutputDatasetConfig](/python/api/azureml-core/azureml.data.output_dataset_config.outputdatasetconfig?view=azure-ml-py&preserve-view=true)|[Output](/python/api/azure-ai-ml/azure.ai.ml.output)|
 |[dataset as_mount](/python/api/azureml-core/azureml.data.filedataset?view=azure-ml-py#azureml-data-filedataset-as-mount&preserve-view=true)|[Input](/python/api/azure-ai-ml/azure.ai.ml.input)|
-|[StepSequence](/python/api/azureml-pipeline-core/azureml.pipeline.core.stepsequence)|[Data dependency](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/3b_pipeline_with_data)|
+|[StepSequence](/python/api/azureml-pipeline-core/azureml.pipeline.core.stepsequence?view=azure-ml-py&preserve-view=true)|[Data dependency](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components/basics/3b_pipeline_with_data)|
 
 ## Step and job/component type mapping
 
@@ -245,9 +253,9 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2. In the foll
 
 ## Published pipelines
 
-Once you have a pipeline up and running, you can publish a pipeline so that it runs with different inputs. This was known as __Published Pipelines__. [Batch Endpoint](concept-endpoints-batch.md) proposes a similar yet more powerful way to handle multiple assets running under a durable API which is why the Published pipelines functionality has been moved to [Pipeline component deployments in batch endpoints](concept-endpoints-batch.md#pipeline-component-deployment).
+After you create and run a pipeline, you can publish the pipeline so that it runs with different inputs. This feature was known as **Published Pipelines**. [Batch Endpoint](concept-endpoints-batch.md) proposes a similar yet more powerful way to handle multiple assets running under a durable API. For this reason, the Published pipelines functionality is now part of [Pipeline component deployments in batch endpoints](concept-endpoints-batch.md#pipeline-component-deployment).
 
-[Batch endpoints](concept-endpoints-batch.md) decouples the interface (endpoint) from the actual implementation (deployment) and allow the user to decide which deployment serves the default implementation of the endpoint. [Pipeline component deployments in batch endpoints](concept-endpoints-batch.md#pipeline-component-deployment) allow users to deploy pipeline components instead of pipelines, which make a better use of reusable assets for those organizations looking to streamline their MLOps practice.
+[Batch endpoints](concept-endpoints-batch.md) decouple the interface (endpoint) from the actual implementation (deployment). They enable you to decide which deployment serves as the default implementation of the endpoint. [Pipeline component deployments in batch endpoints](concept-endpoints-batch.md#pipeline-component-deployment) allow you to deploy pipeline components instead of pipelines, which makes better use of reusable assets for organizations looking to streamline their MLOps practice.
 
 The following table shows a comparison of each of the concepts:
 
@@ -258,11 +266,11 @@ The following table shows a comparison of each of the concepts:
 | Pipeline's arguments on invocation                | Pipeline parameter  | Job inputs                     |
 | Job generated from a published pipeline           | Pipeline job        | Batch job                      |
 
-See [Upgrade pipeline endpoints to SDK v2](migrate-to-v2-deploy-pipelines.md) for specific guidance about how to migrate to batch endpoints.
+For specific guidance about how to migrate to batch endpoints, see [Upgrade pipeline endpoints to SDK v2](migrate-to-v2-deploy-pipelines.md).
 
 ## Related documents
 
-For more information, see the documentation here:
+For more information, see the following documentation:
 
 * [steps in SDK v1](/python/api/azureml-pipeline-steps/azureml.pipeline.steps?view=azure-ml-py&preserve-view=true)
 * [Create and run machine learning pipelines using components with the Azure Machine Learning SDK v2](how-to-create-component-pipeline-python.md)

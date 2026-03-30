@@ -199,6 +199,9 @@ You can browse all environments in the Azure Machine Learning studio. Make sure 
 
 :::image type="content" source="./media/how-to-share-models-pipelines-across-workspaces-with-registries/environment-in-registry.png" lightbox="./media/how-to-share-models-pipelines-across-workspaces-with-registries/environment-in-registry.png" alt-text="Screenshot of environments in the registry.":::
 
+> [!NOTE]
+> The registry resource's system-assigned managed identity has `AcrPull` permission on the Azure Container Registry (ACR) instance associated with that registry. When a workspace compute needs to pull an environment image, the AzureML Registry creates and returns an ACR token with an appropriate scope map allowing the image to be pulled by the workspace compute. Neither the workspace nor the compute managed identity has direct access to the registry's ACR.
+
  
 ## Create a component in registry
 
@@ -594,6 +597,9 @@ The following screenshot shows a model in a registry in Azure Machine Learning s
 In the last section, you'll deploy a model from registry to an online endpoint in a workspace. You can choose to deploy any workspace you have access to in your organization, provided the location of the workspace is one of the locations supported by the registry. This capability is helpful if you trained a model in a `dev` workspace and now need to deploy the model to `test` or `prod` workspace, while preserving the lineage information around the code, environment and data used to train the model.
 
 Online endpoints let you deploy models and submit inference requests through the REST APIs. For more information, see [How to deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md).
+
+> [!TIP]
+> This example uses key-based authentication for simplicity. For production deployments, Microsoft recommends Microsoft Entra token-based authentication (`aad_token`), which provides enhanced security through identity-based access control. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
 
 # [Azure CLI](#tab/cli)
 

@@ -75,22 +75,22 @@ The following table lists the available DragonHD voices:
 | de-DE-Florian:DragonHDLatestNeural        | Male   | GA      |                                       |
 | de-DE-Seraphina:DragonHDLatestNeural      | Female | GA      |                                       |
 | en-US-Adam:DragonHDLatestNeural           | Male   | GA      |                                       |
-| en-US-Alloy:DragonHDLatestNeural          | Male   | Preview |                                       |
+| en-US-Alloy:DragonHDLatestNeural          | Male   | GA |                                       |
 | en-US-Andrew:DragonHDLatestNeural         | Male   | GA      |                                       |
 | en-US-Andrew2:DragonHDLatestNeural        | Male   | GA      | Optimized for conversational content  |
 | en-US-Andrew3:DragonHDLatestNeural        | Male   | Preview | Optimized for podcast content         |
-| en-US-Aria:DragonHDLatestNeural           | Female | Preview |                                       |
+| en-US-Aria:DragonHDLatestNeural           | Female | GA |                                       |
 | en-US-Ava:DragonHDLatestNeural            | Female | GA      |                                       |
 | en-US-Ava3:DragonHDLatestNeural           | Female | Preview | Optimized for podcast content         |
 | en-US-Brian:DragonHDLatestNeural          | Male   | GA      |                                       |
 | en-US-Davis:DragonHDLatestNeural          | Male   | GA      |                                       |
 | en-US-Emma:DragonHDLatestNeural           | Female | GA      |                                       |
 | en-US-Emma2:DragonHDLatestNeural          | Female | GA      | Optimized for conversational content  |
-| en-US-Jenny:DragonHDLatestNeural          | Female | Preview |                                       |
+| en-US-Jenny:DragonHDLatestNeural          | Female | GA |                                       |
 | en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural | Male | Preview |                                       |
-| en-US-Nova:DragonHDLatestNeural           | Female | Preview |                                       |
-| en-US-Phoebe:DragonHDLatestNeural         | Female | Preview |                                       |
-| en-US-Serena:DragonHDLatestNeural         | Female | Preview |                                       |
+| en-US-Nova:DragonHDLatestNeural           | Female | GA |                                       |
+| en-US-Phoebe:DragonHDLatestNeural         | Female | GA |                                       |
+| en-US-Serena:DragonHDLatestNeural         | Female | GA |                                       |
 | en-US-Steffan:DragonHDLatestNeural        | Male   | GA      |                                       |
 | es-ES-Tristan:DragonHDLatestNeural        | Male   | GA      |                                       |
 | es-ES-Ximena:DragonHDLatestNeural         | Female | GA      |                                       |
@@ -330,7 +330,7 @@ For detailed information on the supported and unsupported SSML elements for Azur
 | `<audio>`| Embeds prerecorded audio into an SSML document. | No| No |
 | `<mstts:audioduration>` | Specifies the duration of the output audio. | No  | No |
 | `<mstts:backgroundaudio>`  | Adds background audio to your SSML documents or mixes an audio file with text to speech.  | No  | No |
-| `<phoneme>`  |Specifies phonetic pronunciation in SSML documents. | No | No |
+| `<phoneme>`  |Specifies phonetic pronunciation in SSML documents. | Yes | No |
 | `<lexicon>`  | Defines how multiple entities are read in SSML.  | Yes (only supports alias)  | Yes (only supports alias) |
 | `<say-as>` | Indicates the content type, such as number or date, of the element's text.  | Yes  | Yes |
 | `<sub>`  |  Indicates that the alias attribute's text value should be pronounced instead of the element's enclosed text.  | Yes | Yes |

@@ -101,6 +101,8 @@ Get started quickly with Foundry Local:
 For practical, hands-on learning, download one of the starter projects that demonstrate real-world scenarios:
 
 - [Chat Application Starter](https://github.com/microsoft/Foundry-Local/tree/main/samples/electron/foundry-chat): Build a local chat interface with multiple model support.
+- [Audio Transcription (JavaScript)](https://github.com/microsoft/Foundry-Local/tree/main/samples/js/audio-transcription-foundry-local): Transcribe audio files to text using Whisper, entirely on-device.
+- [Chat + Audio (JavaScript)](https://github.com/microsoft/Foundry-Local/tree/main/samples/js/chat-and-audio-foundry-local): Combine speech-to-text and chat completions in a single app.
 - [Summarize Sample](https://github.com/microsoft/Foundry-Local/tree/main/samples/python/summarize): A command-line utility that generates summaries of text files or direct text input.
 - [Function Calling Example](https://github.com/microsoft/Foundry-Local/tree/main/samples/python/functioncalling): Enable and use function calling with Phi-4 mini.
 
@@ -235,6 +237,7 @@ Reference: [Best practices and troubleshooting](reference/reference-best-practic
 ## Related content
 
 - [Integrate inference SDKs with Foundry Local](how-to/how-to-integrate-with-inference-sdks.md)
+- [Transcribe audio files with Foundry Local](how-to/how-to-transcribe-audio.md)
 - [Foundry Local documentation](index.yml)
 - [Best practices and troubleshooting](reference/reference-best-practice.md)
 - [Foundry Local API reference](reference/reference-catalog-api.md)

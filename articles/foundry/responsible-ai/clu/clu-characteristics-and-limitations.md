@@ -56,7 +56,7 @@ The following guidelines help you understand and improve performance in CLU.
 
 ### Understand confidence scores
 
-If you're content with the model's performance after training, the model should then be deployed to be consumed in a production environment. Deploying a model means making it available for use via the [analyze-conversation API](https://westus2.dev.cognitive.microsoft.com/docs/services/Language-2021-11-01-preview/operations/ConversationAnalysis_AnalyzeConversations) to detect the intent and extract entities from a given text. The API returns a JSON object containing a list of all intents that were created along with their confidence scores and the extracted entities each with its start index, length, and confidence score.
+If you're content with the model's performance after training, the model should then be deployed to be consumed in a production environment. Deploying a model means making it available for use via the to detect the intent and extract entities from a given text. The API returns a JSON object containing a list of all intents that were created along with their confidence scores and the extracted entities each with its start index, length, and confidence score.
 
 These scores serve as an indicator of how confident the service is with the system's response. A higher value indicates the service is more confident that the result is accurate. A confidence score is between zero (0) and one (1), zero being no confidence and 1 being high confidence. The returned score is directly affected by the data provided during tagging data.
 

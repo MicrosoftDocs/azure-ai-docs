@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/27/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: references_regions
@@ -421,7 +421,7 @@ main().catch((err) => {
 
 ## Create an agent with the Deep Research tool
 
-The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
+The Deep Research tool requires version `1.1.0b3` or later (but earlier than `2.0.0`) of the `azure-ai-projects` library, which targets the `2025-05-15-preview` API. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
 
 ```console
 python -m venv env
@@ -432,7 +432,7 @@ python -m venv env
 You can install the package with the following command:
 
 ```console
-pip install --pre azure-ai-projects
+pip install --pre "azure-ai-projects>=1.1.0b3,<2.0.0"
 ```
 
 ```python

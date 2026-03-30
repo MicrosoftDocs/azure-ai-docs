@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/ask-ai.md)
 
-You can ask AI to assist you in Microsoft Foundry. To start using AI to ask questions, select the AI icon in the upper right of the [!INCLUDE [classic-link](../../foundry/includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time.
+You can ask AI to assist you in Microsoft Foundry. To start using AI to ask questions, select the AI icon in the upper right of the [!INCLUDE [foundry-link](../../foundry/includes/foundry-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time.
 
 [!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 

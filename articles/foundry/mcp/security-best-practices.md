@@ -5,15 +5,15 @@ keywords: mcp, foundry mcp server, security, entra id, rbac
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 11/04/2025
+ms.date: 03/12/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
-ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
+ai-usage: ai-assisted
 ---
 
 # Foundry MCP Server best practices and security guidance
-Microsoft Foundry MCP Server (preview) tools automate read and write operations across Foundry resources, including deployments, datasets, evaluations, monitoring, and analytics. This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools.
+Foundry MCP Server (preview) tools automate read and write operations across Foundry resources, including deployments, datasets, evaluations, monitoring, and analytics. This guidance helps you verify intent, reduce risk, and apply security and governance practices before you run MCP tools.
 
 In this article, you learn about:
 
@@ -21,7 +21,7 @@ In this article, you learn about:
 - The impact of write operations on Foundry resources
 - Best practices for safe tool execution, resource management, and change tracking
 - Security and governance controls, including identity, RBAC, Conditional Access, network isolation, and data residency
-- Common troubleshooting scenarios
+- Troubleshooting common issues
 
 [!INCLUDE [preview-feature](../openai/includes/preview-feature.md)]
 
@@ -52,7 +52,7 @@ Examples of resource impact:
 - New deployments start billing immediately.
 - Overwriting a dataset affects evaluation reproducibility.
 
-## Best practices for safe executions 
+## Best practices for safe execution
 
 Follow these practices to make sure write operations run as you intend:
 
@@ -90,7 +90,7 @@ Follow these practices to make sure write operations run as you intend:
 - **Back up configuration**: Export current deployment and dataset configurations before you modify them.
 - **Track changes**: Record MCP operation details for troubleshooting and rollback.
 
-## Security and governance 
+## Security and governance
 
 This section summarizes identity, access control, policy, network isolation, and data residency considerations to help you apply governance before MCP operations.
 
@@ -98,9 +98,18 @@ This section summarizes identity, access control, policy, network isolation, and
 
 Authenticate to Foundry MCP Server using a Microsoft Entra token scoped to `https://mcp.ai.azure.com`.
 
-Azure role-based access control (RBAC) applies to all operations on Foundry resources supported by Foundry MCP Server. Operations run according to the authenticated user's permissions.
+Azure role-based access control (RBAC) applies to all operations on Foundry resources supported by Foundry MCP Server. Operations run according to the authenticated user's permissions. The following table summarizes how RBAC roles map to MCP operation types:
 
-### Allow tenant admin control via Azure Policy
+| Operation type | Minimum required role | Examples |
+| -------------- | --------------------- | -------- |
+| Read (list, get, query) | Reader | List deployments, get model details, query evaluation results |
+| Write (create, update) | Contributor | Create deployments, update datasets, start evaluations |
+| Delete | Contributor | Delete deployments, remove datasets |
+| Manage access | Owner or User Access Administrator | Assign roles, manage permissions |
+
+For more information on role assignments, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+
+### Control access with Conditional Access policies
 
 Tenant admins can use Conditional Access policies to grant or block access to Foundry MCP Server for selected users or workload identities.
 
@@ -110,13 +119,16 @@ Tenant admins can use Conditional Access policies to grant or block access to Fo
     az ad sp create --id fcdfa2de-b65b-4b54-9a1c-81c8a18282d9
     ```
 
-    The application ID in this command represents Foundry MCP Server.
+    The application ID in this command represents Foundry MCP Server. You can verify this application ID by searching for "Foundry MCP Server" in the Entra ID enterprise applications list.
 
 1. Find the enterprise application for Foundry MCP Server using the application ID. Open the [Azure portal Entra ID page](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Overview) and search for the application ID `fcdfa2de-b65b-4b54-9a1c-81c8a18282d9`.
 
     :::image type="content" source="../media/mcp/foundry-find-mcp-app.png" alt-text="Screenshot of MCP app in Entra ID.":::
 
-1. Select **Conditional Access** under **Security** on the left pane of the selected app, then select **New Policy** to specify the users or workload identities.
+1. Select **Conditional Access** under **Security** on the left pane of the selected app, then select **New Policy** to configure access control.
+
+    1. Under **Users**, select **Specific users included** and add the users or groups you want to restrict.
+    1. Under **Target resources**, confirm the Foundry MCP Server application is selected.
 
     :::image type="content" source="../media/mcp/foundry-conditional-access.png" alt-text="Screenshot of conditional access options for the app configuration.":::
 
@@ -130,7 +142,7 @@ After the policy is in place, designated users and groups can't obtain the Entra
 
 ### Network isolation
 
-Foundry MCP Server currently doesn't support network isolation. It exposes the public endpoint `https://mcp.ai.azure.com` that any MCP client can use. It connects to your Foundry resource through its public endpoint. If your Foundry resources use Azure Private Links, the server can't reach them and operations fail.
+Foundry MCP Server currently doesn't support network isolation. It exposes the public endpoint `https://mcp.ai.azure.com` that any MCP client can use. It connects to your Foundry resource through its public endpoint. If your Foundry resources use Azure Private Links, the server can't reach them and operations fail with a connectivity error.
 
 ### Data residency
 
@@ -139,25 +151,48 @@ Foundry MCP Server uses a global stateless proxy architecture. Data created by b
 > [!IMPORTANT]
 > By using this preview feature, you acknowledge and consent to any cross-region processing that might occur. For example, an EU resource accessed by a US user could be routed through US infrastructure. If your organization requires strict in-region processing, don't use Foundry MCP Server or restrict its use to scenarios that remain within your selected region.
 
-## Troubleshooting and FAQs
+## Troubleshooting
 
 Use this section to quickly diagnose common MCP Server issues.
 
 ### Authentication failures
 
-Check your permissions in Entra ID and confirm your access token is valid. Sign out, then sign back in to your Azure account in Visual Studio Code. For more information, see [Manage users and authentication in Entra ID](/entra/fundamentals/how-to-manage-user-profile-info).
+If you receive a `401 Unauthorized` error or the sign-in prompt doesn't appear:
+
+1. Sign out of your Azure account in Visual Studio Code, or the tool that you're using.
+1. Sign back in with a Microsoft account that has access to your Azure subscription.
+1. Verify your access token is valid by running `az account get-access-token --resource https://mcp.ai.azure.com` in the terminal.
+
+If the token request fails, confirm your account has the required Entra ID permissions. For more information, see [Manage users and authentication in Entra ID](/entra/fundamentals/how-to-manage-user-profile-info).
 
 ### Permission errors
 
-Check your resource role assignments in the Azure portal to make sure you have the permissions for the operations you need. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+If you see `403 Forbidden` or "Access denied" errors when running MCP tools:
+
+1. Open the Azure portal and navigate to your Foundry project.
+1. Select **Access control (IAM)** and verify your account has Contributor or higher role.
+1. If you recently received a role assignment, wait a few minutes for propagation and try again.
+
+For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
 ### Server connectivity issues
 
-Make sure your network allows outbound HTTPS connections to Azure services and no firewall rules block the MCP Server endpoint. 
+If the MCP server fails to start or times out:
+
+1. Verify your network allows outbound HTTPS connections to `https://mcp.ai.azure.com`.
+1. Check for proxy or firewall rules that might block the endpoint.
+1. Try opening `https://mcp.ai.azure.com` in a browser to confirm reachability.
+
+If your Foundry resources use Azure Private Links, MCP Server can't reach them through the public endpoint. Disable Private Link or use a different access method.
 
 ### Tool discovery problems
 
-Make sure the MCP server is running and tools are loaded by checking the **Output** view in Visual Studio Code. Restart Visual Studio Code or reload your workspace to fix discovery issues.
+If Foundry tools don't appear in the agent mode tools list:
+
+1. Open the **Output** view in Visual Studio Code and select the MCP server log channel.
+1. Verify the server shows a successful connection and tool registration.
+1. Restart Visual Studio Code or reload your workspace.
+1. If tools still don't appear, remove and re-add the server configuration.
 
 ## Related content
 

@@ -8,7 +8,7 @@ ms.custom:
   - devx-track-dotnet
   - ignite-2023
 ms.topic: concept-article
-ms.date: 08/08/2025
+ms.date: 03/17/2026
 ms.update-cycle: 365-days
 ---
 
@@ -29,7 +29,9 @@ You can see the current status of all of your indexers in your search service po
 | **Failed** | The number of errors exceeded **Max failed items** and indexing stops. |
 | **Reset** | The indexer's internal change tracking state was reset. The indexer runs in full, refreshing all documents, and not just those with newer timestamps. |
 
-You can select on an indexer in the list to see more details about the indexer's current and recent runs.
+You can select an indexer in the list to see more details about the indexer's current and recent runs. 
+
+To see detailed logs for a specific run, select the run’s **Status** value (for example, **Failed**), and then select "Download as CSV".
 
    ![Indexer summary and execution history](media/search-monitor-indexers/indexer-summary.png "Indexer summary and execution history")
 

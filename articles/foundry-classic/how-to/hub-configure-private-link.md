@@ -44,7 +44,7 @@ You get several hub default resources in your resource group. You need to config
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An existing Azure Virtual Network with a subnet for the private endpoint.
 - Azure CLI with the `ml` extension installed. To install the extension, run `az extension add --name ml`.
 - The following Azure RBAC roles on your subscription or resource group:

@@ -24,7 +24,7 @@ Content filtering software can help your app comply with regulations or maintain
 
 To use Azure AI Content Safety, you need:
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - A Content Safety resource created in a [supported region](#region-availability)
 
 

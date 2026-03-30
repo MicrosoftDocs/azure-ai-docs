@@ -8,33 +8,38 @@ ms.subservice: core
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 09/16/2022
+ms.date: 03/26/2026
 ms.reviewer: rasavage
-ms.custom: migration
+ms.custom: migration, dev-focus
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-1 || azureml-api-2'
 ---
 
 # Upgrade AutoML to SDK v2
 
-In SDK v2, "experiments" and "runs" are consolidated into jobs.
+In SDK v2, jobs consolidate "experiments" and "runs".
 
-In SDK v1, AutoML was primarily configured and run using the `AutoMLConfig` class. In SDK v2, this class has been converted to an `AutoML` job. Although there are some differences in the configuration options, by and large, naming & functionality has been preserved in V2.
+In SDK v1, you primarily configure and run AutoML by using the `AutoMLConfig` class. In SDK v2, this class is now an `AutoML` job. Although some configuration options differ, most naming and functionality is preserved in V2.
 
-This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
+This article compares scenarios in SDK v1 and SDK v2.
 
 ## Submit AutoML run
 
-* SDK v1: Below is a sample AutoML classification task. For the entire code, check out our [examples repo](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/classification-credit-card-fraud/auto-ml-classification-credit-card-fraud.ipynb).
+:::moniker range="azureml-api-1"
+> [!IMPORTANT]
+> Azure Machine Learning SDK v1 was deprecated on March 31, 2025. Support ends on June 30, 2026. Migrate to SDK v2 before that date. For more information, see [What is Azure Machine Learning CLI and Python SDK v2?](concept-v2.md)
+
+* SDK v1: The following example shows an AutoML classification task. For the complete code, see the [examples repo](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/classification-credit-card-fraud/auto-ml-classification-credit-card-fraud.ipynb).
 
     ```python
     # Imports
+    import logging
 
     import azureml.core
     from azureml.core.experiment import Experiment
     from azureml.core.workspace import Workspace
     from azureml.core.dataset import Dataset
     from azureml.train.automl import AutoMLConfig
-    from azureml.train.automl.run import AutoMLRun   
    
     # Load tabular dataset
     data = "<url_to_data>"
@@ -67,20 +72,14 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     azureml_url = remote_run.get_portal_url()
     print(azureml_url)
     ```
+:::moniker-end
 
-* SDK v2: Below is a sample AutoML classification task. For the entire code, check out our [examples repo](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-classification-task-bankmarketing/automl-classification-task-bankmarketing.ipynb).
+* SDK v2: The following example shows an AutoML classification task. For the complete code, see the [examples repo](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-classification-task-bankmarketing/automl-classification-task-bankmarketing.ipynb).
 
     ```python
     # Imports
     from azure.ai.ml import automl, Input, MLClient
-    
     from azure.ai.ml.constants import AssetTypes
-    from azure.ai.ml.automl import (
-        classification,
-        ClassificationPrimaryMetrics,
-        ClassificationModels,
-    )
-    
    
     # Create MLTables for training dataset
     # Note that AutoML Job can also take in tabular data
@@ -91,7 +90,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     # Create the AutoML classification job with the related factory-function.
     classification_job = automl.classification(
         compute="<compute_name>",
-        experiment_name="<exp_name?",
+        experiment_name="<exp_name>",
         training_data=my_training_data_input,
         target_column_name="<name_of_target_column>",
         primary_metric="accuracy",
@@ -125,7 +124,12 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
 
 |Functionality in SDK v1|Rough mapping in SDK v2|
 |-|-|
-|[Method/API in SDK v1 (use links to ref docs)](/python/api/azureml-train-automl-client/azureml.train.automl.client)|[Method/API in SDK v2 (use links to ref docs)](/python/api/azure-ai-ml/azure.ai.ml.automl)|
+|[`AutoMLConfig`](/python/api/azureml-train-automl-client/azureml.train.automl.automlconfig.automlconfig)|[`automl.classification()` / `automl.regression()` / `automl.forecasting()`](/python/api/azure-ai-ml/azure.ai.ml.automl)|
+|`experiment.submit(automl_config)`|[`ml_client.jobs.create_or_update(job)`](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-jobs)|
+|`remote_run.get_portal_url()`|`returned_job.services["Studio"].endpoint`|
+|`AutoMLConfig(enable_early_stopping=True)`|`job.set_limits(enable_early_termination=True)`|
+|`AutoMLConfig(blocked_models=[...])`|`job.set_training(blocked_training_algorithms=[...])`|
+|`AutoMLConfig(n_cross_validations=N)`|`automl.classification(n_cross_validations=N)`|
 
 ## Next steps
 

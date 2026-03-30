@@ -184,7 +184,7 @@
       "source_path_from_root": "/articles/ai-services/speech-service/voice-live-api-reference.md",
       "redirect_url": "/azure/ai-services/speech-service/voice-live-api-reference-2025-10-01",
       "redirect_document_id": false
-    },    
+    },
     {
       "source_path_from_root": "/articles/ai-services/containers/index.yml",
       "redirect_url": "/azure/ai-services/cognitive-services-container-support",
@@ -507,104 +507,104 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/computer-vision/use-case-queue-time.md",
-       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/includes/video-retrieval-deprecation.md",
       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
       "redirect_document_id": false
     },
-     {
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/intro-to-spatial-analysis-public-preview.md",
-       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/transparency-note-spatial-analysis.md",
-       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/responsible-use-deployment.md",
-       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/disclosure-design.md",
-       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/research-insights.md",
-       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/compliance-privacy-security-2.md",
-       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/reference-video-search.md",
-       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/how-to/video-retrieval.md",
-       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/includes/video-retrieval-input.md",
-       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/content-understanding/concepts/analyzer-templates.md",
-       "redirect_url": "/azure/ai-services/content-understanding/concepts/prebuilt-analyzers",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/content-understanding/concepts/prebuilt-analyzers",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-analyze.md",
-       "redirect_url": "/azure/ai-services/computer-vision/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/computer-vision/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-model-customization.md",
-       "redirect_url": "/azure/ai-services/computer-vision/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/computer-vision/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-modify-images.md",
-       "redirect_url": "/azure/ai-services/computer-vision/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/computer-vision/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-planogram.md",
-       "redirect_url": "/azure/ai-services/computer-vision/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/computer-vision/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/how-to/coco-verification.md",
-       "redirect_url": "/azure/ai-services/computer-vision/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/computer-vision/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/how-to/model-customization.md",
-       "redirect_url": "/azure/ai-services/computer-vision/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/computer-vision/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/concept-model-customization.md",
-       "redirect_url": "/azure/ai-services/computer-vision/overview",
-       "redirect_document_id": false
-     },
-     {
+      "redirect_url": "/azure/ai-services/computer-vision/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/computer-vision/concept-shelf-analysis.md",
-       "redirect_url": "/azure/ai-services/computer-vision/overview",
-       "redirect_document_id": false
-     },
+      "redirect_url": "/azure/ai-services/computer-vision/overview",
+      "redirect_document_id": false
+    },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/studio-overview",
@@ -3014,7 +3014,166 @@
       "source_path_from_root": "/articles/ai-services/language-service/concepts/migrate.md",
       "redirect_url": "/azure/ai-services/language-service/reference/migrate",
       "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/overview-identity",
+      "source_path_from_root": "/articles/ai-services/computer-vision/overview-identity.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/reference-face-error-codes",
+      "source_path_from_root": "/articles/ai-services/computer-vision/reference-face-error-codes.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/whats-new-face",
+      "source_path_from_root": "/articles/ai-services/computer-vision/whats-new-face.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/how-to/add-faces",
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/add-faces.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/how-to/find-similar-faces",
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/find-similar-faces.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/how-to/identity-access-token",
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/identity-access-token.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/how-to/identity-detect-faces",
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/identity-detect-faces.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/how-to/specify-detection-model",
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/specify-detection-model.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/how-to/specify-recognition-model",
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/specify-recognition-model.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/how-to/use-headpose",
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/use-headpose.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/how-to/use-large-scale",
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/use-large-scale.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/how-to/use-persondirectory",
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/use-persondirectory.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/tutorials/build-enrollment-app",
+      "source_path_from_root": "/articles/ai-services/computer-vision/tutorials/build-enrollment-app.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/tutorials/liveness-quick-link",
+      "source_path_from_root": "/articles/ai-services/computer-vision/tutorials/liveness-quick-link.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/tutorials/liveness",
+      "source_path_from_root": "/articles/ai-services/computer-vision/tutorials/liveness.md",
+      "redirect_document_id": true
+    },
+    {
+      "redirect_url": "/azure/ai-services/face/sdk/understand-the-liveness-sdk-versions",
+      "source_path_from_root": "/articles/ai-services/computer-vision/sdk/understand-the-liveness-sdk-versions.md",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/quickstarts-sdk/identity-client-library.md",
+      "redirect_url": "/azure/ai-services/face/quickstarts-sdk/identity-client-library",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/mitigate-latency.md",
+      "redirect_url": "/azure/ai-services/face/how-to/mitigate-latency",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/use-case-identity-verification.md",
+      "redirect_url": "/azure/ai-services/face/use-case-identity-verification",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-liveness-abuse-monitoring.md",
+      "redirect_url": "/azure/ai-services/face/concept-liveness-abuse-monitoring",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/liveness-use-network-isolation.md",
+      "redirect_url": "/azure/ai-services/face/how-to/liveness-use-network-isolation",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-face-detection.md",
+      "redirect_url": "/azure/ai-services/face/concept-face-detection",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-face-liveness-detection.md",
+      "redirect_url": "/azure/ai-services/face/concept-face-liveness-detection",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-face-recognition-data-structures.md",
+      "redirect_url": "/azure/ai-services/face/concept-face-recognition-data-structures",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-face-recognition.md",
+      "redirect_url": "/azure/ai-services/face/concept-face-recognition",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/enrollment-overview.md",
+      "redirect_url": "/azure/ai-services/face/enrollment-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/face-index.yml",
+      "redirect_url": "/azure/ai-services/face/face-index",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/face/context/context.yml",
+      "redirect_url": "/azure/ai-services/face/context/context.yml",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/identity-api-reference.md",
+      "redirect_url": "/azure/ai-services/face/identity-api-reference",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/identity-encrypt-data-at-rest.md",
+      "redirect_url": "/azure/ai-services/face/identity-encrypt-data-at-rest",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/identity-quotas-limits.md",
+      "redirect_url": "/azure/ai-services/face/identity-quotas-limits",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/computer-vision/liveness-detection-shared-responsibility.md",
+      "redirect_url": "/azure/ai-services/face/liveness-detection-shared-responsibility",
+      "redirect_document_id": true
     }
-
   ]
 }

@@ -10,7 +10,6 @@ ms.reviewer: sgilley
 ms.custom:
   - classic-and-new
   - dev-focus
-  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want an overview of langchain-azure-ai so I can choose the right integration pattern for my LangChain or LangGraph solution.
 ---
@@ -24,7 +23,7 @@ right deep-dive documentation for each capability.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
 - The **Azure AI User** role on the Foundry project (least-privilege role for
   development). If you also create or manage resources, use **Contributor** or
@@ -59,16 +58,23 @@ pip install -U "langchain-azure-ai[opentelemetry]"
 
 Use this map to pick the right namespace for your solution:
 
+
+
+
+
+
+
 | Capability | Namespace | Typical use |
 |---|---|---|
-| Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes to build complex graph and flows for LangGraph and LangChain. |
-| Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat models. |
-| Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. |
+| Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes to build complex graph and flows for LangGraph and LangChain. [See detailed examples](langchain-agents.md). |
+| Foundry Content Safety | `langchain_azure_ai.agents.middleware` | Use Foundry Content Safety and Moderation to make sure you can deploy solution with the right guardrails. [See detailed examples](langchain-middleware.md). |
+| Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat models. [See detailed examples](langchain-models.md). |
+| Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. [See detailed examples](langchain-models.md#use-embedding-models).|
 | Vector stores | `langchain_azure_ai.vectorstores` | Use Azure AI Search and Cosmos DB vector integrations. |
 | Retrievers | `langchain_azure_ai.retrievers` | Run retrieval over Azure-backed indexes and stores. |
-| Chat history stores | `langchain_azure_ai.chat_message_histories` | Persist and replay chat history across sessions. Use memory-powered histories to retrieve consolidated pass chat history. |
+| Chat history stores | `langchain_azure_ai.chat_message_histories` | Persist and replay chat history across sessions. Use memory-powered histories to retrieve consolidated pass chat history. [See detailed examples](langchain-memory.md). |
 | Tools | `langchain_azure_ai.tools` | Add tools such as Document Intelligence, Vision, health text analytics, and Logic Apps. |
-| Callbacks and tracing | `langchain_azure_ai.callbacks` | Capture run events and emit OpenTelemetry traces. |
+| Callbacks and tracing | `langchain_azure_ai.callbacks` | Capture run events and emit OpenTelemetry traces. [See detailed examples](langchain-traces.md). |
 | Query constructors | `langchain_azure_ai.query_constructors` | Build backend-specific query filters for retrieval scenarios. |
 
 See the section [Learn each capability in detail](#learn-each-capability-in-detail) for specific walkthroughs. 
@@ -103,7 +109,7 @@ import langchain.chat_models import init_chat_model
 model = init_chat_model("azure_ai:gpt-5.2")
 ```
 
-You can also configure clients specifically. As an example, let's see `AzureAIChatCompletionsModel` as a representative pattern:
+You can also configure clients specifically. As an example, let's see `AzureAIOpenAIApiChatModel` as a representative pattern:
 
 ```python
 import os
@@ -166,6 +172,7 @@ The same project-endpoint pattern is also used by other classes.
 Start with these guides in this documentation set:
 
 - [Use Foundry Models with LangChain and LangGraph](langchain-models.md)
+- [Use Foundry Content Safety middleware](langchain-middleware.md)
 - [Use Foundry Agent Service with LangGraph](langchain-agents.md)
 - [Use Foundry Memory with LangChain and LangGraph](langchain-memory.md)
 - [Use Foundry Observability to trace apps](langchain-traces.md)

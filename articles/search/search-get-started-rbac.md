@@ -5,7 +5,7 @@ author: mattwojo
 ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 11/20/2025
+ms.date: 03/25/2026
 zone_pivot_groups: search-python-rest
 ---
 

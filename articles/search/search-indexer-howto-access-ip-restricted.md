@@ -4,7 +4,7 @@ description: Configure IP firewall rules to allow data access by an Azure AI Sea
 ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/29/2026
+ms.date: 03/13/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -32,7 +32,7 @@ This article explains how to find the IP address of your search service and conf
 
 ## Get a search service IP address
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview**.
 
@@ -76,12 +76,6 @@ Add your client IP address to allow access to the service from the Azure portal 
    :::image type="content" source="media\service-configure-firewall\azure-portal-firewall-all.png" alt-text="Screenshot of the option to add your client IP address in the Azure portal." border="true":::
 
 1. Save your changes.
-
-## Get the Azure portal IP address
-
-If you're using the [legacy Import data wizard](search-import-data-portal.md) in the Azure portal to create an indexer that pulls from Azure Cosmos DB or Azure SQL, you must grant the Azure portal IP address inbound access to your SQL Azure virtual machine. For more information, see [Allow access from the Azure portal IP address](service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address).
-
-We recommend using the [Import data (new) wizard](search-get-started-portal.md), which doesn't have this limitation. 
 
 ## Get IP addresses for "AzureCognitiveSearch" service tag
 

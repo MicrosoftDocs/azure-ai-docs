@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/20/2025
+ms.date: 03/25/2026
 ---
 
 In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to establish a keyless connection to your Azure AI Search service. You then use Python in Visual Studio Code to interact with your service.
@@ -66,6 +66,7 @@ To connect using Python:
 1. Create another code cell to authenticate and connect to your search service.
 
    ```python
+   import json
    from azure.identity import DefaultAzureCredential
    from azure.search.documents.indexes import SearchIndexClient
    

@@ -1,0 +1,121 @@
+### YamlMime:Hub
+
+title: Azure Face in Foundry Tools documentation # < 60 chars
+summary: The cloud-based Azure Face service The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many scenarios, such as identification, touchless access control, and automatic face blurring for privacy. # < 160 chars
+
+metadata:
+  title: Azure Face documentation - Quickstarts, Tutorials, API Reference - Foundry Tools | Microsoft Docs
+  description: The cloud-based Azure Face service The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many scenarios, such as identification, touchless access control, and automatic face blurring for privacy.
+  ms.service: azure-ai-vision
+  ms.topic: hub-page
+  author: PatrickFarley
+  ms.author: pafarley
+  ms.date: 02/26/2026
+
+highlightedContent:
+  # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
+    items:
+      - title: About Azure Face
+        itemType: overview
+        url: overview-identity.md
+      - title: What's new in Azure Face?
+        itemType: whats-new
+        url: whats-new-face.md
+      - title: API reference
+        itemType: reference
+        url: identity-api-reference.md
+
+conceptualContent:
+  items:
+    - title: Overview
+      links:
+        - itemType: overview
+          text: About Face service
+          url: overview-identity.md
+        - itemType: quickstart
+          text: Get started with Face
+          url: quickstarts-sdk/identity-client-library.md
+        - itemType: tutorial
+          text: Add users to a Face service
+          url: Tutorials/build-enrollment-app.md
+        - itemType: learn
+          text: Microsoft Learn training
+          url: /training/modules/detect-analyze-faces/
+        - itemType: reference
+          text: Face API reference
+          url: /rest/api/face/operation-groups
+      footerLink:
+        text: More
+        url: overview-identity.md
+    - title: Face detection
+      links:
+        - itemType: concept
+          text: Face detection concepts
+          url: concept-face-detection.md
+        - itemType: how-to-guide
+          text: Detect and analyze faces
+          url: how-to/identity-detect-faces.md
+        - itemType: how-to-guide
+          text: Specify a face detection model version
+          url: how-to/specify-detection-model.md
+
+    - title: Face recognition
+      links:
+        - itemType: concept
+          text: Face recognition concepts
+          url: concept-face-recognition.md
+        - itemType: concept
+          text: Face recognition data structures
+          url: concept-face-recognition-data-structures.md
+        - itemType: how-to-guide
+          text: Add faces to a PersonGroup
+          url: how-to/add-faces.md
+        - itemType: how-to-guide
+          text: Find similar faces
+          url: how-to/find-similar-faces.md
+        - itemType: how-to-guide
+          text: Specify a face recognition model version
+          url: how-to/specify-recognition-model.md
+        - itemType: tutorial
+          text: Detect liveness in faces
+          url: Tutorials/liveness.md
+
+
+
+tools:
+  title: Software development kits (SDKs)
+  summary: Get started with the Azure Face SDK in your preferred programming language.
+  items:
+  - title: C#
+    imageSrc: media/index/logo-csharp.svg
+    url: https://aka.ms/azsdk-csharp-face-pkg
+  - title: Node.js
+    imageSrc: media/index/logo-javascript.svg
+    url: https://www.npmjs.com/package/@azure-rest/ai-vision-face
+  - title: Python
+    imageSrc: media/index/logo-python.svg
+    url: https://aka.ms/azsdk-python-face-pkg
+  - title: Java
+    imageSrc: /media/logos/logo_java.svg
+    url: https://central.sonatype.com/artifact/com.azure/azure-ai-vision-face
+
+
+additionalContent:
+  sections:
+    - items:
+      - title: REST APIs
+        links:
+        - text: Face REST API
+          url: /rest/api/face/operation-groups
+        - text: Face API error codes
+          url: /azure/ai-services/computer-vision/reference-face-error-codes
+      - title: Resources
+        links:
+        - text: Pricing
+          url: https://azure.microsoft.com/pricing/details/cognitive-services/face-api
+        - text: Learn
+          url: /training/paths/explore-computer-vision-microsoft-azure/
+      - title: Support
+        links:
+        - text: Support and help options
+          url: ../cognitive-services-support-options.md?context=/azure/ai-services/computer-vision/context/context

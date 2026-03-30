@@ -47,7 +47,7 @@ You can view and manage API keys using the [Azure portal](https://portal.azure.c
 
 ### [**Portal**](#tab/portal-find)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Keys** to view admin and query keys.
 
@@ -269,7 +269,7 @@ Restricting access and operations in client apps is essential to safeguarding th
 
 ### [**Portal**](#tab/portal-query)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Keys** to view API keys.
 
@@ -303,7 +303,7 @@ A script example showing query key usage can be found at [Create or delete query
 
 Two admin keys are created for each service so that you can rotate a primary key while using the secondary key for business continuity.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Keys**.
 
@@ -334,7 +334,7 @@ Use role assignments to restrict access to API keys.
 
 It's not possible to use [customer-managed key encryption](search-security-manage-encryption-keys.md) to encrypt API keys. Only sensitive data within the search service itself (for example, index content or connection strings in data source object definitions) can be CMK-encrypted.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Access control (IAM)**, and then select the **Role assignments** tab.
 

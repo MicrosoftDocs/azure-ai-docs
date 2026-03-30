@@ -10,6 +10,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 01/29/2026
 ai-usage: ai-assisted
+
+ms.custom: classic-and-new
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for Java.
@@ -44,7 +46,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <modelVersion>4.0.0</modelVersion>
         <groupId>com.azure.samples</groupId>
-        <artifactId>quickstart-dall-e</artifactId>
+        <artifactId>quickstart-image-generation</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <build>
             <sourceDirectory>src</sourceDirectory>
@@ -260,6 +262,9 @@ The URL of the generated image is printed to the console.
 Image location URL that provides temporary access to download the generated image is <SAS URL>.
 Completed getImages.
 ```
+
+> [!IMPORTANT]
+> GPT-image-1 also supports additional parameters such as `quality` (`low`, `medium`, `high`), `output_format` (`png`, `jpeg`), `background` (`auto`, `transparent`), and `output_compression` (0-100, JPEG only). For details, see [API options](/azure/ai-foundry/openai/how-to/dall-e#specify-api-options).
 
 > [!NOTE]
 > The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../../foundry-classic/foundry-models/concepts/content-filter.md) article.

@@ -24,7 +24,7 @@ Azure AI Search can send operation logs and service metrics to an Azure Storage 
 1. Enable metric and resource logging for your search service:
 
     1. Create or identify an existing [Azure Storage account](/azure/storage/common/storage-account-create) where you can archive the logs.
-    1. Navigate to your search service in the Azure portal.
+    1. Go to your search service in the [Azure portal](https://portal.azure.com).
     1. Under Monitoring, select **Diagnostic settings**.
     1. Select **Add diagnostic setting**.
     1. Check **Archive to a storage account**, provide your storage account information, and check **OperationLogs** and **AllMetrics**.

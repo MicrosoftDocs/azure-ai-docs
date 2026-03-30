@@ -13,7 +13,6 @@ ms.reviewer: pafarley
 zone_pivot_groups: voice-live-howto-agents
 recommendations: false
 ai-usage: ai-assisted
-ms.custom: doc-kit-assisted
 ---
 
 # How to build a voice agent (preview)
@@ -41,7 +40,7 @@ ms.custom: doc-kit-assisted
 
 ## Migrate from Agent Service (classic)
 
-If you're using Voice Live with Agent Service (classic), we recommend you migrate to the new Foundry Agent Service. For general Agent Service migration steps, see [Migrate from Agent Service (classic) to Foundry Agent Service](/azure/ai-foundry/agents/how-to/migrate?view=foundry).
+If you're using Voice Live with Agent Service (classic), we recommend you migrate to the new Foundry Agent Service. For general Agent Service migration steps, see [Migrate from Agent Service (classic) to Foundry Agent Service](/azure/foundry/agents/how-to/migrate).
 
 ### Voice Live SDK changes
 

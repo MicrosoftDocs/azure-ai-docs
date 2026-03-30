@@ -8,18 +8,19 @@ ms.subservice: enterprise-readiness
 ms.reviewer: shshubhe 
 ms.author: scottpolly
 author: s-polly
-ms.date: 05/06/2025
+ms.date: 03/26/2026
 ms.topic: how-to
 monikerRange: 'azureml-api-2 || azureml-api-1'
-ms.custom: sfi-image-nochange
+ms.custom: sfi-image-nochange, dev-focus
+ai-usage: ai-assisted
 ---
 
 # How to use your workspace with a custom DNS server
 
-When using an Azure Machine Learning workspace (including Azure AI hubs) with a private endpoint, there are [several ways to handle DNS name resolution](/azure/private-link/private-endpoint-dns). By default, Azure automatically handles name resolution for your workspace and private endpoint. If you instead __use your own custom DNS server__, you must manually create DNS entries or use conditional forwarders for the workspace.
+When you use an Azure Machine Learning workspace (including Azure AI hubs) with a private endpoint, [several ways exist to handle DNS name resolution](/azure/private-link/private-endpoint-dns). By default, Azure automatically handles name resolution for your workspace and private endpoint. If you __use your own custom DNS server__, you must manually create DNS entries or use conditional forwarders for the workspace.
 
 > [!IMPORTANT]
-> This article covers how to find the fully qualified domain names (FQDN) and IP addresses for these entries if you would like to manually register DNS records in your DNS solution. Additionally this article provides architecture recommendations for how to configure your custom DNS solution to automatically resolve FQDNs to the correct IP addresses. This article does NOT provide information on configuring the DNS records for these items. Consult the documentation for your DNS software for information on how to add records.
+> This article explains how to find the fully qualified domain names (FQDNs) and IP addresses for these entries if you want to manually register DNS records in your DNS solution. Additionally, this article provides architecture recommendations for how to configure your custom DNS solution to automatically resolve FQDNs to the correct IP addresses. This article doesn't provide information on configuring the DNS records for these items. Consult the documentation for your DNS software for information on how to add records.
 
 ## Prerequisites
 
@@ -28,7 +29,7 @@ When using an Azure Machine Learning workspace (including Azure AI hubs) with a 
 :::moniker range="azureml-api-2"
 - An Azure Machine Learning workspace with a private endpoint, including hub workspaces such as those used by Microsoft Foundry. For more information, see [Create an Azure Machine Learning workspace](how-to-manage-workspace.md).
 
-- If your workspace dependency resources are secured with an __Azure Virtual network__, familiarity with the [Network isolation during training & inference](./how-to-network-security-overview.md) article.
+- If you secure your workspace dependency resources with an __Azure Virtual network__, familiarity with the [Network isolation during training & inference](./how-to-network-security-overview.md) article.
 :::moniker-end
 :::moniker range="azureml-api-1"
 - An Azure Machine Learning workspace with a private endpoint. For more information, see [Create an Azure Machine Learning workspace](./v1/how-to-manage-workspace.md).
@@ -45,14 +46,14 @@ When using an Azure Machine Learning workspace (including Azure AI hubs) with a 
 
 ### Introduction
 
-There are two common architectures to use automated DNS server integration with Azure Machine Learning:
+Two common architectures use automated DNS server integration with Azure Machine Learning:
 
 * A custom [DNS server hosted in an Azure Virtual Network](#dns-vnet).
 * A custom [DNS server hosted on-premises](#dns-on-premises), connected to Azure Machine Learning through ExpressRoute.
 
-While your architecture may differ from these examples, you can use them as a reference point. Both example architectures provide troubleshooting steps that can help you identify components that may be misconfigured.
+Your architecture might differ from these examples, but you can use them as reference points. Both example architectures provide troubleshooting steps that help you identify misconfigured components.
 
-Another option is to modify the `hosts` file on the client that is connecting to the Azure Virtual Network (virtual network) that contains your workspace. For more information, see the [Host file](#hosts) section.
+You can also modify the `hosts` file on the client that connects to the Azure Virtual Network (virtual network) containing your workspace. For more information, see the [Host file](#hosts) section.
 ### Workspace DNS resolution path
 
 Access to a given Azure Machine Learning workspace via Private Link is done by communicating with the following Fully Qualified Domains (called the workspace FQDNs):
@@ -126,6 +127,7 @@ The following list contains the fully qualified domain names (FQDNs) used by you
     > * The IP address for this FQDN is **not** the IP of the compute instance. Instead, use the private IP address of the workspace private endpoint (the IP of the `*.api.azureml.ms` entries.)
 * `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you aren't using a managed network or SSH connections.
 * `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
+* `models.ai.azure.com` - Used for serverless API deployments
 
 #### Microsoft Azure operated by 21Vianet region
 
@@ -144,7 +146,6 @@ The following FQDNs are for Microsoft Azure operated by 21Vianet regions:
 
 * `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computes in a private virtual network. Not needed if you aren't using a managed network or SSH connections.
 * `<managed online endpoint name>.<region>.inference.ml.azure.cn` - Used by managed online endpoints
-* `models.ai.azure.com` - Used for standard deployment
 
 #### Azure US Government
 
@@ -599,6 +600,9 @@ The services that your workspace relies on may also be secured using a private e
 
 > [!NOTE]
 > Some services have multiple private-endpoints for subservices or features. For example, an Azure Storage Account may have individual private endpoints for Blob, File, and DFS. If you need to access both Blob and File storage, then you must enable resolution for each specific private endpoint.
+
+> [!NOTE]
+> If your workspace is integrated with Microsoft Foundry or uses Azure AI services resources, those resources require three private DNS zones and corresponding conditional forwarders: `cognitiveservices.azure.com`, `openai.azure.com`, and `services.ai.azure.com`. For each, create a private DNS zone using the `privatelink.*` prefix (for example, `privatelink.services.ai.azure.com`) and configure a conditional forwarder pointing to the Azure DNS Virtual Server IP address (`168.63.129.16`).
 
 For more information on the services and DNS resolution, see [Azure Private Endpoint DNS configuration](/azure/private-link/private-endpoint-dns).
 

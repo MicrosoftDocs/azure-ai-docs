@@ -166,3 +166,100 @@ await model.unload();
 manager.stopWebService();
 console.log(`✓ Model unloaded and web service stopped`);
 ```
+
+## Transcribe audio with Foundry Local (JavaScript)
+
+Foundry Local also supports **audio transcription (speech-to-text)** via the Whisper model. You can use the native SDK API to transcribe audio files entirely on-device — no separate STT library needed.
+
+> [!NOTE]
+> Audio transcription uses the v2 SDK's `createAudioClient()` API, which runs inference natively in-process. This approach doesn't require the REST web server.
+
+### Install the SDK
+
+```bash
+npm install foundry-local-sdk
+```
+
+### Standard transcription
+
+The following example downloads the Whisper model, loads it, and transcribes an audio file:
+
+```javascript
+import { FoundryLocalManager } from "foundry-local-sdk";
+
+// Initialize the SDK
+const manager = FoundryLocalManager.create({ appName: "foundry_local_samples" });
+
+// Get the Whisper model from the catalog
+const whisperModel = await manager.catalog.getModel("whisper-tiny");
+
+// Download the model if not already cached
+if (!whisperModel.isCached) {
+  await whisperModel.download();
+}
+
+// Load the model into memory
+await whisperModel.load();
+
+// Create an audio client and transcribe
+const audioClient = whisperModel.createAudioClient();
+audioClient.settings.language = "en";
+
+const result = await audioClient.transcribe("recording.wav");
+console.log("Transcription:", result.text);
+
+// Clean up
+await whisperModel.unload();
+```
+
+### Streaming transcription
+
+For real-time output as the model transcribes, use streaming:
+
+```javascript
+await audioClient.transcribeStreaming("recording.wav", (chunk) => {
+  process.stdout.write(chunk.text);
+});
+```
+
+### Combine chat and audio in one app
+
+A single `FoundryLocalManager` can manage both chat and audio models simultaneously:
+
+```javascript
+import { FoundryLocalManager } from "foundry-local-sdk";
+
+const manager = FoundryLocalManager.create({ appName: "foundry_local_samples" });
+
+// Load both models
+const chatModel = await manager.catalog.getModel("phi-3.5-mini");
+await chatModel.download();
+await chatModel.load();
+
+const whisperModel = await manager.catalog.getModel("whisper-tiny");
+await whisperModel.download();
+await whisperModel.load();
+
+// Step 1: Transcribe audio
+const audioClient = whisperModel.createAudioClient();
+audioClient.settings.language = "en";
+const transcription = await audioClient.transcribe("recording.wav");
+console.log("You said:", transcription.text);
+
+// Step 2: Analyze with chat model
+const chatClient = chatModel.createChatClient();
+const analysis = await chatClient.completeChat([
+  { role: "system", content: "Summarize the following text." },
+  { role: "user", content: transcription.text },
+]);
+console.log("Summary:", analysis.choices[0].message.content);
+
+// Clean up
+await chatModel.unload();
+await whisperModel.unload();
+```
+
+> [!TIP]
+> For a complete working sample, see the [Chat + Audio sample](https://github.com/microsoft/Foundry-Local/tree/main/samples/js/chat-and-audio-foundry-local) on GitHub.
+
+Reference: [Transcribe audio files with Foundry Local](../../how-to/how-to-transcribe-audio.md)

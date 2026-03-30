@@ -28,7 +28,7 @@ ai-usage: ai-assisted
 > [!NOTE]
 > This article uses Azure Machine Learning SDK v1. For the current approach using SDK v2 and MLflow, see [Track experiments and models with MLflow](../how-to-use-mlflow-cli-runs.md) and [Configure MLflow for Azure Machine Learning](../how-to-use-mlflow-configure-tracking.md).
 
-In this article, learn how to enable [MLflow Tracking](https://mlflow.org/docs/latest/quickstart.html#using-the-tracking-api) to connect Azure Machine Learning as the backend of your MLflow experiments.
+In this article, learn how to enable [MLflow](https://mlflow.org/docs/latest/api_reference/python_api/mlflow.html?highlight=mlflow%20tracking) tracking to connect Azure Machine Learning as the backend of your MLflow experiments.
 
 [MLflow](https://www.mlflow.org) is an open-source library for managing the lifecycle of your machine learning experiments. MLflow Tracking is a component of MLflow that logs and tracks your training run metrics and model artifacts, no matter your experiment's environment - locally on your computer, on a remote compute target, a virtual machine, or an [Azure Databricks cluster](../how-to-use-mlflow-azure-databricks.md).
 
@@ -276,7 +276,7 @@ params = finished_mlflow_run.data.params
 print(metrics,tags,params)
 ```
 
-To view the artifacts of a run, use [MlFlowClient.list_artifacts()](https://mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient.list_artifacts).
+To view the artifacts of a run, use `MlFlowClient.list_artifacts()`.
 
 ```Python
 client.list_artifacts(run_id)
@@ -296,7 +296,7 @@ For more details about how to retrieve information from experiments and runs in 
 ## Compare and query runs
 
 Use the following code to compare and query all MLflow runs in your Azure Machine Learning workspace. 
-[Learn more about how to query runs with MLflow](https://mlflow.org/docs/latest/search-syntax.html#programmatically-searching-runs). 
+To learn more about how to query runs with MLflow, see [mlflow](https://mlflow.org/docs/latest/api_reference/python_api/mlflow.html).
 
 ```Python
 from mlflow.entities import ViewType

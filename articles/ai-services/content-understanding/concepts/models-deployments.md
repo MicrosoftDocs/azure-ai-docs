@@ -1,19 +1,19 @@
 ---
-title: Connect your Content Understanding resource with Foundry models
+title: Model deployment options for Content Understanding analyzers
 titleSuffix: Foundry Tools
-description: Describes the requirements and flexibility of specifying Gen AI model and deployment information for Content Understanding analyzers 
+description: Learn how Content Understanding maps analyzer models to Foundry deployments, and how defaults and request-level overrides interact.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 01/29/2026
+ms.date: 03/06/2026
 ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
-ms.topic: how-to
+ms.topic: concept-article
 ms.custom:
   - ignite-2025
 ---
 
-# Connect your Content Understanding analyzer to Foundry model deployments
+# Model deployment options for Content Understanding analyzers
 
 Azure Content Understanding in Foundry Tools uses your Foundry model deployments for all operations that require a generative AI model. This approach helps you maximize provisioned capacity and consolidate capacity into fewer deployments, if needed. You can also choose the model that best fits your scenario for price and latency.
 
@@ -25,18 +25,50 @@ The service requires a `chat completion` model and an `embeddings` model and sup
 
 The service is periodically updated to add support for more models. The currently supported models are listed in [Service limits - Supported generative models](../service-limits.md#supported-generative-models).
 
-## Set default deployments at the resource level
+## How model selection works
 
-You can define default model deployments at the resource level by using a `PATCH` request. When you set defaults, you don't need to pass model deployments with every analyzer request.
+When you create a custom analyzer, you specify which chat completion model and embedding model it uses. This association is made using a deployment alias rather than directly with a specific deployment-name.
 
-**Step 1:** Set the default deployments on the resource.
+```jsonc
+{
+  "analyzerId": "myReceipt",
+  "models": {
+    // Specifies the completion and embedding models used by this analyzer.
+    "completion": "gpt-4.1",
+    "embedding": "text-embedding-ada-002"
+  },
+  "config": {
+
+  }
+  // Complete analyzer definition
+}
+```
+
+> [!TIP] 
+> GPT-4.1 is a recommended model for use with Foundry and the Studio. You can use any supported chat completion model that fits your quality, latency, and cost goals. Embedding models are used when you use labeled samples or in-context learning to improve analyzer quality.
+
+## Two ways to provide model deployments
+
+As a customer, you have two options:
+
+- **Option 1:** Set default model deployments at the resource level.
+- **Option 2:** Pass model deployment pointers in every analyze request.
+
+If you set resource defaults, you can still override those defaults for a single request by including `modelDeployments` in that request.
+
+### Option 1: Set default deployments at the resource level
+
+After you set defaults, analyze requests can omit `modelDeployments`. Choose one of the following setup methods:
+
+# [REST API or code](#tab/rest-api)
+
+Use `PATCH /contentunderstanding/defaults` to set model deployment defaults at the resource level.
 
 ```jsonc
 PATCH /contentunderstanding/defaults
 {
-  // Specify the default model deployments for each completion and embedding model you plan to use
+  // Specify default model deployments as "model name": "deployment name"
   "modelDeployments": {
-    // This dictionary is formatted as "model name": "deployment name"
     "gpt-4.1": "gpt-4.1-deployment",
     "gpt-4.1-mini": "gpt-4.1-mini",
     "text-embedding-3-large": "text-embedding-3-large-deployment",
@@ -45,7 +77,7 @@ PATCH /contentunderstanding/defaults
 }
 ```
 
-**Step 2:** Call the analyzer without specifying model deployments.
+Example analyze request that uses resource defaults:
 
 ```jsonc
 POST /myReceipt:analyze
@@ -54,33 +86,49 @@ POST /myReceipt:analyze
 }
 ```
 
-When you have defaults defined on the resource, you can still override them for a specific request by providing `modelDeployments` in the analyze call.
+# [Content Understanding Studio](#tab/studio)
 
-## Define models for your analyzer
+For the full onboarding flow, see [Quickstart: Try out Content Understanding Studio](../quickstart/content-understanding-studio.md).
 
-When you create a custom analyzer, specify which chat completion and embeddings models the analyzer should use. This configuration provides the flexibility of picking a model that provides the best results at the lowest cost. The analyzer definition associates a model name with the analyzer definition but not a specific model deployment. 
+1. Open [Content Understanding Studio](https://aka.ms/cu-studio).
+1. Select the **Settings** gear icon in the upper-right corner.
+1. Select **Add resource** to open the **Add new connected resource** dialog.
+1. To connect a resource, select the subscription, resource group, and Foundry resource in the dialog.
+:::image type="content" source="../media/concepts/set-defaults-in-content-understanding-studio.png" alt-text="Screenshot of the Add new connected resource dialog with subscription, resource group, resource name, and automatic deployment option." lightbox="../media/concepts/set-defaults-in-content-understanding-studio.png" :::
+1. Optional: Select **Enable auto-deployment for required models if no default deployment available**.
+1. Select **Next**, review mappings, and then save.
+
+
+
+Studio can configure defaults for supported models such as `gpt-4.1`, `gpt-4.1-mini`, and `text-embedding-3-large`. If the selected resource doesn't already have the required deployments, Studio can deploy them when auto-deployment is enabled.
+
+---
+
+### Option 2: Pass model deployments in each analyze request
+
+Use this option when you want each request to explicitly point to model deployments by passing a `modelDeployments` object in the analyze request. This approach gives you maximum flexibility to use different deployments for different requests and doesn't require resource defaults.
 
 ```jsonc
+POST /contentunderstanding/analyzers/prebuilt-invoice:analyze
 {
-  "analyzerId": "myReceipt",
-  "models": {
-    // Specifies the completion and embedding models used by this analyzer. 
-    "completion": "gpt-4.1",
-    "embedding": "text-embedding-ada-002"
-  },
-  "config": {
-    
+  "inputs": [
+    {
+      "url": "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf"
+    }
+  ],
+  // Specify the model deployments for this request
+  "modelDeployments": {
+    "gpt-4.1": "gpt-4.1",
+    "text-embedding-3-large": "text-embedding-3-large"
   }
-  // Complete analyzer definition
 }
 ```
 
-> [!TIP]
-> GPT-4.1 is a recommended model for use with Foundry and the Studio. You can experiment or use any of the supported chat completion models in addition to GPT-4.1. The embeddings models are used when you use labeled samples or in-context learning to improve the quality of your analyzer.
+The `modelDeployments` values in this analyze request override any defaults that you configured at the resource level.
 
-## Test the analyzer and review usage
+## Usage and billing data
 
-When you submit an analyze request for the analyzer, the response object contains a `usage` property. This property includes information on tokens consumed on your deployment and other billing usage incurred by the analyzer. You can validate this data against your usage data on the deployment to correlate the usage from Content Understanding with the model deployment.
+Analyze responses include a `usage` property. This property reports token usage for your connected deployment and other Content Understanding usage meters. You can compare these values with deployment usage data to correlate consumption from Content Understanding with your model deployment.
 
 ```jsonc
 {

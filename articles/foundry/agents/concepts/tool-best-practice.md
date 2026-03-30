@@ -127,12 +127,6 @@ Tools are supported by the following models.
 | MAI-DS-R1 | Yes | No | No | No | No | Yes | Yes | No | No | Yes | Yes | No | Yes | No | No | No |
 | Meta-Llama-3.1-405B-Instruct | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | Mistral-large-2407 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| claude-haiku-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | No | Yes | Yes | No |
-| claude-opus-4-1 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | No | Yes | Yes | No |
-| claude-opus-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | No | Yes | Yes | No |
-| claude-opus-4-6 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| claude-sonnet-4-5 | Yes | Yes | No | No | No | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | No |
-| claude-sonnet-4-6 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | codex-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
 | computer-use-preview | No | No | No | No | No | No | No | Yes | No | No | No | No | No | No | No | No |
 | gpt-35-turbo | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
@@ -157,10 +151,12 @@ Tools are supported by the following models.
 | gpt-5.2 | No | Yes | Yes | No | Yes | No | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | Yes |
 | gpt-5.2-chat | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | No | Yes |
 | gpt-5.2-codex | No | No | No | No | No | No | Yes | No | No | Yes | No | No | Yes | No | No | No |
-| gpt-5.3-chat | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-5.3-codex | No | No | No | No | No | No | Yes | No | No | Yes | No | No | Yes | No | No | No |
-| gpt-5.4 | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
-| gpt-5.4-pro | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
+| gpt-5.3-chat | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
+| gpt-5.3-codex | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
+| gpt-5.4 | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
+| gpt-5.4-mini | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
+| gpt-5.4-nano | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
+| gpt-5.4-pro | Yes | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | No | No | Yes | Yes | Yes | Yes |
 | gpt-oss-120b | No | No | No | No | No | No | Yes | No | No | Yes | Yes | No | Yes | No | No | No |
 | grok-3 | No | Yes | No | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
 | grok-3-mini | No | No | No | No | No | No | Yes | No | No | Yes | No | No | No | No | No | No |
@@ -217,7 +213,7 @@ Start with clear tool instructions. If you need deterministic tool calling, use 
 
 - [Azure AI Search](../how-to/tools/ai-search.md)
 - [File search](../how-to/tools/file-search.md)
-- [Web search (preview)](../how-to/tools/web-search.md)
+- [Web search](../how-to/tools/web-search.md)
 - [Grounding with Bing tools](../how-to/tools/bing-tools.md)
 - [SharePoint (preview)](../how-to/tools/sharepoint.md)
 

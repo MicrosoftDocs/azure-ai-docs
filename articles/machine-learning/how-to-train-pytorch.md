@@ -8,9 +8,10 @@ ms.subservice: training
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: sooryar
-ms.date: 09/17/2024
+ms.date: 03/12/2026
 ms.topic: how-to
-ms.custom: sdkv2, update-code2, FY25Q1-Linter
+ms.custom: sdkv2, update-code2, FY25Q1-Linter, dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a Python PyTorch developer, I need to combine open-source with a cloud platform to train, evaluate, and deploy my deep learning models at scale.
 ---
 
@@ -22,11 +23,12 @@ In this article, you learn how to train, hyperparameter tune, and deploy a [PyTo
 
 You use example scripts to classify chicken and turkey images to build a deep learning neural network (DNN) based on [PyTorch's transfer learning tutorial](https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html). Transfer learning is a technique that applies knowledge gained from solving one problem to a different but related problem. Transfer learning shortens the training process by requiring less data, time, and compute resources than training from scratch. To learn more about transfer learning, see [Deep learning vs. machine learning](./concept-deep-learning-vs-machine-learning.md#what-is-transfer-learning).
 
-Whether you're training a deep learning PyTorch model from the ground-up or you're bringing an existing model into the cloud, use Azure Machine Learning to scale out open-source training jobs by using elastic cloud compute resources. You can build, deploy, version, and monitor production-grade models with Azure Machine Learning.
+Whether you're training a deep learning PyTorch model from the ground up or you're bringing an existing model into the cloud, use Azure Machine Learning to scale out open-source training jobs by using elastic cloud compute resources. You can build, deploy, version, and monitor production-grade models with Azure Machine Learning.
 
 ## Prerequisites
 
 - An Azure subscription. If you don't have one already, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- Python 3.10 or later.
 - Run the code in this article by using either an Azure Machine Learning compute instance or your own Jupyter notebook.
     - Azure Machine Learning compute instance—no downloads or installation necessary:
         - Complete the [Quickstart: Get started with Azure Machine Learning](quickstart-create-resources.md) to create a dedicated notebook server preloaded with the SDK and the sample repository.
@@ -45,22 +47,19 @@ This section sets up the job for training by loading the required Python package
 
 First, connect to your [Azure Machine Learning workspace](concept-workspace.md). The workspace is the top-level resource for the service. It provides a centralized place to work with all the artifacts you create when you use Azure Machine Learning.
 
-Use `DefaultAzureCredential` to access the workspace. This credential can handle most Azure SDK authentication scenarios.
+Use `DefaultAzureCredential` to access the workspace. This credential handles most Azure SDK authentication scenarios.
 
 If `DefaultAzureCredential` doesn't work for you, see [azure.identity package](/python/api/azure-identity/azure.identity) or [Set up authentication](how-to-setup-authentication.md?tabs=sdk) for more available credentials.
 
 [!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/pytorch/train-hyperparameter-tune-deploy-with-pytorch/train-hyperparameter-tune-deploy-with-pytorch.ipynb?name=credential)]
 
-If you prefer to use a browser to sign in and authenticate, uncomment the following code and use it instead.
-
-```python
-# Handle to the workspace
-# from azure.ai.ml import MLClient
-
-# Authentication package
-# from azure.identity import InteractiveBrowserCredential
-# credential = InteractiveBrowserCredential()
-```
+> [!TIP]
+> If you prefer to use a browser to sign in and authenticate, use `InteractiveBrowserCredential` instead:
+>
+> ```python
+> from azure.identity import InteractiveBrowserCredential
+> credential = InteractiveBrowserCredential()
+> ```
 
 Next, get a handle to the workspace by providing your subscription ID, resource group name, and workspace name. To find these parameters:
 
@@ -79,7 +78,7 @@ The result of running this script is a workspace handle that you can use to mana
 
 Azure Machine Learning needs a compute resource to run a job. This resource can be single or multinode machines with Linux or Windows OS, or a specific compute fabric like Spark.
 
-In the following example script, you provision a Linux [compute cluster](./how-to-create-attach-compute-cluster.md?tabs=python). You can see the [Azure Machine Learning pricing](https://azure.microsoft.com/pricing/details/machine-learning/) page for the full list of VM sizes and prices. Since you need a GPU cluster for this example, pick a `Standard_NC4as_T4_v3` model and create an Azure Machine Learning compute.
+In the following example script, you provision a Linux [compute cluster](./how-to-create-attach-compute-cluster.md?tabs=python). For the full list of VM sizes and prices, see the [Azure Machine Learning pricing](https://azure.microsoft.com/pricing/details/machine-learning/) page. Because you need a GPU cluster for this example, select a `Standard_NC4as_T4_v3` model and create an Azure Machine Learning compute.
 
 [!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/pytorch/train-hyperparameter-tune-deploy-with-pytorch/train-hyperparameter-tune-deploy-with-pytorch.ipynb?name=gpu_compute_target)]
 
@@ -123,7 +122,7 @@ Use the general purpose `command` to run the training script and perform your de
     1. Provide the curated environment that you initialized earlier.
     1. If you're not using the completed notebook in the Samples folder, specify the location of the *pytorch_train.py* file.
     1. Configure the command line action itself. In this case, the command is `python pytorch_train.py`. You can access the inputs and outputs in the command via the `${{ ... }}` notation.
-    1. Configure metadata such as the display name and experiment name, where an experiment is a container for all the iterations one does on a certain project. All the jobs submitted under the same experiment name appear next to each other in Azure Machine Learning studio.
+    1. Configure metadata such as the display name and experiment name. An experiment is a container for all the iterations you do on a certain project. All the jobs you submit under the same experiment name appear next to each other in Azure Machine Learning studio.
 
 ### Submit the job
 
@@ -140,7 +139,7 @@ When the job finishes, it registers a model in your workspace as a result of tra
 
 As the job executes, it goes through the following stages:
 
-- **Preparing**: A Docker image is created according to the environment you defined. The process uploads the image to the workspace's container registry and caches it for later runs. The process also streams logs to the job history, so you can view them to monitor progress. If you specify a curated environment, the process uses the cached image that backs that curated environment.
+- **Preparing**: The process creates a Docker image according to the environment you defined. It uploads the image to the workspace's container registry and caches it for later runs. The process also streams logs to the job history, so you can view them to monitor progress. If you specify a curated environment, the process uses the cached image that backs that curated environment.
 
 - **Scaling**: The cluster attempts to scale up if it requires more nodes to execute the run than are currently available.
 
@@ -152,7 +151,7 @@ You trained the model with one set of parameters. Now, see if you can further im
 
 To tune the model's hyperparameters, define the parameter space to search during training. Replace some of the parameters passed to the training job with special inputs from the `azure.ml.sweep` package.
 
-Since the training script uses a learning rate schedule to decay the learning rate every several epochs, you can tune the initial learning rate and the momentum parameters.
+Because the training script uses a learning rate schedule to decay the learning rate every several epochs, you can tune the initial learning rate and the momentum parameters.
 
 [!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/pytorch/train-hyperparameter-tune-deploy-with-pytorch/train-hyperparameter-tune-deploy-with-pytorch.ipynb?name=job_for_sweep)]
 
@@ -183,7 +182,7 @@ Now you can deploy your model as an [online endpoint](concept-endpoints.md)—th
 
 To deploy a machine learning service, you typically need:
 - The model assets that you want to deploy. These assets include the model's file and metadata that you already registered in your training job.
-- Some code to run as a service. The code executes the model on a given input request (an entry script). This entry script receives data submitted to a deployed web service and passes it to the model. After the model processes the data, the script returns the model's response to the client. The script is specific to your model and must understand the data that the model expects and returns. When you use an MLFlow model, Azure Machine Learning automatically creates this script for you.
+- Some code to run as a service. The code executes the model on a given input request (an entry script). This script receives data submitted to a deployed web service and passes it to the model. After the model processes the data, the script returns the model's response to the client. The script is specific to your model and must understand the data that the model expects and returns. When you use an MLFlow model, Azure Machine Learning automatically creates this script for you.
 
 For more information about deployment, see [Deploy and score a machine learning model with managed online endpoint using Python SDK v2](how-to-deploy-managed-online-endpoint-sdk-v2.md).
 
@@ -201,7 +200,7 @@ After you create the endpoint, retrieve it as follows:
 
 ### Deploy the model to the endpoint
 
-Deploy the model with the entry script. An endpoint can have multiple deployments. By using rules, the endpoint can direct traffic to these deployments.
+Deploy the model by using the entry script. An endpoint can have multiple deployments. By using rules, the endpoint can direct traffic to these deployments.
 
 In the following code, you create a single deployment that handles 100% of the incoming traffic. The code uses an arbitrary color name *blue* for the deployment. You can also use any other name such as *green* or *red* for the deployment.
 
@@ -218,7 +217,7 @@ The code to deploy the model to the endpoint:
 
 ### Test the deployed model
 
-Now that you deployed the model to the endpoint, you can predict the output of the deployed model by using the `invoke` method on the endpoint.
+After you deploy the model to the endpoint, use the `invoke` method on the endpoint to predict the output of the deployed model.
 
 To test the endpoint, use a sample image for prediction. First, display the image.
 
@@ -238,12 +237,12 @@ Invoke the endpoint with this JSON and print the result.
 
 ### Clean up resources
 
-If you don't need the endpoint anymore, delete it to stop using the resource. Make sure no other deployments are using the endpoint before you delete it.
+If you don't need the endpoint anymore, delete it to stop using the resource. Make sure no other deployments use the endpoint before you delete it.
 
 [!Notebook-python[](~/azureml-examples-main/sdk/python/jobs/single-step/pytorch/train-hyperparameter-tune-deploy-with-pytorch/train-hyperparameter-tune-deploy-with-pytorch.ipynb?name=delete_endpoint)]
 
 > [!NOTE]
-> Expect this cleanup to take a bit of time to finish.
+> Expect this cleanup to take some time to finish.
 
 ## Related content
 

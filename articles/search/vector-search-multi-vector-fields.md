@@ -5,7 +5,7 @@ ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: concept-article
-ms.date: 08/27/2025
+ms.date: 03/25/2026
 ---
 
 # Multi-vector field support in Azure AI Search

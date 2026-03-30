@@ -9,7 +9,9 @@ ms.reviewer: tbombach
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 03/31/2025
+ms.date: 03/18/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 
@@ -84,7 +86,6 @@ Alternatively, use the `> Azure ML: Remove workspace` command in the command pal
 The extension currently supports datastores of the following types:
 
 - Azure Blob
-- Azure Data Lake Gen 1
 - Azure Data Lake Gen 2
 - Azure File
 
@@ -118,6 +119,10 @@ Alternatively, use the `> Azure ML: Create datastore` command in the command pal
 Alternatively, use the `> Azure ML: Unregister datastore` and `> Azure ML: View datastore` commands respectively in the command palette.
 
 :::moniker range="azureml-api-1"
+
+> [!IMPORTANT]
+> Support for CLI v1 ended on September 30, 2025. SDK v1 is deprecated as of March 31, 2025, and support for it ends on June 30, 2026. We recommend that you transition to v2. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
+
 ## Datasets
 
 The extension currently supports the following dataset types:
@@ -176,6 +181,10 @@ To view the dependencies and configurations for a specific environment in the ex
 Alternatively, use the `> Azure ML: View environment` command in the command palette.
 
 :::moniker range="azureml-api-1"
+
+> [!IMPORTANT]
+> Support for CLI v1 ended on September 30, 2025. SDK v1 is deprecated as of March 31, 2025, and support for it ends on June 30, 2026. We recommend that you transition to v2. For more information, see [Upgrade to v2](how-to-migrate-from-v1.md).
+
 ## Experiments
 
 For more information, see [experiments](concept-azure-machine-learning-architecture.md).
@@ -250,7 +259,7 @@ Alternatively, use the `> Azure ML: Create compute instance` command in the comm
 
 ### Connect to compute instance
 
-To use a compute instance as a development environment or remote Jupyter server, see [Connect to a compute instance](how-to-set-up-vs-code-remote.md?tabs=extension).
+To use a compute instance as a development environment or remote Jupyter server, see [Connect to a compute instance](how-to-launch-vs-code-remote.md).
 
 ### Stop or restart compute instance
 
@@ -259,7 +268,7 @@ To use a compute instance as a development environment or remote Jupyter server,
 1. Expand the **Compute instances** node inside your **Compute** node.
 1. Right-click the compute instance you want to stop or restart and select **Stop compute instance** or **Restart compute instance** respectively.
 
-Alternatively, use the `> Azure ML: Stop compute instance` and `Restart compute instance` commands respectively in the command palette.
+Alternatively, use the `> Azure ML: Stop compute instance` and `> Azure ML: Restart compute instance` commands respectively in the command palette.
 
 ### View compute instance configuration
 
@@ -268,7 +277,7 @@ Alternatively, use the `> Azure ML: Stop compute instance` and `Restart compute 
 1. Expand the **Compute instances** node inside your **Compute** node.
 1. Right-click the compute instance you want to inspect and select **View compute instance properties**.
 
-Alternatively, use the `AzureML: View compute instance properties` command in the command palette.
+Alternatively, use the `> Azure ML: View compute instance properties` command in the command palette.
 
 ### Delete compute instance
 
@@ -277,7 +286,7 @@ Alternatively, use the `AzureML: View compute instance properties` command in th
 1. Expand the **Compute instances** node inside your **Compute** node.
 1. Right-click the compute instance you want to delete and select **Delete compute instance**.
 
-Alternatively, use the `AzureML: Delete compute instance` command in the command palette.
+Alternatively, use the `> Azure ML: Delete compute instance` command in the command palette.
 
 ## Compute clusters
 
@@ -434,7 +443,8 @@ In addition to creating and deleting deployments, you can view and edit settings
 
 Alternatively, use the `> Azure ML: View online endpoint properties` command in the command palette.
 
-## Next step
+## Related content
 
-> [!div class="nextstepaction"]
-> [Tutorial: Train an image classification model](tutorial-train-deploy-image-classification-model-vscode.md)
+- [Set up Visual Studio Code desktop with the Azure Machine Learning extension](how-to-setup-vs-code.md)
+- [Start Visual Studio Code integrated with Azure Machine Learning](how-to-launch-vs-code-remote.md)
+- [Tutorial: Train an image classification model](tutorial-train-deploy-image-classification-model-vscode.md)

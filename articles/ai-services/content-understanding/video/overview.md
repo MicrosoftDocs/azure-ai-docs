@@ -5,11 +5,13 @@ description: Learn about Azure Content Understanding in Foundry Tools video solu
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 03/23/2026
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
   - build-2025
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Azure Content Understanding in Foundry Tools video solutions
@@ -49,7 +51,7 @@ With the prebuilt video analyzer (prebuilt-videoSearch), you can upload a video 
 
 1. For example, call the analyzer designed for Retrieval-augmented generation for video `prebuilt-videoSearch`. See the [REST API quickstart](../quickstart/use-rest-api.md) for details.
 
-1. Next, analyzing a 30-second advertising video, would result in the following output:
+1. Analyzing a 30-second advertising video produces the following output:
 
    ```markdown
      # Video: 00:00.000 => 00:06.000
@@ -97,7 +99,7 @@ See the following walkthrough for RAG on Video using Content Understanding:
 > [!NOTE]
 > Face identification and grouping capabilities are only available in the preview API version and are not included in the GA release.
 
-Under the hood, two stages transform raw pixels into business-ready insights. The diagram below shows how extraction feeds generation, ensuring each downstream step has the context it needs.
+Two stages transform the raw video into structured insights. The following diagram shows how content extraction feeds into field extraction.
 
 :::image type="content" source="../media/video/video-overview.png" alt-text="Screenshot of video analyzer flow.":::
 
@@ -129,7 +131,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 
 * **Media asset management:**
 
-  * **Video Category:** Helps editors and producers organize content, by classifying it as News, Sports, Interview, Documentary, Advertisement, etc. Useful for metadata tagging and quicker content filtering and retrieval.
+  * **Video Category:** Helps editors and producers organize content by classifying it as News, Sports, Interview, Documentary, or Advertisement. Useful for metadata tagging and quicker content filtering and retrieval.
   * **Color scheme:** Conveys mood and atmosphere, essential for narrative consistency and viewer engagement. Identifying color themes helps in finding matching clips for accelerated video editing.
 
 * **Advertising:**
@@ -225,7 +227,7 @@ Content Understanding provides several key benefits when compared to other video
 
 Specific limitations of video processing to keep in mind:
 
-* **Frame sampling (\~ 1 FPS)**: The analyzer inspects about one frame per second. Rapid motions or single-frame events may be missed.
+* **Frame sampling (\~ 1 FPS)**: The analyzer inspects about one frame per second. Rapid motions or single-frame events might be missed.
 * **Frame resolution (512 × 512 px)**: Sampled frames are resized to 512 pixels square. Small text or distant objects can be lost.
 * **Speech**: Only spoken words are transcribed. Music, sound effects, and ambient noise are ignored.
 

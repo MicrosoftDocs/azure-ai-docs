@@ -11,6 +11,7 @@ ms.subservice: automl
 ms.date: 08/29/2025
 ms.topic: how-to
 ms.custom: devx-track-python, automl, sdkv2
+ai-usage: ai-assisted
 show_latex: true
 #customer intent: As a data scientist, I want to use the Azure Machine Learning SDK to set up AutoML.
 ---
@@ -54,10 +55,14 @@ The workspace details go into the `MLClient` from `azure.ai.ml` to connect to yo
 The following example uses the default Azure authentication with the default workspace configuration or configuration from a `config.json` file in the folder structure. If it finds no `config.json`, you need to manually provide the subscription ID, resource group, and workspace when you create the `MLClient`.
 
 ```Python
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 from azure.ai.ml import MLClient
 
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 ml_client = None
 try:
     ml_client = MLClient.from_config(credential)

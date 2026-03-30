@@ -164,3 +164,115 @@ dotnet run -r win-x64
 You should see a streaming response printed to your console.
 
 ---
+
+## Transcribe audio with Foundry Local (C#)
+
+Foundry Local supports **audio transcription (speech-to-text)** via the Whisper model using the native SDK API. This runs inference in-process without requiring the REST web server.
+
+### Native audio transcription
+
+The following example downloads the Whisper model, loads it, and transcribes an audio file with streaming output:
+
+```csharp
+using Microsoft.AI.Foundry.Local;
+using Microsoft.Extensions.Logging;
+
+var config = new Configuration { AppName = "foundry_local_samples" };
+
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+});
+var logger = loggerFactory.CreateLogger<Program>();
+
+await FoundryLocalManager.CreateAsync(config, logger);
+var mgr = FoundryLocalManager.Instance;
+
+// Get the Whisper model and select the CPU variant
+var catalog = await mgr.GetCatalogAsync();
+var model = await catalog.GetModelAsync("whisper-tiny")
+    ?? throw new Exception("whisper-tiny not found");
+var cpuVariant = model.Variants.First(
+    v => v.Info.Runtime?.DeviceType == DeviceType.CPU);
+model.SelectVariant(cpuVariant);
+
+// Download and load
+await model.DownloadAsync(progress =>
+{
+    Console.Write($"\rDownloading: {progress:F1}%");
+    if (progress >= 100f) Console.WriteLine();
+});
+await model.LoadAsync();
+
+// Transcribe with streaming output
+var audioClient = await model.GetAudioClientAsync();
+var response = audioClient.TranscribeAudioStreamingAsync(
+    "recording.mp3", CancellationToken.None);
+await foreach (var chunk in response)
+{
+    Console.Write(chunk.Text);
+}
+Console.WriteLine();
+
+await model.UnloadAsync();
+```
+
+> [!NOTE]
+> Replace `"recording.mp3"` with the path to the audio file you want to transcribe.
+
+### Combine chat and audio in one app
+
+A single `FoundryLocalManager` instance can manage both chat and audio models simultaneously:
+
+```csharp
+using Microsoft.AI.Foundry.Local;
+using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
+
+var config = new Configuration { AppName = "foundry_local_samples" };
+await FoundryLocalManager.CreateAsync(config);
+var mgr = FoundryLocalManager.Instance;
+var catalog = await mgr.GetCatalogAsync();
+
+// Load chat model
+var chatModel = await catalog.GetModelAsync("qwen2.5-0.5b")
+    ?? throw new Exception("Chat model not found");
+await chatModel.DownloadAsync();
+await chatModel.LoadAsync();
+
+// Load whisper model (CPU variant)
+var whisperModel = await catalog.GetModelAsync("whisper-tiny")
+    ?? throw new Exception("Whisper model not found");
+var cpuVariant = whisperModel.Variants.First(
+    v => v.Info.Runtime?.DeviceType == DeviceType.CPU);
+whisperModel.SelectVariant(cpuVariant);
+await whisperModel.DownloadAsync();
+await whisperModel.LoadAsync();
+
+// Step 1: Transcribe
+var audioClient = await whisperModel.GetAudioClientAsync();
+var transcriptText = "";
+await foreach (var chunk in audioClient.TranscribeAudioStreamingAsync(
+    "recording.mp3", CancellationToken.None))
+{
+    transcriptText += chunk.Text;
+}
+Console.WriteLine($"You said: {transcriptText}");
+
+// Step 2: Analyze with chat model
+var chatClient = await chatModel.GetChatClientAsync();
+var messages = new List<ChatMessage>
+{
+    new() { Role = "system", Content = "Summarize the following text in one sentence." },
+    new() { Role = "user", Content = transcriptText }
+};
+await foreach (var chunk in chatClient.CompleteChatStreamingAsync(messages))
+{
+    Console.Write(chunk.Choices[0].Message.Content);
+}
+Console.WriteLine();
+```
+
+References:
+
+- [Transcribe audio files with Foundry Local](../../how-to/how-to-transcribe-audio.md)
+- [Foundry Local SDK reference](../../reference/reference-sdk-current.md)

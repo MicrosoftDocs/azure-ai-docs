@@ -588,7 +588,7 @@ var autoDetectSourceLanguageConfig = SpeechSDK.AutoDetectSourceLanguageConfig.fr
 Use Speech translation when you need to identify the language in an audio source and then translate it to another language. For more information, see [Speech translation overview](speech-translation.md).
 
 > [!NOTE]
-> Speech translation with language identification is only supported with Speech SDKs in C#, C++, JavaScript, and Python.
+> Speech translation with language identification is only supported with Speech SDKs in C#, C++, Java, JavaScript, and Python.
 
 ::: zone pivot="programming-language-csharp"
 
