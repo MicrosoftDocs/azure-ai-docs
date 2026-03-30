@@ -3,7 +3,7 @@ title: "Get started with Foundry Local"
 titleSuffix: Foundry Local
 description: "Learn how to install, configure, and run your first AI model with Foundry Local"
 ms.date: 01/06/2026
-ms.service: azure
+ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.topic: quickstart
 ms.reviewer: samkemp
