@@ -20,6 +20,12 @@ LLM speech is powered by a large-language-model-enhanced speech model that deliv
 
 [!INCLUDE [transcription-features](includes/transcription-features.md)]
 
+::: zone pivot="ai-foundry"
+
+[!INCLUDE [Foundry portal](includes/common/llm-speech-ai-foundry.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [C# SDK quickstart](includes/common/llm-speech-sdk-csharp.md)]

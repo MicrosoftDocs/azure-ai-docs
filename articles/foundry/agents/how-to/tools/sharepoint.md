@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -38,7 +38,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
   - **C# (Preview)**: Install the `Azure.AI.Projects` NuGet package (prerelease)
   - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
-  - **Java (Preview)**: Add `com.azure:azure-ai-agents:2.0.0-beta.3` to your `pom.xml`
+  - **Java**: Add `com.azure:azure-ai-agents:2.0.0` to your `pom.xml`
 - Environment variables configured:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
@@ -464,7 +464,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

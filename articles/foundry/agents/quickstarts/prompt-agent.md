@@ -3,7 +3,7 @@ title: "Quickstart: Create a prompt agent"
 description: "Create a prompt agent in Foundry Agent Service using the Microsoft Foundry SDK."
 author: aahill
 ms.author: aahi
-ms.date: 03/13/2026
+ms.date: 03/30/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: quickstart
