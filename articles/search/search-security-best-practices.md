@@ -305,7 +305,6 @@ Use this checklist to ensure you've configured appropriate security controls:
 
 ## Related content
 
-+ [Data, privacy, and built-in protections in Azure AI Search](search-security-built-in.md)
-+ [Microsoft Cloud Security Benchmark – Azure AI Search security baseline](/security/benchmark/azure/baselines/azure-cognitive-search-security-baseline)
-+ [Azure security fundamentals](/azure/security/fundamentals/)
-+ [Shared responsibility in the cloud](/azure/security/fundamentals/shared-responsibility)
+- [Data, privacy, and built-in protections in Azure AI Search](search-security-built-in.md)
+- [Azure security fundamentals](/azure/security/fundamentals/)
+- [Shared responsibility in the cloud](/azure/security/fundamentals/shared-responsibility)
