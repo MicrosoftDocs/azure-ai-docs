@@ -118,14 +118,14 @@ The regions in the following tables support most of the core features of Azure S
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | `australiaeast` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
 | `brazilsouth` | ✅ | ✅ | | | ✅ | | ✅ | | | | |
-| `canadacentral` | ✅ | ✅ | | | ✅ | | | | | | |
+| `canadacentral` | ✅ | ✅ | ✅ | | ✅ | | | | | | |
 | `canadaeast` | ✅ | | | | | | | | | | |
-| `centralindia` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
+| `centralindia` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | | | |
 | `centralus` | ✅ | ✅ | | | ✅ | | ✅ | | | | |
 | `eastasia` | ✅ | ✅ | | | ✅ | | | | ✅ | | |
 | `eastus` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `eastus2` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | | |
-| `francecentral` | ✅ | ✅ | | | ✅ | | | | | | |
+| `eastus2` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | | |
+| `francecentral` | ✅ | ✅ | ✅ | | ✅ | | | | | | |
 | `germanywestcentral` | ✅ | ✅ | | | ✅ | | | | | | |
 | `italynorth` | ✅ | | | | ✅ | | ✅ | | | | |
 | `japaneast` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | | | |
@@ -138,7 +138,7 @@ The regions in the following tables support most of the core features of Azure S
 | `southafricanorth` | ✅ | ✅ | | | ✅ | | | | | | |
 | `southcentralus` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | | |
 | `southeastasia` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `swedencentral` | ✅ | ✅ | | ✅ | ✅ | | ✅ | ✅ | ✅ | | |
+| `swedencentral` | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | | |
 | `switzerlandnorth` | ✅ | ✅ | | | ✅ | | | | | | |
 | `switzerlandwest` | ✅ | | | | ✅ | | | | | | |
 | `uaenorth` | ✅ | ✅ | | | ✅ | | | | | | |
@@ -147,7 +147,7 @@ The regions in the following tables support most of the core features of Azure S
 | `westcentralus` | ✅ | | | | ✅ | | | | | | |
 | `westeurope` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `westus` | ✅ | ✅ | | | ✅ | ✅ | ✅ | | | | |
-| `westus2` | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | | |
+| `westus2` | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | | |
 | `westus3` | ✅ | | | | ✅ | | ✅ | | | | |
 
 # [Text-to-speech avatar](#tab/ttsavatar)
