@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/20/2026
+ms.date: 3/30/2026
 ms.custom: references_regions
 ai-usage: ai-assisted
 
@@ -30,9 +30,7 @@ Learn how to use Voice Live with [Microsoft Foundry Agent Service](/azure/ai-fou
 
 To try out the Voice Live demo, follow these steps:
 
-1. [!INCLUDE [foundry-sign-in](../../../../../foundry/includes/foundry-sign-in.md)]
-
-1. Select **Build** in the upper right menu, and select **Agents** from the left pane. 
+1. Go to the [Voice Live feature page](https://aka.ms/foundry-voice-live) and select **Open in playground**.
 
 1. Select the agent you created previously to go to the **Agent playground**.
 

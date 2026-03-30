@@ -5,8 +5,9 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/31/2025
+ms.date: 3/30/2026
 ms.custom: references_regions
+ai-usage: ai-assisted
 ---
 
 In this article, you learn how to use Voice Live with generative AI and Azure Speech in Foundry Tools in the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
@@ -28,10 +29,7 @@ In this article, you learn how to use Voice Live with generative AI and Azure Sp
 
 To try out the Voice Live demo, follow these steps:
 
-1. [!INCLUDE [foundry-sign-in](../../../../../foundry/includes/foundry-sign-in.md)]
-1. Select **Build** from the top right menu.
-1. Select **Models** on the left pane. 
-1. The **AI Services** tab shows the Azure AI models that can be used out of the box in the Foundry portal. **Select Azure Speech - Voice Live** to open the Voice Live playground.
+1. Go to the [Voice Live feature page](https://aka.ms/foundry-voice-live) and select **Open in playground**.
 1. Select a scenario and a voice using the dropdown menus. Optionally configure other parameters of the voice agent's behavior. The **Proactive engagement** toggle, for example, allows the agent to speak first in the conversation.
 1. When you're ready, select **Start** to start chatting with the voice agent using your device's microphone and speakers.
 1. Select **End** to end the chat session.
