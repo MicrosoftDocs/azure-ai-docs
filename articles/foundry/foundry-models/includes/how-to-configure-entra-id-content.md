@@ -1,12 +1,13 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: msakande
+ms.author: mopeakande
+ms.reviewer: fasantia
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 This article explains how to configure keyless authentication with Microsoft Entra ID for Microsoft Foundry Models. Keyless authentication enhances security by eliminating the need for API keys, simplifies the user experience with role-based access control (RBAC), and reduces operational complexity while providing robust compliance support.

@@ -27,7 +27,7 @@ To block *all* data plane access to the public endpoint, use [private endpoints]
 
 ## Configure network access in the Azure portal
 
-1. Sign in to Azure portal and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Settings**, select **Networking** on the leftmost pane. If you don't see this option, check your service tier. Networking options are available on the Basic tier and higher.
 
@@ -100,7 +100,7 @@ Once your Azure resource has a managed identity, [assign roles on Azure AI Searc
 
 The trusted services are used for vectorization workloads: generating vectors from text and image content, and sending payloads back to the search service for query execution or indexing. Connections from a trusted service are used to deliver payloads to Azure AI search.
 
-1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. On the leftmost pane, under **Access control (IAM)**, select **Identity**.
 1. Select **Add** and then select **Add role assignment**.
 1. On the **Roles** page:

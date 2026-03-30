@@ -4,7 +4,7 @@ description: "Learn how to connect a Microsoft Fabric data agent to Foundry Agen
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 03/19/2026
+ms.date: 03/23/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -43,7 +43,16 @@ First, build and publish a Fabric data agent. Then, connect your Fabric data age
 
 - Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910).
 - Assign developers and end users at least the `Azure AI User` Azure RBAC role. For more information, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
-- Give developers and end users at least `READ` access to the Fabric data agent and the underlying data sources it connects to.
+- Give developers and end users at least `READ` access to the Fabric data agent. Users also need the minimum permission on each underlying data source:
+
+    | Data source | Minimum permission |
+    |---|---|
+    | Power BI semantic model | `Build` (includes Read). Read alone isn't sufficient because the agent generates model queries that require Build. |
+    | Lakehouse | Read on the lakehouse item (and table access, if enforced). |
+    | Warehouse | Read (`SELECT` on relevant tables). |
+    | KQL database | Reader role on the database. |
+
+    For full details, see [Underlying data source permissions](/fabric/data-science/data-agent-sharing#underlying-data-source-permissions).
 - Ensure your Fabric data agent and Foundry project are in the same tenant.
 - Use user identity authentication. Service principal authentication isn't supported for the Fabric data agent.
 - Get these values before you run the samples:
@@ -118,7 +127,7 @@ fabric_connection = project.connections.get(FABRIC_CONNECTION_NAME)
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant.",
         tools=[
             MicrosoftFabricPreviewTool(
@@ -178,7 +187,7 @@ FabricDataAgentToolOptions fabricToolOption = new()
 {
     ProjectConnections = { new ToolProjectConnection(projectConnectionId: fabricConnection.Id) }
 };
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { new MicrosoftFabricPreviewTool(fabricToolOption), }
@@ -232,7 +241,7 @@ export async function main(): Promise<void> {
   // Define Microsoft Fabric tool that connects to Fabric data sources
   const agent = await project.agents.createVersion("MyFabricAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: "You are a helpful assistant.",
     tools: [
       {
@@ -347,7 +356,7 @@ public class FabricToolExample {
         );
 
         // Create agent with Fabric tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a data assistant that can query Microsoft Fabric data.")
             .setTools(Collections.singletonList(fabricTool));
 

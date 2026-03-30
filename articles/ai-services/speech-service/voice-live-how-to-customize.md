@@ -21,7 +21,7 @@ Voice Live provides multiple options to optimize performance and quality by usin
     - Custom Speech: With custom speech, you can evaluate and improve the accuracy of speech recognition for your applications and products and fine-tune the recognition quality to your business needs. See [What is custom speech?](./custom-speech-overview.md) to learn more.
 - Speech output customization:
     - Custom lexicon: Custom lexicon allows you to easily customize pronunciation for both standard Azure text to speech voices and custom voices to improve speech synthesis accuracy for your use case. See [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon) to learn more.
-    - Custom voice: Custom voice lets you create a one-of-a-kind, customized, synthetic voice for your applications. With custom voice, you can build a highly natural-sounding voice for your brand or characters by providing human speech samples as fine-tuning data. See [What is custom voice?](./custom-neural-voice.md) to learn more.
+    - Custom voice: Custom voice comes in two types. Professional custom voice lets you build a highly natural-sounding voice for your brand or characters by providing human speech samples as fine-tuning data. Personal voice enables your users to get AI generated replication of their own voices with a short speech sample. See [What is custom voice?](./custom-neural-voice.md) and [What is personal voice?](./personal-voice-overview.md) to learn more.
     - Custom avatar: Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand by providing video recording data of your selected actors. See [What is custom text to speech avatar?](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md) to learn more.
 
 ## Speech input customization
@@ -89,18 +89,7 @@ Use the `custom_lexicon_url` string property to customize pronunciation for bo
 
 ### Azure custom voices
 
-You can use a custom voice for audio output. For information about how to create a custom voice, see [What is custom voice](./custom-neural-voice.md).
-
-```json
-{
-  "voice": {
-    "name": "en-US-CustomNeural",
-    "type": "azure-custom",
-    "endpoint_id": "your-endpoint-id", // a guid string
-    "temperature": 0.8 // optional, value range 0.0-1.0, only take effect when using HD voices
-  }
-}
-```
+You can use a custom voice for audio output. Custom voice comes in two types: professional custom voice, trained on studio recordings for your brand or characters, and personal voice, which replicates a user's own voice from a short speech sample.
 
 > [!IMPORTANT]
 > Custom voice access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
@@ -110,6 +99,37 @@ You can use a custom voice for audio output. For information about how to create
 > You pay separately for custom voice training and model hosting.
 > For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=tts).
 
+#### Professional custom voice
+
+Professional custom voice lets you create a one-of-a-kind, customized, synthetic voice for your applications by providing human speech samples as fine-tuning data. For information about how to create a custom voice, see [What is custom voice](./custom-neural-voice.md).
+
+```json
+{
+  "voice": {
+    "type": "azure-custom",
+    "name": "en-US-CustomNeural",
+    "endpoint_id": "your-endpoint-id", // a guid string
+    "temperature": 0.8 // optional, value range 0.0-1.0, only take effect when using HD voices
+  }
+}
+```
+
+#### Personal voice
+
+Personal voice enables your users to get AI generated replication of their own voices with a short speech sample. For information about how to create a personal voice, see [What is personal voice](./personal-voice-overview.md).
+
+```json
+{
+  "voice": {
+    "type": "azure-personal",
+    "model": "DragonLatestNeural",  // required, specify the base model for personal voice        
+    "name": "your-personal-voice-name", // the name of the personal voice
+    "temperature": 0.8  // optional, value range 0.0-1.0
+  }
+}
+```
+
+The `model` property specifies the base model voice name. Supported base model names include `DragonLatestNeural` and `DragonHDOmniLatestNeural`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). For the full schema, see [RealtimeAzurePersonalVoice](./voice-live-api-reference-2026-01-01-preview.md#realtimeazurepersonalvoice).
 
 ### Azure custom avatar
 

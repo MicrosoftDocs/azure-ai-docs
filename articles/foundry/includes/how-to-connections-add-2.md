@@ -2,13 +2,14 @@
 title: Include file
 description: Include file
 author: sdgilley
-ms.reviewer: sgilley
+ms.reviewer: meerakurup
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 09/26/2025
+ms.date: 03/20/2026
 ms.custom: include
-ai-usage: ai-assisted
 ---
 
-[Microsoft Foundry](https://ai.azure.com/?cid=learnDocs)
+## Create a new connection
+
+Use the portal or a Bicep template to add a connection.

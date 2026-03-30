@@ -59,7 +59,7 @@ items:
     items:
     - name: Web search overview
       href: ../../agents/how-to/tools/web-overview.md
-    - name: Web search tool (preview)
+    - name: Web search tool
       href: ../../agents/how-to/tools/web-search.md
     - name: Grounding with Bing tools
       href: ../../agents/how-to/tools/bing-tools.md
@@ -77,6 +77,8 @@ items:
       href: ../../agents/how-to/tools/agent-to-agent.md
     - name: Agent2Agent (A2A) authentication (preview)
       href: ../../agents/concepts/agent-to-agent-authentication.md
+    - name: Azure Functions
+      href: ../../agents/how-to/tools/azure-functions.md
     - name: Browser automation (preview)
       href: ../../agents/how-to/tools/browser-automation.md
     - name: Computer Use (preview)

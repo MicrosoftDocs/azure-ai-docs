@@ -6,9 +6,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
-  - ignite-2023
+  - ignite-2023, classic-and-new
 ms.topic: include
 ms.date: 02/20/2025
+
 ---
 
 Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Models image generation REST APIs by using Python.
@@ -79,7 +80,9 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
       "n": 1,
       "size": "1024x1024",
       "quality": "medium",
-      "output_format": "png"
+      "output_format": "png",
+      # "background": "transparent",  # "auto" or "transparent" (requires PNG output)
+      # "output_compression": 100,  # 0-100 compression level (JPEG output only)
     }
     generation_response = requests.post(
       generation_url,

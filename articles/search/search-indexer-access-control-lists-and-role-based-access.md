@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/05/2026
+ms.date: 03/25/2026
 ---
 
 # Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights
@@ -119,7 +119,7 @@ Here's a diagram of the ACL assignment structure for the [fictitious directory h
 
 ### Updating ACL assignments over time
 
-Over time, as any new ACL assignments are added or modified, repeat the above steps to ensure proper propagation and permissions alignment. Updated permissions in ADLS Gen2 are updated in the search index when you re-ingest the content using the indexer or knowledge source.
+Over time, as any new ACL assignments are added or modified, repeat the preceding steps to ensure proper propagation and permissions alignment. Updated permissions in ADLS Gen2 are updated in the search index when you re-ingest the content using the indexer or knowledge source.
 
 ## Configure Azure AI Search
 
@@ -198,7 +198,7 @@ This section supplements  [**Index data from ADLS  Gen2**](search-how-to-index-a
 
 + Data Source type must be `adlsgen2`.
 
-+ Data source must have `indexerPermissionOptions` with `userIds`, `groupIds` and/or `rbacScope`.
++ Data source must have `indexerPermissionOptions` with `userIds`, `groupIds`, and/or `rbacScope`.
 
   + For `rbacScope`, configure the [connection string](search-how-to-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
   

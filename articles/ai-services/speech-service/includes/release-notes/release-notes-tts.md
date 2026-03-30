@@ -10,6 +10,7 @@ ms.custom: references_regions
 ---
 
 ### March 2026 release
+
 #### Public preview of MAI-Voice-1
 
 MAI-Voice-1 is a new neural text-to-speech model built on Microsoft's in-house speech foundation models. It produces expressive, natural speech with consistent voice persona quality and supports emotion and style control via SSML `mstts:express-as`. MAI-Voice-1 is available in the East US region. For more information, see [MAI-Voice-1 in Azure Speech](../../MAI-Voice.md).
@@ -18,6 +19,47 @@ MAI-Voice-1 is a new neural text-to-speech model built on Microsoft's in-house s
 | ------------------- | --------------------------------- |
 | `en-US`             | `en-us-Noa:MAI-Voice-1` (Female) |
 | `en-US`             | `en-us-Teo:MAI-Voice-1` (Male)   |
+
+#### Neural HD 2.5 update to Latest in Production
+Neural HD 2.5 is promoted to **Latest in Production**, delivering improvements in natural prosody, expressiveness, and output consistency—particularly for long‑form and complex content. This update expands support for expressive speaking styles and paralinguistic elements, enabling more human‑like and emotionally rich speech across narration, conversational AI, and virtual assistant scenarios.
+
+Key enhancements include:
+- Improved expressive range and stability across domains
+- Styles and paralinguistic tags supported via **SSML and plain text input**
+- Enhanced tagging and metadata to simplify voice evaluation and selection
+
+> [!NOTE]
+> Styles and paralinguistic features are available on all `HDLatestNeural` voices, except for voices with primary locale as `en‑IN`.
+
+#### Neural HD Omni quality and expressiveness update
+Neural HD Omni voices receive a quality upgrade with added support for expressive styles and paralinguistic tags across the Omni voice set. This enhancement improves emotional control and conversational naturalness while preserving each voice’s unique character, making it well suited for customer service, accessibility, and creative scenarios.
+
+> [!NOTE]
+> Styles and paralinguistic features are available on all `HDOmniLatestNeural` voices.
+
+#### Neural HD Flash – low‑latency HD voices
+Neural HD Flash introduces a low‑latency variant of Neural HD, optimized for responsiveness‑critical scenarios such as voice assistants and call center automation. HD Flash balances fast synthesis with clear pronunciation and natural prosody, allowing developers to choose between expressiveness and latency based on application needs.
+
+#### Neural HD regional availability expansion
+Starting in March 2026, Neural HD voices expand beyond their original regions and are now available in:
+- West US 2  
+- East US 2  
+- Central India  
+- Canada Central  
+- France Central  
+- Sweden Central  
+
+#### Neural HD Multi‑Talker voices expansion
+Neural HD Multi‑Talker voices now support multi‑speaker synthesis across additional input languages, extending beyond en‑US to include **fr‑FR, es‑ES, de‑DE, it‑IT, pt‑BR, ko‑KR, ja‑JP, and zh‑CN**.
+A new model, `en‑MultiTalker‑1:DragonHDLatestNeural`, introduces an expanded set of speakers, enabling more flexible dialogue creation for podcasts, storytelling, and role‑based narration.
+
+| **Gender** | **Speaker names**                     |
+|-----------|----------------------------------------|
+| Female    | Ada, Ava, Emma, Jane                   |
+| Male      | Andrew, Brian, Davis, Steffan           |
+
+#### Neural HD pricing update
+Effective March 2026, Neural HD pricing is reduced. Check out details at [Pricing](https://azure.microsoft.com/pricing/details/speech/).
 
 ### December 2025 release
 #### Public preview of new voice type Dragon HD Omni

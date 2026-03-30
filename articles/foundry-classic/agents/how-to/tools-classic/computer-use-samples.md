@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/27/2026
 author: alvinashcraft
 ms.author: aashcraft
 ---
@@ -39,7 +39,7 @@ Use this article to learn how to use the Computer Use tool with the Azure AI Pro
 
 * Before using the tool, you need to set up an environment that can capture screenshots and execute the recommended actions by the agent. We recommend using a sandboxed environment, such as Playwright for safety reasons.
 
-The Computer Use tool requires the latest prerelease versions of the `azure-ai-projects` library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
+The Computer Use tool requires the `azure-ai-projects`, `azure-identity`, and `azure-ai-agents` libraries (versions earlier than `2.0.0`, which target classic agents). First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
 
 ```console
 python -m venv env
@@ -50,7 +50,7 @@ python -m venv env
 You can install the package with the following command:
 
 ```console
-pip install --pre azure-ai-projects, azure-identity, azure-ai-agents 
+pip install "azure-ai-projects<2.0.0" azure-identity azure-ai-agents
 ```
 
 ## Code example
