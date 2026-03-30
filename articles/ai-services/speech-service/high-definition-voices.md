@@ -125,6 +125,7 @@ Dragon HD Omni is Azure Speech's unified next-generation model that combines pre
 
 #### Supported styles for Dragon HD Omni
 The following Styles and Paralinguistic tags are supported in HDOmni voices
+
 | Type                                | Tag | 
 |-------------------------------------------|--------|
 | Styles    | `amazed`, `amused`, `angry`, `annoyed`, `anxious`, `appreciative`, `calm`, `cautious`, `concerned`, `confident`, `confused`, `curious`, `defeated`, `defensive`, `defiant`, `determined`, `disappointed`, `disgusted`, `doubtful`, `ecstatic`, `encouraging`, `excited`, `fast`, `fearful`, `frustrated`, `happy`, `hesitant`, `hurt`, `impatient`, `impressed`, `intrigued`, `joking`, `laughing`, `optimistic`, `painful`, `panicked`, `panting`, `pleading`, `proud`, `quiet`, `reassuring`, `reflective`, `relieved`, `remorseful`, `resigned`, `sad`, `sarcastic`, `secretive`, `serious`, `shocked`, `shouting`, `shy`, `skeptical`, `slow`, `struggling`, `surprised`, `suspicious`, `sympathetic`, `terrified`, `upset`, `urgent`   |
