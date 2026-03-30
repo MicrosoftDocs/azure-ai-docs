@@ -48,8 +48,8 @@ Use direct REST calls when you're building your own application or when you need
   POST https://{resource}.openai.azure.com/openai/v1/
   ```
 
-> [!NOTE]
-> The Foundry Model Inference API (`/models/` path) uses a preview API version (`2024-05-01-preview`). For GA production workloads, consider using the OpenAI v1-compatible route.
+  > [!IMPORTANT]
+  > Don't use the Foundry Model Inference API (`https://<resource>.services.ai.azure.com/models` path) for new integrations. The Azure AI Inference beta SDK is deprecated and will be retired on May 30, 2026. Use the OpenAI v1-compatible route instead. For details, see the [migration guide](../how-to/model-inference-to-openai-migration.md).
 
 ### Route through an API gateway
 
@@ -89,22 +89,72 @@ For full schema details, see:
 - [Swagger for Foundry inference API](/rest/api/aifoundry/)
 - [Swagger for OpenAI v1 compatibility](../openai/latest.md)
 
-The following example sends a chat completion request using the OpenAI v1-compatible endpoint with Microsoft Entra ID authentication:
+The following examples use Microsoft Entra ID authentication. Replace the placeholder values with your own.
 
-```bash
+# [Foundry](#tab/foundry)
+
+Replace YOUR-FOUNDRY-RESOURCE-NAME and YOUR-PROJECT-NAME with your values. This example calls the Responses API:
+
+```console
+export AZURE_AI_AUTH_TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
+```
+
+:::code language="console" source="~/foundry-samples-main/samples/REST/quickstart/quickstart-responses.sh":::
+
+# [OpenAI v1](#tab/openai)
+
+Replace YOUR-FOUNDRY-RESOURCE-NAME and YOUR-DEPLOYMENT-NAME with your values. This example calls the chat completions API:
+
+```console
+export AZURE_AI_AUTH_TOKEN=$(az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken -o tsv)
+
 curl -sS -X POST \
-  "https://{resource}.openai.azure.com/openai/deployments/{deployment-name}/chat/completions?api-version=2024-10-21" \
+  "https://YOUR-FOUNDRY-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions" \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $(az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken -o tsv)" \
+  -H "Authorization: Bearer $AZURE_AI_AUTH_TOKEN" \
   -d '{
+    "model": "YOUR-DEPLOYMENT-NAME",
     "messages": [
       {"role":"system","content":"You are a helpful assistant."},
-      {"role":"user","content":"Summarize the incident in 3 bullets."}
+      {"role":"user","content":"What is the size of France in square miles?"}
     ]
   }'
 ```
 
+---
+
 A successful response returns a JSON payload:
+
+# [Foundry](#tab/foundry)
+
+```json
+{
+  "id": "<response-id>",
+  "object": "response",
+  "model": "gpt-4.1-mini",
+  "status": "completed",
+  "output": [
+    {
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "The size of France is approximately 248,573 square miles."
+        }
+      ],
+      "status": "completed"
+    }
+  ],
+  "usage": {
+    "input_tokens": 17,
+    "output_tokens": 14,
+    "total_tokens": 31
+  }
+}
+```
+
+# [OpenAI v1](#tab/openai)
 
 ```json
 {
@@ -115,18 +165,21 @@ A successful response returns a JSON payload:
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "Here are three key points from the incident:\n\n- ..."
+        "content": "The size of France is approximately 248,573 square miles."
       },
       "finish_reason": "stop"
     }
   ],
   "usage": {
-    "prompt_tokens": 30,
-    "completion_tokens": 50,
-    "total_tokens": 80
+    "prompt_tokens": 27,
+    "completion_tokens": 14,
+    "total_tokens": 41
   }
 }
 ```
+
+---
+
 For the full SDK reference, see the [SDK overview](../how-to/develop/sdk-overview.md).
 
 ## Troubleshoot common integration issues
