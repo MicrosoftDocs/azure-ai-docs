@@ -4,7 +4,7 @@ description: Learn how to configure security features in Azure AI Search to prot
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 02/24/2026
+ms.date: 03/30/2026
 ai-usage: ai-assisted
 ms.custom: horz-security
 ---
@@ -12,6 +12,8 @@ ms.custom: horz-security
 # Secure an Azure AI Search service
 
 This article provides security best practices to help protect your Azure AI Search service. You're responsible for implementing these customer-configurable security controls. For information about Microsoft's built-in protections, such as network architecture, encryption, and compliance certifications, see [Data, privacy, and built-in protections in Azure AI Search](search-security-built-in.md).
+
+[!INCLUDE [Security horizontal Zero Trust statement](~/reusable-content/ce-skilling/azure/includes/security/zero-trust-security-horizontal.md)]
 
 As a solutions architect, you should configure security controls across three domains:
 
@@ -174,15 +176,27 @@ For basic retrieval-augmented generation (RAG) patterns where your client applic
 
 ## Implement document-level access control
 
-User permissions at the document level, also known as *row-level security*, control which documents users can access through query execution.
+User permissions at the document level, also known as *row-level security*, control which documents users can access through query execution. Azure AI Search supports multiple approaches for document-level access control.
 
 ### Configure document-level security
 
 Configure fine-grained permissions at the document level, from data ingestion through query execution. This capability is essential for building secure AI agentic systems grounding data, RAG applications, and enterprise search solutions that require authorization checks at the document level. For more information, see [Document-level access control](search-document-level-access-overview.md).
 
+### Use POSIX-like ACL and RBAC scopes (preview)
+
+For Azure Data Lake Storage (ADLS) Gen2 content, configure indexers to preserve POSIX-like ACL permissions and RBAC scopes during ingestion. At query time, pass a user or group token in the `x-ms-query-source-authorization` request header to enforce Microsoft Entra-based access control on search results. This approach supports group-based access management and integrates with your existing ADLS Gen2 access control model. For more information, see [Indexer access control lists and role-based access](search-indexer-access-control-lists-and-role-based-access.md).
+
+### Use SharePoint in Microsoft 365 ACLs (preview)
+
+Configure the SharePoint in Microsoft 365 indexer to extract document permissions directly from SharePoint ACLs during ingestion. Access checks use Microsoft Entra user and group memberships, including Microsoft Entra security groups, Microsoft 365 groups, and mail-enabled security groups. For more information, see [SharePoint indexer access control lists](search-indexer-sharepoint-access-control-lists.md).
+
 ### Use sensitivity labels (preview)
 
-Configure an indexer to automatically detect Microsoft Purview sensitivity labels during indexing and apply label-based access controls when queries are executed. For more information, see [Sensitivity labels](search-indexer-sensitivity-labels.md).
+Configure an indexer to automatically detect Microsoft Purview sensitivity labels during indexing and apply label-based access controls when queries are executed. This capability aligns Azure AI Search authorization with your enterprise's Microsoft Information Protection model. For more information, see [Sensitivity labels](search-indexer-sensitivity-labels.md).
+
+### Use security filters
+
+For scenarios where native ACL integration isn't viable, implement security filters to trim results based on user or group identities. Store identity information in a string field in your index, then pass the caller's identity as a filter string at query time to exclude documents that don't match. This approach works with custom access models or non-Microsoft security frameworks. For more information, see [Security filters for trimming results](search-security-trimming-for-azure-search.md).
 
 ## Configure data encryption
 
@@ -273,8 +287,11 @@ Use this checklist to ensure you've configured appropriate security controls:
 
 **Data protection**:
 
-- [ ] Configured document-level access control (if required)
-- [ ] Configured sensitivity labels (if applicable)
+- [ ] Configured document-level access control (if required):
+  - [ ] POSIX-like ACLs for ADLS Gen2 content
+  - [ ] SharePoint in Microsoft 365 ACLs
+  - [ ] Microsoft Purview sensitivity labels
+  - [ ] Security filters for custom scenarios
 - [ ] Implemented CMK encryption (if required)
 - [ ] Evaluated confidential computing requirements (if applicable)
 
@@ -289,5 +306,6 @@ Use this checklist to ensure you've configured appropriate security controls:
 ## Related content
 
 + [Data, privacy, and built-in protections in Azure AI Search](search-security-built-in.md)
++ [Microsoft Cloud Security Benchmark – Azure AI Search security baseline](/security/benchmark/azure/baselines/azure-cognitive-search-security-baseline)
 + [Azure security fundamentals](/azure/security/fundamentals/)
 + [Shared responsibility in the cloud](/azure/security/fundamentals/shared-responsibility)
