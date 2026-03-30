@@ -12,8 +12,6 @@ ai-usage: ai-assisted
 ## Prerequisites
 
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
-- A local audio file to transcribe in a supported format (for example, MP3, WAV, or FLAC).
-
 ## Samples repository
 
 You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
@@ -36,8 +34,7 @@ Copy and paste the following code into a C# file named `Program.cs`:
 
 :::code language="csharp" source="~/foundry-local-main/samples/cs/audio-transcription-example/Program.cs" id="complete_code":::
 
-> [!NOTE]
-> You need to replace `"Recording.mp3"` with the path to the audio file that you want to transcribe.
+The sample includes a `Recording.mp3` file. To transcribe a different audio file, pass the file path as an argument.
 
 Run the code by using the following command:
 
@@ -55,6 +52,12 @@ If your architecture is `arm64`, use the following command:
 dotnet run -r:win-arm64
 ```
 
+To transcribe a custom audio file:
+
+```bash
+dotnet run -r:win-x64 -- path/to/audio.mp3
+```
+
 
 ### [Cross-Platform](#tab/xplatform)
 
@@ -70,13 +73,10 @@ For Linux, use the following command:
 dotnet run -r:linux-x64
 ```
 
-For Windows, use the following command:
+To transcribe a custom audio file:
 
 ```bash
-dotnet run -r:win-x64
+dotnet run -r:osx-arm64 -- path/to/audio.mp3
 ```
-
-> [!NOTE]
-> If you're targeting Windows, use the Windows-specific instructions under the Windows tab for the best performance and experience.
 
 ---

@@ -12,8 +12,6 @@ ai-usage: ai-assisted
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/en/download/) version 20 or later installed.
-- A local audio file in a supported format (for example, MP3, WAV, FLAC).
-
 ## Samples repository
 
 You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
@@ -35,9 +33,17 @@ Copy and paste the following code into a JavaScript file named `app.js`:
 
 :::code language="javascript" source="~/foundry-local-main/samples/js/audio-transcription-example/app.js" id="complete_code":::
 
+The sample includes a `Recording.mp3` file. To transcribe a different audio file, pass the file path as an argument.
+
 ## Run the application
 To run the application, use the following command in your terminal:
 
 ```bash
 node app.js
+```
+
+To transcribe a custom audio file:
+
+```bash
+node app.js path/to/audio.mp3
 ```

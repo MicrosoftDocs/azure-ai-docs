@@ -12,8 +12,6 @@ ai-usage: ai-assisted
 ## Prerequisites
 
 - [Rust and Cargo](https://www.rust-lang.org/tools/install) installed (Rust 1.70.0 or later).
-- A local audio file to transcribe in a supported format (for example, MP3, WAV, or FLAC).
-
 ## Samples repository
 
 You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
@@ -36,8 +34,7 @@ Replace the contents of `src/main.rs` with the following code:
 
 :::code language="rust" source="~/foundry-local-main/samples/rust/audio-transcription-example/src/main.rs" id="complete_code":::
 
-> [!NOTE]
-> Replace `"Recording.mp3"` with the path to the audio file that you want to transcribe.
+The sample includes a `Recording.mp3` file. To transcribe a different audio file, pass the file path as an argument.
 
 ## Run the application
 
@@ -45,4 +42,10 @@ Run the code by using the following command:
 
 ```bash
 cargo run
+```
+
+To transcribe a custom audio file:
+
+```bash
+cargo run -- path/to/audio.mp3
 ```

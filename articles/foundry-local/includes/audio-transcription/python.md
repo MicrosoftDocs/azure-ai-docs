@@ -12,8 +12,6 @@ ai-usage: ai-assisted
 ## Prerequisites
 
 - [Python 3.11](https://www.python.org/downloads/) or later installed.
-- A local audio file to transcribe in a supported format (for example, MP3, WAV, or FLAC).
-
 ## Samples repository
 
 You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
@@ -36,8 +34,7 @@ Copy and paste the following code into a Python file named `app.py`:
 
 :::code language="python" source="~/foundry-local-main/samples/python/audio-transcription/src/app.py" id="complete_code":::
 
-> [!NOTE]
-> Replace `"Recording.mp3"` with the path to the audio file that you want to transcribe.
+The sample includes a `Recording.mp3` file. To transcribe a different audio file, pass the file path as an argument.
 
 ## Run the application
 
@@ -45,4 +42,10 @@ Run the code by using the following command:
 
 ```bash
 python app.py
+```
+
+To transcribe a custom audio file:
+
+```bash
+python app.py path/to/audio.mp3
 ```
