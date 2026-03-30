@@ -33,7 +33,7 @@ The following example demonstrates how to use the native chat completions API in
 
 Copy and paste the following code into a Python file named `app.py`:
 
-:::code language="python" source="~/foundry-local-main/samples/python/hello-foundry-local/src/app.py" id="complete_code":::
+:::code language="python" source="~/foundry-local-main/samples/python/native-chat-completions/src/app.py" id="complete_code":::
 
 Run the code by using the following command:
 

@@ -44,7 +44,7 @@ Different models have different capabilities when it comes to tool calling, but 
 
 Copy and paste the following code into a Python file named `app.py`:
 
-:::code language="python" source="~/foundry-local-main/samples/python/tutorial-tool-calling/src/app.py" id="complete_code":::
+:::code language="python" source="~/foundry-local-main/samples/python/tool-calling/src/app.py" id="complete_code":::
 
 ## Run the application
 
