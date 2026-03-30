@@ -74,15 +74,4 @@ For Linux, use the following command:
 dotnet run -r linux-x64
 ```
 
-For Windows, use the following command:
-
-```bash
-dotnet run -r win-x64
-```
-
-> [!NOTE]
-> If you're targeting Windows, we recommend using the Windows-specific instructions under the Windows tab for optimal performance and experience.
-
-You should see a streaming response printed to your console.
-
 ---
