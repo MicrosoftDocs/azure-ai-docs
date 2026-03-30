@@ -31,7 +31,7 @@ items:
 - name: Core capabilities
   items:
 
-  - name: Personally identifiable information (PII) recognition
+  - name: Personally identifiable information (PII)
     items:
     - name: Overview
       href: personally-identifiable-information/overview.md
