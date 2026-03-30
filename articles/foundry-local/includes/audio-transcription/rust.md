@@ -34,43 +34,7 @@ The following example demonstrates how to use the native audio transcription API
 
 Replace the contents of `src/main.rs` with the following code:
 
-```rust
-use foundry_local_sdk::{FoundryLocalConfig, FoundryLocalManager};
-use std::io::Write;
-
-#[tokio::main]
-async fn main() -> anyhow::Result<()> {
-    // Initialize the Foundry Local SDK
-    let manager = FoundryLocalManager::create(FoundryLocalConfig::new("app-name"))?;
-
-    // Get a model using an alias
-    let model = manager.catalog().get_model("whisper-tiny").await?;
-
-    // Download the model (skips download if already cached)
-    model
-        .download(Some(|progress: f32| {
-            print!("\rDownloading model: {:.2}%", progress);
-            std::io::stdout().flush().unwrap();
-        }))
-        .await?;
-    println!();
-
-    // Load the model
-    model.load().await?;
-
-    // Create an audio client
-    let audio_client = model.create_audio_client();
-
-    // Transcribe an audio file
-    let transcription = audio_client.transcribe("Recording.mp3").await?;
-    println!("{}", transcription.text);
-
-    // Tidy up - unload the model
-    model.unload().await?;
-
-    Ok(())
-}
-```
+:::code language="rust" source="~/foundry-local-main/samples/rust/audio-transcription-example/src/main.rs" id="complete_code":::
 
 > [!NOTE]
 > Replace `"Recording.mp3"` with the path to the audio file that you want to transcribe.

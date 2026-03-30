@@ -37,19 +37,7 @@ maintained alongside production code so they stay accurate as the application ev
 
 Now open `src/main.rs` and add the following code to read the document:
 
-```rust
-use std::env;
-use std::fs;
-
-fn main() {
-    let file_path = env::args().nth(1)
-        .unwrap_or_else(|| "document.txt".to_string());
-    let content = fs::read_to_string(&file_path)
-        .expect("Failed to read file");
-
-    println!("Read {} characters from {}", content.len(), file_path);
-}
-```
+:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-document-summarizer/src/main.rs" id="file_reading":::
 
 The code accepts an optional file path as a command-line argument and falls back to `document.txt` if none is provided.
 
@@ -59,70 +47,7 @@ Initialize the Foundry Local SDK, load a model, and send the document content al
 
 Replace the contents of `src/main.rs` with the following code:
 
-```rust
-use foundry_local_sdk::{
-    ChatCompletionRequestMessage, ChatCompletionRequestSystemMessage,
-    ChatCompletionRequestUserMessage, FoundryLocalConfig, FoundryLocalManager,
-};
-use std::io::Write;
-use std::{env, fs};
-
-#[tokio::main]
-async fn main() -> anyhow::Result<()> {
-    // Initialize the Foundry Local SDK
-    let manager = FoundryLocalManager::create(
-        FoundryLocalConfig::new("doc-summarizer"),
-    )?;
-
-    // Select and load a model from the catalog
-    let model = manager.catalog().get_model("phi-3.5-mini").await?;
-
-    model
-        .download(Some(|progress: f32| {
-            print!("\rDownloading model: {:.2}%", progress);
-            std::io::stdout().flush().unwrap();
-        }))
-        .await?;
-    println!();
-
-    model.load().await?;
-    println!("Model loaded and ready.\n");
-
-    // Create a chat client
-    let client = model
-        .create_chat_client()
-        .temperature(0.7)
-        .max_tokens(512);
-
-    // Read the document
-    let file_path = env::args().nth(1)
-        .unwrap_or_else(|| "document.txt".to_string());
-    let content = fs::read_to_string(&file_path)?;
-
-    // Summarize the document
-    let messages: Vec<ChatCompletionRequestMessage> = vec![
-        ChatCompletionRequestSystemMessage::new(
-            "Summarize the following document into concise bullet points. \
-             Focus on the key points and main ideas.",
-        )
-        .into(),
-        ChatCompletionRequestUserMessage::new(&content).into(),
-    ];
-
-    let response = client.complete_chat(&messages, None).await?;
-    let summary = response.choices[0]
-        .message
-        .content
-        .as_deref()
-        .unwrap_or("");
-    println!("{}", summary);
-
-    // Clean up
-    model.unload().await?;
-
-    Ok(())
-}
-```
+:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-document-summarizer/src/main.rs" id="summarization":::
 
 The `get_model` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `download` method fetches the model weights to your local cache (and skips the download if they're already cached), and `load` makes the model ready for inference. The system prompt tells the model to produce bullet-point summaries focused on key ideas.
 
@@ -214,120 +139,7 @@ Each file is read, paired with the same system prompt, and sent to the model ind
 
 Replace the contents of `src/main.rs` with the following complete code:
 
-```rust
-use foundry_local_sdk::{
-    ChatCompletionRequestMessage, ChatCompletionRequestSystemMessage,
-    ChatCompletionRequestUserMessage, FoundryLocalConfig, FoundryLocalManager,
-};
-use std::io::Write;
-use std::path::Path;
-use std::{env, fs};
-
-async fn summarize_file(
-    client: &foundry_local_sdk::ChatClient,
-    file_path: &Path,
-    system_prompt: &str,
-) -> anyhow::Result<()> {
-    let content = fs::read_to_string(file_path)?;
-    let messages: Vec<ChatCompletionRequestMessage> = vec![
-        ChatCompletionRequestSystemMessage::new(system_prompt).into(),
-        ChatCompletionRequestUserMessage::new(&content).into(),
-    ];
-
-    let response = client.complete_chat(&messages, None).await?;
-    let summary = response.choices[0]
-        .message
-        .content
-        .as_deref()
-        .unwrap_or("");
-    println!("{}", summary);
-    Ok(())
-}
-
-async fn summarize_directory(
-    client: &foundry_local_sdk::ChatClient,
-    directory: &Path,
-    system_prompt: &str,
-) -> anyhow::Result<()> {
-    let mut txt_files: Vec<_> = fs::read_dir(directory)?
-        .filter_map(|entry| entry.ok())
-        .filter(|entry| {
-            entry.path().extension()
-                .map(|ext| ext == "txt")
-                .unwrap_or(false)
-        })
-        .collect();
-
-    txt_files.sort_by_key(|e| e.path());
-
-    if txt_files.is_empty() {
-        println!("No .txt files found in {}", directory.display());
-        return Ok(());
-    }
-
-    for entry in &txt_files {
-        let file_name = entry.file_name();
-        println!("--- {} ---", file_name.to_string_lossy());
-        summarize_file(client, &entry.path(), system_prompt).await?;
-        println!();
-    }
-
-    Ok(())
-}
-
-#[tokio::main]
-async fn main() -> anyhow::Result<()> {
-    // Initialize the Foundry Local SDK
-    let manager = FoundryLocalManager::create(
-        FoundryLocalConfig::new("doc-summarizer"),
-    )?;
-
-    // Select and load a model from the catalog
-    let model = manager.catalog().get_model("phi-3.5-mini").await?;
-
-    model
-        .download(Some(|progress: f32| {
-            print!("\rDownloading model: {:.2}%", progress);
-            std::io::stdout().flush().unwrap();
-        }))
-        .await?;
-    println!();
-
-    model.load().await?;
-    println!("Model loaded and ready.\n");
-
-    // Create a chat client
-    let client = model
-        .create_chat_client()
-        .temperature(0.7)
-        .max_tokens(512);
-
-    let system_prompt =
-        "Summarize the following document into concise bullet points. \
-         Focus on the key points and main ideas.";
-
-    let target = env::args().nth(1)
-        .unwrap_or_else(|| "document.txt".to_string());
-    let target_path = Path::new(&target);
-
-    if target_path.is_dir() {
-        summarize_directory(&client, target_path, system_prompt).await?;
-    } else {
-        let file_name = target_path
-            .file_name()
-            .map(|n| n.to_string_lossy().to_string())
-            .unwrap_or_else(|| target.clone());
-        println!("--- {} ---", file_name);
-        summarize_file(&client, target_path, system_prompt).await?;
-    }
-
-    // Clean up
-    model.unload().await?;
-    println!("\nModel unloaded. Done!");
-
-    Ok(())
-}
-```
+:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-document-summarizer/src/main.rs" id="complete_code":::
 
 ## Run the application
 

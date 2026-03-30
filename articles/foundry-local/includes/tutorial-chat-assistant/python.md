@@ -16,25 +16,7 @@ The Foundry Local SDK provides a model catalog that lists all available models. 
 
 1. Add the following code to initialize the SDK and select a model:
 
-    ```python
-    from foundry_local_sdk import Configuration, FoundryLocalManager
-
-    # Initialize the Foundry Local SDK
-    config = Configuration(app_name="chat-assistant")
-    FoundryLocalManager.initialize(config)
-    manager = FoundryLocalManager.instance
-
-    # Select a model from the catalog
-    model = manager.catalog.get_model("phi-3.5-mini")
-
-    # Download the model (skips if already cached)
-    model.download(lambda progress: print(f"\rDownloading model: {progress:.2f}%", end="", flush=True))
-    print()
-
-    # Load the model into memory
-    model.load()
-    print("Model loaded and ready.")
-    ```
+    :::code language="python" source="~/foundry-local-main/samples/python/tutorial-chat-assistant/src/app.py" id="init":::
 
     The `get_model` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `download` method fetches the model weights to your local cache, and `load` makes the model ready for inference.
 
@@ -44,16 +26,7 @@ A system prompt sets the assistant's personality and behavior. It's the first me
 
 Add a system prompt to shape how the assistant responds:
 
-```python
-# Start the conversation with a system prompt
-messages = [
-    {
-        "role": "system",
-        "content": "You are a helpful, friendly assistant. Keep your responses "
-                   "concise and conversational. If you don't know something, say so."
-    }
-]
-```
+:::code language="python" source="~/foundry-local-main/samples/python/tutorial-chat-assistant/src/app.py" id="system_prompt":::
 
 > [!TIP]
 > Experiment with different system prompts to change the assistant's behavior. For example, you can instruct it to respond as a pirate, a teacher, or a domain expert.
@@ -69,29 +42,7 @@ Add a conversation loop that:
 - Sends the complete history to the model.
 - Appends the assistant's response to the history for the next turn.
 
-```python
-# Get a chat client
-client = model.get_chat_client()
-
-print("\nChat assistant ready! Type 'quit' to exit.\n")
-
-while True:
-    user_input = input("You: ")
-    if user_input.strip().lower() in ("quit", "exit"):
-        break
-
-    # Add the user's message to conversation history
-    messages.append({"role": "user", "content": user_input})
-
-    # Send the full conversation history and get a response
-    response = client.complete_chat(messages)
-    assistant_message = response.choices[0].message.content
-
-    # Add the assistant's response to conversation history
-    messages.append({"role": "assistant", "content": assistant_message})
-
-    print(f"Assistant: {assistant_message}\n")
-```
+:::code language="python" source="~/foundry-local-main/samples/python/tutorial-chat-assistant/src/app.py" id="conversation_loop":::
 
 Each call to `complete_chat` receives the full message history. This is how the model "remembers" previous turns — it doesn't store state between calls.
 
@@ -101,28 +52,7 @@ Streaming prints each token as it's generated, which makes the assistant feel mo
 
 Update the conversation loop to use streaming:
 
-```python
-while True:
-    user_input = input("You: ")
-    if user_input.strip().lower() in ("quit", "exit"):
-        break
-
-    # Add the user's message to conversation history
-    messages.append({"role": "user", "content": user_input})
-
-    # Stream the response token by token
-    print("Assistant: ", end="", flush=True)
-    full_response = ""
-    for chunk in client.complete_streaming_chat(messages):
-        content = chunk.choices[0].message.content
-        if content:
-            print(content, end="", flush=True)
-            full_response += content
-    print("\n")
-
-    # Add the complete response to conversation history
-    messages.append({"role": "assistant", "content": full_response})
-```
+:::code language="python" source="~/foundry-local-main/samples/python/tutorial-chat-assistant/src/app.py" id="streaming":::
 
 The streaming version accumulates the full response so it can be added to the conversation history after the stream completes.
 
@@ -130,67 +60,7 @@ The streaming version accumulates the full response so it can be added to the co
 
 Create a file named `main.py` and add the following complete code:
 
-```python
-import asyncio
-from foundry_local_sdk import Configuration, FoundryLocalManager
-
-
-async def main():
-    # Initialize the Foundry Local SDK
-    config = Configuration(app_name="chat-assistant")
-    FoundryLocalManager.initialize(config)
-    manager = FoundryLocalManager.instance
-
-    # Select and load a model from the catalog
-    model = manager.catalog.get_model("phi-3.5-mini")
-    model.download(lambda progress: print(f"\rDownloading model: {progress:.2f}%", end="", flush=True))
-    print()
-    model.load()
-    print("Model loaded and ready.")
-
-    # Get a chat client
-    client = model.get_chat_client()
-
-    # Start the conversation with a system prompt
-    messages = [
-        {
-            "role": "system",
-            "content": "You are a helpful, friendly assistant. Keep your responses "
-                       "concise and conversational. If you don't know something, say so."
-        }
-    ]
-
-    print("\nChat assistant ready! Type 'quit' to exit.\n")
-
-    while True:
-        user_input = input("You: ")
-        if user_input.strip().lower() in ("quit", "exit"):
-            break
-
-        # Add the user's message to conversation history
-        messages.append({"role": "user", "content": user_input})
-
-        # Stream the response token by token
-        print("Assistant: ", end="", flush=True)
-        full_response = ""
-        for chunk in client.complete_streaming_chat(messages):
-            content = chunk.choices[0].message.content
-            if content:
-                print(content, end="", flush=True)
-                full_response += content
-        print("\n")
-
-        # Add the complete response to conversation history
-        messages.append({"role": "assistant", "content": full_response})
-
-    # Clean up - unload the model
-    model.unload()
-    print("Model unloaded. Goodbye!")
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
+:::code language="python" source="~/foundry-local-main/samples/python/tutorial-chat-assistant/src/app.py" id="complete_code":::
 
 ## Run the application
 

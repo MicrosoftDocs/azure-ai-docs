@@ -18,37 +18,7 @@ In this step, you load a speech-to-text model and transcribe an audio file. The 
 
 1. Add the following code to initialize the SDK, load the speech model, and transcribe an audio file:
 
-    ```javascript
-    import { FoundryLocalManager } from 'foundry-local-sdk';
-
-    // Initialize the Foundry Local SDK
-    const manager = FoundryLocalManager.create({
-        appName: 'note-taker',
-        logLevel: 'info'
-    });
-
-    // Load the speech-to-text model
-    const speechModel = await manager.catalog.getModel('whisper');
-    await speechModel.download((progress) => {
-        process.stdout.write(
-            `\rDownloading speech model: ${progress.toFixed(2)}%`
-        );
-    });
-    console.log('\nSpeech model downloaded.');
-
-    await speechModel.load();
-    console.log('Speech model loaded.');
-
-    // Transcribe an audio file
-    const audioClient = speechModel.createAudioClient();
-    const transcription = await audioClient.transcribe(
-        './meeting-notes.wav'
-    );
-    console.log(`\nTranscription:\n${transcription.text}`);
-
-    // Unload the speech model to free memory
-    await speechModel.unload();
-    ```
+    :::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-voice-to-text/app.js" id="transcription":::
 
     The `createAudioClient` method returns a client for audio operations. The `transcribe` method accepts a file path and returns an object with a `text` property containing the transcribed content.
 
@@ -61,41 +31,7 @@ Now use a chat model to organize the raw transcription into structured notes. Lo
 
 Add the following code after the transcription step:
 
-```javascript
-// Load the chat model for summarization
-const chatModel = await manager.catalog.getModel('phi-3.5-mini');
-await chatModel.download((progress) => {
-    process.stdout.write(
-        `\rDownloading chat model: ${progress.toFixed(2)}%`
-    );
-});
-console.log('\nChat model downloaded.');
-
-await chatModel.load();
-console.log('Chat model loaded.');
-
-// Summarize the transcription
-const chatClient = chatModel.createChatClient();
-const messages = [
-    {
-        role: 'system',
-        content: 'You are a note-taking assistant. Summarize ' +
-                 'the following transcription into organized, ' +
-                 'concise notes with bullet points.'
-    },
-    {
-        role: 'user',
-        content: transcription.text
-    }
-];
-
-const response = await chatClient.completeChat(messages);
-const summary = response.choices[0]?.message?.content;
-console.log(`\nSummary:\n${summary}`);
-
-// Unload the chat model
-await chatModel.unload();
-```
+:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-voice-to-text/app.js" id="summarization":::
 
 The system prompt shapes the model's output format. By instructing it to produce "organized, concise notes with bullet points," you get structured content rather than a raw paraphrase.
 
@@ -103,72 +39,7 @@ The system prompt shapes the model's output format. By instructing it to produce
 
 Create a file named `app.js` and add the following complete code that transcribes an audio file and summarizes the transcription:
 
-```javascript
-import { FoundryLocalManager } from 'foundry-local-sdk';
-
-// Initialize the Foundry Local SDK
-const manager = FoundryLocalManager.create({
-    appName: 'note-taker',
-    logLevel: 'info'
-});
-
-// Load the speech-to-text model
-const speechModel = await manager.catalog.getModel('whisper');
-await speechModel.download((progress) => {
-    process.stdout.write(
-        `\rDownloading speech model: ${progress.toFixed(2)}%`
-    );
-});
-console.log('\nSpeech model downloaded.');
-
-await speechModel.load();
-console.log('Speech model loaded.');
-
-// Transcribe the audio file
-const audioClient = speechModel.createAudioClient();
-const transcription = await audioClient.transcribe(
-    './meeting-notes.wav'
-);
-console.log(`\nTranscription:\n${transcription.text}`);
-
-// Unload the speech model to free memory
-await speechModel.unload();
-
-// Load the chat model for summarization
-const chatModel = await manager.catalog.getModel('phi-3.5-mini');
-await chatModel.download((progress) => {
-    process.stdout.write(
-        `\rDownloading chat model: ${progress.toFixed(2)}%`
-    );
-});
-console.log('\nChat model downloaded.');
-
-await chatModel.load();
-console.log('Chat model loaded.');
-
-// Summarize the transcription into organized notes
-const chatClient = chatModel.createChatClient();
-const messages = [
-    {
-        role: 'system',
-        content: 'You are a note-taking assistant. Summarize ' +
-                 'the following transcription into organized, ' +
-                 'concise notes with bullet points.'
-    },
-    {
-        role: 'user',
-        content: transcription.text
-    }
-];
-
-const response = await chatClient.completeChat(messages);
-const summary = response.choices[0]?.message?.content;
-console.log(`\nSummary:\n${summary}`);
-
-// Clean up
-await chatModel.unload();
-console.log('\nDone. Models unloaded.');
-```
+:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-voice-to-text/app.js" id="complete_code":::
 
 > [!NOTE]
 > Replace `'./meeting-notes.wav'` with the path to your audio file. Supported formats include WAV, MP3, and FLAC.

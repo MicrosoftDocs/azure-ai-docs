@@ -33,68 +33,7 @@ The following example demonstrates how to use the native chat completions API in
 
 Copy and paste the following code into a C# file named `Program.cs`:
 
-```csharp
-using Microsoft.AI.Foundry.Local;
-using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
-using Microsoft.Extensions.Logging;
-
-CancellationToken ct = CancellationToken.None;
-
-var config = new Configuration
-{
-    AppName = "app-name",
-    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information
-};
-
-using var loggerFactory = LoggerFactory.Create(builder =>
-{
-    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
-});
-var logger = loggerFactory.CreateLogger<Program>();
-
-// Initialize the singleton instance.
-await FoundryLocalManager.CreateAsync(config, logger);
-var mgr = FoundryLocalManager.Instance;
-
-// Get the model catalog
-var catalog = await mgr.GetCatalogAsync();
-
-// Get a model using an alias
-var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("Model not found");
-
-// Download the model (the method skips download if already cached)
-await model.DownloadAsync(progress =>
-{
-    Console.Write($"\rDownloading model: {progress:F2}%");
-    if (progress >= 100f)
-    {
-        Console.WriteLine();
-    }
-});
-
-// Load the model
-await model.LoadAsync();
-
-// Get a chat client
-var chatClient = await model.GetChatClientAsync();
-
-// Create a chat message
-List<ChatMessage> messages = new()
-{
-    new ChatMessage { Role = "user", Content = "Why is the sky blue?" }
-};
-
-var streamingResponse = chatClient.CompleteChatStreamingAsync(messages, ct);
-await foreach (var chunk in streamingResponse)
-{
-    Console.Write(chunk.Choices[0].Message.Content);
-    Console.Out.Flush();
-}
-Console.WriteLine();
-
-// Tidy up - unload the model
-await model.UnloadAsync();
-```
+:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/HelloFoundryLocalSdk/Program.cs" id="complete_code":::
 
 Run the code by using the following command:
 

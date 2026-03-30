@@ -14,44 +14,7 @@ The Foundry Local SDK provides a model catalog that lists all available models. 
 
 1. Open `Program.cs` and replace its contents with the following code to initialize the SDK and select a model:
 
-    ```csharp
-    using Microsoft.AI.Foundry.Local;
-    using Microsoft.Extensions.Logging;
-
-    CancellationToken ct = CancellationToken.None;
-
-    var config = new Configuration
-    {
-        AppName = "chat-assistant",
-        LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information
-    };
-
-    using var loggerFactory = LoggerFactory.Create(builder =>
-    {
-        builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
-    });
-    var logger = loggerFactory.CreateLogger<Program>();
-
-    // Initialize the singleton instance
-    await FoundryLocalManager.CreateAsync(config, logger);
-    var mgr = FoundryLocalManager.Instance;
-
-    // Select a model from the catalog
-    var catalog = await mgr.GetCatalogAsync();
-    var model = await catalog.GetModelAsync("phi-3.5-mini")
-        ?? throw new Exception("Model not found");
-
-    // Download the model (skips if already cached)
-    await model.DownloadAsync(progress =>
-    {
-        Console.Write($"\rDownloading model: {progress:F2}%");
-        if (progress >= 100f) Console.WriteLine();
-    });
-
-    // Load the model into memory
-    await model.LoadAsync();
-    Console.WriteLine("Model loaded and ready.");
-    ```
+    :::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialChatAssistant/Program.cs" id="init":::
 
     The `GetModelAsync` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `DownloadAsync` method fetches the model weights to your local cache, and `LoadAsync` makes the model ready for inference.
 
@@ -61,20 +24,7 @@ A system prompt sets the assistant's personality and behavior. It's the first me
 
 Add a system prompt to shape how the assistant responds:
 
-```csharp
-using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
-
-// Start the conversation with a system prompt
-var messages = new List<ChatMessage>
-{
-    new ChatMessage
-    {
-        Role = "system",
-        Content = "You are a helpful, friendly assistant. Keep your responses " +
-                  "concise and conversational. If you don't know something, say so."
-    }
-};
-```
+:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialChatAssistant/Program.cs" id="system_prompt":::
 
 > [!TIP]
 > Experiment with different system prompts to change the assistant's behavior. For example, you can instruct it to respond as a pirate, a teacher, or a domain expert.
@@ -90,36 +40,7 @@ Add a conversation loop that:
 - Sends the complete history to the model.
 - Appends the assistant's response to the history for the next turn.
 
-```csharp
-// Get a chat client
-var chatClient = await model.GetChatClientAsync();
-
-Console.WriteLine("\nChat assistant ready! Type 'quit' to exit.\n");
-
-while (true)
-{
-    Console.Write("You: ");
-    var userInput = Console.ReadLine();
-    if (string.IsNullOrWhiteSpace(userInput) ||
-        userInput.Equals("quit", StringComparison.OrdinalIgnoreCase) ||
-        userInput.Equals("exit", StringComparison.OrdinalIgnoreCase))
-    {
-        break;
-    }
-
-    // Add the user's message to conversation history
-    messages.Add(new ChatMessage { Role = "user", Content = userInput });
-
-    // Send the full conversation history and get a response
-    var response = await chatClient.CompleteChatAsync(messages, ct);
-    var assistantMessage = response.Choices[0].Message.Content;
-
-    // Add the assistant's response to conversation history
-    messages.Add(new ChatMessage { Role = "assistant", Content = assistantMessage });
-
-    Console.WriteLine($"Assistant: {assistantMessage}\n");
-}
-```
+:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialChatAssistant/Program.cs" id="conversation_loop":::
 
 Each call to `CompleteChatAsync` receives the full message history. This is how the model "remembers" previous turns — it doesn't store state between calls.
 
@@ -129,41 +50,7 @@ Streaming prints each token as it's generated, which makes the assistant feel mo
 
 Update the conversation loop to use streaming:
 
-```csharp
-while (true)
-{
-    Console.Write("You: ");
-    var userInput = Console.ReadLine();
-    if (string.IsNullOrWhiteSpace(userInput) ||
-        userInput.Equals("quit", StringComparison.OrdinalIgnoreCase) ||
-        userInput.Equals("exit", StringComparison.OrdinalIgnoreCase))
-    {
-        break;
-    }
-
-    // Add the user's message to conversation history
-    messages.Add(new ChatMessage { Role = "user", Content = userInput });
-
-    // Stream the response token by token
-    Console.Write("Assistant: ");
-    var fullResponse = string.Empty;
-    var streamingResponse = chatClient.CompleteChatStreamingAsync(messages, ct);
-    await foreach (var chunk in streamingResponse)
-    {
-        var content = chunk.Choices[0].Message.Content;
-        if (!string.IsNullOrEmpty(content))
-        {
-            Console.Write(content);
-            Console.Out.Flush();
-            fullResponse += content;
-        }
-    }
-    Console.WriteLine("\n");
-
-    // Add the complete response to conversation history
-    messages.Add(new ChatMessage { Role = "assistant", Content = fullResponse });
-}
-```
+:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialChatAssistant/Program.cs" id="streaming":::
 
 The streaming version accumulates the full response so it can be added to the conversation history after the stream completes.
 
@@ -171,97 +58,7 @@ The streaming version accumulates the full response so it can be added to the co
 
 Replace the contents of `Program.cs` with the following complete code:
 
-```csharp
-using Microsoft.AI.Foundry.Local;
-using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
-using Microsoft.Extensions.Logging;
-
-CancellationToken ct = CancellationToken.None;
-
-var config = new Configuration
-{
-    AppName = "chat-assistant",
-    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information
-};
-
-using var loggerFactory = LoggerFactory.Create(builder =>
-{
-    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
-});
-var logger = loggerFactory.CreateLogger<Program>();
-
-// Initialize the singleton instance
-await FoundryLocalManager.CreateAsync(config, logger);
-var mgr = FoundryLocalManager.Instance;
-
-// Select and load a model from the catalog
-var catalog = await mgr.GetCatalogAsync();
-var model = await catalog.GetModelAsync("phi-3.5-mini")
-    ?? throw new Exception("Model not found");
-
-await model.DownloadAsync(progress =>
-{
-    Console.Write($"\rDownloading model: {progress:F2}%");
-    if (progress >= 100f) Console.WriteLine();
-});
-
-await model.LoadAsync();
-Console.WriteLine("Model loaded and ready.");
-
-// Get a chat client
-var chatClient = await model.GetChatClientAsync();
-
-// Start the conversation with a system prompt
-var messages = new List<ChatMessage>
-{
-    new ChatMessage
-    {
-        Role = "system",
-        Content = "You are a helpful, friendly assistant. Keep your responses " +
-                  "concise and conversational. If you don't know something, say so."
-    }
-};
-
-Console.WriteLine("\nChat assistant ready! Type 'quit' to exit.\n");
-
-while (true)
-{
-    Console.Write("You: ");
-    var userInput = Console.ReadLine();
-    if (string.IsNullOrWhiteSpace(userInput) ||
-        userInput.Equals("quit", StringComparison.OrdinalIgnoreCase) ||
-        userInput.Equals("exit", StringComparison.OrdinalIgnoreCase))
-    {
-        break;
-    }
-
-    // Add the user's message to conversation history
-    messages.Add(new ChatMessage { Role = "user", Content = userInput });
-
-    // Stream the response token by token
-    Console.Write("Assistant: ");
-    var fullResponse = string.Empty;
-    var streamingResponse = chatClient.CompleteChatStreamingAsync(messages, ct);
-    await foreach (var chunk in streamingResponse)
-    {
-        var content = chunk.Choices[0].Message.Content;
-        if (!string.IsNullOrEmpty(content))
-        {
-            Console.Write(content);
-            Console.Out.Flush();
-            fullResponse += content;
-        }
-    }
-    Console.WriteLine("\n");
-
-    // Add the complete response to conversation history
-    messages.Add(new ChatMessage { Role = "assistant", Content = fullResponse });
-}
-
-// Clean up - unload the model
-await model.UnloadAsync();
-Console.WriteLine("Model unloaded. Goodbye!");
-```
+:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialChatAssistant/Program.cs" id="complete_code":::
 
 ## Run the application
 

@@ -37,14 +37,7 @@ maintained alongside production code so they stay accurate as the application ev
 
 Now create a file called `index.js` and add the following code to read the document:
 
-```javascript
-import { readFileSync } from 'fs';
-
-const filePath = process.argv[2] || 'document.txt';
-const content = readFileSync(filePath, 'utf-8');
-
-console.log(`Read ${content.length} characters from ${filePath}`);
-```
+:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-document-summarizer/app.js" id="file_reading":::
 
 The script accepts an optional file path as a command-line argument and falls back to `document.txt` if none is provided.
 
@@ -54,50 +47,7 @@ Initialize the Foundry Local SDK, load a model, and send the document content al
 
 Replace the contents of `index.js` with the following code:
 
-```javascript
-import { FoundryLocalManager } from 'foundry-local-sdk';
-import { readFileSync } from 'fs';
-
-// Initialize the Foundry Local SDK
-const manager = FoundryLocalManager.create({
-    appName: 'doc-summarizer',
-    logLevel: 'info'
-});
-
-// Select and load a model from the catalog
-const model = await manager.catalog.getModel('phi-3.5-mini');
-
-await model.download((progress) => {
-    process.stdout.write(`\rDownloading model: ${progress.toFixed(2)}%`);
-});
-console.log('\nModel downloaded.');
-
-await model.load();
-console.log('Model loaded and ready.\n');
-
-// Create a chat client
-const chatClient = model.createChatClient();
-
-// Read the document
-const filePath = process.argv[2] || 'document.txt';
-const content = readFileSync(filePath, 'utf-8');
-
-// Summarize the document
-const messages = [
-    {
-        role: 'system',
-        content: 'Summarize the following document into concise bullet points. ' +
-                 'Focus on the key points and main ideas.'
-    },
-    { role: 'user', content: content }
-];
-
-const response = await chatClient.completeChat(messages);
-console.log(response.choices[0]?.message?.content);
-
-// Clean up
-await model.unload();
-```
+:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-document-summarizer/app.js" id="summarization":::
 
 The `getModel` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `download` method fetches the model weights to your local cache (and skips the download if they're already cached), and `load` makes the model ready for inference. The system prompt tells the model to produce bullet-point summaries focused on key ideas.
 
@@ -172,82 +122,7 @@ Each file is read, paired with the same system prompt, and sent to the model ind
 
 Create a file named `index.js` and add the following complete code:
 
-```javascript
-import { FoundryLocalManager } from 'foundry-local-sdk';
-import { readFileSync, readdirSync, statSync } from 'fs';
-import { join, basename } from 'path';
-
-async function summarizeFile(chatClient, filePath, systemPrompt) {
-    const content = readFileSync(filePath, 'utf-8');
-    const messages = [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: content }
-    ];
-
-    const response = await chatClient.completeChat(messages);
-    console.log(response.choices[0]?.message?.content);
-}
-
-async function summarizeDirectory(chatClient, directory, systemPrompt) {
-    const txtFiles = readdirSync(directory)
-        .filter(f => f.endsWith('.txt'))
-        .sort();
-
-    if (txtFiles.length === 0) {
-        console.log(`No .txt files found in ${directory}`);
-        return;
-    }
-
-    for (const fileName of txtFiles) {
-        console.log(`--- ${fileName} ---`);
-        await summarizeFile(chatClient, join(directory, fileName), systemPrompt);
-        console.log();
-    }
-}
-
-// Initialize the Foundry Local SDK
-const manager = FoundryLocalManager.create({
-    appName: 'doc-summarizer',
-    logLevel: 'info'
-});
-
-// Select and load a model from the catalog
-const model = await manager.catalog.getModel('phi-3.5-mini');
-
-await model.download((progress) => {
-    process.stdout.write(`\rDownloading model: ${progress.toFixed(2)}%`);
-});
-console.log('\nModel downloaded.');
-
-await model.load();
-console.log('Model loaded and ready.\n');
-
-// Create a chat client
-const chatClient = model.createChatClient();
-
-const systemPrompt =
-    'Summarize the following document into concise bullet points. ' +
-    'Focus on the key points and main ideas.';
-
-const target = process.argv[2] || 'document.txt';
-
-try {
-    const stats = statSync(target);
-    if (stats.isDirectory()) {
-        await summarizeDirectory(chatClient, target, systemPrompt);
-    } else {
-        console.log(`--- ${basename(target)} ---`);
-        await summarizeFile(chatClient, target, systemPrompt);
-    }
-} catch {
-    console.log(`--- ${basename(target)} ---`);
-    await summarizeFile(chatClient, target, systemPrompt);
-}
-
-// Clean up
-await model.unload();
-console.log('\nModel unloaded. Done!');
-```
+:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-document-summarizer/app.js" id="complete_code":::
 
 ## Run the application
 

@@ -34,66 +34,7 @@ pip install foundry-local-sdk
 
 Create a new Python file named `translation_app.py` in your favorite IDE and add the following code:
 
-```python
-from langchain_openai import ChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate
-from foundry_local_sdk import Configuration, FoundryLocalManager
-
-# By using an alias, the most suitable model is downloaded
-# to your end-user's device.
-alias = "qwen2.5-0.5b"
-
-# Initialize the Foundry Local SDK with web service configuration
-config = Configuration(
-    app_name="app-name",
-    web={"urls": "http://localhost:5000"},
-)
-FoundryLocalManager.initialize(config)
-manager = FoundryLocalManager.instance
-
-# Get and prepare the model
-model = manager.catalog.get_model(alias)
-model.download(lambda progress: print(f"\rDownloading: {progress:.2f}%", end="", flush=True))
-print()
-model.load()
-
-# Start the web service
-manager.start_web_service()
-
-# Configure ChatOpenAI to use your locally-running model
-llm = ChatOpenAI(
-    model=model.id,
-    base_url=f"{manager.urls[0].rstrip('/')}/v1",
-    api_key="local",
-    temperature=0.6,
-    streaming=False
-)
-
-# Create a translation prompt template
-prompt = ChatPromptTemplate.from_messages([
-    (
-        "system",
-        "You are a helpful assistant that translates {input_language} to {output_language}."
-    ),
-    ("human", "{input}")
-])
-
-# Build a simple chain by connecting the prompt to the language model
-chain = prompt | llm
-
-input = "I love to code."
-print(f"Translating '{input}' to French...")
-
-# Run the chain with your inputs
-ai_msg = chain.invoke({
-    "input_language": "English",
-    "output_language": "French",
-    "input": input
-})
-
-# print the result content
-print(f"Response: {ai_msg.content}")
-```
+:::code language="python" source="~/foundry-local-main/samples/python/langchain-integration/src/app.py" id="complete_code":::
 
 #### References
 

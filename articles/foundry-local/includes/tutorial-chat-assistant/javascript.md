@@ -16,29 +16,7 @@ The Foundry Local SDK provides a model catalog that lists all available models. 
 
 1. Add the following code to initialize the SDK and select a model:
 
-    ```javascript
-    import { FoundryLocalManager } from 'foundry-local-sdk';
-    import * as readline from 'readline';
-
-    // Initialize the Foundry Local SDK
-    const manager = FoundryLocalManager.create({
-        appName: 'chat-assistant',
-        logLevel: 'info'
-    });
-
-    // Select a model from the catalog
-    const model = await manager.catalog.getModel('phi-3.5-mini');
-
-    // Download the model (skips if already cached)
-    await model.download((progress) => {
-        process.stdout.write(`\rDownloading model: ${progress.toFixed(2)}%`);
-    });
-    console.log('\nModel downloaded.');
-
-    // Load the model into memory
-    await model.load();
-    console.log('Model loaded and ready.');
-    ```
+    :::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-chat-assistant/app.js" id="init":::
 
     The `getModel` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `download` method fetches the model weights to your local cache, and `load` makes the model ready for inference.
 
@@ -48,16 +26,7 @@ A system prompt sets the assistant's personality and behavior. It's the first me
 
 Add a system prompt to shape how the assistant responds:
 
-```javascript
-// Start the conversation with a system prompt
-const messages = [
-    {
-        role: 'system',
-        content: 'You are a helpful, friendly assistant. Keep your responses ' +
-                 'concise and conversational. If you don\'t know something, say so.'
-    }
-];
-```
+:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-chat-assistant/app.js" id="system_prompt":::
 
 > [!TIP]
 > Experiment with different system prompts to change the assistant's behavior. For example, you can instruct it to respond as a pirate, a teacher, or a domain expert.
@@ -73,40 +42,7 @@ Add a conversation loop that:
 - Sends the complete history to the model.
 - Appends the assistant's response to the history for the next turn.
 
-```javascript
-// Create a chat client
-const chatClient = model.createChatClient();
-
-// Set up readline for console input
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-const askQuestion = (prompt) => new Promise((resolve) => rl.question(prompt, resolve));
-
-console.log('\nChat assistant ready! Type \'quit\' to exit.\n');
-
-while (true) {
-    const userInput = await askQuestion('You: ');
-    if (userInput.trim().toLowerCase() === 'quit' ||
-        userInput.trim().toLowerCase() === 'exit') {
-        break;
-    }
-
-    // Add the user's message to conversation history
-    messages.push({ role: 'user', content: userInput });
-
-    // Send the full conversation history and get a response
-    const response = await chatClient.completeChat(messages);
-    const assistantMessage = response.choices[0]?.message?.content;
-
-    // Add the assistant's response to conversation history
-    messages.push({ role: 'assistant', content: assistantMessage });
-
-    console.log(`Assistant: ${assistantMessage}\n`);
-}
-```
+:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-chat-assistant/app.js" id="conversation_loop":::
 
 Each call to `completeChat` receives the full message history. This is how the model "remembers" previous turns — it doesn't store state between calls.
 
@@ -116,33 +52,7 @@ Streaming prints each token as it's generated, which makes the assistant feel mo
 
 Update the conversation loop to use streaming:
 
-```javascript
-while (true) {
-    const userInput = await askQuestion('You: ');
-    if (userInput.trim().toLowerCase() === 'quit' ||
-        userInput.trim().toLowerCase() === 'exit') {
-        break;
-    }
-
-    // Add the user's message to conversation history
-    messages.push({ role: 'user', content: userInput });
-
-    // Stream the response token by token
-    process.stdout.write('Assistant: ');
-    let fullResponse = '';
-    await chatClient.completeStreamingChat(messages, (chunk) => {
-        const content = chunk.choices?.[0]?.message?.content;
-        if (content) {
-            process.stdout.write(content);
-            fullResponse += content;
-        }
-    });
-    console.log('\n');
-
-    // Add the complete response to conversation history
-    messages.push({ role: 'assistant', content: fullResponse });
-}
-```
+:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-chat-assistant/app.js" id="streaming":::
 
 The streaming version accumulates the full response so it can be added to the conversation history after the stream completes.
 
@@ -150,80 +60,7 @@ The streaming version accumulates the full response so it can be added to the co
 
 Create a file named `index.js` and add the following complete code:
 
-```javascript
-import { FoundryLocalManager } from 'foundry-local-sdk';
-import * as readline from 'readline';
-
-// Initialize the Foundry Local SDK
-const manager = FoundryLocalManager.create({
-    appName: 'chat-assistant',
-    logLevel: 'info'
-});
-
-// Select and load a model from the catalog
-const model = await manager.catalog.getModel('phi-3.5-mini');
-
-await model.download((progress) => {
-    process.stdout.write(`\rDownloading model: ${progress.toFixed(2)}%`);
-});
-console.log('\nModel downloaded.');
-
-await model.load();
-console.log('Model loaded and ready.');
-
-// Create a chat client
-const chatClient = model.createChatClient();
-
-// Start the conversation with a system prompt
-const messages = [
-    {
-        role: 'system',
-        content: 'You are a helpful, friendly assistant. Keep your responses ' +
-                 'concise and conversational. If you don\'t know something, say so.'
-    }
-];
-
-// Set up readline for console input
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-const askQuestion = (prompt) => new Promise((resolve) => rl.question(prompt, resolve));
-
-console.log('\nChat assistant ready! Type \'quit\' to exit.\n');
-
-while (true) {
-    const userInput = await askQuestion('You: ');
-    if (userInput.trim().toLowerCase() === 'quit' ||
-        userInput.trim().toLowerCase() === 'exit') {
-        break;
-    }
-
-    // Add the user's message to conversation history
-    messages.push({ role: 'user', content: userInput });
-
-    // Stream the response token by token
-    process.stdout.write('Assistant: ');
-    let fullResponse = '';
-    await chatClient.completeStreamingChat(messages, (chunk) => {
-        const content = chunk.choices?.[0]?.message?.content;
-        if (content) {
-            process.stdout.write(content);
-            fullResponse += content;
-        }
-    });
-    console.log('\n');
-
-    // Add the complete response to conversation history
-    messages.push({ role: 'assistant', content: fullResponse });
-}
-
-// Clean up - unload the model
-await model.unload();
-console.log('Model unloaded. Goodbye!');
-rl.close();
-```
+:::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-chat-assistant/app.js" id="complete_code":::
 
 ## Run the application
 

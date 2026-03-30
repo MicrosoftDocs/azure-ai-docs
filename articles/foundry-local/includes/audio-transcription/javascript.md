@@ -33,52 +33,7 @@ The following example demonstrates how to use the native audio transcription API
 
 Copy and paste the following code into a JavaScript file named `app.js`:
 
-```javascript
-import { FoundryLocalManager } from 'foundry-local-sdk';
-
-// Initialize the Foundry Local SDK
-console.log('Initializing Foundry Local SDK...');
-
-const manager = FoundryLocalManager.create({
-    appName: 'foundry_local_samples',
-    logLevel: 'info'
-});
-console.log('✓ SDK initialized successfully');
-
-// Get the model object
-const modelAlias = 'whisper-tiny'; // Using an available model from the list above
-let model = await manager.catalog.getModel(modelAlias);
-console.log(`Using model: ${model.id}`);
-
-// Download the model
-console.log(`\nDownloading model ${modelAlias}...`);
-await model.download((progress) => {
-    process.stdout.write(`\rDownloading... ${progress.toFixed(2)}%`);
-});
-console.log('\n✓ Model downloaded');
-
-// Load the model
-console.log(`\nLoading model ${modelAlias}...`);
-await model.load();
-console.log('✓ Model loaded');
-
-// Create audio client
-console.log('\nCreating audio client...');
-const audioClient = model.createAudioClient();
-console.log('✓ Audio client created');
-
-// Example audio transcription
-console.log('\nTesting audio transcription...');
-const transcription = await audioClient.transcribe('./Recording.mp3');
-
-console.log('\nAudio transcription result:');
-console.log(transcription.text);
-
-// Unload the model
-console.log('Unloading model...');
-await model.unload();
-console.log(`✓ Model unloaded`);
-```
+:::code language="javascript" source="~/foundry-local-main/samples/js/audio-transcription-example/app.js" id="complete_code":::
 
 ## Run the application
 To run the application, use the following command in your terminal:

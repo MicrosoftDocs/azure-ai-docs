@@ -37,15 +37,7 @@ maintained alongside production code so they stay accurate as the application ev
 
 Now create a file called `main.py` and add the following code to read the document:
 
-```python
-import sys
-from pathlib import Path
-
-file_path = sys.argv[1] if len(sys.argv) > 1 else "document.txt"
-content = Path(file_path).read_text(encoding="utf-8")
-
-print(f"Read {len(content)} characters from {file_path}")
-```
+:::code language="python" source="~/foundry-local-main/samples/python/tutorial-document-summarizer/src/app.py" id="file_reading":::
 
 The script accepts an optional file path as a command-line argument and falls back to `document.txt` if none is provided. The `Path.read_text` method reads the entire file into a string.
 
@@ -55,53 +47,7 @@ Initialize the Foundry Local SDK, load a model, and send the document content al
 
 Replace the contents of `main.py` with the following code:
 
-```python
-import asyncio
-import sys
-from pathlib import Path
-from foundry_local_sdk import Configuration, FoundryLocalManager
-
-
-async def main():
-    # Initialize the Foundry Local SDK
-    config = Configuration(app_name="doc-summarizer")
-    FoundryLocalManager.initialize(config)
-    manager = FoundryLocalManager.instance
-
-    # Select and load a model from the catalog
-    model = manager.catalog.get_model("phi-3.5-mini")
-    model.download(lambda p: print(f"\rDownloading model: {p:.2f}%", end="", flush=True))
-    print()
-    model.load()
-    print("Model loaded and ready.\n")
-
-    # Get a chat client
-    client = model.get_chat_client()
-
-    # Read the document
-    file_path = sys.argv[1] if len(sys.argv) > 1 else "document.txt"
-    content = Path(file_path).read_text(encoding="utf-8")
-
-    # Summarize the document
-    messages = [
-        {
-            "role": "system",
-            "content": "Summarize the following document into concise bullet points. "
-                       "Focus on the key points and main ideas."
-        },
-        {"role": "user", "content": content}
-    ]
-
-    response = client.complete_chat(messages)
-    print(response.choices[0].message.content)
-
-    # Clean up
-    model.unload()
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
+:::code language="python" source="~/foundry-local-main/samples/python/tutorial-document-summarizer/src/app.py" id="summarization":::
 
 The `get_model` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `download` method fetches the model weights to your local cache (and skips the download if they're already cached), and `load` makes the model ready for inference. The system prompt tells the model to produce bullet-point summaries focused on key ideas.
 
@@ -175,76 +121,7 @@ Each file is read, paired with the same system prompt, and sent to the model ind
 
 Create a file named `main.py` and add the following complete code:
 
-```python
-import asyncio
-import sys
-from pathlib import Path
-from foundry_local_sdk import Configuration, FoundryLocalManager
-
-
-async def summarize_file(client, file_path, system_prompt):
-    """Summarize a single file and print the result."""
-    content = Path(file_path).read_text(encoding="utf-8")
-    messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": content}
-    ]
-    response = client.complete_chat(messages)
-    print(response.choices[0].message.content)
-
-
-async def summarize_directory(client, directory, system_prompt):
-    """Summarize all .txt files in a directory."""
-    txt_files = sorted(Path(directory).glob("*.txt"))
-
-    if not txt_files:
-        print(f"No .txt files found in {directory}")
-        return
-
-    for txt_file in txt_files:
-        print(f"--- {txt_file.name} ---")
-        await summarize_file(client, txt_file, system_prompt)
-        print()
-
-
-async def main():
-    # Initialize the Foundry Local SDK
-    config = Configuration(app_name="doc-summarizer")
-    FoundryLocalManager.initialize(config)
-    manager = FoundryLocalManager.instance
-
-    # Select and load a model from the catalog
-    model = manager.catalog.get_model("phi-3.5-mini")
-    model.download(lambda p: print(f"\rDownloading model: {p:.2f}%", end="", flush=True))
-    print()
-    model.load()
-    print("Model loaded and ready.\n")
-
-    # Get a chat client
-    client = model.get_chat_client()
-
-    system_prompt = (
-        "Summarize the following document into concise bullet points. "
-        "Focus on the key points and main ideas."
-    )
-
-    target = sys.argv[1] if len(sys.argv) > 1 else "document.txt"
-    target_path = Path(target)
-
-    if target_path.is_dir():
-        await summarize_directory(client, target_path, system_prompt)
-    else:
-        print(f"--- {target_path.name} ---")
-        await summarize_file(client, target_path, system_prompt)
-
-    # Clean up
-    model.unload()
-    print("\nModel unloaded. Done!")
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
+:::code language="python" source="~/foundry-local-main/samples/python/tutorial-document-summarizer/src/app.py" id="complete_code":::
 
 ## Run the application
 

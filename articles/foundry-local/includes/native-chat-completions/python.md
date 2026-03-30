@@ -33,49 +33,7 @@ The following example demonstrates how to use the native chat completions API in
 
 Copy and paste the following code into a Python file named `app.py`:
 
-```python
-import asyncio
-from foundry_local_sdk import Configuration, FoundryLocalManager
-
-
-async def main():
-    # Initialize the Foundry Local SDK
-    config = Configuration(app_name="app-name")
-    FoundryLocalManager.initialize(config)
-    manager = FoundryLocalManager.instance
-
-    # Get a model using an alias
-    model = manager.catalog.get_model("qwen2.5-0.5b")
-
-    # Download the model (skips download if already cached)
-    model.download(lambda progress: print(f"\rDownloading model: {progress:.2f}%", end="", flush=True))
-    print()
-
-    # Load the model
-    model.load()
-
-    # Get a chat client
-    client = model.get_chat_client()
-
-    # Create a chat message
-    messages = [
-        {"role": "user", "content": "Why is the sky blue?"}
-    ]
-
-    # Stream the response
-    for chunk in client.complete_streaming_chat(messages):
-        content = chunk.choices[0].message.content
-        if content:
-            print(content, end="", flush=True)
-    print()
-
-    # Tidy up - unload the model
-    model.unload()
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
+:::code language="python" source="~/foundry-local-main/samples/python/hello-foundry-local/src/app.py" id="complete_code":::
 
 Run the code by using the following command:
 

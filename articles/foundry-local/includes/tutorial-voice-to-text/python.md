@@ -18,34 +18,7 @@ In this step, you load a speech-to-text model and transcribe an audio file. The 
 
 1. Add the following code to initialize the SDK, load the speech model, and transcribe an audio file:
 
-    ```python
-    from foundry_local_sdk import Configuration, FoundryLocalManager
-
-    # Initialize the Foundry Local SDK
-    config = Configuration(app_name="note-taker")
-    FoundryLocalManager.initialize(config)
-    manager = FoundryLocalManager.instance
-
-    # Load the speech-to-text model
-    model = manager.catalog.get_model("whisper")
-    model.download(
-        lambda progress: print(
-            f"\rDownloading speech model: {progress:.2f}%",
-            end="",
-            flush=True,
-        )
-    )
-    print()
-    model.load()
-
-    # Transcribe an audio file
-    audio_client = model.get_audio_client()
-    transcription = audio_client.transcribe("meeting-notes.wav")
-    print(f"Transcription:\n{transcription.text}")
-
-    # Unload the speech model to free memory
-    model.unload()
-    ```
+    :::code language="python" source="~/foundry-local-main/samples/python/tutorial-voice-to-text/src/app.py" id="transcription":::
 
     The `get_audio_client` method returns a client for audio operations. The `transcribe` method accepts a file path and returns an object with a `text` property containing the transcribed content.
 
@@ -58,38 +31,7 @@ Now use a chat model to organize the raw transcription into structured notes. Lo
 
 Add the following code after the transcription step:
 
-```python
-# Load the chat model for summarization
-chat_model = manager.catalog.get_model("phi-3.5-mini")
-chat_model.download(
-    lambda progress: print(
-        f"\rDownloading chat model: {progress:.2f}%",
-        end="",
-        flush=True,
-    )
-)
-print()
-chat_model.load()
-
-# Summarize the transcription
-client = chat_model.get_chat_client()
-messages = [
-    {
-        "role": "system",
-        "content": "You are a note-taking assistant. Summarize the "
-                   "following transcription into organized, concise "
-                   "notes with bullet points.",
-    },
-    {"role": "user", "content": transcription.text},
-]
-
-response = client.complete_chat(messages)
-summary = response.choices[0].message.content
-print(f"\nSummary:\n{summary}")
-
-# Unload the chat model
-chat_model.unload()
-```
+:::code language="python" source="~/foundry-local-main/samples/python/tutorial-voice-to-text/src/app.py" id="summarization":::
 
 The system prompt shapes the model's output format. By instructing it to produce "organized, concise notes with bullet points," you get structured content rather than a raw paraphrase.
 
@@ -97,76 +39,7 @@ The system prompt shapes the model's output format. By instructing it to produce
 
 Create a file named `app.py` and add the following complete code that transcribes an audio file and summarizes the transcription:
 
-```python
-import asyncio
-from foundry_local_sdk import Configuration, FoundryLocalManager
-
-
-async def main():
-    # Initialize the Foundry Local SDK
-    config = Configuration(app_name="note-taker")
-    FoundryLocalManager.initialize(config)
-    manager = FoundryLocalManager.instance
-
-    # Load the speech-to-text model
-    speech_model = manager.catalog.get_model("whisper")
-    speech_model.download(
-        lambda progress: print(
-            f"\rDownloading speech model: {progress:.2f}%",
-            end="",
-            flush=True,
-        )
-    )
-    print()
-    speech_model.load()
-    print("Speech model loaded.")
-
-    # Transcribe the audio file
-    audio_client = speech_model.get_audio_client()
-    transcription = audio_client.transcribe("meeting-notes.wav")
-    print(f"\nTranscription:\n{transcription.text}")
-
-    # Unload the speech model to free memory
-    speech_model.unload()
-
-    # Load the chat model for summarization
-    chat_model = manager.catalog.get_model("phi-3.5-mini")
-    chat_model.download(
-        lambda progress: print(
-            f"\rDownloading chat model: {progress:.2f}%",
-            end="",
-            flush=True,
-        )
-    )
-    print()
-    chat_model.load()
-    print("Chat model loaded.")
-
-    # Summarize the transcription into organized notes
-    client = chat_model.get_chat_client()
-    messages = [
-        {
-            "role": "system",
-            "content": "You are a note-taking assistant. "
-                       "Summarize the following transcription "
-                       "into organized, concise notes with "
-                       "bullet points.",
-        },
-        {"role": "user", "content": transcription.text},
-    ]
-
-    response = client.complete_chat(messages)
-    summary = response.choices[0].message.content
-    print(f"\nSummary:\n{summary}")
-
-    # Clean up
-    chat_model.unload()
-    print("\nDone. Models unloaded.")
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
+:::code language="python" source="~/foundry-local-main/samples/python/tutorial-voice-to-text/src/app.py" id="complete_code":::
 
 > [!NOTE]
 > Replace `"meeting-notes.wav"` with the path to your audio file. Supported formats include WAV, MP3, and FLAC.

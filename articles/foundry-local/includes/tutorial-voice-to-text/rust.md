@@ -16,52 +16,7 @@ In this step, you load a speech-to-text model and transcribe an audio file. The 
 
 1. Open `src/main.rs` and replace its contents with the following code to initialize the SDK, load the speech model, and transcribe an audio file:
 
-    ```rust
-    use foundry_local_sdk::{
-        FoundryLocalConfig, FoundryLocalManager,
-    };
-    use std::io::Write;
-
-    #[tokio::main]
-    async fn main() -> anyhow::Result<()> {
-        // Initialize the Foundry Local SDK
-        let manager = FoundryLocalManager::create(
-            FoundryLocalConfig::new("note-taker"),
-        )?;
-
-        // Load the speech-to-text model
-        let speech_model = manager
-            .catalog()
-            .get_model("whisper")
-            .await?;
-
-        speech_model
-            .download(Some(|progress: f32| {
-                print!(
-                    "\rDownloading speech model: {:.2}%",
-                    progress
-                );
-                std::io::stdout().flush().unwrap();
-            }))
-            .await?;
-        println!();
-
-        speech_model.load().await?;
-        println!("Speech model loaded.");
-
-        // Transcribe an audio file
-        let audio_client = speech_model.create_audio_client();
-        let transcription = audio_client
-            .transcribe("meeting-notes.wav")
-            .await?;
-        println!("\nTranscription:\n{}", transcription.text);
-
-        // Unload the speech model to free memory
-        speech_model.unload().await?;
-
-        Ok(())
-    }
-    ```
+    :::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-voice-to-text/src/main.rs" id="transcription":::
 
     The `create_audio_client` method returns a client for audio operations. The `transcribe` method accepts a file path and returns an object with a `text` field containing the transcribed content.
 
@@ -74,65 +29,7 @@ Now use a chat model to organize the raw transcription into structured notes. Lo
 
 Add the following code after the transcription step, inside the `main` function:
 
-```rust
-use foundry_local_sdk::{
-    ChatCompletionRequestMessage,
-    ChatCompletionRequestSystemMessage,
-    ChatCompletionRequestUserMessage,
-};
-
-// Load the chat model for summarization
-let chat_model = manager
-    .catalog()
-    .get_model("phi-3.5-mini")
-    .await?;
-
-chat_model
-    .download(Some(|progress: f32| {
-        print!(
-            "\rDownloading chat model: {:.2}%",
-            progress
-        );
-        std::io::stdout().flush().unwrap();
-    }))
-    .await?;
-println!();
-
-chat_model.load().await?;
-println!("Chat model loaded.");
-
-// Summarize the transcription
-let client = chat_model
-    .create_chat_client()
-    .temperature(0.7)
-    .max_tokens(512);
-
-let messages: Vec<ChatCompletionRequestMessage> = vec![
-    ChatCompletionRequestSystemMessage::new(
-        "You are a note-taking assistant. Summarize the \
-         following transcription into organized, concise \
-         notes with bullet points.",
-    )
-    .into(),
-    ChatCompletionRequestUserMessage::new(
-        &transcription.text,
-    )
-    .into(),
-];
-
-let response = client
-    .complete_chat(&messages, None)
-    .await?;
-let summary = response.choices[0]
-    .message
-    .content
-    .as_deref()
-    .unwrap_or("");
-println!("\nSummary:\n{}", summary);
-
-// Unload the chat model
-chat_model.unload().await?;
-```
+:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-voice-to-text/src/main.rs" id="summarization":::
 
 The system prompt shapes the model's output format. By instructing it to produce "organized, concise notes with bullet points," you get structured content rather than a raw paraphrase.
 
@@ -140,108 +37,7 @@ The system prompt shapes the model's output format. By instructing it to produce
 
 Replace the contents of `src/main.rs` with the following complete code that transcribes an audio file and summarizes the transcription:
 
-```rust
-use foundry_local_sdk::{
-    ChatCompletionRequestMessage,
-    ChatCompletionRequestSystemMessage,
-    ChatCompletionRequestUserMessage,
-    FoundryLocalConfig, FoundryLocalManager,
-};
-use std::io::Write;
-
-#[tokio::main]
-async fn main() -> anyhow::Result<()> {
-    // Initialize the Foundry Local SDK
-    let manager = FoundryLocalManager::create(
-        FoundryLocalConfig::new("note-taker"),
-    )?;
-
-    // Load the speech-to-text model
-    let speech_model = manager
-        .catalog()
-        .get_model("whisper")
-        .await?;
-
-    speech_model
-        .download(Some(|progress: f32| {
-            print!(
-                "\rDownloading speech model: {:.2}%",
-                progress
-            );
-            std::io::stdout().flush().unwrap();
-        }))
-        .await?;
-    println!();
-
-    speech_model.load().await?;
-    println!("Speech model loaded.");
-
-    // Transcribe the audio file
-    let audio_client = speech_model.create_audio_client();
-    let transcription = audio_client
-        .transcribe("meeting-notes.wav")
-        .await?;
-    println!("\nTranscription:\n{}", transcription.text);
-
-    // Unload the speech model to free memory
-    speech_model.unload().await?;
-
-    // Load the chat model for summarization
-    let chat_model = manager
-        .catalog()
-        .get_model("phi-3.5-mini")
-        .await?;
-
-    chat_model
-        .download(Some(|progress: f32| {
-            print!(
-                "\rDownloading chat model: {:.2}%",
-                progress
-            );
-            std::io::stdout().flush().unwrap();
-        }))
-        .await?;
-    println!();
-
-    chat_model.load().await?;
-    println!("Chat model loaded.");
-
-    // Summarize the transcription into organized notes
-    let client = chat_model
-        .create_chat_client()
-        .temperature(0.7)
-        .max_tokens(512);
-
-    let messages: Vec<ChatCompletionRequestMessage> = vec![
-        ChatCompletionRequestSystemMessage::new(
-            "You are a note-taking assistant. Summarize \
-             the following transcription into organized, \
-             concise notes with bullet points.",
-        )
-        .into(),
-        ChatCompletionRequestUserMessage::new(
-            &transcription.text,
-        )
-        .into(),
-    ];
-
-    let response = client
-        .complete_chat(&messages, None)
-        .await?;
-    let summary = response.choices[0]
-        .message
-        .content
-        .as_deref()
-        .unwrap_or("");
-    println!("\nSummary:\n{}", summary);
-
-    // Clean up
-    chat_model.unload().await?;
-    println!("\nDone. Models unloaded.");
-
-    Ok(())
-}
-```
+:::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-voice-to-text/src/main.rs" id="complete_code":::
 
 > [!NOTE]
 > Replace `"meeting-notes.wav"` with the path to your audio file. Supported formats include WAV, MP3, and FLAC.

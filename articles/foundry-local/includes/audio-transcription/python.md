@@ -34,41 +34,7 @@ The following example demonstrates how to use the native audio transcription API
 
 Copy and paste the following code into a Python file named `app.py`:
 
-```python
-import asyncio
-from foundry_local_sdk import Configuration, FoundryLocalManager
-
-
-async def main():
-    # Initialize the Foundry Local SDK
-    config = Configuration(app_name="app-name")
-    FoundryLocalManager.initialize(config)
-    manager = FoundryLocalManager.instance
-
-    # Get a model using an alias
-    model = manager.catalog.get_model("whisper-tiny")
-
-    # Download the model (skips download if already cached)
-    model.download(lambda progress: print(f"\rDownloading model: {progress:.2f}%", end="", flush=True))
-    print()
-
-    # Load the model
-    model.load()
-
-    # Get an audio client
-    audio_client = model.get_audio_client()
-
-    # Transcribe an audio file
-    transcription = audio_client.transcribe("Recording.mp3")
-    print(transcription.text)
-
-    # Tidy up - unload the model
-    model.unload()
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
+:::code language="python" source="~/foundry-local-main/samples/python/audio-transcription/src/app.py" id="complete_code":::
 
 > [!NOTE]
 > Replace `"Recording.mp3"` with the path to the audio file that you want to transcribe.

@@ -37,12 +37,7 @@ maintained alongside production code so they stay accurate as the application ev
 
 Now open `Program.cs` and add the following code to read the document:
 
-```csharp
-var filePath = args.Length > 0 ? args[0] : "document.txt";
-var content = await File.ReadAllTextAsync(filePath);
-
-Console.WriteLine($"Read {content.Length} characters from {filePath}");
-```
+:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialDocumentSummarizer/Program.cs" id="file_reading":::
 
 The code accepts an optional file path as a command-line argument and falls back to `document.txt` if none is provided.
 
@@ -52,68 +47,7 @@ Initialize the Foundry Local SDK, load a model, and send the document content al
 
 Replace the contents of `Program.cs` with the following code:
 
-```csharp
-using Microsoft.AI.Foundry.Local;
-using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
-using Microsoft.Extensions.Logging;
-
-CancellationToken ct = CancellationToken.None;
-
-var config = new Configuration
-{
-    AppName = "doc-summarizer",
-    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information
-};
-
-using var loggerFactory = LoggerFactory.Create(builder =>
-{
-    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
-});
-var logger = loggerFactory.CreateLogger<Program>();
-
-// Initialize the singleton instance
-await FoundryLocalManager.CreateAsync(config, logger);
-var mgr = FoundryLocalManager.Instance;
-
-// Select and load a model from the catalog
-var catalog = await mgr.GetCatalogAsync();
-var model = await catalog.GetModelAsync("phi-3.5-mini")
-    ?? throw new Exception("Model not found");
-
-await model.DownloadAsync(progress =>
-{
-    Console.Write($"\rDownloading model: {progress:F2}%");
-    if (progress >= 100f) Console.WriteLine();
-});
-
-await model.LoadAsync();
-Console.WriteLine("Model loaded and ready.\n");
-
-// Get a chat client
-var chatClient = await model.GetChatClientAsync();
-
-// Read the document
-var filePath = args.Length > 0 ? args[0] : "document.txt";
-var content = await File.ReadAllTextAsync(filePath);
-
-// Summarize the document
-var messages = new List<ChatMessage>
-{
-    new ChatMessage
-    {
-        Role = "system",
-        Content = "Summarize the following document into concise bullet points. " +
-                  "Focus on the key points and main ideas."
-    },
-    new ChatMessage { Role = "user", Content = content }
-};
-
-var response = await chatClient.CompleteChatAsync(messages, ct);
-Console.WriteLine(response.Choices[0].Message.Content);
-
-// Clean up
-await model.UnloadAsync();
-```
+:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialDocumentSummarizer/Program.cs" id="summarization":::
 
 The `GetModelAsync` method accepts a model alias, which is a short friendly name that maps to a specific model in the catalog. The `DownloadAsync` method fetches the model weights to your local cache (and skips the download if they're already cached), and `LoadAsync` makes the model ready for inference. The system prompt tells the model to produce bullet-point summaries focused on key ideas.
 
@@ -193,107 +127,7 @@ Each file is read, paired with the same system prompt, and sent to the model ind
 
 Replace the contents of `Program.cs` with the following complete code:
 
-```csharp
-using Microsoft.AI.Foundry.Local;
-using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
-using Microsoft.Extensions.Logging;
-
-CancellationToken ct = CancellationToken.None;
-
-var config = new Configuration
-{
-    AppName = "doc-summarizer",
-    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information
-};
-
-using var loggerFactory = LoggerFactory.Create(builder =>
-{
-    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
-});
-var logger = loggerFactory.CreateLogger<Program>();
-
-// Initialize the singleton instance
-await FoundryLocalManager.CreateAsync(config, logger);
-var mgr = FoundryLocalManager.Instance;
-
-// Select and load a model from the catalog
-var catalog = await mgr.GetCatalogAsync();
-var model = await catalog.GetModelAsync("phi-3.5-mini")
-    ?? throw new Exception("Model not found");
-
-await model.DownloadAsync(progress =>
-{
-    Console.Write($"\rDownloading model: {progress:F2}%");
-    if (progress >= 100f) Console.WriteLine();
-});
-
-await model.LoadAsync();
-Console.WriteLine("Model loaded and ready.\n");
-
-// Get a chat client
-var chatClient = await model.GetChatClientAsync();
-
-var systemPrompt =
-    "Summarize the following document into concise bullet points. " +
-    "Focus on the key points and main ideas.";
-
-var target = args.Length > 0 ? args[0] : "document.txt";
-
-if (Directory.Exists(target))
-{
-    await SummarizeDirectoryAsync(chatClient, target, systemPrompt, ct);
-}
-else
-{
-    Console.WriteLine($"--- {Path.GetFileName(target)} ---");
-    await SummarizeFileAsync(chatClient, target, systemPrompt, ct);
-}
-
-// Clean up
-await model.UnloadAsync();
-Console.WriteLine("\nModel unloaded. Done!");
-
-async Task SummarizeFileAsync(
-    dynamic client,
-    string filePath,
-    string prompt,
-    CancellationToken token)
-{
-    var fileContent = await File.ReadAllTextAsync(filePath, token);
-    var messages = new List<ChatMessage>
-    {
-        new ChatMessage { Role = "system", Content = prompt },
-        new ChatMessage { Role = "user", Content = fileContent }
-    };
-
-    var response = await client.CompleteChatAsync(messages, token);
-    Console.WriteLine(response.Choices[0].Message.Content);
-}
-
-async Task SummarizeDirectoryAsync(
-    dynamic client,
-    string directory,
-    string prompt,
-    CancellationToken token)
-{
-    var txtFiles = Directory.GetFiles(directory, "*.txt")
-        .OrderBy(f => f)
-        .ToArray();
-
-    if (txtFiles.Length == 0)
-    {
-        Console.WriteLine($"No .txt files found in {directory}");
-        return;
-    }
-
-    foreach (var txtFile in txtFiles)
-    {
-        Console.WriteLine($"--- {Path.GetFileName(txtFile)} ---");
-        await SummarizeFileAsync(client, txtFile, prompt, token);
-        Console.WriteLine();
-    }
-}
-```
+:::code language="csharp" source="~/foundry-local-main/samples/cs/GettingStarted/src/TutorialDocumentSummarizer/Program.cs" id="complete_code":::
 
 ## Run the application
 
