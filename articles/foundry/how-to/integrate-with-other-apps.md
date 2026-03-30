@@ -28,7 +28,7 @@ In this article, you learn how to choose an integration pattern and send your fi
 - A [Foundry project](create-projects.md). Note your resource endpoint (for example, `https://{resource}.services.ai.azure.com`).
 - A [deployed model](../foundry-models/how-to/deploy-foundry-models.md) for inference calls.
 - Authentication credentials: either a [Microsoft Entra ID token](../concepts/rbac-foundry.md) or an API key from the Foundry portal.
-- 
+
 [!INCLUDE [integrate-with-other-apps content](../includes/how-to-integrate-with-other-apps-content.md)]
 
 ## Related content
