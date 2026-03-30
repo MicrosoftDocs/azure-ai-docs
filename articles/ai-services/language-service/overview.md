@@ -21,17 +21,32 @@ Azure Language is a cloud-based service that provides Natural Language Processin
 
 Core capabilities are the primary, actively evolving features of Azure Language. These features receive ongoing investment and feature updates, and are recommended for new development and long-term planning. If you are starting a new project or designing a future architecture, use core capabilities as the foundation for your natural language processing workflows.
 
+* [PII detection](#personally-identifiable-information-pii-detection)
 * [Language detection](#language-detection)
 * **Named entity recognition (NER)**
   * [Custom NER](#custom-ner)
   * [Prebuilt NER](#prebuilt-ner)
-* [PII detection](#personally-identifiable-information-pii-detection)
 * [Text analytics for health](#text-analytics-for-health)
 
 > [!TIP]
 > Unsure which feature to use? See [Which Azure Language core feature should I use](#which-core-language-feature-should-i-use) to help you decide.
 
 [**Microsoft Foundry**](https://ai.azure.com/) enables you to use most of the following service features without the need to write code.
+
+### Personally identifiable information (PII) detection
+
+> [!IMPORTANT]
+> The Azure Language in Foundry Tools text personally identifiable information (PII) detection anonymization feature (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+
+[Personally identifiable information (PII) detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
+
+***Conversation PII***
+
+:::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Foundry." lightbox="media/overview/conversation-pii.png":::
+
+***Text PII***
+
+:::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Foundry." lightbox="media/overview/text-pii.png":::
 
 ### Language detection
 
@@ -51,20 +66,7 @@ Core capabilities are the primary, actively evolving features of Azure Language.
 
 :::image type="content" source="media/overview/named-entity-recognition.png" alt-text="A screenshot of named entity recognition in Foundry." lightbox="media/overview/named-entity-recognition.png":::
 
-### Personally identifiable information (PII) detection
 
-> [!IMPORTANT]
-> The Azure Language in Foundry Tools text personally identifiable information (PII) detection anonymization feature (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
-
-[Personally identifiable information (PII) detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
-
-***Conversation PII detection***
-
-:::image type="content" source="media/overview/conversation-pii.png" alt-text="A screenshot of conversation personally identifying information in Foundry." lightbox="media/overview/conversation-pii.png":::
-
-***Text PII detection***
-
-:::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Foundry." lightbox="media/overview/text-pii.png":::
 
 ### Text analytics for health
 
