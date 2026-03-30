@@ -125,7 +125,7 @@ items:
         - name: Azure AI containers overview
           href: ../cognitive-services-container-support.md
 
-  - name: Named Entity Recognition
+  - name: Named entity recognition
     items:
     - name: Custom named entity recognition (CNER)
       items:
@@ -234,7 +234,7 @@ items:
           href: named-entity-recognition/tutorials/extract-excel-information.md
           displayName: excel integration, power automate, ner automation, extract entities
 
-  - name: Text Analytics for health
+  - name: Text analytics for health
     items:
     - name: Overview
       href: text-analytics-for-health/overview.md
@@ -281,7 +281,7 @@ items:
 
 - name: Legacy capabilities
   items:
-  - name: "Conversational language understanding (CLU)"
+  - name: Conversational language understanding (CLU)
     items:
     - name: Overview
       href: conversational-language-understanding/overview.md
@@ -590,7 +590,6 @@ items:
           href: entity-linking/how-to/call-api.md
           displayName: entity linking, entity recognition
 
-
   - name: Key phrase extraction
     items:
     - name: Overview
@@ -632,8 +631,6 @@ items:
       - name: Integrate Power BI
         href: key-phrase-extraction/tutorials/integrate-power-bi.md
         displayName: business intelligence, data visualization
-
-
 
   - name: Orchestration workflow
     items:
@@ -692,7 +689,6 @@ items:
       - name: Glossary
         href: orchestration-workflow/glossary.md
 
-
   - name: Sentiment analysis and opinion mining
     items:
       - name: Overview
@@ -733,7 +729,6 @@ items:
         items:
         - name: Use Flask to translate text, analyze sentiment, and synthesize speech
           href: /training/modules/python-flask-build-ai-web-app/
-
 
   - name: Summarization
     items:
@@ -778,9 +773,7 @@ items:
           href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
           displayName: Data privacy, logging, data retention
 
-
-
-- name: Concepts
+- name: Azure Language concepts
   items:
   - name: Developer guide
     href: concepts/developer-guide.md
@@ -919,7 +912,6 @@ items:
           href: https://aka.ms/sdk-samples-conversation-python
         - name: Azure.AI.Language.QuestionAnswering namespace
           href: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/cognitivelanguage/azure-ai-language-questionanswering
-
 
 - name: Resources
   items:
