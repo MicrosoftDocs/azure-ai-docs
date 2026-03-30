@@ -181,7 +181,7 @@ CMK encryption can be added at the service level or at the object level. Service
 
 ### Configure CMK at the service-level (preview)
 
-To enable service-level CMK encryption, you will need to use API version 2026-03-01-preview or later.
+To enable service-level CMK encryption, we recommend that you use the [Search Management REST API](/rest/api/searchmanagement) or an Azure SDK package that has been updated to support Search Management REST API version 2026-03-01-preview or later. This feature is not yet supported in the Azure portal. 
 
 ### [**REST APIs**](#tab/rest)
 
