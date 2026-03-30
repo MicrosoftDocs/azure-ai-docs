@@ -50,7 +50,7 @@ A new model, `en‑MultiTalker‑1:DragonHDLatestNeural`, introduces an expanded
 | Male      | Andrew, Brian, Davis, Steffan           |
 
 #### Neural HD pricing update
-Effective March 2026, Neural HD pricing is reduced. Check out details at [Pricing](https://azure.microsoft.com/en-us/pricing/details/speech/).
+Effective March 2026, Neural HD pricing is reduced. Check out details at [Pricing](https://azure.microsoft.com/pricing/details/speech/).
 
 ### December 2025 release
 #### Public preview of new voice type Dragon HD Omni
