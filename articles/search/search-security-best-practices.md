@@ -13,13 +13,13 @@ ms.custom: horz-security
 
 This article provides security best practices to help protect your Azure AI Search service. You're responsible for implementing these customer-configurable security controls. For information about Microsoft's built-in protections, such as network architecture, encryption, and compliance certifications, see [Data, privacy, and built-in protections in Azure AI Search](search-security-built-in.md).
 
-[!INCLUDE [Security horizontal Zero Trust statement](~/reusable-content/ce-skilling/azure/includes/security/zero-trust-security-horizontal.md)]
-
 As a solutions architect, you should configure security controls across three domains:
 
 - **Network security**: Control inbound and outbound traffic to your search service.
 - **Authentication and authorization**: Define how, who, and what can access your search service and data.
 - **Data protection**: Implement encryption, access controls, and monitoring.
+
+[!INCLUDE [Security horizontal Zero Trust statement](~/reusable-content/ce-skilling/azure/includes/security/zero-trust-security-horizontal.md)]
 
 ## Understand network traffic patterns
 
@@ -177,8 +177,6 @@ For basic retrieval-augmented generation (RAG) patterns where your client applic
 ## Implement document-level access control
 
 Document-level access control, also known as row-level security, restricts which documents a user can retrieve based on their identity. Permission metadata is captured during indexing and enforced at query time, which is essential for agentic AI systems, RAG applications, and enterprise search solutions that require authorization checks at the document level. For a comprehensive overview of all supported approaches, see [Document-level access control](search-document-level-access-overview.md).
-
-
 
 ### Use POSIX-like ACL and RBAC scopes (preview)
 
