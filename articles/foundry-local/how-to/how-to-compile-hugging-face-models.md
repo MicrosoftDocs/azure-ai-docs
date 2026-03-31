@@ -162,7 +162,7 @@ Use the Foundry Local C# SDK to load and run your compiled model with the native
 
 ### Prerequisites
 
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later
 
 ### Install packages
 
@@ -456,7 +456,7 @@ cargo run
 - If `olive auto-opt` fails with an authentication or access error, confirm your Hugging Face token and that the model access request is approved.
 - If the `hf` command isn't found, install it by running `pip install -U huggingface_hub`.
 - If the compiled model isn't found in the cached models list, verify the `ModelCacheDir` path in your `Configuration` points to the parent directory that contains the model folder.
-- If you encounter .NET build errors referencing `net9.0`, install the [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0).
+- If you encounter .NET build errors referencing `net8.0`, install the [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0).
 
 ## Related content
 

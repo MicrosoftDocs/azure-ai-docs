@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 ## Prerequisites
 
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later installed.
 
 
 ## Samples repository
@@ -36,8 +36,6 @@ Copy-and-paste the following code into a C# file named `Program.cs`:
 
 Reference: [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
 Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
-
-## Run the application
 
 ```bash
 dotnet run

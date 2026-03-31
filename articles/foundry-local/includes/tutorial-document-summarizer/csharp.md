@@ -140,8 +140,6 @@ Replace the contents of `Program.cs` with the following complete code:
 
 :::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-document-summarizer/Program.cs" id="complete_code":::
 
-## Run the application
-
 Summarize a single file:
 
 ```bash

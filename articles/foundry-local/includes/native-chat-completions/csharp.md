@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 ## Prerequisites
 
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later installed.
 
 
 ## Samples repository
@@ -46,6 +46,6 @@ dotnet run
 
 ## Troubleshooting
 
-- **Build errors referencing `net9.0`**: Install the [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0), then rebuild the app.
+- **Build errors referencing `net8.0`**: Install the [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0), then rebuild the app.
 - **`Model not found`**: Run the optional model listing snippet to find an alias available on your device, then update the alias passed to `GetModelAsync`.
 - **Slow first run**: Model downloads can take time the first time you run the app.

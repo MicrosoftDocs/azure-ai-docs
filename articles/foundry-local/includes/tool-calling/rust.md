@@ -54,8 +54,6 @@ Replace the contents of `src/main.rs` with the following code:
 
 :::code language="rust" source="~/foundry-local-main/samples/rust/tool-calling-foundry-local/src/main.rs" id="complete_code":::
 
-## Run the application
-
 To run the application, execute the following command in your terminal:
 
 ```bash

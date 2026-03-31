@@ -33,8 +33,6 @@ Copy and paste the following code into a JavaScript file named `app.js`:
 
 :::code language="javascript" source="~/foundry-local-main/samples/js/native-chat-completions/app.js" id="complete_code":::
 
-## Run the code
-
 Run the code by using the following command:
 
 ```bash

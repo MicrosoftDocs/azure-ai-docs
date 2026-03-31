@@ -152,8 +152,6 @@ Replace the contents of `src/main.rs` with the following complete code:
 
 :::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-document-summarizer/src/main.rs" id="complete_code":::
 
-## Run the application
-
 Summarize a single file:
 
 ```bash

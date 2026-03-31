@@ -56,8 +56,6 @@ Create a new Python file named `translation_app.py` in your favorite IDE and add
 > [!NOTE]
 > One of key benefits of Foundry Local is that it **automatically** selects the most suitable model **variant** for the user's hardware. For example, if the user has a GPU, it downloads the GPU version of the model. If the user has an NPU (Neural Processing Unit), it downloads the NPU version. If the user doesn't have either a GPU or NPU, it downloads the CPU version of the model.
 
-## Run the application
-
 To run the application, open a terminal and navigate to the directory where you saved the `translation_app.py` file. Then, run the following command:
 
 ```bash

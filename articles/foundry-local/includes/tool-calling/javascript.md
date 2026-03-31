@@ -46,8 +46,6 @@ Copy and paste the following code into a JavaScript file named `app.js`:
 
 :::code language="javascript" source="~/foundry-local-main/samples/js/tool-calling-foundry-local/src/app.js" id="complete_code":::
 
-## Run the application
-
 To run the application, execute the following command in your terminal:
 
 ```bash

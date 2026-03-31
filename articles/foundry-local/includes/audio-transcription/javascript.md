@@ -35,7 +35,6 @@ Copy and paste the following code into a JavaScript file named `app.js`:
 
 The sample includes a `Recording.mp3` file. To transcribe a different audio file, pass the file path as an argument.
 
-## Run the application
 To run the application, use the following command in your terminal:
 
 ```bash

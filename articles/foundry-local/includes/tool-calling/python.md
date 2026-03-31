@@ -53,8 +53,6 @@ Copy and paste the following code into a Python file named `app.py`:
 
 :::code language="python" source="~/foundry-local-main/samples/python/tool-calling/src/app.py" id="complete_code":::
 
-## Run the application
-
 To run the application, execute the following command in your terminal:
 
 ```bash

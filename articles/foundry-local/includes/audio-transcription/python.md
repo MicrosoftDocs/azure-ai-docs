@@ -35,8 +35,6 @@ Copy and paste the following code into a Python file named `app.py`:
 
 The sample includes a `Recording.mp3` file. To transcribe a different audio file, pass the file path as an argument.
 
-## Run the application
-
 Run the code by using the following command:
 
 ```bash

@@ -47,9 +47,7 @@ Create a new JavaScript file named `translation_app.js` in your favorite IDE and
 
 :::code language="javascript" source="~/foundry-local-main/samples/js/langchain-integration-example/app.js" id="complete_code":::
 
-### Run the application
-
-To run the application, open a terminal and navigate to the directory where you saved the `translation_app.js` file. Then, run the following command:
+#To run the application, open a terminal and navigate to the directory where you saved the `translation_app.js` file. Then, run the following command:
 
 ```bash
 node translation_app.js

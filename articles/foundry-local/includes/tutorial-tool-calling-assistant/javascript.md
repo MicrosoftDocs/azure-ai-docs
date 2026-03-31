@@ -68,8 +68,6 @@ Create a file named `index.js` and add the following complete code:
 
 :::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-tool-calling/app.js" id="complete_code":::
 
-## Run the application
-
 Run the tool-calling assistant:
 
 ```bash

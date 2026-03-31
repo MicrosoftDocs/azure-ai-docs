@@ -135,8 +135,6 @@ Create a file named `index.js` and add the following complete code:
 
 :::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-document-summarizer/app.js" id="complete_code":::
 
-## Run the application
-
 Summarize a single file:
 
 ```bash

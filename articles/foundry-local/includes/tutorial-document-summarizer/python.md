@@ -134,8 +134,6 @@ Create a file named `main.py` and add the following complete code:
 
 :::code language="python" source="~/foundry-local-main/samples/python/tutorial-document-summarizer/src/app.py" id="complete_code":::
 
-## Run the application
-
 Summarize a single file:
 
 ```bash

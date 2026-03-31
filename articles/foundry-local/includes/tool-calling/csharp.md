@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 ## Prerequisites
 
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later installed.
 - Azure role-based access control (RBAC): Not applicable.
 
 

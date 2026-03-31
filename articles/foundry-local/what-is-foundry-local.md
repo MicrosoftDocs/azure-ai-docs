@@ -46,6 +46,10 @@ Foundry Local is ideal for applications that need to:
 - Deliver low-latency AI responses for real-time interactions.
 - Support audio transcription without sending recordings to the cloud.
 
+## Get started
+
+Follow the [Get started with Foundry Local](get-started.md) guide to build your first on-device AI application.
+
 ## Frequently asked questions
 
 ### Is Foundry Local a web server and CLI tool?
@@ -83,9 +87,6 @@ No. Foundry Local runs entirely on local hardware. No Azure subscription is requ
 
 Foundry Local supports Windows, macOS (Apple silicon), and Linux.
 
-## Get started
-
-Follow the [Get started with Foundry Local](get-started.md) guide to build your first on-device AI application.
 
 ## Related content
 

@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 ## Prerequisites
 
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later installed.
 
 ## Samples repository
 
@@ -34,8 +34,6 @@ Copy and paste the following code into a C# file named `Program.cs`:
 :::code language="csharp" source="~/foundry-local-main/samples/cs/audio-transcription-example/Program.cs" id="complete_code":::
 
 The sample includes a `Recording.mp3` file. To transcribe a different audio file, pass the file path as an argument.
-
-## Run the application
 
 ```bash
 dotnet run

@@ -75,8 +75,6 @@ Create a file named `index.js` and add the following complete code:
 
 :::code language="javascript" source="~/foundry-local-main/samples/js/tutorial-chat-assistant/app.js" id="complete_code":::
 
-## Run the application
-
 Run the chat assistant:
 
 ```bash

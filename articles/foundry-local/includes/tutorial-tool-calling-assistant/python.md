@@ -66,8 +66,6 @@ Create a file named `main.py` and add the following complete code:
 
 :::code language="python" source="~/foundry-local-main/samples/python/tutorial-tool-calling/src/app.py" id="complete_code":::
 
-## Run the application
-
 Run the tool-calling assistant:
 
 ```bash

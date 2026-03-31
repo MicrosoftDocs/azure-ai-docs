@@ -53,8 +53,6 @@ Replace the contents of `Program.cs` with the following complete code that trans
 > [!NOTE]
 > Replace `"meeting-notes.wav"` with the path to your audio file. Supported formats include WAV, MP3, and FLAC.
 
-## Run the application
-
 Run the note taker:
 
 ```bash
