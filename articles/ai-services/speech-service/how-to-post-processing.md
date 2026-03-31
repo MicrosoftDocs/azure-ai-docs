@@ -36,7 +36,7 @@ zone_pivot_groups: programming-languages-speech-services
 ::: zone-end
 
 ::: zone pivot="programming-language-objectivec"
-[!INCLUDE [ObjectiveC include](includes/how-to/post-processing/objectivec.md)]
+[!INCLUDE [Objective-C include](includes/how-to/post-processing/objective-c.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-swift"
