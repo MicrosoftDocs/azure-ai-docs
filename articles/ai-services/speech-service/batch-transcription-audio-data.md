@@ -7,9 +7,10 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 12/19/2025
+ms.date: 03/30/2026
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-azurecli
+ai-usage: ai-assisted
 # Customer intent: As a user who implements audio transcription, I want to learn how to locate audio files for batch transcription.
 ---
 
@@ -245,7 +246,8 @@ Follow these steps to generate a SAS URL that you can use for batch transcriptio
 1. Complete the steps in [Azure Blob Storage upload](#upload-to-azure-blob-storage) to create a Storage account and upload audio files to a new container.
 1. Select the new container.
 1. In the **Settings** group in the left pane, select **Shared access tokens**.
-1. Select **+ Container**.
+    > [!NOTE]
+    > Make sure you navigate to the container first *before* opening **Shared access tokens**, so the token is scoped to that container.
 1. Select **Read** and **List** for **Permissions**.
 
     :::image type="content" source="media/storage/storage-container-shared-access-signature.png" alt-text="Screenshot of the container SAS URI permissions.":::
