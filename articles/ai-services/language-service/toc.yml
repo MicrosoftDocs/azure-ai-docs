@@ -31,6 +31,63 @@ items:
 - name: Core capabilities
   items:
 
+  - name: Personally identifiable information (PII)
+    items:
+    - name: Overview
+      href: personally-identifiable-information/overview.md
+      displayName: personally identifiable information, document
+    - name: Quickstart
+      href: personally-identifiable-information/quickstart.md
+    - name: Language support
+      href: personally-identifiable-information/language-support.md
+    - name: Responsible use of AI
+      items:
+      - name: Transparency note for PII
+        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information.md
+        displayName: Transparency note for PII, Personally Identifiable Information transparency, Responsible AI, Responsible use of AI
+      - name: Integration and responsible use
+        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
+        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
+        displayName: Data privacy, logging, data retention
+    - name: How-to guides
+      items:
+      - name: Redact PII from text
+        href: personally-identifiable-information/how-to/redact-text-pii.md
+      - name: Redact PII from conversations
+        href: personally-identifiable-information/how-to/redact-conversation-pii.md
+      - name: Redact PII from native documents
+        href: personally-identifiable-information/how-to/redact-document-pii.md
+      - name:  Adapt PII to your domain
+        href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
+      - name: Use Docker containers
+        items:
+          - name: Install and run containers
+            href: personally-identifiable-information/how-to/use-containers.md
+          - name: Configure containers
+            href: concepts/configure-containers.md
+          - name: Use container instances
+            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+          - name: Use containers in disconnected environments
+            href: ../containers/disconnected-containers.md
+          - name: Azure AI containers overview
+            href: ../cognitive-services-container-support.md
+    - name: Recognized entity categories
+      items:
+      - name: PII in text
+        items:
+        - name: Extended format
+          href: personally-identifiable-information/concepts/entity-categories.md
+        - name: List format
+          href: personally-identifiable-information/concepts/entity-categories-list.md
+      - name: PII in conversations
+        items:
+        - name: Extended format
+          href: personally-identifiable-information/concepts/conversations-entity-categories.md
+        - name: List format
+          href: personally-identifiable-information/concepts/conversations-entities-list.md
+
   - name: Language detection
     items:
     - name: Overview
@@ -68,7 +125,7 @@ items:
         - name: Azure AI containers overview
           href: ../cognitive-services-container-support.md
 
-  - name: Named Entity Recognition
+  - name: Named entity recognition
     items:
     - name: Custom named entity recognition (CNER)
       items:
@@ -177,64 +234,7 @@ items:
           href: named-entity-recognition/tutorials/extract-excel-information.md
           displayName: excel integration, power automate, ner automation, extract entities
 
-  - name: Personally identifiable information (PII) recognition
-    items:
-    - name: Overview
-      href: personally-identifiable-information/overview.md
-      displayName: personally identifiable information, document
-    - name: Quickstart
-      href: personally-identifiable-information/quickstart.md
-    - name: Language support
-      href: personally-identifiable-information/language-support.md
-    - name: Responsible use of AI
-      items:
-      - name: Transparency note for PII
-        href: ../../ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information.md
-        displayName: Transparency note for PII, Personally Identifiable Information transparency, Responsible AI, Responsible use of AI
-      - name: Integration and responsible use
-        href: ../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md
-        displayName: Responsible deployment, Responsible use, Responsible integration, AI deployment, AI use
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
-        displayName: Data privacy, logging, data retention
-    - name: How-to guides
-      items:
-      - name: Redact PII from text
-        href: personally-identifiable-information/how-to/redact-text-pii.md
-      - name: Redact PII from conversations
-        href: personally-identifiable-information/how-to/redact-conversation-pii.md
-      - name: Redact PII from native documents
-        href: personally-identifiable-information/how-to/redact-document-pii.md
-      - name:  Adapt PII to your domain
-        href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
-      - name: Use Docker containers
-        items:
-          - name: Install and run containers
-            href: personally-identifiable-information/how-to/use-containers.md
-          - name: Configure containers
-            href: concepts/configure-containers.md
-          - name: Use container instances
-            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-          - name: Use containers in disconnected environments
-            href: ../containers/disconnected-containers.md
-          - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
-    - name: Recognized entity categories
-      items:
-      - name: PII in text
-        items:
-        - name: Extended format
-          href: personally-identifiable-information/concepts/entity-categories.md
-        - name: List format
-          href: personally-identifiable-information/concepts/entity-categories-list.md
-      - name: PII in conversations
-        items:
-        - name: Extended format
-          href: personally-identifiable-information/concepts/conversations-entity-categories.md
-        - name: List format
-          href: personally-identifiable-information/concepts/conversations-entities-list.md
-
-  - name: Text Analytics for health
+  - name: Text analytics for health
     items:
     - name: Overview
       href: text-analytics-for-health/overview.md
@@ -281,7 +281,7 @@ items:
 
 - name: Legacy capabilities
   items:
-  - name: "Conversational language understanding (CLU)"
+  - name: Conversational language understanding (CLU)
     items:
     - name: Overview
       href: conversational-language-understanding/overview.md
@@ -590,7 +590,6 @@ items:
           href: entity-linking/how-to/call-api.md
           displayName: entity linking, entity recognition
 
-
   - name: Key phrase extraction
     items:
     - name: Overview
@@ -632,8 +631,6 @@ items:
       - name: Integrate Power BI
         href: key-phrase-extraction/tutorials/integrate-power-bi.md
         displayName: business intelligence, data visualization
-
-
 
   - name: Orchestration workflow
     items:
@@ -692,7 +689,6 @@ items:
       - name: Glossary
         href: orchestration-workflow/glossary.md
 
-
   - name: Sentiment analysis and opinion mining
     items:
       - name: Overview
@@ -733,7 +729,6 @@ items:
         items:
         - name: Use Flask to translate text, analyze sentiment, and synthesize speech
           href: /training/modules/python-flask-build-ai-web-app/
-
 
   - name: Summarization
     items:
@@ -778,9 +773,7 @@ items:
           href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
           displayName: Data privacy, logging, data retention
 
-
-
-- name: Concepts
+- name: Azure Language concepts
   items:
   - name: Developer guide
     href: concepts/developer-guide.md
@@ -919,7 +912,6 @@ items:
           href: https://aka.ms/sdk-samples-conversation-python
         - name: Azure.AI.Language.QuestionAnswering namespace
           href: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/cognitivelanguage/azure-ai-language-questionanswering
-
 
 - name: Resources
   items:

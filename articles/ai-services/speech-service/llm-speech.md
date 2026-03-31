@@ -26,12 +26,6 @@ LLM speech is powered by a large-language-model-enhanced speech model that deliv
 
 ::: zone-end
 
-::: zone pivot="programming-language-csharp"
-
-[!INCLUDE [C# SDK quickstart](includes/common/llm-speech-sdk-csharp.md)]
-
-::: zone-end
-
 ::: zone pivot="programming-language-rest"
 
 [!INCLUDE [REST API quickstart](includes/common/llm-speech-rest-api.md)]
@@ -41,6 +35,13 @@ LLM speech is powered by a large-language-model-enhanced speech model that deliv
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python SDK quickstart](includes/common/llm-speech-sdk-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+
+[!INCLUDE [C# SDK quickstart](includes/common/llm-speech-sdk-csharp.md)]
 
 ::: zone-end
 
