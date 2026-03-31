@@ -3,7 +3,7 @@ title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
 description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry."
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 02/10/2026
+ms.date: 03/31/2026
 ms.author: jburchel
 author: jonburchel
 ms.reviewer: dantaylo
@@ -175,9 +175,7 @@ Start by running the agent so you see working functionality before diving into i
 
    ```text
    azure-ai-projects>=2.0.0
-   azure-identity
    python-dotenv
-   openai
    ```
 
 1. Install dependencies:
@@ -220,8 +218,8 @@ Create a `.env` file in the `ModernWorkplaceAssistant` directory.
 
 ```dotenv
 # Foundry configuration
-PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
-MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+FOUNDRY_PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+FOUNDRY_MODEL_NAME=gpt-4o-mini
 
 # The Microsoft Learn MCP Server (optional)
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
@@ -234,8 +232,8 @@ SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
 
 ```dotenv
 # Foundry configuration
-PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
-MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+FOUNDRY_PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+FOUNDRY_MODEL_NAME=gpt-4o-mini
 
 # SharePoint integration (optional - requires connection name)
 SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
@@ -246,7 +244,7 @@ MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 
 ---
 
-   Confirm `.env` contains valid values by opening the file and verifying that `PROJECT_ENDPOINT` starts with `https://` and `MODEL_DEPLOYMENT_NAME` matches the name of a deployed model in your project.
+   Confirm `.env` contains valid values by opening the file and verifying that `FOUNDRY_PROJECT_ENDPOINT` starts with `https://` and `FOUNDRY_MODEL_NAME` matches the name of a deployed model in your project.
 
 > [!TIP]
 > To get your **tenant ID**, run:
@@ -658,7 +656,7 @@ You can also view detailed results in the Foundry portal by selecting **Evaluati
 | Symptom | Cause | Resolution |
 |---------|-------|------------|
 | `DefaultAzureCredential` authentication error | Azure CLI session expired or not signed in | Run `az login` and retry |
-| `Model deployment not found` | Model name in `.env` doesn't match a deployment in your project | Open your project in the Foundry portal, check **Deployments**, and update `MODEL_DEPLOYMENT_NAME` in `.env` |
+| `Model deployment not found` | Model name in `.env` doesn't match a deployment in your project | Open your project in the Foundry portal, check **Deployments**, and update `FOUNDRY_MODEL_NAME` in `.env` |
 | `SharePoint tool configured` but agent can't find documents | Documents not uploaded or connection name incorrect | Verify documents appear in the SharePoint library and that `SHAREPOINT_CONNECTION_NAME` matches the connection in your project |
 | MCP tool timeout or connection error | Microsoft Learn MCP server is unreachable | Verify `MCP_SERVER_URL` is set to `https://learn.microsoft.com/api/mcp` and that your network allows outbound HTTPS |
 | `403 Forbidden` on SharePoint | Insufficient permissions on the SharePoint site | Confirm your signed-in identity has at least **Read** access to the SharePoint document library |
