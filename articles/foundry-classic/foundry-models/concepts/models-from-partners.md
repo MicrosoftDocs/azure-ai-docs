@@ -38,7 +38,7 @@ To learn more about attributes of Foundry Models from partners and community, se
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
     > [!IMPORTANT]
     > The following Azure subscriptions can't be used to purchase software as a service (SaaS) offers in Marketplace: Student, Visual Studio Enterprise, or Free credit. For more information on purchasing SaaS offers, see [The SaaS purchase experience](/marketplace/purchase-saas-offer-in-azure-portal#the-saas-purchase-experience).

@@ -119,7 +119,7 @@ As a service administrator, you can create and configure a search service, and p
 
 #### [**Azure portal**](#tab/roles-portal-admin)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Select **Access Control (IAM)** in the left pane.
 
@@ -170,7 +170,7 @@ Another combination of roles that provides full access is Contributor or Owner, 
 
 #### [**Azure portal**](#tab/roles-portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Select **Access Control (IAM)** in the left pane.
 
@@ -229,7 +229,7 @@ This section provides basic steps for setting up the role assignment and is here
 
 #### [**Azure portal**](#tab/roles-portal-query)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Select **Access Control (IAM)** in the left pane.
 
@@ -291,9 +291,7 @@ Use a client to test role assignments. Remember that roles are cumulative. You c
 
 ### [**Azure portal**](#tab/test-portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. Navigate to your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the Overview page, select the **Indexes** tab:
 

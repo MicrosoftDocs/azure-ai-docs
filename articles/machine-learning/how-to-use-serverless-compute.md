@@ -32,7 +32,7 @@ You can use serverless compute to fine-tune models in the model catalog. You can
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com//pricing/purchase-options/azure-account?cid=msft_learn).
 - An [Azure Machine Learning workspace](how-to-manage-workspace.md).
 - The Azure CLI with the `ml` extension, or the Azure Machine Learning Python SDK v2:
 

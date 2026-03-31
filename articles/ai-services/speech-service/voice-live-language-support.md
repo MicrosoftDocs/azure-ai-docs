@@ -153,9 +153,6 @@ Multimodal models don't require a language configuration for the general process
 }
 ```
 
-> [!NOTE]
-> Multimodal gpt models only support the following transcription models: `whisper-1`, `gpt-4o-transcribe`, and `gpt-4o-mini-transcribe`.
-
 ### phi4-mm-realtime supported languages
 
 The following languages are supported by `phi4-mm-realtime`:

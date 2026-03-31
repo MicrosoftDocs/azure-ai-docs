@@ -61,7 +61,7 @@ Use Cost Management meter data and service metrics to reconcile billed usage, an
 
 Track your Foundry spending using cost analysis tools. You can view costs by day, month, or year, compare against budgets, and identify spending trends.
 
-Access cost information from the [!INCLUDE [classic-link](../../foundry/includes/classic-link.md)] portal or the [Azure portal](https://portal.azure.com/).
+Access cost information from the [!INCLUDE [foundry-link](../../foundry/includes/foundry-link.md)] portal or the [Azure portal](https://portal.azure.com/).
 **Reference:** [Cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis)
 
 > [!IMPORTANT]

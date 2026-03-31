@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -31,12 +31,12 @@ When you enable Code Interpreter, your agent can write and run Python code itera
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - Basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md) for details.
-- Latest SDK package installed for your language. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
+- Latest SDK package installed for your language. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
 - Azure AI model deployment configured in your project.
 - For file operations: CSV or other supported files to upload for analysis.
 
@@ -355,7 +355,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

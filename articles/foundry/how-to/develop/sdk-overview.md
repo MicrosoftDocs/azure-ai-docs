@@ -37,19 +37,11 @@ This approach simplifies application configuration. Instead of managing multiple
 
 ### Install the SDK
 
-> [!NOTE]
-> **SDK versions:** The 2.x preview SDK targets the new Foundry portal and API. The 1.x GA SDK targets Foundry classic. Make sure the samples you follow match your installed package.
-
 ::: zone pivot="programming-language-python"
 
-| SDK Version   | Portal Version  | Status  | Python Package                |
-|---------------|-----------------|---------|-------------------------------|
-| 2.x (GA) | Foundry (new)   | Preview | `azure-ai-projects>=2.0.0`  |
-| 1.x (GA)      | Foundry classic | Stable  | `azure-ai-projects==1.0.0`    |
+[!INCLUDE [sdk-overview-python](../../includes/sdk/sdk-overview-python.md)]
 
-The [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
-
-Run this command to install the preview packages for Foundry projects.
+Run this command to install the packages for Foundry projects.
 ```bash
 pip install azure-ai-projects >=2.0.0
 ```
@@ -235,7 +227,7 @@ Console.WriteLine(response.GetOutputText());
 - [Access Foundry Models](../../quickstarts/get-started-code.md), including Azure OpenAI
 - [Use the Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
 - [Run batch evaluations](cloud-evaluation.md)
-- [Enable app tracing](../../../foundry-classic/how-to/develop/trace-application.md)
+- [Enable app tracing](../../observability/how-to/trace-agent-setup.md)
 - [Fine-tune a model](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai&pivots=programming-language-python)
 - Get endpoints and keys for Foundry Tools, local orchestration, and more
 

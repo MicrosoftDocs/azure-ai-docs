@@ -85,7 +85,7 @@ This quickstart uses sample JSON documents from NASA's Earth at Night e-book, bu
 
 To prepare the sample data for this quickstart:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Blob Storage account.
+1. Go to your Azure Storage account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Data storage** > **Containers**.
 
@@ -101,7 +101,7 @@ You also configure a *vectorizer*, which uses your deployed embedding model to c
 
 To create the knowledge source for this quickstart:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Agentic retrieval** > **Knowledge sources**.
 

@@ -30,7 +30,7 @@ In this quickstart, you deploy a containerized AI agent with Foundry tools to Fo
 
 Before you begin, you need:
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/)
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * (Optional) An [MCP tool](../how-to/tools/model-context-protocol.md), if you have one you want to use.
 * [Python 3.10 or later](https://www.python.org/downloads/)
 

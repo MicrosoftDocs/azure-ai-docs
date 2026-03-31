@@ -6,13 +6,14 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 03/06/2026
+ms.date: 03/27/2026
 ms.author: lajanuar
 ms.custom: references_regions
 ---
-# Language supported regions
+<!-- markdownlint-disable MD025 -->
+# Azure Language region support
 
-The Language is available for use in several Azure regions. Use this article to learn about the regional support and limitations.
+The Azure Language features are available for use in several Azure regions. Use this article to learn about the regional support and limitations.
 
 ## Region support overview
 
@@ -160,6 +161,8 @@ Custom text classification is only available in some Azure regions. Some regions
 |WestUS3|✓|✓|
 
 ## Summarization
+
+[!INCLUDE [availability](../summarization/includes/regional-availability.md)]
 
 |Region                |Text abstractive summarization|Conversation summarization               |
 |----------------------|------------------------------|-----------------------------------------|

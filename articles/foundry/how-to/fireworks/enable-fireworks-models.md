@@ -28,7 +28,7 @@ All of these capabilities are available directly within your Foundry project, wi
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
 * To deploy models, you need the **Azure AI Owner** role on the Foundry project. For more information, see [Azure built-in roles](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).

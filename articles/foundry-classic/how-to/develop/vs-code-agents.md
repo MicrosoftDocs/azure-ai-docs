@@ -26,7 +26,7 @@ ms.custom: doc-kit-assisted
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to [Foundry Agent Service](../../agents/overview.md).
 - [Visual Studio Code](https://code.visualstudio.com/) installed.
 - The [Microsoft Foundry for VS Code extension](./get-started-projects-vs-code.md) installed and signed in.

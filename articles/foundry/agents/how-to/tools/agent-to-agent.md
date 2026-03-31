@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -33,21 +33,21 @@ The following table shows SDK and setup support. ✔️ (GA) indicates general a
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - An Azure subscription with an active Foundry project.
-- A model deployment (for example, `gpt-5-mini`) in your Foundry project.
+- A model deployment (for example, `gpt-4.1-mini`) in your Foundry project.
 - Required Azure role: On the Foundry resource, **Contributor** or **Owner** for management and **Azure AI User** for building an agent.
 - SDK installation:
   - Python (GA): `pip install "azure-ai-projects>=2.0.0"`
   - C# (Preview): `Azure.AI.Projects` prerelease NuGet package
   - TypeScript (GA): `@azure/ai-projects` npm package
-  - Java (Preview): `com.azure:azure-ai-agents:2.0.0-beta.3` Maven dependency
+  - Java: `com.azure:azure-ai-agents:2.0.0` Maven dependency
 - Values to update in code:
   - Project endpoint URL (for example, `https://<resource>.ai.azure.com/api/projects/<project>`).
-  - Model deployment name (for example, `gpt-5-mini`).
+  - Model deployment name (for example, `gpt-4.1-mini`).
   - A2A connection name (created in the Foundry portal).
   - A2A base URI (optional, only needed for non-`RemoteA2A` connections).
 - An A2A connection configured in your Foundry project. For connection setup and REST examples, see [Create an A2A connection](#create-an-a2a-connection).
@@ -78,7 +78,7 @@ Use your connection name in code. Your code uses this name to retrieve the full 
 ## Code example
 
 > [!NOTE]
-> The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 
 :::zone pivot="python"
 ## Create an agent with the A2A tool
@@ -112,7 +112,7 @@ tool = A2APreviewTool(
 agent = project.agents.create_version(
     agent_name=AGENT_NAME,
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant.",
         tools=[tool],
     ),
@@ -187,7 +187,7 @@ if (!string.Equals(a2aConnection.Type.ToString(), "RemoteA2A"))
     // if the connection is not of a RemoteA2A type.
     a2aTool.BaseUri = new Uri(a2aBaseUri);
 }
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { a2aTool }
@@ -455,7 +455,7 @@ export async function main(): Promise<void> {
   // Create the agent with A2A tool
   const agent = await project.agents.createVersion("MyA2AAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: "You are a helpful assistant.",
     // Define A2A tool for agent-to-agent communication
     tools: [
@@ -546,7 +546,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -584,7 +584,7 @@ public class AgentToAgentExample {
             .setProjectConnectionId(a2aConnectionId);
 
         // Create agent with agent-to-agent tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a coordinator agent that can communicate with other agents.")
             .setTools(Collections.singletonList(a2aTool));
 

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -31,18 +31,18 @@ Ground your Foundry agent's responses in your proprietary content by connecting 
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
 
 ## Prerequisites
 
 *Estimated setup time: 15-30 minutes if you have an existing search index*
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
-- Install the SDK package for your preferred language. C# and Java require the prerelease version. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+- Install the SDK package for your preferred language. C# requires the prerelease version. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
   - **C#**: Install the `Azure.AI.Projects` NuGet package (prerelease)
   - **JavaScript/TypeScript**: `npm install @azure/ai-projects`
-  - **Java**: Add the `com.azure:azure-ai-agents:2.0.0-beta.3` dependency to your `pom.xml`
+  - **Java**: Add the `com.azure:azure-ai-agents:2.0.0` dependency to your `pom.xml`
 - An Azure subscription and Microsoft Foundry project with:
   - Project endpoint
   - Model deployment name
@@ -70,7 +70,7 @@ Ground your Foundry agent's responses in your proprietary content by connecting 
 ## Code example
 
 > [!NOTE]
-> - You need the latest SDK package. C# and Java require the prerelease version. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
+> - You need the latest SDK package. C# requires the prerelease version. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 > - If you're using the REST sample, the connection ID is in the format `/subscriptions/{{subscriptionId}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{connectionName}}`.
 > - If you're using the Python, C#, or TypeScript sample, you can provide the connection name and retrieve the connection ID with the SDK.
 
@@ -107,7 +107,7 @@ connection_id = azs_connection.id
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="""You are a helpful assistant. You must always provide citations for
         answers using the tool and render them as: `[message_idx:search_idx†source]`.""",
         tools=[
@@ -209,7 +209,7 @@ AzureAISearchToolIndex index = new()
 };
 
 // Create the agent definition with the Azure AI Search tool.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
     Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
@@ -291,7 +291,7 @@ AzureAISearchToolIndex index = new()
 };
 
 // Create the agent definition with the Azure AI Search tool.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
     Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
@@ -428,7 +428,7 @@ export async function main(): Promise<void> {
   // Define Azure AI Search tool that searches indexed content
   const agent = await project.agents.createVersion("MyAISearchAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions:
       "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `[message_idx:search_idx†source]`.",
     tools: [
@@ -528,7 +528,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -571,7 +571,7 @@ public class AzureAISearchExample {
         );
 
         // Create agent with AI Search tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a helpful assistant that can search through indexed documents. "
                 + "Always provide citations for answers using the tool.")
             .setTools(Collections.singletonList(aiSearchTool));
