@@ -15,7 +15,7 @@ ms.custom:
 
 Azure AI Search automatically encrypts data at rest with [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). 
 
-Enabling customer‑managed keys (CMK) adds an additional layer on top of the default Microsoft‑managed encryption. By adding an additional CMK layer, you control the encryption keys used to protect your data, including the ability to:
+Enabling customer‑managed keys (CMK) adds an additional layer on top of the default encryption at rest when using Microsoft-managed keys. When you enable CMK, you control the encryption keys used to protect your data, including the ability to:
 
 - Rotate keys on a customer‑defined schedule
 - Disable or revoke keys to immediately block access to encrypted content
