@@ -37,6 +37,8 @@ This approach simplifies application configuration. Instead of managing multiple
 
 ### Install the SDK
 
+::: zone pivot="programming-language-python"
+
 [!INCLUDE [sdk-overview-python](../../includes/sdk/sdk-overview-python.md)]
 
 Run this command to install the packages for Foundry projects.
