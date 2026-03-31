@@ -12,6 +12,6 @@ ms.author: emilyjiji
 
 **Example:** To enable TrueText post-processing:
 
-```csharp
-speechConfig.SetProperty(PropertyId.SpeechServiceResponse_PostProcessingOption, "TrueText");
+```objc
+[speechConfig setPropertyTo:@"TrueText" byId:SPXSpeechServiceResponsePostProcessingOption];
 ```

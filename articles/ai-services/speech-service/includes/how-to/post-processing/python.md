@@ -12,6 +12,6 @@ ms.author: emilyjiji
 
 **Example:** To enable TrueText post-processing:
 
-```csharp
-speechConfig.SetProperty(PropertyId.SpeechServiceResponse_PostProcessingOption, "TrueText");
+```python
+speech_config.set_property(property_id=speechsdk.PropertyId.SpeechServiceResponse_PostProcessingOption, value="TrueText")
 ```
