@@ -33,7 +33,7 @@ Azure OpenAI provides customers with a fully managed Foundry Tool that lets deve
 | GPT-4o </br>GPT-4o-mini | ✅ | ✅ | ✅ |
 | GPT-4.1</br>GPT-4.1-mini</br>GPT-4.1-nano | ✅ | ✅ |  |
 | GPT-4.5 | ✅ | ✅ |  |
-| GPT-5 | ✅ | ✅ |  |
+| GPT-5 series | ✅ | ✅ |  |
 | GPT-5.1-Codex-Max | ✅ | ✅ |  |
 | GPT-oss-120b | ✅ |  |  |
 | GPT-Realtime series | ✅ | ✅ | ✅ |
@@ -50,7 +50,7 @@ Select the tabs to see content for the relevant model type.
 
 #### [Text, code, and fine-tuned models](#tab/text)
 
-As part of the fully managed Azure OpenAI Service, the **GPT-3** models analyze and generate natural language, Codex models analyze and generate code and plain text code commentary, and **GPT-4** and **reasoning models** (including o-series models and GPT-5) can understand and generate natural language and code. These models use an autoregressive architecture, meaning they use data from prior observations to predict the most probable next word. This process is then repeated by appending the newly generated content to the original text to produce the complete generated response. Because the response is conditioned on the input text, these models can be applied to various tasks simply by changing the input text.
+As part of the fully managed Azure OpenAI Service, the **GPT-3** models analyze and generate natural language, Codex models analyze and generate code and plain text code commentary, and **GPT-4** and **reasoning models** (including o-series models and GPT-5 series) can understand and generate natural language and code. These models use an autoregressive architecture, meaning they use data from prior observations to predict the most probable next word. This process is then repeated by appending the newly generated content to the original text to produce the complete generated response. Because the response is conditioned on the input text, these models can be applied to various tasks simply by changing the input text.
 
 The GPT-3 series of models are pretrained on a wide body of publicly available free text data. This data is sourced from a combination of web crawling (specifically, a filtered version of [Common Crawl](https://commoncrawl.org/the-data/), which includes a broad range of text from the internet and comprises 60 percent of the weighted pretraining dataset) and higher-quality datasets, including an expanded version of the WebText dataset, two internet-based books corpora, and English-language Wikipedia. The GPT-4 base model was trained using publicly available data (such as internet data) and data that was licensed by OpenAI. The model was fine-tuned using reinforcement learning with human feedback (RLHF).
 
@@ -516,7 +516,7 @@ To help mitigate the risks associated with advanced fine-tuned models, we have i
 - Reasoning models are best suited for use cases that involve heavy reasoning and may not perform well on some natural language tasks such as personal or creative writing when compared to earlier AOAI models. 
 - The new reasoning capabilities may increase certain types of risks, requiring refined methods and approaches towards risk management protocols and evaluating and monitoring system behavior. For example, o1's CoT reasoning capabilities have demonstrated improvements in persuasiveness, and simple in-context scheming.  
 - Users may experience that the reasoning family of models takes more time to reason through responses and should account for the additional time and latency in developing applications.
-- **Psychological influences**: If prompted and in certain circumstances, GPT-5 Reasoning in Azure OpenAI may produce outputs that suggest emotions, thoughts, or physical presence. The model could offer advice without full context, which may be unsuitable for some users. The model might express affection, impersonate others, or encourage ongoing interaction—potentially leading to users forming social relationships with AI. Developers using GPT-5 should implement safeguards and disclose risks for users of their applications. For example, users should be notified that they are interacting with an AI system and be informed of such psychological risks.
+- **Psychological influences**: If prompted and in certain circumstances, GPT-5 series Reasoning in Azure OpenAI may produce outputs that suggest emotions, thoughts, or physical presence. The model could offer advice without full context, which may be unsuitable for some users. The model might express affection, impersonate others, or encourage ongoing interaction—potentially leading to users forming social relationships with AI. Developers using GPT-5 series should implement safeguards and disclose risks for users of their applications. For example, users should be notified that they are interacting with an AI system and be informed of such psychological risks.
 
 For greater detail on these limitations, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/), and [GPT-5 System Card](https://openai.com/index/gpt-5-system-card/). 
 
