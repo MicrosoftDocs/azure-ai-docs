@@ -16,9 +16,10 @@ ai-usage: ai-assisted
 
 ## Samples repository
 
-[!INCLUDE [samples-repo](../samples-repo.md)]
+The complete sample code for this article is available in the [Foundry Local GitHub repository](https://github.com/microsoft/Foundry-Local). To clone the repository and navigate to the sample use:
 
 ```bash
+git clone https://github.com/microsoft/Foundry-Local.git
 cd Foundry-Local/samples/cs/native-chat-completions
 ```
 
