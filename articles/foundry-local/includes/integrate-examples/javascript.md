@@ -33,15 +33,6 @@ cd js/web-server-example
 
 ## Use OpenAI SDK with Foundry Local
 
-The following example demonstrates how to use the OpenAI SDK with Foundry Local's optional web service that is compatible with the OpenAI API. The code includes the following steps:
-
-1. Initializes a `FoundryLocalManager` instance with a configuration that includes the web service URL.
-1. Gets a `Model` object from the model catalog using an alias.
-1. Downloads and loads the model variant.
-1. Starts the Foundry Local web service.
-1. Uses the OpenAI SDK to generate a chat completion.
-1. Unloads the model and stops the web service.
-
 Copy-and-paste the following code into a JavaScript file named `app.js`:
 
 :::code language="javascript" source="~/foundry-local-main/samples/js/web-server-example/app.js" id="complete_code":::

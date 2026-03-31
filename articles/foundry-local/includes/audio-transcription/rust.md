@@ -29,15 +29,7 @@ cd rust/audio-transcription-example
 
 ## Transcribe an audio file
 
-The following example demonstrates how to use the native audio transcription API in Foundry Local. The code includes the following steps:
-
-1. Creates a `FoundryLocalManager` instance with a `FoundryLocalConfig`.
-1. Gets a `Model` object from the model catalog using an alias. Foundry Local automatically selects the best variant for the model based on the available hardware of the host machine.
-1. Downloads and loads the model variant.
-1. Uses the native audio transcription API to transcribe an audio file.
-1. Unloads the model.
-
-Replace the contents of `src/main.rs` with the following code:
+Replace the contents of `main.rs` with the following code:
 
 :::code language="rust" source="~/foundry-local-main/samples/rust/audio-transcription-example/src/main.rs" id="complete_code":::
 

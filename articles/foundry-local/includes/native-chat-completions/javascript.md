@@ -29,14 +29,6 @@ cd js/native-chat-completions
 
 ## Use native chat completions API
 
-The following example demonstrates how to use the native chat completions API in Foundry Local. The benefit of using the native chat completions API is there's no need for a REST web server running and therefore it provides a simplified deployment. The code includes the following steps:
-
-1. Initializes a `FoundryLocalManager` instance with a configuration.
-1. Gets a `Model` object from the model catalog using an alias.
-1. Downloads and loads the model variant.
-1. Uses the native chat completions API to generate a response.
-1. Unloads the model.
-
 Copy and paste the following code into a JavaScript file named `app.js`:
 
 :::code language="javascript" source="~/foundry-local-main/samples/js/native-chat-completions/app.js" id="complete_code":::

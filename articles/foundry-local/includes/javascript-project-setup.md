@@ -8,20 +8,18 @@ ms.topic: include
 ms.date: 05/19/2025
 ms.custom: include file
 ---
-
-### [Windows](#tab/windows)
-
-```bash
-npm install foundry-local-sdk-winml openai
-```
-
-> [!NOTE]
-> The Windows package uses the Windows Machine Learning (WinML) framework for hardware acceleration and automatic execution provider management.
+For additional hardware acceleration on Windows, select the WinML tab:
 
 ### [Cross-Platform](#tab/xplatform)
 
 ```bash
 npm install foundry-local-sdk openai
+```
+
+### [WinML](#tab/windows)
+
+```bash
+npm install foundry-local-sdk-winml openai
 ```
 
 ---

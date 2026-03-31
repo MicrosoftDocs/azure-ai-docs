@@ -36,15 +36,6 @@ cd python/web-server
 
 ## Use OpenAI SDK with Foundry Local
 
-The following example demonstrates how to use the OpenAI SDK with Foundry Local. The code includes the following steps:
-
-1. Initializes a `FoundryLocalManager` instance with a `Configuration`.
-1. Gets a `Model` object from the model catalog using an alias.
-1. Downloads and loads the model variant.
-1. Starts the Foundry Local web service to expose an OpenAI-compatible REST endpoint.
-1. Uses the OpenAI SDK to generate a streaming chat completion.
-1. Cleans up by unloading the model and stopping the web service.
-
 Copy-and-paste the following code into a Python file named `app.py`:
 
 :::code language="python" source="~/foundry-local-main/samples/python/web-server/src/app.py" id="complete_code":::

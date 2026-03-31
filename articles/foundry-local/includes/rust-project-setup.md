@@ -10,21 +10,20 @@ ms.custom: include file
 ai-usage: ai-assisted
 ---
 
-### [Windows](#tab/windows)
-
-```bash
-cargo add foundry-local-sdk --features winml
-cargo add tokio --features full
-cargo add tokio-stream anyhow
-```
-
-> [!NOTE]
-> The `winml` feature uses the Windows Machine Learning (WinML) framework for hardware acceleration and automatic execution provider management.
+For additional hardware acceleration on Windows, select the WinML tab:
 
 ### [Cross-Platform](#tab/xplatform)
 
 ```bash
 cargo add foundry-local-sdk
+cargo add tokio --features full
+cargo add tokio-stream anyhow
+```
+
+### [WinML](#tab/windows)
+
+```bash
+cargo add foundry-local-sdk --features winml
 cargo add tokio --features full
 cargo add tokio-stream anyhow
 ```

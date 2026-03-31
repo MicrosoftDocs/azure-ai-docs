@@ -9,20 +9,19 @@ ms.date: 05/19/2025
 ms.custom: include file
 ---
 
-### [Windows](#tab/windows)
-
-```bash
-dotnet add package Microsoft.AI.Foundry.Local.WinML
-dotnet add package OpenAI
-```
-
-> [!NOTE]
-> The Windows package uses the Windows Machine Learning (WinML) framework for hardware acceleration and automatic execution provider management.
+For additional hardware acceleration on Windows, select the WinML tab:
 
 ### [Cross-Platform](#tab/xplatform)
 
 ```bash
 dotnet add package Microsoft.AI.Foundry.Local
+dotnet add package OpenAI
+```
+
+### [WinML](#tab/windows)
+
+```bash
+dotnet add package Microsoft.AI.Foundry.Local.WinML
 dotnet add package OpenAI
 ```
 
