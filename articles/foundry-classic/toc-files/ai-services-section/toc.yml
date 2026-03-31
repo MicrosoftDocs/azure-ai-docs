@@ -172,5 +172,7 @@ items:
   href: ../../../ai-services/diagnostic-logging.md?context=/azure/foundry-classic/context/context
 - name: Purchase commitment tier pricing
   href: ../../../ai-services/commitment-tier.md
+- name: Azure built-in policy
+  href: ../../../ai-services/policy-reference.md
 - name: Custom subdomains for Foundry Tools
   href: ../../../ai-services/cognitive-services-custom-subdomains.md
