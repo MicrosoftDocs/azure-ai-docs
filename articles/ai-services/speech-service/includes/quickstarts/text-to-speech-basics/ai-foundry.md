@@ -4,9 +4,8 @@ ms.service: azure-ai-speech
 ms.custom:
   - ignite-2025
 ms.topic: include
-ms.date: 3/30/2026
+ms.date: 11/05/2025
 ms.author: pafarley
-ai-usage: ai-assisted
 ---
 
 In this quickstart, try out the text to speech model from Azure Speech in Foundry Tools, using [!INCLUDE [foundry-link](../../../../../foundry/includes/foundry-link.md)]. 
@@ -23,7 +22,10 @@ Try text to speech in the Foundry portal by following these steps:
 #### [Foundry (new) portal](#tab/new-foundry)
 
 
-1. Go to the [Text to speech feature page](https://aka.ms/foundry-text-to-speech) and select **Open in playground**.
+1. [!INCLUDE [foundry-sign-in](../../../../../foundry/includes/foundry-sign-in.md)] 
+1. Select **Build** from the top right menu.
+1. Select **Models** on the left pane. 
+1. The **AI Services** tab shows the Azure AI models that can be used out of the box in the Foundry portal. Select **Azure Speech - Text to Speech** to open the Text to Speech playground.
 1. Choose a prebuilt voice from the dropdown menu, and optionally tune it with the provider parameter sliders.
 1. Enter your sample text in the text box.
 1. Select **Play** to hear the synthetic voice read your text.

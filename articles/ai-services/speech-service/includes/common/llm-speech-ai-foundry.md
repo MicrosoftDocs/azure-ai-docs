@@ -2,7 +2,7 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 03/30/2026
+ms.date: 03/24/2026
 ms.author: pafarley
 ai-usage: ai-assisted
 ---
@@ -18,7 +18,10 @@ You can try LLM speech in [Microsoft Foundry](https://ai.azure.com/?cid=learnDoc
 
 #### [Foundry (new) portal](#tab/new-foundry)
 
-1. Go to the [Speech to text feature page](https://aka.ms/foundry-speech-to-text) and select **Open in playground**.
+1. [!INCLUDE [foundry-sign-in](../../../../foundry/includes/foundry-sign-in.md)]
+1. Select **Build** from the top right menu.
+1. Select **Models** on the left pane.
+1. The **AI Services** tab shows the Foundry models that can be used out of the box in the Foundry portal. Select **Azure Speech - Speech to text** to open the Speech to Text playground.
 1. In the top dropdown, select **LLM speech**.
 1. Optionally use the **Parameters** section to change the language, profanity policy, and other settings. You can also add special instructions for the LLM.
 1. Use the **Upload files** section to select your audio file. Then select **Start**.
