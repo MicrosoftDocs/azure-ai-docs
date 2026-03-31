@@ -85,8 +85,10 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 The [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-> [!NOTE]
-> The Java `azure-ai-projects` package doesn't have a 1.x GA release. The code samples in the Java sections use the `azure-ai-inference` package directly. For the 2.x Projects SDK, [switch to the new Foundry portal documentation](../../../foundry/how-to/develop/sdk-overview.md).
+> [!IMPORTANT]
+> The Java `azure-ai-projects` package doesn't have a 1.x GA release. The code samples in the Java sections use the `azure-ai-inference` package directly, which is being deprecated and will be retired on May 30, 2026.
+> For the 2.x Projects SDK, [switch to the new Foundry portal documentation](../../../foundry/how-to/develop/sdk-overview.md).
+
 
 Add these dependencies to your Maven `pom.xml` for Foundry classic projects.
 
@@ -145,11 +147,12 @@ Most apps use both clients. Use the project client for setup and configuration, 
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
-project = AIProjectClient(
+project_client = AIProjectClient(
     endpoint="https://<resource-name>.services.ai.azure.com/api/projects/<project-name>",
     credential=DefaultAzureCredential(),
 )
-```**Create an OpenAI-compatible client from your project:**
+```
+**Create an OpenAI-compatible client from your project:**
 
 ```python
 models = project_client.get_openai_client(api_version="2024-10-21")
@@ -228,6 +231,12 @@ console.log(chatCompletion.choices[0].message.content);
 **Create a project client:**
 
 ```csharp
+using System.ClientModel.Primitives;
+using Azure.AI.OpenAI;
+using Azure.AI.Projects;
+using Azure.Identity;
+using OpenAI.Chat;
+
 string endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
 AIProjectClient projectClient = new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential());
 ```
@@ -357,16 +366,16 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 ```javascript
 import { AzureOpenAI } from "openai";
-import { DefaultAzureCredential } from "@azure/identity";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 
-const deployment = "gpt-4o"
-const endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
+const deployment = "gpt-4o";
+const endpoint = "https://<resource-name>.openai.azure.com";
 const scope = "https://ai.azure.com/.default";
 const apiVersion = "2024-04-01-preview";
 
 const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
 
-const options = { azureADTokenProvider, deployment, apiVersion }
+const options = { azureADTokenProvider, deployment, apiVersion, endpoint };
 
 const client = new AzureOpenAI(options);
 
