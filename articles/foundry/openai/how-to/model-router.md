@@ -40,8 +40,7 @@ In the model catalog, find `model-router` in the **Models** list and select it. 
 
 ### Select a routing mode
 
-> [!NOTE]
-> Changes to the routing mode can take up to five minutes to take effect.
+[!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
 Use the **Routing mode** dropdown to select a routing profile. This sets the routing logic for your deployment.
 
@@ -52,24 +51,30 @@ Use the **Routing mode** dropdown to select a routing profile. This sets the rou
 - **Quality**: Critical tasks like legal review, medical summaries, or complex reasoning.
 - **Cost**: High-volume, budget-sensitive workloads like content classification or simple Q&A.
 
+> [!NOTE]
+> Changes to the routing mode can take up to five minutes to take effect.
+
 ### Select your model subset
 
-> [!NOTE]
-> Changes to the model subset can take up to five minutes to take effect.
+[!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
+
 
 The latest version of model router supports custom subsets: you can specify which underlying models to include in routing decisions. This gives you more control over cost, compliance, and performance characteristics. 
 
-In the model router deployment pane, select **Route to a subset of models**. Then select the underlying models you want to enable.
+In the model router deployment pane, select **Route to a subset of models**. Then select the underlying models you want to enable. You must select at least one model for routing. If no models are selected, the deployment uses the default model set for your routing mode.
 
 :::image type="content" source="media/working-with-models/model-router-model-subset.png" alt-text="Screenshot of model router subset selection.":::
+
+New models introduced later are excluded by default until explicitly added.
+
 
 > [!IMPORTANT]
 > To include models by Anthropic (Claude) in your model router deployment, you need to deploy them yourself to your Foundry resource. See [Deploy and use Claude models](/azure/ai-foundry/foundry-models/how-to/use-foundry-models-claude).
 
-> [!NOTE]
-> You must select at least one model for routing. If no models are selected, the deployment uses the default model set for your routing mode.
 
-New models introduced later are excluded by default until explicitly added.
+> [!NOTE]
+> Changes to the model subset can take up to five minutes to take effect.
+
 
 [!INCLUDE [model-router 1](../includes/how-to-model-router-1.md)]
 
@@ -86,6 +91,9 @@ In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), go to your model r
 > Starting with the `2025-11-18` version, the `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-foundry/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) is now **supported** in model router. If the model router selects a reasoning model for your prompt, it will use your `reasoning_effort` input value with the underlying model.
 
 ## Connect model router to a Foundry agent
+
+[!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
+
 
 If you've created an AI agent in Foundry, you can connect your model router deployment to be used as the agent's base model. Select it from the **model** dropdown menu in the agent playground. Your agent will have all the tools and instructions you've configured for it, but the underlying model that processes its responses will be selected by model router.
 
