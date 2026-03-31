@@ -30,12 +30,12 @@ ai-usage: ai-assisted
 [!INCLUDE [Csharp how-to](./includes/how-to/voice-live-agents/csharp.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java how-to](./includes/how-to/voice-live-agents/java.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript how-to](./includes/how-to/voice-live-agents/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java how-to](./includes/how-to/voice-live-agents/java.md)]
 ::: zone-end
 
 ## Migrate from Agent Service (classic)

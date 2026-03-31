@@ -50,15 +50,15 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-
-[!INCLUDE [Java SDK quickstart](includes/common/transcription-sdk-java.md)]
-
-::: zone-end
-
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [C# SDK quickstart](includes/common/transcription-sdk-csharp.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+[!INCLUDE [Java SDK quickstart](includes/common/transcription-sdk-java.md)]
 
 ::: zone-end
 
