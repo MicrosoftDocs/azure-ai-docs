@@ -24,15 +24,15 @@ User data never leaves the device, responses start immediately with zero network
 
 ## Features
 
-- **Curated model catalog** — A catalog of high-quality models optimized for on-device use across a wide range of consumer hardware. The catalog covers chat completions (for example, `phi-3.5-mini`, `qwen2.5-0.5b`) and audio transcription (for example, `whisper-tiny`). Every model goes through extensive quantization and compression to deliver the best balance of quality and performance. Models are versioned, so your application can pin to a specific version or automatically receive updates.
+- **Lightweight runtime** — The runtime handles model acquisition, hardware acceleration, model management, and inference (via [ONNX Runtime](https://onnxruntime.ai/)). The runtime adds approximately 20 MB to your application package, making it practical to embed AI directly into applications where size matters.
+
+- **Curated model catalog** — A catalog of high-quality models optimized for on-device use across a wide range of consumer hardware. The catalog covers chat completions (for example, GPT OSS, Qwen, DeepSeek, Mistral and Phi ) and audio transcription (for example, Whisper). Every model goes through extensive quantization and compression to deliver the best balance of quality and performance. Models are versioned, so your application can pin to a specific version or automatically receive updates.
 
 - **Automatic hardware acceleration** — Foundry Local detects the available hardware on the user's device and selects the best execution provider. It accelerates inference on GPUs and NPUs when available and falls back to CPU seamlessly — no hardware detection code required. Execution provider and driver updates are managed automatically to ensure optimal performance across different hardware configurations.
 
-- **Lightweight inference runtime** — Built on [ONNX Runtime](https://onnxruntime.ai/), a high-performance inference engine written in C++ with minimal disk and memory requirements. The runtime adds approximately 20 MB to your application package, making it practical to embed AI directly into applications where size matters.
-
 - **Smart model management** — Foundry Local handles the full lifecycle of models on end-user devices. Models download automatically on first use, are cached locally for instant subsequent launches, and the best-performing variant is selected for the user's specific hardware.
 
-- **OpenAI-compatible API** — Supports OpenAI request and response formats for both chat completions and audio transcription. If your application already uses the OpenAI SDK, point it to a Foundry Local endpoint with minimal code changes.
+- **OpenAI-compatible API** — Supports OpenAI request and response formats including the [OpenAI Responses API format](https://developers.openai.com/api/reference/resources/responses). If your application already uses the OpenAI SDK, point it to a Foundry Local endpoint with minimal code changes.
 
 - **Optional local server** — An OpenAI-compatible web server for serving models to multiple processes, integrating with tools like [LangChain](how-to/how-to-use-langchain-with-foundry-local.md), or experimenting through REST calls. For most embedded application scenarios, use the SDK directly — it runs inference in-process without the overhead of a separate server.
 
@@ -40,11 +40,10 @@ User data never leaves the device, responses start immediately with zero network
 
 Foundry Local is ideal for applications that need to:
 
-- Keep sensitive data on the user's device.
+- Keep sensitive data (audio, text, image, etc) on the user's device.
 - Operate in limited-connectivity or offline environments.
 - Reduce per-token cloud inference costs.
 - Deliver low-latency AI responses for real-time interactions.
-- Support audio transcription without sending recordings to the cloud.
 
 ## Get started
 
