@@ -378,8 +378,8 @@ When enhancePronunciation is enabled, the service prioritizes pronunciation accu
 - Words with multiple possible pronunciations depending on context
 This parameter is designed to complement existing pronunciation controls such as SSML‑based pronunciation tags and lexicons, and does not replace them. enhancePronunciation is off by default to preserve predictable, backward‑compatible speech output, and can be enabled when developers want the service to apply additional pronunciation optimizations for improved clarity and naturalness.
 
-### Recommended Use Cases
-Enable enhancePronunciation in scenarios where pronunciation of structured or technical domain specific content.
+### Recommended use cases
+Enable enhancePronunciation in scenarios with structured or technical domain-specific content.
 
 > [!NOTE]
 > The parameter affects pronunciation handling only; it does not change voice selection, speaking style, or prosody controls.
