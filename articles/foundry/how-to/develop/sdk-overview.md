@@ -199,9 +199,9 @@ console.log(`Response output: ${response.output_text}`);
 **Create a project client:**
 
 ```csharp
+using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI; 
 using Azure.Identity;
-using OpenAI.Responses;
 
 string endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
 
@@ -213,9 +213,9 @@ AIProjectClient projectClient = new(
 
 ```csharp
 #pragma warning disable OPENAI001
-OpenAIResponseClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5.2");
-OpenAIResponse response = responseClient.CreateResponse("What is the speed of light?");
-Console.WriteLine(response.GetOutputText());
+var responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5.2");
+var response = responseClient.CreateResponse("What is the speed of light?");
+Console.WriteLine(response.Value.GetOutputText());
 #pragma warning restore OPENAI001
 ```
 ::: zone-end
@@ -336,12 +336,11 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
    dotnet add package OpenAI
    ```When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
 
-   This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ResponseClient` for the Azure OpenAI v1 endpoint.
+   This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ResponsesClient` for the Azure OpenAI v1 endpoint.
    ```csharp
    using Azure.Identity;
-   using Azure.Core;
    using OpenAI;
-   using System;
+   using OpenAI.Responses;
    using System.ClientModel.Primitives;
    
    #pragma warning disable OPENAI001
@@ -353,27 +352,25 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
         new DefaultAzureCredential(),
         "https://ai.azure.com/.default");
     
-   OpenAIResponseClient client = new(
-        model: deploymentName,
-        authenticationPolicy: tokenPolicy, // To use Entra 
-     // credential: new ApiKeyCredential("<YOUR-AZURE-OPENAI-API-KEY>") // To use APIKEY 
+   OpenAIClient openAIClient = new(
+        authenticationPolicy: tokenPolicy,
         options: new OpenAIClientOptions()
         {
             Endpoint = new($"{directModelEndpoint}"),
         });
-   ResponseCreationOptions options = new ResponseCreationOptions
+   ResponsesClient client = openAIClient.GetResponsesClient();
+
+   CreateResponseOptions options = new()
     {
+        Model = deploymentName,
+        InputItems = { ResponseItem.CreateUserMessageItem("What is the size of France in square miles?") },
         Temperature = (float)0.7,
     };
     
-   OpenAIResponse modelDirectResponse = client.CreateResponse(
-         [
-            ResponseItem.CreateUserMessageItem("What is the size of France in square miles?"),
-         ], options);
+   var modelDirectResponse = client.CreateResponse(options);
     
-   Console.WriteLine($"[ASSISTANT]: {modelDirectResponse.GetOutputText()}");
+   Console.WriteLine($"[ASSISTANT]: {modelDirectResponse.Value.GetOutputText()}");
    #pragma warning restore OPENAI001
-   // The ResponseClient lets you interact with models and services in your project.
    ```
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet)
 ::: zone-end
