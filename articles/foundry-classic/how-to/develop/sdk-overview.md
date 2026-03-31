@@ -59,7 +59,7 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 | SDK Version   | Portal Version  | Status  | Java Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 1.0.0-beta.3<br>1.0.0-beta.1 | Foundry (new)   | Preview | `azure-ai-projects`<br>`azure-ai-agents` |
+| 2.0.0 | Foundry (new)   | Stable | `azure-ai-projects`<br>`azure-ai-agents` |
 
 ::: zone-end
 
@@ -67,7 +67,7 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 | SDK Version   | Portal Version  | Status  | JavaScript Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.0.0-beta.4 (preview) | Foundry (new)   | Preview | `@azure/ai-projects 'prerelease'` |
+| 2.0.1 | Foundry (new)   | Stable | `@azure/ai-projects` |
 | 1.0.1 | Foundry classic | Stable | `@azure/ai-projects`             |
 
 ::: zone-end
@@ -76,30 +76,31 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 | SDK Version   | Portal Version  | Status  | .NET Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 1.2.0-beta.5 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.Openai` |
-| 1.x (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
+| 2.0.0-beta.1 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.OpenAI` |
+| 1.1.0 (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-The [Azure AI Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
+> [!NOTE]
+> The Java `azure-ai-projects` package doesn't have a 1.x GA release. The code samples in the Java sections use the `azure-ai-inference` package directly. For the 2.x Projects SDK, [switch to the new Foundry portal documentation](../../../foundry/how-to/develop/sdk-overview.md).
 
-Add these packages to your installation for Foundry classic projects.
+Add these dependencies to your Maven `pom.xml` for Foundry classic projects.
 
-```java
-package com.azure.ai.foundry.samples;
-import com.azure.ai.projects;
-import com.azure.ai.inference.ChatCompletionsClient;
-import com.azure.ai.inference.ChatCompletionsClientBuilder;
-import com.azure.ai.inference.models.ChatCompletions;
-import com.azure.core.credential.AzureKeyCredential;
-import com.azure.core.credential.TokenCredential;
-import com.azure.core.exception.HttpResponseException;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.identity.DefaultAzureCredentialBuilder;
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-inference</artifactId>
+    <version>1.0.0-beta.6</version>
+</dependency>
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-identity</artifactId>
+    <version>1.18.2</version>
+</dependency>
 ```
 ::: zone-end
 
@@ -109,7 +110,7 @@ The [Azure AI Projects client library for JavaScript](/javascript/api/overview/a
 
 Run this command to install the current JavaScript packages for Foundry classic projects.
 ```bash
-npm install @azure/ai-projects @azure/identity
+npm install @azure/ai-projects@1.0.1 @azure/identity
 ```
 ::: zone-end
 
@@ -122,8 +123,8 @@ Run these commands to add the Azure AI SDK packages for Foundry classic projects
 ```bash
 # Add Azure AI SDK packages
 dotnet add package Azure.Identity
-dotnet add package Azure.AI.Projects 
-dotnet add package Azure.AI.Agents.Persistent
+dotnet add package Azure.AI.Projects --version 1.1.0
+dotnet add package Azure.AI.Agents.Persistent --version 1.1.0
 dotnet add package Azure.AI.Inference
 ```
 ::: zone-end
