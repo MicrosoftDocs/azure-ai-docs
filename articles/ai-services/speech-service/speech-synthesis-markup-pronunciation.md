@@ -289,6 +289,25 @@ The speech synthesis engine speaks the following example as "World Wide Web Cons
 </speak>
 ```
 
+## Markdown Reading
+
+To read the markdown content, you can wrap the markdown text with the `mstts:markdown` element. TTS only reads the text content in the markdown and ignores the markdown syntax.
+
+For example, the following SSML will read out two sentences: "This is headline" and "And this is a bold text", and the markdown syntax won't be read.
+```xml
+<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
+  <voice name='en-US-JennyNeural'>
+    <mstts:markdown># This is headline 
+And this is a **bold** text
+    </mstts:markdown>
+  </voice>
+</speak>
+```
+
+### Supported markdown syntax
+TTS supports the markdown syntax defined in the CommonMark specification, which is a widely used markdown specification. For more information about the CommonMark specification, see [CommonMark](https://spec.commonmark.org/0.31.2/).
+
+
 ## Mathematical expressions reading
 There are two ways to read a mathematical expression:
 - With Math domain element,
