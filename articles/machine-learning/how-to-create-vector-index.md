@@ -60,7 +60,7 @@ When you create a vector index, Azure Machine Learning chunks the data, creates 
     :::image type="content" source="media/how-to-create-vector-index/new-vector-creation.png" alt-text="Screenshot that shows basic settings for creating a vector index.":::
 
     > [!IMPORTANT]
-    > If you're storing the index in **Azure AI Search**, the index name must comply with [Azure AI Search naming rules](https://learn.microsoft.com/en-us/rest/api/searchservice/Naming-rules): 2–128 characters, lowercase letters, numbers, hyphens (`-`), and underscores (`_`) only; the first character must be a letter or number; no consecutive hyphens or underscores. Names that violate these rules cause the job to fail during the final indexing step, which can occur after a lengthy processing run.
+    > If you're storing the index in **Azure AI Search**, the index name must comply with [Azure AI Search naming rules](/rest/api/searchservice/Naming-rules): 2–128 characters, lowercase letters, numbers, hyphens (`-`), and underscores (`_`) only; the first character must be a letter or number; no consecutive hyphens or underscores. Names that violate these rules cause the job to fail during the final indexing step, which can occur after a lengthy processing run.
 
 5. Select your data source type.
 
