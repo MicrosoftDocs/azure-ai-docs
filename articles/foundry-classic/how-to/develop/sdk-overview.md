@@ -49,7 +49,7 @@ This approach simplifies application configuration. Instead of managing multiple
 
 [!INCLUDE [sdk-overview-python](../../../foundry/includes/sdk/sdk-overview-python.md)]
 
-Run this command to install the stable packages for Foundry classic projects.
+Run this command to install the 1.x packages for Foundry classic projects.
 ```bash
 pip install openai azure-identity azure-ai-projects==1.0.0
 ```
@@ -108,7 +108,7 @@ Add these dependencies to your Maven `pom.xml` for Foundry classic projects.
 
 The [Azure AI Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run this command to install the current JavaScript packages for Foundry classic projects.
+Run this command to install the 1.x JavaScript packages for Foundry classic projects.
 ```bash
 npm install @azure/ai-projects@1.0.1 @azure/identity
 ```
@@ -118,10 +118,10 @@ npm install @azure/ai-projects@1.0.1 @azure/identity
 
 The [Azure AI Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run these commands to add the Azure AI SDK packages for Foundry classic projects.
+Run these commands to add the 1.x Azure AI SDK packages for Foundry classic projects.
 
 ```bash
-# Add Azure AI SDK packages
+# Add 1.x Azure AI SDK packages
 dotnet add package Azure.Identity
 dotnet add package Azure.AI.Projects --version 1.1.0
 dotnet add package Azure.AI.Agents.Persistent --version 1.1.0
