@@ -176,27 +176,25 @@ For basic retrieval-augmented generation (RAG) patterns where your client applic
 
 ## Implement document-level access control
 
-User permissions at the document level, also known as *row-level security*, control which documents users can access through query execution. Azure AI Search supports multiple approaches for document-level access control.
+Document-level access control, also known as row-level security, restricts which documents a user can retrieve based on their identity. Permission metadata is captured during indexing and enforced at query time, which is essential for agentic AI systems, RAG applications, and enterprise search solutions that require authorization checks at the document level. For a comprehensive overview of all supported approaches, see [Document-level access control](search-document-level-access-overview.md).
 
-### Configure document-level security
 
-Configure fine-grained permissions at the document level, from data ingestion through query execution. This capability is essential for building secure AI agentic systems grounding data, RAG applications, and enterprise search solutions that require authorization checks at the document level. For more information, see [Document-level access control](search-document-level-access-overview.md).
 
 ### Use POSIX-like ACL and RBAC scopes (preview)
 
-For Azure Data Lake Storage (ADLS) Gen2 content, configure indexers to preserve POSIX-like ACL permissions and RBAC scopes during ingestion. At query time, pass a user or group token in the `x-ms-query-source-authorization` request header to enforce Microsoft Entra-based access control on search results. This approach supports group-based access management and integrates with your existing ADLS Gen2 access control model. For more information, see [Indexer access control lists and role-based access](search-indexer-access-control-lists-and-role-based-access.md).
+For Azure Data Lake Storage (ADLS) Gen2 content, configure indexers or knowledge sources to preserve POSIX-like ACL permissions and RBAC scopes during ingestion. At query time, results are filtered based on the caller's Microsoft Entra token. For more information, see [Index ADLS Gen2 permission metadata](search-indexer-access-control-lists-and-role-based-access.md).
 
 ### Use SharePoint in Microsoft 365 ACLs (preview)
 
-Configure the SharePoint in Microsoft 365 indexer to extract document permissions directly from SharePoint ACLs during ingestion. Access checks use Microsoft Entra user and group memberships, including Microsoft Entra security groups, Microsoft 365 groups, and mail-enabled security groups. For more information, see [SharePoint indexer access control lists](search-indexer-sharepoint-access-control-lists.md).
+Configure the SharePoint in Microsoft 365 indexer to extract document permissions directly from SharePoint ACLs during ingestion. At query time, results are filtered based on the caller's Microsoft Entra token. During this preview, ACLs are captured only during initial indexing, so you must reindex affected documents if source permissions change to avoid stale access. For more information, see [Index SharePoint permission metadata](search-indexer-sharepoint-access-control-lists.md).
 
 ### Use sensitivity labels (preview)
 
-Configure an indexer to automatically detect Microsoft Purview sensitivity labels during indexing and apply label-based access controls when queries are executed. This capability aligns Azure AI Search authorization with your enterprise's Microsoft Information Protection model. For more information, see [Sensitivity labels](search-indexer-sensitivity-labels.md).
+Configure an indexer to automatically detect Microsoft Purview sensitivity labels during indexing and apply label-based access controls when queries are executed. This capability aligns Azure AI Search authorization with your enterprise's Microsoft Information Protection model. For more information, see [Index Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 
 ### Use security filters
 
-For scenarios where native ACL integration isn't viable, implement security filters to trim results based on user or group identities. Store identity information in a string field in your index, then pass the caller's identity as a filter string at query time to exclude documents that don't match. This approach works with custom access models or non-Microsoft security frameworks. For more information, see [Security filters for trimming results](search-security-trimming-for-azure-search.md).
+For scenarios where native ACL integration isn't viable, implement security filters to trim results based on user or group identities. Store identity information in a string field in your index, and then pass the caller's identity as a filter string at query time to exclude documents that don't match. This approach works with custom access models or non-Microsoft security frameworks. For more information, see [Security filters for trimming results](search-security-trimming-for-azure-search.md).
 
 ## Configure data encryption
 
