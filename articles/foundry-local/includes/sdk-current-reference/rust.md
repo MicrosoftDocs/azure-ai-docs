@@ -13,13 +13,6 @@ ai-usage: ai-assisted
 
 ### Project setup
 
-Add the Foundry Local SDK to your `Cargo.toml`:
-
-```bash
-cargo add foundry-local-sdk tokio --features tokio/full
-cargo add tokio-stream
-```
-
 [!INCLUDE [project-setup](../rust-project-setup.md)]
 
 ### Quickstart

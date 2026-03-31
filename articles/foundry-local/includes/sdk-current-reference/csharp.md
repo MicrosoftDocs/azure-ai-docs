@@ -13,13 +13,6 @@ ai-usage: ai-assisted
 
 ### Project setup guide
 
-There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-platform package - that have the same API surface but are optimized for different platforms:
-
-- **Windows**: Uses the `Microsoft.AI.Foundry.Local.WinML` package that's specific to Windows applications, which uses the Windows Machine Learning (WinML) framework.
-- **Cross-platform**: Uses the `Microsoft.AI.Foundry.Local` package that can be used for cross-platform applications (Windows, Linux, macOS).
-
-Depending on your target platform, follow these instructions to create a new C# application and add the necessary dependencies:
-
 [!INCLUDE [project-setup](./../csharp-project-setup.md)]
 
 ### Quickstart

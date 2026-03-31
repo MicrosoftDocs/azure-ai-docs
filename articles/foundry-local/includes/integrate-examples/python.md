@@ -18,11 +18,7 @@ ai-usage: ai-assisted
 
 ## Install pip packages
 
-Install the following Python packages:
-
-```bash
-pip install openai foundry-local-sdk
-```
+[!INCLUDE [project-setup](../python-project-setup.md)]
 
 > [!TIP]
 > We recommend using a virtual environment to avoid package conflicts. You can create a virtual environment using either `venv` or `conda`.

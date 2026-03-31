@@ -13,15 +13,6 @@ ai-usage: ai-assisted
 
 ### Project setup
 
-Install the Python package:
-
-```bash
-pip install foundry-local-sdk
-```
-
-> [!NOTE]
-> The `foundry-local-sdk` package requires Python 3.11 or later.
-
 [!INCLUDE [project-setup](../python-project-setup.md)]
 
 ### Quickstart

@@ -18,13 +18,14 @@ Before starting this tutorial, you need:
 
 - **Python 3.11 or later** installed on your computer. You can download Python from the [official website](https://www.python.org/downloads/).
 
-## Install Python packages
+## Install pip packages
 
-You need to install the following Python packages:
+[!INCLUDE [project-setup](../python-project-setup.md)]
+
+You also need to install the following LangChain package:
 
 ```bash
 pip install langchain[openai]
-pip install foundry-local-sdk
 ```
 
 > [!TIP]

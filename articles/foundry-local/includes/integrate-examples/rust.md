@@ -15,22 +15,7 @@ ai-usage: ai-assisted
 
 ## Create project
 
-Create a new Rust project and navigate into it:
-
-```bash
-cargo new hello-foundry-local
-cd hello-foundry-local
-```
-
-### Install crates
-
-Install the following Rust crates using Cargo:
-
-```bash
-cargo add foundry-local-sdk anyhow serde_json
-cargo add reqwest --features json
-cargo add tokio --features full
-```
+[!INCLUDE [project-setup](../rust-project-setup.md)]
 
 ## Update the `main.rs` file
 
