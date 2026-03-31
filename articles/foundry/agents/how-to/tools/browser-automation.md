@@ -259,13 +259,13 @@ DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
     "related to web browsing using the Browser Automation tool available to you.",
     Tools = { playwrightTool }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Create the response stream. Also set ToolChoice = ResponseToolChoice.CreateRequiredChoice()
 // on the ResponseCreationOptions to ensure the agent uses the Browser Automation tool.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 CreateResponseOptions responseOptions = new()
 {
     ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
@@ -301,7 +301,7 @@ foreach (StreamingResponseUpdate update in responseClient.CreateResponseStreamin
 }
 
 // Delete the Agent version to clean up resources.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### What this code does

@@ -192,14 +192,14 @@ DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
     Tools = { tool }
 };
 
-AgentVersion agent = projectClient.Agents.CreateAgentVersion(
+AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "CustomCodeInterpreterAgent",
     options: new(agentDefinition));
 
 Console.WriteLine($"Agent created: {agent.Name} (version {agent.Version})");
 
 // Create a response using the agent
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agent.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agent.Name);
 
 ResponseResult response = responseClient.CreateResponse(
     new([ResponseItem.CreateUserMessageItem("Calculate the factorial of 10 using Python.")]));
@@ -207,7 +207,7 @@ ResponseResult response = responseClient.CreateResponse(
 Console.WriteLine(response.GetOutputText());
 
 // Clean up
-projectClient.Agents.DeleteAgentVersion(
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
     agentName: agent.Name,
     agentVersion: agent.Version);
 Console.WriteLine("Agent deleted");

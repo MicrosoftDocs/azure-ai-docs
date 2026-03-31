@@ -156,12 +156,12 @@ string filePath = "sample_file_for_upload.txt";
 File.WriteAllText(
     path: filePath,
     contents: "The word 'apple' uses the code 442345, while the word 'banana' uses the code 673457.");
-OpenAIFileClient fileClient = projectClient.OpenAI.GetOpenAIFileClient();
+OpenAIFileClient fileClient = projectClient.ProjectOpenAIClient.GetOpenAIFileClient();
 OpenAIFile uploadedFile = fileClient.UploadFile(filePath: filePath, purpose: FileUploadPurpose.Assistants);
 File.Delete(filePath);
 
 // Create the VectorStore and provide it with uploaded file ID.
-VectorStoreClient vctStoreClient = projectClient.OpenAI.GetVectorStoreClient();
+VectorStoreClient vctStoreClient = projectClient.ProjectOpenAIClient.GetVectorStoreClient();
 VectorStoreCreationOptions options = new()
 {
     Name = "MySampleStore",
@@ -175,12 +175,12 @@ DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
     Instructions = "You are a helpful agent that can help fetch data from files you know about.",
     Tools = { ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }), }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Ask a question about the file's contents.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 ResponseResult response = responseClient.CreateResponse("Can you give me the documented codes for 'banana' and 'orange'?");
 
@@ -189,7 +189,7 @@ Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
 Console.WriteLine(response.GetOutputText());
 
 // Remove all the resources created in this sample.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 vctStoreClient.DeleteVectorStore(vectorStoreId: vectorStore.Id);
 fileClient.DeleteFile(uploadedFile.Id);
 ```
@@ -268,7 +268,7 @@ class FileSearchStreamingDemo
         File.WriteAllText(
             path: filePath,
             contents: "The word 'apple' uses the code 442345, while the word 'banana' uses the code 673457.");
-        OpenAIFile uploadedFile = projectClient.OpenAI.Files.UploadFile(filePath: filePath, purpose: FileUploadPurpose.Assistants);
+        OpenAIFile uploadedFile = projectClient.ProjectOpenAIClient.GetProjectFilesClient().UploadFile(filePath: filePath, purpose: FileUploadPurpose.Assistants);
         File.Delete(filePath);
 
         // Create the `VectorStore` and provide it with uploaded file ID.
@@ -277,7 +277,7 @@ class FileSearchStreamingDemo
             Name = "MySampleStore",
             FileIds = { uploadedFile.Id }
         };
-        VectorStore vectorStore = projectClient.OpenAI.VectorStores.CreateVectorStore(options);
+        VectorStore vectorStore = projectClient.ProjectOpenAIClient.GetProjectVectorStoresClient().CreateVectorStore(options);
 
         // Create an agent capable of using File search.
         DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
@@ -285,13 +285,13 @@ class FileSearchStreamingDemo
             Instructions = "You are a helpful agent that can help fetch data from files you know about.",
             Tools = { ResponseTool.CreateFileSearchTool(vectorStoreIds: new[] { vectorStore.Id }), }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition)
         );
 
         // Create the conversation to store responses.
-        ProjectConversation conversation = projectClient.OpenAI.Conversations.CreateProjectConversation();
+        ProjectConversation conversation = projectClient.ProjectOpenAIClient.GetProjectConversationsClient().CreateProjectConversation();
         CreateResponseOptions responseOptions = new()
         {
             Agent = agentVersion,
@@ -301,7 +301,7 @@ class FileSearchStreamingDemo
         // Wait for the stream to complete.
         responseOptions.InputItems.Clear();
         responseOptions.InputItems.Add(ResponseItem.CreateUserMessageItem("Can you give me the documented codes for 'banana' and 'orange'?"));
-        foreach (StreamingResponseUpdate streamResponse in projectClient.OpenAI.Responses.CreateResponseStreaming(responseOptions))
+        foreach (StreamingResponseUpdate streamResponse in projectClient.ProjectOpenAIClient.Responses.CreateResponseStreaming(responseOptions))
         {
             ParseResponse(streamResponse);
         }
@@ -310,15 +310,15 @@ class FileSearchStreamingDemo
         Console.WriteLine("Demonstrating follow-up query with streaming...");
         responseOptions.InputItems.Clear();
         responseOptions.InputItems.Add(ResponseItem.CreateUserMessageItem("What was my previous question about?"));
-        foreach (StreamingResponseUpdate streamResponse in projectClient.OpenAI.Responses.CreateResponseStreaming(responseOptions))
+        foreach (StreamingResponseUpdate streamResponse in projectClient.ProjectOpenAIClient.Responses.CreateResponseStreaming(responseOptions))
         {
             ParseResponse(streamResponse);
         }
 
         // Remove all the resources created in this sample.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
-        projectClient.OpenAI.VectorStores.DeleteVectorStore(vectorStoreId: vectorStore.Id);
-        projectClient.OpenAI.Files.DeleteFile(uploadedFile.Id);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.ProjectOpenAIClient.GetProjectVectorStoresClient().DeleteVectorStore(vectorStoreId: vectorStore.Id);
+        projectClient.ProjectOpenAIClient.GetProjectFilesClient().DeleteFile(uploadedFile.Id);
     }
 }
 ```

@@ -283,7 +283,7 @@ DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
     Tools = { azureFnTool },
 };
 
-AgentVersion agentVersion = await projectClient.Agents.CreateAgentVersionAsync(
+AgentVersion agentVersion = await projectClient.AgentAdministrationClient.CreateAgentVersionAsync(
     agentName: "azure-function-agent-get-weather",
     options: new(agentDefinition));
 Console.WriteLine($"Agent created (id: {agentVersion.Id}, name: {agentVersion.Name}, "
@@ -294,7 +294,7 @@ Console.WriteLine($"Agent created (id: {agentVersion.Id}, name: {agentVersion.Na
 
 ```csharp
 ProjectResponsesClient responseClient =
-    projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 CreateResponseOptions responseOptions = new()
 {
@@ -311,7 +311,7 @@ Console.WriteLine(response.GetOutputText());
 ### Clean up
 
 ```csharp
-await projectClient.Agents.DeleteAgentVersionAsync(
+await projectClient.AgentAdministrationClient.DeleteAgentVersionAsync(
     agentName: agentVersion.Name,
     agentVersion: agentVersion.Version);
 Console.WriteLine("Agent deleted");

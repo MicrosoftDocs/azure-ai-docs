@@ -302,7 +302,7 @@ class FunctionCallingDemo
                     + "nicknames for cities whenever possible.",
             Tools = { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition));
 
@@ -311,7 +311,7 @@ class FunctionCallingDemo
         // GetResolvedToolOutput to get the FunctionCallOutputResponseItem with the function call result.
         // To provide the right answer, supply all the response items to the CreateResponse call.
         // At the end, output the function's response.
-        ResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
         ResponseItem request = ResponseItem.CreateUserMessageItem("What's the weather like in my favorite city?");
         var inputItems = new List<ResponseItem> { request };
@@ -340,7 +340,7 @@ class FunctionCallingDemo
         Console.WriteLine(response.GetOutputText());
 
         // Remove all the resources created in this sample.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```

@@ -161,13 +161,13 @@ DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
             { Description = "The user's role", IsRequired = true }
     }
 };
-AgentVersion agent = projectClient.Agents.CreateAgentVersion(
+AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "structured-input-agent", options: new(agentDefinition));
 
 // Send response with runtime structured input values
 AgentReference agentRef = new(name: agent.Name, version: agent.Version);
 ProjectResponsesClient responseClient =
-    projectClient.OpenAI.GetProjectResponsesClientForAgent(agentRef);
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentRef);
 
 CreateResponseOptions responseOptions = new()
 {
@@ -184,7 +184,7 @@ ResponseResult response = responseClient.CreateResponse(responseOptions);
 Console.WriteLine(response.GetOutputText());
 
 // Clean up
-projectClient.Agents.DeleteAgentVersion(
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
     agentName: agent.Name, agentVersion: agent.Version);
 ```
 
@@ -520,13 +520,13 @@ DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
             { Description = "File ID for the code interpreter", IsRequired = true }
     }
 };
-AgentVersion agent = projectClient.Agents.CreateAgentVersion(
+AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "code-interp-structured", options: new(agentDefinition));
 
 // Supply the actual file ID at runtime
 AgentReference agentRef = new(name: agent.Name, version: agent.Version);
 ProjectResponsesClient responseClient =
-    projectClient.OpenAI.GetProjectResponsesClientForAgent(agentRef);
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentRef);
 
 CreateResponseOptions responseOptions = new()
 {
@@ -541,7 +541,7 @@ ResponseResult response = responseClient.CreateResponse(responseOptions);
 Console.WriteLine(response.GetOutputText());
 
 // Clean up
-projectClient.Agents.DeleteAgentVersion(
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
     agentName: agent.Name, agentVersion: agent.Version);
 ```
 
@@ -866,13 +866,13 @@ DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
             { Description = "Vector store ID for file search", IsRequired = true }
     }
 };
-AgentVersion agent = projectClient.Agents.CreateAgentVersion(
+AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "file-search-structured", options: new(agentDefinition));
 
 // Supply the actual vector store ID at runtime
 AgentReference agentRef = new(name: agent.Name, version: agent.Version);
 ProjectResponsesClient responseClient =
-    projectClient.OpenAI.GetProjectResponsesClientForAgent(agentRef);
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentRef);
 
 CreateResponseOptions responseOptions = new()
 {
@@ -886,7 +886,7 @@ ResponseResult response = responseClient.CreateResponse(responseOptions);
 Console.WriteLine(response.GetOutputText());
 
 // Clean up
-projectClient.Agents.DeleteAgentVersion(
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
     agentName: agent.Name, agentVersion: agent.Version);
 ```
 

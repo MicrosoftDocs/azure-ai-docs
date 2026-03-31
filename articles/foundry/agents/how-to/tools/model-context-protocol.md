@@ -236,7 +236,7 @@ DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
         toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval
     )) }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
@@ -246,7 +246,7 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 // the server label is "api-specs" and approves the tool call.
 // All other calls are denied because they should not occur for
 // the current configuration.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 CreateResponseOptions nextResponseOptions = new([ResponseItem.CreateUserMessageItem("Please summarize the Azure REST API specifications README")]);
 ResponseResult latestResponse = null;
@@ -284,7 +284,7 @@ while (nextResponseOptions is not null)
 Console.WriteLine(latestResponse.GetOutputText());
 
 // Clean up resources by deleting the agent version.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output
@@ -350,7 +350,7 @@ DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
     Instructions = "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
     Tools = { tool }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
@@ -360,7 +360,7 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 // the server label is "api-specs" and approves the tool call,
 // All other calls are denied because they shouldn't happen given
 // the current configuration.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 CreateResponseOptions nextResponseOptions = new([ResponseItem.CreateUserMessageItem("What is my username in my GitHub profile?")]);
 ResponseResult latestResponse = null;
@@ -398,7 +398,7 @@ while (nextResponseOptions is not null)
 Console.WriteLine(latestResponse.GetOutputText());
 
 // Clean up resources by deleting the agent version.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output

@@ -432,7 +432,7 @@ AIProjectClient projectClient = new(
 
 // Generate a response using the agent
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What is the largest city in France?");
 Console.WriteLine(response.GetOutputText());
@@ -615,7 +615,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What happened in the news today?");
 
@@ -817,7 +817,7 @@ AIProjectClient projectClient = new(
 
 // Generate a response without storing
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     new CreateResponseOptions
     {
@@ -1029,7 +1029,7 @@ AIProjectClient projectClient = new(
 
 // Create a conversation
 ProjectConversation conversation
-    = await projectClient.OpenAI.Conversations.CreateProjectConversationAsync();
+    = await projectClient.ProjectOpenAIClient.GetProjectConversationsClient().CreateProjectConversationAsync();
 Console.WriteLine($"Conversation ID: {conversation.Id}");
 ```
 
@@ -1282,11 +1282,11 @@ AIProjectClient projectClient = new(
 
 // Create a conversation for multi-turn chat
 ProjectConversation conversation
-    = await projectClient.OpenAI.Conversations.CreateProjectConversationAsync();
+    = await projectClient.ProjectOpenAIClient.GetProjectConversationsClient().CreateProjectConversationAsync();
 
 // First turn
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(
         agentName, conversation);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What is the largest city in France?");
@@ -1483,7 +1483,7 @@ AIProjectClient projectClient = new(
 
 // Stream a response using the agent
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 await foreach (StreamingResponseUpdate update
     in responsesClient.CreateResponseStreamingAsync(
         "Explain how agents work in one paragraph."))
@@ -1643,7 +1643,7 @@ AIProjectClient projectClient = new(
 
 // Start a background response using the agent
 ProjectResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentName);
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     new CreateResponseOptions
     {

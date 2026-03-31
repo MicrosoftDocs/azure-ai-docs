@@ -296,19 +296,19 @@ class OpenAPIDemo
             Instructions = "You are a helpful assistant.",
             Tools = { openapiTool }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition));
 
         // Create a response object and ask the question about the weather in Seattle, WA.
-        ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
         ResponseResult response = responseClient.CreateResponse(
                 userInputText: "Use the OpenAPI tool to print out, what is the weather in Seattle, WA today."
             );
         Console.WriteLine(response.GetOutputText());
 
         // Finally, delete all the resources created in this sample.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```
@@ -385,7 +385,7 @@ class OpenAPIConnectedDemo
             Instructions = "You are a helpful assistant.",
             Tools = { openapiTool }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition));
 
@@ -395,7 +395,7 @@ class OpenAPIConnectedDemo
         // ToolChoice = ResponseToolChoice.CreateRequiredChoice()`
         // in the ResponseCreationOptions. This setting will
         // force Agent to use tool and will trigger the error if it is not accessible.
-        ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
         CreateResponseOptions responseOptions = new()
         {
             ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
@@ -410,7 +410,7 @@ class OpenAPIConnectedDemo
         Console.WriteLine(response.GetOutputText());
 
         // Finally, delete all the resources we have created in this sample.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```
