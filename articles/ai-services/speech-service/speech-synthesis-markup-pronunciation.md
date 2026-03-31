@@ -293,7 +293,7 @@ The speech synthesis engine speaks the following example as "World Wide Web Cons
 
 To read the markdown content, you can wrap the markdown text with the `mstts:markdown` element. TTS will only read the text content in the markdown and ignore the markdown syntax.
 
-For example, the following SSML will read "This is headline\n And this is a bold text", and the markdown syntax won't be read.
+For example, the following SSML will read out two sentences: "This is headline" and "And this is a bold text", and the markdown syntax won't be read.
 ```xml
 <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
   <voice name='en-US-JennyNeural'>
