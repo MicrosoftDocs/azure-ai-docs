@@ -18,10 +18,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd python/tool-calling
+cd Foundry-Local/samples/python/tool-calling
 ```
 
 ## Install packages

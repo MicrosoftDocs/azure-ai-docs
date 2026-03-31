@@ -13,10 +13,8 @@ ms.date: 03/29/2026
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd rust/tutorial-document-summarizer
+cd Foundry-Local/samples/rust/tutorial-document-summarizer
 ```
 
 [!INCLUDE [Rust project setup](../rust-project-setup.md)]

@@ -18,10 +18,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd rust/foundry-local-webserver
+cd Foundry-Local/samples/rust/foundry-local-webserver
 ```
 
 ## Install packages

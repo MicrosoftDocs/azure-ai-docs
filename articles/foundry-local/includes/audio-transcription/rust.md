@@ -17,10 +17,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd rust/audio-transcription-example
+cd Foundry-Local/samples/rust/audio-transcription-example
 ```
 
 ## Install packages

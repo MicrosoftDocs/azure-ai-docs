@@ -17,10 +17,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd js/native-chat-completions
+cd Foundry-Local/samples/js/native-chat-completions
 ```
 
 ## Install packages

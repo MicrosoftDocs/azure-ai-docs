@@ -17,10 +17,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd cs/audio-transcription-example
+cd Foundry-Local/samples/cs/audio-transcription-example
 ```
 
 ## Install packages

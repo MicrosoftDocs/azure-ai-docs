@@ -12,5 +12,4 @@ The complete sample code for this article is available in the [Foundry Local Git
 
 ```bash
 git clone https://github.com/microsoft/Foundry-Local.git
-cd Foundry-Local/samples
 ```

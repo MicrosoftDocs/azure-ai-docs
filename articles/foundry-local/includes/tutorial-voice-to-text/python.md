@@ -13,10 +13,8 @@ ms.date: 03/29/2026
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd python/tutorial-voice-to-text
+cd Foundry-Local/samples/python/tutorial-voice-to-text
 ```
 
 [!INCLUDE [Python project setup](../python-project-setup.md)]

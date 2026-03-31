@@ -17,10 +17,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd js/tool-calling-foundry-local
+cd Foundry-Local/samples/js/tool-calling-foundry-local
 ```
 
 ## Install packages

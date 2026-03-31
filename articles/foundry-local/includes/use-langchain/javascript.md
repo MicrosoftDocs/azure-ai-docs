@@ -23,10 +23,8 @@ Before starting this tutorial, you need:
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd js/langchain-integration-example
+cd Foundry-Local/samples/js/langchain-integration-example
 ```
 
 ## Install packages

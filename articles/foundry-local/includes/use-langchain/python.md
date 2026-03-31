@@ -23,10 +23,8 @@ Before starting this tutorial, you need:
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd python/langchain-integration
+cd Foundry-Local/samples/python/langchain-integration
 ```
 
 ## Install packages

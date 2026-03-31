@@ -18,10 +18,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd cs/foundry-local-web-server
+cd Foundry-Local/samples/cs/foundry-local-web-server
 ```
 
 ## Install packages

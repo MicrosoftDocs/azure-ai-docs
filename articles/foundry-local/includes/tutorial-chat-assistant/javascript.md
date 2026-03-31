@@ -11,10 +11,8 @@ ms.date: 03/29/2026
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd js/tutorial-chat-assistant
+cd Foundry-Local/samples/js/tutorial-chat-assistant
 ```
 
 ## Install packages

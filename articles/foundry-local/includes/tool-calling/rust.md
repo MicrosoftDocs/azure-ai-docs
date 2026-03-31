@@ -18,10 +18,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd rust/tool-calling-foundry-local
+cd Foundry-Local/samples/rust/tool-calling-foundry-local
 ```
 
 ## Install packages

@@ -27,4 +27,4 @@ dotnet add package OpenAI
 
 ---
 
-The C# samples in the GitHub repository are pre-configured projects. If you are building from scratch, you should read [Project configuration](sdk-current-reference/csharp.md#project-configuration) for more details on how to set up your C# project with Foundry Local. 
+The C# samples in the GitHub repository are pre-configured projects. If you are building from scratch, you should read the [Foundry Local SDK reference](../reference/reference-sdk-current.md) for more details on how to set up your C# project with Foundry Local. 

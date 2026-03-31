@@ -13,10 +13,8 @@ ms.date: 03/29/2026
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd cs/tutorial-document-summarizer
+cd Foundry-Local/samples/cs/tutorial-document-summarizer
 ```
 
 [!INCLUDE [C# project setup](../csharp-project-setup.md)]

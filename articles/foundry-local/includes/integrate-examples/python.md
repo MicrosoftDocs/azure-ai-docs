@@ -21,10 +21,8 @@ ai-usage: ai-assisted
 
 [!INCLUDE [samples-repo](../samples-repo.md)]
 
-Navigate to the sample for this article:
-
 ```bash
-cd python/web-server
+cd Foundry-Local/samples/python/web-server
 ```
 
 ## Install packages
