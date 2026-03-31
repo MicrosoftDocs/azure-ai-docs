@@ -12,8 +12,8 @@ ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 03/06/2026
 ms.reviewer: dantaylo
-ms.author: johalexander
-author: ms-johnalex
+ms.author: sgilley
+author: sdgilley
 zone_pivot_groups: foundry-sdk-overview-languages
 # customer intent: I want to learn how to use the Microsoft Foundry SDK and endpoints to build AI applications on Azure.
 ---
