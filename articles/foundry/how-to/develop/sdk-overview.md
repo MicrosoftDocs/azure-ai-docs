@@ -51,7 +51,7 @@ pip install azure-ai-projects >=2.0.0
 
 | SDK Version   | Portal Version  | Status  | Java Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 1.0.0-beta.3<br>1.0.0-beta.1 | Foundry (new)   | Preview | `azure-ai-projects`<br>`azure-ai-agents` |
+| 2.0.0 | Foundry (new)   | Stable | `azure-ai-projects`<br>`azure-ai-agents` |
 
 ::: zone-end
 
@@ -59,7 +59,7 @@ pip install azure-ai-projects >=2.0.0
 
 | SDK Version   | Portal Version  | Status  | JavaScript Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.0.0-beta.4 (preview) | Foundry (new)   | Preview | `@azure/ai-projects 'prerelease'` |
+| 2.0.1 | Foundry (new)   | Stable | `@azure/ai-projects` |
 | 1.0.1 | Foundry classic | Stable | `@azure/ai-projects`             |
 
 ::: zone-end
@@ -68,16 +68,14 @@ pip install azure-ai-projects >=2.0.0
 
 | SDK Version   | Portal Version  | Status  | .NET Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 1.2.0-beta.5 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.Openai` |
-| 1.x (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
+| 2.0.0-beta.1 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.OpenAI` |
+| 1.1.0 (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-The [Azure AI Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+The [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 Add these packages to your installation for Foundry projects.
 
@@ -95,9 +93,9 @@ import com.openai.models.responses.ResponseCreateParams;
 
 The [Azure AI Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run this command to install the preview JavaScript packages for Foundry projects.
+Run this command to install the JavaScript packages for Foundry projects.
 ```bash
-npm install @azure/ai-projects@beta @azure/identity dotenv
+npm install @azure/ai-projects @azure/identity dotenv
 ```
 ::: zone-end
 
@@ -279,7 +277,6 @@ For more information, see [Azure OpenAI supported programming languages](/azure/
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
 ```java

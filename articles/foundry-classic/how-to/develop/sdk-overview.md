@@ -43,7 +43,7 @@ This approach simplifies application configuration. Instead of managing multiple
 > This article applies to a **[!INCLUDE [fdp](../../../foundry/includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
 
 > [!NOTE]
-> **SDK versions:** The 2.x GA SDK targets the new Foundry portal and API. The 1.x GA SDK targets Foundry classic. Make sure the samples you follow match your installed package.
+> **SDK versions:** This article covers installation of the 1.x SDK. Make sure the samples you follow match your installed package. [Switch to the new Foundry portal documentation to view article for 2.x](../../../foundry/how-to/develop/sdk-overview.md).
 
 ::: zone pivot="programming-language-python"
 
