@@ -4,7 +4,7 @@ description: "Deploy MAI-Image-2, a text-to-image generation model in Microsoft 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 03/31/2026
 ms.custom:
   - doc-kit-assisted
   - classic-and-new
@@ -31,7 +31,7 @@ In this article, you learn how to:
 
 - **Text-to-image generation:** Generates high-quality images from natural language prompts, enabling users to translate textual descriptions into visually coherent outputs suitable for a wide range of creative and design use cases.
 - **Photorealistic image synthesis:** Capable of generating realistic imagery with consistent visual structure, making it suitable for concept visualization and content creation scenarios.
-- **General-purpose image generation:** Designed as a general-purpose image generation model that can be applied across multiple creative, design, and visualization workflows rather than being optimized for a single narrow domain.
+- **General-purpose image generation:** Designed as a general-purpose image generation model that can be applied across multiple creative, design, and visualization workflows.
 
 ## Prerequisites
 
