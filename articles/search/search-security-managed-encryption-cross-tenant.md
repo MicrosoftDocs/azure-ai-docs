@@ -24,19 +24,19 @@ To learn how to configure customer-managed keys for a new Azure AI Search servic
 
 There are two possible approaches to enable cross-tenant CMK encryption for Azure AI Search:
 
-1. **Use cross-tenant customer-managed keys with a federated identity credential (FIC)** (preview): 
+1. **Configure cross-tenant customer-managed keys with a federated identity credential (FIC)** (preview): 
 a Microsoft Entra multitenant application with a federated identity credential (FIC)
 This approach is recommended, but currently requires use of a preview API (version `2026-03-01-preview` or later). While each approach utilizes a Microsoft Entra multitenant application with Azure AI Search, this approach enhances security and simplifies management by avoiding reliance on client secrets.
 
-1. **Use cross-tenant customer-managed keys with client secrets**: This approach is less secure and more complex to manage, as it requires handling client secrets. Don't use this approach unless the first approach isn't feasible for your scenario.
+1. **Configure cross-tenant customer-managed keys with client secrets**: This approach is less secure and more complex to manage, as it requires handling client secrets. Don't use this approach unless the first approach isn't feasible for your scenario.
 
 [!INCLUDE [entra-msi-cross-tenant-cmk-overview](~/reusable-content/ce-skilling/azure/includes/entra-msi-cross-tenant-cmk-overview.md)]
 
 [!INCLUDE [entra-msi-cross-tenant-cmk-create-identities-authorize-key-vault](~/reusable-content/ce-skilling/azure/includes/entra-msi-cross-tenant-cmk-create-identities-authorize-key-vault.md)]
 
-## Configure customer-managed keys for an existing account
+## Configure cross-tenant customer-managed keys with a federated identity credential (FIC)
 
-Up to this point, you've configured the multi-tenant application on the ISV's tenant, installed the application on the customer's tenant, and configured the key vault and key on the customer's tenant. Next you can configure customer-managed keys on an existing Azure AI Search service with the key from the customer's tenant. To configure customer-managed keys (CMK), the search service must be on a [billable tier](search-sku-tier.md#tier-descriptions) (Basic or higher).
+Up to this point, you've configured the multi-tenant application on the ISV's tenant (tenant 1), installed the application on the customer's tenant (tenant 2), and configured the key vault and key on the customer's tenant (tenant 2). Next you can configure customer-managed keys on an existing Azure AI Search service with the key from the customer's tenant. To configure customer-managed keys (CMK), the search service must be on a [billable tier](search-sku-tier.md#tier-descriptions) (Basic or higher).
 
 The examples in this article show how to configure customer-managed keys on an existing Azure AI Search service by using a user-assigned managed identity to authorize access to the key vault. You can also use a system-assigned managed identity to configure customer-managed keys on the service. In either case, the managed identity must have appropriate permissions to access the key vault. For more information, see [Authenticate to Azure Key Vault](/azure/key-vault/general/authentication).
 
@@ -132,18 +132,91 @@ az resource update --name $serviceName \
 ```
 ---
 
-## Change the key
+## Configure cross-tenant customer-managed keys with client secrets
 
-You can change the key used for customer-managed key encryption by updating the Azure AI Search service to point to a different key in the key vault. To do so, follow the same steps as above to update the service with the new key URI. If you want to rotate keys, create a new version of the existing key in Azure Key Vault, then update the Azure AI Search service to point to the new key version.
+If using a federated identity credential (FIC) isn't feasible for your scenario, you can instead configure cross-tenant customer-managed keys with client secrets. This approach is less secure and more complex to manage, but still allows you to configure cross-tenant customer-managed keys for Azure AI Search.
 
-## Revoke access to an Azure AI Search service that uses customer-managed keys
+To use client secrets for cross-tenant customer-managed keys, you create a client secret for the multi-tenant application that you created in the ISV's tenant, and use that client secret to authenticate to the key vault in the customer's tenant when configuring customer-managed keys on the Azure AI Search service.
 
-To temporarily revoke access to an Azure AI Search service that uses customer-managed keys, you can either remove the permissions for the managed identity on the key vault or disable the multi-tenant application in the ISV's tenant. There is no performance impact or downtime associated with disabling and reenabling the key.
 
-After the key has been disabled, clients can't access the the Azure AI Search service operations. This effectively revokes access to the service until the key is re-enabled.
+### [Azure portal](#tab/azure-portal)
 
-To remove permissions for the managed identity, follow these steps:
-**TO-DO: Confirm that this is supported for AI Search and how closely the steps align with how this is done for Blob Storage**
+To add a client secret to the multitenant application in the ISV's tenant (Tenant 1) that can be used by the customer's tenant (Tenant 2) for access to an Azure AI Search service using Azure Portal, follow these steps:
+
+1. TO-DO
+
+
+### [PowerShell](#tab/azure-powershell)
+
+To add a client secret to the multitenant application in the ISV's tenant (Tenant 1) that can be used by the customer's tenant (Tenant 2) for access to an Azure AI Search service using Azure PowerShell, follow these steps:
+
+1. TO-DO
+
+### [Azure CLI](#tab/azure-cli)
+
+To add a client secret to the multitenant application in the ISV's tenant (Tenant 1) that can be used by the customer's tenant (Tenant 2) for access to an Azure AI Search service using Azure PowerShell, follow these steps:
+
+1. Get the tenant ID:
+
+   `az account show --query tenantId --output tsv`
+
+1. Make sure you're signed in to tenant A:
+
+   `az login --tenant <tenant-A-id> `
+
+1. Create the application registration:
+
+   `az ad app create --display-name cross-tenant-auth --sign-in-audience AzureADMultipleOrgs `
+
+1. Save the app ID output from this step.
+
+1. Add the client secret to the multitenant application in tenant 1, by running this command:
+
+   `az ad app credential reset --id <multitenant-app-id>`
+
+1. Save the password output from this step. The password output is a required input for [setting up CMK](search-security-manage-encryption-keys.md) in Azure AI Search.
+
+1. To specify when the client secret expires, you can specify an end-date parameter to this command.
+
+   `az ad app credential reset --id <multitenant-app-id> --end-date <end-date>`
+
+   The end-date parameter accepts a date in ISO 8601 format. For example: `az ad app credential reset --id <multitenant-app-id> --end-date 2026-12-31`.
+
+1. Create a test index in the search service (tenant A) to validate the setup. Use the multitenant app ID and the credentials you added in the "access credentials" object to authenticate to the key vault in the other tenant.
+
+You can use this sample index schema for testing. You can use the Azure portal to add an index and provide this JSON, or use a REST client to send a Create Index request.
+
+```json
+{
+  "name": "cross-tenant-cmk-test", 
+  "fields": [ 
+        { 
+            "name": "id", 
+            "type": "Edm.String", 
+            "key": true 
+        } 
+      ], 
+  "encryptionKey": { 
+    "keyVaultUri": "https://myCompanyKeyVault.vault.azure.net/", 
+    "keyVaultKeyName": "search-encryption-key", 
+    "keyVaultKeyVersion": "abc123def456ghi789", 
+    "accessCredentials": { 
+      "applicationId": "12345678-1234-1234-1234-123456789012", 
+      "applicationSecret": "secretValueFromStep2" 
+    } 
+  } 
+}
+```
+
+Verify the index was created successfully:
+
+```http
+GET https://<search-service>.search.windows.net/indexes/cross-tenant-cmk-test?api-version=2025-09-01
+```
+
+## Rotate or revoke encryption keys
+
+For guidance on rotating keys, updating key versions, or revoking access, see [Rotate or update encryption keys](search-security-manage-encryption-keys.md#rotate-or-update-encryption-keys). The same key lifecycle guidance applies to cross-tenant configurations. Azure AI Search caches the key for up to 60 minutes, so allow time for changes to take effect.
 
 ## See also
 
