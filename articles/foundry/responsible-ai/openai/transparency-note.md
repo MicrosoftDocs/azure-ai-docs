@@ -501,6 +501,9 @@ Large-scale natural language, image, and speech models trained with such data ca
 - **Information reliability:** Language and vision model responses can generate nonsensical content or fabricate content that might sound reasonable but is inaccurate with respect to external validation sources. Even when drawing responses from trusted source information, responses might misrepresent that content. Transcriptions or translations might result in inaccurate text. 
 - **False information:** Azure OpenAI doesn't fact-check or verify content that is provided by customers or users. Depending on how you have developed your application, it might produce false information unless you have built in mitigations (**see Best practices for improving system performance**). 
 
+> [!CAUTION]
+> GPT-5.4, compared to previous versions of the model, poses an elevated risk of producing (i) explicit content and (ii) harmful content in summarization contexts. We recommend that customers evaluate content filter setting on production systems before launching and conduct appropriate post-launch monitoring. All customers must comply with the Microsoft Enterprise AI Services Code of Conduct. Configurations options for content filtering vary when you deploy a model for production in Microsoft Foundry; learn more.
+
 ### Risks and limitations of fine-tuning
 
 When customers fine-tune Azure OpenAI models, it can improve model performance and accuracy on specific tasks and domains, but it can also introduce new risks and limitations that customers should be aware of. These risks and limitations apply to all [Azure OpenAI models that support fine-tuning](/azure/ai-foundry/openai/concepts/models#fine-tuning-models). Some of these risks and limitations are:
