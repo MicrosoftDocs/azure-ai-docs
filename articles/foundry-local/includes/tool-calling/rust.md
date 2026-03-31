@@ -13,9 +13,16 @@ ai-usage: ai-assisted
 
 - [Rust and Cargo](https://www.rust-lang.org/tools/install) installed (Rust 1.70.0 or later).
 
+
 ## Samples repository
 
-You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd rust/tool-calling-foundry-local
+```
 
 ## Set up project
 

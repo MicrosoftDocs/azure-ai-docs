@@ -13,6 +13,17 @@ ai-usage: ai-assisted
 
 - [Rust and Cargo](https://www.rust-lang.org/tools/install) installed (Rust 1.70.0 or later).
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd rust/native-chat-completions
+```
+
 ## Set up project
 
 [!INCLUDE [project-setup](../rust-project-setup.md)]

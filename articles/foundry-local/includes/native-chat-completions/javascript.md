@@ -12,6 +12,17 @@ ai-usage: ai-assisted
 ## Prerequisites
 - [Node.js 20](https://nodejs.org/en/download/) or later installed.
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd js/native-chat-completions
+```
+
 ## Set up project
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]

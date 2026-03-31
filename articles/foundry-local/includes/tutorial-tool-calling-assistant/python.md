@@ -6,6 +6,17 @@ ms.topic: include
 ms.date: 03/29/2026
 ---
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd python/tutorial-tool-calling
+```
+
 [!INCLUDE [Python project setup](../python-project-setup.md)]
 
 ## Define tools

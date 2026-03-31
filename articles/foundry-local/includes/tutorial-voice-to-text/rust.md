@@ -8,6 +8,17 @@ ms.date: 03/29/2026
 
 ## Set up the project
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd rust/tutorial-voice-to-text
+```
+
 [!INCLUDE [Rust project setup](../rust-project-setup.md)]
 
 ## Transcribe an audio file

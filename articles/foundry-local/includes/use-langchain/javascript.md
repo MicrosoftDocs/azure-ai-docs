@@ -18,6 +18,17 @@ Before starting this tutorial, you need:
 
 - **Node.js 20 or later** installed on your computer. You can download Node.js from the [official website](https://nodejs.org/).
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd js/langchain-integration-example
+```
+
 ## Set up project
 
 [!INCLUDE [project-setup](../javascript-project-setup.md)]

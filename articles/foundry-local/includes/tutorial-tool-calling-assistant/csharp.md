@@ -6,6 +6,17 @@ ms.topic: include
 ms.date: 03/29/2026
 ---
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd cs/tutorial-tool-calling
+```
+
 [!INCLUDE [C# project setup](../csharp-project-setup.md)]
 
 ## Define tools

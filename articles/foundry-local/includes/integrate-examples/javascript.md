@@ -16,6 +16,17 @@ ai-usage: ai-assisted
 
 - [Node.js](https://nodejs.org/en/download/) version 20 or later installed.
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd js/web-server-example
+```
+
 ## Set up project
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]

@@ -13,6 +13,17 @@ ai-usage: ai-assisted
 
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd cs/native-chat-completions
+```
+
 ## Set up project
 
 [!INCLUDE [project-setup](../csharp-project-setup.md)]

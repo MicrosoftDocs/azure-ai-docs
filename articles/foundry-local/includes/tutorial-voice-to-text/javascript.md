@@ -8,6 +8,17 @@ ms.date: 03/29/2026
 
 ## Set up the project
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd js/tutorial-voice-to-text
+```
+
 [!INCLUDE [JavaScript project setup](../javascript-project-setup.md)]
 
 ## Transcribe an audio file

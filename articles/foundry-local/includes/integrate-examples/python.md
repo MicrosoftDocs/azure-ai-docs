@@ -16,6 +16,17 @@ ai-usage: ai-assisted
 
 - Python 3.11 or later installed. You can download Python from the [official Python website](https://www.python.org/downloads/).
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd python/web-server
+```
+
 ## Install pip packages
 
 [!INCLUDE [project-setup](../python-project-setup.md)]

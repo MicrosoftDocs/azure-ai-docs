@@ -13,6 +13,17 @@ ai-usage: ai-assisted
 
 - [Rust and Cargo](https://www.rust-lang.org/tools/install) installed.
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd rust/foundry-local-webserver
+```
+
 ## Create project
 
 [!INCLUDE [project-setup](../rust-project-setup.md)]

@@ -13,6 +13,17 @@ ai-usage: ai-assisted
 
 - [Python 3.11](https://www.python.org/downloads/) or later installed.
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd python/native-chat-completions
+```
+
 ## Set up project
 
 [!INCLUDE [project-setup](../python-project-setup.md)]

@@ -13,9 +13,16 @@ ai-usage: ai-assisted
 
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
 
+
 ## Samples repository
 
-You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd cs/foundry-local-web-server
+```
 
 ## Set up project
 

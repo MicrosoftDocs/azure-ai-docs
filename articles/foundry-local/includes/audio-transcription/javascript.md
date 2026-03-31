@@ -12,9 +12,16 @@ ai-usage: ai-assisted
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/en/download/) version 20 or later installed.
+
 ## Samples repository
 
-You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd js/audio-transcription-example
+```
 
 ## Create project
 

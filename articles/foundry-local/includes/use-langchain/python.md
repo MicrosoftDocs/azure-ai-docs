@@ -18,6 +18,17 @@ Before starting this tutorial, you need:
 
 - **Python 3.11 or later** installed on your computer. You can download Python from the [official website](https://www.python.org/downloads/).
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd python/langchain-integration
+```
+
 ## Install pip packages
 
 [!INCLUDE [project-setup](../python-project-setup.md)]

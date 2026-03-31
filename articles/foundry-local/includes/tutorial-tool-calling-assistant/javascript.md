@@ -6,6 +6,17 @@ ms.topic: include
 ms.date: 03/29/2026
 ---
 
+
+## Samples repository
+
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd js/tutorial-tool-calling
+```
+
 [!INCLUDE [JavaScript project setup](../javascript-project-setup.md)]
 
 ## Define tools

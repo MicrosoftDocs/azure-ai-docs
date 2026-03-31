@@ -13,9 +13,16 @@ ai-usage: ai-assisted
 
 - [Python 3.11](https://www.python.org/downloads/) or later installed.
 
+
 ## Samples repository
 
-You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
+[!INCLUDE [samples-repo](../samples-repo.md)]
+
+Navigate to the sample for this article:
+
+```bash
+cd python/tool-calling
+```
 
 ## Set up project
 
