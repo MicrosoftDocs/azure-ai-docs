@@ -12,7 +12,7 @@ ms.custom: include
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learncognitive-services).
 - A [Microsoft Foundry project](../../how-to/create-projects.md) with a model deployed using a provisioned throughput deployment type.
 - Provisioned throughput quota allocated to your subscription in your target region.
 - [Azure CLI](/cli/azure/install-azure-cli) (if you plan to create deployments via the command line).

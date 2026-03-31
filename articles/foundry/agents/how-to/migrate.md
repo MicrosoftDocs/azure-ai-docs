@@ -4,7 +4,7 @@ description: "Learn how to migrate from the Assistants API and classic agents to
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 03/25/2026
+ms.date: 03/30/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -22,7 +22,7 @@ Foundry Agent Service provides an upgraded developer experience for building int
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - The Foundry Agent Service SDK for your language, and corresponding identity package for authentication. Install the packages for your language and sign in with `az login` or use `DefaultAzureCredential`:
 
@@ -52,7 +52,7 @@ npm install @azure/identity
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
@@ -1661,8 +1661,8 @@ After you migrate your code, confirm that everything works correctly:
 | --------- | ------- | ------------ |
 | **Python**: `AttributeError: 'AIProjectClient' has no attribute 'conversations'` | You called `conversations.create()` on the project client instead of the OpenAI client. | Use `project.get_openai_client()` to obtain the OpenAI client, then call `openai.conversations.create()`. |
 | **C#**: `Azure.AI.Extensions.OpenAI` namespace not found | The `Azure.AI.Extensions.OpenAI` NuGet package is missing. | Install `Azure.AI.Projects` (which brings in `Azure.AI.Extensions.OpenAI` and `Azure.AI.Projects.Agents` as dependencies). |
-| **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects@2.0.0-beta.5` or later: `npm install @azure/ai-projects@2.0.0-beta.5`. |
-| **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.0.0-beta.3` to your `pom.xml` dependencies. |
+| **JavaScript**: `getOpenAIClient is not a function` | You're using an older version of `@azure/ai-projects`. | Update to `@azure/ai-projects@2.0.0` or later: `npm install @azure/ai-projects@2.0.0`. |
+| **Java**: `AgentsClientBuilder` can't resolve | The `azure-ai-agents` Maven dependency is missing or outdated. | Add `com.azure:azure-ai-agents:2.0.0` to your `pom.xml` dependencies. |
 | `create_agent()` is removed | Earlier SDK versions used `create_agent()`, which was removed in v2.0.0. | Replace with `create_version()` (Python/JS) or `CreateAgentVersionAsync()` (C#) or `createAgentVersion()` (Java) and pass a `PromptAgentDefinition` object. |
 | Old thread data isn't available | The migration tool doesn't migrate state data (past runs, threads, or messages). | Start new conversations after migration. Historical data remains accessible through the previous API until it's deprecated. |
 | `responses.create()` raises a model error | The model name might be incorrect or unavailable in your region. | Verify the model name in your Foundry project and check [model region availability](../concepts/limits-quotas-regions.md). |

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -31,13 +31,13 @@ This article uses the Azure CLI and a runnable sample project.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ |
+| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | - | ✔️ |
 
 For the latest SDK and API support for agents tools, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 ## SDK support
 
-The custom code interpreter uses the MCP tool type. Any SDK that supports MCP tools can create a custom code interpreter agent. The .NET and Java SDKs are currently in preview. For the infrastructure provisioning steps (Azure CLI, Bicep), see [Create an agent with custom code interpreter](#create-an-agent-with-custom-code-interpreter).
+The custom code interpreter uses the MCP tool type. Any SDK that supports MCP tools can create a custom code interpreter agent. The .NET SDK is currently in preview. For the infrastructure provisioning steps (Azure CLI, Bicep), see [Create an agent with custom code interpreter](#create-an-agent-with-custom-code-interpreter).
 
 ## Prerequisites
 
@@ -300,7 +300,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
