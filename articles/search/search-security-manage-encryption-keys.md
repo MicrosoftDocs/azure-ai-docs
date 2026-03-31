@@ -15,7 +15,7 @@ ms.custom:
 
 Azure AI Search automatically encrypts data at rest with [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). 
 
-Enabling customer‑managed keys (CMK) adds an additional layer of encryption on top of the default Microsoft‑managed encryption. By adding an additional CMK layer, you control the encryption keys used to protect your data, including the ability to:
+Enabling customer‑managed keys (CMK) adds an additional layer on top of the default Microsoft‑managed encryption. By adding an additional CMK layer, you control the encryption keys used to protect your data, including the ability to:
 
 - Rotate keys on a customer‑defined schedule
 - Disable or revoke keys to immediately block access to encrypted content
@@ -27,34 +27,24 @@ You can create, store, and manage keys using either:
 
 + Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. HSM support is new in Azure AI Search. To migrate from Azure Key Vault to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
 
-This article explains how to set up CMK encryption.
+This article explains how to set up encryption with CMK.
 
 > [!IMPORTANT]
-> + CMK provides encryption for data at rest. If you need to protect data in use, consider using [confidential computing](search-security-best-practices.md#optional-enable-confidential-computing).
+> + Adding a customer-managed key (CMK) applies to encryption for data at rest. If you need to protect data in use, consider using [confidential computing](search-security-best-practices.md#optional-enable-confidential-computing).
 >
-> + CMK encryption is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-CMK encryption, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
-
-## Enable service-level CMK to encrypt new objects by default (preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
-Defining CMK at the **service level** means you configure encryption once on the Azure AI Search service itself. Once CMK is enabled at the service level:
-
-- All new objects have CMK enabled by default. Instead of specifying an encryption key each time you create an object, the service automatically applies a service‑level CMK to all newly created objects. Previously you needed to explicitly provide encryption key information on every object create.
-
-- These new object will use the service level key by default. However, you can still specify an object-level key when creating a new object, which overrides the service-level key for that object.
+> + Encryption with a CMK is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-encryption with CMK, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
 
 ## Encrypt customer managed keys at the object level
 
-When CMK is configured at the **object level**, encryption is applied only to the individual object at the time of creation.
+When configured at the **object level**, encryption with a CMK is applied only to the individual object at the time of creation.
 
 If you have set up a service-level key, that key will be used by default. However, if you configure an object-level key, that will override the service-level key for that object.
 
 You can’t encrypt objects that already exist. Encryption is only supported at the time of object creation. If you want to encrypt an existing object, you must delete and recreate it with encryption enabled.
 
-CMK encryption occurs each time an object is saved to disk, for both data at rest (long-term storage) or temporary cached data (short-term storage). With CMK, the disk never sees unencrypted data.
+Encryption with a CMK occurs each time an object is saved to disk, for both data at rest (long-term storage) or temporary cached data (short-term storage). With CMK, the disk never sees unencrypted data.
 
-Objects that can be encrypted include indexes, synonym lists, indexers, data sources, and skillsets. Encryption is computationally expensive to decrypt so only sensitive content is encrypted.
+Objects that can be encrypted with a CMK include indexes, synonym lists, indexers, data sources, and skillsets. Encryption is computationally expensive to decrypt so only sensitive content is encrypted.
 
 Encryption is performed over the following content:
 
@@ -65,6 +55,16 @@ Encryption is performed over the following content:
 Although you can't add encryption to an existing object, once an object is configured for encryption, you can change all parts of its encryption definition, including switching to a different key vault or HMS storage as long as the resource is in the same tenant.
 
 You should also consider setting up an Azure policy to check for compliance and enforcement. See [Set up a policy to enforce CMK compliance](#set-up-a-policy-to-enforce-cmk-compliance).
+
+## Enable service-level CMK to encrypt new objects by default (preview)
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+
+Defining CMK at the **service level** means you configure the encryption key once on the Azure AI Search service itself. Once CMK is enabled at the service level:
+
+- All new objects have CMK enabled by default. Instead of specifying an encryption key each time you create an object, the service automatically applies a service‑level CMK to all newly created objects. Previously you needed to explicitly provide encryption key information on every object create.
+
+- These new object will use the service level key by default. However, you can still specify an object-level key when creating a new object, which overrides the service-level key for that object.
 
 ## Prerequisites
 
@@ -177,97 +177,12 @@ Wait a few minutes for the role assignment to become operational.
 
 ## Step 4: Encrypt content with CMK
 
-CMK encryption can be added at the service level or at the object level. Service-level encryption applies to all supported objects created in the service, unless you specify an object-level key at the time of object creation. Object-level encryption applies only to the specific object.
+Encryption with a CMK can be added at the service level or at the object level. Service-level CMK applies to all supported objects created in the service, unless you specify an object-level key at the time of object creation. Object-level CMK configuration applies only to the specific object.
 
-### Configure CMK at the service-level (preview)
-
-To enable service-level CMK encryption, we recommend that you use the [Search Management REST API](/rest/api/searchmanagement) or an Azure SDK package that has been updated to support Search Management REST API version 2026-03-01-preview or later. This feature is not yet supported in the Azure portal. 
-
-### [**REST APIs**](#tab/rest)
-
-To configure CMK encryption at the service level on your search service, use [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update) (Management REST API) with the `PATCH` command to update an existing search service, or the `PUT` command to create a new service, calling the REST endpoint and API version. The API version must be 2026-03-01-preview or later to support service-level configuration. 
-
-In this example, be sure to replace `{{subscription-id}}`, `{{resource-group}}`, `{{search-service}}`, and `{{token}}` with your subscription ID, resource group name, search service name, and access token, respectively. The definitions for a key are the same as when configuring object-level CMK and the same options are supported.
-
-```http
-PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
-Authorization: Bearer {{token}}
-Content-Type: application/json
-```
-
-See the examples below for how to insert thw encryptionKey construct at the service-level for different identity types.
-
-Example using system-assigned managed identity:
-
-```json
-{
-  "encryptionWithCmk": {
-    "enforcement": "Enabled",
-    "serviceLevelEncryptionKey": {
-      "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
-      "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
-      "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>"
-    }
-  }
-}
-```
-
-Example using user-managed identity:
-
-```json
-{
-  "encryptionWithCmk": {
-    "enforcement": "Enabled",
-    "serviceLevelEncryptionKey": {
-      "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
-      "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
-      "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
-      "identity": {
-        "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-        "userAssignedIdentity": "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>"
-      }
-    }
-  }
-}
-```
-
-Example using application Id:
-
-```json
-{
-  "encryptionWithCmk": {
-    "enforcement": "Enabled",
-    "serviceLevelEncryptionKey": {
-          " keyVaultUri": "<YOUR-KEY-VAULT-URI>",
-          " keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
-          " keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
-          "accessCredentials": {
-                  "applicationId": "<YOUR-APPLICATION-ID>",
-                  "applicationSecret": "<YOUR-APPLICATION-SECRET>"
-      }       
-    }
-  }
-}
-```
-
-### [**Azure portal**](#tab/portal)
-
-Currently service-level encryption isn't supported in the Azure portal, we recommend using the REST API directly.
-
-### [**Azure SDKs**](#tab/sdks)
-
-Configuration of service-level CMK is supported in Azure SDK packages that target Search Management REST API version 2026-03-01-preview or later. To confirm support, check the changelog for your package:
-
-- .NET: [Azure.ResourceManager.Search changelog](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.ResourceManager.Search/CHANGELOG.md)
-- Java: [azure-resourcemanager-search changelog](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-resourcemanager-search/CHANGELOG.md)
-- JavaScript: [@azure/arm-search changelog](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/arm-search/CHANGELOG.md)
-- Python: [azure-mgmt-search changelog](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-mgmt-search/CHANGELOG.md)
-
----
 
 ### Configure CMK at the object-level
 
-To encrypt CMK at the object level, you will need to specify a customer-managed key in the object definition when you create an index, indexer, data source, skillset, or synonym map. Encryption is applied when an object is created or updated. If you configured CMK at the service-level, the service-level key will be used by default for all new objects. When an object-level key is specified during creation, the object-level key overrides the service-level key for that object.
+To configure CMK at the object level, you will need to specify a customer-managed key in the object definition when you create an index, indexer, data source, skillset, or synonym map. Encryption is applied when an object is created or updated. If you configured CMK at the service-level, the service-level key will be used by default for all new objects. When an object-level key is specified during creation, the object-level key overrides the service-level key for that object.
 
 To configure CMK at the object-level, you can use the Azure portal, [Search Service REST APIs](/rest/api/searchservice/), or an Azure SDK.
 
@@ -343,7 +258,7 @@ None of these key vault details are considered secret and could be easily retrie
 
 ### [**Azure portal**](#tab/portal)
 
-When you create a new object in the Azure portal, you can specify a predefined customer-managed key in a key vault. The Azure portal lets you enable CMK encryption for:
+When you create a new object in the Azure portal, you can specify a predefined customer-managed key in a key vault. The Azure portal lets you enable encryption with a CMK for:
 
 + Indexes
 + Data sources
@@ -502,6 +417,92 @@ The example below demonstrates the **Python** representation of an `encryptionKe
 
 > [!Important]
 > Encrypted content in Azure AI Search is configured to use a specific key with a specific *version*. If you change the key or version, the object must be updated to use it **before** you delete the previous one. Failing to do so renders the object unusable. You won't be able to decrypt the content if the key is lost.
+
+### Configure CMK at the service-level (preview)
+
+To enable service-level CMK configuration, we recommend that you use the [Search Management REST API](/rest/api/searchmanagement) or an Azure SDK package that has been updated to support Search Management REST API version 2026-03-01-preview or later. This feature is not yet supported in the Azure portal. 
+
+### [**REST APIs**](#tab/rest)
+
+To configure encryption with a CMK at the service level on your search service, use [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update) (Management REST API) with the `PATCH` command to update an existing search service, or the `PUT` command to create a new service, calling the REST endpoint and API version. The API version must be 2026-03-01-preview or later to support service-level configuration. 
+
+In this example, be sure to replace `{{subscription-id}}`, `{{resource-group}}`, `{{search-service}}`, and `{{token}}` with your subscription ID, resource group name, search service name, and access token, respectively. The definitions for a key are the same as when configuring object-level CMK and the same options are supported.
+
+```http
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2026-03-01-preview
+Authorization: Bearer {{token}}
+Content-Type: application/json
+```
+
+See the examples below for how to insert thw encryptionKey construct at the service-level for different identity types.
+
+Example using system-assigned managed identity:
+
+```json
+{
+  "encryptionWithCmk": {
+    "enforcement": "Enabled",
+    "serviceLevelEncryptionKey": {
+      "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+      "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+      "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>"
+    }
+  }
+}
+```
+
+Example using user-managed identity:
+
+```json
+{
+  "encryptionWithCmk": {
+    "enforcement": "Enabled",
+    "serviceLevelEncryptionKey": {
+      "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+      "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+      "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
+      "identity": {
+        "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+        "userAssignedIdentity": "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>"
+      }
+    }
+  }
+}
+```
+
+Example using application Id:
+
+```json
+{
+  "encryptionWithCmk": {
+    "enforcement": "Enabled",
+    "serviceLevelEncryptionKey": {
+          " keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+          " keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+          " keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
+          "accessCredentials": {
+                  "applicationId": "<YOUR-APPLICATION-ID>",
+                  "applicationSecret": "<YOUR-APPLICATION-SECRET>"
+      }       
+    }
+  }
+}
+```
+
+### [**Azure portal**](#tab/portal)
+
+Currently service-level encryption isn't supported in the Azure portal, we recommend using the REST API directly.
+
+### [**Azure SDKs**](#tab/sdks)
+
+Configuration of service-level CMK is supported in Azure SDK packages that target Search Management REST API version 2026-03-01-preview or later. To confirm support, check the changelog for your package:
+
+- .NET: [Azure.ResourceManager.Search changelog](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.ResourceManager.Search/CHANGELOG.md)
+- Java: [azure-resourcemanager-search changelog](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-resourcemanager-search/CHANGELOG.md)
+- JavaScript: [@azure/arm-search changelog](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/arm-search/CHANGELOG.md)
+- Python: [azure-mgmt-search changelog](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-mgmt-search/CHANGELOG.md)
+
+---
 
 ## Step 5: Test encryption
 
@@ -668,7 +669,7 @@ For performance reasons, the search service caches the key for up to several hou
 
 + Use the same [Azure tenant](/entra/fundamentals/create-new-tenant) so that you can retrieve your managed key through role assignments and by connecting through a system or user-managed identity. For more information about creating a tenant, see [Set up a new tenant](/azure/active-directory/develop/quickstart-create-new-tenant).
 
-+ [Enable purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) and [soft-delete](/azure/key-vault/general/soft-delete-overview) on a key vault. Due to the nature of encryption with customer-managed keys, no one can retrieve your data if your Azure Key Vault key is deleted. To prevent data loss caused by accidental Key Vault key deletions, soft-delete and purge protection must be enabled on the key vault. Soft-delete is enabled by default, so you'll only encounter issues if you purposely disable it. Purge protection isn't enabled by default, but it's required for CMK encryption in Azure AI Search.
++ [Enable purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) and [soft-delete](/azure/key-vault/general/soft-delete-overview) on a key vault. Due to the nature of encryption with customer-managed keys, no one can retrieve your data if your Azure Key Vault key is deleted. To prevent data loss caused by accidental Key Vault key deletions, soft-delete and purge protection must be enabled on the key vault. Soft-delete is enabled by default, so you'll only encounter issues if you purposely disable it. Purge protection isn't enabled by default, but it's required for encryption with a CMK in Azure AI Search.
 
 + [Enable logging](/azure/key-vault/general/logging) on the key vault so that you can monitor key usage.
 
@@ -676,7 +677,7 @@ For performance reasons, the search service caches the key for up to several hou
 
 ## Work with encrypted content
 
-With CMK encryption, you might notice latency for both indexing and queries due to the extra encrypt/decrypt work. Azure AI Search doesn't log encryption activity, but you can monitor key access through key vault logging.
+Using CMK, you might notice latency for both indexing and queries due to the extra encrypt/decrypt work. Azure AI Search doesn't log encryption activity, but you can monitor key access through key vault logging.
 
 We recommend that you [enable logging](/azure/key-vault/general/logging) as part of key vault configuration.
 
