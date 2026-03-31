@@ -164,7 +164,7 @@ Use the Foundry Local C# SDK to load and run your compiled model with the native
 
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later
 
-### Set up the project
+### Install packages
 
 [!INCLUDE [project-setup](../includes/csharp-project-setup.md)]
 
@@ -247,7 +247,7 @@ Use the Foundry Local JavaScript SDK to load and run your compiled model with th
 
 - [Node.js 20](https://nodejs.org/en/download/) or later installed.
 
-### Set up the project
+### Install packages
 
 [!INCLUDE [project-setup](../includes/javascript-project-setup.md)]
 
@@ -379,7 +379,7 @@ Use the Foundry Local Rust SDK to load and run your compiled model with the nati
 
 - [Rust and Cargo](https://www.rust-lang.org/tools/install) installed (Rust 1.70.0 or later).
 
-### Set up the project
+### Install packages
 
 [!INCLUDE [project-setup](../includes/rust-project-setup.md)]
 

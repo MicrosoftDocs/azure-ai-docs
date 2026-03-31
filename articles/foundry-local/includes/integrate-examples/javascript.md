@@ -27,7 +27,7 @@ Navigate to the sample for this article:
 cd js/web-server-example
 ```
 
-## Set up project
+## Install packages
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]
 

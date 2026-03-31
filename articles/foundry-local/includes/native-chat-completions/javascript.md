@@ -23,7 +23,7 @@ Navigate to the sample for this article:
 cd js/native-chat-completions
 ```
 
-## Set up project
+## Install packages
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]
 

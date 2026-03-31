@@ -25,7 +25,7 @@ Navigate to the sample for this article:
 cd cs/tool-calling-foundry-local-sdk
 ```
 
-## Set up project
+## Install packages
 
 [!INCLUDE [project-setup](../csharp-project-setup.md)]
 

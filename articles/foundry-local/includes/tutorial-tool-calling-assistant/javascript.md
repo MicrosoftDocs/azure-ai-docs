@@ -17,6 +17,8 @@ Navigate to the sample for this article:
 cd js/tutorial-tool-calling
 ```
 
+## Install packages
+
 [!INCLUDE [JavaScript project setup](../javascript-project-setup.md)]
 
 ## Define tools

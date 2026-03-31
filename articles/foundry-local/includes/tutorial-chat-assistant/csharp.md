@@ -17,6 +17,8 @@ Navigate to the sample for this article:
 cd cs/tutorial-chat-assistant
 ```
 
+## Install packages
+
 [!INCLUDE [C# project setup](../csharp-project-setup.md)]
 
 ## Browse the catalog and select a model

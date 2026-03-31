@@ -23,7 +23,7 @@ Navigate to the sample for this article:
 cd js/audio-transcription-example
 ```
 
-## Create project
+## Install packages
 
 [!INCLUDE [project-setup](../javascript-project-setup.md)]
 

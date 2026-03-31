@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 ## JavaScript SDK Reference
 
-### Project setup
+### Install packages
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]
 

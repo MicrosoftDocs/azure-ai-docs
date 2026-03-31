@@ -23,7 +23,7 @@ Navigate to the sample for this article:
 cd cs/audio-transcription-example
 ```
 
-## Create project
+## Install packages
 
 [!INCLUDE [project-setup](../csharp-project-setup.md)]
 

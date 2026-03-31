@@ -27,7 +27,7 @@ Navigate to the sample for this article:
 cd python/web-server
 ```
 
-## Install pip packages
+## Install packages
 
 [!INCLUDE [project-setup](../python-project-setup.md)]
 

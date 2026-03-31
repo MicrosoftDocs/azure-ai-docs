@@ -24,7 +24,7 @@ Navigate to the sample for this article:
 cd cs/foundry-local-web-server
 ```
 
-## Set up project
+## Install packages
 
 [!INCLUDE [project-setup](./../csharp-project-setup.md)]
 

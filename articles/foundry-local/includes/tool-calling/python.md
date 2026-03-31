@@ -24,7 +24,7 @@ Navigate to the sample for this article:
 cd python/tool-calling
 ```
 
-## Set up project
+## Install packages
 
 [!INCLUDE [project-setup](../python-project-setup.md)]
 

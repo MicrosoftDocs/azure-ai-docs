@@ -17,6 +17,8 @@ Navigate to the sample for this article:
 cd rust/tutorial-chat-assistant
 ```
 
+## Install packages
+
 [!INCLUDE [Rust project setup](../rust-project-setup.md)]
 
 ## Browse the catalog and select a model

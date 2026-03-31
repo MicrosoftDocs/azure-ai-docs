@@ -17,6 +17,8 @@ Navigate to the sample for this article:
 cd cs/tutorial-tool-calling
 ```
 
+## Install packages
+
 [!INCLUDE [C# project setup](../csharp-project-setup.md)]
 
 ## Define tools

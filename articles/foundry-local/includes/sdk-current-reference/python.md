@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 ## Python SDK Reference
 
-### Project setup
+### Install packages
 
 [!INCLUDE [project-setup](../python-project-setup.md)]
 

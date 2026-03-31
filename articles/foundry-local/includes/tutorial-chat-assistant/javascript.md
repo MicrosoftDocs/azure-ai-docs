@@ -17,6 +17,8 @@ Navigate to the sample for this article:
 cd js/tutorial-chat-assistant
 ```
 
+## Install packages
+
 [!INCLUDE [JavaScript project setup](../javascript-project-setup.md)]
 
 ## Browse the catalog and select a model

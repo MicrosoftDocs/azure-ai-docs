@@ -24,7 +24,7 @@ Navigate to the sample for this article:
 cd rust/tool-calling-foundry-local
 ```
 
-## Set up project
+## Install packages
 
 [!INCLUDE [project-setup](../rust-project-setup.md)]
 

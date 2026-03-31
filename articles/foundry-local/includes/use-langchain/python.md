@@ -29,7 +29,7 @@ Navigate to the sample for this article:
 cd python/langchain-integration
 ```
 
-## Install pip packages
+## Install packages
 
 [!INCLUDE [project-setup](../python-project-setup.md)]
 

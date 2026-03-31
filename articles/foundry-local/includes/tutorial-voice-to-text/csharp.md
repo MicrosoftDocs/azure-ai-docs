@@ -6,7 +6,7 @@ ms.topic: include
 ms.date: 03/29/2026
 ---
 
-## Set up the project
+## Install packages
 
 
 ## Samples repository

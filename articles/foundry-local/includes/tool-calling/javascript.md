@@ -23,7 +23,7 @@ Navigate to the sample for this article:
 cd js/tool-calling-foundry-local
 ```
 
-## Set up project
+## Install packages
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]
 

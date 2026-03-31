@@ -24,7 +24,7 @@ Navigate to the sample for this article:
 cd rust/foundry-local-webserver
 ```
 
-## Create project
+## Install packages
 
 [!INCLUDE [project-setup](../rust-project-setup.md)]
 

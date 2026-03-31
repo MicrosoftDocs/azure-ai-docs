@@ -17,6 +17,8 @@ Navigate to the sample for this article:
 cd rust/tutorial-tool-calling
 ```
 
+## Install packages
+
 [!INCLUDE [Rust project setup](../rust-project-setup.md)]
 
 ## Define tools

@@ -10,30 +10,19 @@ ms.custom: include file
 ai-usage: ai-assisted
 ---
 
-Use Foundry Local in your Python project by following these steps:
+### [Windows](#tab/windows)
 
-1. Create a new Python project and virtual environment:
-    ```bash
-    mkdir app-name
-    cd app-name
-    python -m venv .venv
-    source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
-    ```
-1. Install the Foundry Local SDK package:
+```bash
+pip install foundry-local-sdk-winml openai
+```
 
-    ### [Windows](#tab/windows)
+> [!NOTE]
+> The Windows package uses the Windows Machine Learning (WinML) framework for hardware acceleration and automatic execution provider management.
 
-    ```bash
-    pip install foundry-local-sdk-winml
-    ```
+### [Cross-Platform](#tab/xplatform)
 
-    > [!NOTE]
-    > The Windows package uses the Windows Machine Learning (WinML) framework for hardware acceleration and automatic execution provider management.
+```bash
+pip install foundry-local-sdk openai
+```
 
-    ### [Cross-Platform](#tab/xplatform)
-
-    ```bash
-    pip install foundry-local-sdk
-    ```
-
-    ---
+---

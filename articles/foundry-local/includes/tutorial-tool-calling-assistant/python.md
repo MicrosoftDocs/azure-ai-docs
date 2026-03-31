@@ -17,6 +17,8 @@ Navigate to the sample for this article:
 cd python/tutorial-tool-calling
 ```
 
+## Install packages
+
 [!INCLUDE [Python project setup](../python-project-setup.md)]
 
 ## Define tools

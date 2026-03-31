@@ -17,6 +17,8 @@ Navigate to the sample for this article:
 cd python/tutorial-chat-assistant
 ```
 
+## Install packages
+
 [!INCLUDE [Python project setup](../python-project-setup.md)]
 
 ## Browse the catalog and select a model

@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 ## Rust SDK Reference
 
-### Project setup
+### Install packages
 
 [!INCLUDE [project-setup](../rust-project-setup.md)]
 

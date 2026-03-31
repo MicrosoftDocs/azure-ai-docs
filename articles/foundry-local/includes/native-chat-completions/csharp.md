@@ -24,7 +24,7 @@ Navigate to the sample for this article:
 cd cs/native-chat-completions
 ```
 
-## Set up project
+## Install packages
 
 [!INCLUDE [project-setup](../csharp-project-setup.md)]
 
