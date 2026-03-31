@@ -1453,6 +1453,7 @@ With these values, the resolved instructions become:
 > You are a weather assistant. Provide a helpful weather summary for the user.
 >
 > The user asked about: Seattle, WA
+> 
 > Use the following units: Fahrenheit
 >
 > Include a brief multi-day forecast in your response.
