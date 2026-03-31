@@ -360,7 +360,7 @@ For detailed information on the supported and unsupported SSML elements for Azur
 | `<sub>`  |  Indicates that the alias attribute's text value should be pronounced instead of the element's enclosed text.  | Yes | Yes |
 | `<math>` | Uses the MathML as input text to properly pronounce mathematical notations in the output audio.  | No | No |
 | `<bookmark>` | Gets the offset of each marker in the audio stream.  | No | No |
-| `<break>`  | Overrides the default behavior of breaks or pauses between words. | No | No |
+| `<break>`  | Overrides the default behavior of breaks or pauses between words. | Yes | No |
 | `<mstts:silence>`  | Inserts pause before or after text, or between two adjacent sentences.  | No | No |
 | `<mstts:viseme>` | Defines the position of the face and mouth while a person is speaking.  | No | No |
 | `<p>`  | Denotes paragraphs in SSML documents.  | Yes | Yes |
@@ -368,6 +368,23 @@ For detailed information on the supported and unsupported SSML elements for Azur
 
 > [!NOTE]
 > Although a [previous section in this guide](#comparison-of-azure-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure Speech aren't applicable to Azure OpenAI voices.
+
+## Parameter enhancePronunciation
+The enhancePronunciation parameter enables enhanced pronunciation handling during speech synthesis. When set to true, the NeuralHD voices apply additional pronunciation optimizations to improve the clarity and correctness of spoken output, particularly for complex, ambiguous, or non‑standard text.
+
+When enhancePronunciation is enabled, the service prioritizes pronunciation accuracy by applying enhanced linguistic processing during synthesis. This can help improve how the system reads:
+- Proper nouns, names, and uncommon words
+- Acronyms, abbreviations, and mixed‑case text
+- Words with multiple possible pronunciations depending on context
+This parameter is designed to complement existing pronunciation controls such as SSML‑based pronunciation tags and lexicons, and does not replace them. enhancePronunciation is off by default to preserve predictable, backward‑compatible speech output, and can be enabled when developers want the service to apply additional pronunciation optimizations for improved clarity and naturalness.
+
+### Recommended Use Cases
+Enable enhancePronunciation in scenarios where pronunciation of structured or technical domain specific content.
+
+> [!NOTE]
+> The parameter affects pronunciation handling only; it does not change voice selection, speaking style, or prosody controls.
+> Results may vary depending on language, voice, and input text.
+> For deterministic pronunciation control, SSML pronunciation elements remain the recommended approach.
 
 ## Choosing between DragonHD and Dragon HD Omni
 
