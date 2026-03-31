@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 03/31/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, doc-kit-assisted
@@ -29,7 +29,7 @@ In this article, you learn how to:
 ## Prerequisites
 
 - A [basic or standard agent environment](../../agents/environment-setup.md).
-- The latest SDK package for your language. The .NET and Java SDKs are currently in preview. See the [quickstart](../../quickstarts/get-started-code.md) for installation steps.
+- The latest SDK package for your language. See the [quickstart](../../quickstarts/get-started-code.md) for installation steps.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Your Foundry project endpoint URL and model deployment name.
 
@@ -148,7 +148,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create agent with handlebar templates in instructions
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant. "
         + "The user's name is {{userName}} and their role is {{userRole}}. "
@@ -269,7 +269,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -504,7 +504,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create agent with a structured input placeholder for the file ID
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful data analyst.",
     Tools = {
@@ -853,7 +853,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create agent with a template placeholder for vector store ID
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant that searches product information.",
     Tools = {
