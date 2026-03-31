@@ -9,7 +9,7 @@ ms.date: 05/19/2025
 ms.custom: include file
 ---
 
-For additional hardware acceleration on Windows, select the WinML tab:
+For more hardware acceleration on Windows, select the WinML tab:
 
 ### [Cross-Platform](#tab/xplatform)
 
@@ -27,4 +27,4 @@ dotnet add package OpenAI
 
 ---
 
-The C# samples in the GitHub repository are pre-configured projects. If you are building from scratch, you should read the [Foundry Local SDK reference](../reference/reference-sdk-current.md) for more details on how to set up your C# project with Foundry Local. 
+The C# samples in the GitHub repository are preconfigured projects. If you're building from scratch, you should read the [Foundry Local SDK reference](../reference/reference-sdk-current.md) for more details on how to set up your C# project with Foundry Local. 

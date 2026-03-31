@@ -1,6 +1,6 @@
 ---
-title: include file
-description: include file
+title: Include file
+description: Include file
 author: samuel100
 ms.author: samkemp
 ms.service: azure-ai-foundry
@@ -10,7 +10,7 @@ ms.custom: include file
 ai-usage: ai-assisted
 ---
 
-For additional hardware acceleration on Windows, select the WinML tab:
+For more hardware acceleration on Windows, select the WinML tab:
 
 ### [Cross-Platform](#tab/xplatform)
 

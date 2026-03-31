@@ -51,7 +51,7 @@ async fn main() -> Result<()> {
 }
 ```
 
-This example prints a non-zero number when the service is running and the catalog is available.
+This example prints a nonzero number when the service is running and the catalog is available.
 
 References:
 
@@ -64,11 +64,11 @@ Manager for Foundry Local SDK operations.
 
 #### Fields
 
-- `service_uri: Option<String>` — URI of the Foundry service.
-- `client: Option<HttpClient>` — HTTP client for API requests.
-- `catalog_list: Option<Vec<FoundryModelInfo>>` — Cached list of catalog models.
-- `catalog_dict: Option<HashMap<String, FoundryModelInfo>>` — Cached dictionary of catalog models.
-- `timeout: Option<u64>` — Optional HTTP client timeout.
+- `service_uri: Option<String>`: URI of the Foundry service.
+- `client: Option<HttpClient>`: HTTP client for API requests.
+- `catalog_list: Option<Vec<FoundryModelInfo>>`: Cached list of catalog models.
+- `catalog_dict: Option<HashMap<String, FoundryModelInfo>>`: Cached dictionary of catalog models.
+- `timeout: Option<u64>`: Optional HTTP client timeout.
 
 #### Methods
 
@@ -121,7 +121,7 @@ Manager for Foundry Local SDK operations.
   **Arguments:**  
   - `alias_or_model_id`: Alias or Model ID.  
   - `token`: Optional authentication token.  
-  - `force`: Force re-download if already cached.
+  - `force`: Force redownload if already cached.
 
 - **`pub async fn load_model(&mut self, alias_or_model_id: &str, ttl: Option<i32>) -> Result<FoundryModelInfo>`**  
   Load a model for inference.  
@@ -133,7 +133,7 @@ Manager for Foundry Local SDK operations.
   Unload a model.  
   **Arguments:**  
   - `alias_or_model_id`: Alias or Model ID.  
-  - `force`: Force unload even if in use.
+  - `force`: Force unloads even if in use.
 
 - **`pub async fn list_loaded_models(&mut self) -> Result<Vec<FoundryModelInfo>>`**  
   List loaded models.
@@ -183,7 +183,7 @@ Represents information about a model.
 - `provider: String` — Provider name.
 - `publisher: String` — Publisher name.
 - `license: String` — License type.
-- `task: String` — Model task (e.g., text-generation).
+- `task: String` — Model task (for example, text-generation).
 
 #### Methods
 
