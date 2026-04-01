@@ -99,93 +99,99 @@ The JSON response you receive from a model router model is identical to the stan
 The following example response was generated using API version `2025-11-18`:
 
 ```json
+
 {
-  "choices": [
-    {
-      "content_filter_results": {
-        "hate": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "protected_material_code": {
-          "detected": "False",
-          "filtered": "False"
-        },
-        "protected_material_text": {
-          "detected": "False",
-          "filtered": "False"
-        },
-        "self_harm": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": "False",
-          "severity": "safe"
+    "success": true,
+    "data": {
+        "choices": [
+            {
+                "content_filter_results": {
+                    "hate": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "protected_material_code": {
+                        "filtered": false,
+                        "detected": false
+                    },
+                    "protected_material_text": {
+                        "filtered": false,
+                        "detected": false
+                    },
+                    "self_harm": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "sexual": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "violence": {
+                        "filtered": false,
+                        "severity": "safe"
+                    }
+                },
+                "finish_reason": "stop",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                    "annotations": [],
+                    "content": "Charismatic and bold—combining brash showmanship and poetic wit with fierce competitiveness, moral conviction, and unwavering activism.",
+                    "refusal": null,
+                    "role": "assistant"
+                }
+            }
+        ],
+        "created": 1774543376,
+        "id": "xxxx-yyyy-zzzz",
+        "model": "gpt-5-mini-2025-08-07",
+        "object": "chat.completion",
+        "prompt_filter_results": [
+            {
+                "prompt_index": 0,
+                "content_filter_results": {
+                    "hate": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "jailbreak": {
+                        "filtered": false,
+                        "detected": false
+                    },
+                    "self_harm": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "sexual": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "violence": {
+                        "filtered": false,
+                        "severity": "safe"
+                    }
+                }
+            }
+        ],
+        "system_fingerprint": null,
+        "usage": {
+            "completion_tokens": 163,
+            "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 128,
+                "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 3254,
+            "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 3200
+            },
+            "total_tokens": 3417
         }
-      },
-      "finish_reason": "stop",
-      "index": 0,
-      "logprobs": "None",
-      "message": {
-        "content": "I'm doing well, thank you! How can I assist you today?",
-        "refusal": "None",
-        "role": "assistant"
-      }
     }
-  ],
-  "created": 1745308617,
-  "id": "xxxx-yyyy-zzzz",
-  "model": "gpt-4.1-nano-2025-04-14",
-  "object": "chat.completion",
-  "prompt_filter_results": [
-    {
-      "content_filter_results": {
-        "hate": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "jailbreak": {
-          "detected": "False",
-          "filtered": "False"
-        },
-        "self_harm": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": "False",
-          "severity": "safe"
-        }
-      },
-      "prompt_index": 0
-    }
-  ],
-  "system_fingerprint": "xxxx",
-  "usage": {
-    "completion_tokens": 15,
-    "completion_tokens_details": {
-      "accepted_prediction_tokens": 0,
-      "audio_tokens": 0,
-      "reasoning_tokens": 0,
-      "rejected_prediction_tokens": 0
-    },
-    "prompt_tokens": 21,
-    "prompt_tokens_details": {
-      "audio_tokens": 0,
-      "cached_tokens": 0
-    },
-    "total_tokens": 36
-  }
 }
+
 ```
 
 ## Monitor model router metrics
