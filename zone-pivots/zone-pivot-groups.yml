@@ -1909,7 +1909,7 @@ groups:
     title: Foundry portal
   - id: bicep
     title: Bicep
-# Owner: johalexander / ms-johnalex
+# Owner: rotabor / bobtabor-msft
 - id: ai-foundry-vsc-extension-languages
   title: Programming languages
   prompt: Choose a programming language
