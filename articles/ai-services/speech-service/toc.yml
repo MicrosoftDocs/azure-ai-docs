@@ -89,6 +89,8 @@ items:
       items:
       - name: How to recognize speech
         href: how-to-recognize-speech.md
+      - name: How to use post-processing
+        href: how-to-post-processing.md
       - name: Get speech recognition results
         href: get-speech-recognition-results.md
       - name: Language identification

@@ -11,8 +11,8 @@ ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 02/06/2026
 ms.reviewer: dantaylo
-ms.author: johalexander
-author: ms-johnalex
+ms.author: sgilley
+author: sdgilley
 zone_pivot_groups: foundry-sdk-overview-languages
 # customer intent: I want to learn how to use the Microsoft Foundry SDK and endpoints to build AI applications on Azure.
 ROBOTS: NOINDEX, NOFOLLOW
@@ -43,13 +43,13 @@ This approach simplifies application configuration. Instead of managing multiple
 > This article applies to a **[!INCLUDE [fdp](../../../foundry/includes/fdp-project-name.md)]**. The code shown here doesn't work for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. For more information, see [Types of projects](../../what-is-foundry.md#types-of-projects).
 
 > [!NOTE]
-> **SDK versions:** The 2.x GA SDK targets the new Foundry portal and API. The 1.x GA SDK targets Foundry classic. Make sure the samples you follow match your installed package.
+> **SDK versions:** This article covers installation of the 1.x SDK. Make sure the samples you follow match your installed package. [Switch to the new Foundry portal documentation to view article for 2.x](../../../foundry/how-to/develop/sdk-overview.md).
 
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [sdk-overview-python](../../../foundry/includes/sdk/sdk-overview-python.md)]
 
-Run this command to install the stable packages for Foundry classic projects.
+Run this command to install the 1.x packages for Foundry classic projects.
 ```bash
 pip install openai azure-identity azure-ai-projects==1.0.0
 ```
@@ -59,7 +59,7 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 | SDK Version   | Portal Version  | Status  | Java Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 1.0.0-beta.3<br>1.0.0-beta.1 | Foundry (new)   | Preview | `azure-ai-projects`<br>`azure-ai-agents` |
+| 2.0.0 | Foundry (new)   | Stable | `azure-ai-projects`<br>`azure-ai-agents` |
 
 ::: zone-end
 
@@ -67,7 +67,7 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 | SDK Version   | Portal Version  | Status  | JavaScript Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.0.0-beta.4 (preview) | Foundry (new)   | Preview | `@azure/ai-projects 'prerelease'` |
+| 2.0.1 | Foundry (new)   | Stable | `@azure/ai-projects` |
 | 1.0.1 | Foundry classic | Stable | `@azure/ai-projects`             |
 
 ::: zone-end
@@ -76,30 +76,33 @@ pip install openai azure-identity azure-ai-projects==1.0.0
 
 | SDK Version   | Portal Version  | Status  | .NET Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 1.2.0-beta.5 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.Openai` |
-| 1.x (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
+| 2.0.0-beta.1 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.OpenAI` |
+| 1.1.0 (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-The [Azure AI Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
+> [!IMPORTANT]
+> The Java `azure-ai-projects` package doesn't have a 1.x GA release. The code samples in the Java sections use the `azure-ai-inference` package directly, which is being deprecated and will be retired on May 30, 2026.
+> For the 2.x Projects SDK, [switch to the new Foundry portal documentation](../../../foundry/how-to/develop/sdk-overview.md).
 
-Add these packages to your installation for Foundry classic projects.
 
-```java
-package com.azure.ai.foundry.samples;
-import com.azure.ai.projects;
-import com.azure.ai.inference.ChatCompletionsClient;
-import com.azure.ai.inference.ChatCompletionsClientBuilder;
-import com.azure.ai.inference.models.ChatCompletions;
-import com.azure.core.credential.AzureKeyCredential;
-import com.azure.core.credential.TokenCredential;
-import com.azure.core.exception.HttpResponseException;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.identity.DefaultAzureCredentialBuilder;
+Add these dependencies to your Maven `pom.xml` for Foundry classic projects.
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-inference</artifactId>
+    <version>1.0.0-beta.6</version>
+</dependency>
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-identity</artifactId>
+    <version>1.18.2</version>
+</dependency>
 ```
 ::: zone-end
 
@@ -107,9 +110,9 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 
 The [Azure AI Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run this command to install the current JavaScript packages for Foundry classic projects.
+Run this command to install the 1.x JavaScript packages for Foundry classic projects.
 ```bash
-npm install @azure/ai-projects @azure/identity
+npm install @azure/ai-projects@1.0.1 @azure/identity
 ```
 ::: zone-end
 
@@ -117,13 +120,13 @@ npm install @azure/ai-projects @azure/identity
 
 The [Azure AI Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run these commands to add the Azure AI SDK packages for Foundry classic projects.
+Run these commands to add the 1.x Azure AI SDK packages for Foundry classic projects.
 
 ```bash
-# Add Azure AI SDK packages
+# Add 1.x Azure AI SDK packages
 dotnet add package Azure.Identity
-dotnet add package Azure.AI.Projects 
-dotnet add package Azure.AI.Agents.Persistent
+dotnet add package Azure.AI.Projects --version 1.1.0
+dotnet add package Azure.AI.Agents.Persistent --version 1.1.0
 dotnet add package Azure.AI.Inference
 ```
 ::: zone-end
@@ -144,11 +147,12 @@ Most apps use both clients. Use the project client for setup and configuration, 
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
-project = AIProjectClient(
+project_client = AIProjectClient(
     endpoint="https://<resource-name>.services.ai.azure.com/api/projects/<project-name>",
     credential=DefaultAzureCredential(),
 )
-```**Create an OpenAI-compatible client from your project:**
+```
+**Create an OpenAI-compatible client from your project:**
 
 ```python
 models = project_client.get_openai_client(api_version="2024-10-21")
@@ -227,6 +231,12 @@ console.log(chatCompletion.choices[0].message.content);
 **Create a project client:**
 
 ```csharp
+using System.ClientModel.Primitives;
+using Azure.AI.OpenAI;
+using Azure.AI.Projects;
+using Azure.Identity;
+using OpenAI.Chat;
+
 string endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
 AIProjectClient projectClient = new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential());
 ```
@@ -356,16 +366,16 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
 
 ```javascript
 import { AzureOpenAI } from "openai";
-import { DefaultAzureCredential } from "@azure/identity";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 
-const deployment = "gpt-4o"
-const endpoint = "https://<resource-name>.openai.azure.com/openai/v1";
+const deployment = "gpt-4o";
+const endpoint = "https://<resource-name>.openai.azure.com";
 const scope = "https://ai.azure.com/.default";
 const apiVersion = "2024-04-01-preview";
 
 const azureADTokenProvider = getBearerTokenProvider(new DefaultAzureCredential(), scope);
 
-const options = { azureADTokenProvider, deployment, apiVersion }
+const options = { azureADTokenProvider, deployment, apiVersion, endpoint };
 
 const client = new AzureOpenAI(options);
 
