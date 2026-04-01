@@ -11,24 +11,57 @@
         "tocParentNode": "Latest documentation updates",
         "repoTocFolder": "articles/whats-new",
         "indexParentNode": "Latest documentation updates",
-        "repoIndexFolder": "articles/whats-new"
+        "repoIndexFolder": "articles/foundry"
     },
     "areas": [
         {
-            "names": [ "ai-services" ],
-            "heading": "Azure AI Services"
+            "names": [ "agents" ],
+            "heading": "Agents"
         },
         {
-            "names": [ "ai-foundry" ],
-            "heading": "Azure Foundry"
+            "names": [ "Concepts" ],
+            "heading": "Concepts"
         },
         {
-            "names": [ "machine-learning" ],
+            "names": [ "control-plane" ],
             "heading": "Machine Learning"
         },
         {
-            "names": [ "search" ],
-            "heading": "Azure AI Search"
+            "names": [ "fine-tuning" ],
+            "heading": "Fine Tuning"
+	   },
+        {
+
+            "names": [ "foundry-models" ],
+            "heading": "Foundry Models"
+        },
+        {
+            "names": [ "guardrails" ],
+            "heading": "Guardrails"
+        },
+        {
+            "names": [ "mcp" ],
+            "heading": "MCP"
+        },
+        {
+            "names": [ "observability" ],
+            "heading": "Observability"
+        },
+        {
+            "names": [ "openai" ],
+            "heading": "Azure Open AI in Foundry Tools"
+        },
+        {
+            "names": [ "responsible-ai" ],
+            "heading": "Responsible AI"
+        },
+        {
+            "names": [ "quickstarts" ],
+            "heading": "Quickstarts"
+        },
+        {
+            "names": [ "tutorials" ],
+            "heading": "Tutorials"
     
         }
     ]
