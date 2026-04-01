@@ -1,5 +1,5 @@
 ---
-title: MAI-Transcribe - Speech service
+title: MAI-Transcribe-1 in LLM Speech API - Speech service
 titleSuffix: Foundry Tools
 description: Learn how to use MAI-Transcribe-1 model in Azure Speech LLM Speech API
 manager: nitinme
