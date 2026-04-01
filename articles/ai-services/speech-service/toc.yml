@@ -317,6 +317,8 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
+    - name: Use MAI-Transcribe-1 in LLM Speech
+      href: mai-transcribe.md
     - name: Reference
       items:
       - name: LLM speech REST API reference
