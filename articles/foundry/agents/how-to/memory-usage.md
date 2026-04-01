@@ -6,7 +6,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 03/13/2026
+ms.date: 04/01/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-memory-store
@@ -146,9 +146,21 @@ $ACCESS_TOKEN = az account get-access-token --resource https://ai.azure.com/ --q
 
 The `scope` parameter controls how memory is partitioned. Each scope in the memory store keeps an isolated collection of memory items. For example, if you create a customer support agent with memory, each customer should have their own individual memory.
 
-As a developer, you choose the key used to store and retrieve memory items. You can pass a static value, such as a universally unique identifier (UUID) or another stable identifier from your system.
+As a developer, you choose the key used to store and retrieve memory items. The right approach depends on how you access memory.
 
-Alternatively, when you specify `{{$userId}}` as the scope, the system automatically extracts the tenant ID (TID) and object ID (OID) from the request authentication header. This approach gives each authenticated user their own isolated memory partition, eliminating the need to manage identifiers manually.
+### Via the memory search tool
+
+When you attach the [memory search tool](#use-memories-via-an-agent-tool) to an agent, set `scope` to `{{$userId}}` to enable per-user memory isolation without hard-coding identifiers. The system automatically resolves the end user's identity on each response call from one of two sources:
+
+- **`x-memory-user-id` request header:** If present, the header value is used as the user ID. Use this in proxy or backend scenarios where your service calls the API on behalf of an end user.
+
+- **Microsoft Entra authentication token:** If the header isn't set, the system falls back to the caller's tenant ID (TID) and object ID (OID). This is the default in frontend scenarios where users authenticate directly with Microsoft Entra.
+
+If you don't need per-user isolation, use a static `scope` value instead.
+
+### Via low-level memory APIs
+
+When you call [memory APIs](#use-memories-via-apis) directly, specify `scope` explicitly in each request. You can pass a static value, such as a universally unique identifier (UUID) or another stable identifier from your system. Automatic identity extraction isn't supported for these operations.
 
 ## Create a memory store
 
@@ -384,13 +396,15 @@ curl -X GET "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores?api-version=${API_VERSION
 
 After you create a memory store, you can attach the memory search tool to a prompt agent. This tool enables the agent to read from and write to your memory store during conversations. Configure the tool with the appropriate `scope` and `update_delay` to control how and when memories are updated.
 
+> [!TIP]
+> To scope memories to an individual end user, set `scope` to `"{{$userId}}"` in the tool definition and pass `x-memory-user-id: <user-id>` as a header on each response call. The system resolves the scope to that user's identity. Without the header, the scope falls back to the caller's Microsoft Entra identity (TID and OID). For more information, see [Understand scope](#understand-scope).
+
 :::zone pivot="python"
 
 ```python
 from azure.ai.projects.models import MemorySearchPreviewTool, PromptAgentDefinition
 
 # Set scope to associate the memories with
-# You can also use "{{$userId}}" to take the TID and OID of the request authentication header
 scope = "user_123"
 
 openai_client = project_client.get_openai_client()
@@ -422,7 +436,6 @@ print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.versi
 
 ```typescript
 // Set scope to associate the memories with
-// You can also use "{{$userId}}" to take the TID and OID of the request authentication header
 const scope = "user_123";
 
 const agent = await project.agents.createVersion(
@@ -455,7 +468,7 @@ console.log(
 :::zone pivot="rest"
 
 ```bash
-# Note: The agents API uses api-version=v1, which differs from the memory store API version
+# The agents API uses api-version=v1, which differs from the memory store API version
 curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/agents?api-version=v1" \
   -H "Authorization: Bearer ${ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
@@ -499,6 +512,8 @@ response = openai_client.responses.create(
     input="I prefer dark roast coffee",
     conversation=conversation.id,
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+    # To scope memories to an end user, uncomment:
+    # extra_headers={"x-memory-user-id": "<user-id>"},
 )
 
 print(f"Response output: {response.output_text}")
@@ -544,6 +559,8 @@ const response = await openaiClient.responses.create(
     body: {
       agent: { name: agent.name, type: "agent_reference" },
     },
+    // To scope memories to an end user, uncomment:
+    // headers: { "x-memory-user-id": "<user-id>" },
   },
 );
 
@@ -584,6 +601,7 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/conversations" \
     -d '{}'
 
 # Copy the "id" field from the previous response
+# To scope memories to an end user, add -H "x-memory-user-id: <user-id>" to the following request
 curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/openai/v1/responses" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
@@ -942,7 +960,7 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 
 - **Implement per-user access controls:** Avoid giving agents access to memories shared across all users. Use the `scope` property to partition the memory store by user. When you share `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
 
-- **Map scope to an authenticated user:** When you specify scope in the [memory search tool](#use-memories-via-an-agent-tool), set `scope={{$userId}}` to map to the user from the authentication token (`{tid}_{oid}`). This ensures that memory searches automatically target the correct user.
+- **Map scope to an authenticated user:** When you use the [memory search tool](#use-memories-via-an-agent-tool), set `scope={{$userId}}` in the tool definition. The system resolves the end user's identity automatically from the request context.
 
 - **Minimize and protect sensitive data:** Store only what's necessary for your use case. If you must store sensitive data, such as personal data, health data, or confidential business inputs, redact or remove other content that could be used to trace back to an individual.
 
