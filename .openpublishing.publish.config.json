@@ -239,7 +239,7 @@
     {
         "path_to_root": "foundry-local-main",
         "url": "https://github.com/microsoft/Foundry-Local",
-        "branch": "samuel100/doc-samples",
+        "branch": "main",
         "branch_mapping": {}
     }
   ],

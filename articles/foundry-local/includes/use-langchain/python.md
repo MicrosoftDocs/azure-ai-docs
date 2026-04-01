@@ -38,9 +38,6 @@ You also need to install the following LangChain package:
 pip install langchain[openai]
 ```
 
-> [!TIP]
-> We recommend using a virtual environment to avoid package conflicts. You can create a virtual environment using either `venv` or `conda`.
-
 ## Create a translation application
 
 Create a new Python file named `translation_app.py` in your favorite IDE and add the following code:

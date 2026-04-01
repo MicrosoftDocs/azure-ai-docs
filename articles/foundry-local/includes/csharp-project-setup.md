@@ -9,19 +9,19 @@ ms.date: 05/19/2025
 ms.custom: include file
 ---
 
-For more hardware acceleration on Windows, select the WinML tab:
+If you're developing or shipping on Windows, select the **Windows** tab. The Windows package integrates with the [Windows ML](/windows/ai/new-windows-ml/overview) runtime — it provides the same API surface area with a wider breadth of hardware acceleration.
+
+### [Windows](#tab/windows)
+
+```bash
+dotnet add package Microsoft.AI.Foundry.Local.WinML
+dotnet add package OpenAI
+```
 
 ### [Cross-Platform](#tab/xplatform)
 
 ```bash
 dotnet add package Microsoft.AI.Foundry.Local
-dotnet add package OpenAI
-```
-
-### [WinML](#tab/windows)
-
-```bash
-dotnet add package Microsoft.AI.Foundry.Local.WinML
 dotnet add package OpenAI
 ```
 

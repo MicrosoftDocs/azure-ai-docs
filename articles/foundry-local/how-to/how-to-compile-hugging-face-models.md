@@ -310,7 +310,10 @@ Use the Foundry Local Python SDK to load and run your compiled model with the na
 ### Prerequisites
 
 - [Python 3.11](https://www.python.org/downloads/) or later installed.
-- `foundry-local-sdk` package installed (`pip install foundry-local-sdk`).
+
+### Install packages
+
+[!INCLUDE [project-setup](../includes/python-project-setup.md)]
 
 ### Run inference on the compiled model
 
