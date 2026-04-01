@@ -106,6 +106,9 @@ By using Azure Bastion, you can connect to the VM desktop through your browser.
 
 1. From the __Create private endpoint__ form, enter a unique value in the __Name__ field. Select the __Virtual network__ you created earlier with the VM, and select the default __Subnet__. Leave the rest of the fields at the default values. Select __OK__ to save the endpoint.
 
+    :::image type="content" source="./media/tutorial-create-secure-workspace/private-endpoint-workspace.png" alt-text="Screenshot of the form to create a private endpoint.":::
+
+
 1. From the __Outbound Access__ tab, select __Allow Internet Outbound__.
 
     > [!NOTE]
