@@ -74,15 +74,14 @@ Use the following steps to create an Azure Virtual Machine to use as a jump box.
         > [!TIP]
         > If Windows 11 Enterprise isn't in the list for image selection, use _See all images__. Find the __Windows 11__ entry from Microsoft, and use the __Select__ drop-down to select the enterprise image.
 
-
     You can leave other fields at the default values.
-
 
 1. Select **Networking**. Under the **Virtual network** configuration, verify the address space isn't using the 172.17.0.0/16 IP address range. If it is, select a different range such as 172.16.0.0/16. The 172.17.0.0/16 range can cause conflicts with Docker.
 
     > [!NOTE]
     > The Azure Virtual Machine creates its own Azure Virtual Network for network isolation. This network is separate from the managed virtual network used by Azure Machine Learning.
 
+    :::image type="content" source="./media/tutorial-create-secure-workspace/virtual-machine-networking.png" alt-text="Screenshot of the networking tab for the virtual machine.":::
 
 1. Select __Review + create__. Verify that the information is correct, and then select __Create__.
 
@@ -104,7 +103,6 @@ By using Azure Bastion, you can connect to the VM desktop through your browser.
 
 
 1. From the __Inbound Access__ tab, in the __Workspace inbound access__ section, select __+ Add__.
-
 
 1. From the __Create private endpoint__ form, enter a unique value in the __Name__ field. Select the __Virtual network__ you created earlier with the VM, and select the default __Subnet__. Leave the rest of the fields at the default values. Select __OK__ to save the endpoint.
 
