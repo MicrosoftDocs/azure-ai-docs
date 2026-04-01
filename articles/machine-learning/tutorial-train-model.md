@@ -8,6 +8,7 @@ ms.subservice: core
 ms.custom:
   - build-2023
   - ignite-2023
+ai-usage: ai-assisted
 ms.topic: tutorial
 ms.reviewer: sooryar
 author: s-polly
@@ -80,10 +81,14 @@ In the next cell, enter your subscription ID, resource group name, and workspace
 
 ```python
 from azure.ai.ml import MLClient
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
 # authenticate
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 
 SUBSCRIPTION="<SUBSCRIPTION_ID>"
 RESOURCE_GROUP="<RESOURCE_GROUP>"

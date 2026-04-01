@@ -7,7 +7,8 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: best-practice
-ms.date: 06/21/2022
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Guidance for integration and responsible use of Face

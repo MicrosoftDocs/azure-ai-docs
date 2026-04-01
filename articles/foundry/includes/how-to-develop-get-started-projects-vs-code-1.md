@@ -1,9 +1,9 @@
 ---
 title: Include file
 description: Include file
-author: ms-johnalex
+author: sdgilley
 ms.reviewer: erichen
-ms.author: johalexander
+ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/20/2026
@@ -12,7 +12,7 @@ ms.custom: include
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [Visual Studio Code](https://code.visualstudio.com/Download) installed.
 - Your subscription needs to be below your [quota limit](../how-to/quota.md) to [deploy a new model in this article](#deploy-a-model-from-the-model-catalog). If you already reached your quota limit, you need to have a [deployed chat model](../foundry-models/how-to/deploy-foundry-models.md).
 - Appropriate RBAC permissions to create and manage Foundry resources. For more information, see [Role-based access control for Foundry](../concepts/rbac-foundry.md).

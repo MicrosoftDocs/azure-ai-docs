@@ -1,12 +1,12 @@
 ---
 title: Include file
 description: Include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle
+ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 Use the Azure OpenAI Responses API to generate stateful, multi-turn responses. It brings together capabilities from chat completions and the Assistants API in one unified experience. The Responses API also supports the `computer-use-preview` model that powers [Computer use](../../../foundry-classic/openai/how-to/computer-use.md).

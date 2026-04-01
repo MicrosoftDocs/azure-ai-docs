@@ -138,7 +138,7 @@ If you have existing Azure OpenAI resources, you can continue to use classic por
 
 For upgrade guidance, see [Upgrade Azure OpenAI to Microsoft Foundry](../how-to/upgrade-azure-openai.md).
 
-For project migration guidance, see [Migrate from hub-based to Foundry projects](../../foundry-classic/how-to/migrate-project.md).
+For project migration guidance, see [Migrate from hub-based to Foundry projects (classic)](../../foundry-classic/how-to/migrate-project.md).
 
 ### Are assistants supported in Foundry projects?
 

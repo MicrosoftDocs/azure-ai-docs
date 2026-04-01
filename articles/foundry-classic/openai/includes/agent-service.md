@@ -2,10 +2,11 @@
 manager: nitinme
 ms.service: azure-ai-services
 ms.custom:
-ms.topic: include
+ms.topic: include, classic-and-new
 ms.date: 02/13/2026
 ms.author: aahi
 author: aahill
+
 ---
 
 > [!NOTE] 

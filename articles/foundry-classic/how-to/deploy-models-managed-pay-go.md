@@ -199,7 +199,7 @@ The following NVIDIA NIMs of **chat completions** task type in the model catalog
 
 #### Security scanning
 
-NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. To learn more about security scanning, see the [security page](https://docs.nvidia.com/ai-enterprise/planning-resource/security-for-azure-ai-foundry/latest/introduction.html). Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within Foundry.
+NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within Foundry.
 
 You can refer to the _last updated time_ for the NIM on the right pane of the model's overview page. You can redeploy to consume the latest version of NIM from NVIDIA on Foundry. 
 

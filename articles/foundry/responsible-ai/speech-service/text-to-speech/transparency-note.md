@@ -7,7 +7,8 @@ manager: nitinme
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 11/14/2023
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Transparency note: text to speech

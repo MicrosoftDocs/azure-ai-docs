@@ -15,7 +15,7 @@ In this article, learn the steps for defining a schema for a [**search index**](
 
 ## Prerequisites
 
-+ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
++ An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An [Azure AI Search service](search-create-service-portal.md), any region and tier, but it must be a billable tier (Basic or higher) for role-based access.
 
@@ -35,7 +35,7 @@ During development, plan on frequent rebuilds. Because physical structures are c
 
 Index design through the Azure portal enforces requirements and schema rules for specific data types, such as disallowing full-text search capabilities on numeric fields. 
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Check for space. Search services are subject to a [maximum number of indexes](search-limits-quotas-capacity.md), which varies by pricing tier. Make sure you have room for a second index.
 

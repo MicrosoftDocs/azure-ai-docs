@@ -17,4 +17,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/agents/data-privacy-security.md)
 
+[!INCLUDE [classic-links](../../includes/classic-links.md)]
+
 [!INCLUDE [data-privacy-security content](../../../foundry/responsible-ai/includes/agents-data-privacy-security-content.md)]

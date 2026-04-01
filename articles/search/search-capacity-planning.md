@@ -81,7 +81,7 @@ To increase or decrease the capacity of your service, you have two options:
 
 ### Add or remove partitions and replicas
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Scale**.
 
@@ -120,7 +120,7 @@ Switching to a higher pricing tier also increases the cost of running your searc
 
 To change your pricing tier:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Scale**.
 

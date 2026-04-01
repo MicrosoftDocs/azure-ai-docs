@@ -1,9 +1,9 @@
 ---
 title: Include file
 description: Include file
-author: ms-johnalex
+author: bobtabor-msft
 ms.reviewer: erichen
-ms.author: johalexander
+ms.author: rotabor
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/20/2026
@@ -48,7 +48,7 @@ The selected project now displays **Default** after the project name.
 
 ## Work with models
 
-The Foundry extension lets you discover, deploy, and interact with models from the [Foundry model catalog](../../foundry-classic/concepts/foundry-models-overview.md) directly in VS Code.
+The Foundry extension lets you discover, deploy, and interact with models from the [Foundry model catalog](../concepts/foundry-models-overview.md) directly in VS Code.
 
 ### Browse the model catalog
 

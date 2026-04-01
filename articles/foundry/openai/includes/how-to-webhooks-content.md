@@ -1,12 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle
+ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 Azure OpenAI webhooks enable your applications to receive real-time notifications about API events, such as batch completions or incoming calls. By subscribing to webhook events, you can automate workflows, trigger alerts, and integrate with other systems seamlessly. This guide walks you through setting up a webhook server, securing your endpoints, deploying, and troubleshooting common issues.
