@@ -66,6 +66,7 @@ Use the following steps to create an Azure Virtual Machine to use as a jump box.
     * __Password__: The password for the username.
     * __Security type__: Standard.
     * __Image__: Windows 11 Enterprise.
+    * __Public inbound ports__: None
 
         > [!TIP]
         > If Windows 11 Enterprise isn't in the list for image selection, use _See all images__. Find the __Windows 11__ entry from Microsoft, and use the __Select__ drop-down to select the enterprise image.
@@ -73,14 +74,12 @@ Use the following steps to create an Azure Virtual Machine to use as a jump box.
 
     You can leave other fields at the default values.
 
-    :::image type="content" source="./media/tutorial-create-secure-workspace/create-virtual-machine-basic.png" alt-text="Screenshot of the virtual machine basics configuration.":::
 
-1. Select __Networking__. Review the networking information and make sure that it's not using the 172.17.0.0/16 IP address range. If it is, select a different range such as 172.16.0.0/16. The 172.17.0.0/16 range can cause conflicts with Docker.
+1. Select **Networking**. Under the **Virtual network** configuration, verify the address space isn't using the 172.17.0.0/16 IP address range. If it is, select a different range such as 172.16.0.0/16. The 172.17.0.0/16 range can cause conflicts with Docker.
 
     > [!NOTE]
     > The Azure Virtual Machine creates its own Azure Virtual Network for network isolation. This network is separate from the managed virtual network used by Azure Machine Learning.
 
-    :::image type="content" source="./media/tutorial-create-secure-workspace/virtual-machine-networking.png" alt-text="Screenshot of the networking tab for the virtual machine.":::
 
 1. Select __Review + create__. Verify that the information is correct, and then select __Create__.
 
@@ -100,22 +99,16 @@ By using Azure Bastion, you can connect to the VM desktop through your browser.
 
 1. From the __Basics__ tab, select the __subscription__, __resource group__, and __Region__ to create the service in. Enter a unique name for the __Workspace name__. Leave the rest of the fields at the default values. The portal creates new instances of the required services for the workspace.
 
-    :::image type="content" source="./media/tutorial-create-secure-workspace/create-workspace.png" alt-text="Screenshot of the workspace creation form.":::
 
-1. From the __Networking__ tab, select __Private with Internet Outbound__.
+1. From the __Inbound Access__ tab, in the __Workspace inbound access__ section, select __+ Add__.
 
-    > [!NOTE]
-    > This tutorial uses internet outbound access to keep setup simple. If your organization requires stricter egress controls, use a managed virtual network configuration that allows only approved outbound traffic.
-
-    :::image type="content" source="./media/tutorial-create-secure-workspace/private-internet-outbound.png" alt-text="Screenshot of the workspace network tab with internet outbound selected.":::
-
-1. From the __Networking__ tab, in the __Workspace inbound access__ section, select __+ Add__.
-
-    :::image type="content" source="./media/tutorial-create-secure-workspace/workspace-inbound-access.png" alt-text="Screenshot showing the add button for inbound access.":::
 
 1. From the __Create private endpoint__ form, enter a unique value in the __Name__ field. Select the __Virtual network__ you created earlier with the VM, and select the default __Subnet__. Leave the rest of the fields at the default values. Select __OK__ to save the endpoint.
 
-    :::image type="content" source="./media/tutorial-create-secure-workspace/private-endpoint-workspace.png" alt-text="Screenshot of the form to create a private endpoint.":::
+1. From the __Outbound Access__ tab, select __Allow Internet Outbound__.
+
+    > [!NOTE]
+    > This tutorial uses internet outbound access to keep setup simple. If your organization requires stricter egress controls, use a managed virtual network configuration that allows only approved outbound traffic.
 
 1. Select __Review + create__. Verify that the information is correct, and then select __Create__.
 
@@ -126,7 +119,6 @@ By using Azure Bastion, you can connect to the VM desktop through your browser.
 1. From the [Azure portal](https://portal.azure.com), select the VM you created earlier.
 1. From the __Connect__ section, select __Bastion__. Enter the username and password you configured for the VM, and then select __Connect__.
 
-    :::image type="content" source="./media/tutorial-create-secure-workspace/virtual-machine-bastion-connect.png" alt-text="Screenshot of the Bastion connect form.":::
 
 ## Connect to studio
 
@@ -140,8 +132,6 @@ Use the following steps to create a compute instance.
 1. From the **VM desktop**, use the browser to open the [Azure Machine Learning studio](https://ml.azure.com) and select the workspace you created earlier.
 
 1. From studio, select **Compute**, **Compute instances**, and then **+ New**.
-
-    :::image type="content" source="./media/tutorial-create-secure-workspace/create-new-compute-instance.png" alt-text="Screenshot of the new compute option in studio.":::
     
 1. From the **Configure required settings** dialog, enter a unique value as the **Compute name**. Leave the rest of the selections at the default value.
 
@@ -169,7 +159,6 @@ While it's running (started), the compute instance continues charging your subsc
 
 From studio, select __Compute__, __Compute instances__, and then select the compute instance. Finally, select __Stop__ from the top of the page.
 
-:::image type="content" source="./media/tutorial-create-secure-workspace/compute-instance-stop.png" alt-text="Screenshot of stop button for compute instance":::
 
 ## Clean up resources
 
@@ -180,9 +169,6 @@ To delete all resources that you created in this tutorial, use the following ste
 1. In the Azure portal, select **Resource groups**.
 1. From the list, select the resource group that you created in this tutorial.
 1. Select **Delete resource group**.
-
-    :::image type="content" source="./media/tutorial-create-secure-workspace/delete-resources.png" alt-text="Screenshot of delete resource group button":::
-
 1. Enter the resource group name, and then select **Delete**.
 
 ## Next steps
