@@ -36,7 +36,7 @@ In this article, you learn how to:
 
 ## Deploy MAI-Image-2
 
-MAI-Image-2 is available for [global standard deployment](../concepts/deployment-types.md#global-standard) in all regions. To deploy the model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
+MAI-Image-2 is available for [global standard deployment](../concepts/deployment-types.md#global-standard) in all regions. To deploy the model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
 
 Alternatively, you can deploy the model by using the Azure CLI:
 
@@ -249,5 +249,5 @@ When using MAI-Image-2 in Foundry, consider these responsible AI practices:
 ## Related content
 
 - [Explore available models in Foundry](../concepts/models-sold-directly-by-azure.md)
-- [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md)
-- [Configure Microsoft Entra ID authentication](configure-entra-id.md)
+- [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
+- [Configure Microsoft Entra ID authentication](../how-to/configure-entra-id.md)
