@@ -19,13 +19,12 @@ MAI‑Transcribe‑1 is a speech recognition model developed in‑house by the M
 
 ## Prerequisites
 
-- An Azure Speech in Foundry Tools resource in one of the regions where the LLM speech API is available. For the current list of supported regions, see [Speech service regions](../../regions.md?tabs=llmspeech).
+- An Azure Speech in Foundry Tools resource in one of the regions where the MAI-Transcribe-1 model in LLM Speech API is available. For the current list of supported regions, see [Speech service regions](regions.md?tabs=llmspeech).
   
-- An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](../../batch-transcription-audio-data.md#supported-input-formats-and-codecs).
+- An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](batch-transcription-audio-data.md#supported-input-formats-and-codecs).
 
 ## Use the MAI-Transcribe-1 model
 
-For the current list of regions where the Mai-Transcribe-1 model is supported, see [Speech service regions](../../regions.md?tabs=llmspeech).
 
 The following languages are currently supported for mai-transcribe-1 model:
  - `Arabic`, `Chinese`, `Czech`, `Danish`, `Dutch`, `English`, `Finnish`, `French`, `German`, `Hindi`, `Hungarian`, `Indonesian`, `Italian`, `Japanese`, `Korean`, `Norwegian Bokmål`, `Polish`, `Portuguese`, `Romanian`, `Russian`, `Spanish`, `Swedish`, `Thai`, `Turkish`, and `Vietnamese`.
