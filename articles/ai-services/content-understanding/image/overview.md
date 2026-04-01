@@ -5,7 +5,8 @@ description: Learn how to use Azure Content Understanding in Foundry Tools image
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.custom:
@@ -64,7 +65,7 @@ Get started with processing images with Content Understanding by following our [
 
 ## Related content
 
-* For guidance on optimizing your Content Understanding implementations, including schema design tips, see our detailed [Best practices guide](../concepts/best-practices.md).
-* For detailed information on supported input image formats, *see* [Service quotas and limits](../service-limits.md).
-* To review code samples, *see* [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+* For guidance on optimizing your Content Understanding implementations, including schema design tips, see the [Best practices guide](../concepts/best-practices.md).
+* For detailed information on supported input image formats, see [Service quotas and limits](../service-limits.md).
+* To review code samples, see [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
 * For more information on trust and security, *see* [Data, protection, and privacy policy](https://www.microsoft.com/trust-center/privacy).
