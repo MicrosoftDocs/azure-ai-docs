@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 09/15/2021
+ms.date: 04/01/2026
 ---
 # Data and privacy for conversational language understanding
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
