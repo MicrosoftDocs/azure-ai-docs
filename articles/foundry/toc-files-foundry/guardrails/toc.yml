@@ -1,19 +1,17 @@
 items:
 # Getting Started
-- name: Overview
+- name: Guardrails and Controls Overview
   href: ../../guardrails/guardrails-overview.md
 - name: How to configure Guardrails and controls
   href: ../../guardrails/how-to-create-guardrails.md
-- name: Third party Guardrail integrations
-  href: ../../guardrails/third-party-integrations.md
 # Content Filtering and Risk Detection
-- name: Content filters
+- name: Risks
   items:
   - name: Harm categories and severity levels
     href: ../../openai/concepts/content-filter-severity-levels.md
   - name: Prompt shields
     href: ../../openai/concepts/content-filter-prompt-shields.md
-  - name: Sensitive data leakage 
+  - name: Sensitive Data Leakage (PII)
     href: ../../openai/concepts/content-filter-personal-information.md
   - name: Groundedness detection
     href: ../../openai/concepts/content-filter-groundedness.md
@@ -39,14 +37,15 @@ items:
   items:
   - name: Intervention points
     href: ../../guardrails/intervention-points.md
+  - name: Content streaming
+    href: ../../openai/concepts/content-streaming.md
   - name: Default safety policies
     href: ../../openai/concepts/default-safety-policies.md
   - name: Safety system messages
     href: ../../openai/concepts/safety-system-message-templates.md
+  - name: Third party Guardrail integrations
+    href: ../../guardrails/third-party-integrations.md
 
-# Monitoring and Streaming
-- name: Content streaming
-  href: ../../openai/concepts/content-streaming.md
-- name: Abuse monitoring
-  href: ../../openai/concepts/abuse-monitoring.md
+
+
 
