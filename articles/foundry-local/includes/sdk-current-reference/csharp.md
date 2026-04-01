@@ -61,3 +61,46 @@ This example prints the number of models available for your hardware.
 ### API reference
 
 - For more details on the Foundry Local C# SDK read [Foundry Local C# SDK API Reference](https://aka.ms/fl-csharp-api-ref).
+
+### Native Audio Transcription API
+
+The C# SDK includes a native audio client for transcribing audio files on-device using Whisper models. This runs inference in-process without needing the REST web server.
+
+#### Get an audio client
+
+After loading a Whisper model, get an audio client:
+
+```csharp
+var audioClient = await model.GetAudioClientAsync();
+```
+
+#### Audio transcription methods
+
+| Method | Signature | Description |
+| --- | --- | --- |
+| `TranscribeAudioStreamingAsync()` | `(string audioFilePath, CancellationToken ct) => IAsyncEnumerable<TranscriptionChunk>` | Streams transcription results chunk by chunk. Each chunk has a `Text` property. |
+
+#### AudioClient settings
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `Language` | `string` | ISO 639-1 language code (for example, `"en"`). Improves accuracy. |
+| `Temperature` | `float` | Sampling temperature (0.0–1.0). Lower values are more deterministic. |
+
+#### Example
+
+```csharp
+var audioClient = await model.GetAudioClientAsync();
+audioClient.Settings.Language = "en";
+audioClient.Settings.Temperature = 0.0f;
+
+await foreach (var chunk in audioClient.TranscribeAudioStreamingAsync(
+    "recording.mp3", CancellationToken.None))
+{
+    Console.Write(chunk.Text);
+}
+```
+
+References:
+
+- [Transcribe audio files with Foundry Local](../../how-to/how-to-transcribe-audio.md)

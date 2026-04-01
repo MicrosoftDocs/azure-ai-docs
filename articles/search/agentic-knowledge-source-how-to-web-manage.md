@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 11/19/2025
+ms.date: 03/25/2026
 ---
 
 # Manage access to Web Knowledge Source in your Azure subscription

@@ -24,7 +24,7 @@ This article explains how to enable diagnostic logging and find information abou
 
 ## Enable diagnostic logging
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Monitoring** > **Diagnostic settings**, select **Add diagnostic setting**.
 

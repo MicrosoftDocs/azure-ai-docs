@@ -28,7 +28,7 @@ Key concepts for RAG:
 
 - **Grounding data**: Retrieved content you provide to the model to reduce guessing.
 - **Index**: A data structure optimized for retrieval (keyword, semantic, vector, or hybrid search).
-- **Embeddings**: Numeric representations of content used for vector similarity search. See [Understand embeddings](../../foundry-classic/openai/concepts/understand-embeddings.md).
+- **Embeddings**: Numeric representations of content used for vector similarity search. See [Understand embeddings](../openai/how-to/embeddings.md).
 - **System message and prompts**: Instructions that guide how the model uses retrieved content. See [Prompt engineering](../openai/concepts/prompt-engineering.md) and [Safety system messages](../openai/concepts/system-message.md).
 
 ## How does RAG work?

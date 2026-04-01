@@ -14,7 +14,7 @@ This article describes how to manage traffic with spillover for provisioned depl
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learncognitive-services).
 
 - A provisioned managed deployment and a standard deployment in the same Azure OpenAI resource
 
