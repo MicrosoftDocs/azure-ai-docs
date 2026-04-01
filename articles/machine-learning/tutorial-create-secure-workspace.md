@@ -22,8 +22,11 @@ In this article, you learn how to create and connect to a secure Azure Machine L
 In this tutorial, you accomplish the following tasks:
 
 > [!div class="checklist"]
+> * Create a jump box virtual machine and enable Azure Bastion for secure browser-based access.
 > * Create an Azure Machine Learning workspace configured to use a managed virtual network.
-> * Create an Azure Machine Learning compute cluster. You use a compute cluster when __training machine learning models in the cloud__.
+> * Connect to the workspace through the jump box and Azure Machine Learning studio.
+> * Create a compute instance inside the managed network.
+> * Enable studio access to the workspace storage account.
 
 After completing this tutorial, you have the following architecture:
 
@@ -119,6 +122,7 @@ By using Azure Bastion, you can connect to the VM desktop through your browser.
 1. From the [Azure portal](https://portal.azure.com), select the VM you created earlier.
 1. From the __Connect__ section, select __Bastion__. Enter the username and password you configured for the VM, and then select __Connect__.
 
+    :::image type="content" source="./media/tutorial-create-secure-workspace/virtual-machine-bastion-connect.png" alt-text="Screenshot of the Bastion connect form.":::
 
 ## Connect to studio
 
@@ -153,18 +157,11 @@ Because Azure Machine Learning studio partially runs in the web browser on the c
 
     At this point, you can use the studio to interactively work with notebooks on the compute instance and run training jobs. For a tutorial, see [Tutorial: Model development](tutorial-cloud-workstation.md).
 
-## Stop compute instance
-
-While it's running (started), the compute instance continues charging your subscription. To avoid excess cost, __stop__ it when you don't use it.
-
-From studio, select __Compute__, __Compute instances__, and then select the compute instance. Finally, select __Stop__ from the top of the page.
-
-
 ## Clean up resources
 
-If you plan to continue using the secured workspace and other resources, skip this section.
+While the compute instance is running, it continues to charge your subscription. To avoid excess cost, stop it when not in use: from the Azure Machine Learning studio, select **Compute**, **Compute instances**, select the compute instance, and then select **Stop**.
 
-To delete all resources that you created in this tutorial, use the following steps:
+If you're done with the tutorial and want to delete all resources you created, use the following steps:
 
 1. In the Azure portal, select **Resource groups**.
 1. From the list, select the resource group that you created in this tutorial.
