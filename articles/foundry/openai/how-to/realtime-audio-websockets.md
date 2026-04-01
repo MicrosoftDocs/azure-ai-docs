@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 01/29/2026
+ms.date: 04/01/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.custom:
@@ -44,7 +44,7 @@ You can construct a full request URI by concatenating:
 
 - The secure WebSocket (`wss://`) protocol.
 - Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
-- The `openai/realtime` API path.
+- The API path: `openai/v1/realtime` for GA, or `openai/realtime` for preview.
 - A `model` query string parameter with the name of your `gpt-realtime`, `gpt-realtime-1.5`, or `gpt-realtime-mini` model deployment.
 - **(Preview version only)** An `api-version` query string parameter for a supported API version such as `2025-04-01-preview` and a `deployment` query parameter instead of `model`.
 
@@ -65,7 +65,8 @@ wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=20
 ---
 
 > [!NOTE]
-> The GA API uses `model=` as the query parameter name, while the preview API uses `deployment=`. Both refer to your deployed model name.
+> The GA API uses the `/openai/v1/realtime` path with `model=` as the query parameter. The preview API uses `/openai/realtime` with `api-version=` and `deployment=` parameters. Using the wrong path or mixing GA/preview formats results in a 404 error.
+
 
 To authenticate:
 - **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI resource with managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
