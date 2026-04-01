@@ -126,10 +126,10 @@ The following tables list the timelines for models that are on track for retirem
 
 | Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [grok-4-fast-reasoning](https://ai.azure.com/explore/models/grok-4-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 26, 2026 | June 26, 2026 | [grok-4-1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
-| [grok-4-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 26, 2026 | June 26, 2026 | [grok-4-1-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
-| [grok-3-mini](https://ai.azure.com/explore/models/grok-3-mini/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 26, 2026 | June 26, 2026 | [grok-4-1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
-| [grok-3](https://ai.azure.com/explore/models/grok-3/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 26, 2026 | June 26, 2026 | [grok-4](https://ai.azure.com/explore/models/grok-4/version/1/registry/azureml-xai/?cid=learnDocs) |
+| [grok-4-fast-reasoning](https://ai.azure.com/explore/models/grok-4-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 1, 2026 | May 1, 2026 | [grok-4-1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
+| [grok-4-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 1, 2026 | May 1, 2026 | [grok-4-1-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
+| [grok-3-mini](https://ai.azure.com/explore/models/grok-3-mini/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 1, 2026 | May 1, 2026 | [grok-4-1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
+| [grok-3](https://ai.azure.com/explore/models/grok-3/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 1, 2026 | May 1, 2026 | [grok-4](https://ai.azure.com/explore/models/grok-4/version/1/registry/azureml-xai/?cid=learnDocs) |
 
 ## Retired Foundry Models
 
