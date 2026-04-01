@@ -7,7 +7,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 10/15/2025
+ms.date: 04/01/2026
 # Customer intent: As a user who implements audio transcription, I want create transcriptions with MAI's latest mai-transcribe-1 model.
 ---
 
@@ -15,9 +15,10 @@ ms.date: 10/15/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-MAI‑Transcribe‑1 is a speech recognition model developed in‑house by the Microsoft AI (MAI) Superintelligence team with a dual focus: high accuracy and high efficiency. You can use the MAI‑Transcribe‑1 model with the LLM Speech API.
+MAI‑Transcribe‑1 is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team with a dual focus: high accuracy and high efficiency. You can use the MAI‑Transcribe‑1 model with the LLM Speech API.
 
 ## Prerequisites
+
 > [!div class="checklist"]
 > - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > - [Create a Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
@@ -73,4 +74,4 @@ Note the following limitations using the MAI-Transcribe-1 model:
 
 ## Related content
 
-- [MAI-Voice-1 in Azure Speech](MAI-Voice.md)
+- [MAI-Voice-1 in Azure Speech](mai-voices.md)
