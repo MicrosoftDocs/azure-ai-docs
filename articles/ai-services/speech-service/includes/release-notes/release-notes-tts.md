@@ -45,18 +45,21 @@ Neural HD Multi‑Talker voices now support multi‑speaker synthesis across add
 Several new models: `en‑MultiTalker‑1:DragonHDLatestNeural`, `fr-Multitalker:DragonHDLatestNeural`, `zh-Multitalker:DragonHDLatestNeural` introduce an expanded set of speakers, enabling more flexible dialogue creation for podcasts, storytelling, and role‑based narration.
 
 Speakers in `en‑MultiTalker‑1:DragonHDLatestNeural`
+
 | **Gender** | **Speaker names**                     |
 |-----------|----------------------------------------|
 | Female    | Ada, Ava, Emma, Jane                   |
 | Male      | Andrew, Brian, Davis, Steffan           |
 
 Speakers in `fr-Multitalker:DragonHDLatestNeural`
+
 | **Gender** | **Speaker names**                     |
 |-----------|----------------------------------------|
 | Female    | Vivienne                   |
 | Male      | Remy          |
 
 Speakers in `zh-Multitalker:DragonHDLatestNeural`
+
 | **Gender** | **Speaker names**                     |
 |-----------|----------------------------------------|
 | Female    | Xiaoxiao                  |
