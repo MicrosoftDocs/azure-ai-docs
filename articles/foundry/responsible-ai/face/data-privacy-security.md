@@ -7,7 +7,8 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: concept-article
-ms.date: 06/21/2022
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Data and privacy for Face
