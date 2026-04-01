@@ -1,5 +1,5 @@
 ---
-title: Encrypt Data Using Customer-Managed Keys
+title: Configure Customer-Managed Keys for Azure AI Search
 description: Supplement server-side encryption in Azure AI Search using customer managed keys (CMK) or bring your own keys (BYOK) that you create and manage in Azure Key Vault.
 ms.service: azure-ai-search
 ms.topic: how-to
@@ -11,7 +11,7 @@ ms.custom:
   - sfi-image-nochange
 ---
 
-# Configure customer-managed keys for data encryption in Azure AI Search
+# Configure customer-managed keys for Azure AI Search encrypted data
 
 Azure AI Search automatically encrypts data at rest with [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). 
 
@@ -27,14 +27,14 @@ You can create, store, and manage keys using either:
 
 + Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. HSM support is new in Azure AI Search. To migrate from Azure Key Vault to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
 
-This article explains how to set up encryption with CMK.
+This article explains how to configure CMK for additional protection of your encrypted data in Azure AI Search.
 
 > [!IMPORTANT]
 > + Adding a customer-managed key (CMK) applies to encryption for data at rest. If you need to protect data in use, consider using [confidential computing](search-security-best-practices.md#optional-enable-confidential-computing).
 >
 > + Encryption with a CMK is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-encryption with CMK, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
 
-## Encrypt customer managed keys at the object level
+## Configure customer managed keys at the object level
 
 When configured at the **object level**, encryption with a CMK is applied only to the individual object at the time of creation.
 
@@ -56,7 +56,7 @@ Although you can't add encryption to an existing object, once an object is confi
 
 You should also consider setting up an Azure policy to check for compliance and enforcement. See [Set up a policy to enforce CMK compliance](#set-up-a-policy-to-enforce-cmk-compliance).
 
-## Enable service-level CMK to encrypt new objects by default (preview)
+## Enable service-level CMK on new objects by default (preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -64,7 +64,7 @@ Defining CMK at the **service level** means you configure the encryption key onc
 
 - All new objects have CMK enabled by default. Instead of specifying an encryption key each time you create an object, the service automatically applies a service‑level CMK to all newly created objects. Previously you needed to explicitly provide encryption key information on every object create.
 
-- These new object will use the service level key by default. However, you can still specify an object-level key when creating a new object, which overrides the service-level key for that object.
+- These new objects will use the service level key by default. However, you can still specify an object-level key when creating a new object, which overrides the service-level key for that object.
 
 ## Prerequisites
 
@@ -175,10 +175,9 @@ Role-based access control is recommended over the Access Policy permission model
 
 Wait a few minutes for the role assignment to become operational.
 
-## Step 4: Encrypt content with CMK
+## Step 4: Encrypt content with a CMK
 
 Encryption with a CMK can be added at the service level or at the object level. Service-level CMK applies to all supported objects created in the service, unless you specify an object-level key at the time of object creation. Object-level CMK configuration applies only to the specific object.
-
 
 ### Configure CMK at the object-level
 
@@ -588,16 +587,6 @@ PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups
       }
     }
 ```
-<!-- 
-### [**Azure CLI**](#tab/azure-cli-create)
-
-These instructions assume you have a Deny policy defined for the resource group into which you're deploying a new search service.
-
-Run the following [`az resource`](/cli/azure/resource) command to create a new search service with CMK enforcement enabled. Substitute valid values for the name of the new search service and name of the existing resource group. The command includes eastus for a region so that you can see how regions are specified (lower case, no spaces).
-
-```azurecli
-az resource create --name SEARCH-SERVICE-PLACEHOLDER --location eastus --resource-group RESOURCE-GROUP-PLACEHOLDER --resource-type searchServices --namespace Microsoft.Search --set properties.encryptionWithCmk.enforcement=Enabled
-``` -->
 
 ---
 
