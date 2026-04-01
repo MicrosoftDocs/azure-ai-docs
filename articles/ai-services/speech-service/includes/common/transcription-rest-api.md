@@ -11,7 +11,7 @@ ms.date: 01/31/2026
 
 - An Azure Speech resource in one of the regions where the fast transcription API is available. For the current list of supported regions, see the [Speech service regions table](../../regions.md?tabs=stt).
   
-- An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](../../batch-transcription-audio-data.md#supported-input-formats-and-codecs).
+- An audio file (less than 5 hours long and less than 500 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](../../batch-transcription-audio-data.md#supported-input-formats-and-codecs).
 
 
 ## Upload audio
@@ -29,6 +29,10 @@ You can provide audio data to fast transcription in the following ways:
 ```
 --form 'definition="{"audioUrl": "https://crbn.us/hello.wav"}"'
 ```
+
+> [!TIP]
+> For long audio files, uploading from a public URL is recommended.
+
 In the sections below, inline audio upload is used as an example.
 
 ## Use the fast transcription API
@@ -1210,6 +1214,9 @@ The following example shows how to transcribe an audio file with diarization ena
 - Replace `YourSpeechResoureKey` with your Speech resource key.
 - Replace `YourServiceRegion` with your Speech resource region.
 - Replace `YourAudioFile` with the path to your audio file.
+
+> [!NOTE]
+> When diarization is enabled, the audio file should be less than 2 hours long
 
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
