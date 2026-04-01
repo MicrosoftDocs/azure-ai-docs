@@ -36,23 +36,21 @@ This article explains how to configure CMK for additional protection of your enc
 
 ## Configure customer managed keys at the object level
 
-When configured at the **object level**, encryption with a CMK is applied only to the individual object at the time of creation.
+Objects with encrypted data that can be configured with a customer-managed key (CMK) include indexes, synonym lists, indexers, data sources, and skillsets. Encryption is computationally expensive to decrypt so only sensitive content is encrypted.
 
-If you have set up a service-level key, that key will be used by default. However, if you configure an object-level key, that will override the service-level key for that object.
-
-You can’t encrypt objects that already exist. Encryption is only supported at the time of object creation. If you want to encrypt an existing object, you must delete and recreate it with encryption enabled.
-
-Encryption with a CMK occurs each time an object is saved to disk, for both data at rest (long-term storage) or temporary cached data (short-term storage). With CMK, the disk never sees unencrypted data.
-
-Objects that can be encrypted with a CMK include indexes, synonym lists, indexers, data sources, and skillsets. Encryption is computationally expensive to decrypt so only sensitive content is encrypted.
-
-Encryption is performed over the following content:
+Encryption is performed over:
 
 + All content within indexes and synonym lists.
 
 + Sensitive content in indexers, data sources, skillsets, and vectorizers. Sensitive content refers to connection strings, descriptions, identities, keys, and user inputs. For example, skillsets have Foundry Tools keys, and some skills accept user inputs, such as custom entities. In both cases, keys and user inputs are encrypted. Any references to external resources (such as Azure data sources or Azure OpenAI models) are also encrypted.
 
-Although you can't add encryption to an existing object, once an object is configured for encryption, you can change all parts of its encryption definition, including switching to a different key vault or HMS storage as long as the resource is in the same tenant.
+Encryption with a CMK occurs each time an object is saved to disk, for both data at rest (long-term storage) or temporary cached data (short-term storage). With CMK, the disk never sees unencrypted data.
+
+Configuring CMK when you are creating a new object is known as **object-level** CMK configuration. There is a new preview feature that enables you to also set up a **service-level** CMK configuration that applies to all new objects by default. For more information, see [Enable service-level CMK on new objects by default (preview)](#enable-service-level-cmk-on-new-objects-by-default-preview).
+
+If you have set up a service-level key, that key will be used by default. However, if you configure an object-level key, that will override the service-level key for that object.
+
+You can never encrypt objects that already exist. Encryption is only supported at the time of object creation. If you want to encrypt an existing object, you must delete and recreate it with encryption enabled. Although you can't add encryption to an existing object, once an object is configured for encryption, you can change all parts of its encryption definition, including switching to a different key vault or HMS storage as long as the resource is in the same tenant.
 
 You should also consider setting up an Azure policy to check for compliance and enforcement. See [Set up a policy to enforce CMK compliance](#set-up-a-policy-to-enforce-cmk-compliance).
 
