@@ -7,7 +7,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 09/26/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Use the Call Center Voice Agent Accelerator 

@@ -48,5 +48,5 @@ If code samples fail with `AttributeError` or `ModuleNotFoundError`:
   npm list @azure/ai-projects  # JavaScript
   dotnet list package  # .NET
   ```
-- **Verify moniker alignment**: 2.x SDK requires Foundry portal, 1.x SDK requires Foundry classic
+
 - **Reinstall with correct version flags**: See installation commands in each language section above

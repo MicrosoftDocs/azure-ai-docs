@@ -51,7 +51,7 @@ pip install azure-ai-projects >=2.0.0
 
 | SDK Version   | Portal Version  | Status  | Java Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 1.0.0-beta.3<br>1.0.0-beta.1 | Foundry (new)   | Preview | `azure-ai-projects`<br>`azure-ai-agents` |
+| 2.0.0 | Foundry (new)   | Stable | `azure-ai-projects`<br>`azure-ai-agents` |
 
 ::: zone-end
 
@@ -59,7 +59,7 @@ pip install azure-ai-projects >=2.0.0
 
 | SDK Version   | Portal Version  | Status  | JavaScript Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.0.0-beta.4 (preview) | Foundry (new)   | Preview | `@azure/ai-projects 'prerelease'` |
+| 2.0.1 | Foundry (new)   | Stable | `@azure/ai-projects` |
 | 1.0.1 | Foundry classic | Stable | `@azure/ai-projects`             |
 
 ::: zone-end
@@ -68,16 +68,14 @@ pip install azure-ai-projects >=2.0.0
 
 | SDK Version   | Portal Version  | Status  | .NET Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 1.2.0-beta.5 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.Openai` |
-| 1.x (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
+| 2.0.0-beta.1 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.OpenAI` |
+| 1.1.0 (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-The [Azure AI Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+The [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 Add these packages to your installation for Foundry projects.
 
@@ -95,9 +93,9 @@ import com.openai.models.responses.ResponseCreateParams;
 
 The [Azure AI Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run this command to install the preview JavaScript packages for Foundry projects.
+Run this command to install the JavaScript packages for Foundry projects.
 ```bash
-npm install @azure/ai-projects@beta @azure/identity dotenv
+npm install @azure/ai-projects @azure/identity dotenv
 ```
 ::: zone-end
 
@@ -201,9 +199,9 @@ console.log(`Response output: ${response.output_text}`);
 **Create a project client:**
 
 ```csharp
+using Azure.AI.Projects;
 using Azure.AI.Projects.OpenAI; 
 using Azure.Identity;
-using OpenAI.Responses;
 
 string endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
 
@@ -215,9 +213,9 @@ AIProjectClient projectClient = new(
 
 ```csharp
 #pragma warning disable OPENAI001
-OpenAIResponseClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5.2");
-OpenAIResponse response = responseClient.CreateResponse("What is the speed of light?");
-Console.WriteLine(response.GetOutputText());
+var responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5.2");
+var response = responseClient.CreateResponse("What is the speed of light?");
+Console.WriteLine(response.Value.GetOutputText());
 #pragma warning restore OPENAI001
 ```
 ::: zone-end
@@ -279,7 +277,6 @@ For more information, see [Azure OpenAI supported programming languages](/azure/
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 The following snippet shows how to use the Azure OpenAI `/openai/v1` endpoint directly.
 
 ```java
@@ -339,12 +336,11 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
    dotnet add package OpenAI
    ```When it succeeds, the .NET CLI confirms that it installed the `OpenAI` package.
 
-   This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ResponseClient` for the Azure OpenAI v1 endpoint.
+   This snippet configures `DefaultAzureCredential`, builds `OpenAIClientOptions`, and creates a `ResponsesClient` for the Azure OpenAI v1 endpoint.
    ```csharp
    using Azure.Identity;
-   using Azure.Core;
    using OpenAI;
-   using System;
+   using OpenAI.Responses;
    using System.ClientModel.Primitives;
    
    #pragma warning disable OPENAI001
@@ -356,27 +352,25 @@ For more information on using the OpenAI SDK, see [Azure OpenAI supported progra
         new DefaultAzureCredential(),
         "https://ai.azure.com/.default");
     
-   OpenAIResponseClient client = new(
-        model: deploymentName,
-        authenticationPolicy: tokenPolicy, // To use Entra 
-     // credential: new ApiKeyCredential("<YOUR-AZURE-OPENAI-API-KEY>") // To use APIKEY 
+   OpenAIClient openAIClient = new(
+        authenticationPolicy: tokenPolicy,
         options: new OpenAIClientOptions()
         {
             Endpoint = new($"{directModelEndpoint}"),
         });
-   ResponseCreationOptions options = new ResponseCreationOptions
+   ResponsesClient client = openAIClient.GetResponsesClient();
+
+   CreateResponseOptions options = new()
     {
+        Model = deploymentName,
+        InputItems = { ResponseItem.CreateUserMessageItem("What is the size of France in square miles?") },
         Temperature = (float)0.7,
     };
     
-   OpenAIResponse modelDirectResponse = client.CreateResponse(
-         [
-            ResponseItem.CreateUserMessageItem("What is the size of France in square miles?"),
-         ], options);
+   var modelDirectResponse = client.CreateResponse(options);
     
-   Console.WriteLine($"[ASSISTANT]: {modelDirectResponse.GetOutputText()}");
+   Console.WriteLine($"[ASSISTANT]: {modelDirectResponse.Value.GetOutputText()}");
    #pragma warning restore OPENAI001
-   // The ResponseClient lets you interact with models and services in your project.
    ```
 For more information on using the OpenAI SDK, see [Azure OpenAI supported programming languages](/azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-entra&pivots=programming-language-programming-language-dotnet)
 ::: zone-end
