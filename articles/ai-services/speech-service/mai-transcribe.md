@@ -65,7 +65,6 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 Note the following limitations using the MAI-Transcribe-1 model:
-- The audio file should be less than 300 MB in size.
 - Diarization isn't supported.
 
 > [!TIP]
