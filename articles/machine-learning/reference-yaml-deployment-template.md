@@ -145,7 +145,7 @@ $schema: https://azuremlschemas.azureedge.net/latest/deploymentTemplate.schema.j
 name: my-deployment-template-custom-mount
 version: 1
 description: Deployment template with custom model mount path
-deployment_template_type: ManagedOnlineEndpoint
+deployment_template_type: Managed
 environment: azureml://registries/my-registry/environments/my-environment/versions/1
 instance_count: 1
 default_instance_type: Standard_DS3_v2
