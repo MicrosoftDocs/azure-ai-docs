@@ -204,9 +204,6 @@ items:
     - name: High definition (HD) voices
       href: high-definition-voices.md
       displayName: hd voice
-    - name: MAI-Voice-1
-      href: MAI-Voice.md
-      displayName: mai voice, neural voice
     - name: Voice conversion (preview)
       href: voice-conversion.md
       displayName: voice conversion
@@ -293,7 +290,8 @@ items:
       href: openai-voices.md
       displayName: tts
     - name: MAI-Voice
-      href: mai-voice.md
+      displayName: mai voice, neural voice
+      href: mai-voices.md
     - name: Text to speech FAQ
       displayName: FAQ,TTS,frequently asked questions
       href: faq-tts.yml
