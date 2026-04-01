@@ -960,7 +960,7 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 
 - **Implement per-user access controls:** Avoid giving agents access to memories shared across all users. Use the `scope` property to partition the memory store by user. When you share `scope` across users, use `user_profile_details` to instruct the memory system not to store personal information.
 
-- **Map scope to an authenticated user:** When you use the [memory search tool](#use-memories-via-an-agent-tool), set `scope` to `{{$userId}}` in the tool definition. The system resolves the end user's identity automatically from the request context.
+- **Map scope to the end user:** When you use the [memory search tool](#use-memories-via-an-agent-tool), set `scope` to `{{$userId}}` in the tool definition. The system resolves the user identity from the `x-memory-user-id` request header, if present. Otherwise, it falls back to the caller's Microsoft Entra token (`{tid}_{oid}`).
 
 - **Minimize and protect sensitive data:** Store only what's necessary for your use case. If you must store sensitive data, such as personal data, health data, or confidential business inputs, redact or remove other content that could be used to trace back to an individual.
 
