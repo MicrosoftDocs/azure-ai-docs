@@ -1,7 +1,7 @@
 ---
 title: "Foundry Local architecture overview"
 titleSuffix: Foundry Local
-description: "Learn how Foundry Local embeds AI inference directly inside your application as a native library."
+description: "Learn how Foundry Local delivers end-to-end local AI inference directly inside your application as a native library."
 ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 # Foundry Local architecture overview
 
-Foundry Local is an embedded AI runtime that ships as a single native library inside your application. Rather than connecting to a separate service or daemon, your code loads the Foundry Local Core API in-process and calls it through language-specific software development kits (SDKs) for C#, JavaScript, Python, and Rust. The result is a self-contained application that runs small language models on local hardware with no external dependencies.
+Foundry Local is an end-to-end local AI solution that ships as a single native library inside your application. Rather than connecting to a separate service or daemon, your code loads the Foundry Local Core API in-process and calls it through language-specific software development kits (SDKs) for C#, JavaScript, Python, and Rust. The result is a self-contained application that runs small language models on local hardware with no external dependencies.
 
 This article explains the components that make up the Foundry Local runtime and how they work together to deliver on-device AI inference.
 

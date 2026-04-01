@@ -1,7 +1,7 @@
 ---
 title: "What is Foundry Local?"
 titleSuffix: Foundry Local
-description: "Foundry Local is an embeddable, end-to-end AI runtime that handles model acquisition, hardware acceleration, and inference — all shipped inside your app."
+description: "Foundry Local is an end-to-end local AI solution that handles model acquisition, hardware acceleration, and inference — all shipped inside your app."
 keywords: Foundry Local, on-device AI, local inference
 ms.service: microsoft-foundry
 ms.subservice: foundry-local
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 # What is Foundry Local?
 
-Foundry Local is an **end-to-end solution for shipping applications with embedded AI that runs entirely on the user's device**. It provides an easy-to-use SDK (C#, JavaScript, Rust, and Python), a curated catalog of optimized models, and automatic hardware acceleration — all in a lightweight package.
+Foundry Local is an **end-to-end local AI solution for shipping applications that run entirely on the user's device**. It provides an easy-to-use SDK (C#, JavaScript, Rust, and Python), a curated catalog of optimized models, and automatic hardware acceleration — all in a lightweight package.
 
 User data never leaves the device, responses start immediately with zero network latency, and your app works offline. There are no per-token costs and no backend infrastructure to maintain.
 
@@ -53,7 +53,7 @@ Follow the [Get started with Foundry Local](get-started.md) guide to build your 
 
 ### Is Foundry Local a web server and CLI tool?
 
-No. Foundry Local is an **embeddable runtime** that your application ships with. It handles model acquisition, hardware acceleration, and inference end-to-end inside your app process through the SDK. The optional web server and CLI are available for development workflows, but the core product is the embedded runtime and SDK that you integrate directly into your application.
+No. Foundry Local is an **end-to-end local AI solution** that your application ships with. It handles model acquisition, hardware acceleration, and inference inside your app process through the SDK. The optional web server and CLI are available for development workflows, but the core product is the local AI runtime and SDK that you integrate directly into your application.
 
 ### Why doesn't Foundry Local support every available model?
 
