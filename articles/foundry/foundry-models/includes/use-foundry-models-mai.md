@@ -72,7 +72,7 @@ To authenticate, you need your **resource endpoint** and either a **Microsoft En
 
 #### Model capabilities
 
-The model accepts text input (32,000 tokens) and outputs one PNG image. Supported output resolutions range from **256×256** to **1024×1024** pixels, with `width` and `height` configurable independently within that range depending on aspect ratio.
+The model accepts text input (32,000 tokens) and outputs one PNG image. Both `width` and `height` must be at least **768 pixels** each. The total pixel count (`width` × `height`) must not exceed **1,048,576** (equivalent to 1024×1024). Because the constraint is on total pixels rather than on each dimension individually, one dimension can exceed 1024 as long as the total stays within the limit. For example, a 768×1365 image has 1,048,320 total pixels, which is within the allowed maximum total pixels.
 
 The following table lists the request parameters:
 
@@ -80,11 +80,11 @@ The following table lists the request parameters:
 | --------- | ---- | ----------- |
 | `model` | string | The deployment name you assigned when you deployed the model. |
 | `prompt` | string | The text prompt that describes the image to generate. Maximum context length: 32,000 tokens. |
-| `width` | string | Width of the output image in pixels. Supported range: 256–1024. |
-| `height` | string | Height of the output image in pixels. Supported range: 256–1024. |
+| `width` | string | Width of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `height` | string | Height of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
 
 > [!NOTE]
-> The output format is always PNG. The maximum output resolution is 1024×1024 pixels.
+> The output format is always PNG. The maximum total pixel count is 1,048,576 (equivalent to 1024×1024). Both `width` and `height` must be at least 768 pixels each. Either dimension can exceed 1024 as long as the total pixel count stays within the limit.
 
 See [the Microsoft model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs) for a list of the model's capabilities.
 
@@ -233,7 +233,7 @@ Use the following table to resolve common errors when working with MAI-Image-2:
 |-------|-------|-----|
 | `401 Unauthorized` | Invalid API key or expired token | Regenerate the key in the Azure portal. For Entra ID authentication, ensure the token scope is `https://cognitiveservices.azure.com/.default`. |
 | `404 Not Found` | Incorrect deployment name or endpoint URL | Verify the deployment name and endpoint in the Foundry portal under **Deployments**. |
-| `400 Bad Request` | `width` or `height` value outside the supported range | Use values between 256 and 1024 inclusive. |
+| `400 Bad Request` | `width` or `height` below minimum, or total pixel count exceeds maximum | Ensure `width` and `height` are each at least 768, and that `width` × `height` ≤ 1,048,576. |
 | `429 Too Many Requests` | Rate limit exceeded | Wait and retry, or [request a quota increase](https://aka.ms/oai/stuquotarequest). |
 
 ## Responsible AI considerations
