@@ -126,6 +126,38 @@ Follow these steps to create a console application and install the Speech SDK.
 
 ## Remarks
 
+### Choose a voice name
+
+Voice names follow the format `{locale}-{VoiceName}:{VoiceType}`, where:
+- **locale** identifies the voice's primary language and region (for example, `en-US` for US English, `es-ES` for Spanish)
+- **VoiceName** is the unique identifier for that voice (for example, `Ava`, `Andrew`)
+- **VoiceType** indicates the voice technology (for example, `DragonHDLatestNeural` for HD neural voices, `MultilingualNeural` for multilingual voices)
+
+To find available voices:
+- Browse the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) to preview voices interactively
+- See the [full list of supported voices](~/articles/ai-services/speech-service/language-support.md?tabs=tts) for all available options
+- Call the [Voice List API](~/articles/ai-services/speech-service/rest-text-to-speech.md#get-a-list-of-voices) to retrieve voices programmatically
+
+### Save audio to a file
+
+To save synthesized speech to a WAV file instead of playing it to the speaker, use `AudioConfig.FromWavFileOutput()`:
+
+```csharp
+// Save to a WAV file instead of playing to speaker
+using var audioConfig = AudioConfig.FromWavFileOutput("output.wav");
+using var speechSynthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
+await speechSynthesizer.SpeakTextAsync("Hello, world!");
+```
+
+To get the audio data as bytes for custom processing (such as streaming or format conversion), pass `null` for `audioConfig` and access the result's `AudioData` property:
+
+```csharp
+// Get audio data as bytes
+using var speechSynthesizer = new SpeechSynthesizer(speechConfig, null);
+var result = await speechSynthesizer.SpeakTextAsync("Hello, world!");
+byte[] audioBytes = result.AudioData;  // Raw audio bytes
+```
+
 ### More speech synthesis options
 
 This quickstart uses the `SpeakTextAsync` operation to synthesize a short block of text that you enter. You can also use long-form text from a file and get finer control over voice styles, prosody, and other settings.
