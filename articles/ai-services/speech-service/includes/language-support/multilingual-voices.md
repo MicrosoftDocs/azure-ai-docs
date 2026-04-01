@@ -171,6 +171,7 @@ ai-usage: ai-assisted
 | zh-CN | `zh-CN-Yunxia:DragonHDFlashLatestNeural` | Male |
 | zh-CN | `zh-CN-Yunye:DragonHDFlashLatestNeural` | Male |
 
+
 <sup>1</sup> The neural voice is available in preview. For the current list of regions that support voices and styles in preview, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
 <sup>2</sup> The neural voice is a multilingual voice in Azure Speech. The turbo version of Azure OpenAI voices has a similar voice persona to Azure OpenAI voices but supports extra features. Turbo voices support the full set of SSML elements and more features (like word boundary), just like other Azure Speech voices. All multilingual voices can speak in the auto-detected language of the input text in the default locale without [using SSML](../../speech-synthesis-markup-voice.md#adjust-speaking-languages). However, you can still use the `<lang xml:lang>` element to set the preferred speaking accent of each language, such as a British accent (`en-GB`) for English.
@@ -180,3 +181,106 @@ ai-usage: ai-assisted
 <sup>4</sup> For the current list of regions where this voice is generally available, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
 <sup>5</sup> The voice is available in the `ChinaNorth3` region.
+
+### Locale index
+
+Use this table to see which voice groups are available for each language:
+
+| Locale | Group 1 | Group 2 | Group 3 | Group 4 | Group 5 |
+|---|---|---|---|---|---|
+| `af-ZA` | ✅* | ✅ | ✅ | ✅ | |
+| `am-ET` | ✅* | | ✅ | ✅ | |
+| `ar-EG` | ✅ | ✅ | ✅ | ✅ | |
+| `ar-SA` | ✅ | | ✅ | ✅ | |
+| `az-AZ` | ✅* | ✅ | ✅ | ✅ | |
+| `be-BY` | | ✅ | | | |
+| `bg-BG` | ✅* | ✅ | ✅ | ✅ | |
+| `bn-BD` | ✅* | | ✅ | ✅ | |
+| `bn-IN` | ✅* | | ✅ | ✅ | |
+| `bs-BA` | ✅* | ✅ | ✅ | ✅ | |
+| `ca-ES` | ✅ | ✅ | ✅ | ✅ | |
+| `cs-CZ` | ✅ | ✅ | ✅ | ✅ | |
+| `cy-GB` | ✅* | ✅ | ✅ | ✅ | |
+| `da-DK` | ✅ | ✅ | ✅ | ✅ | |
+| `de-AT` | ✅ | | ✅ | ✅ | |
+| `de-CH` | ✅ | | ✅ | ✅ | |
+| `de-DE` | ✅ | ✅ | ✅ | ✅ | |
+| `el-GR` | ✅* | ✅ | ✅ | ✅ | |
+| `en-AU` | ✅ | | ✅ | ✅ | |
+| `en-CA` | ✅ | | ✅ | ✅ | |
+| `en-GB` | ✅ | | ✅ | ✅ | |
+| `en-IE` | ✅ | | ✅ | ✅ | |
+| `en-IN` | ✅ | | ✅ | ✅ | |
+| `en-US` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `es-ES` | ✅ | ✅ | ✅ | ✅ | |
+| `es-MX` | ✅ | | ✅ | ✅ | |
+| `et-EE` | ✅* | ✅ | ✅ | ✅ | |
+| `eu-ES` | ✅* | | ✅ | ✅ | |
+| `fa-IR` | ✅* | ✅ | ✅ | ✅ | |
+| `fi-FI` | ✅ | ✅ | ✅ | ✅ | |
+| `fil-PH` | ✅* | ✅ | ✅ | ✅ | |
+| `fr-BE` | ✅ | | ✅ | ✅ | |
+| `fr-CA` | ✅ | | ✅ | ✅ | |
+| `fr-CH` | ✅ | | ✅ | ✅ | |
+| `fr-FR` | ✅ | ✅ | ✅ | ✅ | |
+| `ga-IE` | ✅* | | ✅ | ✅ | |
+| `gl-ES` | ✅* | ✅ | ✅ | ✅ | |
+| `he-IL` | ✅* | ✅ | ✅ | ✅ | |
+| `hi-IN` | ✅ | ✅ | ✅ | ✅ | |
+| `hr-HR` | ✅* | ✅ | ✅ | ✅ | |
+| `hu-HU` | ✅ | ✅ | ✅ | ✅ | |
+| `hy-AM` | ✅* | ✅ | ✅ | ✅ | |
+| `id-ID` | ✅ | ✅ | ✅ | ✅ | |
+| `is-IS` | ✅* | ✅ | ✅ | ✅ | |
+| `it-IT` | ✅ | ✅ | ✅ | ✅ | |
+| `ja-JP` | ✅ | ✅ | ✅ | ✅ | |
+| `jv-ID` | ✅* | | ✅ | ✅ | |
+| `ka-GE` | ✅* | | ✅ | ✅ | |
+| `kk-KZ` | ✅* | ✅ | ✅ | ✅ | |
+| `km-KH` | ✅* | | ✅ | ✅ | |
+| `kn-IN` | ✅* | ✅ | ✅ | ✅ | |
+| `ko-KR` | ✅ | ✅ | ✅ | ✅ | |
+| `lo-LA` | ✅* | | ✅ | ✅ | |
+| `lt-LT` | ✅* | ✅ | ✅ | ✅ | |
+| `lv-LV` | ✅* | ✅ | ✅ | ✅ | |
+| `mi-NZ` | | ✅ | | | |
+| `mk-MK` | ✅* | ✅ | ✅ | ✅ | |
+| `ml-IN` | ✅* | | ✅ | ✅ | |
+| `mn-MN` | ✅* | | ✅ | ✅ | |
+| `mr-IN` | | ✅ | | | |
+| `ms-MY` | ✅* | ✅ | ✅ | ✅ | |
+| `mt-MT` | ✅* | | ✅ | ✅ | |
+| `my-MM` | ✅* | | ✅ | ✅ | |
+| `nb-NO` | ✅ | ✅ | ✅ | ✅ | |
+| `ne-NP` | ✅* | ✅ | ✅ | ✅ | |
+| `nl-BE` | ✅ | | ✅ | ✅ | |
+| `nl-NL` | ✅ | ✅ | ✅ | ✅ | |
+| `pl-PL` | ✅ | ✅ | ✅ | ✅ | |
+| `ps-AF` | ✅* | | ✅ | ✅ | |
+| `pt-BR` | ✅ | ✅ | ✅ | ✅ | |
+| `pt-PT` | ✅ | | ✅ | ✅ | |
+| `ro-RO` | ✅* | ✅ | ✅ | ✅ | |
+| `ru-RU` | ✅ | ✅ | ✅ | ✅ | |
+| `si-LK` | ✅* | | ✅ | ✅ | |
+| `sk-SK` | ✅* | ✅ | ✅ | ✅ | |
+| `sl-SI` | ✅* | ✅ | ✅ | ✅ | |
+| `so-SO` | ✅* | | ✅ | ✅ | |
+| `sq-AL` | ✅* | | ✅ | ✅ | |
+| `sr-RS` | ✅* | ✅ | ✅ | ✅ | |
+| `su-ID` | ✅* | | ✅ | ✅ | |
+| `sv-SE` | ✅ | ✅ | ✅ | ✅ | |
+| `sw-KE` | ✅* | ✅ | ✅ | ✅ | |
+| `ta-IN` | ✅* | ✅ | ✅ | ✅ | |
+| `te-IN` | ✅* | | ✅ | ✅ | |
+| `th-TH` | ✅ | ✅ | ✅ | ✅ | |
+| `tr-TR` | ✅ | ✅ | ✅ | ✅ | |
+| `uk-UA` | ✅* | ✅ | ✅ | ✅ | |
+| `ur-PK` | ✅* | ✅ | ✅ | ✅ | |
+| `uz-UZ` | ✅* | | ✅ | ✅ | |
+| `vi-VN` | ✅* | ✅ | ✅ | ✅ | |
+| `zh-CN` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `zh-HK` | ✅ | | ✅ | ✅ | |
+| `zh-TW` | ✅ | | ✅ | ✅ | |
+| `zu-ZA` | ✅* | | ✅ | ✅ | |
+
+\* Excludes `en-US-JennyMultilingualNeual` and `en-US-RyanMultilingualNeural`
