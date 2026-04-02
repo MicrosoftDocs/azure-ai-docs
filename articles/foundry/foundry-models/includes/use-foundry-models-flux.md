@@ -44,7 +44,7 @@ To learn more about each model, see [Available FLUX models](#available-flux-mode
 
 ## Deploy FLUX models
 
-FLUX models are available for [global standard deployment](../concepts/deployment-types.md#global-standard) in all regions. To deploy a FLUX model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md).
+FLUX models are available for [global standard deployment](../concepts/deployment-types.md#global-standard) in all regions. To deploy a FLUX model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
 
 After deployment, use the [Foundry playground](../../concepts/concept-playgrounds.md) to interactively test the model with text prompts.
 
@@ -499,5 +499,5 @@ See the [GitHub sample for image generation with FLUX models in Microsoft Foundr
 ## Related content
 
 - [Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md)
-- [Deploy Microsoft Foundry Models in the Foundry portal](deploy-foundry-models.md)
-- [Configure Microsoft Entra ID authentication](configure-entra-id.md)
+- [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
+- [Configure Microsoft Entra ID authentication](../how-to/configure-entra-id.md)
