@@ -11,6 +11,15 @@ ms.custom: references_regions
 
 ### March 2026 release
 
+#### Public preview of MAI-Voice-1
+
+MAI-Voice-1 is a new neural text-to-speech model built on Microsoft's in-house speech foundation models. It produces expressive, natural speech with consistent voice persona quality and supports emotion and style control via SSML `mstts:express-as`. MAI-Voice-1 is available in the East US region. For more information, see [MAI-Voice-1 in Azure Speech](../../mai-voices.md).
+
+| **Locale (BCP-47)** | **Voice name**                    |
+| ------------------- | --------------------------------- |
+| `en-US`             | `en-us-Noa:MAI-Voice-1` (Female) |
+| `en-US`             | `en-us-Teo:MAI-Voice-1` (Male)   |
+
 #### Neural HD 2.5 update to Latest in Production
 Neural HD 2.5 is promoted to **Latest in Production**, delivering improvements in natural prosody, expressiveness, and output consistency—particularly for long‑form and complex content. This update expands support for expressive speaking styles and paralinguistic elements, enabling more human‑like and emotionally rich speech across narration, conversational AI, and virtual assistant scenarios.
 
