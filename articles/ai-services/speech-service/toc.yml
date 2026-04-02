@@ -317,7 +317,7 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
-    - name: Use MAI-Transcribe-1 model
+    - name: Use MAI-Transcribe-1
       href: mai-transcribe.md
     - name: Reference
       items:
