@@ -1,5 +1,5 @@
 ---
-title: "Deploy and use FLUX models in Microsoft Foundry (classic)"
+title: "Deploy and use FLUX models in Microsoft Foundry (Classic)"
 description: "Deploy Black Forest Labs FLUX image generation models in Microsoft Foundry to generate and edit high-quality images from text prompts and reference images. (classic)"
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 #CustomerIntent: As a developer or AI practitioner, I want to deploy and use FLUX image generation models in Microsoft Foundry so I can generate and edit high-quality images in my applications.
 ---
 
-# Deploy and use FLUX models in Microsoft Foundry (classic)
+# Deploy and use FLUX models in Microsoft Foundry (Classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/how-to/use-foundry-models-flux.md)
 
