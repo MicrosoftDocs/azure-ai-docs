@@ -31,7 +31,7 @@ az network perimeter associable-resource-type list --output table
 
 The command returns a list of resource types that you can associate with an NSP. Look for `Microsoft.CognitiveServices/accounts` in the output to confirm that Foundry resources support NSP association. If you see an authentication error, sign in by using `az login` and try again.
 
-Reference: [az network perimeter associable-resource-type list](/cli/azure/network/perimeter/associable-resource-type?view=azure-cli-latest)
+Reference: [az network perimeter associable-resource-type list](/cli/azure/network/perimeter/associable-resource-type)
 
 ## Associate your Foundry resource
 
@@ -57,7 +57,7 @@ az network perimeter association create \
 
 This command associates your Foundry resource with a profile in Learning mode so you can review access logs before you enforce access rules.
 
-Reference: [az network perimeter association create](/cli/azure/network/perimeter/association?view=azure-cli-latest#az-network-perimeter-association-create)
+Reference: [az network perimeter association create](/cli/azure/network/perimeter/association#az-network-perimeter-association-create)
 
 For CLI (for automation) and full creation steps, see the NSP quickstarts (CLI or PowerShell):
 - [Create a network security perimeter (CLI)](/azure/private-link/create-network-security-perimeter-cli)
@@ -87,7 +87,7 @@ Start in Learning mode to observe potential denies. Switch to Enforced mode once
 
 In the portal, locate the association entry for your Foundry resource and choose **Change access mode**. For automation, use `az network perimeter association update`.
 
-Reference: [az network perimeter association update](/cli/azure/network/perimeter/association?view=azure-cli-latest#az-network-perimeter-association-update)
+Reference: [az network perimeter association update](/cli/azure/network/perimeter/association#az-network-perimeter-association-update)
 
 ## Enable logging
 
@@ -109,7 +109,7 @@ Within the profile, choose:
 
 Rule creation steps (portal screenshots, CLI parameters, examples):
 - [A walkthrough of configuring inbound and outbound rules](/azure/ai-foundry/openai/how-to/network-security-perimeter#add-an-access-rule-for-your-azure-openai-service) using Azure OpenAI NSP (which applies to Foundry data‑plane scenarios).
-- Azure CLI reference (access rules): [az network perimeter profile access-rule](/cli/azure/network/perimeter/profile/access-rule?view=azure-cli-latest)
+- Azure CLI reference (access rules): [az network perimeter profile access-rule](/cli/azure/network/perimeter/profile/access-rule)
 
 Implicit trust: Resources inside the same NSP can reach each other when requests are authenticated through managed identity or role assignment. You need explicit rules only for external sources, destinations, or API key patterns.
 
