@@ -101,6 +101,7 @@ By using Azure Bastion, you can connect to the VM desktop through your browser.
 
 1. From the __Basics__ tab, select the __subscription__, __resource group__, and __Region__ to create the service in. Enter a unique name for the __Workspace name__. Leave the rest of the fields at the default values. The portal creates new instances of the required services for the workspace.
 
+    :::image type="content" source="./media/tutorial-create-secure-workspace/create-workspace.png" alt-text="Screenshot of the workspace creation form.":::
 
 1. From the __Inbound Access__ tab, in the __Workspace inbound access__ section, select __+ Add__.
 
