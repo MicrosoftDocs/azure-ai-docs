@@ -122,20 +122,14 @@ The following tables list the timelines for models that are on track for retirem
 | [supply-chain-trade-regulations](https://ai.azure.com/explore/models/supply-chain-trade-regulations/version/3/registry/azureml/?cid=learnDocs) | March 16, 2026 | April 16, 2026 | July 31, 2026 | N/A |
 | [supply-chain-trade-regulations-v2](https://ai.azure.com/explore/models/supply-chain-trade-regulations-v2/version/1/registry/azureml/?cid=learnDocs) | March 16, 2026 | April 16, 2026 | July 31, 2026 | N/A |
 
-#### Moonshot AI
-
-| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [Kimi-k2-thinking](https://ai.azure.com/explore/models/Kimi-k2-thinking/version/1/registry/azureml-moonshotai/?cid=learnDocs) | February 23, 2026 | March 9, 2026 | March 29, 2026 | [Kimi-k2.5](https://ai.azure.com/explore/models/Kimi-k2.5/version/1/registry/azureml-moonshotai/?cid=learnDocs) |
-
 #### xAI
 
 | Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [grok-4-fast-reasoning](https://ai.azure.com/explore/models/grok-4-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 26, 2026 | June 26, 2026 | [grok-4-1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
-| [grok-4-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 26, 2026 | June 26, 2026 | [grok-4-1-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
-| [grok-3-mini](https://ai.azure.com/explore/models/grok-3-mini/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 26, 2026 | June 26, 2026 | [grok-4-1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
-| [grok-3](https://ai.azure.com/explore/models/grok-3/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 26, 2026 | June 26, 2026 | [grok-4](https://ai.azure.com/explore/models/grok-4/version/1/registry/azureml-xai/?cid=learnDocs) |
+| [grok-4-fast-reasoning](https://ai.azure.com/explore/models/grok-4-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 1, 2026 | May 1, 2026 | [grok-4-1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
+| [grok-4-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 1, 2026 | May 1, 2026 | [grok-4-1-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
+| [grok-3-mini](https://ai.azure.com/explore/models/grok-3-mini/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 1, 2026 | May 1, 2026 | [grok-4-1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs) |
+| [grok-3](https://ai.azure.com/explore/models/grok-3/version/1/registry/azureml-xai/?cid=learnDocs) | March 26, 2026 | April 1, 2026 | May 1, 2026 | [grok-4](https://ai.azure.com/explore/models/grok-4/version/1/registry/azureml-xai/?cid=learnDocs) |
 
 ## Retired Foundry Models
 
@@ -221,6 +215,12 @@ The following models were retired at 00:00:00 UTC on the specified dates and are
 | Mistral-small | July 31, 2025 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) |
 | Mistral-large-2407 | May 13, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
 | Mistral-large | April 15, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
+
+#### Moonshot AI
+
+| Model | Retirement date | Suggested replacement model |
+|-------|-----------------------|-----------------------------|
+| Kimi-k2-thinking | March 29, 2026 | [Kimi-k2.5](https://ai.azure.com/explore/models/Kimi-k2.5/version/1/registry/azureml-moonshotai/?cid=learnDocs) |
 
 ## Migrate to a replacement model
 
