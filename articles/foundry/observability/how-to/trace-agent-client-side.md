@@ -1,11 +1,11 @@
 ---
 title: "Add client-side tracing to Foundry agents"
-description: "Instrument AI agents with OpenTelemetry client-side tracing using the Microsoft Foundry SDK. Export traces to Azure Monitor or the console in Python and C#."
+description: "Instrument AI agents with OpenTelemetry client-side tracing using the Microsoft Foundry SDK. Export traces to Azure Monitor, the console, or any OTLP-compatible backend."
 ai-usage: ai-assisted
 author: aahill
 ms.author: aahi
 ms.reviewer: lagayhar
-ms.date: 03/23/2026
+ms.date: 04/02/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ---
@@ -14,13 +14,13 @@ ms.topic: how-to
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Microsoft Foundry automatically captures server-side traces for agents running in the portal. Client-side tracing extends that visibility into your own application code. By instrumenting your agent application with OpenTelemetry, you can capture spans for model calls, tool invocations, and custom logic — then export them to Azure Monitor Application Insights or the console for debugging.
+Microsoft Foundry automatically captures server-side traces for agents running in the portal. Client-side tracing extends that visibility into your own application code. By instrumenting your agent application with OpenTelemetry, you can capture spans for model calls, tool invocations, and custom logic — then export them to Azure Monitor Application Insights, the console, or any observability backend that supports the OpenTelemetry protocol (OTLP), such as Datadog, Grafana Tempo, Jaeger, or Honeycomb.
 
 In this article, you learn how to:
 
 - Install the required OpenTelemetry tracing packages.
 - Enable GenAI tracing instrumentation for agent applications.
-- Export traces to Azure Monitor or the console.
+- Export traces to Azure Monitor, the console, or an OTLP-compatible backend.
 - Enable content recording to capture message contents.
 - Enable trace context propagation for distributed tracing (Python).
 - Trace custom functions.
@@ -80,6 +80,8 @@ dotnet add package Azure.Monitor.OpenTelemetry.Exporter
 dotnet add package OpenTelemetry.Exporter.Console
 ```
 
+For ASP.NET Core applications, `Azure.Monitor.OpenTelemetry.AspNetCore` is the preferred package. The `Azure.Monitor.OpenTelemetry.Exporter` package shown here works for all .NET application types.
+
 ---
 
 ## Enable GenAI tracing
@@ -112,7 +114,12 @@ Use an `AppContext` switch or the same environment variable:
 AppContext.SetSwitch("Azure.Experimental.EnableGenAITracing", true);
 ```
 
+When you enable `Azure.Experimental.EnableGenAITracing`, the SDK automatically enables the `Azure.Experimental.EnableActivitySource` flag, which is required for OpenTelemetry instrumentation to function.
+
 If both the `AppContext` switch and the environment variable are set, the `AppContext` switch takes priority.
+
+> [!NOTE]
+> In C#, all tracing-related environment variables accept `true` (case-insensitive) or `1` as equivalent enabling values.
 
 ---
 
@@ -325,9 +332,32 @@ Use an `AppContext` switch or the environment variable:
 AppContext.SetSwitch("Azure.Experimental.TraceGenAIMessageContent", true);
 ```
 
-Or set the `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT` environment variable to `true`. The `AppContext` switch takes priority.
+Or set the `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT` environment variable to `true`. If both the `AppContext` switch and the environment variable are set, the `AppContext` switch takes priority.
 
 ---
+
+## Disable automatic instrumentation (Python)
+
+The Python SDK automatically instruments OpenAI Responses and Conversations API calls. To disable this auto-instrumentation, set `AZURE_TRACING_GEN_AI_INSTRUMENT_RESPONSES_API` to `false` before calling `AIProjectInstrumentor().instrument()`. When disabled, only explicit custom spans are recorded.
+
+```python
+import os
+
+os.environ["AZURE_TRACING_GEN_AI_INSTRUMENT_RESPONSES_API"] = "false"
+```
+
+## Trace binary data (Python)
+
+When content recording is enabled, the SDK traces file IDs and filenames by default. To include full image URLs (including base64 data URIs) and file data in spans, set `AZURE_TRACING_GEN_AI_INCLUDE_BINARY_DATA` to `true`.
+
+```python
+import os
+
+os.environ["AZURE_TRACING_GEN_AI_INCLUDE_BINARY_DATA"] = "true"
+```
+
+> [!WARNING]
+> Enabling `AZURE_TRACING_GEN_AI_INCLUDE_BINARY_DATA` can significantly increase trace payload size. Some tracing backends have limitations on the maximum size of span data. Verify that your observability backend supports the expected payload sizes before enabling this setting.
 
 ## Enable trace context propagation (Python)
 
@@ -344,7 +374,7 @@ AIProjectInstrumentor().instrument(enable_trace_context_propagation=False)
 
 Changes to this setting only affect OpenAI clients obtained via `get_openai_client()` **after** the change. Previously acquired clients aren't affected.
 
-### Control baggage propagation
+### Control baggage propagation (Python)
 
 By default, only `traceparent` and `tracestate` headers are propagated. To also include the `baggage` header, set `AZURE_TRACING_GEN_AI_TRACE_CONTEXT_PROPAGATION_INCLUDE_BAGGAGE` to `true`.
 
@@ -373,7 +403,20 @@ def fetch_weather(location: str) -> str:
     return f"Weather in {location}: sunny, 72°F"
 ```
 
-The decorator handles basic data types (`str`, `int`, `float`, `bool`) and collections (`list`, `dict`, `tuple`, `set`). Object types are omitted.
+To use a custom span name instead of the function name, pass it as a parameter:
+
+```python
+@trace_function("get-current-weather")
+def fetch_weather(location: str) -> str:
+    """Get the current weather for a location."""
+    return f"Weather in {location}: sunny, 72°F"
+```
+
+The decorator records:
+
+- **Parameters** as `code.function.parameter.<name>` span attributes.
+- **Return values** as `code.function.return.value`.
+- **Supported types**: `str`, `int`, `float`, `bool`, and collections (`list`, `dict`, `tuple`, `set`). Object types are omitted.
 
 > [!NOTE]
 > The `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT` environment variable doesn't affect custom function tracing. The `@trace_function` decorator always traces parameters and return values.
@@ -410,6 +453,30 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddConsoleExporter()
     .Build();
 ```
+
+## Configure instrumentation programmatically (Python)
+
+As an alternative to environment variables, pass configuration parameters directly to `AIProjectInstrumentor().instrument()`:
+
+```python
+from azure.ai.projects.telemetry import AIProjectInstrumentor
+
+AIProjectInstrumentor().instrument(
+    enable_content_recording=True,
+    enable_trace_context_propagation=True,
+    enable_baggage_propagation=False,
+)
+```
+
+| Parameter | Environment variable equivalent | Default |
+| --- | --- | --- |
+| `enable_content_recording` | `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT` | `False` |
+| `enable_trace_context_propagation` | `AZURE_TRACING_GEN_AI_ENABLE_TRACE_CONTEXT_PROPAGATION` | `True`* |
+| `enable_baggage_propagation` | `AZURE_TRACING_GEN_AI_TRACE_CONTEXT_PROPAGATION_INCLUDE_BAGGAGE` | `False` |
+
+\* Default is `True` when tracing is enabled.
+
+When both a parameter and its corresponding environment variable are set, the parameter value takes priority.
 
 ## Add custom attributes to spans (Python)
 
@@ -454,9 +521,6 @@ The following table lists all environment variables you can use to configure tra
 \* Default is `true` when tracing is enabled.
 
 For the full list of environment variables and their behavior, see [Tracing in the Azure AI Projects SDK README](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/README.md#tracing).
-
-> [!WARNING]
-> Enabling `AZURE_TRACING_GEN_AI_INCLUDE_BINARY_DATA` can significantly increase trace payload size. Some tracing backends have limitations on the maximum size of span data. Verify that your observability backend supports the expected payload sizes before enabling this setting.
 
 ## Security and privacy
 
