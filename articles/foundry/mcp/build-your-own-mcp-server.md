@@ -8,7 +8,7 @@ author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 04/02/2026
 ai-usage: ai-assisted
 ms.custom: ai-assisted, doc-kit-assisted
 ---
@@ -31,7 +31,7 @@ This approach enables you to securely integrate internal APIs and services into 
 - An [Azure API Center resource](/azure/api-center/overview) (optional, required only for organizational tool catalog registration).
 
 > [!NOTE]
-> Agent Service connects only to publicly accessible MCP server endpoints.
+> Agent Service connects to publicly accessible MCP server endpoints and [can be configured](../agents/how-to/tools/model-context-protocol.md#public-and-private-mcp-server-endpoints) to use private MCP server endpoints.
 
 ## Understand the request flow
 
@@ -210,7 +210,7 @@ After you deploy and connect the server, verify that the server is discoverable 
 
 Here are some common issues you might encounter when building and connecting your MCP server:
 
-- **MCP server connection fails**: Confirm the server URL is publicly reachable and uses the MCP webhook path (`/runtime/webhooks/mcp`). Check the Function App logs in Azure portal for errors.
+- **MCP server connection fails**: Confirm the server URL is reachable from Agent Service and uses the MCP webhook path (`/runtime/webhooks/mcp`). For public endpoints, verify the URL is publicly accessible. For private endpoints, verify your [Standard Agent Setup with private networking](../agents/how-to/tools/model-context-protocol.md#public-and-private-mcp-server-endpoints) is configured correctly. Check the Function App logs in Azure portal for errors.
 - **Authentication errors (401/403)**: Verify you're using the correct key or token for the authentication method you selected. Rotate keys that might have been exposed, and update any saved credentials.
 - **Tool discovery problems**: If you registered the server in Azure API Center, confirm the API is published and you have access to it. If you added a custom tool, confirm the endpoint URL is correct.
 - **Tool call succeeds but an internal API fails**: Review your MCP server logs to confirm what request was sent to the downstream API. Verify the MCP server identity or API credentials have the required permissions.
