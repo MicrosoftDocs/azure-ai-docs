@@ -117,7 +117,7 @@ Content Understanding provides face description capabilities that can generate d
 Review Microsoft's policies on customer data when using the Content Understanding service. For more information, visit the [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
 
 > [!IMPORTANT]
-> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
+> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. For related information, see [Data and privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
 ## Get started
 
