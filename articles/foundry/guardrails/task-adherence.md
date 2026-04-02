@@ -4,8 +4,9 @@ description: Learn how to use Task Adherence to ensure AI agents align with user
 author: ssalgadodev
 ms.author: ssalgado
 ms.service: azure-ai-content-safety
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 04/02/2026
+zone_pivot_groups: programming-languages-content-safety-foundry-rest
 ---
 
 # Agentic Workflows: Task Adherence (preview)
