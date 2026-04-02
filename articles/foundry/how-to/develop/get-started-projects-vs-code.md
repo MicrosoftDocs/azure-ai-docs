@@ -9,8 +9,8 @@ ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 03/12/2026
 ms.reviewer: erichen
-ms.author: johalexander
-author: ms-johnalex
+ms.author: rotabor
+author: bobtabor-msft
 
 # customer intent: As an AI app developer, I want to learn how to use the Microsoft Foundry for Visual Studio Code extension so that I can create projects and deploy models using Microsoft Foundry capabilities directly in VS Code.
 ms.custom:
@@ -64,5 +64,5 @@ The Foundry extension organizes your workspace into three main sections.
 
 ## Next steps
 
-- [Explore Foundry models](../../../foundry-classic/concepts/foundry-models-overview.md)
+- [Explore Foundry models](../../concepts/foundry-models-overview.md)
 - [Deploy models with Foundry](../../foundry-models/how-to/deploy-foundry-models.md)

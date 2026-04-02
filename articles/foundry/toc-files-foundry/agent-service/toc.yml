@@ -39,6 +39,8 @@ items:
     href: ../../agents/concepts/tool-catalog.md
   - name: Tool best practices
     href: ../../agents/concepts/tool-best-practice.md
+  - name: Structured inputs
+    href: ../../agents/how-to/structured-inputs.md
   - name: Create a private tool catalog (preview)
     href: ../../agents/how-to/private-tool-catalog.md
   - name: Azure AI Search
@@ -77,6 +79,8 @@ items:
       href: ../../agents/how-to/tools/agent-to-agent.md
     - name: Agent2Agent (A2A) authentication (preview)
       href: ../../agents/concepts/agent-to-agent-authentication.md
+    - name: Azure Functions
+      href: ../../agents/how-to/tools/azure-functions.md
     - name: Browser automation (preview)
       href: ../../agents/how-to/tools/browser-automation.md
     - name: Computer Use (preview)

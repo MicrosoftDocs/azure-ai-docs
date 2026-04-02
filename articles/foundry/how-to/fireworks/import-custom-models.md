@@ -34,7 +34,7 @@ The import workflow has four steps:
 
 Before you begin, make sure your Azure environment is set up and that you have the required tools installed. To complete the steps in this article, you need the following resources and permissions:
 
-* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * The **Fireworks on Foundry** preview feature enabled in your subscription. For setup steps, see [Use Fireworks models on Foundry](enable-fireworks-models.md#enable-fireworks-on-foundry).
 * The **Cognitive Services Contributor** role or equivalent permissions on the Foundry resource to create and manage deployments. For more information, see [Azure role based access control](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).

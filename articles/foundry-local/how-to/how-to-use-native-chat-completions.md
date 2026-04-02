@@ -2,7 +2,7 @@
 title: "Use native chat completions"
 titleSuffix: Foundry Local
 description: "This article provides instructions on how to use native chat completions API in Foundry Local."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
@@ -34,6 +34,7 @@ This article explains how to use the native chat completions API in the Foundry 
 
 ## Related content
 
+- [Transcribe audio files with Foundry Local](how-to-transcribe-audio.md)
 - [Use chat completions via REST server with Foundry Local](how-to-integrate-with-inference-sdks.md)
 - [Use Foundry Local with LangChain](how-to-use-langchain-with-foundry-local.md)
 - [Compile Hugging Face models to run on Foundry Local](how-to-compile-hugging-face-models.md)

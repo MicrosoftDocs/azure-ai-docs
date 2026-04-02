@@ -18,4 +18,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/openai/customer-copyright-commitment.md)
 
+[!INCLUDE [classic-links](../../includes/classic-links.md)]
+
 [!INCLUDE [customer-copyright-commitment content](../../../foundry/responsible-ai/includes/openai-customer-copyright-commitment-content.md)]

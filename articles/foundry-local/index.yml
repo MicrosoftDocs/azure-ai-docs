@@ -5,7 +5,7 @@ summary:  Safely design, customize, and manage AI applications and agents on-dev
 metadata:
   title: Foundry Local (preview) documentation
   description: Foundry Local (preview) helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
-  ms.service: azure-ai-foundry
+  ms.service: microsoft-foundry
   ms.subservice: foundry-local
   ms.custom:
     - build-2025
@@ -44,6 +44,8 @@ landingContent:
         links:
           - text: Integrate with Inferencing SDKs
             url: how-to/how-to-integrate-with-inference-sdks.md
+          - text: Transcribe audio files
+            url: how-to/how-to-transcribe-audio.md
           - text: Integrate with LangChain
             url: how-to/how-to-use-langchain-with-foundry-local.md
           - text: Integrate with Open Web UI

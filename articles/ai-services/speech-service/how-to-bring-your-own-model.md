@@ -15,6 +15,7 @@ ai-usage: ai-assisted
 The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing you to integrate your custom models into the voice interaction workflow. BYOM is useful for the following scenarios:
 
 - **Fine-tuned models**: Use your custom Azure OpenAI or Azure Foundry models
+- **Any Foundry model not pre-deployed by Voice Live**: Use models from the [Foundry model catalog](/azure/foundry/foundry-models/concepts/models-from-partners) such as [Anthropic Claude](/azure/foundry/foundry-models/how-to/use-foundry-models-claude), Grok, [Fireworks](/azure/foundry/how-to/fireworks/enable-fireworks-models) custom weights, or a [model router](/azure/foundry/openai/how-to/model-router) deployment
 - **Provisioned throughput**: Use your PTU (Provisioned Throughput Units) deployments for consistent performance
 - **Content safety**: Apply customized content safety configurations with your LLM
 
@@ -22,11 +23,11 @@ The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 > You can integrate any model deployed in your Azure Foundry resource with the Voice Live API. To use model deployments from a different Foundry resource, see [Resource overrides](#resource-overrides).
 
 > [!TIP]
-> When you use your own model deployment with Voice Live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/ai-foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Microsoft Foundry portal](https://ai.azure.com/).
+> When you use your own model deployment with Voice Live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Microsoft Foundry portal](https://ai.azure.com/).
 
 ## Authentication setup
 
-When using Microsoft Entra ID authentication with Voice Live API, in `byom-azure-openai-chat-completion` mode specifically, you need to configure proper permissions for your Foundry resource. Since tokens expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for the `byom-azure-openai-chat-completion` BYOM mode.
+When using Microsoft Entra ID authentication with Voice Live API, in `byom-azure-openai-chat-completion` or `byom-foundry-anthropic-messages` mode, you need to configure proper permissions for your Foundry resource. Since tokens expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for these BYOM modes.
 
 Run the following Azure CLI commands to configure the necessary permissions:
 
@@ -82,16 +83,20 @@ az role assignment create \
 
 ## Choose BYOM integration mode
 
-The Voice Live API supports two BYOM integration modes:
+The Voice Live API supports three BYOM integration modes:
 
-| Mode     | Description           | Example Models |
-| ------- | ------------------ | ------------- |
-| `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions              | `gpt-realtime`, `gpt-realtime-mini` |
-| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `gpt-5.3-chat`, `grok-4`         |
+| Mode                                | Description                                                                                           | Example Models                          |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions                                         | `gpt-realtime`, `gpt-realtime-mini`     |
+| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `gpt-5.3-chat`, `grok-4`     |
+| `byom-foundry-anthropic-messages`   | Anthropic Claude models deployed in Azure Foundry, using the Messages API (preview)                   | `claude-sonnet-4.6`, `claude-haiku-4.5` |
+
+> [!NOTE]
+> The `byom-foundry-anthropic-messages` mode is currently in preview. Preview features are subject to change and might have limited availability.
 
 ## Integrate BYOM
 
-#### [REST API call](#tab/rest)
+#### [REST API](#tab/rest)
 
 Update the endpoint URL in your API call to include your BYOM configuration:
 
@@ -100,6 +105,12 @@ wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?ap
 ```
 
 Get the `<your-model-deployment>` value from the Foundry portal. It corresponds to the name you gave the model at deployment time.
+
+For example, to use an Anthropic Claude model deployed in Azure Foundry:
+
+```curl
+wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=byom-foundry-anthropic-messages&model=<your-claude-deployment-name>
+```
 
 To use a model deployment from a different Foundry resource, add the `foundry-resource-override` parameter:
 
@@ -122,7 +133,7 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
         "--byom",
         help="BYOM (Bring Your Own Model) profile type",
         type=str,
-        choices=["byom-azure-openai-realtime", "byom-azure-openai-chat-completion"],
+        choices=["byom-azure-openai-realtime", "byom-azure-openai-chat-completion", "byom-foundry-anthropic-messages"],
         default=os.environ.get("VOICELIVE_BYOM_MODE", "byom-azure-openai-chat-completion"),
     )
    parser.add_argument(
@@ -158,7 +169,7 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
         model: str,
         voice: str,
         instructions: str,
-        byom: Literal["byom-azure-openai-realtime", "byom-azure-openai-chat-completion"] | None = None,
+        byom: Literal["byom-azure-openai-realtime", "byom-azure-openai-chat-completion", "byom-foundry-anthropic-messages"] | None = None,
         foundry_resource_override: str | None = None
     ):
 
@@ -196,6 +207,12 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
 
     ```shell
     python voice-live-quickstart.py --byom "byom-azure-openai-chat-completion" --model "your-model-name"
+    ```
+
+    To use an Anthropic Claude model:
+
+    ```shell
+    python voice-live-quickstart.py --byom "byom-foundry-anthropic-messages" --model "your-claude-deployment-name"
     ```
 
     To use a model from a different Foundry resource, add the `--foundry-resource-override` argument:
@@ -241,7 +258,7 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
         var byomOption = new Option<string>(
             "--byom",
             () => "byom-azure-openai-chat-completion",
-            "BYOM integration mode. Supported modes: byom-azure-openai-realtime, byom-azure-openai-chat-completion");
+            "BYOM integration mode. Supported modes: byom-azure-openai-realtime, byom-azure-openai-chat-completion, byom-foundry-anthropic-messages");
 
         var foundryResourceOverrideOption = new Option<string?>(
             "--foundry-resource-override",
@@ -438,13 +455,257 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
     dotnet run --byom "byom-azure-openai-chat-completion" --model "your-model-name"
     ```
 
+    To use an Anthropic Claude model:
+
+    ```shell
+    dotnet run --byom "byom-foundry-anthropic-messages" --model "your-claude-deployment-name"
+    ```
+
     To use a model from a different Foundry resource, add the `--foundry-resource-override` argument:
 
     ```shell
     dotnet run --byom "byom-azure-openai-chat-completion" --model "your-model-name" --foundry-resource-override "my-foundry-resource"
+
+#### [Java SDK](#tab/java)
+
+[!INCLUDE [Header](./includes/common/voice-live-java.md)]
+
+Use the [Java SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ckeyless&pivots=programming-language-java) to start a voice conversation, and make the following changes to enable BYOM:
+
+1. Add the `java.net.URI` and `java.net.URISyntaxException` import statements at the top of the file:
+
+    ```java
+    import java.net.URI;
+    import java.net.URISyntaxException;
+    ```
+
+1. In the `Config` class, add a `byom` field and parse the `--byom` command line argument:
+
+    ```java
+    private static class Config {
+        String endpoint;
+        String apiKey;
+        String model = DEFAULT_MODEL;
+        String voice = DEFAULT_VOICE;
+        String instructions = DEFAULT_INSTRUCTIONS;
+        String byom = null;
+        boolean useTokenCredential = false;
+
+        static Config load(String[] args) {
+            Config config = new Config();
+
+            // 1. Load from application.properties first
+            Properties props = loadProperties();
+            if (props != null) {
+                config.endpoint = props.getProperty("azure.voicelive.endpoint");
+                config.apiKey = props.getProperty("azure.voicelive.api-key");
+                config.model = props.getProperty("azure.voicelive.model", DEFAULT_MODEL);
+                config.voice = props.getProperty("azure.voicelive.voice", DEFAULT_VOICE);
+                config.instructions = props.getProperty("azure.voicelive.instructions", DEFAULT_INSTRUCTIONS);
+                config.byom = props.getProperty("azure.voicelive.byom");
+            }
+
+            // 2. Override with environment variables if present
+            if (System.getenv(ENV_ENDPOINT) != null) {
+                config.endpoint = System.getenv(ENV_ENDPOINT);
+            }
+            if (System.getenv(ENV_API_KEY) != null) {
+                config.apiKey = System.getenv(ENV_API_KEY);
+            }
+            if (System.getenv("AZURE_VOICELIVE_MODEL") != null) {
+                config.model = System.getenv("AZURE_VOICELIVE_MODEL");
+            }
+            if (System.getenv("AZURE_VOICELIVE_VOICE") != null) {
+                config.voice = System.getenv("AZURE_VOICELIVE_VOICE");
+            }
+            if (System.getenv("AZURE_VOICELIVE_INSTRUCTIONS") != null) {
+                config.instructions = System.getenv("AZURE_VOICELIVE_INSTRUCTIONS");
+            }
+            if (System.getenv("VOICELIVE_BYOM_MODE") != null) {
+                config.byom = System.getenv("VOICELIVE_BYOM_MODE");
+            }
+
+            // 3. Parse command line arguments (highest priority)
+            for (int i = 0; i < args.length; i++) {
+                switch (args[i]) {
+                    case "--endpoint":
+                        if (i + 1 < args.length) config.endpoint = args[++i];
+                        break;
+                    case "--api-key":
+                        if (i + 1 < args.length) config.apiKey = args[++i];
+                        break;
+                    case "--model":
+                        if (i + 1 < args.length) config.model = args[++i];
+                        break;
+                    case "--voice":
+                        if (i + 1 < args.length) config.voice = args[++i];
+                        break;
+                    case "--instructions":
+                        if (i + 1 < args.length) config.instructions = args[++i];
+                        break;
+                    case "--byom":
+                        if (i + 1 < args.length) config.byom = args[++i];
+                        break;
+                    case "--use-token-credential":
+                        config.useTokenCredential = true;
+                        break;
+                }
+            }
+
+            return config;
+        }
+    }
+    ```
+
+1. In the `runVoiceAssistantWithClient` method, append the BYOM profile query parameter to the endpoint URL before building the client. Replace the two `runVoiceAssistant` overloads with versions that handle endpoint modification:
+
+    ```java
+    private static void runVoiceAssistant(Config config, KeyCredential credential) {
+        String endpoint = appendByomProfile(config.endpoint, config.byom);
+        System.out.println("Initializing VoiceLive client:");
+        System.out.println("   Endpoint: " + endpoint);
+        if (config.byom != null) {
+            System.out.println("   BYOM profile: " + config.byom);
+        }
+
+        VoiceLiveAsyncClient client = new VoiceLiveClientBuilder()
+            .endpoint(endpoint)
+            .credential(credential)
+            .serviceVersion(VoiceLiveServiceVersion.V2025_10_01)
+            .buildAsyncClient();
+
+        runVoiceAssistantWithClient(client, config);
+    }
+
+    private static void runVoiceAssistant(Config config, TokenCredential credential) {
+        String endpoint = appendByomProfile(config.endpoint, config.byom);
+        System.out.println("Initializing VoiceLive client:");
+        System.out.println("   Endpoint: " + endpoint);
+        if (config.byom != null) {
+            System.out.println("   BYOM profile: " + config.byom);
+        }
+
+        VoiceLiveAsyncClient client = new VoiceLiveClientBuilder()
+            .endpoint(endpoint)
+            .credential(credential)
+            .serviceVersion(VoiceLiveServiceVersion.V2025_10_01)
+            .buildAsyncClient();
+
+        runVoiceAssistantWithClient(client, config);
+    }
+    ```
+
+1. Add the `appendByomProfile` helper method that appends the BYOM profile as a query parameter to the endpoint URL:
+
+    ```java
+    private static String appendByomProfile(String endpoint, String byom) {
+        if (byom == null || byom.isEmpty()) {
+            return endpoint;
+        }
+        try {
+            URI uri = new URI(endpoint);
+            String existingQuery = uri.getQuery();
+            String newQuery = (existingQuery != null && !existingQuery.isEmpty())
+                ? existingQuery + "&profile=" + byom
+                : "profile=" + byom;
+            URI newUri = new URI(
+                uri.getScheme(), uri.getAuthority(), uri.getPath(),
+                newQuery, uri.getFragment());
+            return newUri.toString();
+        } catch (URISyntaxException e) {
+            System.err.println("Failed to append BYOM profile to endpoint: "
+                + e.getMessage());
+            return endpoint;
+        }
+    }
+    ```
+
+1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For example:
+
+    ```shell
+    mvn exec:java -Dexec.args="--byom byom-azure-openai-chat-completion --model your-model-name"
+    ```
+
+
+#### [JavaScript SDK](#tab/javascript)
+
+[!INCLUDE [Header](./includes/common/voice-live-javascript.md)]
+
+Use the [JavaScript SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ckeyless&pivots=programming-language-javascript) to start a voice conversation, and make the following changes to enable BYOM:
+
+1. In the `parseArguments()` function, add a new `--byom` argument:
+
+    ```javascript
+    const parsed = {
+      ...
+      byom: process.env.VOICELIVE_BYOM_MODE ?? undefined,
+      ...
+    };
+
+    for (let i = 0; i < argv.length; i++) {
+      const arg = argv[i];
+      switch (arg) {
+        ...
+        case "--byom":
+          parsed.byom = argv[++i];
+          break;
+        ...
+      }
+    }
+    ```
+
+1. In the `main()` function, pass the `byom` value when creating the voice assistant:
+
+    ```javascript
+    const assistant = new BasicModelVoiceAssistant({
+      ...
+      byom: args.byom,
+      ...
+    });
+    ```
+
+1. In the `BasicModelVoiceAssistant` class, add the `byom` field in the constructor:
+
+    ```javascript
+    class BasicModelVoiceAssistant {
+      constructor(options) {
+        ...
+        this.byom = options.byom;
+        ...
+      }
+    ...
+    ```
+
+1. In the `start()` method, append the BYOM profile query parameter to the endpoint URL before creating the client:
+
+    ```javascript
+    async start() {
+      let endpoint = this.endpoint;
+
+      // Append BYOM profile query parameter if provided
+      if (this.byom) {
+        const url = new URL(endpoint);
+        url.searchParams.set("profile", this.byom);
+        endpoint = url.toString();
+        console.log(`[init] BYOM profile added to endpoint: profile=${this.byom}`);
+      }
+
+      const client = new VoiceLiveClient(endpoint, this.credential);
+      const session = client.createSession({ model: this.model });
+      this._session = session;
+      ...
+    ```
+
+1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For example:
+
+    ```shell
+    node model-quickstart.js --byom "byom-azure-openai-chat-completion" --model "your-model-name"
     ```
 
 ---
+
+> [!NOTE]
+> When you use the `byom-foundry-anthropic-messages` mode, the `usage` field in `response.done` events only contains audio token usage (for speech recognition and text-to-speech). LLM token usage from the Anthropic model is reported separately in the response metadata.
 
 ## Resource overrides
 

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -27,17 +27,17 @@ For more information about MCP and how agents connect to MCP tools, see [Connect
 
 This article uses the Azure CLI and a runnable sample project.
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ |
 
 For the latest SDK and API support for agents tools, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 ## SDK support
 
-The custom code interpreter uses the MCP tool type. Any SDK that supports MCP tools can create a custom code interpreter agent. The .NET and Java SDKs are currently in preview. For the infrastructure provisioning steps (Azure CLI, Bicep), see [Create an agent with custom code interpreter](#create-an-agent-with-custom-code-interpreter).
+The custom code interpreter uses the MCP tool type. Any SDK that supports MCP tools can create a custom code interpreter agent. The .NET SDK is currently in preview. For the infrastructure provisioning steps (Azure CLI, Bicep), see [Create an agent with custom code interpreter](#create-an-agent-with-custom-code-interpreter).
 
 ## Prerequisites
 
@@ -186,20 +186,20 @@ McpTool tool = ResponseTool.CreateMcpTool(
     serverUri: new Uri(mcpServerUrl));
 tool.ProjectConnectionId = mcpConnectionId;
 
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant that can run Python code to analyze data and solve problems.",
     Tools = { tool }
 };
 
-AgentVersion agent = projectClient.Agents.CreateAgentVersion(
+AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "CustomCodeInterpreterAgent",
     options: new(agentDefinition));
 
 Console.WriteLine($"Agent created: {agent.Name} (version {agent.Version})");
 
 // Create a response using the agent
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agent.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agent.Name);
 
 ResponseResult response = responseClient.CreateResponse(
     new([ResponseItem.CreateUserMessageItem("Calculate the factorial of 10 using Python.")]));
@@ -207,7 +207,7 @@ ResponseResult response = responseClient.CreateResponse(
 Console.WriteLine(response.GetOutputText());
 
 // Clean up
-projectClient.Agents.DeleteAgentVersion(
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
     agentName: agent.Name,
     agentVersion: agent.Version);
 Console.WriteLine("Agent deleted");
@@ -300,7 +300,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

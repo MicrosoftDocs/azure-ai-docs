@@ -1,9 +1,9 @@
 ---
 title: Include file
 description: Include file
-author: ms-johnalex
+author: sdgilley
 ms.reviewer: sgilley
-ms.author: johalexander
+ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 02/03/2026

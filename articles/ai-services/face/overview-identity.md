@@ -9,7 +9,7 @@ ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
 ms.update-cycle: 90-days
 ms.topic: overview
-ms.date: 03/02/2026
+ms.date: 03/23/2026
 ai-usage: ai-assisted
 ms.author: pafarley
 keywords: facial recognition, facial recognition software, facial analysis, face matching, face recognition app, face search by image, facial recognition search
@@ -50,11 +50,11 @@ For a more structured approach, follow a Training module for Face.
 
 The following are common use cases for the Face service:
 
-- **Verify user identity**: Verify a person against a trusted face image. This verification could be used to grant access to digital or physical properties such as a bank account, access to a building, and so on. In most cases, the trusted face image could come from a government-issued ID such as a passport or driver’s license, or it could come from an enrollment photo taken in person. During verification, liveness detection can play a critical role in verifying that the image comes from a real person, not a printed photo or mask. For more details on verification with liveness, see the [liveness tutorial](./Tutorials/liveness.md). For identity verification without liveness, follow the [quickstart](./quickstarts-sdk/identity-client-library.md).
+- **Verify user identity**: Verify a person against a trusted face image. This verification can grant access to digital or physical properties such as a bank account or a building. The trusted face image can come from a government-issued ID such as a passport or driver’s license, or from an enrollment photo taken in person. During verification, liveness detection plays a critical role in confirming that the image comes from a real person, not a printed photo or mask. For more details on verification with liveness, see the [liveness tutorial](./Tutorials/liveness.md). For identity verification without liveness, follow the [quickstart](./quickstarts-sdk/identity-client-library.md).
 - **Liveness detection**: Liveness detection is an anti-spoofing feature that checks whether a user is physically present in front of the camera. It's used to prevent spoofing attacks using a printed photo, recorded video, or a 3D mask of the user's face. [Liveness tutorial](./Tutorials/liveness.md)
 - **Touchless access control**: Compared to today’s methods like cards or tickets, opt-in face identification enables an enhanced access control experience while reducing the hygiene and security risks from card sharing, loss, or theft. Facial recognition assists the check-in process with a human in the loop for check-ins in airports, stadiums, theme parks, buildings, reception kiosks at offices, hospitals, gyms, clubs, or schools.
 
-**Face redaction**: Redact or blur detected faces of people recorded in a video to protect their privacy.
+- **Face redaction**: Redact or blur detected faces of people recorded in a video to protect their privacy.
 
 See the [customer checkin management](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/Scenario-CustomerCheckinManagement) and [face photo tagging](https://github.com/Azure-Samples/azure-ai-vision/tree/main/face/Scenario-FacePhotoTagging) scenarios on GitHub for working examples of facial recognition technology.
 
@@ -80,13 +80,13 @@ You can try out Face detection quickly and easily in your browser using Vision S
 
 [!INCLUDE [liveness-sdk-gate](./includes/liveness-sdk-gate.md)]
 
-Face Liveness detection can be used to determine if a face in an input video stream is real (live) or fake (spoof). This is a crucial building block in a biometric authentication system to prevent spoofing attacks from imposters trying to gain access to the system using a photograph, video, mask, or other means to impersonate another person.
+Face Liveness detection determines whether a face in an input video stream is real (live) or fake (spoof). It's a crucial building block in a biometric authentication system to prevent spoofing attacks from imposters trying to gain access to the system using a photograph, video, mask, or other means to impersonate another person.
 
 The goal of liveness detection is to ensure that the system is interacting with a physically present live person at the time of authentication. Such systems have become increasingly important with the rise of digital finance, remote access control, and online identity verification processes.
 
-The liveness detection solution successfully defends against a variety of spoof types ranging from paper printouts, 2d/3d masks, and spoof presentations on phones and laptops. Liveness detection is an active area of research, with continuous improvements being made to counteract increasingly sophisticated spoofing attacks over time. Continuous improvements will be rolled out to the client and the service components over time as the overall solution gets more robust to new types of attacks.
+The liveness detection solution successfully defends against a variety of spoof types ranging from paper printouts, 2D/3D masks, and spoof presentations on phones and laptops. Liveness detection is an active area of research, with continuous improvements made to counteract increasingly sophisticated spoofing attacks. Updates are continuously rolled out to the client and service components as the overall solution becomes more robust to new types of attacks.
 
-Our liveness detection solution achieved a 0% penetration rate in [iBeta Level 1 and Level 2 Presentation Attack Detection (PAD) tests](https://servicetrust.microsoft.com/DocumentPage/ea3fa18f-3940-4c0b-aa96-41cb50898aee), conducted by a NIST/NVLAP-accredited laboratory and conformant to the [ISO/IEC 30107-3 PAD international standard](https://www.iso.org/standard/79520.html).
+The liveness detection solution achieved a 0% penetration rate in [iBeta Level 1 and Level 2 Presentation Attack Detection (PAD) tests](https://servicetrust.microsoft.com/DocumentPage/ea3fa18f-3940-4c0b-aa96-41cb50898aee), conducted by a NIST/NVLAP-accredited laboratory and conformant to the [ISO/IEC 30107-3 PAD international standard](https://www.iso.org/standard/79520.html).
 
 Tutorials
 - [Face liveness Tutorial](Tutorials/liveness.md)
@@ -126,7 +126,7 @@ For more information about Face recognition, see the [Facial recognition](concep
 
 The Find Similar operation does face matching between a target face and a set of candidate faces, finding a smaller set of faces that look similar to the target face. This is useful for doing a face search by image. 
 
-The service supports two working modes, **matchPerson** and **matchFace**. The **matchPerson** mode returns similar faces after filtering for the same person by using the [Verify API](/rest/api/face/face-recognition-operations/verify-face-to-face). The **matchFace** mode ignores the same-person filter. It returns a list of similar candidate faces that may or may not belong to the same person.
+The service supports two working modes, **matchPerson** and **matchFace**. The **matchPerson** mode returns similar faces after filtering for the same person by using the [Verify API](/rest/api/face/face-recognition-operations/verify-face-to-face). The **matchFace** mode ignores the same-person filter. It returns a list of similar candidate faces that might or might not belong to the same person.
 
 The following example shows the target face:
 
@@ -140,7 +140,7 @@ To find four similar faces, the **matchPerson** mode returns A and B, which show
 
 ## Group faces
 
-The Group operation divides a set of unknown faces into several smaller groups based on similarity. Each group is a disjoint proper subset of the original set of faces. It also returns a single "messyGroup" array that contains the face IDs for which no similarities were found.
+The Group operation divides a set of unknown faces into several smaller groups based on similarity. Each group is a disjoint proper subset of the original set of faces. It also returns a single `messyGroup` array that contains the face IDs for which no similarities were found.
 
 All of the faces in a returned group are likely to belong to the same person, but there can be several different groups for a single person. Those groups are differentiated by another factor, such as expression, for example. For more information, see the [Group API](/rest/api/face/face-recognition-operations/group) reference documentation.
 
@@ -160,7 +160,7 @@ Input requirements for face verification:
 
 ## Data privacy and security
 
-As with all of the Foundry Tools resources, developers who use the Face service must be aware of Microsoft's policies on customer data. For more information, see the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center.
+As with all Foundry Tools resources, you must be aware of Microsoft's policies on customer data when using the Face service. For more information, see the [Foundry Tools page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center.
 
 ## Next step
 

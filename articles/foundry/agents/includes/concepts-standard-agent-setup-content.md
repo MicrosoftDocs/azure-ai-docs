@@ -1,12 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: fosteramanda
+ms.author: fosteramanda
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 Standard agent setup uses customer-managed, single-tenant Azure resources to store agent state and keep all agent data under your control. Use standard setup when you need full data sovereignty, compliance with enterprise security policies, or project-level isolation.
@@ -21,7 +21,7 @@ In this setup:
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An [Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/) account. For throughput requirements, see [Cosmos DB throughput requirements](#cosmos-db-throughput-requirements).
 - An [Azure Storage](/azure/storage/common/storage-account-overview) account.
 - An [Azure AI Search](/azure/search/search-what-is-azure-search) resource.

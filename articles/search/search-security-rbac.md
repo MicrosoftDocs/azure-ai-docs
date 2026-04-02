@@ -1,7 +1,7 @@
 ---
 title: Connect Using Azure Roles
 description: Learn how to assign Azure roles in Azure AI Search to manage permissions for service administration, development, and query access with Microsoft Entra ID.
-ms.date: 03/24/2026
+ms.date: 03/26/2026
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
@@ -80,11 +80,9 @@ Use the following table to quickly find which role provides the permissions you 
 | Retrieve from a knowledge base | ❌ | ❌ | ❌ | ✅ | ✅ |
 | Elevated read, regardless of permission filters <sup>3</sup> | ❌ | ❌ | ❌ | ✅ | ❌ |
 
-<sup>1</sup> Includes creating, updating, and deleting indexes, indexers, 
-data sources, skillsets, aliases, synonym maps, debug sessions, knowledge bases, and knowledge sources. 
-Indexers also support run and reset operations.
+<sup>1</sup> Includes creating, updating, and deleting indexes, indexers, data sources, skillsets, aliases, synonym maps, debug sessions, knowledge bases, and knowledge sources. Indexers also support run and reset operations.
 
-<sup>2</sup> An Owner or Contributor can run the [**Import data** wizard](search-import-data-portal.md) to create and load indexes, even though they can't upload documents in other clients. The search service itself, not individual users, makes data connections in the wizard. The wizard has the necessary `Microsoft.Search/searchServices/indexes/documents/*` permissions for this task.
+<sup>2</sup> An Owner or Contributor can run the [**Import data** wizard](search-import-data-portal.md) to create and load indexes, even though they can't upload documents in other clients. Similarly, [indexers](search-indexer-overview.md) can write to any index on the search service, regardless of per-index role assignments. In both cases, the search service (not the user) performs the data plane actions using its `Microsoft.Search/searchServices/indexes/documents/*` permissions.
 
 <sup>3</sup> [Elevated read](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) bypasses permission metadata on documents, allowing you to see all results and investigate why specific users can't see expected content.
 
@@ -108,7 +106,9 @@ The following roles let you create, configure, and manage a search service. Thes
 
 #### [**Azure portal**](#tab/roles-portal-admin)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
+
+1. Select **Access Control (IAM)** in the left pane.
 
 1. From the left pane, select **Access control (IAM)**.
 
@@ -150,7 +150,9 @@ The following roles let you create search objects, load documents, query indexes
 
 #### [**Azure portal**](#tab/roles-portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
+
+1. Select **Access Control (IAM)** in the left pane.
 
 1. From the left pane, select **Access control (IAM)**.
 
@@ -200,7 +202,7 @@ Use the following role for apps and processes that only need read access to inde
 
 #### [**Azure portal**](#tab/roles-portal-query)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Access control (IAM)**.
 
@@ -262,7 +264,7 @@ Before you proceed, [configure your application for keyless connections](search-
 
 ### [**Azure portal**](#tab/test-portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Search management** > **Indexes** to test index-related permissions:
 
@@ -459,6 +461,18 @@ In PowerShell, use `New-AzRoleAssignment`, providing the Azure user or group nam
    ```
 
    **Reference:** [New-AzRoleAssignment](/powershell/module/az.resources/new-azroleassignment)
+
+### Per-index scope and indexer operations
+
+Per-index role assignments apply to direct API operations only, such as queries or document uploads from users or applications. Indexers aren't restricted by per-index permissions because they operate with service-level credentials.
+
+A user with the **Search Service Contributor** role can create indexers that write to any index on the search service, even indexes where that user has no per-index role assignment.
+
+For strict data isolation between indexes, consider these approaches:
+
++ Use separate search services for teams or users who require index-level isolation.
++ Assign **Search Service Contributor** only to administrators who manage indexers.
++ Use [document-level access control](search-document-level-access-overview.md) with security filters to restrict query results within a shared index.
 
 ## Create a custom role
 

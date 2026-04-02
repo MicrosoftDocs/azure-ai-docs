@@ -4,7 +4,7 @@ description: "Deploy fine-tuned models using managed compute in Microsoft Foundr
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 08/15/2025
+ms.date: 03/31/2026
 ms.reviewer: vkann
 reviewer: kvijaykannan
 ms.author: ssalgado

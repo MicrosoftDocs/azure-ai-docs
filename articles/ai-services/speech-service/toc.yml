@@ -89,6 +89,8 @@ items:
       items:
       - name: How to recognize speech
         href: how-to-recognize-speech.md
+      - name: How to use post-processing
+        href: how-to-post-processing.md
       - name: Get speech recognition results
         href: get-speech-recognition-results.md
       - name: Language identification
@@ -289,6 +291,9 @@ items:
     - name: OpenAI text to speech voices
       href: openai-voices.md
       displayName: tts
+    - name: MAI-Voice
+      displayName: mai voice, neural voice
+      href: mai-voices.md
     - name: Text to speech FAQ
       displayName: FAQ,TTS,frequently asked questions
       href: faq-tts.yml
@@ -312,6 +317,8 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
+    - name: Use MAI-Transcribe-1
+      href: mai-transcribe.md
     - name: Reference
       items:
       - name: LLM speech REST API reference
