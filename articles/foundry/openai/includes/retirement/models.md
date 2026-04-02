@@ -37,6 +37,7 @@ ms.custom: references_regions, build-2025
 | `o4-mini` | 2025-04-16 | `Generally Available` | 2026-04-16 | 2026-10-16 |  |
 | `codex-mini` | 2025-05-16 | `Generally Available` | 2026-05-16 | 2026-11-15 |  |
 | `model-router` | 2025-11-18 | `Generally Available` | 2026-11-18 | 2027-05-20 |  |
+| `gpt-5` | 2025-08-07 | `Generally Available` | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-mini` | 2025-08-07 | `Generally Available` | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-nano` | 2025-08-07 | `Generally Available` | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-codex` | 2025-09-15 | `Generally Available` | 2026-09-15 | 2027-03-17 |  |
