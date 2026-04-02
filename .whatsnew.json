@@ -1,6 +1,6 @@
 { 
     "$schema": "https://whatsnewapi.azurewebsites.net/schema",
-    "docSetProductName": "Azure AI Services",
+    "docSetProductName": "Microsoft Foundry",
     "rootDirectory": "articles/",
     "docLinkSettings": {
         "linkFormat": "relative",
@@ -11,58 +11,24 @@
         "tocParentNode": "Latest documentation updates",
         "repoTocFolder": "articles/whats-new",
         "indexParentNode": "Latest documentation updates",
-        "repoIndexFolder": "articles/foundry"
+        "repoIndexFolder": "articles"
     },
     "areas": [
         {
-            "names": [ "agents" ],
-            "heading": "Agents"
+            "names": [ "foundry" ],
+            "heading": "Microsoft Foundry"
         },
         {
-            "names": [ "Concepts" ],
-            "heading": "Concepts"
+            "names": [ "foundry-classic" ],
+            "heading": "Microsoft Foundry Classic"
         },
         {
-            "names": [ "control-plane" ],
-            "heading": "Machine Learning"
+            "names": [ "machine-learning" ],
+            "heading": "Azure Machine Learning"
         },
         {
-            "names": [ "fine-tuning" ],
-            "heading": "Fine Tuning"
-	   },
-        {
-
-            "names": [ "foundry-models" ],
-            "heading": "Foundry Models"
-        },
-        {
-            "names": [ "guardrails" ],
-            "heading": "Guardrails"
-        },
-        {
-            "names": [ "mcp" ],
-            "heading": "MCP"
-        },
-        {
-            "names": [ "observability" ],
-            "heading": "Observability"
-        },
-        {
-            "names": [ "openai" ],
-            "heading": "Azure Open AI in Foundry Tools"
-        },
-        {
-            "names": [ "responsible-ai" ],
-            "heading": "Responsible AI"
-        },
-        {
-            "names": [ "quickstarts" ],
-            "heading": "Quickstarts"
-        },
-        {
-            "names": [ "tutorials" ],
-            "heading": "Tutorials"
-    
+            "names": [ "foundry-local" ],
+            "heading": "Foundry Local"
         }
     ]
 }
