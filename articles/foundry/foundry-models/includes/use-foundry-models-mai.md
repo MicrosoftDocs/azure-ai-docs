@@ -8,7 +8,7 @@ reviewer: mpande98
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 03/31/2026
+ms.date: 04/02/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -31,12 +31,12 @@ In this article, you learn how to:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI-Image-2 is available for **global standard deployment in all regions**.
+- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI-Image-2 is available for **global standard deployment** (West Central US, East US, West US, West Europe, Sweden Central, and South India).
 - **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
 ## Deploy MAI-Image-2
 
-MAI-Image-2 is available for [global standard deployment](../concepts/deployment-types.md#global-standard) in all regions. To deploy the model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
+MAI-Image-2 is available for [global standard deployment](../concepts/deployment-types.md#global-standard) in West Central US, East US, West US, West Europe, Sweden Central, and South India. To deploy the model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
 
 Alternatively, you can deploy the model by using the Azure CLI:
 
@@ -80,8 +80,8 @@ The following table lists the request parameters:
 | --------- | ---- | ----------- |
 | `model` | string | The deployment name you assigned when you deployed the model. |
 | `prompt` | string | The text prompt that describes the image to generate. Maximum context length: 32,000 tokens. |
-| `width` | string | Width of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
-| `height` | string | Height of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `width` | integer | Width of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `height` | integer | Height of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
 
 > [!NOTE]
 > The output format is always PNG. The maximum total pixel count is 1,048,576 (equivalent to 1024×1024). Both `width` and `height` must be at least 768 pixels each. Either dimension can exceed 1024 as long as the total pixel count stays within the limit.
@@ -114,21 +114,25 @@ The following examples show how to generate an image from a text prompt using MA
 
     ```python
     import os
+    import base64
     import requests
-
+    
     endpoint = os.environ["AZURE_ENDPOINT"]
     api_key = os.environ["AZURE_API_KEY"]
     deployment_name = os.environ["DEPLOYMENT_NAME"]
-
+    
+    width = 1024
+    height = 1024
+    
     url = f"{endpoint}/mai/v1/images/generations"
-
+    
     payload = {
         "model": deployment_name,
         "prompt": "A photorealistic image of a mountain lake at sunrise",
-        "width": "1024",
-        "height": "1024",
+        "width": width,
+        "height": height
     }
-
+    
     response = requests.post(
         url,
         headers={
@@ -138,12 +142,27 @@ The following examples show how to generate an image from a text prompt using MA
         json=payload,
     )
     response.raise_for_status()
-
+    
     result = response.json()
     print(result)
+    
+    image_data = [
+        output
+        for output in result.get("data", [])
+        if "b64_json" in output
+    ]
+    
+    if image_data:
+        image_base64 = image_data[0]["b64_json"]
+        output_path = "output.png"
+        with open(output_path, "wb") as f:
+            f.write(base64.b64decode(image_base64))
+        print(f"Image saved to {output_path}")
+    else:
+        print("Unexpected response format:", result)
     ```
 
-    **Expected output:** A JSON response containing the generated image data in base64 format (PNG image).
+    **Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
 
 #### Use Microsoft Entra ID authentication
 
@@ -191,12 +210,14 @@ curl -X POST "https://<resource-name>.services.ai.azure.com/mai/v1/images/genera
   -d '{
       "model": "'"$DEPLOYMENT_NAME"'",
       "prompt": "A photorealistic image of a mountain lake at sunrise",
-      "width": "1024",
-      "height": "1024"
-    }'
+      "width": 1024,
+      "height": 1024
+    }' \
+  | jq -r '.data[0].b64_json' \
+  | base64 --decode > output.png
 ```
 
-**Expected output:** A JSON response containing the generated image data in base64 format (PNG image).
+**Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
 
 #### Use Microsoft Entra ID authentication
 

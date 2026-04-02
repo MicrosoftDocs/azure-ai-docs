@@ -51,12 +51,28 @@ Starting in March 2026, Neural HD voices expand beyond their original regions an
 
 #### Neural HD Multi‑Talker voices expansion
 Neural HD Multi‑Talker voices now support multi‑speaker synthesis across additional input languages, extending beyond en‑US to include **fr‑FR, es‑ES, de‑DE, it‑IT, pt‑BR, ko‑KR, ja‑JP, and zh‑CN**.
-A new model, `en‑MultiTalker‑1:DragonHDLatestNeural`, introduces an expanded set of speakers, enabling more flexible dialogue creation for podcasts, storytelling, and role‑based narration.
+Several new models: `en‑MultiTalker‑1:DragonHDLatestNeural`, `fr-Multitalker:DragonHDLatestNeural`, `zh-Multitalker:DragonHDLatestNeural` introduce an expanded set of speakers, enabling more flexible dialogue creation for podcasts, storytelling, and role‑based narration.
+
+Speakers in `en‑MultiTalker‑1:DragonHDLatestNeural`
 
 | **Gender** | **Speaker names**                     |
 |-----------|----------------------------------------|
 | Female    | Ada, Ava, Emma, Jane                   |
 | Male      | Andrew, Brian, Davis, Steffan           |
+
+Speakers in `fr-Multitalker:DragonHDLatestNeural`
+
+| **Gender** | **Speaker names**                     |
+|-----------|----------------------------------------|
+| Female    | Vivienne                   |
+| Male      | Remy          |
+
+Speakers in `zh-Multitalker:DragonHDLatestNeural`
+
+| **Gender** | **Speaker names**                     |
+|-----------|----------------------------------------|
+| Female    | Xiaoxiao                  |
+| Male      | Yunxiao         |
 
 #### Neural HD pricing update
 Effective March 2026, Neural HD pricing is reduced. Check out details at [Pricing](https://azure.microsoft.com/pricing/details/speech/).

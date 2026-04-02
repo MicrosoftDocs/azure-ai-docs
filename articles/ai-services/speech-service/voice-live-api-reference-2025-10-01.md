@@ -10,7 +10,7 @@ author: PatrickFarley
 ms.author: pafarley
 ---
 
-# Voice Live `2025-10-01` API Reference 
+# Voice Live `2025-10-01` API Reference
 
 The Voice Live API provides real-time, bidirectional communication for voice-enabled applications using WebSocket connections. This API supports advanced features including speech recognition, text-to-speech synthesis, avatar streaming, animation data, and comprehensive audio processing capabilities.
 
@@ -2205,7 +2205,7 @@ Azure personal voice configuration.
 | type | string | Must be `"azure-personal"` |
 | name | string | Voice name (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
-| model | string | Underlying base model: `DragonLatestNeural`, `DragonHDOmniLatestNeural` |
+| model | string | Underlying base model: `DragonLatestNeural`, `DragonHDOmniLatestNeural`, `MAI-Voice-1` |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
 | prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
