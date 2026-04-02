@@ -8,7 +8,7 @@ reviewer: mpande98
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 03/31/2026
+ms.date: 04/02/2026
 ai-usage: ai-assisted
 ms.custom: classic-and-new
 ---
@@ -114,21 +114,25 @@ The following examples show how to generate an image from a text prompt using MA
 
     ```python
     import os
+    import base64
     import requests
-
+    
     endpoint = os.environ["AZURE_ENDPOINT"]
     api_key = os.environ["AZURE_API_KEY"]
     deployment_name = os.environ["DEPLOYMENT_NAME"]
-
+    
+    width = 1024
+    height = 1024
+    
     url = f"{endpoint}/mai/v1/images/generations"
-
+    
     payload = {
         "model": deployment_name,
         "prompt": "A photorealistic image of a mountain lake at sunrise",
-        "width": 1024,
-        "height": 1024,
+        "width": width,
+        "height": height
     }
-
+    
     response = requests.post(
         url,
         headers={
@@ -138,12 +142,27 @@ The following examples show how to generate an image from a text prompt using MA
         json=payload,
     )
     response.raise_for_status()
-
+    
     result = response.json()
     print(result)
+    
+    image_data = [
+        output
+        for output in result.get("data", [])
+        if "b64_json" in output
+    ]
+    
+    if image_data:
+        image_base64 = image_data[0]["b64_json"]
+        output_path = "output.png"
+        with open(output_path, "wb") as f:
+            f.write(base64.b64decode(image_base64))
+        print(f"Image saved to {output_path}")
+    else:
+        print("Unexpected response format:", result)
     ```
 
-    **Expected output:** A JSON response containing the generated image data in base64 format (PNG image).
+    **Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
 
 #### Use Microsoft Entra ID authentication
 
@@ -193,10 +212,12 @@ curl -X POST "https://<resource-name>.services.ai.azure.com/mai/v1/images/genera
       "prompt": "A photorealistic image of a mountain lake at sunrise",
       "width": 1024,
       "height": 1024
-    }'
+    }' \
+  | jq -r '.data[0].b64_json' \
+  | base64 --decode > output.png
 ```
 
-**Expected output:** A JSON response containing the generated image data in base64 format (PNG image).
+**Expected output:** A JSON response containing the generated image data in base64 format. The image is decoded and saved as `output.png` in the current directory.
 
 #### Use Microsoft Entra ID authentication
 

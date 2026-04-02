@@ -4,7 +4,7 @@ description: "Deploy MAI-Image-2, a text-to-image generation model in Microsoft 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 03/31/2026
+ms.date: 04/02/2026
 ms.custom:
   - doc-kit-assisted
   - classic-and-new
