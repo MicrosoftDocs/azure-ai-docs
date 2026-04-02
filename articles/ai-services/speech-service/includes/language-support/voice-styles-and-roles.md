@@ -1,4 +1,12 @@
-﻿| Voice | Styles |Roles |
+﻿---
+author: PatrickFarley
+ms.service: azure-ai-speech
+ms.date: 04/02/2026
+ms.topic: include
+ms.author: pafarley
+---
+
+| Voice | Styles |Roles |
 | ----- | ----- | ----- |
 | `de-DE-ConradNeural` | `cheerful`, `sad` | Not supported |
 | `en-GB-RyanNeural` | `chat`, `cheerful`, `sad`, `whispering` | Not supported |
@@ -70,3 +78,12 @@
 | `zh-CN-YunyeNeural` | `angry`, `calm`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `sad`, `serious` | `Boy`, `Girl`, `OlderAdultFemale`, `OlderAdultMale`, `SeniorFemale`, `SeniorMale`, `YoungAdultFemale`, `YoungAdultMale` |
 | `zh-CN-Yunyi:DragonHDFlashLatestNeural` | `assassin`, `captain`, `cavalier`, `game-narrator`, `geomancer`, `poet`, `prince` | Not supported |
 | `zh-CN-YunzeNeural` | `angry`, `calm`, `cheerful`, `depressed`, `disgruntled`, `documentary-narration`, `fearful`, `sad`, `serious` | `OlderAdultMale`, `SeniorMale` |
+
+
+<sup>1</sup> The neural voice is available in preview. Voices and styles in preview are available in only three service [regions](../../regions.md): East US, West Europe, and Southeast Asia.
+
+<sup>2</sup> The `advertisement-upbeat` style for this voice is in preview and is available in only three service regions: East US, West Europe, and Southeast Asia.
+
+<sup>3</sup> The `sports-commentary` style for this voice is in preview and is available in only three service regions: East US, West Europe, and Southeast Asia.
+
+<sup>4</sup> The `sports-commentary-excited` style for this voice is in preview and is available in only three service regions: East US, West Europe, and Southeast Asia.

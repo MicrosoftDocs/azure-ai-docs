@@ -1,4 +1,12 @@
-﻿| Language | Locales (BCP-47) |
+﻿---
+author: PatrickFarley
+ms.service: azure-ai-speech
+ms.date: 04/02/2026
+ms.topic: include
+ms.author: pafarley
+---
+
+| Language | Locales (BCP-47) |
 | ----- | ----- |
 | Afrikaans | `af-ZA` |
 | Albanian | `sq-AL` |
