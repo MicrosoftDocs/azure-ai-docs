@@ -2,22 +2,20 @@ items:
 # Getting Started
 - name: Guardrails and Controls Overview
   href: ../../guardrails/guardrails-overview.md
-- name: How to configure Guardrails and controls
+- name: How to configure Guardrails and Controls
   href: ../../guardrails/how-to-create-guardrails.md
 # Content Filtering and Risk Detection
 - name: Risks
   items:
   - name: Harm categories and severity levels
     href: ../../openai/concepts/content-filter-severity-levels.md
-  - name: Prompt shields
+  - name: Prompt Shields
     href: ../../openai/concepts/content-filter-prompt-shields.md
   - name: Sensitive Data Leakage (PII)
     href: ../../openai/concepts/content-filter-personal-information.md
   - name: Groundedness detection
     href: ../../openai/concepts/content-filter-groundedness.md
-  - name: Task Aherence quickstart
-    href: ../../guardrails/how-to-task-adherence.md
-  - name: Task Aherence overview
+  - name: Task Aherence 
     href: ../../guardrails/task-adherence.md
   - name: Protected material for code
     href: ../../../ai-services/content-safety/quickstart-protected-material-code.md
@@ -32,9 +30,6 @@ items:
   - name: Custom categories
     href: ../../../ai-services/content-safety/concepts/custom-categories.md?context=/azure/foundry/context/context
 
-# Configuration and Policies
-- name: Configuration and policies
-  items:
   - name: Intervention points
     href: ../../guardrails/intervention-points.md
   - name: Content streaming
