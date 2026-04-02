@@ -24,7 +24,7 @@ cd Foundry-Local/samples/cs/tutorial-chat-assistant
 
 The Foundry Local SDK provides a model catalog that lists all available models. In this step, you initialize the SDK and select a model for your chat assistant.
 
-1. Open `Program.cs` and replace its contents with the following code to initialize the SDK and select a model:
+- Open `Program.cs` and replace its contents with the following code to initialize the SDK and select a model:
 
     :::code language="csharp" source="~/foundry-local-main/samples/cs/tutorial-chat-assistant/Program.cs" id="init":::
 

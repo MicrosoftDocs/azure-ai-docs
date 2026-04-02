@@ -24,7 +24,7 @@ This article explains the components that make up the Foundry Local runtime and 
 
 The following diagram shows how Foundry Local fits inside your application. Your code interacts with the Core API through direct function calls. The Core API calls into Open Neural Network Exchange (ONNX) Runtime for inference, integrates with the Foundry Catalog for model acquisition, and integrates with WinML on Windows for execution provider registration.
 
-:::image type="content" source="../media/architecture/new-sdk-architecture.png" alt-text="Diagram showing the Foundry Local architecture. Application code in JavaScript, Python, C#, or Rust calls the Foundry Local Core API through language SDKs or an optional REST endpoint. The Core API delegates to ONNX Runtime for inference, Foundry Catalog for model downloads, and WinML for execution provider registration on Windows. The entire runtime is packaged as a single distributable.":::
+:::image type="content" source="../media/architecture/new-sdk-architecture.png" alt-text="Diagram showing the Foundry Local architecture. Application code in JavaScript, Python, C#, or Rust calls the Foundry Local Core API through language SDKs or an optional REST endpoint.":::
 
 Because the entire runtime is embedded, your application packages everything it needs. End users receive a single distributable with no separate installer or background service to manage.
 

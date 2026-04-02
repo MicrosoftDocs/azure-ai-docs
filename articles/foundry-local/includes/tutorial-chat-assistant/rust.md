@@ -24,7 +24,7 @@ cd Foundry-Local/samples/rust/tutorial-chat-assistant
 
 The Foundry Local SDK provides a model catalog that lists all available models. In this step, you initialize the SDK and select a model for your chat assistant.
 
-1. Open `src/main.rs` and replace its contents with the following code to initialize the SDK and select a model:
+- Open `src/main.rs` and replace its contents with the following code to initialize the SDK and select a model:
 
     :::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-chat-assistant/src/main.rs" id="init":::
 

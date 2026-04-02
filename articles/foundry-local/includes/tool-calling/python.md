@@ -35,7 +35,7 @@ pip install openai
 
 ## Understanding tool choice settings
 
-The tool choice parameter controls whether and how the model invokes the tools you provide. THe parameter is sent as part of the chat completion request alongside your tool definitions.
+The tool choice parameter controls whether and how the model invokes the tools you provide. The parameter is sent as part of the chat completion request alongside your tool definitions.
 
 Different models have different capabilities when it comes to tool calling, but in general you can expect the following behavior for each option:
 

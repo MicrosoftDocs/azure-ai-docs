@@ -24,7 +24,7 @@ cd Foundry-Local/samples/rust/tutorial-voice-to-text
 
 In this step, you load a speech-to-text model and transcribe an audio file. The Foundry Local SDK uses the `whisper` model alias to select the best Whisper variant for your hardware.
 
-1. Open `src/main.rs` and replace its contents with the following code to initialize the SDK, load the speech model, and transcribe an audio file:
+- Open `src/main.rs` and replace its contents with the following code to initialize the SDK, load the speech model, and transcribe an audio file:
 
     :::code language="rust" source="~/foundry-local-main/samples/rust/tutorial-voice-to-text/src/main.rs" id="transcription":::
 
