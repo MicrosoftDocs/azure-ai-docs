@@ -91,7 +91,6 @@ ms.custom: references_regions, build-2025
 | `dall-e-3` | 3 | `Generally Available` | n/a | 2026-03-04 | `gpt-image-1.5` |
 | `gpt-image-1` | 2025-04-15 | `Preview` | n/a | 2026-05-15 | `gpt-image-1.5` |
 | `gpt-image-1-mini` | 2025-10-06 | `Generally Available` | 2026-10-06 | 2027-04-07 |  |
-| `sora` | 2025-05-02 | `Preview` | n/a | No earlier than 2026-09-15 |  |
 | `gpt-image-1.5`    | 2025-12-16   | `Generally Available`    | n/a | No earlier than 2026-12-16 |  |
 | `sora-2` | 2025-10-15 | `Preview` | n/a | No earlier than 2026-09-15 |  |
 
