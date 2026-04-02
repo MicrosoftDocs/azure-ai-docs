@@ -31,7 +31,7 @@ In this article, you learn how to:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI-Image-2 is available for global standard deployment in West Central US, East US, West US, West Europe, Sweden Central, and South India.
+- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI-Image-2 is available for **global standard deployment** (West Central US, East US, West US, West Europe, Sweden Central, and South India).
 - **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
 ## Deploy MAI-Image-2
