@@ -114,6 +114,8 @@ By using Azure Bastion, you can connect to the VM desktop through your browser.
     > [!NOTE]
     > This tutorial uses internet outbound access to keep setup simple. If your organization requires stricter egress controls, use a managed virtual network configuration that allows only approved outbound traffic.
 
+   :::image type="content" source="./media/tutorial-create-secure-workspace/private-internet-outbound.png" alt-text="Screenshot of the workspace network tab with internet outbound selected.":::
+
 1. Select __Review + create__. Verify that the information is correct, and then select __Create__.
 
 1. After the portal creates the workspace, select __Go to resource__.
