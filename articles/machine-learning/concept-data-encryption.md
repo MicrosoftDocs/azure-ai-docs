@@ -10,6 +10,7 @@ ms.author: scottpolly
 author: s-polly
 ms.reviewer: shshubhe
 ms.date: 02/05/2025
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 
@@ -59,13 +60,19 @@ For information on how to use customer-managed keys for transparent data encrypt
 
 By default, Azure Database for PostgreSQL uses Azure Storage encryption to encrypt data at rest by using Microsoft-managed keys. It's similar to transparent data encryption in other databases, such as SQL Server.
 
-For information on how to use customer-managed keys for transparent data encryption, see [Azure Database for PostgreSQL Single Server data encryption with a customer-managed key](/azure/postgresql/single-server/concepts-data-encryption-postgresql).
+> [!IMPORTANT]
+> Azure Database for PostgreSQL Single Server was retired on March 28, 2025. If you use Single Server, migrate to Azure Database for PostgreSQL Flexible Server. For more information, see [What's happening to Azure Database for PostgreSQL Single Server?](/azure/postgresql/single-server/whats-happening-to-single-server).
+
+For information on how to use customer-managed keys for data encryption, see [Azure Database for PostgreSQL Flexible Server data encryption with a customer-managed key](/azure/postgresql/flexible-server/concepts-data-encryption).
 
 #### Azure Database for MySQL
 
 Azure Database for MySQL is a relational database service in the Microsoft Cloud. It's based on the MySQL Community Edition database engine. The Azure Database for MySQL service uses the FIPS 140-2 validated cryptographic module for Azure Storage encryption of data at rest.
 
-To encrypt data by using customer-managed keys, see [Azure Database for MySQL data encryption with a customer-managed key](/azure/mysql/single-server/concepts-data-encryption-mysql).
+> [!IMPORTANT]
+> Azure Database for MySQL Single Server was retired on September 16, 2024. If you use Single Server, migrate to Azure Database for MySQL Flexible Server. For more information, see [What's happening to Azure Database for MySQL Single Server?](/azure/mysql/single-server/whats-happening-to-single-server).
+
+To encrypt data by using customer-managed keys, see [Azure Database for MySQL Flexible Server data encryption with a customer-managed key](/azure/mysql/flexible-server/concepts-customer-managed-key).
 
 ### Azure Cosmos DB
 
@@ -124,9 +131,6 @@ For more information on using a customer-managed key with Container Instances, s
 You can encrypt a deployed Azure Kubernetes Service resource by using customer-managed keys at any time. For more information, see [Bring your own keys with Azure Kubernetes Service](/azure/aks/azure-disk-customer-managed-keys).
 
 This process allows you to encrypt both the data and the OS disk of the deployed virtual machines in the Kubernetes cluster.
-
-> [!IMPORTANT]
-> This process works with only AKS version 1.17 or later. Azure Machine Learning added support for AKS 1.17 on Jan 13, 2020.
 
 ### Machine Learning compute
 
