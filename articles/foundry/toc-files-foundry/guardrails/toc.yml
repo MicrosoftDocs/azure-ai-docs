@@ -30,16 +30,16 @@ items:
   - name: Custom categories
     href: ../../../ai-services/content-safety/concepts/custom-categories.md?context=/azure/foundry/context/context
 
-  - name: Intervention points
-    href: ../../guardrails/intervention-points.md
-  - name: Content streaming
-    href: ../../openai/concepts/content-streaming.md
-  - name: Default safety policies
-    href: ../../openai/concepts/default-safety-policies.md
-  - name: Safety system messages
-    href: ../../openai/concepts/safety-system-message-templates.md
-  - name: Third party Guardrail integrations
-    href: ../../guardrails/third-party-integrations.md
+- name: Intervention points
+  href: ../../guardrails/intervention-points.md
+- name: Content streaming
+  href: ../../openai/concepts/content-streaming.md
+- name: Default safety policies
+  href: ../../openai/concepts/default-safety-policies.md
+- name: Safety system messages
+  href: ../../openai/concepts/safety-system-message-templates.md
+- name: Third party Guardrail integrations
+  href: ../../guardrails/third-party-integrations.md
 
 
 
