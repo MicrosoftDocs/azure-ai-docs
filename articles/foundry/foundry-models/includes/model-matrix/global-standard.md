@@ -2,7 +2,8 @@
 title: Global standard availability for Azure Direct models
 manager: nitinme
 ms.topic: include
-ms.date: 04/02/2026
+ms.date: 03/04/2026
+ms.custom: references_regions
 ---
 
 <!-- ## GlobalStandard.md -->
