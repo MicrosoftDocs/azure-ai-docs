@@ -73,7 +73,7 @@ Not available.
 
 ---
 
-## Import from an external database as a mltable data asset
+## Import from an external database as an mltable data asset
 
 > [!NOTE]
 > External databases include Snowflake and Azure SQL.
