@@ -62,6 +62,8 @@ You can choose models behind either an existing Azure API Management resource or
 
 To add a model connection in the Foundry portal:
 
+# [API Management](#tab/api-management)
+
 1. Sign in to [Microsoft Foundry](https://ai.azure.com).
 1. Select **Operate** > **Admin console**.
 1. Open the **All projects** tab.
@@ -70,39 +72,47 @@ To add a model connection in the Foundry portal:
     :::image type="content" source="../media/ai-gateway/add-model-connection.png" alt-text="Screenshot of external models in the Foundry portal.":::
 
     The **Add model connection** wizard opens.
-1. On the **Connection Type** page, select the connection type that matches your gateway.
-
-   # [API Management](#tab/api-management)
-
-   Select **Azure API Management** if you are connecting to an existing Azure API Management resource. Select the API Management resource name and the OpenAI-compatible chat completions **Model API** deployed there.
+1. On the **Connection Type** page, select **Azure API Management**. Select an existing API Management resource name and the OpenAI-compatible chat completions **Model API** deployed there.
 
    :::image type="content" source="../media/ai-gateway/add-api-management-model.png" alt-text="Screenshot of selecting an API Management resource in the Foundry portal.":::
+1. On the **Authentication** page, select an option to authenticate to API Management.
 
-   # [Other source](#tab/other-sources)
+   Select either **API key** such as an API Management subscription key, or **Managed Identity** if one is configured in your Foundry project. 
+    
+   When selecting a managed identity, in **Audience**, enter the target service for the managed identity token, such as `https://cognitiveservices.azure.com/`.
+1. On the **Model configuration** page, specify a model to connect through this gateway. The model must implement the OpenAI-compatible chat completions API.
 
-   Select **Other source** if you are connecting to a self-hosted, non-Azure hosted, or custom solution.
+    1. Select **+ Add model**.
+    1. Enter a **Deployment name** (used in API calls) and corresponding **Model name**, and **Version**. 
+    1. **Save** the model configuration.
+
+    Repeat the preceding steps to add more models to the connection if needed.
+1. On the **Advanced** page, optionally do the following:
+    1. Enter an **Inference API version** if required by your model deployments.
+    1. Enable the **Deployment path** setting if your gateway exposes the chat completions API on an OpenAI-syle path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
+       Leave the setting disabled if your gateway uses an Azure OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
+    1. Select **+ Add header** to add a static header that should be included in requests to the gateway. Repeat to add multiple headers if needed.
+1. Select **Add**.
+
+# [Other source](#tab/other-sources)
+
+1. Sign in to [Microsoft Foundry](https://ai.azure.com).
+1. Select **Operate** > **Admin console**.
+1. Open the **All projects** tab.
+1. In the list of projects, find your project and select the link in the **Parent resource** column.
+1. Select the **Admin-connected models** tab, and then select **Add model connection**.
+    :::image type="content" source="../media/ai-gateway/add-model-connection.png" alt-text="Screenshot of external models in the Foundry portal.":::
+
+    The **Add model connection** wizard opens.
+1. On the **Connection Type** page, select **Other source** to connect to a self-hosted, non-Azure hosted, or custom solution.
 
    1. Enter a **Connection name** of your choice.
    1. In **Target URL**, enter a URL to the gateway for your model endpoints. The URL can include a specific path if needed.
 
    :::image type="content" source="../media/ai-gateway/add-other-model.png" alt-text="Screenshot of selecting another model source in the Foundry portal.":::
-
-   ---
-1. On the **Authentication** page, select an option to authenticate to the gateway.
-
-   # [API Management](#tab/api-management)
-
-   Select either **API key** such as an API Management subscription key, or **Managed Identity** if one is configured in your Foundry project. 
-    
-   When selecting a managed identity, in **Audience**, enter the target service for the managed identity token, such as `https://cognitiveservices.azure.com/`.
-     
-   # [Other source](#tab/other-sources)
-    
-   Select either **API key** or **OAuth 2.0**.
+1. On the **Authentication** page, select either **API key** or **OAuth 2.0** to authenticate to the gateway.
 
    When selecting OAuth 2.0, enter details from an app registered in the identity provider, such as client ID, client secret, token endpoint, and default scope. 
-
-   --- 
 1. On the **Model configuration** page, specify a model to connect through this gateway. The model must implement the OpenAI-compatible chat completions API.
 
     1. Select **+ Add model**.
@@ -117,7 +127,9 @@ To add a model connection in the Foundry portal:
        Leave the setting disabled if your gateway uses an Azure OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
     1. Select **+ Add header** to add a static header that should be included in requests to the gateway. Repeat to add multiple headers if needed.
 1. Select **Add**.
-   
+
+--- 
+
 The connection is created and appears in the list on the **Admin-connected models** tab.
 
 After creating the connection, you can select it from the list to view and edit its settings.
