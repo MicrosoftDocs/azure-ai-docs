@@ -31,12 +31,12 @@ In this article, you learn how to:
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI-Image-2 is available for **global standard deployment in all regions**.
+- A [Microsoft Foundry project](../../how-to/create-projects.md). MAI-Image-2 is available for global standard deployment in West Central US, East US, West US, West Europe, Sweden Central, and South India.
 - **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
 ## Deploy MAI-Image-2
 
-MAI-Image-2 is available for [global standard deployment](../concepts/deployment-types.md#global-standard) in all regions. To deploy the model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
+MAI-Image-2 is available for [global standard deployment](../concepts/deployment-types.md#global-standard) in West Central US, East US, West US, West Europe, Sweden Central, and South India. To deploy the model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
 
 Alternatively, you can deploy the model by using the Azure CLI:
 
@@ -80,8 +80,8 @@ The following table lists the request parameters:
 | --------- | ---- | ----------- |
 | `model` | string | The deployment name you assigned when you deployed the model. |
 | `prompt` | string | The text prompt that describes the image to generate. Maximum context length: 32,000 tokens. |
-| `width` | string | Width of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
-| `height` | string | Height of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `width` | integer | Width of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
+| `height` | integer | Height of the output image in pixels. Minimum: 768. The product of `width` × `height` must not exceed 1,048,576. |
 
 > [!NOTE]
 > The output format is always PNG. The maximum total pixel count is 1,048,576 (equivalent to 1024×1024). Both `width` and `height` must be at least 768 pixels each. Either dimension can exceed 1024 as long as the total pixel count stays within the limit.
@@ -125,8 +125,8 @@ The following examples show how to generate an image from a text prompt using MA
     payload = {
         "model": deployment_name,
         "prompt": "A photorealistic image of a mountain lake at sunrise",
-        "width": "1024",
-        "height": "1024",
+        "width": 1024,
+        "height": 1024,
     }
 
     response = requests.post(
@@ -191,8 +191,8 @@ curl -X POST "https://<resource-name>.services.ai.azure.com/mai/v1/images/genera
   -d '{
       "model": "'"$DEPLOYMENT_NAME"'",
       "prompt": "A photorealistic image of a mountain lake at sunrise",
-      "width": "1024",
-      "height": "1024"
+      "width": 1024,
+      "height": 1024
     }'
 ```
 
