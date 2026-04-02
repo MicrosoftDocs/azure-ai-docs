@@ -20,7 +20,7 @@ The primary objectives of the Task Adherence feature are:
 - To promote user trust in agentic systems by reinforcing behavioral consistency, transparency, and control.
 
 
-# [REST](#tab/rest)
+::: zone pivot="programming-language-rest"
 
 ### Prerequisites
 
@@ -90,7 +90,10 @@ After you submit your request, you'll receive JSON data reflecting the analysis 
 
 A value of `true` for `taskRiskDetected` signifies a detected risk, in which case we recommend review and action, such as blocking of the tool invocation request or human-in-the-loop escalation.
 
-# [Foundry](#tab/foundry)
+::: zone-end
+
+
+::: zone pivot="programming-language-foundry-portal"
 
 ### Prerequisites
 
@@ -107,7 +110,7 @@ Follow these steps to use the **Content Safety try it out** page:
 1. You can select one of the examples with aligned or misaligned agent tool calls or create your own to test Task Adherence.
 1. Select **Run test**. Task Adherence returns the risk flag for each sample, and if a risk is detected, it returns a reason.
 
----
+::: zone-end
 
 ## User scenarios
 
