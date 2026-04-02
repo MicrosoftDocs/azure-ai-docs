@@ -150,10 +150,13 @@ items:
   items:
   - name: Azure OpenAI supported programming languages
     href: ../../openai/supported-languages.md
-  - name: Claude models in Microsoft Foundry 
+  - name: Microsoft AI (MAI) model in Foundry
+    displayName: MAI-image-2 model in Foundry
+    href: ../../foundry-models/how-to/use-foundry-models-mai.md
+  - name: Claude models in Foundry 
     displayName: Claude in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-claude.md
-  - name: FLUX models in Microsoft Foundry 
+  - name: FLUX models in Foundry 
     displayName: FLUX in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
 

@@ -5,7 +5,8 @@ description: Create and manage a Microsoft Foundry resource for Content Understa
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.custom:
