@@ -29,7 +29,7 @@ Make sure you install the correct version of the packages as shown here.
     Add NuGet packages using the .NET CLI in the integrated terminal: These packages use the **Foundry projects (new) API**.
         
     ```bash
-    dotnet add package Azure.AI.Projects --prerelease
+    dotnet add package Azure.AI.Projects
     dotnet add package Azure.Identity
     ```
 
