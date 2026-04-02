@@ -21,6 +21,12 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/foundry/guardrails/how-to-task-adherence.md",
+      "redirect_url": "/‎articles/foundry/guardrails/task-adherence",
+      "redirect_document_id": false
+    },
+    
+    {
       "source_path": "articles/ai-services/luis/choose-natural-language-processing-service.md",
       "redirect_url": "/previous-versions/azure/ai-services/luis/choose-natural-language-processing-service",
       "redirect_document_id": false
