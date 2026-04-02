@@ -4,7 +4,7 @@ description: "Learn about textual similarity evaluators for generative AI, inclu
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: changliu2
+ms.reviewer: dlozier
 ms.date: 04/01/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
