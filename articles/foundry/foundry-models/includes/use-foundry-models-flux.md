@@ -39,8 +39,7 @@ To learn more about each model, see [Available FLUX models](#available-flux-mode
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go).
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
 - A [Microsoft Foundry project](../../how-to/create-projects.md). FLUX models are available for global standard deployment in all regions.
-- [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure that you have the [permissions required to subscribe to model offerings](configure-marketplace.md).
-- **Contributor** or **Owner** role on the resource group to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
+- **Cognitive Services Contributor** role on the Azure AI Foundry resource to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 - **For FLUX.2 \[flex\]**: Approved registration. Use the [registration form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMzM2TDBZRko3QldSSFlWREhQSEpSSEdKVyQlQCN0PWcu) before you attempt deployment.
 
 ## Deploy FLUX models
