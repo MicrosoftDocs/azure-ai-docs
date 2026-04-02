@@ -23,7 +23,7 @@ MAI‑Transcribe‑1 is a speech recognition model developed by the Microsoft AI
 > - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > - [Create a Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
 > - Get the Speech resource key and region. After your Speech resource is deployed, select **Go to resource** to view and manage keys. For the current list of supported regions, see [Speech service regions](regions.md?tabs=llmspeech).
-> - An audio file (less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](batch-transcription-audio-data.md#supported-input-formats-and-codecs).
+> - An audio file (less than 300 MB in size) in one of the formats: WAV, MP3, and FLAC.
 
 ## Use the MAI-Transcribe-1 model
 
