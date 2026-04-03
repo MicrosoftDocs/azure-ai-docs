@@ -25,18 +25,8 @@ ms.custom:
 Document Intelligence service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
 > [!IMPORTANT]
-> Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is retiring. If you're still using the preview API or the associated SDK versions, update your code to target the latest API version `2024-11-30 (GA)`. </br>
+> Preview API versions will be retired by 06/30/2026, and v3.0 `2022-08-31 (GA)` API will be retired by 03/30/2029. If you're still using a preview API or the associated SDK versions, update your code to target the latest API version `2024-11-30 (GA)`. </br>
 
-**Content Understanding: The Next Step Forward for Document Intelligence**
-</br>
-In November 2025, the GA version of **Content Understanding** was released (**2025-11-01** API version). Content Understanding is an evolution of Document Intelligence that expands multimodal processing capabilities to support text, images, audio, and video content types.
-
-Key features include:
-
-* **Multimodal content analysis**. Process and extract insights from text, images, audio, and video within a unified API framework.
-* **Enhanced AI integration**. Seamlessly integrate with Azure AI services for intelligent content processing and decision-making workflows.
-* **Flexible deployment options**. Build applications, automate document workflows, or enable AI-driven analytics with scalable cloud infrastructure.
-* **Unified content extraction**. Utilize a single service to handle diverse content types, reducing complexity and improving operational efficiency.
 
 ## March 2026
 
