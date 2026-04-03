@@ -92,9 +92,9 @@ items:
 
 - name: Offers, deployment types, and pricing
   items:
-  - name: Deployment overview in Microsoft Foundry portal
+  - name: Deployment overview
     displayName: Deployment overview for Microsoft Foundry Models
-    href: ../../../foundry-classic/concepts/deployments-overview.md?context=/azure/foundry/context/context
+    href: ../../concepts/deployments-overview.md
   - name: Deployment types
     displayName: Deployment types for Microsoft Foundry Models
     href: ../../foundry-models/concepts/deployment-types.md
