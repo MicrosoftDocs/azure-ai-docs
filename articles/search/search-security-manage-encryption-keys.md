@@ -50,15 +50,13 @@ Adding a customer-managed key to an object must happen when the object is newly 
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Beginning in the 2026-03-01-preview, you have the ability to configure the customer-managed key at the **service-level** on the Azure AI Search service itself. This feature makes it possible to configure the customer-managed key once at the service level and have it apply to all newly created objects by default. Service-level CMK configuration is a convenient option for customers who want to ensure all new objects are encrypted with a customer-managed key without having to specify the key on each object.
+Beginning in the 2026-03-01-preview release, you have the ability to configure a customer-managed key at the **service-level** on the Azure AI Search service itself. This feature makes it possible to configure the key once at the service level and have it apply to all newly created objects by default. This ensures all sensitive data in your search service is protected by a key you control, without having to specify key information each time an object is created.
 
 Enabling CMK at the service level means:
 
-- All **new** objects created on your Azure AI Search service have CMK enabled by default. Instead of specifying an encryption key each time you create an object, the service automatically applies a service‑level CMK to all newly created objects. Previously you needed to explicitly provide encryption key information on every object create.
+- All **new** objects created on your Azure AI Search service will have the service-level CMK enabled by default. Instead of specifying an encryption key each time you create an object, the key that you configured at the service‑level will be applied to the newly created object. Previously you needed to explicitly provide encryption key information each time you created an object.
 
-- This feature is optional. You can continue to configure CMK on a per-object basis if you prefer.
-
-- When creating a new object on your search service and assigning a customer-managed key that is different than the default service-level key, the object-level key overrides the default service-level key for that object.
+- This feature is optional. You can continue to configure CMK on a per-object basis if you prefer. You can also rotate this default key by specifying a new key, specific to the object that you are creating. The object-level key that you specify will override the default service-level key for that object.
 
 - You can never encrypt objects that already exist. Encryption is only supported at the time of object creation. If you want to add a customer-managed key to an existing object, you must delete and recreate that object with encryption enabled.
 
