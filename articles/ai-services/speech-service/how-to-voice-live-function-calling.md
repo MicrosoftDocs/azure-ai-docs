@@ -1804,6 +1804,7 @@ import com.azure.ai.voicelive.models.OutputAudioFormat;
 import com.azure.ai.voicelive.models.ServerEventType;
 import com.azure.ai.voicelive.models.ServerVadTurnDetection;
 import com.azure.ai.voicelive.models.SessionUpdate;
+import com.azure.ai.voicelive.models.ResponseFunctionCallItem;
 import com.azure.ai.voicelive.models.SessionUpdateConversationItemCreated;
 import com.azure.ai.voicelive.models.SessionUpdateError;
 import com.azure.ai.voicelive.models.SessionUpdateResponseAudioDelta;
@@ -2102,7 +2103,8 @@ public final class FunctionCallingQuickstart {
                         AudioInputTranscriptionOptionsModel
                             .WHISPER_1))
                 .setTurnDetection(vad)
-                .setToolChoice(ToolChoiceLiteral.AUTO);
+                .setToolChoice(BinaryData.fromObject(
+                    ToolChoiceLiteral.AUTO));
 
         options.getTools().add(getTime);
         options.getTools().add(getWeather);
@@ -2171,14 +2173,14 @@ public final class FunctionCallingQuickstart {
                     created =
                         (SessionUpdateConversationItemCreated)
                             event;
-                if ("function_call".equals(
-                    created.getItem().getType())) {
-                    pendingName =
-                        created.getItem().getName();
-                    pendingCallId =
-                        created.getItem().getCallId();
-                    pendingItemId =
-                        created.getItem().getId();
+                if (created.getItem() instanceof
+                    ResponseFunctionCallItem) {
+                    ResponseFunctionCallItem funcItem =
+                        (ResponseFunctionCallItem)
+                            created.getItem();
+                    pendingName = funcItem.getName();
+                    pendingCallId = funcItem.getCallId();
+                    pendingItemId = funcItem.getId();
                     pendingArguments = null;
                     System.out.println(
                         "Calling function: "
@@ -2241,8 +2243,8 @@ public final class FunctionCallingQuickstart {
                 new FunctionCallOutputItem(
                     callId, resultJson);
             session.sendEvent(
-                new ClientEventConversationItemCreate(
-                    output))
+                new ClientEventConversationItemCreate()
+                    .setItem(output))
                 .then(session.sendEvent(
                     new ClientEventResponseCreate()))
                 .subscribe();
