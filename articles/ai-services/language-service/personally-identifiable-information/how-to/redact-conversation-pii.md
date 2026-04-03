@@ -42,10 +42,12 @@ The conversational PII API supports all Azure regions supported by Azure Languag
 
 * A conversation can have a list of conversation items (turns). There's a 1000 max limit for each conversation item, not for the whole conversation:
 
-***Multi-turn conversation example***<br><br>
-(conv item1) User: Hi! <br>
-(conv item2) Bot: Hello, how can I help? <br>
-(conv item3) User: What time does the next train to Paris leave? <br>
+  * ***Multi-turn conversation example***<br><br>
+  
+     > [!div class="checklist"]
+     > * (conv item1) User: Hi! <br>
+     > * (conv item2) Bot: Hello, how can I help? <br>
+     > * (conv item3) User: What time does the next train to Paris leave? <br>
 
 ## Getting PII results
 
