@@ -260,9 +260,6 @@ MemoryStore memoryStore = projectClient.MemoryStores.CreateMemoryStore(
 Console.WriteLine($"Created memory store: {memoryStore.Name}");
 ```
 
-> [!TIP]
-> For asynchronous examples, see the [Azure.AI.Projects memory store sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample20_MemoryStore.md) on GitHub.
-
 :::zone-end
 
 :::zone pivot="typescript"
@@ -661,6 +658,10 @@ print(f"Response output: {new_response.output_text}")
 :::zone pivot="csharp"
 
 ```csharp
+using System.Threading;
+
+#pragma warning disable OPENAI001
+
 // Get a response client scoped to the agent
 ProjectResponsesClient responseClient =
     projectClient.ProjectOpenAIClient
@@ -671,9 +672,14 @@ ResponseItem request = ResponseItem.CreateUserMessageItem(
     "I prefer dark roast coffee");
 ResponseResult response = responseClient.CreateResponse([request]);
 // To scope memories to an end user, uncomment:
-// var options = new CreateResponseOptions { Input = [request] };
-// options.AdditionalHeaders["x-memory-user-id"] = "<user-id>";
-// ResponseResult response = responseClient.CreateResponse(options);
+// var options = new CreateResponseOptions();
+// options.InputItems.Add(request);
+// var requestOptions = new RequestOptions();
+// requestOptions.AddHeader("x-memory-user-id", "<user-id>");
+// ClientResult result = responseClient.CreateResponse(
+//     BinaryContent.Create(options), requestOptions);
+// ResponseResult response = ModelReaderWriter.Read<ResponseResult>(
+//     result.GetRawResponse().Content);
 
 Console.WriteLine($"Response output: {response.GetOutputText()}");
 
@@ -836,12 +842,14 @@ for operation in new_update_result.memory_operations:
 :::zone pivot="csharp"
 
 ```csharp
+#pragma warning disable OPENAI001
+
 // Set scope to associate the memories with
 string scope = "user_123";
 
 MemoryUpdateOptions memoryOptions = new(scope)
 {
-    UpdateDelay = 0, // Trigger update immediately
+    UpdateDelay = 0, // Trigger update immediately without waiting for inactivity
 };
 memoryOptions.Items.Add(ResponseItem.CreateUserMessageItem(
     "I prefer dark roast coffee and usually drink it "
@@ -874,7 +882,7 @@ foreach (var operation in updateResult.Details.MemoryOperations)
 MemoryUpdateOptions newMemoryOptions = new(scope)
 {
     PreviousUpdateId = updateResult.UpdateId,
-    UpdateDelay = 0, // Trigger update immediately
+    UpdateDelay = 0, // Trigger update immediately without waiting for inactivity
 };
 newMemoryOptions.Items.Add(ResponseItem.CreateUserMessageItem(
     "I also like cappuccinos in the afternoon"));
@@ -1032,6 +1040,8 @@ for memory in search_response.memories:
 :::zone pivot="csharp"
 
 ```csharp
+#pragma warning disable OPENAI001
+
 // Search memories by a query
 MemorySearchOptions searchOptions = new(scope)
 {
