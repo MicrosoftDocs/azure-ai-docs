@@ -43,7 +43,7 @@ In addition to Azure OpenAI models, Agent Service supports models from the Found
 ### A model or version isn't available in your region
 
 - Confirm you selected the right tab for your deployment type (global standard vs. provisioned).
-- Try a different region that supports the model and version. See the [model and region support table](../../agents/concepts/limits-quotas-regions.md).
+- Try a different region that supports the [model and Responses API](#supported-regions).
 - If you're using gpt-5 models, [registration](https://aka.ms/openai/gpt-5/2025-08-07) is required. Access is granted according to Microsoft's eligibility criteria.
 
 ### A tool isn't available in your region
