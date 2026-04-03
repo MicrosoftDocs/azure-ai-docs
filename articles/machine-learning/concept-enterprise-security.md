@@ -11,6 +11,7 @@ ms.author: scottpolly
 author: s-polly
 ms.reviewer: shshubhe
 ms.date: 10/30/2025
+ai-usage: ai-assisted
 # Customer Intent: As an admin, I want to understand how to secure Azure Machine Learning resources and workflows so that I can comply with my organization's security policies.
 ---
 
@@ -28,7 +29,7 @@ With Azure Machine Learning and the Azure platform, you can:
 
 ## Restrict access to resources and operations
 
-[Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) is the identity service provider for Azure Machine Learning. You can use it to create and manage the security objects (user, group, service principal, and managed identity) that are used to authenticate to Azure resources. Multifactor authentication (MFA) is supported if Microsoft Entra ID is configured to use it.
+[Microsoft Entra ID](/entra/fundamentals/whatis) is the identity service provider for Azure Machine Learning. You can use it to create and manage the security objects (user, group, service principal, and managed identity) that are used to authenticate to Azure resources. Multifactor authentication (MFA) is supported if Microsoft Entra ID is configured to use it.
 
 Here's the authentication process for Azure Machine Learning through MFA in Microsoft Entra ID:
 
@@ -38,7 +39,7 @@ Here's the authentication process for Azure Machine Learning through MFA in Micr
 
 [![Diagram that illustrates authentication in Azure Machine Learning.](media/concept-enterprise-security/authentication.png)](media/concept-enterprise-security/authentication.png#lightbox)
 
-Each workspace has an associated system-assigned [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) that has the same name as the workspace. This managed identity is used to securely access resources that the workspace uses. It has the following Azure role-based access control (RBAC) permissions on associated resources:
+Each workspace has an associated system-assigned [managed identity](/entra/identity/managed-identities-azure-resources/overview) that has the same name as the workspace. This managed identity is used to securely access resources that the workspace uses. It has the following Azure role-based access control (RBAC) permissions on associated resources:
 
 | Resource | Permissions |
 | ----- | ----- |
@@ -68,7 +69,7 @@ You can also configure managed identities for use with an Azure Machine Learning
 > [!TIP]
 > There are exceptions to the use of Microsoft Entra ID and Azure RBAC in Azure Machine Learning:
 > * You can optionally enable Secure Shell (SSH) access to compute resources such as an Azure Machine Learning compute instance and a compute cluster. SSH access is based on public/private key pairs, not Microsoft Entra ID. Azure RBAC doesn't govern SSH access.
-> * You can authenticate to models deployed as online endpoints by using key-based or token-based authentication. Keys are static strings, whereas tokens are retrieved through a Microsoft Entra security object. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
+> * You can authenticate to models deployed as online endpoints by using key-based, Azure Machine Learning token-based, or Microsoft Entra token-based authentication. Keys are static strings, whereas tokens are retrieved through a Microsoft Entra security object. For more information, see [Authenticate clients for online endpoints](how-to-authenticate-online-endpoint.md).
 
 For more information, see the following articles:
 
@@ -90,7 +91,7 @@ You don't have to choose one or the other. For example, you can use an Azure Mac
   * Compute cluster
   * Compute instance
   * Managed online endpoint
-  * Batch online endpoint
+  * Batch endpoint
 
 * __Azure Virtual Network instance__: Provides a more customizable virtual network offering. However, you're responsible for configuration and management. You might need to use network security groups, user-defined routes, or a firewall to restrict outbound communication.
 
@@ -108,7 +109,7 @@ Azure Machine Learning has several inbound and outbound network dependencies. So
 
 ## Scan for vulnerabilities
 
-[Microsoft Defender for Cloud](/azure/security-center/security-center-introduction) provides unified security management and advanced threat protection across hybrid cloud workloads. For Azure Machine Learning, enable scanning of your [Azure Container Registry](/azure/container-registry/container-registry-intro) resource and AKS resources. For more information, see [Introduction to Microsoft Defender for container registries](/azure/security-center/defender-for-container-registries-introduction) and [Introduction to Microsoft Defender for Kubernetes](/azure/security-center/defender-for-kubernetes-introduction).
+[Microsoft Defender for Cloud](/azure/security-center/security-center-introduction) provides unified security management and advanced threat protection across hybrid cloud workloads. For Azure Machine Learning, enable scanning of your [Azure Container Registry](/azure/container-registry/container-registry-intro) resource and AKS resources. For more information, see [Introduction to Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-containers-introduction).
 
 ## Audit and manage compliance
 
@@ -119,5 +120,5 @@ For more information on Azure Policy, see the [Azure Policy documentation](/azur
 ## Related content
 
 * [Azure Machine Learning best practices for enterprise security](/azure/cloud-adoption-framework/ready/azure-best-practices/ai-machine-learning-enterprise-security)
-* [Use Azure Machine Learning with Azure Virtual Network](how-to-network-security-overview.md)
+* [Use Azure Machine Learning with a managed virtual network](how-to-managed-network.md)
 * [Build a real-time recommendation API on Azure](/azure/architecture/reference-architectures/ai/real-time-recommendation)
