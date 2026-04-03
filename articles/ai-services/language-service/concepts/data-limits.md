@@ -43,10 +43,10 @@ When using features of Azure Language, keep the following information in mind:
 
 | Feature | Maximum value |
 | ------------------------ | --------------- |
-| Text Analytics for health | 125,000 characters as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements). |
-| Conversation PII | 1,000 characters as measured by the [**Analyze Conversations** API](/rest/api/language/analyze-conversations/analyze-conversations/analyze-conversations) conversation length property. A conversation can have a list of conversation items (turns); 1,000 is the max limit for each conversation item, not for the entire conversation.|
-| All other preconfigured features (synchronous) | 5,120 as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements). If you need to submit larger documents, consider using the feature asynchronously. |
-| All other preconfigured features ([asynchronous](use-asynchronously.md)) | 125,000 characters across all submitted documents, as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements) (maximum of 25 documents). |
+| **Text Analytics for health** | 125,000 characters as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements). |
+| **Conversation PII** | 1,000 characters as measured by [**Analyze Conversations** API](/rest/api/language/analyze-conversations/analyze-conversations/analyze-conversations). A conversation can have a list of conversation items (turns). 1,000 is the max limit for each conversation item (not for the entire conversation). The conversation PII API supports asynchronous requests only. |
+| **All other preconfigured features (synchronous)** | 5,120 as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements). If you need to submit larger documents, consider using the feature asynchronously. |
+| **All other preconfigured features ([asynchronous](use-asynchronously.md))** | 125,000 characters across all submitted documents, as measured by [StringInfo.LengthInTextElements](/dotnet/api/system.globalization.stringinfo.lengthintextelements) (maximum of 25 documents). |
 
 If a document exceeds the character limit, the API behaves differently depending on how you're sending requests.
 
