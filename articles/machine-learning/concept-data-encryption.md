@@ -61,7 +61,7 @@ For information on how to use customer-managed keys for transparent data encrypt
 By default, Azure Database for PostgreSQL uses Azure Storage encryption to encrypt data at rest by using Microsoft-managed keys. It's similar to transparent data encryption in other databases, such as SQL Server.
 
 > [!IMPORTANT]
-> Azure Database for PostgreSQL Single Server was retired on March 28, 2025. If you use Single Server, migrate to Azure Database for PostgreSQL Flexible Server. For more information, see [What's happening to Azure Database for PostgreSQL Single Server?](/azure/postgresql/single-server/whats-happening-to-single-server).
+> Azure Database for PostgreSQL Single Server was retired on March 28, 2025. If you use Single Server, migrate to Azure Database for PostgreSQL Flexible Server. For more information, see [What is the migration service in Azure Database for PostgreSQL?](/azure/postgresql/migrate/migration-service/overview-migration-service-postgresql).
 
 For information on how to use customer-managed keys for data encryption, see [Azure Database for PostgreSQL Flexible Server data encryption with a customer-managed key](/azure/postgresql/flexible-server/concepts-data-encryption).
 
@@ -70,7 +70,7 @@ For information on how to use customer-managed keys for data encryption, see [Az
 Azure Database for MySQL is a relational database service in the Microsoft Cloud. It's based on the MySQL Community Edition database engine. The Azure Database for MySQL service uses the FIPS 140-2 validated cryptographic module for Azure Storage encryption of data at rest.
 
 > [!IMPORTANT]
-> Azure Database for MySQL Single Server was retired on September 16, 2024. If you use Single Server, migrate to Azure Database for MySQL Flexible Server. For more information, see [What's happening to Azure Database for MySQL Single Server?](/azure/mysql/single-server/whats-happening-to-single-server).
+> Azure Database for MySQL Single Server was retired on September 16, 2024. If you use Single Server, migrate to Azure Database for MySQL Flexible Server. For more information, see [What is Azure Database for MySQL - Flexible Server?](/azure/mysql/flexible-server/overview).
 
 To encrypt data by using customer-managed keys, see [Azure Database for MySQL Flexible Server data encryption with a customer-managed key](/azure/mysql/flexible-server/concepts-customer-managed-key).
 
