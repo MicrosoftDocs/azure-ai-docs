@@ -7,7 +7,7 @@ ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new
 ms.topic: how-to
-ms.date: 03/04/2026
+ms.date: 04/03/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -51,6 +51,30 @@ Provide a dataset for the evaluation. You can upload your own dataset or synthet
 
 > [!NOTE]
 > Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](../openai/how-to/responses.md#region-availability).
+
+#### Multimodal content (image and audio)
+
+All evaluation targets—Agent, Model, Dataset, and Traces—support image and audio content. Each content type uses a specific JSONL schema:
+
+**Image content**:
+
+- `image_url`: The image as a data URI (for example, `data:image/png;base64,...`) or a publicly accessible URL.
+- `caption`: A text description of the image content.
+
+```jsonl
+{"image_url": "data:image/png;base64,iVBOR...", "caption": "A red to blue color gradient"}
+```
+
+**Audio content**:
+
+- `audio_data`: The audio as a data URI with base64-encoded WAV data (for example, `data:audio/wav;base64,...`).
+- `expected`: A text description of the expected audio content.
+
+```jsonl
+{"audio_data": "data:audio/wav;base64,UklGR...", "expected": "A short beep tone at 440 Hz"}
+```
+
+You can preview images and play audio clips directly in the evaluation creation flow and in the evaluation results view.
 
 ### Configure testing criteria
 
