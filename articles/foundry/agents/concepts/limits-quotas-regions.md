@@ -26,7 +26,7 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 
 ## Supported regions
 
-Foundry agent service is only available for Foundry projects created in regions that support the [Azure OpenAI Responses API](../../openai/how-to/responses.md#region-availability). Your Foundry project must be in one of these regions to use Agent Service. Some Azure OpenAI models may not be available in the same regions. See [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md) for details. 
+Foundry agent service is only available for Foundry projects created in regions that support the [Azure OpenAI Responses API](../../openai/how-to/responses.md#region-availability). Your Foundry project must be in one of these regions to use Agent Service. Some Azure OpenAI models may not be available in the same regions. See [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md#model-summary-table-and-region-availability) for details. 
 
 > [!IMPORTANT]
 > Not all tools are available in every region. For example, file search isn't available in Italy North and Brazil South. For the full tool-by-region matrix, see [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model).
