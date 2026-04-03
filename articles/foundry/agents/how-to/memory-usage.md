@@ -519,6 +519,8 @@ using Azure.AI.Projects.Agents;
 using Azure.AI.Extensions.OpenAI;
 using OpenAI.Responses;
 
+#pragma warning disable OPENAI001
+
 // Set scope to associate the memories with
 string scope = "user_123";
 
