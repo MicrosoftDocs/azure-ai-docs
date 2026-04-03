@@ -114,12 +114,12 @@ Here are some best practices for prompts:
 - Prompts should preferably be written in English.
 - Prompts can guide output formatting. By default, responses use a display format optimized for readability. To enforce lexical formatting, include: `Output must be in lexical format.`
 - Prompts can amplify the salience of specific phrases or acronyms, improving recognition likelihood. Use: `Pay attention to *phrase1*, *phrase2*, …`. For best results, limit the number of phrases per prompt.
-- Prompts that aren’t related to speech tasks (e.g., `Tell me a story.`) are typically disregarded.
+- Prompts that aren’t related to speech tasks (for example, `Tell me a story.`) are typically disregarded.
 
 
 #### More configuration options
 
-You can combine additional configuration options with [fast transcription](../../fast-transcription-create.md) to enable enhanced features such as `diarization`, `profanityFilterMode`, and `channels`.
+You can combine extra configuration options with [fast transcription](../../fast-transcription-create.md) to enable enhanced features such as `diarization`, `profanityFilterMode`, and `channels`.
 
 ```azurecli-interactive
 curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
@@ -141,6 +141,34 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 ```
 
 Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM speech, and can be omitted from the request. Learn more from [configuration options of fast transcription](../../fast-transcription-create.md#request-configuration-options). 
+
+#### Use the mai-transcribe model (Preview)
+
+You can also use the mai-transcribe-1 model provided by Microsoft AI (MAI) with the LLM Speech API. 
+
+For the current list of regions where the mai-transcribe model is supported, see [Speech service regions](../../regions.md?tabs=llmspeech).
+
+The following languages are currently supported for mai-transcribe-1 model:
+ - `Arabic`, `Chinese`, `Czech`, `Danish`, `Dutch`, `English`, `Finnish`, `French`, `German`, `Hindi`, `Hungarian`, `Indonesian`, `Italian`, `Japanese`, `Korean`, `Norwegian Bokmål`, `Polish`, `Portuguese`, `Romanian`, `Russian`, `Spanish`, `Swedish`, `Thai`, `Turkish`, and `Vietnamese`.
+
+
+To use the mai-transcribe-1 model, set the `model` property accordingly in the request.
+```azurecli-interactive
+curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+--header 'Content-Type: multipart/form-data' \
+--header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
+--form 'audio=@"YourAudioFile.wav"' \
+--form 'definition={
+  "enhancedMode": {
+    "enabled": true,
+    "model":"mai-transcribe-1"
+  }
+}'
+```
+
+There are a few extra limits using the mai-transcribe model:
+- The audio file should be less than 70 MB in size;
+- Diarization isn't supported.
 
 
 #### Sample response
@@ -239,6 +267,6 @@ In the JSON response, the `combinedPhrases` property contains the full transcrib
 ```
 
 The response format is consistent with other existing speech-to-text outputs, such as fast transcription and batch transcription. Key differences include: 
-- Word-level `durationMilliseconds` and `offsetMilliseconds` are not supported for `translate` task.
-- Diarization is not supported for `translate` task, only the `speaker1` label is returned.
-- `confidence` is not available and always `0`.
+- Word-level `durationMilliseconds` and `offsetMilliseconds` aren't supported for `translate` task.
+- Diarization isn't supported for `translate` task, only the `speaker1` label is returned.
+- `confidence` isn't available and always `0`.

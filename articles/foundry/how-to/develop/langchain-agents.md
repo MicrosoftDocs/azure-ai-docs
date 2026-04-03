@@ -23,7 +23,7 @@ tool-enabled workflows, human-in-the-loop approvals, and tracing.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
 - A deployed chat model (for example, `gpt-4.1`) in your project.
 - Python 3.10 or later.

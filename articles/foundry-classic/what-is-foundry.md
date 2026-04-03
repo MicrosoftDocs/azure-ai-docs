@@ -1,5 +1,5 @@
 ---
-title: "What is Microsoft Foundry? (classic)"
+title: "What is Microsoft Foundry (classic) portal"
 description: "Microsoft Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way. (classic)"
 author: sdgilley
 ms.author: sgilley
@@ -22,7 +22,7 @@ keywords:
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# What is Microsoft Foundry? (classic)
+# What is Microsoft Foundry (classic) portal?
 
 This article covers the **Foundry (classic)** portal and APIs. For the current platform experience, see [What is Microsoft Foundry?](../foundry/what-is-foundry.md).
 

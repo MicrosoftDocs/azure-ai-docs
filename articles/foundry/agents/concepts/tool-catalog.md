@@ -237,6 +237,7 @@ The following table lists all built-in tools available in Foundry Agent Service.
 | [Custom Code Interpreter (preview)](../how-to/tools/custom-code-interpreter.md) | Customize the code interpreter's resources, Python packages, and Container Apps environment. |
 | [File Search](../how-to/tools/file-search.md) | Augment agents with knowledge from uploaded files or proprietary documents. |
 | [Azure AI Search](../how-to/tools/ai-search.md) | Ground agents with data from an existing Azure AI Search index. |
+| [Azure Functions](../how-to/tools/azure-functions.md) | Enable agents to call your Azure Functions to perform custom actions and retrieve dynamic data. |
 | [Function calling](../how-to/tools/function-calling.md) | Define custom functions that the agent can call. Your app executes the function and returns the result. |
 | [Image Generation (preview)](../how-to/tools/image-generation.md) | Generate images as part of conversations and workflows. |
 | [Browser Automation (preview)](../how-to/tools/browser-automation.md) | Perform browser tasks through natural language prompts. |

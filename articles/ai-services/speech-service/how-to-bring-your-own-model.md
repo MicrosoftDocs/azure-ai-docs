@@ -15,6 +15,7 @@ ai-usage: ai-assisted
 The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing you to integrate your custom models into the voice interaction workflow. BYOM is useful for the following scenarios:
 
 - **Fine-tuned models**: Use your custom Azure OpenAI or Azure Foundry models
+- **Any Foundry model not pre-deployed by Voice Live**: Use models from the [Foundry model catalog](/azure/foundry/foundry-models/concepts/models-from-partners) such as [Anthropic Claude](/azure/foundry/foundry-models/how-to/use-foundry-models-claude), Grok, [Fireworks](/azure/foundry/how-to/fireworks/enable-fireworks-models) custom weights, or a [model router](/azure/foundry/openai/how-to/model-router) deployment
 - **Provisioned throughput**: Use your PTU (Provisioned Throughput Units) deployments for consistent performance
 - **Content safety**: Apply customized content safety configurations with your LLM
 
@@ -22,11 +23,11 @@ The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 > You can integrate any model deployed in your Azure Foundry resource with the Voice Live API. To use model deployments from a different Foundry resource, see [Resource overrides](#resource-overrides).
 
 > [!TIP]
-> When you use your own model deployment with Voice Live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/ai-foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Microsoft Foundry portal](https://ai.azure.com/).
+> When you use your own model deployment with Voice Live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Microsoft Foundry portal](https://ai.azure.com/).
 
 ## Authentication setup
 
-When using Microsoft Entra ID authentication with Voice Live API, in `byom-azure-openai-chat-completion` mode specifically, you need to configure proper permissions for your Foundry resource. Since tokens expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for the `byom-azure-openai-chat-completion` BYOM mode.
+When using Microsoft Entra ID authentication with Voice Live API, in `byom-azure-openai-chat-completion` or `byom-foundry-anthropic-messages` mode, you need to configure proper permissions for your Foundry resource. Since tokens expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for these BYOM modes.
 
 Run the following Azure CLI commands to configure the necessary permissions:
 
@@ -82,12 +83,16 @@ az role assignment create \
 
 ## Choose BYOM integration mode
 
-The Voice Live API supports two BYOM integration modes:
+The Voice Live API supports three BYOM integration modes:
 
-| Mode     | Description           | Example Models |
-| ------- | ------------------ | ------------- |
-| `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions              | `gpt-realtime`, `gpt-realtime-mini` |
-| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `gpt-5.3-chat`, `grok-4`         |
+| Mode                                | Description                                                                                           | Example Models                          |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| `byom-azure-openai-realtime`        | Azure OpenAI realtime models for streaming voice interactions                                         | `gpt-realtime`, `gpt-realtime-mini`     |
+| `byom-azure-openai-chat-completion` | Azure OpenAI chat completion models for text-based interactions. Also applies to other Foundry models | `gpt-5.4`, `gpt-5.3-chat`, `grok-4`     |
+| `byom-foundry-anthropic-messages`   | Anthropic Claude models deployed in Azure Foundry, using the Messages API (preview)                   | `claude-sonnet-4.6`, `claude-haiku-4.5` |
+
+> [!NOTE]
+> The `byom-foundry-anthropic-messages` mode is currently in preview. Preview features are subject to change and might have limited availability.
 
 ## Integrate BYOM
 
@@ -100,6 +105,12 @@ wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?ap
 ```
 
 Get the `<your-model-deployment>` value from the Foundry portal. It corresponds to the name you gave the model at deployment time.
+
+For example, to use an Anthropic Claude model deployed in Azure Foundry:
+
+```curl
+wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=byom-foundry-anthropic-messages&model=<your-claude-deployment-name>
+```
 
 To use a model deployment from a different Foundry resource, add the `foundry-resource-override` parameter:
 
@@ -122,7 +133,7 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
         "--byom",
         help="BYOM (Bring Your Own Model) profile type",
         type=str,
-        choices=["byom-azure-openai-realtime", "byom-azure-openai-chat-completion"],
+        choices=["byom-azure-openai-realtime", "byom-azure-openai-chat-completion", "byom-foundry-anthropic-messages"],
         default=os.environ.get("VOICELIVE_BYOM_MODE", "byom-azure-openai-chat-completion"),
     )
    parser.add_argument(
@@ -158,7 +169,7 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
         model: str,
         voice: str,
         instructions: str,
-        byom: Literal["byom-azure-openai-realtime", "byom-azure-openai-chat-completion"] | None = None,
+        byom: Literal["byom-azure-openai-realtime", "byom-azure-openai-chat-completion", "byom-foundry-anthropic-messages"] | None = None,
         foundry_resource_override: str | None = None
     ):
 
@@ -196,6 +207,12 @@ Use the [Python SDK quickstart code](./voice-live-quickstart.md?tabs=windows%2Ck
 
     ```shell
     python voice-live-quickstart.py --byom "byom-azure-openai-chat-completion" --model "your-model-name"
+    ```
+
+    To use an Anthropic Claude model:
+
+    ```shell
+    python voice-live-quickstart.py --byom "byom-foundry-anthropic-messages" --model "your-claude-deployment-name"
     ```
 
     To use a model from a different Foundry resource, add the `--foundry-resource-override` argument:
@@ -241,7 +258,7 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
         var byomOption = new Option<string>(
             "--byom",
             () => "byom-azure-openai-chat-completion",
-            "BYOM integration mode. Supported modes: byom-azure-openai-realtime, byom-azure-openai-chat-completion");
+            "BYOM integration mode. Supported modes: byom-azure-openai-realtime, byom-azure-openai-chat-completion, byom-foundry-anthropic-messages");
 
         var foundryResourceOverrideOption = new Option<string?>(
             "--foundry-resource-override",
@@ -436,6 +453,12 @@ Use the [C# VoiceLive SDK quickstart code](./voice-live-quickstart.md?tabs=windo
 
     ```shell
     dotnet run --byom "byom-azure-openai-chat-completion" --model "your-model-name"
+    ```
+
+    To use an Anthropic Claude model:
+
+    ```shell
+    dotnet run --byom "byom-foundry-anthropic-messages" --model "your-claude-deployment-name"
     ```
 
     To use a model from a different Foundry resource, add the `--foundry-resource-override` argument:
@@ -680,6 +703,9 @@ Use the [JavaScript SDK quickstart code](./voice-live-quickstart.md?tabs=windows
     ```
 
 ---
+
+> [!NOTE]
+> When you use the `byom-foundry-anthropic-messages` mode, the `usage` field in `response.done` events only contains audio token usage (for speech recognition and text-to-speech). LLM token usage from the Anthropic model is reported separately in the response metadata.
 
 ## Resource overrides
 

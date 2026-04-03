@@ -91,7 +91,7 @@ Follow these steps to create a console application and install the Speech SDK.
    </ItemGroup>
    ``` 
 
-1. Replace the contents of `Program.cs` with the following code. This code creates a basic voice agent using one of the built-in models. For a more detailed version, see sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/BasicVoiceAssistant).
+1. Replace the contents of `Program.cs` with the following code. This code creates a basic voice agent using one of the built-in models. 
 
     ```csharp
     // Copyright (c) Microsoft Corporation. All rights reserved.

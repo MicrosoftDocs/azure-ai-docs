@@ -8,7 +8,7 @@ ms.subservice: core
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.date: 09/16/2022
+ms.date: 03/26/2026
 ms.reviewer: balapv
 ms.custom: migration
 monikerRange: 'azureml-api-1 || azureml-api-2'
@@ -18,9 +18,12 @@ monikerRange: 'azureml-api-1 || azureml-api-2'
 
 Local runs are similar in both V1 and V2. Use the "local" string when setting the compute target in either version.
 
-This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
+This article gives a comparison of scenarios in SDK v1 and SDK v2.
 
-### Submit a local run
+## Submit a local run
+
+> [!IMPORTANT]
+> The SDK v1 code in this section uses `azureml-core`, which was deprecated on March 31, 2025. Support ends on June 30, 2026. We recommend transitioning to SDK v2. For more information, see [What is Azure Machine Learning CLI and Python SDK v2?](concept-v2.md)
 
 * SDK v1
 
@@ -61,7 +64,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     
     # set up pytorch environment
     env = Environment(
-        image='mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04',
+        image='mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04',
         conda_file='pytorch-env.yml',
         name='pytorch-env'
     )
@@ -69,7 +72,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     # define the command
     command_job = command(
         code='./src',
-        command='train.py',
+        command='python train.py',
         environment=env,
         compute='local',
     )
@@ -82,7 +85,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
 
 |Functionality in SDK v1|Rough mapping in SDK v2|
 |-|-|
-|[experiment.submit](/python/api/azureml-core/azureml.core.experiment.experiment#azureml-core-experiment-experiment-submit)|[MLCLient.jobs.create_or_update](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update)|
+|[experiment.submit](/python/api/azureml-core/azureml.core.experiment.experiment#azureml-core-experiment-experiment-submit)|[MLClient.jobs.create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-create-or-update)|
 
 ## Next steps
 

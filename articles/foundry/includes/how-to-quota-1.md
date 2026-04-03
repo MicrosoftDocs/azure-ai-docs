@@ -12,7 +12,7 @@ ms.custom: include
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../how-to/create-projects.md).
 - **Cognitive Services Usages Reader** role at the subscription level, to view quota allocations.
 - **Owner** or **Contributor** role on the subscription, to request quota increases.

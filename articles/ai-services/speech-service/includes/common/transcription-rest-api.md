@@ -39,7 +39,7 @@ In the sections below, inline audio upload is used as an example.
 We learn how to use the fast transcription API (via [Transcriptions - Transcribe](/rest/api/speechtotext/transcriptions/transcribe)) with the following scenarios:
 - [Known locale specified](?tabs=locale-specified): Transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
 - [Language identification on](?tabs=language-identification-on): Transcribe an audio file with language identification on. If you're not sure about the locale of the audio file, you can turn on language identification to let the Speech service identify the locale (one locale per audio).
-- [Multi-lingual transcription (preview)](?tabs=multilingual-transcription-on): Transcribe an audio file with the latest multi-lingual speech transcription model. If your audio contains multi-lingual contents that you want to transcribe continuously and accurately, you can use the latest multi-lingual speech transcription model without specifying the locale codes.
+- [Multi-lingual transcription](?tabs=multilingual-transcription-on): Transcribe an audio file with the latest multi-lingual speech transcription model. If your audio contains multi-lingual contents that you want to transcribe continuously and accurately, you can use the latest multi-lingual speech transcription model without specifying the locale codes.
 - [Diarization on](?tabs=diarization-on): Transcribe an audio file with diarization on. Diarization distinguishes between different speakers in the conversation. The Speech service provides information about which speaker was speaking a particular part of the transcribed speech.
 - [Multi-channel on](?tabs=multi-channel-on): Transcribe an audio file that has one or two channels. Multi-channel transcriptions are useful for audio files with multiple channels, such as audio files with multiple speakers or audio files with background noise. By default, the fast transcription API merges all input channels into a single channel and then performs the transcription. If this isn't desirable, channels can be transcribed independently without merging.
 
@@ -301,7 +301,7 @@ Make a multipart/form-data POST request to the `transcriptions` endpoint with th
 
 The following example shows how to transcribe an audio file with language identification on. If you're not sure about the locale, you can specify multiple locales. If you don't specify any locale, or if the locales that you specify aren't in the audio file, then the Speech service tries to identify the locale. 
 > [!NOTE]
-> The language identification in fast transcription is designed to identify one main language locale per audio file. If you need to transcribe multi-lingual contents in the audio, please consider [multi-lingual transcription (preview)](?tabs=multilingual-transcription-on).
+> The language identification in fast transcription is designed to identify one main language locale per audio file. If you need to transcribe multi-lingual contents in the audio, please consider [multi-lingual transcription](?tabs=multilingual-transcription-on).
 
 - Replace `YourSpeechResoureKey` with your Speech resource key.
 - Replace `YourServiceRegion` with your Speech resource region.
@@ -612,7 +612,7 @@ Construct the form definition according to the following instructions:
 
 - You can either leave the `locales` property empty (as shown in the previous example) or omit it.
 
-- The supported audio input locales with current multi-lingual model are: **de-DE**, **en-AU**, **en-CA**, **en-GB**, **en-IN**, **en-US**, **es-ES**, **es-MX**, **fr-CA**, **fr-FR**, **it-IT**, **ja-JP**, **ko-KR**, and **zh-CN**.
+- The supported audio input locales with current multi-lingual model are: **de-DE**, **en-AU**, **en-CA**, **en-GB**, **en-IN**, **en-US**, **es-ES**, **es-MX**, **fr-CA**, **fr-FR**, **it-IT**, **ja-JP**, **ko-KR**, **pt-BR**, and **zh-CN**.
 
 - The transcription result is distinguished at the language level and will follow the "major locale of this language" (e.g., it will always output "en-US" locale code even if the audio has a British English or Indian English accent).
 

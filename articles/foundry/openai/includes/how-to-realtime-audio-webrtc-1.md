@@ -43,6 +43,10 @@ For more information about supported models, see the [models and versions docume
 > [!IMPORTANT]
 > Use the GA protocol for WebRTC.
 >
-> You can still use the beta protocol, but we recommend that you start with the GA Protocol. If you're a current customer, plan to migrate to the GA Protocol. 
+> The GA endpoints described in this article use different URLs than the Preview API:
+> - GA uses `/openai/v1/realtime/client_secrets` and `/openai/v1/realtime/calls`
+> - Preview (deprecated) used `/openai/realtimeapi/sessions` and regional URLs
 >
-> This article describes how to use WebRTC with the GA Protocol. We preserve the legacy protocol documentation [here](/previous-versions/azure/foundry-models/realtime-audio-webrtc-legacy).
+> If you're a current customer using Preview endpoints, [migrate to the GA Protocol](../how-to/realtime-audio-preview-api-migration-guide.md). 
+>
+> We preserve the legacy protocol documentation [here](/previous-versions/azure/foundry-models/realtime-audio-webrtc-legacy).
