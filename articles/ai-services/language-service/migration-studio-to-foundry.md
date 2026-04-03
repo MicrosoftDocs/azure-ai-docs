@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: upgrade-and-migration-article
-ms.date: 02/05/2026
+ms.date: 04/03/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
@@ -39,11 +39,7 @@ You can migrate to Microsoft Foundry using one of two approaches:
 
 * **[Option II: Migrate to a new Foundry resource](#option-ii-migrate-to-a-new-foundry-resource)**. Export your projects from Language Studio and import them into a new Foundry resource. This approach consolidates your AI capabilities into a single resource and provides access to both Foundry classic and the new Foundry experiences.
 
-
-
 ---
-
-
 
 ## Option I: Start using Foundry with an existing Language resource
 
@@ -166,17 +162,22 @@ You can now train and deploy your `CNER` project using the **Getting started** w
 
 #### Import a Custom Question Answering (CQA) project
 
-1. In Foundry, navigate to your project.
-1. Select **Fine-tuning** from the left navigation pane.
-1. From the main window, select the **AI Service fine-tuning** tab, and then select **+ Fine-tune**.
-1. In the **Create CQA fine-tuning task** window, select your connected Azure AI Search resource.
-1. Enter a **Name** for your project and select the **Language**.
-1. Optionally, update the **Default answer when no answer is returned** field (default is "No answer found").
-1. Select **Create**.
-1. From the **Getting started** menu, select **Manage sources**.
-1. Select **+ Add source**, and then select **Add Files** to upload your exported question-answer pairs.
+1. In Foundry, navigate to your AI foundry project.
+1. When you export a `CQA` project from Language Studio, you receive a `.zip` file containing your project data. Extract the contents of the `.zip` file to access the underlying files.
+1. In Foundry, select **Fine-tuning** from the left navigation pane.
+1. From the main window, select the **AI Service fine-tuning** tab, and then select your existing `CQA` project or select **+ Fine-tune** to create a new fine-tuning task.
+1. On your `CQA` project Getting started page, select **Edit knowledge base**.
+1. On the **Edit knowledge base** page, select the **Question Answer Pairs** tab then select **Import question and answers**.
+1. Browse for your extracted files then drag and drop the `.tsv` file to import your question-answer pairs (If you had any question-answer pairs in the original project).
 
-After adding your source files, you can train and deploy the `CQA` project using the **Getting started** workflow in Foundry.
+    :::image type="content" source="media/question-answer-pairs-import.png" alt-text="Import question-answer pairs":::
+
+1. Next, select the **Synonyms** tab on the page.
+1. Select **Import Synonyms** and choose the extracted `Synonyms.tsv` file (If you had any synonyms in the original project).
+
+    :::image type="content" source="media/synonyms-import.png" alt-text="Import synonyms":::
+
+1. After adding your source files, you can train and deploy the `CQA` project using the **Getting started** workflow in Foundry.
 
 #### Import a Conversational Language Understanding (CLU) project
 
