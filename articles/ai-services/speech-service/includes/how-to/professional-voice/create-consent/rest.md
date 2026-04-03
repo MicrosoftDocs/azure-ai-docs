@@ -46,7 +46,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "companyName": "Contoso",
   "audioUrl": "https://contoso.blob.core.windows.net/public/jessica-consent.wav?mySasToken",
   "locale": "en-US"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/consents/JessicaConsentId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/consents/JessicaConsentId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -68,7 +68,7 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the [Consents_Create](/rest/api/aiservices/speechapi/consents/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2026-01-01
 Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
