@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 04/03/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -44,6 +44,9 @@ The following table shows SDK and setup support.
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+> [!NOTE]
+> Not all models support Grounding with Bing Search or Grounding with Bing Custom Search. For a full list of models that support these tools, see [Tool support by region and model](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
 
 ## Prerequisites
 
