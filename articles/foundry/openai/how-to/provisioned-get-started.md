@@ -73,7 +73,7 @@ Once you have verified your quota, you can create a deployment. Navigate to Foun
 
 You can create your deployment programmatically, using the following Azure CLI command. To specify the deployment type, modify the `sku-name` to `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged` based on the intended deployment type. Update the `sku-capacity` with the desired number of provisioned throughput units.
 
-```cli
+```azurecli
 az cognitiveservices account deployment create \
 --name <myResourceName> \
 --resource-group <myResourceGroupName> \

@@ -1,6 +1,6 @@
 ---
 title: "What is provisioned throughput for Foundry Models?"
-description: "Learn how provisioned throughput gives you dedicated AI model capacity with predictable latency, how PTUs and quota relate, and when to use it over standard deployments."
+description: "Learn how provisioned throughput gives you dedicated AI model capacity with predictable latency, how PTUs and quota relate, and when to use provisioned throughput over standard deployments."
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
@@ -27,7 +27,7 @@ This article explains the core concepts behind provisioned throughput: what it i
 
 ## How provisioned throughput differs from standard deployments
 
-In a standard deployment, your requests draw from a shared pool of model processing capacity. This model works well for exploratory or variable workloads. Under heavy demand, however, latency and throughput can vary, and you might encounter rate limits before your quota is exhausted.
+In a standard deployment, your requests draw from a shared pool of model processing capacity. Standard deployment works well for exploratory or variable workloads. Under heavy demand, however, latency and throughput can vary, and you might encounter rate limits before your quota is exhausted.
 
 A provisioned throughput deployment gives you:
 
@@ -54,7 +54,7 @@ Standard deployments remain the better fit for development, testing, low-volume 
 
 ## Provisioned throughput units
 
-**Provisioned throughput units (PTUs)** are the unit of measure for provisioned capacity. A PTU represents a fixed amount of model processing capacity—similar in concept to a vCPU for a virtual machine. When you create a provisioned deployment, you specify how many PTUs to allocate. Foundry reserves that amount of compute and holds it for your deployment.
+**Provisioned throughput units (PTUs)** are the unit of measure for provisioned capacity. A PTU represents a fixed amount of model processing capacity. When you create a provisioned deployment, you specify how many PTUs to allocate. Foundry reserves that amount of compute and holds it for your deployment.
 
 Key characteristics of PTUs:
 
@@ -76,7 +76,9 @@ Quota and capacity are related but distinct:
 
 To check real-time capacity availability:
 - Use the **Foundry portal deployment experience**, which surfaces capacity status inline when you configure a deployment.
-- Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP) to programmatically query the maximum deployable PTU count for a given model and region, factoring in your current quota.
+- Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP) to programmatically query the maximum deployable PTU count for a given model and region. The API factors in your current quota and service capacity in the region.
+
+For guidance on finding available capacity and handling situations where capacity isn't available, see [Capacity and availability](#capacity-and-availability).
 
 ## Deployment types that support provisioned throughput
 
@@ -89,7 +91,7 @@ Provisioned throughput is available as three deployment types. They all provide 
 | **Regional Provisioned** | `ProvisionedManaged` | Stays in the deployment's specific Azure region | Strict single-region data residency requirements |
 
 > [!NOTE]
-> New models sold directly by Azure are typically onboarded with the Global Provisioned type first. Data Zone Provisioned and Regional Provisioned support follows. See [Supported models](#supported-models) for current availability by deployment type.
+> New models sold directly by Azure are typically onboarded with the Global Provisioned type first. Data Zone Provisioned support follows. See [Supported models](#supported-models) for current availability by deployment type.
 
 For a full comparison of all Foundry deployment types—including standard, batch, and provisioned—see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types.md).
 
@@ -97,25 +99,25 @@ For a full comparison of all Foundry deployment types—including standard, batc
 
 ### Hourly billing
 
-Provisioned deployments are billed hourly at a rate of $/PTU/hr based on the number of PTUs deployed—not on tokens consumed. The meter runs from the moment the deployment exists.
+Provisioned deployments are billed hourly at a rate of $/PTU/hr based on the number of PTUs deployed—not on tokens consumed. The meter runs from the moment the deployment exists. For example:
 
 - A 300 PTU deployment is charged: hourly rate × 300.
 - A deployment that exists for 15 minutes during an hour is charged at 1/4 of the hourly rate.
 - If you resize the deployment, billing adjusts to the new PTU count.
 
-Hourly billing is practical for short-term scenarios like benchmarking a new model or temporarily scaling up for an event. For sustained production workloads, purchasing an Azure Reservation is significantly more cost-effective.
+Hourly billing is practical for short-term scenarios like benchmarking a new model or temporarily scaling up for an event such as a hackathon. For sustained production workloads, purchasing an Azure Reservation is significantly more cost-effective.
 
 > [!IMPORTANT]
 > Don't plan to scale provisioned deployments up and down with traffic to stay on hourly billing. Capacity isn't always available when you need to scale back up, and the cost of continuous hourly billing at high utilization typically exceeds reservation pricing.
 
 ### Azure Reservations
 
-**Azure Reservations** are a term-discount mechanism applied to the PTU billing meter. In exchange for a 1-month or 1-year commitment, you receive a discounted effective $/PTU/hr rate. Reservations apply automatically—no per-deployment configuration is required.
+**Azure Reservations** are a financial discount applied to the PTU billing meter, not to individual deployments. In exchange for a 1-month or 1-year commitment, you receive a discounted effective $/PTU/hr rate. The discount applies automatically to any running deployment whose type (Regional/Data Zone/Global), region, and reservation scope (subscription or resource group) match the reservation.
 
 Key facts:
 
 - **Purchased per deployment type**: Global, Data Zone, and Regional reservations are separate purchases. A Global Provisioned reservation doesn't cover a Regional Provisioned deployment.
-- **Flexibly scoped**: A reservation can cover a resource group, subscription, management group, or billing account. All matching deployments within the scope share the discount, up to the reservation's PTU quantity.
+- **Flexibly scoped**: A reservation can cover a resource group, subscription, management group, or billing account. All deployments within the scope share the discount, up to the reservation's PTU quantity.
 - **Model-independent**: The discount applies to any model deployed with PTUs under the matching reservation. You don't purchase a reservation for a specific model.
 - **Excess is billed hourly**: If deployed PTUs in scope exceed the reservation quantity, the excess PTUs are charged at the standard hourly rate.
 - **Reservations don't guarantee capacity**: Purchasing a reservation doesn't reserve GPU capacity. Create deployments first to confirm capacity, then purchase the reservation.
