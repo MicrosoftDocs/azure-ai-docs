@@ -57,8 +57,7 @@ Preview features are removed from this list if they're retired or transition to 
 
 | Feature | Description | Availability |
 |--|--|--|
-| [**Service-level CMK encryption**](search-security-manage-encryption-keys.md) | Encrypt all objects on a search service using a single customer-managed key (CMK). All newly created objects are automatically encrypted using the service-level key. However, you can override this setting by specifying an object-level key when creating an individual object. | [Services - Create or Update (preview)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) |
-| [**Cross-tenant CMK encryption via federated identity**](search-security-managed-encryption-cross-tenant.md) | Configure cross-tenant CMK encryption at the service level using a Microsoft Entra multitenant application, a federated identity credential, and a user-assigned managed identity. This approach eliminates the need for client secrets. | [Services - Create or Update (preview)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) |
+| [**Service-level CMK**](search-security-manage-encryption-keys.md#enable-service-level-cmk-on-new-objects-by-default-preview) | Enables a customer-managed key (CMK) on all newly created objects by default. Service-level CMK ensures all sensitive data in your search service is protected by a key you control, eliminating the need to specify key information each time an object is created. | [Services - Create or Update (preview)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) |
 
 ## Preview features in Azure SDKs
 
@@ -83,7 +82,7 @@ If you write code against a preview API, you should prepare to upgrade that code
 
 ## How to call a preview REST API
 
-Preview REST APIs are accessed through the `api-version` parameter on the URI. Older previews are still operational but become stale over time and aren't updated with new features or bug fixes.
+Preview REST APIs are accessed through the `api-version` parameter on the URI. Although older previews are still operational, they become stale over time and aren't updated with new features or bug fixes.
 
 For data plane operations on content, [**`2025-11-01-preview`**](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) is the most recent preview version. The following example shows how to call [Indexes - Get](/rest/api/searchservice/indexes/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API) for this preview version:
 
