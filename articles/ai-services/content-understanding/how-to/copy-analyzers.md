@@ -46,9 +46,9 @@ Ocp-Apim-Subscription-Key: {Auth key}
 
 Copying an analyzer across Foundry resources is a multi-step process because a service principal might not have permissions on both resources:
 
-1. Get a copy authorization on the source analyzer by providing the fully qualified resource ID for the copy target and the target region. 
-1. Copy the resulting response and use it as the body of the next request.
-1. Issue a copy request on the target resource by providing the fully qualified source resource, the source analyzer ID, and the region.
+1. Call the [Grant Copy Authorization](/rest/api/contentunderstanding/content-analyzers/grant-copy-authorization?view=rest-contentunderstanding-2025-11-01) API on the source analyzer, providing the fully qualified resource ID of the copy target and the target region. The response contains a copy authorization token with an expiration time (`expiresAt`).
+1. Copy the resulting response body and use it as the body of the copy request in the next step.
+1. Call the copy API on the target resource, providing the fully qualified source resource ID, the source analyzer ID, and the source region.
 
 ```http
 POST https://{source resource}.services.ai.azure.com/contentunderstanding/analyzers/{source analyzer id}:grantCopyAuthorization?api-version=2025-11-01

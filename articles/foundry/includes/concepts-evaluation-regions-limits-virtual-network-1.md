@@ -80,7 +80,7 @@ Use exponential backoff when retrying failed requests.
 For network isolation, you can bring your own virtual network for evaluation. To learn more, see [How to configure a private link](../how-to/configure-private-link.md).
 
 > [!NOTE]
-> If you connect Application Insights, evaluation data is sent to it. Virtual network support for Application Insights and tracing isn't available. Inline datasource isn't supported.
+> If you connect Application Insights, evaluation data is sent to it.
 
 > [!IMPORTANT]
 > To prevent evaluation and red teaming run failures, assign the Azure AI User role to the project's Managed Identity during initial project setup.

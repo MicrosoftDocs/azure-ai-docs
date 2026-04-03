@@ -5,7 +5,8 @@ description: Learn to build a retrieval-augmented generation solution with Conte
 author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
 ms.custom:
@@ -45,7 +46,7 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 
 ## Extract data
 
-Retrieval-augmented generation (*RAG**) is a method that enhances the functionality of Large Language Models (**LLM**) by integrating data from external knowledge sources. Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
+Retrieval-augmented generation (**RAG**) is a method that enhances the functionality of Large Language Models (**LLM**) by integrating data from external knowledge sources. Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
 
 ## Implementation steps
 
@@ -355,6 +356,7 @@ for analyzer_result in analyzer_results:
 ```
 
 ---
+
 ### Extraction results
 
 The following code samples demonstrate the output of content and field extraction using Azure Content Understanding. The JSON response contains multiple fields, each serving a specific purpose in representing the extracted data.

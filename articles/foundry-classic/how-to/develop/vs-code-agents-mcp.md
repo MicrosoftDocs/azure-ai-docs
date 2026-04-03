@@ -9,8 +9,8 @@ ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 03/09/2026
 ms.reviewer: erichen
-ms.author: johalexander
-author: ms-johnalex
+ms.author: rotabor
+author: bobtabor-msft
 ms.custom: doc-kit-assisted
 ---
 
