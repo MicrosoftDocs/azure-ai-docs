@@ -2031,6 +2031,8 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: csharp
+    title: C#
   - id: typescript
     title: TypeScript
   - id: rest
