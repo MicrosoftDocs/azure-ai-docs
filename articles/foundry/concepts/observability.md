@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 03/27/2026
+ms.date: 04/02/2026
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -20,7 +20,7 @@ The AI application lifecycle requires robust evaluation frameworks to ensure AI 
 
 ## What is observability?
 
-AI observability refers to the ability to monitor, understand, and troubleshoot AI systems throughout their lifecycle. Teams can trace, evaluate, integrate automated quality gates into CI/CD pipelines, and collect signals such as evaluation metrics, logs, traces, and model outputs to gain visibility into performance, quality, safety, and operational health.
+AI observability refers to the ability to monitor, understand, and troubleshoot AI systems throughout their lifecycle. You can trace, evaluate, integrate automated quality gates into CI/CD pipelines, and collect signals such as evaluation metrics, logs, traces, and model outputs to gain visibility into performance, quality, safety, and operational health.
 
 ## Core observability capabilities
 
@@ -28,19 +28,19 @@ Microsoft Foundry provides three core capabilities that work together to deliver
 
 ### Evaluation
 
-Evaluators measure the quality, safety, and reliability of AI responses throughout development. Microsoft Foundry provides built-in evaluators for general-purpose quality metrics (coherence, fluency), RAG-specific metrics (groundedness, relevance), safety and security (hate/unfairness, violence, protected materials), and agent-specific metrics (tool call accuracy, task completion). Teams can also build custom evaluators tailored to their domain-specific requirements.
+Evaluators measure the quality, safety, and reliability of AI responses throughout development. Microsoft Foundry provides built-in evaluators including general-purpose quality metrics (coherence, fluency), RAG-specific metrics (groundedness, relevance), safety and security (hate/unfairness, violence, protected materials), and agent-specific metrics (tool call accuracy, task completion), among others. You can also build custom evaluators tailored to your domain-specific requirements.
 
 For a complete list of built-in evaluators, see [Built-in evaluators reference](built-in-evaluators.md).
 
 ### Monitoring
 
-Production monitoring ensures your deployed AI applications maintain quality and performance in real-world conditions. Integrated with Azure Monitor Application Insights, Microsoft Foundry delivers real-time dashboards tracking operational metrics, token consumption, latency, error rates, and quality scores. Teams can set up alerts when outputs fail quality thresholds or produce harmful content, enabling rapid issue resolution.
+Production monitoring ensures your deployed AI applications maintain quality and performance in real-world conditions. Integrated with Azure Monitor Application Insights, Microsoft Foundry delivers real-time dashboards tracking operational metrics, token consumption, latency, error rates, and quality scores. You can set up alerts when outputs fail quality thresholds or produce harmful content, enabling rapid issue resolution.
 
 For details on setting up production monitoring, see [Monitor agents dashboard](../observability/how-to/how-to-monitor-agents-dashboard.md).
 
 ### Tracing
 
-Distributed tracing captures the execution flow of AI applications, providing visibility into LLM calls, tool invocations, agent decisions, and inter-service dependencies. Built on OpenTelemetry standards and integrated with Application Insights, tracing enables debugging complex agent behaviors, identifying performance bottlenecks, and understanding multi-step reasoning chains. Microsoft Foundry supports tracing for popular frameworks including LangChain, Semantic Kernel, and the OpenAI Agents SDK.
+Distributed tracing captures the execution flow of AI applications, providing visibility into LLM calls, tool invocations, agent decisions, and inter-service dependencies. Built on OpenTelemetry standards and integrated with Azure Monitor Application Insights, tracing enables debugging complex agent behaviors, identifying performance bottlenecks, and understanding multi-step reasoning chains. Microsoft Foundry supports tracing for popular frameworks including LangChain, LangGraph, the OpenAI Agents SDK, and the Microsoft Agent Framework.
 
 For guidance on implementing tracing, see [Trace agent overview](../observability/concepts/trace-agent-concept.md).
 
@@ -86,7 +86,7 @@ After deployment, [continuous monitoring](../observability/how-to/how-to-monitor
 
 Integrated with Azure Monitor Application Insights, the Foundry Observability dashboard delivers real-time insights into performance, safety, and quality metrics, enabling rapid issue resolution and maintaining user trust.
 
-## Evaluation cheat sheet
+## Evaluation quick reference
 
 | Purpose | Process | Parameters, guidance, and samples |
 | -----| -----| ----|

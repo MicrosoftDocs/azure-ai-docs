@@ -4,7 +4,7 @@ description: "Comprehensive reference for all built-in evaluators in Microsoft F
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 02/12/2026
+ms.date: 04/03/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ai-usage: ai-assisted
@@ -16,12 +16,12 @@ ms.custom:
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Microsoft Foundry provides a comprehensive set of built-in evaluators to assess the quality, safety, and reliability of AI responses throughout the development lifecycle. This reference details all available evaluators, their purposes, required inputs, and guidance on selecting the right evaluator for your use case. You can also create [custom evaluators](./evaluation-evaluators/custom-evaluators.md) tailored to your specific evaluation criteria.
+Microsoft Foundry includes built-in evaluators to assess the quality, safety, and reliability of AI responses throughout the development lifecycle. This reference lists all available evaluators, their purposes, and guidance on selecting the right one for your use case. You can also create [custom evaluators](./evaluation-evaluators/custom-evaluators.md) tailored to your specific evaluation criteria.
 
 ## General purpose evaluators
 
 | Evaluator | Purpose |
-|--|--|--|
+|--|--|
 | Coherence | Measures logical consistency and flow of responses.|
 | Fluency | Measures natural language quality and readability. |
 
@@ -30,7 +30,7 @@ To learn more, see [General purpose evaluators](./evaluation-evaluators/general-
 ## Textual similarity evaluators
 
 | Evaluator | Purpose |
-|--|--|--|
+|--|--|
 | Similarity | AI-assisted textual similarity measurement. |
 | F1 Score | Harmonic mean of precision and recall in token overlaps between response and ground truth. |
 | BLEU | Bilingual Evaluation Understudy score for translation quality measures overlaps in n-grams between response and ground truth. |
@@ -43,11 +43,11 @@ To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textu
 ## RAG evaluators
 
 | Evaluator | Purpose |
-|--|--|--|
+|--|--|
 | Retrieval | Measures how effectively the system retrieves relevant information. |
 | Document Retrieval| Measures accuracy in retrieval results given ground truth. |
-| Groundedness | Measures how consistent the response is with respect to the retrieved context. |
-| Groundedness Pro (preview) | Measures whether the response is consistent with respect to the retrieved context. |
+| Groundedness | Measures how grounded the response is in the retrieved context. Returns a score from 1–5 using a model-based judgment. |
+| Groundedness Pro (preview) | Measures whether the response is grounded in the retrieved context using the Azure AI Content Safety service. Returns a binary pass/fail without requiring a model deployment. |
 | Relevance | Measures how relevant the response is with respect to the query. |
 | Response Completeness (preview) | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. |
 
@@ -56,12 +56,13 @@ To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluatio
 ## Risk and safety evaluators
 
 | Evaluator | Purpose |
-|--|--|--|
+|--|--|
 | Hate and Unfairness | Identifies biased, discriminatory, or hateful content. |
 | Sexual | Identifies inappropriate sexual content. |
 | Violence | Detects violent content or incitement. |
 | Self-Harm | Detects content promoting or describing self-harm.|
 | Protected Materials | Detects unauthorized use of copyrighted or protected content. |
+| Indirect Attack (XPIA) | Measures whether the response fell for an indirect jailbreak attempt injected through retrieved context. |
 | Code Vulnerability | Identifies security issues in generated code. |
 | Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. |
 | Prohibited Actions (preview) | Measures an AI agent's ability to engage in behaviors that violate explicitly disallowed actions. |
@@ -72,7 +73,7 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 ## Agent evaluators
 
 | Evaluator | Purpose |
-|--|--|--|
+|--|--|
 | Task Adherence (preview)  | Measures whether the agent follows through on identified tasks according to system instructions. |
 | Task Completion (preview)| Measures whether the agent successfully completed the requested task end-to-end. |
 | Intent Resolution (preview) | Measures how accurately the agent identifies and addresses user intentions. |
@@ -88,7 +89,7 @@ To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.m
 ## Azure OpenAI graders
 
 | Evaluator | Purpose |
-|--|--|--|
+|--|--|
 | Model Labeler | Classifies content using custom guidelines and labels. |
 | String Checker | Performs flexible text validations and pattern matching. |
 | Text Similarity | Evaluates the quality of text or determine semantic closeness. |
