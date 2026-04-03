@@ -36,9 +36,13 @@ In this article, you learn to:
 
 After submitting an evaluation, you can track its progress on the Evaluation details page. When the evaluation completes, the page displays key information such as:
 
--The evaluation creator
--Evaluation token usage
--Scores for each evaluator, broken down by run
+- Name of the run
+- Target
+- Dataset (downloadable)
+- Status
+- Evaluation tokens (tokens used in the evaluation)
+- Target tokens (new)
+- Scores for each evaluator used
 
 :::image type="content" source="../media/observability/evaluation-runs.png" alt-text="Screenshot of the evaluation details page showing evaluation runs." lightbox="../media/observability/evaluation-runs.png":::
 
