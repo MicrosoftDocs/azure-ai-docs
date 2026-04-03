@@ -170,12 +170,12 @@ You can now train and deploy your `CNER` project using the **Getting started** w
 1. On the **Edit knowledge base** page, select the **Question Answer Pairs** tab then select **Import question and answers**.
 1. Browse for your extracted files then drag and drop the `.tsv` file to import your question-answer pairs (If you had any question-answer pairs in the original project).
 
-    :::image type="content" source="media/question-answer-pairs-import.png" alt-text="Import question-answer pairs":::
+    :::image type="content" source="media/question-answer-pairs-import.png" alt-text="Import question-answer pairs" lightbox="media/question-answer-pairs-import.png":::
 
 1. Next, select the **Synonyms** tab on the page.
 1. Select **Import Synonyms** and choose the extracted `Synonyms.tsv` file (If you had any synonyms in the original project).
 
-    :::image type="content" source="media/synonyms-import.png" alt-text="Import synonyms":::
+    :::image type="content" source="media/synonyms-import.png" alt-text="Import synonyms" lightbox="media/synonyms-import.png":::
 
 1. After adding your source files, you can train and deploy the `CQA` project using the **Getting started** workflow in Foundry.
 
