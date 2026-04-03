@@ -47,7 +47,7 @@ The conversational PII API supports all Azure regions supported by Azure Languag
      > [!div class="checklist"]
      > * (conv item1) User: Hi! <br>
      > * (conv item2) Bot: Hello, how can I help? <br>
-     > * (conv item3) User: What time does the next train to Paris leave? <br>
+     > * (conv item3) User: What time does the next train leave for Paris? <br>
 
 ## Getting PII results
 
