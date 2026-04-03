@@ -40,7 +40,7 @@ The conversational PII API supports all Azure regions supported by Azure Languag
 
 * For spoken transcripts, the entities detected are returned on the `redactionSource` parameter value provided. Currently, the supported values for `redactionSource` are `text`, `lexical`, `itn`, and `maskedItn` (which maps to Speech to text REST API's `display`\\`displayText`, `lexical`, `itn`, and `maskedItn` format respectively). Additionally, for the spoken transcript input, this API also provides audio timing information to empower audio redaction. For using the audioRedaction feature, use the optional `includeAudioRedaction` flag with `true` value. The audio redaction is performed based on the lexical input format.
 
-* A conversation can have a list of conversation items (turns). There's a 1000 max limit for each conversation item, not for the whole conversation:
+* A conversation can have a list of conversation items (turns). There's a 1000 max limit for each conversation item (not for the entire conversation):
 
   * ***Multi-turn conversation example***<br><br>
   
