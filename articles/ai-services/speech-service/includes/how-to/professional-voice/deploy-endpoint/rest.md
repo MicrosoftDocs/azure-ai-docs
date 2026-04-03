@@ -32,7 +32,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "description": "Endpoint for Jessica voice",
   "projectId": "ProjectId",
   "modelId": "JessicaModelId",
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/EndpointId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/EndpointId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -55,7 +55,7 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the [Endpoints_Create](/rest/api/aiservices/speechapi/endpoints/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2026-01-01
 Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
@@ -91,7 +91,7 @@ Make an HTTP POST request using the URI as shown in the following [Endpoints_Sus
 - Replace `YourEndpointId` with the endpoint ID that you received when you created the endpoint.
 
 ```azurecli-interactive
-curl -v -X POST "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/YourEndpointId:suspend?api-version=2024-02-01-preview" -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "content-type: application/json" -H "content-length: 0"
+curl -v -X POST "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/YourEndpointId:suspend?api-version=2026-01-01" -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "content-type: application/json" -H "content-length: 0"
 ```
 
 You should receive a response body in the following format:
@@ -121,7 +121,7 @@ Make an HTTP POST request using the URI as shown in the following [Endpoints_Res
 - Replace `YourEndpointId` with the endpoint ID that you received when you created the endpoint.
 
 ```azurecli-interactive
-curl -v -X POST "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/YourEndpointId:resume?api-version=2024-02-01-preview" -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "content-type: application/json" -H "content-length: 0"
+curl -v -X POST "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/YourEndpointId:resume?api-version=2026-01-01" -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "content-type: application/json" -H "content-length: 0"
 ```
 
 You should receive a response body in the following format:
@@ -151,7 +151,7 @@ Make an HTTP DELETE request using the URI as shown in the following [Endpoints_D
 - Replace `YourEndpointId` with the endpoint ID that you received when you created the endpoint.
 
 ```azurecli-interactive
-curl -v -X DELETE "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/YourEndpointId?api-version=2024-02-01-preview" -H "Ocp-Apim-Subscription-Key: YourResourceKey"
+curl -v -X DELETE "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/endpoints/YourEndpointId?api-version=2026-01-01" -H "Ocp-Apim-Subscription-Key: YourResourceKey"
 ```
 
 You should receive a response header with status code 204.
