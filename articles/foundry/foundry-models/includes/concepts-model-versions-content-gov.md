@@ -76,7 +76,7 @@ When a model version reaches its retirement date, what happens next depends on t
 
 Azure notifies you of upcoming retirements through email to subscription owners and contributors, Azure Service Health alerts, and the upcoming retirement tables in [Model deprecation and retirement for Microsoft Foundry Models](../../concepts/model-lifecycle-retirement.md). In addition, the following Azure Government specific retirement dates apply. 
 
-[!INCLUDE [model-retirement content](../../openai/includes/retirement-models-gov.md)]
+[!INCLUDE [model-retirement content](../../openai/includes/model-matrix/retirement-models-gov.md)]
 
 ## Related content
 

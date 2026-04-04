@@ -7,8 +7,8 @@ ms.topic: concept-article
 ms.custom:
   - classic-and-new
 ms.date: 04/03/2026
-author: chaparker
-ms.author: challenp
+author: challenp
+ms.author: chaparker
 recommendations: false
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to understand how model versions work in Microsoft Foundry Models in Azure Government so I can manage deployments and updates effectively.
