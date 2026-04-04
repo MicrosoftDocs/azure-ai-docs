@@ -2430,4 +2430,4 @@ public final class FunctionCallingQuickstart {
 
 - Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
