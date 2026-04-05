@@ -199,7 +199,35 @@ Use this pattern to add web search. No project connection is required for the we
 }
 ```
 
-### [Azure AI Search](ai-search.md)
+> [!NOTE]
+> When Web Search returns results over MCP, the response is a single `text` content item containing the synthesized answer with inline Markdown citations. For example:
+>
+> ```json
+> {
+>   "jsonrpc": "2.0",
+>   "id": "ws-call-1",
+>   "result": {
+>     "_meta": {
+>       "tool_configuration": {
+>         "type": "web_search",
+>         "name": "web-search-default"
+>       }
+>     },
+>     "content": [
+>       {
+>         "type": "text",
+>         "text": "Here are the latest updates on Azure OpenAI Service...\n\n- **February 2026**: Microsoft launched **gpt-realtime-1.5** and **gpt-audio-1.5** ([learn.microsoft.com](https://learn.microsoft.com/...)).\n\n...",
+>         "annotations": {
+>           "audience": ["assistant"]
+>         }
+>       }
+>     ],
+>     "isError": false
+>   }
+> }
+> ```
+>
+> Unlike File Search, Web Search returns a single `text` block rather than individual resource items. Inline citation links in the `text` field point to the original web sources. Use these URLs in your application to render source attribution.
 
 Use this pattern to ground agent responses with your own indexed content. The `project_connection_id` must reference an Azure AI Search connection in your Foundry project.
 
