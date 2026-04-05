@@ -197,6 +197,7 @@ To create an agent from a catalog template:
 
 ## Related content
 
+- [Quickstart: Create an agent from the catalog](../quickstarts/quickstart-agent-catalog.md)
 - [Agent tools overview](tool-catalog.md)
 - [Tool best practices](tool-best-practice.md)
 - [What is Foundry Agent Service?](../overview.md)
