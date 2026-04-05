@@ -39,18 +39,22 @@ items:
     href: ../../agents/concepts/tool-catalog.md
   - name: Tool best practices
     href: ../../agents/concepts/tool-best-practice.md
+  - name: Toolbox (preview)
+    href: ../../agents/how-to/tools/toolbox.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Create a private tool catalog (preview)
     href: ../../agents/how-to/private-tool-catalog.md
-  - name: Azure AI Search
-    href: ../../agents/how-to/tools/ai-search.md
-  - name: Code interpreter
-    href: ../../agents/how-to/tools/code-interpreter.md
-  - name: File search
-    href: ../../agents/how-to/tools/file-search.md
-  - name: Function calling
-    href: ../../agents/how-to/tools/function-calling.md
+  - name: Built-in tools
+    items:
+    - name: Azure AI Search
+      href: ../../agents/how-to/tools/ai-search.md
+    - name: Code interpreter
+      href: ../../agents/how-to/tools/code-interpreter.md
+    - name: File search
+      href: ../../agents/how-to/tools/file-search.md
+    - name: Function calling
+      href: ../../agents/how-to/tools/function-calling.md
   - name: Voice integration (preview)  
     items:
     - name: Quickstart - Talk to a voice agent
@@ -67,8 +71,6 @@ items:
       href: ../../agents/how-to/tools/bing-tools.md
   - name: Model Context Protocol (MCP)
     items:
-    - name: Toolbox (preview)
-      href: ../../agents/how-to/tools/toolbox.md
     - name: Connect to MCP server
       href: ../../agents/how-to/tools/model-context-protocol.md
     - name: MCP authentication
