@@ -1,13 +1,13 @@
 ---
 title: How to lower speech synthesis latency using Speech SDK
 titleSuffix: Foundry Tools
-description: How to lower speech synthesis latency using Speech SDK, including streaming, pre-connection, and so on.
+description: How to lower speech synthesis latency using Speech SDK, including streaming, pre-connection, and more.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.reviewer: yulili
 ms.custom: references_regions, devx-track-extended-java, devx-track-python
 zone_pivot_groups: programming-languages-set-nineteen
@@ -52,7 +52,7 @@ var resultId = result.ResultId;
 | `network latency` | The network latency between the client and Azure TTS service. | `SpeechServiceResponse_SynthesisNetworkLatencyMs` |
 | `first byte service latency` | Indicates the time delay between Azure TTS service received synthesis request and the first audio chunk is returned. | `SpeechServiceResponse_SynthesisServiceLatencyMs` |
 
-The Speech SDK measured the latencies and puts them in the property bag of [`SpeechSynthesisResult`](/cpp/cognitive-services/speech/speechsynthesisresult). Refer following codes to get them.
+The Speech SDK measured the latencies and puts them in the property bag of [`SpeechSynthesisResult`](/cpp/cognitive-services/speech/speechsynthesisresult). See the following code to get the values.
 
 ```cpp
 auto result = synthesizer->SpeakTextAsync(text).get();
@@ -75,7 +75,7 @@ auto resultId = result->ResultId;
 | `network latency` | The network latency between the client and Azure TTS service. | `SpeechServiceResponse_SynthesisNetworkLatencyMs` |
 | `first byte service latency` | Indicates the time delay between Azure TTS service received synthesis request and the first audio chunk is returned. | `SpeechServiceResponse_SynthesisServiceLatencyMs` |
 
-The Speech SDK measured the latencies and puts them in the property bag of [`SpeechSynthesisResult`](/java/api/com.microsoft.cognitiveservices.speech.speechsynthesisresult). Refer following codes to get them.
+The Speech SDK measured the latencies and puts them in the property bag of [`SpeechSynthesisResult`](/java/api/com.microsoft.cognitiveservices.speech.speechsynthesisresult). See the following code to get the values.
 
 ```java
 SpeechSynthesisResult result = synthesizer.SpeakTextAsync(text).get();
@@ -99,7 +99,7 @@ String resultId = result.getResultId();
 | `network latency` | The network latency between the client and Azure TTS service. | `SpeechServiceResponse_SynthesisNetworkLatencyMs` |
 | `first byte service latency` | Indicates the time delay between Azure TTS service received synthesis request and the first audio chunk is returned. | `SpeechServiceResponse_SynthesisServiceLatencyMs` |
 
-The Speech SDK measured the latencies and puts them in the property bag of [`SpeechSynthesisResult`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechsynthesisresult). Refer following codes to get them.
+The Speech SDK measured the latencies and puts them in the property bag of [`SpeechSynthesisResult`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechsynthesisresult). See the following code to get the values.
 
 ```python
 result = synthesizer.speak_text_async(text).get()
@@ -122,7 +122,7 @@ result_id = result.result_id
 | `network latency` | The network latency between the client and Azure TTS service. | `SPXSpeechServiceResponseSynthesisNetworkLatencyMs` |
 | `first byte service latency` | Indicates the time delay between Azure TTS service received synthesis request and the first audio chunk is returned. | `SPXSpeechServiceResponseSynthesisServiceLatencyMs` |
 
-The Speech SDK measured the latencies and puts them in the property bag of [`SPXSpeechSynthesisResult`](/objectivec/cognitive-services/speech/spxspeechsynthesisresult). Refer following codes to get them.
+The Speech SDK measured the latencies and puts them in the property bag of [`SPXSpeechSynthesisResult`](/objectivec/cognitive-services/speech/spxspeechsynthesisresult). See the following code to get the values.
 
 ```Objective-C
 SPXSpeechSynthesisResult *speechResult = [speechSynthesizer speakText:text];

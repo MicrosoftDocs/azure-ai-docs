@@ -1,10 +1,6 @@
 ---
-title: Create a full text query 
-titleSuffix: Azure AI Search
-description: Learn how to construct a query request for full text search in Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+title: Create a Full-Text Query
+description: Learn how to construct a full text query request in Azure AI Search. Set parameters on the request. Use Lucene syntax for specialized queries.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -15,7 +11,7 @@ ai-usage: ai-assisted
 ms.update-cycle: 180-days
 ---
 
-# Create a full text query in Azure AI Search
+# Create a full-text query in Azure AI Search
 
 If you're building a query for [full text search](search-lucene-query-architecture.md), this article provides steps for setting up the request. It also introduces a query structure, and explains how field attributes and linguistic analyzers can affect query outcomes.
 
@@ -47,7 +43,7 @@ A full text query is specified in a `search` parameter and consists of terms, qu
 The following [Search POST REST API](/rest/api/searchservice/documents/search-post) call illustrates a query request using `search` and other parameters.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "NY +view",
     "queryType": "simple",
@@ -91,13 +87,13 @@ To call search from within an app, use the `Azure.Document.Search` client librar
 
 In the Azure portal, when you open an index, you can work with Search Explorer alongside the index JSON definition in side-by-side tabs for easy access to field attributes. Check the **Fields** table to see which ones are searchable, sortable, filterable, and facetable while testing queries.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. In your service, select **Indexes** and choose an index.
 
 1. An index opens to the [**Search explorer**](search-explorer.md) tab so that you can query right away. Switch to **JSON view** to specify query syntax. 
 
-   Here's a full text search query expression that works for the Hotels sample index:
+   Here's a full text search query expression that works for the hotels-sample index:
 
    ```json
       {
@@ -128,7 +124,7 @@ Use a REST client to set up a request. If you need help with getting started, se
 The following example calls the REST API for full text search:
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST https://[service name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "NY +view",
     "queryType": "simple",
@@ -162,7 +158,7 @@ from azure.search.documents import SearchClient
 
 # Set up the client
 service_name = "<your-search-service-name>"
-index_name = "hotels-sample-index"
+index_name = "hotels-sample"
 api_key = "<your-query-api-key>"
 
 endpoint = f"https://{service_name}.search.windows.net"
@@ -195,7 +191,7 @@ using Azure.Search.Documents.Models;
 
 // Set up the client
 string serviceName = "<your-search-service-name>";
-string indexName = "hotels-sample-index";
+string indexName = "hotels-sample";
 string apiKey = "<your-query-api-key>";
 
 Uri endpoint = new Uri($"https://{serviceName}.search.windows.net");
@@ -262,7 +258,7 @@ Search is fundamentally a user-driven exercise, where terms or phrases are colle
 
 If you're familiar with [query types and composition](search-query-overview.md), you might remember that the parameters on a query request depend on field attributes in an index. For example, only fields marked as *searchable* and *retrievable* can be used in queries and search results. When setting the `search`, `filter`, and `orderby` parameters in your request, you should check attributes to avoid unexpected results.
 
-In the following screenshot of the [hotels sample index](search-get-started-portal.md), only the last two fields **LastRenovationDate** and **Rating** are *sortable*, a requirement for use in an `"$orderby"` only clause.
+In the following screenshot of the [hotels-sample index](search-get-started-portal.md), only the last two fields **LastRenovationDate** and **Rating** are *sortable*, a requirement for use in an `"$orderby"` only clause.
 
 :::image type="content" source="media/search-query-overview/hotel-sample-index-definition.png" alt-text="Screenshot that shows the index definition for the hotel sample.":::
 

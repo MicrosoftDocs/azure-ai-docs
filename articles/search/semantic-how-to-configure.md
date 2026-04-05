@@ -1,10 +1,6 @@
 ---
-title: Configure semantic ranker
-titleSuffix: Azure AI Search
+title: Configure Semantic Ranker
 description: Add a semantic configuration to a search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -66,7 +62,7 @@ Across all semantic configuration properties, the fields you assign must be:
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to a search service that has [semantic ranking enabled](semantic-how-to-enable-disable.md).
+1. Sign in to the [Azure portal](https://portal.azure.com) and go to a search service that has [semantic ranking enabled](semantic-how-to-enable-disable.md).
 
 1. From **Indexes** on the left-navigation pane, select an index.
 

@@ -9,7 +9,7 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 10/31/2025
+ms.date: 02/05/2026
 ms.custom: languages
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice Live API and how to configure them.
 ---
@@ -22,7 +22,7 @@ The Voice Live API supports multiple languages and configuration options. In thi
 
 ## [Speech input](#tab/speechinput)
 
-Depending on which model is being used Voice Live speech input is processed either by one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`) or by `azure speech to text` models.
+Depending on which model is being used Voice Live speech input is processed either with one of the multimodal models (for example, `gpt-realtime`, `gpt-realtime-mini`, and `phi4-mm-realtime`) or by `azure speech to text` models.
 
 ### Azure speech to text supported languages
 
@@ -30,9 +30,9 @@ Azure speech to text is used for all configuration where a non-multimodal model 
 It supports all languages documented on the [Language and voice support for the Speech service - Speech to text](./language-support.md?tabs=stt) tab.
 
 There are three options for Voice Live language processing:
-- Automatic multilingual configuration using multilingual model (default)
-- Single language configuration
-- Multilingual configuration using up to 10 defined languages
+- Automatic multilingual configuration using multilingual model (default): When setting an empty `language` configuration, Voice Live uses a multilingual model that works well for multiple languages. This is the default and recommended configuration for most customers.
+- Single language configuration: Customer can specify a single language to restrict the transcription languages detected.
+- Multilingual configuration using up to 10 defined languages: Use this ONLY if the input voice includes multiple languages that aren't fully covered by the automatic multilingual mode. The order of languages matters: the first language in the list is treated as the primary language. Note this can incur extra latency. In some cases, for example, with short sentences, transcript quality can be lower.
 
 The current multi-lingual model supports the following languages:
 - Chinese (China) [zh-CN]
@@ -51,7 +51,7 @@ The current multi-lingual model supports the following languages:
 - Spanish (Mexico) [es-MX]
 - Spanish (Spain) [es-ES]
 
-To use **Automatic multilingual configuration using multilingual model** no extra configuration is required. If you do add the `language` string to the session`session.update` message, make sure to leave it empty.
+To use **Automatic multilingual configuration using multilingual model** no extra configuration is required. If you do add the `language` string to the `session.update` message, make sure to leave it empty.
 
 ```json
 {
@@ -66,7 +66,7 @@ To use **Automatic multilingual configuration using multilingual model** no extr
 > [!NOTE]
 > The multilingual model generates results for unsupported languages, if no language is defined. In these cases transcription, quality is low. Ensure to configure defined languages, if you're setting up application with languages unsupported by the multilingual model.
 
-To configure a single or multiple languages not supported by the multimodal model, you must add them to the `language` string in the session`session.update` message. A maximum of 10 languages are supported.
+To configure a single or multiple languages not supported by the multimodal model, you must add them to the `language` string in the `session.update` message. A maximum of 10 languages are supported. When specifying multiple languages, the order matters: the first language in the list is treated as the primary language.
 
 ```json
 {
@@ -141,20 +141,17 @@ The following languages are supported by `gpt-realtime` and `gpt-realtime-mini`:
 - Vietnamese
 - Welsh
 
-Multimodal models don't require a language configuration for the general processing. If you configure input audio transcription, you can provide the transcription models with a language hint to improve transcription quality. In this case you need to add the `language`string to the session`session.update` message.
+Multimodal models don't require a language configuration for the general processing. If you configure input audio transcription, you can provide the transcription models with a single language hint as ISO-639-1 locale to improve transcription quality. In this case you need to add the `language` string to the session`session.update` message.
 
 ```json
 {
     "session": {
         "input_audio_transcription": {
             "model": "gpt-4o-transcribe",
-            "language": "English, German, French"
+            "language": "en"
         }
 }
 ```
-
-> [!NOTE]
-> Multimodal gpt models only support the following transcription models: `whisper-1`, `gpt-4o-transcribe`, and `gpt-4o-mini-transcribe`.
 
 ### phi4-mm-realtime supported languages
 
@@ -175,7 +172,7 @@ Multimodal models don't require a language configuration for the general process
 
 ## [Speech output](#tab/speechoutput)
 
-Depending on which model is being used Voice Live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-realtime` and `gpt-realtime-mini` or by `azure text to speech` voices.
+Depending on which model is being used Voice Live speech output is processed either with one of the multimodal OpenAI voices integrated into `gpt-realtime` and `gpt-realtime-mini` or by `azure text to speech` voices.
 
 ### Azure text to speech supported languages
 
@@ -209,4 +206,4 @@ If *Multilingual Voices* are used, the language output can optionally be control
 
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
 - Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
-- See the [Voice Live API reference](./voice-live-api-reference.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)

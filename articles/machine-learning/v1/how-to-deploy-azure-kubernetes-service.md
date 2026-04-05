@@ -384,4 +384,3 @@ Microsoft Defender for Cloud provides unified security management and advanced t
 * [Use TLS to secure a web service through Azure Machine Learning](how-to-secure-web-service.md)
 * [Consume an Azure Machine Learning model deployed as a web service](how-to-consume-web-service.md)
 * [Monitor and collect data from ML web service endpoints](../how-to-enable-app-insights.md)
-* [Collect data from models in production](how-to-enable-data-collection.md)

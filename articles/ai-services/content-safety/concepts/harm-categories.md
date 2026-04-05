@@ -2,13 +2,13 @@
 title: "Harm categories in Azure AI Content Safety"
 titleSuffix: Azure AI services
 description: Learn about the different content moderation flags and severity levels that the Azure AI Content Safety service returns.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: concept-article
 ms.date: 11/21/2025
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 
@@ -26,6 +26,7 @@ Content Safety recognizes four distinct categories of objectionable content.
 | Sexual  | Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one’s will. <br><br> This includes but is not limited to:<ul><li>Vulgar content</li><li>Prostitution</li><li>Nudity and Pornography</li><li>Abuse</li><li>Child exploitation, child abuse, child grooming</li></ul>   | `Sexual` |
 | Violence  | Violence describes language related to physical actions intended to hurt, injure, damage, or kill someone or something; describes weapons, guns, and related entities. <br><br>This includes, but isn't limited to:  <ul><li>Weapons</li><li>Bullying and intimidation</li><li>Terrorist and violent extremism</li><li>Stalking</li></ul>  | `Violence` |
 | Self-Harm  | Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one’s body or kill oneself. <br><br> This includes, but isn't limited to: <ul><li>Eating Disorders</li><li>Bullying and intimidation</li></ul>  | `SelfHarm` |
+| **Task Adherence** | Helps ensure AI Agents consistently behave in alignment with user instructions and task objectives. It identifies discrepancies, such as misaligned tool invocations, improper tool input or output relative to user intent, and inconsistencies between responses and customer input.  |
 
 Classification can be multi-labeled. For example, when a text sample goes through the text moderation model, it could be classified as both Sexual content and Violence.
 

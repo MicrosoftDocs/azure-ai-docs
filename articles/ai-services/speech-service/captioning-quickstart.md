@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 ms.devlang: cpp
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
@@ -15,8 +15,20 @@ zone_pivot_groups: programming-languages-speech-sdk-cli
 
 # Quickstart: Create captions with speech to text
 
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/quickstarts/captioning/python.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/captioning/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](includes/quickstarts/captioning/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/quickstarts/captioning/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -27,28 +39,16 @@ zone_pivot_groups: programming-languages-speech-sdk-cli
 [!INCLUDE [Go include](includes/quickstarts/captioning/go.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](includes/quickstarts/captioning/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](includes/quickstarts/captioning/javascript.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-objectivec"
 [!INCLUDE [ObjectiveC include](includes/quickstarts/captioning/objectivec.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-swift"
-[!INCLUDE [Swift include](includes/quickstarts/captioning/swift.md)]
-::: zone-end
-
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./includes/quickstarts/captioning/python.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-cli"
 [!INCLUDE [CLI include](includes/quickstarts/captioning/cli.md)]
+::: zone-end
+
+::: zone pivot="programming-language-swift"
+[!INCLUDE [Swift include](includes/quickstarts/captioning/swift.md)]
 ::: zone-end
 
 ## Next steps

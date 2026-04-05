@@ -65,15 +65,7 @@ Here's an example `session.update` message that configures several aspects of th
     "instructions": "You are a helpful AI assistant responding in natural, engaging language.",
     "turn_detection": {
         "type": "azure_semantic_vad",
-        "threshold": 0.3,
-        "prefix_padding_ms": 200,
-        "silence_duration_ms": 200,
-        "remove_filler_words": false,
-        "end_of_utterance_detection": {
-            "model": "semantic_detection_v1",
-            "threshold_level": "default",
-            "timeout_ms": 1000
-        },
+        "silence_duration_ms": 500,
     },
     "input_audio_noise_reduction": {"type": "azure_deep_noise_suppression"},
     "input_audio_echo_cancellation": {"type": "server_echo_cancellation"},
@@ -133,45 +125,21 @@ The Voice Live API offers conversational enhancements to provide robustness to t
 
 ### Turn Detection Parameters
 
-Turn detection is the process of detecting when the end-user started or stopped speaking. The Voice Live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` and `azure_multilingual_semantic_vad` types and the advanced `end_of_utterance_detection` are key differentiators between the Voice Live API and the Azure OpenAI Realtime API.
+Turn detection is the process of detecting when the end-user started or stopped speaking. The Voice Live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` and `azure_multilingual_semantic_vad` types are key differentiators between the Voice Live API and the Azure OpenAI Realtime API.
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
 | `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `semantic_vad` uses a semantic classifier to detect when the user has finished speaking, based on the words they have uttered. This type can only be used with the *gpt-realtime* and *gpt-realtime-mini* models.<br/><br/>Type `azure_semantic_vad` and `azure_semantic_vad_multilingual` also detects start and end of speech based on semantic meaning and can be used with *all models*. Further Azure semantic voice activity detection (VAD) can also improve turn detection by removing filler words to reduce the false alarm rate of barge-in.<br/><br/>The default value is `server_vad`. |
-| `threshold` | number | Optional | A higher threshold requires a higher confidence signal of the user trying to speak. |
-| `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. |
-| `speech_duration_ms` | integer | Optional | The duration of user's speech audio required to start detection. If not set or under 80 ms, the detector uses a default value of 80 ms. |
-| `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech. |
+| `threshold` | float | Optional | Activation threshold (0.0–1.0). A higher threshold requires a higher confidence signal of the user trying to speak (default: 0.5). Available with types `server_vad`, `azure_semantic_vad`, and `azure_semantic_vad_multilingual`. |
+| `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal (default: 300). |
+| `speech_duration_ms` | integer | Optional | The duration of user's speech audio, measured in milliseconds, required to start detection. The default value is 200 ms for `server_vad` and 80 ms for `azure_semantic_vad` and `azure_semantic_vad_multilingual`. |
+| `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech (default: 500). |
 | `remove_filler_words` | boolean | Optional | Determines whether to remove filler words to reduce the false alarm rate of barge-in.<br/>To enable it the property must be set to `true`. The detected filler words in English are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove filler words feature assumes the client plays response audio as soon as it receives them.<br/>The default value is `false`. |
-| `languages` | string[] | Optional | Language will be used to improve the `remove_filler_words` accuracy by reducing the applied languages. The type `azure_semantic_vad` primarily supports English. Type `azure_semantic_vad_multilingual` is also available to support a wider variety of languages: English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages will be ignored. |
-| `create_response` | boolean | Optional | Enable or disable whether a response is generated. |
+| `languages` | string[] | Optional | Language will be used to improve the `remove_filler_words` accuracy by reducing the applied languages (default: none). The type `azure_semantic_vad` primarily supports English. Type `azure_semantic_vad_multilingual` is also available to support a wider variety of languages: English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages will be ignored. Available with types `azure_semantic_vad` and `azure_semantic_vad_multilingual`. |
+| `create_response` | boolean | Optional | Enable or disable whether a response is generated (default: true). |
 | `eagerness` | string | Optional | This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. Only available with type `semantic_vad`. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` will let the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
-| `interrupt_response` | boolean | Optional | Enable or disable barge-in interruption (default: false). Only available with type `azure_semantic_vad` and `azure_semantic_vad_multilingual`. |
+| `interrupt_response` | boolean | Optional | Enable or disable barge-in interruption (default: true). Only available with type `azure_semantic_vad` and `azure_semantic_vad_multilingual`. |
 | `auto_truncate` | boolean | Optional | Auto-truncate on interruption (default: false). |
-| `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The Voice Live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection can be used with either VAD selection.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported values are:<br/>&nbsp;&nbsp;`semantic_detection_v1` supporting English.<br/>&nbsp;&nbsp;`semantic_detection_v1_multilingual` supporting English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi.<br/>Other languages are bypassed.<br/>- `threshold_level`: Option setting for detection threshold level (`low`, `medium`, `high` and `default`), the default equals `medium` setting. With a lower setting the probability the sentence is complete will be higher.<br/>- `timeout_ms`: Optional setting for maximum time in milliseconds to wait for more user speech. Defaults to 1000 ms. <br/><br/>End of utterance detection currently doesn't support gpt-realtime, gpt-4o-mini-realtime, and phi4-mm-realtime.|
-
-Here's an example of end of utterance detection in a session object:
-
-```json
-{
-    "session": {
-        "instructions": "You are a helpful AI assistant responding in natural, engaging language.",
-        "turn_detection": {
-            "type": "azure_semantic_vad",
-            "threshold": 0.3,
-            "prefix_padding_ms": 300,
-            "speech_duration_ms":80,
-            "silence_duration_ms": 500,
-            "remove_filler_words": false,
-            "end_of_utterance_detection": {
-                "model": "semantic_detection_v1",
-                "threshold_level": "default",
-                "timeout_ms": 1000
-            }
-        }
-    }
-}
-```
 
 ## Audio input through Azure speech to text
 
@@ -429,4 +397,4 @@ Then you can connect the avatar with the server SDP.
 ## Related content
 
 - Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
-- See the [Voice Live API reference](./voice-live-api-reference.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)

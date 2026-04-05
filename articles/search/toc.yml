@@ -180,7 +180,7 @@ items:
           href: vector-search-how-to-truncate-dimensions.md
   - name: Indexers and workflows
     items:
-    - name: Index via portal wizards
+    - name: Index via portal wizard
       href: search-import-data-portal.md
     - name: Indexers
       items:
@@ -322,10 +322,8 @@ items:
       items:
       - name: What is a knowledge store?
         href: knowledge-store-concept-intro.md
-      - name: Create a knowledge store (REST)
+      - name: Create a knowledge store
         href: knowledge-store-create-rest.md
-      - name: Create a knowledge store (portal)
-        href: knowledge-store-create-portal.md
       - name: Connect with Power BI
         href: knowledge-store-connect-power-bi.md
       - name: Projections
@@ -420,16 +418,10 @@ items:
       items:
       - name: What is multimodal search?
         href: multimodal-search-overview.md
-      - name: Tutorials
-        items:
-        - name: Vectorize images and text
-          href: tutorial-document-extraction-multimodal-embeddings.md
-        - name: Vectorize from a structured document layout
-          href: tutorial-document-layout-multimodal-embeddings.md
-        - name: Verbalize images using generative AI
-          href: tutorial-document-extraction-image-verbalization.md
-        - name: Verbalize images from a structured document layout
-          href: tutorial-document-layout-image-verbalization.md
+      - name: Tutorial (REST)
+        href: tutorial-multimodal.md
+      - name: Multimodal samples (REST)
+        href: https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/multimodal-tutorial
     - name: Other query types
       href: search-query-overview.md
   - name: Relevance and ranking
@@ -503,7 +495,7 @@ items:
       href: agentic-retrieval-how-to-answer-synthesis.md
     - name: Set retrieval reasoning effort
       href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
-    - name: Retrieve data
+    - name: Query a knowledge base (APIs or MCP)
       href: agentic-retrieval-how-to-retrieve.md
     - name: Build an end-to-end retrieval solution
       href: agentic-retrieval-how-to-create-pipeline.md
@@ -512,8 +504,10 @@ items:
 
 - name: Security
   items:
-  - name: Security in Azure AI Search
-    href: search-security-overview.md
+  - name: Built-in security
+    href: search-security-built-in.md
+  - name: Secure a search service
+    href: search-security-best-practices.md
   - name: Network access
     items:
     - name: Configure network access
@@ -634,12 +628,16 @@ items:
   items:
   - name: Enable diagnostic logging
     href: search-monitor-enable-logging.md
-  - name: Monitor data
-    href: monitor-azure-cognitive-search.md
-  - name: Monitor queries
-    href: search-monitor-queries.md
-  - name: Monitor indexer-based indexing
-    href: search-monitor-indexers.md
+  - name: Monitor and troubleshoot
+    items:
+    - name: Monitor data
+      href: monitor-azure-cognitive-search.md
+    - name: Monitor queries
+      href: search-monitor-queries.md
+    - name: Monitor indexer-based indexing
+      href: search-monitor-indexers.md
+    - name: Troubleshoot storage metrics
+      href: troubleshoot-storage-metrics.md
   - name: Visualize resource logs
     href: search-monitor-logs-powerbi.md
   - name: Analyze search performance

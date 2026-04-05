@@ -1,0 +1,178 @@
+items:
+- name: Use Foundry Tools in Microsoft Foundry portal
+  href: ../../../ai-services/connect-services-foundry-portal.md
+  displayName: cognitive,task,speech,vision,language,translator,document,intelligence,content,understanding,safety
+- name: What are Foundry Tools?
+  href: ../../../ai-services/what-are-ai-services.md
+- name:  Content Understanding
+  items:
+  - name: What is Azure Content Understanding?
+    href: ../../../ai-services/content-understanding/overview.md?context=/azure/foundry-classic/context/context
+  - name: Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal
+    href: ../../../ai-services/content-understanding/how-to/content-understanding-foundry-classic.md?context=/azure/foundry-classic/context/context
+- name:  Document Intelligence
+  items:
+  - name: What is Document Intelligence in Foundry Tools?
+    href: ../../../ai-services/document-intelligence/overview.md?context=/azure/foundry-classic/context/context
+- name:  Language
+  items:
+  - name: What is Language in Foundry Tools?
+    href: ../../../ai-services/language-service/overview.md?context=/azure/foundry-classic/context/context
+  - name: Azure Language tools and agents
+    href: ../../../ai-services/language-service/concepts/foundry-tools-agents.md?context=/azure/foundry-classic/context/context
+  - name: Conversation Language Understanding
+    items:
+    - name: "Quickstart: Get started"
+      href: ../../../ai-services/language-service/conversational-language-understanding/quickstart.md?context=/azure/foundry-classic/context/context&pivots=rest-api
+    - name: "Quickstart: Multi-turn conversations"
+      href: ../../../ai-services/language-service/conversational-language-understanding/concepts/multi-turn-conversations.md?context
+  - name: Key Phrase Extraction
+    href: ../../../ai-services/language-service/key-phrase-extraction/quickstart.md?context=/azure/foundry-classic/context/context
+  - name: Language Detection
+    href: ../../../ai-services/language-service/language-detection/quickstart.md?context=/azure/foundry-classic/context/context
+  - name: Named Entity Recognition
+    href: ../../../ai-services/language-service/named-entity-recognition/quickstart.md?context=/azure/foundry-classic/context/context
+  - name: Custom Named Entity Recognition
+    href: ../../../ai-services/language-service/custom-named-entity-recognition/quickstart.md?context=/azure/foundry-classic/context/context&pivots=rest-api
+  - name: Native Document Support
+    href: ../../../ai-services/language-service/native-document-support/use-native-documents.md?context=/azure/foundry-classic/context/context
+  - name: Orchestration Workflow
+    href: ../../../ai-services/language-service/orchestration-workflow/quickstart.md?context=/azure/foundry-classic/context/context
+  - name: Personally Identifiable Information detection
+    items:
+    - name: Quickstart
+      href: ../../../ai-services/language-service/personally-identifiable-information/quickstart.md?context=/azure/foundry-classic/context/context
+    - name: How to redact PII from text
+      href: ../../../ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii.md?context=/azure/foundry-classic/context/context
+  - name: Sentiment Analysis
+    href: ../../../ai-services/language-service/sentiment-opinion-mining/quickstart.md?context=/azure/foundry-classic/context/context
+  - name: Summarization
+    href: ../../../ai-services/language-service/summarization/quickstart.md?context=/azure/foundry-classic/context/context
+  - name: Text Analytics for Health
+    href: ../../../ai-services/language-service/text-analytics-for-health/quickstart.md?context=/azure/foundry-classic/context/context
+  - name: Text Classification
+    href: ../../../ai-services/language-service/custom-text-classification/quickstart.md?context=/azure/foundry-classic/context/context
+- name:  Speech
+  items:
+  - name: What is the Speech service?
+    href: ../../../ai-services/speech-service/overview.md?context=/azure/foundry-classic/context/context
+  - name: Voice live with Foundry models quickstart
+    href: ../../../ai-services/speech-service/voice-live-quickstart.md?context=/azure/foundry-classic/context/context
+  - name: Voice live with Foundry agents quickstart
+    href: ../../../ai-services/speech-service/voice-live-agents-quickstart-classic.md?context=/azure/foundry-classic/context/context
+  - name: Real-time speech to text
+    href: ../../../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/foundry-classic/context/context
+  - name: Fast transcription
+    href: ../../../ai-services/speech-service/fast-transcription-create.md?context=/azure/foundry-classic/context/context
+  - name: Fine-tune your speech model
+    items:
+    - name: Custom speech fine-tuning
+      href: ../../../ai-services/speech-service/how-to-custom-speech-create-project.md?context=/azure/foundry-classic/context/context
+    - name: Custom voice fine-tuning
+      href: ../../../ai-services/speech-service/professional-voice-create-project.md?context=/azure/foundry-classic/context/context
+    - name: Custom avatar fine-tuning
+      href: ../../../ai-services/speech-service/text-to-speech-avatar/custom-avatar-create.md?context=/azure/foundry-classic/context/context
+  - name: Pronunciation assessment
+    href: ../../../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/foundry-classic/context/context
+  - name: Speech translation
+    href: ../../../ai-services/speech-service/get-started-speech-translation.md?context=/azure/foundry-classic/context/context
+  - name: Video translation
+    href: ../../../ai-services/speech-service/video-translation-get-started.md?context=/azure/foundry-classic/context/context
+  - name: Audio content creation
+    href: ../../../ai-services/speech-service/how-to-audio-content-creation.md?context=/azure/foundry-classic/context/context
+- name:  Translator
+  items:
+  - name: What is Translator in Foundry Tools?
+    href: ../../../ai-services/translator/overview.md?context=/azure/foundry-classic/context/context
+  - name: Translator in Foundry Tools language support
+    href: ../../../ai-services/translator/language-support.md?context=/azure/foundry-classic/context/context
+  - name: Text translation
+    href: ../../../ai-services/translator/text-translation/overview.md?context=/azure/foundry-classic/context/context
+  - name: Document translation
+    href: ../../../ai-services/translator/document-translation/overview.md?context=/azure/foundry-classic/context/context
+  - name: Custom Translator
+    href: ../../../ai-services/translator/custom-translator/overview.md?context=/azure/foundry-classic/context/context
+  - name: Prebuilt solutions
+    href: ../../../ai-services/translator/solutions/overview.md?context=/azure/foundry-classic/context/context
+- name:  Vision
+  items:
+  - name: Azure Image Analysis
+    items:
+    - name: What is Image Analysis?
+      href: /azure/ai-services/computer-vision/overview-image-analysis?context=/azure/foundry-classic/context/context
+    - name: Quickstart
+      href: /azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40?context=/azure/foundry-classic/context/context
+    - name: Optical Character Recognition concepts
+      href: /azure/ai-services/computer-vision/concept-ocr?context=/azure/foundry-classic/context/context
+    - name: Image captioning concepts
+      href: /azure/ai-services/computer-vision/concept-describe-images-40?context=/azure/foundry-classic/context/context
+  - name: Azure AI Face
+    items:
+    - name: What is Azure AI Face service?
+      href: /azure/ai-services/computer-vision/overview-identity?context=/azure/foundry-classic/context/context
+    - name: Quickstart 
+      href: /azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library?context=/azure/foundry-classic/context/context
+    - name: Face detection concepts
+      href: /azure/ai-services/computer-vision/concept-face-detection?context=/azure/foundry-classic/context/context
+    - name: Face recognition concepts
+      href: /azure/ai-services/computer-vision/concept-face-recognition?context=/azure/foundry-classic/context/context
+    - name: Liveness detection tutorial
+      href: /azure/ai-services/computer-vision/tutorials/liveness?context=/azure/foundry-classic/context/context
+- name: Deploy Containers
+  items:
+  - name: Foundry Tools container overview
+    href: ../../../ai-services/cognitive-services-container-support.md?context=/azure/foundry-classic/context/context
+  - name: FAQ for Foundry Tools containers
+    href: ../../../ai-services/containers/container-faq.yml
+  - name: Use containers in disconnected environments
+    href: ../../../ai-services/containers/disconnected-containers.md?context=/azure/foundry-classic/context/context
+  - name: FAQ for disconnected containers
+    href: ../../../ai-services/containers/disconnected-container-faq.yml?context=/azure/foundry-classic/context/context
+  - name: Container recipes
+    items:
+    - name: Container reuse
+      href: ../../../ai-services/containers/container-reuse-recipe.md?context=/azure/foundry-classic/context/context
+    - name: Deploy to Azure Container Instance
+      href: ../../../ai-services/containers/azure-container-instance-recipe.md?context=/azure/foundry-classic/context/context
+    - name: Deploy with Docker Compose
+      href: ../../../ai-services/containers/docker-compose-recipe.md?context=/azure/foundry-classic/context/context
+  - name: Other Container Services
+    items:
+    - name: Azure Container Instances
+      href: /azure/container-instances/container-instances-tutorial-prepare-app
+    - name: Azure Container Registry
+      href: /azure/container-registry/container-registry-get-started-azure-cli
+    - name: Azure Kubernetes Service (AKS)
+      href: /azure/aks/tutorial-kubernetes-prepare-app
+- name: Foundry Tool Security
+  items:
+  - name: Security features
+    href: ../../../ai-services/security-features.md?context=/azure/foundry-classic/context/context
+  - name: Authenticate requests
+    href: ../../../ai-services/authentication.md?context=/azure/foundry-classic/context/context
+  - name: Disable local authentication
+    href: ../../../ai-services/disable-local-auth.md
+  - name: Use Azure key vault
+    href: ../../../ai-services/use-key-vault.md
+  - name: Rotate keys
+    href: ../../../ai-services/rotate-keys.md
+  - name: Use environment variables
+    href: ../../../ai-services/cognitive-services-environment-variables.md
+  - name: Configure customer-managed keys
+    href: ../../../ai-services/encryption/cognitive-services-encryption-keys-portal.md
+  - name: Use virtual networks
+    href: ../../../ai-services/cognitive-services-virtual-networks.md?context=/azure/foundry-classic/context/context
+  - name: Configure data loss prevention
+    href: ../../../ai-services/cognitive-services-data-loss-prevention.md
+  - name: Security controls by Azure Policy
+    href: ../../../ai-services//security-controls-policy.md
+  - name: Security baseline
+    href: /security/benchmark/azure/baselines/cognitive-services-security-baseline?context=/azure/foundry-classic/context/context
+- name: Enable diagnostic logging for Foundry Tools
+  href: ../../../ai-services/diagnostic-logging.md?context=/azure/foundry-classic/context/context
+- name: Purchase commitment tier pricing
+  href: ../../../ai-services/commitment-tier.md
+- name: Azure built-in policy
+  href: ../../../ai-services/policy-reference.md
+- name: Custom subdomains for Foundry Tools
+  href: ../../../ai-services/cognitive-services-custom-subdomains.md

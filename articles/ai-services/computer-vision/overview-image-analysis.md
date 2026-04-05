@@ -25,10 +25,6 @@ You can use Image Analysis through a client library SDK or by calling the [REST 
 > [!div class="nextstepaction"]
 > [Quickstart](quickstarts-sdk/image-analysis-client-library-40.md)
 
-Or, you can try out the capabilities of Image Analysis quickly and easily in your browser by using Vision Studio.
-
-> [!div class="nextstepaction"]
-> [Try Vision Studio](https://portal.vision.cognitive.azure.com/)
 
 This documentation contains the following types of articles:
 * The [quickstarts](./quickstarts-sdk/image-analysis-client-library.md) are step-by-step instructions that let you make calls to the service and get results in a short period of time. 
@@ -56,7 +52,7 @@ You can analyze images to get insights about their visual features and character
 |**Get the area of interest / smart crop** |Analyze the contents of an image to return the coordinates of the *area of interest* that matches a specified aspect ratio. Computer Vision returns the bounding box coordinates of the region, so the calling application can modify the original image as desired. <br/><br/>The version 4.0 smart cropping model is a more advanced implementation and works with a wider range of input images. It's only available in certain geographic regions. See [Region availability](#region-availability). | [Generate a thumbnail (v3.2)](concept-generating-thumbnails.md)<br/>[(v4.0 preview)](concept-generate-thumbnails-40.md)|
 |**Detect brands** (v3.2 only) | Identify commercial brands in images or videos from a database of thousands of global logos. You can use this feature, for example, to discover which brands are most popular on social media or most prevalent in media product placement. |[Detect brands](concept-brand-detection.md)|
 |**Categorize an image** (v3.2 only)|Identify and categorize an entire image, using a [category taxonomy](Category-Taxonomy.md) with parent/child hereditary hierarchies. Categories can be used alone, or with our new tagging models.<br/><br/>Currently, English is the only supported language for tagging and categorizing images. |[Categorize an image](concept-categorizing-images.md)|
-| **Detect faces** (v3.2 only) |Detect faces in an image and provide information about each detected face. Azure Vision returns the coordinates, rectangle, gender, and age for each detected face.<br/><br/>You can also use the dedicated [Face API](./overview-identity.md) for these purposes. It provides more detailed analysis, such as facial identification and pose detection.|[Detect faces](concept-detecting-faces.md)|
+| **Detect faces** (v3.2 only) |Detect faces in an image and provide information about each detected face. Azure Vision returns the coordinates, rectangle, gender, and age for each detected face.<br/><br/>You can also use the dedicated [Face API](../face/overview-identity.md) for these purposes. It provides more detailed analysis, such as facial identification and pose detection.|[Detect faces](concept-detecting-faces.md)|
 |**Detect image types** (v3.2 only)|Detect characteristics about an image, such as whether an image is a line drawing or the likelihood of whether an image is clip art.| [Detect image types](concept-detecting-image-types.md)|
 | **Detect domain-specific content** (v3.2 only)|Use domain models to detect and identify domain-specific content in an image, such as celebrities and landmarks. For example, if an image contains people, Azure Vision can use a domain model for celebrities to determine if the people detected in the image are known celebrities.| [Detect domain-specific content](concept-detecting-domain-content.md)|
 |**Detect the color scheme** (v3.2 only) |Analyze color usage within an image. Azure Vision can determine whether an image is black & white or color and, for color images, identify the dominant and accent colors.| [Detect the color scheme](concept-detecting-color-schemes.md)|

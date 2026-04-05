@@ -33,9 +33,10 @@ Speech Transcription SDK code samples are available in the documentation and Git
 
 ### Docs samples
 
-At the top of documentation pages that contain samples use the options to select your programming language.
-
-:::image type="content" source="./media/sdk/pivot-programming-languages-speech-sdk.png" alt-text="Screenshot showing how to select a programming language in the documentation.":::
+| Programming language | Quickstart doc |
+|----------------------|--------------------|
+| Java | [Fast transcription](/azure/ai-services/speech-service/fast-transcription-create?pivots=programming-language-java)<br><br>[LLM speech](/azure/ai-services/speech-service/llm-speech?pivots=programming-language-java) |
+| Python | [Fast transcription](/azure/ai-services/speech-service/fast-transcription-create?pivots=programming-language-python)<br><br>[LLM speech](/azure/ai-services/speech-service/llm-speech?pivots=programming-language-python) |
 
 If a sample isn't available in your preferred programming language, you can select another programming language to get started and learn about the concepts, or see the reference and samples linked from the beginning of the article.
 
@@ -60,3 +61,4 @@ See also [Foundry Tools support and help options](../cognitive-services-support-
 
 * [Try the Fast Transcription API](./fast-transcription-create.md)
 - [Try LLM Speech API](./llm-speech.md)
+- [Learn about the Speech SDK](./speech-sdk.md) for broader speech capabilities

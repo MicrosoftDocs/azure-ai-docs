@@ -1,16 +1,13 @@
 ---
-title: Create a hybrid query
-titleSuffix: Azure AI Search
-description: Learn how to build queries for hybrid search.
-author: HeidiSteen
-ms.author: heidist
+title: Create a Hybrid Query
+description: Learn how to create hybrid queries that target an index in Azure AI Search.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 02/27/2026
 ---
 
 # Create a hybrid query in Azure AI Search
@@ -26,16 +23,13 @@ In this article, learn how to:
 
 By the end of this article, you can execute hybrid queries that combine keyword and vector search with optional semantic ranking.
 
-> [!TIP]
-> For immediate code examples, skip to [Set up a hybrid query](#set-up-a-hybrid-query).
-
 ## Prerequisites
 
-+ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
++ An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-+ A search index containing `searchable` vector and nonvector fields. We recommend the [**Import data (new)** wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
++ A search index containing `searchable` vector and nonvector fields. We recommend the [**Import data** wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
 
 + **Permissions**: You need **Search Index Data Reader** to query an index. To create or update an index, you need **Search Index Data Contributor**. For more information, see [Connect using roles](search-security-rbac.md).
 
@@ -48,7 +42,7 @@ By the end of this article, you can execute hybrid queries that combine keyword 
 
 + (Optional) If you want built-in text-to-vector conversion of a query string, [create and assign a vectorizer](vector-search-how-to-configure-vectorizer.md) to vector fields in the search index.
 
-## Choose an API or tool
+## Choose an API, tool, and workable pattern
 
 + Search Explorer in the Azure portal (supports both stable and preview API search syntax) has a JSON view that lets you paste in a hybrid request.
 
@@ -56,7 +50,39 @@ By the end of this article, you can execute hybrid queries that combine keyword 
 
 + [Stable REST APIs](/rest/api/searchservice/documents/search-post) or a recent preview API version if you're using preview features like [maxTextRecallSize and countAndFacetMode(preview)](#set-maxtextrecallsize-and-countandfacetmode).
 
-  For readability, we use REST examples to explain how the APIs work. You can use a REST client like Visual Studio Code with the REST extension to build hybrid queries. You can also use the Azure SDKs. For more information, see [Quickstart: Vector search](search-get-started-vector.md).
+    For readability, we use REST examples to explain how the APIs work. You can use a REST client like Visual Studio Code with the REST extension to build hybrid queries. You can also use the Azure SDKs. For more information, see [Quickstart: Vector search](search-get-started-vector.md).
+
+### Workable hybrid patterns
+
+If you're new to hybrid search, pick one pattern and tune in small steps. Don't start with maximum vector recall, large text recall, and semantic reranking in the same request.
+
++ **Balanced hybrid (default)**: Use this first for most workloads. Start with `k` in the 30 to 50 range, `top` in the 10 to 20 range, and enable semantic ranking only when it improves measured relevance.
+
++ **Recall-first hybrid**: Use this for difficult queries where coverage is the goal. Increase `maxTextRecallSize` gradually and keep vector settings moderate. Expect higher merge cost.
+
++ **Precision-first hybrid**: Use this for low latency at scale. Keep `k` and `top` modest, apply selective filters, and avoid semantic features that don't add value.
+
+### Why overloaded queries throttle
+
+Hybrid queries run text and vector retrieval in parallel and then merge results with RRF. If you increase lexical contribution (for example, by changing hybrid weighting in favor of BM25), you increase the number of text candidates that must be merged with vector candidates. If you combine this with expensive vector settings and semantic reranking, CPU and memory pressure rises quickly.
+
+On smaller capacity configurations, this extra merge and rerank work can cause:
+
++ Higher latency and p95/p99 spikes
++ 429 throttling responses
++ Client-observed dropped or timed-out requests when retry behavior isn't configured
+
+### Tuning order before scaling out
+
+Tune query and vector settings before you add replicas:
+
+1. Reduce expensive vector search settings first.
+    For example, if `efSearch` and `maxConnections` are set aggressively, lower them before scaling out (for example, reduce `efSearch` from around 800 to 128 to 192, and reduce `maxConnections` from 64 to 32).
+1. Limit semantic reranking scope to cases that benefit from it.
+1. Re-test latency and 429 rates under representative load.
+1. Scale replicas only if throttling persists after tuning.
+
+Use this sequence to improve stability first and control cost before you scale.
 
 ## Set up a hybrid query
 
@@ -66,7 +92,7 @@ Results are returned in plain text, including vectors in fields marked as `retri
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and find your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management** > **Indexes**, select an index that has vectors and non-vector content. [Search Explorer](search-explorer.md) is the first tab.
 
@@ -185,7 +211,7 @@ from azure.search.documents.models import VectorizedQuery
 
 # Set up the client
 endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
-index_name = "hotels-sample-index"
+index_name = "hotels-sample"
 credential = DefaultAzureCredential()
 
 client = SearchClient(endpoint=endpoint, index_name=index_name, credential=credential)
@@ -227,7 +253,7 @@ using Azure.Search.Documents.Models;
 
 // Set up the client
 string endpoint = Environment.GetEnvironmentVariable("AZURE_SEARCH_ENDPOINT");
-string indexName = "hotels-sample-index";
+string indexName = "hotels-sample";
 
 SearchClient client = new SearchClient(
     new Uri(endpoint),

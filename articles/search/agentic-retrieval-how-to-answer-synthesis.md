@@ -1,13 +1,9 @@
 ---
 title: Enable Answer Synthesis
-titleSuffix: Azure AI Search
 description: Learn how to enable answer synthesis in a knowledge base or retrieve request in Azure AI Search. At query time, the knowledge base uses your deployed LLM to produce natural-language answers with citations to your knowledge sources.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 03/25/2026
 ---
 
 # Use answer synthesis for citation-backed responses in Azure AI Search
@@ -30,9 +26,13 @@ You can enable answer synthesis in two ways:
 
 ## Prerequisites
 
-+ A knowledge base that uses the [2025-11-01-preview syntax](agentic-retrieval-how-to-migrate.md).
++ An Azure AI Search service with a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that specifies an LLM.
 
-+ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview Azure SDK package that provides the knowledge base REST APIs.
++ Permissions to update the knowledge base. Configure [keyless authentication](search-get-started-rbac.md) with the **Search Service Contributor** role assigned to your user account (recommended) or use an [API key](search-security-api-keys.md).
+
++ For outbound calls to the LLM, the search service must have a [managed identity](search-how-to-managed-identities.md) with **Cognitive Services User** permissions on the Microsoft Foundry resource.
+
++ The [2025-11-01-preview](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) REST API or an equivalent Azure SDK preview package: [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md)
 
 ## Enable answer synthesis in a knowledge base
 
@@ -87,7 +87,7 @@ To enable answer synthesis in a retrieve request:
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview  HTTP/1.1
 Content-Type: application/json
 api-key: {{api-key}}
-        
+
 {
     "messages": [
         {

@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Analyze image content with Java"
 description: In this quickstart, get started using the Azure AI Content Safety Java SDK to analyze image content for objectionable material.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
 ms.date: 03/07/2024
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 [Reference documentation](/java/api/overview/azure/ai-contentsafety-readme) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/contentsafety/azure-ai-contentsafety/src) | [Artifact (Maven)](https://central.sonatype.com/artifact/com.azure/azure-ai-contentsafety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/java/1.0.0)

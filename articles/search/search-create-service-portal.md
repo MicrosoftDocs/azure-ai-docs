@@ -1,10 +1,8 @@
 ---
-title: 'Create a Search Service in the Azure portal'
-titleSuffix: Azure AI Search
+title: Create a Search Service in the Azure Portal
 description: Learn how to set up an Azure AI Search service in the Azure portal. Choose a resource group, region, and pricing tier.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
@@ -19,7 +17,7 @@ ms.custom:
 
 [Azure AI Search](search-what-is-azure-search.md) is an information retrieval platform for the enterprise. It supports traditional search and conversational, AI-driven search for "chat with your data" experiences across your proprietary content.
 
-The easiest way to create a search service is through the [Azure portal](https://portal.azure.com/), which is covered in this article.
+The easiest way to create a search service is through the [Azure portal](https://portal.azure.com), which is covered in this article.
 
 [![Animated GIF showing how to create an Azure AI Search service in the Azure portal.](./media/search-create-service-portal/AnimatedGif-AzureSearch-small.gif)](./media/search-create-service-portal/AnimatedGif-AzureSearch.gif#lightbox)
 
@@ -41,7 +39,7 @@ Some properties are fixed for the lifetime of the search service. Before you cre
 | [Name](#name-your-service) | Becomes part of the URL endpoint. The name must be unique and follow naming rules. |
 | [Region](search-region-support.md) | Determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need. |
 | [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. After you create your service, you can [switch between Basic and Standard (S1, S2, and S3) tiers](search-capacity-planning.md#change-your-pricing-tier). |
-| [Compute type](search-security-overview.md#data-in-use) | Determines virtualization and security model. You can choose between standard VMs (recommended) and confidential VMs, which are intended for select workloads requiring data-in-use privacy and isolation. |
+| [Compute type](search-security-best-practices.md#optional-enable-confidential-computing) | Determines virtualization and security model. You can choose between standard VMs (recommended) and confidential VMs, which are intended for select workloads requiring data-in-use privacy and isolation. |
 ## Subscribe to Azure
 
 Azure AI Search requires a free or Standard Azure subscription.
@@ -53,7 +51,7 @@ To try Azure AI Search for free, [start a trial subscription](https://azure.micr
 
 ## Find the Azure AI Search offering
 
-1. Sign in to the [Azure portal](https://portal.azure.com/).
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
 1. In the upper-left corner of your dashboard, select **Create a resource**.
 
@@ -149,7 +147,7 @@ The compute type determines the virtualization and security model used to deploy
 
 + **Confidential** (10% surcharge) uses [Azure confidential computing](/azure/confidential-computing/use-cases-scenarios) to isolate processing in a hardware-based trusted execution environment, protecting unencrypted data in use from unauthorized access. Recommended only if you have advanced privacy, compliance, or regulatory requirements.
 
-Confidential computing has limited regional availability, disables or restricts certain features, and increases the cost of running your search service. For a detailed comparison of both compute types, see [Data in use](search-security-overview.md#data-in-use).
+Confidential computing has limited regional availability, disables or restricts certain features, and increases the cost of running your search service. For a detailed comparison of both compute types, see [(Optional) Enable confidential computing](search-security-best-practices.md#optional-enable-confidential-computing).
 
 ## Create your service
 
@@ -167,7 +165,7 @@ When you create a search service, key-based authentication is the default, but i
 
 To enable role-based access for your service:
 
-1. Go to your search service in the [Azure portal](https://portal.azure.com/).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Keys**. You can connect to your service using [API keys](search-security-api-keys.md), [Azure roles](search-security-rbac.md), or both. Select **Both** until you assign roles, after which you can select **Role-based access control**.
 
@@ -186,7 +184,7 @@ Adding resources will increase your monthly bill. Use the [pricing calculator](h
 
 To scale your service:
 
-1. Go to your search service in the [Azure portal](https://portal.azure.com/).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Scale**.
 
@@ -217,7 +215,7 @@ You must have Owner or Contributor permissions for the subscription to request q
 
 To request more subscription quota:
 
-1. Go to your dashboard in the [Azure portal](https://portal.azure.com/).
+1. Go to your dashboard in the [Azure portal](https://portal.azure.com).
 
 1. Use the search box to find the **Quotas** service.
 

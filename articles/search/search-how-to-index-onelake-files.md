@@ -1,13 +1,10 @@
 ---
-title: OneLake indexer
-titleSuffix: Azure AI Search
+title: OneLake Indexer
 description: Set up a OneLake indexer to automate indexing of content and metadata from Microsoft OneLake files and shortcuts.
-author: gmndrg
-ms.author: gimondra
-manager: nitinme
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/21/2025
+ms.date: 02/17/2026
 ms.custom:
   - build-2024
   - ignite-2024
@@ -23,8 +20,7 @@ To configure and run the indexer, you can use:
 
 + [Data Source REST API](/rest/api/searchservice/data-sources/create-or-update) with an [Indexer REST API](/rest/api/searchservice/indexers/create-or-update)
 + An Azure SDK package that provides the feature
-+ [**Import data** wizard](search-get-started-portal.md) in the Azure portal
-+ [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
++ [**Import data** wizard](search-import-data-portal.md) in the Azure portal.
 
 This article uses the REST APIs to illustrate each step.
   
@@ -44,7 +40,9 @@ This article uses the REST APIs to illustrate each step.
 
 + An AI Search service, basic pricing tier or higher, configured for either a [system managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) or [user-assigned assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity). The AI Search service must reside within the same tenant as the Microsoft Fabric workspace.
   
-+ A Contributor role assignment in the Microsoft Fabric workspace where the lakehouse is located. Steps are outlined in the [Grant permissions](#assign-service-permissions) section of this article.
++ An Administrator or Contributor role assignment in the Microsoft Fabric workspace where the lakehouse is located. Steps are outlined in the [Grant permissions](#assign-service-permissions) section of this article.
+
++ Allow [access to OneLake data from applications that are outside of the Fabric environment](/fabric/onelake/security/get-started-security#allow-apps-running-outside-of-fabric-to-access-data-via-onelake). 
 
 + A [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
@@ -95,6 +93,10 @@ The following OneLake shortcuts are supported by the OneLake files indexer:
 + [Amazon S3 shortcut](/fabric/onelake/create-s3-shortcut)
 
 + [Google Cloud Storage shortcut](/fabric/onelake/create-gcs-shortcut)
+
+
+> [!IMPORTANT]
+> Failing to meet any of the prerequisites, or attempting an operation covered by the documented limitations, will cause errors when listing items in the lakehouse.
 
 ## Prepare data for indexing
 
@@ -472,6 +474,6 @@ There are five indexer properties that control the indexer's response when error
 
 ## Next steps
 
-Review how the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) works and try it out for this indexer. You can use [integrated vectorization](vector-search-integrated-vectorization.md) to chunk and create embeddings for vector or hybrid search using a default schema.
+Review how the [**Import data** wizard](search-get-started-portal-import-vectors.md) works and try it out for this indexer. You can use [integrated vectorization](vector-search-integrated-vectorization.md) to chunk and create embeddings for vector or hybrid search using a default schema.
 
 <!-- + Check out [this Python demo](add a link to demo location) that shows how to set this up using code. -->

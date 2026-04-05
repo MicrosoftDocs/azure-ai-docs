@@ -1,15 +1,11 @@
 ---
-title: Lucene query syntax
-titleSuffix: Azure AI Search
+title: Lucene Query Syntax
 description: Reference for the full Lucene query syntax, as used in Azure AI Search for wildcard, fuzzy search, RegEx, and other advanced query constructs.
-manager: nitinme
-author: bevloh
-ms.author: beloh
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 12/11/2024
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 ---
 
@@ -24,7 +20,7 @@ To use full Lucene syntax, set the queryType to `full` and pass in a query expre
 The following example is a search request constructed using the full syntax. This particular example shows in-field search and term boosting. It looks for hotels where the category field contains the term `budget`. Any documents containing the phrase `"recently renovated"` are ranked higher as a result of the term boost value (3).  
 
 ```http
-POST /indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST /indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
   "queryType": "full",
   "search": "category:budget AND \"recently renovated\"^3",

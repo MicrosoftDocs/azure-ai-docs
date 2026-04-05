@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.reviewer: shshubhe
 ms.author: scottpolly
 author: s-polly
-ms.date: 05/23/2025
+ms.date: 03/26/2026
 ms.topic: how-to
 zone_pivot_groups: azureml-portal-cli-python
 ms.custom:
@@ -20,33 +20,33 @@ ms.custom:
   - sfi-image-nochange
 ---
 
-# Workspace Managed Virtual Network Isolation
+# Workspace managed virtual network isolation
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-Azure Machine Learning provides support for managed virtual network (managed virtual network) isolation. Managed virtual network isolation streamlines and automates your network isolation configuration with a built-in, workspace-level Azure Machine Learning managed virtual network. The managed virtual network secures your managed Azure Machine Learning resources, such as compute instances, compute clusters, serverless compute, and managed online endpoints. 
+Azure Machine Learning supports managed virtual network (managed virtual network) isolation. Managed virtual network isolation streamlines and automates your network isolation configuration by using a built-in, workspace-level Azure Machine Learning managed virtual network. The managed virtual network secures your managed Azure Machine Learning resources, such as compute instances, compute clusters, serverless compute, and managed online endpoints. 
 
-Securing your workspace with a *managed network* provides network isolation for __outbound__ access from the workspace and managed computes. An *Azure Virtual Network that you create and manage* is used to provide network isolation __inbound__ access to the workspace. For example, a private endpoint for the workspace is created in your Azure Virtual Network. Any clients connecting to the virtual network can access the workspace through the private endpoint. When running jobs on managed computes, the managed network restricts what the compute can access.
+Securing your workspace with a *managed network* provides network isolation for __outbound__ access from the workspace and managed computes. An *Azure Virtual Network that you create and manage* provides network isolation __inbound__ access to the workspace. For example, you create a private endpoint for the workspace in your Azure Virtual Network. Any clients connecting to the virtual network can access the workspace through the private endpoint. When you run jobs on managed computes, the managed network restricts what the compute can access.
 
-## Managed Virtual Network Architecture
+## Managed virtual network architecture
 
-When you enable managed virtual network isolation, a managed virtual network is created for the workspace. Managed compute resources you create for the workspace automatically use this managed virtual network. The managed virtual network can use private endpoints for Azure resources that are used by your workspace, such as Azure Storage, Azure Key Vault, and Azure Container Registry. 
+When you enable managed virtual network isolation, the workspace creates a managed virtual network. Managed compute resources you create for the workspace automatically use this managed virtual network. The managed virtual network can use private endpoints for Azure resources that your workspace uses, such as Azure Storage, Azure Key Vault, and Azure Container Registry. 
 
-There are two different configuration modes for outbound traffic from the managed virtual network:
+Two configuration modes exist for outbound traffic from the managed virtual network:
 
 > [!TIP]
-> Regardless of the outbound mode you use, traffic to Azure resources can be configured to use a private endpoint. For example, you might allow all outbound traffic to the internet, but restrict communication with Azure resources by adding outbound rules for the resources.
+> Regardless of the outbound mode you use, you can configure traffic to Azure resources to use a private endpoint. For example, you might allow all outbound traffic to the internet, but restrict communication with Azure resources by adding outbound rules for the resources.
 
 | Outbound mode | Description | Scenarios |
 | ----- | ----- | ----- |
-| Allow internet outbound | Allow all internet outbound traffic from the managed virtual network. | You want unrestricted access to machine learning resources on the internet, such as python packages or pretrained models.<sup>1</sup> |
-| Allow only approved outbound | Outbound traffic is allowed by specifying service tags. | * You want to minimize the risk of data exfiltration, but you need to prepare all required machine learning artifacts in your private environment.</br>* You want to configure outbound access to an approved list of services, service tags, or FQDNs. |
+| Allow internet outbound | Allow all internet outbound traffic from the managed virtual network. | You want unrestricted access to machine learning resources on the internet, such as Python packages or pretrained models.<sup>1</sup> |
+| Allow only approved outbound | Specify service tags to allow outbound traffic. | * You want to minimize the risk of data exfiltration, but you need to prepare all required machine learning artifacts in your private environment.</br>* You want to configure outbound access to an approved list of services, service tags, or FQDNs. |
 | Disabled | Inbound and outbound traffic isn't restricted or you're using your own Azure Virtual Network to protect resources. | You want public inbound and outbound from the workspace, or you're handling network isolation with your own Azure virtual network. |
 
-1. You can use outbound rules with _allow only approved outbound_ mode to achieve the same result as using allow internet outbound. The differences are:
+1. You can use outbound rules with _allow only approved outbound_ mode to achieve the same result as using _allow internet outbound_. The differences are:
 
 * You must add rules for each outbound connection you need to allow.
-* Adding FQDN outbound rules __increase your costs__ as this rule type uses Azure Firewall. For more information, see [Pricing](#pricing)
+* Adding FQDN outbound rules __increase your costs__ as this rule type uses Azure Firewall. For more information, see [Pricing](#pricing).
 * The default rules for _allow only approved outbound_ are designed to minimize the risk of data exfiltration. Any outbound rules you add might increase your risk.
 
 The managed virtual network is preconfigured with [required default rules](#list-of-required-rules). It's also configured for private endpoint connections to your workspace, workspace's default storage, container registry, and key vault __if they're configured as private__ or __the workspace isolation mode is set to allow only approved outbound__. After choosing the isolation mode, you only need to consider other outbound requirements you might need to add.
@@ -63,16 +63,16 @@ The following diagram shows a managed virtual network configured to __allow only
 :::image type="content" source="./media/how-to-managed-network/only-approved-outbound.svg" alt-text="Diagram of managed virtual network isolation configured for allow only approved outbound." lightbox="./media/how-to-managed-network/only-approved-outbound.svg":::
 
 > [!NOTE]
-> Once a managed VNet workspace is configured to __allow internet outbound__, the workspace can't be reconfigured to __disabled__. Similarly, once a managed VNet workspace is configured to __allow only approved outbound__, the workspace can't be reconfigured to __allow internet outbound__.
+> After you configure a managed VNet workspace to __allow internet outbound__, you can't reconfigure the workspace to __disabled__. Similarly, after you configure a managed VNet workspace to __allow only approved outbound__, you can't reconfigure the workspace to __allow internet outbound__.
 
 
 ### Azure Machine Learning studio
 
-If you want to use the integrated notebook or create datasets in the default storage account from studio, your client needs access to the default storage account. Create a _private endpoint_ or _service endpoint_ for the default storage account in the Azure Virtual Network that the clients use.
+To use the integrated notebook or create datasets in the default storage account from studio, your client needs access to the default storage account. Create a _private endpoint_ or _service endpoint_ for the default storage account in the Azure Virtual Network that the clients use.
 
 Part of Azure Machine Learning studio runs locally in the client's web browser, and communicates directly with the default storage for the workspace. Creating a private endpoint or service endpoint (for the default storage account) in the client's virtual network ensures that the client can communicate with the storage account.
 
-If the workspace associated Azure storage account has public network access disabled, ensure the private endpoint created in the client virtual network is granted the Reader role to your workspace managed identity. This applies to both blog and file storage private endpoints. The role isn't required for the private endpoint created by the managed virtual network. 
+If the workspace associated Azure storage account has public network access disabled, ensure the private endpoint created in the client virtual network is granted the Reader role to your workspace managed identity. This requirement applies to both blob and file storage private endpoints. The role isn't required for the private endpoint created by the managed virtual network. 
 
 For more information on creating a private endpoint or service endpoint, see the [Connect privately to a storage account](/azure/storage/common/storage-private-endpoints) and [Service Endpoints](/azure/virtual-network/virtual-network-service-endpoints-overview) articles.
 
@@ -196,7 +196,7 @@ Microsoft recommends assigning the _Azure AI Enterprise Network Connection Appro
 * Azure Database for MySQL
 * Azure Database for PostgreSQL
 * Foundry Tools
-* Azure Cache for Redis
+* Azure Managed Redis
 * Container Registry
 * API Management
 
@@ -533,7 +533,7 @@ managed_network:
 
 ::: zone pivot="python-sdk"
 
-To configure a managed virtual network that allows only approved outbound communications, use the `ManagedNetwork` class to define a network with `IsolationMode.ALLOw_ONLY_APPROVED_OUTBOUND`. You can then use the `ManagedNetwork` object to create a new workspace or update an existing one. To define _outbound rules_, use the following classes:
+To configure a managed virtual network that allows only approved outbound communications, use the `ManagedNetwork` class to define a network with `IsolationMode.ALLOW_ONLY_APPROVED_OUTBOUND`. You can then use the `ManagedNetwork` object to create a new workspace or update an existing one. To define _outbound rules_, use the following classes:
 
 | Destination | Class |
 | ----------- | ----- |
@@ -783,7 +783,7 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
     You can use a YAML configuration file with the `az ml workspace update` command by specifying the `--file` parameter and the name of the YAML file. For example, the following command updates an existing workspace using a YAML file named `workspace_pe.yml`:
 
     ```azurecli
-    az ml workspace update --file workspace_pe.yml --resource_group rg --name ws
+    az ml workspace update --file workspace_pe.yml --resource-group rg --name ws
     ```
 
     > [!NOTE]
@@ -823,7 +823,7 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
     ```
     > [!NOTE]
     > - When **Allow Only Approved Outbound** is enabled (`isolation_mode: allow_only_approved_outbound`), conda package dependencies defined in Spark session configuration fails to install. To resolve this problem, upload a self-contained Python package wheel with no external dependencies to an Azure storage account and create private endpoint to this storage account. Use the path to Python package wheel as `py_files` parameter in the Spark job.
-    > - If the workspace was created with `IsolationMode.ALLOW_INTERNET_OUTBOUND`, it can’t be updated later to use `IsolationMode.ALLOW_ONLY_APPROVED_OUTBOUND`. 
+    > - If the workspace was created with `IsolationMode.ALLOW_INTERNET_OUTBOUND`, it can't be updated later to use `IsolationMode.ALLOW_ONLY_APPROVED_OUTBOUND`. 
 
 
     ::: zone-end
@@ -1031,13 +1031,13 @@ ml_client = MLClient(DefaultAzureCredential(), subscription_id=subscription_id, 
 rule_name = "<some-rule-name>"
 
 # Get a rule by name
-rule = ml_client._workspace_outbound_rules.get(resource_group, ws_name, rule_name)
+rule = ml_client.workspace_outbound_rules.get(workspace_name="myworkspace", outbound_rule_name=rule_name)
 
 # List rules for a workspace
-rule_list = ml_client._workspace_outbound_rules.list(resource_group, ws_name)
+rule_list = ml_client.workspace_outbound_rules.list(workspace_name="myworkspace")
 
 # Delete a rule from a workspace
-ml_client._workspace_outbound_rules.begin_remove(resource_group, ws_name, rule_name).result()
+ml_client.workspace_outbound_rules.begin_remove(workspace_name="myworkspace", outbound_rule_name=rule_name).result()
 ```
 
 ::: zone-end
@@ -1074,7 +1074,7 @@ For Azure Machine Learning to run normally, there are a set of required service 
 | `BatchNodeManagement.region` | Outbound | Communication with Azure Batch back-end for Azure Machine Learning compute instances/clusters. |
 | `AzureResourceManager` | Outbound | Creation of Azure resources with Azure Machine Learning, Azure CLI, and Azure Machine Learning SDK. |
 | `AzureFrontDoor.FirstParty` | Outbound | Access docker images provided by Microsoft. |
-| `MicrosoftContainerRegistry` | Outbound | Access docker images provided by Microsoft. Setup of the Azure Machine Learning router for Azure Kubernetes Service. |		
+| `MicrosoftContainerRegistry` | Outbound | Access docker images provided by Microsoft. Setup of the Azure Machine Learning router for Azure Kubernetes Service. |              
 | `AzureMonitor` | Outbound | Used to log monitoring and metrics to Azure Monitor. Only needed if the Azure Monitor for the workspace isn't secured. This outbound is also used to log information for support incidents. |
 | `VirtualNetwork` | Outbound | Required when private endpoints are present in the virtual network or peered virtual networks. |
 
@@ -1165,7 +1165,7 @@ Private endpoints are currently supported for the following Azure services:
 * Azure Data Factory
 * Azure Cosmos DB (all sub resource types)
 * Azure Event Hubs
-* Azure Redis Cache
+* Azure Managed Redis  
 * Azure Databricks
 * Azure Database for MariaDB
 * Azure Database for PostgreSQL Single Server
@@ -1202,7 +1202,7 @@ Here's the list of private endpoint target resource types covered by the Azure A
 * Azure Database for MySQL
 * Azure Database for PostgreSQL
 * Foundry Tools
-* Azure Cache for Redis
+* Azure Managed Redis
 * Container Registry
 * API Management
   
@@ -1249,8 +1249,11 @@ tags: {}
 To configure the firewall version from the Python SDK, set the `firewall_sku` property of the `ManagedNetwork` object. The following example demonstrates how to set the firewall SKU to `basic`:
 
 ```python
-network = ManagedNetwork(isolation_mode=IsolationMode.ALLOW_INTERNET_OUTBOUND,
-                         firewall_sku='basic')
+from azure.ai.ml.constants._workspace import FirewallSku
+from azure.ai.ml.entities import IsolationMode, ManagedNetwork
+
+network = ManagedNetwork(isolation_mode=IsolationMode.ALLOW_ONLY_APPROVED_OUTBOUND,
+                         firewall_sku=FirewallSku.BASIC)
 ```
 
 ::: zone-end

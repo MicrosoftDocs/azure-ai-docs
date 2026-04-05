@@ -7,9 +7,10 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.reviewer: rhurey
 ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-python
+ai-usage: ai-assisted
 zone_pivot_groups: programming-languages-set-two-objective-c
 #Customer intent: As a developer, I want to learn how to track memory usage in the Speech SDK so that I can manage resources effectively.
 ---

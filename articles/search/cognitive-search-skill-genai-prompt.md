@@ -1,14 +1,12 @@
 ---
-title: GenAI Prompt skill (Preview)
-titleSuffix: Azure AI Search
+title: GenAI Prompt Skill
 description: Invokes chat completion models from Azure OpenAI or other Microsoft Foundry-hosted models to create content at indexing time.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 10/23/2025
+ms.date: 02/26/2026
 ---
 
 # GenAI Prompt skill
@@ -24,13 +22,10 @@ Here are some examples of how the GenAI prompt skill can help you create content
 - Simplify complex content
 - Perform any other task that you can articulate in a prompt
 
-The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true). This skill supports text, image, and multimodal content, such as a PDF that contains text and images.
+The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-11-01-preview&preserve-view=true). This skill supports text, image, and multimodal content, such as images with visuals and text extracted from PDF files.
 
 > [!TIP]
-> It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate image verbalization with two different data chunking techniques:
->
-> - [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
-> - [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
+> It's common to use this skill combined with a data chunking skill. The [Multimodal tutorial](tutorial-multimodal.md) demonstrates image verbalization with two different data chunking strategies.
 >
 
 ## Supported models
@@ -183,19 +178,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
       "strict": true,
       "schema": {
         "type": "object",
-        "properties": {
-          "facts": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "number": { "type": "number" },
-                "fact": { "type": "string" }
-              },
-              "required": [ "number", "fact" ]
-            }
-          }
-        },
+        "properties": "{\"facts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"number\":{\"type\":\"number\"},\"fact\":{\"type\":\"string\"}},\"required\":[\"number\",\"fact\"]}}}",
         "required": [ "facts" ],
         "additionalProperties": false
       }

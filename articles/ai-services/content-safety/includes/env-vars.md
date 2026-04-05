@@ -1,13 +1,14 @@
 ---
 title: "Create environment variables"
 description: Create environment variables for Azure AI Content Safety
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: include
 ms.date: 05/03/2023
-ms.author: pafarley
+ms.author: ssalgado
+ai-usage: ai-assisted
 ---
 
 ## Create environment variables 

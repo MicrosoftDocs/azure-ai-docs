@@ -1,10 +1,6 @@
 ---
 title: "Quickstart: Search Explorer Query Tool"
-titleSuffix: Azure AI Search
 description: Search explorer is a query tool in the Azure portal that sends query requests to a search index in Azure AI Search. Use it to learn syntax, test query expressions, or inspect a search document.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 12/04/2025
@@ -28,7 +24,7 @@ This quickstart uses an existing index to demonstrate Search explorer.
 
 ## Start Search explorer
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview**.
 
@@ -195,11 +191,7 @@ In this quickstart, you used **Search explorer** to query an index using the RES
 
 ## Clean up resources
 
-When you work in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
-
-In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane.
-
-Remember that a free search service is limited to three indexes, three indexers, and three data sources. To stay under the limit, you can delete these items individually in the Azure portal.
+[!INCLUDE [clean up resources (free)](includes/resource-cleanup-free.md)]
 
 ## Next step
 

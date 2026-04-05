@@ -1,8 +1,8 @@
 ---
 title: Task Adherence in Azure AI Content Safety
 description: Learn about Task Adherence, a feature in Azure AI Content Safety that helps ensure AI agents align with user instructions and task objectives by detecting misaligned tool use.
-author: PatrickFarley
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-content-safety
 ms.topic: concept-article
 ms.date: 08/13/2025

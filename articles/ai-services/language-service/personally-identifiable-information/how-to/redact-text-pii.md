@@ -6,14 +6,14 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 03/17/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
+<!-- markdownlint-disable MD025 -->
 # Detect and redact Personally Identifying Information in text
 
 Azure Language in Foundry Tools is a cloud-based service that applies Natural Language Processing (NLP) features to text-based data. The PII feature can evaluate unstructured text, extract, and redact sensitive information (PII) and health information (PHI) in text across several [predefined categories](../concepts/entity-categories.md).
-
 
 ## Development options
 
@@ -27,31 +27,36 @@ By default, this feature uses the latest available AI model on your text. You ca
 
 When you submit input text to be processed, you can specify which of [the supported languages](../language-support.md) they're written in. If you don't specify a language, extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../../concepts/multilingual-emoji-support.md).
 
-##  Additional configuration parameters (2025-11-15-preview)
+##  New configuration parameters (2025-11-15-preview)
 
 > [!IMPORTANT]
 >
-> * Azure Language in Foundry Tools public preview releases provide early access to features that are in active development.
+> * Azure Language public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes may change, before General Availability (GA), based on user feedback.
 > * Preview features are subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
 
 ### Redaction policies
 
-Starting with version `2025-11-15-preview` and onward, you can specify the `redactionPolicies` parameter to define which redaction policies are applied when processing text. You can include more than one policy in a single request, with one policy specified as the `defaultRedactionPolicy` and additional policy overrides for specified entities.
+Starting with version `2025-11-15-preview` and onward, you can specify the `redactionPolicies` parameter to define which redaction policies are applied when processing text. You can include more than one policy in a single request, with one policy specified as the `defaultRedactionPolicy` and further added policy overrides for specified entities.
 
 The policy field accepts four policy types:
 
 > [!div class="checklist"]
-> * [`SyntheticReplacement 🆕`](#syntheticreplacement-policy-type-)
+>
+> * [`SyntheticReplacement `](#syntheticreplacement-policy-type)
 > * [`CharacterMask` (default)](#charactermask-policy-type)
 > * [`NoMask`](#nomask-policy-type)
 > * [`EntityMask`](#entitymask-policy-type)
 
 For more information, *see* [REST API PII task parameters](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters).
 
-##### syntheticReplacement policy type 🆕
+<!-- markdownlint-disable MD001 -->
+##### syntheticReplacement policy type 
 
-The **syntheticReplacement** policy type** replaces a detected PII entity with a replacement value. For instance, an input like "John Doe received a call from 424-878-9193." can be transformed into "Sam Johnson received a call from 401-255-6901." These substitutes are randomly selected from a predefined set of alternative values.
+> [!IMPORTANT]
+> The Azure Language in Foundry Tools Text Personally Identifiable Information (PII) detection **anonymization feature** (synthetic replacement) is currently available in `preview` and licensed to you as part of your Azure subscription. Your use of this feature is subject to the terms applicable to **Previews** as described in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+
+The **syntheticReplacement** policy type replaces a detected PII entity with a replacement value. For instance, an input like "John Doe received a call from 424-878-9193." can be transformed into "Sam Johnson received a call from 401-255-6901." These substitutes are randomly selected from a predefined set of alternative values.
 
    ```bash
 
@@ -152,7 +157,7 @@ The **entityMask** policy type** enables you to mask the detected PII entity tex
 
 To learn more, *see* [Transparency Note for Personally Identifiable Information (PII)](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information).
 
-### ConfidenceScoreThreshold 🆕
+### ConfidenceScoreThreshold 
 
 The PII feature currently redacts all detected entities, regardless of their confidence scores. Thus, entities with low confidence scores are also removed, even if retaining them is preferred. To enhance flexibility, you can configure a confidence threshold that determines the minimum confidence score an entity must have to remain in the output.
 

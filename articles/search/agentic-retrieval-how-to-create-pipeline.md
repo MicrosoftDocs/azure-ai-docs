@@ -1,11 +1,7 @@
 ---
-title: 'Tutorial: Create an End-to-End Retrieval Solution'
-titleSuffix: Azure AI Search
-description: Learn how to design and build a custom agentic retrieval solution where Azure AI Search handles data retrieval for your custom agents in Microsoft Foundry.
-author: haileytap
-ms.author: haileytapia
-manager: nitinme
-ms.date: 01/27/2026
+title: 'Tutorial: Build an Agentic Retrieval Solution'
+description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
+ms.date: 04/01/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
@@ -29,7 +25,7 @@ In this tutorial, you:
 > + Test the solution by chatting with the agent
 > + Review tips for optimizing the solution
 
-:::image type="content" source="media/agentic-retrieval/end-to-end-pipeline.svg" alt-text="Diagram of Azure AI Search integration with Foundry Agent Service via MCP." lightbox="media/agentic-retrieval/end-to-end-pipeline.svg" :::
+:::image type="content" source="media/agentic-retrieval/end-to-end-pipeline.svg" alt-text="Diagram of the end-to-end agentic retrieval pipeline showing Azure AI Search integration with Foundry Agent Service via MCP." lightbox="media/agentic-retrieval/end-to-end-pipeline.svg":::
 
 > [!TIP]
 > Want to get started right away? Clone the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python notebook on GitHub. The notebook contains the code from this tutorial in a ready-to-run format.
@@ -46,7 +42,12 @@ In this tutorial, you:
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
++ The latest version of [Python](https://www.python.org/downloads/).
+
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions.
+
+> [!IMPORTANT]
+> If you've disabled public network access for your search service and use it as an agent tool with a network-isolated Microsoft Foundry resource, you must use the Microsoft Foundry (new) portal, SDK, or CLI to build agents. The Microsoft Foundry (classic) portal doesn't support this scenario. For more information, see [Agent tools with network isolation](/azure/ai-foundry/how-to/configure-private-link#agent-tools-with-network-isolation).
 
 ## Understand the solution
 
@@ -123,7 +124,7 @@ To configure access for this solution:
 
    + `AZURE_OPENAI_ENDPOINT` is on the **Endpoints** page of your project's parent resource.
 
-1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Microsoft Foundry project.
+1. For keyless authentication with Microsoft Entra ID, sign in to your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search and Microsoft Foundry resources.
 
     ```azurecli
     az login
@@ -411,9 +412,9 @@ agent = project_client.agents.create_version(
 print(f"AI agent '{agent_name}' created or updated successfully")
 ```
 
-#### Connect to a remote SharePoint knowledge source
+#### (Optional) Connect to a remote SharePoint knowledge source
 
-[!INCLUDE [foundry-iq-limitation](../ai-foundry/default/includes/foundry-iq-limitation.md)]
+[!INCLUDE [foundry-iq-limitation](../foundry/includes/foundry-iq-limitation.md)]
 
 Optionally, if your knowledge base includes a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
 
@@ -532,9 +533,7 @@ response.to_dict()
 
 ### Clean up resources
 
-When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
-
-In the Azure portal, you can manage your Azure AI Search and Microsoft Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+[!INCLUDE [clean up resources (paid)](includes/resource-cleanup-paid.md)]
 
 You can also run the following code to delete individual objects:
 
@@ -584,7 +583,7 @@ The Responses API controls what is sent to the agent and knowledge base. To opti
 
 ## Control costs and limit operations
 
-For insights into the query plan, look at output tokens in the [activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array) of knowledge base responses.
+For insights into the query plan, look at output tokens in the [activity array](agentic-retrieval-how-to-retrieve.md#activity-array) of knowledge base responses.
 
 ## Improve performance
 

@@ -1,14 +1,13 @@
 ### YamlMime:FAQ
 metadata:
   title: Azure AI Search FAQ
-  titleSuffix: Azure AI Search
   description: Get answers to common questions about Azure AI Search, a cloud-hosted search service on Microsoft Azure.
   manager: nitinme
   author: haileytap
   ms.author: haileytapia
   ms.service: azure-ai-search
   ms.topic: faq
-  ms.date: 11/20/2025
+  ms.date: 03/25/2026
 title: Azure AI Search Frequently Asked Questions
 summary:  Find answers to commonly asked questions about Azure AI Search.
 
@@ -195,7 +194,7 @@ sections:
       - question: |
           Does Azure AI Search send customer data to other services for processing?
         answer: |
-          Yes. Skills and vectorizers make [outbound calls from Azure AI Search](search-security-overview.md) to other Azure resources or external models that you specify for embedding or chat. Calls to those APIs typically contain raw content to be processed or queries that are vectorized by an embedding model. For Azure-to-Azure connections, the service sends requests over the internal network. If you add a custom skill or vectorizer, the indexer sends content to the URI provided in the custom skill over the public network unless you configure a [shared private link](search-indexer-howto-access-private.md).
+          Yes. Skills and vectorizers make [outbound calls from Azure AI Search](search-security-best-practices.md#configure-outbound-connections) to other Azure resources or external models that you specify for embedding or chat. Calls to those APIs typically contain raw content to be processed or queries that are vectorized by an embedding model. For Azure-to-Azure connections, the service sends requests over the internal network. If you add a custom skill or vectorizer, the indexer sends content to the URI provided in the custom skill over the public network unless you configure a [shared private link](search-indexer-howto-access-private.md).
 
       - question: |
           Does Azure AI Search process customer data in other regions?
@@ -217,7 +216,7 @@ sections:
       - question: |
           Can I use the Azure portal to view and manage search content if my search service is behind an IP firewall or private endpoint?
         answer: |
-          You can use the Azure portal on a network-protected search service if you create a network exception that allows client and portal access. For more information, see [Connect through an IP firewall](./service-configure-firewall.md#allow-access-from-the-azure-portal-ip-address) or [Connect through a private endpoint](./service-create-private-endpoint.md#portal-access-private-search-service).
+          You can use the Azure portal on a network-protected search service if you create a network exception that allows client and portal access. For more information, see [Connect through an IP firewall](./service-configure-firewall.md#configure-network-access-in-the-azure-portal) or [Connect through a private endpoint](./service-create-private-endpoint.md#portal-access-private-search-service).
 
 additionalContent: |
 

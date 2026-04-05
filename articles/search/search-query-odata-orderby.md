@@ -1,15 +1,11 @@
 ---
-title: OData order-by reference
-titleSuffix: Azure AI Search
+title: OData Order-by Reference
 description: Syntax and language reference documentation for using order-by in Azure AI Search queries.
-manager: nitinme
-author: bevloh
-ms.author: beloh
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 11/02/2022
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 ---
 

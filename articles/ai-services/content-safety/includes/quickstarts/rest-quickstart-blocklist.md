@@ -1,12 +1,13 @@
 ---
 title: "Quickstart: Use a blocklist with the REST API"
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
 ms.date: 02/22/2025
-ms.author: pafarley
+ms.author: ssalgado
+ai-usage: ai-assisted
 ---
 
 ## Prerequisites
@@ -121,6 +122,9 @@ You should see the results displayed as JSON data in the console output. For exa
 
 
 ## Analyze text against a blocklist
+
+> [!NOTE]
+> After you edit a blocklist, it can take a few minutes before text analysis reflects the changes. If you don't see matches right away, retry the analyze call after a short delay.
 
 The following section walks through a sample request with cURL. Paste the command below into a text editor, and make the following changes.
 

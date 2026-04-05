@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Analyze text content"
 description: In this quickstart, get started using Azure AI Content Safety to analyze text content for objectionable material.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: 
 ms.topic: include
 ms.date: 04/10/2025
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 ## Prerequisites
@@ -24,7 +24,7 @@ Follow these steps to use the Content Safety **try it out** page:
 1. Go to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and navigate to your project/hub. Then select the **Guardrails + controls** tab on the left nav and select the **Try it out** tab.
 1. On the **Try it out** page, you can experiment with various Guardrails & controls features such as text and image content, using adjustable thresholds to filter for inappropriate or harmful content.
 
-:::image type="content" source="/azure/ai-foundry/media/content-safety/try-it-out.png" alt-text="Screenshot of the try it out page for Guardrails & controls.":::
+:::image type="content" source="/azure/foundry/media/content-safety/try-it-out.png" alt-text="Screenshot of the try it out page for Guardrails & controls.":::
 
 ## Analyze text
 
@@ -37,4 +37,4 @@ Follow these steps to use the Content Safety **try it out** page:
 
 You can use the **View Code** feature in either the **Analyze text content** or **Analyze image content** pages to view and copy the sample code, which includes configuration for severity filtering, blocklists, and moderation functions. You can then deploy the code on your end.
 
-:::image type="content" source="/azure/ai-foundry/media/content-safety/view-code-option.png" alt-text="Screenshot of the View code button.":::
+:::image type="content" source="/azure/foundry/media/content-safety/view-code-option.png" alt-text="Screenshot of the View code button.":::

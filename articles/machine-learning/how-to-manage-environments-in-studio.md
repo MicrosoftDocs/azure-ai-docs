@@ -8,9 +8,10 @@ ms.subservice: core
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: osiotugo
-ms.date: 04/14/2025
+ms.date: 03/19/2026
 ms.topic: how-to
-ms.custom:
+ms.custom: dev-focus
+ai-usage: ai-assisted
 # Customer Intent: As a Data Scientist, I want to understand how to manage environments for training and inference in Azure Machine Learning studio.
 ---
 
@@ -50,7 +51,7 @@ To create an environment:
 1. Select the **Create** button.
 
 Select one of the following options:
-* Create a new docker [context](https://docs.docker.com/engine/reference/commandline/build/).
+* Create a new docker [context](https://docs.docker.com/build/concepts/context/).
 * Start from an existing environment.
 * Upload an existing docker context.
 * Use existing docker image with optional conda file.
@@ -71,7 +72,7 @@ If a new environment is given the same name as an existing environment in the wo
 
     :::image type="content" source="media/how-to-manage-environments-in-studio/environment-details.png" alt-text="Screenshot of the environment details tab." lightbox="media/how-to-manage-environments-in-studio/environment-details.png":::
 
-3. Select the __Context__ tab to upload additional files or edit the existing Dockerfile. Use __Save and Build__ to save any changes and rebuild the context.
+1. Select the __Context__ tab to upload additional files or edit the existing Dockerfile. Use __Save and Build__ to save any changes and rebuild the context.
 
     Keep in mind that any changes to the Docker or Conda sections create a new version of the environment.
 

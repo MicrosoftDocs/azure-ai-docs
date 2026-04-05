@@ -1,16 +1,13 @@
 ---
-title: Azure Content Understanding skill
-titleSuffix: Azure AI Search
+title: Azure Content Understanding Skill
 description: Learn how to analyze and chunk a document in an enrichment pipeline in Azure AI Search.
-author: ruix
-ms.author: ruix
-ms.reviewer: haileytapia
+ms.reviewer: ruix
 ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - ignite-2025
 ms.topic: reference
-ms.date: 11/10/2025
+ms.date: 02/11/2026
 ms.update-cycle: 365-days
 ---
 
@@ -32,10 +29,7 @@ The Azure Content Understanding skill is bound to a [billable Microsoft Foundry 
 Azure AI resource skills, such as the [Document Layout skill](/azure/search/cognitive-search-skill-document-intelligence-layout), the Azure Content Understanding skill doesn't provide 20 free documents per indexer per day. Execution of this skill is charged at the [Azure Content Understanding price](https://azure.microsoft.com/pricing/details/content-understanding/).
 
 > [!TIP]
-> You can use the Azure Content Understanding skill in a skillset that also performs image verbalization and chunk vectorization. In the following tutorials, replace the Document Layout skill with the Azure Content Understanding skill.
->
-> + [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
-> + [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)
+> You can use the Azure Content Understanding skill in a skillset that also performs image verbalization and chunk vectorization. In the [multimodal tutorial](tutorial-multimodal.md), replace the Document Layout skill with the Azure Content Understanding skill.
 
 ## Limitations
 
@@ -47,7 +41,7 @@ The Azure Content Understanding skill has the following limitations:
 
 ## Supported regions
 
-The Azure Content Understanding skill calls the [Content Understanding 2025-05-01-preview REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true). Your Foundry resource must be in a supported region, which is described in [Azure Content Understanding region and language support](/azure/ai-services/content-understanding/language-region-support#preview-api-2025-05-01-preview).
+The Azure Content Understanding skill calls the [Content Understanding 2025-11-01 REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2025-11-01&preserve-view=true). Your Foundry resource must be in a supported region, which is described in [Azure Content Understanding region and language support](/azure/ai-services/content-understanding/language-region-support).
 
 Your search service can be in any [supported Azure AI Search region](search-region-support.md). When your Foundry resource and Azure AI Search service aren't in the same region, cross-region network latency impacts your indexer's performance.
 

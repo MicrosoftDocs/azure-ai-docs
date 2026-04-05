@@ -1,8 +1,8 @@
 ---
 title: Quickstart - Use Task Adherence for your Agent Workflows
 description: Learn how to use the Task Adherence API in Azure AI Content Safety to ensure agent tool actions align with user instructions and intent.
-author: PatrickFarley
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
 ms.date: 08/05/2025

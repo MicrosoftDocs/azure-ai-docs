@@ -1,15 +1,11 @@
 ---
-title: Simple query syntax
-titleSuffix: Azure AI Search
+title: Simple Query Syntax
 description: Reference for the simple query syntax used for full text search queries in Azure AI Search.
-manager: nitinme
-author: bevloh
-ms.author: beloh
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 12/10/2024
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 ---
 

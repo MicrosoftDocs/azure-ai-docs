@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: shshubhe
-ms.date: 04/03/2025
+ms.date: 03/19/2026
 ms.devlang: azurecli
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ms.custom:
@@ -262,7 +262,7 @@ The result of the API call is a JSON document. The following snippet is an excer
   "value": [
     {
       "properties": {
-        "category": "Azure Active Directory",
+        "category": "Microsoft Entra ID",
         "endpoints": [
           {
             "domainName": "login.microsoftonline.com",

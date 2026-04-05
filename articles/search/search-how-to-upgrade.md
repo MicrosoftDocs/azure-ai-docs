@@ -1,14 +1,12 @@
 ---
-title: Service Upgrade in the Azure portal
-titleSuffix: Azure AI Search
+title: Service Upgrade in the Azure Portal
 description: Learn how to upgrade your existing Azure AI Search service to high-capacity storage and processors in your region.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 08/08/2025
+ms.date: 03/25/2026
 ms.update-cycle: 180-days
 ---
 
@@ -18,7 +16,7 @@ An upgrade brings older search services to the capabilities of new services crea
 
 For [eligible services](#upgrade-eligibility), an upgrade increases the [partition storage](#higher-storage-limits) and [vector index size](#higher-vector-limits) on the same pricing tier at no extra cost.
 
-This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com/). Alternatively, you can use the [Search Management REST APIs](/rest/api/searchmanagement/) to upgrade your service programmatically. For more information, see [Manage your search service using REST](search-manage-rest.md#upgrade-a-service).
+This article describes how to upgrade your service in the [Azure portal](https://portal.azure.com). Alternatively, you can use the [Search Management REST APIs](/rest/api/searchmanagement/) to upgrade your service programmatically. For more information, see [Manage your search service using REST](search-manage-rest.md#upgrade-a-service).
 
 > [!TIP]
 > Looking to [change your pricing tier](search-capacity-planning.md#change-your-pricing-tier)? You can switch between Basic and Standard (S1, S2, and S3) tiers.
@@ -81,7 +79,7 @@ The availability of your search service during an upgrade depends on how many re
 
 To upgrade your service:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the **Overview** page, select **Upgrade** from the command bar.
 

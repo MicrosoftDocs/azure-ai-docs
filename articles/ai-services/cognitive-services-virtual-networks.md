@@ -6,7 +6,7 @@ author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 01/06/2026
+ms.date: 02/17/2026
 ms.author: aahi
 ms.custom:
   - devx-track-azurepowershell
@@ -44,7 +44,9 @@ Virtual networks are supported in [regions where Foundry Tools are available](ht
 > - Anomaly Detector
 > - Azure OpenAI
 > - Content Moderator
+> - Content Understanding
 > - Custom Vision
+> - Document Intelligence 
 > - Face
 > - Language Understanding (LUIS)
 > - Personalizer
@@ -179,6 +181,9 @@ Enable a *service endpoint* for Foundry Tools within the virtual network. The se
 The identities of the subnet and the virtual network are also transmitted with each request. Administrators can then configure network rules for the Foundry Tools resource to allow requests from specific subnets in a virtual network. Clients granted access by these network rules must continue to meet the authorization requirements of the Foundry Tools resource to access the data.
 
 Each Foundry Tools resource supports up to 100 virtual network rules, which can be combined with IP network rules. For more information, see [Grant access from an internet IP range](#grant-access-from-an-internet-ip-range) later in this article.
+
+> [!NOTE]
+> When configuring IP network rules for your Cognitive Services endpoint, only the IP addresses included in the allowed list can successfully access the endpoint. Requests from IP addresses not listed will be blocked. This ensures that the endpoint is only accessible from authorized networks, reducing exposure to unauthorized or unlisted IPs.
 
 ### Set required permissions
 

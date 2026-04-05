@@ -39,11 +39,17 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "voice-live-samples-code",
+      "url": "https://github.com/microsoft-foundry/voicelive-samples",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "cognitive-services-quickstart-code",
       "url": "https://github.com/Azure-Samples/cognitive-services-quickstart-code",
       "branch": "master",
       "branch_mapping": {}
-    },
+    },    
     {
       "path_to_root": "samples-cognitive-services-data-files",
       "url": "https://github.com/Azure-Samples/cognitive-services-sample-data-files",
@@ -126,6 +132,12 @@
       "path_to_root": "foundry-samples-main",
       "url": "https://github.com/microsoft-foundry/foundry-samples",
       "branch": "main",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "foundry-samples-temp-fix",
+      "url": "https://github.com/microsoft-foundry/foundry-samples",
+      "branch": "temp-fix",
       "branch_mapping": {}
     },
     {

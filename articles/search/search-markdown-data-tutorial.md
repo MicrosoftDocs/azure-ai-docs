@@ -1,9 +1,7 @@
 ---
 title: 'Tutorial: Index Markdown Blobs'
-titleSuffix: Azure AI Search
 description: Learn how to index and search Markdown in Azure blobs using Azure AI Search REST APIs.
-author: mdonovan
-ms.author: mdonovan
+ms.reviewer: mdonovan
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 11/21/2025
@@ -11,7 +9,6 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
   - sfi-ropc-nochange
-
 ---
 
 # Tutorial: Index nested Markdown blobs from Azure Storage using REST
@@ -203,7 +200,7 @@ Follow [these instructions](knowledge-store-create-rest.md#upload-data-to-azure-
 
 For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-how-to-managed-identities.md).
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview**.
 

@@ -1,10 +1,6 @@
 ---
-title: RAG and generative AI
-titleSuffix: Azure AI Search
-description: Learn how generative AI and retrieval augmented generation (RAG) patterns are used in Azure AI Search solutions.
-author: HeidiSteen
-ms.author: heidist
-manager: nitinme
+title: RAG and Generative AI
+description: Learn how Azure AI Search supports RAG patterns with agentic retrieval and classic hybrid search to ground LLM responses in your content. Get started today.
 ms.date: 01/15/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
@@ -14,9 +10,9 @@ ms.custom:
   - build-2025
 ---
 
-# Retrieval-augmented Generation (RAG) in Azure AI Search
+# Retrieval-augmented generation (RAG) in Azure AI Search
 
-Retrieval-augmented Generation (RAG) is a pattern that extends LLM capabilities by grounding responses in your proprietary content. While conceptually simple, RAG implementations face significant challenges.
+Retrieval-augmented generation (RAG) is a pattern that extends LLM capabilities by grounding responses in your proprietary content. While conceptually simple, RAG implementations face significant challenges.
 
 ## The challenges of RAG
 
@@ -134,7 +130,7 @@ The following sections explain how each approach solves specific RAG challenges.
 + Filter-based security at query time for other data sources
 + Network isolation via private endpoints
 
-[Learn more about security](search-security-overview.md).
+[Learn more about security](search-security-built-in.md).
 
 <!-- OLD INTRO
 Retrieval-augmented Generation (RAG) is a design pattern in AI that augments the capabilities of a pretrained large language model (LLM) by adding newer, specialized, or proprietary content to help answer questions. To get that content, you typically need an information retrieval component. Azure AI Search is an information retrieval solution that's designed to solve the challenges of RAG implementations.

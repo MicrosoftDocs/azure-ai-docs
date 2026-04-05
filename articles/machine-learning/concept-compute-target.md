@@ -9,26 +9,27 @@ ms.topic: concept-article
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: jturuk
-ms.date: 11/13/2025
+ms.date: 03/31/2026
 ms.custom:
   - cliv2
   - build-2023
   - ignite-2023
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-2 || azureml-api-1'
 #Customer intent: As a data scientist, I want to understand what a compute target is and why I need it.
 ---
 
 # What are compute targets in Azure Machine Learning?
 
-A *compute target* is a designated compute resource or environment where you run your training script or host your service deployment. This location might be your local machine or a cloud-based compute resource. Using compute targets makes it easy for you to later change your compute environment without having to change your code.
+A *compute target* is a designated compute resource or environment where you run your training script or host your service deployment. This location might be your local machine or a cloud-based compute resource. By using compute targets, you can easily change your compute environment later without changing your code.
 
 Azure Machine Learning supports different compute targets. In a typical model development lifecycle, you might:
 
 1. Start by developing and experimenting on a small amount of data. At this stage, use your local environment, such as a local computer or cloud-based virtual machine (VM), as your compute target.
 1. Scale up to larger data, or do [distributed training](how-to-train-distributed-gpu.md) by using one of these [training compute targets](#training-compute-targets).
-1. After your model is ready, deploy it to a web hosting environment with one of these [deployment compute targets](#compute-targets-for-inference).
+1. After your model is ready, deploy it to a web hosting environment by using one of these [deployment compute targets](#compute-targets-for-inference).
 
-You attach the compute resources you use for your compute targets to a [workspace](concept-workspace.md). Users of the workspace share compute resources other than the local machine.
+Attach the compute resources you use for your compute targets to a [workspace](concept-workspace.md). Users of the workspace share compute resources other than the local machine.
 
 ## Training compute targets
 
@@ -65,7 +66,6 @@ You can use any of the following resources for a training compute target for mos
 |[Remote VM](~/articles/machine-learning/v1/how-to-train-model.md#remote-virtual-machines) | Yes  | Yes | &nbsp; |
 |[Apache Spark pools (preview)](~/articles/machine-learning/v1/how-to-train-model.md#synapse)| Yes (SDK local mode only) | Yes | &nbsp; |
 |[Azure&nbsp;Databricks](~/articles/machine-learning/v1/how-to-train-model.md#azure-databricks)| Yes (SDK local mode only) | Yes | &nbsp; |
-|[Azure Data Lake Analytics](~/articles/machine-learning/v1/how-to-train-model.md#azure-data-lake-analytics) | &nbsp; | Yes | &nbsp; |
 |[Azure HDInsight](~/articles/machine-learning/v1/how-to-train-model.md#azure-hdinsight) | &nbsp; | Yes | &nbsp; |
 |[Azure Batch](~/articles/machine-learning/v1/how-to-train-model.md#azbatch) | &nbsp; | Yes | &nbsp; |
 :::moniker-end
@@ -138,15 +138,16 @@ When you create these compute resources, they automatically become part of your 
 
 When you select a node size for a managed compute resource in Azure Machine Learning, you can choose from select VM sizes available in Azure. Azure offers a range of sizes for Linux and Windows for different workloads. For more information, see [VM types and sizes](/azure/virtual-machines/sizes).
 
-There are a few exceptions and limitations to choosing a VM size:
+A few exceptions and limitations apply when you choose a VM size:
 
 * Azure Machine Learning doesn't support some VM series.
-* Some VM series, such as GPUs and other special SKUs, might not initially appear in your list of available VMs.  But you can still use them, once you request a quota change. For more information about requesting quotas, see [Request quota and limit increases](how-to-manage-quotas.md#request-quota-and-limit-increases).
+* Some VM series, such as GPUs and other special SKUs, might not initially appear in your list of available VMs. However, you can still use them once you request a quota change. For more information about requesting quotas, see [Request quota and limit increases](how-to-manage-quotas.md#request-quota-and-limit-increases).
 
-See the following table to learn more about supported series.
+To learn more about supported series, see the following table.
 
 | **Supported VM series** | **Category** | **Supported by** |
 |------------|------------|------------|
+| [Av2](/azure/virtual-machines/av2-series) | General purpose | Compute clusters and instance |
 | [DDSv4](/azure/virtual-machines/ddv4-ddsv4-series#ddsv4-series) | General purpose | Compute clusters and instance |
 | [Dv2](/azure/virtual-machines/dv2-dsv2-series#dv2-series) | General purpose | Compute clusters and instance |
 | [Dv3](/azure/virtual-machines/dv3-dsv3-series#dv3-series) | General purpose | Compute clusters and instance |
@@ -164,18 +165,20 @@ See the following table to learn more about supported series.
 | [HC](/azure/virtual-machines/hc-series) |  High performance compute | Compute clusters and instance |
 | [LSv2](/azure/virtual-machines/lsv2-series) |  Storage optimized | Compute clusters and instance |
 | [M](/azure/virtual-machines/m-series) | Memory optimized | Compute clusters and instance |
-| [NC](/azure/virtual-machines/nc-series) |  GPU | Compute clusters and instance |
-| [NC Promo](/azure/virtual-machines/nc-series) | GPU | Compute clusters and instance |
-| [NCv2](/azure/virtual-machines/ncv2-series) | GPU | Compute clusters and instance |
-| [NCv3](/azure/virtual-machines/ncv3-series) | GPU | Compute clusters and instance |
-| [ND](/azure/virtual-machines/nd-series) | GPU | Compute clusters and instance |
-| [NDv2](/azure/virtual-machines/ndv2-series) | GPU | Compute clusters and instance |
-| [NV](/azure/virtual-machines/nv-series) | GPU | Compute clusters and instance |
-| [NVv3](/azure/virtual-machines/nvv3-series) | GPU | Compute clusters and instance |
-| [NCasT4_v3](/azure/virtual-machines/nct4-v3-series) | GPU | Compute clusters and instance |
-| [NDasrA100_v4](/azure/virtual-machines/nda100-v4-series) | GPU | Compute clusters and instance |
-| [ND-H100-v5](/azure/virtual-machines/sizes/gpu-accelerated/ndh100v5-series) | GPU | Compute clusters and instance |
-| [ND-H200-v5](/azure/virtual-machines/sizes/gpu-accelerated/nd-h200-v5-series) | GPU | Compute clusters and instance |
+| [NC](/azure/virtual-machines/nc-series) | GPU (K80) | Compute clusters and instance |
+| [NC Promo](/azure/virtual-machines/nc-series) | GPU (K80) | Compute clusters and instance |
+| [NCv2](/azure/virtual-machines/ncv2-series) | GPU (P100) | Compute clusters and instance |
+| [NCv3](/azure/virtual-machines/ncv3-series) | GPU (V100) | Compute clusters and instance |
+| [ND](/azure/virtual-machines/nd-series) | GPU (P40) | Compute clusters and instance |
+| [NDv2](/azure/virtual-machines/ndv2-series) | GPU (V100) | Compute clusters and instance |
+| [NV](/azure/virtual-machines/nv-series) | GPU (M60) | Compute clusters and instance |
+| [NVv3](/azure/virtual-machines/nvv3-series) | GPU (M60) | Compute clusters and instance |
+| [NCasT4_v3](/azure/virtual-machines/nct4-v3-series) | GPU (T4) | Compute clusters and instance |
+| [NCads_A100_v4](/azure/virtual-machines/sizes/gpu-accelerated/nca100v4-series) | GPU (A100) | Compute clusters and instance |
+| [NDasrA100_v4](/azure/virtual-machines/nda100-v4-series) | GPU (A100) | Compute clusters and instance |
+| [NCads_H100_v5](/azure/virtual-machines/sizes/gpu-accelerated/ncadsh100v5-series) | GPU (H100) | Compute clusters and instance |
+| [ND-H100-v5](/azure/virtual-machines/sizes/gpu-accelerated/ndh100v5-series) | GPU (H100) | Compute clusters and instance |
+| [ND-H200-v5](/azure/virtual-machines/sizes/gpu-accelerated/nd-h200-v5-series) | GPU (H200) | Compute clusters and instance |
 
 While Azure Machine Learning supports these VM series, they might not be available in all Azure regions. To check whether VM series are available, see [Products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=virtual-machines).
 
@@ -191,11 +194,12 @@ While Azure Machine Learning supports these VM series, they might not be availab
 > * The [Azure CLI extension 2.0 for machine learning](how-to-configure-cli.md) command, [az ml compute list-sizes](/cli/azure/ml/compute#az-ml-compute-list-sizes).
 :::moniker-end
 
-If you use the GPU-enabled compute targets, it's important to ensure that the correct CUDA drivers are installed in the training environment. Use the following table to determine the correct CUDA version to use:
+If you use the GPU-enabled compute targets, make sure the training environment has the correct CUDA drivers installed. Use the following table to determine the correct CUDA version to use:
 
 | **GPU Architecture**  | **Azure VM series** | **Supported CUDA versions** |
 |------------|------------|------------|
-| Ampere | NDA100_v4 | 11.0+ |
+| Hopper | NCadsH100_v5, ND-H100-v5, ND-H200-v5 | 12.0+ |
+| Ampere | NDA100_v4, NCA100_v4 | 11.0+ |
 | Turing | NCT4_v3 | 10.0+ |
 | Volta | NCv3, NDv2 | 9.0+ |
 | Pascal | NCv2, ND | 9.0+ |
@@ -209,7 +213,7 @@ In addition to ensuring the CUDA version and hardware are compatible, also ensur
 
 ### Compute isolation
 
-Azure Machine Learning compute offers VM sizes that are isolated to a specific hardware type and dedicated to a single customer. Isolated VM sizes are best suited for workloads that require a high degree of isolation from other customers' workloads for reasons that include meeting compliance and regulatory requirements. When you use an isolated size, your VM is the only one running on that specific server instance.
+Azure Machine Learning compute provides VM sizes that are isolated to a specific hardware type and dedicated to a single customer. Isolated VM sizes work best for workloads that require a high degree of isolation from other customers' workloads, such as when you need to meet compliance and regulatory requirements. When you use an isolated size, your VM is the only one running on that specific server instance.
 
 The current isolated VM offerings include:
 

@@ -1,9 +1,7 @@
 ---
-title: Create an index alias
-titleSuffix: Azure AI Search
+title: Create an Index Alias
 description: Create an alias to define a secondary name that can be used to refer to an index for querying, indexing, and other operations.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 10/01/2025
@@ -74,9 +72,9 @@ POST /aliases?api-version=2025-11-01-preview
 
 ### [**Azure portal**](#tab/portal)
 
-Follow the steps below to create an index alias in the Azure portal.
+To create an index alias in the Azure portal.
 
-1. Navigate to your search service in the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. Find and select **Aliases**.
 1. Select **+ Add Alias**.
 1. Give your index alias a name and select the search index you want to map the alias to. Then, select **Save**.

@@ -1,15 +1,11 @@
 ---
-title: OData expression syntax reference
-titleSuffix: Azure AI Search
+title: OData Expression Syntax Reference
 description: Formal grammar and syntax specification for OData expressions in Azure AI Search queries.
-manager: nitinme
-author: bevloh
-ms.author: beloh
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 07/18/2022
+ms.date: 02/19/2026
 ms.update-cycle: 365-days
 ---
 # OData expression syntax reference for Azure AI Search

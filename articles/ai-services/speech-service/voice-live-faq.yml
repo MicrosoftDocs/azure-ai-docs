@@ -8,7 +8,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-speech
   ms.topic: faq
-  ms.date: 09/30/2025
+  ms.date: 03/31/2026
   ms.author: pafarley
   ms.reviewer: pafarley
 title: Voice Live FAQ
@@ -23,11 +23,11 @@ sections:
         answer: |
           Voice Live API supports a wide range of real-time, natural voice interaction scenarios: contact centers, automotive assistants, accessibility applications, virtual tutors and learning companions, multilingual public service agents, HR support, and training. Used by customers like eClinicalWorks and the Government of Malta.
       - question: |
-          How does Voice Live compare to AOAI Realtime API? When should I choose which?
+          How does Voice Live compare to the Azure OpenAI Realtime API? When should I choose which?
         answer: |
-          Voice Live API enhances AOAI Realtime API by offering: expanded model selection (including GPT-Realtime, GPT-5, GPT-4.1, PHI), more natural voice options, more supported speech languages, avatar integration, advanced semantic voice activity detection (VAD), seamless Microsoft Foundry Agent Service integration, telephony integration via Azure Communication Services.
+          Voice Live API enhances the AOAI Realtime API by offering: expanded model selection (including GPT-Realtime, GPT-5, GPT-4.1, PHI), more natural voice options, more supported speech languages, avatar integration, advanced semantic voice activity detection (VAD), seamless Microsoft Foundry Agent Service integration, and telephony integration via Azure Communication Services.
       - question: |
-          What regions does Voice Live support?
+          Which regions does Voice Live support?
         answer: |
           Voice Live is available in 10+ Azure regions. For more information, see [Region support](./regions.md?tabs=voice-live).
       - question: |
@@ -39,29 +39,29 @@ sections:
       - question: |
           What generative AI models are supported?
         answer: |
-          Supports OpenAI models in Microsoft Foundry, Phi-based LLMs, and SLMs. For more information, see [Voice Live overview](./voice-live.md). Voice Live also provides an option to bring-your-own model (PREVIEW).
+          Voice Live supports OpenAI models in Microsoft Foundry, Phi-based LLMs, and SLMs. For more information, see [Voice Live overview](./voice-live.md). Voice Live also provides an option to bring-your-own model (preview).
       - question: |
-          How do I choose the LLM model for my use case?
+          How do I choose the LLM for my use case?
         answer: |
           Consider: accuracy (Azure Speech-based models are more robust for noisy audio), existing LLM solutions (reuse prompts and grounding data), latency (text-based LLMs can have slightly higher latency), inference cost (smaller models can be more cost-effective).
       - question: |
           What is response instruction?
         answer: |
-          Guides model behavior and context. Define agent personality, specify questions, control response formatting. Responses should be concise and normalized for optimal audio synthesis.
+          Response instruction guides model behavior and context. Define agent personality, specify questions, control response formatting. Responses should be concise and normalized for optimal audio synthesis.
       - question: |
           What is response temperature?
         answer: |
-          Controls randomness of output. Lower values = deterministic, higher = creative. Adjust temperature or Top-P, not both.
+          Response temperature controls randomness of output. Lower values = deterministic, higher = creative. Adjust temperature or Top-P, not both.
   - name: Speech Input
     questions:
       - question: |
-          What languages does Voice Live support?
+          Which languages does Voice Live support?
         answer: |
-          Supports 146 languages/locales for input, 151 for output, 600+ neural voices. See [Voice Live language support](./voice-live-language-support.md?tabs=speechinput).
+          Voice live supports 146 languages/locales for input, 151 for output, 600+ neural voices. See [Voice Live language support](./voice-live-language-support.md?tabs=speechinput).
       - question: |
           How do I get the live transcripts from the call?
         answer: |
-          Use text output events. Details at [Voice Live API reference](./voice-live-api-reference.md).
+          Use text output events. Details at [Voice live API reference](./voice-live-api-reference-2025-10-01.md).
       - question: |
           What is a phrase list?
         answer: |
@@ -103,7 +103,7 @@ sections:
       - question: |
           What is Custom Avatar?
         answer: |
-          Photorealistic digital human using Azure AI TTS. Built from video recordings, tailored to specific actor’s appearance and voice.
+          Photorealistic digital human using Azure AI TTS. Built from video recordings, tailored to specific actor's appearance and voice.
   - name: Conversational Enhancements
     questions:
       - question: |
@@ -131,7 +131,7 @@ sections:
       - question: |
           Is there model context protocol (MCP) support?
         answer: |
-          Currently MCP isn't supported.
+          Currently, MCP is supported in with model mode with the exception of phi models. Further with Foundry (new) agents. It's not supported with Foundry (classic) agents.
   - name: Pricing
     questions:
       - question: |
@@ -151,7 +151,7 @@ sections:
       - question: |
           Does this service provide an SDK?
         answer: |
-          Yes, SDKs for Python and C#. See [Voice Live - Reference - Voice Live SDK](./voice-live.md).
+          Yes, SDKs for Python, C#, Java (Preview) and JavaScript/TypeScript (Preview) are available. See [Voice Live - Reference - Voice Live SDK](./voice-live-sdk.md).
       - question: |
           Does this service include content filtering?
         answer: |
@@ -174,5 +174,5 @@ additionalContent: |
   ## Next steps
   
   - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-  - See the [Voice Live API reference](./voice-live-api-reference.md)
-  - [What's new](releasenotes.md)
+  - See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)
+  - [What's new](./releasenotes.md)

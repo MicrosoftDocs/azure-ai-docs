@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of the speech to text feature of the Speech service.
 ---
@@ -32,7 +32,6 @@ Real-time speech to text transcribes audio as it's recognized from a microphone 
 - Transcribing spoken words into written text for documentation purposes. 
 - Enabling interactive voice response systems to transcribe user queries and commands. 
 
-Real-time speech to text can be accessed via the Speech SDK, Speech CLI, and REST API, allowing integration into various applications and workflows. 
 Real-time speech to text is available via the [Speech SDK](speech-sdk.md), the [Speech CLI](spx-overview.md), and [Speech to text REST API for short audio](rest-speech-to-text-short.md). 
 
 ## Fast transcription
@@ -44,6 +43,20 @@ Use the fast transcription API to transcribe audio files and return results sync
 - Voicemail
 
 For more information, see [use the fast transcription API](fast-transcription-create.md).
+
+### Diarization
+
+Diarization is the process of distinguishing and separating different speakers in an audio recording. This feature is particularly useful for transcribing conversations, meetings, or any multi-speaker audio content. The Speech service can identify up to 35 different speakers in an audio recording (if the service recognizes more than 35 speakers, it throws an error).
+
+See the [Diarization quickstart](./get-started-stt-diarization.md) to get started.
+
+### Phrase lists
+
+The phrase lists feature allows you to provide the speech recognition model with a list of specific words or phrases that are likely to be spoken in the audio. This helps improve the accuracy of transcription, especially for domain-specific terminology, proper nouns, or uncommon words. By using phrase lists, you can guide the model to better recognize and transcribe these terms correctly.
+
+### Language detection
+
+Language detection enables the speech recognition model to automatically identify the language being spoken in the audio input. This is useful in scenarios where the language of the audio is not known beforehand or when you have multilingual audio content. By detecting the language, the model can apply the appropriate language-specific recognition algorithms, which can significantly improve transcription accuracy.
 
 ## Batch transcription
 
@@ -58,6 +71,8 @@ You can access batch transcription through:
     ```azurecli-interactive
     spx help batch transcription
     ```
+
+
 
 ## Custom speech
 

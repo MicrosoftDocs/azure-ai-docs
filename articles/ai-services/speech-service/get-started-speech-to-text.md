@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 8/5/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-extended-java, devx-track-go, build-2024, ignite-2024
 zone_pivot_groups: programming-languages-get-started-transcription
@@ -19,8 +19,24 @@ zone_pivot_groups: programming-languages-get-started-transcription
 [!INCLUDE [Microsoft Foundry include](includes/quickstarts/speech-to-text-basics/ai-foundry.md)]
 ::: zone-end
 
+::: zone pivot="programming-language-rest"
+[!INCLUDE [REST include](includes/quickstarts/speech-to-text-basics/rest.md)]
+::: zone-end
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/quickstarts/speech-to-text-basics/python.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/speech-to-text-basics/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](includes/quickstarts/speech-to-text-basics/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/quickstarts/speech-to-text-basics/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -31,28 +47,12 @@ zone_pivot_groups: programming-languages-get-started-transcription
 [!INCLUDE [Go include](includes/quickstarts/speech-to-text-basics/go.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](includes/quickstarts/speech-to-text-basics/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](includes/quickstarts/speech-to-text-basics/javascript.md)]
-::: zone-end
-
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./includes/quickstarts/speech-to-text-basics/python.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-swift"
 [!INCLUDE [Swift include](includes/quickstarts/speech-to-text-basics/swift.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-typescript"
 [!INCLUDE [TypeScript include](includes/quickstarts/speech-to-text-basics/typescript.md)]
-::: zone-end
-
-::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/quickstarts/speech-to-text-basics/rest.md)]
 ::: zone-end
 
 ## Next step

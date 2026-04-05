@@ -7,11 +7,14 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 02/21/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 ---
 
 # Generate a smart-cropped thumbnail
+
+[!INCLUDE [image-analysis-deprecation](../includes/image-analysis-deprecation.md)]
 
 You can use Image Analysis 3.2 to generate a thumbnail with smart cropping. You specify the desired height and width, which can differ in aspect ratio from the input image. Image Analysis uses smart cropping to intelligently identify the area of interest and generate cropping coordinates around that region.
 
@@ -42,5 +45,5 @@ A successful response writes the thumbnail image to the file specified in `<thum
 
 If you'd like to call Image Analysis APIs using a native SDK in the language of your choice, follow the quickstart to get set up.
 
-> [!div class=nextstepaction]
+> [!div class="nextstepaction"]
 > [Quickstart (Image Analysis)](../quickstarts-sdk/image-analysis-client-library.md)

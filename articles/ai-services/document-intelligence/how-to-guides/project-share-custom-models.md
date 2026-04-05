@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
 ms.date: 11/18/2025
-ms.author: jppark
+ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ms.custom: sfi-image-nochange
 ---

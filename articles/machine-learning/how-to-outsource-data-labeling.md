@@ -8,8 +8,10 @@ ms.subservice: mldata
 ms.reviewer: soumyapatro
 author: s-polly
 ms.author: scottpolly
-ms.date: 10/21/2021
+ms.date: 03/26/2026
+ms.custom: dev-focus
 ms.topic: how-to
+ai-usage: ai-assisted
 # Customer intent: As a project manager, I want to hire a company to label the data in my data labeling project
 # Keywords: data labeling companies, volume 170.  No other keywords found. 
 ---
@@ -25,21 +27,21 @@ Before you create your data labeling project:
 
 1. Select a labeling service provider.  To find a provider on Azure Marketplace:
     1. Review the [listing details of these vendor labeling companies](https://azuremarketplace.microsoft.com/marketplace/consulting-services?page=1&search=AzureMLVend).
-    1. If the vendor labeling company meets your requirements, choose the **Contact Me** option in Azure Marketplace. Azure Marketplace will route your inquiry to the vendor labeling company. You may contact multiple vendor labeling companies before choosing the final company.
+    1. If the vendor labeling company meets your requirements, choose the **Contact Me** option in Azure Marketplace. Azure Marketplace routes your inquiry to the vendor labeling company. You can contact multiple vendor labeling companies before choosing the final company.
 
 1. Contact and enter into a contract with the labeling service provider.
 
-Once you have the contract with the vendor labeling company in place:
+After you have the contract with the vendor labeling company:
 
 1. Create the labeling project in the [Azure Machine Learning studio](https://ml.azure.com). To learn more about project creation, see how to create an [image labeling project](how-to-create-image-labeling-projects.md) or [text labeling project](how-to-create-text-labeling-projects.md).
-1. You're not limited the data labeling providers listed in the Azure Marketplace. However, if you do use a provider from the Azure Marketplace:
+1. You're not limited to the data labeling providers listed in the Azure Marketplace. However, if you use a provider from the Azure Marketplace:
     1. Select **Use a vendor labeling company from Azure Marketplace** in the workforce step.
     1. Select the appropriate data labeling company in the dropdown.
 
     > [!NOTE]
-    > You cannot change the vendor labeling company name after you create the labeling project.
+    > You can't change the vendor labeling company name after you create the labeling project.
 
-1. For any provider, found through Azure Marketplace or somewhere else, use Azure Role Based Access (RBAC) to enable access (`labeler` role, `techlead` role) to the vendor labeling company. These roles will allow the company to access resources to annotate your data.
+1. For any provider, whether you found it through Azure Marketplace or somewhere else, use Azure role-based access control (Azure RBAC) to assign the built-in data labeling role or the appropriate custom role to the vendor users. For the current role definitions, see [Add users to your data labeling project](how-to-add-users.md).
 
 ## <a name="review"></a> Select a company
 
@@ -73,11 +75,13 @@ If you enable ML Assisted labeling in a labeling project, Microsoft will charge 
 
 In order for the vendor labeling company to have access to your project resources, you'll next [add them as labelers to your project](how-to-add-users.md). If you plan to use multiple vendor labeling companies for different labeling projects, we recommend that you create separate workspaces for each company.
 
+If you need to onboard multiple users from the same provider, consider assigning workspace access to a Microsoft Entra security group to simplify membership management. For more information, see [Manage access to Azure Machine Learning workspaces](how-to-assign-roles.md#use-microsoft-entra-security-groups-to-manage-workspace-access).
+
 > [!IMPORTANT]
 > You, and not Microsoft, are responsible for all aspects of your engagement with a labeling company, including but not limited to issues involving scope, quality, schedule, and pricing.
 
 ## Next steps
 
 * [Create an image labeling project and export labels](how-to-create-image-labeling-projects.md)
-* [Create a text labeling project and export labels (preview)](how-to-create-text-labeling-projects.md)
+* [Create a text labeling project and export labels](how-to-create-text-labeling-projects.md)
 * [Add users to your data labeling project](how-to-add-users.md)

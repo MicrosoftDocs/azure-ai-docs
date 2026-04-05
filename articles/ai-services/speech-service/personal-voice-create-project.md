@@ -1,14 +1,14 @@
 ---
 title: Create a project for personal voice - Speech service
 titleSuffix: Foundry Tools
-description: Learn about how to create a project for personal voice.
+description: Learn how to create a project for personal voice.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to create a project for personal voice.
 ---
@@ -33,7 +33,7 @@ Make an HTTP PUT request using the URI as shown in the following [Projects_Creat
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
   "description": "Project description",
   "kind": "PersonalVoice"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/projects/ProjectId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/projects/ProjectId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:

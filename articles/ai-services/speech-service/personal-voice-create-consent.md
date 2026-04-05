@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to add user consent to the personal voice project.
 ---
@@ -23,7 +23,7 @@ To add user consent to the personal voice project, you provide the prerecorded c
 
 You need an audio recording of the user speaking the consent statement.
 
-You can get the consent statement text for each locale from the text to speech GitHub repository. See [verbal-statement-all-locales.txt](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt) for the consent statement. Below is a sample for the `en-US` locale:
+You can get the consent statement text for each locale from the text to speech GitHub repository. See [verbal-statement-all-locales.txt](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt) for the consent statement. The following example is for the `en-US` locale:
 
 ```
 "I [state your first and last name] am aware that recordings of my voice will be used by [state the name of the company] to create and use a synthetic version of my voice."
@@ -31,7 +31,7 @@ You can get the consent statement text for each locale from the text to speech G
 
 ### Supported audio formats for consent audio
 
-See the table below for the supported formats for consent audio files:
+See the following table for the supported formats for consent audio files:
 
 | Format | Sample rate                  | Bit rate                    | Bit depth|
 |------------|--------------------------|-------------------------|----------|
@@ -56,7 +56,7 @@ Make an HTTP POST request using the URI as shown in the following `Consents_Post
 - Replace `JessicaConsentId` with a consent ID of your choice. The case sensitive ID will be used in the consent's URI and can't be changed later. 
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -F 'description="Consent for Jessica voice"' -F 'projectId="ProjectId"' -F 'voiceTalentName="Jessica Smith"' -F 'companyName="Contoso"' -F 'audiodata=@"D:\PersonalVoiceTest\jessica-consent.wav"' -F 'locale="en-US"' "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/consents/JessicaConsentId?api-version=2024-02-01-preview"
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourResourceKey" -F 'description="Consent for Jessica voice"' -F 'projectId="ProjectId"' -F 'voiceTalentName="Jessica Smith"' -F 'companyName="Contoso"' -F 'audiodata=@"D:\PersonalVoiceTest\jessica-consent.wav"' -F 'locale="en-US"' "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/consents/JessicaConsentId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -78,7 +78,7 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the `Consents_Post` operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2024-02-01-preview
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2026-01-01
 Operation-Id: 070f7986-ef17-41d0-ba2b-907f0f28e314
 ```
 
@@ -107,7 +107,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "companyName": "Contoso",
   "audioUrl": "https://contoso.blob.core.windows.net/public/jessica-consent.wav?mySasToken",
   "locale": "en-US"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/consents/JessicaConsentId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/consents/JessicaConsentId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -129,7 +129,7 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the [Consents_Create](/rest/api/aiservices/speechapi/consents/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2024-02-01-preview
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2026-01-01
 Operation-Id: 070f7986-ef17-41d0-ba2b-907f0f28e314
 ```
 

@@ -8,13 +8,15 @@ ms.subservice: mlops
 ms.author: scottpolly
 ms.reviewer: jturuk
 author: lgayhardt
-ms.date: 03/31/2025
+ms.date: 03/18/2026
 ms.topic: troubleshooting
 ms.custom:
   - UpdateFrequency5
   - troubleshooting
   - sdkv1
   - sfi-ropc-blocked
+  - dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a data scientist, I want to figure out why my pipeline doesn't run so that I can fix it.
 ---
 
@@ -24,7 +26,10 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-In this article, you learn how to troubleshoot when you get errors running a [machine learning pipeline](../concept-ml-pipelines.md) in the [Azure Machine Learning SDK](/python/api/overview/azure/ml/intro) and [Azure Machine Learning designer](concept-designer.md). 
+> [!NOTE]
+> **Retired packages**: The following SDK v1 packages are retired: azureml-pipeline, azureml-pipeline-core, azureml-pipeline-internal, azureml-pipeline-steps, and azureml-train-core.
+
+In this article, you learn how to troubleshoot errors that occur when running a [machine learning pipeline](../concept-ml-pipelines.md) in the [Azure Machine Learning SDK](/python/api/overview/azure/ml/intro) and [Azure Machine Learning designer](concept-designer.md). 
 
 ## Troubleshooting tips
 
@@ -32,13 +37,13 @@ The following table contains common problems during pipeline development, with p
 
 | Problem | Possible solution |
 |--|--|
-| Unable to pass data to `PipelineData` directory | Ensure you have created a directory in the script that corresponds to where your pipeline expects the step output data. In most cases, an input argument defines the output directory, and then you create the directory explicitly. Use `os.makedirs(args.output_dir, exist_ok=True)` to create the output directory. See the [tutorial](../tutorial-pipeline-batch-scoring-classification.md#write-a-scoring-script) for a scoring script example that shows this design pattern. |
-| Dependency bugs | If you see dependency errors in your remote pipeline that didn't occur when locally testing, confirm your remote environment dependencies and versions match those in your test environment. (See [Environment building, caching, and reuse](../concept-environments.md#environment-building-caching-and-reuse)|
-| Ambiguous errors with compute targets | Try deleting and re-creating compute targets. Re-creating compute targets is quick and can solve some transient issues. |
-| Pipeline not reusing steps | Step reuse is enabled by default, but ensure you haven't disabled it in a pipeline step. If reuse is disabled, the `allow_reuse` parameter in the step is set to `False`. |
-| Pipeline is rerunning unnecessarily | To ensure that steps only rerun when their underlying data or scripts change, decouple your source-code directories for each step. If you use the same source directory for multiple steps, you may experience unnecessary reruns. Use the `source_directory` parameter on a pipeline step object to point to your isolated directory for that step, and ensure you aren't using the same `source_directory` path for multiple steps. |
+| Unable to pass data to `PipelineData` directory | Ensure you create a directory in the script that corresponds to where your pipeline expects the step output data. In most cases, an input argument defines the output directory, and then you create the directory explicitly. Use `os.makedirs(args.output_dir, exist_ok=True)` to create the output directory. See the [tutorial](../tutorial-pipeline-batch-scoring-classification.md#write-a-scoring-script) for a scoring script example that shows this design pattern. |
+| Dependency bugs | If you see dependency errors in your remote pipeline that didn't occur when locally testing, confirm your remote environment dependencies and versions match those in your test environment. (See [Environment building, caching, and reuse](../concept-environments.md#environment-building-caching-and-reuse).|
+| Ambiguous errors with compute targets | Try deleting and re-creating compute targets. Re-creating compute targets is quick and can solve some transient problems. |
+| Pipeline not reusing steps | Step reuse is enabled by default, but ensure you didn't disable it in a pipeline step. If you disable reuse, set the `allow_reuse` parameter in the step to `False`. |
+| Pipeline is rerunning unnecessarily | To ensure that steps only rerun when their underlying data or scripts change, decouple your source-code directories for each step. If you use the same source directory for multiple steps, you might experience unnecessary reruns. Use the `source_directory` parameter on a pipeline step object to point to your isolated directory for that step, and ensure you aren't using the same `source_directory` path for multiple steps. |
 | Step slowing down over training epochs or other looping behavior | Try switching any file writes, including logging, from `as_mount()` to `as_upload()`. The **mount** mode uses a remote virtualized filesystem and uploads the entire file each time it's appended to. |
-| Compute target takes a long time to start | Docker images for compute targets are loaded from Azure Container Registry (ACR). By default, Azure Machine Learning creates an ACR that uses the *basic* service tier. Changing the ACR for your workspace to standard or premium tier may reduce the time it takes to build and load images. For more information, see [Azure Container Registry service tiers](/azure/container-registry/container-registry-skus). |
+| Compute target takes a long time to start | Docker images for compute targets are loaded from Azure Container Registry (ACR). By default, Azure Machine Learning creates an ACR that uses the *basic* service tier. Changing the ACR for your workspace to standard or premium tier might reduce the time it takes to build and load images. For more information, see [Azure Container Registry service tiers](/azure/container-registry/container-registry-skus). |
 
 ### Authentication errors
 
@@ -52,14 +57,20 @@ If you perform a management operation on a compute target from a remote job, you
 {"error":{"code":"AuthenticationFailed","message":"Authentication failed."}}
 ```
 
-For example, you receive an error if you try to create or attach a compute target from an ML Pipeline that is submitted for remote execution.
+For example, you receive an error if you try to create or attach a compute target from an ML Pipeline that you submit for remote execution.
 ## Troubleshooting `ParallelRunStep` 
+
+> [!NOTE]
+> `ParallelRunStep` is part of the retired azureml-pipeline-steps package. Plan to migrate to SDK v2 alternatives. For more information, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python) and [Run batch inference using batch endpoints](/azure/machine-learning/how-to-use-batch-model-deployments).
 
 The script for a `ParallelRunStep` *must contain* two functions:
 - `init()`: Use this function for any costly or common preparation for later inference. For example, use it to load the model into a global object. This function is called only once at beginning of process.
 -  `run(mini_batch)`: The function runs for each `mini_batch` instance.
-    -  `mini_batch`: `ParallelRunStep` invokes run method and pass either a list or pandas `DataFrame` as an argument to the method. Each entry in mini_batch is a file path if input is a `FileDataset` or a pandas `DataFrame` if input is a `TabularDataset`.
-    -  `response`: run() method should return a pandas `DataFrame` or an array. For append_row output_action, these returned elements are appended into the common output file. For summary_only, the contents of the elements are ignored. For all output actions, each returned output element indicates one successful run of input element in the input mini-batch. Make sure that enough data is included in run result to map input to run output result. Run output is written in output file and not guaranteed to be in order, you should use some key in the output to map it to input.
+    -  `mini_batch`: `ParallelRunStep` invokes run method and passes either a list or pandas `DataFrame` as an argument to the method. Each entry in `mini_batch` is a file path if input is a `FileDataset` or a pandas `DataFrame` if input is a `TabularDataset`.
+    -  `response`: The `run()` method should return a pandas `DataFrame` or an array. For `append_row` `output_action`, these returned elements are appended into the common output file. For `summary_only`, the contents of the elements are ignored. For all output actions, each returned output element indicates one successful run of input element in the input mini-batch. Make sure that enough data is included in run result to map input to run output result. Run output is written in output file and not guaranteed to be in order, you should use some key in the output to map it to input.
+
+> [!NOTE]
+> This code sample uses TensorFlow 1.x APIs (`tf.Session`, `tf.reset_default_graph`). These APIs were removed in TensorFlow 2.x. If you're using TensorFlow 2.x, use `tf.compat.v1` compatibility mode or rewrite using eager execution. For more information, see [Migrate your TensorFlow 1 code to TensorFlow 2](https://www.tensorflow.org/guide/migrate).
 
 ```python
 %%writefile digit_identification.py
@@ -116,37 +127,37 @@ file_path = os.path.join(script_dir, "<file_name>")
 
 ### Parameters for ParallelRunConfig
 
-`ParallelRunConfig` is the major configuration for `ParallelRunStep` instance within the Azure Machine Learning pipeline. You use it to wrap your script and configure necessary parameters, including all of the following entries:
-- `entry_script`: A user script as a local file path that is run in parallel on multiple nodes. If `source_directory` is present, use a relative path. Otherwise, use any path that's accessible on the machine.
+`ParallelRunConfig` is the main configuration for a `ParallelRunStep` instance within the Azure Machine Learning pipeline. Use it to wrap your script and configure necessary parameters, including all of the following entries:
+- `entry_script`: A user script as a local file path that runs in parallel on multiple nodes. If `source_directory` is present, use a relative path. Otherwise, use any path that's accessible on the machine.
 - `mini_batch_size`: The size of the mini-batch passed to a single `run()` call. (optional; the default value is `10` files for `FileDataset` and `1MB` for `TabularDataset`.)
     - For `FileDataset`, it's the number of files with a minimum value of `1`. You can combine multiple files into one mini-batch.
-    - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` will never cross file boundaries. For example, if you have .csv files with various sizes, the smallest file is 100 KB and the largest is 10 MB. If you set `mini_batch_size = 1MB`, then files with a size smaller than 1 MB are treated as one mini-batch. Files with a size larger than 1 MB are split into multiple mini-batches.
-- `error_threshold`: The number of record failures for `TabularDataset` and file failures for `FileDataset` that should be ignored during processing. If the error count for the entire input goes above this value, the job is aborted. The error threshold is for the entire input and not for individual mini-batch sent to the `run()` method. The range is `[-1, int.max]`. The `-1` part indicates ignoring all failures during processing.
+    - For `TabularDataset`, it's the size of data. Example values are `1024`, `1024KB`, `10MB`, and `1GB`. The recommended value is `1MB`. The mini-batch from `TabularDataset` never crosses file boundaries. For example, if you have .csv files with various sizes, the smallest file is 100 KB and the largest is 10 MB. If you set `mini_batch_size = 1MB`, then files with a size smaller than 1 MB are treated as one mini-batch. Files with a size larger than 1 MB are split into multiple mini-batches.
+- `error_threshold`: The number of record failures for `TabularDataset` and file failures for `FileDataset` that the process ignores. If the error count for the entire input goes above this value, the job is aborted. The error threshold applies to the entire input and not to individual mini-batches sent to the `run()` method. The range is `[-1, int.max]`. The `-1` value indicates ignoring all failures during processing.
 - `output_action`: One of the following values indicates how the output is organized:
     - `summary_only`: The user script stores the output. `ParallelRunStep` uses the output only for the error threshold calculation.
     - `append_row`: For all inputs, only one file is created in the output folder to append all outputs separated by line.
-- `append_row_file_name`: To customize the output file name for append_row output_action (optional; default value is `parallel_run_step.txt`).
+- `append_row_file_name`: To customize the output file name for `append_row` `output_action` (optional; default value is `parallel_run_step.txt`).
 - `source_directory`: Paths to folders that contain all files to execute on the compute target (optional).
 - `compute_target`: Only `AmlCompute` is supported.
-- `node_count`: The number of compute nodes to be used for running the user script.
-- `process_count_per_node`: The number of processes per node. Best practice is to set to the number of GPU or CPU one node has (optional; default value is `1`).
+- `node_count`: The number of compute nodes to use for running the user script.
+- `process_count_per_node`: The number of processes per node. Set this value to the number of GPU or CPU one node has (optional; default value is `1`).
 - `environment`: The Python environment definition. You can configure it to use an existing Python environment or to set up a temporary environment. The definition is also responsible for setting the required application dependencies (optional).
 - `logging_level`: Log verbosity. Values in increasing verbosity are: `WARNING`, `INFO`, and `DEBUG`. (optional; the default value is `INFO`)
 - `run_invocation_timeout`: The `run()` method invocation timeout in seconds. (optional; default value is `60`)
-- `run_max_try`: Maximum try count of `run()` for a mini-batch. A `run()` is failed if an exception is thrown, or nothing is returned when `run_invocation_timeout` is reached (optional; default value is `3`). 
+- `run_max_try`: Maximum try count of `run()` for a mini-batch. A `run()` fails if an exception is thrown, or if it returns nothing when `run_invocation_timeout` is reached (optional; default value is `3`). 
 
-You can specify `mini_batch_size`, `node_count`, `process_count_per_node`, `logging_level`, `run_invocation_timeout`, and `run_max_try` as `PipelineParameter`, so that when you resubmit a pipeline run, you can fine-tune the parameter values. In this example, you use `PipelineParameter` for `mini_batch_size` and `Process_count_per_node` and you change these values when you resubmit a run later. 
+You can specify `mini_batch_size`, `node_count`, `process_count_per_node`, `logging_level`, `run_invocation_timeout`, and `run_max_try` as `PipelineParameter` values. When you resubmit a pipeline run, you can fine-tune these parameter values. In this example, you use `PipelineParameter` for `mini_batch_size` and `process_count_per_node` and you change these values when you resubmit a run later. 
 
 ### Parameters for creating the ParallelRunStep
 
-Create the ParallelRunStep by using the script, environment configuration, and parameters. Specify the compute target that you already attached to your workspace as the target of execution for your inference script. Use `ParallelRunStep` to create the batch inference pipeline step, which takes all the following parameters:
-- `name`: The name of the step, with the following naming restrictions: unique, 3-32 characters, and regex ^\[a-z\]([-a-z0-9]*[a-z0-9])?$.
+Create the `ParallelRunStep` by using the script, environment configuration, and parameters. Specify the compute target that you already attached to your workspace as the target of execution for your inference script. Use `ParallelRunStep` to create the batch inference pipeline step, which takes all the following parameters:
+- `name`: The name of the step. The name must be unique, 3-32 characters, and match the regex `^[a-z]([-a-z0-9]*[a-z0-9])?$`.
 - `parallel_run_config`: A `ParallelRunConfig` object, as defined earlier.
-- `inputs`: One or more single-typed Azure Machine Learning datasets to be partitioned for parallel processing.
-- `side_inputs`: One or more reference data or datasets used as side inputs without need to be partitioned.
+- `inputs`: One or more single-typed Azure Machine Learning datasets to partition for parallel processing.
+- `side_inputs`: One or more reference data or datasets used as side inputs without needing to be partitioned.
 - `output`: An `OutputFileDatasetConfig` object that corresponds to the output directory.
-- `arguments`: A list of arguments passed to the user script. Use unknown_args to retrieve them in your entry script (optional).
-- `allow_reuse`: Whether the step should reuse previous results when run with the same settings/inputs. If this parameter is `False`, a new run is generated for this step during pipeline execution. (optional; the default value is `True`.)
+- `arguments`: A list of arguments passed to the user script. Use `unknown_args` to retrieve them in your entry script (optional).
+- `allow_reuse`: Whether the step should reuse previous results when run with the same settings and inputs. If you set this parameter to `False`, the pipeline generates a new run for this step during pipeline execution. (optional; the default value is `True`.)
 
 ```python
 from azureml.pipeline.steps import ParallelRunStep
@@ -164,9 +175,9 @@ parallelrun_step = ParallelRunStep(
 
 There are three major techniques for debugging pipelines: 
 
-* Debug individual pipeline steps on your local computer
-* Use logging and Application Insights to isolate and diagnose the source of the problem
-* Attach a remote debugger to a pipeline running in Azure
+* Debug individual pipeline steps on your local computer.
+* Use logging and Application Insights to isolate and diagnose the source of the problem.
+* Attach a remote debugger to a pipeline running in Azure.
 
 ### Debug scripts locally
 
@@ -190,16 +201,16 @@ Once you have a script setup to run on your local environment, it's easier to do
 
 ## Configure, write to, and review pipeline logs
 
-Testing scripts locally is a great way to debug major code fragments and complex logic before you start building a pipeline. At some point you need to debug scripts during the actual pipeline run itself, especially when diagnosing behavior that occurs during the interaction between pipeline steps. We recommend liberal use of `print()` statements in your step scripts so that you can see object state and expected values during remote execution, similar to how you would debug JavaScript code.
+Testing scripts locally is a great way to debug major code fragments and complex logic before you start building a pipeline. At some point you need to debug scripts during the actual pipeline run itself, especially when diagnosing behavior that occurs during the interaction between pipeline steps. Use liberal `print()` statements in your step scripts so that you can see object state and expected values during remote execution, similar to how you would debug JavaScript code.
 
 ### Logging options and behavior
 
-The following table provides information for different debug options for pipelines. It isn't an exhaustive list, as other options exist besides just the Azure Machine Learning and Python ones shown here.
+The following table provides information about different debug options for pipelines. It isn't an exhaustive list, as other options exist besides just the Azure Machine Learning and Python ones shown here.
 
 | Library                    | Type   | Example                                                          | Destination                                  | Resources                                                                                                                                                                                                                                                                                                                    |
 |----------------------------|--------|------------------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Azure Machine Learning SDK | Metric | `run.log(name, val)`                                             | Azure Machine Learning Portal UI             | [How to track experiments](how-to-log-view-metrics.md)<br>[azureml.core.Run class](/python/api/azureml-core/azureml.core.run%28class%29)                                                                                                                                                 |
-| Python printing/logging    | Log    | `print(val)`<br>`logging.info(message)`                          | Driver logs, Azure Machine Learning designer | [How to track experiments](how-to-log-view-metrics.md)<br><br>[Python logging](https://docs.python.org/2/library/logging.html)                                                                                                                                                                       |
+| Python printing/logging    | Log    | `print(val)`<br>`logging.info(message)`                          | Driver logs, Azure Machine Learning designer | [How to track experiments](how-to-log-view-metrics.md)<br><br>[Python logging](https://docs.python.org/3/library/logging.html)                                                                                                                                                                       |
 
 
 #### Logging options example
@@ -228,29 +239,32 @@ logger.info("I am a plain info statement, I will be sent to the driver logs.")
 handler = AzureLogHandler(connection_string='<connection string>')
 logger.addHandler(handler)
 
-``` 
+```
+
+> [!NOTE]
+> `AzureLogHandler` from the `opencensus-ext-azure` package is deprecated. For new projects, use the [`azure-monitor-opentelemetry`](/azure/azure-monitor/app/opentelemetry-enable) package instead. 
 
 ## Azure Machine Learning designer
 
-For pipelines created in the designer, you can find the **70_driver_log** file in either the authoring page, or in the pipeline run detail page.
+For pipelines you create in the designer, you can find the **70_driver_log** file in either the authoring page or the pipeline run detail page.
 
 ### Enable logging for real-time endpoints
 
-In order to troubleshoot and debug real-time endpoints in the designer, you must enable Application Insight logging using the SDK. Logging lets you troubleshoot and debug model deployment and usage issues. For more information, see [Logging for deployed models](how-to-enable-app-insights.md). 
+To troubleshoot and debug real-time endpoints in the designer, use the SDK to enable Application Insights logging. By using logging, you can troubleshoot and debug model deployment and usage problems. For more information, see [Logging for deployed models](how-to-enable-app-insights.md). 
 
 ### Get logs from the authoring page
 
 When you submit a pipeline run and stay in the authoring page, you can find the log files generated for each component as each component finishes running.
 
-1. Select a component that has finished running in the authoring canvas.
+1. Select a component that finishes running in the authoring canvas.
 1. In the right pane of the component, go to the  **Outputs + logs** tab.
-1. Expand the right pane, and select the **70_driver_log.txt** to view the file in browser. You can also download logs locally.
+1. Expand the right pane, and select the **70_driver_log.txt** file to view it in the browser. You can also download logs locally.
 
     ![Expanded output pane in the designer](./media/how-to-debug-pipelines/designer-logs.png)
 
 ### Get logs from pipeline runs
 
-You can also find the log files for specific runs in the pipeline run detail page, which can be found in either the **Pipelines** or **Experiments** section of the studio.
+You can also find the log files for specific runs in the pipeline run detail page. You can find this page in either the **Pipelines** or **Experiments** section of the studio.
 
 1. Select a pipeline run created in the designer.
 
@@ -258,18 +272,18 @@ You can also find the log files for specific runs in the pipeline run detail pag
 
 1. Select a component in the preview pane.
 1. In the right pane of the component, go to the  **Outputs + logs** tab.
-1. Expand the right pane to view the **std_log.txt** file in browser, or select the file to download the logs locally.
+1. Expand the right pane to view the **std_log.txt** file in the browser, or select the file to download the logs locally.
 
 > [!IMPORTANT]
-> To update a pipeline from the pipeline run details page, you must **clone** the pipeline run to a new pipeline draft. A pipeline run is a snapshot of the pipeline. It's similar to a log file, and cannot be altered. 
+> To update a pipeline from the pipeline run details page, you must **clone** the pipeline run to a new pipeline draft. A pipeline run is a snapshot of the pipeline. It's similar to a log file, and you can't alter it. 
 
 ## Interactive debugging with Visual Studio Code
 
-In some cases, you might need to interactively debug the Python code used in your ML pipeline. By using Visual Studio Code (VS Code) and debugpy, you can attach to the code as it runs in the training environment. For more information, visit the [interactive debugging in VS Code guide](how-to-debug-visual-studio-code.md#debug-and-troubleshoot-machine-learning-pipelines).
+In some cases, you might need to interactively debug the Python code used in your ML pipeline. By using Visual Studio Code (VS Code) and debugpy, you can attach to the code as it runs in the training environment. For more information, see the [interactive debugging in VS Code guide](how-to-debug-visual-studio-code.md#debug-and-troubleshoot-machine-learning-pipelines).
 
 ## HyperdriveStep and AutoMLStep fail with network isolation
 
-After you use HyperdriveStep and AutoMLStep, when you attempt to register the model you may receive an error.
+After you use HyperdriveStep and AutoMLStep, when you attempt to register the model, you might receive an error.
 
 * You're using Azure Machine Learning SDK v1.
 * Your Azure Machine Learning workspace is configured for network isolation (VNet).
@@ -288,9 +302,9 @@ After you use HyperdriveStep and AutoMLStep, when you attempt to register the mo
 ### Workaround
 
 > [!IMPORTANT]
-> This behavior does not occur when using Azure Machine Learning SDK v2.
+> This behavior doesn't occur when using Azure Machine Learning SDK v2.
 
-To work around this error, use the [Run](/python/api/azureml-core/azureml.core.run.run) class to get the model created from the HyperdriveStep or AutoMLStep. The following is an example script that gets the output model from a HyperdriveStep:
+To work around this error, use the [Run](/python/api/azureml-core/azureml.core.run.run) class to get the model created from the HyperdriveStep or AutoMLStep. The following example script gets the output model from a HyperdriveStep:
 
 ```python
 %%writefile $script_folder/model_download9.py
@@ -326,7 +340,7 @@ if __name__ == "__main__":
     print("Successfully downloaded model") 
 ```
 
-The file can then be used from a PythonScriptStep:
+You can use the file from a PythonScriptStep:
 
 ```python
 from azureml.pipeline.steps import PythonScriptStep
@@ -348,6 +362,9 @@ model_download_step = PythonScriptStep(
 ```
 
 ## Next steps
+
+> [!NOTE]
+> The `azureml-pipeline-core` and `azureml-pipeline-steps` references in the following section apply to the retired SDK v1 packages as of June 30, 2026. For the recommended path forward, see [Build and run machine learning pipelines with Azure Machine Learning CLI/SDK v2](/azure/machine-learning/how-to-create-component-pipeline-python).
 
 * For a complete tutorial using `ParallelRunStep`, see [Tutorial: Build an Azure Machine Learning pipeline for batch scoring](../tutorial-pipeline-batch-scoring-classification.md).
 

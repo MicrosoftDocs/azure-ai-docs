@@ -1,10 +1,6 @@
 ---
-title: Encrypt data using customer-managed keys
-titleSuffix: Azure AI Search
+title: Encrypt Data Using Customer-Managed Keys
 description: Supplement server-side encryption in Azure AI Search using customer managed keys (CMK) or bring your own keys (BYOK) that you create and manage in Azure Key Vault.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 09/18/2025
@@ -26,7 +22,7 @@ You can store keys using either:
 + Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. HSM support is new in Azure AI Search. To migrate from Azure Key Vault to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
 
 > [!IMPORTANT]
-> + CMK provides encryption for data at rest. If you need to protect data in use, consider using [confidential computing](search-security-overview.md#data-in-use).
+> + CMK provides encryption for data at rest. If you need to protect data in use, consider using [confidential computing](search-security-best-practices.md#optional-enable-confidential-computing).
 >
 > + CMK encryption is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-CMK encryption, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
 
@@ -68,7 +64,7 @@ Required operations are **Wrap**, **Unwrap**, **Encrypt**, and **Decrypt**.
 
 You can [create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal), [Azure CLI](/azure/key-vault/general/quick-create-cli), or [Azure PowerShell](/azure/key-vault/general/quick-create-powershell).
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open your key vault overview page.
+1. Go to your key vault in the [Azure portal](https://portal.azure.com).
 
 1. Select **Objects** > **Keys** on the left, and then select **Generate/Import**.
 
@@ -140,7 +136,7 @@ If you configured your search service to use a managed identity, assign roles th
 
 Role-based access control is recommended over the Access Policy permission model. For more information or migration steps, start with [Azure role-based access control (Azure RBAC) vs. access policies (legacy)](/azure/key-vault/general/rbac-access-policy).
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and find your key vault.
+1. Go to your key vault in the [Azure portal](https://portal.azure.com).
 
 1. Select **Access control (IAM)** and select **Add role assignment**.
 
@@ -171,7 +167,7 @@ Requirements for using the Azure portal are that the key vault and key must exis
 
 In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in the REST API examples to provide a customer-managed key on a skillset.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open your search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management**, select **Indexes**, **Indexers**, or **Data Sources**.
 

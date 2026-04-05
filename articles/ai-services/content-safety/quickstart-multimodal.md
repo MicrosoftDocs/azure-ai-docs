@@ -2,12 +2,12 @@
 title: "Quickstart: Analyze multimodal content"
 titleSuffix: Azure AI services
 description: Get started using Azure AI Content Safety to analyze text content in images for objectionable material.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
 ms.date: 11/21/2025
-ms.author: pafarley
+ms.author: ssalgado
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 ---
 

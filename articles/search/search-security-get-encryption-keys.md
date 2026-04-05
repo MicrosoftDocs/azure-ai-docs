@@ -1,10 +1,6 @@
 ---
-title: Find encryption key information
-titleSuffix: Azure AI Search
+title: Find Encryption Key Information
 description: Retrieve the encryption key name and version used in an index or synonym map so that you can manage the key in Azure Key Vault.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -37,7 +33,7 @@ The **encryptionKey** construct is the same for all encrypted objects. It's a fi
 
 You must have [Search Service Contributor](search-security-rbac.md#built-in-roles-used-in-search) or equivalent permissions. To use [key-based authentication](search-security-api-keys.md) instead, provide an admin API key. Admin permissions are required on requests that return object definitions and metadata. The easiest way to get the admin API key is through the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and open the search service overview page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the left side, select **Keys** and copy an admin API. 
 

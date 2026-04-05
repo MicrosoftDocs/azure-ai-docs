@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn how to configure output options with the Speech CLI.
 ---
 
@@ -48,7 +49,7 @@ The default file names are as follows, where the `<EPOCH_TIME>` is replaced at r
 - The default `output each` file name, `each.<EPOCH_TIME>.tsv`, includes the local operating system epoch time. This file isn't created by default, unless you specify the `--output each` option.
 - The default `output all` file name, `output.<EPOCH_TIME>.tsv`, includes the local operating system epoch time. This file is created by default.
 
-## Output to specific files
+## Output to a specific file
 
 For output to files that you specify instead of the [default files](#default-file-output), set the `file` option to the file name.
 
@@ -80,8 +81,8 @@ You can suppress the header line in the output file by setting the `has header f
 spx recognize --nodefaults @my.defaults --file audio.wav --output recognized text --output file has header false
 ```
 
-See [Configure the Speech CLI datastore](spx-data-store-configuration.md#nodefaults) for more information about `--nodefaults`.
+See [Configure the Speech CLI datastore](spx-data-store-configuration.md#override-default-settings) for more information about `--nodefaults`.
 
-## Next steps 
+## Next step
 
 * [Captioning quickstart](./captioning-quickstart.md)

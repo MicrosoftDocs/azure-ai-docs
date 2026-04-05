@@ -1,7 +1,7 @@
----
+﻿---
 author: PatrickFarley
 ms.service: azure-ai-speech
-ms.date: 8/1/2025
+ms.date: 04/02/2026
 ms.topic: include
 ms.author: pafarley
 ---
@@ -70,7 +70,7 @@ ms.author: pafarley
 | Punjabi | `pa-IN` |
 | Romanian | `ro-RO` |
 | Russian | `ru-RU` |
-| Serbian | `sr-RS` |
+| Serbian | `sr-ME`<br/>`sr-RS`<br/>`sr-XK` |
 | Sinhala | `si-LK` |
 | Slovak | `sk-SK` |
 | Slovenian | `sl-SI` |

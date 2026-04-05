@@ -2,12 +2,12 @@
 title: Content safety containers overview - Azure AI Content Safety
 titleSuffix: Azure AI services
 description: Use the Docker containers for the content safety service to perform content safety operations on-premises.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: overview
 ms.date: 09/16/2025
-ms.author: pafarley
+ms.author: ssalgado
 keywords: on-premises, Docker, container
 ---
 
@@ -23,6 +23,7 @@ The following table lists the content safety containers available in the Microso
 |--------------------------------------|----------|
 |Analyze text|Scans text for sexual content, violence, hate, and self-harm with multiple severity levels.|
 |Analyze image|Scans images for sexual content, violence, hate, and self-harm with multiple severity levels.|
+|Prompt Shields for user prompts and documents |Detects and mitigates user prompt attacks and safeguards against attacks not directly supplied by the user or developer, such as external documents. |
 
 The content safety container is available in public preview. Containers in preview are still under development and don't meet Microsoft's stability and support requirements.
 

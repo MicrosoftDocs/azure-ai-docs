@@ -7,11 +7,14 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: concept-article
-ms.date: 02/21/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 ---
 
 # Smart-cropped thumbnails (version 4.0 preview)
+
+[!INCLUDE [image-analysis-deprecation](includes/image-analysis-deprecation.md)]
 
 A thumbnail is a reduced-size representation of an image. Thumbnails are used to represent images and other data in a more economical, layout-friendly way. The Azure Vision in Foundry Tools 4.0 API uses smart cropping to create intuitive image thumbnails that include the most important regions of an image with priority given to any detected faces.
 

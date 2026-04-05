@@ -8,6 +8,7 @@ _site/
 .optemp/
 _themes*/
 _repo.*/
+output/
 
 .openpublishing.buildcore.ps1
 
@@ -16,6 +17,7 @@ _repo.*/
 *sec.endpointdlp
 
 # CoPilot instructions and prompts
+.agents/
 .github/copilot-instructions.md
 .github/prompts/*.md
 .github/prompts/*.zip
@@ -23,9 +25,6 @@ _repo.*/
 .github/chatmodes/*.*
 .github/*.*
 
-
-articles/ai-foundry/includes/get-started-fdp.md
-articles/ai-foundry/toc-files/setup-management/toc.yml
 # Dev-kit instructions and prompts
 
 dk-env/
@@ -34,11 +33,20 @@ specs/
 # Doc-Kit workspace files
 .github/AGENTS.md
 .github/agents/
+.github/hooks/
 .github/instructions/
 .github/prompts/
 .github/skills/
+.playwright-mcp/
 .vscode/settings.json
 .dockit/
 .env
 .env.example
+.venv/
+node_modules/
 requirements.txt
+.roo
+
+# Playwright files
+.playwright-cli
+.playwright-mcp

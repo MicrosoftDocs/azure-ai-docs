@@ -248,6 +248,9 @@ items:
           - name: Create connections to external data sources
             href: how-to-connection.md
             displayName: null
+          - name: Migrate data import to Microsoft Fabric
+            href: data-import-migration-guide.md
+            displayName: Microsoft Fabric, data import, migration
           - name: Import data
             href: how-to-import-data-assets.md
           - name: Schedule a data import
@@ -545,7 +548,7 @@ items:
       - name: Track and monitor
         items:
           - name: Monitor and analyze jobs in studio
-            href: how-to-track-monitor-analyze-runs.md
+            href: ./v1/how-to-track-monitor-analyze-runs.md
           - name: Organize & manage jobs (preview)
             href: how-to-track-monitor-organize-jobs.md
           - name: Visualize training results (preview)
@@ -1027,9 +1030,6 @@ items:
             href: ./v1/how-to-troubleshoot-prebuilt-docker-image-inference.md
       - name: Monitor web services
         items:
-          - name: Collect & evaluate model data
-            href: ./v1/how-to-enable-data-collection.md
-            displayName: track production
           - name: Monitor with Application Insights
             href: ./v1/how-to-enable-app-insights.md
       - name: Deploy designer models
@@ -1439,6 +1439,8 @@ items:
             href: reference-yaml-data.md
           - name: MLTable
             href: reference-yaml-mltable.md
+          - name: Deployment template
+            href: reference-yaml-deployment-template.md
           - name: Model
             href: reference-yaml-model.md
           - name: Schedule
@@ -1523,8 +1525,6 @@ items:
                 href: reference-yaml-deployment-kubernetes-online.md
               - name: Batch
                 href: reference-yaml-deployment-batch.md
-              - name: Deployment template
-                href: reference-yaml-deployment-template.md
           - name: Component
             items:
               - name: Spark

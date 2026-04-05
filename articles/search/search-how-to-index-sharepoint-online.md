@@ -1,12 +1,10 @@
 ---
-title: SharePoint in Microsoft 365 indexer (preview)
-titleSuffix: Azure AI Search
+title: SharePoint in Microsoft 365 Indexer
 description: Set up a SharePoint in Microsoft 365 indexer to automate indexing of document library content in Azure AI Search.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/09/2025
+ms.date: 03/24/2026
 ms.custom:
   - ignite-2025
   - sfi-image-nochange
@@ -30,7 +28,7 @@ In Azure AI Search, an indexer extracts searchable data and metadata from a data
 + Indexes incrementally, picking up just the new and changed files and metadata. 
 + Detects deleted content automatically. Document deletion in the library is picked up on the next indexer run, and the corresponding search document is removed from the index.
 + Extracts text and normalized images from indexed documents automatically. Optionally, you can add a [skillset](cognitive-search-working-with-skillsets.md) for deeper [AI enrichment](cognitive-search-concept-intro.md), such as optical character recognition (OCR) or entity recognition.
-+ Supports document [basic Access Control Lists (ACL) ingestion](search-indexer-sharepoint-access-control-lists.md) in public preview during initial document sync. It also supports full data set incremental data sync.
++ Supports document [basic access control lists (ACL) ingestion](search-indexer-sharepoint-access-control-lists.md) in public preview during initial document sync. It also supports full data set incremental data sync.
 + Supports [Microsoft Purview sensitivity label ingestion and honoring at query time](search-indexer-sensitivity-labels.md). This functionality is in public preview.
   
 ## Prerequisites
@@ -69,10 +67,8 @@ Here are the limitations of this feature:
     
   +  User-encrypted files and password-protected ZIP files aren't supported. However, encrypted content is allowed if it's protected by [Purview sensitivity labels](/purview/sensitivity-labels) and if the [configuration to preserve and honor those labels (preview)](search-indexer-sensitivity-labels.md) is enabled.
 
-  + Limited support for document-level access permissions. A basic level of Access Control Lists (ACL) sync is currently in public preview. Review the [SharePoint ACL configuration documentation](search-indexer-sharepoint-access-control-lists.md) for details and setup.
+  + Limited support for document-level access permissions. A basic level of ACL sync is currently in public preview. Review the [SharePoint ACL configuration documentation](search-indexer-sharepoint-access-control-lists.md) for details and setup.
 
-> [!IMPORTANT]
-> Don't test or enable both [SharePoint ACL ingestion (preview)](search-indexer-sharepoint-access-control-lists.md) and [preserving and honoring sensitivity labels (preview)](search-indexer-sharepoint-access-control-lists.md) in the same indexer or index during preview. Use separate indexers / indexes for each feature. Coexistence of both features is not currently supported at this time.
 
 Here are some considerations when using this feature:
 
@@ -135,26 +131,27 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
 
     + If your indexer uses application API permissions, choose **Application** permissions.
       - For standard indexing, select:
-        `Files.Read.All`
-        `Sites.Read.All`
+        - `Files.Read.All`
+        - `Sites.Read.All`
+        
+        :::image type="content" source="media/search-howto-index-sharepoint-online/application-api-permissions.png" alt-text="Screenshot of application API permissions." lightbox="media/search-howto-index-sharepoint-online/application-api-permissions.png":::
+
 
       - If you're enabling content indexing and [basic ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md), select:
-        `Files.Read.All`
-        `Sites.FullControl.All` (instead of Sites.Read.All)
+        - `Files.Read.All`
+        - `Sites.FullControl.All` (instead of Sites.Read.All)
 
-      - If you need to enable content indexing and limit [ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md) to specific sites, select:
-        `Files.Read.All`
-        `Sites.Selected`
-         Then grant the application full control only for those selected sites.
+      - If you need to enable content indexing and/or limit [ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md) to specific sites, select:
+        - `Sites.Selected`
 
-      
-      :::image type="content" source="media/search-howto-index-sharepoint-online/application-api-permissions.png" alt-text="Screenshot of application API permissions." lightbox="media/search-howto-index-sharepoint-online/application-api-permissions.png":::
+          Then grant the application full control only for those selected sites.
 
-      Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret or secretless configuration is also required for authentication. Setting up the authentication mechanism is described later in this article under [authentication modes for application API permissions only](#available-authentication-methods-for-application-api-permissions-only).
+     
+          Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret or secretless configuration is also required for authentication. Setting up the authentication mechanism is described later in this article under [authentication modes for application API permissions only](#available-authentication-methods-for-application-api-permissions-only).
 
     + If the indexer is using delegated API permissions, select **Delegated permissions** and then select `Delegated - Files.Read.All`, `Delegated - Sites.Read.All`, and `Delegated - User.Read`.
 
-      <!-- RESTORE THIS SCREENSHOT -->
+
       :::image type="content" source="media/search-howto-index-sharepoint-online/delegated-api-permissions.png" alt-text="Screenshot showing delegated API permissions." lightbox="media/search-howto-index-sharepoint-online/delegated-api-permissions.png":::
 
       Delegated permissions allow the search client to connect to SharePoint under the security identity of the current user.
@@ -163,7 +160,7 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
 
     Tenant admin consent is required when using application API permissions. Some tenants are locked down in such a way that tenant admin consent is required for delegated API permissions as well. If either of these conditions apply, you'll need to have a tenant admin grant consent for this Microsoft Entra application before creating the indexer.
 
-    <!-- RESTORE THIS SCREENSHOT -->
+
     :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-grant-admin-consent.png" alt-text="Screenshot showing Microsoft Entra app grant admin consent." lightbox="media/search-howto-index-sharepoint-online/aad-app-grant-admin-consent.png":::
 
 1. Select the **Authentication** tab.

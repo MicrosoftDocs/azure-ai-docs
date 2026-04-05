@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-services
 #Customer intent: As a developer, I want to learn how to translate speech from one language to text in another language so that I can convert spoken language into text in a different language.
@@ -15,8 +15,24 @@ zone_pivot_groups: programming-languages-speech-services
 
 # How to recognize and translate speech
 
+::: zone pivot="programming-language-rest"
+[!INCLUDE [REST include](includes/how-to/translate-speech/rest.md)]
+::: zone-end
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/how-to/translate-speech/python.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/how-to/translate-speech/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](includes/how-to/translate-speech/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/how-to/translate-speech/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -27,32 +43,16 @@ zone_pivot_groups: programming-languages-speech-services
 [!INCLUDE [Go include](includes/how-to/translate-speech/go.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](includes/how-to/translate-speech/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](includes/how-to/translate-speech/javascript.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-objectivec"
 [!INCLUDE [ObjectiveC include](includes/how-to/translate-speech/objectivec.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-swift"
-[!INCLUDE [Swift include](includes/how-to/translate-speech/swift.md)]
-::: zone-end
-
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./includes/how-to/translate-speech/python.md)]
-::: zone-end
-
-::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/how-to/translate-speech/rest.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-cli"
 [!INCLUDE [CLI include](includes/how-to/translate-speech/cli.md)]
+::: zone-end
+
+::: zone pivot="programming-language-swift"
+[!INCLUDE [Swift include](includes/how-to/translate-speech/swift.md)]
 ::: zone-end
 
 ## Next steps

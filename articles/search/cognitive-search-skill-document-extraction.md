@@ -1,9 +1,7 @@
 ---
-title: Document Extraction cognitive skill
-titleSuffix: Azure AI Search
+title: Document Extraction Cognitive Skill
 description: Extracts content from a file within the enrichment pipeline.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -16,11 +14,7 @@ ms.update-cycle: 365-days
 
 The **Document Extraction** skill extracts content from a file in the [enrichment pipeline](cognitive-search-concept-intro.md). By default, content extraction or retrieval is built into the enrichment pipeline. However, by using the Document Extraction skill, you can control how parameters are set, and how extracted content is named in the enrichment tree.
 
-For [vector](vector-search-overview.md) and [multimodal search](multimodal-search-overview.md), Document Extraction combined with the [Text Split skill](cognitive-search-skill-textsplit.md) is more affordable than other [data chunking approaches](vector-search-how-to-chunk-documents.md). The following tutorials demonstrate skill usage for different scenarios:
-
-+ [Tutorial: Vectorize images and text](tutorial-document-extraction-multimodal-embeddings.md)
-
-+ [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
+For [vector](vector-search-overview.md) and [multimodal search](multimodal-search-overview.md), Document Extraction combined with the [Text Split skill](cognitive-search-skill-textsplit.md) is more affordable than other [data chunking approaches](vector-search-how-to-chunk-documents.md). The [Multimodal tutorial](tutorial-multimodal.md) demonstrates this scenario.
 
 > [!NOTE]
 > This skill isn't bound to Foundry Tools and has no Foundry Tools key requirement.

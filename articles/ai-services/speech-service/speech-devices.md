@@ -6,8 +6,9 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the devices that work with the Speech service.
 ---
 
@@ -30,6 +31,6 @@ The Speech SDK is designed to work with purpose-built development kits, and vary
 - [Azure Percept DK](/azure/azure-percept/overview-azure-percept-dk) contains a preconfigured audio processor and a four-microphone linear array. You can use voice commands, keyword spotting, and far field speech with the help of Foundry Tools. 
 - [Azure Kinect DK](/azure/kinect-dk/about-azure-kinect-dk) is a spatial computing developer kit with advanced AI sensors that provide sophisticated Azure Vision in Foundry Tools and speech models. As an all-in-one small device with multiple modes, it contains a depth sensor, spatial microphone array with a video camera, and orientation sensor. 
 
-## Next steps
+## Next step
 
 * [Audio processing concepts](audio-processing-overview.md)

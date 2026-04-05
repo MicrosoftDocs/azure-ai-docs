@@ -5,7 +5,8 @@ description: Learn how to use text to speech avatar with real-time synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 author: PatrickFarley
 ---
@@ -14,7 +15,7 @@ author: PatrickFarley
 
 This guide shows you how to use text to speech avatar with real-time synthesis. The avatar video is generated almost instantly after you enter text.
 
-Text to speech avatar can be used in the Voice Live API to create a more personalized voice conversation. See [Voice Live API overview](../voice-live.md) and [Avatar in Voice Live sample code](../voice-live-how-to.md#azure-text-to-speech-avatar) to learn more
+Text to speech avatar can be used in the Voice Live API to create a more personalized voice conversation. See [Voice Live API overview](../voice-live.md) and [Avatar in Voice Live sample code](../voice-live-how-to.md#azure-text-to-speech-avatar) to learn more.
 
 ## Prerequisites
 
@@ -30,7 +31,20 @@ You need:
 
 ## Set up environment
 
-To use real-time avatar synthesis, install the Speech SDK for JavaScript for your webpage. See [Install the Speech SDK](/azure/ai-services/speech-service/quickstarts/setup-platform?pivots=programming-language-javascript&tabs=windows%2Cubuntu%2Cdotnetcli%2Cdotnet%2Cjre%2Cmaven%2Cbrowser%2Cmac%2Cpypi#install-the-speech-sdk-for-javascript).
+To use real-time avatar synthesis, install the Speech SDK for your preferred platform and programming language. See [Install the Speech SDK](/azure/ai-services/speech-service/quickstarts/setup-platform).
+
+### Network requirement
+
+Real-time avatar uses WebRTC to stream video from the server to the client. Ensure your network allows WebRTC traffic. If you have a firewall, add rules to allow outbound traffic to the TURN (relay) server used by WebRTC. If you're using the default Communication Service TURN server, allow traffic to `relay.communication.microsoft.com` on UDP port 3478 and TCP port 443. Below are the firewall rules you need to add to outbound traffic:
+
+| Rule | Source IP | Source Port | Destination FQDN | Destination IP | Destination Port | Protocol |
+|------|-----------|-------------|-------------------|----------------|------------------|----------|
+| Allow access to TURN relay server for WebRTC connection over UDP | IP range of end-user client machines where browsers play the avatar (set to **Any** if unsure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 3478 | UDP |
+| Allow access to TURN relay server for WebRTC connection over TCP | IP range of end-user client machines where browsers play the avatar (set to **Any** if unsure) | Any | relay.communication.microsoft.com | 20.202.0.0/16 | 443 | TCP |
+
+For more information about WebRTC protocol security, see [WebRTC security](https://webrtc-security.github.io).
+
+### Supported platforms and browsers
 
 Real-time avatar works on these platforms and browsers:
 
@@ -342,6 +356,7 @@ Find text to speech avatar code samples in the Speech SDK GitHub repository. The
     - [Android](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/avatar)
     - [iOS](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios/avatar)
 - **Voice Live**
+    - [Python](https://github.com/microsoft-foundry/voicelive-samples/tree/main/python/voice-live-avatar)
     - [Node.js](https://github.com/azure-ai-foundry/voicelive-samples/tree/main/javascript/voice-live-avatar)
 
 ## Next steps

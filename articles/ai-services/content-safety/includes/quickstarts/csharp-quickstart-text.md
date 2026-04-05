@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Analyze text content with C#"
 description: In this quickstart, get started using the Azure AI Content Safety .NET SDK to analyze text content for objectionable material.
-author: PatrickFarley
+author: ssalgadodev
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom:
 ms.topic: include
 ms.date: 07/04/2023
-ms.author: pafarley
+ms.author: ssalgado
 ---
 
 [Reference documentation](/dotnet/api/overview/azure/ai.contentsafety-readme) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/contentsafety/Azure.AI.ContentSafety) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.ContentSafety) | [Samples](https://github.com/Azure-Samples/AzureAIContentSafety/tree/main/dotnet/1.0.0)

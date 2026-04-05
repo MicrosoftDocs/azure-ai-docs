@@ -1,9 +1,9 @@
 ---
-title: Visualize logs and metrics with Power BI
+title: Visualize Logs and Metrics with Power BI
 description: Visualize Azure AI Search logs and metrics with Power BI.
-author: gmndrg
-ms.author: gimondra
-manager: nitinme
+author: mattwojo
+ms.author: mattwoj
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -12,7 +12,7 @@ ms.date: 05/29/2025
 ms.update-cycle: 365-days
 ---
 
-# Visualize Azure AI Search Logs and Metrics with Power BI
+# Visualize Azure AI Search logs and metrics with Power BI
 
 Azure AI Search can send operation logs and service metrics to an Azure Storage account, which can then be visualized in Power BI. This article explains the steps and how to use a Power BI template app to visualize the data. The template covers information about queries, indexing, operations, and service metrics.
 
@@ -24,7 +24,7 @@ Azure AI Search can send operation logs and service metrics to an Azure Storage 
 1. Enable metric and resource logging for your search service:
 
     1. Create or identify an existing [Azure Storage account](/azure/storage/common/storage-account-create) where you can archive the logs.
-    1. Navigate to your search service in the Azure portal.
+    1. Go to your search service in the [Azure portal](https://portal.azure.com).
     1. Under Monitoring, select **Diagnostic settings**.
     1. Select **Add diagnostic setting**.
     1. Check **Archive to a storage account**, provide your storage account information, and check **OperationLogs** and **AllMetrics**.

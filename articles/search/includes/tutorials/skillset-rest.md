@@ -1,10 +1,7 @@
 ---
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/21/2025
+ms.date: 03/25/2026
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
@@ -12,7 +9,7 @@ ms.custom:
 
 Learn how to call REST APIs that create an [AI enrichment pipeline](../../cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
 
-Skillsets add AI processing to raw content, making it more uniform and searchable. Once you know how skillsets work, you can support a broad range of transformations, from image analysis to natural language processing to customized processing that you provide externally.
+Skillsets add AI processing to raw content, making it more uniform and searchable. After you understand how skillsets work, you can support a broad range of transformations, from image analysis to natural language processing to customized processing that you provide externally.
 
 In this tutorial, you:
 
@@ -28,7 +25,7 @@ This tutorial uses a REST client and the [Azure AI Search REST APIs](/rest/api/s
 
 The [indexer](../../search-indexer-overview.md) drives each step in the pipeline, starting with content extraction of sample data (unstructured text and images) in a blob container on Azure Storage.
 
-Once content is extracted, the [skillset](../../cognitive-search-working-with-skillsets.md) executes built-in skills from Microsoft to find and extract information. These skills include Optical Character Recognition (OCR) on images, language detection on text, key phrase extraction, and entity recognition (organizations). New information created by the skillset is sent to fields in an [index](../../search-what-is-an-index.md). Once the index is populated, you can use the fields in queries, facets, and filters.
+After content is extracted, the [skillset](../../cognitive-search-working-with-skillsets.md) executes built-in skills from Microsoft to find and extract information. These skills include Optical Character Recognition (OCR) on images, language detection on text, key phrase extraction, and entity recognition (organizations). New information created by the skillset is sent to fields in an [index](../../search-what-is-an-index.md). After the index is populated, you can use the fields in queries, facets, and filters.
 
 ## Prerequisites
 
@@ -73,7 +70,7 @@ Built-in AI enrichment is backed by Foundry Tools, including Azure Language and 
 
 For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview** and copy the endpoint. It should be in this format: `https://my-service.search.windows.net`
 

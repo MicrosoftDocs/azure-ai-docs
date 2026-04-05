@@ -1,10 +1,6 @@
 ---
-title: Preview feature list
-titleSuffix: Azure AI Search
+title: Preview Feature List
 description: Preview features are released so that customers can provide feedback on their design and utility. This article is a comprehensive list of all features currently in preview.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
@@ -86,7 +82,7 @@ If you write code against a preview API, you should prepare to upgrade that code
 
 Preview REST APIs are accessed through the api-version parameter on the URI. Older previews are still operational but become stale over time and aren't updated with new features or bug fixes.
 
-For data plane operations on content, [**`2025-11-01-preview`**](/rest/api/searchservice/search-service-api-versions#2025-11-01-preview) is the most recent preview version. The following example shows the syntax for [Indexes GET (preview)](/rest/api/searchservice/indexes/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true):
+For data plane operations on content, [**`2025-11-01-preview`**](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) is the most recent preview version. The following example shows the syntax for [Indexes GET (preview)](/rest/api/searchservice/indexes/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true):
 
 ```rest
 GET {endpoint}/indexes('{indexName}')?api-version=2025-11-01-Preview

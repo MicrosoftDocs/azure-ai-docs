@@ -1,11 +1,8 @@
 ---
-title: Azure DB for MySQL (preview)
-titleSuffix: Azure AI Search
+title: Azure DB for MySQL
 description: Learn how to set up a search indexer to index data stored in Azure Database for MySQL for full text search in Azure AI Search.
-author: gmndrg
-ms.author: gimondra
-manager: nitinme
 ms.devlang: rest-api
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 08/27/2025

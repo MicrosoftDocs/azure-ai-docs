@@ -1,22 +1,20 @@
 ---
-title: "Quickstart: Agentic Retrieval in the Azure portal"
-titleSuffix: Azure AI Search
+title: "Quickstart: Agentic Retrieval in the Azure Portal"
 description: Learn how to use agentic retrieval in the Azure portal for a conversational search experience powered by Azure AI Search and Azure OpenAI models.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: quickstart
-ms.date: 12/18/2025
+ms.date: 02/23/2026
 ---
 
 # Quickstart: Agentic retrieval in the Azure portal
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and large language models (LLMs) from Azure OpenAI in Foundry Models.
+In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) in the Azure portal to create a conversational search experience powered by documents indexed in Azure AI Search and a large language model (LLM) from Azure OpenAI in Foundry Models.
 
 The portal guides you through the process of creating the following objects:
 
@@ -33,15 +31,15 @@ Afterwards, you test the knowledge base by submitting a complex query that requi
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](search-create-service-portal.md) in any [region that provides agentic retrieval](search-region-support.md).
++ An [Azure AI Search service](search-create-service-portal.md) in any [region that provides agentic retrieval](search-region-support.md). This quickstart requires the Basic tier or higher for managed identity support.
 
 + An [Azure Blob Storage account](/azure/storage/common/storage-account-create).
 
 + A [Microsoft Foundry project](/azure/ai-foundry/how-to/create-projects) and resource. When you create a project, the resource is automatically created.
 
-+ For text-to-vector conversion, an embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai). You can use any `text-embedding` model, such as `text-embedding-3-large`.
++ An embedding model [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for text-to-vector conversion. You can use any `text-embedding` model, such as `text-embedding-3-large`.
 
-+ For query planning and answer generation, an LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai). You can use any [portal-supported LLM](#supported-llms).
++ An LLM [deployed to your project](/azure/ai-foundry/how-to/deploy-models-openai) for query planning and answer generation. You can use any [portal-supported LLM](#supported-llms).
 
 ### Supported LLMs
 
@@ -55,45 +53,23 @@ Although agentic retrieval [programmatically supports several LLMs](agentic-retr
 
 ## Configure access
 
-Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, use [key-based authentication](search-security-api-keys.md) instead.
+Before you begin, make sure you have permissions to access content and operations. This quickstart uses Microsoft Entra ID for authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, use [key-based authentication](search-security-api-keys.md) instead.
 
-To configure access for this quickstart, select each of the following tabs.
+To configure access for this quickstart:
 
-### [Azure AI Search](#tab/search-perms)
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
-Azure AI Search provides the agentic retrieval pipeline. Configure access for yourself and your search service to read and write data, interact with other Azure services, and run the pipeline.
+1. On your Azure AI Search service:
 
-On your Azure AI Search service:
+    1. [Enable role-based access](search-security-enable-roles.md).
 
-1. [Enable role-based access](search-security-enable-roles.md).
+    1. [Create a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
-1. [Configure a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
+    1. [Assign the following roles](search-security-rbac.md) to your user account: **Search Service Contributor**, **Search Index Data Contributor**, and **Search Index Data Reader**.
 
-1. [Assign the following roles](search-security-rbac.md) to yourself.
+1. On your Azure Blob Storage account, assign **Storage Blob Data Contributor** to the managed identity of your search service.
 
-   + **Search Service Contributor**
-
-   + **Search Index Data Contributor**
-
-   + **Search Index Data Reader**
-
-### [Azure Blob Storage](#tab/storage-perms)
-
-Azure Blob Storage stores your source documents for indexing and retrieval. Grant your search service permission to read, write, and delete the documents.
-
-On your Azure Blob Storage account:
-
-+ Assign **Storage Blob Data Reader** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
-
-### [Microsoft Foundry](#tab/foundry-perms)
-
-Foundry provides the Azure OpenAI models used for embeddings, query planning, and answer generation. Grant your search service permission to use these models.
-
-On your Foundry resource:
-
-+ Assign **Cognitive Services User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
-
----
+1. On your Microsoft Foundry resource, assign **Cognitive Services User** to the managed identity of your search service.
 
 > [!IMPORTANT]
 > Agentic retrieval has two token-based billing models:
@@ -109,7 +85,7 @@ This quickstart uses sample JSON documents from NASA's Earth at Night e-book, bu
 
 To prepare the sample data for this quickstart:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Blob Storage account.
+1. Go to your Azure Storage account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Data storage** > **Containers**.
 
@@ -125,23 +101,25 @@ You also configure a *vectorizer*, which uses your deployed embedding model to c
 
 To create the knowledge source for this quickstart:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Agentic retrieval** > **Knowledge sources**.
 
 1. Select **Add knowledge source** > **Add knowledge source**.
 
-1. Select **Azure blob**.
+1. Select **Azure blob (Indexed)**.
 
 1. Enter **earth-at-night-ks** for the name, and then select your subscription, storage account, and container with the sample data.
 
 1. Select the **Authenticate using managed identity** checkbox. Leave the identity type as **System-assigned**.
 
-1. Select **Add vectorizer**.
+1. Under **Enable text vectorization**, select **Add vectorizer**.
 
-1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
+1. Select **Microsoft Foundry** for the kind, and then select your subscription, project, and embedding model deployment.
 
 1. Select **System assigned identity** for the authentication type.
+
+1. Save the vectorizer.
 
 1. Create the knowledge source.
 
@@ -163,7 +141,7 @@ To create the knowledge base for this quickstart:
 
 1. Under **Chat completion model**, select **Add model deployment**.
 
-1. Select **Azure AI Foundry** for the kind, and then select your subscription, project, and LLM deployment.
+1. Select **Microsoft Foundry** for the kind, and then select your subscription, project, and LLM deployment.
 
 1. Select **System assigned identity** for the authentication type.
 
@@ -255,7 +233,7 @@ To query the knowledge base:
     ]
     ```
 
-   The activity log offers insight into the steps taken during retrieval, including query planning and execution, semantic ranking, and answer synthesis. For more information, see [Review the activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array).
+   The activity log offers insight into the steps taken during retrieval, including query planning and execution, semantic ranking, and answer synthesis. For more information, see [Review the activity array](agentic-retrieval-how-to-retrieve.md#activity-array).
 
 ## Review the created objects
 
@@ -275,9 +253,7 @@ To review the auto-generated objects:
 
 ## Clean up resources
 
-When you work in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money.
-
-In the Azure portal, you can manage your Azure AI Search, Azure Blob Storage, and Foundry resources by selecting **All resources** or **Resource groups** from the left pane.
+[!INCLUDE [clean up resources (paid)](includes/resource-cleanup-paid.md)]
 
 You can also delete the knowledge source and knowledge base on their respective portal pages. When you delete the knowledge source, the portal prompts you to delete the associated data source, skillset, index, and indexer.
 

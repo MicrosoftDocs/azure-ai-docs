@@ -7,7 +7,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 02/21/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Remove the background in images
@@ -210,7 +211,7 @@ As an example, assume background removal is run on the following image:
 
 :::image type="content" source="../media/background-removal/building-1.png" alt-text="Photo of a city near water.":::
 
-On a successful background removal call, The following four-channel PNG image is the response for the `backgroundRemoval` mode:
+On a successful background removal call, the following four-channel PNG image is the response for the `backgroundRemoval` mode:
 
 :::image type="content" source="../media/background-removal/building-1-result.png" alt-text="Photo of a city near water; sky is transparent.":::
 

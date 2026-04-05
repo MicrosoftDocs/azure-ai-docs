@@ -1,21 +1,21 @@
 ---
-title: How to record video samples for custom text to speech avatar - Speech service
+title: Record video samples for custom text to speech avatar
 titleSuffix: Foundry Tools
-description: Learn how to prepare high-quality video samples for creating a custom text to speech avatar.
+description: Learn how to prepare high-quality video samples for creating a custom text to speech avatar with Azure Speech in Foundry Tools, including recording environment, lighting, and data requirements.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: best-practice
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 keywords: how to record video samples for custom text to speech avatar
 ---
 
 # Record video samples for custom text to speech avatar
 
-This article shows you how to prepare high-quality video samples for creating a custom text to speech avatar.
+This article explains how to prepare high-quality video samples for creating a custom text to speech avatar with Azure Speech in Foundry Tools.
 
-Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. You must get sufficient consent under all relevant laws and regulations from the avatar talent to create a custom avatar from their talent's image or likeness. To learn about requirements of the consent statement video, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).
+Building a custom text to speech avatar model requires training on video recordings of a real person speaking. This person is the avatar talent. You must get sufficient consent under all relevant laws and regulations from the avatar talent to create a custom avatar from the talent's image or likeness. To learn about consent statement video requirements, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).
 
 ## Recording environment
 
@@ -60,114 +60,47 @@ Custom text to speech avatar doesn't support customization of clothing or appear
 
 ## What video clips to record
 
-You need these types of video clips:
+The video clips required to train a custom avatar model vary slightly depending on the use case—whether the avatar is intended for video content generation or real-time conversation.
+Here is the video type list for each scenario.
 
-**Consent Video (Required)**
-The consent video is required for creating a custom avatar. 
-   - The consent video must show the same avatar talent speaking and follow the consent statement requirements. Make sure the statement is recorded correctly with each word spoken clearly. You can use any supported language. To learn about consent statement video requirements, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).
-   - The avatar talent should always face the camera without large movements.
-   - Record the video in a quiet environment with clear audio at reasonable volume. Keep the signal-to-noise ratio above 20. For voice recording guidance, see the [Recording custom voice samples](../record-custom-voice-samples.md#recording-your-script) guide.
-   - Make sure the actor's head isn't blocked in any frame.
-   - Keep other objects out of the camera view, including filming equipment and mobile phones. 
+**Interactive conversation (real-time)**
 
-**Status 0 speaking (Required for gestures)**
-The status 0 speaking video clip is required for gestures with the avatar.
-   - Status 0 represents the posture you can naturally maintain most of the time while speaking. For example, arms crossed in front of the body or hanging naturally at the sides.
-   - Maintain a front-facing pose. The actor can move slightly to show a relaxed state, like moving the head or shoulder slightly, but don't move the body too much.
-   - Duration: 3-5 minutes of speaking in status 0.
-     
-**Samples of status 0 speaking**
+|Required|Optional|
+|--|--|
+| Consent video</br> Natural speaking video</br> Silent video| Interaction video|
 
-![Animated graphic depicting Lisa speaking in status 0, representing the posture naturally maintained while speaking.](media/status-0-lisa.gif) 
+**Video content generation (batch)**
 
-![Animated graphic depicting Harry speaking in status 0, representing the posture naturally maintained while speaking.](media/status-0-harry.gif)
+|Required|Optional|
+|--|--|
+| Consent video</br> Natural speaking video| Status 0 video and Gesture video|
 
-![Animated graphic depicting Lori speaking in status 0, representing the posture naturally maintained while speaking.](media/status-0-lori.gif)
 
-**Naturally speaking (Required)**
-The naturally speaking video clip is required for the avatar to speak naturally.
-   - Actor speaks in status 0 but with natural hand gestures from time to time.
-   - Hands should start from status 0 and return after making gestures.
-   - Use natural and common gestures when speaking. Avoid meaningful gestures like pointing, applause, or thumbs up.
-   - Duration: Minimum 5 minutes, maximum 30 minutes total. At least one 5-minute continuous video recording is required. If recording multiple clips, keep each under 10 minutes.
-     
-**Samples of natural speaking** 
+Below we describe the detailed requirements for each video type.
 
-![Animated graphic depicting sample of Lisa speaking in status 0 with natural hand gestures, representing the posture naturally maintained while speaking.](media/natural-lisa.gif)
+|Video type|Description|Samples|
+|----|--------------------|---|
+|Consent video |The consent video is required for creating a custom avatar.</br> - The consent video must show the same avatar talent speaking and follow the consent statement requirements. Ensure the statement is recorded correctly with each word spoken clearly. You can use any supported language. To learn about consent statement video requirements, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).</br> - The avatar talent should always face the camera without large movements.</br> - Record the video in a quiet environment with clear audio at reasonable volume. Keep the signal-to-noise ratio above 20. For voice recording guidance, see the [Recording custom voice samples](../record-custom-voice-samples.md#recording-your-script) guide.</br> - Ensure the actor's head isn't blocked in any frame.</br>- Keep other objects out of the camera view, including filming equipment and mobile phones.|-|
+|Status 0 speaking video|**What is Status 0?**</br>- Status 0 represents the posture you can naturally maintain most of the time while speaking. For example, arms crossed in front of the body or hanging naturally at the sides.</br> - Maintain a front-facing pose. The actor can move slightly to show a relaxed state, like moving the head or shoulder slightly, but don't sway or move the body too much.</br> </br>- Status 0 video clip is used for avatar video creation (batch mode) when gestures insertion is needed during avatar speaking. Gesture video clips are used in combination with with Status 0 speaking video to support gesture insertion during avatar speech.</br> - The required video length is 3-5 minutes.|<img src="media/status-0-lisa.gif" width="250" height="450" alt="sample video of status0 Lisa"> </br><img src="media/status-0-harry.gif" width="250" height="550" alt="sample video of status0 harry">|
+|Natural speaking video|The naturally speaking video clip is required for the avatar to speak naturally.</br> - The actor speaks in Status 0 while using natural hand gestures occasionally.</br> - Hand gestures should begin in Status 0 and return to Status 0 once completed.</br> - Gestures should remain natural and commonly used, avoiding any meaningful gestures such as pointing, applause, or thumbs-up.</br> - Multiple clips are allowed recorded. The combined duration should be more than 10 minutes, and at least one continuous clip of 5 minutes is required.|<img src="media/natural-lisa.gif" width="250" height="550" alt="sample video of natural speaking Lisa"></br><img src="media/natural-harry.gif" width="250" height="550" alt="sample video of natural speaking harry">|
+|Silent status video|The silent status video clip is required for building a real-time conversation with the custom avatar.</br> - Maintain Status 0, don't speak, but stay relaxed.</br> - Even while remaining in Status 0, don't stay completely still. You can move slightly but not too much. Act like you're waiting.</br> - Maintain a smile as if listening or waiting patiently.</br>- Avoid nodding frequently.</br>- Duration: 1 minute.|<img src="media/silent-lisa.gif" width="250" height="550" alt="sample video of silent video lisa"></br><img src="media/silent-harry.gif" width="250" height="550" alt="sample video of silent video harry">|
+|Interaction video|Interaction videos are used to improve avatar body naturalness and gesture quality in interactive conversation mode. This capability is currently available as a private preview fine-tuning step and is supported through a manual process.Only a subset of customers who have prepared the required data are invited to evaluate this feature.</br> The clip should follow a listen–speak–listen interaction pattern. The listen–speak sequence should be repeated until the conversation is complete. If the recording is done by a single person, the actor should imagine another person speaking during the listening phase and respond naturally during the speaking phase.</br>The following tips apply to each phase:</br> </br>**Listening phase**</br> - Maintain Status 0. Do not speak, but remain relaxed.</br> - While staying in Status 0, avoid remaining completely still. Move slightly, as if waiting.</br> - Maintain a gentle smile, as if listening or waiting patiently.</br> - Avoid frequent nodding, swaying or large movements.</br>- Length: Each listening segment should last approximately 3–5 seconds.</br></br> **Speaking phase**</br> - Speak naturally, using natural hand gestures occasionally.</br>- Use only natural and common gestures. Avoid meaningful gestures such as pointing, applause, or thumbs-up.</br>- Begin gestures after starting to speak, and stop them before finishing.</br>- Length: Each speaking segment should last more than 5 seconds.</br>**Total video length**</br>- The total video length should be approximately 1–5 minutes.|
+|Gesture video| Gesture video clips are used for avatar video creation (batch mode) when gestures insertion is needed during avatar speaking. Gesture insertion is only available for batch mode avatar; real-time avatar doesn't support gesture insertion. Each custom avatar model supports up to 10 gestures.</br></br> **Gesture tips**</br> - Each gesture clip should be 10 seconds or shorter.</br> - Gestures should start from Status 0 and end with Status 0. The character must maintain the same position as in Status 0, which is in the middle of the screen, throughout the gesture. Otherwise, the gesture clip can't be smoothly inserted into the avatar video.</br> - The gesture clip only captures body gestures; the actor doesn't have to speak while making gestures.</br> - Design a list of gestures before recording.|Delivering sell link/promotion code</br><img src="media/delivering-sell-link.gif" width="250" height="550" alt="sample video of gesture video 1"></br> Praising the product</br> <img src="media/commending-the-product.gif" width="250" height="550" alt="sample video of gesture video 2">|
 
-![Animated graphic depicting sample of Harry speaking in status 0 with natural hand gestures, representing the posture naturally maintained while speaking.](media/natural-harry.gif)
 
-![Animated graphic depicting sample of Lori speaking in status 0 with natural hand gestures, representing the posture naturally maintained while speaking.](media/natural-lori.gif)
-
-**Silent status (Required)**
-The silent status video clip is required. It's important if you build a real-time conversation with the custom avatar. The video clip is used as the main template for both speaking and listening status for a chatbot.
-
-  - Maintain status 0, don't speak, but stay relaxed.
-  - Even while remaining in status 0, don't stay completely still. You can move slightly but not too much. Act like you're waiting.
-  - Maintain a smile as if listening or waiting patiently.
-  - Avoid nodding frequently.
-  - Duration: 1 minute.
-    
-**Samples of silent status** 
-
-![Animated graphic depicting sample of Lisa maintaining silent status without speaking but still feeling relaxed.](media/silent-lisa.gif)
-
-![Animated graphic depicting sample of Harry maintaining silent status without speaking but still feeling relaxed.](media/silent-harry.gif)
-
-![Animated graphic depicting sample of Lori maintaining silent status without speaking but still feeling relaxed.](media/silent-lori.gif)
-
-**Gestures (optional)**
-
-Gesture video clips are optional. If you need to insert certain gestures in the avatar speaking, follow this guideline to record gesture videos. Gesture insertion is only available for batch mode avatar; real-time avatar doesn't support gesture insertion. Each custom avatar model can support up to 10 gestures.
-
-**Gesture tips**
-- Each gesture clip should be within 10 seconds.
-- Gestures should start from status 0 and end with status 0. It's essential that the character maintains the same position as in status 0, which is in the middle of the screen, throughout the gesture. Otherwise, the gesture clip can't be smoothly inserted into the avatar video. 
-- The gesture clip only captures the body gestures; the actor doesn't have to speak during making gestures.
-- Design a list of gestures before recording. Here are some examples:
-
-**Samples of gesture**
-
-| Gestures                       | Samples                |
-|--------------------------------|------------------------|
-| Delivering sell link/promotion code | ![An animated graphic depicting sample of delivering sell link.](media/delivering-sell-link.gif)       |
-| Praising the product         |  ![An animated graphic depicting sample of praising the product](media/commending-the-product.gif)       |
-| Introducing the product          | ![An animated graphic depicting sample of introducing the product.](media/introducing-the-product.gif)       |
-| Displaying the price (number from 1 to 10-fist-number with each hand) | Right hand ![An animated graphic depicting sample of displaying the price with right hand.](media/displaying-the-price-with-right-hand.gif) Left hand ![An animated graphic depicting sample of displaying the price with left hand.](media/displaying-the-price-with-left-hand.gif) |
-
-High-quality avatar models are built from high-quality video recordings, including audio quality. Here are more tips for actor's performance and recording video clips:
+## Additional recording tips
+High-quality avatar models are built from high-quality video recordings, including audio quality. The following table has more tips for the actor's performance and recording video clips:
 
 | **Dos** | **Don'ts**   |
 |---------|--------------|
 | - Ensure all video clips are taken in the same conditions.</br>- During the recording process, design the size and display area of the character you need so that the character can be displayed on the screen appropriately.</br> - Actor should be steady during the recording. </br> - Mind facial expressions, which should be suitable for the avatar's use case. For example, look positive and smile if the custom text to speech avatar is used as customer service. Look professionally if the avatar is used for news reporting.</br> - Maintain eye gaze towards the camera, even when using a teleprompter.</br> - Return your body to status 0 when pausing speaking.</br> - Speak on a self-chosen topic, and minor speech mistakes like miss a word or mispronounced are acceptable. If the actor misses a word or mispronounces something, just go back to status 0, pause for 3 seconds, and then continue speaking.</br> - Consciously pause between sentences and paragraphs. When pausing, go back to the status 0 and close your lips. </br> - The audio should be clear and loud enough; bad audio quality impacts training result.</br> - Keep the shooting environment quiet. | - Don't adjust the camera parameters, focal length, position, angle of view. Don't move the camera; keep the person's position, size, angle, consistent in the camera.</br> - Characters that are too small might lead to a loss of image quality during post-processing. Characters that are too large might cause the screen to overflow during gestures and movements.</br> - Don't make too long gestures or too much movement for one gesture; for example, actor's hands are always making gestures and forget to go back to status 0.</br> - The actor's movements and gestures must not block the face.</br> - Avoid small movements of the actor like licking lips, touching hair, talking sideways, constant head shaking during speech, and not closing up after speaking.</br> - Avoid background noise; staff should avoid walking and talking during video recording.</br> - Avoid other people's voice recorded during the actor speaking. |
 
-### How to prepare an interaction video clip
-
-Creating a high-quality interaction video clip is essential if you're building a real-time conversation with a custom avatar. The clip should consist of a question-and-answer format, where a photographer asks a question, and the actor responds. Loop the question-answer pair until the conversation is complete. If you're filming alone, imagine someone else asking the questions during the asking phase.
-
-Here are some tips for each phase:
-
-**Asking phase**
-- Maintain status 0, don't speak, but still feel relaxed.
-- Even remaining in status 0, don't keep still. Perform like you're waiting.
-- Maintain a smile as if listening or waiting patiently.
-- Avoid nodding frequently.
-- Length: Each asking slot should last around 3–5 seconds.
-
-**Answering phase**
-- Speak naturally with natural hand gestures from time to time.
-- Use natural and common gestures when speaking. Avoid meaningful gestures like pointing, applause, or thumbs up.
-- Begin gestures after starting to speak, and stop them before you finish.
-- Length: Each answering slot should last around 5 seconds.
-
-**Total video length**
-- Aim for a total video length of 1–5 minutes.
 
 ## Data requirements
 
 Basic video processing helps improve model training efficiency:
 
-- Keep the character centered on screen with consistent size and position throughout recording. Keep all video processing parameters like brightness and contrast consistent. The output avatar's size, position, brightness, and contrast will directly reflect those in the training data. We don't apply alterations during processing or model building.
+- Keep the character centered on screen with consistent size and position throughout recording. Keep all video processing parameters like brightness and contrast consistent. The output avatar's size, position, brightness, and contrast directly reflect those in the training data. No alterations are applied during processing or model building.
 - Start and end clips in status 0. Actors should close their mouths, smile, and look ahead. The video should be continuous, not abrupt.
 
 **Avatar training video recording file format:** .mp4 or .mov.

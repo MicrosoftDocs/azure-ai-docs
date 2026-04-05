@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 02/25/2026
 ms.author: pafarley
 #Customer intent: As a developer, I want to learn about Speech Synthesis Markup Language (SSML) elements and improve pronunciation.
 ---
@@ -17,7 +17,7 @@ You can use Speech Synthesis Markup Language (SSML) with text to speech to speci
 
 Refer to the following sections for details about how to use SSML elements to improve pronunciation. For more information about SSML syntax, see [SSML document structure and events](speech-synthesis-markup-structure.md).
 
-## phoneme element
+## Phoneme element
 
 The `phoneme` element is used for phonetic pronunciation in SSML documents. Always provide human-readable speech as a fallback.
 
@@ -33,7 +33,7 @@ Usage of the `phoneme` element's attributes are described in the following table
 | `alphabet` | The phonetic alphabet to use when you synthesize the pronunciation of the string in the `ph` attribute. The string that specifies the alphabet must be specified in lowercase letters. The following options are the possible alphabets that you can specify:<ul><li>`ipa` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md)</li><li>`sapi` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md)</li><li>`ups` &ndash; See [Universal Phone Set](https://documentation.help/Microsoft-Speech-Platform-SDK-11/17509a49-cae7-41f5-b61d-07beaae872ea.htm)</li><li>`x-sampa` &ndash; See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md#map-x-sampa-to-ipa)</li></ul><br>The alphabet applies only to the `phoneme` in the element. | Optional |
 | `ph` | A string containing phones that specify the pronunciation of the word in the `phoneme` element. **Each locale supports a specific phone set**. See [SSML phonetic alphabets](speech-ssml-phonetic-sets.md). If the specified string contains unrecognized phones, text to speech service will return http 400 error for invalid SSML.<br/><br/>For `ipa`, to stress one syllable by placing stress symbol before this syllable, you need to mark all syllables for the word. Or else, the syllable before this stress symbol is stressed. For `sapi`, if you want to stress one syllable, you need to place the stress symbol after this syllable, whether or not all syllables of the word are marked.| Required |
 
-### phoneme examples
+### Phoneme examples
 
 The supported values for attributes of the `phoneme` element were [described previously](#phoneme-element). In the first two examples, the values of `ph="tə.ˈmeɪ.toʊ"` or `ph="təmeɪˈtoʊ"` are specified to stress the syllable `meɪ`.
 
@@ -213,7 +213,7 @@ You can use the `x-microsoft-sapi` as the value for the `alphabet` attribute wit
 </lexicon>
 ```
 
-## say-as element
+## Say-as element
 
 The `say-as` element indicates the content type, such as number or date, of the element's text. This element provides guidance to the speech synthesis engine about how to pronounce the text.
 
@@ -233,20 +233,22 @@ The following content types are supported for the `interpret-as` and `format` at
 
 | interpret-as   | format   | Interpretation |
 | ---------- | ---------- | ---------- |
-| `characters`, `spell-out` |  | The text is spoken as individual letters (spelled out). The speech synthesis engine pronounces:<br /><br />`<say-as interpret-as="characters">test</say-as>`<br /><br />As "T E S T." |
+| `characters`, `spell-out` | casesensitive | The text is spoken as individual letters (spelled out). The speech synthesis engine pronounces:<br /><br />`<say-as interpret-as="characters">Test</say-as>`<br /><br />As "T E S T."<br />Pronounces:<br /><br />`<say-as interpret-as="characters" format="casesensitive">Test</say-as>`<br /><br />As "capital T E S T." |
+| `alphanumeric` | spell | The text is spoken as individual letters (spelled out) with proper pause. The speech synthesis engine pronounces:<br /><br />`<say-as interpret-as="alphanumeric" format="spell">ABCDEF</say-as>`<br /><br />As "A B C &lt;pause&gt; D E F."<br />You can specify pause with "-". The speech synthesis engine pronounces:<br /><br />`<say-as interpret-as="alphanumeric" format="spell">AB-CD-EF</say-as>`<br /><br />As "A B &lt;pause&gt; C D &lt;pause&gt; E F." |
 | `cardinal`, `number` | None| The text is spoken as a cardinal number. The speech synthesis engine pronounces:<br /><br />`There are <say-as interpret-as="cardinal">10</say-as> options`<br /><br />As "There are ten options."|
 | `ordinal`  | None | The text is spoken as an ordinal number. The speech synthesis engine pronounces:<br /><br />`Select the <say-as interpret-as="ordinal">3rd</say-as> option`<br /><br />As "Select the third option."|
 | `number_digit`  | None | The text is spoken as a sequence of individual digits. The speech synthesis engine pronounces:<br /><br />`<say-as interpret-as="number_digit">123456789</say-as>`<br /><br />As "1 2 3 4 5 6 7 8 9." |
 | `fraction`   | None | The text is spoken as a fractional number. The speech synthesis engine pronounces:<br /><br /> `<say-as interpret-as="fraction">3/8</say-as> of an inch`<br /><br />As "three eighths of an inch."  |
-| `date` | dmy, mdy, ymd, ydm, ym, my, md, dm, d, m, y | The text is spoken as a date. The `format` attribute specifies the date's format (*d=day, m=month, and y=year*). The speech synthesis engine pronounces:<br /><br />`Today is <say-as interpret-as="date">10-12-2016</say-as>`<br /><br />As "Today is October twelfth two thousand sixteen."<br />Pronounces:<br /><br />`Today is <say-as interpret-as="date" format="dmy">10-12-2016</say-as>`<br /><br />As "Today is December tenth two thousand sixteen." |
+| `date` | dmy, mdy, ymd, ym, my, md, dm, d, m, y | The text is spoken as a date. The `format` attribute specifies the date's format (*d=day, m=month, and y=year*). The speech synthesis engine pronounces:<br /><br />`Today is <say-as interpret-as="date">10-12-2016</say-as>`<br /><br />As "Today is October twelfth two thousand sixteen."<br />Pronounces:<br /><br />`Today is <say-as interpret-as="date" format="dmy">10-12-2016</say-as>`<br /><br />As "Today is December tenth two thousand sixteen." |
 | `time`  | hms12, hms24  | The text is spoken as a time. The `format` attribute specifies whether the time is specified by using a 12-hour clock (hms12) or a 24-hour clock (hms24). Use a colon to separate numbers representing hours, minutes, and seconds. Here are some valid time examples: 12:35, 1:14:32, 08:15, and 02:50:45. The speech synthesis engine pronounces:<br /><br />`The train departs at <say-as interpret-as="time" format="hms12">4:00am</say-as>`<br /><br />As "The train departs at four A M." |
 | `duration` | hms, hm, ms   | The text is spoken as a duration. The `format` attribute specifies the duration's format (*h=hour, m=minute, and s=second*). The speech synthesis engine pronounces:<br /><br />`<say-as interpret-as="duration">01:18:30</say-as>`<br /><br /> As "one hour eighteen minutes and thirty seconds".<br />Pronounces:<br /><br />`<say-as interpret-as="duration" format="ms">01:18</say-as>`<br /><br /> As "one minute and eighteen seconds".<br />This tag is only supported on English and Spanish. |
 | `telephone` |  None | The text is spoken as a telephone number. The speech synthesis engine pronounces:<br /><br />`The number is <say-as interpret-as="telephone">(888) 555-1212</say-as>`<br /><br />As "My number is area code eight eight eight five five five one two one two." |
 | `currency`  | None | The text is spoken as a currency. The speech synthesis engine pronounces:<br /><br />`<say-as interpret-as="currency">99.9 USD</say-as>`<br /><br />As "ninety-nine US dollars and ninety cents."|
+| `unit`  | None | The text is spoken as a unit. The speech synthesis engine pronounces:<br /><br />`<say-as interpret-as="unit">10 m</say-as>`<br /><br />As "ten meters."|
 | `address`| None | The text is spoken as an address. The speech synthesis engine pronounces:<br /><br />`I'm at <say-as interpret-as="address">150th CT NE, Redmond, WA</say-as>`<br /><br />As "I'm at 150th Court Northeast Redmond Washington."|
 | `name`   | None | The text is spoken as a person's name. The speech synthesis engine pronounces:<br /><br />`<say-as interpret-as="name">ED</say-as>`<br /><br />As [æd]. <br />In Chinese names, some characters pronounce differently when they appear in a family name. For example, the speech synthesis engine says 仇 in <br /><br />`<say-as interpret-as="name">仇先生</say-as>`<br /><br /> As [qiú] instead of [chóu]. |
 
-### say-as examples
+### Say-as examples
 
 The supported values for attributes of the `say-as` element were [described previously](#say-as-element).
 
@@ -263,7 +265,7 @@ The speech synthesis engine speaks the following example as "Your first request 
 </speak>
 ```
 
-## sub element
+## Sub element
 
 Use the `sub` element to indicate that the alias attribute's text value should be pronounced instead of the element's enclosed text. In this way, the SSML contains both a spoken and written form. 
 
@@ -273,7 +275,7 @@ Usage of the `sub` element's attributes are described in the following table.
 | ---------- | ---------- | ---------- |
 | `alias` | The text value that should be pronounced instead of the element's enclosed text. | Required |
 
-### sub examples
+### Sub examples
 
 The supported values for attributes of the `sub` element were [described previously](#sub-element).
 
@@ -286,6 +288,25 @@ The speech synthesis engine speaks the following example as "World Wide Web Cons
     </voice>
 </speak>
 ```
+
+## Markdown Reading
+
+To read the markdown content, you can wrap the markdown text with the `mstts:markdown` element. TTS only reads the text content in the markdown and ignores the markdown syntax.
+
+For example, the following SSML will read out two sentences: "This is headline" and "And this is a bold text", and the markdown syntax won't be read.
+```xml
+<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xml:lang='en-US'>
+  <voice name='en-US-JennyNeural'>
+    <mstts:markdown># This is headline 
+And this is a **bold** text
+    </mstts:markdown>
+  </voice>
+</speak>
+```
+
+### Supported markdown syntax
+TTS supports the markdown syntax defined in the CommonMark specification, which is a widely used markdown specification. For more information about the CommonMark specification, see [CommonMark](https://spec.commonmark.org/0.31.2/).
+
 
 ## Mathematical expressions reading
 There are two ways to read a mathematical expression:

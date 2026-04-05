@@ -1,0 +1,440 @@
+---
+title: Include file
+description: Include file
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.date: 01/06/2026
+ms.author: samkemp
+author: samuel100
+ai-usage: ai-assisted
+---
+
+## Prerequisites
+
+- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later installed.
+- Azure role-based access control (RBAC): Not applicable.
+
+## Samples repository
+
+You can find the sample in this article in the [Foundry Local SDK Samples GitHub repository](https://aka.ms/foundrylocalSDK).
+
+## Set up project
+
+[!INCLUDE [project-setup](../csharp-project-setup.md)]
+
+## Understanding tool choice settings
+
+When using tool calling with Foundry Local, the tool choice parameter controls whether and how the model invokes the tools you provide. It is sent as part of the chat completion request alongside your tool definitions.
+
+Different models have different capabilities when it comes to tool calling, but in general you can expect the following behavior for each option:
+
+| Option | Value | Behavior | Reliability |
+|--------|-------|----------|-------------|
+| **Auto** | `"auto"` | The model decides whether to call a tool or respond directly, based on the user's message and the available tool definitions. | Reliable across all tool-calling models |
+| **None** | `"none"` | The model will not call any tools, even if tools are provided in the request. | Reliable across all tool-calling models |
+| **Required** | `"required"` | The model must call at least one tool. It will not return a plain text response. | Best-effort — may be ignored by smaller models |
+| **Specific function** | `{"type": "function", "function": {"name": "my_function"}}` | The model must call the specified function. | Best-effort — may be ignored by smaller models |
+
+
+## Use native chat completions with tool calling
+
+Copy and paste the following code into a C# file named `Program.cs`:
+
+```csharp
+using Microsoft.AI.Foundry.Local;
+using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
+using Betalgo.Ranul.OpenAI.ObjectModels.ResponseModels;
+using Betalgo.Ranul.OpenAI.ObjectModels.SharedModels;
+using System.Text.Json;
+
+CancellationToken ct = new CancellationToken();
+
+var config = new Configuration
+{
+    AppName = "foundry_local_samples",
+    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information
+};
+
+// Initialize the singleton instance.
+await FoundryLocalManager.CreateAsync(config, Utils.GetAppLogger());
+var mgr = FoundryLocalManager.Instance;
+
+// Get the model catalog
+var catalog = await mgr.GetCatalogAsync();
+
+// Get a model using an alias.
+var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("Model not found");
+
+// Download the model (the method skips download if already cached)
+await model.DownloadAsync(progress =>
+{
+    Console.Write($"\rDownloading model: {progress:F2}%");
+    if (progress >= 100f)
+    {
+        Console.WriteLine();
+    }
+});
+
+// Load the model
+Console.Write($"Loading model {model.Id}...");
+await model.LoadAsync();
+Console.WriteLine("done.");
+
+// Get a chat client
+var chatClient = await model.GetChatClientAsync();
+chatClient.Settings.ToolChoice = ToolChoice.Required; // Force the model to make a tool call
+
+// Prepare messages
+List<ChatMessage> messages =
+[
+    new ChatMessage { Role = "system", Content = "You are a helpful AI assistant. If necessary, you can use any provided tools to answer the question." },
+    new ChatMessage { Role = "user", Content = "What is the answer to 7 multiplied by 6?" }
+];
+
+// Prepare tools
+List<ToolDefinition> tools =
+[
+    new ToolDefinition
+    {
+        Type = "function",
+        Function = new FunctionDefinition()
+        {
+            Name = "multiply_numbers",
+            Description = "A tool for multiplying two numbers.",
+            Parameters = new PropertyDefinition()
+            {
+                Type = "object",
+                Properties = new Dictionary<string, PropertyDefinition>()
+                {
+                    { "first", new PropertyDefinition() { Type = "integer", Description = "The first number in the operation" } },
+                    { "second", new PropertyDefinition() { Type = "integer", Description = "The second number in the operation" } }
+                },
+                Required = ["first", "second"]
+            }
+        }
+    }
+];
+
+
+// Get a streaming chat completion response
+var toolCallResponses = new List<ChatCompletionCreateResponse>();
+Console.WriteLine("Chat completion response:");
+var streamingResponse = chatClient.CompleteChatStreamingAsync(messages, tools, ct);
+await foreach (var chunk in streamingResponse)
+{
+    var content = chunk.Choices[0].Message.Content;
+    Console.Write(content);
+    Console.Out.Flush();
+
+    if (chunk.Choices[0].FinishReason == "tool_calls")
+    {
+        toolCallResponses.Add(chunk);
+    }
+}
+Console.WriteLine();
+
+
+// Invoke tools called and append responses to the chat
+foreach (var chunk in toolCallResponses)
+{
+    var call = chunk?.Choices[0].Message.ToolCalls?[0].FunctionCall;
+    if (call?.Name == "multiply_numbers")
+    {
+        var arguments = JsonSerializer.Deserialize<Dictionary<string, int>>(call.Arguments!)!;
+        var first = arguments["first"];
+        var second = arguments["second"];
+
+        Console.WriteLine($"\nInvoking tool: {call?.Name} with arguments {first} and {second}");
+        var result = Utils.MultiplyNumbers(first, second);
+        Console.WriteLine($"Tool response: {result.ToString()}");
+
+        var response = new ChatMessage
+        {
+            Role = "tool",
+            Content = result.ToString(),
+        };
+        messages.Add(response);
+    }
+}
+Console.WriteLine("\nTool calls completed. Prompting model to continue conversation...\n");
+
+
+// Prompt the model to continue the conversation after the tool call
+messages.Add(new ChatMessage { Role = "system", Content = "Respond only with the answer generated by the tool." });
+
+
+// Set tool calling back to auto so that the model can decide whether to call
+// the tool again or continue the conversation based on the new user prompt
+chatClient.Settings.ToolChoice = ToolChoice.Auto;
+
+// Run the next turn of the conversation
+Console.WriteLine("Chat completion response:");
+streamingResponse = chatClient.CompleteChatStreamingAsync(messages, tools, ct);
+await foreach (var chunk in streamingResponse)
+{
+    var content = chunk.Choices[0].Message.Content;
+    Console.Write(content);
+    Console.Out.Flush();
+}
+Console.WriteLine();
+
+// Tidy up - unload the model
+await model.UnloadAsync();
+```
+
+## Run the native chat completions example
+
+#### [Windows](#tab/windows)
+
+For x64 Windows, use the following command:
+
+```bash
+dotnet run -r:win-x64
+```
+
+For arm64 Windows, use the following command:
+
+```bash
+dotnet run -r:win-arm64
+```
+
+#### [Cross-Platform](#tab/xplatform)
+
+For macOS, use the following command:
+
+```bash
+dotnet run -r:osx-arm64
+```
+
+For Linux, use the following command:
+
+```bash
+dotnet run -r:linux-x64
+```
+
+For Windows, use the following command:
+
+```bash
+dotnet run -r:win-x64
+```
+
+> [!NOTE]
+> If you're targeting Windows, use the Windows-specific instructions under the Windows tab for the best performance and experience.
+
+---
+
+## Use OpenAI Web server for tool calling
+
+If you prefer to use the OpenAI SDKs to call the Foundry Local web service, you can follow the example below which demonstrates how to handle tool calling in that scenario.
+
+> [!TIP]
+> Use `options.ToolChoice = ChatToolChoice.CreateAutoChoice();` (the default) for the most reliable behavior. Write clear tool names and descriptions so the model calls the correct tool on its own.
+
+```csharp
+using Microsoft.AI.Foundry.Local;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel;
+using System.Text.Json;
+
+var config = new Configuration
+{
+    AppName = "foundry_local_samples",
+    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
+    Web = new Configuration.WebService
+    {
+        Urls = "http://127.0.0.1:52495"
+    }
+};
+
+
+// Initialize the singleton instance.
+await FoundryLocalManager.CreateAsync(config, Utils.GetAppLogger());
+var mgr = FoundryLocalManager.Instance;
+
+// Get the model catalog
+var catalog = await mgr.GetCatalogAsync();
+
+
+// Get a model using an alias
+var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("Model not found");
+// Download the model (the method skips download if already cached)
+await model.DownloadAsync(progress =>
+{
+    Console.Write($"\rDownloading model: {progress:F2}%");
+    if (progress >= 100f)
+    {
+        Console.WriteLine();
+    }
+});
+
+
+// Load the model
+Console.Write($"Loading model {model.Id}...");
+await model.LoadAsync();
+Console.WriteLine("done.");
+
+
+// Start the web service
+Console.Write($"Starting web service on {config.Web.Urls}...");
+await mgr.StartWebServiceAsync();
+Console.WriteLine("done.");
+
+
+// <<<<<< OPEN AI SDK USAGE >>>>>>
+// Use the OpenAI SDK to call the local Foundry web service
+
+ApiKeyCredential key = new ApiKeyCredential("notneeded");
+OpenAIClient client = new OpenAIClient(key, new OpenAIClientOptions
+{
+    Endpoint = new Uri(config.Web.Urls + "/v1"),
+});
+
+// Get chat client
+var chatClient = client.GetChatClient(model.Id);
+
+// Prepare messages
+var messages = new List<ChatMessage>
+{
+    ChatMessage.CreateSystemMessage("You are a helpful AI assistant. If necessary, you can use any provided tools to answer the question."),
+    ChatMessage.CreateUserMessage("What is the answer to 7 multiplied by 6?")
+};
+
+// Prepare tools
+var tools = new List<ChatTool>
+{
+    ChatTool.CreateFunctionTool(
+        functionName: "multiply_numbers",
+        functionDescription: "A tool for multiplying two numbers.",
+        functionParameters: BinaryData.FromString("""
+        {
+            "type": "object",
+            "properties": {
+                "first": { "type": "number", "description": "The first number in the operation" },
+                "second": { "type": "number", "description": "The second number in the operation" }
+            },
+            "required": ["first", "second"]
+        }
+        """)
+    )
+};
+
+// Prepare chat completion options
+var options = new ChatCompletionOptions
+{
+    ToolChoice = ChatToolChoice.CreateRequiredChoice()  // force the model to call a tool
+};
+foreach (var tool in tools)
+{
+    options.Tools.Add(tool);
+}
+
+// Get a streaming chat completion response
+var completionUpdates = chatClient.CompleteChatStreaming(messages, options);
+var toolCalls = new List<StreamingChatToolCallUpdate>();
+Console.Write($"[ASSISTANT]: ");
+foreach (var completionUpdate in completionUpdates)
+{
+    if (completionUpdate.ContentUpdate.Count > 0)
+    {
+        Console.Write(completionUpdate.ContentUpdate[0].Text);
+    }
+
+    if (completionUpdate.FinishReason == ChatFinishReason.ToolCalls)
+    {
+        foreach (var toolCall in completionUpdate.ToolCallUpdates)
+        {
+            toolCalls.Add(toolCall);
+        }
+    }
+}
+Console.WriteLine();
+
+// Invoke tools called and append responses to the chat
+foreach (var toolCall in toolCalls)
+{
+    if (toolCall.FunctionName == "multiply_numbers")
+    {
+        var arguments = JsonDocument.Parse(toolCall.FunctionArgumentsUpdate.ToString()).RootElement;
+        var first = arguments.GetProperty("first").GetInt32();
+        var second = arguments.GetProperty("second").GetInt32();
+
+        Console.WriteLine($"\nInvoking tool: {toolCall.FunctionName} with arguments {first} and {second}");
+        var result = Utils.MultiplyNumbers(first, second);
+        Console.WriteLine($"Tool response: {result.ToString()}");
+
+        messages.Add(ChatMessage.CreateToolMessage(toolCallId: "abcd1234", content: result.ToString()));
+    }
+}
+Console.WriteLine("\nTool calls completed. Prompting model to continue conversation...\n");
+
+// Prompt the model to continue the conversation after the tool call
+messages.Add(ChatMessage.CreateSystemMessage("Respond only with the answer generated by the tool."));
+
+// Set tool calling back to auto so that the model can decide whether to call
+// the tool again or continue the conversation based on the new user prompt
+options.ToolChoice = ChatToolChoice.CreateAutoChoice();
+
+// Run the next turn of the conversation
+Console.WriteLine("Chat completion response:");
+completionUpdates = chatClient.CompleteChatStreaming(messages, options);
+Console.Write($"[ASSISTANT]: ");
+foreach (var completionUpdate in completionUpdates)
+{
+    if (completionUpdate.ContentUpdate.Count > 0)
+    {
+        Console.Write(completionUpdate.ContentUpdate[0].Text);
+    }
+}
+Console.WriteLine();
+
+// <<<<<< END OPEN AI SDK USAGE >>>>>>
+
+
+// Tidy up
+// Stop the web service and unload model
+await mgr.StopWebServiceAsync();
+await model.UnloadAsync();
+```
+
+## Run the OpenAI web service example
+
+### [Windows](#tab/windows)
+
+For x64 Windows, use the following command:
+
+```bash
+dotnet run -r:win-x64
+```
+
+For arm64 Windows, use the following command:
+
+```bash
+dotnet run -r:win-arm64
+```
+
+
+### [Cross-Platform](#tab/xplatform)
+
+For macOS, use the following command:
+
+```bash
+dotnet run -r:osx-arm64
+```
+
+For Linux, use the following command:
+
+```bash
+dotnet run -r:linux-x64
+```
+
+For Windows, use the following command:
+
+```bash
+dotnet run -r:win-x64
+```
+
+> [!NOTE]
+> If you're targeting Windows, use the Windows-specific instructions under the Windows tab for the best performance and experience.
+
+---

@@ -1,10 +1,6 @@
 ---
 title: Java Samples
-titleSuffix: Azure AI Search
 description: Find Azure AI Search demo Java code samples that use the Azure .NET SDK for Java.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -12,7 +8,7 @@ ms.custom:
   - devx-track-extended-java
   - ignite-2023
 ms.topic: concept-article
-ms.date: 01/13/2026
+ms.date: 02/23/2026
 ---
 
 # Java samples for Azure AI Search
@@ -48,6 +44,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 
 | Sample | Article | Description |
 |--|--|--|
+| [quickstart-agentic-retrieval](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-agentic-retrieval) | [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) | Integrate semantic ranking with LLM-powered query planning and answer generation. |
 | [quickstart-keyword-search](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-keyword-search) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query a search index using sample data. |
 | [quickstart-semantic-ranking](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-semantic-ranking) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
 | [quickstart-vector-search](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-vector-search) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |

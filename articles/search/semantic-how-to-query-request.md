@@ -1,10 +1,6 @@
 ---
-title: Add semantic ranking
-titleSuffix: Azure AI Search
+title: Add Semantic Ranking
 description: Set a semantic query type to attach the deep learning models of semantic ranker.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -71,7 +67,7 @@ Regardless of the parameter chosen, the index should contain text fields with ri
 
 [Search explorer](search-explorer.md) includes options for semantic ranking. Recall that you can't set the `semanticQuery` parameter in the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Open a search index and select **Search explorer**.
 
@@ -107,14 +103,14 @@ Use [Search Documents](/rest/api/searchservice/documents/search-post) to formula
 
 A response includes an `@search.rerankerScore` automatically. If you want captions or answers in the response, enable semantic ranking by setting `queryType` to `semantic` or setting `semanticQuery` and adding captions and answers to the request.
 
-The following examples in this section use the [hotels-sample-index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
+The following examples in this section use the [hotels-sample index](search-get-started-portal.md) to demonstrate semantic ranking with semantic answers and captions.
 
 #### Use queryType=semantic
 
-If you want to set `queryType` to `semantic`, paste the following request into a web client as a template. Replace `search-service-name` with your search service name and replace `hotels-sample-index` if you have a different index name.
+If you want to set `queryType` to `semantic`, paste the following request into a web client as a template. Replace `search-service-name` with your search service name and replace `hotels-sample` if you have a different index name.
 
 ```http
-POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
       "search": "interesting hotel with restaurant on site and cozy lobby or shared area",
       "count": true,
@@ -157,7 +153,7 @@ By using `semanticQuery`, you can explicitly apply [simple text syntax](query-si
 Adjust your request to the following JSON to use `semanticQuery`.
 
 ```http
-POST https://[search-service-name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-09-01
+POST https://[search-service-name].search.windows.net/indexes/hotels-sample/docs/search?api-version=2025-09-01
 {
     "search": "Description:breakfast",
     "semanticQuery": "interesting hotel with restaurant on site and cozy lobby or shared area",

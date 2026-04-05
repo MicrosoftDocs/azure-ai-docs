@@ -8,9 +8,10 @@ ms.subservice: training
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: sooryar
-ms.date: 11/04/2022
+ms.date: 03/06/2026
 ms.topic: how-to
-ms.custom: UpdateFrequency5, sdkv1
+ms.custom: UpdateFrequency5, sdkv1, dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a TensorFlow developer, I need to combine open-source with a cloud platform to train, evaluate, and deploy my deep learning models at scale.
 ---
 
@@ -19,6 +20,9 @@ ms.custom: UpdateFrequency5, sdkv1
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+> [!TIP]
+> This article covers the SDK v1 approach. For the current recommended approach using SDK v2, see [Train TensorFlow models at scale with Azure Machine Learning](../how-to-train-tensorflow.md).
 
 In this article, learn how to run your [TensorFlow](https://www.tensorflow.org/overview) training scripts at scale using Azure Machine Learning.
 
@@ -173,10 +177,10 @@ First, define your conda dependencies in a YAML file; in this example the file i
 channels:
 - conda-forge
 dependencies:
-- python=3.7
+- python=3.10
 - pip:
   - azureml-defaults
-  - tensorflow-gpu==2.2.0
+  - tensorflow==2.12.0
 ```
 
 Create an Azure Machine Learning environment from this conda environment specification. The environment will be packaged into a Docker container at runtime.
@@ -184,11 +188,10 @@ Create an Azure Machine Learning environment from this conda environment specifi
 By default if no base image is specified, Azure Machine Learning will use a CPU image `azureml.core.environment.DEFAULT_CPU_IMAGE` as the base image. Since this example runs training on a GPU cluster, you'll need to specify a GPU base image that has the necessary GPU drivers and dependencies. Azure Machine Learning maintains a set of base images published on Microsoft Container Registry (MCR) that you can use, see the [Azure/AzureML-Containers GitHub repo](https://github.com/Azure/AzureML-Containers) for more information.
 
 ```python
-tf_env = Environment.from_conda_specification(name='AzureML-tensorflow-2.7-ubuntu20.04-py38-cuda11-gpu', file_path='./conda_dependencies.yml')
+tf_env = Environment.from_conda_specification(name='tensorflow-2.12-cuda11-custom', file_path='./conda_dependencies.yml')
 
 # Specify a GPU base image
-tf_env.docker.enabled = True
-tf_env.docker.base_image = 'mcr.microsoft.com/azureml/openmpi3.1.2-cuda10.1-cudnn7-ubuntu18.04'
+tf_env.docker.base_image = 'mcr.microsoft.com/azureml/openmpi4.1.0-cuda11.8-cudnn8-ubuntu22.04'
 ```
 
 > [!TIP]

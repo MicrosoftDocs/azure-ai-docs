@@ -260,7 +260,7 @@ Under **Add test scripts**, select **Browse for a file** to select your own scri
 
 The test script must be a *.txt* file that is less than 1 MB. Supported encoding formats include ANSI/ASCII, UTF-8, UTF-8-BOM, UTF-16-LE, or UTF-16-BE.
 
-Unlike the [training transcription files](../../../../how-to-custom-voice-training-data.md#transcription-data-for-individual-utterances--matching-transcript), the test script should exclude the utterance ID, which is the filename of each utterance. Otherwise, these IDs are spoken.
+Unlike the [training transcription files](../../../../how-to-custom-voice-training-data.md#transcription-data-for-individual-utterances-and-matching-transcript), the test script should exclude the utterance ID, which is the filename of each utterance. Otherwise, these IDs are spoken.
 
 Here's an example set of utterances in one *.txt* file:
 

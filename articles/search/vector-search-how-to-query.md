@@ -1,9 +1,6 @@
 ---
 title: Create a Vector Query
-titleSuffix: Azure AI Search
-description: Learn how to build queries for vector search.
-author: haileytap
-ms.author: haileytapia
+description: Learn how to create vector queries that target an index in Azure AI Search.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -135,7 +132,7 @@ api-key: {{admin-api-key}}
 
 ### [**2025-11-01-preview**](#tab/query-2025-11-01-preview)
 
-[**2025-11-01-preview**](/rest/api/searchservice/search-service-api-versions#2025-11-01-preview) is the latest preview API version of [Search - POST](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true). It supports the same vector query syntax as **2025-09-01**, but it has extra parameters for hybrid search and minimum thresholds for excluding weaker results.
+[**2025-11-01-preview**](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) is the latest preview API version of [Search - POST](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-11-01-preview&tabs=HTTP&preserve-view=true). It supports the same vector query syntax as **2025-09-01**, but it has extra parameters for hybrid search and minimum thresholds for excluding weaker results.
 
 This preview supports:
 
@@ -185,7 +182,7 @@ Use Search Explorer to formulate a vector query. Search Explorer has **Query vie
 
 Otherwise, if you don't have a vectorizer, you must use the JSON view and formulate the vector query in JSON by pasting a vector array as the query input.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left menu, select **Search management** > **Indexes**, and then select your index.
 
@@ -346,7 +343,7 @@ A prerequisite is a search index that has a [vectorizer configured and assigned]
 
 Search Explorer supports integrated vectorization at query time. If your index contains vector fields and has a vectorizer, you can use the built-in text-to-vector conversion.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left menu, select **Search management** > **Indexes**, and then select your index.
 

@@ -16,9 +16,9 @@ ms.author: pafarley
 Image Analysis 3.2 can detect human faces within an image and generate rectangle coordinates for each detected face.
 
 > [!NOTE]
-> This feature is also offered by the dedicated [Azure AI Face](./overview-identity.md) service. Use that alternative for more detailed face analysis, including face identification and head pose detection.
+> This feature is also offered by the dedicated [Azure Face](../face/overview-identity.md) service. Use that alternative for more detailed face analysis, including face identification and head pose detection.
 
-[!INCLUDE [Sensitive attributes notice](./includes/identity-sensitive-attributes.md)]
+[!INCLUDE [Sensitive attributes notice](../face/includes/identity-sensitive-attributes.md)]
 
 
 ## Face detection examples

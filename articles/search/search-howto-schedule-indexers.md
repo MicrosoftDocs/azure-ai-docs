@@ -1,10 +1,6 @@
 ---
-title: Schedule indexer execution
-titleSuffix: Azure AI Search
+title: Schedule Indexer Execution
 description: Learn how to schedule Azure AI Search indexers to index content at specific intervals, or at specific dates and times.
-author: HeidiSteen
-manager: nitinme
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -56,7 +52,7 @@ Schedules are specified in an indexer definition. To set up a schedule, you can 
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. On the left pane, select **Indexers**.
 1. Open an indexer.
 1. Select **Settings**.

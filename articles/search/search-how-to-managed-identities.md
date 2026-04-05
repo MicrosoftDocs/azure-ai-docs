@@ -1,13 +1,9 @@
 ---
-title: Configure a managed identity
-titleSuffix: Azure AI Search
+title: Configure a Managed Identity
 description: Create a managed identity for your search service, and use Microsoft Entra authentication and role-based-access controls for connections to other cloud services.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 03/25/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -19,7 +15,7 @@ ms.custom:
 
 You can use Microsoft Entra ID security principals and role assignments for outbound connections from Azure AI Search to other Azure resources providing data, applied AI, or vectorization during indexing or queries.
 
-To use roles on an outbound connection, first configure your search service to use either a [system-assigned or user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) as the security principal for your search service in a Microsoft Entra tenant. Once you have a managed identity, you can assign roles for authorized access. Managed identities and role assignments eliminate the need for passing secrets and credentials in a connection string or code.
+To use roles on an outbound connection, first configure your search service to use either a [system-assigned or user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) as the security principal for your search service in a Microsoft Entra tenant. After you have a managed identity, you can assign roles for authorized access. Managed identities and role assignments eliminate the need for passing secrets and credentials in a connection string or code.
 
 ## Prerequisites
 
@@ -60,7 +56,7 @@ When you enable a system-assigned managed identity, Microsoft Entra ID creates a
 
 ### [**Azure portal**](#tab/portal-sys)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Settings** > **Identity**.
 
@@ -199,7 +195,7 @@ Instead of the Azure portal, you can use the Search Management REST APIs to assi
 
 ## Assign a role
 
-Once you have a managed identity, assign roles that determine search service permissions on the Azure resource. 
+After you have a managed identity, assign roles that determine search service permissions on the Azure resource. 
 
 + Read permissions are needed for indexer data connections and for accessing a customer-managed key in Azure Key Vault.
 
@@ -207,7 +203,7 @@ Once you have a managed identity, assign roles that determine search service per
 
 The following steps illustrate the role assignment workflow. This example is for Azure OpenAI. For other Azure resources, see [Connect to Azure Storage](search-howto-managed-identities-storage.md), [Connect to Azure Cosmos DB](search-howto-managed-identities-cosmos-db.md), or [Connect to  Azure SQL](search-howto-managed-identities-sql.md).
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account, and go to your Azure OpenAI resource.
+1. Go to your Azure OpenAI resource in the [Azure portal](https://portal.azure.com).
 
 1. Select **Access control** from the left menu.
 
@@ -417,7 +413,7 @@ If your Azure resource is behind a firewall, make sure there's an inbound rule t
 
 ## See also
 
-+ [Security overview](search-security-overview.md)
++ [Data, privacy, and built-in protections](search-security-built-in.md)
 + [AI enrichment overview](cognitive-search-concept-intro.md)
 + [Indexers overview](search-indexer-overview.md)
 + [Authenticate with Microsoft Entra ID](/azure/architecture/framework/security/design-identity-authentication)

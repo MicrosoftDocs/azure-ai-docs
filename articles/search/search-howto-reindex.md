@@ -1,10 +1,6 @@
 ---
-title: Update or rebuild an index
-titleSuffix: Azure AI Search
+title: Update or Rebuild an Index
 description: Update or rebuild an index to update the schema or clean out obsolete documents. You can fully rebuild or do partial indexing.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
@@ -226,7 +222,7 @@ from azure.search.documents import SearchClient
 
 # Set up the client
 service_name = "<your-search-service-name>"
-index_name = "hotels-sample-index"
+index_name = "hotels-sample"
 api_key = "<your-admin-api-key>"
 
 endpoint = f"https://{service_name}.search.windows.net"
@@ -257,7 +253,7 @@ using Azure.Search.Documents.Models;
 
 // Set up the client
 string serviceName = "<your-search-service-name>";
-string indexName = "hotels-sample-index";
+string indexName = "hotels-sample";
 string apiKey = "<your-admin-api-key>";
 
 Uri endpoint = new Uri($"https://{serviceName}.search.windows.net");
@@ -357,7 +353,7 @@ Support for an index description is provided in the preview REST API, the Azure 
 
 The Azure portal supports the latest preview API.
 
-1. Sign in to the Azure portal and find your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management** > **Indexes**, select an index.
 
@@ -429,4 +425,4 @@ The following table lists common issues when updating or rebuilding indexes and 
 + [Azure Cosmos DB for NoSQL indexer](search-how-to-index-cosmosdb-sql.md)
 + [Azure blob indexer](search-how-to-index-azure-blob-storage.md)
 + [Azure tables indexer](search-how-to-index-azure-tables.md)
-+ [Security in Azure AI Search](search-security-overview.md)
++ [Data, privacy, and built-in protections](search-security-built-in.md)

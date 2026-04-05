@@ -21,9 +21,6 @@ highlightedContent:
       - title: What's new in Azure Vision?
         itemType: whats-new
         url: whats-new.md
-      - title: Vision Studio
-        itemType: get-started
-        url: overview-vision-studio.md
       - title: Language support
         itemType: reference
         url: language-support.md
@@ -59,35 +56,6 @@ conceptualContent:
       footerLink:
         text: More
         url: overview-image-analysis.md
-    - title: Face
-      links:
-        - itemType: overview
-          text: About Face service
-          url: overview-identity.md
-        - itemType: quickstart
-          text: Get started with Face
-          url: quickstarts-sdk/identity-client-library.md
-        - itemType: how-to-guide
-          text: Detect faces in an image
-          url: how-to/identity-detect-faces.md
-        - itemType: concept
-          text: Face detection
-          url: concept-face-detection.md
-        - itemType: concept
-          text: Face recognition
-          url: concept-face-recognition.md
-        - itemType: tutorial
-          text: Add users to a Face service
-          url: Tutorials/build-enrollment-app.md
-        - itemType: learn
-          text: Microsoft Learn training
-          url: /training/modules/detect-analyze-faces/
-        - itemType: reference
-          text: Face API reference
-          url: /rest/api/face/operation-groups
-      footerLink:
-        text: More
-        url: overview-identity.md
 
 
 tools:
