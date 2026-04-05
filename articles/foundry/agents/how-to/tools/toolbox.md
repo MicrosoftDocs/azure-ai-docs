@@ -47,6 +47,7 @@ In this article, you learn how to:
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
 - **RBAC**: Azure AI User role on the Foundry project.
 - Your Foundry project needs to be at one of the supported [regions](../../../openai/how-to/responses.md#region-availability).
+- **Python SDK**: `pip install azure-ai-projects azure-identity`
 
 > [!IMPORTANT]
 > - A toolbox supports at most **one unnamed tool per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, use the `name` field to differentiate tool instances. Including two unnamed tool types returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
@@ -243,7 +244,7 @@ Use this pattern to add web search. No project connection is required for the we
         "indexes": [
           {
             "index_name": "<INDEX_NAME>",
-            "project_connection_id": "<CONNECTION_NAME>",
+            "project_connection_id": "<CONNECTION_NAME>"
           }
         ]
       }
@@ -693,7 +694,7 @@ Set the `FOUNDRY_TOOLBOX_ENDPOINT` environment variable. The template picks up t
 **`.env` file**:
 
 ```
-FOUNDRY_TOOLBOX_ENDPOINT=https://{project_endpoint}/toolboxes/{toolbox-name}/mcp?api-version=v1
+FOUNDRY_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/mcp?api-version=v1
 ```
 
 **`main.py`** (key pattern):
@@ -895,6 +896,43 @@ class McpBridge:
         resp.raise_for_status()
         content = resp.json().get("result", {}).get("content", [])
         return "\n".join(c.get("text", "") for c in content if c.get("type") == "text")
+
+
+async def run_agent(user_message: str) -> str:
+    """Wire McpBridge into the Copilot SDK agent and run a single turn."""
+    import os
+    from copilot_sdk import Agent, Message
+
+    endpoint = os.environ["FOUNDRY_TOOLBOX_ENDPOINT"]
+    token = _get_toolbox_token()
+
+    bridge = McpBridge(endpoint=endpoint, token=token)
+    await bridge.initialize()
+    mcp_tools = await bridge.list_tools()
+
+    # Build Copilot SDK tool definitions from MCP tool list
+    # Tool names with dots are replaced with underscores automatically by McpBridge
+    copilot_tools = [
+        {
+            "name": t["name"].replace(".", "_"),
+            "description": t.get("description", ""),
+            "parameters": t.get("inputSchema", {}),
+        }
+        for t in mcp_tools
+    ]
+
+    async def tool_handler(name: str, arguments: dict) -> str:
+        # Map underscored name back to dotted name for MCP call
+        mcp_name = name.replace("_", ".", 1)
+        return await bridge.call_tool(mcp_name, arguments)
+
+    agent = Agent(
+        tools=copilot_tools,
+        tool_handler=tool_handler,
+        token=os.environ["GITHUB_TOKEN"],
+    )
+    response = await agent.run(Message(role="user", content=user_message))
+    return response.content
 ```
 
 **`requirements.txt`**:
