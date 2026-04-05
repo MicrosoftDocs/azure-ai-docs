@@ -120,15 +120,15 @@ Content-Type: application/json
 Choose the tool type and authentication pattern that matches your scenario.
 
 > [!NOTE]
-> Each of the following payloads is the request body for `POST {project_endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1`. The toolbox name is a path parameter — don't include it in the body.
+> Each of the following payloads is the request body for `POST {project_endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1`.
 
-### [MCP server](model-context-protocol.md)
+### [Model Context Protocol (MCP)](model-context-protocol.md)
 
 **Toolbox payload**:
 
 ```json
 {
-  "description": "MCP server with OAuth",
+  "description": "my-mcp-toolbox",
   "tools": [
     {
       "type": "mcp",
@@ -141,7 +141,7 @@ Choose the tool type and authentication pattern that matches your scenario.
 ```
 
 > [!IMPORTANT]
-> The first time a user calls an OAuth-based toolbox in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
+> The first time a user calls a toolbox with an OAuth based p  in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
 >
 > ```json
 > {
