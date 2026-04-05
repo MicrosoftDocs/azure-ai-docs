@@ -21,7 +21,7 @@ Toolbox in Foundry gives your agent access to tools through a unified MCP-compat
 
 In this article, you learn how to:
 
-- Create a toolbox  with one or more tools.
+- Create a toolbox with one or more tools.
 - Configure authentication using project connections.
 - Get the toolbox MCP endpoint.
 - Manage toolbox versions and promote a version to default.
@@ -232,7 +232,7 @@ Use this pattern to add web search. No project connection is required for the we
 
 ```json
 {
-  "description": "Azure AI Search over my knowledge base",
+  "description": "Azure AI Search over my data",
   "tools": [
     {
       "type": "azure_ai_search",
@@ -520,11 +520,17 @@ Use the `name` field to include multiple instances of the same tool type in one 
 
 ## Step 3: Get the toolbox MCP endpoint
 
-After creating the toolbox, retrieve its MCP endpoint URL.
+There are two endpoint patterns depending on your role:
 
-**Constructed manually**: `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1`
+| Role | Endpoint | When to use |
+|------|----------|-------------|
+| **Toolbox developer** | `{project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1` | Test or validate a specific version before promoting it to default. |
+| **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. Requires `default_version` to be set on the toolbox. |
 
-## Manage toolbox versions
+> [!IMPORTANT]
+> The consumer endpoint returns an error if the toolbox has no `default_version` set. After creating a new version, call [Promote a version to default](#promote-a-version-to-default) before pointing agents to the consumer endpoint.
+
+### Manage toolbox versions
 
 Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it — you decide when to update `default_version`. This lets you stage changes, test a new version independently, and promote it to production on your own schedule.
 
@@ -667,12 +673,9 @@ Foundry-Features: Toolboxes=V1Preview
 
 :::zone-end
 
-> [!IMPORTANT]
-> You can't delete the `default_version`. Update `default_version` to a different version first, then delete the old one.
-
 ## Step 4: Verify tool availability
 
-Before running the full agent, confirm that the toolbox loads the expected tools by using MCP JSON-RPC calls against the endpoint.
+Before running the full agent, confirm that the toolbox loads the expected tools by using MCP JSON-RPC calls against the endpoint. Use the **version-specific endpoint** to validate a version before promoting it to default.
 
 :::zone pivot="python"
 
@@ -694,7 +697,7 @@ headers = {
 ```python
 import httpx
 
-url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/mcp?api-version=v1"
+url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/versions/<version>/mcp?api-version=v1"
 
 with httpx.Client(timeout=30.0) as http:
     resp = http.post(url, headers=headers, json={
@@ -772,10 +775,12 @@ Tool-specific argument examples:
 
 :::zone pivot="rest-api"
 
+Use the version-specific endpoint (`/versions/{version}/mcp`) to validate a version before promoting it.
+
 **1. Initialize the MCP session**:
 
 ```http
-POST {toolbox_mcp_endpoint}
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
@@ -786,7 +791,7 @@ Content-Type: application/json
 **2. Send the initialized notification**:
 
 ```http
-POST {toolbox_mcp_endpoint}
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
@@ -797,7 +802,7 @@ Content-Type: application/json
 **3. List available tools**:
 
 ```http
-POST {toolbox_mcp_endpoint}
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
@@ -810,7 +815,7 @@ The response lists all tools in the toolbox. For MCP tools, names are prefixed w
 **4. Call a tool**:
 
 ```http
-POST {toolbox_mcp_endpoint}
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
