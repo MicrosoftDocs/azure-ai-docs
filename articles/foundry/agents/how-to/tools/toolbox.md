@@ -228,6 +228,7 @@ Use this pattern to add web search. No project connection is required for the we
 > }
 > ```
 
+### [Azure AI Search](ai-search.md)
 **Toolbox payload** :
 
 ```json
@@ -336,6 +337,8 @@ Use this pattern to let the agent search over uploaded files stored in a vector 
 > ```
 >
 > The `_meta` block inside each resource item contains the `title`, `file_id`, `document_chunk_id`, and relevance `score` for the matched chunk. Use these fields in your application to render citations or deep-link back to the source file.
+
+### [OpenAPI](openapi.md)
 
 Use this pattern to expose any REST API described by an OpenAPI spec. Choose the `auth.type` that matches your API's security model.
 
@@ -472,7 +475,7 @@ A single toolbox can bundle different tool types. The following example combines
 > [!NOTE]
 > Each unnamed tool type (`web_search`, `azure_ai_search`, `code_interpreter`, `file_search`) can appear at most once without a `name`. If you want two instances of the same type, add a unique `name` to each — see the next example.
 
-### Multi-tool restrictions
+#### Multi-tool restrictions
 
 You can include at most one unnamed instance of each built-in tool type in a toolbox. If you include two unnamed instances of the same type, the API returns:
 
@@ -528,7 +531,7 @@ There are two endpoint patterns depending on your role:
 | **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. Requires `default_version` to be set on the toolbox. |
 
 > [!IMPORTANT]
-> The consumer endpoint returns an error if the toolbox has no `default_version` set. Before you share the toolbox broadly, call [Step 6: Manage toolbox versions](#step-6-manage-toolbox-versions) to promote a version before pointing agents to the consumer endpoint.
+> The consumer endpoint returns an error if the toolbox has no `default_version` set. Before you share the toolbox broadly, [promote a version to default](#promote-a-version-to-default) before pointing agents to the consumer endpoint.
 
 ## Step 4: Verify tool availability
 
@@ -1045,9 +1048,6 @@ Foundry-Features: Toolboxes=V1Preview
 ```
 
 :::zone-end
-
-> [!IMPORTANT]
-> You can't delete the `default_version`. Update `default_version` to a different version first, then delete the old one.
 
 ## Troubleshoot
 
