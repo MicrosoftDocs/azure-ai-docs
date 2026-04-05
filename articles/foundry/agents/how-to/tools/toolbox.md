@@ -119,7 +119,6 @@ Content-Type: application/json
 Choose the tool type and authentication pattern that matches your scenario.
 
 ### [MCP server](model-context-protocol.md)
-Use this pattern when the MCP server uses OAuth Identity Passthrough. Store the OAuth client credentials in an OAuth 2.0 project connection in the Foundry portal.
 
 **Toolbox payload**:
 
@@ -132,7 +131,7 @@ Use this pattern when the MCP server uses OAuth Identity Passthrough. Store the 
       "type": "mcp",
       "server_label": "myserver",
       "server_url": "https://your-mcp-server.example.com",
-      "project_connection_id": "my-oauth-connection"
+      "project_connection_id": "my-mcp-connection"
     }
   ]
 }
@@ -160,7 +159,7 @@ Use this pattern when the MCP server uses OAuth Identity Passthrough. Store the 
 > - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
 > - See the [management section](./web-search.md#administrator-control-for-the-web-search-tool) for information about how Azure admins can manage access to use of web search.
 
-Use this pattern to add web search. No project connection is required for the web search with Grounding with Bing. To use a custom Bing Search instance, add a `web_search.custom_search_configuration` object pointing to your Grounding with Bing Custom Search connection.
+Use this pattern to add web search. No project connection is required for the web search with Grounding with Bing. To use a Grounding with custom Bing Search instance, add a `web_search.custom_search_configuration` object pointing to your Grounding with Bing Custom Search connection.
 
 **Toolbox payload** :
 
@@ -178,7 +177,7 @@ Use this pattern to add web search. No project connection is required for the we
 }
 ```
 
-**With a custom Bing Search connection**:
+**With a Grounding with custom Bing Search connection**:
 
 ```json
 {
@@ -287,7 +286,34 @@ Use this pattern to let the agent search over uploaded files stored in a vector 
 }
 ```
 
-### [OpenAPI](openapi.md)
+> [!NOTE]
+> When File Search returns results over MCP, citations are embedded in the tool response content as `【index†filename†file_id】` markers. For example:
+>
+> ```json
+> {
+>   "jsonrpc": "2.0",
+>   "id": "fs-call-1",
+>   "result": {
+>     "content": [
+>       {
+>         "type": "resource",
+>         "resource": {
+>           "uri": "file://assistant-tvfqncbtruyffxkfewenyy/",
+>           "_meta": {
+>             "title": "mcp-test-file.txt",
+>             "file_id": "assistant-TVfQnCBtRuyfFxkfeweNYY",
+>             "document_chunk_id": "f7327b7f-5ed0-43c6-9bee-e8e9552afcb5",
+>             "score": 0.03333333507180214
+>           },
+>           "text": "# 【0†mcp-test-file.txt†assistant-TVfQnCBtRuyfFxkfeweNYY】\nContent Snippet:\nAzure OpenAI Service is a cloud service..."
+>         }
+>       }
+>     ]
+>   }
+> }
+> ```
+>
+> The `_meta` block inside each resource item contains the `title`, `file_id`, `document_chunk_id`, and relevance `score` for the matched chunk. Use these fields in your application to render citations or deep-link back to the source file.
 
 Use this pattern to expose any REST API described by an OpenAPI spec. Choose the `auth.type` that matches your API's security model.
 
