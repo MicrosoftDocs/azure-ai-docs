@@ -24,9 +24,9 @@ In this article, you learn how to:
 - Create a toolbox with one or more tools.
 - Configure authentication using project connections.
 - Get the toolbox MCP endpoint.
-- Manage toolbox versions and promote a version to default.
 - Verify that tools load correctly.
 - Integrate a toolbox into your hosted agent.
+- Manage toolbox versions and promote a version to default.
 
 ## Feature support
 
@@ -49,13 +49,13 @@ In this article, you learn how to:
 - Your Foundry project needs to be at one of the supported [regions](../../../openai/how-to/responses.md#region-availability).
 
 > [!IMPORTANT]
-> A toolbox supports at most **one unnamed tool per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, use the `name` field to differentiate tool instances. Including two unnamed tool types returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
-> We highly recommend adding a `description` to tools such as Azure AI Search and File Search to better inform the model.
-> Carefully review each tool's documentation to learn more about individual tool setup, limitations, and warnings.
+> - A toolbox supports at most **one unnamed tool per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, use the `name` field to differentiate tool instances. Including two unnamed tool types returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
+> - We highly recommend adding a `description` to tools such as Azure AI Search and File Search to better inform the model.
+> - Carefully review each tool's documentation to learn more about individual tool setup, limitations, and warnings.
 
-## Step 1: Create a toolbox
+## Step 1: Create a toolbox version
 
-Create a toolbox based on tools you need.
+Create a toolbox version based on tools you need.
 
 :::zone pivot="python"
 
@@ -528,150 +528,7 @@ There are two endpoint patterns depending on your role:
 | **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. Requires `default_version` to be set on the toolbox. |
 
 > [!IMPORTANT]
-> The consumer endpoint returns an error if the toolbox has no `default_version` set. After creating a new version, call [Promote a version to default](#promote-a-version-to-default) before pointing agents to the consumer endpoint.
-
-### Manage toolbox versions
-
-Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it — you decide when to update `default_version`. This lets you stage changes, test a new version independently, and promote it to production on your own schedule.
-
-| Object | Key fields | Description |
-|--------|-----------|-------------|
-| `ToolboxObject` | `id`, `name`, `default_version` | The toolbox container. `default_version` points to the active version. |
-| `ToolboxVersionObject` | `id`, `name`, `version`, `description`, `created_at`, `tools[]`, `policies` | An immutable snapshot of the toolbox's tool list at a point in time. |
-
-### Create a new version
-
-Each create call produces a new version. If the toolbox doesn't exist yet, it's automatically created.
-
-:::zone pivot="python"
-
-```python
-toolbox_version = client.beta.toolboxes.create_toolbox_version(
-    toolbox_name="my-toolbox",
-    description="Updated tools v2",
-    tools=[...],
-)
-print(f"Created version: {toolbox_version.version}")
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-```http
-POST {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
-Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
-Content-Type: application/json
-
-{
-  "description": "Updated tools v2",
-  "tools": [...]
-}
-```
-
-:::zone-end
-
-The response is a `ToolboxVersionObject` containing the new `version` identifier.
-
-### List versions
-
-:::zone pivot="python"
-
-```python
-versions = list(client.beta.toolboxes.list_toolbox_versions(toolbox_name="my-toolbox"))
-for v in versions:
-    print(f"{v.version} — created {v.created_at}")
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-```http
-GET {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
-Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
-```
-
-:::zone-end
-
-### Get a specific version
-
-:::zone pivot="python"
-
-```python
-version_obj = client.beta.toolboxes.get_toolbox_version(
-    toolbox_name="my-toolbox",
-    version="<version_id>",
-)
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-```http
-GET {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
-Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
-```
-
-:::zone-end
-
-### Promote a version to default
-
-The MCP endpoint always serves the `default_version`. To switch which version is active, update the toolbox:
-
-:::zone pivot="python"
-
-```python
-toolbox = client.beta.toolboxes.update(
-    toolbox_name="my-toolbox",
-    default_version="<version_id>",
-)
-print(f"Active version: {toolbox.default_version}")
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-```http
-PATCH {project_endpoint}/toolboxes/my-toolbox?api-version=v1
-Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
-Content-Type: application/json
-
-{
-  "default_version": "<version_id>"
-}
-```
-
-:::zone-end
-
-### Delete a version
-
-:::zone pivot="python"
-
-```python
-client.beta.toolboxes.delete_toolbox_version(
-    toolbox_name="my-toolbox",
-    version="<version_id>",
-)
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-```http
-DELETE {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
-Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
-```
-
-:::zone-end
+> The consumer endpoint returns an error if the toolbox has no `default_version` set. After creating a new version, call [Step 6: Manage toolbox versions](#step-6-manage-toolbox-versions) to promote a version before pointing agents to the consumer endpoint.
 
 ## Step 4: Verify tool availability
 
@@ -1046,6 +903,152 @@ azure-identity>=1.19.0
 httpx
 python-dotenv==1.1.1
 ```
+
+## Step 6: Manage toolbox versions
+
+Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it — you decide when to update `default_version`. This lets you stage changes, test a new version independently, and promote it to production on your own schedule.
+
+| Object | Key fields | Description |
+|--------|-----------|-------------|
+| `ToolboxObject` | `id`, `name`, `default_version` | The toolbox container. `default_version` points to the active version. |
+| `ToolboxVersionObject` | `id`, `name`, `version`, `description`, `created_at`, `tools[]`, `policies` | An immutable snapshot of the toolbox's tool list at a point in time. |
+
+### Create a new version
+
+Each create call produces a new version. If the toolbox doesn't exist yet, it's automatically created.
+
+:::zone pivot="python"
+
+```python
+toolbox_version = client.beta.toolboxes.create_toolbox_version(
+    toolbox_name="my-toolbox",
+    description="Updated tools v2",
+    tools=[...],
+)
+print(f"Created version: {toolbox_version.version}")
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+POST {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Toolboxes=V1Preview
+Content-Type: application/json
+
+{
+  "description": "Updated tools v2",
+  "tools": [...]
+}
+```
+
+:::zone-end
+
+The response is a `ToolboxVersionObject` containing the new `version` identifier.
+
+### List versions
+
+:::zone pivot="python"
+
+```python
+versions = list(client.beta.toolboxes.list_toolbox_versions(toolbox_name="my-toolbox"))
+for v in versions:
+    print(f"{v.version} — created {v.created_at}")
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+GET {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Toolboxes=V1Preview
+```
+
+:::zone-end
+
+### Get a specific version
+
+:::zone pivot="python"
+
+```python
+version_obj = client.beta.toolboxes.get_toolbox_version(
+    toolbox_name="my-toolbox",
+    version="<version_id>",
+)
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+GET {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Toolboxes=V1Preview
+```
+
+:::zone-end
+
+### Promote a version to default
+
+The MCP endpoint always serves the `default_version`. To switch which version is active, update the toolbox:
+
+:::zone pivot="python"
+
+```python
+toolbox = client.beta.toolboxes.update(
+    toolbox_name="my-toolbox",
+    default_version="<version_id>",
+)
+print(f"Active version: {toolbox.default_version}")
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+PATCH {project_endpoint}/toolboxes/my-toolbox?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Toolboxes=V1Preview
+Content-Type: application/json
+
+{
+  "default_version": "<version_id>"
+}
+```
+
+:::zone-end
+
+### Delete a version
+
+:::zone pivot="python"
+
+```python
+client.beta.toolboxes.delete_toolbox_version(
+    toolbox_name="my-toolbox",
+    version="<version_id>",
+)
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+DELETE {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Toolboxes=V1Preview
+```
+
+:::zone-end
+
+> [!IMPORTANT]
+> You can't delete the `default_version`. Update `default_version` to a different version first, then delete the old one.
 
 ## Troubleshoot
 
