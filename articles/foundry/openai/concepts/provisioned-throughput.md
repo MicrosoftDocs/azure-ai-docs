@@ -137,17 +137,18 @@ To purchase or manage reservations, visit the [Reservations page in the Azure po
 
 ## Capacity and availability
 
-Provisioned capacity is allocated at deployment time and held for the deployment's lifetime. Because GPU capacity is a finite, dynamically changing resource:
+Provisioned capacity is allocated at deployment time. If service capacity isn't available, the deployment fails. Once capacity is allocated, it's held for the deployment's lifetime.
+Because GPU capacity is a finite, dynamically changing resource:
 
 - **Capacity availability changes throughout the day** based on customer demand across all regions and models.
-- **Deleting a deployment releases its capacity** back to the region pool. There's no guarantee that the same capacity is available if you re-create the deployment later.
-- **Scaling down also releases capacity**. Re-scaling up later might fail if capacity has been claimed by other deployments.
-- **Quota doesn't hold capacity**. A subscription can have PTU quota in a region with no available GPU capacity at a given moment.
+- **Deleting a deployment or scaling it down releases its capacity** back to the region pool. There's no guarantee that the same capacity is available if you re-create the deployment or scale it up later, as capacity might have been claimed by other deployments.
+- **Quota doesn't guarantee capacity**. A subscription can have PTU quota in a region with no available GPU capacity at a given moment.
 
 If your target region doesn't have available capacity:
 - Try deploying with fewer PTUs.
-- Try a different region where your quota is also available.
+- Try a different region where quota is also available. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP) and Foundry experience consider quota availability in returning alternative regions for creating a deployment.
 - Retry later—capacity availability changes dynamically and more might become available.
+
 
 ## Utilization and HTTP 429 responses
 
