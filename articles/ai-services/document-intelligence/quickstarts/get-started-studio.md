@@ -26,7 +26,7 @@ monikerRange: '>=doc-intel-3.0.0'
 > [!TIP]
 > Create a Microsoft Foundry resource if you plan to access multiple Foundry Tools under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 >
-> Document Intelligence now supports Azure Active Directory token authentication in addition to local (key-based) authentication when you access Document Intelligence resources and storage accounts. Follow the instructions to set up correct access roles, especially if your resources are applied with the `DisableLocalAuth` policy.
+> Document Intelligence now supports Microsoft Entra ID token authentication in addition to local (key-based) authentication when you access Document Intelligence resources and storage accounts. Follow the instructions to set up correct access roles, especially if your resources are applied with the `DisableLocalAuth` policy.
 
 There are added prerequisites for using custom models in Document Intelligence Studio. For step-by-step guidance, see [Document Intelligence Studio custom projects](studio-custom-project.md).
 
@@ -42,7 +42,7 @@ For more information, see the following guidance:
   * [Disable local authentication for Foundry Tools](../../disable-local-auth.md)
   * [Prevent Shared Key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent)
 
-If local (key-based) authentication is disabled for your Document Intelligence service resource, be sure to obtain the Cognitive Services User role and your Azure Active Directory token to authenticate requests in Document Intelligence Studio. The Contributor role allows you to list only keys but doesn't give you permission to use the resource when key access is disabled.
+If local (key-based) authentication is disabled for your Document Intelligence service resource, be sure to obtain the Cognitive Services User role and your Microsoft Entra ID token to authenticate requests in Document Intelligence Studio. The Contributor role allows you to list only keys but doesn't give you permission to use the resource when key access is disabled.
 
 #### Designate role assignments
 
