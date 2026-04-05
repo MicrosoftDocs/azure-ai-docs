@@ -46,7 +46,7 @@ In this article, you learn how to:
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
 - **RBAC**: Azure AI User role on the Foundry project.
-- Your Foundry project needs to be at one of the supported [regions](../../../openai/how-to/responses.md#region-availability).
+- Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions).
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 
 > [!IMPORTANT]

@@ -39,8 +39,6 @@ items:
     href: ../../agents/concepts/tool-catalog.md
   - name: Tool best practices
     href: ../../agents/concepts/tool-best-practice.md
-  - name: Toolbox (preview)
-    href: ../../agents/how-to/tools/toolbox.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Create a private tool catalog (preview)
@@ -69,6 +67,8 @@ items:
       href: ../../agents/how-to/tools/bing-tools.md
   - name: Model Context Protocol (MCP)
     items:
+    - name: Toolbox (preview)
+      href: ../../agents/how-to/tools/toolbox.md
     - name: Connect to MCP server
       href: ../../agents/how-to/tools/model-context-protocol.md
     - name: MCP authentication
