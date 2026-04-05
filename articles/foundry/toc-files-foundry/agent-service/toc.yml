@@ -39,6 +39,8 @@ items:
     href: ../../agents/concepts/tool-catalog.md
   - name: Tool best practices
     href: ../../agents/concepts/tool-best-practice.md
+  - name: Toolbox (preview)
+    href: ../../agents/how-to/tools/toolbox.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
   - name: Create a private tool catalog (preview)

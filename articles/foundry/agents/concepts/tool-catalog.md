@@ -59,6 +59,12 @@ The most common custom tool options include:
 
 For the complete list of custom tool options, see [All custom tools](#all-custom-tools).
 
+### Toolbox (preview)
+
+A *toolbox* is a curated bundle of tools — such as web search, Azure AI Search, code interpreter, file search, MCP servers, and OpenAPI tools — that you configure once and expose as a single MCP endpoint. Instead of attaching each tool individually to every agent definition, you define the collection in a toolbox and connect any agent to the toolbox endpoint. Toolbox unblocks you to use tools, which were only supported in prompt agent, in hosted agents from Langgraph, Microsoft Agent Framework and coding agents such as GitHub Copilot SDK and more.
+
+For setup steps, see [Create and use a Foundry Toolbox](../how-to/tools/toolbox.md).
+
 ## Use a tool in an agent
 
 To add a tool to an agent, include it in the agent's tool list when you create or update the agent definition. The following example creates an agent with the web search tool enabled and sends a query:
@@ -257,6 +263,7 @@ The following table lists all custom tool options for connecting your own capabi
 | [Model Context Protocol (MCP)](../how-to/tools/model-context-protocol.md) | Connect your agent to tools hosted on an MCP server endpoint. |
 | [OpenAPI tool](../how-to/tools/openapi.md) | Connect your agent to external APIs using an OpenAPI 3.0 or 3.1 specification. |
 | [Agent-to-Agent (A2A) (preview)](../how-to/tools/agent-to-agent.md) | Connect your agent to other agents through A2A-compatible endpoints. |
+| [Toolbox (preview)](../how-to/tools/toolbox.md) | Bundle multiple tools into a single MCP endpoint for reuse across agents. |
 
 ## Key concepts
 
@@ -271,6 +278,7 @@ Use these definitions to keep terminology consistent:
 | Remote MCP server | An MCP server hosted by the publisher. You configure it by providing the required settings, such as an endpoint and authentication details. |
 | Local MCP server | An MCP server you host yourself, then connect to Foundry by providing its remote endpoint. |
 | Custom tool | A tool you add by providing your own endpoint or specification, such as an MCP endpoint, an OpenAPI spec, or Agent-to-Agent (A2A) endpoints. |
+| Toolbox | A curated bundle of tools that you configure once and expose as a single MCP endpoint for use across multiple agents. |
 
 > [!NOTE]
 > If you're interested in bringing your official, remote MCP servers to all Foundry customers, fill out this [form](https://forms.office.com/r/EEvMNceMRU).
@@ -349,6 +357,7 @@ Use these checks to resolve common issues:
 ## Related content
 
 - [Tool best practices for Foundry Agent Service](tool-best-practice.md)
+- [Create and use a Foundry Toolbox (preview)](../how-to/tools/toolbox.md)
 - [Set up MCP server authentication](../how-to/mcp-authentication.md)
 - [Govern MCP tools by using an AI gateway](../how-to/tools/governance.md)
 - [Create a private tool catalog](../how-to/private-tool-catalog.md)
