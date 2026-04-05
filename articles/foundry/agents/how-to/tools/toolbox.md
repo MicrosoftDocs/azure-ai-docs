@@ -44,7 +44,7 @@ In this article, you learn how to:
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
 - **RBAC**: Azure AI User role on the Foundry project.
-- Your Foundry project needs to be at one of the supported [regions](../../openai/how-to/responses.md#region-availability).
+- Your Foundry project needs to be at one of the supported [regions](../../../openai/how-to/responses.md#region-availability).
 
 > [!IMPORTANT]
 > A toolbox supports at most **one unnamed tool per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, use the `name` field to differentiate tool instances. Including two unnamed tool types returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
