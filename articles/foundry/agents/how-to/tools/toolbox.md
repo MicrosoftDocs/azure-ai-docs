@@ -21,7 +21,7 @@ Toolbox in Foundry gives your agent access to tools through a unified MCP-compat
 
 In this article, you learn how to:
 
-- Create a toolbox with one or more tools.
+- Create a toolbox  with one or more tools.
 - Configure authentication using project connections.
 - Get the toolbox MCP endpoint.
 - Manage toolbox versions and promote a version to default.
@@ -32,7 +32,7 @@ In this article, you learn how to:
 
 | Feature | Python SDK | REST API | .NET SDK | 
 |---------|-----------|----------|----------|
-| Toolbox create / list / get / delete | ✔️  | ✔️ | ✔️ |
+| Toolbox update / list / get / delete | ✔️  | ✔️ | ✔️ |
 | Toolbox version create / list / get / delete | ✔️  | ✔️ | ✔️ |
 | [MCP tool](model-context-protocol.md) | ✔️  | ✔️  | ✔️ |
 | [Web Search tool](web-search.md) | ✔️  | ✔️  | ✔️ |
@@ -70,7 +70,7 @@ client = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 
-toolbox_version = client.beta.toolboxes.create(
+toolbox_version = client.beta.toolboxes.create_toolbox_version(
     toolbox_name="my-toolbox",
     description="Toolbox with an MCP server",
     tools=[
@@ -540,7 +540,7 @@ Each create call produces a new version. If the toolbox doesn't exist yet, it's 
 :::zone pivot="python"
 
 ```python
-toolbox_version = client.beta.toolboxes.create(
+toolbox_version = client.beta.toolboxes.create_toolbox_version(
     toolbox_name="my-toolbox",
     description="Updated tools v2",
     tools=[...],
