@@ -24,6 +24,7 @@ In this article, you learn how to:
 - Create a toolbox with one or more tools.
 - Configure authentication using project connections.
 - Get the toolbox MCP endpoint.
+- Manage toolbox versions and promote a version to default.
 - Verify that tools load correctly.
 - Integrate a toolbox into your hosted agent.
 
@@ -32,6 +33,7 @@ In this article, you learn how to:
 | Feature | Python SDK | REST API | .NET SDK | 
 |---------|-----------|----------|----------|
 | Toolbox create / list / get / delete | ✔️  | ✔️ | ✔️ |
+| Toolbox version create / list / get / delete | ✔️  | ✔️ | ✔️ |
 | [MCP tool](model-context-protocol.md) | ✔️  | ✔️  | ✔️ |
 | [Web Search tool](web-search.md) | ✔️  | ✔️  | ✔️ |
 | [Azure AI Search tool](ai-search.md) | ✔️  | ✔️  | ✔️ |
@@ -68,8 +70,8 @@ client = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 
-toolbox = client.beta.toolsets.create(
-    name="my-toolbox",
+toolbox_version = client.beta.toolboxes.create(
+    toolbox_name="my-toolbox",
     description="Toolbox with an MCP server",
     tools=[
         MCPTool(
@@ -80,7 +82,7 @@ toolbox = client.beta.toolsets.create(
         )
     ],
 )
-print(f"Created toolbox: {toolbox.name}")
+print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.version}")
 ```
 
 :::zone-end
@@ -88,13 +90,12 @@ print(f"Created toolbox: {toolbox.name}")
 :::zone pivot="rest-api"
 
 ```http
-POST {project_endpoint}/toolsets?api-version=v1
+POST {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
 Authorization: Bearer {token}
-Foundry-Features: Toolsets=V1Preview
+Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {
-  "name": "my-toolbox",
   "description": "Toolbox with an MCP server",
   "tools": [
     {
@@ -118,13 +119,15 @@ Content-Type: application/json
 
 Choose the tool type and authentication pattern that matches your scenario.
 
+> [!NOTE]
+> Each of the following payloads is the request body for `POST {project_endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1`. The toolbox name is a path parameter — don't include it in the body.
+
 ### [MCP server](model-context-protocol.md)
 
 **Toolbox payload**:
 
 ```json
 {
-  "name": "my-oauth-toolbox",
   "description": "MCP server with OAuth",
   "tools": [
     {
@@ -165,7 +168,6 @@ Use this pattern to add web search. No project connection is required for the we
 
 ```json
 {
-  "name": "my-web-search-toolbox",
   "description": "Built-in web search",
   "tools": [
     {
@@ -181,7 +183,6 @@ Use this pattern to add web search. No project connection is required for the we
 
 ```json
 {
-  "name": "my-custom-search-toolbox",
   "description": "Custom Bing Search instance",
   "tools": [
     {
@@ -226,16 +227,11 @@ Use this pattern to add web search. No project connection is required for the we
 >   }
 > }
 > ```
->
-> Unlike File Search, Web Search returns a single `text` block rather than individual resource items. Inline citation links in the `text` field point to the original web sources. Use these URLs in your application to render source attribution.
-
-Use this pattern to ground agent responses with your own indexed content. The `project_connection_id` must reference an Azure AI Search connection in your Foundry project.
 
 **Toolbox payload** :
 
 ```json
 {
-  "name": "my-search-toolbox",
   "description": "Azure AI Search over my knowledge base",
   "tools": [
     {
@@ -275,7 +271,6 @@ Use this pattern to let the agent write and execute Python code. No project conn
 
 ```json
 {
-  "name": "my-code-toolbox",
   "description": "Code interpreter for data analysis",
   "tools": [
     {
@@ -299,7 +294,6 @@ Use this pattern to let the agent search over uploaded files stored in a vector 
 
 ```json
 {
-  "name": "my-file-search-toolbox",
   "description": "Search over uploaded documents",
   "tools": [
     {
@@ -352,7 +346,6 @@ Use this pattern to expose any REST API described by an OpenAPI spec. Choose the
 
 ```json
 {
-  "name": "my-openapi-toolbox",
   "description": "REST API via OpenAPI spec",
   "tools": [
     {
@@ -375,7 +368,6 @@ Use this pattern when the API requires a key or token stored in a Foundry projec
 
 ```json
 {
-  "name": "my-openapi-connection-toolbox",
   "description": "REST API with connection-based auth",
   "tools": [
     {
@@ -401,7 +393,6 @@ Use this pattern when the target API authenticates via Microsoft Entra ID. The F
 
 ```json
 {
-  "name": "my-openapi-managed-identity-toolbox",
   "description": "REST API with managed identity auth",
   "tools": [
     {
@@ -429,7 +420,6 @@ Use this pattern to call another agent as a tool. Provide the base URL of the re
 
 ```json
 {
-  "name": "my-a2a-toolbox",
   "description": "Delegate tasks to a specialist agent",
   "tools": [
     {
@@ -449,7 +439,6 @@ A single toolbox can bundle different tool types. The following example combines
 
 ```json
 {
-  "name": "my-multi-tool-toolbox",
   "description": "Web search, knowledge base search, and custom MCP server",
   "tools": [
     {
@@ -497,7 +486,6 @@ Use the `name` field to include multiple instances of the same tool type in one 
 
 ```json
 {
-  "name": "my-dual-search-toolbox",
   "description": "Two Azure AI Search indexes in a single toolbox",
   "tools": [
     {
@@ -534,7 +522,153 @@ Use the `name` field to include multiple instances of the same tool type in one 
 
 After creating the toolbox, retrieve its MCP endpoint URL.
 
-**Constructed manually**: `{project_endpoint}/toolsets/{toolbox_name}/mcp?api-version=v1`
+**Constructed manually**: `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1`
+
+## Manage toolbox versions
+
+Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it — you decide when to update `default_version`. This lets you stage changes, test a new version independently, and promote it to production on your own schedule.
+
+| Object | Key fields | Description |
+|--------|-----------|-------------|
+| `ToolboxObject` | `id`, `name`, `default_version` | The toolbox container. `default_version` points to the active version. |
+| `ToolboxVersionObject` | `id`, `name`, `version`, `description`, `created_at`, `tools[]`, `policies` | An immutable snapshot of the toolbox's tool list at a point in time. |
+
+### Create a new version
+
+Each create call produces a new version. If the toolbox doesn't exist yet, it's automatically created.
+
+:::zone pivot="python"
+
+```python
+toolbox_version = client.beta.toolboxes.create(
+    toolbox_name="my-toolbox",
+    description="Updated tools v2",
+    tools=[...],
+)
+print(f"Created version: {toolbox_version.version}")
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+POST {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Toolboxes=V1Preview
+Content-Type: application/json
+
+{
+  "description": "Updated tools v2",
+  "tools": [...]
+}
+```
+
+:::zone-end
+
+The response is a `ToolboxVersionObject` containing the new `version` identifier.
+
+### List versions
+
+:::zone pivot="python"
+
+```python
+versions = list(client.beta.toolboxes.list_toolbox_versions(toolbox_name="my-toolbox"))
+for v in versions:
+    print(f"{v.version} — created {v.created_at}")
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+GET {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Toolboxes=V1Preview
+```
+
+:::zone-end
+
+### Get a specific version
+
+:::zone pivot="python"
+
+```python
+version_obj = client.beta.toolboxes.get_toolbox_version(
+    toolbox_name="my-toolbox",
+    version="<version_id>",
+)
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+GET {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Toolboxes=V1Preview
+```
+
+:::zone-end
+
+### Promote a version to default
+
+The MCP endpoint always serves the `default_version`. To switch which version is active, update the toolbox:
+
+:::zone pivot="python"
+
+```python
+toolbox = client.beta.toolboxes.update(
+    toolbox_name="my-toolbox",
+    default_version="<version_id>",
+)
+print(f"Active version: {toolbox.default_version}")
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+PATCH {project_endpoint}/toolboxes/my-toolbox?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Toolboxes=V1Preview
+Content-Type: application/json
+
+{
+  "default_version": "<version_id>"
+}
+```
+
+:::zone-end
+
+### Delete a version
+
+:::zone pivot="python"
+
+```python
+client.beta.toolboxes.delete_toolbox_version(
+    toolbox_name="my-toolbox",
+    version="<version_id>",
+)
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+DELETE {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Toolboxes=V1Preview
+```
+
+:::zone-end
+
+> [!IMPORTANT]
+> You can't delete the `default_version`. Update `default_version` to a different version first, then delete the old one.
 
 ## Step 4: Verify tool availability
 
@@ -551,7 +685,7 @@ token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").toke
 headers = {
     "Content-Type": "application/json",
     "Authorization": f"Bearer {token}",
-    "Foundry-Features": "Toolsets=V1Preview",
+    "Foundry-Features": "Toolboxes=V1Preview",
 }
 ```
 
@@ -560,7 +694,7 @@ headers = {
 ```python
 import httpx
 
-url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolsets/<name>/mcp?api-version=v1"
+url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/mcp?api-version=v1"
 
 with httpx.Client(timeout=30.0) as http:
     resp = http.post(url, headers=headers, json={
@@ -643,7 +777,7 @@ Tool-specific argument examples:
 ```http
 POST {toolbox_mcp_endpoint}
 Authorization: Bearer {token}
-Foundry-Features: Toolsets=V1Preview
+Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}
@@ -654,7 +788,7 @@ Content-Type: application/json
 ```http
 POST {toolbox_mcp_endpoint}
 Authorization: Bearer {token}
-Foundry-Features: Toolsets=V1Preview
+Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {"jsonrpc":"2.0","method":"notifications/initialized"}
@@ -665,7 +799,7 @@ Content-Type: application/json
 ```http
 POST {toolbox_mcp_endpoint}
 Authorization: Bearer {token}
-Foundry-Features: Toolsets=V1Preview
+Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
@@ -678,7 +812,7 @@ The response lists all tools in the toolbox. For MCP tools, names are prefixed w
 ```http
 POST {toolbox_mcp_endpoint}
 Authorization: Bearer {token}
-Foundry-Features: Toolsets=V1Preview
+Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"<TOOL_NAME>","arguments":{}}}
@@ -695,7 +829,7 @@ Set the `FOUNDRY_TOOLBOX_ENDPOINT` environment variable. The template picks up t
 **`.env` file**:
 
 ```
-FOUNDRY_TOOLBOX_ENDPOINT=https://{project_endpoint}/toolsets/{toolbox-name}/mcp?api-version=v1
+FOUNDRY_TOOLBOX_ENDPOINT=https://{project_endpoint}/toolboxes/{toolbox-name}/mcp?api-version=v1
 ```
 
 **`main.py`** (key pattern):
@@ -719,7 +853,7 @@ async def build_agent():
             "transport": "streamable_http",
             "headers": {
                 "Authorization": f"Bearer {token}",
-                "Foundry-Features": "Toolsets=V1Preview",
+                "Foundry-Features": "Toolboxes=V1Preview",
             },
         }
     })
@@ -741,7 +875,7 @@ Use `MCPStreamableHTTPTool` from the Agent Framework SDK to connect directly to 
 
 ```
 AZURE_AI_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
-FOUNDRY_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolsets/<name>/mcp?api-version=v1
+FOUNDRY_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<name>/mcp?api-version=v1
 MODEL_DEPLOYMENT_NAME=gpt-4o
 ```
 
@@ -769,7 +903,7 @@ def _get_toolbox_token() -> str:
 def _get_toolbox_headers(token: str) -> dict:
     return {
         "Authorization": f"Bearer {token}",
-        "Foundry-Features": "Toolsets=V1Preview",
+        "Foundry-Features": "Toolboxes=V1Preview",
     }
 
 credential = DefaultAzureCredential()
@@ -822,7 +956,7 @@ Use the GitHub Copilot SDK to build a toolbox-powered agent that bridges Copilot
 
 ```
 GITHUB_TOKEN=<your-github-token>
-FOUNDRY_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolsets/<name>/mcp?api-version=v1
+FOUNDRY_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<name>/mcp?api-version=v1
 ```
 
 **`agent.py`** (key pattern — MCP bridge):
@@ -839,7 +973,7 @@ def _get_toolbox_headers(token: str) -> dict:
     return {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {token}",
-        "Foundry-Features": "Toolsets=V1Preview",
+        "Foundry-Features": "Toolboxes=V1Preview",
     }
 
 class McpBridge:
