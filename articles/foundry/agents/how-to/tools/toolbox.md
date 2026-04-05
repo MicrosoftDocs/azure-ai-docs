@@ -85,12 +85,6 @@ print(f"Created toolbox: {toolbox.name}")
 
 :::zone-end
 
-:::zone pivot="csharp"
-
-[!INCLUDE [csharp-not-available](../../../includes/csharp-not-available.md)]
-
-:::zone-end
-
 :::zone pivot="rest-api"
 
 ```http
@@ -585,12 +579,6 @@ Tool-specific argument examples:
 - `result.content[]` contains entries with `"type": "text"` — this is the tool output.
 - For AI Search, also check `result.structuredContent.documents[]` for citations.
 - Watch for `"ServerError"` in text content — the tool executed but hit an internal error.
-
-:::zone-end
-
-:::zone pivot="csharp"
-
-[!INCLUDE [csharp-not-available](../../../includes/csharp-not-available.md)]
 
 :::zone-end
 
