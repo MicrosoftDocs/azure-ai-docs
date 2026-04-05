@@ -141,7 +141,7 @@ Choose the tool type and authentication pattern that matches your scenario.
 ```
 
 > [!IMPORTANT]
-> The first time a user calls a toolbox with an OAuth based p  in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
+> The first time a user calls a toolbox with an OAuth based mcp in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
 >
 > ```json
 > {
@@ -528,7 +528,7 @@ There are two endpoint patterns depending on your role:
 | **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. Requires `default_version` to be set on the toolbox. |
 
 > [!IMPORTANT]
-> The consumer endpoint returns an error if the toolbox has no `default_version` set. After creating a new version, call [Step 6: Manage toolbox versions](#step-6-manage-toolbox-versions) to promote a version before pointing agents to the consumer endpoint.
+> The consumer endpoint returns an error if the toolbox has no `default_version` set. Before you share the toolbox broadly, call [Step 6: Manage toolbox versions](#step-6-manage-toolbox-versions) to promote a version before pointing agents to the consumer endpoint.
 
 ## Step 4: Verify tool availability
 
@@ -574,8 +574,6 @@ with httpx.Client(timeout=30.0) as http:
     })
 ```
 
-**Check:** HTTP 200 and a non-empty `mcp-session-id` header. If you skip this step, subsequent calls will fail.
-
 #### Step 3: `tools/list`
 
 ```python
@@ -587,12 +585,6 @@ with httpx.Client(timeout=30.0) as http:
     for t in tools:
         print(f"  - {t['name']}: {t.get('description', '')[:80]}")
 ```
-
-**Check:**
-- `len(tools) > 0` — empty means the toolbox was not provisioned correctly.
-- Each tool has `name`, `description`, and `inputSchema`.
-- `inputSchema` has a `properties` field (some MCP servers omit this, which breaks OpenAI).
-- Note the exact parameter names for the call step (for example `query` vs `queries`).
 
 #### Step 4: `tools/call`
 
@@ -608,25 +600,6 @@ Pick a tool name from the list and call it with matching arguments:
     })
     result = resp.json()
 ```
-
-Tool-specific argument examples:
-
-| Tool Type | Arguments |
-|-----------|-----------|
-| AI Search | `{"query": "search text"}` |
-| File Search | `{"queries": ["search text"]}` |
-| Code Interpreter | `{"code": "print(2 ** 100)"}` |
-| Web Search | `{"search_query": "weather in seattle"}` |
-| A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
-| MCP (gitmcp) | `{"query": "what is agent service"}` |
-
-**Check:**
-- No top-level `error` field. If present, inspect `error.code`:
-  - `-32006` → OAuth consent required (extract URL from `error.message`).
-  - Other codes → server-side failure.
-- `result.content[]` contains entries with `"type": "text"` — this is the tool output.
-- For AI Search, also check `result.structuredContent.documents[]` for citations.
-- Watch for `"ServerError"` in text content — the tool executed but hit an internal error.
 
 :::zone-end
 
@@ -667,8 +640,6 @@ Content-Type: application/json
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 ```
 
-The response lists all tools in the toolbox. For MCP tools, names are prefixed with the `server_label` — for example, a server with label `myserver` exposes tools as `myserver.some_tool`. For all other tool types (Web Search, Azure AI Search, Code Interpreter, File Search), the tool name is the value set in the optional `name` field, or the default tool name if none was specified.
-
 **4. Call a tool**:
 
 ```http
@@ -681,6 +652,34 @@ Content-Type: application/json
 ```
 
 :::zone-end
+
+**Check — initialize**: HTTP 200 and a non-empty `mcp-session-id` header. If you skip the initialize step, subsequent calls will fail.
+
+**Check — `tools/list`**:
+- `len(tools) > 0` — empty means the toolbox version was not provisioned correctly.
+- Each tool has `name`, `description`, and `inputSchema`.
+- `inputSchema` has a `properties` field (some MCP servers omit this, which breaks OpenAI).
+- For MCP tools, names are prefixed with the `server_label` — for example, `myserver.some_tool`. For all other tool types, the name is the `name` field value or the default tool name.
+- Note the exact parameter names for the call step (for example `query` vs `queries`).
+
+**Check — `tools/call`**:
+- No top-level `error` field. If present, inspect `error.code`:
+  - `-32006` → OAuth consent required (extract URL from `error.message`).
+  - Other codes → server-side failure.
+- `result.content[]` contains entries with `"type": "text"` — this is the tool output.
+- For AI Search, also check `result.structuredContent.documents[]` for citations.
+- Watch for `"ServerError"` in text content — the tool executed but hit an internal error.
+
+Tool-specific `tools/call` argument examples:
+
+| Tool type | Arguments |
+|-----------|-----------|
+| AI Search | `{"query": "search text"}` |
+| File Search | `{"queries": ["search text"]}` |
+| Code Interpreter | `{"code": "print(2 ** 100)"}` |
+| Web Search | `{"search_query": "weather in seattle"}` |
+| A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
+| MCP | `{"query": "what is agent service"}` |
 
 ## Step 5: Integrate the toolbox into your agent
 
