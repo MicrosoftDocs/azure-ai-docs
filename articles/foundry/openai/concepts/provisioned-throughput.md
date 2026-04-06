@@ -154,17 +154,31 @@ If your target region doesn't have available capacity:
 
 Once a provisioned deployment is running, the service tracks utilization using a leaky bucket algorithm:
 
-1. Each incoming request is evaluated for its expected compute cost, based on prompt token count, `max_tokens`, and model.
-2. If current utilization is at 100%, the service returns **HTTP 429** immediately, with `retry-after-ms` and `retry-after` headers indicating how long to wait.
-3. Utilization drains continuously at a rate proportional to deployed PTUs.
-4. When a request finishes, the service corrects the utilization estimate using actual token counts.
+1. The service estimates each incoming request for its expected compute cost; that is, the incremental change to utilization required to serve the request. To get this estimate, the service combines the prompt tokens, less any cached tokens, and the specified `max_tokens` in the call. A customer can receive up to a 100% discount on their prompt tokens depending on the size of their cached tokens. If the `max_tokens` parameter isn't specified, the service estimates a value. This estimation can lead to lower concurrency than expected when the number of actual generated tokens is small. For highest concurrency, ensure that the `max_tokens` value is as close as possible to the true generation size.
+1. If current utilization is at 100%, the service returns **HTTP 429** immediately, with the `retry-after-ms` and `retry-after` headers indicating how long to wait.
+1. Utilization drains continuously at a rate proportional to deployed PTUs. A deployment with more PTUs drains utilization faster, which means it recovers capacity more quickly between requests and can sustain a higher overall request rate.
+1. When a request finishes, the service corrects the utilization estimate using actual token counts. If the actual cost is greater than the estimate, the difference is added to the deployment's utilization. If the actual cost is less than the estimate, the difference is subtracted.
 
 Accepted requests always complete with predictable latency, because 429 responses are returned immediately rather than queuing traffic. A 429 from a provisioned deployment is a traffic-management signal—not an error indicating a service problem.
 
+> [!NOTE]
+> Calls are accepted until utilization reaches 100%. Bursts just over 100% might be permitted in short periods, but over time, your traffic is capped at 100% utilization.
+
+:::image type="content" source="../media/provisioned/utilization.jpg" alt-text="Diagram of the leaky bucket algorithm for provisioned throughput utilization showing how incoming requests add to utilization while capacity drains based on deployed PTU count." lightbox="../media/provisioned/utilization.jpg":::
+
 ### How to handle HTTP 429 responses
 
-- **Redirect to a standard deployment**: This produces the lowest additional latency, because the action is taken as soon as the 429 is received. The [spillover feature](../how-to/spillover-traffic-management.md) automates this pattern.
-- **Retry using the wait time in the response header**: Use the value from `retry-after-ms` if you need the provisioned deployment and can tolerate added latency. The Azure OpenAI client libraries include built-in retry logic that respects `retry-after` by default.
+In all provisioned deployment types, when capacity is exceeded, the API returns a HTTP 429 status code. The HTTP 429 response isn't an error, but instead it's part of the design for telling users that a given PTU deployment is fully utilized at a point in time. The service continues to return the HTTP 429 status code until the utilization drops below 100%. By providing a fast-fail response, you have control over how to handle these situations in a way that best fits your application requirements.
+
+Here are some strategies for handling the HTTP 429 response:
+
+- **Redirect to a standard deployment or another model**: This option produces the lowest additional latency, because the action can be taken as soon as ou receive the 429 signal The [spillover feature](../how-to/spillover-traffic-management.md) automates the process of redirecting the request from your provisioned deployment to your standard deployment for processing.
+- **Retry using the wait time in the response header**: The `retry-after-ms` and `retry-after` headers in the response tell you the time to wait before the next call will be accepted. If you need the provisioned deployment and can tolerate added latency, implement client-side retry logic. The Foundry client libraries include built-in capabilities for handling retries.
+
+### Concurrent call limits
+
+The number of concurrent calls you can achieve on a deployment depends on each call's shape (prompt size, `max_tokens` parameter, and similar factors). The service continues to accept calls until the utilization reaches 100%. To determine the approximate number of concurrent calls, you can model out the maximum requests per minute for a particular call shape in the [capacity calculator](https://ai.azure.com/resource/calculator). If the system generates less than the number of output tokens set for the `max_tokens` parameter, then the provisioned deployment will accept more requests.
+
 
 ## Supported models
 
@@ -195,9 +209,35 @@ The following models support provisioned throughput deployment types. PTU quota 
 > [!NOTE]
 > The model version isn't listed in this table. Check supported versions for each model in the Foundry portal when you configure a deployment. Regional provisioned availability varies by region.
 
-For per-region capacity tables, see [Get started with provisioned deployments](../how-to/provisioned-get-started.md).
+### Region availability for provisioned throughput capability
 
-## Next steps and advanced topics
+Region availability for provisioned throughput capability are listed in the following tables.
+
+# [Global Provisioned Throughput](#tab/global-ptum)
+
+#### Global provisioned throughput model availability
+
+[!INCLUDE [Provisioned Managed Global](model-matrix/provisioned-global.md)]
+
+# [Data Zone Provisioned Throughput](#tab/datazone-provisioned-managed)
+
+#### Data zone provisioned throughput model availability
+
+[!INCLUDE [Global data zone provisioned managed](model-matrix/datazone-provisioned-managed.md)]
+
+# [Regional Provisioned Throughput](#tab/provisioned)
+
+#### Regional provisioned throughput deployment model availability
+
+[!INCLUDE [Provisioned](model-matrix/provisioned-models.md)]
+
+---
+
+> [!NOTE]
+> The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
+
+
+## Advanced topics
 
 | What you want to do | Article | Type |
 |---|---|---|
