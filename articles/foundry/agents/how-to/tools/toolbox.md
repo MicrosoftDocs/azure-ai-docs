@@ -1,8 +1,9 @@
 ---
 title: "Curate intent-based toolbox in Foundry (preview)"
 description: "Use Microsoft toolbox in Foundry to add MCP servers, web search, Azure AI Search, file search, code interpreter tool and more to hosted agents through a single managed endpoint."
-author: zhuoqunli
-ms.author: zhuoqunli
+author: alvinashcraft
+ms.author: aashcraft
+ms.reviewer: zhuoqunli
 ms.date: 04/03/2026
 ms.manager: nitinme
 ms.topic: how-to
