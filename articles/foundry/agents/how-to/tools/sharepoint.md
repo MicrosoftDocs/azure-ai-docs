@@ -47,6 +47,7 @@ The following table shows SDK and setup support.
   - If developers and end users don't have a Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 - Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
 - Developers and end users have at least `READ` access to the SharePoint site.
+- Ensure your SharePoint tenant and your Foundry project are in the same Microsoft Entra tenant. Cross-tenant token exchange isn't supported.
 - The required SDK package installed:
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
   - **C#**: Install the `Azure.AI.Projects` NuGet package
@@ -537,8 +538,6 @@ public class SharePointGroundingExample {
 - You can add only one SharePoint tool per agent.
 - The underlying Microsoft 365 Copilot Retrieval API returns text extracts. Retrieval from nontextual content, including images and charts, isn't supported.
 - For semantic and hybrid retrieval, the Microsoft 365 Copilot Retrieval API supports `.doc`, `.docx`, `.pptx`, `.pdf`, `.aspx`, and `.one` file types. For details, see the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-- The SharePoint tool doesn't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, but the SharePoint tool requires user identity passthrough (On-Behalf-Of).
-
 ## Setup
 
 > [!NOTE]
