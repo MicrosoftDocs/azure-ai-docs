@@ -16,11 +16,7 @@ ai-usage: ai-assisted
 # Use skills in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-A skill is a `SKILL.md` file or a folder with markdown files and python files that a hosted agent discovers at startup and
-injects as additional instructions into every conversation session. Skills let
-you define reusable behavioral guidelines — such as a greeting style, a code
-review checklist, or domain-specific constraints — and manage them centrally
-through the Foundry Skills REST API.
+A skill is a `SKILL.md` file that a hosted agent discovers at startup and injects as additional instructions into every conversation session. Skills let you define reusable behavioral guidelines — such as a greeting style, a code review checklist, or domain-specific constraints — and manage them centrally through the Skills REST API.
 
 In this article, you learn how to:
 
@@ -29,10 +25,10 @@ In this article, you learn how to:
 
 ## Feature support
 
-| Feature | REST API | Hosted agent | Prompt agent |
-|---------|----------|--------------| --------------|
-| Skills CRUD (import, list, get, download, delete) | ✔️ | N/A | N/A| 
-| Include downloaded skills as part of agent | N/A | ✔️ | N/A|
+| Feature | REST API | Python | .NET | Hosted agent | Prompt agent |
+|---------|----------|--------|------|--------------|---------------|
+| Skills CRUD (create, import, list, get, download, delete) | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Include downloaded skills in agent | N/A | N/A | N/A | ✔️ | N/A |
 
 > [!IMPORTANT]
 > Skills are used in **hosted agents** only. The Skills REST API handles
@@ -72,8 +68,8 @@ You are a friendly greeting assistant for Foundry Hosted Agents.
 | Body | Yes | Free Markdown. Becomes the skill's injected instructions. |
 
 > [!IMPORTANT]
-> The `name` and `description` values must be unquoted in the YAML front matter.
-> Using quoted values (for example, `name: 'greeting'`) causes an HTTP 500
+> - The `name` and `description` values must be unquoted in the YAML front matter.
+> - Using quoted values (for example, `name: 'greeting'`) causes an HTTP 500
 > error on import.
 
 Place each skill in its own subdirectory under the agent root directory.
@@ -84,7 +80,7 @@ For example, `greeting/SKILL.md`, not `SKILL.md` at the root.
 The Skills REST API stores skills centrally so any hosted agent in your
 Foundry project can download and use them.
 
-**Skills endpoint:** `{FOUNDRY_PROJECT_ENDPOINT}/skills?api-version=v1`
+**Skills endpoint:** `{FOUNDRY_PROJECT_ENDPOINT}/skills`
 
 **Authentication:** Bearer token from `DefaultAzureCredential` with scope
 `https://ai.azure.com/.default`.
@@ -183,8 +179,6 @@ Foundry-Features: Skills=V1Preview
 
 > [!NOTE]
 > The ZIP must contain `SKILL.md` at the root, not in a subdirectory.
-> The `name` and `description` in the `SKILL.md` front matter must be
-> unquoted — for example, `name: greeting`, not `name: 'greeting'`.
 
 Example response:
 
@@ -375,24 +369,39 @@ my-agent/
     └── SKILL.md
 ```
 
-### Step 2: Bundle skills into the container image
+### Step 2: Initialize the agent locally
 
-In your hosted agent's `Dockerfile`, copy the entire agent directory so that
-all `*/SKILL.md` files are included in the image:
+After downloading the skills, initialize the agent. Skills are auto-discovered at startup — the agent scans the project root for any `*/SKILL.md` pattern.
 
-```dockerfile
-COPY . /app/agent/
+```bash
+azd ai agent init --skills --name my-agent
 ```
 
-Skills are bundled automatically with every `azd deploy` — no extra
-configuration is required.
+Start the local agent:
 
-### Step 3: Configure the agent to discover skills
+```bash
+azd ai agent start
+```
 
-In `main.py`, discover all `*/SKILL.md` files under the agent root and pass
-the root path to the agent. Then pass `skill_directories` to `create_session()`
-in `agent.py`. The agent auto-discovers all `*/SKILL.md` files under each
-listed directory and injects them as instructions for every session.
+Test the local agent:
+
+```bash
+azd ai agent invoke "What Azure products do you offer?"
+```
+
+### Step 3: Deploy and test the hosted agent
+
+Deploy the agent:
+
+```bash
+azd ai agent deploy
+```
+
+Test the remote hosted agent:
+
+```bash
+azd ai agent invoke --remote "What Azure products do you offer?"
+```
 
 ## Troubleshoot
 
@@ -401,11 +410,6 @@ listed directory and injects them as instructions for every session.
 | HTTP 500 on import | Quoted `name` or `description` in YAML front matter | Use `name: foo`, not `name: 'foo'` |
 | HTTP 404 on get or download | Skill name not found | Verify the name with `GET /skills?api-version=v1` first |
 | HTTP 404 on download | Skill was created from JSON (`has_blob: false`) | Only ZIP-imported skills (`has_blob: true`) can be downloaded |
-| `Missing GitHub Token` | `GITHUB_TOKEN` env var not set in the hosted agent container | Set in `agent.yaml` `environment_variables` |
 | ZIP not extractable after download | Caller treated response as gzip | Response is `application/zip`; use `zipfile.ZipFile` to extract |
 | Skill not injected | `SKILL.md` placed at agent root, not in a subdirectory | Put it in `greeting/SKILL.md`, not `./SKILL.md` |
 
-## Related content
-
-- [Curate a toolbox in Foundry (preview)](toolbox.md)
-- [Tool best practices](../../../agents/concepts/tool-best-practice.md)
