@@ -25,14 +25,12 @@ You can create, store, and manage keys using either:
 
 + Azure Key Vault
 
-+ Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. HSM support is new in Azure AI Search. To migrate from Azure Key Vault to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
++ Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. To migrate from Azure Key Vault to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
 
 This article explains how to configure CMK for additional protection of your encrypted data in Azure AI Search.
 
 > [!IMPORTANT]
 > + Adding a customer-managed key (CMK) applies to encryption for data at rest. If you need to protect data in use, consider using [confidential computing](search-security-best-practices.md#optional-enable-confidential-computing).
->
-> + Encryption with a CMK is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-encryption with CMK, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
 
 ## Configure CMK on Azure AI Search objects
 
@@ -50,6 +48,10 @@ Adding a customer-managed key to an object must happen when the object is newly 
 
 - Although you can't add encryption to an existing object, once an object is configured for encryption, you can change all parts of its encryption definition, including switching to a different key vault or HMS storage as long as the resource is in the same tenant.
 
+- Encryption with a CMK is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-encryption with CMK, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
+
+- You should also consider setting up an Azure policy to check for compliance and enforcement. See [Set up a policy to enforce CMK compliance](#set-up-a-policy-to-enforce-cmk-compliance).
+
 ## Enable service-level CMK on new objects by default (preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
@@ -61,8 +63,6 @@ Enabling CMK at the service level means:
 - All **new** objects created on your Azure AI Search service will have the service-level CMK enabled by default. Instead of specifying an encryption key each time you create an object, the key that you configured at the service‑level will be applied to the newly created object. Previously you needed to explicitly provide encryption key information each time you created an object.
 
 - This feature is optional. You can continue to configure CMK on a per-object basis if you prefer. You can also rotate this default key by specifying a new key, specific to the object that you are creating. The object-level key that you specify will override the default service-level key for that object.
-
-You should also consider setting up an Azure policy to check for compliance and enforcement. See [Set up a policy to enforce CMK compliance](#set-up-a-policy-to-enforce-cmk-compliance).
 
 ## Prerequisites
 
