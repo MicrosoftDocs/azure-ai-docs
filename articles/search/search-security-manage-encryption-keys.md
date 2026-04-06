@@ -44,7 +44,11 @@ Encryption is performed over:
 
 + Sensitive content in indexers, data sources, skillsets, and vectorizers. Sensitive content refers to connection strings, descriptions, identities, keys, and user inputs. For example, skillsets have Foundry Tools keys, and some skills accept user inputs, such as custom entities. In both cases, keys and user inputs are encrypted. Any references to external resources (such as Azure data sources or Azure OpenAI models) are also encrypted.
 
-Adding a customer-managed key to an object must happen when the object is newly created and saved to disk, for both data at rest (long-term storage) or temporary cached data (short-term storage).
+Adding a customer-managed key to an object must happen when the object is newly created and saved to disk, for both data at rest (long-term storage) or temporary cached data (short-term storage). It is important to keep in mind:
+
+- You can never encrypt objects that already exist. Encryption is only supported at the time of object creation. If you want to add a customer-managed key to an existing object, you must delete and recreate that object with encryption enabled.
+
+- Although you can't add encryption to an existing object, once an object is configured for encryption, you can change all parts of its encryption definition, including switching to a different key vault or HMS storage as long as the resource is in the same tenant.
 
 ## Enable service-level CMK on new objects by default (preview)
 
@@ -57,10 +61,6 @@ Enabling CMK at the service level means:
 - All **new** objects created on your Azure AI Search service will have the service-level CMK enabled by default. Instead of specifying an encryption key each time you create an object, the key that you configured at the service‑level will be applied to the newly created object. Previously you needed to explicitly provide encryption key information each time you created an object.
 
 - This feature is optional. You can continue to configure CMK on a per-object basis if you prefer. You can also rotate this default key by specifying a new key, specific to the object that you are creating. The object-level key that you specify will override the default service-level key for that object.
-
-- You can never encrypt objects that already exist. Encryption is only supported at the time of object creation. If you want to add a customer-managed key to an existing object, you must delete and recreate that object with encryption enabled.
-
-- Although you can't add encryption to an existing object, once an object is configured for encryption, you can change all parts of its encryption definition, including switching to a different key vault or HMS storage as long as the resource is in the same tenant.
 
 You should also consider setting up an Azure policy to check for compliance and enforcement. See [Set up a policy to enforce CMK compliance](#set-up-a-policy-to-enforce-cmk-compliance).
 
