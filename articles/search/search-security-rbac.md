@@ -1,7 +1,7 @@
 ---
 title: Connect Using Azure Roles
 description: Learn how to assign Azure roles in Azure AI Search to manage permissions for service administration, development, and query access with Microsoft Entra ID.
-ms.date: 03/26/2026
+ms.date: 04/06/2026
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
@@ -15,15 +15,15 @@ ai-usage: ai-assisted
 
 # Connect to Azure AI Search using roles
 
-Azure AI Search supports [role-based access control](/azure/role-based-access-control/role-assignments-portal) through Microsoft Entra ID. Role-based access is optional but recommended. The alternative is [key-based authentication](search-security-api-keys.md), which is the default.
+Azure AI Search supports [role-based access control](/azure/role-based-access-control/role-assignments-steps) through Microsoft Entra ID. Role-based access is optional but recommended. The alternative is [key-based authentication](search-security-api-keys.md), which is the default.
 
-If you assign multiple roles to a security principal, permissions are combined. Role assignments apply across all tools and client libraries. You can assign roles using any [supported approach](/azure/role-based-access-control/role-assignments-steps).
+If you assign multiple roles to a security principal, permissions are combined. Role assignments apply across all tools and client libraries. You can assign roles using any [supported approach](/azure/role-based-access-control/role-assignments-steps#step-5-assign-role).
 
 This article explains how to assign built-in roles for service administration, development, and read-only query and retrieval access. It also provides steps for creating custom roles and testing role assignments.
 
 > [!TIP]
-> + Want a quick overview of built-in roles? See [Summary of permissions](#summary-of-permissions).
-> + For per-user access over search results, also known as row-level security or document-level access, see [Document-level access control in Azure AI Search](search-document-level-access-overview.md).
+> + Want a quick overview of the built-in roles? See [Summary of permissions](#summary-of-permissions).
+> + To control access to search results at the document level, also known as row-level security, see [Document-level access control in Azure AI Search](search-document-level-access-overview.md).
 
 ## Prerequisites
 
@@ -39,29 +39,30 @@ This article explains how to assign built-in roles for service administration, d
 
 Roles are a collection of permissions that affect the control plane or data plane:
 
-+ **Control plane:** Operations that create, configure, and manage the search service and its object definitions. Available through the [Search Management REST APIs](/rest/api/searchmanagement/) for service provisioning and configuration, [Search Service REST APIs](/rest/api/searchservice/) for object definitions, and [Azure RBAC REST APIs](/rest/api/authorization/) for role assignments. Equivalent Azure SDK client libraries are also available.
++ **Control plane:** Operations for service provisioning, configuration, and administration. Control plane operations include creating or deleting services, listing API keys, and managing network and authentication settings. Available through the [Search Management REST APIs](/rest/api/searchmanagement/) and equivalent Azure SDK client libraries. 
 
-+ **Data plane:** Operations that target content hosted on a search service, such as loading documents, querying indexes, and retrieving from knowledge bases. Available through the [Search Service REST APIs](/rest/api/searchservice/) or an equivalent Azure SDK client library.
++ **Data plane:** Operations against the search service endpoint. Data plane operations fall into two categories: object management and content access. Available through the [Search Service REST APIs](/rest/api/searchservice/) and equivalent Azure SDK client libraries. 
 
 ### Role descriptions
 
-The following built-in roles grant permissions to Azure AI Search. Control plane roles are always available, while data plane roles require role-based access to be enabled on your search service.
+The following built-in roles grant permissions to Azure AI Search. Control plane roles are always available, while data plane roles require [role-based access to be enabled](search-security-enable-roles.md) on your search service. You can combine built-in roles for broader access or [create a custom role](#create-a-custom-role) with the specific permissions you need.
 
 | Role | Plane | Description |
 | -- | -- | -- |
-| [Owner](/azure/role-based-access-control/built-in-roles#owner) | Control | Full control plane access, including the ability to assign roles and change authentication settings. Subscription administrators are members by default. Can manage object definitions and retrieve admin keys. Can't load documents, query indexes, or retrieve from knowledge bases. |
-| [Contributor](/azure/role-based-access-control/built-in-roles#contributor) | Control | Same level of control plane access as Owner, minus the ability to assign roles. Can't load documents, query indexes, or retrieve from knowledge bases. |
-| [Reader](/azure/role-based-access-control/built-in-roles#reader) | Control | Read-only control plane access to service metrics, object definitions, and quotas. Can't retrieve API keys, load documents, query indexes, or retrieve from knowledge bases. |
-| [Search Service Contributor](/azure/role-based-access-control/built-in-roles#search-service-contributor) | Control | Create and manage object definitions, including indexes, indexers, data sources, skillsets, knowledge bases, and knowledge sources. Can retrieve admin keys. Can't load documents, query indexes, or retrieve from knowledge bases. For the full permissions list, see [`Microsoft.Search/searchServices/*`](/azure/role-based-access-control/permissions/ai-machine-learning#microsoftsearch). |
-| [Search Index Data Contributor](/azure/role-based-access-control/built-in-roles#search-index-data-contributor) | Data | Read-write data access. Can load documents, query indexes, and retrieve from knowledge bases. Can't modify object definitions or retrieve admin keys. To scope to specific indexes, see [Grant access to a single index](#grant-access-to-a-single-index). |
-| [Search Index Data Reader](/azure/role-based-access-control/built-in-roles#search-index-data-reader) | Data | Read-only data access. Can query indexes and retrieve from knowledge bases. Can't load documents, modify object definitions, or retrieve admin keys. To scope to specific indexes, see [Grant access to a single index](#grant-access-to-a-single-index). |
+| [Owner](/azure/role-based-access-control/built-in-roles#owner) | Control | Full control plane access, including the ability to assign roles and change authentication settings. Subscription administrators have this role by default. Can manage API keys and search objects. Can't load documents, query indexes, or retrieve from knowledge bases. |
+| [Contributor](/azure/role-based-access-control/built-in-roles#contributor) | Control | Same level of control plane access as Owner, minus the ability to assign roles. |
+| [Reader](/azure/role-based-access-control/built-in-roles#reader) | Control | Read-only control plane access. Can view service metrics and object definitions. Can't view or manage API keys, load documents, query indexes, or retrieve from knowledge bases. |
+| [Search Service Contributor](/azure/role-based-access-control/built-in-roles#search-service-contributor) | Control & Data | Full control plane access. Data plane access is limited to object management. Can create indexes, indexers, skillsets, knowledge bases, and other search objects. Can't load documents, query indexes, or retrieve from knowledge bases. For the full permissions list, see [`Microsoft.Search/searchServices/*`](/azure/role-based-access-control/permissions/ai-machine-learning#microsoftsearch). |
+| [Search Index Data Contributor](/azure/role-based-access-control/built-in-roles#search-index-data-contributor) | Data | Read-write content access. Can load documents, query indexes, and retrieve from knowledge bases. Can't modify object definitions or retrieve admin keys. |
+| [Search Index Data Reader](/azure/role-based-access-control/built-in-roles#search-index-data-reader) | Data | Read-only content access. Can query indexes and retrieve from knowledge bases. Can't load documents, modify object definitions, or retrieve admin keys. |
 
-> [!NOTE]
-> Combine the built-in roles to get sufficient permissions for your use case. If these roles don't meet your needs, [create a custom role](#create-a-custom-role).
+> [!IMPORTANT]
+> + Owner, Contributor, and Search Service Contributor can retrieve admin keys, which provide full read-write access to the data plane. Only grant these roles to trusted users.
+> + By default, data plane roles apply to all indexes on the service. To scope Search Index Data Contributor or Search Index Data Reader to a single index, see [Grant access to a single index](#grant-access-to-a-single-index).
 
 ### Summary of permissions
 
-Use the following table to quickly find which role provides the permissions you need:
+Use the following table to quickly find which role provides the permissions you need.
 
 | Permissions | Owner/Contributor | Reader | Search Service Contributor | Search Index Data Contributor | Search Index Data Reader |
 | -- | -- | -- | -- | -- | -- |
@@ -72,19 +73,17 @@ Use the following table to quickly find which role provides the permissions you 
 | Access quotas and service statistics | ✅ | ❌ | ✅ | ❌ | ❌ |
 | View, copy, and regenerate keys | ✅ | ❌ | ✅ | ❌ | ❌ |
 | Set authentication options | ✅ | ❌ | ✅ | ❌ | ❌ |
-| View roles, policies, and definitions | ✅ | ❌ | ✅ | ❌ | ❌ |
+| View roles, policies, and definitions | ✅ | ✅ | ✅ | ❌ | ❌ |
 | Configure network security and private connections | ✅ | ❌ | ✅ | ❌ | ❌ |
 | Create, run, and manage search objects <sup>1</sup> | ✅ | ❌ | ✅ | ❌ | ❌ |
 | Upload data for indexing <sup>2</sup> | ❌ | ❌ | ❌ | ✅ | ❌ |
 | Query an index | ❌ | ❌ | ❌ | ✅ | ✅ |
 | Retrieve from a knowledge base | ❌ | ❌ | ❌ | ✅ | ✅ |
-| Elevated read, regardless of permission filters <sup>3</sup> | ❌ | ❌ | ❌ | ✅ | ❌ |
+| Bypass permission filters with [elevated read](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) | ❌ | ❌ | ❌ | ✅ | ❌ |
 
-<sup>1</sup> Includes creating, updating, and deleting indexes, indexers, data sources, skillsets, aliases, synonym maps, debug sessions, knowledge bases, and knowledge sources. Indexers also support run and reset operations.
+<sup>1</sup> Includes indexes, indexers, data sources, skillsets, aliases, synonym maps, debug sessions, knowledge bases, and knowledge sources. Indexers also support run and reset operations.
 
 <sup>2</sup> An Owner or Contributor can run the [**Import data** wizard](search-import-data-portal.md) to create and load indexes, even though they can't upload documents in other clients. Similarly, [indexers](search-indexer-overview.md) can write to any index on the search service, regardless of per-index role assignments. In both cases, the search service (not the user) performs the data plane actions using its `Microsoft.Search/searchServices/indexes/documents/*` permissions.
-
-<sup>3</sup> [Elevated read](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results) bypasses permission metadata on documents, allowing you to see all results and investigate why specific users can't see expected content.
 
 ## Assign built-in roles
 
@@ -107,8 +106,6 @@ The following roles let you create, configure, and manage a search service. Thes
 #### [**Azure portal**](#tab/roles-portal-admin)
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
-
-1. Select **Access Control (IAM)** in the left pane.
 
 1. From the left pane, select **Access control (IAM)**.
 
@@ -152,8 +149,6 @@ The following roles let you create search objects, load documents, query indexes
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
-1. Select **Access Control (IAM)** in the left pane.
-
 1. From the left pane, select **Access control (IAM)**.
 
 1. Select **+ Add** > **Add role assignment**.
@@ -194,7 +189,7 @@ New-AzRoleAssignment -SignInName <email> `
 
 ### Assign roles for read-only access
 
-Use the following role for apps and processes that only need read access to indexes and knowledge bases. Supported operations include [search](/rest/api/searchservice/documents/search-post), [autocomplete](/rest/api/searchservice/documents/autocomplete-post), and [suggestions](/rest/api/searchservice/documents/suggest-post) for indexes and [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve) for knowledge bases.
+Use the following role for apps and processes that only need read access to indexes and knowledge bases. Supported operations include [search](/rest/api/searchservice/documents/search-post), [lookup](/rest/api/searchservice/documents/get), [autocomplete](/rest/api/searchservice/documents/autocomplete-post), and [suggestions](/rest/api/searchservice/documents/suggest-post) for indexes and [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve) for knowledge bases.
 
 | Role | ID |
 | -- | -- |
