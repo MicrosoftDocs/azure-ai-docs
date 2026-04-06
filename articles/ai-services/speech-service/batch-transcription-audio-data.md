@@ -132,7 +132,7 @@ If you perform all actions in this section, your Storage account is configured a
 - Access to Storage account using Storage account key is prohibited.
 - Access to Storage account blob storage using [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) is prohibited.
 - Access to the selected Speech resource is allowed using the resource [system assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview).
-- 
+ 
 In effect, your Storage account becomes completely locked and can't be used in any scenario apart from transcribing audio files that were already present by the time the new configuration was applied. Consider this configuration as a model for the security of your audio data and customize it according to your needs.
 
 For example, you can allow traffic from selected public IP addresses and Azure Virtual networks. You can also set up access to your Storage account by using [private endpoints](/azure/storage/common/storage-private-endpoints) (see as well [this tutorial](/azure/private-link/tutorial-private-endpoint-storage-portal)), re-enable access by using Storage account key, allow access to other Azure trusted services, and so on.
