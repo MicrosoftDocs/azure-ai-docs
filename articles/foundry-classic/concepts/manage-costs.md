@@ -49,7 +49,7 @@ Azure OpenAI fine-tuned models are charged in three ways:
 Monitor hosted fine-tuned model costs closely to avoid unexpected charges. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/azure-openai/).
 
 > [!IMPORTANT]
-> Fine-tuned deployments can incur hosting charges while deployed, even during low usage periods. Deployments inactive for more than 15 days might be automatically deleted. Remove or scale down deployments that you don't need, and verify current lifecycle behavior in the [fine-tuning documentation](../../foundry/openai/how-to/fine-tuning.md) before relying on automatic cleanup behavior.
+> Fine-tuned deployments incur hosting charges while deployed, even during low usage periods. Remove or scale down deployments that you don't need. For details on deployment lifecycle and cleanup policies, see the [fine-tuning documentation](../../foundry/openai/how-to/fine-tuning.md).
 
 ### HTTP Error response code and billing status
 
