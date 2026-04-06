@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 01/06/2026
+ms.date: 04/06/2026
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -25,14 +25,14 @@ Within the Azure AI product family, you can use these [Azure resource providers]
 
 | Resource provider | Purpose | Supports resource type kinds |
 | --- | --- | --- |
-| Microsoft.CognitiveServices | Supports Agentic and GenAI application development composing and customizing prebuilt models. | Foundry; Azure OpenAI service; Azure Speech; Azure Vision | 
+| Microsoft.CognitiveServices | Supports Agentic and GenAI application development composing and customizing prebuilt models. | Foundry; Azure OpenAI; Azure Speech in Foundry Tools; Azure Vision in Foundry Tools | 
 | Microsoft.Search | Support knowledge retrieval over your data | Azure AI Search | 
 
-For many scenarios, the Foundry resource is the recommended starting point. Foundry resources share the Microsoft.CognitiveServices provider namespace with services such as Azure OpenAI, Azure Speech, Azure Vision, and Azure Language. This shared provider namespace helps align management APIs, access control patterns, networking, and policy behavior across related AI resources.
+For many scenarios, the Foundry resource is the recommended starting point. Foundry resources share the Microsoft.CognitiveServices provider namespace with services such as Azure OpenAI, Speech, Vision, and Language. This shared provider namespace helps align management APIs, access control patterns, networking, and policy behavior across related AI resources.
 
 [!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
-Resource types under the same provider namespaces share the same management APIs, and use similar [Azure Role Based Access Control](/azure/role-based-access-control/overview) actions, networking configurations, and aliases for Azure Policy configuration. If you're upgrading from Azure OpenAI to Foundry, your existing custom Azure policies and Azure Role Based Access Control actions continue to apply.
+Resource types under the same provider namespaces share the same management APIs, and use similar [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) actions, networking configurations, and aliases for Azure Policy configuration. If you're upgrading from Azure OpenAI to Foundry, your existing custom Azure policies and Azure RBAC actions continue to apply.
 
 [!INCLUDE [architecture 2](../includes/concepts-architecture-2.md)]
 
@@ -44,6 +44,6 @@ Resource types under the same provider namespaces share the same management APIs
 
 - **Networking Integration:** For enhanced security and compliance when your Agents connect with external systems, [container injection](../agents/how-to/virtual-networks.md) allows the platform network to host APIs and inject a subnet into your network. This setup enables local communication of your Azure resources within the same virtual network. 
 
-  If you require end-to-end network isolation, review current limitations before rollout. In the new Foundry portal experience, end-to-end isolation scenarios aren't fully supported. Use the classic experience, SDK, or CLI guidance for network-isolated deployments. For details, see [How to configure a private link for Foundry](../how-to/configure-private-link.md).
+  In the Foundry portal, end-to-end isolation scenarios aren't fully supported. Use the SDK or CLI for network-isolated deployments. For details, see [How to configure a private link for Foundry](../how-to/configure-private-link.md).
 
 [!INCLUDE [architecture 3](../includes/concepts-architecture-3.md)]
