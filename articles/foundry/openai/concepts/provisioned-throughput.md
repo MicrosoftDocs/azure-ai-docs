@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
-ms.date: 04/03/2026
+ms.date: 04/06/2026
 ms.custom:
   - dev-focus
   - classic-and-new
@@ -61,6 +61,7 @@ Key characteristics of PTUs:
 - **Model-independent**: The same PTU quota can be used to deploy any [supported model](#supported-models). You don't buy PTUs for a specific model.
 - **Region-specific**: PTU quota is granted per subscription, per region. Quota in East US doesn't carry over to West Europe.
 - **Throughput varies by model**: The tokens per minute (TPM) that a given number of PTUs delivers depends on the model. A heavier model requires more PTUs to serve the same TPM as a lighter one. For per-model PTU-to-TPM ratios, see [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
+- **Minimum deployment sizes apply**: Each model has a minimum PTU count required to create a deployment. Minimums vary by model and are listed in [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md).
 
 ### PTU quota vs. capacity
 
@@ -70,6 +71,8 @@ Quota and capacity are related but distinct:
 |---|---|
 | **PTU quota** | The maximum number of PTUs you're allowed to deploy in a subscription and region. Quota is a policy limit enforced by Azure. |
 | **Capacity** | The actual GPU compute available to serve your deployment when you create it. Capacity is allocated at deployment time and held for the deployment's lifetime. |
+
+PTU quota isn't provisioned automatically. To request PTU quota for your subscription and region, see [Obtain PTU quota](../how-to/provisioned-throughput-onboarding.md#obtain-ptu-quota).
 
 > [!IMPORTANT]
 > Having PTU quota doesn't guarantee that capacity is available. If GPU capacity in the region is insufficient for the requested PTU count, the deployment fails. Always verify capacity availability before planning a deployment or purchasing a reservation.
@@ -154,7 +157,7 @@ If your target region doesn't have available capacity:
 
 Once a provisioned deployment is running, the service tracks utilization using a leaky bucket algorithm:
 
-1. The service estimates each incoming request for its expected compute cost; that is, the incremental change to utilization required to serve the request. To get this estimate, the service combines the prompt tokens, less any cached tokens, and the specified `max_tokens` in the call. A customer can receive up to a 100% discount on their prompt tokens depending on the size of their cached tokens. If the `max_tokens` parameter isn't specified, the service estimates a value. This estimation can lead to lower concurrency than expected when the number of actual generated tokens is small. For highest concurrency, ensure that the `max_tokens` value is as close as possible to the true generation size.
+1. The service estimates each incoming request's expected compute cost — the incremental utilization change needed to serve it — by combining the prompt token count, less any cached tokens, and the specified `max_tokens` parameter. A customer can receive up to a 100% discount on prompt tokens depending on cached token volume. If `max_tokens` isn't specified, the service estimates a value. This estimation can lead to lower concurrency than expected when actual generated tokens are fewer than assumed. For highest concurrency, set `max_tokens` as close as possible to the true generation size.
 1. If current utilization is at 100%, the service returns **HTTP 429** immediately, with the `retry-after-ms` and `retry-after` headers indicating how long to wait.
 1. Utilization drains continuously at a rate proportional to deployed PTUs. A deployment with more PTUs drains utilization faster, which means it recovers capacity more quickly between requests and can sustain a higher overall request rate.
 1. When a request finishes, the service corrects the utilization estimate using actual token counts. If the actual cost is greater than the estimate, the difference is added to the deployment's utilization. If the actual cost is less than the estimate, the difference is subtracted.
@@ -182,7 +185,7 @@ The number of concurrent calls you can achieve on a deployment depends on each c
 
 ## Supported models
 
-The following models support provisioned throughput deployment types. PTU quota and reservations are shared across all supported models within the same region and deployment type.
+The following models support provisioned throughput deployment types. PTU quota and reservations are shared across all supported models within the same region and deployment type. The **Spillover** column indicates whether the model supports the [spillover feature](../how-to/spillover-traffic-management.md), which automatically redirects overflow requests from a fully utilized provisioned deployment to a standard deployment.
 
 | Model family | Model | Global provisioned | Data zone provisioned | Regional provisioned | Spillover |
 |---|---|:---:|:---:|:---:|:---:|
