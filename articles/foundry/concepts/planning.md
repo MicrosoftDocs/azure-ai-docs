@@ -4,7 +4,7 @@ description: "Learn how to plan the rollout of Microsoft Foundry across your org
 ms.service: azure-ai-foundry
 author: sdgilley
 ms.topic: concept-article
-ms.date: 12/24/2025
+ms.date: 04/06/2026
 ms.author: sgilley
 ms.reviewer: deeikele
 ms.custom:
