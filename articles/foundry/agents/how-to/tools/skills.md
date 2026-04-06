@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 # Use skills in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-A skill is a `SKILL.md` file that a hosted agent discovers at startup and
+A skill is a `SKILL.md` file or a folder with markdown files and python files that a hosted agent discovers at startup and
 injects as additional instructions into every conversation session. Skills let
 you define reusable behavioral guidelines — such as a greeting style, a code
 review checklist, or domain-specific constraints — and manage them centrally
@@ -23,16 +23,15 @@ through the Foundry Skills REST API.
 
 In this article, you learn how to:
 
-- Author a `SKILL.md` file.
 - Import, list, get, download, and delete skills using the Skills REST API.
 - Bundle downloaded skills into a hosted agent.
 
 ## Feature support
 
-| Feature | REST API | Hosted agent |
-|---------|----------|--------------|
-| Skills CRUD (import, list, get, download, delete) | ✔️ | N/A |
-| Use downloaded skills at runtime | N/A | ✔️ |
+| Feature | REST API | Hosted agent | Prompt agent |
+|---------|----------|--------------| --------------|
+| Skills CRUD (import, list, get, download, delete) | ✔️ | N/A | N/A| 
+| Include downloaded skills as part of agent | N/A | ✔️ | N/A|
 
 > [!IMPORTANT]
 > Skills are used in **hosted agents** only. The Skills REST API handles
@@ -85,15 +84,69 @@ For example, `greeting/SKILL.md`, not `SKILL.md` at the root.
 The Skills REST API stores skills centrally so any hosted agent in your
 Foundry project can download and use them.
 
-**Base URL:** `{AZURE_AI_PROJECT_ENDPOINT}/skills`
+**Skills endpoint:** `{AZURE_AI_PROJECT_ENDPOINT}/skills?api-version=v1`
 
 **Authentication:** Bearer token from `DefaultAzureCredential` with scope
 `https://ai.azure.com/.default`.
 
-### Import a skill
+**Required header:** `Foundry-Features: Skills=V1Preview` on every request.
 
-Package the `SKILL.md` into a ZIP archive and POST to the `:import` endpoint.
-Importing creates the skill if it doesn't exist or updates it if it does.
+### Create a skill
+
+There are two ways to create a skill: submit the content directly as JSON, or
+upload a ZIP archive containing a `SKILL.md` file.
+
+#### Option 1: Create from JSON
+
+Use this option when you want to supply the skill's `instructions` text
+directly without packaging a file.
+
+```http
+POST {endpoint}/skills?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/json
+Foundry-Features: Skills=V1Preview
+
+{
+  "name": "greeting",
+  "description": "Generate a personalized greeting for the user.",
+  "instructions": "You are a friendly greeting assistant. Include the user's name and keep greetings concise."
+}
+```
+
+Example response:
+
+```json
+{
+  "id": "skill_abc123",
+  "object": "skill",
+  "name": "greeting",
+  "description": "Generate a personalized greeting for the user.",
+  "instructions": "You are a friendly greeting assistant. ...",
+  "has_blob": false,
+  "created_at": 1741305600
+}
+```
+
+#### Option 2: Import from a SKILL.md ZIP
+
+Use this option when you have a `SKILL.md` file. Package it as a ZIP and POST
+to the `:import` endpoint. The skill name and description are read from the
+`SKILL.md` front matter.
+
+```http
+POST {endpoint}/skills:import?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/zip
+Foundry-Features: Skills=V1Preview
+
+<ZIP bytes containing SKILL.md at the root>
+```
+
+> [!NOTE]
+> The ZIP must contain `SKILL.md` at the root, not in a subdirectory.
+> The `name` and `description` in the `SKILL.md` front matter must be
+> unquoted — for example, `name: greeting`, not `name: 'greeting'`.
 
 ```python
 import io
@@ -106,45 +159,47 @@ endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
 token = DefaultAzureCredential().get_token(
     "https://ai.azure.com/.default"
 ).token
+headers = {
+    "Authorization": f"Bearer {token}",
+    "Foundry-Features": "Skills=V1Preview",
+}
 
-skill_name = "greeting"
-skill_md = open(f"{skill_name}/SKILL.md").read()
-
+skill_md = open("greeting/SKILL.md").read()
 buf = io.BytesIO()
 with zipfile.ZipFile(buf, "w") as z:
     z.writestr("SKILL.md", skill_md)
 
 response = requests.post(
-    f"{endpoint}/skills/{skill_name}:import",
-    headers={
-        "Authorization": f"Bearer {token}",
-        "Content-Type": "application/zip",
-    },
+    f"{endpoint}/skills:import?api-version=v1",
+    headers={**headers, "Content-Type": "application/zip"},
     data=buf.getvalue(),
 )
 response.raise_for_status()  # HTTP 200 on success
 print(response.json())
 ```
 
-The equivalent REST request:
+Example response:
 
-```http
-POST {endpoint}/skills/{name}:import
-Authorization: Bearer {token}
-Content-Type: application/zip
-
-<ZIP bytes containing SKILL.md at the root>
+```json
+{
+  "id": "skill_def456",
+  "object": "skill",
+  "name": "greeting",
+  "description": "Generate a personalized greeting for the user.",
+  "has_blob": true,
+  "created_at": 1741305600
+}
 ```
 
-> [!NOTE]
-> The ZIP must contain `SKILL.md` at its root. A `SKILL.md` nested in a
-> subdirectory inside the ZIP is not recognized.
+`has_blob: true` means the skill was created from a ZIP and can be downloaded.
+Skills created from JSON have `has_blob: false` and can't be downloaded.
 
 ### List skills
 
 ```http
-GET {endpoint}/skills
+GET {endpoint}/skills?api-version=v1&limit=20&order=desc
 Authorization: Bearer {token}
+Foundry-Features: Skills=V1Preview
 ```
 
 Example response:
@@ -154,32 +209,43 @@ Example response:
   "object": "list",
   "data": [
     {
-      "id": "greeting",
+      "id": "skill_abc123",
       "object": "skill",
       "name": "greeting",
-      "description": "Generate a personalized greeting for the user."
+      "description": "Generate a personalized greeting for the user.",
+      "has_blob": true,
+      "created_at": 1741305600
     }
-  ]
+  ],
+  "has_more": false,
+  "first_id": "skill_abc123",
+  "last_id": "skill_abc123"
 }
 ```
+
+Use `first_id` and `last_id` with the `after` or `before` query parameters
+for cursor-based pagination.
 
 ### Get a skill
 
 ```http
-GET {endpoint}/skills/{name}
+GET {endpoint}/skills/{name}?api-version=v1
 Authorization: Bearer {token}
+Foundry-Features: Skills=V1Preview
 ```
 
-Returns the skill metadata: `id`, `name`, `description`, and `created_at`.
+Returns the skill metadata. Returns HTTP 404 if the skill doesn't exist.
 
 ### Download a skill
 
-```http
-GET {endpoint}/skills/{name}:download
-Authorization: Bearer {token}
-```
+Downloads the original ZIP archive for skills created via `:import`
+(`has_blob: true`). Returns HTTP 404 for skills created via JSON.
 
-Returns a ZIP archive containing the `SKILL.md` file.
+```http
+GET {endpoint}/skills/{name}:download?api-version=v1
+Authorization: Bearer {token}
+Foundry-Features: Skills=V1Preview
+```
 
 > [!NOTE]
 > The response `Content-Type` header reports `application/gzip`, but the
@@ -188,6 +254,7 @@ Returns a ZIP archive containing the `SKILL.md` file.
 
 ```python
 import io
+import os
 import zipfile
 import requests
 from azure.identity import DefaultAzureCredential
@@ -196,13 +263,18 @@ endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
 token = DefaultAzureCredential().get_token(
     "https://ai.azure.com/.default"
 ).token
+headers = {
+    "Authorization": f"Bearer {token}",
+    "Foundry-Features": "Skills=V1Preview",
+}
 
 response = requests.get(
-    f"{endpoint}/skills/greeting:download",
-    headers={"Authorization": f"Bearer {token}"},
+    f"{endpoint}/skills/greeting:download?api-version=v1",
+    headers=headers,
 )
 response.raise_for_status()
 
+# Bytes are a ZIP archive despite the application/gzip Content-Type header
 with zipfile.ZipFile(io.BytesIO(response.content)) as zf:
     skill_md = zf.read("SKILL.md").decode()
     print(skill_md)
@@ -211,18 +283,20 @@ with zipfile.ZipFile(io.BytesIO(response.content)) as zf:
 ### Delete a skill
 
 ```http
-DELETE {endpoint}/skills/{name}
+DELETE {endpoint}/skills/{name}?api-version=v1
 Authorization: Bearer {token}
+Foundry-Features: Skills=V1Preview
 ```
 
-Returns HTTP 204 on success.
+Returns HTTP 200 on success:
 
-```python
-response = requests.delete(
-    f"{endpoint}/skills/greeting",
-    headers={"Authorization": f"Bearer {token}"},
-)
-response.raise_for_status()  # HTTP 204
+```json
+{
+  "id": "skill_abc123",
+  "object": "skill.deleted",
+  "name": "greeting",
+  "deleted": true
+}
 ```
 
 ## Use skills in a hosted agent
@@ -249,8 +323,11 @@ token = DefaultAzureCredential().get_token(
 
 skill_name = "greeting"
 response = requests.get(
-    f"{endpoint}/skills/{skill_name}:download",
-    headers={"Authorization": f"Bearer {token}"},
+    f"{endpoint}/skills/{skill_name}:download?api-version=v1",
+    headers={
+        "Authorization": f"Bearer {token}",
+        "Foundry-Features": "Skills=V1Preview",
+    },
 )
 response.raise_for_status()
 
@@ -328,10 +405,9 @@ session = await client.create_session(
 | Error | Cause | Fix |
 |-------|-------|-----|
 | HTTP 500 on import | Quoted `name` or `description` in YAML front matter | Use `name: foo`, not `name: 'foo'` |
-| HTTP 404 on get or download | Skill name not found | Verify the name with `GET /skills` (list) first |
+| HTTP 404 on get or download | Skill name not found | Verify the name with `GET /skills?api-version=v1` first |
+| HTTP 404 on download | Skill was created from JSON (`has_blob: false`) | Only ZIP-imported skills (`has_blob: true`) can be downloaded |
 | `Missing GitHub Token` | `GITHUB_TOKEN` env var not set in the hosted agent container | Set in `agent.yaml` `environment_variables` |
-| `AttributeError: dict has no attribute 'cli_path'` | Passed raw dict to `CopilotClient()` | Use `CopilotClient(SubprocessConfig(...))` |
-| `create_session() takes 1 positional argument` | Passed config dict positionally | Unpack with `create_session(**config_dict)` |
 | ZIP not extractable after download | Treated response as gzip | Use `zipfile.ZipFile`; bytes start with `PK`, not `\x1f\x8b` |
 | Skill not injected | `SKILL.md` placed at agent root, not in a subdirectory | Put it in `greeting/SKILL.md`, not `./SKILL.md` |
 
