@@ -107,6 +107,7 @@ directly without packaging a file.
 POST {endpoint}/skills?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
+Accept: application/json
 Foundry-Features: Skills=V1Preview
 
 {
@@ -158,6 +159,7 @@ to the `:import` endpoint. The skill name and description are read from the
 POST {endpoint}/skills:import?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/zip
+Accept: application/json
 Foundry-Features: Skills=V1Preview
 
 <ZIP bytes containing SKILL.md at the root>
@@ -207,6 +209,7 @@ Skills created from JSON have `has_blob: false` and can't be downloaded.
 ```http
 GET {endpoint}/skills?api-version=v1&limit=20&order=desc
 Authorization: Bearer {token}
+Accept: application/json
 Foundry-Features: Skills=V1Preview
 ```
 
@@ -257,6 +260,7 @@ for cursor-based pagination.
 ```http
 GET {endpoint}/skills/{name}?api-version=v1
 Authorization: Bearer {token}
+Accept: application/json
 Foundry-Features: Skills=V1Preview
 ```
 
@@ -288,6 +292,7 @@ Downloads the original ZIP archive for skills created via `:import`
 ```http
 GET {endpoint}/skills/{name}:download?api-version=v1
 Authorization: Bearer {token}
+Accept: application/zip
 Foundry-Features: Skills=V1Preview
 ```
 
@@ -308,9 +313,7 @@ Foundry-Features: Skills=V1Preview
 :::zone-end
 
 > [!NOTE]
-> The response `Content-Type` header reports `application/gzip`, but the
-> bytes are a valid ZIP archive (magic bytes `PK`). Always use
-> `zipfile.ZipFile` to extract the contents; do not use `gzip`.
+> The response body is a binary ZIP archive (`Content-Type: application/zip`).
 
 ### Delete a skill
 
@@ -319,6 +322,7 @@ Foundry-Features: Skills=V1Preview
 ```http
 DELETE {endpoint}/skills/{name}?api-version=v1
 Authorization: Bearer {token}
+Accept: application/json
 Foundry-Features: Skills=V1Preview
 ```
 
@@ -398,7 +402,7 @@ listed directory and injects them as instructions for every session.
 | HTTP 404 on get or download | Skill name not found | Verify the name with `GET /skills?api-version=v1` first |
 | HTTP 404 on download | Skill was created from JSON (`has_blob: false`) | Only ZIP-imported skills (`has_blob: true`) can be downloaded |
 | `Missing GitHub Token` | `GITHUB_TOKEN` env var not set in the hosted agent container | Set in `agent.yaml` `environment_variables` |
-| ZIP not extractable after download | Treated response as gzip | Use `zipfile.ZipFile`; bytes start with `PK`, not `\x1f\x8b` |
+| ZIP not extractable after download | Caller treated response as gzip | Response is `application/zip`; use `zipfile.ZipFile` to extract |
 | Skill not injected | `SKILL.md` placed at agent root, not in a subdirectory | Put it in `greeting/SKILL.md`, not `./SKILL.md` |
 
 ## Related content
