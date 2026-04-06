@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.custom: dev-focus
+zone_pivot_groups: selection-foundry-skills
 ai-usage: ai-assisted
 ---
 
@@ -42,7 +43,6 @@ In this article, you learn how to:
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
 - **RBAC**: Azure AI User role on the Foundry project.
-- **Python packages**: `pip install azure-identity requests python-dotenv`
 
 ## Author a skill
 
@@ -84,7 +84,7 @@ For example, `greeting/SKILL.md`, not `SKILL.md` at the root.
 The Skills REST API stores skills centrally so any hosted agent in your
 Foundry project can download and use them.
 
-**Skills endpoint:** `{AZURE_AI_PROJECT_ENDPOINT}/skills?api-version=v1`
+**Skills endpoint:** `{FOUNDRY_PROJECT_ENDPOINT}/skills?api-version=v1`
 
 **Authentication:** Bearer token from `DefaultAzureCredential` with scope
 `https://ai.azure.com/.default`.
@@ -101,6 +101,8 @@ upload a ZIP archive containing a `SKILL.md` file.
 Use this option when you want to supply the skill's `instructions` text
 directly without packaging a file.
 
+:::zone pivot="rest-api"
+
 ```http
 POST {endpoint}/skills?api-version=v1
 Authorization: Bearer {token}
@@ -113,6 +115,22 @@ Foundry-Features: Skills=V1Preview
   "instructions": "You are a friendly greeting assistant. Include the user's name and keep greetings concise."
 }
 ```
+
+:::zone-end
+
+:::zone pivot="python"
+
+> [!NOTE]
+> Python sample coming soon.
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+> [!NOTE]
+> .NET sample coming soon.
+
+:::zone-end
 
 Example response:
 
@@ -132,7 +150,9 @@ Example response:
 
 Use this option when you have a `SKILL.md` file. Package it as a ZIP and POST
 to the `:import` endpoint. The skill name and description are read from the
-`SKILL.md` front matter.
+`SKILL.md` front matter. The request body must be a valid ZIP file with a `SKILL.md` entry at the root.
+
+:::zone pivot="rest-api"
 
 ```http
 POST {endpoint}/skills:import?api-version=v1
@@ -143,40 +163,26 @@ Foundry-Features: Skills=V1Preview
 <ZIP bytes containing SKILL.md at the root>
 ```
 
+:::zone-end
+
+:::zone pivot="python"
+
+> [!NOTE]
+> Python sample coming soon.
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+> [!NOTE]
+> .NET sample coming soon.
+
+:::zone-end
+
 > [!NOTE]
 > The ZIP must contain `SKILL.md` at the root, not in a subdirectory.
 > The `name` and `description` in the `SKILL.md` front matter must be
 > unquoted — for example, `name: greeting`, not `name: 'greeting'`.
-
-```python
-import io
-import os
-import zipfile
-import requests
-from azure.identity import DefaultAzureCredential
-
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-token = DefaultAzureCredential().get_token(
-    "https://ai.azure.com/.default"
-).token
-headers = {
-    "Authorization": f"Bearer {token}",
-    "Foundry-Features": "Skills=V1Preview",
-}
-
-skill_md = open("greeting/SKILL.md").read()
-buf = io.BytesIO()
-with zipfile.ZipFile(buf, "w") as z:
-    z.writestr("SKILL.md", skill_md)
-
-response = requests.post(
-    f"{endpoint}/skills:import?api-version=v1",
-    headers={**headers, "Content-Type": "application/zip"},
-    data=buf.getvalue(),
-)
-response.raise_for_status()  # HTTP 200 on success
-print(response.json())
-```
 
 Example response:
 
@@ -196,11 +202,29 @@ Skills created from JSON have `has_blob: false` and can't be downloaded.
 
 ### List skills
 
+:::zone pivot="rest-api"
+
 ```http
 GET {endpoint}/skills?api-version=v1&limit=20&order=desc
 Authorization: Bearer {token}
 Foundry-Features: Skills=V1Preview
 ```
+
+:::zone-end
+
+:::zone pivot="python"
+
+> [!NOTE]
+> Python sample coming soon.
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+> [!NOTE]
+> .NET sample coming soon.
+
+:::zone-end
 
 Example response:
 
@@ -228,11 +252,29 @@ for cursor-based pagination.
 
 ### Get a skill
 
+:::zone pivot="rest-api"
+
 ```http
 GET {endpoint}/skills/{name}?api-version=v1
 Authorization: Bearer {token}
 Foundry-Features: Skills=V1Preview
 ```
+
+:::zone-end
+
+:::zone pivot="python"
+
+> [!NOTE]
+> Python sample coming soon.
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+> [!NOTE]
+> .NET sample coming soon.
+
+:::zone-end
 
 Returns the skill metadata. Returns HTTP 404 if the skill doesn't exist.
 
@@ -241,52 +283,60 @@ Returns the skill metadata. Returns HTTP 404 if the skill doesn't exist.
 Downloads the original ZIP archive for skills created via `:import`
 (`has_blob: true`). Returns HTTP 404 for skills created via JSON.
 
+:::zone pivot="rest-api"
+
 ```http
 GET {endpoint}/skills/{name}:download?api-version=v1
 Authorization: Bearer {token}
 Foundry-Features: Skills=V1Preview
 ```
 
+:::zone-end
+
+:::zone pivot="python"
+
+> [!NOTE]
+> Python sample coming soon.
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+> [!NOTE]
+> .NET sample coming soon.
+
+:::zone-end
+
 > [!NOTE]
 > The response `Content-Type` header reports `application/gzip`, but the
 > bytes are a valid ZIP archive (magic bytes `PK`). Always use
 > `zipfile.ZipFile` to extract the contents; do not use `gzip`.
 
-```python
-import io
-import os
-import zipfile
-import requests
-from azure.identity import DefaultAzureCredential
-
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-token = DefaultAzureCredential().get_token(
-    "https://ai.azure.com/.default"
-).token
-headers = {
-    "Authorization": f"Bearer {token}",
-    "Foundry-Features": "Skills=V1Preview",
-}
-
-response = requests.get(
-    f"{endpoint}/skills/greeting:download?api-version=v1",
-    headers=headers,
-)
-response.raise_for_status()
-
-# Bytes are a ZIP archive despite the application/gzip Content-Type header
-with zipfile.ZipFile(io.BytesIO(response.content)) as zf:
-    skill_md = zf.read("SKILL.md").decode()
-    print(skill_md)
-```
-
 ### Delete a skill
+
+:::zone pivot="rest-api"
 
 ```http
 DELETE {endpoint}/skills/{name}?api-version=v1
 Authorization: Bearer {token}
 Foundry-Features: Skills=V1Preview
 ```
+
+:::zone-end
+
+:::zone pivot="python"
+
+> [!NOTE]
+> Python sample coming soon.
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+> [!NOTE]
+> .NET sample coming soon.
+
+:::zone-end
 
 Returns HTTP 200 on success:
 
@@ -307,35 +357,8 @@ them as additional instructions in every session.
 
 ### Step 1: Download skills into the agent directory
 
-Download each skill into its own subdirectory under the agent root:
-
-```python
-import io
-import os
-import zipfile
-import requests
-from azure.identity import DefaultAzureCredential
-
-endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-token = DefaultAzureCredential().get_token(
-    "https://ai.azure.com/.default"
-).token
-
-skill_name = "greeting"
-response = requests.get(
-    f"{endpoint}/skills/{skill_name}:download?api-version=v1",
-    headers={
-        "Authorization": f"Bearer {token}",
-        "Foundry-Features": "Skills=V1Preview",
-    },
-)
-response.raise_for_status()
-
-# Response Content-Type says application/gzip but bytes are ZIP (magic PK)
-with zipfile.ZipFile(io.BytesIO(response.content)) as zf:
-    os.makedirs(skill_name, exist_ok=True)
-    zf.extractall(skill_name)
-```
+Download each skill into its own subdirectory under the agent root.
+Use the download operation from [Download a skill](#download-a-skill).
 
 After downloading, the agent directory looks like this:
 
@@ -363,42 +386,9 @@ configuration is required.
 ### Step 3: Configure the agent to discover skills
 
 In `main.py`, discover all `*/SKILL.md` files under the agent root and pass
-the root path to the agent:
-
-```python
-import pathlib
-
-def _discover_skill_directories() -> list[str]:
-    """Return the agent root if any child folder contains SKILL.md."""
-    root = pathlib.Path(__file__).parent.resolve()
-    skills = list(root.glob("*/SKILL.md"))
-    if skills:
-        print(f"Found {len(skills)} skill(s): "
-              f"{[s.parent.name for s in skills]}")
-        return [str(root)]
-    return []
-```
-
-Pass `skill_directories` to `create_session()` in `agent.py`. The agent
-auto-discovers all `*/SKILL.md` files under each listed directory and injects
-them as instructions for every session.
-
-```python
-import os
-from copilot import CopilotClient
-from copilot.types import SubprocessConfig
-
-client = CopilotClient(
-    SubprocessConfig(github_token=os.environ["GITHUB_TOKEN"])
-)
-
-skill_dirs = _discover_skill_directories()
-session = await client.create_session(
-    on_permission_request=lambda req, ctx: {"kind": "approved"},
-    skill_directories=skill_dirs,
-    streaming=True,
-)
-```
+the root path to the agent. Then pass `skill_directories` to `create_session()`
+in `agent.py`. The agent auto-discovers all `*/SKILL.md` files under each
+listed directory and injects them as instructions for every session.
 
 ## Troubleshoot
 

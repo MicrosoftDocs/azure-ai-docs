@@ -2044,3 +2044,13 @@ groups:
     title: Python
   - id: rest-api
     title: REST API
+- id: selection-foundry-skills
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: rest-api
+    title: REST API
+  - id: python
+    title: Python
+  - id: dotnet
+    title: .NET
