@@ -78,6 +78,8 @@ items:
       href: ../../mcp/build-your-own-mcp-server.md
   - name: Additional tools
     items:
+    - name: Skills (preview)
+      href: ../../agents/how-to/tools/skills.md
     - name: Agent2Agent (A2A) (preview)
       href: ../../agents/how-to/tools/agent-to-agent.md
     - name: Agent2Agent (A2A) authentication (preview)
