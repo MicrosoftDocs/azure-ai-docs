@@ -7,7 +7,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 ms.date: 04/03/2026
 ms.custom:
-  - dev-focus, pilot-ai-workflow-jan-2026
+  - dev-focus
   - classic-and-new
   - doc-kit-assisted
 manager: nitinme
@@ -172,7 +172,7 @@ In all provisioned deployment types, when capacity is exceeded, the API returns 
 
 Here are some strategies for handling the HTTP 429 response:
 
-- **Redirect to a standard deployment or another model**: This option produces the lowest additional latency, because the action can be taken as soon as ou receive the 429 signal The [spillover feature](../how-to/spillover-traffic-management.md) automates the process of redirecting the request from your provisioned deployment to your standard deployment for processing.
+- **Redirect to a standard deployment or another model**: This option produces the lowest additional latency, because the action can be taken as soon as you receive the 429 signal. The [spillover feature](../how-to/spillover-traffic-management.md) automates the process of redirecting the request from your provisioned deployment to your standard deployment for processing.
 - **Retry using the wait time in the response header**: The `retry-after-ms` and `retry-after` headers in the response tell you the time to wait before the next call will be accepted. If you need the provisioned deployment and can tolerate added latency, implement client-side retry logic. The Foundry client libraries include built-in capabilities for handling retries.
 
 ### Concurrent call limits
@@ -211,25 +211,25 @@ The following models support provisioned throughput deployment types. PTU quota 
 
 ### Region availability for provisioned throughput capability
 
-Region availability for provisioned throughput capability are listed in the following tables.
+Region availability for provisioned throughput is listed in the following tables.
 
 # [Global Provisioned Throughput](#tab/global-ptum)
 
 #### Global provisioned throughput model availability
 
-[!INCLUDE [Provisioned Managed Global](model-matrix/provisioned-global.md)]
+[!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
 
 # [Data Zone Provisioned Throughput](#tab/datazone-provisioned-managed)
 
 #### Data zone provisioned throughput model availability
 
-[!INCLUDE [Global data zone provisioned managed](model-matrix/datazone-provisioned-managed.md)]
+[!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
 
 # [Regional Provisioned Throughput](#tab/provisioned)
 
 #### Regional provisioned throughput deployment model availability
 
-[!INCLUDE [Provisioned](model-matrix/provisioned-models.md)]
+[!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
 
 ---
 
