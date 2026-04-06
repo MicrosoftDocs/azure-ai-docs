@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/foundry-classic/agents/how-to/tools-classic/logic-apps.md",
+      "redirect_url": "/azure/logic-apps/add-agent-action-create-run-workflow",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/luis/context/context.yml",
       "redirect_url": "/previous-versions/azure/ai-services/luis",
       "redirect_document_id": false
