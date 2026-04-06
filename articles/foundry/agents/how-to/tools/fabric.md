@@ -423,10 +423,6 @@ curl --request POST \
 - A `200` response with a JSON body that contains the model output.
 :::zone-end
 
-## Limitations
-
-- The Fabric data agent tool doesn't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, but the Fabric data agent tool requires user identity passthrough (On-Behalf-Of).
-
 ## Troubleshooting
 
 | Issue | Cause | Resolution |
