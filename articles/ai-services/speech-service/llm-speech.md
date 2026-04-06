@@ -55,5 +55,5 @@ LLM speech is powered by a large-language-model-enhanced speech model that deliv
 
 ## Related content
 
-- [LLM speech REST API reference](/rest/api/speechtotext/transcriptions/transcribe?view=rest-speechtotext-2025-10-15&preserve-view=true)
+- [LLM speech REST API reference](/rest/api/speechtotext/transcriptions/transcribe)
 - [Fast transcription](fast-transcription-create.md)
