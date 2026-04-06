@@ -1,8 +1,9 @@
 ---
 title: "Use skills with Microsoft Foundry agents (preview)"
 description: "Manage skills in Microsoft Foundry using the Skills REST API. Author SKILL.md files, store them centrally, and use them in hosted agents."
-author: zhuoqunli
-ms.author: zhuoqunli
+author: alvinashcraft
+ms.author: aashcraft
+ms.reviewer: zhuoqunli
 ms.date: 04/05/2026
 ms.manager: nitinme
 ms.topic: how-to
