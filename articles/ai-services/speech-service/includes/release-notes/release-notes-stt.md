@@ -8,6 +8,12 @@ ms.author: pafarley
 ms.custom: references_regions
 ---
 
+### March 2026 release
+
+* MAI-Transcribe-1 model public preview available in Azure Speech LLM Speech API. For more information, see [MAI-Transcribe-1](../../mai-transcribe.md).
+* [Fast Transcription API](../../fast-transcription-create.md?) and [LLM Speech API](../../llm-speech.md) now supports up to 5hrs per audio file input.
+
+
 ### February 2026 release
 
 The speech-to-text playground in the Microsoft Foundry new portal now supports the real-time speech-to-text API. You can test real-time transcription directly in the browser without writing any code. Get started with the [Speech to text quickstart](../../get-started-speech-to-text.md).
