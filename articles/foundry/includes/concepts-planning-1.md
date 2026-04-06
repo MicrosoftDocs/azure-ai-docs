@@ -6,11 +6,11 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 04/06/2026
 ms.custom: include
 ---
 
-This guide outlines key decisions for rolling out Microsoft Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles for further guidance.
+A structured rollout plan helps you avoid security gaps, cost overruns, and access sprawl when adopting Microsoft Foundry at scale. This guide outlines key decisions for rolling out Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles.
 
 ## Prerequisites
 
@@ -55,28 +55,38 @@ To ensure consistency, scalability, and governance across teams, consider the fo
 
 ## Securing the Foundry environment
 
-Foundry is built on the Azure platform, so you can customize security controls to meet your organization's needs. Key configuration areas include:
+Foundry is built on the Azure platform, so you can customize security controls to meet your organization's needs.
 
-- **Identity**: Use Microsoft Entra ID to manage user and service access. Foundry supports managed identities to allow secure, passwordless authentication to other Azure services. You can assign managed identities at the **Foundry resource level** and optionally at the **project level** for fine-grained control. [Learn more about managed identities.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
+### Identity
 
-- **Networking**: Deploy Foundry into a Virtual Network to isolate traffic and control access by using Network Security Groups (NSGs). [Learn more about networking security.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
+Use Microsoft Entra ID to manage user and service access. Foundry supports managed identities to allow secure, passwordless authentication to other Azure services. You can assign managed identities at the **Foundry resource level** and optionally at the **project level** for fine-grained control. For details, see [Role-based access control in Foundry](../concepts/rbac-foundry.md).
 
-  For private connectivity scenarios, use private endpoints and validate DNS and endpoint approval status. For implementation details and limitations, see [How to configure a private link for Foundry](../how-to/configure-private-link.md).
+### Networking
 
-  > [!IMPORTANT]
-  > End-to-end network isolation isn't fully supported in the new Foundry portal experience. For network-isolated deployments, use the guidance for the classic experience, SDK, or CLI in [How to configure a private link for Foundry](../how-to/configure-private-link.md).
+Deploy Foundry into a Virtual Network to isolate traffic and control access by using Network Security Groups (NSGs). For private connectivity scenarios, use private endpoints and validate DNS and endpoint approval status. For implementation details and limitations, see [How to configure a private link for Foundry](../how-to/configure-private-link.md).
 
-- **Customer-Managed Keys (CMK)**: Azure supports CMK for encrypting data at rest. Foundry supports CMK optionally for customers with strict compliance needs. [Learn more about CMK](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
+> [!IMPORTANT]
+> Some features, such as agents and evaluations, require additional network configuration for end-to-end isolation. For implementation details and current limitations, see [How to configure network isolation for Foundry](../how-to/configure-private-link.md).
 
-- **Authentication and Authorization**: Foundry supports both **API key-based access** for simple integration and **Azure RBAC** for fine-grained control. API keys can simplify setup, but they don't provide the same role-based granularity as Microsoft Entra ID with RBAC. Azure enforces a clear separation between the **control plane** (resource management) and the **data plane** (model and data access). Start with built-in roles, and define custom roles as needed. [Learn more about authentication.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
+### Customer-managed keys
 
-- **Templates**: Use ARM templates or Bicep to automate secure deployments. Explore the [sample templates](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
+Azure supports customer-managed keys (CMK) for encrypting data at rest. Foundry supports CMK optionally for customers with strict compliance needs. For details, see [Customer-managed keys in Foundry](../concepts/encryption-keys-portal.md).
 
-- **Storage resource**: You might choose to use built-in storage capabilities in Foundry or use your own storage resources. For the Agent Service, threads and messages can optionally be stored in [resources managed by you](/azure/ai-foundry/agents/how-to/use-your-own-resources).
+### Authentication and authorization
+
+Foundry supports both **API key-based access** for simple integration and **Azure RBAC** for fine-grained control. API keys can simplify setup, but they don't provide the same role-based granularity as Microsoft Entra ID with RBAC. Azure enforces a clear separation between the [control plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) (resource management operations like creating or configuring resources) and the **data plane** (runtime operations like calling models and accessing data). Start with built-in roles, and define custom roles as needed. For details, see [Role-based access control in Foundry](../concepts/rbac-foundry.md).
+
+### Templates
+
+Use ARM templates or Bicep to automate secure deployments. Explore the [sample infrastructure templates](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples).
+
+### Storage
+
+You might choose to use built-in storage capabilities in Foundry or use your own storage resources. For the Agent Service, threads and messages can optionally be stored in [resources managed by you](/azure/ai-foundry/agents/how-to/use-your-own-resources).
 
 ## Example: Contoso's security approach
 
-Contoso secures its Foundry deployments by using private networking with Enterprise IT managing a central hub network. Each business group connects via a spoke virtual network. They use built-in Role Based Access Control (RBAC) to separate access:
+Contoso secures its Foundry deployments by using private networking with Enterprise IT managing a central hub network. Each business group connects via a spoke virtual network. They use built-in role-based access control (RBAC) to separate access:
 
 * **Admins** manage deployments, connections, and shared resources
 * **Project Managers** oversee specific projects
@@ -88,34 +98,42 @@ For most use cases, Contoso relies on Microsoft-managed encryption by default an
 
 Effective access management is foundational to a secure and scalable Foundry setup.
 
-- **Define required access roles and responsibilities**
-  - Identify which user groups require access to various aspects of the Foundry environment.
-  - Assign built-in or custom Azure RBAC roles based on responsibilities such as:
-    - Account owner: Manage top-level configurations such as security and shared resource connections.
-    - Project Managers: Create and manage Foundry projects and their contributors.
-    - Project Users: contribute to existing projects.
+### Define access roles and responsibilities
 
-  Use this starter role-to-scope mapping for rollout planning:
+Identify which user groups require access to various aspects of the Foundry environment. Assign built-in or custom Azure RBAC roles based on responsibilities such as:
 
-  | Persona | Starter role | Recommended scope |
-  |---|---|---|
-  | Admins | Owner or Azure AI Account Owner | Subscription or Foundry resource |
-  | Project Managers | Azure AI Project Manager | Foundry resource |
-  | Project Users | Azure AI User | Foundry project |
+- Account owner: Manage top-level configurations such as security and shared resource connections.
+- Project managers: Create and manage Foundry projects and their contributors.
+- Project users: Contribute to existing projects.
 
-  Adjust assignments based on least-privilege requirements and enterprise policies.
-- **Determine access scope**
-  - Choose the appropriate scope for access assignments:
-    - Subscription level: broadest access, typically suitable for central IT or platform teams or smaller organizations.
-    - Resource group level: Useful for grouping related resources with shared access policies. For example, an Azure Function that follows the same application lifecycle as your Foundry environment.
-    - Resource or project level: Ideal for fine-grained control, especially when dealing with sensitive data or enabling self-service.
-- **Align identity strategy**
-  - For data sources and tools integrated with Foundry, determine whether users should authenticate by using:
-    - Managed identities or API key: suitable for automated services and shared access across users.
-    - User identities: Preferred when user-level accountability or auditability is required.
-  - Use Microsoft Entra ID groups to simplify access management and ensure consistency across environments.
+Use this starter role-to-scope mapping for rollout planning:
 
-  For least-privilege onboarding, start with the **Azure AI User** role for developers and project managed identities, then add elevated roles only where required. For details, see [Role-based access control in Foundry](../concepts/rbac-foundry.md).
+| Persona | Starter role | Recommended scope |
+|---|---|---|
+| Admins | Owner or Azure AI Account Owner | Subscription or Foundry resource |
+| Project Managers | Azure AI Project Manager | Foundry resource |
+| Project Users | Azure AI User | Foundry project |
+
+Adjust assignments based on least-privilege requirements and enterprise policies.
+
+### Determine access scope
+
+Choose the appropriate scope for access assignments:
+
+- **Subscription level**: Broadest access, typically suitable for central IT or platform teams or smaller organizations.
+- **Resource group level**: Useful for grouping related resources with shared access policies. For example, an Azure Function that follows the same application lifecycle as your Foundry environment.
+- **Resource or project level**: Ideal for fine-grained control, especially when dealing with sensitive data or enabling self-service.
+
+### Align identity strategy
+
+For data sources and tools integrated with Foundry, determine whether users should authenticate by using:
+
+- **Managed identities or API key**: Suitable for automated services and shared access across users.
+- **User identities**: Preferred when user-level accountability or auditability is required.
+
+Use Microsoft Entra ID groups to simplify access management and ensure consistency across environments.
+
+For least-privilege onboarding, start with the **Azure AI User** role for developers and project managed identities, then add elevated roles only where required. For details, see [Role-based access control in Foundry](../concepts/rbac-foundry.md).
 
 ## Establish connectivity with other Azure services
 
@@ -162,7 +180,7 @@ After you define your rollout plan, validate the following outcomes:
 
 ## Configure and optimize model deployments
 
-When deploying models in Foundry, teams can choose between standard and provisioned [deployment types](../../ai-services/openai/how-to/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
+When deploying models in Foundry, teams can choose between standard and provisioned [deployment types](../foundry-models/concepts/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
 
 To support cross-region scenarios and let you access existing model deployments, Foundry allows [connections](../how-to/connections-add.md) to model deployments hosted in other Foundry or Azure OpenAI instances. By using connections, teams can centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider having use cases manage their own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
 

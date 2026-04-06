@@ -4,7 +4,7 @@ description: "Learn how to plan the rollout of Microsoft Foundry across your org
 ms.service: azure-ai-foundry
 author: sdgilley
 ms.topic: concept-article
-ms.date: 12/24/2025
+ms.date: 04/06/2026
 ms.author: sgilley
 ms.reviewer: deeikele
 ms.custom:
@@ -27,5 +27,9 @@ While a Foundry resource alone gives you access to most Foundry functionality, s
 Hub resources require their own project types that you can also access by using the Azure Machine Learning Studio, SDK, or CLI. To help plan your deployment, see [this table](../what-is-foundry.md#which-type-of-project-do-i-need) and [choose a resource type](../concepts/resource-types.md) for an overview of supported capabilities.
 
 You deploy a hub resource side-by-side with your Foundry resource. The hub resource takes a dependency on your Foundry resource to provide access to select tools and models.
+
+## Learn more
+
+- Identity and managed identity: [Configure managed identity](../openai/how-to/managed-identity.md)
 
 [!INCLUDE [planning 2](../../foundry/includes/concepts-planning-2.md)]

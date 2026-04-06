@@ -12,10 +12,13 @@ ms.custom:
   - dev-focus
   - doc-kit-assisted
 ai-usage: ai-assisted
+#CustomerIntent: As an IT admin, I want to plan my organization's Foundry rollout so that I can ensure secure, governed, and cost-efficient adoption.
 ---
 
 # Microsoft Foundry rollout across my organization
 
 [!INCLUDE [planning 1](../includes/concepts-planning-1.md)]
+
+## Learn more
 
 [!INCLUDE [planning 2](../includes/concepts-planning-2.md)]
