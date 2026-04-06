@@ -57,7 +57,7 @@ Preview features are removed from this list if they're retired or transition to 
 
 | Feature | Description | Availability |
 |--|--|--|
-| [**Service-level CMK**](search-security-manage-encryption-keys.md#enable-service-level-cmk-on-new-objects-by-default-preview) | Enables a customer-managed key (CMK) on all newly created objects by default. Service-level CMK ensures all sensitive data in your search service is protected by a key you control, eliminating the need to specify key information each time an object is created. | [Services - Create or Update (preview)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) |
+| [**Service-level CMK**](search-security-manage-encryption-keys.md#enable-service-level-cmk-on-new-objects-by-default-preview) | Enables a customer-managed key (CMK) on all newly created objects by default. Service-level CMK ensures all sensitive data in your search service is protected by a key you control, without having to specify key information each time an object is created. | [Services - Create or Update (preview)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) |
 
 ## Preview features in Azure SDKs
 
