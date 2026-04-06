@@ -7,7 +7,7 @@ ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 04/01/2026
+ms.date: 04/06/2026
 ms.custom: pilot-ai-workflow-jan-2026 , doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -120,6 +120,30 @@ The following limitations and quotas apply to memory in Foundry Agent Service. F
 - Maximum memories per scope: 10,000
 - Search memories: 1,000 requests per minute
 - Update memories: 1,000 requests per minute
+
+## Region availability
+
+Memory is available in the following regions:
+
+- Australia East
+- Brazil South
+- Canada East
+- East US 2
+- France Central
+- Italy North
+- Japan East
+- Korea Central
+- North Central US
+- Norway East
+- South Africa North
+- South India
+- Sweden Central
+- Switzerland North
+- UAE North
+- UK South
+- West US
+- West US 2
+- West US 3
 
 ## Pricing
 
