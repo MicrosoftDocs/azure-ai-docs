@@ -100,6 +100,8 @@ For a full comparison of all Foundry deployment types—including standard, batc
 
 ## Billing
 
+Provisioned deployments support two billing modes: hourly billing for flexible, short-term usage, and Azure Reservations for sustained production workloads at a discounted rate.
+
 ### Hourly billing
 
 Provisioned deployments are billed hourly at a rate of $/PTU/hr based on the number of PTUs deployed—not on tokens consumed. The meter runs from the moment the deployment exists. For example:
