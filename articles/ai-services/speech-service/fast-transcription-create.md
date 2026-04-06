@@ -66,6 +66,6 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 ## Related content
 
-- [Fast transcription REST API reference](/rest/api/speechtotext/transcriptions/transcribe)
+- [Fast transcription REST API reference](/rest/api/speechtotext/transcriptions/transcribe?view=rest-speechtotext-2025-10-15&preserve-view=true)
 - [Speech to text supported languages](./language-support.md?tabs=stt)
 - [Batch transcription](./batch-transcription.md)
