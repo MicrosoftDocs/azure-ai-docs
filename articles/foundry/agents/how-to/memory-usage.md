@@ -96,31 +96,17 @@ npm install @azure/ai-projects@2 @azure/identity
 
 Set environment variables for your project endpoint and model deployment names:
 
-#### [Bash](#tab/bash)
-
 ```bash
 export FOUNDRY_PROJECT_ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
 export MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME="<chat-model-deployment-name>"
 export MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME="<embedding-model-deployment-name>"
 ```
 
-#### [PowerShell](#tab/powershell)
-
-```powershell
-$env:FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-$env:MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME = "<chat-model-deployment-name>"
-$env:MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME = "<embedding-model-deployment-name>"
-```
-
----
-
 :::zone-end
 
 :::zone pivot="rest"
 
 Set environment variables for your project endpoint, model deployments, API version, and access token:
-
-#### [Bash](#tab/bash)
 
 ```bash
 FOUNDRY_PROJECT_ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
@@ -131,20 +117,6 @@ API_VERSION="2025-11-15-preview"
 # Get a short-lived access token using Azure CLI
 ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 ```
-
-#### [PowerShell](#tab/powershell)
-
-```powershell
-$FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-$MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME = "<chat-model-deployment-name>" # For example, gpt-5.2
-$MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME = "<embedding-model-deployment-name>" # For example, text-embedding-3-small
-$API_VERSION = "2025-11-15-preview"
-
-# Get a short-lived access token using Azure CLI
-$ACCESS_TOKEN = az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv
-```
-
----
 
 :::zone-end
 
@@ -343,12 +315,9 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores?api-version=${API_VERSIO
 
 :::zone-end
 
-:::zone pivot="python,csharp,typescript"
-
 > [!TIP]
-> The code snippets in the remaining sections of this article build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run those snippets independently, include the import and client initialization code from this section.
-
-:::zone-end
+> + The remaining Python, C#, and TypeScript snippets build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run those code snippets independently, include the import and client initialization code from this section.
+> + The C# snippets in this article use synchronous methods for simplicity. For asyncronous examples, see the [memory search tool](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample5_MemorySearchTool.md) and [memory store](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample20_MemoryStore.md) samples.
 
 ### Customize memory
 
