@@ -491,8 +491,6 @@ Example using application ID:
 }
 ```
 
-Each of these examples sets the enforcement property to "Enabled", but enforcement is not required when service-level CMK is configured.
-
 ### [**Azure SDKs**](#tab/sdks)
 
 Configuration of service-level CMK is supported in Azure SDK packages that target Search Management REST API version 2026-03-01-preview or later. To confirm support, check the changelog for your package:
