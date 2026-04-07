@@ -6,8 +6,8 @@ ms.reviewer: ambadal
 ms.author: mopeakande
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 03/20/2026
-ms.custom: include
+ms.date: 04/06/2026
+ms.custom: include, classic-and-new
 ---
 
 Anthropic's Claude models bring advanced conversational AI capabilities to Microsoft Foundry, enabling you to build intelligent applications with state-of-the-art language understanding and generation. Claude models excel at complex reasoning, code generation, and multimodal tasks including image analysis.
@@ -23,17 +23,21 @@ Claude models in Foundry include:
 
 | Model family | Models |
 |--|--|
+| Claude Mythos | `claude-mythos-preview` (gated research preview) |
 | Claude Opus | `claude-opus-4-6` (preview), `claude-opus-4-5` (preview), `claude-opus-4-1` (preview)|
 | Claude Sonnet | `claude-sonnet-4-6` (preview), `claude-sonnet-4-5` (preview)|
 | Claude Haiku | `claude-haiku-4-5` (preview)|
 
 To learn more about the individual models, see [Available Claude models](#available-claude-models).
 
+> [!IMPORTANT]
+> **Claude Mythos Preview** is only available as a *gated research preview*. Access to the model is prioritized by Anthropic for defensive cybersecurity use cases. See the [Claude Mythos Preview system card](https://www.anthropic.com/claude-mythos-preview-system-card) for responsible use guidance.
+
 ## Prerequisites
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go). See [subscription type and region support](#subscription-type-and-region-support) for more details.
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the supported regions: **East US2** or **Sweden Central**.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the supported regions: **East US2**, **West Central US**, or **Sweden Central**.
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md).
 - **Contributor** or **Owner** role on the resource group to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
@@ -68,7 +72,7 @@ The following examples show how to send requests to Claude Sonnet 4.6 using Micr
 - Deployment name you chose during deployment creation. This name can be different from the model ID.
 
 > [!NOTE]
-> The `thinking` parameter supports types: `enabled` and `disabled`. For Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level.
+> The `thinking` parameter supports types: `enabled` and `disabled`. For Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level. For Mythos Preview, the thinking parameter supports only `adaptive` and `enabled`.
 >
 > The `effort` parameter, which controls the quality/cost tradeoff for responses, supports effort levels: `low`, `medium`, and `high`. For Opus 4.6 and Sonnet 4.6, the parameter also supports `max` effort level. Use this parameter with or without enabling thinking.
 
@@ -142,6 +146,9 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
     **Reference:** [Anthropic Client SDK](https://docs.claude.com/en/api/client-sdks), [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 #### Use API key authentication
+
+> [!IMPORTANT]
+> Claude Mythos Preview supports Microsoft Entra ID authentication only.
 
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
@@ -272,6 +279,9 @@ For Messages API endpoints, use your base URL with Microsoft Entra ID authentica
 
 #### Use API key authentication
 
+> [!IMPORTANT]
+> Claude Mythos Preview supports Microsoft Entra ID authentication only.
+
 For Messages API endpoints, use your base URL and API key to authenticate against the service.
 
 1. **Install dependencies**
@@ -390,6 +400,9 @@ If you configure the resource with Microsoft Entra ID support, pass your token i
 
 #### Use API key authentication
 
+> [!IMPORTANT]
+> Claude Mythos Preview supports Microsoft Entra ID authentication only.
+
 For Messages API endpoints, use the deployed model's endpoint URI `https://<resource-name>.services.ai.azure.com/anthropic/v1/messages` and API key to authenticate against the service.
 
 1. Export your API key to an environment variable:
@@ -445,17 +458,33 @@ For Messages API endpoints, use the deployed model's endpoint URI `https://<reso
 
 ## Available Claude models
 
-Foundry supports Claude Opus 4.6, Claude Opus 4.5, Claude Opus 4.1, Claude Sonnet 4.6, Claude Sonnet 4.5, and Claude Haiku 4.5 models through global standard deployment. These models have key capabilities:
+Foundry supports Claude Mythos Preview, Claude Opus 4.6, Claude Opus 4.5, Claude Opus 4.1, Claude Sonnet 4.6, Claude Sonnet 4.5, and Claude Haiku 4.5 models through global standard deployment. These models have key capabilities:
 
+- **Adaptive thinking**: An upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
 - **Extended thinking**: Enhanced reasoning for complex tasks.
 - **Image and text input**: Strong vision for analyzing charts, graphs, technical diagrams, reports, and other visual assets.
 - **Code generation**: Advanced code generation, analysis, and debugging.
 
 For more details about the model capabilities, see [capabilities of Claude models](../concepts/models-from-partners.md#anthropic).
 
+### Claude Mythos (gated research preview)
+
+> [!IMPORTANT]
+> **Claude Mythos Preview** is only available as a *gated research preview*. Access to the model is prioritized by Anthropic for defensive cybersecurity use cases. See the [Claude Mythos Preview system card](https://www.anthropic.com/claude-mythos-preview-system-card) for responsible use guidance.
+>
+> Claude Mythos Preview supports **Microsoft Entra ID authentication only**.
+
+Claude Mythos Preview is a new class of intelligence built for ambitious projects, and the world's best model for cybersecurity, autonomous coding, and long-running agents. Only available as a gated research preview with access prioritized for defensive cybersecurity use cases. With a 1M token context window and 128K max output, Claude Mythos Preview is built for:
+
+- **Cybersecurity**: The world's best model for defensive security. It can find and suggest fixes for real vulnerabilities in production codebases, then help prove the fixes hold.
+- **Autonomous coding**: Handles the full engineering cycle more effectively than any prior model — investigating, implementing, and testing across large codebases from objective to shipped.
+- **Long-running agents**: Sets a new bar for long-horizon agentic work. It can sustain coherent execution over extended, multi-hour tasks, adapting as conditions change and driving work forward with fewer interventions.
+
+Claude Mythos Preview supports **adaptive thinking**, an upgrade to extended thinking that gives Claude the freedom to think as much or as little as needed depending on the task and effort level.
+
 ### Claude Opus 4.6 (preview)
 
-Claude Opus 4.6 is the latest version of Anthropic's most intelligent model, and the world's best model for coding, enterprise agents, and professional work.  With a **1M token context window** and 128K max output, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
+Claude Opus 4.6 is the latest model version in the Claude Opus family, and the world's best model for coding, enterprise agents, and professional work.  With a **1M token context window** and 128K max output, Opus 4.6 is ideal for production code, sophisticated agents, office tasks, financial analysis, cybersecurity, and computer use.
 
 ### Claude Opus 4.5 (preview)
 
@@ -491,7 +520,7 @@ Some of the **Core capabilities** that Foundry supports are:
 - **Extended thinking:** Enhanced reasoning capabilities for complex tasks available with all Claude models. 
 
     > [!TIP]
-    > The `thinking` parameter supports types: `enabled` and `disabled`. For, Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level.
+    > The `thinking` parameter supports types: `enabled` and `disabled`. For, Opus 4.6 and Sonnet 4.6, the parameter also supports the `adaptive` type, allowing the model to decide whether to think, based on query complexity and effort level. For Mythos Preview, the thinking parameter supports only `adaptive` and `enabled`.
 
 - **Effort:** Ability to control the quality/cost tradeoff for responses.
 
@@ -523,7 +552,8 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 | Model        |   Deployment type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
 |:------------------|:----------------|:--------------|:--------------|:-----------|:-----------|
-| claude-opus-4-6   | [Global Standard](../concepts/deployment-types.md#global-standard)  |0        | 0    | 2,000      | 2,000,000  |
+| claude-mythos-preview     | [Global Standard](../concepts/deployment-types.md#global-standard)  |0        | 0    | 2,000      | 2,000,000  |
+| claude-opus-4-6   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-5   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-1   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-sonnet-4-6 | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
@@ -547,4 +577,55 @@ When using Claude models in Foundry, consider these responsible AI practices:
 
 - Configure AI content safety during model inference, because Foundry doesn't provide built-in content filtering for Claude models at deployment time.
 
-- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 4.6](https://www.anthropic.com/claude-sonnet-4-6-system-card), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
+- Ensure your applications comply with [Anthropic's Acceptable Use Policy](https://www.anthropic.com/legal/aup). Also, see details of safety evaluations for [Claude Mythos Preview](https://www.anthropic.com/claude-mythos-preview-system-card), [Claude Opus 4.6](https://www.anthropic.com/claude-opus-4-6-system-card), [Claude Opus 4.5](http://www.anthropic.com/claude-opus-4-5-system-card), [Claude Opus 4.1](https://assets.anthropic.com/m/4c024b86c698d3d4/original/Claude-4-1-System-Card.pdf), [Claude Sonnet 4.6](https://www.anthropic.com/claude-sonnet-4-6-system-card), [Claude Sonnet 4.5](https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf), and [Claude Haiku 4.5](https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf).
+ 
+## Best practices
+
+Follow these best practices when working with Claude models in Foundry:
+
+### Model selection
+
+Choose the appropriate Claude model based on your specific requirements:
+
+- **Claude Mythos Preview**: For defensive cybersecurity, autonomous coding, and long-running agents.
+- **Claude Opus 4.6**: Most intelligent model for building agents, coding, and enterprise workflows.
+- **Claude Opus 4.5**: Best performance across coding, agents, computer use, and enterprise workflows.
+- **Claude Opus 4.1**: Complex reasoning and enterprise applications.
+- **Claude Sonnet 4.6**: Frontier intelligence at scale for coding, agents, and most use cases.
+- **Claude Sonnet 4.5**: Balanced performance and capabilities, production workflows.
+- **Claude Haiku 4.5**: Speed and cost optimization, high-volume processing.
+
+### Prompt engineering
+
+- **Clear instructions**: Provide specific and detailed prompts.
+- **Context management**: Use the available context window effectively.
+- **Role definitions**: Use system messages to define the assistant's role and behavior.
+- **Structured prompts**: Use consistent formatting for better results.
+
+### Cost optimization
+
+- **Token management**: Monitor and optimize token usage.
+- **Model selection**: Use the most cost-effective model for your use case.
+- **Caching**: Implement [explicit prompt caching](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#continuing-a-multi-turn-conversation) where appropriate.
+- **Request batching**: Combine multiple requests when possible.
+
+## Troubleshooting
+
+The following table lists common errors when you work with Claude models in Foundry and their solutions:
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| 401 Unauthorized | Invalid or expired API key, or incorrect Entra ID token scope. | Verify your API key is correct. For Entra ID, confirm you use scope `https://ai.azure.com/.default`. |
+| 403 Forbidden | Insufficient permissions on the resource or subscription. | Verify you have **Contributor** or **Owner** role on the resource group. For Entra ID, ensure the **Cognitive Services User** role is assigned. |
+| 404 Not Found | Incorrect endpoint URL or deployment name. | Confirm your base URL follows the pattern `https://<resource-name>.services.ai.azure.com/anthropic` and the deployment name matches your configuration. |
+| 429 Too Many Requests | Rate limit exceeded for your subscription tier. | Implement exponential backoff with retry logic. Consider reducing request frequency or requesting a [quota increase](https://aka.ms/oai/stuquotarequest). |
+| Subscription eligibility error | Non-Enterprise or non-MCA-E subscription. | Claude models require an Enterprise or MCA-E subscription. See [API quotas and limits](#api-quotas-and-limits) for details. |
+| Region not available | Deployment attempted in an unsupported region. | Deploy to **East US2** or **Sweden Central**, the supported regions for Claude models. |
+
+## Related content
+
+- [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../../responsible-ai/claude-models/data-privacy.md)
+- [Monitor model usage and costs](../../../foundry-classic/how-to/costs-plan-manage.md)
+- [How to generate text responses with Microsoft Foundry Models](../how-to/generate-responses.md)
+- [Explore Microsoft Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md)
+- [Claude Docs: Claude in Microsoft Foundry](https://docs.claude.com/en/docs/build-with-claude/claude-in-microsoft-foundry)
