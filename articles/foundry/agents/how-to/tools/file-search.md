@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 04/07/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -53,6 +53,9 @@ The following table shows SDK and setup support.
 ## Code examples
 
 The following examples show how to upload a file, create a vector store, configure an agent with file search enabled, and query the agent.
+
+> [!TIP]
+> You can customize file search behavior at runtime, such as specifying which vector store to use per request, by using [structured inputs](../structured-inputs.md).
 
 :::zone pivot="python"
 ## Create an agent with the file search tool
@@ -787,3 +790,4 @@ Keep these limits in mind when you plan your file search integration:
 - [Azure AI Search tool](ai-search.md) - Search existing Azure AI Search indexes from your agents
 - [Web search tool](web-search.md) - Enable agents to search the public web
 - [Vector stores for file search](../../concepts/vector-stores.md) - Understand vector store lifecycle and expiration
+- [Structured inputs](../structured-inputs.md) - Parameterize agent definitions at runtime
