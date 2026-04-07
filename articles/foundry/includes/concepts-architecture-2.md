@@ -10,7 +10,28 @@ ms.date: 03/20/2026
 ms.custom: include
 ---
 
-## How resources relate in Foundry
+## Foundry resource hierarchy
+
+The following diagram shows a Foundry resource containing two projects (each with agents, evaluations, and files) and three connected services (Storage, Key Vault, and Azure AI Search):
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  Foundry resource (governance boundary)                 │
+│  ┌──────────────────┐  ┌──────────────────┐             │
+│  │  Project A       │  │  Project B       │             │
+│  │  ┌────────────┐  │  │  ┌────────────┐  │             │
+│  │  │ Agents     │  │  │  │ Agents     │  │             │
+│  │  │ Evaluations│  │  │  │ Evaluations│  │             │
+│  │  │ Files      │  │  │  │ Files      │  │             │
+│  │  └────────────┘  │  │  └────────────┘  │             │
+│  └──────────────────┘  └──────────────────┘             │
+│                                                         │
+│  Connected services:                                    │
+│  ┌──────────┐  ┌───────────┐  ┌──────────────────┐      │
+│  │ Storage  │  │ Key Vault │  │ Azure AI Search  │      │
+│  └──────────┘  └───────────┘  └──────────────────┘      │
+└─────────────────────────────────────────────────────────┘
+```
 
 Use this model when planning architecture and access boundaries:
 
@@ -24,15 +45,29 @@ This separation lets IT teams apply centralized controls at the resource level w
 
 Foundry enforces a clear separation between management and development operations to ensure secure and scalable AI workloads.
 
-- **Top-Level Resource Governance:** Management operations, such as configuring security, establishing connectivity with other Azure services, and managing deployments, are scoped to the top-level Foundry resource. Development activities are isolated within dedicated project containers, which encapsulate use cases and provide boundaries for access control, files, agents, and evaluations.
+### Top-level resource governance
 
-- **Role-Based Access Control (RBAC):** Azure RBAC actions reflect this separation of concerns. Control plane actions, such as creating deployments and projects, are distinct from data plane actions, such as building agents, running evaluations, and uploading files. You can scope RBAC assignments at both the top-level resource and individual project level. Assign [managed identities](/entra/identity/managed-identities-azure-resources/overview) at either scope to support secure automation and service access. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+The top-level Foundry resource scopes management operations such as configuring security, establishing connectivity with other Azure services, and managing deployments. Dedicated project containers isolate development activities and provide boundaries for access control, files, agents, and evaluations.
 
-  Common starter assignments for least-privilege onboarding include:
+### Role-based access control
 
-  - **Azure AI User** for each developer user principal at the Foundry resource scope.
-  - **Azure AI User** for each project managed identity at the Foundry resource scope.
+Azure RBAC actions reflect this separation of concerns. Control plane actions, such as creating deployments and projects, are distinct from data plane actions, such as building agents, running evaluations, and uploading files. You can scope RBAC assignments at both the top-level resource and individual project level. Assign [managed identities](/entra/identity/managed-identities-azure-resources/overview) at either scope to support secure automation and service access. For more information, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
-  For role definitions and scope planning guidance, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+Common starter assignments for least-privilege onboarding include:
 
-- **Monitoring and Observability:** Azure Monitor metrics are segmented by scope. You can view management and usage metrics at the top-level resource, while project-specific metrics, such as evaluation performance or agent activity, are scoped to the individual project containers.
+- **Azure AI User** for each developer user principal at the Foundry resource scope.
+- **Azure AI User** for each project managed identity at the Foundry resource scope.
+
+For role definitions and scope planning guidance, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
+
+## Monitoring and observability
+
+Azure Monitor segments metrics by scope. You can view management and usage metrics at the top-level resource, while project-specific metrics, such as evaluation performance or agent activity, are scoped to the individual project containers.
+
+Key monitoring capabilities include:
+
+- **Resource-level metrics**: Token consumption, model latency, request counts, and error rates across all projects.
+- **Project-level metrics**: Evaluation run outcomes, agent invocation counts, and file operation activity.
+- **Diagnostic logging**: Enable diagnostic settings to route logs to Log Analytics, Storage, or Event Hubs for analysis and retention.
+
+For more information, see [Azure Monitor overview](/azure/azure-monitor/overview).
