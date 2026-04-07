@@ -62,7 +62,7 @@ Beginning in the 2026-03-01-preview release, you have the ability to configure a
 
 Enabling CMK at the service level means:
 
-- All **new** objects created on your Azure AI Search service automatically use the service‑level customer‑managed key, so you no longer need to explicitly specify encryption key details each time you create an object.
+- All **new** objects created on your Azure AI Search service automatically use the service‑level customer‑managed key by default, so you no longer need to explicitly specify encryption key details each time you create an object.
 
 - This feature is optional, and you can continue to configure CMK on a per‑object basis. You can also override the service‑level key for individual objects and rotate the service‑level key independently, allowing you to use different keys for different objects as needed.
 
