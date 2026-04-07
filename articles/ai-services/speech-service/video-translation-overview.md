@@ -93,7 +93,7 @@ Starting from API version 2026-03-01, each translation includes an `expiresDateT
 
 After the retention period expires, the translation and all associated data are automatically deleted. To extend the retention period, create a new iteration for the translation.
 
-### Azure AI Foundry portal and Speech Studio portal
+### Microsoft Foundry portal and Speech Studio portal
 
 Projects created through Azure AI Foundry portal or Speech Studio portal follow a different retention policy:
 
