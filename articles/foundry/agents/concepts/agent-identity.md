@@ -298,4 +298,4 @@ For more information about Microsoft Entra Agent ID features, see [Microsoft Ent
 * [Azure role-based access control in Foundry](../../concepts/rbac-foundry.md)
 * [MCP server authentication](../how-to/mcp-authentication.md)
 * [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md)
-* [Microsoft Entra Agent ID documentation](/entra/agent-id/overview)
+* [Microsoft Entra Agent ID documentation](/entra/agent-id/)
