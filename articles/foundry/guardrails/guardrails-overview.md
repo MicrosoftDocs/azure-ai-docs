@@ -4,7 +4,7 @@ description: "Learn about safety and security guardrails that can be applied to 
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 02/13/2026
+ms.date: 04/01/2026
 author: ssalgadodev
 ms.author: ssalgado
 recommendations: false
