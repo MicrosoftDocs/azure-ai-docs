@@ -187,76 +187,6 @@ You will need to specify the customer-managed key in the object definition when 
 
 To configure CMK on an object, you can use the Azure portal, [Search Service REST APIs](/rest/api/searchservice/), or an Azure SDK.
 
-### [**REST APIs**](#tab/rest)
-
-1. Call the creation APIs to specify the **encryptionKey** property:
-
-   + [Create Index](/rest/api/searchservice/indexes/create)
-   + [Create Synonym Map](/rest/api/searchservice/synonym-maps/create)
-   + [Create Indexer](/rest/api/searchservice/indexers/create)
-   + [Create Data Source](/rest/api/searchservice/data-sources/create)
-   + [Create Skillset](/rest/api/searchservice/skillsets/create)
-
-1. Insert the encryptionKey construct into the object definition. This property is a first-level property, on the same level as name and description. If you're using the same vault, key, and version, you can paste in the same encryptionKey construct into each object definition. 
-
-   If your key identifier is `https://contoso-keyvault.vault.azure.net/keys/contoso-cmk/aaaaaaaa-0b0b-1c1c-2d2d-333333333333`, then the URI is `https://contoso-keyvault.vault.azure.net`, the key name is `contoso-cmk`, and the version is `aaaaaaaa-0b0b-1c1c-2d2d-333333333333`.
-
-    ```json
-    {
-      "encryptionKey": {
-        "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
-        "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
-        "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
-        "identity" : { 
-            "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-            "userAssignedIdentity" : "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>"
-        }
-      }
-    }
-    ```
-
-   The first example shows an encryptionKey for a search service that connects using a managed identity:
-
-    ```json
-    {
-      "encryptionKey": {
-        "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
-        "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
-        "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>"
-      }
-    }
-    ```
-
-    The second example includes accessCredentials, necessary if you registered an application in Microsoft Entra ID:
-
-    ```json
-    {
-      "encryptionKey": {
-        "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
-        "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
-        "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
-        "accessCredentials": {
-          "applicationId": "<YOUR-APPLICATION-ID>",
-          "applicationSecret": "<YOUR-APPLICATION-SECRET>"
-        }
-      }
-    }
-    ```
-
-1. Verify the encryption key exists by issuing a GET on the object.
-
-   + [GET Index](/rest/api/searchservice/indexes/get)
-   + [GET Synonym Map](/rest/api/searchservice/synonym-maps/get)
-   + [GET Indexer](/rest/api/searchservice/indexers/get)
-   + [GET Data Source](/rest/api/searchservice/data-sources/get)
-   + [GET Skillset](/rest/api/searchservice/skillsets/get)
-
-1. Verify the object is operational by performing a task, such as query an index that's encrypted.
-
-After you create the encrypted object on the search service, you can use it as you would any other object of its type. Encryption is transparent to the user and developer.
-
-None of these key vault details are considered secret and could be easily retrieved by browsing to the relevant Azure Key Vault page in Azure portal.
-
 ### [**Azure portal**](#tab/portal)
 
 When you create a new object in the Azure portal, you can specify a predefined customer-managed key in a key vault. The Azure portal lets you enable encryption with a CMK for:
@@ -419,9 +349,83 @@ The example below demonstrates the **Python** representation of an `encryptionKe
 > [!Important]
 > Encrypted content in Azure AI Search is configured to use a specific key with a specific *version*. If you change the key or version, the object must be updated to use it **before** you delete the previous one. Failing to do so renders the object unusable. You won't be able to decrypt the content if the key is lost.
 
+### [**REST APIs**](#tab/rest)
+
+1. Call the creation APIs to specify the **encryptionKey** property:
+
+   + [Create Index](/rest/api/searchservice/indexes/create)
+   + [Create Synonym Map](/rest/api/searchservice/synonym-maps/create)
+   + [Create Indexer](/rest/api/searchservice/indexers/create)
+   + [Create Data Source](/rest/api/searchservice/data-sources/create)
+   + [Create Skillset](/rest/api/searchservice/skillsets/create)
+
+1. Insert the encryptionKey construct into the object definition. This property is a first-level property, on the same level as name and description. If you're using the same vault, key, and version, you can paste in the same encryptionKey construct into each object definition. 
+
+   If your key identifier is `https://contoso-keyvault.vault.azure.net/keys/contoso-cmk/aaaaaaaa-0b0b-1c1c-2d2d-333333333333`, then the URI is `https://contoso-keyvault.vault.azure.net`, the key name is `contoso-cmk`, and the version is `aaaaaaaa-0b0b-1c1c-2d2d-333333333333`.
+
+    ```json
+    {
+      "encryptionKey": {
+        "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+        "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+        "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
+        "identity" : { 
+            "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+            "userAssignedIdentity" : "/subscriptions/<your-subscription-ID>/resourceGroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>"
+        }
+      }
+    }
+    ```
+
+   The first example shows an encryptionKey for a search service that connects using a managed identity:
+
+    ```json
+    {
+      "encryptionKey": {
+        "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+        "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+        "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>"
+      }
+    }
+    ```
+
+    The second example includes accessCredentials, necessary if you registered an application in Microsoft Entra ID:
+
+    ```json
+    {
+      "encryptionKey": {
+        "keyVaultUri": "<YOUR-KEY-VAULT-URI>",
+        "keyVaultKeyName": "<YOUR-ENCRYPTION-KEY-NAME>",
+        "keyVaultKeyVersion": "<YOUR-ENCRYPTION-KEY-VERSION>",
+        "accessCredentials": {
+          "applicationId": "<YOUR-APPLICATION-ID>",
+          "applicationSecret": "<YOUR-APPLICATION-SECRET>"
+        }
+      }
+    }
+    ```
+
+1. Verify the encryption key exists by issuing a GET on the object.
+
+   + [GET Index](/rest/api/searchservice/indexes/get)
+   + [GET Synonym Map](/rest/api/searchservice/synonym-maps/get)
+   + [GET Indexer](/rest/api/searchservice/indexers/get)
+   + [GET Data Source](/rest/api/searchservice/data-sources/get)
+   + [GET Skillset](/rest/api/searchservice/skillsets/get)
+
+1. Verify the object is operational by performing a task, such as query an index that's encrypted.
+
+After you create the encrypted object on the search service, you can use it as you would any other object of its type. Encryption is transparent to the user and developer.
+
+None of these key vault details are considered secret and could be easily retrieved by browsing to the relevant Azure Key Vault page in Azure portal.
+
 ### Configure CMK at the service-level (preview)
 
 To enable service-level CMK configuration, we recommend that you use the [Search Management REST API](/rest/api/searchmanagement) or an Azure SDK package that has been updated to support Search Management REST API version 2026-03-01-preview or later. This feature is not yet supported in the Azure portal. *Enabling CMK at the service level does not add encryption to existing objects, but it applies the same key by default to all newly-created objects in the service, unless you specify a different object-level key to override the service-level default.*
+
+### [**Azure portal**](#tab/portal)
+
+Currently service-level encryption isn't supported in the Azure portal, we recommend using the REST API directly.
 
 ### [**REST APIs**](#tab/rest)
 
@@ -491,10 +495,6 @@ Example using application ID:
 ```
 
 Each of these examples sets the enforcement property to "Enabled", but enforcement is not required when service-level CMK is configured.
-
-### [**Azure portal**](#tab/portal)
-
-Currently service-level encryption isn't supported in the Azure portal, we recommend using the REST API directly.
 
 ### [**Azure SDKs**](#tab/sdks)
 
