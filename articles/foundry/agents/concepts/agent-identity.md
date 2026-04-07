@@ -47,7 +47,7 @@ When an agent invokes a tool, a multi-step OAuth 2.0 token exchange occurs autom
 
 The exchange progresses through four stages:
 
-- **Blueprint authentication**: Agent Service presents the blueprint's OAuth credentials (a client secret, certificate, or federated credential) to Microsoft Entra ID. This proves that Agent Service is authorized to act on behalf of the blueprint and its agent identities.
+- **Blueprint authentication**: Agent Service presents the blueprint's OAuth credentials to Microsoft Entra ID. This proves that Agent Service is authorized to act on behalf of the blueprint and its agent identities.
 
 - **Agent identity token issuance**: Microsoft Entra ID validates the blueprint credentials and issues a token for the specific agent identity. This token is distinct from human user or managed identity tokens — it identifies the agent as an independent actor in the directory.
 
@@ -148,7 +148,7 @@ The federated credential option is the most relevant to Foundry. When Foundry pr
 - Entra ID validates the federated credential and issues a token for the **agent identity** (the service principal).
 - The agent identity token is then exchanged for a **scoped access token** targeting the downstream resource's audience.
 
-This chain eliminates stored secrets in the blueprint configuration. Azure manages credential rotation through the managed identity's infrastructure, and each layer — managed identity, agent identity, and downstream resource — has independent, least-privilege role assignments.
+This chain is designed to eliminate stored secrets in the blueprint configuration. Azure manages credential rotation through the managed identity's infrastructure, and each layer — managed identity, agent identity, and downstream resource — has independent, least-privilege role assignments. However, some tool configurations still expose the project managed identity as an authentication option.
 
 > [!NOTE]
 > The managed identity authenticates the *blueprint* to Entra ID. It doesn't directly access the downstream resource. The agent identity — not the managed identity — is the principal that requires RBAC role assignments on the target resource.
