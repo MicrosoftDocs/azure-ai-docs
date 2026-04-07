@@ -274,8 +274,6 @@ The default authority is Azure public cloud. Custom `audience` values for sovere
 * `https://search.azure.cn` for Azure operated by 21Vianet
 * `https://search.microsoftazure.de` for Azure Germany
 
----
-
 ## Local development
 
 Local development using roles includes these steps:
@@ -289,7 +287,7 @@ Local development using roles includes these steps:
 As a local developer, your Azure identity needs full control over data plane operations. These are the suggested roles:
 
 - Search Service Contributor, create and manage objects
-- Search Index Data Contributor, load and query an index
+- Search Index Data Contributor, load and query an index and retrieve from a knowledge base
 
 Find your personal identity with one of the following tools. Use that identity as the `<identity-id>` value.
 
