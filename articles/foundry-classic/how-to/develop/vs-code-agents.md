@@ -9,8 +9,8 @@ ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 03/09/2026
 ms.reviewer: erichen
-ms.author: johalexander
-author: ms-johnalex
+ms.author: rotabor
+author: bobtabor-msft
 #CustomerIntent: As a developer, I want to create and manage Foundry agents in Visual Studio Code so that I can build, test, and deploy agents without leaving my IDE.
 ms.custom: doc-kit-assisted
 ---
@@ -26,7 +26,7 @@ ms.custom: doc-kit-assisted
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Access to [Foundry Agent Service](../../agents/overview.md).
 - [Visual Studio Code](https://code.visualstudio.com/) installed.
 - The [Microsoft Foundry for VS Code extension](./get-started-projects-vs-code.md) installed and signed in.

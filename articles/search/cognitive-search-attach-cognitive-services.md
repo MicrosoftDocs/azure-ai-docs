@@ -211,7 +211,7 @@ Without the key, the skillset reverts to the default allocation of 20 free trans
 
 ### [**Azure portal**](#tab/portal-remove)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management > Skillsets**, select a skillset from the list.
 

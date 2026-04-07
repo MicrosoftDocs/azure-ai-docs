@@ -102,7 +102,7 @@ When you finish the wizard, it creates several objects on your search service. T
 
 To view these objects after the wizard runs:
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. From the left pane, select **Search management** to find pages for indexes, indexers, data sources, and skillsets.
 
 ## Benefits and limitations
@@ -181,7 +181,7 @@ The workflow is a one-way pipeline. You can't use the wizard to edit any of the 
 
 ### Start the wizard
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the **Overview** page, select **Import data**.
 

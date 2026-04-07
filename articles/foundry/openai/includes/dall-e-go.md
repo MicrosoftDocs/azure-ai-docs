@@ -7,6 +7,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 08/28/2023
+
+ms.custom: classic-and-new
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for Go.
@@ -246,6 +248,10 @@ The URL of the generated image is printed to the console.
 Image generated, HEAD request on URL returned 200
 Image URL: <SAS URL>
 ```
+
+> [!IMPORTANT]
+> GPT-image-1 models always return base64-encoded image data instead of URLs. If your SDK version returns a URL for DALL-E models, you need to handle the base64 response for GPT-image-1 deployments. GPT-image-1 also supports additional parameters such as `quality` (`low`, `medium`, `high`), `output_format` (`png`, `jpeg`), `background` (`auto`, `transparent`), and `output_compression` (0-100, JPEG only). For details, see [API options](/azure/ai-foundry/openai/how-to/dall-e#specify-api-options).
+
 > [!NOTE]
 > The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it won't return a generated image. For more information, see the [content filter](../../../foundry-classic/foundry-models/concepts/content-filter.md) article.
 

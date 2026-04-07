@@ -5,7 +5,7 @@ keywords: mcp, model context protocol, foundry mcp server
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 03/12/2026
+ms.date: 04/02/2026
 ms.topic: reference
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted
@@ -256,7 +256,7 @@ Example prompts:
 
 Foundry MCP Server is in public preview. The following limitations apply:
 
-- **No network isolation** — The server uses the public endpoint `https://mcp.ai.azure.com`. Resources behind Azure Private Links aren't accessible.
+- **No network isolation** — Foundry MCP Server uses the public endpoint `https://mcp.ai.azure.com`. Resources behind Azure Private Links aren't accessible. For private MCP connectivity, [build your own MCP server](build-your-own-mcp-server.md) and connect it to Agent Service with [private networking](../agents/how-to/tools/model-context-protocol.md#public-and-private-mcp-server-endpoints).
 - **Data residency** — Requests and responses might be processed in EU or US data centers. The server itself doesn't store data, but cross-region processing can occur.
 - **No SLA** — Preview features don't include a service-level agreement. Don't use the server for production workloads that require guaranteed availability.
 - **Tool set might change** — Tools, parameters, and return values might change during the preview period without notice.
@@ -271,7 +271,7 @@ For more information, see [Supplemental Terms of Use for Microsoft Azure Preview
 | Authentication failure | Expired or invalid Entra ID token. | Sign out and sign back in to your Azure account in Visual Studio Code, or the tool you're using. |
 | Quota exceeded | Not enough capacity to create a deployment or run an evaluation. | Use `model_quota_list` to check available quota before the operation. |
 | Resource not found | The specified deployment, dataset, agent, or connection doesn't exist. | Use the corresponding `get` or `list` tool to verify the resource name. |
-| Private endpoint not reachable | Foundry resources use Azure Private Links that the server can't reach. | Remove private endpoint restrictions or use SDKs/REST APIs instead. |
+| Private endpoint not reachable | Foundry resources use Azure Private Links that the hosted Foundry MCP Server can't reach. | Remove private endpoint restrictions, use SDKs/REST APIs, or use a [custom MCP server with Agent Service private networking](../agents/how-to/tools/model-context-protocol.md#public-and-private-mcp-server-endpoints). |
 
 For more troubleshooting guidance, see [Foundry MCP Server security and best practices](security-best-practices.md#troubleshooting).
 

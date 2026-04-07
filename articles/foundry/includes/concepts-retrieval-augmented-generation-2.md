@@ -14,7 +14,7 @@ ms.custom: include
 
 RAG systems can expose sensitive content if you don't design access and prompting carefully.
 
-- **Apply access control at retrieval time**. If you're using Azure AI Search as a data source, you can use document-level access control with security filters. See the [document-level access control](../../foundry-classic/openai/concepts/use-your-data.md#document-level-access-control) section.
+- **Apply access control at retrieval time**. If you're using Azure AI Search as a data source, you can use document-level access control with security filters.
 - **Prefer Microsoft Entra ID over API keys for production**. API keys are convenient for development but aren't recommended for production scenarios. For Azure AI Search RBAC guidance, see [Connect to Azure AI Search using roles](../../search/search-security-rbac.md).
 - **Treat retrieved content as untrusted input**. Your system message and application logic should reduce the risk of prompt injection from documents and retrieved passages. See [Safety system messages](../openai/concepts/system-message.md).
 

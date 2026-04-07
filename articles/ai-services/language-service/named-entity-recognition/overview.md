@@ -1,18 +1,19 @@
 ---
-title: What is the Named Entity Recognition (NER) feature in Azure Language in Foundry Tools?
+title: What is the named entity recognition (NER) feature in Azure Language?
 titleSuffix: Foundry Tools
-description: An overview of the Named Entity Recognition feature in Azure Language, which helps you extract categories of entities in text.
+description: An overview of the named entity recognition feature in Azure Language, which helps you extract categories of entities in text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 11/18/2025
+ms.date: 03/30/2026
 ms.author: lajanuar
 ms.custom: language-service-ner
 ---
-# What is Named Entity Recognition (NER) in Azure Language in Foundry Tools?
+<!-- markdownlint-disable MD025 -->
+# What is named entity recognition (NER) in Azure Language?
 
-Named Entity Recognition (NER) is one of the features offered by [Azure Language in Foundry Tools](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. The NER feature can identify and categorize entities in unstructured text. For example: people, places, organizations, and quantities. The prebuilt NER feature has a preset list of [recognized entities](concepts/named-entity-categories.md). The custom NER feature allows you to train the model to recognize specialized entities specific to your use case.
+Named entity recognition (NER) is an Azure Language prebuilt [core capability](../overview.md#core-capabilities). The NER feature can identify and categorize entities in unstructured text such as people, places, organizations, and quantities. The prebuilt NER feature has a preset list of [recognized entities](concepts/named-entity-categories.md). The custom NER feature allows you to train the model to recognize specialized entities specific to your use case.
 
 * [**Quickstarts**](quickstart.md) are getting-started instructions to guide you through making requests to the service.
 * [**How-to guides**](how-to-call.md) contain instructions for using the service in more specific or customized ways.

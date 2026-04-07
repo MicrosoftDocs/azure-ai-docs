@@ -8,8 +8,7 @@ ms.custom:
   - doc-kit-assisted
 ms.topic: how-to
 ms.date: 02/13/2026
-ms.reviewer: changliu2
-reviewer: changliu2
+ms.reviewer: skohlmeier
 ms.author: lagayhar  
 author: lgayhardt
 ai-usage: ai-assisted

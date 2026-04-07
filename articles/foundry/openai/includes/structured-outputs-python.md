@@ -7,6 +7,8 @@ author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: structured-outputs
 ai-usage: ai-assisted
+
+ms.custom: classic-and-new
 ---
 
 ## Getting started

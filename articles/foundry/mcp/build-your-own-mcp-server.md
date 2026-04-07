@@ -8,7 +8,7 @@ author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/05/2026
+ms.date: 04/02/2026
 ai-usage: ai-assisted
 ms.custom: ai-assisted, doc-kit-assisted
 ---
@@ -20,7 +20,7 @@ This approach enables you to securely integrate internal APIs and services into 
 
 ## Prerequisites
 
-- A Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Get started with Agent Service](../../foundry-classic/agents/quickstart.md).
+- A Foundry project with Agent Service enabled. For setup instructions, see [Quickstart: Create a prompt agent](../agents/quickstarts/prompt-agent.md).
 - An Azure subscription and permissions to create resources. At minimum, you typically need the Contributor role on the target resource group.
 - [Python](https://www.python.org/downloads/) version 3.11 or higher installed on your local development machine.
 - [Azure Functions Core Tools](/azure/azure-functions/functions-run-local?pivots=programming-language-python#install-the-azure-functions-core-tools) version 4.0.7030 or higher.
@@ -31,9 +31,11 @@ This approach enables you to securely integrate internal APIs and services into 
 - An [Azure API Center resource](/azure/api-center/overview) (optional, required only for organizational tool catalog registration).
 
 > [!NOTE]
-> Agent Service connects only to publicly accessible MCP server endpoints.
+> Agent Service connects to publicly accessible MCP server endpoints and [can be configured](../agents/how-to/tools/model-context-protocol.md#public-and-private-mcp-server-endpoints) to use private MCP server endpoints.
 
 ## Understand the request flow
+
+Remote MCP servers can be either custom-built (as described in this article) or Microsoft-provided offerings available in the Foundry **Add Tools** catalog, such as Azure DevOps MCP Server (preview). The connection and governance experience in Foundry is similar for both, with differences in provider-specific authentication and scope.
 
 The high-level flow looks like this:
 
@@ -163,6 +165,9 @@ If you registered your MCP server in Azure API Center, users with appropriate ac
 
 1. Follow the configuration guidance displayed in the tool catalog to add the server to your agent.
 
+> [!TIP]
+> Foundry also surfaces Microsoft-provided MCP servers in the **Add Tools** catalog. For example, you can select **Azure DevOps MCP Server (preview)** and connect your organization to enable agent access. After you select a catalog MCP server, you can limit which tools are enabled for the agent by selecting a subset of available tools. This enforces least privilege and governance as part of the Foundry configuration flow.
+
 ### Connect using a custom MCP tool
 
 If you don't register your MCP server in the organizational catalog, add it directly as a custom tool:
@@ -198,11 +203,14 @@ After you deploy and connect the server, verify that the server is discoverable 
 
    If the tool call fails, open the Function App logs in Azure portal to confirm the MCP endpoint was invoked and to diagnose errors.
 
+> [!TIP]
+> You can perform quick validation from Foundry by issuing test chat prompts in the agent or tool configuration experience. This helps confirm that selected tools are discovered and callable before rolling out to broader users.
+
 ## Troubleshooting
 
 Here are some common issues you might encounter when building and connecting your MCP server:
 
-- **MCP server connection fails**: Confirm the server URL is publicly reachable and uses the MCP webhook path (`/runtime/webhooks/mcp`). Check the Function App logs in Azure portal for errors.
+- **MCP server connection fails**: Confirm the server URL is reachable from Agent Service and uses the MCP webhook path (`/runtime/webhooks/mcp`). For public endpoints, verify the URL is publicly accessible. For private endpoints, verify your [Standard Agent Setup with private networking](../agents/how-to/tools/model-context-protocol.md#public-and-private-mcp-server-endpoints) is configured correctly. Check the Function App logs in Azure portal for errors.
 - **Authentication errors (401/403)**: Verify you're using the correct key or token for the authentication method you selected. Rotate keys that might have been exposed, and update any saved credentials.
 - **Tool discovery problems**: If you registered the server in Azure API Center, confirm the API is published and you have access to it. If you added a custom tool, confirm the endpoint URL is correct.
 - **Tool call succeeds but an internal API fails**: Review your MCP server logs to confirm what request was sent to the downstream API. Verify the MCP server identity or API credentials have the required permissions.

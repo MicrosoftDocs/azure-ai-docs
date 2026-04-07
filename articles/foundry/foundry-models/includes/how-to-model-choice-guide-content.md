@@ -1,12 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle
+ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 GPT-5 is the first model from OpenAI that introduces four adjustable levels of thinking, controlling the amount of time and tokens the model uses when responding to a prompt. When selecting which model to use, or whether to use a reasoning model at all, it is important to consider your application’s priorities.
