@@ -15,7 +15,7 @@ items:
     href: ../../openai/concepts/content-filter-personal-information.md
   - name: Groundedness detection
     href: ../../openai/concepts/content-filter-groundedness.md
-  - name: Task Aherence 
+  - name: Task Adherence 
     href: ../../guardrails/task-adherence.md
   - name: Protected material for code
     href: ../../../ai-services/content-safety/quickstart-protected-material-code.md
