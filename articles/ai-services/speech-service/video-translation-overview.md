@@ -99,7 +99,7 @@ Projects created through Azure AI Foundry portal or Speech Studio portal follow 
 
 - **Effective date**: The automatic deletion of expired tasks and projects begins on **August 1, 2026**.
 - **Retention period**: Projects are automatically deleted after **360 days** of inactivity (no changes or updates to the project or its tasks).
-- **Advance notification**: For projects scheduled for deletion within the next 3 months, a notification message appears in the portal 3 months before the deletion date. This gives you time to take action if you want to keep the project.
+- **Advance notification**: For projects scheduled for deletion within the next three months, a notification message appears in the portal three months before the deletion date. This gives you time to take action if you want to keep the project.
 - **Extending retention**: To prevent deletion, make any change to the project or its associated tasks. This resets the 360-day retention period from the date of the last activity.
 
 > [!TIP]
