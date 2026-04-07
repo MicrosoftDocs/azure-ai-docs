@@ -269,7 +269,7 @@ Requirements for using the Azure portal are that the key vault and key must exis
 
 In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in the REST API examples to provide a customer-managed key on a skillset.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open your search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management**, select **Indexes**, **Indexers**, or **Data Sources**.
 
@@ -471,7 +471,7 @@ Example using user-managed identity:
 }
 ```
 
-Example using application Id:
+Example using application ID:
 
 ```json
 {
