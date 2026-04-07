@@ -116,14 +116,14 @@ Accept: application/json
 :::zone pivot="python"
 
 > [!NOTE]
-> Python sample coming soon.
+> Python sample not yet available.
 
 :::zone-end
 
 :::zone pivot="dotnet"
 
 > [!NOTE]
-> .NET sample coming soon.
+> .NET sample not yet available.
 
 :::zone-end
 
@@ -163,14 +163,14 @@ Accept: application/json
 :::zone pivot="python"
 
 > [!NOTE]
-> Python sample coming soon.
+> Python sample not yet available.
 
 :::zone-end
 
 :::zone pivot="dotnet"
 
 > [!NOTE]
-> .NET sample coming soon.
+> .NET sample not yet available.
 
 :::zone-end
 
@@ -208,14 +208,14 @@ Accept: application/json
 :::zone pivot="python"
 
 > [!NOTE]
-> Python sample coming soon.
+> Python sample not yet available.
 
 :::zone-end
 
 :::zone pivot="dotnet"
 
 > [!NOTE]
-> .NET sample coming soon.
+> .NET sample not yet available.
 
 :::zone-end
 
@@ -258,14 +258,14 @@ Accept: application/json
 :::zone pivot="python"
 
 > [!NOTE]
-> Python sample coming soon.
+> Python sample not yet available.
 
 :::zone-end
 
 :::zone pivot="dotnet"
 
 > [!NOTE]
-> .NET sample coming soon.
+> .NET sample not yet available.
 
 :::zone-end
 
@@ -289,14 +289,14 @@ Accept: application/zip
 :::zone pivot="python"
 
 > [!NOTE]
-> Python sample coming soon.
+> Python sample not yet available.
 
 :::zone-end
 
 :::zone pivot="dotnet"
 
 > [!NOTE]
-> .NET sample coming soon.
+> .NET sample not yet available.
 
 :::zone-end
 
@@ -318,14 +318,14 @@ Accept: application/json
 :::zone pivot="python"
 
 > [!NOTE]
-> Python sample coming soon.
+> Python sample not yet available.
 
 :::zone-end
 
 :::zone pivot="dotnet"
 
 > [!NOTE]
-> .NET sample coming soon.
+> .NET sample not yet available.
 
 :::zone-end
 
@@ -540,4 +540,10 @@ azd ai agent invoke --remote "Tell me a joke"
 | HTTP 404 on download | Skill was created from JSON (`has_blob: false`) | Only ZIP-imported skills (`has_blob: true`) can be downloaded |
 | ZIP not extractable after download | Caller treated response as gzip | Response is `application/zip`; use `zipfile.ZipFile` to extract |
 | Skill not injected | `SKILL.md` placed at agent root, not in a subdirectory | Put it in `greeting/SKILL.md`, not `./SKILL.md` |
+
+## Related content
+
+- [Curate intent-based toolbox in Foundry](toolbox.md)
+- [Deploy a hosted agent](../deploy-hosted-agent.md)
+- [Add a connection to your project](../../../how-to/connections-add.md)
 
