@@ -1,6 +1,6 @@
 ---
 title: "Curate intent-based toolbox in Foundry (preview)"
-description: "Use Microsoft toolbox in Foundry to add MCP servers, web search, Azure AI Search, file search, code interpreter tool and more to hosted agents through a single managed endpoint."
+description: "Use toolbox in Microsoft Foundry to add MCP servers, web search, Azure AI Search, file search, code interpreter tool and more to hosted agents through a single managed endpoint."
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: zhuoqunli
@@ -49,10 +49,11 @@ In this article, you learn how to:
 - **RBAC**: Azure AI User role on the Foundry project.
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions).
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
+- **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
 
 > [!IMPORTANT]
 > - A toolbox supports at most **one unnamed tool per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, use the `name` field to differentiate tool instances. Including two unnamed tool types returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
-> - We highly recommend adding a `description` to tools such as Azure AI Search and File Search to better inform the model.
+> - We highly recommend adding a `description` to every tool in your toolbox to help the model select the right tool for each request.
 > - Carefully review each tool's documentation to learn more about individual tool setup, limitations, and warnings.
 
 ## Step 1: Create a toolbox version
@@ -89,12 +90,39 @@ print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.versi
 
 :::zone-end
 
+:::zone pivot="dotnet"
+
+```csharp
+using Azure.Identity;
+using Azure.AI.Projects;
+
+var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
+AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
+
+ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
+    serverLabel: "myserver",
+    serverUri: new Uri("https://your-mcp-server.example.com"),
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.NeverRequireApproval
+    )
+));
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "Toolbox with an MCP server"
+);
+Console.WriteLine($"Created toolbox: {toolboxVersion.Name}, version: {toolboxVersion.Version}");
+```
+
+:::zone-end
+
 :::zone pivot="rest-api"
 
 ```http
 POST {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
 Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {
@@ -203,7 +231,7 @@ Use this pattern to add web search. No project connection is required for the we
 ```
 
 > [!NOTE]
-> When Web Search returns results over MCP, the response is a single `text` content item containing the synthesized answer with inline Markdown citations. For example:
+> When Web Search returns results over MCP, the response is a single `text` content item containing the synthesized answer with inline Markdown source links. For example:
 >
 > ```json
 > {
@@ -264,7 +292,7 @@ Use this pattern to add web search. No project connection is required for the we
 | `filter` | No | Applies to all queries the agent makes to the index. |
 
 
-Citations are returned in `result.structuredContent.documents[]`. Each document includes `title`, `url`, `id`, and `score` fields.
+Chunk metadata is returned in `result.structuredContent.documents[]`. Each document includes `title`, `url`, `id`, and `score` fields that you can use to generate citation details in your application.
 
 ### [Code Interpreter](code-interpreter.md)
 
@@ -312,7 +340,7 @@ Use this pattern to let the agent search over uploaded files stored in a vector 
 ```
 
 > [!NOTE]
-> When File Search returns results over MCP, citations are embedded in the tool response content as `【index†filename†file_id】` markers. For example:
+> When File Search returns results over MCP, chunk metadata is embedded in the tool response content as `【index†filename†file_id】` markers. For example:
 >
 > ```json
 > {
@@ -338,14 +366,14 @@ Use this pattern to let the agent search over uploaded files stored in a vector 
 > }
 > ```
 >
-> The `_meta` block inside each resource item contains the `title`, `file_id`, `document_chunk_id`, and relevance `score` for the matched chunk. Use these fields in your application to render citations or deep-link back to the source file.
+> The `_meta` block inside each resource item contains the `title`, `file_id`, `document_chunk_id`, and relevance `score` for the matched chunk. Use these metadata fields in your application to generate citation details or deep-link back to the source file.
 
 ### [OpenAPI](openapi.md)
 
 Use this pattern to expose any REST API described by an OpenAPI spec. Choose the `auth.type` that matches your API's security model.
 
 > [!IMPORTANT]
-> When using managed identity auth, you must assign the appropriate RBAC role to your Foundry account's managed identity on the target service. For example, assign **Reader** or higher on the target Azure resource. Without this assignment, the agent receives a `401 Unauthorized` response when calling the API. For full setup steps, see [Authenticate by using managed identity](openapi.md#authenticate-by-using-managed-identity-microsoft-entra-id).
+> When using managed identity auth, you must assign the appropriate RBAC role to your **Foundry project's** managed identity on the target service. For example, assign Reader or higher on the target Azure resource. Without this assignment, the agent receives a `401 Unauthorized` response when calling the API. For full setup steps, see [Authenticate by using managed identity](openapi.md#authenticate-by-using-managed-identity-microsoft-entra-id).
 
 **Anonymous auth** :
 
@@ -394,7 +422,7 @@ Use this pattern when the API requires a key or token stored in a Foundry projec
 
 **Managed identity auth** :
 
-Use this pattern when the target API authenticates via Microsoft Entra ID. The Foundry account's managed identity calls the API on behalf of the agent. Make sure the managed identity has the required RBAC role on the target service before using this pattern.
+Use this pattern when the target API authenticates via Microsoft Entra ID. The Foundry project's managed identity calls the API on behalf of the agent. Make sure the managed identity has the required RBAC role on the target service before using this pattern.
 
 ```json
 {
@@ -537,74 +565,55 @@ There are two endpoint patterns depending on your role:
 
 ## Step 4: Verify tool availability
 
-Before running the full agent, confirm that the toolbox loads the expected tools by using MCP JSON-RPC calls against the endpoint. Use the **version-specific endpoint** to validate a version before promoting it to default.
+Before running the full agent, confirm that the toolbox loads the expected tools by using an MCP client SDK against the endpoint. Use the **version-specific endpoint** to validate a version before promoting it to default.
 
 :::zone pivot="python"
 
-#### Step 1: Acquire a token and build headers
+Install the MCP client SDK:
 
-```python
-from azure.identity import DefaultAzureCredential
-
-token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
-headers = {
-    "Content-Type": "application/json",
-    "Authorization": f"Bearer {token}",
-    "Foundry-Features": "Toolboxes=V1Preview",
-}
+```bash
+pip install mcp
 ```
 
-#### Step 2: Initialize the MCP session
+#### Step 1: Connect to the toolbox and list tools
 
 ```python
-import httpx
+import asyncio
+from azure.identity import DefaultAzureCredential
+from mcp.client.streamable_http import streamablehttp_client
+from mcp import ClientSession
 
 url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/versions/<version>/mcp?api-version=v1"
 
-with httpx.Client(timeout=30.0) as http:
-    resp = http.post(url, headers=headers, json={
-        "jsonrpc": "2.0", "id": 1, "method": "initialize",
-        "params": {
-            "protocolVersion": "2025-03-26",
-            "capabilities": {},
-            "clientInfo": {"name": "test", "version": "1"},
-        },
-    })
-    resp.raise_for_status()
-    session_id = resp.headers.get("mcp-session-id")
-    headers["mcp-session-id"] = session_id
+token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
+headers = {
+    "Authorization": f"Bearer {token}",
+}
 
-    http.post(url, headers=headers, json={
-        "jsonrpc": "2.0", "method": "notifications/initialized"
-    })
+async def verify_toolbox():
+    async with streamablehttp_client(url, headers=headers) as (read, write, _):
+        async with ClientSession(read, write) as session:
+            await session.initialize()
+
+            # List available tools
+            tools_result = await session.list_tools()
+            print(f"Tools found: {len(tools_result.tools)}")
+            for tool in tools_result.tools:
+                print(f"  - {tool.name}: {(tool.description or '')[:80]}")
+
+            # Call a tool (replace with actual tool name and arguments)
+            result = await session.call_tool("<tool_name>", arguments={})
+            print(result)
+
+asyncio.run(verify_toolbox())
 ```
 
-#### Step 3: `tools/list`
+:::zone-end
 
-```python
-    resp = http.post(url, headers=headers, json={
-        "jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}
-    })
-    tools = resp.json().get("result", {}).get("tools", [])
-    print(f"Tools found: {len(tools)}")
-    for t in tools:
-        print(f"  - {t['name']}: {t.get('description', '')[:80]}")
-```
+:::zone pivot="dotnet"
 
-#### Step 4: `tools/call`
-
-Pick a tool name from the list and call it with matching arguments:
-
-```python
-    resp = http.post(url, headers=headers, json={
-        "jsonrpc": "2.0", "id": 3, "method": "tools/call",
-        "params": {
-            "name": "<tool_name>",
-            "arguments": {}  # replace with actual tool arguments
-        },
-    })
-    result = resp.json()
-```
+> [!NOTE]
+> .NET MCP client SDK sample coming soon. Use the REST API tab to verify tool availability from .NET, or use the Python MCP client SDK.
 
 :::zone-end
 
@@ -617,7 +626,6 @@ Use the version-specific endpoint (`/versions/{version}/mcp`) to validate a vers
 ```http
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}
@@ -628,7 +636,6 @@ Content-Type: application/json
 ```http
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {"jsonrpc":"2.0","method":"notifications/initialized"}
@@ -639,7 +646,6 @@ Content-Type: application/json
 ```http
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
@@ -650,7 +656,6 @@ Content-Type: application/json
 ```http
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"<TOOL_NAME>","arguments":{}}}
@@ -662,17 +667,19 @@ Content-Type: application/json
 
 **Check — `tools/list`**:
 - `len(tools) > 0` — empty means the toolbox version was not provisioned correctly.
-- Each tool has `name`, `description`, and `inputSchema`.
+- Each tool has `name`, `description`, and `inputSchema`. For tool naming conventions, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools).
 - `inputSchema` has a `properties` field (some MCP servers omit this, which breaks OpenAI).
 - For MCP tools, names are prefixed with the `server_label` — for example, `myserver.some_tool`. For all other tool types, the name is the `name` field value or the default tool name.
 - Note the exact parameter names for the call step (for example `query` vs `queries`).
 
 **Check — `tools/call`**:
-- No top-level `error` field. If present, inspect `error.code`:
+- No top-level `error` field. If present, inspect `error.code`. For standard MCP error codes, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools#error-handling):
   - `-32006` → OAuth consent required (extract URL from `error.message`).
   - Other codes → server-side failure.
 - `result.content[]` contains entries with `"type": "text"` — this is the tool output.
-- For AI Search, also check `result.structuredContent.documents[]` for citations.
+- For AI Search, check `result.structuredContent.documents[]` for chunk metadata (`title`, `url`, `id`, `score`).
+- For File Search, check `result.content[].resource._meta` for chunk metadata (`title`, `file_id`, `document_chunk_id`, `score`).
+- For Web Search, check the `text` content item for inline Markdown source links.
 - Watch for `"ServerError"` in text content — the tool executed but hit an internal error.
 
 Tool-specific `tools/call` argument examples:
@@ -719,7 +726,6 @@ async def build_agent():
             "transport": "streamable_http",
             "headers": {
                 "Authorization": f"Bearer {token}",
-                "Foundry-Features": "Toolboxes=V1Preview",
             },
         }
     })
@@ -769,7 +775,6 @@ def _get_toolbox_token() -> str:
 def _get_toolbox_headers(token: str) -> dict:
     return {
         "Authorization": f"Bearer {token}",
-        "Foundry-Features": "Toolboxes=V1Preview",
     }
 
 credential = DefaultAzureCredential()
@@ -828,8 +833,9 @@ FOUNDRY_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<p
 **`agent.py`** (key pattern — MCP bridge):
 
 ```python
-import httpx
 from azure.identity import DefaultAzureCredential
+from mcp.client.streamable_http import streamablehttp_client
+from mcp import ClientSession
 
 def _get_toolbox_token() -> str:
     credential = DefaultAzureCredential()
@@ -837,66 +843,43 @@ def _get_toolbox_token() -> str:
 
 def _get_toolbox_headers(token: str) -> dict:
     return {
-        "Content-Type": "application/json",
         "Authorization": f"Bearer {token}",
-        "Foundry-Features": "Toolboxes=V1Preview",
     }
 
 class McpBridge:
-    """HTTP-based MCP client that bridges Foundry toolbox tools to the Copilot SDK."""
+    """MCP client SDK bridge that connects Foundry toolbox tools to the Copilot SDK."""
 
     def __init__(self, endpoint: str, token: str):
         self.endpoint = endpoint
         self.headers = _get_toolbox_headers(token)
-        self._session_id = None
-        self._client = httpx.AsyncClient(timeout=60.0)
-        self._req_id = 0
+        self._session = None
+        self._read = None
+        self._write = None
 
-    def _next_id(self) -> int:
-        self._req_id += 1
-        return self._req_id
-
-    async def initialize(self) -> str:
-        resp = await self._client.post(
-            self.endpoint, headers=self.headers,
-            json={
-                "jsonrpc": "2.0", "id": self._next_id(), "method": "initialize",
-                "params": {
-                    "protocolVersion": "2025-03-26",
-                    "capabilities": {},
-                    "clientInfo": {"name": "copilot-toolbox-bridge", "version": "1.0.0"},
-                },
-            },
-        )
-        resp.raise_for_status()
-        self._session_id = resp.headers.get("mcp-session-id")
-        headers = {**self.headers, **({"mcp-session-id": self._session_id} if self._session_id else {})}
-        await self._client.post(
-            self.endpoint, headers=headers,
-            json={"jsonrpc": "2.0", "method": "notifications/initialized"},
-        )
+    async def initialize(self):
+        ctx = streamablehttp_client(self.endpoint, headers=self.headers)
+        self._transport = await ctx.__aenter__()
+        self._read, self._write, _ = self._transport
+        self._session = ClientSession(self._read, self._write)
+        await self._session.__aenter__()
+        await self._session.initialize()
 
     async def list_tools(self) -> list[dict]:
-        headers = {**self.headers, **({"mcp-session-id": self._session_id} if self._session_id else {})}
-        resp = await self._client.post(
-            self.endpoint, headers=headers,
-            json={"jsonrpc": "2.0", "id": self._next_id(), "method": "tools/list", "params": {}},
-        )
-        resp.raise_for_status()
-        return resp.json().get("result", {}).get("tools", [])
+        result = await self._session.list_tools()
+        return [
+            {
+                "name": tool.name,
+                "description": tool.description or "",
+                "inputSchema": tool.inputSchema,
+            }
+            for tool in result.tools
+        ]
 
     async def call_tool(self, name: str, arguments: dict) -> str:
-        headers = {**self.headers, **({"mcp-session-id": self._session_id} if self._session_id else {})}
-        resp = await self._client.post(
-            self.endpoint, headers=headers,
-            json={
-                "jsonrpc": "2.0", "id": self._next_id(), "method": "tools/call",
-                "params": {"name": name, "arguments": arguments},
-            },
+        result = await self._session.call_tool(name, arguments=arguments)
+        return "\n".join(
+            c.text for c in result.content if hasattr(c, "text")
         )
-        resp.raise_for_status()
-        content = resp.json().get("result", {}).get("content", [])
-        return "\n".join(c.get("text", "") for c in content if c.get("type") == "text")
 
 
 async def run_agent(user_message: str) -> str:
@@ -912,7 +895,7 @@ async def run_agent(user_message: str) -> str:
     mcp_tools = await bridge.list_tools()
 
     # Build Copilot SDK tool definitions from MCP tool list
-    # Tool names with dots are replaced with underscores automatically by McpBridge
+    # Tool names with dots are replaced with underscores automatically
     copilot_tools = [
         {
             "name": t["name"].replace(".", "_"),
@@ -941,7 +924,7 @@ async def run_agent(user_message: str) -> str:
 ```
 github-copilot-sdk>=0.1.29
 azure-identity>=1.19.0
-httpx
+mcp
 python-dotenv==1.1.1
 ```
 
@@ -956,7 +939,7 @@ Toolbox versions are immutable snapshots of a toolbox's tool configuration. Ever
 
 ### Create a new version
 
-Each create call produces a new version. If the toolbox doesn't exist yet, it's automatically created.
+Each create call produces a new version. If the toolbox doesn't exist yet, it's automatically created. When you create the first version of a new toolbox, the default_version will be automatically assigned to v1 until you **manually** update to another version.
 
 :::zone pivot="python"
 
@@ -971,12 +954,21 @@ print(f"Created version: {toolbox_version.version}")
 
 :::zone-end
 
-:::zone pivot="rest-api"
+:::zone pivot="dotnet"
 
-```http
-POST {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
+```csharp
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "Updated tools v2"
+);
+Console.WriteLine($"Created version: {toolboxVersion.Version}");
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
 Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {
@@ -1001,12 +993,26 @@ for v in versions:
 
 :::zone-end
 
+:::zone pivot="dotnet"
+
+```csharp
+List<ToolboxVersion> versions = await toolboxClient
+    .GetToolboxVersionsAsync("my-toolbox")
+    .ToListAsync();
+Console.WriteLine($"Found {versions.Count} toolbox version(s).");
+foreach (ToolboxVersion v in versions)
+{
+    Console.WriteLine($"  - {v.Name} ({v.Version})");
+}
+```
+
+:::zone-end
+
 :::zone pivot="rest-api"
 
 ```http
 GET {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
 Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
 ```
 
 :::zone-end
@@ -1024,12 +1030,23 @@ version_obj = client.beta.toolboxes.get_toolbox_version(
 
 :::zone-end
 
+:::zone pivot="dotnet"
+
+```csharp
+ToolboxVersion versionObj = await toolboxClient.GetToolboxVersionAsync(
+    "my-toolbox",
+    "<version_id>"
+);
+Console.WriteLine($"Retrieved toolbox: {versionObj.Name} ({versionObj.Id})");
+```
+
+:::zone-end
+
 :::zone pivot="rest-api"
 
 ```http
 GET {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
 Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
 ```
 
 :::zone-end
@@ -1050,12 +1067,23 @@ print(f"Active version: {toolbox.default_version}")
 
 :::zone-end
 
+:::zone pivot="dotnet"
+
+```csharp
+ToolboxRecord record = await toolboxClient.UpdateToolboxAsync(
+    "my-toolbox",
+    "<version_id>"
+);
+Console.WriteLine($"Active version: {record.DefaultVersion}");
+```
+
+:::zone-end
+
 :::zone pivot="rest-api"
 
 ```http
 PATCH {project_endpoint}/toolboxes/my-toolbox?api-version=v1
 Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
 Content-Type: application/json
 
 {
@@ -1063,6 +1091,7 @@ Content-Type: application/json
 }
 ```
 
+`default_version` cannot be empty, you have to replace it with a new version if you want. 
 :::zone-end
 
 ### Delete a version
@@ -1078,12 +1107,22 @@ client.beta.toolboxes.delete_toolbox_version(
 
 :::zone-end
 
+:::zone pivot="dotnet"
+
+```csharp
+await toolboxClient.DeleteToolboxVersionAsync(
+    "my-toolbox",
+    "<version_id>"
+);
+```
+
+:::zone-end
+
 :::zone pivot="rest-api"
 
 ```http
 DELETE {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
 Authorization: Bearer {token}
-Foundry-Features: Toolboxes=V1Preview
 ```
 
 :::zone-end
