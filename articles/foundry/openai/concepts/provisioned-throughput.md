@@ -104,41 +104,21 @@ Provisioned deployments support two billing modes: hourly billing for flexible, 
 
 ### Hourly billing
 
-Provisioned deployments are billed hourly at a rate of $/PTU/hr based on the number of PTUs deployed—not on tokens consumed. The meter runs from the moment the deployment exists. For example:
-
-- A 300 PTU deployment is charged: hourly rate × 300.
-- A deployment that exists for 15 minutes during an hour is charged at 1/4 of the hourly rate.
-- If you resize the deployment, billing adjusts to the new PTU count.
-
-Hourly billing is practical for short-term scenarios like benchmarking a new model or temporarily scaling up for an event such as a hackathon. For sustained production workloads, purchasing an Azure Reservation is significantly more cost-effective.
+All provisioned deployment types are billed at an hourly rate ($/PTU/hr) based on the number of PTUs deployed—not on tokens consumed. The meter starts when the deployment is created and stops when it's deleted. Hourly billing is practical for short-term scenarios like benchmarking a new model or temporarily scaling up for an event such as a hackathon.
 
 > [!IMPORTANT]
-> Don't plan to scale provisioned deployments up and down with traffic to stay on hourly billing. Capacity isn't always available when you need to scale back up, and the cost of continuous hourly billing at high utilization typically exceeds reservation pricing.
+> Don't plan to scale provisioned deployments up and down with traffic to stay on hourly billing. Capacity isn't always available when you need to scale back up, and continuous hourly billing at high utilization typically exceeds reservation pricing.
 
 ### Azure Reservations
 
-**Azure Reservations** are a financial discount applied to the PTU billing meter, not to individual deployments. In exchange for a 1-month or 1-year commitment, you receive a discounted effective $/PTU/hr rate. The discount applies automatically to any running deployment whose type (Regional/Data Zone/Global), region, and reservation scope (subscription or resource group) match the reservation.
+**Azure Reservations** are a financial discount applied to the PTU billing meter, not to individual deployments. In exchange for a 1-month or 1-year commitment, you receive a discounted effective $/PTU/hr rate. Reservations are purchased per deployment type (Global, Data Zone, or Regional) and can be scoped to cover one or more subscriptions or resource groups.
 
-Key facts:
+Reservations and deployments are loosely coupled—you create or delete deployments and reservations independently.
 
-- **Purchased per deployment type**: Global, Data Zone, and Regional reservations are separate purchases. A Global Provisioned reservation doesn't cover a Regional Provisioned deployment.
-- **Flexibly scoped**: A reservation can cover a resource group, subscription, management group, or billing account. All deployments within the scope share the discount, up to the reservation's PTU quantity.
-- **Model-independent**: The discount applies to any model deployed with PTUs under the matching reservation. You don't purchase a reservation for a specific model.
-- **Excess is billed hourly**: If deployed PTUs in scope exceed the reservation quantity, the excess PTUs are charged at the standard hourly rate.
-- **Reservations don't guarantee capacity**: Purchasing a reservation doesn't reserve GPU capacity. Create deployments first to confirm capacity, then purchase the reservation.
+> [!NOTE]
+> Reservations don't guarantee capacity. Create deployments first to confirm that capacity is available, then purchase the reservation to lock in the discounted rate.
 
-#### Shared reservation example
-
-You have a 500 PTU Global Provisioned reservation in East US 2. Your deployments currently consume 300 PTUs for Azure OpenAI models. You add a DeepSeek-R1 deployment:
-
-| Scenario | DeepSeek PTUs added | Covered by reservation | Hourly overage |
-|---|---|---|---|
-| Add 200 PTUs for DeepSeek-R1 | 200 | All 200 (200 PTUs remaining in reservation) | None — total = 500 PTU |
-| Add 300 PTUs for DeepSeek-R1 | 300 | 200 (reservation exhausted at 500 total) | 100 PTUs billed hourly |
-
-The discount is shared automatically across all models in scope. You don't reconfigure the reservation when you add a new model.
-
-To purchase or manage reservations, visit the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations). For pricing, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
+For complete guidance—including how to size and purchase a reservation, how billing matches deployments to reservations, and how to monitor utilization—see [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md).
 
 ## Capacity and availability
 
