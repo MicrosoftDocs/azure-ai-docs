@@ -25,5 +25,3 @@ ROBOTS: NOINDEX, NOFOLLOW
 [!INCLUDE [classic-links](../../includes/classic-links.md)]
 
 [!INCLUDE [use-foundry-models-claude 1](../../../foundry/foundry-models/includes/how-to-use-foundry-models-claude-1.md)]
-
-[!INCLUDE [use-foundry-models-claude 2](../../../foundry/foundry-models/includes/how-to-use-foundry-models-claude-2.md)]
