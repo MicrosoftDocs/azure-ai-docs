@@ -62,7 +62,7 @@ To work with Claude models in Foundry, see [Deploy and use Claude models in Micr
 
 #### Subscription type and region support
 
-[!INCLUDE [claude-usage-restriction](../../../foundry/foundry-models/includes/claude-usage-restriction.md)
+[!INCLUDE [claude-usage-restriction](../../../foundry/foundry-models/includes/claude-usage-restriction.md)]
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
