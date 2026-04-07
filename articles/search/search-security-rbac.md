@@ -83,7 +83,7 @@ Use the following table to quickly find which role provides the permissions you 
 
 <sup>1</sup> Includes indexes, indexers, data sources, skillsets, aliases, synonym maps, debug sessions, knowledge bases, and knowledge sources. Indexers also support run and reset operations.
 
-<sup>2</sup> An Owner or Contributor can run the [**Import data** wizard](search-import-data-portal.md) to create and load indexes, even though they can't upload documents in other clients. Similarly, [indexers](search-indexer-overview.md) can write to any index on the search service, regardless of per-index role assignments. In both cases, the search service (not the user) performs the data plane actions using its `Microsoft.Search/searchServices/indexes/documents/*` permissions.
+<sup>2</sup> An Owner or Contributor can run the [**Import data** wizard](search-import-data-portal.md) to create and load indexes, even though they can't upload documents in other clients. Similarly, indexers can write to any index on the search service, regardless of [per-index role assignments](#per-index-scope-and-indexer-operations). In both cases, the search service (not the user) performs the data plane actions using its `Microsoft.Search/searchServices/indexes/documents/*` permissions.
 
 ## Assign built-in roles
 
