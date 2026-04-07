@@ -39,7 +39,7 @@ This article explains how to assign built-in roles for service administration, d
 
 Roles are a collection of permissions that affect the control plane or data plane:
 
-+ **Control plane:** Operations for service provisioning, configuration, and administration. Control plane operations include creating or deleting services, listing API keys, and managing network and authentication settings. Available through the [Search Management REST APIs](/rest/api/searchmanagement/) and equivalent Azure SDK client libraries. 
++ **Control plane:** Operations for service provisioning, configuration, and administration. Control plane operations include creating or deleting search services, listing API keys, and managing network and authentication settings. Available through the [Azure Resource Manager REST APIs](/rest/api/resources/), [Search Management REST APIs](/rest/api/searchmanagement/), and equivalent Azure SDK client libraries. 
 
 + **Data plane:** Operations against the search service endpoint. Data plane operations fall into two categories: object management and content access. Available through the [Search Service REST APIs](/rest/api/searchservice/) and equivalent Azure SDK client libraries. 
 
@@ -49,7 +49,7 @@ The following built-in roles grant permissions to Azure AI Search. Control plane
 
 | Role | Plane | Description |
 | -- | -- | -- |
-| [Owner](/azure/role-based-access-control/built-in-roles#owner) | Control | Full control plane access, including the ability to assign roles and change authentication settings. Subscription administrators have this role by default. Can manage API keys and search objects. Can't load documents, query indexes, or retrieve from knowledge bases. |
+| [Owner](/azure/role-based-access-control/built-in-roles#owner) | Control | Full control plane access, including the ability to assign roles and change authentication settings. Subscription administrators have this role by default. Can manage API keys. Can't create search objects, load documents, query indexes, or retrieve from knowledge bases. |
 | [Contributor](/azure/role-based-access-control/built-in-roles#contributor) | Control | Same level of control plane access as Owner, minus the ability to assign roles. |
 | [Reader](/azure/role-based-access-control/built-in-roles#reader) | Control | Read-only control plane access. Can view service metrics and object definitions. Can't view or manage API keys, load documents, query indexes, or retrieve from knowledge bases. |
 | [Search Service Contributor](/azure/role-based-access-control/built-in-roles#search-service-contributor) | Control & Data | Full control plane access. Data plane access is limited to object management. Can create indexes, indexers, skillsets, knowledge bases, and other search objects. Can't load documents, query indexes, or retrieve from knowledge bases. For the full permissions list, see [`Microsoft.Search/searchServices/*`](/azure/role-based-access-control/permissions/ai-machine-learning#microsoftsearch). |
@@ -58,7 +58,7 @@ The following built-in roles grant permissions to Azure AI Search. Control plane
 
 > [!IMPORTANT]
 > + Owner, Contributor, and Search Service Contributor can retrieve admin keys, which provide full read-write access to the data plane. Only grant these roles to trusted users.
-> + By default, data plane roles apply to all indexes on the service. To scope Search Index Data Contributor or Search Index Data Reader to a single index, see [Grant access to a single index](#grant-access-to-a-single-index).
+> + By default, data plane roles apply to all indexes on the search service. To scope Search Index Data Contributor or Search Index Data Reader to a single index, see [Grant access to a single index](#grant-access-to-a-single-index).
 
 ### Summary of permissions
 
@@ -75,7 +75,7 @@ Use the following table to quickly find which role provides the permissions you 
 | Set authentication options | ✅ | ❌ | ✅ | ❌ | ❌ |
 | View roles, policies, and definitions | ✅ | ✅ | ✅ | ❌ | ❌ |
 | Configure network security and private connections | ✅ | ❌ | ✅ | ❌ | ❌ |
-| Create, run, and manage search objects <sup>1</sup> | ✅ | ❌ | ✅ | ❌ | ❌ |
+| Create, run, and manage search objects <sup>1</sup> | ❌ | ❌ | ✅ | ❌ | ❌ |
 | Upload data for indexing <sup>2</sup> | ❌ | ❌ | ❌ | ✅ | ❌ |
 | Query an index | ❌ | ❌ | ❌ | ✅ | ✅ |
 | Retrieve from a knowledge base | ❌ | ❌ | ❌ | ✅ | ✅ |
