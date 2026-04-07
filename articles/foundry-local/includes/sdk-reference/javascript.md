@@ -1,4 +1,6 @@
 ---
+title: Include file
+description: Include file
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
@@ -22,7 +24,7 @@ ai-usage: ai-assisted
 Install the package from npm:
 
 ```bash
-npm install foundry-local-sdk
+npm install foundry-local-sdk@0.5.0
 ```
 
 ### Quickstart
@@ -272,3 +274,77 @@ await manager.unloadModel(alias);
 References:
 
 - [Integrate with inference SDKs](../../how-to/how-to-integrate-with-inference-sdks.md)
+
+## Native Audio Transcription API (v2 SDK)
+
+The v2 SDK includes a native audio client for transcribing audio files on-device using Whisper models. This runs inference in-process without needing the REST web server.
+
+### Installation
+
+```bash
+npm install foundry-local-sdk
+```
+
+### Audio transcription example
+
+```js
+import { FoundryLocalManager } from "foundry-local-sdk";
+
+// Initialize the SDK
+const manager = FoundryLocalManager.create({
+  appName: "foundry_local_samples",
+  logLevel: "info"
+});
+
+// Get and load the Whisper model
+const whisperModel = await manager.catalog.getModel("whisper-tiny");
+if (!whisperModel.isCached) {
+  await whisperModel.download();
+}
+await whisperModel.load();
+
+// Create an audio client
+const audioClient = whisperModel.createAudioClient();
+audioClient.settings.language = "en";
+
+// Transcribe an audio file
+const result = await audioClient.transcribe("recording.wav");
+console.log("Transcription:", result.text);
+
+// Stream transcription in real-time
+await audioClient.transcribeStreaming("recording.wav", (chunk) => {
+  process.stdout.write(chunk.text);
+});
+
+// Clean up
+await whisperModel.unload();
+```
+
+### AudioClient API
+
+| Method | Signature | Description |
+| --- | --- | --- |
+| `transcribe()` | `(audioFilePath: string) => Promise<any>` | Transcribes an audio file and returns the complete result. |
+| `transcribeStreaming()` | `(audioFilePath: string, callback: (chunk) => void) => Promise<void>` | Streams transcription results chunk by chunk. |
+
+### AudioClientSettings
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `language` | `string` | Language of the audio (for example, `"en"` for English). |
+| `temperature` | `number` | Controls randomness. Use `0.0` for deterministic results. |
+
+### Supported Whisper models
+
+| Model alias | Size | Use case |
+|------------|------|----------|
+| `whisper-tiny` | ~75 MB | Fastest, best for short audio |
+| `whisper-base` | ~142 MB | Good balance of speed and accuracy |
+| `whisper-small` | ~466 MB | Higher accuracy |
+| `whisper-medium` | ~1.5 GB | High accuracy, more memory |
+| `whisper-large-v3-turbo` | ~3 GB | Highest accuracy |
+
+References:
+
+- [Transcribe audio files with Foundry Local](../../how-to/how-to-transcribe-audio.md)
+- [Audio Transcription Sample (GitHub)](https://github.com/microsoft/Foundry-Local/tree/main/samples/js/audio-transcription-foundry-local)

@@ -1,10 +1,6 @@
 ---
-title: Search over Azure Blob Storage content
-titleSuffix: Azure AI Search
+title: Search Over Azure Blob Storage Content
 description: Learn how to extract text from Azure blobs and making the content full-text searchable in an Azure AI Search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 10/06/2025
@@ -73,7 +69,7 @@ Textual content of a document is extracted into a string field named "content". 
 
 An *indexer* is a data-source-aware subservice in Azure AI Search, equipped with internal logic for sampling data, reading and retrieving data and metadata, and serializing data from native formats into JSON documents for subsequent import. 
 
-Blobs in Azure Storage are indexed using the [blob indexer](search-how-to-index-azure-blob-storage.md). You can invoke this indexer by using the **Azure AI Search** command in Azure Storage, an [import wizard](search-import-data-portal.md) in the Azure portal, a REST API, or the .NET SDK. In code, you use this indexer by setting the type, and by providing connection information that includes an Azure Storage account along with a blob container. You can subset your blobs by creating a virtual directory, which you can then pass as a parameter, or by filtering on a file type extension.
+Blobs in Azure Storage are indexed using the [blob indexer](search-how-to-index-azure-blob-storage.md). You can invoke this indexer by using the **Azure AI Search** command in Azure Storage, [**Import data** wizard](search-import-data-portal.md) in the Azure portal, REST API, or .NET SDK. In code, you use this indexer by setting the type, and by providing connection information that includes an Azure Storage account along with a blob container. You can subset your blobs by creating a virtual directory, which you can then pass as a parameter, or by filtering on a file type extension.
 
 An indexer ["cracks a document"](search-indexer-overview.md#document-cracking), opening a blob to inspect content. After connecting to the data source, it's the first step in the pipeline. For blob data, this is where PDF, Office docs, and other content types are detected. Document cracking with text extraction is no charge. If your blobs contain image content, images are ignored unless you [add AI enrichment](cognitive-search-concept-intro.md). Standard indexing applies only to text content.
 

@@ -1,9 +1,6 @@
 ---
 title: Index Binary Vectors for Vector Search
-titleSuffix: Azure AI Search
 description: Learn how to configure fields for binary vectors and the vector search configuration for querying the fields.
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -37,7 +34,7 @@ This article uses the REST APIs for illustration, but you can also use an Azure 
 
 ## Limitations
 
-+ No Azure portal support in the **Import data (new)** wizard.
++ No Azure portal support in the **Import data** wizard.
 
 + No support for binary fields in the [AML skill](cognitive-search-aml-skill.md) that's used for integrated vectorization of models from the Microsoft Foundry model catalog.
 

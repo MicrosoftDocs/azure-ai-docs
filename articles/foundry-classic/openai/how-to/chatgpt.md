@@ -18,11 +18,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Work with chat completions models (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/chatgpt.md)
 
-Chat models are language models that are optimized for conversational interfaces. The models behave differently than the older completion API models. Previous models were text-in and text-out, which means they accepted a prompt string and returned a completion to append to the prompt. However, the latest models are conversation-in and message-out. The models expect input formatted in a specific chat-like transcript format. They return a completion that represents a model-written message in the chat. This format was designed specifically for multi-turn conversations, but it can also work well for nonchat scenarios.
-
-This article walks you through getting started with chat completions models. To get the best results, use the techniques described here. Don't try to interact with the models the same way you did with the older model series because the models are often verbose and provide less useful responses.
+[!INCLUDE [chatgpt 1](../../../foundry/openai/includes/how-to-chatgpt-1.md)]
 
 ## Prerequisites
 
@@ -32,4 +30,4 @@ This article walks you through getting started with chat completions models. To 
 - For the token-counting example, install tiktoken: `pip install tiktoken`.
 - If you use API keys, set `AZURE_OPENAI_API_KEY` (or `OPENAI_API_KEY`).
 
-[!INCLUDE [Chat Completions](../../../foundry/openai/includes/chat-completion.md)]
+[!INCLUDE [chat-completion-python](../../../foundry/openai/includes/chat-completion-python.md)]

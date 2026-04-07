@@ -2,15 +2,15 @@
 title: "Customize a Microsoft Foundry Model with the OpenAI Python SDK"
 titleSuffix: Microsoft Foundry
 description: Learn how to create your own customized model with Microsoft Foundry by using the OpenAI Python SDK.
-author: mrbullwinkle
-ms.author: mbullwin
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 ms.date: 09/01/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
-  - build-2025
+  - build-2025, classic-and-new
 ---
 
 ## Prerequisites
@@ -20,7 +20,7 @@ ms.custom:
 - You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 - You need the following Python libraries: `os`, `json`, `requests`, `openai`.
 - You need the OpenAI Python library.
-- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them.
+- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them. You may also create a [custom role](../../../foundry-classic/concepts/rbac-foundry.md#create-custom-roles-for-projects) that combines required actions into a single role.
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../../../foundry-classic/openai/how-to/role-based-access-control.md).  
 
 ### Supported models

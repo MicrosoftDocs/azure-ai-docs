@@ -1,9 +1,6 @@
 ---
-title: Skillset concepts
-titleSuffix: Azure AI Search
+title: Skillset Concepts
 description: Skillsets are used to apply AI processing to indexing pipelines in Azure AI Search. Learn important concepts and details about skillset composition.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 01/26/2026
@@ -182,7 +179,7 @@ In this example, source fields from a CSV file include customer reviews about ho
 In the hotel reviews example, a "document" within the enrichment process represents a single hotel review.
 
 > [!TIP]
-> You can create a search index and knowledge store for this data in [Azure portal](knowledge-store-create-portal.md) or [REST APIs](knowledge-store-create-rest.md). You can also use [Debug Sessions](cognitive-search-debug-session.md) for insights into skillset composition, dependencies, and effects on an enrichment tree. Images in this article are pulled from Debug Sessions.
+> You can create a search index and knowledge store for this data using [REST APIs](knowledge-store-create-rest.md). You can also use [Debug Sessions](cognitive-search-debug-session.md) for insights into skillset composition, dependencies, and effects on an enrichment tree. Images in this article are pulled from Debug Sessions.
 
 Conceptually, the initial enrichment tree looks as follows:
 

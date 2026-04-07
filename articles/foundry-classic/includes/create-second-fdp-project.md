@@ -72,6 +72,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
     ```azurecli
      az cognitiveservices account project create \
      --name my-foundry-resource \
+     --resource-group my-foundry-rg \
      --project-name {new_project_name} \
      --location eastus
     ```

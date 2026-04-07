@@ -1,13 +1,9 @@
 ---
-title: Create an index for agentic retrieval
-titleSuffix: Azure AI Search
+title: Create an Index for Agentic Retrieval
 description: Create an index that has fields and configurations that work for agentic retrieval workloads in Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/10/2025
+ms.date: 03/25/2026
 ---
 
 # Create an index for agentic retrieval in Azure AI Search
@@ -164,7 +160,7 @@ A built-in assumption for chunked content is that the original source documents 
 
 Vector content can be useful because it adds *similarity search* to information retrieval. At query time, when vector fields are present in the index, the agentic retrieval engine executes a vector query in parallel to the text query. Because vector queries look for similar content rather than matching words, a vector query can find a highly relevant result that a text query might miss. Adding vectors can enhance and improve the quality of your grounding data, but aren't otherwise strictly required. Azure AI Search has a [built-in approach for vectorization](vector-search-overview.md).
 
-Vector fields are used only for query execution on Azure AI Search. You don't need the vector in results because it isn't human or LLM readable. We recommend that you set `retrievable` and `stored` to false to minimize space requirements. For more information, see [Optimize vector storage and processing](vector-search-how-to-configure-compression-storage.md).
+Vector fields are used only for query execution on Azure AI Search. You don't need the vector in results because it isn't human or LLM readable. To minimize space requirements, we recommend setting `retrievable` and `stored` to false. For more information, see [Optimize vector storage and processing](vector-search-how-to-configure-compression-storage.md).
 
 If you use vectors, having a [vectorizer](vector-search-how-to-configure-vectorizer.md) defined in the vector search configuration is critical. It determines whether your vector field is used during query execution. The vectorizer encodes string subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
 
@@ -289,7 +285,7 @@ Here's an example of a vectorizer that works for agentic retrieval, as it appear
     }
   ],
   "compressions": []
-}  
+}
 ```
 
 ## Add a scoring profile
@@ -303,15 +299,15 @@ If you create the index using 2025-05-01-preview or later, the scoring profile e
 You can use any scoring profile that makes sense for your index. Here's an example of one that boosts the search score of a match if the match is found in a specific field. Fields are weighted by boosting multipliers. For example if a match was found in the "Category" field, the boosted score is multiplied by 5.
 
 ```json
-"scoringProfiles": [  
-    {  
-      "name": "boostSearchTerms",  
-      "text": {  
-        "weights": {  
-          "Location": 2,  
+"scoringProfiles": [
+    {
+      "name": "boostSearchTerms",
+      "text": {
+        "weights": {
+          "Location": 2,
           "Category": 5 
-        }  
-      }  
+        }
+      }
     }
 ]
 ```

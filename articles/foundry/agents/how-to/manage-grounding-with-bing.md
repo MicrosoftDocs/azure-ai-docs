@@ -7,6 +7,8 @@ ms.reviewer: magottei
 ms.service: azure-ai-foundry
 ms.topic: overview
 ms.date: 02/17/2026
+ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Manage Grounding with Bing in Microsoft Foundry and Azure
@@ -26,7 +28,7 @@ You can disable Grounding with Bing Search, Grounding with Bing Custom Search, o
 
 ## Disable web search tool
 
-You can disable the web search tool for all accounts in a subscription. For more information, see [Disable Bing Web Search](../how-to/tools/web-search.md#disable-bing-web-search).
+You can disable the web search tool for all accounts in a subscription. For more information, see [Disable Web Search](./tools/web-search.md#disable-web-search).
 
 ## Disable web knowledge
 
@@ -38,5 +40,5 @@ You can disable Web Knowledge Source access for all search services in a subscri
 ## Related content
 
 + [Grounding with Bing Search tools for agents](./tools/bing-tools.md)
-+ [Web search tool (preview)](../how-to/tools/web-search.md)
++ [Web search tool](../how-to/tools/web-search.md)
 + [Create a Web Knowledge Source resource](../../../search/agentic-knowledge-source-how-to-web.md)

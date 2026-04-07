@@ -1,9 +1,6 @@
 ---
 title: Configure Vectorizer
-titleSuffix: Azure AI Search
 description: Add a vectorizer to an Azure AI Search index so the search service converts text queries to vectors at query time using Microsoft-hosted or custom embedding models.
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -58,13 +55,13 @@ The following table lists the vectorizers and their supported models and associa
 
 ## Define a vectorizer using a wizard
 
-The **Import data (new)** wizard in the Azure portal can read files from Azure Blob Storage, create an index with chunked and vectorized fields, and add a vectorizer. By design, the wizard-generated vectorizer is set to the same embedding model used to index the blob content.
+The **Import data** wizard in the Azure portal can read files from Azure Blob Storage, create an index with chunked and vectorized fields, and add a vectorizer. By design, the wizard-generated vectorizer is set to the same embedding model used to index the blob content.
 
 To create a sample index with a vectorizer using the wizard:
 
 1. [Upload files](/azure/storage/blobs/storage-quickstart-blobs-portal) to a container in Azure Storage. We used [small text files from NASA's Earth at Night e-book](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-txt-10) to test these instructions on a free search service.
 
-1. Run the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md). Choose the blob container for the data source.
+1. Run the [**Import data** wizard](search-get-started-portal-import-vectors.md). Choose the blob container for the data source.
 
    :::image type="content" source="media/vector-search-how-to-configure-vectorizer/connect-to-data.png" lightbox="media/vector-search-how-to-configure-vectorizer/connect-to-data.png" alt-text="Screenshot of the connect to your data page.":::
 
@@ -311,7 +308,7 @@ The following table lists common vectorizer errors and how to resolve them.
 |-------|-------|------------|
 | **Authentication failure** (401/403) | Invalid API key or missing RBAC role assignment for the embedding model. | Verify your API key or confirm that the search service identity has the `Cognitive Services OpenAI User` role on the Azure OpenAI resource. |
 | **Dimension mismatch** | The vectorizer model produces embeddings with a different dimension count than the vector field expects. | Ensure the `dimensions` property on the vector field matches the output dimensions of the embedding model (for example, 1536 for `text-embedding-ada-002`). |
-| **Rate limiting** (429) | The embedding model provider is throttling requests. | Review [Azure OpenAI quota limits](/azure/ai-services/openai/quotas-limits?view=foundry&preserve-view=true) and consider increasing your tokens-per-minute (TPM) allocation or reducing batch size. |
+| **Rate limiting** (429) | The embedding model provider is throttling requests. | Review [Azure OpenAI quota limits](/azure/foundry/openai/quotas-limits) and consider increasing your tokens-per-minute (TPM) allocation or reducing batch size. |
 | **Vectorizer not found** | The vector profile references a vectorizer name that doesn't exist in the index. | Confirm that the `vectorizer` property in the vector profile matches the `name` of a vectorizer in the `vectorizers` array. |
 | **Empty results** | Text-to-vector conversion succeeded but the query returns no matches. | Verify the `fields` parameter in the vector query matches the name of a searchable vector field. Increase `k` to return more results. |
 
@@ -333,7 +330,7 @@ OperationEvent
 
 + **Use separate deployments of the same embedding model for indexing and queries.** Dedicated deployments let you allocate TPM quota independently for each workload and make it easier to identify traffic sources.
 
-+ **Monitor your Azure OpenAI TPM quota.** If you're hitting your TPM limit, review the [quota limits](/azure/ai-services/openai/quotas-limits?view=foundry&preserve-view=true) and consider requesting a higher limit through a [support case](/azure/azure-portal/supportability/how-to-create-azure-support-request).
++ **Monitor your Azure OpenAI TPM quota.** If you're hitting your TPM limit, review the [quota limits](/azure/ai-services/openai/quotas-limits) and consider requesting a higher limit through a [support case](/azure/azure-portal/supportability/how-to-create-azure-support-request).
 
 + **Review [best practices](cognitive-search-skill-azure-openai-embedding.md#best-practices) for the Azure OpenAI embedding skill.** The same guidance applies to the Azure OpenAI vectorizer.
 

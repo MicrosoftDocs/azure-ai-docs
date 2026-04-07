@@ -1,10 +1,6 @@
 ---
-title: API versions
-titleSuffix: Azure AI Search
+title: API Versions
 description: Version policy for Azure AI Search REST APIs and the client library in the .NET SDK.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
@@ -13,7 +9,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 03/25/2026
 ---
 
 # API versions in Azure AI Search

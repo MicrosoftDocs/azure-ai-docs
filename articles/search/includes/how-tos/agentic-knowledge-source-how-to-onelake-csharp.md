@@ -1,10 +1,7 @@
 ---
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 01/23/2026
+ms.date: 03/25/2026
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]

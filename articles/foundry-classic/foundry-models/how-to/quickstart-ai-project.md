@@ -4,7 +4,7 @@ description: "Learn how to upgrade your AI project to use models deployed in Mic
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 10/09/2025
+ms.date: 03/31/2026
 ms.custom: ignite-2024, github-universe-2024
 author: ssalgadodev
 ms.author: ssalgado
@@ -37,7 +37,7 @@ In this article, you learn how to configure your project to use Foundry Models d
 
 To complete this tutorial, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. To learn more, see [Upgrade from GitHub Models to Foundry Models](./quickstart-github-models.md).
+* An Azure subscription. If you're using GitHub Models, you can upgrade your experience and create an Azure subscription in the process. To learn more, see [Upgrade from GitHub Models to Foundry Models](./quickstart-github-models.md).
 
 * A Foundry resource. For more information, see [Create your first Foundry resource](../../../ai-services/multi-service-resource.md).
 

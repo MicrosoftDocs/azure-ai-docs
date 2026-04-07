@@ -6,12 +6,14 @@ ms.author: lagayhar
 ms.reviewer: skohlmeier
 ms.date: 02/12/2026
 ms.service: azure-ai-foundry
-ms.topic: article
+ms.topic: reference
+ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
 ---
 
 # Built-in evaluators reference
+
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Microsoft Foundry provides a comprehensive set of built-in evaluators to assess the quality, safety, and reliability of AI responses throughout the development lifecycle. This reference details all available evaluators, their purposes, required inputs, and guidance on selecting the right evaluator for your use case. You can also create [custom evaluators](./evaluation-evaluators/custom-evaluators.md) tailored to your specific evaluation criteria.
@@ -119,5 +121,4 @@ For comprehensive quality assessment, combine multiple evaluators:
 - [Agent evaluators](./evaluation-evaluators/agent-evaluators.md)
 - [Azure OpenAI Graders](./evaluation-evaluators/azure-openai-graders.md)
 - [Custom evaluators](./evaluation-evaluators/custom-evaluators.md)
-- [Evaluate with the Foundry SDK](../../foundry-classic/how-to/develop/evaluate-sdk.md)
 - [Evaluate generative AI apps in Foundry](../how-to/evaluate-generative-ai-app.md)

@@ -24,9 +24,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Microsoft Foundry quickstart (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/quickstarts/get-started-code.md)
 
-In this quickstart, you use [!INCLUDE [classic-link](../../foundry/includes/classic-link.md)] to:
+In this quickstart, you use [!INCLUDE [foundry-link](../../foundry/includes/foundry-link.md)] to:
 
 > [!div class="checklist"]
 > * Create a project

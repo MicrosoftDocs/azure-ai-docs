@@ -7,8 +7,8 @@ ms.author: jburchel
 ms.reviewer: ankamene
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 02/23/2026
-ms.custom: dev-focus
+ms.date: 03/16/2026
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -40,6 +40,9 @@ When you select **Use existing APIM**, only API Management instances that meet a
 > * The API Management instance isn't already associated with another AI Gateway.
 
 If none of your API Management instances appear in the list, verify that the instance meets the requirements above and that you have the required permissions.
+
+> [!NOTE]
+> If your Foundry resource has public network access disabled, make sure that your API Management instance is also privately accessible to integrate with your private Foundry resource. In this case, use a Standard v2 or Premium v2 instance with a private endpoint, or a Premium v2 instance that's injected in a virtual network. For more information, see [Azure API Management networking options](/azure/api-management/virtual-network-concepts).
 
 ## Create an AI Gateway
 

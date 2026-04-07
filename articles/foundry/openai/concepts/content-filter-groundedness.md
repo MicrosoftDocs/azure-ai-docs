@@ -11,7 +11,9 @@ ai-usage: ai-assisted
 
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Groundedness detection filter
-[!INCLUDE [groundedness-detection-overview](../../../ai-services/content-safety/includes/groundedness-detection-overview.md)]
+
+[!INCLUDE [content-filter-groundedness content](../includes/concepts-content-filter-groundedness-content.md)]

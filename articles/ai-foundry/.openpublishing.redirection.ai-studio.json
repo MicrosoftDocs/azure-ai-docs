@@ -537,12 +537,12 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/use-your-data-quickstart.md",
-      "redirect_url": "/azure/ai-foundry/quickstarts/get-started-code?view=foundry",
+      "redirect_url": "/azure/foundry/quickstarts/get-started-code",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/how-to/azure-developer-cli.md",
-      "redirect_url": "/azure/ai-foundry/quickstarts/get-started-code?view=foundry",
+      "redirect_url": "/azure/foundry/quickstarts/get-started-code",
       "redirect_document_id": false
     },
     {
@@ -582,7 +582,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-studio/how-to/develop/langchain.md",
-      "redirect_url": "/azure/ai-foundry/how-to/develop/langchain",
+      "redirect_url": "/azure/foundry/how-to/develop/langchain",
       "redirect_document_id": true
     },
     {
@@ -1842,7 +1842,12 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/concepts/disable-preview-features-with-rbac.md",
-      "redirect_url": "/azure/foundry/concepts/disable-preview-features-with-rbac",
+      "redirect_url": "/azure/foundry/how-to/disable-preview-features",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/foundry/concepts/disable-preview-features-with-rbac.md",
+      "redirect_url": "/azure/foundry/how-to/disable-preview-features",
       "redirect_document_id": true
     },
     {
@@ -2437,7 +2442,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/foundry-local/reference/reference-sdk.md",
-      "redirect_url": "/azure/foundry-local/reference/reference-sdk",
+      "redirect_url": "/azure/foundry-local/reference/reference-sdk-current",
       "redirect_document_id": true
     },
     {
@@ -2812,7 +2817,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/how-to/develop/langchain.md",
-      "redirect_url": "/azure/foundry-classic/how-to/develop/langchain",
+      "redirect_url": "/azure/foundry/how-to/develop/langchain",
       "redirect_document_id": true
     },
     {

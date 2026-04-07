@@ -4,13 +4,14 @@ description: "Learn how to use the model router in Azure OpenAI to select the be
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 01/29/2026
+ms.date: 03/18/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.custom:
   - classic-and-new
   - build-2025
+  - doc-kit-assisted
 # customer intent:
 ai-usage: ai-assisted
 
@@ -19,11 +20,11 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Use model router for Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/model-router.md)
 
 Model router for Microsoft Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md).
 
-Use model router through the Chat Completions API like you'd use a single base model such as GPT-4. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
+Use model router through the Chat Completions API like you'd use a single base model such as GPT-5. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 
 > [!TIP]
 > The [Microsoft Foundry (new)](../../what-is-foundry.md#microsoft-foundry-portals) portal offers enhanced configuration options for model router. [Switch to the Microsoft Foundry (new) documentation]() to see the latest features.
@@ -41,9 +42,7 @@ In the **Create new deployment**, find `model-router` in the **Models** list and
 > - Select a content filter when you deploy the model router model or apply a filter later. The content filter applies to all content passed to and from the model router; don't set content filters for each underlying chat model.
 > - Your tokens-per-minute rate limit setting applies to all activity to and from the model router; don't set rate limits for each underlying chat model.
 
-## Test model router with the Completions API
-
-You can use model router through the [chat completions API](/azure/ai-foundry/openai/chatgpt-quickstart) in the same way you'd use other OpenAI chat models. Set the `model` parameter to the name of our model router deployment, and set the `messages` parameter to the messages you want to send to the model.
+[!INCLUDE [model-router 1](../../../foundry/openai/includes/how-to-model-router-1.md)]
 
 ## Test model router in the playground
 
@@ -64,130 +63,98 @@ The JSON response you receive from a model router model is identical to the stan
 The following example response was generated using API version `2025-11-18`:
 
 ```json
+
 {
-  "choices": [
-    {
-      "content_filter_results": {
-        "hate": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "protected_material_code": {
-          "detected": "False",
-          "filtered": "False"
-        },
-        "protected_material_text": {
-          "detected": "False",
-          "filtered": "False"
-        },
-        "self_harm": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": "False",
-          "severity": "safe"
+    "success": true,
+    "data": {
+        "choices": [
+            {
+                "content_filter_results": {
+                    "hate": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "protected_material_code": {
+                        "filtered": false,
+                        "detected": false
+                    },
+                    "protected_material_text": {
+                        "filtered": false,
+                        "detected": false
+                    },
+                    "self_harm": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "sexual": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "violence": {
+                        "filtered": false,
+                        "severity": "safe"
+                    }
+                },
+                "finish_reason": "stop",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                    "annotations": [],
+                    "content": "Charismatic and bold—combining brash showmanship and poetic wit with fierce competitiveness, moral conviction, and unwavering activism.",
+                    "refusal": null,
+                    "role": "assistant"
+                }
+            }
+        ],
+        "created": 1774543376,
+        "id": "xxxx-yyyy-zzzz",
+        "model": "gpt-5-mini-2025-08-07",
+        "object": "chat.completion",
+        "prompt_filter_results": [
+            {
+                "prompt_index": 0,
+                "content_filter_results": {
+                    "hate": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "jailbreak": {
+                        "filtered": false,
+                        "detected": false
+                    },
+                    "self_harm": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "sexual": {
+                        "filtered": false,
+                        "severity": "safe"
+                    },
+                    "violence": {
+                        "filtered": false,
+                        "severity": "safe"
+                    }
+                }
+            }
+        ],
+        "system_fingerprint": null,
+        "usage": {
+            "completion_tokens": 163,
+            "completion_tokens_details": {
+                "accepted_prediction_tokens": 0,
+                "audio_tokens": 0,
+                "reasoning_tokens": 128,
+                "rejected_prediction_tokens": 0
+            },
+            "prompt_tokens": 3254,
+            "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 3200
+            },
+            "total_tokens": 3417
         }
-      },
-      "finish_reason": "stop",
-      "index": 0,
-      "logprobs": "None",
-      "message": {
-        "content": "I'm doing well, thank you! How can I assist you today?",
-        "refusal": "None",
-        "role": "assistant"
-      }
     }
-  ],
-  "created": 1745308617,
-  "id": "xxxx-yyyy-zzzz",
-  "model": "gpt-4.1-nano-2025-04-14",
-  "object": "chat.completion",
-  "prompt_filter_results": [
-    {
-      "content_filter_results": {
-        "hate": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "jailbreak": {
-          "detected": "False",
-          "filtered": "False"
-        },
-        "self_harm": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": "False",
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": "False",
-          "severity": "safe"
-        }
-      },
-      "prompt_index": 0
-    }
-  ],
-  "system_fingerprint": "xxxx",
-  "usage": {
-    "completion_tokens": 15,
-    "completion_tokens_details": {
-      "accepted_prediction_tokens": 0,
-      "audio_tokens": 0,
-      "reasoning_tokens": 0,
-      "rejected_prediction_tokens": 0
-    },
-    "prompt_tokens": 21,
-    "prompt_tokens_details": {
-      "audio_tokens": 0,
-      "cached_tokens": 0
-    },
-    "total_tokens": 36
-  }
 }
+
 ```
-
-## Monitor model router metrics
-
-### Monitor performance
-
-Monitor the performance of your model router deployment in Azure Monitor (AzMon) in the Azure portal.
-
-1. Go to the **Monitoring** > **Metrics** page for your Azure OpenAI resource in the Azure portal.
-1. Filter by the deployment name of your model router model.
-1. Split the metrics by underlying models if needed.
-
-### Monitor costs
-
-You can monitor the costs of model router, which is the sum of the costs incurred by the underlying models.
-1. Visit the **Resource Management** -> **Cost analysis** page in the Azure portal.
-1. If needed, filter by Azure resource.
-1. Then, filter by deployment name: Filter by "Tag", select **Deployment** as the type of the tag, and then select your model router deployment name as the value.
-
-## Troubleshoot model router
-
-### Common issues
-
-| Issue | Cause | Resolution |
-|-------|-------|------------|
-| Rate limit exceeded | Too many requests to model router deployment | Increase tokens-per-minute quota or implement retry with exponential backoff |
-| Unexpected model selection | Routing logic selected different model than expected | Review routing mode settings; consider using model subset to constrain options |
-| High latency | Router overhead plus underlying model processing | Use Cost mode for latency-sensitive workloads; smaller models respond faster |
-| Claude model not routing | Claude models require separate deployment | Deploy Claude models from model catalog before enabling in subset |
-
-### Error codes
-
-For API error codes and troubleshooting, see the [Azure OpenAI REST API reference](../reference.md).
-
-## Next steps
-
-- [Model router concepts](../concepts/model-router.md) - Learn how routing modes work
-- [Quotas and limits](../quotas-limits.md) - Rate limits for model router
-- [Create an agent](../../agents/quickstart.md) - Use model router with Foundry agents
-
+[!INCLUDE [model-router 2](../../../foundry/openai/includes/how-to-model-router-2.md)]

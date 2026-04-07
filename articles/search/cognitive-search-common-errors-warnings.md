@@ -1,10 +1,6 @@
 ---
-title: Indexer errors and warnings
-titleSuffix: Azure AI Search
+title: Indexer Errors and Warnings
 description: This article provides information and solutions to common errors and warnings you might encounter during AI enrichment in Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -30,9 +26,9 @@ Warnings don't stop indexing, but they do indicate conditions that could result 
 
 ## Where can you find specific indexer errors?
 
-To verify an indexer status and identify errors in the Azure portal, follow the steps below:
+To verify an indexer status and identify errors:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the left, expand **Search Management** > **Indexers** and select an indexer.
 

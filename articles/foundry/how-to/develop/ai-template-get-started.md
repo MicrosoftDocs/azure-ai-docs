@@ -7,6 +7,7 @@ ms.custom:
   - classic-and-new
   - dev-focus
   - ignite-2024
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 01/05/2026
 ms.reviewer: varundua
@@ -17,6 +18,7 @@ ai-usage: ai-assisted
 ---
 
 # Get started with an AI template
+
 In this article, you find, explore, and deploy AI solution templates from the Foundry portal.
 
 AI solution templates are prebuilt, task-specific templates that include customizable code samples, preintegrated Azure services, and GitHub-hosted quick-start guides. Use templates to skip boilerplate setup and focus on building solutions for use cases like voice agents, release management, and data unification.
@@ -52,6 +54,7 @@ Available templates:
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 - Appropriate RBAC role to create Foundry resources. For details, see [Role-based access control](../../concepts/rbac-foundry.md).
 - A [Foundry project](../create-projects.md).
+
 ## Start with a sample application
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
@@ -60,42 +63,4 @@ Available templates:
 1. Select **Open in Github** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
 
-## Explore the sample application
-
-When you view the GitHub repository for your sample, check the README for more instructions and information on how to deploy your own version of the application.
-
-Instructions vary by sample, but most include how to:
-
-* Open the solution in the location of your choice:
-  * GitHub Codespaces
-  * VS Code Dev Containers
-  * Your local IDE
-* Deploy the application to Azure
-* Test the application
-
-The README also includes information about the application, such as the use case, architecture, and pricing information.
-
-## Deploy and customize templates
-
-Most templates support quick-deploy options that launch in minutes. These architectures and implementations are customizable while staying [Well-Architected Framework](/azure/well-architected/) aligned by using [Azure Verified Modules](/azure/azure-resource-manager/bicep/azure-verified-modules). Use tools such as [PSRule](https://aka.ms/ps-rule) and [TFLint](https://github.com/terraform-linters/tflint) to test that your modified implementation is production-ready.
-
-After you deploy, verify that the application is running:
-
-1. Open the deployment URL shown in the terminal output.
-1. Confirm the application loads and responds to your input.
-
-## Benefits of AI solution templates
-
-AI templates in Microsoft Foundry provide:
-
-* **Faster time-to-value**: Skip boilerplate code and infrastructure setup to move from concept to production quickly.
-* **Reduced engineering overhead**: Preintegrated Azure services eliminate deployment friction.
-* **Trusted infrastructure**: Build with confidence on Microsoft's secure, scalable AI platform.
-* **Modular and interoperable foundation**: Scale solutions efficiently across your organization.
-* **Best practices built-in**: Use proven patterns and frameworks for production-ready solutions.
-
-## Related content
-
-- [Quickstart: Get started with Foundry](../../quickstarts/get-started-code.md)
-- [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)
-- [What is Microsoft Foundry?](../../what-is-foundry.md)
+[!INCLUDE [ai-template-get-started 1](../../includes/how-to-develop-ai-template-get-started-1.md)]

@@ -1,9 +1,7 @@
 ---
-title: GenAI Prompt skill (Preview)
-titleSuffix: Azure AI Search
+title: GenAI Prompt Skill
 description: Invokes chat completion models from Azure OpenAI or other Microsoft Foundry-hosted models to create content at indexing time.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - build-2025

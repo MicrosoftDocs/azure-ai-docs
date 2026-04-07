@@ -1,4 +1,6 @@
 ---
+title: Include file
+description: Include file
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
@@ -60,7 +62,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-Reference: [Foundry Local SDK reference](../../reference/reference-sdk.md)
+Reference: [Foundry Local SDK reference](../../reference/reference-sdk-current.md)
 Reference: [Foundry Local REST API reference](../../reference/reference-rest.md)
 
 Run the code using the following command:

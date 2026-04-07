@@ -7,7 +7,7 @@ ms.reviewer: gregharen
 ms.date: 02/19/2026
 ms.topic: quickstart
 ms.service: azure-ai-foundry
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 #customer intent: As a subscription owner, I want to manage guardrail policies in Microsoft Foundry so that I can monitor compliance status in Foundry Control Plane.
 ---
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 # Quickstart: Create a Guardrail policy
 In this quickstart, you create a policy in Microsoft Foundry to govern the use of guardrail controls for model deployments across your subscription.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 - The appropriate roles for using Azure Policy to create a policy for your subscription. You can learn more about Azure Policy roles in the [overview of Azure Policy](/azure/governance/policy/overview#azure-policy-and-azure-rbac).
 
 > [!NOTE]
-> This capability is available only in the [Microsoft Foundry (new) portal](../what-is-foundry.md#microsoft-foundry-portals).
+> This capability is available only in the [Microsoft Foundry (new) portal](../what-is-foundry.md).
 
 ## Create the guardrail policy
 

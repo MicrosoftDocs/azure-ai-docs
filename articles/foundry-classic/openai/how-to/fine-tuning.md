@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Customize a model with fine-tuning (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/fine-tuning.md)
 
 Learn how to fine-tune models in Microsoft Foundry for your datasets and use cases. Fine-tuning enables:
 
@@ -56,10 +56,4 @@ In this article, you learn how to:
 
 ::: zone-end
 
-## Related content
-
-- [Fine-tuning tutorial (step-by-step)](../tutorials/fine-tune.md)
-- [Model catalog and regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md)
-- [Quotas and limits](../quotas-limits.md)
-- [View and interpret evaluation results](../../how-to/evaluate-results.md)
-- [Trace AI application usage (OpenAI SDK)](../../how-to/develop/trace-application.md)
+[!INCLUDE [fine-tuning 1](../../../foundry/openai/includes/how-to-fine-tuning-1.md)]

@@ -1,10 +1,8 @@
 ---
-title: "Quickstart: Agentic Retrieval in the Azure portal"
-titleSuffix: Azure AI Search
+title: "Quickstart: Agentic Retrieval in the Azure Portal"
 description: Learn how to use agentic retrieval in the Azure portal for a conversational search experience powered by Azure AI Search and Azure OpenAI models.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
@@ -87,7 +85,7 @@ This quickstart uses sample JSON documents from NASA's Earth at Night e-book, bu
 
 To prepare the sample data for this quickstart:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Blob Storage account.
+1. Go to your Azure Storage account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Data storage** > **Containers**.
 
@@ -103,7 +101,7 @@ You also configure a *vectorizer*, which uses your deployed embedding model to c
 
 To create the knowledge source for this quickstart:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Agentic retrieval** > **Knowledge sources**.
 

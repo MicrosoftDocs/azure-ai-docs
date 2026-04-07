@@ -6,10 +6,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-custom-code-interpreter
 ---
@@ -27,17 +27,17 @@ For more information about MCP and how agents connect to MCP tools, see [Connect
 
 This article uses the Azure CLI and a runnable sample project.
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ |
 
 For the latest SDK and API support for agents tools, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 ## SDK support
 
-The custom code interpreter uses the MCP tool type. Any SDK that supports MCP tools can create a custom code interpreter agent. The .NET and Java SDKs are currently in preview. For the infrastructure provisioning steps (Azure CLI, Bicep), see [Create an agent with custom code interpreter](#create-an-agent-with-custom-code-interpreter).
+The custom code interpreter uses the MCP tool type. Any SDK that supports MCP tools can create a custom code interpreter agent. The .NET SDK is currently in preview. For the infrastructure provisioning steps (Azure CLI, Bicep), see [Create an agent with custom code interpreter](#create-an-agent-with-custom-code-interpreter).
 
 ## Prerequisites
 
@@ -161,11 +161,11 @@ Agent deleted
 
 ### Code example
 
-The following C# sample shows how to create an agent with a custom code interpreter MCP tool. For more information about working with MCP tools in .NET, see the [MCP tool sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
+The following C# sample shows how to create an agent with a custom code interpreter MCP tool. For more information about working with MCP tools in .NET, see the [MCP tool sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample19_MCP.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -186,20 +186,20 @@ McpTool tool = ResponseTool.CreateMcpTool(
     serverUri: new Uri(mcpServerUrl));
 tool.ProjectConnectionId = mcpConnectionId;
 
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant that can run Python code to analyze data and solve problems.",
     Tools = { tool }
 };
 
-AgentVersion agent = projectClient.Agents.CreateAgentVersion(
+AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "CustomCodeInterpreterAgent",
     options: new(agentDefinition));
 
 Console.WriteLine($"Agent created: {agent.Name} (version {agent.Version})");
 
 // Create a response using the agent
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agent.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agent.Name);
 
 ResponseResult response = responseClient.CreateResponse(
     new([ResponseItem.CreateUserMessageItem("Calculate the factorial of 10 using Python.")]));
@@ -207,7 +207,7 @@ ResponseResult response = responseClient.CreateResponse(
 Console.WriteLine(response.GetOutputText());
 
 // Clean up
-projectClient.Agents.DeleteAgentVersion(
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
     agentName: agent.Name,
     agentVersion: agent.Version);
 Console.WriteLine("Agent deleted");
@@ -300,7 +300,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -312,9 +312,9 @@ import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.ai.agents.models.McpTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
-import com.azure.core.util.BinaryData;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.openai.models.responses.Response;
 import com.openai.models.responses.ResponseCreateParams;
@@ -342,7 +342,7 @@ public class CustomCodeInterpreterExample {
         McpTool customCodeInterpreter = new McpTool("custom-code-interpreter")
             .setServerUrl(mcpServerUrl)
             .setProjectConnectionId(mcpConnectionId)
-            .setRequireApproval(BinaryData.fromString("\"never\""));
+            .setRequireApproval("never");
 
         PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
             .setInstructions("You are a helpful assistant that can run Python code to analyze data and solve problems.")
@@ -356,8 +356,8 @@ public class CustomCodeInterpreterExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Calculate the factorial of 10 using Python."));
 

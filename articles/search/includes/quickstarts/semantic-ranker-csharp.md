@@ -1,6 +1,4 @@
 ---
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -27,8 +25,6 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 
 + [.NET 9](https://dotnet.microsoft.com/download) or later.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download).
-
 + [Git](https://git-scm.com/downloads) to clone the sample repository.
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
@@ -53,11 +49,10 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
     git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
     ```bash
     cd azure-search-dotnet-samples/quickstart-semantic-ranking
-    code .
     ```
 
 1. In `BuildIndex/Program.cs`, replace the placeholder value for `endpoint` with the URL you obtained in [Get endpoint](#get-endpoint).

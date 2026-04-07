@@ -2,7 +2,7 @@
 title: "Compile Hugging Face models to run on Foundry Local"
 titleSuffix: Foundry Local
 description: "Learn how to compile and run Hugging Face models with Foundry Local."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: how-to
@@ -360,7 +360,7 @@ Expected result: The script prints a streamed response from the local model.
 
 References:
 
-- Reference: [Foundry Local SDK reference](../reference/reference-sdk.md)
+- Reference: [Foundry Local SDK reference](../reference/reference-sdk-current.md)
 - Reference: [Use chat completions via REST server with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md)
 
 ## Reset the model cache

@@ -6,39 +6,43 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-ai-search-tool
 # CustomerIntent: As a developer, I want to connect my Foundry agent to Azure AI Search so that I can ground responses in my proprietary content with citations.
 ---
 
 # Connect an Azure AI Search index to Foundry agents
+
 > [!TIP]
 > For a managed knowledge base experience, see [Foundry IQ](../foundry-iq-connect.md). For tool optimization, see [best practices](../../concepts/tool-best-practice.md).
 
 Ground your Foundry agent's responses in your proprietary content by connecting it to an Azure AI Search index. The [Azure AI Search](../../../../search/search-what-is-azure-search.md) tool retrieves indexed documents and generates answers with inline citations, enabling accurate, source-backed responses.
 
+> [!IMPORTANT]
+> If you want to use a private virtual network with the Azure AI Search tool, make sure you use Microsoft Entra project managed identity to authenticate in your Azure AI Search connection. Key-based authentication isn't supported with private virtual networking.
+
 ## Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
 *Estimated setup time: 15-30 minutes if you have an existing search index*
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
-- Install the SDK package for your preferred language. C# and Java require the prerelease version. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+- Install the SDK package for your preferred language. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
-  - **C#**: Install the `Azure.AI.Projects` NuGet package (prerelease)
+  - **C#**: Install the `Azure.AI.Projects` NuGet package
   - **JavaScript/TypeScript**: `npm install @azure/ai-projects`
-  - **Java**: Add the `com.azure:azure-ai-agents:2.0.0-beta.1` dependency to your `pom.xml`
+  - **Java**: Add the `com.azure:azure-ai-agents:2.0.0` dependency to your `pom.xml`
 - An Azure subscription and Microsoft Foundry project with:
   - Project endpoint
   - Model deployment name
@@ -66,7 +70,7 @@ Ground your Foundry agent's responses in your proprietary content by connecting 
 ## Code example
 
 > [!NOTE]
-> - You need the latest SDK package. C# and Java require the prerelease version. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
+> - You need the latest SDK package. For more information, see the [quickstart](../../../quickstarts/get-started-code.md).
 > - If you're using the REST sample, the connection ID is in the format `/subscriptions/{{subscriptionId}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{connectionName}}`.
 > - If you're using the Python, C#, or TypeScript sample, you can provide the connection name and retrieve the connection ID with the SDK.
 
@@ -103,7 +107,7 @@ connection_id = azs_connection.id
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="""You are a helpful assistant. You must always provide citations for
         answers using the tool and render them as: `[message_idx:search_idx†source]`.""",
         tools=[
@@ -171,14 +175,14 @@ The agent queries the search index and returns a response with inline citations.
 
 ### Full sample
 
-The following sample code shows synchronous examples of how to use the Azure AI Search tool in [Azure.AI.Projects.OpenAI](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI) to query an index. For asynchronous C# examples, see the [GitHub repo](https://github.com/Azure/azure-sdk-for-net/tree/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI).
+The following sample code shows synchronous examples of how to use the Azure AI Search tool in [Azure.AI.Extensions.OpenAI](https://aka.ms/azsdk/Azure.AI.Extensions.OpenAI/net/samples) to query an index. For asynchronous C# examples, see the [GitHub repo](https://aka.ms/azsdk/Azure.AI.Extensions.OpenAI/net/samples).
 
 This example shows how to use the Azure AI Search tool with agents to query an index.
 
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -205,19 +209,19 @@ AzureAISearchToolIndex index = new()
 };
 
 // Create the agent definition with the Azure AI Search tool.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
     Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
 };
 
 // Create the agent version with the agent definition.
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Create an OpenAIResponse object with the ProjectResponsesClient object.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 ResponseResult response = responseClient.CreateResponse("What is the temperature rating of the cozynights sleeping bag?");
 
 // In the search, an index containing "embedding", "token", "category", "title", and "url" fields is used.
@@ -246,7 +250,7 @@ Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
 Console.WriteLine($"{response.GetOutputText()}{result}");
 
 // Finally, delete all the resources you created in this sample.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected outcome
@@ -260,7 +264,7 @@ This example shows how to use the Azure AI Search tool with agents to query an i
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -287,19 +291,19 @@ AzureAISearchToolIndex index = new()
 };
 
 // Create the agent definition with the Azure AI Search tool.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `\u3010message_idx:search_idx\u2020source\u3011`.",
     Tools = { new AzureAISearchTool(new AzureAISearchToolOptions(indexes: [index])) }
 };
 
 // Create the agent version with the agent definition.
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Create an OpenAIResponse object with the ProjectResponsesClient object.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 string annotation = "";
 string text = "";
@@ -348,7 +352,7 @@ foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponse
 Console.WriteLine($"{text}{annotation}");
 
 // Finally, delete all the resources that were created in this sample.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected outcome
@@ -424,7 +428,7 @@ export async function main(): Promise<void> {
   // Define Azure AI Search tool that searches indexed content
   const agent = await project.agents.createVersion("MyAISearchAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions:
       "You are a helpful assistant. You must always provide citations for answers using the tool and render them as: `[message_idx:search_idx†source]`.",
     tools: [
@@ -524,7 +528,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -567,7 +571,7 @@ public class AzureAISearchExample {
         );
 
         // Create agent with AI Search tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a helpful assistant that can search through indexed documents. "
                 + "Always provide citations for answers using the tool.")
             .setTools(Collections.singletonList(aiSearchTool));
@@ -579,8 +583,8 @@ public class AzureAISearchExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Search for information about Azure AI services"));
 
@@ -598,7 +602,7 @@ public class AzureAISearchExample {
 
 Keep these constraints in mind when using the Azure AI Search tool:
 
-- **Virtual network access**: Azure AI Search doesn't support virtual network (vNET) configurations with agents at this time.
+- **Private virtual network access**: If you use a private virtual network with the Azure AI Search tool, you must use Microsoft Entra project managed identity (keyless authentication) in your Azure AI Search connection. Key-based authentication isn't supported with private virtual networking. If you disabled public network access on your Azure AI Search resource, configure the connection to use managed identity instead of an API key.
 - The Azure AI Search tool can only target one index.
 - Your Azure AI Search resource and your Microsoft Foundry Agent must be in the same tenant.
 
@@ -618,6 +622,9 @@ If citations are missing or incorrect, see the [Troubleshooting](#troubleshootin
 In this section, you create a connection between the Microsoft Foundry project that contains your agent and the Azure AI Search service that contains your index.
 
 If you already connected your project to your search service, skip this section.
+
+> [!TIP]
+> The quickest way to create a connection is through the Foundry portal. For all connection methods and supported connection types, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
 To create the connection, you need your search service endpoint and authentication method. The following steps guide you through gathering these details.
 
@@ -677,69 +684,168 @@ Create the project connection by using the search service details you gathered.
 
 Use one of the following options.
 
+#### [Foundry portal](#tab/portal)
+
+1. Go to the [Foundry portal](https://ai.azure.com).
+1. Open your project, then select **Operate** > **Admin**.
+1. Select your project name in the **Manage all projects** list.
+1. Select **Add connection**.
+1. Select **Azure AI Search** from the list of available services.
+1. Browse for and select your Azure AI Search service, then select the type of **Authentication** to use.
+1. Select **Add connection**.
+
+For more detailed steps, see [Add a new connection to your project](../../../how-to/connections-add.md).
+
 #### [Azure CLI](#tab/azurecli)
 
-**Create the following connection.yml file:**
+Create a JSON connection file and use the `az cognitiveservices` CLI to create the connection on your Foundry project.
 
-You can use a YAML configuration file for both key-based and keyless authentication. Replace the `name`, `endpoint`, and `api_key` (optional) placeholders with your search service details. For more information, see the [Azure AI Search connection YAML schema](../../../../machine-learning/reference-yaml-connection-ai-search.md). 
+For keyless authentication, create a file named `connection.json`:
 
-Here's a key-based example:
+```json
+{
+  "properties": {
+    "category": "CognitiveSearch",
+    "target": "https://{searchServiceName}.search.windows.net",
+    "authType": "AAD"
+  }
+}
+```
 
-```yml
-name: my_project_acs_connection_keys
-type: azure_ai_search
-endpoint: https://contoso.search.windows.net/
-api_key: XXXXXXXXXXXXXXX
+For key-based authentication, use `ApiKey` as the `authType` and include the credentials:
+
+```json
+{
+  "properties": {
+    "category": "CognitiveSearch",
+    "target": "https://{searchServiceName}.search.windows.net",
+    "authType": "ApiKey",
+    "credentials": {
+      "key": "{searchAdminKey}"
+    }
+  }
+}
 ```
 
 > [!IMPORTANT]
 > Don't put real keys in source control. Store secrets in a secure store (for example, Azure Key Vault) and inject them at deployment time.
 
-Here's a keyless example:
-
-```yml    
-name: my_project_acs_connection_keyless
-type: azure_ai_search
-endpoint: https://contoso.search.windows.net/
-```
-
-**Then, run the following command:**
-
-Replace the placeholders with the resource group and project name.
+Run the following command. Replace the placeholders with your resource group, Foundry resource name, project name, and connection name.
 
 ```azurecli
-az ml connection create --file connection.yml --resource-group <resource-group> --workspace-name <project-name>
+az cognitiveservices account project connection create \
+  --resource-group <resource-group> \
+  --name <foundry-resource-name> \
+  --project-name <project-name> \
+  --connection-name <connection-name> \
+  --file connection.json
 ```
 
-#### [Python](#tab/pythonsdk)
+#### [Python SDK](#tab/pythonsdk)
 
-Replace the `my_connection_name`, `my_endpoint`, and `my_key` (optional) placeholders with your search service details, and then run the following code:
+Use the `azure-mgmt-cognitiveservices` management SDK to create the connection. Install the package:
+
+```bash
+pip install azure-mgmt-cognitiveservices azure-identity
+```
+
+For keyless authentication:
 
 ```python
 from azure.identity import DefaultAzureCredential
-from azure.ai.ml import MLClient
-from azure.ai.ml.entities import AzureAISearchConnection
-
-# Create an Azure AI Search project connection
-my_connection_name = "my-connection-name"
-my_endpoint = "my-endpoint" # This could also be called target
-my_api_keys = None # Leave blank for Authentication type = AAD
-
-my_connection = AzureAISearchConnection(name=my_connection_name,
-                                        endpoint=my_endpoint,
-                                        api_key=my_api_keys)
-
-# Create MLClient
-ml_client = MLClient(
-  credential=DefaultAzureCredential(),
-  subscription_id="<subscription-id>",
-  resource_group_name="<resource-group>",
-  workspace_name="<project-name>",
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+from azure.mgmt.cognitiveservices.models import (
+    ConnectionPropertiesV2BasicResource,
+    AADAuthTypeConnectionProperties,
 )
 
-# Create the connection
-ml_client.connections.create_or_update(my_connection)
+# Foundry resource details
+SUBSCRIPTION_ID = "<subscription-id>"
+RESOURCE_GROUP = "<resource-group>"
+FOUNDRY_RESOURCE_NAME = "<foundry-resource-name>"
+PROJECT_NAME = "<project-name>"
+CONNECTION_NAME = "my-search-connection"
+SEARCH_ENDPOINT = "https://my-service.search.windows.net"
+
+# Create the management client
+client = CognitiveServicesManagementClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=SUBSCRIPTION_ID,
+)
+
+# Create a keyless Azure AI Search connection
+connection = client.project_connections.create(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=FOUNDRY_RESOURCE_NAME,
+    project_name=PROJECT_NAME,
+    connection_name=CONNECTION_NAME,
+    connection=ConnectionPropertiesV2BasicResource(
+        properties=AADAuthTypeConnectionProperties(
+            category="CognitiveSearch",
+            target=SEARCH_ENDPOINT,
+        )
+    ),
+)
+print(f"Connection created: {connection.name}")
 ```
+
+Reference: [CognitiveServicesManagementClient](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.CognitiveServicesManagementClient), [ProjectConnectionsOperations](/python/api/azure-mgmt-cognitiveservices/azure.mgmt.cognitiveservices.operations.projectconnectionsoperations).
+
+#### [REST API](#tab/restapi)
+
+Use the Foundry account management REST API to create a project connection. Replace the placeholders with your subscription, resource group, Foundry resource, project, and connection details.
+
+First, obtain a bearer token:
+
+```bash
+export MGMT_TOKEN=$(az account get-access-token --resource "https://management.azure.com" --query accessToken -o tsv)
+```
+
+For keyless authentication:
+
+```bash
+curl -X PUT "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{foundryResourceName}/projects/{projectName}/connections/{connectionName}?api-version=2025-06-01" \
+  -H "Authorization: Bearer $MGMT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "properties": {
+      "category": "CognitiveSearch",
+      "target": "https://{searchServiceName}.search.windows.net",
+      "authType": "AAD"
+    }
+  }'
+```
+
+For key-based authentication, use `ApiKey` as the `authType` and include the credentials:
+
+```bash
+curl -X PUT "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{foundryResourceName}/projects/{projectName}/connections/{connectionName}?api-version=2025-06-01" \
+  -H "Authorization: Bearer $MGMT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "properties": {
+      "category": "CognitiveSearch",
+      "target": "https://{searchServiceName}.search.windows.net",
+      "authType": "ApiKey",
+      "credentials": {
+        "key": "{searchAdminKey}"
+      }
+    }
+  }'
+```
+
+> [!IMPORTANT]
+> Don't put real keys in source control. Store secrets in a secure store (for example, Azure Key Vault) and inject them at deployment time.
+
+For the full API specification, see [Project Connections REST API reference](/rest/api/aifoundry/accountmanagement/project-connections?view=rest-aifoundry-accountmanagement-2025-06-01&preserve-view=true).
+
+#### [Bicep](#tab/bicep)
+
+Use a Bicep template to create an Azure AI Search connection as part of your infrastructure deployment.
+
+See the [AI Search connection Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) in the foundry-samples repository for complete examples.
+
+For more information about deploying connections with Bicep, see [Add a new connection to your project](../../../how-to/connections-add.md).
 
 ---
 
@@ -782,6 +888,7 @@ Console.WriteLine(connection.Id);
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
+| "Workspace not found" when creating a connection | The `az ml` CLI and `azure-ai-ml` Python SDK use the `Microsoft.MachineLearningServices` resource provider, which doesn't support new Foundry projects (`Microsoft.CognitiveServices`) | Use `az cognitiveservices account project connection create` or the `azure-mgmt-cognitiveservices` Python SDK instead. See [Create a project connection](#create-a-project-connection). |
 | Response has no citations | Agent instructions don't request citations | Update your agent instructions to explicitly request citations in responses. |
 | Response has no citations (streaming) | Annotations not captured | Confirm you receive `url_citation` annotations when streaming. Check your stream processing logic. |
 | Tool can't access the index (401/403) | Missing RBAC roles (keyless auth) | Assign the **Search Index Data Contributor** and **Search Service Contributor** roles to the Foundry project's managed identity. See [Azure RBAC in Foundry](../../../concepts/rbac-foundry.md). |
@@ -790,9 +897,12 @@ Console.WriteLine(connection.Id);
 | Tool returns "index not found" | Wrong connection endpoint | Confirm the project connection points to the Azure AI Search resource that contains the index. |
 | Search returns no results | Query doesn't match indexed content | Verify the index contains the expected data. Use Azure AI Search's test query feature to validate. |
 | Slow search performance | Index not optimized | Review index configuration, consider adding semantic ranking, or optimize the index schema. |
+| "Unable to connect to Azure AI Search Resource. Please ensure the Azure AI Search Connection has the correct endpoint and the search resource has appropriate network settings for the agents setup. Cannot connect to host ... \[DNS server returned answer with no data\]" | The Azure AI Search connection uses key-based authentication with a private virtual network | Switch the Azure AI Search connection to use Microsoft Entra project managed identity (keyless authentication). Key-based authentication isn't supported with private virtual networking. See the [Limitations](#limitations) section. |
 
 ## Related content
 
+- [Add a new connection to your project](../../../how-to/connections-add.md)
+- [Project Connections REST API reference](/rest/api/aifoundry/accountmanagement/project-connections?view=rest-aifoundry-accountmanagement-2025-06-01&preserve-view=true)
 - [Connect a Foundry IQ knowledge base to Foundry Agent Service](../foundry-iq-connect.md)
 - [Tool best practices](../../concepts/tool-best-practice.md)
 - [Create a vector search index in Azure AI Search](../../../../search/search-get-started-portal-import-vectors.md)

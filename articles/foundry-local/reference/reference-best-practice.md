@@ -2,7 +2,7 @@
 title: "Best practices and troubleshooting guide for Foundry Local"
 titleSuffix: Foundry Local
 description: "Guidance on best practices and troubleshooting for Foundry Local."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: troubleshooting
@@ -96,5 +96,5 @@ Add-AppxProvisionedPackage -Online -PackagePath .\FoundryLocal.msix `
 ## Related references
 
 - [Foundry Local CLI Reference](./reference-cli.md)
-- [Foundry Local SDK Reference](./reference-sdk.md)
+- [Foundry Local SDK Reference](./reference-sdk-current.md)
 - [Foundry Local REST API Reference](./reference-rest.md)

@@ -1,10 +1,6 @@
 ---
 title: "Quickstart: Search Explorer Query Tool"
-titleSuffix: Azure AI Search
 description: Search explorer is a query tool in the Azure portal that sends query requests to a search index in Azure AI Search. Use it to learn syntax, test query expressions, or inspect a search document.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 12/04/2025
@@ -28,7 +24,7 @@ This quickstart uses an existing index to demonstrate Search explorer.
 
 ## Start Search explorer
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Overview**.
 

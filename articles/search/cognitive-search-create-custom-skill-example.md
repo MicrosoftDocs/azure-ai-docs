@@ -1,21 +1,21 @@
 ---
-title: 'Custom skill example using Bing Entity Search API'
-titleSuffix: Azure AI Search
+title: Custom Skill Example Using Bing Entity Search API
 description: Demonstrates using the Bing Entity Search service in a custom skill mapped to an AI-enriched indexing pipeline in Azure AI Search.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/18/2025
+ms.date: 03/25/2026
 ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Example: Create a custom skill using the Bing Entity Search API
 
-In this example, learn how to create a web API custom skill. This skill will accept locations, public figures, and organizations, and return descriptions for them. The example uses an [Azure Function](https://azure.microsoft.com/services/functions/) to wrap the [Bing Entity Search API](/previous-versions/bing/search-apis/bing-entity-search/overview) so that it implements the custom skill interface.
+In this example, you learn how to create a web API custom skill. This skill accepts locations, public figures, and organizations and returns descriptions for them. The example uses an [Azure Function](https://azure.microsoft.com/services/functions/) to wrap the [Bing Entity Search API](/previous-versions/bing/search-apis/bing-entity-search/overview) so that it implements the custom skill interface.
 
 ## Prerequisites
 
@@ -74,7 +74,7 @@ namespace SampleSkills
         #region Credentials
         // IMPORTANT: Make sure to enter your credential and to verify the API endpoint matches yours.
         static readonly string bingApiEndpoint = "https://api.bing.microsoft.com/v7.0/entities";
-        static readonly string key = "<enter your api key here>";  
+        static readonly string key = "<enter your api key here>";
         #endregion
 
         #region Class used to deserialize the request
@@ -309,7 +309,12 @@ namespace SampleSkills
 }
 ```
 
+**Reference:** [HttpTrigger attribute](/azure/azure-functions/functions-bindings-http-webhook-trigger), [ILogger interface](/dotnet/api/microsoft.extensions.logging.ilogger), [HttpClient class](/dotnet/api/system.net.http.httpclient), [JsonConvert.DeserializeObject](https://www.newtonsoft.com/json/help/html/M_Newtonsoft_Json_JsonConvert_DeserializeObject.htm)
+
 Make sure to enter your own *key* value in the `key` constant based on the key you got when signing up for the Bing Entity search API.
+
+> [!WARNING]
+> For production deployments, store credentials in [Azure Key Vault](/azure/key-vault/general/overview) or environment variables. Don't hardcode secrets in source code.
 
 ## Test the function from Visual Studio
 
@@ -320,6 +325,7 @@ POST https://localhost:7071/api/EntitySearch
 ```
 
 ### Request body
+
 ```json
 {
     "values": [
@@ -342,6 +348,7 @@ POST https://localhost:7071/api/EntitySearch
 ```
 
 ### Response
+
 You should see a response similar to the following example:
 
 ```json
@@ -377,7 +384,7 @@ When you're satisfied with the function behavior, you can publish it.
 
 1. After the deployment is complete, notice the Site URL. It is the address of your function app in Azure. 
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the Resource Group, and look for the `EntitySearch` Function you published. Under the **Manage** section, you should see Host Keys. Select the **Copy** icon for the *default* host key.  
+1. In the [Azure portal](https://portal.azure.com), navigate to the Resource Group, and look for the `EntitySearch` Function you published. Under the **Manage** section, you should see Host Keys. Select the **Copy** icon for the *default* host key.
 
 ## Test the function in Azure
 
@@ -387,7 +394,8 @@ Now that you have the default host key, test your function as follows:
 POST https://[your-entity-search-app-name].azurewebsites.net/api/EntitySearch?code=[enter default host key here]
 ```
 
-### Request Body
+### Request body
+
 ```json
 {
     "values": [
@@ -412,12 +420,13 @@ POST https://[your-entity-search-app-name].azurewebsites.net/api/EntitySearch?co
 This example should produce the same result you saw previously when running the function in the local environment.
 
 ## Connect to your pipeline
+
 Now that you have a new custom skill, you can add it to your skillset. The example below shows you how to call the skill to add descriptions to organizations in the document (this could be extended to also work on locations and people). Replace `[your-entity-search-app-name]` with the name of your app.
 
 ```json
 {
     "skills": [
-      "[... your existing skills remain here]",  
+      "[... your existing skills remain here]",
       {
         "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
         "description": "Our new Bing entity search custom skill",
@@ -470,10 +479,11 @@ Here, we're counting on the built-in [entity recognition skill](cognitive-search
 ```
 
 ## Next steps
-Congratulations! You've created your first custom skill. Now you can follow the same pattern to add your own custom functionality. Click the following links to learn more.
+
+Congratulations! You've created your first custom skill. You can now follow the same pattern to add your own custom functionality. To learn more, see the following resources:
 
 + [Power Skills: a repository of custom skills](https://github.com/Azure-Samples/azure-search-power-skills)
 + [Add a custom skill to an AI enrichment pipeline](cognitive-search-custom-skill-interface.md)
 + [How to define a skillset](cognitive-search-defining-skillset.md)
-+ [Create Skillset (REST)](/rest/api/searchservice/skillsets/create)
++ [Create Skillset](/rest/api/searchservice/skillsets/create) (REST API)
 + [How to map enriched fields](cognitive-search-output-field-mapping.md)

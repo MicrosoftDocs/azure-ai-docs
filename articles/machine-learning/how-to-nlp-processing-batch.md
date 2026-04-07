@@ -8,24 +8,25 @@ ms.subservice: inferencing
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 10/10/2022
+ms.date: 03/30/2026
 ms.reviewer: jturuk
 ms.custom: devplatv2, update-code
+ai-usage: ai-assisted
 ---
 
 # Deploy language models in batch endpoints
 
 [!INCLUDE [cli v2](includes/machine-learning-dev-v2.md)]
 
-Batch Endpoints can be used to deploy expensive models, like language models, over text data. In this tutorial, you learn how to deploy a model that can perform text summarization of long sequences of text using a model from HuggingFace. It also shows how to do inference optimization using HuggingFace `optimum` and `accelerate` libraries.
+Use batch endpoints to deploy resource-intensive models, such as language models, over text data. In this tutorial, you learn how to deploy a model that can perform text summarization of long sequences of text by using a model from HuggingFace. It also shows how to optimize inference by using HuggingFace `optimum` and `accelerate` libraries.
 
 ## About this sample
 
-The model we're going to work with was built using the popular library transformers from HuggingFace along with [a pre-trained model from Facebook with the BART architecture](https://huggingface.co/facebook/bart-large-cnn). It was introduced in the paper [BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation](https://arxiv.org/abs/1910.13461). This model has the following constraints, which are important to keep in mind for deployment:
+The model you work with in this tutorial uses the popular `transformers` library from HuggingFace along with [a pretrained model from Facebook with the BART architecture](https://huggingface.co/facebook/bart-large-cnn). The model was introduced in the paper [BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation](https://arxiv.org/abs/1910.13461). This model has the following constraints, which are important to keep in mind for deployment:
 
-* It can work with sequences up to 1,024 tokens.
+* It works with sequences up to 1,024 tokens.
 * It's trained for summarization of text in English.
-* We're going to use Torch as a backend.
+* It uses Torch as a backend.
 
 [!INCLUDE [machine-learning-batch-clone](includes/azureml-batch-clone-samples.md)]
 
@@ -37,7 +38,7 @@ cd endpoints/batch/deploy-models/huggingface-text-summarization
 
 ### Follow along in Jupyter Notebooks
 
-You can follow along this sample in a Jupyter Notebook. In the cloned repository, open the notebook: [text-summarization-batch.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/batch/deploy-models/huggingface-text-summarization/text-summarization-batch.ipynb).
+You can follow this sample in a Jupyter Notebook. In the cloned repository, open the notebook: [text-summarization-batch.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/batch/deploy-models/huggingface-text-summarization/text-summarization-batch.ipynb).
 
 ## Prerequisites
 
@@ -58,7 +59,7 @@ from transformers import pipeline
 
 model = pipeline("summarization", model="facebook/bart-large-cnn")
 model_local_path = 'model'
-summarizer.save_pretrained(model_local_path)
+model.save_pretrained(model_local_path)
 ```
 
 We can now register this model in the Azure Machine Learning registry:
@@ -178,13 +179,13 @@ Let's create the deployment that hosts the model:
    environment = Environment(
        name="torch200-transformers-gpu",
        conda_file="environment/torch200-conda.yaml",
-       image="mcr.microsoft.com/azureml/openmpi4.1.0-cuda11.8-cudnn8-ubuntu22.04:latest",
+       image="mcr.microsoft.com/azureml/openmpi4.1.0-cuda12.1-cudnn9-ubuntu22.04:latest",
    )
    ```
    ---
    
    > [!IMPORTANT]
-   > The environment `torch200-transformers-gpu` we've created requires a CUDA 11.8 compatible hardware device to run Torch 2.0 and Ubuntu 20.04. If your GPU device doesn't support this version of CUDA, you can check the alternative `torch113-conda.yaml` conda environment (also available on the repository), which runs Torch 1.3 over Ubuntu 18.04 with CUDA 10.1. However, acceleration using the `optimum` and `accelerate` libraries isn't supported on this configuration.
+   > The environment `torch200-transformers-gpu` we've created requires a CUDA 12.1 compatible hardware device to run Torch 2.0 on Ubuntu 22.04. Ensure that your GPU compute cluster uses a VM size that supports CUDA 12.1 or later, such as `Standard_NCasT4_v3`.
    
 1. Each deployment runs on compute clusters. They support both [Azure Machine Learning Compute clusters (AmlCompute)](./how-to-create-attach-compute-cluster.md) or [Kubernetes clusters](./how-to-attach-kubernetes-anywhere.md). In this example, our model can benefit from GPU acceleration, which is why we use a GPU cluster.
 
@@ -199,7 +200,7 @@ Let's create the deployment that hosts the model:
    compute_cluster = AmlCompute(
        name=compute_name,
        description="GPU cluster compute",
-       size="Standard_NV6",
+       size="Standard_NCasT4_v3",
        min_instances=0,
        max_instances=2,
    )
@@ -258,7 +259,7 @@ Let's create the deployment that hosts the model:
    ---
    
    > [!IMPORTANT]
-   > You'll notice in this deployment a high value in `timeout` in the parameter `retry_settings`. The reason involves the nature of the model we're running. This is a very expensive model and inference on a single row can take up to 60 seconds. The `timeout` parameter controls how much time the Batch Deployment should wait for the scoring script to finish processing each mini-batch. Since our model runs predictions row by row, processing a long file can take time. Also notice that the number of files per batch is set to 1 (`mini_batch_size=1`). This is again related to the nature of the work we're doing. Processing one file at a time per batch is expensive enough to justify it. You'll notice this being a pattern in NLP processing.
+   > You notice in this deployment a high value in `timeout` in the parameter `retry_settings`. The reason involves the nature of the model we're running. This is an expensive model and inference on a single row can take up to 60 seconds. The `timeout` parameter controls how much time the Batch Deployment should wait for the scoring script to finish processing each mini-batch. Since our model runs predictions row by row, processing a long file can take time. Also notice that the number of files per batch is set to 1 (`mini_batch_size=1`). This is again related to the nature of the work we're doing. Processing one file at a time per batch is expensive enough to justify it. You notice this being a pattern in NLP processing.
 
 1. Although you can invoke a specific deployment inside of an endpoint, you usually want to invoke the endpoint itself and let the endpoint decide which deployment to use. Such deployment is named the "default" deployment. This gives you the possibility of changing the default deployment and hence changing the model serving the deployment without changing the contract with the user invoking the endpoint. Use the following instruction to update the default deployment:
 

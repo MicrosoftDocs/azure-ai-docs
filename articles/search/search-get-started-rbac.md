@@ -1,12 +1,11 @@
 ---
 title: 'Quickstart: Keyless Connection'
-titleSuffix: Azure AI Search
 description: Learn how to use role-based access control (RBAC) to connect to an Azure AI Search service.
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 11/20/2025
+ms.date: 03/25/2026
 zone_pivot_groups: search-python-rest
 ---
 

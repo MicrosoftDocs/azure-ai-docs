@@ -19,25 +19,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Learn how to use JSON mode (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/json-mode.md)
 
-JSON mode allows you to set the model's response format to return a valid JSON object as part of a chat completion. While generating valid JSON was possible previously, there could be issues with response consistency that would lead to invalid JSON objects being generated.
-
-JSON mode guarantees valid JSON output, but it doesn't guarantee the output matches a specific schema. If you need schema guarantees, use Structured Outputs.
-
-> [!NOTE]
-> While JSON mode is still supported, when possible we recommend using [structured outputs](./structured-outputs.md). Like JSON mode structured outputs generate valid JSON, but with the added benefit that you can constrain the model to use a specific JSON schema.
-
->[!NOTE]
-> Currently Structured outputs are not supported on [bring your own data](../concepts/use-your-data.md) scenario.
-
-## JSON mode support
-
-JSON mode is only currently supported with the following models:
-
-### API support
-
-Support for JSON mode was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
+[!INCLUDE [json-mode 1](../../../foundry/openai/includes/how-to-json-mode-1.md)]
 
 ## Example
 
@@ -161,14 +145,4 @@ Failure to include "JSON" within the messages returns:
 BadRequestError: Error code: 400 - {'error': {'message': "'messages' must contain the word 'json' in some form, to use 'response_format' of type 'json_object'.", 'type': 'invalid_request_error', 'param': 'messages', 'code': None}}
 ```
 
-## Other considerations
-
-You should check `finish_reason` for the value `length` before parsing the response. The model might generate partial JSON. This means that output from the model was larger than the available max_tokens that were set as part of the request, or the conversation itself exceeded the token limit.
-
-JSON mode produces JSON that is valid and parses without error. However, there's no guarantee for
-output to match a specific schema, even if requested in the prompt.
-
-## Troubleshooting
-
-- If `finish_reason` is `length`, increase `max_tokens` (or reduce prompt length) and retry. Don't parse partial JSON.
-- If you need schema guarantees, switch to [Structured Outputs](./structured-outputs.md).
+[!INCLUDE [json-mode 2](../../../foundry/openai/includes/how-to-json-mode-2.md)]

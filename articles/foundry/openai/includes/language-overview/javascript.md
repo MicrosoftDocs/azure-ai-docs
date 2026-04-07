@@ -8,6 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 09/15/2025
 ai-usage: ai-assisted
+
+ms.custom: classic-and-new
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Reference](../../../../foundry-classic/openai/reference.md) |
@@ -38,7 +40,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
@@ -73,7 +75,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
   baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
@@ -96,7 +98,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
   baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
@@ -123,7 +125,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
   baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
@@ -156,7 +158,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
   baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider

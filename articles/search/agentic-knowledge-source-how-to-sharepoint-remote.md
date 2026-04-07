@@ -1,13 +1,9 @@
 ---
 title: Create a SharePoint (Remote) Knowledge Source
-titleSuffix: Azure AI Search
 description: Learn how to create a remote SharePoint knowledge source, which tells an agentic retrieval engine in Azure AI Search to query SharePoint sites directly.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/19/2025
+ms.date: 03/25/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 

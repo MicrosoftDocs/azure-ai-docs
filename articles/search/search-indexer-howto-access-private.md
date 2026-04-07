@@ -1,10 +1,7 @@
 ---
-title: Connect through a shared private link
-titleSuffix: Azure AI Search
+title: Connect Through a Shared Private Link
 description: Configure indexer connections to access content from other Azure resources that are protected through a shared private link.
-manager: nitinme
-author: mrcarter8
-ms.author: mcarter
+ms.reviewer: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/23/2026
@@ -94,7 +91,7 @@ When you complete the steps in this section, you have a shared private link that
 
 ### [**Azure portal**](#tab/portal-create)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Settings** on the left pane, select **Networking**.
 

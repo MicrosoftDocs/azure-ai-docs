@@ -7,9 +7,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.custom: references_regions
+ms.custom: references_regions, classic-and-new
 ms.date: 01/29/2026
 ai-usage: ai-assisted
+
 ---
 
 Use this article to get started using the OpenAI JavaScript SDK to deploy and use a vision-enabled chat model. 
@@ -108,7 +109,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
     
     // keyless authentication    
     const credential = new DefaultAzureCredential();
-    const scope = "https://cognitiveservices.azure.com/.default";
+    const scope = "https://ai.azure.com/.default";
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
     function getClient(): AzureOpenAI {

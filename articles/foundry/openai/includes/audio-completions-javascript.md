@@ -6,6 +6,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 1/21/2025
+
+ms.custom: classic-and-new
 ---
 
 [Reference documentation](https://platform.openai.com/docs/api-reference/chat) | [Library source code](https://github.com/openai/openai-node?azure-portal=true) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
@@ -72,7 +74,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     // Keyless authentication    
     const credential = new DefaultAzureCredential();
-    const scope = "https://cognitiveservices.azure.com/.default";
+    const scope = "https://ai.azure.com/.default";
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
     
     // Set environment variables or edit the corresponding values here.
@@ -216,7 +218,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     
     // Keyless authentication    
     const credential = new DefaultAzureCredential();
-    const scope = "https://cognitiveservices.azure.com/.default";
+    const scope = "https://ai.azure.com/.default";
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
     
     // Set environment variables or edit the corresponding values here.
@@ -390,7 +392,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     
     // Keyless authentication    
     const credential = new DefaultAzureCredential();
-    const scope = "https://cognitiveservices.azure.com/.default";
+    const scope = "https://ai.azure.com/.default";
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
     
     // Set environment variables or edit the corresponding values here.

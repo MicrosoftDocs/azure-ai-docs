@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
-ms.date: 02/25/2026
+ms.date: 04/01/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -15,6 +15,7 @@ ms.custom:
 ---
 
 # Agent evaluators
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 AI agents are powerful productivity assistants that can create workflows for business needs. However, observability can be a challenge due to their complex interaction patterns. Agent evaluators provide systematic observability into agentic workflows by measuring quality, safety, and performance.
@@ -51,10 +52,10 @@ Specifically, for textual outputs from agents, you can also apply RAG quality ev
 
 Examples:
 
-- [Task completion (preview) sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_completion.py)
-- [Task adherence sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
-- [Task navigation efficiency sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_navigation_efficiency.py)
-- [Intent resolution sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
+- [Task completion (preview) sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_completion.py)
+- [Task adherence sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_adherence.py)
+- [Task navigation efficiency sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_task_navigation_efficiency.py)
+- [Intent resolution sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_intent_resolution.py)
 
 ## Process evaluation
 
@@ -68,13 +69,13 @@ Process evaluation examines the quality and efficiency of each step in your agen
 
 Examples:
 
-- [Tool call accuracy sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_accuracy.py)
-- [Tool selection sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_selection.py)
-- [Tool input accuracy sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_input_accuracy.py)
-- [Tool output utilization sample](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
+- [Tool call accuracy sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_accuracy.py)
+- [Tool selection sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_selection.py)
+- [Tool input accuracy sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_input_accuracy.py)
+- [Tool output utilization sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_output_utilization.py)
 - [Tool call success sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_tool_call_success.py)
 
-## Evaluator model and tool support for agent evaluators
+## Model and tool support
 
 For AI-assisted evaluators, you can use Azure OpenAI or OpenAI [reasoning models](../../openai/how-to/reasoning.md) and non-reasoning models for the LLM judge. For complex evaluation that requires refined reasoning, we recommend `gpt-5-mini` for its balance of performance, cost, and efficiency.
 
@@ -93,6 +94,7 @@ The following tools currently have limited support. Avoid using `tool_call_accur
 - Bing Grounding
 - Bing Custom Search
 - SharePoint Grounding
+- Code Interpreter
 - Fabric Data Agent
 - Web Search
 
@@ -137,13 +139,39 @@ For more complex agent interactions with tool calls, use the conversation array 
 }
 ```
 
+### Tool definitions format
+
+The `tool_definitions` field describes the tools available to the agent. It follows the OpenAI function-calling schema — a list of tool objects, where each object contains a `type` (always `"function"`) and a `function` descriptor:
+
+```json
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "search_flights",
+      "description": "Search for available flights to a destination on a given date.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "destination": { "type": "string", "description": "The destination city." },
+          "date": { "type": "string", "description": "The travel date in YYYY-MM-DD format." }
+        },
+        "required": ["destination", "date"]
+      }
+    }
+  }
+]
+```
+
+Include this list as the `tool_definitions` field in your test dataset alongside `query` and `response`.
+
 ### Configuration example
 
 **Data mapping syntax:**
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
-- `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source.
-- `{{sample.tool_definitions}}` references tool definitions. Use this when evaluating with an agent target or agent response data source. These are auto-populated for supported built-in tools or inferred for custom functions.
+- `{{sample.output_items}}` references the agent's structured output, including tool calls and results. Use this for evaluators that need full interaction context (`task_adherence`, `tool_call_accuracy`, `tool_selection`, `tool_input_accuracy`, `tool_output_utilization`).
+- `{{sample.output_text}}` references the agent's plain text response. Use this for evaluators that expect a string response (for example, `coherence`, `violence`).
 
 Here's an example configuration for Task Adherence:
 
@@ -162,7 +190,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
@@ -175,6 +203,21 @@ Agent evaluators return Pass/Fail results with reasoning. Key output fields:
     "metric": "task_adherence",
     "label": "pass",
     "reason": "Agent followed system instructions correctly",
+    "threshold": 3,
+    "passed": true
+}
+```
+
+For evaluators that use a 1–5 scale before thresholding (such as `intent_resolution` and `tool_call_accuracy`), the output includes a numeric `score` field alongside the pass/fail result:
+
+```json
+{
+    "type": "azure_ai_evaluator",
+    "name": "Intent Resolution",
+    "metric": "intent_resolution",
+    "label": "pass",
+    "score": 4,
+    "reason": "Agent correctly identified the user's intent to book a flight to Paris",
     "threshold": 3,
     "passed": true
 }
@@ -206,6 +249,30 @@ Task Navigation Efficiency measures whether the agent took an optimal sequence o
 | `exact_match` | Agent's trajectory must match the ground truth exactly (order and content) |
 | `in_order_match` | All ground truth steps must appear in the agent's trajectory in correct order (extra steps allowed) |
 | `any_order_match` | All ground truth steps must appear in the agent's trajectory, order doesn't matter (extra steps allowed) |
+
+**Actions format:**
+
+The `actions` field takes a list of message objects that follow the OpenAI message schema. Each message represents a step the agent took during the conversation:
+
+```python
+actions = [
+    {
+        "role": "assistant",
+        "content": [
+            {"type": "function_call", "name": "call_tool_A", "arguments": "{\"param\": \"value\"}"}
+        ]
+    },
+    {
+        "role": "assistant",
+        "content": [
+            {"type": "function_call", "name": "call_tool_B", "arguments": "{}"}
+        ]
+    },
+]
+```
+
+> [!NOTE]
+> The `actions` and `expected_actions` fields use different formats. `actions` requires OpenAI message-schema dictionaries (representing the agent's actual behavior), while `expected_actions` uses a simple list of tool names (representing the ground truth).
 
 **Expected actions format:**
 
@@ -299,6 +366,6 @@ When using conversation array format, `query` and `response` follow the OpenAI m
 ## Related content
 
 - [More examples for agent quality evaluator](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators)
-- [How to run agent evaluation](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md)
-- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+- [Evaluate your AI agents](../../observability/how-to/evaluate-agent.md)
+- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
 - [How to optimize agentic RAG](https://aka.ms/optimize-agentic-rag-blog)

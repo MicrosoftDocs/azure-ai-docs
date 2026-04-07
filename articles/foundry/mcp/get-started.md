@@ -5,14 +5,16 @@ keywords: mcp, model context protocol, foundry mcp server, visual studio code
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 11/04/2025
+ms.date: 03/12/2026
 ms.topic: get-started
 ms.service: azure-ai-foundry
+ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
 # Get started with Foundry MCP Server (preview) using Visual Studio Code
-Foundry MCP Server (preview) is a cloud-hosted implementation of the Model Context Protocol (MCP). It exposes curated tools that let your agents perform read and write operations against Foundry services without calling backend APIs directly.
+
+Foundry MCP Server (preview) is a cloud-hosted implementation of the Model Context Protocol (MCP). It exposes curated tools that let your agents perform read and write operations against Foundry services without calling backend APIs directly. You don't need to deploy infrastructure — the server provides a secure, scalable endpoint with built-in authentication through Microsoft Entra ID.
 
 Use an MCP-compliant client such as Visual Studio Code to connect to the public endpoint, authenticate with Entra ID, and let LLMs access the tools. After you connect, you can build agents that invoke these tools with natural language prompts.
 
@@ -21,6 +23,8 @@ In this article, you learn how to:
 - Connect to Foundry MCP Server with GitHub Copilot in Visual Studio Code
 - Run prompts to test Foundry MCP Server tools and interact with Azure resources
 
+This guide takes about 5 minutes to complete.
+
 [!INCLUDE [preview-feature](../openai/includes/preview-feature.md)]
 
 ## Prerequisites
@@ -28,15 +32,9 @@ In this article, you learn how to:
 - Azure account with an active subscription. If you don't have one, [create a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Foundry project. If you don't have a project, create one with the [Microsoft Foundry SDK Quickstart](/azure/ai-foundry/quickstarts/get-started-code?tabs=python#first-run-experience).
 - [Visual Studio Code](https://code.visualstudio.com/download) (version 1.99 or later).
+- A [GitHub Copilot](https://github.com/features/copilot) subscription (Individual, Business, or Enterprise).
 - [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) Visual Studio Code extension.
 - Contributor or higher role on the Foundry project you want to access.
-
-## Benefits of Foundry MCP Server
-
-- **Cloud-hosted interface for AI tool orchestration**: Foundry MCP Server (preview) provides a secure, scalable endpoint for MCP-compliant clients. You don't need to deploy infrastructure, enabling seamless integration and multi-agent scenarios.
-- **Identity and access control**: The server enforces authentication and authorization with Microsoft Entra ID. It performs all operations within the authenticated user's permissions (On-Behalf-Of flow).
-- **Scenario-focused, extensible tools**: Foundry MCP Server exposes a growing set of tools for read and write operations on models, deployments, evaluations, and agents in Foundry. The tools are extensible, letting developers and agents interact with services without knowing backend APIs or data schemas.
-- **Accelerated agent and developer productivity**: Natural language workflows (via MCP clients and large language models) enable rapid tool discovery and invocation, streamlining development and multi-agent orchestration.
 
 ## Install and start Foundry MCP Server
 
@@ -47,8 +45,8 @@ Select an option to install Foundry MCP Server in Visual Studio Code.
 Install Foundry MCP Server in your user profile so it's available to all workspaces in Visual Studio Code.
 
 1. Open the **Command Palette** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
-1. Search for **MCP:Add Server**.
-1. Select the **HTTP (Http or Server-Sent Events)** option.
+1. Search for **MCP: Add Server**.
+1. Select the **HTTP (HTTP or Server-Sent Events)** option.
 1. Enter `https://mcp.ai.azure.com` as the URL.
 1. Enter a friendly name such as *foundry-mcp-remote*, then press <kbd>Enter</kbd>. Visual Studio Code adds the following server entry under your user profile:
 
@@ -64,8 +62,9 @@ Install Foundry MCP Server in your user profile so it's available to all workspa
     ```
 
 1. Open the **Command Palette** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
-1. Search for and select **MCP:List Servers**.
+1. Search for and select **MCP: List Servers**.
 1. Select Foundry MCP Server you added and choose **Start Server**.
+1. A green indicator appears next to the server name in **MCP: List Servers**, confirming the connection is active.
 1. When prompted, sign in to Azure so the MCP server can interact with services in your subscription.
 1. Open GitHub Copilot and select **Agent Mode**.
 1. Select the tools icon, search for *Foundry* to filter the list, and confirm the server appears.
@@ -85,7 +84,7 @@ Install Foundry MCP Server for a specific workspace to scope it to that folder:
     ```json
     { 
       "servers": { 
-        "azure-ai-foundry-mcp-preview": { 
+        "foundry-mcp-remote": { 
           "type": "http", 
           "url": "https://mcp.ai.azure.com" 
         } 
@@ -94,7 +93,8 @@ Install Foundry MCP Server for a specific workspace to scope it to that folder:
     ```
 
 1. Save your changes to `mcp.json`.
-1. Select the **Start** button above the new server entry. 
+1. Select the **Start** button above the new server entry.
+1. A green indicator appears next to the server name, confirming the connection is active.
 1. When prompted, sign in so the MCP server can interact with services in your subscription.
 1. Open GitHub Copilot and select Agent Mode.
 1. Select the tools icon, search for *Foundry* to filter the results, and confirm the server appears.
@@ -148,7 +148,7 @@ Install Foundry MCP Server for a specific workspace to scope it to that folder:
 | Foundry tools don't appear in Agent Mode | Confirm the server is running (green indicator in **MCP: List Servers**). Check that you selected **Agent Mode** in the Copilot chat panel, then select the tools icon and search for *Foundry*. |
 | "Access denied" or permission errors | Verify you have Contributor or higher role on the Foundry project. The server uses On-Behalf-Of flow with your Entra ID credentials. |
 
-## Remove Foundry MCP Server
+## Clean up resources
 
 To remove the server configuration:
 
@@ -156,6 +156,9 @@ To remove the server configuration:
 - **Workspace**: Delete the server entry from the `.vscode/mcp.json` file in your project folder.
 
 ## Related content
+
+> [!div class="nextstepaction"]
+> [Foundry MCP Server tools and example prompts](available-tools.md)
 
 * [Foundry MCP Server security and best practices](security-best-practices.md)
 * [Foundry MCP Server tools and example prompts](available-tools.md)

@@ -22,7 +22,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Manage and increase quotas for resources with Microsoft Foundry (Foundry projects) (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/quota.md)
 
 > [!TIP]
 > An alternate hub-focused quota article is available: [Manage and increase quotas for hub resources](hub-quota.md).
@@ -31,19 +31,7 @@ Quota provides the flexibility to actively manage the allocation of rate limits 
 
 This article walks through the process of managing quota for your Microsoft Foundry Models deployed in a Foundry project, including how to view current allocations and request increases.
 
-## Prerequisites
-
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
-- A [Foundry project](../how-to/create-projects.md).
-- **Cognitive Services Usages Reader** role at the subscription level, to view quota allocations.
-- **Owner** or **Contributor** role on the subscription, to request quota increases.
-- **Cognitive Services Contributor** role combined with **Cognitive Services Usages Reader**, to edit quota allocations in the Foundry portal.
-
-## Foundry shared quota 
-
-Foundry provides a pool of shared quota that different users across various regions can use concurrently. Depending on availability, users can temporarily access quota from the shared pool and use the quota to perform testing for a limited amount of time. The specific time duration depends on the use case. By temporarily using quota from the quota pool, you no longer need to file a support ticket for a short-term quota increase or wait for your quota request to be approved before you can proceed with your workload. 
-
-You can use the shared quota pool for testing inferencing for Foundry Models from the model catalog. Use the shared quota only for creating temporary test endpoints, not production endpoints. For endpoints in production, you should [request dedicated quota](#view-and-request-quotas-in-foundry-portal). Billing for shared quota is usage-based. 
+[!INCLUDE [quota 1](../../foundry/includes/how-to-quota-1.md)]
 
 ## View and request quotas in Foundry portal
 
@@ -73,16 +61,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 > [!NOTE]
 > After you edit a quota allocation or submit a request, allow up to 15 minutes for changes to propagate. Refresh the **Quota** page to verify the updated allocation.
 
-## Troubleshooting
-
-If you encounter issues when viewing or requesting quotas, try these solutions:
-
-| Issue | Solution |
-| ----- | -------- |
-| Quota page is empty or shows no allocations | Verify that you have **Cognitive Services Usages Reader** role at the subscription level. Check that you're viewing the correct subscription in the portal. |
-| **Request quota** button is disabled | Verify that you have **Owner** or **Contributor** role on the subscription. Some model and region combinations might not support quota increases. |
-| Quota change not reflected after approval | Quota changes can take up to 15 minutes to propagate. Refresh the **Quota** page. If the issue persists after 24 hours, contact [Azure support](https://azure.microsoft.com/support/options/). |
-| Can't find quota for a specific model | Check regional availability. Not all models are available in all regions. See [Region support](../reference/region-support.md). |
+[!INCLUDE [quota 2](../../foundry/includes/how-to-quota-2.md)]
 
 ## Related content
 
@@ -92,4 +71,3 @@ If you encounter issues when viewing or requesting quotas, try these solutions:
 - [Manage and increase quotas for hub resources](hub-quota.md)
 - [Plan to manage costs](./costs-plan-manage.md)
 - [Create a project](../how-to/create-projects.md)
-

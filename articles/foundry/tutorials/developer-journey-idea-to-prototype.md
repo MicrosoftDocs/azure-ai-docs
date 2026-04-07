@@ -3,12 +3,13 @@ title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
 description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry."
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 02/10/2026
+ms.date: 03/31/2026
 ms.author: jburchel
 author: jonburchel
 ms.reviewer: dantaylo
 ai-usage: ai-assisted
 #customer intent: As a developer I want to quickly prototype an enterprise-grade agent with real data, tools, evaluation, and a deployment path so I can validate feasibility before scaling.
+ms.custom: doc-kit-assisted
 ---
 
 # Tutorial: Idea to prototype - Build and evaluate an enterprise agent
@@ -152,8 +153,8 @@ enterprise-agent-tutorial/
    │   ├── Program.cs                   # Agent implementation with SharePoint + MCP
    │   ├── ModernWorkplaceAssistant.csproj
    │   └── .env                         # Environment variables (create this)
-   ├── Evaluate/                        # Cloud evaluation framework
-   │   ├── Program.cs                   # Cloud evaluation with built-in evaluators
+   ├── Evaluate/                        # Batch evaluation framework
+   │   ├── Program.cs                   # Batch evaluation with built-in evaluators
    │   ├── Evaluate.csproj
    │   └── evaluation_results.json      # Example output (generated)
    ├── questions.jsonl                  # Business test scenarios
@@ -173,10 +174,8 @@ Start by running the agent so you see working functionality before diving into i
 1. Verify that your `requirements.txt` uses these published package versions:
 
    ```text
-   azure-ai-projects==2.0.0b3
-   azure-identity
+   azure-ai-projects>=2.0.0
    python-dotenv
-   openai
    ```
 
 1. Install dependencies:
@@ -219,8 +218,8 @@ Create a `.env` file in the `ModernWorkplaceAssistant` directory.
 
 ```dotenv
 # Foundry configuration
-PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
-MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+FOUNDRY_PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+FOUNDRY_MODEL_NAME=gpt-4o-mini
 
 # The Microsoft Learn MCP Server (optional)
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
@@ -233,8 +232,8 @@ SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
 
 ```dotenv
 # Foundry configuration
-PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
-MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+FOUNDRY_PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+FOUNDRY_MODEL_NAME=gpt-4o-mini
 
 # SharePoint integration (optional - requires connection name)
 SHAREPOINT_CONNECTION_NAME=<your-sharepoint-connection-name>
@@ -245,7 +244,7 @@ MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 
 ---
 
-   Confirm `.env` contains valid values by opening the file and verifying that `PROJECT_ENDPOINT` starts with `https://` and `MODEL_DEPLOYMENT_NAME` matches the name of a deployed model in your project.
+   Confirm `.env` contains valid values by opening the file and verifying that `FOUNDRY_PROJECT_ENDPOINT` starts with `https://` and `FOUNDRY_MODEL_NAME` matches the name of a deployed model in your project.
 
 > [!TIP]
 > To get your **tenant ID**, run:
@@ -513,9 +512,9 @@ Conditional Access policies act as "if-then" statements that enforce organizatio
 🔗 Next: Add evaluation metrics, monitoring, and production deployment
 ```
 
-## Step 4: Evaluate the assistant by using cloud evaluation
+## Step 4: Evaluate the assistant by using batch evaluation
 
-The evaluation framework tests realistic business scenarios by using the **cloud evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`, `builtin.fluency`, `builtin.task_adherence`) and the `openai_client.evals` API to run scalable, repeatable evaluations in the cloud.
+The evaluation framework tests realistic business scenarios by using the **batch evaluation** capability of the Microsoft Foundry SDK. Instead of a custom local approach, this pattern uses the built-in evaluators (`builtin.violence`, `builtin.fluency`, `builtin.task_adherence`) and the `openai_client.evals` API to run scalable, repeatable evaluations in the cloud.
 
 This evaluation framework demonstrates:
 
@@ -527,14 +526,14 @@ This evaluation framework demonstrates:
 The code breaks down into the following main sections:
 
 1. [Configure the evaluation](#configure-the-evaluation).
-1. [Run the cloud evaluation](#run-the-cloud-evaluation).
+1. [Run the batch evaluation](#run-the-batch-evaluation).
 1. [Retrieve evaluation results](#retrieve-evaluation-results).
 
 > [!TIP]
-> For detailed guidance on cloud evaluations, see [Run evaluations in the cloud](../how-to/develop/cloud-evaluation.md). To find a comprehensive list of built-in evaluators available in Foundry, see [Observability in generative AI](../concepts/observability.md). 
+> For detailed guidance on batch evaluations, see [Run evaluations in the cloud](../how-to/develop/cloud-evaluation.md). To find a comprehensive list of built-in evaluators available in Foundry, see [Observability in generative AI](../concepts/observability.md). 
 
 > [!NOTE]
-> The C# sample uses a local batch evaluation approach with `ProjectResponsesClient` instead of the cloud `openai_client.evals` API shown in Python. It sends queries to the agent, checks responses against expected keywords, and writes results to `evaluation_results.json`. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects/samples/Sample21_Evaluations.md) for cloud evaluation patterns in C#.
+> The C# sample uses a local batch evaluation approach with `ProjectResponsesClient` instead of the cloud `openai_client.evals` API shown in Python. It sends queries to the agent, checks responses against expected keywords, and writes results to `evaluation_results.json`. See the [C# Evaluations SDK sample](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/samples/Evaluations) for cloud evaluation patterns in C#.
 
 ### Configure the evaluation
 
@@ -558,7 +557,7 @@ The `testing_criteria` array specifies which evaluators to run:
 - `builtin.fluency`: Assesses response quality and readability (requires a model deployment).
 - `builtin.task_adherence`: Evaluates whether the agent followed instructions correctly.
 
-### Run the cloud evaluation
+### Run the batch evaluation
 
 Create an evaluation run that targets your agent. The `azure_ai_target_completions` data source sends queries to your agent and captures responses for evaluation:
 
@@ -599,7 +598,7 @@ Each output item includes:
 - **Score**: Numeric score on the evaluator's scale
 - **Reason**: Explanation of why the score was assigned (for LLM-based evaluators)
 
-### Expected output from cloud evaluation (evaluate.py)
+### Expected output from batch evaluation (evaluate.py)
 
 When you run the evaluation script, you see output similar to the following example. The output shows the evaluation object creation, run submission, and results retrieval:
 
@@ -632,7 +631,7 @@ Agent deleted
 
 ### Understanding evaluation results
 
-Cloud evaluations provide structured results that you can view in the Foundry portal or retrieve programmatically. Each output item includes:
+Batch evaluations provide structured results that you can view in the Foundry portal or retrieve programmatically. Each output item includes:
 
 | Field | Description |
 | ------- | ------------- |
@@ -650,14 +649,14 @@ Cloud evaluations provide structured results that you can view in the Foundry po
 You can also view detailed results in the Foundry portal by selecting **Evaluation** from your project and selecting the evaluation run. The portal provides visualizations, filtering, and export options.
 
 > [!TIP]
-> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../how-to/evaluation-azure-devops.md), and [Continuously evaluate your AI agents](../../foundry-classic/how-to/continuous-evaluation-agents.md) for integration patterns.
+> For production scenarios, consider running evaluations as part of your CI/CD pipeline. See [How to run an evaluation in Azure DevOps](../how-to/evaluation-azure-devops.md), and [Continuously evaluate your AI agents](../observability/how-to/how-to-monitor-agents-dashboard.md) for integration patterns.
 
 ## Troubleshooting
 
 | Symptom | Cause | Resolution |
 |---------|-------|------------|
 | `DefaultAzureCredential` authentication error | Azure CLI session expired or not signed in | Run `az login` and retry |
-| `Model deployment not found` | Model name in `.env` doesn't match a deployment in your project | Open your project in the Foundry portal, check **Deployments**, and update `MODEL_DEPLOYMENT_NAME` in `.env` |
+| `Model deployment not found` | Model name in `.env` doesn't match a deployment in your project | Open your project in the Foundry portal, check **Deployments**, and update `FOUNDRY_MODEL_NAME` in `.env` |
 | `SharePoint tool configured` but agent can't find documents | Documents not uploaded or connection name incorrect | Verify documents appear in the SharePoint library and that `SHAREPOINT_CONNECTION_NAME` matches the connection in your project |
 | MCP tool timeout or connection error | Microsoft Learn MCP server is unreachable | Verify `MCP_SERVER_URL` is set to `https://learn.microsoft.com/api/mcp` and that your network allows outbound HTTPS |
 | `403 Forbidden` on SharePoint | Insufficient permissions on the SharePoint site | Confirm your signed-in identity has at least **Read** access to the SharePoint document library |
@@ -677,7 +676,7 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 
 ### Suggested additional enhancements
 - Add more data sources ([Azure AI Search](../agents/how-to/tools/ai-search.md), [other sources](../how-to/connections-add.md)).
-- Implement advanced evaluation methods ([AI-assisted evaluation](../../foundry-classic/how-to/develop/evaluate-sdk.md)).
+- Implement advanced evaluation methods ([AI-assisted evaluation](../observability/how-to/evaluate-agent.md)).
 - Create [custom tools](../agents/how-to/private-tool-catalog.md) for business-specific operations.
 - Add [conversation memory and personalization](/azure/cosmos-db/gen-ai/azure-agent-service).
 
@@ -685,8 +684,8 @@ This tutorial demonstrates **Stage 1** of the developer journey - from idea to p
 
 - [Implement safety assessment with red-team testing](../how-to/develop/run-scans-ai-red-teaming-agent.md).
 - [Create comprehensive evaluation datasets with quality metrics](../fine-tuning/data-generation.md).
-- [Apply organization-wide governance policies and model comparison](../../foundry-classic/how-to/built-in-policy-model-deployment.md).
-- [Configure fleet monitoring, CI/CD integration, and production deployment endpoints](../../foundry-classic/concepts/deployments-overview.md).
+- [Apply organization-wide governance policies and model comparison](../how-to/model-deployment-policy.md).
+- [Configure fleet monitoring, CI/CD integration, and production deployment endpoints](../foundry-models/concepts/deployment-types.md).
 
 ### Stage 3: Production to adoption
 

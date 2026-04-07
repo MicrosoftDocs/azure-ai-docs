@@ -40,7 +40,7 @@ items:
    - name: View evaluation results in the portal
      href: ../../how-to/evaluate-results.md
      displayName: accuracy,metrics
-   - name: Evaluation Cluster Analysis
+   - name: Analyze evaluation results
      href: ../../observability/how-to/cluster-analysis.md
    - name: Human evaluation for agents
      href: ../../observability/how-to/human-evaluation.md
@@ -78,5 +78,7 @@ items:
      href: ../../observability/concepts/trace-agent-concept.md
    - name: Set up tracing
      href: ../../observability/how-to/trace-agent-setup.md
+   - name: Add client-side tracing
+     href: ../../observability/how-to/trace-agent-client-side.md
    - name: Tracing integrations
      href: ../../observability/how-to/trace-agent-framework.md

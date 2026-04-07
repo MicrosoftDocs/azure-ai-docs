@@ -9,6 +9,7 @@ author: mesameki
 description: "Learn how Microsoft Foundry Control Plane provides unified visibility, governance, and control for AI agents, models, and tools across your enterprise."
 ai-usage: ai-assisted
 #customer intent: As an enterprise administrator or AI developer, I want to understand what Foundry Control Plane is and how it provides unified visibility across my AI agent fleet so that I can determine if it meets my governance and operational needs.
+ms.custom: doc-kit-assisted
 ---
 
 # What is Microsoft Foundry Control Plane?
@@ -24,7 +25,7 @@ In this article, you learn what Foundry Control Plane offers, including fleet ma
 
 To explore Foundry Control Plane, you need:
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Foundry project. For more information, see [Create a project](../how-to/create-projects.md).
 - An [AI gateway configured](../configuration/enable-ai-api-management-gateway-portal.md) for advanced governance features.
 - Appropriate Azure role-based access control (RBAC) permissions for your subscription. <!-- TO VERIFY: Confirm required RBAC roles -->
@@ -63,7 +64,7 @@ Foundry Control Plane supports the following tasks.
 
 - Correlate alerts, evaluation results, and trace data to identify problems quickly.
 
-- [Continuously evaluate](../../foundry-classic/how-to/continuous-evaluation-agents.md) agent performance, quality, and risk dimensions. Risk dimensions might include [task adherence, intent resolution, tool call success](../concepts/evaluation-evaluators/agent-evaluators.md), [groundedness](../concepts/evaluation-evaluators/rag-evaluators.md), sensitive data leakage, and exposure to jailbreak and cross-domain prompt injection attacks (XPIAs).
+- [Continuously evaluate](../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation) agent performance, quality, and risk dimensions. Risk dimensions might include [task adherence, intent resolution, tool call success](../concepts/evaluation-evaluators/agent-evaluators.md), [groundedness](../concepts/evaluation-evaluators/rag-evaluators.md), sensitive data leakage, and exposure to jailbreak and cross-domain prompt injection attacks (XPIAs).
 
 - Use the [AI Red Teaming Agent](../concepts/ai-red-teaming-agent.md) and [cluster analysis](../observability/how-to/cluster-analysis.md) for automated vulnerability probing and error root-cause discovery.
 
@@ -112,7 +113,7 @@ Use the **Assets** pane to track, analyze, and manage every agent, model, and to
 This pane provides a unified, searchable table of all AI assets across projects within a subscription. It brings together critical metadata and health indicators, so you can assess and act on your AI resources efficiently. You can:
 
 - Filter and sort by key attributes such as version, tags, health score (percentage), cost, alerts, and token usage to locate assets quickly.
-- Drill down from any entry in the agent inventory table into the [Evaluation](../../foundry-classic/how-to/continuous-evaluation-agents.md) or [Monitoring](../../foundry-classic/how-to/monitor-applications.md) tab for pre-deployment and post-deployment insights.
+- Drill down from any entry in the agent inventory table into the [Evaluation](../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation) or [Monitoring](../observability/how-to/how-to-monitor-agents-dashboard.md) tab for pre-deployment and post-deployment insights.
 - Surface inline recommendations to refine prompts, upgrade models, or optimize configurations based on performance and cost signals.
 - Correlate runtime logs with evaluation results to uncover root causes of errors or performance degradation.
 - Visualize drift, latency, and error clusters across runs or builds to detect emerging issues early.
@@ -171,4 +172,4 @@ Foundry Control Plane is available in the Foundry portal. To start using Foundry
 - [Manage compliance and security in Microsoft Foundry](how-to-manage-compliance-security.md): Enforce responsible AI policies, integrate Defender and Microsoft Purview signals, and respond to compliance alerts.
 - [Optimize model cost and performance](how-to-optimize-cost-performance.md): Analyze cost drivers, token usage, and resource consumption to maximize the return on investment from your agent fleet.
 - [Manage agents at scale](how-to-manage-agents.md): Track and manage agents from supported platforms in one unified view.
-- [Continuously evaluate your AI agents (preview)](../../foundry-classic/how-to/continuous-evaluation-agents.md): Monitor agent performance, quality, and risk dimensions automatically.
+- [Continuously evaluate your AI agents (preview)](../observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation): Monitor agent performance, quality, and risk dimensions automatically.

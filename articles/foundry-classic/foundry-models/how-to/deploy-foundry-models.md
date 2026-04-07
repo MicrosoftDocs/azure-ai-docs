@@ -20,23 +20,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Deploy Microsoft Foundry Models in the Foundry portal (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/foundry-models/how-to/deploy-foundry-models.md)
 
-In this article, you learn how to use the Foundry portal to deploy a Foundry Model in a Foundry resource for inference. Foundry Models include models such as Azure OpenAI models, Meta Llama models, and more. After you deploy a Foundry Model, you can interact with it in the Foundry Playground and use it from code.
-
-This article uses a Foundry Model from partners and community `Llama-3.2-90B-Vision-Instruct` for illustration. Models from partners and community require that you subscribe to Azure Marketplace before deployment. On the other hand, Foundry Models sold directly by Azure, such as Azure OpenAI in Foundry Models, don't have this requirement. For more information about Foundry Models, including the regions where they're available for deployment, see [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) and [Foundry Models from partners and community](../concepts/models-from-partners.md).
-
-## Prerequisites
-
-To complete this article, you need:
-
-- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can [upgrade to Foundry Models](quickstart-github-models.md) and create an Azure subscription in the process.
-
-- The **Cognitive Services Contributor** role or equivalent permissions on the Foundry resource to create and manage deployments. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
-
-- A [Microsoft Foundry project](../../how-to/create-projects.md). This kind of project is managed under a Foundry resource.
-
-- [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure you have the [permissions required to subscribe to model offerings](configure-marketplace.md). [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
+[!INCLUDE [deploy-foundry-models 1](../../../foundry/foundry-models/includes/how-to-deploy-foundry-models-1.md)]
 
 ## Deploy a model
 
@@ -93,43 +79,4 @@ You can interact with the new model in the Foundry portal by using the playgroun
 
 1. Use **View code** to see details about how to access the model deployment programmatically.
 
-## Use the model with code
-
-To run inference on the deployed model, see the following examples:
-
-- To use the **Responses API with Foundry Models sold directly by Azure**, such as Microsoft AI, DeepSeek, and Grok models, see [How to generate text responses with Microsoft Foundry Models](generate-responses.md).
-
-- To use the **Responses API with OpenAI models**, see [Getting started with the responses API](../../openai/how-to/responses.md).
-
-- To use the **Chat completions API with models sold by partners**, such as the Llama model deployed in this article, see [Model support for chat completions](../../openai/api-version-lifecycle.md#model-support).
-
-## Regional availability and quota limits of a model
-
-For Foundry Models, the default quota varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI in Microsoft Foundry Models quotas and limits](../../openai/quotas-limits.md) and [Microsoft Foundry Models quotas and limits](../quotas-limits.md).
-
-## Quota for deploying and running inference on a model
-
-For Foundry Models, deploying and running inference consume quota that Azure assigns to your subscription on a per-region, per-model basis in units of Tokens-per-Minute (TPM). When you sign up for Foundry, you receive default quota for most of the available models. Then, you assign TPM to each deployment as you create it, which reduces the available quota for that model. You can continue to create deployments and assign them TPMs until you reach your quota limit.
-
-When you reach your quota limit, you can only create new deployments of that model if you:
-
-- Request more quota by submitting a [quota increase form](https://aka.ms/oai/stuquotarequest).
-- Adjust the allocated quota on other model deployments in the Foundry portal, to free up tokens for new deployments.
-
-For more information about quota, see [Microsoft Foundry Models quotas and limits](../quotas-limits.md) and [Manage Azure OpenAI quota](../../openai/how-to/quota.md?tabs=rest).
-
-## Troubleshooting
-
-| Issue | Resolution |
-| --- | --- |
-| Quota exceeded | [Request more quota](https://aka.ms/oai/stuquotarequest) or reallocate TPM from existing deployments. |
-| Region not supported | Check [regional availability](../quotas-limits.md) and deploy in a supported region. |
-| Marketplace subscription error | Verify you have the [required permissions](configure-marketplace.md) to subscribe to Azure Marketplace offerings. |
-| Deployment status shows **Failed** | Confirm that the model is available in your selected region and that you have sufficient quota. |
-
-## Related content
-
-- [How to generate text responses with Microsoft Foundry Models](generate-responses.md)
-- [Deployment types for Foundry Models](../concepts/deployment-types.md)
-- [Deploy models using Azure CLI and Bicep](create-model-deployments.md)
-- [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
+[!INCLUDE [deploy-foundry-models 2](../../../foundry/foundry-models/includes/how-to-deploy-foundry-models-2.md)]

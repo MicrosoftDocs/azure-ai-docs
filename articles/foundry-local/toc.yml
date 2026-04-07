@@ -17,7 +17,7 @@ items:
     href: how-to/how-to-use-native-chat-completions.md
   - name: Use chat completions via REST server
     href: how-to/how-to-integrate-with-inference-sdks.md
-  - name: Transcribe recorded audio files
+  - name: Transcribe audio (speech-to-text)
     href: how-to/how-to-transcribe-audio.md
   - name: Integrate with LangChain
     href: how-to/how-to-use-langchain-with-foundry-local.md
@@ -33,7 +33,14 @@ items:
   - name: Foundry Local CLI
     href: reference/reference-cli.md
   - name: Foundry Local SDK
-    href: reference/reference-sdk.md
+    expanded: true
+    items:
+    - name: SDK guide
+      href: reference/reference-sdk-current.md
+    - name: Legacy SDK
+      href: reference/reference-sdk-legacy.md
+    - name: Guidance for migrating from the legacy SDK
+      href: reference/reference-sdk-migration.md
   - name: APIs
     items:
     - name: REST API

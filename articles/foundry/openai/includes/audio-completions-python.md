@@ -6,6 +6,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 1/21/2025
+
+ms.custom: classic-and-new
 ---
 
 [Library source code](https://github.com/openai/openai-python/tree/main/src/openai) | [Package](https://github.com/openai/openai-python) | [Samples](https://github.com/openai/openai-python/tree/main/examples)
@@ -94,7 +96,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     from openai import AzureOpenAI
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
     
-    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
     
     # Set environment variables or edit the corresponding values here.
     endpoint = os.environ['AZURE_OPENAI_ENDPOINT']
@@ -202,7 +204,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     from openai import AzureOpenAI
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
     
-    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
     
     # Set environment variables or edit the corresponding values here.
     endpoint = os.environ['AZURE_OPENAI_ENDPOINT']
@@ -342,7 +344,7 @@ The script generates a transcript of the summary of the spoken audio input. It a
     from openai import AzureOpenAI 
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
     
-    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    token_provider=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
     
     # Set environment variables or edit the corresponding values here.
     endpoint = os.environ['AZURE_OPENAI_ENDPOINT']

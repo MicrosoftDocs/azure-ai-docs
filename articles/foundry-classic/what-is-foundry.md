@@ -1,5 +1,5 @@
 ---
-title: "What is Microsoft Foundry? (classic)"
+title: "What is Microsoft Foundry (classic) portal"
 description: "Microsoft Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way. (classic)"
 author: sdgilley
 ms.author: sgilley
@@ -22,40 +22,13 @@ keywords:
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 
-# What is Microsoft Foundry? (classic)
+# What is Microsoft Foundry (classic) portal?
 
-[!INCLUDE [classic-banner](includes/classic-banner.md)]
-
-**Microsoft Foundry** is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
-
-Microsoft Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
-
-> [!TIP]
-> Azure AI Foundry is now Microsoft Foundry. Screenshots appearing throughout this documentation are in the process of being updated.
->
+This article covers the **Foundry (classic)** portal and APIs. For the current platform experience, see [What is Microsoft Foundry?](../foundry/what-is-foundry.md).
 
 [!INCLUDE [foundry-portals](../foundry/includes/foundry-portals.md)]
 
-## Microsoft Foundry (classic)
-
-[!INCLUDE [classic-link](../foundry/includes/classic-link.md)] (classic) is designed for developers to:
-
-- Build generative AI applications and AI agents on an enterprise-grade platform.
-- Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
-- Collaborate with a team for the full life-cycle of application development.
-- Work across model providers with a consistent API contract.
-
-With Microsoft Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Microsoft Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
-
-## Work in a Foundry project
-
-A Foundry project is where you do most of your development work. You can work with your project in the Foundry portal, or use the SDK in your preferred development environment.
-
- Foundry projects provide developers with self-serve capabilities to independently create new environments for exploring ideas and building prototypes, while managing data in isolation. Projects act as secure units of isolation and collaboration where agents share file storage, thread storage (conversation history), and search indexes. You can also bring your own Azure resources for compliance and control over sensitive data.
-
-## Disable preview features
-
-Use your organization controls to limit production environments to general availability supported capabilities, and validate current feature status before rollout decisions. For role-based control guidance, see [Disable preview features by using role-based access control](./concepts/disable-preview-features-with-rbac.md). For tag-based suppression in the Foundry portal, see [Hide preview features with Azure tags](./how-to/disable-preview-features.md).
+[!INCLUDE [previous-current](../foundry/includes/previous-current.md)]
 
 ## Microsoft Foundry API and SDKs
 
@@ -67,6 +40,58 @@ The [Microsoft Foundry API](/rest/api/aifoundry/) is designed specifically for b
 - Java (preview)
 
 The [Microsoft Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
+
+## Foundry (classic) portal
+
+[!INCLUDE [foundry-link](../foundry/includes/foundry-link.md)] (classic) portal supports hub-based projects, Foundry projects, and Azure OpenAI resources. Use the classic portal when you need features not yet available in the current portal, such as prompt flow or managed compute model deployments.
+
+The Foundry (classic) portal provides access to all resource types, including hub-based projects, Foundry projects, and Azure OpenAI resources. To use the classic portal, turn off the **New Foundry** toggle in the portal banner.
+
+:::image type="icon" source="../foundry/media/version-banner/classic-foundry.png" alt-text="Screenshot of New Foundry toggle in the banner turned off for Foundry (classic) portal.":::
+
+### Work in a Foundry project
+
+A Foundry project is where you do most of your development work. You can work with your project in the Foundry portal, or use the SDK in your preferred development environment.
+
+ Foundry projects provide developers with self-serve capabilities to independently create new environments for exploring ideas and building prototypes, while managing data in isolation. Projects act as secure units of isolation and collaboration where agents share file storage, thread storage (conversation history), and search indexes. You can also bring your own Azure resources for compliance and control over sensitive data.
+
+### Disable preview features
+
+Use your organization controls to limit production environments to general availability supported capabilities, and validate current feature status before rollout decisions. For guidance on hiding preview features with tags or blocking them with custom RBAC roles, see [Disable preview features in Microsoft Foundry](../foundry/how-to/disable-preview-features.md).
+
+### Navigate in the Foundry (classic) portal
+
+In the Foundry (classic) portal, you can navigate among all your resources using the breadcrumbs at the top of the page. The breadcrumbs show recent resources, along with a link to all resources. 
+
+The left pane is organized around your goals. Generally, as you develop with Azure AI, you'll likely go through a few distinct stages of project development:
+
+* **Define and explore**. In this stage you define your project goals, and then explore and test models and services against your use case to find the ones that enable you to achieve your goals.
+* **Build and customize**. In this stage, you're actively building solutions and applications with the models, tools, and capabilities you selected. You can also customize models to perform better for your use case by fine-tuning, grounding in your data, and more. Building and customizing might be something you choose to do in the Foundry portal, or through code and the Foundry SDKs. Either way, a project provides you with everything you need.
+  * Once you're actively developing in your project, the **Overview** page shows the things you want easy access to, like your endpoints and keys.
+* **Observe and improve**. In this stage, you're looking for where you can improve your application's performance. You might choose to use tools like tracing to debug your application or compare evaluations to hone in on how you want your application to behave. You can also integrate with safety & security systems so you can be confident when you take your application to production.
+
+If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
+ 
+### Customize the left pane
+
+The left pane of the Foundry (classic) portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
+
+Pin or unpin items into the left pane. When you unpin an item, it's hidden from the left pane but can be found again in the **...More** menu.
+
+* Select **... More** at the bottom of the pane to see items to pin and unpin.
+* Customize each project separately. The left pane isn't shared across projects.
+* The left pane isn't shared across users. Each user customizes their own left pane for each project. 
+
+### Management center
+
+The management center is a part of the Foundry (classic) portal that streamlines governance and management activities. In the management center, you can view and manage:
+
+- Projects and resources
+- Quotas and usage metrics
+- Govern access and permissions
+
+For more information, see [Management center overview](./concepts/management-center.md).
+
 
 ## Types of projects
 
@@ -109,7 +134,7 @@ This table summarizes features available in the two project types:
 | Bring-your-own Storage for Agent service | ✅ | ✅ |
 | Prompt flow | | ✅ |
 
-*New feature enhancements primarily land on the [Microsoft Foundry resource type](../ai-foundry/concepts/resource-types.md). 
+*New feature enhancements primarily land on the [Microsoft Foundry resource type](../ai-foundry/concepts/resource-types.md). [Migrate from hub-based to Foundry projects (classic)](how-to/migrate-project.md).
 
 ### How do I know which type of project I have?
 
@@ -129,39 +154,6 @@ Here are some of the ways to identify your project type:
 
     :::image type="content" source="media/how-to/projects/all-resources.png" alt-text="Screenshot shows both a Foundry and hub-based project in the All Resources page.":::
 
-## Navigate in the Foundry (classic) portal
-
-In the Foundry (classic) portal, you can navigate among all your resources using the breadcrumbs at the top of the page. The breadcrumbs show recent resources, along with a link to all resources. 
-
-The left pane is organized around your goals. Generally, as you develop with Azure AI, you'll likely go through a few distinct stages of project development:
-
-* **Define and explore**. In this stage you define your project goals, and then explore and test models and services against your use case to find the ones that enable you to achieve your goals.
-* **Build and customize**. In this stage, you're actively building solutions and applications with the models, tools, and capabilities you selected. You can also customize models to perform better for your use case by fine-tuning, grounding in your data, and more. Building and customizing might be something you choose to do in the Foundry portal, or through code and the Foundry SDKs. Either way, a project provides you with everything you need.
-  * Once you're actively developing in your project, the **Overview** page shows the things you want easy access to, like your endpoints and keys.
-* **Observe and improve**. In this stage, you're looking for where you can improve your application's performance. You might choose to use tools like tracing to debug your application or compare evaluations to hone in on how you want your application to behave. You can also integrate with safety & security systems so you can be confident when you take your application to production.
-
-If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
- 
-## Customize the left pane
-
-The left pane of the Foundry (classic) portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
-
-Pin or unpin items into the left pane. When you unpin an item, it's hidden from the left pane but can be found again in the **...More** menu.
-
-* Select **... More** at the bottom of the pane to see items to pin and unpin.
-* Customize each project separately. The left pane isn't shared across projects.
-* The left pane isn't shared across users. Each user customizes their own left pane for each project. 
-
-## Management center
-
-The management center is a part of the Foundry (classic) portal that streamlines governance and management activities. In the management center, you can view and manage:
-
-- Projects and resources
-- Quotas and usage metrics
-- Govern access and permissions
-
-For more information, see [Management center overview](./concepts/management-center.md).
-
 ## Pricing and billing
 
 Microsoft Foundry is monetized through individual products customers access and consume in the platform, including API and models, complete AI toolchain, and responsible AI and enterprise grade production at scale products. Each product has its own billing model and price. 
@@ -176,7 +168,7 @@ Foundry is available in most regions where Foundry Tools are available. For more
 
 ## How to get access
 
-You can [explore Foundry portal (classic) (including the model catalog)](./concepts/foundry-models-overview.md) without signing in. 
+You can [explore Foundry  (classic) portal (including the model catalog)](./concepts/foundry-models-overview.md) without signing in. 
 
 But for full functionality, you need an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). 
 

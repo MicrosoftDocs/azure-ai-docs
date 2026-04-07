@@ -1,9 +1,7 @@
 ---
-title: Custom Entity Lookup skill
-titleSuffix: Azure AI Search
+title: Custom Entity Lookup Skill
 description: Extract different custom entities from text in an Azure AI Search enrichment pipeline.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

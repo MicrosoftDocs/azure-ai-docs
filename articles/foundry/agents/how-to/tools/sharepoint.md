@@ -6,13 +6,14 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
     - azure-ai-agents
     - dev-focus
     - pilot-ai-workflow-jan-2026
+    - doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-sharepoint-new
 ---
@@ -33,11 +34,11 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -46,11 +47,12 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
   - If developers and end users don't have a Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 - Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
 - Developers and end users have at least `READ` access to the SharePoint site.
+- Ensure your SharePoint tenant and your Foundry project are in the same Microsoft Entra tenant. Cross-tenant token exchange isn't supported.
 - The required SDK package installed:
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
-  - **C# (Preview)**: Install the `Azure.AI.Projects` NuGet package (prerelease)
+  - **C#**: Install the `Azure.AI.Projects` NuGet package
   - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
-  - **Java (Preview)**: Add `com.azure:azure-ai-agents:2.0.0-beta.1` to your `pom.xml`
+  - **Java**: Add `com.azure:azure-ai-agents:2.0.0` to your `pom.xml`
 - Environment variables configured:
   - `FOUNDRY_PROJECT_ENDPOINT`: Your Foundry project endpoint URL
   - `FOUNDRY_MODEL_DEPLOYMENT_NAME`: Your model deployment name (for example, `gpt-4`)
@@ -113,7 +115,7 @@ sharepoint_tool= SharepointPreviewTool(
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="""You are a helpful agent that can use SharePoint tools to assist users. 
         Use the available SharePoint tools to answer questions and perform tasks.""",
         tools=[sharepoint_tool],
@@ -180,14 +182,14 @@ Full response: Based on the meeting notes from your SharePoint site, the last me
 
 :::zone pivot="csharp"
 
-The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site. This example uses synchronous methods for simplicity. For an asynchronous version, refer to the [SharePoint agent sample documentation](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample24_Sharepoint.md) on the Azure SDK for .NET GitHub repository.
+The following sample demonstrates how to create an agent that uses the SharePoint tool to ground responses with content from a SharePoint site. This example uses synchronous methods for simplicity. For an asynchronous version, refer to the [SharePoint agent sample documentation](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample24_Sharepoint.md) on the Azure SDK for .NET GitHub repository.
 
-To enable your Agent to access SharePoint, use `SharepointAgentTool`.
+To enable your Agent to access SharePoint, use `SharepointPreviewTool`.
 
 ```csharp
 using System;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
@@ -201,22 +203,22 @@ AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenPro
 AIProjectConnection sharepointConnection = projectClient.Connections.GetConnection(connectionName: sharepointConnectionName);
 
 // Use the SharePoint connection ID to initialize the SharePointGroundingToolOptions,
-// which will be used to create SharepointAgentTool. Use this tool to create an Agent.
+// which will be used to create SharepointPreviewTool. Use this tool to create an Agent.
 SharePointGroundingToolOptions sharepointToolOption = new()
 {
     ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
 };
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { new SharepointPreviewTool(sharepointToolOption), }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Create the response and make sure we are always using tool.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 CreateResponseOptions responseOptions = new()
 {
     ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
@@ -249,7 +251,7 @@ Console.WriteLine($"Response status: {response.Status}");
 Console.WriteLine($"{response.GetOutputText()}{annotation}");
 
 // After the sample is completed, delete the Agent we have created.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output
@@ -357,7 +359,7 @@ export async function main(): Promise<void> {
   // Create agent with SharePoint tool
   const agent = await project.agents.createVersion("MyAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions:
       "You are a helpful agent that can use SharePoint tools to assist users. Use the available SharePoint tools to answer questions and perform tasks.",
     // Define SharePoint tool that searches SharePoint content
@@ -463,7 +465,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -503,7 +505,7 @@ public class SharePointGroundingExample {
         );
 
         // Create agent with SharePoint tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a helpful assistant that can search through SharePoint documents.")
             .setTools(Collections.singletonList(sharepointTool));
 
@@ -514,8 +516,8 @@ public class SharePointGroundingExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Find the latest project documentation in SharePoint"));
 
@@ -536,8 +538,6 @@ public class SharePointGroundingExample {
 - You can add only one SharePoint tool per agent.
 - The underlying Microsoft 365 Copilot Retrieval API returns text extracts. Retrieval from nontextual content, including images and charts, isn't supported.
 - For semantic and hybrid retrieval, the Microsoft 365 Copilot Retrieval API supports `.doc`, `.docx`, `.pptx`, `.pdf`, `.aspx`, and `.one` file types. For details, see the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-- The SharePoint tool doesn't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, but the SharePoint tool requires user identity passthrough (On-Behalf-Of).
-
 ## Setup
 
 > [!NOTE]

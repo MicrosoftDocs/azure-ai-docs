@@ -17,6 +17,8 @@ ms.custom: data4ml, devx-track-azurecli
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
+[!INCLUDE [machine-learning-data-import-deprecation](includes/machine-learning-data-import-deprecation.md)]
+
 In this article, you'll learn how to programmatically schedule data imports, using the schedule UI to do it. You can create a schedule based on elapsed time. Time-based schedules can handle routine tasks - for example, regular data imports to keep them up-to-date. After learning how to create schedules, you'll learn how to retrieve, update and deactivate them via CLI, SDK, and studio UI resources.
 
 ## Prerequisites

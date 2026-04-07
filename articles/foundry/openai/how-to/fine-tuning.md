@@ -7,6 +7,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - build-2023, build-2023-dataai, devx-track-python, references_regions
   - classic-and-new
+  - doc-kit-assisted
 ms.topic: how-to
 ms.date: 12/01/2025
 author: ssalgadodev
@@ -16,6 +17,7 @@ ai-usage: ai-assisted
 ---
 
 # Customize a model with fine-tuning
+
 Learn how to fine-tune models in Microsoft Foundry for your datasets and use cases. Fine-tuning enables:
 
 - Higher-quality results than what you can get just from [prompt engineering](../concepts/prompt-engineering.md).
@@ -58,10 +60,4 @@ In this article, you learn how to:
 
 ::: zone-end
 
-## Related content
-
-- [Fine-tuning tutorial (step-by-step)](../../../foundry-classic/openai/tutorials/fine-tune.md)
-- [Model catalog and regional availability](../../foundry-models/concepts/models-sold-directly-by-azure.md)
-- [Quotas and limits](../quotas-limits.md)
-- [View and interpret evaluation results](../../how-to/evaluate-results.md)
-- [Trace AI application usage (OpenAI SDK)](../../../foundry-classic/how-to/develop/trace-application.md)
+[!INCLUDE [fine-tuning 1](../includes/how-to-fine-tuning-1.md)]

@@ -15,6 +15,7 @@ ms.custom:
 ---
 
 # Risk and safety evaluators
+
 Risk and safety evaluators draw on insights gained from our previous large language model (LLM) projects such as GitHub Copilot and Bing. This approach ensures a comprehensive approach to evaluating generated responses for risk and safety severity scores.
 
 These evaluators are generated through the Microsoft Foundry Evaluation service, which employs a set of language models. Each model assesses specific risks that could be present in the response from your AI system. Specific risks include sexual content, violent content, and other content. These evaluator models are provided with risk definitions and annotate accordingly. Currently, we support the following risks for assessment:
@@ -131,7 +132,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
@@ -250,4 +251,4 @@ The label field returns a boolean true or false based on whether or not either o
 ## Related content
 
 - [How to run agent evaluation](../../observability/how-to/evaluate-agent.md)
-- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)

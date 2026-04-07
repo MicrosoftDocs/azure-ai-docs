@@ -9,10 +9,11 @@ ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 02/18/2026
 ms.reviewer: erichen
-ms.author: johalexander
-author: ms-johnalex
+ms.author: rotabor
+author: bobtabor-msft
 zone_pivot_groups: ai-foundry-vsc-extension-languages
 #CustomerIntent: As a developer, I want to create and deploy hosted agent workflows in VS Code so that I can build multi-agent solutions without leaving my IDE.
+ms.custom: doc-kit-assisted
 ---
 
 # Create hosted agent workflows in Visual Studio Code (preview)

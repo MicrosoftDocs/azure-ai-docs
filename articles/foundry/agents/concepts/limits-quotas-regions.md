@@ -7,8 +7,8 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 02/12/2026
-ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions
+ms.date: 04/03/2026
+ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -26,36 +26,10 @@ Foundry Agent Service enforces quotas and limits on agent artifacts, file upload
 
 ## Supported regions
 
-Foundry Agent Service is available in the following Azure regions:
-
-- Australia East
-- Brazil South
-- Canada East
-- East US
-- East US 2
-- France Central
-- Germany West Central
-- Italy North
-- Japan East
-- Norway East
-- South Africa North
-- South Central US
-- South India
-- Sweden Central
-- Switzerland North
-- UK South
-- West Europe
-- West US
-- West US 3
+Foundry agent service is only available for Foundry projects created in regions that support the [Azure OpenAI Responses API](../../openai/how-to/responses.md#region-availability). Your Foundry project must be in one of these regions to use Agent Service. Some Azure OpenAI models may not be available in the same regions. See [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md#model-summary-table-and-region-availability) for details. 
 
 > [!IMPORTANT]
 > Not all tools are available in every region. For example, file search isn't available in Italy North and Brazil South. For the full tool-by-region matrix, see [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model).
-
-## Azure OpenAI model support
-
-Foundry Agent Service is compatible with current Azure OpenAI models. For a complete list of supported models and their availability by region, see [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md).
-
-## Other model collections
 
 In addition to Azure OpenAI models, Agent Service supports models from the Foundry model catalog. These models are deployed and managed through Foundry and follow separate quotas. The following models are available for your agents to use.
 
@@ -69,7 +43,7 @@ In addition to Azure OpenAI models, Agent Service supports models from the Found
 ### A model or version isn't available in your region
 
 - Confirm you selected the right tab for your deployment type (global standard vs. provisioned).
-- Try a different region that supports the model and version. See the [model and region support table](../../agents/concepts/limits-quotas-regions.md).
+- Try a different region that supports the [model and Responses API](#supported-regions).
 - If you're using gpt-5 models, [registration](https://aka.ms/openai/gpt-5/2025-08-07) is required. Access is granted according to Microsoft's eligibility criteria.
 
 ### A tool isn't available in your region
@@ -146,7 +120,7 @@ Use the following practices to reduce limit-related failures:
 - **Avoid very large messages.** Put long content in uploaded files and query it by using file search.
 - **Plan for long conversations.** Treat threads as session state and rotate to new threads when conversations become very long.
 - **Register only required tools.** Remove unused tools from agent definitions.
-- **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../agents/how-to/metrics.md) to identify growth before you hit limits.
+- **Monitor usage trends.** Track agent activity by using [Foundry Agent Service metrics](../../observability/how-to/how-to-monitor-agents-dashboard.md) to identify growth before you hit limits.
 
 ## Quotas and limits for models
 
@@ -171,6 +145,6 @@ The limits in this article are default values for Foundry Agent Service. If your
 - [Threads, runs, and messages in Foundry Agent Service](./runtime-components.md)
 - [Tool support by region and model](../concepts/tool-best-practice.md#tool-support-by-region-and-model)
 - [Vector stores for file search](vector-stores.md)
-- [Monitor Foundry Agent Service](../../agents/how-to/metrics.md)
+- [Monitor Foundry Agent Service](../../observability/how-to/how-to-monitor-agents-dashboard.md)
 - [Azure OpenAI quotas and limits](../../openai/quotas-limits.md)
 - [Manage and increase quotas for resources with Microsoft Foundry](../../how-to/quota.md)

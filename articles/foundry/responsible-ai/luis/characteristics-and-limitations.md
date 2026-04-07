@@ -48,7 +48,7 @@ The following guidelines helps understand and improve performance in LUIS.
 
 ### Understand confidence scores
 
-Depending on system configuration, LUIS might return a confidence score for the detected intent and entity models as part of the system's prediction response. In the latest [V3 prediction endpoint](https://westus.dev.cognitive.microsoft.com/docs/services/luis-endpoint-api-v3-0/operations/5cb0a91e54c9db63d589f433), if the user enables the "show-all-intent" flag in the prediction endpoint, LUIS returns all intents that were created along with the confidence score for each intent. If the flag is disabled, only the top scoring intent returns along with its score.
+Depending on system configuration, LUIS might return a confidence score for the detected intent and entity models as part of the system's prediction response. If the user enables the "show-all-intent" flag in the prediction endpoint, LUIS returns all intents that were created along with the confidence score for each intent. If the flag is disabled, only the top scoring intent returns along with its score.
 
 The top two intents can have a very small score difference between them. LUIS doesn't indicate this proximity. It only returns the scores for each intent or the score of the top intent depending on whether the flag is enabled or not. For entities, the "verbose" flag must be enabled to return the scores of the detected entities along with an array of detailed information per entity. If the flag is disabled, only the detected entities return.
 

@@ -1,10 +1,6 @@
 ---
-title: Enable role-based access control
-titleSuffix: Azure AI Search
-description: Enable or disable role-based access control for token authentication using Microsoft Entra ID on Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+title: Enable Role-Based Access Control
+description: Learn how to enable or disable role-based access control (RBAC) in Azure AI Search for Microsoft Entra ID token authentication as an alternative to API keys.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/22/2026
@@ -41,7 +37,7 @@ The default failure mode for unauthorized requests is `http401WithBearerChalleng
 
 ### [**Azure portal**](#tab/config-svc-portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Select **Settings** and then select **Keys** in the left pane.
 
@@ -154,7 +150,7 @@ It's possible to disable role-based access control for data plane operations and
 
 To disable role-based access control in the Azure portal:
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Select **Settings** and then select **Keys** in the left pane.
 
@@ -170,7 +166,7 @@ Owner or Contributor permissions are required to disable security features.
 
 ### [**Azure portal**](#tab/disable-keys-portal)
 
-1. In the Azure portal, navigate to your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. In the left-navigation pane, select **Keys**.
 

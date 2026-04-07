@@ -16,9 +16,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Microsoft Foundry feature availability across cloud regions (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/reference/region-support.md)
 
-[!INCLUDE [classic-link](../../foundry/includes/classic-link.md)] brings together various Azure AI capabilities that were previously only available as standalone Azure services. While Microsoft strives to make all features available in all regions where Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Foundry features are available across cloud regions.  
+[!INCLUDE [foundry-link](../../foundry/includes/foundry-link.md)] brings together various Azure AI capabilities that were previously only available as standalone Azure services. While Microsoft strives to make all features available in all regions where Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Foundry features are available across cloud regions.
 
 ## Foundry projects
 
@@ -68,7 +68,7 @@ Foundry is currently available in the following Azure regions. You can [create e
 <!-- Government regions for foundry-classic only at this time -->
 
 ## Foundry features
- 
+
 Use the following list to investigate regional availability for specific features you plan to use.
 
 - **Azure OpenAI**: Some models might not be available within the model catalog. [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits).
@@ -77,40 +77,7 @@ Use the following list to investigate regional availability for specific feature
 - **Azure AI Content Safety**: To use the Content Safety APIs, create your Azure AI Content Safety resource in a supported region. [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)
 - **Agent Service**: Agent Service supports Azure OpenAI model deployments, but exact model and tool availability varies by region. [Agent Service region availability](../agents/concepts/model-region-support.md)
 
-## How to verify region support for your workload
-
-Use this process before you create resources:
-
-1. Select a candidate project region from the **Foundry projects** list in this article.
-1. Verify model and quota availability in [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits).
-1. Verify feature-specific support in the **Foundry features** list links.
-1. Confirm the final service list in [Azure global infrastructure products by region](https://azure.microsoft.com/global-infrastructure/services/).
-
-## Quick decision checklist
-
-Before you choose a production region, confirm all answers are **Yes**:
-
-- Is your required model available in the target region?
-- Do you have enough quota in that region for your expected traffic?
-- Are all dependent services (for example, Speech, Content Safety, Agent Service tools) available in that region?
-- Do your compliance requirements require a sovereign cloud region?
-- Have you validated availability in both docs and your portal experience for the same subscription and tenant?
-
-When you validate availability, keep these constraints in mind:
-
-- Azure OpenAI quotas are allocated per region, per subscription, and per model or deployment type.
-- Azure Speech keys are region-specific and only work for the region where the Speech resource is created.
-- The region list in this article is a documentation snapshot. Always verify against the linked service-specific and infrastructure pages before production rollout.
-
-## Troubleshoot region mismatch issues
-
-If a feature isn't available in your selected region:
-
-- Use the feature-specific regional availability article linked in **Foundry features**.
-- Create the required dependent resource in a supported region.
-- Re-check model availability and quota limits for that region.
-- For Speech workloads, confirm that your app configuration uses the same region as your Speech resource.
-- If your organization requires a sovereign cloud, review **Foundry in sovereign clouds** in this article.
+[!INCLUDE [region-support 1](../../foundry/includes/reference-region-support-1.md)]
 
 ## Foundry in sovereign clouds
 
@@ -154,19 +121,6 @@ Available only to US government entities and their partners. For more informatio
   - Batch jobs 
   - Azure OpenAI Evaluation
   - Deploy Web App
-  - VS Code Extension 
+  - VS Code Extension
 
-## Use AI to find the best region
-
-Use AI to help you find the right region for your needs.  Open [Ask AI](../concepts/ask-ai.md) and customize this prompt for your specific case:
-
-```copilot-prompt
-   Based on the features I need for my Foundry project, which regions would you recommend to create the project? 
-   I need: [list your required features here, such as: gpt-4o models, speech capabilities, custom avatar training, etc.]
-```
-
-*Copilot is powered by AI, so surprises and mistakes are possible. For more information, see [Copilot general use FAQs](https://aka.ms/copilot-general-use-faqs).*
-
-## Next step
-
-- [Azure global infrastructure products by region](https://azure.microsoft.com/global-infrastructure/services/)
+[!INCLUDE [region-support 2](../../foundry/includes/reference-region-support-2.md)]

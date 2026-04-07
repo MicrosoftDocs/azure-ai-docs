@@ -15,15 +15,9 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Transparency note for Azure OpenAI (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/responsible-ai/openai/transparency-note.md)
 
-[!INCLUDE [non-english-translation](../../../foundry/responsible-ai/includes/non-english-translation.md)]
-
-## What is a transparency note?
-
-An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Creating a system that is fit for its intended purpose requires an understanding of how the technology works, what its capabilities and limitations are, and how to achieve the best performance. Microsoft's Transparency Notes are intended to help you understand how our AI technology works, the choices system owners can make that influence system performance and behavior, and the importance of thinking about the whole system, including the technology, the people, and the environment. You can use Transparency Notes when developing or deploying your own system, or share them with the people who will use or be affected by your system.
-
-Microsoft's Transparency Notes are part of a broader effort at Microsoft to put our AI Principles into practice. To find out more, see the [Microsoft's AI principles](https://www.microsoft.com/ai/responsible-ai).
+[!INCLUDE [transparency-note 1](../../../foundry/responsible-ai/includes/openai-transparency-note-1.md)]
 
 ## The basics of the Azure OpenAI Models
 
@@ -60,31 +54,18 @@ Select the tabs to see content for the relevant model type.
 
 As part of the fully managed Azure OpenAI Service, the **GPT-3** models analyze and generate natural language, Codex models analyze and generate code and plain text code commentary, and **GPT-4** and **reasoning models** (including o-series models and GPT-5) can understand and generate natural language and code. These models use an autoregressive architecture, meaning they use data from prior observations to predict the most probable next word. This process is then repeated by appending the newly generated content to the original text to produce the complete generated response. Because the response is conditioned on the input text, these models can be applied to various tasks simply by changing the input text.
 
-The GPT-3 series of models are pretrained on a wide body of publicly available free text data. This data is sourced from a combination of web crawling (specifically, a filtered version of [Common Crawl](https://commoncrawl.org/the-data/), which includes a broad range of text from the internet and comprises 60 percent of the weighted pretraining dataset) and higher-quality datasets, including an expanded version of the WebText dataset, two internet-based books corpora and English-language Wikipedia. The GPT-4 base model was trained using publicly available data (such as internet data) and data that was licensed by OpenAI. The model was fine-tuned using reinforcement learning with human feedback (RLHF).
+The GPT-3 series of models are pretrained on a wide body of publicly available free text data. This data is sourced from a combination of web crawling (specifically, a filtered version of [Common Crawl](https://commoncrawl.org/the-data/), which includes a broad range of text from the internet and comprises 60 percent of the weighted pretraining dataset) and higher-quality datasets, including an expanded version of the WebText dataset, two internet-based books corpora, and English-language Wikipedia. The GPT-4 base model was trained using publicly available data (such as internet data) and data that was licensed by OpenAI. The model was fine-tuned using reinforcement learning with human feedback (RLHF).
 
 The Computer Use (Preview) model accepts text input on the first turn, and screenshot image on the second and following turns, and outputs commands to the keyboard and mouse. The Computer Use model and the Computer Use Tool enable developers to build agentic AI systems. 
 
 Learn more about the training and modeling techniques in OpenAI's [GPT-3](https://arxiv.org/abs/2005.14165), [GPT-4](https://arxiv.org/abs/2303.08774), and [Codex](https://arxiv.org/abs/2107.03374) research papers.
 
-**Fine tuning** refers to using _Supervised Fine Tuning_ to adjust a base model's weights to provide better responses based on a provided training set. All use cases and considerations for large language models apply to fine-tuned models, but there are additional considerations as well.
+**Fine tuning** refers to using _Supervised Fine Tuning_ to adjust a base model's weights to provide better responses based on a provided training set. All use cases and considerations for large language models apply to fine-tuned models, but there are other considerations as well.
 
 > [!IMPORTANT]
-> Fine-tuning is only available for text and code models, not vision or speech models.
+> Fine-tuning is only available for text and code models, not vision, or speech models.
 
-### Key terms
-
-| **Term** | **Definition** |
-| --- | --- |
-| Prompt | The text you send to the service in the API call. This text is then input into the model. For example, one might input the following prompt:<br><br>`Convert the questions to a command:`<br>`Q: Ask Constance if we need some bread`<br>`A: send-msg 'find constance' Do we need some bread?`<br>`Q: Send a message to Greg to figure out if things are ready for Wednesday.`<br>`A:` |
-| Completion or Generation | The text Azure OpenAI outputs in response. For example, the service may respond with the following answer to the above prompt: `send-msg 'find greg' figure out if things are ready for Wednesday.` |
-| Token | Azure OpenAI processes text by breaking it down into tokens. Tokens can be words or just chunks of characters. For example, the word `hamburger` gets broken up into the tokens `ham`, `bur` and `ger`, while a short and common word like `pear` is a single token. Many tokens start with a whitespace, for example ` hello` and ` bye`. |
-|Fine tuning| Supervised fine-tuning (SFT), reinforcement fine-tuning (RFT), and direct preference optimization (DPO, or preference fine-tuning) for large language models refer to the process of taking a pre-trained language model, often trained on a massive dataset, and further training it on a more specific task with labeled data. This involves adjusting the weights of the model using this smaller, specific dataset so that the model becomes more specialized in the tasks it can perform, enhancing its performance and accuracy. |
-| Model Weights| Model weights are parameters within the model that are learned from the data during the training process. They determine the output of the model for a given input. These weights are adjusted in response to the error the model made in its predictions, with the aim of minimizing this error. |
-|Ungrounded content|  Content that is generated by the model that is non-factual or inaccurate from what was present in the source materials. |
-| Agentic AI systems | Autonomous AI systems that sense and act upon their environment to achieve goals. |
-| Autonomy  | The ability to independently execute actions and exercise control over system behavior with limited or no direct human supervision. |
-| Computer Use tool | A tool that when used with the Computer Use model captures mouse and keyboard actions generated by the mode and directly translates them into executable commands. This makes it possible for developers to automate computer use tasks. |
-| Deep research | A fine-tuned version of the o-series reasoning models that is designed for deep research tasks. It takes a high-level query and returns a structured, citation-rich report by leveraging an agentic model capable of decomposing the task, performing web searches, and synthesizing results. |
+[!INCLUDE [transparency-note-key-terms](../../../foundry/responsible-ai/includes/transparency-note-key-terms.md)]
 
 #### [Vision models](#tab/image)
 
@@ -202,11 +183,11 @@ Azure OpenAI Evaluation is a UI-based experience to evaluate data, including gen
 
 Azure OpenAI Evaluation has an optional step of generating responses. If the user opts into this step, we provide a prompt (System/User Message) to instruct the model how to generate responses. 
 
-Azure OpenAI Evaluation includes 9 categories of tests to score results. Some require ground truth data (like factuality), while others do not (schema validation). Graders are a mixture of CPU-based and model-based. Here is the list of testing criteria: Factuality, Sentiment, Valid JSON or XML, Criteria Match, Custom Prompt, Semantic Similarity, Contains string, Matches Schema and Text quality.
+Azure OpenAI Evaluation includes 9 categories of tests to score results. Some require ground truth data (like factuality), while others do not (schema validation). Graders are a mixture of CPU-based and model-based. Here's the list of testing criteria: Factuality, Sentiment, Valid JSON or XML, Criteria Match, Custom Prompt, Semantic Similarity, Contains string, Matches Schema and Text quality.
 
 **Text-to-action**
 
-The Computer Use (Preview) model enables text-to-action capabilities, allowing users to provide natural language instructions that the model translates into actionable steps within graphical user interfaces. Given a command like "Fill out the customer support form with this information," the model identifies the relevant fields, inputs the correct data, and submits the form. It can navigate web interfaces, extract and input structured or unstructured data, automate workflows, and enforce compliance with security policies. By understanding intent and executing actions accordingly, it streamlines business operations, making automation more accessible and efficient. 
+The Computer Use (Preview) model enables text-to-action capabilities, allowing users to provide natural language instructions that the model translates into actionable steps within graphical user interfaces. Given a command like "Fill out the customer support form with this information," the model identifies the relevant fields, inputs the correct data, and submits the form. It can navigate web interfaces, extract, and input structured or unstructured data, automate workflows, and enforce compliance with security policies. By understanding intent and executing actions accordingly, it streamlines business operations, making automation more accessible and efficient. 
 
 #### [Vision models](#tab/image)
 
@@ -248,16 +229,16 @@ The main capabilities of the Azure OpenAI image generation APIs are:
 
 GPT-4 Turbo with Vision and GPT-4o use natural language and image prompts to generate natural language or code responses. The models accept text only, image only, and interleaved text and image inputs. These models are part of the GPT family and are extensions of GPT-4.
 
-The Azure Vision in Foundry Tools Service provides Video enhancement for GPT-4 Turbo with Vision (Preview), which can also accept video inputs to generate natural language or code responses. This capability is not available with the latest GPT-4 Turbo with Vision model release.
+The Azure Vision in Foundry Tools Service provides Video enhancement for GPT-4 Turbo with Vision (Preview), which can also accept video inputs to generate natural language or code responses. This capability isn't available with the latest GPT-4 Turbo with Vision model release.
 
 | **Example prompt** | **Example completion** |
 |---|---|
-| "What is this used for?"<br><br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/tomatoes.png" alt-text="Photo of tomatoes."::: |These are tomatoes. They are commonly used as a food ingredient in various dishes, both raw and cooked. Tomatoes can be used in salads, sandwiches, sauces, soups, juices, and many other culinary applications. They are also known for their rich nutritional content, including vitamins, minerals, and antioxidants. |
+| "What is this used for?"<br><br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/tomatoes.png" alt-text="Photo of tomatoes."::: |These are tomatoes. They're commonly used as a food ingredient in various dishes, both raw and cooked. Tomatoes can be used in salads, sandwiches, sauces, soups, juices, and many other culinary applications. They're also known for their rich nutritional content, including vitamins, minerals, and antioxidants. |
 |How can I use<br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/tomatoes.png" alt-text="Same photo of tomatoes.":::<br>to make this?<br> :::image type="content" source="../../../foundry/responsible-ai/openai/media/soup.png" alt-text="Photo of tomato soup."::: | You can use tomatoes to make tomato soup by following these general steps: <br>Ingredients: <ul><li>Tomatoes </li><li>Onion</li><li>Garlic</li><li> Olive oil or butter</li><li> Chicken or vegetable broth</li><li> Salt</li><li> Pepper</li><li> Optional: herbs like basil, oregano, or thyme </li></ul> <br>Instructions: <ol><li>Preparation:<ul><li> Wash the tomatoes thoroughly. </li><li>Cut the tomatoes into halves or quarters. </li><li>Peel and chop onions and garlic… </li></ul></li></ol>|
 
 ### Computer Use in Azure OpenAI Service (Preview)
 
-The Computer Use model is built upon a fine-tuned version of GPT-4o's vision capabilities which allows it to interpret and interact with graphical user interfaces (GUIs) through screenshots. By analyzing visual elements like buttons, text fields, and menus, it can understand application layouts, detect relevant interface components, and execute actions accordingly. This enables precise automation of web and software interactions, allowing for tasks such as data extraction, form completion, and workflow execution based on real-time visual context. 
+The Computer Use model is built upon a fine-tuned version of GPT-4o's vision capabilities, which allows it to interpret and interact with graphical user interfaces (GUIs) through screenshots. By analyzing visual elements like buttons, text fields, and menus, it can understand application layouts, detect relevant interface components, and execute actions accordingly. This enables precise automation of web and software interactions, allowing for tasks such as data extraction, form completion, and workflow execution based on real-time visual context. 
 
 ### Face blurring
 
@@ -273,11 +254,11 @@ Blurring helps protect the privacy of the individuals and groups involved and pr
 > **Computer Use (preview) does not use face blurring**, as it has the potential to obscure UI elements and degrade performance. Computer Use is not designed (or intended) to be a general-purpose image reasoning engine. The model doesn't perform facial recognition or individual identification and is not suitable for any such use cases.
 
 > [!CAUTION]
-> **GPT-image-1 does not use face blurring.** In certain jurisdictions, the way the model processes image input of people may be considered processing of biometric data, in which case you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the data, all as appropriate and required under applicable law. For more information on how Azure OpenAI Service processes data, see [Data, privacy, and security for Azure OpenAI Service](/azure/ai-foundry/responsible-ai/openai/data-privacy).
+> **GPT-image-1 does not use face blurring.** In certain jurisdictions, the way the model processes image input of people may be considered processing of biometric data, in which case you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the data, all as appropriate, and required under applicable law. For more information on how Azure OpenAI Service processes data, see [Data, privacy, and security for Azure OpenAI Service](/azure/ai-foundry/responsible-ai/openai/data-privacy).
 
 ### Computer Use in Azure OpenAI Service (preview)
 
-The Computer Use model is built upon a fine-tuned version of GPT-4o's vision capabilities which allows it to interpret and interact with graphical user interfaces (GUIs) through screenshots. By analyzing visual elements like buttons, text fields, and menus, it can understand application layouts, detect relevant interface components, and execute actions accordingly. This enables precise automation of web and software interactions, allowing for tasks such as data extraction, form completion, and workflow execution based on real-time visual context. 
+The Computer Use model is built upon a fine-tuned version of GPT-4o's vision capabilities, which allows it to interpret and interact with graphical user interfaces (GUIs) through screenshots. By analyzing visual elements like buttons, text fields, and menus, it can understand application layouts, detect relevant interface components, and execute actions accordingly. This enables precise automation of web and software interactions, allowing for tasks such as data extraction, form completion, and workflow execution based on real-time visual context. 
 
 #### [Audio / speech models](#tab/speech)
 
@@ -298,7 +279,7 @@ Azure OpenAI service provides these functionalities through two REST APIs:
 
 The service provides the ability to synchronously process single audio files as fast as possible. This is limited to less than 15 to 30 minutes of audio depending on audio compression.
 
-The service provides highly readable transcripts that often remove disfluencies and provide more accurate sentence boundaries, punctuation, and capitalization. You can also leverage prompts to improve the quality of the model outputs as fit for your scenario. See [Best practices for improving system information](#best-practices-for-improving-system-performance) for more information.
+The service provides highly readable transcripts that often remove disfluencies and provide more accurate sentence boundaries, punctuation, and capitalization. You can also use prompts to improve the quality of the model outputs as fit for your scenario. See [Best practices for improving system information](#best-practices-for-improving-system-performance) for more information.
 
 For greater detail on 4o model's capabilities, see the [OpenAI 4o System Card](https://openai.com/index/gpt-4o-system-card/). 
 
@@ -318,18 +299,18 @@ Text models can be used in multiple scenarios. The following list isn't comprehe
 - **Question-answering** : Users can ask questions and receive answers from trusted source documents such as internal company documentation. The application doesn't generate answers ungrounded in trusted source documentation.
 - **Reason over structured and unstructured data** : Users can analyze inputs using classification, sentiment analysis of text, or entity extraction. Examples include analyzing product feedback sentiment, analyzing support calls and transcripts, and refining text-based search with embeddings.
 - **Search** : Users can search trusted source documents such as internal company documentation. The application doesn't generate results ungrounded in trusted source documentation.
-- **Summarization** : Users can submit content to be summarized for predefined topics built into the application and cannot use the application as an open-ended summarizer. Examples include summarization of internal company documentation, call center transcripts, technical reports, and product reviews.
-- **Writing assistance on specific topics** : Users can create new content or rewrite content submitted by the user as a writing aid for business content or pre-defined topics. Users can only rewrite or create content for specific business purposes or predefined topics and cannot use the application as a general content creation tool for all topics. Examples of business content include proposals and reports. For journalistic use, see above  **Journalistic content** use case.
-- **Data generation for fine-tuning**: Users can use a model in Azure OpenAI to generate data which is used solely to fine-tune (i) another Azure OpenAI model, using the fine-tuning capabilities of Azure OpenAI, and/or (ii) another Azure AI custom model, using the fine-tuning capabilities of the Foundry Tool. Generating data and fine-tuning models is limited to internal users only; the fine-tuned model may only be used for inferencing in the applicable Foundry Tool and, for Azure OpenAI service, only for customer's permitted use case(s) under this form.
+- **Summarization** : Users can submit content to be summarized for predefined topics built into the application and can't use the application as an open-ended summarizer. Examples include summarization of internal company documentation, call center transcripts, technical reports, and product reviews.
+- **Writing assistance on specific topics** : Users can create new content or rewrite content submitted by the user as a writing aid for business content or predefined topics. Users can only rewrite or create content for specific business purposes or predefined topics and cannot use the application as a general content creation tool for all topics. Examples of business content include proposals and reports. For journalistic use, see above  **Journalistic content** use case.
+- **Data generation for fine-tuning**: Users can use a model in Azure OpenAI to generate data, which is used solely to fine-tune (i) another Azure OpenAI model, using the fine-tuning capabilities of Azure OpenAI, and/or (ii) another Azure AI custom model, using the fine-tuning capabilities of the Foundry Tool. Generating data and fine-tuning models is limited to internal users only; the fine-tuned model may only be used for inferencing in the applicable Foundry Tool and, for Azure OpenAI service, only for customer's permitted use case(s) under this form.
 
 #### Fine-tuned use cases
 
-The following are additional use cases we recommend for fine-tuned models. Fine tuning is most appropriate for: 
+The following are other use cases we recommend for fine-tuned models. Fine tuning is most appropriate for: 
 - **Steering the style, format, tone or qualitative aspects of responses** via examples of the desired responses. 
 - **Ensuring the model reliably produces a desired output** such as providing responses in a specific format or ensuring responses are grounded by information in the prompt. 
-- **Use cases with many edge cases** that cannot be covered within examples in the prompt, such as complex natural language to code examples. 
+- **Use cases with many edge cases** that can't be covered within examples in the prompt, such as complex natural language to code examples. 
 - **Improving performance at specific skills or tasks** such as classification, summarization, or formatting – that can be hard to describe within a prompt. 
-- **Reducing costs or latency** by utilizing shorter prompts, or swapping a fine-tuned version of a smaller/faster model for a more general-purpose model (e.g. fine tuned GPT-3.5-Turbo for GPT-4). 
+- **Reducing costs or latency** by utilizing shorter prompts, or swapping a fine-tuned version of a smaller/faster model for a more general-purpose model (for example, fine tuned GPT-3.5-Turbo for GPT-4). 
 
 As with base models, the use case prohibitions outlined in the [Azure OpenAI Code of conduct](/legal/ai-code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) apply to fine-tuned models as well.  
 
@@ -595,100 +576,6 @@ Evolving best practices and standards: If you are using Computer Use to build an
 
 - **Data Quality**: When you're using Azure OpenAI Evaluation, be aware that poor quality data can lead to misleading or unreliable evaluation results.  
 - **Configuration quality:** If a customer improperly defines the prompt or evaluators or provides invalid evaluation data, the results of the Azure OpenAI Evaluation service will be incorrect and invalid.  Refer to the [Azure OpenAI documentation](/azure/ai-foundry/openai/how-to/evaluations) for details on how to set up an evaluation run. 
-- **Limited scope**: Azure OpenAI evaluation only supports text-based natural language models. It  doesn't support any risk and safety metrics to evaluate generated responses for risk and safety severity scores (e.g., hateful and unfair content, sexual content, violent content, and self-harm related content). 
+- **Limited scope**: Azure OpenAI evaluation only supports text-based natural language models. It  doesn't support any risk and safety metrics to evaluate generated responses for risk and safety severity scores (e.g., hateful and unfair content, sexual content, violent content, and self-harm related content).
 
-## System performance
-
-In many AI systems, performance is often defined in relation to accuracy—that is, how often the AI system offers a correct prediction or output. With large-scale natural language models and vision models, two different users might look at the same output and have different opinions of how useful or relevant it's, which means that performance for these systems must be defined more flexibly. Here, we broadly consider performance to mean that the application performs as you and your users expect, including not generating harmful outputs.
-
-Azure OpenAI service can support a wide range of applications like search, classification, code generation, image generation, and image understanding, each with different performance metrics and mitigation strategies. There are several steps you can take to mitigate some of the concerns listed under "Limitations" and to improve performance. Other important mitigation techniques are outlined in the section [Evaluating and integrating Azure OpenAI for your use](#evaluating-and-integrating-azure-openai-natural-language-and-vision-models-for-your-use).
-
-### Best practices for improving system performance
-
-#### [Text, code, and fine-tuned models](#tab/text)
-
-- **Show and tell when designing prompts.** With natural language models and speech models, make it clear to the model what kind of outputs you expect through instructions, examples, or a combination of the two. If you want the model to rank a list of items in alphabetical order or to classify a paragraph by sentiment, show the model that is what you want.
-- **Keep your application on topic.**  Carefully structure prompts and image inputs to reduce the chance of producing undesired content, even if a user tries to use it for this purpose. For instance, you might indicate in your prompt that a chatbot only engages in conversations about mathematics and otherwise responds "I'm sorry. I'm afraid I can't answer that." Adding adjectives like "polite" and examples in your desired tone to your prompt can also help steer outputs. 
-- **Provide quality data.**  With text and code models, if you are trying to build a classifier or get the model to follow a pattern, make sure that there are enough examples. Be sure to proofread your examples—the model is usually capable of processing basic spelling mistakes and giving you a response, but it also might assume errors are intentional which could affect the response. Providing quality data also includes giving your model reliable data to draw responses from in chat and question answering systems.
-- **Provide trusted data.** Retrieving or uploading untrusted data into your systems could compromise the security of your systems or applications. To mitigate these risks in your applicable applications (including applications using the Assistants API), we recommend logging and monitoring LLM interactions (inputs/outputs) to detect and analyze potential prompt injections, clearly delineating user input to minimize risk of prompt injection, restricting the LLM's access to sensitive resources, limiting its capabilities to the minimum required, and isolating it from critical systems and resources. Learn about additional mitigation approaches in [Security guidance for Large Language Models | Microsoft Learn.](/ai/playbook/technology-guidance/generative-ai/mlops-in-openai/security/security-recommend)
-- **Configure parameters to improve accuracy or groundedness of responses**. Augmenting prompts with data retrieved from trusted sources – such as by using the Azure OpenAI "on your data" feature – can reduce, but not completely eliminate, the likelihood of generating inaccurate responses or false information. Steps you can take to further improve the accuracy of responses include carefully selecting the trusted and relevant data source and configuring custom parameters such as “strictness”, “limit responses to data content” and “number of retrieved documents to be considered” as appropriate to your use cases or scenarios. Learn more about configuring these settings for [Azure OpenAI on Your Data](/azure/ai-foundry/openai/concepts/use-your-data). 
-- **Limit the length, structure, and rate of inputs and outputs.**  Restricting the length or structure of inputs and outputs can increase the likelihood that the application will stay on task and mitigate, at least in part, any potentially unfair, unreliable, or offensive behavior. Other options to reduce the risk of misuse include (i) restricting the source of inputs (for example, limiting inputs to a particular domain or to authenticated users rather than being open to anyone on the internet) and (ii) implementing usage rate limits. 
-- **Encourage human review of outputs prior to publication or dissemination.** With generative AI, there is potential for generating content that might be offensive or not related to the task at hand, even with mitigations in place. To ensure that the generated output meets the task of the user, consider building ways to remind users to review their outputs for quality prior to sharing widely. This practice can reduce many different harms, including offensive material, disinformation, and more. 
-- **Implement additional scenario-specific mitigations.**  Refer to the mitigations outlined in [Evaluating and integrating Azure OpenAI for your use](#evaluating-and-integrating-azure-openai-natural-language-and-vision-models-for-your-use) including content moderation strategies. These recommendations do not represent every mitigation required for your application. Newer models such as GPT-4o and reasoning models may provide responses in sensitive scenarios and are more likely to attempt to reduce potentially harmful outputs in their responses rather than refuse to respond altogether. It's important to understand this behavior when evaluating and integrating content moderation for your use case; adjustments to filtering severity may be needed depending on your use case.
-- **Avoid triggering mandatory safeguards.** Azure Direct Models may have safeguards to prevent security exploits including output of raw CoT and biosecurity content. Use of a model in a manner that creates a security exploit or evades or attempts to evade a protection on the model, including by circumventing these safeguards, violates the Acceptable Use Policy for Online Services and may result in suspension. For greater detail on best practices, visit the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/), and [GPT-5 System Card](https://openai.com/index/gpt-5-system-card/).
-
-#### Best practices and recommendations for fine tuning
-
-To mitigate the risks and limitations of fine-tuning models on Azure OpenAI, we recommend customers to follow some best practices and guidelines, such as: 
-- **Data selection and preprocessing**: Customers should carefully select and pre-process their data to ensure that it's relevant, diverse, and balanced for the intended task and domain. Customers should also remove or anonymize any sensitive or personal information from the data, such as names, addresses, or email addresses, to protect the privacy and security of the data subjects. Customers should also check and correct any errors or inconsistencies in the data, such as spelling, grammar, or formatting, to improve the data quality and readability. 
-- **Include a system message in your training data** for chat-completion formatted models, to steer your responses, and use that same system message when using your fine-tuned model for inferencing. Leaving the system message blank tends to produce low-accuracy fine-tuned models, and forgetting to include the same system message when inferencing may result in the fine-tuned model reverting to the behavior of the base model. 
-- **Model evaluation and testing: Customers should evaluate and test the fine-tuned model's performance** and robustness on a variety of inputs and scenarios and compare it with the original model and other baselines. Customers should also use appropriate metrics and criteria to measure the model's accuracy, reliability, and fairness, and to identify any potential errors or biases in the model's outputs and behavior.  
-- **Model documentation and communication**: Customers should document and communicate the model's purpose, scope, limitations, and assumptions, and provide clear and accurate information and guidance to the end-users of the model. 
-
-#### [Vision models](#tab/image)
-
-- **Keep your application on topic.** With image generation models, you might indicate in your prompt or image input that your application generates only conceptual images. It might otherwise generate a pop-up notification that explains that the application is not for photorealistic use or to portray reality. Consider nudging users toward acceptable queries and image inputs, either by listing such examples up front or by offering them as suggestions upon receiving an off-topic request. Consider training a classifier to determine whether an input (prompt or image) is on topic or off topic.
-- **Configure parameters to improve accuracy or groundedness of responses**. Augmenting prompts with data retrieved from trusted sources – such as by using the Azure OpenAI "on your data" feature – can reduce, but not completely eliminate, the likelihood of generating inaccurate responses or false information. Steps you can take to further improve the accuracy of responses include carefully selecting the trusted and relevant data source and configuring custom parameters such as “strictness”, “limit responses to data content” and “number of retrieved documents to be considered” as appropriate to your use cases or scenarios. Learn more about configuring these settings for [Azure OpenAI on Your Data](/azure/ai-foundry/openai/concepts/use-your-data). 
-- **Limit the length, structure, and rate of inputs and outputs.**  Restricting the length or structure of inputs and outputs can increase the likelihood that the application will stay on task and mitigate, at least in part, any potentially unfair, unreliable, or offensive behavior. Other options to reduce the risk of misuse include (i) restricting the source of inputs (for example, limiting inputs to a particular domain or to authenticated users rather than being open to anyone on the internet) and (ii) implementing usage rate limits. 
-- **Encourage human review of outputs prior to publication or dissemination.** With generative AI, there is potential for generating content that might be offensive or not related to the task at hand, even with mitigations in place. To ensure that the generated output meets the task of the user, consider building ways to remind users to review their outputs for quality prior to sharing widely. This practice can reduce many different harms, including offensive material, disinformation, and more. 
-- **Implement additional scenario-specific mitigations.**  Refer to the mitigations outlined in [Evaluating and integrating Azure OpenAI for your use](#evaluating-and-integrating-azure-openai-natural-language-and-vision-models-for-your-use) including content moderation strategies. These recommendations do not represent every mitigation required for your application. Newer models such as GPT-4o and reasoning models may provide responses in sensitive scenarios and are more likely to attempt to reduce potentially harmful outputs in their responses rather than refuse to respond altogether. It's important to understand this behavior when evaluating and integrating content moderation for your use case; adjustments to filtering severity may be needed depending on your use case.
-
-#### [Speech models](#tab/speech)
-
-- **Show and tell when designing prompts.** With natural language models and speech models, make it clear to the model what kind of outputs you expect through instructions, examples, or a combination of the two. If you want the model to rank a list of items in alphabetical order or to classify a paragraph by sentiment, show the model that is what you want.
-   - **Prompts for the Whisper model in Azure OpenAI service** can help improve model outputs. The following best practices will help you create prompts that best fit your scenario and needs.
-     - Consider including a prompt to instruct the model to correct specific words or acronyms that the model often misrecognizes in the audio.   
-     - To preserve the context of a file that was split into segments, you might prompt the model with the transcript of the preceding segment. This prompt will make the transcript more accurate, because the model will use the relevant information from the previous audio. The model will only consider the final 224 tokens of the prompt and ignore anything earlier.  
-     - The model might skip punctuation in the transcript. Consider using a simple prompt that instructs the model to include punctuation.  
-     - The model might also leave out common filler words, for example, hmmm, umm, etc. in the audio. If you want to keep the filler words in your transcript, you might include a prompt that contains them.  
-     - Some languages can be written in different ways, such as simplified or traditional Chinese. The model might not always use the writing style that a user wants for their transcript by default. Consider using a prompt to describe your preferred writing style.  
-- **Keep your application on topic.**  Carefully structure prompts and image inputs to reduce the chance of producing undesired content, even if a user tries to use it for this purpose. For instance, you might indicate in your prompt that a chatbot only engages in conversations about mathematics and otherwise responds "I'm sorry. I'm afraid I can't answer that." Adding adjectives like "polite" and examples in your desired tone to your prompt can also help steer outputs. 
-- **Configure parameters to improve accuracy or groundedness of responses**. Augmenting prompts with data retrieved from trusted sources – such as by using the Azure OpenAI "on your data" feature – can reduce, but not completely eliminate, the likelihood of generating inaccurate responses or false information. Steps you can take to further improve the accuracy of responses include carefully selecting the trusted and relevant data source and configuring custom parameters such as “strictness”, “limit responses to data content” and “number of retrieved documents to be considered” as appropriate to your use cases or scenarios. Learn more about configuring these settings for [Azure OpenAI on Your Data](/azure/ai-foundry/openai/concepts/use-your-data). 
-- **Measure model quality.** As part of general model quality, consider measuring and improving fairness-related metrics and other metrics related to responsible AI in addition to traditional accuracy measures for your scenario. Consider resources like this checklist when you measure the fairness of the system. These measurements come with limitations, which you should acknowledge and communicate to stakeholders along with evaluation results. 
-- **Limit the length, structure, and rate of inputs and outputs.**  Restricting the length or structure of inputs and outputs can increase the likelihood that the application will stay on task and mitigate, at least in part, any potentially unfair, unreliable, or offensive behavior. Other options to reduce the risk of misuse include (i) restricting the source of inputs (for example, limiting inputs to a particular domain or to authenticated users rather than being open to anyone on the internet) and (ii) implementing usage rate limits. 
-- **Encourage human review of outputs prior to publication or dissemination.** With generative AI, there is potential for generating content that might be offensive or not related to the task at hand, even with mitigations in place. To ensure that the generated output meets the task of the user, consider building ways to remind users to review their outputs for quality prior to sharing widely. This practice can reduce many different harms, including offensive material, disinformation, and more. 
-
----
-
-#### Best practices and recommendations for Azure OpenAI evaluation 
-
-- **Robust ground truth data**: In general in large-scale natural language models, customers should carefully select and pre-process their data to ensure that it's relevant, diverse, and balanced for the intended task and domain. Customers should also remove or anonymize any sensitive or personal information from the data, such as names, addresses, or email addresses, to protect the privacy and security of the data subjects. Customers should also check and correct any errors or inconsistencies in the data, such as spelling, grammar, or formatting, to improve the data quality and readability.  
-    Specifically for Azure OpenAI evaluation, the accuracy of the ground truth data provided by the user is crucial because inaccurate ground truth data leads to meaningless and inaccurate evaluation results. Ensuring the quality and reliability of this data is essential for obtaining valid assessments of the model's performance. Inaccurate ground truth data can skew the evaluation metrics, resulting in misleading conclusions about the model's capabilities. Therefore, users must carefully curate and verify their ground truth data to ensure that the evaluation process accurately reflects the model's true performance. This is particularly important when making decisions about deploying the model in real-world applications 
-- **Prompt definition for evaluation**: The prompt you use in your evaluation should match the prompt you plan to use in production. These prompts provide the instructions for the model to follow. Similar to the OpenAI playground, you can create multiple inputs to include few-shot examples in your prompt. Refer to [Prompt engineering techniques](/azure/ai-foundry/openai/concepts/prompt-engineering?tabs=chat) for more details on some advanced techniques in prompt design and prompt engineering.  
-- **Diverse metrics**: Use a combination of metrics to capture different aspects of performance such as accuracy, fluency and relevance.  
-- **Human-in-the-loop**: Integrate human feedback alongside automated evaluation to ensure that subjective nuances are accurately captured. 
-- **Transparency**: Clearly communicate the evaluation criteria to users, enabling them to understand how decisions are made.  
-- **Continual evaluation and testing**: Continually evaluate the model's performance to identify and address any regressions or negative user experience. 
-
-## Evaluating and integrating Azure OpenAI natural language and vision models for your use
-
-#### [Text, code, and fine-tuned models](#tab/text)
-
-The steps in conducting an Azure OpenAI evaluation are: 
-1. **Provide data for evaluation**: Either an uploaded flat file in JSONL format, or generated data based on a series of prompts. 
-1. **Specify test cases to evaluate the data**: Select one or more test cases to score the provided data with passing / failing grades. 
-1. **Review and filter results**: Each test includes a definition of passing and failing scores. After an evaluation runs, users can review their row-by-row results to see individual test results, or filter on passed / failed. 
-
-For additional information on how to evaluate and integrate these models responsibly, please see the [RAI Overview document](/azure/ai-foundry/responsible-ai/openai/overview).
-
-#### [Vision models](#tab/image)
-
-For additional information on how to evaluate and integrate these models responsibly, please see the [RAI Overview document](/azure/ai-foundry/responsible-ai/openai/overview).
-
-#### [Audio / speech models](#tab/speech)
-
-The OpenAI Whisper model is also available within Azure Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diarization, customization, real-time streaming, or processing multiple audio files per request. For additional information on how to evaluate and integrate the Whisper model responsibly, please see the [Azure Speech services transparency note](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
-
----
-
-## Learn more about responsible AI
-
-- [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai)
-- [Microsoft responsible AI resources](https://www.microsoft.com/ai/responsible-ai-resources) 
-- [Microsoft Azure Learning courses on responsible AI](/training/paths/responsible-ai-business-principles/)
-
-## Learn more about Azure OpenAI
-
-- [Limited access to Azure OpenAI Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access) 
-- [Code of Conduct for the Azure OpenAI Service | Microsoft Learn](/legal/ai-code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
-- [Data, privacy, and security for Azure OpenAI Service - Foundry Tools | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy)
+[!INCLUDE [transparency-note 2](../../../foundry/responsible-ai/includes/openai-transparency-note-2.md)]

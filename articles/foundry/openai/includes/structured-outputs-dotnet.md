@@ -6,6 +6,8 @@ ms.date: 12/6/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: structured-outputs
+
+ms.custom: classic-and-new
 ---
 
 ## Getting started
@@ -35,7 +37,7 @@ using System.Text.Json;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "gpt-4.1",

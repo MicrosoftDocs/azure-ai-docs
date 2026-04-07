@@ -18,12 +18,12 @@ ai-usage: ai-assisted
 
 Use the `langchain-azure-ai` package to connect LangGraph and LangChain
 applications to Foundry Agent Service. This article walks through practical
-scenarios, from basic prompt agents to tool-enabled workflows, human-in-the-
-loop approvals, and tracing.
+scenarios, from using existing agents and composing multi-agent graphs to
+tool-enabled workflows, human-in-the-loop approvals, and tracing.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
 - A deployed chat model (for example, `gpt-4.1`) in your project.
 - Python 3.10 or later.
@@ -53,9 +53,9 @@ export MODEL_DEPLOYMENT_NAME="gpt-4.1"
 
 The class `AgentServiceFactory` is your starting point to compose agents in LangGraph that interact with the Agent Service in Foundry.
 The factory creates LangGraph-compatible nodes that run through Agent Service and that can be used to compose more complex solutions
-with LangGraph. 
+with LangGraph.
 
-Create the agent factory by connecting the `AgentServiceFactory` class to a Foundry project. All agents you create through this factory are managed
+Create the agent factory by connecting the `AgentServiceFactory` class to a Foundry project. All agents you create or reference through this factory are managed
 within the project and visible in the Foundry portal (new).
 
 > [!NOTE]
@@ -76,10 +76,145 @@ factory = AgentServiceFactory(
 )	
 ```
 
+## Use an existing agent
+
+We recommend creating and configuring agents in the Foundry portal or Foundry SDK and then reference them by name with `get_agent_node` to compose graphs. This approach is recommended because it keeps agent configuration centralized in the Foundry and lets your code focus on orchestration. You can also create agents programmatically with `create_prompt_agent` when you need to define agents entirely in code.
+
+```python
+echo_node = factory.get_agent_node(
+	name="my-echo-agent",
+	version="latest",
+)
+```
+
+**What this snippet does:** Retrieves a reference to an existing Foundry agent as a LangGraph-compatible node. The agent must already exist in your Foundry project. Use `version="latest"` to always target the most recent version, or pin a specific version number for stability.
+
+Test that your agent can run:
+
+```python
+response = echo_node.invoke(
+	{"messages": [HumanMessage(content="Hello, world!")]}
+)
+pretty_print(response)
+```
+
+```output
+================================ Human Message =================================
+
+Hello, world!
+================================== Ai Message ==================================
+Name: my-echo-agent
+
+Goodbye, world!
+```
+
+### Conversations and state
+
+Nodes attached to the Agent Service automatically track responses in conversations. The `azure_ai_agents_conversation_id` property is added to the state so you can reference or continue conversations:
+
+```python
+print(
+	"azure_ai_agents_conversation_id:",
+	response["azure_ai_agents_conversation_id"],
+)
+```
+
+```output
+azure_ai_agents_conversation_id: <conversation-id>
+```
+
+### Compose graphs with existing agents
+
+You can use Agent Service nodes just like any other node in LangGraph to build complex graphs. The following example builds a conditional routing graph where a local `router_node` inspects the user message and decides whether to delegate to a Foundry agent.
+
+```python
+from typing import Literal
+from langchain_core.messages import AIMessage
+from langgraph.graph import StateGraph, MessagesState, START, END
+
+
+class RouterState(MessagesState):
+	jump_to: str | None
+
+
+def router_node(state: RouterState):
+	last_message = state["messages"][-1].content.lower()
+
+	# Simple logic simulating a model decision
+	if "negate" in last_message:
+		return RouterState(
+			messages=state["messages"], jump_to="delegate"
+		)
+	else:
+		return RouterState(
+			messages=[AIMessage(content="I can handle this!")],
+			jump_to=None,
+		)
+
+
+def route_decision(state: RouterState) -> Literal["expert_node", END]:
+	if state.get("jump_to", None) == "delegate":
+		return "expert_node"
+	return END
+
+
+workflow = StateGraph(RouterState)
+
+workflow.add_node("router_node", router_node)
+workflow.add_node("expert_node", echo_node)
+workflow.add_edge(START, "router_node")
+workflow.add_conditional_edges("router_node", route_decision)
+workflow.add_edge("expert_node", END)
+
+app = workflow.compile()
+```
+
+**What this snippet does:** Builds a LangGraph `StateGraph` with two nodes. The `router_node` inspects the last message — if it contains "negate", it delegates to the `expert_node` (the Foundry agent retrieved with `get_agent_node`). Otherwise, the router handles the request locally and ends the graph. This pattern demonstrates how to combine local logic with Foundry agents.
+
+The graph looks as follows:
+
+:::image type="content" source="../media/langchain-agents/router-delegate.png" alt-text="Diagram of the agent graph with a node running in Agent Service.":::
+
+Invoke the graph:
+
+```python
+print("--- Test 1 (Direct) ---")
+pretty_print(
+	app.invoke({"messages": [HumanMessage(content="Hello, world!")]})
+)
+
+print("\n--- Test 2 (Delegated) ---")
+pretty_print(
+	app.invoke(
+		{"messages": [HumanMessage(content="Negate that I'm a genius!")]}
+	)
+)
+```
+
+```output
+------------------------------- Test 1 (Direct) --------------------------------
+================================ Human Message =================================
+
+Hello, world!
+================================== Ai Message ==================================
+
+I can handle this!
+
+------------------------------ Test 2 (Delegated) ------------------------------
+================================ Human Message =================================
+
+Negate that I'm a genius!
+================================== Ai Message ==================================
+Name: my-echo-agent
+
+You're not a genius!
+```
+
+In Test 1, the router handles the request locally. In Test 2, the router delegates to the Foundry agent, which responds with the opposite of the user's statement.
+
 ## Create a basic prompt agent
 
-Start with a minimal ReAct-style prompt agent. This gives you the fastest path
-to a working integration.
+When you need to define agents entirely in code — for example, during prototyping or when agent configuration should live alongside your application — use `create_prompt_agent`. Start with a minimal ReAct-style prompt agent to verify your integration.
 
 ```python
 agent = factory.create_prompt_agent(

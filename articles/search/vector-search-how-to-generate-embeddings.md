@@ -1,15 +1,12 @@
 ---
 title: Generate Embeddings
-titleSuffix: Azure AI Search
 description: Learn how to generate embeddings for downstream indexing into an Azure AI Search index.
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/06/2025
+ms.date: 03/25/2026
 ---
 
 # Generate embeddings for search queries and documents
@@ -203,18 +200,19 @@ generateEmbedding();
 ```python
 !pip install openai
 
-import openai
+from openai import AzureOpenAI
 
-openai.api_type = "azure"
-openai.api_key = "YOUR-API-KEY"
-openai.api_base = "https://YOUR-OPENAI-RESOURCE.openai.azure.com"
-openai.api_version = "2024-02-01"
-
-response = openai.Embedding.create(
-    input="How do I use Python in VS Code?",
-    engine="text-embedding-ada-002"
+client = AzureOpenAI(
+    api_key="YOUR-API-KEY",
+    api_version="2024-02-01",
+    azure_endpoint="https://YOUR-OPENAI-RESOURCE.openai.azure.com"
 )
-embeddings = response['data'][0]['embedding']
+
+response = client.embeddings.create(
+    input="How do I use Python in VS Code?",
+    model="text-embedding-ada-002"
+)
+embeddings = response.data[0].embedding
 print(embeddings)
 ```
 

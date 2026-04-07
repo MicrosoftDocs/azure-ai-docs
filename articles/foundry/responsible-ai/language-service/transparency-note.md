@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 04/26/2023
+ms.date: 04/01/2026
 ---
 
 # Transparency Note for Azure Language in Foundry Tools

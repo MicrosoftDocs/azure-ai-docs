@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Run evaluations in the cloud by using the Microsoft Foundry SDK (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/cloud-evaluation.md)
 
 [!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
 
@@ -262,5 +262,5 @@ After you register your custom evaluator, you can view it in your [evaluator cat
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
-- [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations)
+- [REST API Reference Documentation](/rest/api/aifoundry)
 

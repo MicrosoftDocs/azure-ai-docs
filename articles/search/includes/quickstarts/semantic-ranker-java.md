@@ -1,6 +1,5 @@
 ---
-author: KarlErickson
-ms.author: haileytapia
+ms.reviewer: karler
 ms.service: azure-ai-search
 ms.custom: devx-track-java
 ms.topic: include
@@ -24,8 +23,6 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
 + An [index](../../search-how-to-create-search-index.md) with descriptive text fields attributed as `searchable` and `retrievable`.  This quickstart assumes the [hotels-sample index](../../search-get-started-portal.md).
 
 + [Java 21 (LTS)](/java/openjdk/install) and [Maven](https://maven.apache.org/download.cgi).
-
-+ [Visual Studio Code](https://code.visualstudio.com/download).
 
 + [Git](https://git-scm.com/downloads) to clone the sample repository.
 
@@ -51,11 +48,10 @@ Semantic ranking is query-side functionality that uses machine reading comprehen
     git clone https://github.com/Azure-Samples/azure-search-java-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
     ```bash
     cd azure-search-java-samples/quickstart-semantic-ranking
-    code .
     ```
 
 1. In `src/main/resources/application.properties`, replace the placeholder value for `azure.search.endpoint` with the URL you obtained in [Get endpoint](#get-endpoint).

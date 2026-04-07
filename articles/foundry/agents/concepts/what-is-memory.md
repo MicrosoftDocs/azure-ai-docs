@@ -7,8 +7,8 @@ ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 01/22/2026
-ms.custom: pilot-ai-workflow-jan-2026 
+ms.date: 04/06/2026
+ms.custom: pilot-ai-workflow-jan-2026 , doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -107,8 +107,12 @@ To mitigate security risks, consider these actions:
 
 ## Limitations and quotas
 
-- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Azure OpenAI models and regions for Foundry Agent Service](../../agents/concepts/limits-quotas-regions.md).
-- You must set the `scope` value explicitly. Automatic population from the user identity specified in the request isn't currently supported.
+The following limitations and quotas apply to memory in Foundry Agent Service. For broader limitations and quotas, see [Foundry Agent Service limits, quotas, and regional support](../concepts/limits-quotas-regions.md).
+
+### Limitations
+
+- Memory currently requires compatible Azure OpenAI chat and embedding model deployments. For a list of supported models, see [Foundry Models sold directly by Azure](../../foundry-models/concepts/models-sold-directly-by-azure.md).
+- For low-level memory APIs, you must set `scope` explicitly in each request. Automatic scope resolution from the caller's identity is only supported when you use the memory search tool with `scope` set to `{{$userId}}`. For more information, see [Understand scope](../how-to/memory-usage.md#understand-scope).
 
 ### Quotas
 
@@ -117,7 +121,29 @@ To mitigate security risks, consider these actions:
 - Search memories: 1,000 requests per minute
 - Update memories: 1,000 requests per minute
 
-For broader Foundry Agent Service quotas and limits, see [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md).
+## Region availability
+
+Memory is available in the following regions:
+
+- Australia East
+- Brazil South
+- Canada East
+- East US 2
+- France Central
+- Italy North
+- Japan East
+- Korea Central
+- North Central US
+- Norway East
+- South Africa North
+- South India
+- Sweden Central
+- Switzerland North
+- UAE North
+- UK South
+- West US
+- West US 2
+- West US 3
 
 ## Pricing
 

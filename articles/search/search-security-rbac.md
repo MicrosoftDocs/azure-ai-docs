@@ -1,11 +1,7 @@
 ---
-title: Connect using Azure roles
-titleSuffix: Azure AI Search
-description: Use Azure role-based access control for granular permissions on service administration and content tasks.
-author: HeidiSteen
-ms.author: heidist
-manager: nitinme
-ms.date: 01/20/2026
+title: Connect Using Azure Roles
+description: Learn how to assign Azure roles in Azure AI Search to manage permissions for service administration, development, and query access with Microsoft Entra ID.
+ms.date: 03/26/2026
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
@@ -97,7 +93,7 @@ Combine these roles to get sufficient permissions for your use case.
 |Configure private connections |❌|❌|✅|✅|❌|
 |Configure network security |❌|❌|✅|✅|❌|
 
-<sup>1</sup> In the Azure portal, an Owner or Contributor can run the Import data wizards that create and load indexes, even though they can't upload documents in other clients. The search service itself, not individual users, makes data connections in the wizard. The wizards have the `Microsoft.Search/searchServices/indexes/documents/*` permission necessary for completing this task.
+<sup>1</sup> An Owner or Contributor can run the [**Import data** wizard](search-import-data-portal.md) to create and load indexes, even though they can't upload documents in other clients. Similarly, [indexers](search-indexer-overview.md) can write to any index on the search service, regardless of per-index role assignments. In both cases, the search service (not the user) performs the data plane actions using its `Microsoft.Search/searchServices/indexes/documents/*` permissions.
 
 <sup>2</sup> Use elevated read for debugging queries that obtain results by using the identity of the called. For more information, see [Investigate incorrect query results](search-query-access-control-rbac-enforcement.md#elevated-permissions-for-investigating-incorrect-results).
 
@@ -123,7 +119,7 @@ As a service administrator, you can create and configure a search service, and p
 
 #### [**Azure portal**](#tab/roles-portal-admin)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Select **Access Control (IAM)** in the left pane.
 
@@ -174,7 +170,7 @@ Another combination of roles that provides full access is Contributor or Owner, 
 
 #### [**Azure portal**](#tab/roles-portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Select **Access Control (IAM)** in the left pane.
 
@@ -233,7 +229,7 @@ This section provides basic steps for setting up the role assignment and is here
 
 #### [**Azure portal**](#tab/roles-portal-query)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Select **Access Control (IAM)** in the left pane.
 
@@ -295,15 +291,13 @@ Use a client to test role assignments. Remember that roles are cumulative. You c
 
 ### [**Azure portal**](#tab/test-portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. Navigate to your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the Overview page, select the **Indexes** tab:
 
    + Search Service Contributors can view and create any object, but can't load documents or query an index. To verify permissions, [create a search index](search-how-to-create-search-index.md#create-an-index).
 
-   + Search Index Data Contributors can load documents. There's no load documents option in the Azure portal outside of Import data wizard, but you can [reset and run an indexer](search-howto-run-reset-indexers.md) to confirm document load permissions.
+   + Search Index Data Contributors can load documents. There's no load documents option in the Azure portal outside of the [**Import data** wizard](search-import-data-portal.md), but you can [reset and run an indexer](search-howto-run-reset-indexers.md) to confirm document load permissions.
 
    + Search Index Data Readers can query the index. To verify permissions, use [Search explorer](search-explorer.md). You should be able to send queries and view results, but you shouldn't be able to view the index definition or create one.
 
@@ -530,6 +524,18 @@ In PowerShell, use [New-AzRoleAssignment](/powershell/module/az.resources/new-az
        -RoleDefinitionName "Search Index Data Contributor" `
        -Scope  "/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.Search/searchServices/<search-service>/indexes/<index-name>"
    ```
+
+### Per-index scope and indexer operations
+
+Per-index role assignments apply to direct API operations only, such as queries or document uploads from users or applications. Indexers aren't restricted by per-index permissions because they operate with service-level credentials.
+
+A user with the **Search Service Contributor** role can create indexers that write to any index on the search service, even indexes where that user has no per-index role assignment.
+
+For strict data isolation between indexes, consider these approaches:
+
++ Use separate search services for teams or users who require index-level isolation.
++ Assign **Search Service Contributor** only to administrators who manage indexers.
++ Use [document-level access control](search-document-level-access-overview.md) with security filters to restrict query results within a shared index.
 
 ## Create a custom role
 

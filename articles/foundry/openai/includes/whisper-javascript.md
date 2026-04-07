@@ -7,6 +7,8 @@ ms.topic: include
 ms.date: 10/22/2024
 ms.author: pafarley
 author: PatrickFarley
+
+ms.custom: classic-and-new
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai/samples)
@@ -78,7 +80,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     // keyless authentication    
     const credential = new DefaultAzureCredential();
-    const scope = "https://cognitiveservices.azure.com/.default";
+    const scope = "https://ai.azure.com/.default";
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
     function getClient() {

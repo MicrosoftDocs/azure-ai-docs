@@ -37,6 +37,7 @@ Cloud evaluation supports the following scenarios:
 | Scenario | When to use | Data source type | Target |
 |----------|-------------|------------------|--------|
 | **[Dataset evaluation](#dataset-evaluation)** | Evaluate pre-computed responses in a JSONL file. | `jsonl` | — |
+| **[CSV dataset evaluation](#csv-dataset-evaluation)** | Evaluate pre-computed responses in a CSV file. | `csv` | — |
 | **[Model target evaluation](#model-target-evaluation)** | Provide queries and generate responses from a model at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_model` |
 | **[Agent target evaluation](#agent-target-evaluation)** | Provide queries and generate responses from a Foundry agent at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
@@ -115,13 +116,21 @@ Most evaluation scenarios require input data. You can provide data in two ways:
 
 ### Upload a dataset (recommended)
 
-Upload a JSONL file to create a versioned dataset in your Foundry project. Datasets support versioning and reuse across multiple evaluation runs. Use this approach for production testing and CI/CD workflows.
+Upload a JSONL or CSV file to create a versioned dataset in your Foundry project. Datasets support versioning and reuse across multiple evaluation runs. Use this approach for production testing and CI/CD workflows.
 
 Prepare a JSONL file with one JSON object per line containing the fields your evaluators need:
 
 ```json
 {"query": "What is machine learning?", "response": "Machine learning is a subset of AI.", "ground_truth": "Machine learning is a type of AI that learns from data."}
 {"query": "Explain neural networks.", "response": "Neural networks are computing systems inspired by biological neural networks.", "ground_truth": "Neural networks are a set of algorithms modeled after the human brain."}
+```
+
+Or prepare a CSV file with column headers matching your evaluator fields:
+
+```csv
+query,response,ground_truth
+What is machine learning?,Machine learning is a subset of AI.,Machine learning is a type of AI that learns from data.
+Explain neural networks.,Neural networks are computing systems inspired by biological neural networks.,Neural networks are a set of algorithms modeled after the human brain.
 ```
 
 ```python
@@ -353,6 +362,103 @@ curl --request POST \
 ---
 
 For a complete runnable example, see [sample_evaluations_builtin_with_dataset_id.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_dataset_id.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
+
+## CSV dataset evaluation
+
+Evaluate pre-computed responses in a CSV file using the `csv` data source type. This scenario works the same way as [dataset evaluation](#dataset-evaluation) but accepts CSV files instead of JSONL. Use CSV when your data is already in spreadsheet or tabular format.
+
+> [!TIP]
+> Before you begin, complete [Get started](#get-started) and [Prepare input data](#uploading-evaluation-data).
+
+### Prepare a CSV file
+
+Create a CSV file with column headers matching the fields your evaluators need. Each row represents one test case:
+
+```csv
+query,response,context,ground_truth
+What is cloud computing?,Cloud computing delivers computing services over the internet.,Cloud computing is a technology for on-demand resource delivery.,Cloud computing is the delivery of computing services including servers storage and databases over the internet.
+What is machine learning?,Machine learning is a subset of AI that learns from data.,Machine learning is a branch of artificial intelligence.,Machine learning is a type of AI that enables computers to learn from data without being explicitly programmed.
+Explain neural networks.,Neural networks are computing systems inspired by biological neural networks.,Neural networks are used in deep learning.,Neural networks are a set of algorithms modeled after the human brain designed to recognize patterns.
+```
+
+### Upload and run
+
+Upload the CSV file as a dataset, then create an evaluation using the `csv` data source type. The schema definition and evaluator configuration are the same as for JSONL evaluations — the only difference is the `"type": "csv"` in the data source.
+
+```python
+# Upload the CSV file
+data_id = project_client.datasets.upload_file(
+    name="eval-csv-data",
+    version="1",
+    file_path="./evaluation_data.csv",
+).id
+
+# Define the schema matching your CSV columns
+data_source_config = DataSourceConfigCustom(
+    type="custom",
+    item_schema={
+        "type": "object",
+        "properties": {
+            "query": {"type": "string"},
+            "response": {"type": "string"},
+            "context": {"type": "string"},
+            "ground_truth": {"type": "string"},
+        },
+        "required": [],
+    },
+    include_sample_schema=True,
+)
+
+# Define evaluators with data mappings to CSV columns
+testing_criteria = [
+    {
+        "type": "azure_ai_evaluator",
+        "name": "coherence",
+        "evaluator_name": "builtin.coherence",
+        "data_mapping": {
+            "query": "{{item.query}}",
+            "response": "{{item.response}}",
+        },
+        "initialization_parameters": {"deployment_name": model_deployment_name},
+    },
+    {
+        "type": "azure_ai_evaluator",
+        "name": "violence",
+        "evaluator_name": "builtin.violence",
+        "data_mapping": {
+            "query": "{{item.query}}",
+            "response": "{{item.response}}",
+        },
+        "initialization_parameters": {"deployment_name": model_deployment_name},
+    },
+    {
+        "type": "azure_ai_evaluator",
+        "name": "f1",
+        "evaluator_name": "builtin.f1_score",
+    },
+]
+
+# Create the evaluation
+eval_object = client.evals.create(
+    name="CSV evaluation with built-in evaluators",
+    data_source_config=data_source_config,
+    testing_criteria=testing_criteria,
+)
+
+# Create a run using the CSV data source type
+eval_run = client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="csv-evaluation-run",
+    data_source={
+        "type": "csv",
+        "source": {
+            "type": "file_id",
+            "id": data_id,
+        },
+    },
+)
+```
+To poll for completion and interpret results, see [Get results](#get-results).
 
 ## Model target evaluation
 

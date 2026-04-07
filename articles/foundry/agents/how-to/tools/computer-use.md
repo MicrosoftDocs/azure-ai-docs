@@ -6,10 +6,10 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
-ms.custom: references_regions, dev-focus, pilot-ai-workflow-jan-2026
+ms.custom: references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: selection-computer-use
 ---
@@ -26,21 +26,21 @@ This guide shows how to integrate the computer use tool into an application loop
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - The latest SDK package:
   - **Python**: `azure-ai-projects`
-  - **C#/.NET**: `Azure.AI.Agents.Persistent` (prerelease)
+  - **C#/.NET**: `Azure.AI.Extensions.OpenAI`
   - **TypeScript**: `@azure/ai-projects`
-  - **Java**: `azure-ai-agents` (prerelease)
+  - **Java**: `azure-ai-agents`
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
 - A virtual machine or sandboxed environment for safe testing. Don't run on machines with access to sensitive data.
 
@@ -68,7 +68,7 @@ After Microsoft grants access, you need to create a deployment for the model.
 > [!WARNING] 
 > Use the computer use tool on virtual machines with no access to sensitive data or critical resources. For more information about the intended uses, capabilities, limitations, risks, and considerations when choosing a use case, see the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#risk-and-limitations-of-computer-use-preview).
 
-You need the latest SDK package. The .NET and Java SDKs are currently in preview.
+You need the latest SDK package. The .NET SDK is currently in preview.
 
 :::zone pivot="python"
 ### Screenshot initialization for computer use tool execution
@@ -250,13 +250,13 @@ Agent deleted
 :::zone pivot="csharp"
 ## Sample for use of an Agent with Computer Use tool
 
-The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
+The following C# code sample demonstrates how to create an agent version with the computer use tool, send an initial request with a screenshot, and perform multiple iterations to complete a task. To enable your agent to use the computer use tool, use `ResponseTool.CreateComputerTool()` when configuring the agent's tools. This example uses synchronous code. For asynchronous usage, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample10_ComputerUse.md) example in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
 using System.Runtime.CompilerServices;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 class ComputerUseDemo
@@ -349,7 +349,7 @@ class ComputerUseDemo
         };
 
         // Create a PromptAgentDefinition with ComputerTool.
-        PromptAgentDefinition agentDefinition = new(model: "computer-use-preview")
+        DeclarativeAgentDefinition agentDefinition = new(model: "computer-use-preview")
         {
             Instructions = "You are a computer automation assistant.\n\n" +
                             "Be direct and efficient. When you reach the search results page, read and describe the actual search result titles and descriptions you can see.",
@@ -361,14 +361,14 @@ class ComputerUseDemo
                 ),
             }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition)
         );
         // Create an `ResponseResult` using `ResponseItem`, containing two `ResponseContentPart`:
         // one with the image and another with the text. In the loop, request Agent
         // while it is continuing to browse web. Finally, print the tool output message.
-        ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
         CreateResponseOptions responseOptions = new()
         {
             TruncationMode = ResponseTruncationMode.Auto,
@@ -406,7 +406,7 @@ class ComputerUseDemo
         Console.WriteLine(response.GetOutputText());
 
         // Clean up resources by deleting Agent.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```
@@ -636,7 +636,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -685,8 +685,8 @@ public class ComputerUseExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Open the browser and navigate to microsoft.com"));
 
@@ -694,7 +694,7 @@ public class ComputerUseExample {
 
         // The response will contain computer_call items with actions
         // to execute. Process each action, take screenshots, and
-        // send results back using responsesClient.createWithAgent()
+        // send results back using responsesClient.createAzureResponse()
         // with the previousResponseId and computer call output.
 
         // Clean up

@@ -1,9 +1,6 @@
 ---
-title: Create a hybrid query
-titleSuffix: Azure AI Search
-description: Learn how to build queries for hybrid search.
-author: HeidiSteen
-ms.author: heidist
+title: Create a Hybrid Query
+description: Learn how to create hybrid queries that target an index in Azure AI Search.
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -28,11 +25,11 @@ By the end of this article, you can execute hybrid queries that combine keyword 
 
 ## Prerequisites
 
-+ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
++ An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-+ A search index containing `searchable` vector and nonvector fields. We recommend the [**Import data (new)** wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
++ A search index containing `searchable` vector and nonvector fields. We recommend the [**Import data** wizard](search-import-data-portal.md) to create an index quickly. Otherwise, see [Create an index](search-how-to-create-search-index.md) and [Add vector fields to a search index](vector-search-how-to-create-index.md).
 
 + **Permissions**: You need **Search Index Data Reader** to query an index. To create or update an index, you need **Search Index Data Contributor**. For more information, see [Connect using roles](search-security-rbac.md).
 
@@ -95,7 +92,7 @@ Results are returned in plain text, including vectors in fields marked as `retri
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and find your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management** > **Indexes**, select an index that has vectors and non-vector content. [Search Explorer](search-explorer.md) is the first tab.
 
