@@ -160,7 +160,7 @@ The response body (abbreviated for clarity) is:
 This example shows what happens when the term being looked up doesn't exist for the valid dictionary pair.
 
 ```curl
-curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=3.0&from=en&to=es" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly123456'}]"
+curl -X POST "https://api.cognitive.microsofttranslator.com/dictionary/lookup?api-version=3.0&from=en&to=es" -H "X-ClientTraceId: aaaabbbb-0000-cccc-1111-dddd2222eeee" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d "[{'Text':'fly123456'}]"
 ```
 
 Since the term isn't found in the dictionary, the response body includes an empty `translations` list.

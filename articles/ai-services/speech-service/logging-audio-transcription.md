@@ -302,21 +302,21 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
     "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37"
+    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": false

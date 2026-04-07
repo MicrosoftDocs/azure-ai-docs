@@ -78,8 +78,8 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the `Consents_Post` operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2024-02-01-preview
-Operation-Id: 070f7986-ef17-41d0-ba2b-907f0f28e314
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
 ## Add consent from a URL
@@ -129,8 +129,8 @@ You should receive a response body in the following format:
 The response header contains the `Operation-Location` property. Use this URI to get details about the [Consents_Create](/rest/api/aiservices/speechapi/consents/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/070f7986-ef17-41d0-ba2b-907f0f28e314?api-version=2024-02-01-preview
-Operation-Id: 070f7986-ef17-41d0-ba2b-907f0f28e314
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
 ## Next steps

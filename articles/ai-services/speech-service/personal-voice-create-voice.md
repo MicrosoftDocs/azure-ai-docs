@@ -71,8 +71,8 @@ Use the `speakerProfileId` property to integrate personal voice in your text to 
 The response header contains the `Operation-Location` property. Use this URI to get details about the [PersonalVoices_Post](/rest/api/aiservices/speechapi/personal-voices/post) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/1321a2c0-9be4-471d-83bb-bc3be4f96a6f?api-version=2024-02-01-preview
-Operation-Id: 1321a2c0-9be4-471d-83bb-bc3be4f96a6f
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
 ## Create personal voice from a URL
@@ -129,8 +129,8 @@ Use the `speakerProfileId` property to integrate personal voice in your text to 
 The response header contains the `Operation-Location` property. Use this URI to get details about the [PersonalVoices_Create](/rest/api/aiservices/speechapi/personal-voices/create) operation. Here's an example of the response header:
 
 ```HTTP 201
-Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/1321a2c0-9be4-471d-83bb-bc3be4f96a6f?api-version=2024-02-01-preview
-Operation-Id: 1321a2c0-9be4-471d-83bb-bc3be4f96a6f
+Operation-Location: https://eastus.api.cognitive.microsoft.com/customvoice/operations/aaaabbbb-0000-cccc-1111-dddd2222eeee?api-version=2024-02-01-preview
+Operation-Id: aaaabbbb-0000-cccc-1111-dddd2222eeee
 ```
 
 ## Next steps

@@ -168,7 +168,7 @@ An example JSON response is:
 The following example shows how to convert two Japanese strings into Romanized Japanese.
 
 ```bash
-  curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
+  curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: aaaabbbb-0000-cccc-1111-dddd2222eeee" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
 ```
 
 The JSON payload for the request in this example:
@@ -209,4 +209,3 @@ If an error occurs, the request also returns a JSON error response. The error co
 
 > [!div class="nextstepaction"]
 > [View 2025-10-01-preview migration guide](../how-to/migrate-to-preview.md)
-
