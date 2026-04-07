@@ -55,7 +55,7 @@ The exchange progresses through four stages:
 
 - **Authenticated tool call**: Agent Service passes the scoped access token to the MCP server or A2A endpoint. The downstream resource validates the token and checks the agent identity's RBAC role assignments before granting or denying access.
 
-The following table lists common audience values for Azure services:
+The following table lists common audience values for global Azure services:
 
 | Downstream service | Audience value |
 | --- | --- |
