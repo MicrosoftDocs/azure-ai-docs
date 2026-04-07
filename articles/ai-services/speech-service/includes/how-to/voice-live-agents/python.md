@@ -59,7 +59,7 @@ Pin your agent to a specific version to enable controlled deployments. This lets
 
 Set the `AGENT_VERSION` environment variable or pass the `agent_version` parameter when initializing the assistant:
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="247-270,292-298,482-518" highlight="8,19,29,37,66":::
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="252-275,299-305,502-538" highlight="8,19,29,37,66":::
 
 In this sample, the version configuration is applied in three places:
 
@@ -81,7 +81,7 @@ To connect to an agent on a different resource, configure two additional environ
 - `FOUNDRY_RESOURCE_OVERRIDE`: The Foundry resource name hosting the agent project (for example, `my-agent-resource`).
 - `AGENT_AUTHENTICATION_IDENTITY_CLIENT_ID`: The managed identity client ID of the Voice Live resource, required for cross-resource authentication.
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="255-270,489-520,292-298" highlight="2-3,14-15,18-19,28-29,47,48":::
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="260-275,509-540,299-305" highlight="2-3,14-15,18-19,28-29,47,48":::
 
 This configuration is resolved in `main()` and then applied when the assistant is created:
 
@@ -96,7 +96,7 @@ This configuration is resolved in `main()` and then applied when the assistant i
 
 Send a proactive message to initiate conversations as soon as the session is ready. This sample checks a one-time flag in the `SESSION_UPDATED` event handler, sends a greeting prompt, and triggers a response.
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="275,376-407" highlight="1,15-32":::
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="280,389-424" highlight="1,15-32":::
 
 In this sample, proactive messaging is applied in three steps:
 
@@ -114,7 +114,7 @@ This feature supports two modes:
 
 The `voice-live-agents-quickstart.py` created with the quickstart shows the required code additions to configure this feature as follows:
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="17-31,325-348" highlight="9-10,20-26,33":::
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="18-32,334-357" highlight="9-10,20-26,33":::
 
 In this sample, the interim response setup is applied inside `BasicVoiceAssistant._setup_session()`:
 
@@ -139,7 +139,7 @@ Reconnect to a previous conversation by specifying the conversation ID. This pre
 
 Voice Live returns session metadata in the `SESSION_UPDATED` event when a session connects successfully:
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="377-385":::
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="390-399":::
 
 In this event handler, session and agent metadata is logged when the session is ready.
 
@@ -147,7 +147,7 @@ The sample code automatically writes session details to a conversation log file 
 
 To reconnect to that conversation, pass the conversation ID as the `CONVERSATION_ID` environment variable (or the `conversation_id` parameter):
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="255,267,489":::
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="260,272,509":::
 
 In this sample, conversation reconnect is applied in three places:
 
@@ -170,7 +170,7 @@ Log key session metadata, including the session ID, to a timestamped conversatio
 
 The following code creates the log filename and writes session metadata when `SESSION_UPDATED` is received:
 
-:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="42-48,379-385,475-480" highlight="4,9-14":::
+:::code language="python" source="~/voice-live-samples-code/python/voice-live-quickstarts/AgentsNewQuickstart/voice-live-with-agent-v2.py" range="43-49,393-399,494-499" highlight="4,9-14":::
 
 In this sample, session metadata logging is applied in three places:
 
