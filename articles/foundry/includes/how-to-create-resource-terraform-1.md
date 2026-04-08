@@ -56,7 +56,7 @@ ms.custom: include
 **References:**
 - [AzAPI provider documentation](/azure/developer/terraform/overview-azapi-provider)
 - [AzureRM cognitive_account resource](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
-- [Foundry Terraform samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform)
+- [Foundry Terraform samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform)
 
 ## Initialize Terraform
 
