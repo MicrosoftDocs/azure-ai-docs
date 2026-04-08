@@ -33,14 +33,14 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
     # [Azure CLI](#tab/cli)
 
     ```azurecli
-    git clone https://github.com/Azure-AI-Foundry/foundry-samples
+    git clone https://github.com/microsoft-foundry/foundry-samples
     cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
     ```
 
     # [Azure PowerShell](#tab/powershell)
 
     ```azurepowershell
-    git clone https://github.com/Azure-AI-Foundry/foundry-samples
+    git clone https://github.com/microsoft-foundry/foundry-samples
     cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
     ```
 
