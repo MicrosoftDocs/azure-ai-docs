@@ -156,19 +156,19 @@ To avoid purchasing a reservation for capacity that doesn't exist or that doesn'
 
 ## How much throughput per PTU you get for each model
 
-The throughput (measured as tokens per minute, or TPM) that a deployment gets per PTU depends on both the model and the mix of input and output tokens in a minute. Generating output tokens requires more processing capacity than consuming input tokens.
+The throughput (measured as tokens per minute, or TPM) that a deployment gets per PTU depends on both the model and the mix of input and output tokens in a given minute. Generating output tokens requires more processing capacity than consuming input tokens.
 
-Starting with GPT-4.1 models, the system matches the global standard pricing ratio between input and output tokens, [with exceptions for some models](#exceptions-to-input-and-output-throughput-ratio):
+For GPT-4.1 models and later, the system determines a *throughput ratio* to match the global standard price ratio between input and output tokens, [with exceptions for some models](#exceptions-to-input-and-output-throughput-ratio). For example,
 
-- For gpt-5, one output token counts as eight input tokens toward your utilization limit, matching the model's [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) ratio.
+- For gpt-5, one output token counts as eight input tokens toward your utilization limit, matching the model's [global standard price](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) ratio.
 - For gpt-4.1, one output token counts as four input tokens.
 - Older models use different ratios.
 
-For all deployments, cached tokens are deducted 100% from the utilization calculation, meaning repeated prompt tokens don't consume PTU capacity.
+For all deployments, **cached tokens are deducted 100% from the utilization calculation**, meaning repeated prompt tokens don't consume PTU capacity.
 
 ### Exceptions to input and output throughput ratio
 
-Some models use a ratio that differs from their global standard price ratio. For example, with Llama-3.3-70B-Instruct, one output token counts as four input tokens toward your utilization limit, which differs from that model's standard price ratio. See [pricing for Llama models](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/) for the full input and output pricing breakdown.
+Some models use a throughput ratio that differs from their global standard price ratio. For example, with Llama-3.3-70B-Instruct, one output token counts as four input tokens toward your utilization limit, which differs from that model's standard price ratio. See [pricing for Llama models](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/) for the full input and output pricing breakdown.
 
 ### Latest Azure OpenAI models
 
@@ -182,7 +182,7 @@ Some models use a ratio that differs from their global standard price ratio. For
 | Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
 | Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
 | Input TPM per PTU | 2,400 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
-| Global standard output-to-input price ratio<sup>1</sup> | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
+| Throughput ratio<sup>1</sup> | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
 | Latency target value<sup>2</sup> | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
 
 <sup>1</sup> Calculated as the ratio of the output token price to the input token price for global standard deployment. For example, a ratio of 4 means one output token costs four times as much as one input token. See [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current pricing.
@@ -198,7 +198,7 @@ Some models use a ratio that differs from their global standard price ratio. For
 | Regional provisioned minimum deployment | 50 | 25 | 25 | 25 |
 | Regional provisioned scale increment | 50 | 25 | 25 | 50 |
 | Input TPM per PTU | 2,500 | 37,000 | 2,500 | 230 |
-| Global standard output-to-input price ratio<sup>1</sup> | 4 | 4 | 4 | 4 |
+| Throughput ratio<sup>1</sup> | 4 | 4 | 4 | 4 |
 | Latency target value<sup>2</sup> | 99% > 25 TPS | 99% > 33 TPS | 99% > 66 TPS | 99% > 25 TPS |
 
 
@@ -215,7 +215,7 @@ Some models use a ratio that differs from their global standard price ratio. For
 | Regional provisioned minimum deployment | NA | NA | NA | NA |
 | Regional provisioned scale increment | NA | NA | NA | NA |
 | Input TPM per PTU | 8,450<sup>1</sup> | 4,000 | 4,000 | 4,000 |
-| Global standard output-to-input price ratio<sup>2</sup> | 1 | 4 | 4 | N/A |
+| Throughput ratio<sup>2</sup> | 4 | 4 | 4 | N/A |
 | Latency target value<sup>3</sup> | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS |
 
 <sup>1</sup> For Llama-3.3-70B-Instruct, one output token counts as four input tokens toward your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. See [Exceptions to input and output throughput ratio](#exceptions-to-input-and-output-throughput-ratio) and [Llama model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/).
@@ -226,26 +226,67 @@ Some models use a ratio that differs from their global standard price ratio. For
 
 ## Determine PTU requirements for a workload
 
-PTUs represent an amount of model processing capacity. Before creating a provisioned deployment, estimate how many PTUs your workload needs. The correct count depends on several factors:
+To optimize performance and cost, first estimate how many PTUs your workload needs before you create a provisioned deployment. 
+PTUs represent an amount of model processing capacity. Similar to your computer or databases, different workloads or requests to the model consume different amounts of underlying processing capacity. To estimate the number of PTUs from your throughput needs, consider these factors:
 
 - **Request shape**: Input tokens, output tokens, and requests per minute (RPM). Generating output tokens requires more processing than consuming input tokens.
-- **Traffic patterns**: Highly variable traffic or bursts of large requests affect PTU consumption differently than steady traffic with consistent call shapes.
-- **Model selected**: Each model delivers a different number of TPM per PTU. A heavier model requires more PTUs to serve the same TPM as a lighter model. See [How much throughput per PTU you get for each model](#how-much-throughput-per-ptu-you-get-for-each-model) for per-model data.
 
-Additional sizing considerations:
+- **Call shape distribution**: For GPT-4o and later models, the TPM per PTU is set for input and output tokens separately. For models older than GPT-4o, larger calls are progressively more expensive to compute. A small number of large calls (for example, one call with 100,000 tokens in the prompt) can consume significantly more capacity and experience lower throughput per PTU than many small calls with the same average token count (for example, 100 calls each with a 1000 token prompt size).
 
-- For GPT-4o and later models, input and output TPM per PTU are specified separately. For older models, the distribution of call shapes matters: a small number of large calls can consume significantly more capacity than many small calls with the same average token count.
-- Use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal to estimate maximum requests per minute for a specific call shape and model.
-- If the system generates fewer output tokens than the value specified in the `max_tokens` parameter, the deployment can accept more requests. For highest concurrency, set `max_tokens` as close as possible to the true expected generation size.
+- **Model type and version**: The minimum PTU deployment, increments, and processing capacity per PTU varies by model type and version. See [How much throughput per PTU you get for each model](#how-much-throughput-per-ptu-you-get-for-each-model) for per-model data in the tables.
 
-### Obtain PTU quota
+- **Use the capacity calculator to estimate PTUs**: The [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal is useful for sizing specific workload shapes.
 
-New subscriptions receive a default amount of global, data zone, and regional provisioned quota in select regions. To request additional quota:
+### Example: Manually estimate PTU for a workload
+
+You can estimate the PTUs your workload requires using your expected traffic and the per-model values from the [tables in the previous section](#how-much-throughput-per-ptu-you-get-for-each-model). The calculation converts your expected token volume into a single *converted input TPM* figure, then divides by the model's **Input TPM per PTU** value.
+
+**Formulas:**
+
+- Input TPM = RPM × prompt size (tokens)
+- Output TPM = RPM × generation size (tokens)
+- Converted input TPM = (input TPM × (1 − cache rate)) + (throughput ratio × output TPM)
+- PTUs required = converted input TPM ÷ Input TPM per PTU
+
+The **throughput ratio** is the output-to-input ratio for the model (from the table). The **cache rate** is the fraction of input tokens served from the prompt cache (0 if caching isn't used). As described in [How much throughput per PTU you get for each model](#how-much-throughput-per-ptu-you-get-for-each-model), cached tokens are deducted 100% from the utilization calculation and don't consume PTU capacity.
+
+**Worked example:**
+
+Suppose your application sends requests at a rate of 1,000 RPM, with an average prompt size of 100 tokens and an average generation size of 50 tokens, using the gpt-5.4 model. From the table, gpt-5.4 has an Input TPM per PTU of 2,400 and a throughput ratio of 6.
+
+- Input TPM = 1,000 × 100 = 100,000
+- Output TPM = 1,000 × 50 = 50,000
+- Converted input TPM (no cache) = 100,000 + (6 × 50,000) = 400,000
+- PTUs required = 400,000 ÷ 2,400 = **167 PTUs (approx)**
+
+If 25% of input tokens are served from the prompt cache:
+
+- Effective input TPM = 100,000 × (1 − 0.25) = 75,000
+- Converted input TPM = 75,000 + (6 × 50,000) = 375,000
+- PTUs required = 375,000 ÷ 2,400 = **157 PTUs (approx)**
+
+**Estimated PTUs for gpt-5.4 across workload variations:**
+
+The following table shows PTU estimates for the gpt-5.4 model (Input TPM per PTU = 2,400; throughput ratio = 6) across three workload shapes at 1,000 RPM, each with 0% and 25% cache hit rates.
+
+| Requests per minute (RPM) | Avg prompt (tokens) | Avg generation (tokens) | Cache rate | Input TPM | Output TPM | Converted input TPM | Estimated PTUs |
+|---|---|---|---|---|---|---|---|
+| 1,000 | 100 | 50 | 0% | 100,000 | 50,000 | 400,000 | 167 |
+| 1,000 | 100 | 50 | 25% | 75,000 | 50,000 | 375,000 | 157 |
+| 1,000 | 500 | 200 | 0% | 500,000 | 200,000 | 1,700,000 | 709 |
+| 1,000 | 500 | 200 | 25% | 375,000 | 200,000 | 1,575,000 | 657 |
+
+> [!NOTE]
+> These estimates are based on average token counts and a steady traffic shape. The more accurate way to determine your required PTU count is to benchmark a deployment against representative traffic for your use case. Use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal to size specific workload shapes.
+
+## Obtain PTU quota
+
+PTU quota must be requested. To request quota, submit the [quota request form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) directly. You receive an email notification when the request is approved.
+
+You can also request more quota in the Foundry portal as follows:
 
 1. In the Foundry portal, go to the **Operate** section > **Quota** pane and select the subscription and target region.
 1. Select **Request Quota** and complete the form.
-
-You receive an email notification when the request is approved. You can also submit the [quota request form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) directly.
 
 ## Size your Foundry provisioned throughput reservation
 
