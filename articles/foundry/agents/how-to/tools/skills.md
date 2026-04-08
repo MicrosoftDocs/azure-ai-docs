@@ -436,7 +436,7 @@ my-agent/
 
 ### Step 2: Initialize the agent locally
 
-After downloading the skills, initialize the agent. Skills are auto-discovered at startup — the agent scans the project root for any `*/SKILL.md` pattern.
+After downloading the skills, initialize the agent. Skills are autodiscovered at startup—the agent scans the project root for any `*/SKILL.md` pattern.
 
 ```bash
 azd ai agent init --skills --name my-agent
