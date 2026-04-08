@@ -23,7 +23,7 @@ AGENT_NAME="MyAgent"
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/python/quickstart)
+> [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/quickstart)
 
 
 Sign in using the CLI `az login` command to authenticate before running your Python scripts.
@@ -39,7 +39,7 @@ AgentName = "MyAgent"
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
+> [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/quickstart)
 
 Sign in using the CLI `az login` command to authenticate before running your C# scripts.
 
@@ -53,7 +53,7 @@ AGENT_NAME="MyAgent"
 ```
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/typescript/quickstart/src)
+> [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/typescript/quickstart/src)
 
 Sign in using the CLI `az login` command to authenticate before running your TypeScript scripts.
 
@@ -75,7 +75,7 @@ AgentName = "MyAgent"
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/)
+> [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/java/quickstart/src/main/java/com/microsoft/foundry/samples/)
 
 Sign in using the CLI `az login` command to authenticate before running your Java scripts.
 
