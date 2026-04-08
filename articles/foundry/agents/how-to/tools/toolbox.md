@@ -181,7 +181,7 @@ console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.
 Choose the tool type and authentication pattern that matches your scenario.
 
 > [!NOTE]
-> Each of the following payloads is the request body for `POST {project_endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1`.
+> Each of the following JSON payloads is the request body for `POST {project_endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1`. The JavaScript SDK accepts the same `tools` array shape as plain objects. The .NET SDK equivalent is shown after each payload.
 
 ### [Model Context Protocol (MCP)](model-context-protocol.md)
 
@@ -199,6 +199,21 @@ Choose the tool type and authentication pattern that matches your scenario.
     }
   ]
 }
+```
+
+**.NET SDK**:
+
+```csharp
+ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
+    serverLabel: "myserver",
+    serverUri: new Uri("https://your-mcp-server.example.com")
+));
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "my-mcp-toolbox"
+);
 ```
 
 > [!IMPORTANT]
@@ -238,6 +253,20 @@ Use this pattern to add web search. No project connection is required for the we
     }
   ]
 }
+```
+
+**.NET SDK**:
+
+```csharp
+ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateWebSearchTool()
+);
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "Built-in web search"
+);
 ```
 
 **With a Grounding with custom Bing Search connection**:
@@ -312,6 +341,28 @@ Use this pattern to add web search. No project connection is required for the we
   ]
 }
 ```
+
+**.NET SDK**:
+
+```csharp
+ProjectsAgentTool tool = new AzureAISearchTool(
+    new AzureAISearchToolOptions(
+        indexes: [
+            new AzureAISearchIndexResource(
+                indexName: "<INDEX_NAME>",
+                projectConnectionId: "<CONNECTION_NAME>"
+            )
+        ]
+    )
+);
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "Azure AI Search over my data"
+);
+```
+
 #### Configure tool parameters
 
 | Azure AI Search tool parameter | Required | Notes |
@@ -348,6 +399,22 @@ Use this pattern to let the agent write and execute Python code. No project conn
 }
 ```
 
+**.NET SDK**:
+
+```csharp
+ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateCodeInterpreterTool(
+        new CodeInterpreterToolContainer()
+    )
+);
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "Code interpreter for data analysis"
+);
+```
+
 ### [File Search](file-search.md)
 
 Use this pattern to let the agent search over uploaded files stored in a vector store. Provide `vector_store_ids` referencing vector stores already created in your Foundry project.
@@ -368,6 +435,22 @@ Use this pattern to let the agent search over uploaded files stored in a vector 
     }
   ]
 }
+```
+
+**.NET SDK**:
+
+```csharp
+ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateFileSearchTool(
+        vectorStoreIds: ["<VECTOR_STORE_ID>"]
+    )
+);
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "Search over uploaded documents"
+);
 ```
 
 > [!NOTE]
@@ -424,6 +507,25 @@ Use this pattern to expose any REST API described by an OpenAPI spec. Choose the
     }
   ]
 }
+```
+
+**.NET SDK** (anonymous auth):
+
+```csharp
+BinaryData specBytes = BinaryData.FromString("<OpenAPI spec JSON>");
+ProjectsAgentTool tool = new OpenAPITool(
+    new OpenApiFunctionDefinition(
+        name: "my-api",
+        spec: specBytes,
+        openApiAuthentication: new OpenApiAnonymousAuthDetails()
+    )
+);
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "REST API via OpenAPI spec"
+);
 ```
 
 **Project connection auth** :
@@ -495,6 +597,21 @@ Use this pattern to call another agent as a tool. Provide the base URL of the re
     }
   ]
 }
+```
+
+**.NET SDK**:
+
+```csharp
+ProjectsAgentTool tool = new A2APreviewTool()
+{
+    ProjectConnectionId = "<CONNECTION_NAME>",
+};
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "Delegate tasks to a specialist agent"
+);
 ```
 
 ### Multiple tool types
