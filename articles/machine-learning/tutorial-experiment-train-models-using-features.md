@@ -19,6 +19,18 @@ ms.custom: sdkv2, build-2023, ignite-2023, update-code
 
 This tutorial series shows how features seamlessly integrate all phases of the machine learning lifecycle: prototyping, training, and operationalization.
 
+> [!IMPORTANT]
+> Azure Cache for Redis announced its retirement timeline for all SKUs. We recommend moving your existing Azure Cache for Redis instances to Azure Managed Redis as soon as you can.
+>
+> Migration guidance:
+> - [Migrate Basic, Standard, and Premium tiers to Azure Managed Redis](/azure/redis/migrate/migrate-basic-standard-premium-overview)
+> - [Migrate Enterprise tier to Azure Managed Redis](/azure/redis/migrate/migrate-redis-enterprise-overview)
+>
+> For more details about the retirement:
+>   - [Azure Cache for Redis Retirement: What to Know and How to Prepare](https://techcommunity.microsoft.com/blog/azure-managed-redis/azure-cache-for-redis-retirement-what-to-know-and-how-to-prepare/4458721)
+>   - [Azure Cache for Redis Retirement FAQ](/azure/azure-cache-for-redis/retirement-faq)
+> 
+
 The first tutorial showed how to create a feature set specification with custom transformations. Then, it showed how to use that feature set to generate training data, enable materialization, and perform a backfill. This tutorial shows how to enable materialization and perform a backfill. It also shows how to experiment with features, as a way to improve model performance.
 
 In this tutorial, you learn how to:
