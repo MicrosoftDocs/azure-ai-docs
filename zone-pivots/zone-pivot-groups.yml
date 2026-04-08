@@ -2058,3 +2058,5 @@ groups:
     title: Python
   - id: dotnet
     title: .NET
+  - id: javascript
+    title: JavaScript

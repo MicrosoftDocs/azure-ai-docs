@@ -24,17 +24,20 @@ In this article, you learn how to:
 - Import, list, get, download, and delete skills using the Skills REST API.
 - Bundle downloaded skills into a hosted agent.
 
+> [!IMPORTANT]
+> If you use Skills with any third-party servers, agents, code or non-Azure Direct models(“Third-Party Systems”), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms.  You are responsible for any usage and associated costs.
+> We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. It is your responsibility to manage whether your data will flow outside of your organization’s Azure compliance and geographic boundaries and any related implications, and that appropriate permissions, boundaries, and approvals are provisioned.
+> You are responsible for carefully reviewing and testing applications you build in the context of your specific use cases, and making all appropriate decisions and customizations.  This includes implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems, and ensuring your applications meet appropriate quality, reliability, security, and trustworthiness standards.  see the [Azure OpenAI transparency note](../../../responsible-ai/agents/transparency-note.md)
+
 ## Feature support
 
-| Feature | REST API | Python | .NET | Hosted agent | Prompt agent |
-|---------|----------|--------|------|--------------|---------------|
-| Skills CRUD (create, import, list, get, download, delete) | ✔️ | ✔️ | ✔️ | N/A | N/A |
-| Include downloaded skills in agent | N/A | N/A | N/A | ✔️ | N/A |
+| Feature | REST API | Python | .NET | JavaScript | Hosted agent | Prompt agent |
+|---------|----------|--------|------|------------|--------------|---------------|
+| Skills CRUD (create, import, list, get, download, delete) | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
+| Include downloaded skills in agent | N/A | N/A | N/A | N/A | ✔️ | N/A |
 
 > [!IMPORTANT]
-> Skills are used in **hosted agents** only. The Skills REST API handles
-> storage and retrieval; the hosted agent bundles the downloaded `SKILL.md`
-> files into its container image and injects them at session startup.
+> Skills are used in **hosted agents** only. The Skills REST API handles storage and retrieval; the hosted agent bundles the downloaded `SKILL.md` files into its container image and injects them at session startup.
 
 ## Prerequisites
 
@@ -126,7 +129,23 @@ Accept: application/json
 > .NET sample not yet available.
 
 :::zone-end
+:::zone pivot="javascript"
 
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+
+const skill = await project.beta.skills.create("greeting", {
+  description: "Generate a personalized greeting for the user.",
+  instructions: "You are a friendly greeting assistant. Include the user's name and keep greetings concise.",
+});
+console.log(`Created skill: ${skill.name} (id: ${skill.skillId})`);
+```
+
+:::zone-end
 Example response:
 
 ```json
@@ -154,6 +173,7 @@ POST {endpoint}/skills:import?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/zip
 Accept: application/json
+Foundry-Features: Skills=V1Preview
 
 <ZIP bytes containing SKILL.md at the root>
 ```
@@ -171,6 +191,18 @@ Accept: application/json
 
 > [!NOTE]
 > .NET sample not yet available.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+import { readFileSync } from "fs";
+
+const zipBytes = readFileSync("greeting.zip");
+const skill = await project.beta.skills.createFromPackage(zipBytes);
+console.log(`Imported skill: ${skill.name} (has_blob: ${skill.hasBlob})`);
+```
 
 :::zone-end
 
@@ -201,6 +233,7 @@ Skills created from JSON have `has_blob: false` and can't be downloaded.
 GET {endpoint}/skills?api-version=v1&limit=20&order=desc
 Authorization: Bearer {token}
 Accept: application/json
+Foundry-Features: Skills=V1Preview
 ```
 
 :::zone-end
@@ -218,7 +251,16 @@ Accept: application/json
 > .NET sample not yet available.
 
 :::zone-end
+:::zone pivot="javascript"
 
+```javascript
+const skills = project.beta.skills.list({ limit: 20, order: "desc" });
+for await (const skill of skills) {
+  console.log(`${skill.name} (has_blob: ${skill.hasBlob})`);
+}
+```
+
+:::zone-end
 Example response:
 
 ```json
@@ -251,6 +293,7 @@ for cursor-based pagination.
 GET {endpoint}/skills/{name}?api-version=v1
 Authorization: Bearer {token}
 Accept: application/json
+Foundry-Features: Skills=V1Preview
 ```
 
 :::zone-end
@@ -266,6 +309,15 @@ Accept: application/json
 
 > [!NOTE]
 > .NET sample not yet available.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const skill = await project.beta.skills.get("greeting");
+console.log(`${skill.name}: ${skill.description}`);
+```
 
 :::zone-end
 
@@ -282,6 +334,7 @@ Downloads the original ZIP archive for skills created via `:import`
 GET {endpoint}/skills/{name}:download?api-version=v1
 Authorization: Bearer {token}
 Accept: application/zip
+Foundry-Features: Skills=V1Preview
 ```
 
 :::zone-end
@@ -297,6 +350,15 @@ Accept: application/zip
 
 > [!NOTE]
 > .NET sample not yet available.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const response = await project.beta.skills.download("greeting");
+// response.body contains the ZIP archive bytes
+```
 
 :::zone-end
 
@@ -311,6 +373,7 @@ Accept: application/zip
 DELETE {endpoint}/skills/{name}?api-version=v1
 Authorization: Bearer {token}
 Accept: application/json
+Foundry-Features: Skills=V1Preview
 ```
 
 :::zone-end
@@ -326,6 +389,15 @@ Accept: application/json
 
 > [!NOTE]
 > .NET sample not yet available.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const result = await project.beta.skills.delete("greeting");
+console.log(`Deleted: ${result.name} (${result.deleted})`);
+```
 
 :::zone-end
 
@@ -346,11 +418,6 @@ After importing skills to Foundry, download them and bundle them into your
 hosted agent's container image. The agent discovers them at startup and injects
 them as additional instructions in every session.
 
-> [!IMPORTANT]
-> Your agent framework must support skills integration. The framework needs to scan for `SKILL.md` files in subdirectories and inject their content as system instructions at session startup. The [GitHub Copilot SDK](https://pypi.org/project/github-copilot-sdk/) supports this natively through the `skill_directories` parameter. If your framework doesn't support skills, you must implement the discovery and injection logic yourself.
-
-The following example uses the GitHub Copilot SDK with the Foundry invocations protocol.
-
 ### Step 1: Download skills into the agent directory
 
 Download each skill into its own subdirectory under the agent root.
@@ -361,147 +428,18 @@ After downloading, the agent directory looks like this:
 ```
 my-agent/
 ├── main.py
-├── agent.yaml
-├── agent.manifest.yaml
-├── Dockerfile
-├── requirements.txt
-├── skills/
-│   ├── greeting/
-│   │   └── SKILL.md        ← downloaded from Foundry
-│   └── another-skill/
-│       └── SKILL.md
+├── greeting/
+│   └── SKILL.md        ← downloaded from Foundry
+└── another-skill/
+    └── SKILL.md
 ```
 
-### Step 2: Wire up skills in the agent
+### Step 2: Initialize the agent locally
 
-Create `main.py` using the Copilot SDK. The key integration point is the `skill_directories` parameter in `create_session` and `resume_session` — the SDK scans those directories for `*/SKILL.md` files and injects their content as instructions.
-
-```python
-import asyncio
-import json
-import logging
-import os
-import pathlib
-import sys
-import uuid
-
-from starlette.requests import Request
-from starlette.responses import Response, StreamingResponse
-
-from azure.ai.agentserver.invocations import InvocationAgentServerHost
-from copilot import CopilotClient, SubprocessConfig
-from copilot.session import PermissionHandler
-from copilot.generated.session_events import SessionEventType
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-app = InvocationAgentServerHost()
-
-_client: CopilotClient | None = None
-_session = None
-_session_id: str | None = None
-_skills_dir = str(pathlib.Path(__file__).parent / "skills")
-
-
-async def _ensure_session():
-    """Resume a persisted session or create a new one."""
-    global _client, _session, _session_id
-    if _session is not None:
-        return
-
-    _session_id = os.environ.get("FOUNDRY_AGENT_SESSION_ID")
-    if not _session_id:
-        _session_id = str(uuid.uuid4())
-
-    _client = CopilotClient(
-        SubprocessConfig(github_token=os.environ["GITHUB_TOKEN"]),
-        auto_start=False,
-    )
-    await _client.start()
-
-    try:
-        _session = await _client.resume_session(
-            _session_id,
-            on_permission_request=PermissionHandler.approve_all,
-            streaming=True,
-            skill_directories=[_skills_dir],
-        )
-    except Exception:
-        _session = await _client.create_session(
-            session_id=_session_id,
-            on_permission_request=PermissionHandler.approve_all,
-            streaming=True,
-            skill_directories=[_skills_dir],
-        )
-
-
-async def _stream_response(invocation_id: str, input_text: str):
-    """Forward Copilot SDK session events as SSE."""
-    await _ensure_session()
-    queue: asyncio.Queue = asyncio.Queue()
-
-    def on_event(event):
-        if event.type == SessionEventType.SESSION_IDLE:
-            queue.put_nowait(None)
-        elif event.type == SessionEventType.SESSION_ERROR:
-            queue.put_nowait(RuntimeError(
-                getattr(event.data, "message", "error")))
-        else:
-            queue.put_nowait(event)
-
-    unsubscribe = _session.on(on_event)
-    try:
-        await _session.send(input_text)
-        while True:
-            item = await queue.get()
-            if item is None:
-                break
-            if isinstance(item, Exception):
-                yield (
-                    f"data: {json.dumps({'type': 'error', 'message': str(item)})}"
-                    "\n\n"
-                ).encode()
-                break
-            yield f"data: {json.dumps(item.to_dict())}\n\n".encode()
-
-        yield (
-            f"event: done\ndata: {json.dumps({'invocation_id': invocation_id, 'session_id': _session_id})}"
-            "\n\n"
-        ).encode()
-    finally:
-        unsubscribe()
-
-
-@app.invoke_handler
-async def handle_invoke(request: Request) -> Response:
-    data = await request.json()
-    input_text = data.get("input", "")
-    if not input_text:
-        return Response(
-            content=json.dumps({"error": "Missing 'input' field"}),
-            status_code=400,
-            media_type="application/json",
-        )
-    return StreamingResponse(
-        _stream_response(request.state.invocation_id, input_text),
-        media_type="text/event-stream",
-        headers={"Cache-Control": "no-cache", "Connection": "keep-alive"},
-    )
-
-
-if __name__ == "__main__":
-    if not os.environ.get("GITHUB_TOKEN"):
-        sys.exit("Error: GITHUB_TOKEN env var is required")
-    app.run()
-```
-
-### Step 3: Initialize and test the agent locally
-
-Initialize the agent:
+After downloading the skills, initialize the agent. Skills are auto-discovered at startup — the agent scans the project root for any `*/SKILL.md` pattern.
 
 ```bash
-azd ai agent init --name my-copilot-agent
+azd ai agent init --skills --name my-agent
 ```
 
 Start the local agent:
@@ -513,12 +451,12 @@ azd ai agent start
 Test the local agent:
 
 ```bash
-azd ai agent invoke "Tell me a joke"
+azd ai agent invoke "What Azure products do you offer?"
 ```
 
-### Step 4: Deploy the hosted agent
+### Step 3: Deploy and test the hosted agent
 
-Deploy the agent to Foundry:
+Deploy the agent:
 
 ```bash
 azd ai agent deploy
@@ -527,9 +465,8 @@ azd ai agent deploy
 Test the remote hosted agent:
 
 ```bash
-azd ai agent invoke --remote "Tell me a joke"
+azd ai agent invoke --remote "What Azure products do you offer?"
 ```
-
 
 ## Troubleshoot
 
@@ -540,10 +477,4 @@ azd ai agent invoke --remote "Tell me a joke"
 | HTTP 404 on download | Skill was created from JSON (`has_blob: false`) | Only ZIP-imported skills (`has_blob: true`) can be downloaded |
 | ZIP not extractable after download | Caller treated response as gzip | Response is `application/zip`; use `zipfile.ZipFile` to extract |
 | Skill not injected | `SKILL.md` placed at agent root, not in a subdirectory | Put it in `greeting/SKILL.md`, not `./SKILL.md` |
-
-## Related content
-
-- [Curate intent-based toolbox in Foundry](toolbox.md)
-- [Deploy a hosted agent](../deploy-hosted-agent.md)
-- [Add a connection to your project](../../../how-to/connections-add.md)
 
