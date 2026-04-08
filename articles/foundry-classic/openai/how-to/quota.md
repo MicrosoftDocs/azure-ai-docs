@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 04/08/2026
 ms.author: mbullwin
 ---
 
@@ -127,6 +127,24 @@ You may encounter a 429 error (“Too Many Requests”) when your usage exceeds 
 ### Common 429 scenarios and what to do
 1. **Rate Limit Exceeded**. This is the most common situation when you've received 429 responses. It means your requests exceeded the rate limit for your current quota. In this case, you can request a quota increase using the provided link in the error message.
 2. **System is experiencing high demand and cannot process your request**. The system is under high demand and cannot process your request due to capacity or latency limits. In this case, you can retry after the suggested time. Please note that Standard offer has no latency SLA and may experience variable latency if you exceed the [Usage tier](/azure/ai-foundry/openai/quotas-limits?tabs=REST#usage-tiers). If you are looking for improved reliability or lower latency, consider upgrading to the Premium offer (Provisioned throughput) for better predictability. 
+
+### Why do I see rate limiting even when my token usage metrics are below quota?
+
+Azure OpenAI **rate limiting** and **usage metrics** are not the same.
+
+- Token usage metrics in Azure Monitor reflect **billed tokens that were successfully processed by the model**.
+- Rate limiting applies to **API requests**, including some requests that are **not billed** and may not appear in token metrics.
+
+As a result, you may receive **429 (Too Many Requests)** responses even when token usage metrics appear below your quota.
+
+This can occur in the following scenarios:
+- Requests rejected due to **input or context length limits (HTTP 400)**. These requests are not billed and may not appear in token usage metrics, but they can still count toward rate limiting.
+- Requests evaluated based on **potential token usage** (for example, `max_tokens`), even if no tokens are ultimately generated.
+- **Distributed rate‑limiting behavior**, where enforcement may not be perfectly precise or immediately reflected in aggregated metrics.
+
+**What to rely on**
+- Use **token usage metrics** to understand billed consumption.
+- Use **HTTP response codes**, especially 429, to detect rate‑limit enforcement.
 
 ## Automate deployment
 
