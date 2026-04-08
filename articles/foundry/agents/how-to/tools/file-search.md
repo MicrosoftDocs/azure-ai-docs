@@ -626,7 +626,6 @@ curl --request DELETE \
   --url $FOUNDRY_PROJECT_ENDPOINT/openai/v1/files/$FILE_ID \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
-```
 
 ### References
 
