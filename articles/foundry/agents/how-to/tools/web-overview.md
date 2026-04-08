@@ -34,7 +34,7 @@ The grounding process involves several key steps:
 Before using any web grounding tool, ensure you have:
 
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
-- The latest SDK package for your language (Python: `azure-ai-projects`, C#: `Azure.AI.Extensions.OpenAI`, JavaScript: `@azure/ai-projects`). See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
+- The latest SDK package for your language (Python: `azure-ai-projects`, C#: `Azure.AI.Projects` and `Azure.AI.Extensions.OpenAI`, JavaScript: `@azure/ai-projects`). See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
 - An Azure OpenAI model deployment in your Foundry project.
 
 > [!NOTE]
@@ -42,11 +42,13 @@ Before using any web grounding tool, ensure you have:
 
 <!-- Note, in the Bing grounding legal enterprise below, we're intentionally using the en-us region in the link. It's the only language available for the legal documentation. -->
 
->[!IMPORTANT]
-> - Web Search uses Grounding with Bing Search and Grounding with Bing Custom Search are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:~:text=First-Party%20Consumption%20Services) with [terms for online services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS). They're governed by the [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409). 
-> - The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search or Grounding with Bing Custom Search. When you use these services, your data flows outside the Azure compliance and Geo boundary. This also means use of these services waives all elevated Government Community Cloud security and compliance commitments, including data sovereignty and screened/citizenship-based support, as applicable.  
-> - Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See pricing for [details](https://www.microsoft.com/bing/apis/grounding-pricing). 
-> - See the management section for information about how Azure admins can manage access to use of Grounding with Bing Search and Grounding with Bing Custom Search.
+> [!IMPORTANT]
+> Web Search, Grounding with Bing Search, and Grounding with Bing Custom Search are [First Party Consumption Services](https://www.microsoft.com/licensing/terms/product/Glossary/EAEAS#:~:text=First-Party%20Consumption%20Services) with [terms for online services](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS). They're governed by the [Grounding with Bing terms of use](https://www.microsoft.com/en-us/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).
+>
+> The Microsoft [Data Protection Addendum](https://aka.ms/dpa) doesn't apply to data sent to Grounding with Bing Search or Grounding with Bing Custom Search. When you use these services, your data flows outside the Azure compliance and Geo boundary. This also means use of these services waives all elevated Government Community Cloud security and compliance commitments, including data sovereignty and screened/citizenship-based support, as applicable.
+
+> [!NOTE]
+> Use of Grounding with Bing Search and Grounding with Bing Custom Search incurs costs. See [pricing details](https://www.microsoft.com/bing/apis/grounding-pricing). Azure admins can restrict access to these tools. For details, see [Administrator control for the Web Search tool](./web-search.md#administrator-control-for-the-web-search-tool).
 
 ## Determine the best tool for your use cases
 
@@ -70,7 +72,7 @@ The following use cases help you compare the available tools. Use case 1 covers 
 
 |                               | [Web Search](./web-search.md) (recommended) | [Grounding with Bing Custom Search](./bing-tools.md) |
 | ----------------------------- | ------------------------------------------- | ---------------------------------------------------- |
-| **Stage**                     | GA                                          | Preview                                              |
+| **Stage**                     | GA (requires a Bing Custom Search instance)  | Preview                                              |
 | **Restrict to custom domains**       | Supported — use `custom_search_configuration` to pre‑define allowed or blocked domains (requires creating a Bing Custom Search resource + instance)  | Supported — use `custom_search_configuration` to pre‑define allowed or blocked domains (requires creating a Bing Custom Search resource + instance) |
 | **Other parameters**          | - `user_location`: Provides geo‑relevant results<br>- `search_context_size`: low/medium/high (default: medium)<br> Learn more about [Web Search parameters](./web-search.md#domain-restricted-search-with-bing-custom-search) | - `count`: the maximum number of results returned by Bing <br>- `freshness`: specifies the period for the search results<br>- `market`: specifies the region for the search results <br>- `set_lang`: specifies the language for the search results <br> Learn more about [Bing Custom Search parameters](./bing-tools.md#optional-parameters) |
 | **Supported models**          | Azure OpenAI models                         | Azure OpenAI models and Azure direct models |
@@ -108,3 +110,5 @@ Yes. Web Search, Grounding with Bing Search and Grounding with Bing Custom Searc
 - [Use the Web Search tool](./web-search.md)
 - [Use Grounding with Bing Search and Grounding with Bing Custom Search](./bing-tools.md)
 - [Best practices for using tools in Foundry Agent Service](../../concepts/tool-best-practice.md)
+- [Agent environment setup](../../../agents/environment-setup.md)
+- [Web grounding pricing](https://www.microsoft.com/bing/apis/grounding-pricing)
