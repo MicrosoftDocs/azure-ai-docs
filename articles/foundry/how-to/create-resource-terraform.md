@@ -2,7 +2,7 @@
 title: "Use Terraform to create Microsoft Foundry"
 description: "In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates."
 ms.topic: how-to
-ms.date: 03/31/2026
+ms.date: 04/08/2026
 ms.service: azure-ai-foundry
 ms.reviewer: deeikele 
 ms.author: sgilley
