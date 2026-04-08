@@ -77,7 +77,7 @@ After creating your Foundry project:
 
 1. Configure the capability host to enable agents functionality.
 
-1. Verify the capability host is properly linked to your storage connection as demonstrated in this [code sample for Standard agent setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/41-standard-agent-setup).
+1. Verify the capability host is properly linked to your storage connection as demonstrated in this [code sample for Standard agent setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/41-standard-agent-setup).
 
 Your agents standard setup now uses your own storage account instead of Microsoft-managed storage.
 
