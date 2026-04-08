@@ -21,7 +21,7 @@ recommendations: false
 
 # Provisioned throughput unit (PTU) costs and billing
 
-Provisioned throughput deployments in Microsoft Foundry are billed hourly based on the number of Provisioned Throughput Units (PTUs) you deploy—not on tokens consumed. This article explains how PTU billing works, helps you choose between hourly billing and Azure Reservations, and covers how to size and monitor reservations to keep costs predictable.
+Provisioned throughput deployments in Microsoft Foundry support hourly billing for flexible, short-term usage, and Azure Reservations for sustained production workloads at a discounted rate. This article explains how Provisioned Throughput Units (PTU) billing works, helps you choose between hourly billing and Azure Reservations, and covers how to size and monitor reservations to keep costs predictable.
 
 If you're new to provisioned throughput, start with [What is provisioned throughput?](../concepts/provisioned-throughput.md). When you're ready to create your first deployment, see [Get started with provisioned deployments](./provisioned-get-started.md).
 
@@ -30,12 +30,14 @@ If you're new to provisioned throughput, start with [What is provisioned through
 
 ## How PTU billing works
 
-**Provisioned throughput units (PTUs)** are generic units of model processing capacity. When you create a provisioned deployment, you specify how many PTUs to allocate. Foundry reserves and holds that capacity for the deployment, and you're charged for it hourly whether or not the deployment is handling requests.
+**Provisioned throughput units (PTUs)** are generic units of model processing capacity. When you create a provisioned deployment, you specify how many PTUs to allocate. Foundry reserves and holds that PTU capacity for the deployment, and you're charged for it hourly whether or not the deployment is handling requests. In other words, you're billed hourly based on the number of Provisioned Throughput Units (PTUs) you deploy—not on tokens consumed.
 
 PTU billing has two important characteristics:
 
-- **Model-independent**: Your PTU quota is shared across all supported models in a region and deployment type. The same PTU pool can be used to deploy any supported model. You don't buy PTUs for a specific model.
-- **Billed on deployed capacity, not token consumption**: Unlike pay-per-token billing, you pay for reserved capacity. Requests that complete successfully consume that capacity, but you're billed for the full deployed PTU count regardless of actual utilization.
+- **Model-independent**: Your [PTU quota](../concepts/provisioned-throughput.md#ptu-quota-vs-capacity) is shared across all supported models in a region and deployment type. The same PTU pool can be used to deploy any supported model. You don't buy PTUs for a specific model.
+- **Billed on deployed capacity, not token consumption**: Unlike pay-per-token billing, you pay for reserved capacity. Requests that complete successfully consume that capacity, but you're billed for the full deployed PTU count regardless of actual utilization. 
+
+:::image type="content" source="../media/provisioned/model-independent-quota.png" alt-text="Diagram of model independent quota with one pool of PTUs available to multiple Azure OpenAI models." lightbox="../media/provisioned/model-independent-quota.png":::
 
 PTU quota for each provisioned deployment type appears in the Foundry portal's **Operate** section > **Quota** pane, and maps to these quota names:
 
@@ -45,43 +47,17 @@ PTU quota for each provisioned deployment type appears in the Foundry portal's *
 | [Global Provisioned](../../foundry-models/concepts/deployment-types.md#global-provisioned) | Global Provisioned Throughput Unit |
 | [Data Zone Provisioned](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned) | Data Zone Provisioned Throughput Unit |
 
-> [!NOTE]
-> Quota doesn't guarantee capacity. Deploy your model in Foundry before purchasing a matching reservation in the Azure portal.
+<!-- > [!NOTE]
+> Quota doesn't guarantee capacity. Deploy your model in Foundry before purchasing a matching reservation in the Azure portal. -->
 
-:::image type="content" source="../media/provisioned/model-independent-quota.png" alt-text="Diagram of model independent quota with one pool of PTUs available to multiple Azure OpenAI models." lightbox="../media/provisioned/model-independent-quota.png":::
-
-## Avoid unwanted charges
-
-Billing begins the moment a provisioned deployment is created and stops when it's deleted. Follow these practices to avoid unexpected costs.
-
-### Delete deployments before deleting resources
-
-> [!IMPORTANT]
-> Charges for deployments on a deleted resource continue until the resource is purged. Always delete all deployments from a resource before you delete the resource itself.
-
-If you already deleted the resource without removing its deployments first, you can recover or purge the resource to stop billing. See [Recover or purge deleted Azure AI resources](../../../ai-services/recover-purge-resources.md) for instructions.
-
-To delete a provisioned deployment cleanly:
-
-1. In the Foundry portal, navigate to the resource and delete the deployment.
-1. If you're removing the Azure resource too, delete all its deployments first, then delete the resource.
-1. Purge the resource to ensure billing stops.
-1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to review your existing reservations. Deleting a deployment doesn't cancel or change any PTU reservation. You can cancel or exchange reservations in the Azure portal, but those actions might incur fees.
-
-### Follow the recommended order of operations for reservations
-
-To avoid purchasing a reservation for capacity that doesn't exist or that doesn't match your deployed PTUs:
-
-1. Use Foundry to deploy your model in a region with available quota. This step confirms capacity is available—quota doesn't equal capacity.
-1. After deployment, share deployment details—deployment type (Global Provisioned, Data Zone Provisioned, or Regional Provisioned), region, and subscription—with your Azure reservation admin.
-1. The admin purchases a new reservation that matches the deployment details, or verifies that an existing reservation already covers the deployment.
+Provisioned deployments support two billing modes: hourly billing for flexible, short-term usage, and Azure Reservations for sustained production workloads at a discounted rate.
 
 > [!NOTE]
-> Foundry provisioned customers onboarded before the August 2024 self-service update use a purchase model called the Commitment model. These customers can continue to use the Commitment model alongside hourly/reservation billing. The Commitment model isn't available for new customers or [certain models introduced after August 2024](../../../foundry-classic/openai/concepts/provisioned-migration.md#supported-models-on-commitment-payment-model). For details, see [Foundry Provisioned August Update](../../../foundry-classic/openai/concepts/provisioned-migration.md).
+> Foundry provisioned customers onboarded before the August 2024 self-service update use a purchase model called the Commitment model. These customers can continue to use the Commitment model alongside hourly/reservation billing. The Commitment model isn't available for new customers or [certain models introduced after August 2024](../../../foundry-classic/openai/concepts/provisioned-migration.md#supported-models-on-commitment-payment-model). For details on the Commitment purchase model and options for coexistence and migration, see [Foundry Provisioned August Update](../../../foundry-classic/openai/concepts/provisioned-migration.md).
 
 ## Hourly billing
 
-Regional Provisioned, Data Zone Provisioned, and Global Provisioned deployments are charged at an hourly rate ($/PTU/hr) based on the number of PTUs deployed. For example, a 300 PTU deployment is charged at: hourly rate × 300.
+Provisioned deployments (Regional, Data Zone, and Global) are charged at an hourly rate ($/PTU/hr) based on the number of PTUs deployed. For example, a 300 PTU deployment is charged at: hourly rate × 300.
 
 If a deployment exists for only part of an hour, it receives a prorated charge:
 
@@ -90,33 +66,39 @@ If a deployment exists for only part of an hour, it receives a prorated charge:
 
 :::image type="content" source="../media/provisioned/hourly-billing.png" alt-text="A diagram showing hourly billing for provisioned deployments, where cost is determined by PTU count and hours deployed." lightbox="../media/provisioned/hourly-billing.png":::
 
-Hourly billing is appropriate for short-term scenarios:
+### When to use hourly billing
+
+Hourly billing is appropriate for short-term scenarios such as:
 
 - Benchmarking model quality or performance before committing to a reservation.
 - Temporarily scaling PTU capacity for an event such as a hackathon.
 
-For all Azure pricing, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
+<!-- For all Azure pricing, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/). -->
 
-> [!IMPORTANT]
-> Don't plan to scale production deployments up and down with traffic to avoid purchasing a reservation. There are two reasons:
->
-> - **Cost**: Azure Reservations provide significant discounts. Maintaining a deployment sized for full production volume under a reservation is typically less expensive than continuous hourly billing with variable scaling.
-> - **Capacity risk**: Unused quota doesn't guarantee that capacity is available when you want to scale back up. Provisioned capacity is a finite, dynamically changing resource. A scale-down/scale-up strategy can leave you without capacity when you need it most.
+Hourly billing isn't recommended for deployments in production—use reservations instead. Reasons why you shouldn't plan to use hourly billing with scaling production deployments up and down as traffic changes include:
 
-## Azure Reservations for Foundry Provisioned Throughput
+- **Cost**: Azure Reservations provide significant discounts. Maintaining a deployment sized for full production volume under a reservation is typically less expensive than continuous hourly billing with the deployment scaled up or down for incoming traffic.
+- **Capacity risk**: Unused quota doesn't guarantee that capacity is available when you want to scale back up your PTU deployment. Provisioned capacity is a finite, dynamically changing resource. A scale-down/scale-up strategy can leave you without capacity when you need it most.
 
-Azure Reservations are a financial discount applied to PTU billing meters—not to service interactions like deployment creation. In exchange for committing to payment for a fixed number of PTUs over a one-month or one-year term, you receive a discounted effective $/PTU/hr rate. The discount is substantial for sustained workloads and makes reservations significantly more cost-effective than long-term hourly billing.
+## Azure Reservations for provisioned throughput
+
+An Azure Reservation is a term-discounting mechanism shared by many Azure products. For example, Compute and Cosmos DB. Azure Reservations for provisioned throughput (Regional, Data Zone, and Global) are a financial discount applied to PTU billing meters—not to service interactions like deployment creation. In exchange for committing to payment for a fixed number of PTUs over a one-month or one-year term, you receive a discounted effective $/PTU/hr rate. The discount makes reservations significantly more cost-effective than long-term hourly billing for sustained workloads.
 
 Reservations and deployments are loosely coupled: you create or delete deployments and reservations independently. This flexibility lets you change resources, subscriptions, or deployments without changing your billing construct.
 
+> [!IMPORTANT]
+> Capacity availability for model deployments is dynamic and changes frequently across regions and models. Always create deployments first, then purchase the Azure Reservation to cover the PTUs you've deployed. This approach ensures you receive the full reservation discount and protects you from committing to a reservation for PTUs you can't deploy.
+
 Key reservation facts:
 
+- **Purchased in the Azure portal**: Azure Reservations are purchased via the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations).
 - **Purchased per deployment type**: Global Provisioned, Data Zone Provisioned, and Regional Provisioned reservations are separate purchases. A Global Provisioned reservation doesn't cover a Regional Provisioned deployment.
-- **Flexibly scoped**: A reservation can cover an individual resource group or subscription, a management group, or all subscriptions in a billing account. All matching deployments within the scope share the discount, up to the reservation's PTU quantity.
-- **Model-independent**: The discount applies to any supported model deployed within the matching scope. You don't purchase a reservation for a specific model. When you add a new model to your deployment portfolio, the existing reservation covers it automatically if it falls within scope.
-- **Excess is billed hourly**: If deployed PTUs in scope exceed the reservation quantity, the excess PTUs are charged at the standard hourly rate.
-- **Reservations don't guarantee capacity**: Purchasing a reservation doesn't reserve GPU compute. Create deployments first to confirm that capacity is available, then purchase the reservation.
-- **Cancelable, with limits**: Reservations can be canceled after purchase, but credits are limited. Exchanges reset the term.
+- **Flexibly scoped**: A reservation can cover an individual resource group or subscription, a group of subscriptions in a management group, or all subscriptions in a billing account. All matching deployments within the covered scope share the discount, up to the reservation's PTU quantity. See [How reservation matching works](#how-reservation-matching-works).
+- **Overlapping and updatable**: New reservations can be purchased to cover the same scope as existing reservations, allowing you to discount new provisioned deployments. The scope of existing reservations can be updated at any time without penalty—for example, to cover a new subscription.
+- **Model-independent**: The reservation discount applies to any supported model deployed within the matching scope. You don't purchase a reservation for a specific model. When you add a new model to your deployment portfolio, the existing reservation covers it automatically if it falls within scope.
+- **Excess is billed hourly**: If deployed PTUs in scope exceed the reservation quantity, the excess PTUs are charged at the standard hourly rate. See [Reservation overage example](#reservation-overage-example).
+- **Reservations don't guarantee capacity**: Purchasing a reservation doesn't reserve capacity on the service. Create deployments first to confirm that capacity is available, then purchase the reservation.
+- **Cancelable, with limits**: Reservations can be canceled or exchanged after purchase, but those actions might incur fees.
 
 ### How reservation matching works
 
@@ -137,7 +119,7 @@ You have a 500 PTU Global Provisioned reservation in East US 2. Your existing de
 | DeepSeek PTUs added | Covered by reservation | Hourly overage |
 |---|---|---|
 | 200 PTUs | All 200 (200 PTUs remaining in reservation) | None—total = 500 PTUs |
-| 300 PTUs | 200 (reservation exhausted at 500 total) | 100 PTUs billed hourly |
+| 300 PTUs | 200 (reservation exhausted at 500 total) | 100 PTUs billed hourly until deployment sizes are reduced to 500 PTUs, or a new reservation is created to cover the remaining 100. |
 
 The discount is shared automatically across all models in scope. You don't reconfigure the reservation when you add a new model.
 
@@ -146,11 +128,37 @@ The discount is shared automatically across all models in scope. You don't recon
 
 To purchase or manage reservations, go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations).
 
+## Avoid unwanted charges
+
+Billing begins the moment a provisioned deployment is created and stops when it's deleted. Follow these practices to avoid unexpected costs.
+
+### Delete deployments before deleting resources
+
+> [!IMPORTANT]
+> Charges for deployments on a deleted resource continue until the resource is purged. Always delete all deployments from a resource before you delete the resource itself.
+>
+> If you already deleted the resource without removing its deployments first, you can recover or purge the resource to stop billing. See [Recover or purge deleted Azure AI resources](../../../ai-services/recover-purge-resources.md) for instructions.
+
+To delete a provisioned deployment cleanly:
+
+1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), navigate to the resource and delete the deployment.
+1. If you're removing the Azure resource too, delete all its deployments first, then delete the resource.
+1. Purge the resource to ensure billing stops. See [Recover or purge deleted Azure AI resources](../../../ai-services/recover-purge-resources.md) for instructions.
+1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to review your existing reservations. Deleting a deployment doesn't cancel or change any PTU reservation. You can cancel or exchange reservations in the Azure portal, but those actions might incur fees.
+
+### Follow the recommended order of operations for reservations
+
+To avoid purchasing a reservation for capacity that doesn't exist or that doesn't match your deployed PTUs:
+
+1. Use Foundry to deploy your model in a region with available quota. This step confirms capacity is available—quota doesn't equal capacity.
+1. After deployment, share deployment details—deployment type (Global Provisioned, Data Zone Provisioned, or Regional Provisioned), region, and subscription—with your Azure reservation admin.
+1. The admin purchases a new reservation that matches the deployment details, or verifies that an existing reservation already covers the deployment.
+
 ## How much throughput per PTU you get for each model
 
-The throughput (measured as tokens per minute, or TPM) that a deployment delivers per PTU depends on both the model and the mix of input versus output tokens in each request. Generating output tokens requires more processing capacity than consuming input tokens.
+The throughput (measured as tokens per minute, or TPM) that a deployment gets per PTU depends on both the model and the mix of input and output tokens in a minute. Generating output tokens requires more processing capacity than consuming input tokens.
 
-Starting with GPT-4.1 models, the system matches the global standard pricing ratio between input and output tokens:
+Starting with GPT-4.1 models, the system matches the global standard pricing ratio between input and output tokens, [with exceptions for some models](#exceptions-to-input-and-output-throughput-ratio):
 
 - For gpt-5, one output token counts as eight input tokens toward your utilization limit, matching the model's [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) ratio.
 - For gpt-4.1, one output token counts as four input tokens.
@@ -174,12 +182,12 @@ Some models use a ratio that differs from their global standard price ratio. For
 | Regional provisioned minimum deployment | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
 | Regional provisioned scale increment | 50 | 50 | 50 | 50 | 50 | 50 | 50 | 25 | 50 | 25 | 25 | 50 | 25 |
 | Input TPM per PTU | 2,400 | 3,400 | 3,400 | 3,400 | 4,750 | 4,750 | 4,750 | 23,750 | 3,000 | 14,900 | 59,400 | 3,000 | 5,400 |
-| Output-to-input pricing ratio<sup>1</sup> | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
-| Latency target value | 99% > 50 TPS\* | 99% > 50 TPS\* | 99% > 50 TPS\* | 99% > 50 TPS\* | 99% > 50 TPS\* | 99% > 50 TPS\* | 99% > 50 TPS\* | 99% > 80 TPS\* | 99% > 80 TPS\* | 99% > 90 TPS\* | 99% > 100 TPS\* | 99% > 80 TPS\* | 99% > 90 TPS\* |
-
-\* Calculated as p50 request latency on a per 5-minute basis. TPS = tokens per second.
+| Global standard output-to-input price ratio<sup>1</sup> | 6 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 4 | 4 | 4 | 4 | 4 |
+| Latency target value<sup>2</sup> | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 80 TPS | 99% > 80 TPS | 99% > 90 TPS | 99% > 100 TPS | 99% > 80 TPS | 99% > 90 TPS |
 
 <sup>1</sup> Calculated as the ratio of the output token price to the input token price for global standard deployment. For example, a ratio of 4 means one output token costs four times as much as one input token. See [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current pricing.
+
+<sup>2</sup> Calculated as p50 request latency on a per 5-minute basis. TPS = tokens per second.
 
 ### Previous Azure OpenAI models
 
@@ -190,12 +198,13 @@ Some models use a ratio that differs from their global standard price ratio. For
 | Regional provisioned minimum deployment | 50 | 25 | 25 | 25 |
 | Regional provisioned scale increment | 50 | 25 | 25 | 50 |
 | Input TPM per PTU | 2,500 | 37,000 | 2,500 | 230 |
-| Output-to-input pricing ratio<sup>1</sup> | 4 | 4 | 4 | 4 |
-| Latency target value | 99% > 25 TPS\* | 99% > 33 TPS\* | 99% > 66 TPS\* | 99% > 25 TPS\* |
+| Global standard output-to-input price ratio<sup>1</sup> | 4 | 4 | 4 | 4 |
+| Latency target value<sup>2</sup> | 99% > 25 TPS | 99% > 33 TPS | 99% > 66 TPS | 99% > 25 TPS |
 
-\* Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 
 <sup>1</sup> Calculated as the ratio of the output token price to the input token price for global standard deployment. For example, a ratio of 4 means one output token costs four times as much as one input token. See [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current pricing.
+
+<sup>2</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 
 ### Direct from Azure models
 
@@ -205,16 +214,15 @@ Some models use a ratio that differs from their global standard price ratio. For
 | Global & data zone provisioned scale increment | 100 | 100 | 100 | 100 |
 | Regional provisioned minimum deployment | NA | NA | NA | NA |
 | Regional provisioned scale increment | NA | NA | NA | NA |
-| Input TPM per PTU | 8,450<sup>2</sup> | 4,000 | 4,000 | 4,000 |
-| Output-to-input pricing ratio<sup>1</sup> | 1 | 4 | 4 | N/A |
-| Latency target value | 99% > 50 TPS\* | 99% > 50 TPS\* | 99% > 50 TPS\* | 99% > 50 TPS\* |
+| Input TPM per PTU | 8,450<sup>1</sup> | 4,000 | 4,000 | 4,000 |
+| Global standard output-to-input price ratio<sup>2</sup> | 1 | 4 | 4 | N/A |
+| Latency target value<sup>3</sup> | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS |
 
-\* Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
+<sup>1</sup> For Llama-3.3-70B-Instruct, one output token counts as four input tokens toward your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. See [Exceptions to input and output throughput ratio](#exceptions-to-input-and-output-throughput-ratio) and [Llama model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/).
 
-<sup>1</sup> Calculated as the ratio of the output token price to the input token price for global standard deployment. For example, a ratio of 4 means one output token costs four times as much as one input token. See [Llama model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/) and [DeepSeek model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/) for current pricing.
+<sup>2</sup> Calculated as the ratio of the output token price to the input token price for global standard deployment. For example, a ratio of 4 means one output token costs four times as much as one input token. See [Llama model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/) and [DeepSeek model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/deepseek/) for current pricing.
 
-<sup>2</sup> For Llama-3.3-70B-Instruct, one output token counts as four input tokens toward your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. See [Exceptions to input and output throughput ratio](#exceptions-to-input-and-output-throughput-ratio) and [Llama model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/).
-
+<sup>3</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 
 ## Determine PTU requirements for a workload
 
@@ -237,7 +245,7 @@ New subscriptions receive a default amount of global, data zone, and regional pr
 1. In the Foundry portal, go to the **Operate** section > **Quota** pane and select the subscription and target region.
 1. Select **Request Quota** and complete the form.
 
-You receive an email notification when the request is approved, typically within two business days. You can also submit the [quota request form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) directly.
+You receive an email notification when the request is approved. You can also submit the [quota request form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) directly.
 
 ## Size your Foundry provisioned throughput reservation
 
