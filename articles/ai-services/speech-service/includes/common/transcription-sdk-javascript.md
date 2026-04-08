@@ -40,6 +40,14 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     npm install @azure/ai-speech-transcription @azure/identity
     ```
 
+1. Configure the project to use ES modules by adding the module type to your `package.json`:
+
+    ```bash
+    npm pkg set type=module
+    ```
+
+    Or manually add `"type": "module"` to your `package.json` file. This is required for the `import` statements in the sample code to work.
+
 ## Retrieve resource information
 
 You need to retrieve your resource endpoint for authentication.
