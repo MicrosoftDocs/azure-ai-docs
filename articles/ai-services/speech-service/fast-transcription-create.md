@@ -56,6 +56,12 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 ::: zone-end
 
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript SDK quickstart](includes/common/transcription-sdk-javascript.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-java"
 
 [!INCLUDE [Java SDK quickstart](includes/common/transcription-sdk-java.md)]
