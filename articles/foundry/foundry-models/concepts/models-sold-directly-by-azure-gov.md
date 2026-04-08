@@ -20,7 +20,7 @@ This article lists a selection of Microsoft Foundry Models sold directly by Azur
 
 Models sold directly by Azure include all Azure OpenAI models offered in Azure Government. These models are billed through your Azure subscription, covered by Azure service-level agreements, and supported by Microsoft. 
 
-To learn more about attributes of all Foundry Models sold directly by Azure across all clouds, see [Models Sold Driectly by Azure](models-sold-directly-by-azure.md).
+To learn more about attributes of all Foundry Models sold directly by Azure across all clouds, see [Models Sold Directly by Azure](models-sold-directly-by-azure.md).
 
 [!INCLUDE [models-azure-direct-openai](../../openai/includes/models-azure-direct-openai-gov.md)]
 

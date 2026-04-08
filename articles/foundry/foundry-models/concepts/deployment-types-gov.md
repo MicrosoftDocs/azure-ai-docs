@@ -1,5 +1,5 @@
 ---
-title: "Understanding deployment types in Microsoft Foundry Models in Azure Government"
+title: "Understand deployment types in Microsoft Foundry Models in Azure Government"
 description: "Compare Microsoft Foundry deployment types including Standard, DataZone, and ProvisionedManaged."
 ai-usage: ai-assisted
 author: challenp
