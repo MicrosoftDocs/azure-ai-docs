@@ -84,13 +84,13 @@ If you write code against a preview API, you should prepare to upgrade that code
 
 Preview REST APIs are accessed through the `api-version` parameter on the URI. Although older previews are still operational, they become stale over time and aren't updated with new features or bug fixes.
 
-For data plane operations on content, [**`2025-11-01-preview`**](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) is the most recent preview version. The following example shows how to call [Indexes - Get](/rest/api/searchservice/indexes/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API) for this preview version:
+For data plane operations on content, [**2025-11-01-preview**](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) is the most recent preview version. The following example shows how to call [Indexes - Get](/rest/api/searchservice/indexes/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API) for this preview version.
 
 ```http
 GET {endpoint}/indexes('{indexName}')?api-version=2025-11-01-preview
 ```
 
-For management operations on the search service, [**`2026-03-01-preview`**](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) is the most recent preview version. The following example shows how to call [Services - Update](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) (REST API) for this preview version:
+For management operations on the search service, [**2026-03-01-preview**](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) is the most recent preview version. The following example shows how to call [Services - Update](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) (REST API) for this preview version.
 
 ```http
 PATCH https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2026-03-01-preview
