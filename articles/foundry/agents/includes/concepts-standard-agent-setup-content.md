@@ -136,7 +136,7 @@ The project managed identity includes both System-assigned Managed Identity (SMI
 
 ### Use a Bicep template
 
-Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account, or Azure AI Search resource by providing the full Azure Resource Manager (ARM) resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep).
+Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account, or Azure AI Search resource by providing the full Azure Resource Manager (ARM) resource ID in the [standard agent template file](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep).
 
 #### Use an existing Azure OpenAI resource
 
@@ -239,4 +239,4 @@ After you complete provisioning, verify the setup is working correctly:
 
 - [Set up your environment for Foundry Agent Service](../environment-setup.md)
 - [Capability hosts](../concepts/capability-hosts.md)
-- [Standard agent setup Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep)
+- [Standard agent setup Bicep template](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/43-standard-agent-setup-with-customization/main.bicep)
