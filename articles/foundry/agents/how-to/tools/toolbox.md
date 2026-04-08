@@ -291,7 +291,7 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 ```
 
 > [!NOTE]
-> When Web Search returns results over MCP, the response is a single `text` content item containing the synthesized answer with inline Markdown source links. For example:
+> When Web Search returns results over MCP, the response is a `resource` content item containing the synthesized answer with inline Markdown source links. URL citations are in `content[].resource._meta.annotations[]`. For example:
 >
 > ```json
 > {
@@ -306,10 +306,31 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 >     },
 >     "content": [
 >       {
->         "type": "text",
->         "text": "Here are the latest updates on Azure OpenAI Service...\n\n- **February 2026**: Microsoft launched **gpt-realtime-1.5** and **gpt-audio-1.5** ([learn.microsoft.com](https://learn.microsoft.com/...)).\n\n...",
+>         "type": "resource",
+>         "resource": {
+>           "uri": "about:web-search-answer",
+>           "mimeType": "text/plain",
+>           "text": "Here are the latest updates on Azure OpenAI Service...\n\n- **GPT-image-1 Release (January 7, 2026)** Microsoft introduced GPT-image-1 ([serverless-solutions.com](https://...)).\n\n..."
+>         },
 >         "annotations": {
 >           "audience": ["assistant"]
+>         },
+>         "_meta": {
+>           "annotations": [
+>             {
+>               "type": "url_citation",
+>               "url": "https://www.serverless-solutions.com/blog/...",
+>               "title": "Microsoft Expands Azure AI Foundry with Powerful New OpenAI Models",
+>               "start_index": 741,
+>               "end_index": 879
+>             }
+>           ],
+>           "action": {
+>             "type": "search",
+>             "query": "Azure OpenAI service updates 2026",
+>             "queries": ["Azure OpenAI service updates 2026"]
+>           },
+>           "response_id": "resp_001fcebcc300..."
 >         }
 >       }
 >     ],
@@ -877,7 +898,7 @@ await client.close();
 - `result.content[]` contains entries with `"type": "text"` — this is the tool output.
 - For AI Search, check `result.structuredContent.documents[]` for chunk metadata (`title`, `url`, `id`, `score`).
 - For File Search, check `result.content[].resource._meta` for chunk metadata (`title`, `file_id`, `document_chunk_id`, `score`).
-- For Web Search, check the `text` content item for inline Markdown source links.
+- For Web Search, check `result.content[].resource._meta.annotations[]` for URL citations (`type`, `url`, `title`, `start_index`, `end_index`).
 - Watch for `"ServerError"` in text content — the tool executed but hit an internal error.
 
 Tool-specific `tools/call` argument examples:

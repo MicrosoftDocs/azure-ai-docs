@@ -478,3 +478,21 @@ azd ai agent invoke --remote "What Azure products do you offer?"
 | ZIP not extractable after download | Caller treated response as gzip | Response is `application/zip`; use `zipfile.ZipFile` to extract |
 | Skill not injected | `SKILL.md` placed at agent root, not in a subdirectory | Put it in `greeting/SKILL.md`, not `./SKILL.md` |
 
+## Known fast follows and gaps
+
+The following capabilities are planned or have known limitations:
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| Python SDK samples for skill operations | Planned | Native Python SDK samples for create, import, list, get, download, and delete skill operations. Currently only REST API and JavaScript SDK samples are available. |
+| .NET SDK samples for skill operations | Planned | Native .NET SDK samples for create, import, list, get, download, and delete skill operations. |
+| `"latest"` as `default_version` | Not supported | There is no way to set `default_version` to a special value like `"latest"` that automatically points to the most recently created version. Publishers must explicitly promote each new version via PATCH. See [Curate intent-based toolbox in Foundry](toolbox.md). |
+| Default project toolbox (`/mcp`) | Not yet implemented | A built-in, implicit toolbox at `{project_endpoint}/mcp` that serves all project-configured tools without toolbox CRUD. Currently, developers must create a named toolbox explicitly. |
+| File and vector store updates without new version | Not supported | For toolbox tools like File Search and Code Interpreter, uploading new files or updating vector stores requires creating a new toolbox version. There is no way to update the underlying file or vector store content without re-creating the version. See [Curate intent-based toolbox in Foundry](toolbox.md). |
+| Tool configuration via `_meta` | Out of scope for public preview | Pass developer-controlled configuration (connection IDs, index names, query types) separately from model-provided arguments using MCP's standard `_meta` field on `tools/call`. |
+
+## Related content
+
+- [Curate intent-based toolbox in Foundry](toolbox.md)
+- [Deploy a hosted agent](../deploy-hosted-agent.md)
+- [Add a connection to your project](../../../how-to/connections-add.md)
