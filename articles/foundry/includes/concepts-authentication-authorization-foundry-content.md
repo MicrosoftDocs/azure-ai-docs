@@ -36,7 +36,7 @@ In Foundry, there's a clear distinction between control plane operations versus 
 | Control plane | Setting up and configuring resource, projects, networking, encryption, and connections | Create or delete resources, assign roles, rotate keys, set up Private Link | Azure portal, Azure CLI, ARM templates, Bicep, Terraform | Azure RBAC actions |
 | Data plane | Running and using model inference, agent interactions, evaluation jobs, and content safety calls | Chat completions, embedding generation, start fine-tune jobs, send agent messages, analyzer and classifier operations | SDKs, REST APIs, Foundry portal playground | Azure RBAC dataActions |
 
-For all Bicep, Terraform, and SDK samples, see the [foundry-samples repository on GitHub](https://github.com/azure-ai-foundry/foundry-samples) for Foundry.
+For all Bicep, Terraform, and SDK samples, see the [foundry-samples repository on GitHub](https://github.com/microsoft-foundry/foundry-samples) for Foundry.
 
 The following lists and diagram illustrate the separation between control plane and data plane actions in detail.
 Control plane actions within Foundry include:

@@ -57,11 +57,11 @@ Choose the connection type that matches your gateway:
 | **APIM** | You already use Azure API Management for model routing and want intelligent APIM defaults. | `ApiManagement` |
 | **Model Gateway** | You use OpenAI, MuleSoft, or a custom gateway and need static or dynamic model discovery. | `ModelGateway` |
 
-For detailed connection specifications, see the [connection samples on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md).
+For detailed connection specifications, see the [connection samples on GitHub](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md).
 
 ### Deploy the connection
 
-1. Clone or download the [Foundry samples repository](https://github.com/azure-ai-foundry/foundry-samples) and locate the Bicep template for your connection type under `infrastructure/infrastructure-setup-bicep/01-connections/`. The directory contains separate Bicep files and parameter files for APIM and Model Gateway connections.
+1. Clone or download the [Foundry samples repository](https://github.com/microsoft-foundry/foundry-samples) and locate the Bicep template for your connection type under `infrastructure/infrastructure-setup-bicep/01-connections/`. The directory contains separate Bicep files and parameter files for APIM and Model Gateway connections.
 
 1. Deploy the connection by running `az deployment group create` with your resource group, the Bicep template file, and the corresponding parameters file. Replace the placeholder values in the parameters file with your gateway endpoint URL and credentials before deploying. For the full command reference, see [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create).
 
@@ -159,7 +159,7 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 - Supported agent tools: Code Interpreter, Functions, File Search, OpenAPI, Foundry IQ, SharePoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
 - Public networking is supported for both APIM and self-hosted gateways.
 - For full network isolation:
-  - **APIM as your AI gateway**: Deploy Foundry and APIM together using [this GitHub template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview).
+  - **APIM as your AI gateway**: Deploy Foundry and APIM together using [this GitHub template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview).
   - **Self-hosted gateway**: Ensure your gateway endpoints are accessible inside the virtual network used by Agent Service.
 - This feature is different from the AI Gateway in Foundry feature, which deploys a new APIM instance with your Foundry resource. For more information, see [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal).
 
@@ -169,5 +169,5 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 - [Agent environment setup](../../agents/environment-setup.md)
 - [Create a Foundry project](../../how-to/create-projects.md)
 - [Agent SDK samples on GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents)
-- [APIM and model gateway integration guide](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
+- [APIM and model gateway integration guide](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
 - [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal)

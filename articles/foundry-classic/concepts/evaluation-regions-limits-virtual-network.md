@@ -24,7 +24,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 You can  use your own storage account to run evaluations.
 
 You can either use a Bicep template or [manually create and provision access](../how-to/evaluations-storage-account.md) to your storage account in the Azure portal. To use a Bicep template, follow these steps.
-1. Create and connect your storage account to your Foundry project at the resource level. You can [use a Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
+1. Create and connect your storage account to your Foundry project at the resource level. You can [use a Bicep template](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication.
 1. Make sure the connected storage account has access to all projects.
 1. If you connected your storage account by using Microsoft Entra ID, make sure to give managed identity **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
 
