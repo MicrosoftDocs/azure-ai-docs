@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 03/30/2026
+ms.date: 04/08/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -93,7 +93,7 @@ Use [Web Search](./web-search.md). This tool lets you define an allow-list or bl
 
 ### Are there additional costs for web grounding?
 
-Yes. Web Search, Grounding with Bing Search and Grounding with Bing Custom Search (preview) incur costs beyond standard Azure OpenAI usage. See [pricing details](https://www.microsoft.com/bing/apis/grounding-pricing).
+Yes. Web Search, Grounding with Bing Search, and Grounding with Bing Custom Search (preview) incur costs beyond standard Azure OpenAI usage. See [pricing details](https://www.microsoft.com/bing/apis/grounding-pricing).
 
 ## Troubleshooting
 
