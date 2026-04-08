@@ -2046,6 +2046,8 @@ groups:
     title: REST API
   - id: dotnet
     title: .NET
+  - id: javascript
+    title: JavaScript
 - id: selection-foundry-skills
   title: Selections
   prompt: What would you like to see?

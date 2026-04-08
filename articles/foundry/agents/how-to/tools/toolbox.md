@@ -31,17 +31,17 @@ In this article, you learn how to:
 
 ## Feature support
 
-| Feature | Python SDK | REST API | .NET SDK | 
-|---------|-----------|----------|----------|
-| Toolbox update / list / get / delete | ✔️  | ✔️ | ✔️ |
-| Toolbox version create / list / get / delete | ✔️  | ✔️ | ✔️ |
-| [MCP tool](model-context-protocol.md) | ✔️  | ✔️  | ✔️ |
-| [Web Search tool](web-search.md) | ✔️  | ✔️  | ✔️ |
-| [Azure AI Search tool](ai-search.md) | ✔️  | ✔️  | ✔️ |
-| [Code Interpreter tool](code-interpreter.md) | ✔️  | ✔️  | ✔️ |
-| [File Search tool](file-search.md) | ✔️  | ✔️  | ✔️ |
-| [OpenAPI tool](openapi.md) | ✔️  | ✔️  | ✔️ |
-| [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️  | ✔️  | ✔️ |
+| Feature | Python SDK | REST API | .NET SDK | JavaScript SDK |
+|---------|-----------|----------|----------|----------------|
+| Toolbox update / list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ |
+| Toolbox version create / list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ |
+| [MCP tool](model-context-protocol.md) | ✔️  | ✔️  | ✔️ | ✔️ |
+| [Web Search tool](web-search.md) | ✔️  | ✔️  | ✔️ | ✔️ |
+| [Azure AI Search tool](ai-search.md) | ✔️  | ✔️  | ✔️ | ✔️ |
+| [Code Interpreter tool](code-interpreter.md) | ✔️  | ✔️  | ✔️ | ✔️ |
+| [File Search tool](file-search.md) | ✔️  | ✔️  | ✔️ | ✔️ |
+| [OpenAPI tool](openapi.md) | ✔️  | ✔️  | ✔️ | ✔️ |
+| [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️  | ✔️  | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -50,6 +50,7 @@ In this article, you learn how to:
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions).
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
+- **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
 
 > [!IMPORTANT]
 > - A toolbox supports at most **one unnamed tool per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, use the `name` field to differentiate tool instances. Including two unnamed tool types returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
@@ -141,6 +142,36 @@ Content-Type: application/json
 
 > [!NOTE]
 > Use token scope `https://ai.azure.com/.default` when obtaining the bearer token.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { AIProjectClient } from "@azure/ai-projects";
+
+const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+
+const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
+
+const toolboxVersion = await project.beta.toolboxes.createVersion(
+  "my-toolbox",
+  [
+    {
+      type: "mcp",
+      server_label: "myserver",
+      server_url: "https://your-mcp-server.example.com",
+      require_approval: "never",
+      project_connection_id: "my-key-auth-connection",
+    },
+  ],
+  {
+    description: "Toolbox with an MCP server",
+  },
+);
+console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.version}`);
+```
 
 :::zone-end
 
@@ -663,6 +694,56 @@ Content-Type: application/json
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+Install the MCP client SDK:
+
+```bash
+npm install @modelcontextprotocol/sdk
+```
+
+#### Step 1: Connect to the toolbox and list tools
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+
+const url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/versions/<version>/mcp?api-version=v1";
+
+const credential = new DefaultAzureCredential();
+const token = await credential.getToken("https://ai.azure.com/.default");
+
+const transport = new StreamableHTTPClientTransport(
+  new URL(url),
+  {
+    requestInit: {
+      headers: {
+        Authorization: `Bearer ${token.token}`,
+      },
+    },
+  },
+);
+
+const client = new Client({ name: "test", version: "1.0" });
+await client.connect(transport);
+
+// List available tools
+const toolsResult = await client.listTools();
+console.log(`Tools found: ${toolsResult.tools.length}`);
+for (const tool of toolsResult.tools) {
+  console.log(`  - ${tool.name}: ${(tool.description || "").slice(0, 80)}`);
+}
+
+// Call a tool (replace with actual tool name and arguments)
+const result = await client.callTool({ name: "<tool_name>", arguments: {} });
+console.log(result);
+
+await client.close();
+```
+
+:::zone-end
+
 **Check — initialize**: HTTP 200 and a non-empty `mcp-session-id` header. If you skip the initialize step, subsequent calls will fail.
 
 **Check — `tools/list`**:
@@ -979,6 +1060,19 @@ Content-Type: application/json
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+```javascript
+const toolboxVersion = await project.beta.toolboxes.createVersion(
+  "my-toolbox",
+  [/* tools array */],
+  { description: "Updated tools v2" },
+);
+console.log(`Created version: ${toolboxVersion.version}`);
+```
+
+:::zone-end
+
 The response is a `ToolboxVersionObject` containing the new `version` identifier.
 
 ### List versions
@@ -1017,6 +1111,17 @@ Authorization: Bearer {token}
 
 :::zone-end
 
+:::zone pivot="javascript"
+
+```javascript
+const versions = project.beta.toolboxes.listVersions("my-toolbox");
+for await (const v of versions) {
+  console.log(`${v.version} — created ${v.createdAt}`);
+}
+```
+
+:::zone-end
+
 ### Get a specific version
 
 :::zone pivot="python"
@@ -1047,6 +1152,18 @@ Console.WriteLine($"Retrieved toolbox: {versionObj.Name} ({versionObj.Id})");
 ```http
 GET {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
 Authorization: Bearer {token}
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const versionObj = await project.beta.toolboxes.getVersion(
+  "my-toolbox",
+  "<version_id>",
+);
+console.log(`Retrieved version: ${versionObj.version}`);
 ```
 
 :::zone-end
@@ -1094,6 +1211,18 @@ Content-Type: application/json
 `default_version` cannot be empty, you have to replace it with a new version if you want. 
 :::zone-end
 
+:::zone pivot="javascript"
+
+```javascript
+const toolbox = await project.beta.toolboxes.update(
+  "my-toolbox",
+  "<version_id>",
+);
+console.log(`Active version: ${toolbox.defaultVersion}`);
+```
+
+:::zone-end
+
 ### Delete a version
 
 :::zone pivot="python"
@@ -1123,6 +1252,17 @@ await toolboxClient.DeleteToolboxVersionAsync(
 ```http
 DELETE {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
 Authorization: Bearer {token}
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+await project.beta.toolboxes.deleteVersion(
+  "my-toolbox",
+  "<version_id>",
+);
 ```
 
 :::zone-end
