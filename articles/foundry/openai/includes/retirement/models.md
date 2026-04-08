@@ -37,6 +37,7 @@ ms.custom: references_regions, build-2025
 | `o4-mini` | 2025-04-16 | `Generally Available` | 2026-04-16 | 2026-10-16 |  |
 | `codex-mini` | 2025-05-16 | `Generally Available` | 2026-05-16 | 2026-11-15 |  |
 | `model-router` | 2025-11-18 | `Generally Available` | 2026-11-18 | 2027-05-20 |  |
+| `gpt-5` | 2025-08-07 | `Generally Available` | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-mini` | 2025-08-07 | `Generally Available` | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-nano` | 2025-08-07 | `Generally Available` | 2026-08-07 | 2027-02-06 |  |
 | `gpt-5-codex` | 2025-09-15 | `Generally Available` | 2026-09-15 | 2027-03-17 |  |
@@ -44,7 +45,7 @@ ms.custom: references_regions, build-2025
 | `gpt-5.1` | 2025-11-13 | `Generally Available` | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-codex` | 2025-11-13 | `Generally Available` | 2026-11-13 | 2027-05-15 |  |
 | `gpt-5.1-codex-mini` | 2025-11-13 | `Generally Available` | 2026-11-13 | 2027-05-15 |  |
-| `gpt-5.1-chat` | 2025-11-13 | `Preview` | n/a | No earlier than 2026-03-31 |  |
+| `gpt-5.1-chat` | 2025-11-13 | `Preview` | n/a | 2026-04-15 |  |
 | `gpt-5.2` | 2025-12-11 | `Generally Available` | No earlier than 2026-12-12 | No earlier than 2027-05-12 | |
 | `gpt-5.2-chat` | 2025-12-11 | `Preview` | n/a | No earlier than 2026-04-01 | |
 | `gpt-5.2-codex` | 2026-01-14 | `Generally Available` | 2027-01-14 | 2027-07-14 | `gpt-5.3-codex` |

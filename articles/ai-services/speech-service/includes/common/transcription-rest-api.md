@@ -11,7 +11,7 @@ ms.date: 01/31/2026
 
 - An Azure Speech resource in one of the regions where the fast transcription API is available. For the current list of supported regions, see the [Speech service regions table](../../regions.md?tabs=stt).
   
-- An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](../../batch-transcription-audio-data.md#supported-input-formats-and-codecs).
+- An audio file (less than 5 hours long and less than 500 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](../../batch-transcription-audio-data.md#supported-input-formats-and-codecs).
 
 
 ## Upload audio
@@ -29,6 +29,10 @@ You can provide audio data to fast transcription in the following ways:
 ```
 --form 'definition="{"audioUrl": "https://crbn.us/hello.wav"}"'
 ```
+
+> [!TIP]
+> For long audio files, uploading from a public URL is recommended.
+
 In the sections below, inline audio upload is used as an example.
 
 ## Use the fast transcription API
@@ -39,7 +43,7 @@ In the sections below, inline audio upload is used as an example.
 We learn how to use the fast transcription API (via [Transcriptions - Transcribe](/rest/api/speechtotext/transcriptions/transcribe)) with the following scenarios:
 - [Known locale specified](?tabs=locale-specified): Transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
 - [Language identification on](?tabs=language-identification-on): Transcribe an audio file with language identification on. If you're not sure about the locale of the audio file, you can turn on language identification to let the Speech service identify the locale (one locale per audio).
-- [Multi-lingual transcription (preview)](?tabs=multilingual-transcription-on): Transcribe an audio file with the latest multi-lingual speech transcription model. If your audio contains multi-lingual contents that you want to transcribe continuously and accurately, you can use the latest multi-lingual speech transcription model without specifying the locale codes.
+- [Multi-lingual transcription](?tabs=multilingual-transcription-on): Transcribe an audio file with the latest multi-lingual speech transcription model. If your audio contains multi-lingual contents that you want to transcribe continuously and accurately, you can use the latest multi-lingual speech transcription model without specifying the locale codes.
 - [Diarization on](?tabs=diarization-on): Transcribe an audio file with diarization on. Diarization distinguishes between different speakers in the conversation. The Speech service provides information about which speaker was speaking a particular part of the transcribed speech.
 - [Multi-channel on](?tabs=multi-channel-on): Transcribe an audio file that has one or two channels. Multi-channel transcriptions are useful for audio files with multiple channels, such as audio files with multiple speakers or audio files with background noise. By default, the fast transcription API merges all input channels into a single channel and then performs the transcription. If this isn't desirable, channels can be transcribed independently without merging.
 
@@ -301,7 +305,7 @@ Make a multipart/form-data POST request to the `transcriptions` endpoint with th
 
 The following example shows how to transcribe an audio file with language identification on. If you're not sure about the locale, you can specify multiple locales. If you don't specify any locale, or if the locales that you specify aren't in the audio file, then the Speech service tries to identify the locale. 
 > [!NOTE]
-> The language identification in fast transcription is designed to identify one main language locale per audio file. If you need to transcribe multi-lingual contents in the audio, please consider [multi-lingual transcription (preview)](?tabs=multilingual-transcription-on).
+> The language identification in fast transcription is designed to identify one main language locale per audio file. If you need to transcribe multi-lingual contents in the audio, please consider [multi-lingual transcription](?tabs=multilingual-transcription-on).
 
 - Replace `YourSpeechResoureKey` with your Speech resource key.
 - Replace `YourServiceRegion` with your Speech resource region.
@@ -612,7 +616,7 @@ Construct the form definition according to the following instructions:
 
 - You can either leave the `locales` property empty (as shown in the previous example) or omit it.
 
-- The supported audio input locales with current multi-lingual model are: **de-DE**, **en-AU**, **en-CA**, **en-GB**, **en-IN**, **en-US**, **es-ES**, **es-MX**, **fr-CA**, **fr-FR**, **it-IT**, **ja-JP**, **ko-KR**, and **zh-CN**.
+- The supported audio input locales with current multi-lingual model are: **de-DE**, **en-AU**, **en-CA**, **en-GB**, **en-IN**, **en-US**, **es-ES**, **es-MX**, **fr-CA**, **fr-FR**, **it-IT**, **ja-JP**, **ko-KR**, **pt-BR**, and **zh-CN**.
 
 - The transcription result is distinguished at the language level and will follow the "major locale of this language" (e.g., it will always output "en-US" locale code even if the audio has a British English or Indian English accent).
 
@@ -1210,6 +1214,9 @@ The following example shows how to transcribe an audio file with diarization ena
 - Replace `YourSpeechResoureKey` with your Speech resource key.
 - Replace `YourServiceRegion` with your Speech resource region.
 - Replace `YourAudioFile` with the path to your audio file.
+
+> [!NOTE]
+> When diarization is enabled, the audio file should be less than 2 hours long
 
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](../../role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.

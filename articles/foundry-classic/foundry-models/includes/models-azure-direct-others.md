@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 03/23/2026
+ms.date: 04/07/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
@@ -127,6 +127,8 @@ xAI's Grok models in Foundry Models include a diverse set of reasoning and non-r
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
+| [grok-4-20-reasoning](https://ai.azure.com/explore/models/grok-4-20-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
+| [grok-4-20-non-reasoning](https://ai.azure.com/explore/models/grok-4-20-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
 | [grok-4.1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text, image (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
 | [grok-4.1-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text, image (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
 | [grok-4](https://ai.azure.com/explore/models/grok-4/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |

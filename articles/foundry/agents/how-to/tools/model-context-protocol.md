@@ -948,7 +948,6 @@ This catalog-based setup creates the MCP tool for use by agents without requirin
 ## Known limitations
 
 - **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
-- **Identity passthrough not supported in Teams**: MCP tools that use OAuth identity passthrough don't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, which isn't compatible with identity passthrough (On-Behalf-Of).
 - **Private MCP requires Standard Agent Setup**: Private MCP server connectivity is only available with [Standard Agent Setup with private networking](../virtual-networks.md) (BYO VNet). Basic agent setup doesn't support private MCP endpoints.
 - **Private MCP hosting**: Azure Container Apps on a dedicated MCP subnet is the tested configuration for private MCP servers. Function Apps or App Services as the private MCP server host might work but haven't been internally validated.
 
