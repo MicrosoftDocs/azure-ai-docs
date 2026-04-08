@@ -8,7 +8,7 @@ ms.date: 04/03/2026
 ms.custom: classic-and-new
 ---
 
-Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability in Azure Governement varies by region.  
+Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability in Azure Government varies by region.  
 
 | Models | Description |
 |--|--|
