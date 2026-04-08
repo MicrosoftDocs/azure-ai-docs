@@ -346,8 +346,7 @@ items:
       href: neural-dictionary.md
   - name: Custom Translator portal concepts
     items:
-    - name: Custom text-translation/preview/get-languages.md
-      displayName: speech
+    - name: Custom text translation   
       href: custom-translator/concepts/customization.md
     - name: Workspaces and projects
       href: custom-translator/concepts/workspace-and-project.md

@@ -10,6 +10,7 @@ ms.author: scottpolly
 author: s-polly
 ms.reviewer: shshubhe
 ms.date: 02/06/2025
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 
@@ -52,6 +53,7 @@ This article assumes the following configuration:
 | [Use AutoML, the designer, the dataset, and the datastore from the studio](#scenario-use-automl-the-designer-the-dataset-and-the-datastore-from-the-studio) | Not applicable | Not applicable | <ul><li>Configure the workspace service principal</li><li>Allow access from trusted Azure services</li></ul>For more information, see [Secure an Azure Machine Learning workspace with virtual networks](how-to-secure-workspace-vnet.md#secure-azure-storage-accounts). |
 | [Use a compute instance and a compute cluster](#scenario-use-a-compute-instance-and-a-compute-cluster) | <ul><li>Azure Machine Learning on port 44224</li><li>Azure Batch on ports 29876-29877</li></ul> | <ul><li>Microsoft Entra ID</li><li>Azure Resource Manager</li><li>Azure Machine Learning</li><li>Azure Storage</li><li>Azure Key Vault</li></ul> | If you use a firewall, create user-defined routes. For more information, see [Configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md). |
 | [Use Azure Kubernetes Service](#scenario-use-azure-kubernetes-service) | Not applicable | For information on the outbound configuration for AKS, see [Secure Azure Kubernetes Service inferencing environment](how-to-secure-kubernetes-inferencing-environment.md). | |
+| [Use online endpoints](#scenario-use-online-endpoints) | See [Inbound communication](#inbound-communication) | See [Outbound communication](#outbound-communication) | Requires workspace managed virtual network. |
 | [Use Docker images that Azure Machine Learning manages](#scenario-use-docker-images-that-azure-machine-learning-manages) | Not applicable | Microsoft Artifact Registry | If the container registry for your workspace is behind the virtual network, configure the workspace to use a compute cluster to build images. For more information, see [Secure an Azure Machine Learning workspace with virtual networks](how-to-secure-workspace-vnet.md#enable-azure-container-registry-acr). |
 
 ## Purposes of storage accounts
@@ -110,7 +112,7 @@ An Azure Machine Learning compute instance and compute cluster are managed servi
 
 When you create a compute instance or compute cluster, the following resources are also created in your virtual network:
 
-* A network security group with required outbound rules. These rules allow _inbound_ access from Azure Machine Learning (TCP on port 44224) and Azure Batch (TCP on ports 29876-29877).
+* A network security group with required inbound rules. These rules allow _inbound_ access from Azure Machine Learning (TCP on port 44224) and Azure Batch (TCP on ports 29876-29877).
 
   > [!IMPORTANT]
   > If you use a firewall to block internet access into the virtual network, you must configure the firewall to allow this traffic. For example, with Azure Firewall, you can create user-defined routes. For more information, see [Configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md).
@@ -120,7 +122,7 @@ When you create a compute instance or compute cluster, the following resources a
 Also allow _outbound_ access to the following service tags. For each tag, replace `region` with the Azure region of your compute instance or cluster:
 
 * `Storage.region`: This outbound access is used to connect to the Azure storage account inside the Azure Batch managed virtual network.
-* `Keyvault.region`: This outbound access is used to connect to the Azure Key Vault account inside the Azure Batch managed virtual network.
+* `AzureKeyVault.region`: This outbound access is used to connect to the Azure Key Vault account inside the Azure Batch managed virtual network.
 
 Data access from your compute instance or cluster goes through the private endpoint of the storage account for your virtual network.
 
@@ -150,7 +152,7 @@ The [legacy network isolation method for securing outbound communication](concep
 
 ## Scenario: Use Azure Kubernetes Service
 
-For information on the required outbound configuration for Azure Kubernetes Service, see [Secure an Azure Machine Learning inferencing environment with virtual networks](how-to-secure-inferencing-vnet.md).
+For information on the required outbound configuration for Azure Kubernetes Service, see [Secure an Azure Machine Learning inferencing environment with virtual networks](how-to-secure-kubernetes-inferencing-environment.md).
 
 > [!NOTE]
 > The Azure Kubernetes Service load balancer isn't the same as the load balancer that Azure Machine Learning creates. If you want to host your model as a secured application that's available only on the virtual network, use the internal load balancer that Azure Machine Learning creates. If you want to allow public access, use the public load balancer that Azure Machine Learning creates.
