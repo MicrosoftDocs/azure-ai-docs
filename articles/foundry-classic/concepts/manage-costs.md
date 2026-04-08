@@ -5,7 +5,7 @@ description: "Manage Microsoft Foundry costs by estimating expenses, monitoring 
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: aashishb
-ms.date: 03/23/2026
+ms.date: 04/08/2026
 ms.topic: how-to
 ms.custom:
   - dev-focus
