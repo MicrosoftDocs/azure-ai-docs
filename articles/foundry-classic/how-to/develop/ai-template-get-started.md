@@ -34,9 +34,6 @@ Available templates include:
 
 * [Get started with AI chat](https://github.com/Azure-Samples/get-started-with-ai-chat)
 * [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents)
-* [Build agentic apps to unify data](https://github.com/microsoft/agentic-applications-for-unified-data-foundation-solution-accelerator/tree/main)
-* [Create a multi-agent release manager assistant](https://github.com/Azure-Samples/openai/tree/main/Agent_Based_Samples/release_manager)
-* [Create a call center voice agent](https://github.com/Azure-Samples/call-center-voice-agent-accelerator)
 * [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator)
 * [Multi-agent workflow automation](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator)
 * [Multi-modal content processing](https://github.com/microsoft/content-processing-solution-accelerator)
@@ -44,7 +41,6 @@ Available templates include:
 * [Improve client meetings with agents](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator)
 * [Modernize your code with agents](https://github.com/microsoft/Modernize-your-code-solution-accelerator)
 * [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator)
-* [Retrieve and summarize SharePoint data](https://github.com/microsoft/app-with-sharepoint-knowledge)
 
 > [!TIP]
 > Each template includes a GitHub README with setup, deployment, and customization instructions. Start there for the fastest path forward.
