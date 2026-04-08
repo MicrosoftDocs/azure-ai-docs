@@ -3,8 +3,8 @@ title: "Custom Evaluators"
 description: "Learn how to create custom evaluators for your AI applications using code-based or prompt-based approaches."
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: dlozier
-ms.date: 04/02/2026
+ms.reviewer: mithigpe
+ms.date: 03/06/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -33,9 +33,6 @@ You can create two types of custom evaluators:
 | **Output contract** | A single float value between 0.0 and 1.0. | A JSON object with `result` and `reason`. The type of `result` depends on the scoring method: integer for ordinal, float for continuous, or boolean for binary. |
 
 After you create a custom evaluator, you can add it to the evaluator catalog in your Foundry project and use it in [batch evaluation runs](../../how-to/develop/cloud-evaluation.md).
-
-> [!TIP]
-> Use the SDK when you need to create evaluators programmatically, integrate them into CI/CD pipelines, or manage evaluators at scale. Use the portal for one-off or exploratory evaluations without writing code.
 
 ## Code-based evaluators
 
@@ -97,18 +94,9 @@ The following third-party packages are available:
 
 The NLTK corpora `punkt`, `stopwords`, `wordnet`, `omw-1.4`, and `names` are preloaded.
 
-> [!NOTE]
-> Package versions are updated periodically. Check the evaluator catalog in your Foundry project for the current sandbox environment details.
-
 ### Runtime parameters
 
 `pass_threshold` and `deployment_name` are required as initialization parameters when you create a code-based evaluator.
-
-> [!NOTE]
-> Common failure modes for code-based evaluators:
-> - **Wrong return type**: The `grade()` function must return a `float`. Returning an integer, string, or `None` causes the evaluator to error.
-> - **Sandbox import errors**: Only the packages listed in [Supported packages and limits](#supported-packages-and-limits) are available. Importing an unlisted package raises `ModuleNotFoundError`.
-> - **Timeout**: Functions that exceed the execution time limit are terminated and return an error result.
 
 ## Prompt-based evaluators
 
@@ -149,9 +137,6 @@ Output Format (JSON):
 ### Runtime parameters
 
 Both `deployment_name` and `threshold` are required as initialization parameters when you create a prompt-based evaluator.
-
-> [!NOTE]
-> The judge prompt must return valid JSON matching `{"result": <value>, "reason": "<text>"}`. If the LLM returns free text or malformed JSON, the evaluator fails. Add explicit formatting instructions in your prompt and test with a sample response before registering.
 
 ## Create a custom evaluator with the SDK
 
@@ -436,7 +421,7 @@ For additional examples including listing, updating, and deleting evaluators, se
 
 You can create custom evaluators directly in the Azure AI Foundry portal without writing SDK code.
 
-1. In your Foundry project, go to **Build** > **Evaluations** > **Evaluator catalog**.
+1. In your Foundry project, go to **Evaluation** > **Evaluator catalog**.
 1. Select **Custom evaluator** > **Create**.
 1. Fill in the following fields:
 
@@ -453,7 +438,7 @@ You can create custom evaluators directly in the Azure AI Foundry portal without
 
 After you create a custom evaluator, use it in an evaluation run from the portal:
 
-1. In your Foundry project, go to **Build** > **Evaluations** and select **Create**.
+1. In your Foundry project, go to **Evaluation** and select **Create**.
 1. Follow the evaluation creation wizard. On the **Criteria** step, select **Add evaluator**.
 1. Choose your custom evaluator from the evaluator catalog.
 1. Supply the required initialization parameters. For prompt-based evaluators, provide the **model deployment** and **threshold**. For code-based evaluators, provide the **pass threshold**.
