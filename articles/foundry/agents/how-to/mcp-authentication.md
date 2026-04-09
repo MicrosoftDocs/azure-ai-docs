@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 04/09/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -171,7 +171,7 @@ The scope of OAuth is per tool (connection) name per Foundry project. Each new u
 - After the user has closed the dialog, you need to submit another response with the previous response ID
 
    ```python
-   # Requires: azure-ai-projects >= 1.0.0
+   # Requires: azure-ai-projects >= 2.0.0
    from azure.ai.projects import AIProjectClient
    from azure.identity import DefaultAzureCredential
 
@@ -180,7 +180,7 @@ The scope of OAuth is per tool (connection) name per Foundry project. Each new u
        previous_response_id="YOUR_PREVIOUS_RESPONSE_ID",
        input=user_input,
        extra_body={
-           "agent": {"name": agent.name, "type": "agent_reference"},
+           "agent_reference": {"name": agent.name, "type": "agent_reference"},
            "tool_choice": "required",
            "stream": True
        },
