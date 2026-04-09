@@ -16,7 +16,6 @@ ai-usage: ai-assisted
 ---
 
 # Integrate inference SDKs with Foundry Local
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 Foundry Local integrates with OpenAI-compatible SDKs and HTTP clients through a local REST server. This article shows you how to connect your app to local AI models by using popular SDKs.
 

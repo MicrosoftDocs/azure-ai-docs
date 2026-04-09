@@ -15,7 +15,7 @@ For a high-level look at Anomaly Detector concepts, see the [overview](../../ove
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAnomalyDetector"  title="Create an Anomaly Detector resource"  target="_blank">create an Anomaly Detector resource </a> in the Azure portal to get your key and endpoint. Wait for it to deploy and select the **Go to resource** button. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-* A valid JSON file of time series data to test for anomalies. If you don't have your own file, you can create a sample.json file from the <a href="https://westus2.dev.cognitive.microsoft.com/docs/services/AnomalyDetector/operations/post-timeseries-entire-detect" target="_blank">Request body sample</a>
+* A valid JSON file of time series data to test for anomalies. If you don't have your own file, you can create a sample.json file from the [Azure AI Foundry REST API reference](/rest/api/aifoundry/).
 
 ## Retrieve key and endpoint
 
@@ -71,7 +71,7 @@ echo export ANOMALY_DETECTOR_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/
 At a command prompt, run the following command. You'll need to insert the following values into the command.
 - Your Anomaly detector service subscription key.
 - Your Anomaly detector endpoint address. 
-- A valid JSON file of time series data to test for anomalies. If you don't have your own file, you can create a sample.json file from the [Request body sample](https://westus2.dev.cognitive.microsoft.com/docs/services/AnomalyDetector/operations/post-timeseries-entire-detect).
+- A valid JSON file of time series data to test for anomalies. If you don't have your own file, you can create a sample.json file from the [Azure AI Foundry REST API reference](/rest/api/aifoundry/).
 
 ```cmd
 curl -v POST "%ANOMALY_DETECTOR_ENDPOINT%/anomalydetector/v1.0/timeseries/entire/detect"
@@ -401,7 +401,7 @@ If you used the sample data from the pre-requisites, you should receive a respon
 
 ```
 
-For more information, see the [Anomaly Detection REST reference](https://westus2.dev.cognitive.microsoft.com/docs/services/AnomalyDetector/operations/post-timeseries-entire-detect).
+For more information, see the [Azure AI Foundry REST API reference](/rest/api/aifoundry/).
 
 
 [!INCLUDE [anomaly-detector-next-steps](../quickstart-cleanup-next-steps.md)]

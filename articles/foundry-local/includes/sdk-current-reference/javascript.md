@@ -2,7 +2,6 @@
 title: Include file
 description: Include file
 ms.service: azure-ai-foundry
-ms.subservice: foundry-local
 ms.custom: build-2025, dev-focus
 ms.topic: include
 ms.date: 01/22/2026
@@ -13,18 +12,7 @@ ai-usage: ai-assisted
 
 ## JavaScript SDK Reference
 
-### Project setup
-
-The high-level architecture of the Foundry Local SDK is as follows:
-
-:::image type="content" source="../../media/architecture/new-sdk-architecture.png" alt-text="Diagram of the new architecture for Foundry Local." lightbox="../../media/architecture/new-sdk-architecture.png":::
-
-The SDK is a light-weight wrapper around a Foundry Local Core C API (`.dll`/`.so`/`.dylib`) that provides a more user-friendly interface for JavaScript developers. The SDK handles loading the native library, managing memory, and converting data types between JavaScript and C. The Foundry Local Core C API has two flavors but the *same* API surface:
-
-- **WindowsML (WinML)** - Windows specific that uses WindowsML to acquire the necessary drivers and execution providers for the available hardware. This is the recommended option for Windows users as it provides better performance and compatibility with a wide range of hardware.
-- **Cross-platform** - can be used on Windows, macOS, and Linux. It should be noted that on macOS devices with Apple Silicon the Cross-platform SDK will use Apple's Metal framework for hardware acceleration via the ONNX runtime WebGPU execution provider.
-
-When you install the Foundry Local SDK package into your project, you can choose to install the WinML or cross-platform version.
+### Install packages
 
 [!INCLUDE [project-setup](./../javascript-project-setup.md)]
 
