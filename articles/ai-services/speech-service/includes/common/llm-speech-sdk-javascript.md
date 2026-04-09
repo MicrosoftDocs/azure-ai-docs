@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [Node.js LTS](https://nodejs.org/) installed.
-- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions?tabs=stt).
+- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) created in a region that supports LLM speech. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions?tabs=llmspeech).
 - A sample `.wav` audio file to transcribe.
 
 ### Microsoft Entra ID prerequisites
@@ -126,6 +126,9 @@ Run the application:
 node index.js
 ```
 
+> [!TIP]
+> If you get the result `Enhanced mode is currently not supported yet`, verify that your endpoint is in a region that supports LLM speech.
+
 Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient?view=azure-node-preview)
 
 ### Output
@@ -206,6 +209,11 @@ console.log("Transcription:", result.combinedPhrases[0]?.text);
 
 ### Best practices for prompts
 
+- Prompts are subject to a maximum length of 4,096 characters.
+- Prompts should preferably be written in English.
+- Use `Output must be in lexical format.` to enforce lexical formatting instead of the default display format.
+- Use `Pay attention to *phrase1*, *phrase2*, …` to improve recognition of specific phrases or acronyms.
+
 ### Output
 
 The application prints the transcription result to the console:
@@ -214,17 +222,5 @@ The application prints the transcription result to the console:
 Transcription: Hello this is a test of the LLM speech transcription service.
 ```
 
-- Prompts are subject to a maximum length of 4,096 characters.
-- Prompts should preferably be written in English.
-- Use `Output must be in lexical format.` to enforce lexical formatting instead of the default display format.
-- Use `Pay attention to *phrase1*, *phrase2*, …` to improve recognition of specific phrases or acronyms.
-
 Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient?view=azure-node-preview)
 
-## Clean up resources
-
-When you finish the quickstart, delete the project folder:
-
-```shell
-rm -rf llm-speech-quickstart
-```
