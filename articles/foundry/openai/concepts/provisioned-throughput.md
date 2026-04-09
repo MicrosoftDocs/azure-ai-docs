@@ -69,7 +69,7 @@ Quota and capacity are related but distinct:
 
 | Concept | What it means |
 |---|---|
-| **PTU quota** | The maximum number of PTUs you're allowed to deploy in a subscription and region. Quota is a policy limit enforced by Azure. |
+| **PTU quota** | The maximum number of PTUs you're allowed to deploy in a subscription and region. Quota is a policy limit enforced by Azure. To request quota, submit the [quota request form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu). |
 | **Capacity** | The actual GPU compute available to serve your deployment when you create it. Capacity is allocated at deployment time and held for the deployment's lifetime. |
 
 PTU quota isn't provisioned automatically. To request PTU quota for your subscription and region, see [Obtain PTU quota](../how-to/provisioned-throughput-onboarding.md#obtain-ptu-quota).

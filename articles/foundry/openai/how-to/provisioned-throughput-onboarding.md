@@ -126,7 +126,9 @@ The discount is shared automatically across all models in scope. You don't recon
 > [!IMPORTANT]
 > The Azure role and tenant policy requirements to purchase a reservation differ from those needed to create a Foundry deployment or resource. Verify authorization to purchase reservations before you need to do so. See [Foundry Provisioned Throughput reservations](https://aka.ms/oai/docs/ptum-reservations) for role requirements and purchase steps.
 
-To purchase or manage reservations, go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations).
+To purchase or manage reservations, go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations). 
+
+For guidance on how many PTUs to include in a reservation, see [Size your Foundry provisioned throughput reservation](#size-your-foundry-provisioned-throughput-reservation).
 
 ## Avoid unwanted charges
 
@@ -144,7 +146,7 @@ To delete a provisioned deployment cleanly:
 1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), navigate to the resource and delete the deployment.
 1. If you're removing the Azure resource too, delete all its deployments first, then delete the resource.
 1. Purge the resource to ensure billing stops. See [Recover or purge deleted Azure AI resources](../../../ai-services/recover-purge-resources.md) for instructions.
-1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to review your existing reservations. Deleting a deployment doesn't cancel or change any PTU reservation. You can cancel or exchange reservations in the Azure portal, but those actions might incur fees.
+1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to review your existing reservations. Deleting a deployment doesn't cancel or change any PTU reservation. You can exchange a reservation in the Azure portal, but this action might incur fees.
 
 ### Follow the recommended order of operations for reservations
 
@@ -315,15 +317,15 @@ You can also request more quota in the Foundry portal as follows:
 
 ## Size your Foundry provisioned throughput reservation
 
-The PTU quantity in a reservation purchase is independent of your quota allocation and of the PTUs used in your current deployments. You can purchase a reservation for more or fewer PTUs than you've deployed, but only deployed PTUs that fall within the reservation scope receive the discount. To protect against over-purchasing:
+The PTU quantity in a reservation purchase is independent of your quota allocation and of the PTUs used in your current deployments. You can purchase a reservation for as little or as many PTUs as you want, but only deployed PTUs that fall within the reservation scope receive the discount. To protect against over-purchasing:
 
 - **Create deployments before purchasing a reservation**: This confirms that capacity is available for the desired region and model. Purchasing a reservation before deploying risks committing to PTUs you can't use.
-- **Match reservation quantity to deployed PTUs**: Align the reservation size to the PTUs currently deployed within the reservation's scope. Any PTUs in scope beyond the reservation quantity are charged at the hourly rate.
+- **Match reservation quantity to deployed PTUs**: Align the reservation size to the PTUs currently deployed within the reservation's scope. Any PTUs in scope beyond the reservation quantity are charged at the hourly rate. See [Reservation overage example](#reservation-overage-example).
 - **Purchase separate reservations per deployment type**: Reservations for Global, Data Zone, and Regional deployments aren't interchangeable.
 - **Use scoping to cover multiple deployments**: New reservations can be purchased to cover additional deployments within the same scope. You can also update the scope of an existing reservation at any time without penalty.
 
 > [!IMPORTANT]
-> Capacity availability for model deployments is dynamic and changes frequently across regions and models. Always create deployments first, then purchase the Azure Reservation to cover the PTUs you have deployed. This approach ensures you receive the full reservation discount and protects you from committing to a reservation for PTUs you can't deploy.
+> Capacity availability for model deployments is dynamic and changes frequently across regions and models. Always create deployments first, then purchase the Azure Reservation to cover the PTUs you've deployed. This approach ensures you receive the full reservation discount and protects you from committing to a reservation for PTUs you can't deploy.
 
 ## Monitor your reservation and PTU usage
 
@@ -341,10 +343,12 @@ Use these Azure Cost Management resources to track and analyze your reservation 
 
 ### Adjust reservations as your workload changes
 
-As your provisioned deployment footprint grows or shrinks, adjust your reservations to match:
+Once a reservation is created, you cannot delete it. You either exchange it for a different reservation or wait until the reservation term expires. If you don't need the reservation anymore, make sure that you've turned off the auto-renew option, so that the reservation doesn't renew at the end of its term.
+
+As your provisioned deployment footprint grows or shrinks, some ways to adjust your reservations include:
 
 - **Add coverage**: Purchase an additional reservation for the same scope to cover new deployments.
-- **Remove coverage**: Cancel or exchange a reservation in the Azure portal. Cancellations might be subject to fee limits. Exchanges reset the reservation term.
+- **Exchange coverage**: Exchange a reservation in the Azure portal. Exchanges reset the reservation term.
 - **Update scope**: Change the scope of an existing reservation at any time without penalty, for example to extend coverage to a new subscription.
 
 Manage all reservations from the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations).
