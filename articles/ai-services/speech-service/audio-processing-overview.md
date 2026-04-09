@@ -5,7 +5,7 @@ description: An overview of audio processing pipelines and capabilities of the M
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 03/05/2026
+ms.date: 04/09/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.reviewer: jagoerge
@@ -29,7 +29,7 @@ For details on DSP enhancements and code samples, see [DSP-based audio processin
 
 The model-based pipeline (`AUDIO_INPUT_PROCESSING_ENABLE_V2`) replaces the DSP-based echo canceller with a machine learning model for improved echo suppression. This pipeline focuses specifically on acoustic echo cancellation and is designed for scenarios where echo suppression quality is critical.
 
-For details and code samples, see [Model-based echo cancellation with the Microsoft Audio Stack](audio-processing-model-based-aec.md).
+For details and code samples, see [Model-based echo cancellation with the Microsoft Audio Stack](audio-processing-model-based-echo-cancellation.md).
 
 ### Pipeline comparison
 
@@ -70,4 +70,4 @@ Processing is performed fully locally where the Speech SDK is being used. No aud
 ## Related content
 
 - [DSP-based audio processing with the Microsoft Audio Stack](audio-processing-speech-sdk.md)
-- [Model-based echo cancellation with the Microsoft Audio Stack](audio-processing-model-based-aec.md)
+- [Model-based echo cancellation with the Microsoft Audio Stack](audio-processing-model-based-echo-cancellation.md)

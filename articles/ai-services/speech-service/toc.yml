@@ -497,7 +497,7 @@ items:
         - name: Use the Microsoft Audio Stack (MAS)
           href: audio-processing-speech-sdk.md
         - name: Model-based acoustic echo cancellation
-          href: audio-processing-model-based-aec.md
+          href: audio-processing-model-based-echo-cancellation.md
         - name: Microphone array recommendations
           href: speech-sdk-microphone.md
     - name: Embedded speech

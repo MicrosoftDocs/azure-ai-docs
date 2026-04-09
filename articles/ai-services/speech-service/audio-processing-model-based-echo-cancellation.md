@@ -5,7 +5,7 @@ description: An overview of model-based echo cancellation (V2) audio processing 
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 02/13/2026
+ms.date: 04/09/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.reviewer: jagoerge

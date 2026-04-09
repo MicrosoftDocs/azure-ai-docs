@@ -5,7 +5,7 @@ description: An overview of DSP-based audio processing features, capabilities, a
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 04/09/2026
 author: PatrickFarley
 ms.author: pafarley
 ms.reviewer: jagoerge
@@ -14,7 +14,7 @@ ms.custom: devx-track-csharp
 
 # DSP-based audio processing with the Microsoft Audio Stack
 
-The default DSP-based pipeline (`AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT`) in the Microsoft Audio Stack uses traditional digital signal processing algorithms to enhance input audio. See the [Audio processing overview](audio-processing-overview.md) for a comparison of available pipelines. For model-based echo cancellation, see [Model-based echo cancellation with the Microsoft Audio Stack](audio-processing-model-based-aec.md).
+The default DSP-based pipeline (`AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT`) in the Microsoft Audio Stack uses traditional digital signal processing algorithms to enhance input audio. See the [Audio processing overview](audio-processing-overview.md) for a comparison of available pipelines. For model-based echo cancellation, see [Model-based echo cancellation with the Microsoft Audio Stack](audio-processing-model-based-echo-cancellation.md).
 
 ## DSP enhancements
 
@@ -320,7 +320,7 @@ Microsoft Audio Stack requires the reference channel (also known as loopback cha
 
 ## Related content
 
-- [Model-based echo cancellation with the Microsoft Audio Stack](audio-processing-model-based-aec.md)
+- [Model-based echo cancellation with the Microsoft Audio Stack](audio-processing-model-based-echo-cancellation.md)
 - [Audio processing with the Microsoft Audio Stack](audio-processing-overview.md)
 - [Microphone array recommendations](speech-sdk-microphone.md)
 - [Set up development environment](quickstarts/setup-platform.md)
