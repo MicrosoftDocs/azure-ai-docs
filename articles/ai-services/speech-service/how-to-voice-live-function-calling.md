@@ -5,13 +5,11 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 11/06/2025
+ms.date: 04/06/2026
 ai-usage: ai-assisted
 ---
 
 # Quickstart: Use function calling in a Voice Live session
-
-[!INCLUDE [Header](./includes/common/voice-live-python.md)]
 
 The Voice Live API supports function calling in voice conversations. This allows you to create voice assistants that can call external functions to get real-time information and include that information in their spoken responses.
 
@@ -19,15 +17,15 @@ The Voice Live API supports function calling in voice conversations. This allows
 
 The code sample below does these basic steps to set up function calling.
 
-1. **Write backend functions**: Define Python callables that fulfill business tasks (time lookup, weather, database queries) and serialize outputs to JSON-friendly dictionaries.
+1. **Write backend functions**: Define callables that fulfill business tasks (time lookup, weather, database queries) and serialize outputs to JSON-friendly dictionaries.
 
-1. **Describe tools for Voice Live**: Create **FunctionTool** definitions with names, parameter schemas, and text descriptions, and bundle them into the session configuration so the model understands the available actions.
+1. **Describe tools for Voice Live**: Create function tool definitions with names, parameter schemas, and text descriptions, and bundle them into the session configuration so the model understands available actions.
 
-1. **Initialize the session**: Connect using `azure.ai.voicelive.aio.connect`, provide credentials, pass in the defined **FunctionTool**, choose your target model/voice, and enable audio modalities, transcription, and turn detection.
+1. **Initialize the session**: Connect to the Voice Live endpoint, provide credentials, pass in the defined function tools, choose your target model and voice, and enable audio modalities, transcription, and turn detection.
 
-1. **Start audio processing**: Spin up **AudioProcessor** to capture microphone input, encode it (PCM16, 24 kHz), and stream it to the Voice Live connection; simultaneously prepare playback for assistant audio responses.
+1. **Start audio processing**: Capture microphone input, encode it (PCM16, 24 kHz), and stream it to the Voice Live connection; simultaneously prepare playback for assistant audio responses.
 
-1. **Run the event loop**: Await Voice Live events, updating session state, reacting to user speech boundaries, and streaming the assistant's audio/text back to the user interface. When a **ResponseFunctionCallItem** arrives, the application locates the callable, executes it with parsed arguments, packages the result into a **FunctionCallOutputItem**, and sends it back so the assistant can finalize its reply.
+1. **Run the event loop**: Handle Voice Live events, react to user speech boundaries, and stream the assistant's audio back to the user. When a function call event arrives, locate the callable, execute it with parsed arguments, send the result back to the session, and trigger a new response so the assistant can incorporate the result in its reply.
 
 ## Sample code
 
@@ -1260,8 +1258,14 @@ Install the required packages:
 npm install @azure/ai-voicelive @azure/core-auth @azure/identity dotenv speaker
 ```
 
+> [!IMPORTANT]
+> The `speaker` package is a native Node.js addon that requires C++ build tools to compile. On Windows, install [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022) with the **Desktop development with C++** workload and `node-gyp` (`npm install --global node-gyp`) before running `npm install`. On macOS, Xcode Command Line Tools (`xcode-select --install`) are sufficient.
+
+> [!IMPORTANT]
+> This sample requires [SoX](https://sox.sourceforge.io/) for microphone capture. Install it before running the sample — on Windows via `winget install SoX.SoX` or [Chocolatey](https://chocolatey.org/) (`choco install sox.portable`), on macOS via [Homebrew](https://brew.sh/) (`brew install sox`).
+
 > [!NOTE]
-> This sample uses [SoX](https://sox.sourceforge.io/) for microphone capture. Install SoX before running the sample.
+> The `gpt-realtime` model isn't available in all regions. If you get a connection error, verify that your resource is in a [supported region](/azure/ai-services/speech-service/regions?tabs=voice-live). The `gpt-4o` and `gpt-4.1` models have broader regional availability.
 
 ```javascript
 // -------------------------------------------------------------------------
@@ -1804,6 +1808,7 @@ import com.azure.ai.voicelive.models.OutputAudioFormat;
 import com.azure.ai.voicelive.models.ServerEventType;
 import com.azure.ai.voicelive.models.ServerVadTurnDetection;
 import com.azure.ai.voicelive.models.SessionUpdate;
+import com.azure.ai.voicelive.models.ResponseFunctionCallItem;
 import com.azure.ai.voicelive.models.SessionUpdateConversationItemCreated;
 import com.azure.ai.voicelive.models.SessionUpdateError;
 import com.azure.ai.voicelive.models.SessionUpdateResponseAudioDelta;
@@ -2102,7 +2107,8 @@ public final class FunctionCallingQuickstart {
                         AudioInputTranscriptionOptionsModel
                             .WHISPER_1))
                 .setTurnDetection(vad)
-                .setToolChoice(ToolChoiceLiteral.AUTO);
+                .setToolChoice(BinaryData.fromObject(
+                    ToolChoiceLiteral.AUTO));
 
         options.getTools().add(getTime);
         options.getTools().add(getWeather);
@@ -2171,14 +2177,14 @@ public final class FunctionCallingQuickstart {
                     created =
                         (SessionUpdateConversationItemCreated)
                             event;
-                if ("function_call".equals(
-                    created.getItem().getType())) {
-                    pendingName =
-                        created.getItem().getName();
-                    pendingCallId =
-                        created.getItem().getCallId();
-                    pendingItemId =
-                        created.getItem().getId();
+                if (created.getItem() instanceof
+                    ResponseFunctionCallItem) {
+                    ResponseFunctionCallItem funcItem =
+                        (ResponseFunctionCallItem)
+                            created.getItem();
+                    pendingName = funcItem.getName();
+                    pendingCallId = funcItem.getCallId();
+                    pendingItemId = funcItem.getId();
                     pendingArguments = null;
                     System.out.println(
                         "Calling function: "
@@ -2241,8 +2247,8 @@ public final class FunctionCallingQuickstart {
                 new FunctionCallOutputItem(
                     callId, resultJson);
             session.sendEvent(
-                new ClientEventConversationItemCreate(
-                    output))
+                new ClientEventConversationItemCreate()
+                    .setItem(output))
                 .then(session.sendEvent(
                     new ClientEventResponseCreate()))
                 .subscribe();

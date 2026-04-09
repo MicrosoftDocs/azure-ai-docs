@@ -29,7 +29,7 @@ Multivariate Anomaly Detection supports two types of data schemas: **OneTable** 
 :::image type="content" source="../media/prepare-data/two-schemas.png" alt-text="Diagram of two data schemas with three steps: data preparation, training, inference." lightbox="../media/prepare-data/two-schemas.png":::
 
 #### Schema 1: OneTable
-**OneTable** is one CSV file that contains all the variables that you want to train a Multivariate Anomaly Detection model and one `timestamp` column. Download [One Table sample data](https://mvaddataset.blob.core.windows.net/public-sample-data/sample_data_5_3000.csv)
+**OneTable** is one CSV file that contains all the variables that you want to train a Multivariate Anomaly Detection model and one `timestamp` column. Download [One Table sample data](https://github.com/Azure-Samples/AnomalyDetector/blob/master/sampledata/multivariate/sample_data_5_3000.csv)
 * The `timestamp` values should conform to *ISO 8601*; the values of other variables in other columns could be *integers* or *decimals* with any number of decimal places.
 
 * Variables for training and variables for inference should be consistent. For example, if you're using `series_1`, `series_2`, `series_3`, `series_4`, and `series_5` for training, you should provide exactly the same variables for inference.
@@ -40,7 +40,7 @@ Multivariate Anomaly Detection supports two types of data schemas: **OneTable** 
 
 #### Schema 2: MultiTable
 
-**MultiTable** is multiple CSV files in one file folder, and each CSV file contains only two columns of one variable, with the exact column names of: **timestamp** and **value**.  Download [Multiple Tables sample data](https://mvaddataset.blob.core.windows.net/public-sample-data/sample_data_5_3000.zip) and unzip it.
+**MultiTable** is multiple CSV files in one file folder, and each CSV file contains only two columns of one variable, with the exact column names of: **timestamp** and **value**.  Download [Multiple Tables sample data](https://github.com/Azure-Samples/AnomalyDetector/blob/master/sampledata/multivariate/sample_data_5_3000.csv) and unzip it.
 
 * The `timestamp` values should conform to *ISO 8601*; the `value` could be *integers* or *decimals* with any number of decimal places.
 

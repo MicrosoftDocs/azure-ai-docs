@@ -6,7 +6,7 @@ ms.author: haileytapia
 ms.reviewer: liulewis
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 04/01/2026
+ms.date: 04/03/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: foundry-memory-store
@@ -26,48 +26,19 @@ This article explains how to create, manage, and use memory stores. For conceptu
 
 ### Usage support
 
-| Capability | Python SDK | JavaScript SDK | REST API |
-|---|---|---|---|
-| Create, update, list, and delete memory stores | ✔️ | ✔️ | ✔️ |
-| Update and search memories | ✔️ | ✔️ | ✔️ |
-| Attach memory to a prompt agent | ✔️ | ✔️ | ✔️ |
+| Capability | Python SDK | C# SDK | JavaScript SDK | REST API |
+|---|---|---|---|---|
+| Create, update, list, and delete memory stores | ✔️ | ✔️ | ✔️ | ✔️ |
+| Update and search memories | ✔️ | ✔️ | ✔️ | ✔️ |
+| Attach memory to a prompt agent | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
-:::zone pivot="python"
-
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../how-to/create-projects.md) with configured [authorization and permissions](#authorization-and-permissions).
-- [Chat model deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-5.2`, in your project.
-- [Embedding model deployment](../../openai/tutorials/embeddings.md), such as `text-embedding-3-small`, in your project.
-- Python 3.8 or later with a [configured environment](../../quickstarts/get-started-code.md?tabs=python).
-- Required packages: `pip install "azure-ai-projects>=2.0.0" azure-identity`
-- [Environment variables](#set-environment-variables) configured for your project endpoint and model deployments.
-
-:::zone-end
-
-:::zone pivot="typescript"
-
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry project](../../how-to/create-projects.md) with configured [authorization and permissions](#authorization-and-permissions).
-- [Chat model deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-5.2`, in your project.
-- [Embedding model deployment](../../openai/tutorials/embeddings.md), such as `text-embedding-3-small`, in your project.
-- Node.js LTS with a [configured environment](../../quickstarts/get-started-code.md). The TypeScript samples in this article use the [Azure AI Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme).
-- Required packages: `npm install @azure/ai-projects@2 @azure/identity`
-- [Environment variables](#set-environment-variables) configured for your project endpoint and model deployments.
-
-:::zone-end
-
-:::zone pivot="rest"
-
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A [Microsoft Foundry project](../../how-to/create-projects.md) with configured [authorization and permissions](#authorization-and-permissions).
-- [Chat model deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-5.2`, in your project.
-- [Embedding model deployment](../../openai/tutorials/embeddings.md), such as `text-embedding-3-small`, in your project.
-- Azure CLI [authenticated to your subscription](/cli/azure/authenticate-azure-cli).
-- [Environment variables](#set-environment-variables) configured for your project endpoint and model deployments.
-
-:::zone-end
+- A [chat model deployment](../../foundry-models/how-to/create-model-deployments.md), such as `gpt-5.2`, in your project.
+- An [embedding model deployment](../../openai/tutorials/embeddings.md), such as `text-embedding-3-small`, in your project.
+- A [configured local environment](#set-up-your-environment) with required packages and environment variables.
 
 ### Authorization and permissions
 
@@ -76,21 +47,54 @@ We recommend [role-based access control](../../concepts/rbac-foundry.md) for pro
 To configure role-based access:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
+
 1. On your project:
     1. From the left pane, select **Resource Management** > **Identity**.
     1. Use the toggle to enable a system-assigned managed identity.
+
 1. On the resource that contains your project:
     1. From the left pane, select **Access control (IAM)**.
     1. Select **Add** > **Add role assignment**.
     1. Assign **Azure AI User** to the managed identity of your project.
 
-### Set environment variables
+### Set up your environment
 
-:::zone pivot="python,typescript"
+:::zone pivot="python"
+
+Install the required packages:
+
+```bash
+pip install "azure-ai-projects>=2.0.0" azure-identity
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+Install the required packages:
+
+```bash
+dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Projects.Agents --prerelease
+dotnet add package Azure.AI.Extensions.OpenAI --prerelease
+dotnet add package Azure.Identity
+```
+
+:::zone-end
+
+:::zone pivot="typescript"
+
+Install the required packages:
+
+```bash
+npm install @azure/ai-projects@2 @azure/identity
+```
+
+:::zone-end
+
+:::zone pivot="python,csharp,typescript"
 
 Set environment variables for your project endpoint and model deployment names:
-
-#### [Bash](#tab/bash)
 
 ```bash
 export FOUNDRY_PROJECT_ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
@@ -98,23 +102,11 @@ export MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME="<chat-model-deployment-name>"
 export MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME="<embedding-model-deployment-name>"
 ```
 
-#### [PowerShell](#tab/powershell)
-
-```powershell
-$env:FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-$env:MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME = "<chat-model-deployment-name>"
-$env:MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME = "<embedding-model-deployment-name>"
-```
-
----
-
 :::zone-end
 
 :::zone pivot="rest"
 
 Set environment variables for your project endpoint, model deployments, API version, and access token:
-
-#### [Bash](#tab/bash)
 
 ```bash
 FOUNDRY_PROJECT_ENDPOINT="https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
@@ -125,20 +117,6 @@ API_VERSION="2025-11-15-preview"
 # Get a short-lived access token using Azure CLI
 ACCESS_TOKEN="$(az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv)"
 ```
-
-#### [PowerShell](#tab/powershell)
-
-```powershell
-$FOUNDRY_PROJECT_ENDPOINT = "https://{your-ai-services-account}.services.ai.azure.com/api/projects/{project-name}"
-$MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME = "<chat-model-deployment-name>" # For example, gpt-5.2
-$MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME = "<embedding-model-deployment-name>" # For example, text-embedding-3-small
-$API_VERSION = "2025-11-15-preview"
-
-# Get a short-lived access token using Azure CLI
-$ACCESS_TOKEN = az account get-access-token --resource https://ai.azure.com/ --query accessToken -o tsv
-```
-
----
 
 :::zone-end
 
@@ -205,6 +183,53 @@ memory_store = project_client.beta.memory_stores.create(
 )
 
 print(f"Created memory store: {memory_store.name}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+using System;
+using Azure.AI.Projects;
+using Azure.AI.Projects.Memory;
+using Azure.Identity;
+
+#pragma warning disable AAIP001
+
+var projectEndpoint = Environment.GetEnvironmentVariable(
+    "FOUNDRY_PROJECT_ENDPOINT");
+var chatModel = Environment.GetEnvironmentVariable(
+    "MEMORY_STORE_CHAT_MODEL_DEPLOYMENT_NAME");
+var embeddingModel = Environment.GetEnvironmentVariable(
+    "MEMORY_STORE_EMBEDDING_MODEL_DEPLOYMENT_NAME");
+
+AIProjectClient projectClient = new(
+    new Uri(projectEndpoint),
+    new DefaultAzureCredential());
+
+var memoryStoreName = "my_memory_store";
+
+// Specify memory store options
+MemoryStoreDefaultDefinition memoryStoreDefinition = new(
+    chatModel: chatModel,
+    embeddingModel: embeddingModel
+);
+memoryStoreDefinition.Options = new(
+    isUserProfileEnabled: true,
+    isChatSummaryEnabled: true);
+memoryStoreDefinition.Options.UserProfileDetails =
+    "Avoid irrelevant or sensitive data, such as age, "
+    + "financials, precise location, and credentials";
+
+// Create memory store
+MemoryStore memoryStore = projectClient.MemoryStores.CreateMemoryStore(
+    name: memoryStoreName,
+    definition: memoryStoreDefinition,
+    description: "Memory store for customer support agent"
+);
+
+Console.WriteLine($"Created memory store: {memoryStore.Name}");
 ```
 
 :::zone-end
@@ -290,12 +315,9 @@ curl -X POST "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores?api-version=${API_VERSIO
 
 :::zone-end
 
-:::zone pivot="python,typescript"
-
 > [!TIP]
-> The code snippets in the remaining sections of this article build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run those snippets independently, include the import and client initialization code from this section.
-
-:::zone-end
+> + The remaining Python, C#, and TypeScript snippets build on the client and variables defined in [Create a memory store](#create-a-memory-store). If you run those code snippets independently, include the import and client initialization code from this section.
+> + The C# snippets in this article use synchronous methods. For asynchronous usage, see the [memory search tool](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample5_MemorySearchTool.md) and [memory store](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample20_MemoryStore.md) samples.
 
 ### Customize memory
 
@@ -319,6 +341,20 @@ updated_store = project_client.beta.memory_stores.update(
 )
 
 print(f"Updated: {updated_store.description}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// Update memory store properties
+MemoryStore updatedStore = projectClient.MemoryStores.UpdateMemoryStore(
+    name: memoryStoreName,
+    description: "Updated description"
+);
+
+Console.WriteLine($"Updated: {updatedStore.Description}");
 ```
 
 :::zone-end
@@ -366,6 +402,19 @@ stores_list = list(project_client.beta.memory_stores.list())
 print(f"Found {len(stores_list)} memory stores")
 for store in stores_list:
     print(f"- {store.name} ({store.description})")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// List all memory stores
+foreach (MemoryStore store in projectClient.MemoryStores.GetMemoryStores())
+{
+    Console.WriteLine(
+        $"Memory store: {store.Name} ({store.Description})");
+}
 ```
 
 :::zone-end
@@ -428,6 +477,45 @@ agent = project_client.agents.create_version(
 )
 
 print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+using Azure.AI.Projects.Agents;
+using Azure.AI.Extensions.OpenAI;
+using OpenAI.Responses;
+
+#pragma warning disable OPENAI001
+
+// Set scope to associate the memories with
+string scope = "user_123";
+
+// Create a prompt agent with memory search tool
+DeclarativeAgentDefinition agentDefinition = new(model: chatModel)
+{
+    Instructions = "You are a helpful assistant that answers "
+        + "general questions",
+};
+agentDefinition.Tools.Add(new MemorySearchPreviewTool(
+    memoryStoreName: memoryStore.Name,
+    scope: scope)
+{
+    UpdateDelayInSecs = 1, // Wait 1 second of inactivity before updating memories
+    // In a real application, set this to a higher value
+    // like 300 (5 minutes, default)
+});
+
+ProjectsAgentVersion agent =
+    projectClient.AgentAdministrationClient.CreateAgentVersion(
+        agentName: "MyAgent",
+        options: new(agentDefinition));
+
+Console.WriteLine(
+    $"Agent created (id: {agent.Id}, name: {agent.Name}, "
+    + $"version: {agent.Version})");
 ```
 
 :::zone-end
@@ -534,6 +622,50 @@ new_response = openai_client.responses.create(
 )
 
 print(f"Response output: {new_response.output_text}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+using System.Threading;
+
+#pragma warning disable OPENAI001
+
+// Get a response client scoped to the agent
+ProjectResponsesClient responseClient =
+    projectClient.ProjectOpenAIClient
+        .GetProjectResponsesClientForAgent(agent.Name);
+
+// Create an agent response to initial user message
+ResponseItem request = ResponseItem.CreateUserMessageItem(
+    "I prefer dark roast coffee");
+ResponseResult response = responseClient.CreateResponse([request]);
+// To scope memories to an end user, uncomment:
+// var options = new CreateResponseOptions();
+// options.InputItems.Add(request);
+// var requestOptions = new RequestOptions();
+// requestOptions.AddHeader("x-memory-user-id", "<user-id>");
+// ClientResult result = responseClient.CreateResponse(
+//     BinaryContent.Create(options), requestOptions);
+// ResponseResult response = ModelReaderWriter.Read<ResponseResult>(
+//     result.GetRawResponse().Content);
+
+Console.WriteLine($"Response output: {response.GetOutputText()}");
+
+// After inactivity, memories are extracted and stored
+Console.WriteLine("Waiting for memories to be stored...");
+Thread.Sleep(65_000);
+
+// Create a new response to demonstrate cross-session recall
+ResponseItem newRequest = ResponseItem.CreateUserMessageItem(
+    "Please order my usual coffee");
+ResponseResult newResponse = responseClient.CreateResponse(
+    [newRequest]);
+
+Console.WriteLine(
+    $"Response output: {newResponse.GetOutputText()}");
 ```
 
 :::zone-end
@@ -678,6 +810,76 @@ for operation in new_update_result.memory_operations:
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+```csharp
+#pragma warning disable OPENAI001
+
+// Set scope to associate the memories with
+string scope = "user_123";
+
+MemoryUpdateOptions memoryOptions = new(scope)
+{
+    UpdateDelay = 0, // Trigger update immediately without waiting for inactivity
+};
+memoryOptions.Items.Add(ResponseItem.CreateUserMessageItem(
+    "I prefer dark roast coffee and usually drink it "
+    + "in the morning"));
+
+// Wait for the update operation to complete
+MemoryUpdateResult updateResult =
+    projectClient.MemoryStores.WaitForMemoriesUpdate(
+        memoryStoreName: memoryStore.Name,
+        options: memoryOptions,
+        pollingInterval: 500);
+
+if (updateResult.Status == MemoryStoreUpdateStatus.Failed)
+{
+    throw new InvalidOperationException(
+        updateResult.ErrorDetails);
+}
+Console.WriteLine(
+    $"Updated with {updateResult.Details.MemoryOperations.Count} "
+    + "memory operations");
+foreach (var operation in updateResult.Details.MemoryOperations)
+{
+    Console.WriteLine(
+        $"  - Operation: {operation.Kind}, "
+        + $"Memory ID: {operation.MemoryItem.MemoryId}, "
+        + $"Content: {operation.MemoryItem.Content}");
+}
+
+// Extend the previous update with another message
+MemoryUpdateOptions newMemoryOptions = new(scope)
+{
+    PreviousUpdateId = updateResult.UpdateId,
+    UpdateDelay = 0, // Trigger update immediately without waiting for inactivity
+};
+newMemoryOptions.Items.Add(ResponseItem.CreateUserMessageItem(
+    "I also like cappuccinos in the afternoon"));
+
+MemoryUpdateResult newUpdateResult =
+    projectClient.MemoryStores.WaitForMemoriesUpdate(
+        memoryStoreName: memoryStore.Name,
+        options: newMemoryOptions,
+        pollingInterval: 500);
+
+if (newUpdateResult.Status == MemoryStoreUpdateStatus.Failed)
+{
+    throw new InvalidOperationException(
+        newUpdateResult.ErrorDetails);
+}
+foreach (var operation in newUpdateResult.Details.MemoryOperations)
+{
+    Console.WriteLine(
+        $"  - Operation: {operation.Kind}, "
+        + $"Memory ID: {operation.MemoryItem.MemoryId}, "
+        + $"Content: {operation.MemoryItem.Content}");
+}
+```
+
+:::zone-end
+
 :::zone pivot="typescript"
 
 ```typescript
@@ -806,6 +1008,38 @@ for memory in search_response.memories:
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+```csharp
+#pragma warning disable OPENAI001
+
+// Search memories by a query
+MemorySearchOptions searchOptions = new(scope)
+{
+    Items =
+    {
+        ResponseItem.CreateUserMessageItem(
+            "What are my coffee preferences?")
+    },
+    ResultOptions = new() { MaxMemories = 5 },
+};
+
+MemoryStoreSearchResponse searchResponse =
+    projectClient.MemoryStores.SearchMemories(
+        memoryStoreName: memoryStore.Name,
+        options: searchOptions);
+
+Console.WriteLine(
+    $"Found {searchResponse.Memories.Count} memories");
+foreach (MemorySearchItem item in searchResponse.Memories)
+{
+    Console.WriteLine(
+        $"  - Content: {item.MemoryItem.Content}");
+}
+```
+
+:::zone-end
+
 :::zone pivot="typescript"
 
 ```typescript
@@ -902,6 +1136,22 @@ print(f"Deleted memories for scope: user_123")
 
 :::zone-end
 
+:::zone pivot="csharp"
+
+```csharp
+// Delete memories for a specific scope
+MemoryStoreDeleteScopeResponse deleteScopeResponse =
+    projectClient.MemoryStores.DeleteScope(
+        name: memoryStore.Name,
+        scope: "user_123");
+
+Console.WriteLine(
+    $"Deleted scope: {deleteScopeResponse.Name}, "
+    + $"success: {deleteScopeResponse.IsDeleted}");
+```
+
+:::zone-end
+
 :::zone pivot="typescript"
 
 ```typescript
@@ -934,6 +1184,21 @@ Remove the entire memory store and all associated memories across all scopes. Th
 # Delete the entire memory store
 delete_response = project_client.beta.memory_stores.delete(memory_store_name)
 print(f"Deleted memory store: {delete_response.deleted}")
+```
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+```csharp
+// Delete the entire memory store
+DeleteMemoryStoreResponse deleteResponse =
+    projectClient.MemoryStores.DeleteMemoryStore(
+        name: memoryStore.Name);
+
+Console.WriteLine(
+    $"Deleted memory store: {deleteResponse.Name}, "
+    + $"success: {deleteResponse.IsDeleted}");
 ```
 
 :::zone-end
@@ -984,6 +1249,17 @@ curl -X DELETE "${FOUNDRY_PROJECT_ENDPOINT}/memory_stores/my_memory_store?api-ve
 :::zone pivot="python"
 
 - [Azure AI Projects client library for Python: Memory samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/memories)
+- [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
+- [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
+- [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
+- [Build an agent with Microsoft Foundry](../../quickstarts/get-started-code.md)
+
+:::zone-end
+
+:::zone pivot="csharp"
+
+- [Azure AI Extensions for OpenAI: Memory search tool sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample5_MemorySearchTool.md)
+- [Azure AI Projects client library for .NET: Memory store sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample20_MemoryStore.md)
 - [Memory store REST API reference](../../reference/foundry-project-rest-preview.md)
 - [Memory in Foundry Agent Service](../concepts/what-is-memory.md)
 - [Foundry Agent Service quotas and limits](../concepts/limits-quotas-regions.md)
