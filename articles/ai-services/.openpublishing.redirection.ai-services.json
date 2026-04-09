@@ -1612,7 +1612,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/azure-government.md",
-      "redirect_url": "/azure/ai-foundry/openai/azure-government",
+      "redirect_url": "/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov",
       "redirect_document_id": true
     },
     {
