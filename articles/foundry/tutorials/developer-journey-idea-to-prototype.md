@@ -50,6 +50,9 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
 
 - (Optional) Git installed for cloning the sample repository
 
+> [!IMPORTANT]
+> SDK versions and sample repository structure may change after publication. Before you begin, check the [sample repository README](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype) for the latest setup instructions, required package versions, and environment configuration. If a version referenced in this tutorial isn't available on [PyPI](https://pypi.org/project/azure-ai-projects/) or [NuGet](https://www.nuget.org/packages/Azure.AI.Projects), use the latest published version instead.
+
 ## Step 1: Get the sample code
 
 Instead of navigating a large repository tree, use one of these approaches:
