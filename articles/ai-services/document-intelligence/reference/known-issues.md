@@ -18,8 +18,8 @@ Azure Document Intelligence is updated continuously, and service changes can aff
 
 Azure status and Azure Service Health publish service-level outages and regional disruptions. Use these services to validate current impact, track incident lifecycle updates, and configure proactive notifications for your subscriptions and resources.
 
-* **Service-level outages**: [Azure status page](https://azure.status.microsoft/en-us/status).
-* **Outage notifications and alerts**: [Azure Service Health Portal](https://azure.microsoft.com/en-us/status/).
+* **Service-level outages**: [Azure status page](https://azure.status.microsoft/status).
+* **Outage notifications and alerts**: [Azure Service Health Portal](https://azure.microsoft.com/status/).
 
 ## Current known issues
 
@@ -35,8 +35,8 @@ The following table lists active, service-confirmed issues in Azure Document Int
 
 ## Related content
 
-* [Azure Service Health Portal](https://learn.microsoft.com/en-us/azure/service-health/service-health-portal-update)
+* [Azure Service Health Portal](/azure/service-health/service-health-portal-update)
 
-* [Azure Status overview](https://learn.microsoft.com/en-us/azure/service-health/azure-status-overview)
+* [Azure Status overview](/azure/service-health/azure-status-overview)
 
-* [What's new in Document Intelligence - Foundry Tools | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/whats-new?view=doc-intel-4.0.0)
+* [What's new in Document Intelligence - Foundry Tools | Microsoft Learn](../whats-new.md)

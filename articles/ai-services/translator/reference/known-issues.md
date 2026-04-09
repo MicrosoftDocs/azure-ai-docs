@@ -18,7 +18,7 @@ Azure Translator is updated continuously, and service changes can affect feature
 Azure status and Azure Service Health publish service-level outages and regional disruptions. Use these services to validate current impact, track incident lifecycle updates, and configure proactive notifications for your subscriptions and resources.
 
 * **Service-level outages**: [Azure status page](https://azure.status.microsoft/en-us/status).
-* **Outage notifications and alerts**: [Azure Service Health Portal](https://azure.microsoft.com/en-us/status/).
+* **Outage notifications and alerts**: [Azure Service Health Portal](https://azure.microsoft.com/status/).
 
 ### Text translation current known issues
 
