@@ -38,11 +38,6 @@ Notes on target platform support:
   * Fixed infinite recursion when using `DialogServiceConnector` with an invalid token.
   * Fixed speech synthesis URL redirection not working with a user-specified path.
 
-### Speech CLI 1.49: 2026-April release
-
-#### New features:
-  * Added support for phrase list weights.
-
 ### Speech SDK 1.48.2: 2026-February release
 
 > [!IMPORTANT]
