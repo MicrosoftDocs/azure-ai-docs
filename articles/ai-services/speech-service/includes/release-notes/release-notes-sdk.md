@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 02/26/2026
+ms.date: 04/09/2026
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
@@ -10,6 +10,38 @@ ms.reviewer: pafarley
 
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.49: 2026-April release
+
+Notes on target platform support:
+  * Android x86 support is removed in this release.
+
+#### New features:
+  * Updated Android OpenSSL to 3.0.19.
+  * **Python:** Optimized the Linux wheel size.
+
+#### Bug fixes:
+  * Fixed memory leaks in embedded speech.
+  * Fixed symbols not transcribed correctly in embedded speech recognition.
+  * **Python:** Fixed speech synthesis event handle leaks.
+
+### Speech SDK for JavaScript
+
+#### New features:
+  * Added handling for `PropertyId.SpeechServiceResponse_PostProcessingOption`.
+  * Added speech synthesis latency measurements.
+  * Added speech synthesis input text streaming support.
+  * Added support for translation synthesis update when languages change.
+
+#### Bug fixes:
+  * Fixed detailed recognition results not requested properly.
+  * Fixed infinite recursion when using `DialogServiceConnector` with an invalid token.
+  * Fixed speech synthesis URL redirection not working with a user-specified path.
+
+### Speech CLI 1.49: 2026-April release
+
+#### New features:
+  * Added support for phrase list weights.
 
 ### Speech SDK 1.48.2: 2026-February release
 
