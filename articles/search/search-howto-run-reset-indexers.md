@@ -3,7 +3,7 @@ title: Run or Reset Indexers
 description: Run indexers in full, or reset an indexer, skills, or individual documents to refresh all or part of a search index or knowledge store.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/02/2025
+ms.date: 03/26/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -25,6 +25,9 @@ This article explains how to run indexers on demand, with and without a reset. I
 Indexers are one of the few subsystems that make overt outbound calls to other Azure resources. Depending on the external data source, you can use keys or roles to authenticate the connection.
 
 In terms of Azure roles, indexers don't have separate identities: a connection from the search engine to another Azure resource is made using the [system or user-assigned managed identity](search-how-to-managed-identities.md) of a search service, plus a role assignment on the target Azure resource. If the indexer connects to an Azure resource on a virtual network, you should create a [shared private link](search-indexer-howto-access-private.md) for that connection.
+
+> [!NOTE]
+> Indexers operate with service-level permissions rather than user permissions. An indexer can write to any index on the search service, even if you assigned roles to restrict access to specific indexes. For more information, see [Per-index scope and indexer operations](search-security-rbac.md#per-index-scope-and-indexer-operations).
 
 ## Indexer execution
 
@@ -117,7 +120,7 @@ Once you reset an indexer, you can't undo the action.
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. On the **Overview** page, select the **Indexers** tab.
 1. Select an indexer.
 1. Select the **Reset** command, and then select **Yes** to confirm the action.

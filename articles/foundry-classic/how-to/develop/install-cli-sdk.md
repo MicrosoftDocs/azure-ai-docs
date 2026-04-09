@@ -5,7 +5,7 @@ keywords: foundry sdk, azure cli, development environment, visual studio code
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 12/18/2025
+ms.date: 04/08/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -22,5 +22,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 # Prepare your development environment (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/how-to/develop/install-cli-sdk.md)
+
+[!INCLUDE [classic-links](../../includes/classic-links.md)]
 
 [!INCLUDE [install-cli-sdk content](../../../foundry/includes/how-to-develop-install-cli-sdk-content.md)]

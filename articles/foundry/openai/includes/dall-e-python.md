@@ -6,10 +6,11 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
-  - ignite-2023
+  - ignite-2023, classic-and-new
 ms.topic: include
 ms.date: 01/29/2026
 ai-usage: ai-assisted
+
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for Python.
@@ -68,9 +69,8 @@ Replace the contents of _quickstart.py_ with the following code.
 ```python
 from openai import AzureOpenAI
 import os
-import requests
+import base64
 from PIL import Image
-import json
 
 client = AzureOpenAI(
     api_version="2025-04-01-preview",  
@@ -81,10 +81,13 @@ client = AzureOpenAI(
 result = client.images.generate(
     model="gpt-image-1", # the name of your GPT-image-1 series deployment
     prompt="a close-up of a bear walking through the forest",
-    n=1
+    n=1,
+    size="1024x1024",
+    quality="high",
+    output_format="png",
+    # background="transparent",  # Set to "transparent" for transparent backgrounds (requires PNG)
+    # output_compression=100,  # 0-100 compression level (JPEG output only)
 )
-
-json_response = json.loads(result.model_dump_json())
 
 # Set the directory for the stored image
 image_dir = os.path.join(os.curdir, 'images')
@@ -96,9 +99,9 @@ if not os.path.isdir(image_dir):
 # Initialize the image path (note the filetype should be png)
 image_path = os.path.join(image_dir, 'generated_image.png')
 
-# Retrieve the generated image
-image_url = json_response["data"][0]["url"]  # extract image URL from response
-generated_image = requests.get(image_url).content  # download the image
+# GPT-image-1 models always return base64-encoded image data
+image_base64 = result.data[0].b64_json
+generated_image = base64.b64decode(image_base64)
 with open(image_path, "wb") as image_file:
     image_file.write(generated_image)
 
@@ -129,7 +132,7 @@ Azure OpenAI stores the output image in the _generated_image.png_ file in your s
 A successful response includes:
 - A `created` timestamp
 - A `data` array with at least one image object
-- Either a `url` (temporary link valid for 24 hours) or `b64_json` (base64-encoded image data)
+- A `b64_json` field with base64-encoded image data (GPT-image-1 models always return base64)
 
 #### Common errors
 

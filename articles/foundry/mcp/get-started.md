@@ -12,7 +12,7 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Get started with Microsoft Foundry MCP Server (preview) using Visual Studio Code
+# Get started with Foundry MCP Server (preview) using Visual Studio Code
 
 Foundry MCP Server (preview) is a cloud-hosted implementation of the Model Context Protocol (MCP). It exposes curated tools that let your agents perform read and write operations against Foundry services without calling backend APIs directly. You don't need to deploy infrastructure — the server provides a secure, scalable endpoint with built-in authentication through Microsoft Entra ID.
 

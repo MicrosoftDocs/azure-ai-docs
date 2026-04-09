@@ -1,12 +1,12 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: mrbullwinkle
+ms.author: mbullwin
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
@@ -171,6 +171,13 @@ If you encounter 429 errors or notice increased latency variability, here’s wh
 - Request a quota increase: visit the Azure portal to request a higher quota for your subscription.
 - Consider upgrading to a premium offer (PTU): for latency-critical or high-volume workloads, upgrade to Provisioned Throughput Units (PTU). PTU provides dedicated resources, guaranteed capacity, and predictable latency—even at scale. This is the best choice for mission-critical applications that require consistent performance.
 - Monitor your usage: regularly review your usage metrics in the Azure portal to ensure you're operating within your tier limits. Adjust your workload or deployment strategy as needed.
+
+You may receive **429 (Too Many Requests)** responses even when token usage metrics appear below your quota.
+
+This can occur in the following scenarios:
+- Requests rejected due to **input or context length limits (HTTP 400)**. These requests are not billed and may not appear in token usage metrics, but they can still count toward rate limiting.
+- Requests evaluated based on **potential token usage** (for example, `max_tokens`), even if no tokens are ultimately generated.
+- **Distributed rate‑limiting behavior**, where enforcement may not be perfectly precise or immediately reflected in aggregated metrics.
 
 The usage limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model. It's the total number of tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 

@@ -20,22 +20,23 @@ Azure Content Understanding in Foundry Tools provides multilingual support in mu
 
 ## Region support
 
-To use Azure Content Understanding, create your Foundry Tool resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
+To use Azure Content Understanding, create your Foundry resource in a supported region. Content Understanding is available in the following regions. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Find more information about Foundry deployment types and data zones at  [Deployment types for Microsoft Foundry Models](../../foundry/foundry-models/concepts/deployment-types.md).
 
-| Identifier      | Region         | Geography       | Data Zone        |
-|-----------------|----------------|-----------------|------------------|
-| `australiaeast` | Australia East | Australia | Australia |
-| `eastus` | East US | United States | US |
-| `eastus2` | East US 2 | United States | US |
-| `japaneast` | Japan East | Japan | Asia |
-| `northeurope` | North Europe | Europe | Europe |
-| `southcentralus` | South Central US | United States | US |
-| `southeastasia` | Southeast Asia | Asia Pacific | Asia |
-| `swedencentral` | Sweden Central | Sweden | Europe |
-| `uksouth` | UK South | United Kingdom | UK |
-| `westeurope` | West Europe | Europe | Europe |
-| `westus` | West US | United States | US |
-| `westus3` | West US 3 | United States | US |
+| Identifier      | Region         | Geography       |
+|-----------------|----------------|-----------------|
+| `australiaeast` | Australia East | Asia Pacific |
+| `eastus` | East US | United States |
+| `eastus2` | East US 2 | United States |
+| `japaneast` | Japan East | Asia Pacific |
+| `northeurope` | North Europe | Europe |
+| `southcentralus` | South Central US | United States |
+| `southeastasia` | Southeast Asia | Asia Pacific |
+| `swedencentral` | Sweden Central | Europe |
+| `uksouth` | UK South | Europe |
+| `westeurope` | West Europe | Europe |
+| `westus` | West US | United States |
+| `westus3` | West US 3 | United States |
+
 
 
 > [!NOTE]

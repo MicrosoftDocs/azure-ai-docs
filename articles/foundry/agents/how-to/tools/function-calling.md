@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -24,11 +24,11 @@ You can run agents with function tools in the Microsoft Foundry portal. However,
 
 ## Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -38,9 +38,9 @@ Before you start, make sure you have:
 - A Foundry project and a deployed model.
 - The SDK package for your language:
   - Python: `azure-ai-projects` (latest)
-  - .NET: `Azure.AI.Extensions.OpenAI` (prerelease)
+  - .NET: `Azure.AI.Extensions.OpenAI`
   - TypeScript: `@azure/ai-projects` (latest)
-  - Java: `azure-ai-agents` (prerelease)
+  - Java: `azure-ai-agents`
   
   For installation and authentication steps, see the [quickstart](../../../quickstarts/get-started-code.md).
 
@@ -104,7 +104,7 @@ tools: list[Tool] = [func_tool]
 agent = project.agents.create_version(
     agent_name="MyAgent",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant that can use function tools.",
         tools=tools,
     ),
@@ -295,14 +295,14 @@ class FunctionCallingDemo
     {
         AIProjectClient projectClient = new(endpoint: new Uri(ProjectEndpoint), tokenProvider: new DefaultAzureCredential());
         // Create an agent version with the defined functions as tools.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+        DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a weather bot. Use the provided functions to help answer questions. "
                     + "Customize your responses to the user's preferences as much as possible and use friendly "
                     + "nicknames for cities whenever possible.",
             Tools = { getUserFavoriteCityTool, getCityNicknameTool, getCurrentWeatherAtLocationTool }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition));
 
@@ -311,7 +311,7 @@ class FunctionCallingDemo
         // GetResolvedToolOutput to get the FunctionCallOutputResponseItem with the function call result.
         // To provide the right answer, supply all the response items to the CreateResponse call.
         // At the end, output the function's response.
-        ResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
         ResponseItem request = ResponseItem.CreateUserMessageItem("What's the weather like in my favorite city?");
         var inputItems = new List<ResponseItem> { request };
@@ -340,7 +340,7 @@ class FunctionCallingDemo
         Console.WriteLine(response.GetOutputText());
 
         // Remove all the resources created in this sample.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```
@@ -535,7 +535,7 @@ export async function main(): Promise<void> {
   // Create agent with function tools
   const agent = await project.agents.createVersion("function-tool-agent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: "You are a helpful assistant that can use function tools.",
     tools: [funcTool],
   });
@@ -629,7 +629,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -676,7 +676,7 @@ public class FunctionCallingExample {
         FunctionTool weatherFunction = new FunctionTool("get_weather", parameters, true);
 
         // Create agent with function tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a weather assistant. Use the get_weather function to retrieve weather information.")
             .setTools(Arrays.asList(weatherFunction));
 
@@ -728,7 +728,7 @@ If you use tracing in Microsoft Foundry, confirm the tool invocation occurred. F
 | --- | --- | --- |
 | Agent returns function call but no final answer. | Tool output not returned to model. | Execute the function, then call `responses.create` with the tool output and `previous_response_id` to continue. |
 | No function call occurs. | Function not in agent definition or poor naming. | Confirm the function tool is added to the agent. Use clear, descriptive names and parameter descriptions. |
-| Arguments aren't valid JSON. | Schema mismatch or model hallucination. | Verify JSON schema uses correct types and required properties. Handle parsing errors gracefully in your app. |
+| Arguments aren't valid JSON. | Schema mismatch or model generated incorrect information. | Verify JSON schema uses correct types and required properties. Handle parsing errors gracefully in your app. |
 | Required fields are missing. | Schema doesn't enforce required properties. | Add `"required": [...]` array to your parameter schema. Set `strict: true` for stricter validation. |
 | Tool outputs fail due to expiration. | Run expired (10-minute limit). | Return tool outputs promptly. For slow operations, return a status and poll separately. |
 | Function called with wrong parameters. | Ambiguous function description. | Improve the function `description` field. Add detailed parameter descriptions with examples. |

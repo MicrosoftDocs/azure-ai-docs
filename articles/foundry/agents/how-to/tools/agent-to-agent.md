@@ -1,12 +1,12 @@
 ---
-title: "Add an A2A agent endpoint to Foundry Agent Service"
-description: "Add an Agent2Agent (A2A) endpoint to Foundry Agent Service for cross-agent communication. Configure connections, authentication, and SDK integration."
+title: "Connect to an A2A agent endpoint from Foundry Agent Service"
+description: "Connect your Foundry agent to a remote Agent2Agent (A2A) endpoint. Configure connections, authentication, and use SDK integration to call external A2A agents."
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 04/03/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -14,13 +14,17 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-to-agent
 ---
 
-# Add an A2A agent endpoint to Foundry Agent Service (preview)
+# Connect to an A2A agent endpoint from Foundry Agent Service (preview)
+
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!NOTE]
 > For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
-You can extend the capabilities of your Microsoft Foundry agent by adding an Agent2Agent (A2A) agent endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A tool enables agent-to-agent communication, making it easier to share context between Foundry agents and external agent endpoints through a standardized protocol. This guide shows you how to configure and use the A2A tool in your Foundry Agent Service.
+You can extend the capabilities of your Microsoft Foundry agent by connecting to a remote Agent2Agent (A2A) endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A tool enables agent-to-agent communication, making it easier to share context between Foundry agents and external agent endpoints through a standardized protocol. This guide shows you how to configure a connection and call a remote A2A endpoint from your Foundry Agent Service agent.
+
+> [!TIP]
+> This article covers how to **call** a remote A2A endpoint from your Foundry agent. If you want to **expose** your own agent as an A2A endpoint that other agents can call, see [Host an A2A-compatible agent endpoint](#host-an-a2a-compatible-agent-endpoint) later in this article.
 
 Connecting agents via the A2A tool versus a multi-agent workflow:
 
@@ -29,25 +33,25 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 
 ## Usage support
 
-The following table shows SDK and setup support. ✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - An Azure subscription with an active Foundry project.
-- A model deployment (for example, `gpt-5-mini`) in your Foundry project.
+- A model deployment (for example, `gpt-4.1-mini`) in your Foundry project.
 - Required Azure role: On the Foundry resource, **Contributor** or **Owner** for management and **Azure AI User** for building an agent.
 - SDK installation:
   - Python (GA): `pip install "azure-ai-projects>=2.0.0"`
-  - C# (Preview): `Azure.AI.Projects` prerelease NuGet package
+  - C#: `Azure.AI.Projects` NuGet package
   - TypeScript (GA): `@azure/ai-projects` npm package
-  - Java (Preview): `com.azure:azure-ai-agents:2.0.0-beta.3` Maven dependency
+  - Java: `com.azure:azure-ai-agents:2.0.0` Maven dependency
 - Values to update in code:
   - Project endpoint URL (for example, `https://<resource>.ai.azure.com/api/projects/<project>`).
-  - Model deployment name (for example, `gpt-5-mini`).
+  - Model deployment name (for example, `gpt-4.1-mini`).
   - A2A connection name (created in the Foundry portal).
   - A2A base URI (optional, only needed for non-`RemoteA2A` connections).
 - An A2A connection configured in your Foundry project. For connection setup and REST examples, see [Create an A2A connection](#create-an-a2a-connection).
@@ -76,9 +80,6 @@ Use your connection name in code. Your code uses this name to retrieve the full 
 - **REST API**: Include the connection ID in the `project_connection_id` field of the A2A tool definition.
 
 ## Code example
-
-> [!NOTE]
-> The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 
 :::zone pivot="python"
 ## Create an agent with the A2A tool
@@ -112,7 +113,7 @@ tool = A2APreviewTool(
 agent = project.agents.create_version(
     agent_name=AGENT_NAME,
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant.",
         tools=[tool],
     ),
@@ -187,18 +188,18 @@ if (!string.Equals(a2aConnection.Type.ToString(), "RemoteA2A"))
     // if the connection is not of a RemoteA2A type.
     a2aTool.BaseUri = new Uri(a2aBaseUri);
 }
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { a2aTool }
 };
 // Create the Agent version with the A2A tool.
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Create the response and make sure we are always using tool.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 CreateResponseOptions responseOptions = new()
 {
     ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
@@ -214,7 +215,7 @@ if (response.Status != ResponseStatus.Completed)
 Console.WriteLine(response.GetOutputText());
 
 // Clean up the created Agent version.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output
@@ -455,7 +456,7 @@ export async function main(): Promise<void> {
   // Create the agent with A2A tool
   const agent = await project.agents.createVersion("MyA2AAgent", {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-4.1-mini",
     instructions: "You are a helpful assistant.",
     // Define A2A tool for agent-to-agent communication
     tools: [
@@ -546,7 +547,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -584,7 +585,7 @@ public class AgentToAgentExample {
             .setProjectConnectionId(a2aConnectionId);
 
         // Create agent with agent-to-agent tool
-        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+        PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-4.1-mini")
             .setInstructions("You are a coordinator agent that can communicate with other agents.")
             .setTools(Collections.singletonList(a2aTool));
 
@@ -623,6 +624,33 @@ public class AgentToAgentExample {
 | Connection timeout | Remote agent slow to respond | Increase timeout settings or verify the remote agent's performance. Consider implementing retry logic with exponential backoff. |
 | Missing A2A tool in response | Tool not enabled for the agent | Recreate the agent with the A2A tool explicitly enabled, and verify the connection is active and properly configured. |
 
+## Host an A2A-compatible agent endpoint
+
+Foundry Agent Service doesn't natively expose hosted agents as A2A endpoints. To make your agent available as an A2A endpoint that other agents can call, use one of the following approaches.
+
+### Option 1: Register a custom A2A agent in Foundry Control Plane
+
+If you already have an agent deployed outside of Agent Service that supports the A2A protocol, register it in Foundry Control Plane for centralized management, observability, and governance.
+
+1. Deploy your A2A-compatible agent to any reachable endpoint.
+1. [Register the agent in Foundry Control Plane](../../../control-plane/register-custom-agent.md), and select **A2A** as the protocol.
+1. Foundry generates a proxy URL and discovers your agent card at `/.well-known/agent-card.json`.
+
+After registration, other agents can connect to your agent through the proxy URL. Foundry provides access control and monitoring through the AI gateway.
+
+For authentication setup, see [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md).
+
+### Option 2: Build a custom A2A server that wraps a Foundry agent
+
+Build a lightweight A2A server that delegates to your Foundry agent through the Responses API:
+
+1. Create an A2A server by using the official A2A SDK for your language ([Python](https://github.com/a2aproject/a2a-python), [.NET](https://github.com/a2aproject/a2a-dotnet), or [JavaScript](https://github.com/a2aproject/a2a-js)).
+1. Implement the server to call your Foundry agent through the Responses API.
+1. Serve an agent card at `/.well-known/agent-card.json` that describes your agent's capabilities.
+1. Deploy the server and [register it in Foundry Control Plane](../../../control-plane/register-custom-agent.md).
+
+For more information about the A2A protocol requirements for servers, see the [A2A specification](https://a2a-protocol.org/latest/).
+
 <!-- The verbiage in the following section is required. Do not remove or modify. -->
 ## Considerations for using non-Microsoft services
 
@@ -637,6 +665,7 @@ The A2A tool allows you to pass custom headers, such as authentication keys or s
 ## Related content
 
 - [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md)
+- [Register and manage custom agents](../../../control-plane/register-custom-agent.md)
 - [Build a workflow in Microsoft Foundry](../../concepts/workflow.md)
 - [Best practices for tools](../../concepts/tool-best-practice.md)
 - [Foundry project REST API (preview)](../../../reference/foundry-project-rest-preview.md)

@@ -1,12 +1,13 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: sdgilley
+ms.author: sgilley
+ms.reviewer: dantaylo
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 Set up your development environment to use the Microsoft Foundry SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
@@ -27,7 +28,7 @@ In this article, you install language runtimes, Azure CLI, Azure Developer CLI, 
 - To use project but not create new resources, you need at least:
   - **Azure AI User** on the projects you use (least-privilege role for development)
 
-  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](/azure/ai-foundry/concepts/rbac-foundry).
+  For details on each role's permissions, see [Role-based access control for Microsoft Foundry](../concepts/rbac-foundry.md).
 
 ## Install your programming language
 
@@ -59,7 +60,7 @@ The Extension Pack for Java is a collection of popular extensions that can help 
 
 ::: zone pivot="programming-language-javascript"
 
-Install [Node.js](https://nodejs.org/) (version 18 or later is recommended).
+Install [Node.js](https://nodejs.org/) (version 20 or later is recommended).
 
 ::: zone-end
 

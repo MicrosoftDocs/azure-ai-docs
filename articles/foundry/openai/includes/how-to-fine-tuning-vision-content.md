@@ -1,12 +1,12 @@
 ---
 title: Include file
 description: Include file
-author: scottpolly
-ms.author: scottpolly
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 Learn how to fine-tune Azure OpenAI models with image data to customize visual understanding for your use case. Vision fine-tuning lets you include image inputs in your training examples, following the same chat completions format used for text fine-tuning.
@@ -15,7 +15,7 @@ Images can be provided either as publicly accessible URLs or data URIs containin
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry resource. See [Create an Azure AI Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource).
 - Familiarity with the [fine-tuning workflow](../how-to/fine-tuning.md). Vision fine-tuning follows the same process with image-specific data formatting.
 - Fine-tuning access for the supported models in a [supported region](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).

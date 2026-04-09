@@ -1,14 +1,15 @@
 ---
 manager: nitinme
-author: mrbullwinkle
-ms.author: mbullwin
+author: msakande
+ms.author: mopeakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 01/14/2026
+ms.custom: classic-and-new
 ---
 
-Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, refer to [Azure OpenAI in Azure Government](../../../foundry-classic/openai/azure-government.md).
+Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, refer to [Azure OpenAI in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md).
 
 | Models | Description |
 |--|--|

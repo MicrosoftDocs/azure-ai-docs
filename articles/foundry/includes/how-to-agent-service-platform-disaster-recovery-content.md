@@ -1,12 +1,13 @@
 ---
 title: include file
 description: include file
-author: scottpolly
-ms.author: scottpolly
+author: jonburchel
+ms.author: jburchel
+ms.reviewer: ckittel
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 03/19/2026
-ms.custom: include
+ms.custom: include, classic-and-new
 ---
 
 In this article, you learn how to recover your Foundry Agent Service projects from Azure platform incidents that take an entire region or a regional dependency offline. Examples of these incidents include prolonged regional outages or loss of a stateful dependency.
