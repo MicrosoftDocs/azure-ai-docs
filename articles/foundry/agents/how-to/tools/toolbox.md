@@ -1409,12 +1409,16 @@ await project.beta.toolboxes.deleteVersion(
 
 | Symptom | Likely cause | Fix |
 |---------|-------------|-----|
-| `tools/list` returns 0 tools | Toolbox not fully provisioned or tool type unsupported in region | Wait 10 seconds and retry |
-| `400 Multiple tools without identifiers` | Two unnamed tool types in one toolbox | Keep at most one unnamed type; add `server_label` to all MCP tools |
-| `CONSENT_REQUIRED` (code `-32006`) | OAuth connection requires user consent | Open the consent URL in a browser and complete the OAuth flow, then retry |
-| `401` on MCP calls | Expired token or wrong scope | Use scope `https://ai.azure.com/.default` and refresh the token |
-| Tool names not matching | MCP tool names are prefixed with `server_label` | Use `{server_label}.{tool_name}` format (for example, `myserver.get_info`) |
-| `500` on `tools/list` | Transient server error | Retry after a few seconds |
+| `tools/list` returns 0 tools | Toolbox not fully provisioned or tool type unsupported in region | Wait 10 seconds and retry. |
+| `400 Multiple tools without identifiers` | Two unnamed tool types in one toolbox | Keep at most one unnamed type; add `server_label` to all MCP tools. |
+| `CONSENT_REQUIRED` (code `-32006`) | OAuth connection requires user consent | Open the consent URL in a browser and complete the OAuth flow, then retry. |
+| `401` on MCP calls | Expired token or wrong scope | Use scope `https://ai.azure.com/.default` and refresh the token. |
+| Tool names not matching | MCP tool names are prefixed with `server_label` | Use `{server_label}.{tool_name}` format (for example, `myserver.get_info`). |
+| `500` on `send_ping()` | Toolbox MCP server doesn't implement the MCP `ping` method. | Don't call `send_ping()`. If your framework calls it automatically (for example, Microsoft Agent Framework's `MCPStreamableHTTPTool._ensure_connected()`), disable the ping check or override the method with a no-op. |
+| `500` on `prompts/list` | The Foundry MCP server doesn't implement `prompts/list`. | Pass `load_prompts=False` (or equivalent) to your MCP client constructor. |
+| `500` with non-streaming `tools/call` | Non-streaming mode (`stream=False`) isn't supported for toolbox MCP endpoints. | Always use `stream=True` when calling toolbox MCP tools. |
+| `500` on `tools/list` | Transient server error | Retry after a few seconds. |
+| Environment variables overwritten at runtime | The platform reserves all environment variables prefixed with `FOUNDRY_` and might silently overwrite user-defined values. | Rename custom environment variables to avoid the `FOUNDRY_` prefix (for example, use `TOOLBOX_MCP_ENDPOINT` instead of `FOUNDRY_TOOLBOX_ENDPOINT`). |
 
 ## Related content
 
