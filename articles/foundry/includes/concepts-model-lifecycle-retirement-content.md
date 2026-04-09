@@ -83,12 +83,6 @@ To learn more about the Azure OpenAI models lifecycle, including information for
 
 The following tables list the timelines for models that are on track for retirement. The lifecycle stages go into effect at 00:00:00 UTC on the specified dates.
 
-#### Bayer
-
-| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [E.L.Y.Crop-Protection](https://ai.azure.com/explore/models/E.L.Y.Crop-Protection/version/1/registry/azureml/?cid=learnDocs) | March 16, 2026 | April 16, 2026 | July 31, 2026 | N/A |
-
 #### Cohere
 
 | Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
