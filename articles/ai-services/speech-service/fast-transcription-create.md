@@ -30,6 +30,14 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 [!INCLUDE [transcription-features](includes/transcription-features.md)]
 
+
+::: zone pivot="ai-foundry"
+
+[!INCLUDE [Foundry portal](includes/common/transcription-ai-foundry.md)]
+
+::: zone-end
+
+
 ::: zone pivot="programming-language-rest"
 
 [!INCLUDE [REST API quickstart](includes/common/transcription-rest-api.md)]
@@ -39,6 +47,18 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python SDK quickstart](includes/common/transcription-sdk-python.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+
+[!INCLUDE [C# SDK quickstart](includes/common/transcription-sdk-csharp.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript SDK quickstart](includes/common/transcription-sdk-javascript.md)]
 
 ::: zone-end
 

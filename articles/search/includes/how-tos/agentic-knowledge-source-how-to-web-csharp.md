@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/17/2026
+ms.date: 03/25/2026
 ---
 
 > [!IMPORTANT]

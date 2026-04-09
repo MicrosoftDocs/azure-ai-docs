@@ -18,42 +18,8 @@ recommendations: false
 ---
 
 # Quickstart: Get started with Azure OpenAI audio generation
-::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Foundry](includes/audio-completions-foundry.md)]
-
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-
-[!INCLUDE [JavaScript quickstart](includes/audio-completions-javascript.md)]
-
-::: zone-end
-
-::: zone pivot="programming-language-python"
-
-[!INCLUDE [Python SDK quickstart](includes/audio-completions-python.md)]
-
-::: zone-end
-
-::: zone pivot="rest-api"
-
-[!INCLUDE [REST API quickstart](includes/audio-completions-rest.md)]
-
-::: zone-end
-
-::: zone pivot="programming-language-typescript"
-
-[!INCLUDE [TypeScript quickstart](includes/audio-completions-typescript.md)]
-
-::: zone-end
-
-## Clean up resources
-
-If you want to clean up and remove an Azure OpenAI resource, you can delete the resource. Before deleting the resource, you must first delete any deployed models.
-
-- [Azure portal](../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
-- [Azure CLI](../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
+[!INCLUDE [audio-completions-quickstart 1](includes/audio-completions-quickstart-1.md)]
 
 ## Troubleshooting
 
@@ -83,7 +49,4 @@ If the generated audio file doesn't play:
 
 If you receive a 429 error, you've exceeded the rate limit. Wait and retry, or request a quota increase. For more information about rate limits, see [Azure OpenAI quotas and limits](quotas-limits.md).
 
-## Related content
-
-* Learn more about Azure OpenAI [deployment types](../foundry-models/concepts/deployment-types.md).
-* Learn more about Azure OpenAI [quotas and limits](quotas-limits.md).
+[!INCLUDE [audio-completions-quickstart 2](includes/audio-completions-quickstart-2.md)]

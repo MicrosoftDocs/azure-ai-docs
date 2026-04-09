@@ -8,6 +8,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 09/15/2025
 ai-usage: ai-assisted
+
+ms.custom: classic-and-new
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Reference](../../../../foundry-classic/openai/reference.md) |

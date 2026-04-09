@@ -48,7 +48,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     npm install openai
     ```
 
-1. Install the dependent packages used by the OpenAI client library for JavaScript with:
+1. Install the `ws` package, which is required for WebSocket support:
 
     ```bash
     npm install ws
@@ -548,3 +548,282 @@ Response ID: resp_CQx8YwQCszDqSUXRutxP9
 The final response is: Sure, I'm here to help. What do you need assistance with?
 The sample completed successfully.
 ```
+
+## Send audio, receive audio response
+
+The Realtime API's primary use case is "speech in, speech out" voice conversations. This section shows how to send audio input from a file and receive audio output.
+
+To run this sample, you need an audio file in **PCM16 format at 24kHz mono**. You can convert an existing audio file using FFmpeg:
+
+```bash
+ffmpeg -i input.wav -ar 24000 -ac 1 -f s16le input.pcm
+```
+
+#### [Microsoft Entra ID](#tab/keyless)
+
+1. Create the `audio-in-audio-out.js` file with the following code:
+
+    ```javascript
+    import OpenAI from 'openai';
+    import { OpenAIRealtimeWS } from 'openai/realtime/ws';
+    import { DefaultAzureCredential, getBearerTokenProvider } from '@azure/identity';
+    import fs from 'fs';
+
+    async function main() {
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT || 'AZURE_OPENAI_ENDPOINT';
+        const baseUrl = endpoint.replace(/\/$/, "") + '/openai/v1';
+        const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-realtime';
+
+        // Keyless authentication
+        const credential = new DefaultAzureCredential();
+        const scope = 'https://ai.azure.com/.default';
+        const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+        const token = await azureADTokenProvider();
+
+        const openAIClient = new OpenAI({
+            baseURL: baseUrl,
+            apiKey: token,
+        });
+
+        const inputAudioFile = 'input.pcm';
+        const outputAudioFile = 'output.pcm';
+        let outputAudio = Buffer.alloc(0);
+        let isConfigured = false;
+        let responseDone = false;
+
+        const realtimeClient = await OpenAIRealtimeWS.create(openAIClient, {
+            model: deploymentName
+        });
+
+        realtimeClient.on('session.updated', () => {
+            console.log('Session configured for audio input/output.');
+            isConfigured = true;
+        });
+
+        realtimeClient.on('response.audio.delta', (event) => {
+            const audioChunk = Buffer.from(event.delta, 'base64');
+            outputAudio = Buffer.concat([outputAudio, audioChunk]);
+        });
+
+        realtimeClient.on('response.audio_transcript.delta', (event) => {
+            process.stdout.write(event.delta);
+        });
+
+        realtimeClient.on('conversation.item.input_audio_transcription.completed', (event) => {
+            console.log(`\n[User said]: ${event.transcript}`);
+        });
+
+        realtimeClient.on('response.done', () => {
+            responseDone = true;
+        });
+
+        realtimeClient.on('error', (err) => {
+            console.error('Error:', err);
+        });
+
+        // Wait for session to be created
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        // Configure session for audio
+        realtimeClient.send({
+            type: 'session.update',
+            session: {
+                instructions: 'You are a helpful assistant. Respond conversationally.',
+                input_audio_format: 'pcm16',
+                output_audio_format: 'pcm16',
+                input_audio_transcription: { model: 'whisper-1' },
+                turn_detection: {
+                    type: 'server_vad',
+                    threshold: 0.5,
+                    prefix_padding_ms: 300,
+                    silence_duration_ms: 500,
+                    create_response: true,
+                },
+                voice: 'alloy',
+            }
+        });
+
+        while (!isConfigured) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+
+        // Read and send audio file in chunks
+        console.log(`Reading audio from ${inputAudioFile}...`);
+        const audioData = fs.readFileSync(inputAudioFile);
+
+        const chunkSize = 4800; // 100ms of audio at 24kHz, 16-bit
+        for (let i = 0; i < audioData.length; i += chunkSize) {
+            const chunk = audioData.slice(i, i + chunkSize);
+            realtimeClient.send({
+                type: 'input_audio_buffer.append',
+                audio: chunk.toString('base64')
+            });
+            await new Promise(resolve => setTimeout(resolve, 50));
+        }
+
+        console.log('Audio sent. Waiting for response...');
+
+        // Commit the audio buffer
+        realtimeClient.send({ type: 'input_audio_buffer.commit' });
+
+        // Wait for response to complete
+        while (!responseDone) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+
+        // Save output audio
+        if (outputAudio.length > 0) {
+            fs.writeFileSync(outputAudioFile, outputAudio);
+            console.log(`\n\nSaved ${outputAudio.length} bytes of audio to ${outputAudioFile}`);
+            console.log('Play with: ffplay -f s16le -ar 24000 -ac 1 output.pcm');
+        }
+
+        realtimeClient.close();
+    }
+
+    main().catch(console.error);
+    ```
+
+1. Sign in to Azure:
+
+    ```bash
+    az login
+    ```
+
+1. Run the JavaScript file:
+
+    ```bash
+    node audio-in-audio-out.js
+    ```
+
+#### [API key](#tab/api-key)
+
+1. Create the `audio-in-audio-out.js` file with the following code:
+
+    ```javascript
+    import OpenAI from 'openai';
+    import { OpenAIRealtimeWS } from 'openai/realtime/ws';
+    import fs from 'fs';
+
+    async function main() {
+        const endpoint = process.env.AZURE_OPENAI_ENDPOINT || 'AZURE_OPENAI_ENDPOINT';
+        const baseUrl = endpoint.replace(/\/$/, "") + '/openai/v1';
+        const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-realtime';
+        const token = process.env.AZURE_OPENAI_API_KEY || '<Your API Key>';
+
+        const openAIClient = new OpenAI({
+            baseURL: baseUrl,
+            apiKey: token,
+        });
+
+        const inputAudioFile = 'input.pcm';
+        const outputAudioFile = 'output.pcm';
+        let outputAudio = Buffer.alloc(0);
+        let isConfigured = false;
+        let responseDone = false;
+
+        const realtimeClient = await OpenAIRealtimeWS.create(openAIClient, {
+            model: deploymentName,
+            options: {
+                headers: { "api-key": token }
+            }
+        });
+
+        realtimeClient.on('session.updated', () => {
+            console.log('Session configured for audio input/output.');
+            isConfigured = true;
+        });
+
+        realtimeClient.on('response.audio.delta', (event) => {
+            const audioChunk = Buffer.from(event.delta, 'base64');
+            outputAudio = Buffer.concat([outputAudio, audioChunk]);
+        });
+
+        realtimeClient.on('response.audio_transcript.delta', (event) => {
+            process.stdout.write(event.delta);
+        });
+
+        realtimeClient.on('conversation.item.input_audio_transcription.completed', (event) => {
+            console.log(`\n[User said]: ${event.transcript}`);
+        });
+
+        realtimeClient.on('response.done', () => {
+            responseDone = true;
+        });
+
+        realtimeClient.on('error', (err) => {
+            console.error('Error:', err);
+        });
+
+        // Wait for session to be created
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        // Configure session for audio
+        realtimeClient.send({
+            type: 'session.update',
+            session: {
+                instructions: 'You are a helpful assistant. Respond conversationally.',
+                input_audio_format: 'pcm16',
+                output_audio_format: 'pcm16',
+                input_audio_transcription: { model: 'whisper-1' },
+                turn_detection: {
+                    type: 'server_vad',
+                    threshold: 0.5,
+                    prefix_padding_ms: 300,
+                    silence_duration_ms: 500,
+                    create_response: true,
+                },
+                voice: 'alloy',
+            }
+        });
+
+        while (!isConfigured) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+
+        // Read and send audio file in chunks
+        console.log(`Reading audio from ${inputAudioFile}...`);
+        const audioData = fs.readFileSync(inputAudioFile);
+
+        const chunkSize = 4800; // 100ms of audio at 24kHz, 16-bit
+        for (let i = 0; i < audioData.length; i += chunkSize) {
+            const chunk = audioData.slice(i, i + chunkSize);
+            realtimeClient.send({
+                type: 'input_audio_buffer.append',
+                audio: chunk.toString('base64')
+            });
+            await new Promise(resolve => setTimeout(resolve, 50));
+        }
+
+        console.log('Audio sent. Waiting for response...');
+
+        // Commit the audio buffer
+        realtimeClient.send({ type: 'input_audio_buffer.commit' });
+
+        // Wait for response to complete
+        while (!responseDone) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+
+        // Save output audio
+        if (outputAudio.length > 0) {
+            fs.writeFileSync(outputAudioFile, outputAudio);
+            console.log(`\n\nSaved ${outputAudio.length} bytes of audio to ${outputAudioFile}`);
+            console.log('Play with: ffplay -f s16le -ar 24000 -ac 1 output.pcm');
+        }
+
+        realtimeClient.close();
+    }
+
+    main().catch(console.error);
+    ```
+
+1. Run the JavaScript file:
+
+    ```bash
+    node audio-in-audio-out.js
+    ```
+
+---
+
+The script transcribes your audio input, generates a response, and saves the audio output to `output.pcm`. You can play the output audio with FFplay or convert it to another format with FFmpeg.

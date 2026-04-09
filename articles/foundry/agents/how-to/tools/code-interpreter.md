@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 04/03/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -16,27 +16,28 @@ ai-usage: ai-assisted
 ---
 
 # Code Interpreter tool for Microsoft Foundry agents
+
 Code Interpreter enables a Microsoft Foundry agent to run Python code in a sandboxed execution environment. Use this tool for data analysis, chart generation, and iterative problem-solving tasks that benefit from code execution.
 
 In this article, you create an agent that uses Code Interpreter, upload a CSV file for analysis, and download a generated chart.
 
-When enabled, your agent can write and run Python code iteratively to solve data analysis and math tasks, and to generate charts.
+When you enable Code Interpreter, your agent can write and run Python code iteratively to solve data analysis and math tasks, and to generate charts.
 
 > [!IMPORTANT]
-> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for Azure OpenAI usage. If your agent calls Code Interpreter simultaneously in two different conversations, two Code Interpreter sessions are created. Each session is active by default for one hour with an idle timeout of 30 minutes.
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token-based fees for Azure OpenAI usage. If your agent calls Code Interpreter simultaneously in two different conversations, it creates two Code Interpreter sessions. Each session is active by default for one hour with an idle timeout of 30 minutes.
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
 - Basic or standard agent environment. See [agent environment setup](../../../agents/environment-setup.md) for details.
-- Latest SDK package installed for your language. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
+- Latest SDK package installed for your language. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation steps.
 - Azure AI model deployment configured in your project.
 - For file operations: CSV or other supported files to upload for analysis.
 
@@ -46,6 +47,9 @@ When enabled, your agent can write and run Python code iteratively to solve data
 ## Create an agent with Code Interpreter
 
 The following samples demonstrate how to create an agent with Code Interpreter enabled, upload a file for analysis, and download the generated output.
+
+> [!TIP]
+> You can customize Code Interpreter behavior at runtime, such as specifying which files to include or adjusting tool parameters per request, by using [structured inputs](../structured-inputs.md).
 
 :::zone pivot="python"
 ## Sample of using agent with code interpreter tool in Python SDK
@@ -149,13 +153,15 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 :::zone pivot="csharp"
 ## Create a chart with Code Interpreter in C#
 
-The following C# sample shows how to create an agent with the code interpreter tool and use it to generate a bar chart. The agent writes and executes Python code (using matplotlib) in a sandboxed container. For asynchronous usage, refer to the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/feature/ai-foundry/agents-v2/sdk/ai/Azure.AI.Projects.OpenAI/samples/Sample7_CodeInterpreter.md) in the Azure SDK for .NET repository on GitHub.
+The following C# sample shows how to create an agent with the Code Interpreter tool, upload a CSV file for analysis, and download the generated chart. For asynchronous usage, see the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample32_CodeInterpreterFileGeneration.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
+using System.IO;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using OpenAI.Files;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
@@ -165,37 +171,78 @@ AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
     tokenProvider: new DefaultAzureCredential());
 
-// Create an agent with Code Interpreter enabled.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+// Upload a CSV file for Code Interpreter to analyze
+OpenAIFileClient fileClient = projectClient.ProjectOpenAIClient.GetOpenAIFileClient();
+OpenAIFile uploadedFile = fileClient.UploadFile(
+    filePath: "synthetic_500_quarterly_results.csv",
+    purpose: FileUploadPurpose.Assistants);
+Console.WriteLine($"Uploaded file: {uploadedFile.Id}");
+
+// Create an agent with Code Interpreter enabled
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
-    Instructions = "You are a data visualization assistant. When asked to create charts, write and run Python code using matplotlib to generate them.",
+    Instructions = "You are a helpful assistant.",
     Tools = {
         ResponseTool.CreateCodeInterpreterTool(
             new CodeInterpreterToolContainer(
                 CodeInterpreterToolContainerConfiguration.CreateAutomaticContainerConfiguration(
-                    fileIds: []
+                    fileIds: [uploadedFile.Id]
                 )
             )
         ),
     }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+ProjectsAgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myChartAgent",
     options: new(agentDefinition));
 
-// Ask the agent to create a bar chart from inline data.
+// Request chart generation from the uploaded CSV data
 AgentReference agentReference = new(name: agentVersion.Name, version: agentVersion.Version);
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentReference);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentReference);
 
 ResponseResult response = responseClient.CreateResponse(
-    "Create a bar chart showing quarterly revenue for 2025: Q1=$2.1M, Q2=$2.8M, Q3=$3.2M, Q4=$2.9M. " +
-    "Use a blue color scheme, add data labels on each bar, and title the chart 'Quarterly Revenue 2025'. " +
-    "Save the chart as a PNG file.");
+    "Could you please create bar chart in TRANSPORTATION sector for the operating profit " +
+    "from the uploaded csv file and provide file to me?");
 
 Console.WriteLine(response.GetOutputText());
 
-// Clean up
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+// Extract file information from response annotations
+ContainerFileCitationMessageAnnotation containerAnnotation = null;
+foreach (ResponseItem item in response.OutputItems)
+{
+    if (item is MessageResponseItem messageItem)
+    {
+        foreach (ResponseContentPart content in messageItem.Content)
+        {
+            foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+            {
+                if (annotation is ContainerFileCitationMessageAnnotation cntrAnnotation)
+                {
+                    containerAnnotation = cntrAnnotation;
+                }
+            }
+        }
+    }
+}
+
+// Download the generated chart if available
+if (containerAnnotation is not null)
+{
+    ContainerClient containerClient = projectClient.ProjectOpenAIClient.GetContainerClient();
+    BinaryData fileData = containerClient.DownloadContainerFile(
+        containerId: containerAnnotation.ContainerId,
+        fileId: containerAnnotation.FileId);
+    File.WriteAllBytes("chart.png", fileData.ToArray());
+    Console.WriteLine($"Chart downloaded: {Path.GetFullPath("chart.png")}");
+}
+else
+{
+    Console.WriteLine("No file generated in response");
+}
+
+// Clean up resources
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
+    agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output
@@ -203,17 +250,19 @@ projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersi
 The sample code produces output similar to the following example:
 
 ```console
-Here is the bar chart showing quarterly revenue for 2025. The chart displays Q1 ($2.1M), Q2 ($2.8M), Q3 ($3.2M), and Q4 ($2.9M) with a blue color scheme, data labels on each bar, and the title "Quarterly Revenue 2025".
+Uploaded file: file-xxxxxxxxxxxxxxxxxxxx
+Here is the bar chart showing operating profit by quarter in the TRANSPORTATION sector...
+Chart downloaded: C:\Users\you\chart.png
 ```
 
-The agent creates a Code Interpreter session, writes Python code using matplotlib to generate the bar chart, executes the code in a sandboxed environment, and returns the chart as a generated file. For an example that uploads a CSV file and downloads the generated chart, select **Python** or **TypeScript** from the language selector at the top of this article.
+The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, analyzes the data to filter transportation sector records, and generates a PNG bar chart. The annotation parsing extracts the container ID and file ID from the response, which are used to download the chart to your local directory.
 
 :::zone-end
 
 :::zone pivot="typescript"
 ## Sample of using agent with code interpreter tool in TypeScript SDK
 
-The following TypeScript sample shows how to create an agent with the code interpreter tool, upload a CSV file for analysis, and request a bar chart based on the data. For a JavaScript version, see the [JavaScript sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentCodeInterpreter.js) in the Azure SDK for JavaScript repository on GitHub.
+The following TypeScript sample shows how to create an agent with the code interpreter tool, upload a CSV file for analysis, and request a bar chart based on the data. For a JavaScript version, see the [JavaScript sample](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/agentCodeInterpreter.js) in the Azure SDK for JavaScript repository on GitHub.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -355,7 +404,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -367,6 +416,7 @@ import com.azure.ai.agents.AgentsClientBuilder;
 import com.azure.ai.agents.ResponsesClient;
 import com.azure.ai.agents.models.AgentReference;
 import com.azure.ai.agents.models.AgentVersionDetails;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.ai.agents.models.CodeInterpreterTool;
 import com.azure.ai.agents.models.PromptAgentDefinition;
 import com.azure.identity.DefaultAzureCredentialBuilder;
@@ -402,8 +452,8 @@ public class CodeInterpreterChartExample {
         AgentReference agentReference = new AgentReference(agent.getName())
             .setVersion(agent.getVersion());
 
-        Response response = responsesClient.createWithAgent(
-            agentReference,
+        Response response = responsesClient.createAzureResponse(
+            new AzureCreateResponseOptions().setAgentReference(agentReference),
             ResponseCreateParams.builder()
                 .input("Create a bar chart showing quarterly revenue for 2025: "
                     + "Q1=$2.1M, Q2=$2.8M, Q3=$3.2M, Q4=$2.9M. "
@@ -425,7 +475,7 @@ public class CodeInterpreterChartExample {
 Response: Here is the bar chart showing quarterly revenue for 2025 with Q1 ($2.1M), Q2 ($2.8M), Q3 ($3.2M), and Q4 ($2.9M) displayed in blue with data labels.
 ```
 
-The agent creates a Code Interpreter session, writes Python code using matplotlib to generate the chart, and executes the code in a sandboxed environment. For an example that uploads a CSV file and downloads the generated chart, select **Python** or **TypeScript** from the language selector at the top of this article. For more examples, see the [Azure AI Agents Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/).
+The agent creates a Code Interpreter session, writes Python code by using matplotlib to generate the chart, and executes the code in a sandboxed environment. For an example that uploads a CSV file and downloads the generated chart, select **Python** or **TypeScript** from the language selector at the top of this article. For more examples, see the [Azure AI Agents Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/).
 
 :::zone-end
 
@@ -574,7 +624,21 @@ Delete resources you created in this sample when you no longer need them to avoi
 - Delete the conversation.
 - Delete uploaded files.
 
-For examples of conversation and file cleanup patterns, see [Web search tool (preview)](web-search.md) and [File search tool for agents](file-search.md).
+For examples of conversation and file cleanup patterns, see [Web search tool](web-search.md) and [File search tool for agents](file-search.md).
+
+## Sandboxed execution environment
+
+Code Interpreter runs Python code in a Microsoft-managed sandbox. The sandbox is designed for running untrusted code and uses [dynamic sessions (code interpreter sessions) in Azure Container Apps](/azure/container-apps/sessions-code-interpreter). Each session is isolated by a Hyper-V boundary.
+
+Key behaviors to plan for:
+
+- **Region**: The Code Interpreter sandbox runs in the same Azure region as your Foundry project.
+- **Session lifetime**: A Code Interpreter session is active for up to one hour, with an idle timeout (see the *Important* note at the beginning of this article).
+- **Isolation**: Each session runs in an isolated environment. If your agent invokes Code Interpreter concurrently in different conversations, separate sessions are created.
+- **Network isolation and internet access**: The sandbox doesn't inherit your agent subnet configuration, and dynamic sessions can't make outbound network requests.
+- **Files in the sandbox**: The sandboxed Python runtime has access to files you attach for analysis. Code Interpreter can also generate files, such as charts, and return them as downloadable outputs.
+
+If you need more control over the sandbox runtime or you need a different isolation model, see [Custom code interpreter tool for agents](custom-code-interpreter.md).
 
 ## Related content
 

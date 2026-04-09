@@ -6,14 +6,171 @@ ms.date: 10/21/2025
 ms.topic: include
 ms.author: pafarley
 ms.reviewer: pafarley
+ai-usage: ai-assisted
 ---
 
-| Voice                                                        | Auto-detected language number | Auto-detected language (locale)                              | All locales number | All languages (locale) supported from SSML                   |
-| ------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------------ | ------------------ | ------------------------------------------------------------ |
-| `en-US-AdamMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-AmandaMultilingualNeural`<sup>1,2</sup> (Female)<br/>`en-US-AndrewMultilingualNeural`<sup>2</sup> (Male)<br/>`en-US-AvaMultilingualNeural`<sup>2</sup> (Female)<br/>`en-US-BrandonMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-BrianMultilingualNeural`<sup>2</sup> (Male)<br/>`en-US-ChristopherMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-CoraMultilingualNeural`<sup>1,2</sup> (Female)<br/>`en-US-DavisMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-DerekMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-DustinMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-EmmaMultilingualNeural`<sup>2</sup> (Female)<br/>`en-US-EvelynMultilingualNeural`<sup>1,2</sup> (Female)<br/>`en-US-LewisMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-LolaMultilingualNeural`<sup>1,2</sup> (Female)<br/>`en-US-NancyMultilingualNeural`<sup>1,2</sup> (Female)<br/>`en-US-PhoebeMultilingualNeural`<sup>1,2</sup> (Female)<br/>`en-US-SamuelMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-SerenaMultilingualNeural`<sup>1,2</sup> (Female)<br/>`en-US-SteffanMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-AlloyTurboMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-EchoTurboMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-FableTurboMultilingualNeural`<sup>1,2</sup> (Neutral)<br/>`en-US-NovaTurboMultilingualNeural`<sup>1,2</sup> (Female)<br/>`en-US-OnyxTurboMultilingualNeural`<sup>1,2</sup> (Male)<br/>`en-US-ShimmerTurboMultilingualNeural`<sup>1,2</sup> (Female)<br/>`en-GB-AdaMultilingualNeural`<sup>1,2</sup> (Female)<br/>`en-GB-OllieMultilingualNeural`<sup>1,2</sup> (Male)<br/>`de-DE-SeraphinaMultilingualNeural`<sup>2</sup> (Female)<br/>`de-DE-FlorianMultilingualNeural`<sup>2</sup> (Male)<br/>`es-ES-ArabellaMultilingualNeural`<sup>1,2</sup> (Female)<br/>`es-ES-IsidoraMultilingualNeural`<sup>1,2</sup> (Female)<br/>`es-ES-TristanMultilingualNeural`<sup>1,2</sup> (Male)<br/>`es-ES-XimenaMultilingualNeural`<sup>1,2</sup> (Female)<br/>`fr-FR-LucienMultilingualNeural`<sup>1,2</sup> (Male)<br/>`fr-FR-VivienneMultilingualNeural`<sup>2</sup> (Female)<br/>`fr-FR-RemyMultilingualNeural`<sup>2</sup> (Male)<br/>`it-IT-AlessioMultilingualNeural`<sup>1,2</sup> (Male)<br/>`it-IT-GiuseppeMultilingualNeural`<sup>1,2</sup> (Male)<br/>`it-IT-IsabellaMultilingualNeural`<sup>1,2</sup> (Female)<br/>`it-IT-MarcelloMultilingualNeural`<sup>1,2</sup> (Male)<br/>`ja-JP-MasaruMultilingualNeural`<sup>1,2</sup> (Male)<br/>`ko-KR-HyunsuMultilingualNeural`<sup>1,2</sup> (Male)<br/>`pt-BR-MacerioMultilingualNeural`<sup>1,2</sup> (Male)<br/>`pt-BR-ThalitaMultilingualNeural`<sup>1,2</sup> (Female)<br/>`zh-CN-XiaoxiaoMultilingualNeural`<sup>2</sup> (Female)<br/>`zh-CN-XiaochenMultilingualNeural`<sup>2</sup> (Female)<br/>`zh-CN-XiaoyuMultilingualNeural`<sup>2</sup> (Female)<br/>`zh-CN-YunyiMultilingualNeural`<sup>2</sup> (Male)<br/>`zh-CN-YunfanMultilingualNeural`<sup>1,2</sup> (Male)<br/>`zh-CN-YunxiaoMultilingualNeural`<sup>1,2</sup> (Male) <br/> `de-DE-Florian:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/>`de-DE-Seraphina:DragonHDLatestNeural`<sup>2,4</sup> (Female)<br/>`en-US-Adam:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/>`en-US-Andrew:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/>`en-US-Andrew2:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/>`en-US-Ava:DragonHDLatestNeural`<sup>2,4</sup> (Female)<br/>`en-US-Brian:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/>`en-US-Davis:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/>`en-US-Emma:DragonHDLatestNeural`<sup>2,4</sup> (Female)<br/>`en-US-Emma2:DragonHDLatestNeural`<sup>2,4</sup> (Female)<br/>`en-US-Steffan:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/>`en-US-Alloy:DragonHDLatestNeural`<sup>1,2</sup> (Male)<br/>`en-US-Andrew3:DragonHDLatestNeural`<sup>1,2</sup> (Male)<br/>`en-US-Aria:DragonHDLatestNeural`<sup>1,2</sup> (Female)<br/>`en-US-Ava3:DragonHDLatestNeural`<sup>1,2</sup> (Female)<br/>`en-US-Jenny:DragonHDLatestNeural`<sup>1,2</sup> (Female)<br/> `en-US-Nova:DragonHDLatestNeural`<sup>1,2</sup> (Female)<br/>`en-US-Phoebe:DragonHDLatestNeural`<sup>1,2</sup> (Female)<br/>`en-US-Serena:DragonHDLatestNeural`<sup>1,2</sup> (Female)<br/> `es-ES-Tristan:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/>`es-ES-Ximena:DragonHDLatestNeural`<sup>2,4</sup> (Female)<br/>`fr-FR-Remy:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/> `fr-FR-Vivienne:DragonHDLatestNeural`<sup>2,4</sup> (Female) <br/>`ja-JP-Masaru:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/> `ja-JP-Nanami:DragonHDLatestNeural`<sup>2,4</sup> (Female) <br/> `zh-CN-Xiaochen:DragonHDLatestNeural`<sup>2,4</sup> (Female) <br/>`zh-CN-Yunfan:DragonHDLatestNeural`<sup>2,4</sup> (Male)<br/> | 77 | Afrikaans (`af-ZA`), Albanian (`sq-AL`), Amharic (`am-ET`), Arabic (`ar-EG`), Armenian (`hy-AM`), Azerbaijani (`az-AZ`), Bahasa Indonesian (`id-ID`), Bangla (`bn-BD`), Basque (`eu-ES`), Bengali (`bn-IN`), Bosnian (`bs-BA`), Bulgarian (`bg-BG`), Burmese (`my-MM`), Catalan (`ca-ES`), Chinese Cantonese (`zh-HK`), Chinese Mandarin (`zh-CN`), Chinese Taiwanese (`zh-TW`), Croatian (`hr-HR`), Czech (`cs-CZ`), Danish (`da-DK`), Dutch (`nl-NL`), English (`en-US`), Estonian (`et-EE`), Filipino (`fil-PH`), Finnish (`fi-FI`), French (`fr-FR`), Galician (`gl-ES`), Georgian (`ka-GE`), German (`de-DE`), Greek (`el-GR`), Hebrew (`he-IL`), Hindi (`hi-IN`), Hungarian (`hu-HU`), Icelandic (`is-IS`), Irish (`ga-IE`), Italian (`it-IT`), Japanese (`ja-JP`), Javanese (`jv-ID`), Kannada (`kn-IN`), Kazakh (`kk-KZ`), Khmer (`km-KH`), Korean (`ko-KR`), Lao (`lo-LA`), Latvian (`lv-LV`), Lithuanian (`lt-LT`), Macedonian (`mk-MK`), Malay (`ms-MY`), Malayalam (`ml-IN`), Maltese (`mt-MT`), Mongolian (`mn-MN`), Nepali (`ne-NP`), Norwegian Bokmål (`nb-NO`), Pashto (`ps-AF`), Persian (`fa-IR`), Polish (`pl-PL`), Portuguese (`pt-BR`), Romanian (`ro-RO`), Russian (`ru-RU`), Serbian (`sr-RS`), Sinhala (`si-LK`), Slovak (`sk-SK`), Slovene (`sl-SI`), Somali (`so-SO`), Spanish (`es-ES`), Sundanese (`su-ID`), Swahili (`sw-KE`), Swedish (`sv-SE`), Tamil (`ta-IN`), Telugu (`te-IN`), Thai (`th-TH`), Turkish (`tr-TR`), Ukrainian (`uk-UA`), Urdu (`ur-PK`), Uzbek (`uz-UZ`), Vietnamese (`vi-VN`), Welsh (`cy-GB`), Zulu (`zu-ZA`) | 91                 | Afrikaans (South Africa) (`af-ZA`), Albanian (Albania) (`sq-AL`), Amharic (Ethiopia) (`am-ET`), Arabic (Egypt) (`ar-EG`), Arabic (Saudi Arabia) (`ar-SA`), Armenian (Armenia) (`hy-AM`), Azerbaijani (Azerbaijan) (`az-AZ`), Basque (Basque) (`eu-ES`), Bengali (India) (`bn-IN`), Bosnian (Bosnia and Herzegovina) (`bs-BA`), Bulgarian (Bulgaria) (`bg-BG`), Burmese (Myanmar) (`my-MM`), Catalan (`ca-ES`), Chinese (Cantonese, Traditional) (`zh-HK`), Chinese (Mandarin, Simplified) (`zh-CN`), Chinese (Taiwanese Mandarin) (`zh-TW`), Croatian (Croatia) (`hr-HR`), Czech (Czech) (`cs-CZ`), Danish (Denmark) (`da-DK`), Dutch (Belgium) (`nl-BE`), Dutch (Netherlands) (`nl-NL`), English (Australia) (`en-AU`), English (Canada) (`en-CA`), English (Hong Kong SAR) (`en-HK`), English (India) (`en-IN`), English (Ireland) (`en-IE`), English (United Kingdom) (`en-GB`), English (United States) (`en-US`), Estonian (Estonia) (`et-EE`), Filipino (Philippines) (`fil-PH`), Finnish (Finland) (`fi-FI`), French (Belgium) (`fr-BE`), French (Canada) (`fr-CA`), French (France) (`fr-FR`), French (Switzerland) (`fr-CH`), Galician (Galician) (`gl-ES`), Georgian (Georgia) (`ka-GE`), German (Austria) (`de-AT`), German (Germany) (`de-DE`), German (Switzerland) (`de-CH`), Greek (Greece) (`el-GR`), Hebrew (Israel) (`he-IL`), Hindi (India) (`hi-IN`), Hungarian (Hungary) (`hu-HU`), Icelandic (Iceland) (`is-IS`), Indonesian (Indonesia) (`id-ID`), Irish (Ireland) (`ga-IE`), Italian (Italy) (`it-IT`), Japanese (Japan) (`ja-JP`), Javanese (Indonesia) (`jv-ID`), Kannada (India) (`kn-IN`), Kazakh (Kazakhstan) (`kk-KZ`), Khmer (Cambodia) (`km-KH`), Korean (Korea) (`ko-KR`), Lao (Laos) (`lo-LA`), Latvian (Latvia) (`lv-LV`), Lithuanian (Lithuania) (`lt-LT`), Macedonian (North Macedonia) (`mk-MK`), Malay (Malaysia) (`ms-MY`), Malayalam (India) (`ml-IN`), Maltese (Malta) (`mt-MT`), Mongolian (Mongolia) (`mn-MN`), Nepali (Nepal) (`ne-NP`), Norwegian (Bokmål, Norway) (`nb-NO`), Pashto (Afghanistan) (`ps-AF`), Persian (Iran) (`fa-IR`), Polish (Poland) (`pl-PL`), Portuguese (Brazil) (`pt-BR`), Portuguese (Portugal) (`pt-PT`), Romanian (Romania) (`ro-RO`), Russian (Russia) (`ru-RU`), Serbian (Cyrillic, Serbia) (`sr-RS`), Sinhala (Sri Lanka) (`si-LK`), Slovak (Slovakia) (`sk-SK`), Slovenian (Slovenia) (`sl-SI`), Somali (Somalia) (`so-SO`), Spanish (Mexico) (`es-MX`), Spanish (Spain) (`es-ES`), Sundanese (Indonesia) (`su-ID`), Swahili (Kenya) (`sw-KE`), Swedish (Sweden) (`sv-SE`), Tamil (India) (`ta-IN`), Telugu (India) (`te-IN`), Thai (Thailand) (`th-TH`), Turkish (Türkiye) (`tr-TR`), Ukrainian (Ukraine) (`uk-UA`), Urdu (Pakistan) (`ur-PK`), Uzbek (Uzbekistan) (`uz-UZ`), Vietnamese (Vietnam) (`vi-VN`), Welsh (United Kingdom) (`cy-GB`), Zulu (South Africa) (`zu-ZA`) |
-| `en-US-AlloyMultilingualNeural`<sup>3</sup> (Male)<br/>`en-US-EchoMultilingualNeural`<sup>3</sup> (Male)<br/>`en-US-FableMultilingualNeural`<sup>3</sup> (Neutral)<br/>`en-US-OnyxMultilingualNeural`<sup>3</sup> (Male)<br/>`en-US-NovaMultilingualNeural`<sup>3</sup> (Female)<br/>`en-US-ShimmerMultilingualNeural`<sup>3</sup> (Female)<br/>`en-US-AlloyMultilingualNeuralHD`<sup>3</sup> (Male)<br/>`en-US-EchoMultilingualNeuralHD`<sup>3</sup> (Male)<br/>`en-US-FableMultilingualNeuralHD`<sup>3</sup> (Neutral)<br/>`en-US-OnyxMultilingualNeuralHD`<sup>3</sup> (Male)<br/>`en-US-NovaMultilingualNeuralHD`<sup>3</sup> (Female)<br/>`en-US-ShimmerMultilingualNeuralHD`<sup>3</sup> (Female) | 57                            | Afrikaans (`af-ZA`), Arabic (`ar-EG`), Armenian (`hy-AM`), Azerbaijani (`az-AZ`), Belarusian (`be-BY`), Bosnian (`bs-BA`), Bulgarian (`bg-BG`), Catalan (`ca-ES`), Chinese (`zh-CN`), Croatian (`hr-HR`), Czech (`cs-CZ`), Danish (`da-DK`), Dutch (`nl-NL`), English (`en-US`), Estonian (`et-EE`), Finnish (`fi-FI`), French (`fr-FR`), Galician (`gl-ES`), German (`de-DE`), Greek (`el-GR`), Hebrew (`he-IL`), Hindi (`hi-IN`), Hungarian (`hu-HU`), Icelandic (`is-IS`), Indonesian (`id-ID`), Italian (`it-IT`), Japanese (`ja-JP`), Kannada (`kn-IN`), Kazakh (`kk-KZ`), Korean (`ko-KR`), Latvian (`lv-LV`), Lithuanian (`lt-LT`), Macedonian (`mk-MK`), Malay (`ms-MY`), Marathi (`mr-IN`), Maori (`mi-NZ`), Nepali (`ne-NP`), Norwegian (`nb-NO`), Persian (`fa-IR`), Polish (`pl-PL`), Portuguese (`pt-BR`), Romanian (`ro-RO`), Russian (`ru-RU`), Serbian (`sr-RS`), Slovak (`sk-SK`), Slovenian (`sl-SI`), Spanish (`es-ES`), Swahili (`sw-KE`), Swedish (`sv-SE`), Tagalog (`fil-PH`), Tamil (`ta-IN`), Thai (`th-TH`), Turkish (`tr-TR`), Ukrainian (`uk-UA`), Urdu (`ur-PK`), Vietnamese (`vi-VN`), Welsh (`cy-GB`) | 57                 | Afrikaans (`af-ZA`), Arabic (`ar-EG`), Armenian (`hy-AM`), Azerbaijani (`az-AZ`), Belarusian (`be-BY`), Bosnian (`bs-BA`), Bulgarian (`bg-BG`), Catalan (`ca-ES`), Chinese (`zh-CN`), Croatian (`hr-HR`), Czech (`cs-CZ`), Danish (`da-DK`), Dutch (`nl-NL`), English (`en-US`), Estonian (`et-EE`), Finnish (`fi-FI`), French (`fr-FR`), Galician (`gl-ES`), German (`de-DE`), Greek (`el-GR`), Hebrew (`he-IL`), Hindi (`hi-IN`), Hungarian (`hu-HU`), Icelandic (`is-IS`), Indonesian (`id-ID`), Italian (`it-IT`), Japanese (`ja-JP`), Kannada (`kn-IN`), Kazakh (`kk-KZ`), Korean (`ko-KR`), Latvian (`lv-LV`), Lithuanian (`lt-LT`), Macedonian (`mk-MK`), Malay (`ms-MY`), Marathi (`mr-IN`), Maori (`mi-NZ`), Nepali (`ne-NP`), Norwegian (`nb-NO`), Persian (`fa-IR`), Polish (`pl-PL`), Portuguese (`pt-BR`), Romanian (`ro-RO`), Russian (`ru-RU`), Serbian (`sr-RS`), Slovak (`sk-SK`), Slovenian (`sl-SI`), Spanish (`es-ES`), Swahili (`sw-KE`), Swedish (`sv-SE`), Tagalog (`fil-PH`), Tamil (`ta-IN`), Thai (`th-TH`), Turkish (`tr-TR`), Ukrainian (`uk-UA`), Urdu (`ur-PK`), Vietnamese (`vi-VN`), Welsh (`cy-GB`) |
-| `en-US-JennyMultilingualNeural`<sup>2</sup> (Female)<br/>`en-US-RyanMultilingualNeural`<sup>2</sup> (Male) | 26                            | Arabic (`ar-EG`), Catalan (`ca-ES`), Chinese Cantonese (`zh-HK`), Chinese Mandarin (`zh-CN`), Chinese Taiwanese (`zh-TW`), Czech (`cs-CZ`), Danish (`da-DK`), Dutch (`nl-NL`), English (`en-US`), Finnish (`fi-FI`), French (`fr-FR`), German (`de-DE`), Hindi (`hi-IN`), Hungarian (`hu-HU`), Indonesian (`id-ID`), Italian (`it-IT`), Japanese (`ja-JP`), Korean (`ko-KR`), Norwegian Bokmål (`nb-NO`), Polish (`pl-PL`), Portuguese (`pt-BR`), Russian (`ru-RU`), Spanish (`es-ES`), Swedish (`sv-SE`), Thai (`th-TH`), Turkish (`tr-TR`) | 41                 | Arabic (Egypt) (`ar-EG`), Arabic (Saudi Arabia) (`ar-SA`), Catalan (`ca-ES`), Chinese (Cantonese, Traditional) (`zh-HK`), Chinese (Mandarin, Simplified) (`zh-CN`), Chinese (Taiwanese Mandarin) (`zh-TW`), Czech (Czech) (`cs-CZ`), Danish (Denmark) (`da-DK`), Dutch (Belgium) (`nl-BE`), Dutch (Netherlands) (`nl-NL`), English (Australia) (`en-AU`), English (Canada) (`en-CA`), English (Hong Kong SAR) (`en-HK`), English (India) (`en-IN`), English (Ireland) (`en-IE`), English (United Kingdom) (`en-GB`), English (United States) (`en-US`), Finnish (Finland) (`fi-FI`), French (Belgium) (`fr-BE`), French (Canada) (`fr-CA`), French (France) (`fr-FR`), French (Switzerland) (`fr-CH`), German (Austria) (`de-AT`), German (Germany) (`de-DE`), German (Switzerland) (`de-CH`), Hindi (India) (`hi-IN`), Hungarian (Hungary) (`hu-HU`), Indonesian (Indonesia) (`id-ID`), Italian (Italy) (`it-IT`), Japanese (Japan) (`ja-JP`), Korean (Korea) (`ko-KR`), Norwegian (Bokmål, Norway) (`nb-NO`), Polish (Poland) (`pl-PL`), Portuguese (Brazil) (`pt-BR`), Portuguese (Portugal) (`pt-PT`), Russian (Russia) (`ru-RU`), Spanish (Mexico) (`es-MX`), Spanish (Spain) (`es-ES`), Swedish (Sweden) (`sv-SE`), Thai (Thailand) (`th-TH`), Turkish (Türkiye) (`tr-TR`) |
-| `zh-CN-Xiaochen:DragonHDFlashLatestNeural`<sup>1,2,5</sup> (Female)<br/>`zh-CN-Xiaoxiao:DragonHDFlashLatestNeural`<sup>1,2,5</sup> (Female)<br/>`zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural`<sup>1,2,5</sup> (Female)<br/>`zh-CN-Yunxiao:DragonHDFlashLatestNeural`<sup>1,2,5</sup> (Male)<br/>`zh-CN-Yunyi:DragonHDFlashLatestNeural`<sup>1,2,5</sup> (Male)<br/> | 2                           | English (United States) (`en-US`), Chinese (Mandarin, Simplified) (`zh-CN`) | 2               | English (United States) (`en-US`), Chinese (Mandarin, Simplified) (`zh-CN`) |
+### Voice group 1: Multilingual voices by Azure
+
+| Locale | ShortName | Gender |
+|---|---|---|
+| de-DE | `de-DE-SeraphinaMultilingualNeural`<sup>2</sup> | Female |
+| de-DE | `de-DE-FlorianMultilingualNeural`<sup>2</sup> | Male |
+| en-AU | `en-AU-WilliamMultilingualNeural` | Male |
+| en-GB | `en-GB-AdaMultilingualNeural`<sup>1,2</sup> | Female |
+| en-GB | `en-GB-OllieMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-AvaMultilingualNeural`<sup>2</sup> | Female |
+| en-US | `en-US-AndrewMultilingualNeural`<sup>2</sup> | Male |
+| en-US | `en-US-AmandaMultilingualNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-AdamMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-EmmaMultilingualNeural`<sup>2</sup> | Female |
+| en-US | `en-US-PhoebeMultilingualNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-AlloyTurboMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-EchoTurboMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-FableTurboMultilingualNeural`<sup>1,2</sup> | Neutral |
+| en-US | `en-US-OnyxTurboMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-NovaTurboMultilingualNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-ShimmerTurboMultilingualNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-BrianMultilingualNeural`<sup>2</sup> | Male |
+| en-US | `en-US-CoraMultilingualNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-ChristopherMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-BrandonMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-DavisMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-DerekMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-DustinMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-EvelynMultilingualNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-JennyMultilingualNeural`<sup>2</sup> | Female |
+| en-US | `en-US-LewisMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-LolaMultilingualNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-NancyMultilingualNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-RyanMultilingualNeural`<sup>2</sup> | Male |
+| en-US | `en-US-SamuelMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-SerenaMultilingualNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-SteffanMultilingualNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-AshTurboMultilingualNeural` | Male |
+| es-ES | `es-ES-ArabellaMultilingualNeural`<sup>1,2</sup> | Female |
+| es-ES | `es-ES-IsidoraMultilingualNeural`<sup>1,2</sup> | Female |
+| es-ES | `es-ES-TristanMultilingualNeural`<sup>1,2</sup> | Male |
+| es-ES | `es-ES-XimenaMultilingualNeural`<sup>1,2</sup> | Female |
+| es-MX | `es-MX-DaliaMultilingualNeural` | Female |
+| es-MX | `es-MX-JorgeMultilingualNeural` | Male |
+| fr-FR | `fr-FR-VivienneMultilingualNeural`<sup>2</sup> | Female |
+| fr-FR | `fr-FR-RemyMultilingualNeural`<sup>2</sup> | Male |
+| fr-FR | `fr-FR-LucienMultilingualNeural`<sup>1,2</sup> | Male |
+| it-IT | `it-IT-AlessioMultilingualNeural`<sup>1,2</sup> | Male |
+| it-IT | `it-IT-IsabellaMultilingualNeural`<sup>1,2</sup> | Female |
+| it-IT | `it-IT-GiuseppeMultilingualNeural`<sup>1,2</sup> | Male |
+| it-IT | `it-IT-MarcelloMultilingualNeural`<sup>1,2</sup> | Male |
+| ja-JP | `ja-JP-MasaruMultilingualNeural`<sup>1,2</sup> | Male |
+| ko-KR | `ko-KR-HyunsuMultilingualNeural`<sup>1,2</sup> | Male |
+| pt-BR | `pt-BR-MacerioMultilingualNeural`<sup>1,2</sup> | Male |
+| pt-BR | `pt-BR-ThalitaMultilingualNeural`<sup>1,2</sup> | Female |
+| zh-CN | `zh-CN-XiaochenMultilingualNeural`<sup>2</sup> | Female |
+| zh-CN | `zh-CN-XiaoshuangMultilingualNeural` | Female |
+| zh-CN | `zh-CN-XiaoxiaoMultilingualNeural`<sup>2</sup> | Female |
+| zh-CN | `zh-CN-XiaoyouMultilingualNeural` | Female |
+| zh-CN | `zh-CN-XiaoyuMultilingualNeural`<sup>2</sup> | Female |
+| zh-CN | `zh-CN-YunfanMultilingualNeural`<sup>1,2</sup> | Male |
+| zh-CN | `zh-CN-YunxiaoMultilingualNeural`<sup>1,2</sup> | Male |
+| zh-CN | `zh-CN-YunyiMultilingualNeural`<sup>2</sup> | Male |
+
+### Voice group 2: Multilingual voices by AOAI
+
+| Locale | ShortName | Gender |
+|---|---|---|
+| en-US | `en-US-AlloyMultilingualNeural`<sup>3</sup> | Male |
+| en-US | `en-US-EchoMultilingualNeural`<sup>3</sup> | Male |
+| en-US | `en-US-FableMultilingualNeural`<sup>3</sup> | Neutral |
+| en-US | `en-US-OnyxMultilingualNeural`<sup>3</sup> | Male |
+| en-US | `en-US-NovaMultilingualNeural`<sup>3</sup> | Female |
+| en-US | `en-US-ShimmerMultilingualNeural`<sup>3</sup> | Female |
+| en-US | `en-US-AlloyMultilingualNeuralHD`<sup>3</sup> | Male |
+| en-US | `en-US-EchoMultilingualNeuralHD`<sup>3</sup> | Male |
+| en-US | `en-US-FableMultilingualNeuralHD`<sup>3</sup> | Neutral |
+| en-US | `en-US-OnyxMultilingualNeuralHD`<sup>3</sup> | Male |
+| en-US | `en-US-NovaMultilingualNeuralHD`<sup>3</sup> | Female |
+| en-US | `en-US-ShimmerMultilingualNeuralHD`<sup>3</sup> | Female |
+
+### Voice group 3: Neural HD voices by Azure
+
+| Locale | ShortName | Gender |
+|---|---|---|
+| de-DE | `de-DE-Seraphina:DragonHDLatestNeural`<sup>2,4</sup> | Female |
+| de-DE | `de-DE-Florian:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| en-GB | `en-GB-Ada:DragonHDLatestNeural` | Female |
+| en-GB | `en-GB-Ollie:DragonHDLatestNeural` | Male |
+| en-IN | `en-IN-Meera:DragonHDLatestNeural` | Female |
+| en-IN | `en-IN-Aarti:DragonHDLatestNeural` | Female |
+| en-IN | `en-IN-Arjun:DragonHDLatestNeural` | Male |
+| en-US | `en-US-Ava:DragonHDLatestNeural`<sup>2,4</sup> | Female |
+| en-US | `en-US-Andrew:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| en-US | `en-US-Adam:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| en-US | `en-US-Alloy:DragonHDLatestNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-Aria:DragonHDLatestNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-Bree:DragonHDLatestNeural` | Female |
+| en-US | `en-US-Brian:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| en-US | `en-US-Davis:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| en-US | `en-US-Emma:DragonHDLatestNeural`<sup>2,4</sup> | Female |
+| en-US | `en-US-Emma2:DragonHDLatestNeural`<sup>2,4</sup> | Female |
+| en-US | `en-US-Jane:DragonHDLatestNeural` | Female |
+| en-US | `en-US-Jenny:DragonHDLatestNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-Nova:DragonHDLatestNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-Phoebe:DragonHDLatestNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-Serena:DragonHDLatestNeural`<sup>1,2</sup> | Female |
+| en-US | `en-US-Steffan:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| en-US | `en-US-Andrew2:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| en-US | `en-US-Andrew3:DragonHDLatestNeural`<sup>1,2</sup> | Male |
+| en-US | `en-US-Ava3:DragonHDLatestNeural`<sup>1,2</sup> | Female |
+| es-ES | `es-ES-Ximena:DragonHDLatestNeural`<sup>2,4</sup> | Female |
+| es-ES | `es-ES-Tristan:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| es-MX | `es-MX-Ximena:DragonHDLatestNeural` | Female |
+| es-MX | `es-MX-Tristan:DragonHDLatestNeural` | Male |
+| fr-CA | `fr-CA-Sylvie:DragonHDLatestNeural` | Female |
+| fr-CA | `fr-CA-Thierry:DragonHDLatestNeural` | Male |
+| fr-FR | `fr-FR-Vivienne:DragonHDLatestNeural`<sup>2,4</sup> | Female |
+| fr-FR | `fr-FR-Remy:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| it-IT | `it-IT-Isabella:DragonHDLatestNeural` | Female |
+| it-IT | `it-IT-Alessio:DragonHDLatestNeural` | Male |
+| ja-JP | `ja-JP-Nanami:DragonHDLatestNeural`<sup>2,4</sup> | Female |
+| ja-JP | `ja-JP-Masaru:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| ko-KR | `ko-KR-SunHi:DragonHDLatestNeural` | Female |
+| ko-KR | `ko-KR-Hyunsu:DragonHDLatestNeural` | Male |
+| pt-BR | `pt-BR-Thalita:DragonHDLatestNeural`<sup>2,4</sup> | Female |
+| pt-BR | `pt-BR-Macerio:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+| zh-CN | `zh-CN-Xiaochen:DragonHDLatestNeural`<sup>2,4</sup> | Female |
+| zh-CN | `zh-CN-Yunfan:DragonHDLatestNeural`<sup>2,4</sup> | Male |
+
+### Voice group 4: Neural HD Omni by Azure
+
+| Locale | ShortName | Gender |
+|---|---|---|
+| en-US | `en-US-Andrew:DragonHDOmniLatestNeural` | Male |
+| en-US | `en-US-Caleb:DragonHDOmniLatestNeural` | Male |
+| en-US | `en-US-Dana:DragonHDOmniLatestNeural` | Female |
+| en-US | `en-US-Lewis:DragonHDOmniLatestNeural` | Male |
+| en-US | `en-US-Phoebe:DragonHDOmniLatestNeural` | Female |
+| en-US | `en-us-ava:DragonHDOmniLatestNeural` | Female |
+| zh-CN | `zh-CN-Xiaoyue:DragonHDOmniLatestNeural` | Female |
+| zh-CN | `zh-CN-Yunqi:DragonHDOmniLatestNeural` | Male |
+
+### Voice group 5: Neural HD Flash by Azure
+
+| Locale | ShortName | Gender |
+|---|---|---|
+| en-US | `en-US-Jimmie:DragonHDFlashLatestNeural` | Male |
+| en-US | `en-US-Tiana:DragonHDFlashLatestNeural` | Female |
+| en-US | `en-US-Tyler:DragonHDFlashLatestNeural` | Male |
+| zh-CN | `zh-CN-Xiaoxiao:DragonHDFlashLatestNeural`<sup>1,2,5</sup> | Female |
+| zh-CN | `zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural`<sup>1,2,5</sup> | Female |
+| zh-CN | `zh-CN-Yunxiao:DragonHDFlashLatestNeural`<sup>1,2,5</sup> | Male |
+| zh-CN | `zh-CN-Yunyi:DragonHDFlashLatestNeural`<sup>1,2,5</sup> | Male |
+| zh-CN | `zh-CN-Xiaochen:DragonHDFlashLatestNeural`<sup>1,2,5</sup> | Female |
+| zh-CN | `zh-CN-Xiaoshuang:DragonHDFlashLatestNeural` | Female |
+| zh-CN | `zh-CN-Xiaoyi:DragonHDFlashLatestNeural` | Female |
+| zh-CN | `zh-CN-Xiaoyou:DragonHDFlashLatestNeural` | Female |
+| zh-CN | `zh-CN-Xiaoyu:DragonHDFlashLatestNeural` | Female |
+| zh-CN | `zh-CN-Yunxia:DragonHDFlashLatestNeural` | Male |
+| zh-CN | `zh-CN-Yunye:DragonHDFlashLatestNeural` | Male |
+
 
 <sup>1</sup> The neural voice is available in preview. For the current list of regions that support voices and styles in preview, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
@@ -24,3 +181,106 @@ ms.reviewer: pafarley
 <sup>4</sup> For the current list of regions where this voice is generally available, see the [table for Azure Speech regions](../../regions.md?tabs=tts).
 
 <sup>5</sup> The voice is available in the `ChinaNorth3` region.
+
+### Locale index
+
+Use this table to see which voice groups are available for each language:
+
+| Locale | Group 1 | Group 2 | Group 3 | Group 4 | Group 5 |
+|---|---|---|---|---|---|
+| `af-ZA` | ✅* | ✅ | ✅ | ✅ | |
+| `am-ET` | ✅* | | ✅ | ✅ | |
+| `ar-EG` | ✅ | ✅ | ✅ | ✅ | |
+| `ar-SA` | ✅ | | ✅ | ✅ | |
+| `az-AZ` | ✅* | ✅ | ✅ | ✅ | |
+| `be-BY` | | ✅ | | | |
+| `bg-BG` | ✅* | ✅ | ✅ | ✅ | |
+| `bn-BD` | ✅* | | ✅ | ✅ | |
+| `bn-IN` | ✅* | | ✅ | ✅ | |
+| `bs-BA` | ✅* | ✅ | ✅ | ✅ | |
+| `ca-ES` | ✅ | ✅ | ✅ | ✅ | |
+| `cs-CZ` | ✅ | ✅ | ✅ | ✅ | |
+| `cy-GB` | ✅* | ✅ | ✅ | ✅ | |
+| `da-DK` | ✅ | ✅ | ✅ | ✅ | |
+| `de-AT` | ✅ | | ✅ | ✅ | |
+| `de-CH` | ✅ | | ✅ | ✅ | |
+| `de-DE` | ✅ | ✅ | ✅ | ✅ | |
+| `el-GR` | ✅* | ✅ | ✅ | ✅ | |
+| `en-AU` | ✅ | | ✅ | ✅ | |
+| `en-CA` | ✅ | | ✅ | ✅ | |
+| `en-GB` | ✅ | | ✅ | ✅ | |
+| `en-IE` | ✅ | | ✅ | ✅ | |
+| `en-IN` | ✅ | | ✅ | ✅ | |
+| `en-US` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `es-ES` | ✅ | ✅ | ✅ | ✅ | |
+| `es-MX` | ✅ | | ✅ | ✅ | |
+| `et-EE` | ✅* | ✅ | ✅ | ✅ | |
+| `eu-ES` | ✅* | | ✅ | ✅ | |
+| `fa-IR` | ✅* | ✅ | ✅ | ✅ | |
+| `fi-FI` | ✅ | ✅ | ✅ | ✅ | |
+| `fil-PH` | ✅* | ✅ | ✅ | ✅ | |
+| `fr-BE` | ✅ | | ✅ | ✅ | |
+| `fr-CA` | ✅ | | ✅ | ✅ | |
+| `fr-CH` | ✅ | | ✅ | ✅ | |
+| `fr-FR` | ✅ | ✅ | ✅ | ✅ | |
+| `ga-IE` | ✅* | | ✅ | ✅ | |
+| `gl-ES` | ✅* | ✅ | ✅ | ✅ | |
+| `he-IL` | ✅* | ✅ | ✅ | ✅ | |
+| `hi-IN` | ✅ | ✅ | ✅ | ✅ | |
+| `hr-HR` | ✅* | ✅ | ✅ | ✅ | |
+| `hu-HU` | ✅ | ✅ | ✅ | ✅ | |
+| `hy-AM` | ✅* | ✅ | ✅ | ✅ | |
+| `id-ID` | ✅ | ✅ | ✅ | ✅ | |
+| `is-IS` | ✅* | ✅ | ✅ | ✅ | |
+| `it-IT` | ✅ | ✅ | ✅ | ✅ | |
+| `ja-JP` | ✅ | ✅ | ✅ | ✅ | |
+| `jv-ID` | ✅* | | ✅ | ✅ | |
+| `ka-GE` | ✅* | | ✅ | ✅ | |
+| `kk-KZ` | ✅* | ✅ | ✅ | ✅ | |
+| `km-KH` | ✅* | | ✅ | ✅ | |
+| `kn-IN` | ✅* | ✅ | ✅ | ✅ | |
+| `ko-KR` | ✅ | ✅ | ✅ | ✅ | |
+| `lo-LA` | ✅* | | ✅ | ✅ | |
+| `lt-LT` | ✅* | ✅ | ✅ | ✅ | |
+| `lv-LV` | ✅* | ✅ | ✅ | ✅ | |
+| `mi-NZ` | | ✅ | | | |
+| `mk-MK` | ✅* | ✅ | ✅ | ✅ | |
+| `ml-IN` | ✅* | | ✅ | ✅ | |
+| `mn-MN` | ✅* | | ✅ | ✅ | |
+| `mr-IN` | | ✅ | | | |
+| `ms-MY` | ✅* | ✅ | ✅ | ✅ | |
+| `mt-MT` | ✅* | | ✅ | ✅ | |
+| `my-MM` | ✅* | | ✅ | ✅ | |
+| `nb-NO` | ✅ | ✅ | ✅ | ✅ | |
+| `ne-NP` | ✅* | ✅ | ✅ | ✅ | |
+| `nl-BE` | ✅ | | ✅ | ✅ | |
+| `nl-NL` | ✅ | ✅ | ✅ | ✅ | |
+| `pl-PL` | ✅ | ✅ | ✅ | ✅ | |
+| `ps-AF` | ✅* | | ✅ | ✅ | |
+| `pt-BR` | ✅ | ✅ | ✅ | ✅ | |
+| `pt-PT` | ✅ | | ✅ | ✅ | |
+| `ro-RO` | ✅* | ✅ | ✅ | ✅ | |
+| `ru-RU` | ✅ | ✅ | ✅ | ✅ | |
+| `si-LK` | ✅* | | ✅ | ✅ | |
+| `sk-SK` | ✅* | ✅ | ✅ | ✅ | |
+| `sl-SI` | ✅* | ✅ | ✅ | ✅ | |
+| `so-SO` | ✅* | | ✅ | ✅ | |
+| `sq-AL` | ✅* | | ✅ | ✅ | |
+| `sr-RS` | ✅* | ✅ | ✅ | ✅ | |
+| `su-ID` | ✅* | | ✅ | ✅ | |
+| `sv-SE` | ✅ | ✅ | ✅ | ✅ | |
+| `sw-KE` | ✅* | ✅ | ✅ | ✅ | |
+| `ta-IN` | ✅* | ✅ | ✅ | ✅ | |
+| `te-IN` | ✅* | | ✅ | ✅ | |
+| `th-TH` | ✅ | ✅ | ✅ | ✅ | |
+| `tr-TR` | ✅ | ✅ | ✅ | ✅ | |
+| `uk-UA` | ✅* | ✅ | ✅ | ✅ | |
+| `ur-PK` | ✅* | ✅ | ✅ | ✅ | |
+| `uz-UZ` | ✅* | | ✅ | ✅ | |
+| `vi-VN` | ✅* | ✅ | ✅ | ✅ | |
+| `zh-CN` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `zh-HK` | ✅ | | ✅ | ✅ | |
+| `zh-TW` | ✅ | | ✅ | ✅ | |
+| `zu-ZA` | ✅* | | ✅ | ✅ | |
+
+\* Excludes `en-US-JennyMultilingualNeual` and `en-US-RyanMultilingualNeural`

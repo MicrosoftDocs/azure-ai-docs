@@ -5,7 +5,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
 ms.topic: how-to
-ms.date: 1/20/2026
+ms.date: 4/09/2026
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
@@ -123,6 +123,7 @@ The following sections list the supported models for managed compute deployment 
 
 | Model | Task |
 |--|--|
+| [bosonai-higgs-audio-v3-stt](https://ai.azure.com/explore/models/bosonai-higgs-audio-v3-stt/version/2/registry/azureml-bosonai-p/?cid=learnDocs) | Automatic speech recognition |
 | [Higgs-Audio-v2.5](https://ai.azure.com/explore/models/Higgs-Audio-v2.5/version/1/registry/azureml-bosonai-p/?cid=learnDocs) | Audio generation |
 
 ### Cohere
@@ -134,6 +135,12 @@ The following sections list the supported models for managed compute deployment 
 | [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere/?cid=learnDocs) | Text classification |
 | [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs) | rerank text classification |
 | [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) | rerank text classification |
+
+### Domyn
+
+| Model | Task |
+|--|--|
+| [Domyn-Large](https://ai.azure.com/explore/models/Domyn-Large/version/1/registry/azureml-domyn/?cid=learnDocs) | Chat completion |
 
 ### Inception Labs
 
@@ -153,6 +160,8 @@ Some special things to note about NIMs are:
 
 | Model | Task |
 |--|--|
+| [NVIDIA-Nemotron-3-Super-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-3-Super-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion, Question answering, Summarization, Text generation, Text summarization |
+| [Openfold3_1_2_0-NIM-microservice](https://ai.azure.com/explore/models/Openfold3_1_2_0-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Biomolecular complex structure prediction |
 | [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
 | [Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
 | [Deepseek-R1-Distill-Llama-8B-NIM-microservice](https://ai.azure.com/explore/models/Deepseek-R1-Distill-Llama-8B-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
@@ -199,7 +208,7 @@ The following NVIDIA NIMs of **chat completions** task type in the model catalog
 
 #### Security scanning
 
-NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. To learn more about security scanning, see the [security page](https://docs.nvidia.com/ai-enterprise/planning-resource/security-for-azure-ai-foundry/latest/introduction.html). Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within Foundry.
+NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within Foundry.
 
 You can refer to the _last updated time_ for the NIM on the right pane of the model's overview page. You can redeploy to consume the latest version of NIM from NVIDIA on Foundry. 
 

@@ -5,7 +5,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 03/11/2026
+ms.date: 03/30/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -40,7 +40,7 @@ You provide user input (and optionally conversation history), the service genera
 
 To run the samples in this article, you need:
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Microsoft Foundry project](../../how-to/create-projects.md).
 - The Foundry Agent Service SDK for your language:
 
@@ -54,8 +54,7 @@ pip install azure-identity
 # [C#](#tab/csharp)
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.AI.Projects.OpenAI --prerelease
+dotnet add package Azure.AI.Projects
 dotnet add package Azure.Identity
 ```
 
@@ -72,7 +71,7 @@ npm install @azure/identity
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.2</version>
+    <version>2.0.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
@@ -141,15 +140,15 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create a prompt agent
-var agent = await projectClient.Agents
+AgentVersion agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
-            new PromptAgentDefinition("gpt-5-mini")
+            new DeclarativeAgentDefinition("gpt-5-mini")
             {
                 Instructions = "You are a helpful assistant.",
             }));
-Console.WriteLine($"Agent: {agent.Value.Name}, Version: {agent.Value.Version}");
+Console.WriteLine($"Agent: {agent.Name}, Version: {agent.Version}");
 ```
 
 # [JavaScript](#tab/javascript)
@@ -274,16 +273,16 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create an agent with a web search tool
-var agent = await projectClient.Agents
+AgentVersion agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-tool-agent",
         options: new(
-            new PromptAgentDefinition("gpt-5-mini")
+            new DeclarativeAgentDefinition("gpt-5-mini")
             {
                 Instructions = "You are a helpful assistant that can search the web.",
                 Tools = { ResponseTool.CreateWebSearchTool() },
             }));
-Console.WriteLine($"Agent: {agent.Value.Name}, Version: {agent.Value.Version}");
+Console.WriteLine($"Agent: {agent.Name}, Version: {agent.Version}");
 ```
 
 # [JavaScript](#tab/javascript)
@@ -420,7 +419,7 @@ print(follow_up.output_text)
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 // Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
@@ -432,17 +431,20 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Generate a response using the agent
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName });
+ProjectResponsesClient responsesClient
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What is the largest city in France?");
 Console.WriteLine(response.GetOutputText());
 
 // Ask a follow-up question using the previous response
 ResponseResult followUp = await responsesClient.CreateResponseAsync(
-    "What is the population of that city?",
-    previousResponseId: response.Id);
+    new CreateResponseOptions
+    {
+        PreviousResponseId = response.Id,
+        InputItems = { ResponseItem.CreateUserMessageItem(
+            "What is the population of that city?") },
+    });
 Console.WriteLine(followUp.GetOutputText());
 ```
 
@@ -487,7 +489,10 @@ console.log(followUp.output_text);
 ```java
 import com.azure.ai.agents.*;
 import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
 
 // Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 String projectEndpoint = "your_project_endpoint";
@@ -502,15 +507,15 @@ ResponsesClient responsesClient = builder.buildResponsesClient();
 // Generate a response using the agent
 AgentReference agentRef = new AgentReference(agentName);
 
-Response response = responsesClient.createWithAgent(
-    agentRef,
+Response response = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions().setAgentReference(agentRef),
     ResponseCreateParams.builder()
         .input("What is the largest city in France?"));
 System.out.println(response.output());
 
 // Ask a follow-up question using the previous response
-Response followUp = responsesClient.createWithAgent(
-    agentRef,
+Response followUp = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions().setAgentReference(agentRef),
     ResponseCreateParams.builder()
         .input("What is the population of that city?")
         .previousResponseId(response.id()));
@@ -600,7 +605,7 @@ for item in response.output:
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 var projectEndpoint = "your_project_endpoint";
 var agentName = "your_agent_name";
@@ -609,9 +614,8 @@ AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
     tokenProvider: new DefaultAzureCredential());
 
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName });
+ProjectResponsesClient responsesClient
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What happened in the news today?");
 
@@ -679,8 +683,12 @@ for (const item of response.output) {
 
 ```java
 import com.azure.ai.agents.*;
-import com.azure.ai.agents.models.*;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseOutputItem;
 
 String projectEndpoint = "your_project_endpoint";
 String agentName = "your_agent_name";
@@ -691,24 +699,23 @@ AgentsClientBuilder builder = new AgentsClientBuilder()
 ResponsesClient responsesClient = builder.buildResponsesClient();
 
 AgentReference agentRef = new AgentReference(agentName);
-Response response = responsesClient.createWithAgent(
-    agentRef,
+Response response = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions().setAgentReference(agentRef),
     ResponseCreateParams.builder()
         .input("What happened in the news today?"));
 
 // Print each output item, including tool calls
-for (ResponseOutputItem item : response.getOutput()) {
-    String type = item.getType();
-    if ("web_search_call".equals(type)) {
-        System.out.println("[Tool] Web search: status=" + item.getStatus());
-    } else if ("function_call".equals(type)) {
-        System.out.println("[Tool] Function call: " + item.getName()
-            + "(" + item.getArguments() + ")");
-    } else if ("file_search_call".equals(type)) {
-        System.out.println("[Tool] File search: status=" + item.getStatus());
-    } else if ("message".equals(type)) {
-        System.out.println("[Assistant] " + item.getContent().get(0).getText());
-    }
+for (ResponseOutputItem item : response.output()) {
+    item.webSearchCall().ifPresent(ws ->
+        System.out.println("[Tool] Web search: status=" + ws.status()));
+    item.functionCall().ifPresent(fc ->
+        System.out.println("[Tool] Function call: " + fc.name()
+            + "(" + fc.arguments() + ")"));
+    item.fileSearchCall().ifPresent(fs ->
+        System.out.println("[Tool] File search: status=" + fs.status()));
+    item.message().ifPresent(msg ->
+        System.out.println("[Assistant] "
+            + msg.content().get(0).asOutputText().text()));
 }
 ```
 
@@ -799,7 +806,7 @@ print(follow_up.output_text)
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 var projectEndpoint = "your_project_endpoint";
 var agentName = "your_agent_name";
@@ -809,37 +816,31 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Generate a response without storing
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName });
+ProjectResponsesClient responsesClient
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
-    "What is the largest city in France?",
-    store: false);
+    new CreateResponseOptions
+    {
+        InputItems = { ResponseItem.CreateUserMessageItem(
+            "What is the largest city in France?") },
+        Store = false,
+    });
 Console.WriteLine(response.GetOutputText());
 
 // Carry forward context client-side by passing previous output as input
 ResponseResult followUp = await responsesClient.CreateResponseAsync(
-    new ResponseCreationOptions
+    new CreateResponseOptions
     {
-        Instructions = null,
-        Input = ResponseInput.FromItems(
-            new ResponseInputItem.Message
-            {
-                Role = "user",
-                Content = "What is the largest city in France?"
-            },
-            new ResponseInputItem.Message
-            {
-                Role = "assistant",
-                Content = response.GetOutputText()
-            },
-            new ResponseInputItem.Message
-            {
-                Role = "user",
-                Content = "What is the population of that city?"
-            }
-        ),
-        Store = false
+        InputItems =
+        {
+            ResponseItem.CreateUserMessageItem(
+                "What is the largest city in France?"),
+            ResponseItem.CreateAssistantMessageItem(
+                response.GetOutputText()),
+            ResponseItem.CreateUserMessageItem(
+                "What is the population of that city?"),
+        },
+        Store = false,
     });
 Console.WriteLine(followUp.GetOutputText());
 ```
@@ -888,7 +889,12 @@ console.log(followUp.output_text);
 ```java
 import com.azure.ai.agents.*;
 import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.EasyInputMessage;
+import java.util.List;
 
 String projectEndpoint = "your_project_endpoint";
 String agentName = "your_agent_name";
@@ -901,21 +907,27 @@ ResponsesClient responsesClient = builder.buildResponsesClient();
 // Generate a response without storing
 AgentReference agentRef = new AgentReference(agentName);
 
-Response response = responsesClient.createWithAgent(
-    agentRef,
+Response response = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions().setAgentReference(agentRef),
     ResponseCreateParams.builder()
         .input("What is the largest city in France?")
         .store(false));
 System.out.println(response.output());
 
 // Carry forward context client-side by passing previous output as input
-Response followUp = responsesClient.createWithAgent(
-    agentRef,
+Response followUp = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions().setAgentReference(agentRef),
     ResponseCreateParams.builder()
-        .input(List.of(
-            new InputMessage("user", "What is the largest city in France?"),
-            new InputMessage("assistant", response.output()),
-            new InputMessage("user", "What is the population of that city?")))
+        .inputOfResponse(List.of(
+            EasyInputMessage.builder()
+                .role(EasyInputMessage.Role.USER)
+                .content("What is the largest city in France?").build(),
+            EasyInputMessage.builder()
+                .role(EasyInputMessage.Role.ASSISTANT)
+                .content(response.outputText()).build(),
+            EasyInputMessage.builder()
+                .role(EasyInputMessage.Role.USER)
+                .content("What is the population of that city?").build()))
         .store(false));
 System.out.println(followUp.output());
 ```
@@ -1005,7 +1017,7 @@ print(f"Conversation ID: {conversation.id}")
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 // Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
@@ -1017,7 +1029,7 @@ AIProjectClient projectClient = new(
 
 // Create a conversation
 ProjectConversation conversation
-    = await projectClient.OpenAI.Conversations.CreateProjectConversationAsync();
+    = await projectClient.ProjectOpenAIClient.GetProjectConversationsClient().CreateProjectConversationAsync();
 Console.WriteLine($"Conversation ID: {conversation.Id}");
 ```
 
@@ -1051,20 +1063,22 @@ console.log(`Conversation ID: ${conversation.id}`);
 
 ```java
 import com.azure.ai.agents.AgentsClientBuilder;
-import com.azure.ai.agents.ConversationsClient;
 import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.conversations.Conversation;
+import com.openai.services.blocking.ConversationService;
 
 // Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 String projectEndpoint = "your_project_endpoint";
 
 // Create conversations client to call Foundry API
-ConversationsClient conversationsClient = new AgentsClientBuilder()
+ConversationService conversationService = new AgentsClientBuilder()
     .credential(new DefaultAzureCredentialBuilder().build())
     .endpoint(projectEndpoint)
-    .buildConversationsClient();
+    .buildOpenAIClient()
+    .conversations();
 
 // Create a conversation
-var conversation = conversationsClient.getConversationService().create();
+Conversation conversation = conversationService.create();
 System.out.println("Conversation ID: " + conversation.id());
 ```
 
@@ -1173,8 +1187,8 @@ await openai.conversations.items.create(
 // through the responses client
 AgentReference agentRef = new AgentReference("my-agent");
 
-Response followUp = responsesClient.createWithAgent(
-    agentRef,
+Response followUp = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions().setAgentReference(agentRef),
     ResponseCreateParams.builder()
         .input("What about Germany?"));
 System.out.println(followUp.output());
@@ -1257,7 +1271,7 @@ print(follow_up.output_text)
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 var projectEndpoint = "your_project_endpoint";
 var agentName = "your_agent_name";
@@ -1268,13 +1282,12 @@ AIProjectClient projectClient = new(
 
 // Create a conversation for multi-turn chat
 ProjectConversation conversation
-    = await projectClient.OpenAI.Conversations.CreateProjectConversationAsync();
+    = await projectClient.ProjectOpenAIClient.GetProjectConversationsClient().CreateProjectConversationAsync();
 
 // First turn
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName },
-        conversation.Id);
+ProjectResponsesClient responsesClient
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(
+        agentName, conversation);
 ResponseResult response = await responsesClient.CreateResponseAsync(
     "What is the largest city in France?");
 Console.WriteLine(response.GetOutputText());
@@ -1328,7 +1341,12 @@ console.log(followUp.output_text);
 ```java
 import com.azure.ai.agents.*;
 import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
 import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.conversations.Conversation;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.services.blocking.ConversationService;
 
 String projectEndpoint = "your_project_endpoint";
 String agentName = "your_agent_name";
@@ -1337,23 +1355,26 @@ AgentsClientBuilder builder = new AgentsClientBuilder()
     .credential(new DefaultAzureCredentialBuilder().build())
     .endpoint(projectEndpoint);
 ResponsesClient responsesClient = builder.buildResponsesClient();
-ConversationsClient conversationsClient = builder.buildConversationsClient();
+ConversationService conversationService
+    = builder.buildOpenAIClient().conversations();
 
 // Create a conversation for multi-turn chat
-var conversation = conversationsClient.getConversationService().create();
+Conversation conversation = conversationService.create();
 
 // First turn
 AgentReference agentRef = new AgentReference(agentName);
-Response response = responsesClient.createWithAgentConversation(
-    agentRef, conversation.id(),
+Response response = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions().setAgentReference(agentRef),
     ResponseCreateParams.builder()
+        .conversation(conversation.id())
         .input("What is the largest city in France?"));
 System.out.println(response.output());
 
 // Follow-up turn in the same conversation
-Response followUp = responsesClient.createWithAgentConversation(
-    agentRef, conversation.id(),
+Response followUp = responsesClient.createAzureResponse(
+    new AzureCreateResponseOptions().setAgentReference(agentRef),
     ResponseCreateParams.builder()
+        .conversation(conversation.id())
         .input("What is the population of that city?"));
 System.out.println(followUp.output());
 ```
@@ -1449,7 +1470,7 @@ for event in stream:
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 // Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
@@ -1461,13 +1482,16 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Stream a response using the agent
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName });
-await foreach (var update in responsesClient.CreateResponseStreamingAsync(
-    "Explain how agents work in one paragraph."))
+ProjectResponsesClient responsesClient
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
+await foreach (StreamingResponseUpdate update
+    in responsesClient.CreateResponseStreamingAsync(
+        "Explain how agents work in one paragraph."))
 {
-    Console.Write(update.Text);
+    if (update is StreamingResponseOutputTextDeltaUpdate textDelta)
+    {
+        Console.Write(textDelta.Delta);
+    }
 }
 ```
 
@@ -1503,30 +1527,37 @@ for await (const event of stream) {
 
 # [Java](#tab/java)
 
-> [!NOTE]
-> Streaming isn't yet supported in the Java SDK. Check the [azure-ai-agents release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/ai/azure-ai-agents/CHANGELOG.md) for updates.
-
 ```java
-// Streaming is not yet supported in the Java SDK.
-// Use a synchronous response call instead.
 import com.azure.ai.agents.*;
 import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
+import com.azure.core.util.IterableStream;
 import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseStreamEvent;
 
+// Format: "https://resource_name.services.ai.azure.com/api/projects/project_name"
 String projectEndpoint = "your_project_endpoint";
 String agentName = "your_agent_name";
 
-ResponsesClient responsesClient = new AgentsClientBuilder()
+AgentsClientBuilder builder = new AgentsClientBuilder()
     .credential(new DefaultAzureCredentialBuilder().build())
-    .endpoint(projectEndpoint)
-    .buildResponsesClient();
+    .endpoint(projectEndpoint);
+ResponsesClient responsesClient = builder.buildResponsesClient();
 
+// Stream a response using the agent
 AgentReference agentRef = new AgentReference(agentName);
-Response response = responsesClient.createWithAgent(
-    agentRef,
-    ResponseCreateParams.builder()
-        .input("Explain how agents work in one paragraph."));
-System.out.println(response.output());
+IterableStream<ResponseStreamEvent> events =
+    responsesClient.createStreamingAzureResponse(
+        new AzureCreateResponseOptions()
+            .setAgentReference(agentRef),
+        ResponseCreateParams.builder()
+            .input("Explain how agents work in one paragraph."));
+for (ResponseStreamEvent event : events) {
+    event.outputTextDelta()
+        .ifPresent(textEvent ->
+            System.out.print(textEvent.delta()));
+}
 ```
 
 # [REST API](#tab/rest)
@@ -1601,7 +1632,7 @@ print(response.output_text)
 ```csharp
 using Azure.Identity;
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Extensions.OpenAI;
 
 var projectEndpoint = "your_project_endpoint";
 var agentName = "your_agent_name";
@@ -1611,12 +1642,15 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Start a background response using the agent
-ResponsesClient responsesClient
-    = projectClient.OpenAI.GetProjectResponsesClientForAgent(
-        new AgentReference { Name = agentName });
+ProjectResponsesClient responsesClient
+    = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentName);
 ResponseResult response = await responsesClient.CreateResponseAsync(
-    "Write a detailed analysis of renewable energy trends.",
-    background: true);
+    new CreateResponseOptions
+    {
+        InputItems = { ResponseItem.CreateUserMessageItem(
+            "Write a detailed analysis of renewable energy trends.") },
+        Background = true,
+    });
 
 // Poll until the response completes
 while (response.Status is "queued" or "in_progress")
@@ -1659,8 +1693,43 @@ console.log(response.output_text);
 
 # [Java](#tab/java)
 
-> [!NOTE]
-> Background mode with polling isn't yet fully supported in the Java SDK. Check the [azure-ai-agents release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/ai/azure-ai-agents/CHANGELOG.md) for updates.
+```java
+import com.azure.ai.agents.*;
+import com.azure.ai.agents.models.AgentReference;
+import com.azure.ai.agents.models.AzureCreateResponseOptions;
+import com.azure.core.util.IterableStream;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.openai.models.responses.Response;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseStreamEvent;
+import com.openai.helpers.ResponseAccumulator;
+
+String projectEndpoint = "your_project_endpoint";
+String agentName = "your_agent_name";
+
+// Create clients to call Foundry API
+AgentsClientBuilder builder = new AgentsClientBuilder()
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .endpoint(projectEndpoint);
+ResponsesClient responsesClient = builder.buildResponsesClient();
+
+// Start a background response using the agent
+AgentReference agentRef = new AgentReference(agentName);
+
+ResponseAccumulator accumulator = ResponseAccumulator.create();
+IterableStream<ResponseStreamEvent> events =
+    responsesClient.createStreamingAzureResponse(
+        new AzureCreateResponseOptions()
+            .setAgentReference(agentRef),
+        ResponseCreateParams.builder()
+            .input("Write a detailed analysis of "
+                + "renewable energy trends."));
+for (ResponseStreamEvent event : events) {
+    accumulator.accumulate(event);
+}
+Response response = accumulator.response();
+System.out.println(response.output());
+```
 
 # [REST API](#tab/rest)
 

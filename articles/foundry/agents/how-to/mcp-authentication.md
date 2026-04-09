@@ -57,6 +57,8 @@ Use the following guidance to choose a method:
 
 > [!TIP]
 > When in doubt, start with Microsoft Entra authentication if the MCP server supports it. Microsoft Entra authentication eliminates the need to manage secrets and provides built-in token rotation.
+>
+> For [private MCP servers within a virtual network](virtual-networks.md), Microsoft Entra authentication is a natural fit because both the agent and MCP server are on the same private network.
 
 ## Supported authentication methods
 
@@ -119,7 +121,7 @@ When the agent invokes the MCP server, Agent Service uses the project's managed 
 ## OAuth identity passthrough
 
 > [!NOTE]
-> To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project.
+> To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project. The user's Microsoft Entra tenant must match the tenant of your Foundry project. Cross-tenant token exchange isn't supported.
 
 OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft MCP servers and underlying services that are compliant with OAuth, including Microsoft Entra.
 
@@ -229,7 +231,7 @@ The following steps use the Agent 365 MCP server as an example:
 
 ## Unauthenticated access
 
-Use unauthenticated access only when the MCP server doesn't require authentication. This method is appropriate for public MCP servers that provide open access to their tools.
+Use unauthenticated access only when the MCP server doesn't require authentication. This method is appropriate for public MCP servers that provide open access to their tools, or for private MCP servers within your virtual network that rely on network-level isolation instead of explicit authentication.
 
 > [!IMPORTANT]
 > Even when authentication isn't required, ensure you understand the MCP server's terms of service and rate limits before connecting.
@@ -282,12 +284,17 @@ After you configure authentication, verify the connection works correctly:
 | Tool calls are blocked unexpectedly | `require_approval` is set to `always` (default), or the configuration requires approval for the tool you're calling | Update `require_approval` to match your approval requirements. |
 | MCP server returns "unauthorized" despite valid credentials | The credential header name or format doesn't match what the MCP server expects | Check the MCP server's documentation for the exact header name (for example, `Authorization`, `X-API-Key`, or `Api-Key`) and value format (for example, `Bearer <token>` vs. just `<token>`). |
 | OAuth tokens expire and tool calls fail after some time | The refresh token is invalid or the refresh URL is incorrect | Verify the refresh URL is correct. If you used the token URL as the refresh URL, confirm the OAuth provider supports token refresh at that endpoint. The user might need to consent again if refresh tokens are revoked. |
+| Private MCP server is unreachable from agent | The MCP server isn't on the dedicated MCP subnet, subnet delegation is missing, or private DNS resolution fails | Verify the MCP server is deployed on the MCP subnet with `Microsoft.App/environments` delegation. Check private DNS zone configuration. Deploy using the [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup) template. |
 
 ## Host a local MCP server
 
 If you developed a custom MCP server or want to use an open-source MCP server that runs locally, you need to host it in the cloud before connecting it to Agent Service.
 
-The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint. Consider the following points when attempting to host local MCP servers in the cloud:
+The Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you need to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/tree/main) to get a remote MCP server endpoint.
+
+The remote endpoint can be either a public endpoint or a private endpoint within your VNet. For private MCP servers, deploy your Container App with internal-only ingress on a dedicated MCP subnet delegated to `Microsoft.App/environments`. To get started, use the [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup) template. For details about tool support in network-isolated environments, see [Agent tools with network isolation](../../how-to/configure-private-link.md#agent-tools-with-network-isolation).
+
+Consider the following points when attempting to host local MCP servers in the cloud:
 
 | Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
 | :---------: | :---------: | :---------: |
@@ -306,6 +313,7 @@ The Agent Service runtime only accepts a remote MCP server endpoint. If you want
 ## Next steps
 
 - [Connect to Model Context Protocol servers](tools/model-context-protocol.md)
+- [Set up private networking for Foundry Agent Service](virtual-networks.md)
 - [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - [Role-based access control in the Foundry portal](../../concepts/rbac-foundry.md)
 - [Add a connection in Foundry](../../how-to/connections-add.md)

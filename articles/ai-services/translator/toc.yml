@@ -124,23 +124,23 @@ items:
     
 
 
-- name: Text translation (2025-10-01-preview) 🆕
+- name: Text translation (2025-10-01-preview) 
   items:
-  - name: Overview 🆕
+  - name: Overview 
     displayName: gpt, adaptive, tone, gender
     href: text-translation/preview/overview.md
-  - name: "Migrate to 2025-10-01-preview 🆕"
+  - name: "Migrate to 2025-10-01-preview "
     displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
     href: text-translation/how-to/migrate-to-preview.md
-  - name: REST API guide (2025-10-01-preview) 🆕
+  - name: REST API guide (2025-10-01-preview) 
     displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
     href: text-translation/preview/rest-api-guide.md
-  - name: Get languages 🆕
+  - name: Get languages 
     href: text-translation/preview/get-languages.md
-  - name: Translate 🆕
+  - name: Translate 
     displayName: detection,detect
     href: text-translation/preview/translate-api.md
-  - name: Transliterate 🆕
+  - name: Transliterate 
     href: text-translation/preview/transliterate-api.md
   - name: Text translation authentication
     displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
@@ -151,10 +151,10 @@ items:
   - name: What is Azure Translator document translation?
     displayName: ocr,batch,features,development,formats,file types
     href: document-translation/overview.md
-  - name: Document translation SDK guide 🆕
+  - name: Document translation SDK guide 
     displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
     href: document-translation/document-sdk-overview.md
-  - name: Document translation REST APIs 🆕
+  - name: Document translation REST APIs 
     displayName: get,post,cancel,delete
     href: document-translation/reference/rest-api-guide.md
   - name: Quickstarts
@@ -224,15 +224,15 @@ items:
       - name: "Container: Translate text"
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/translate-text-parameters.md
-      - name: "Container: Transliterate text 🆕"
+      - name: "Container: Transliterate text "
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/transliterate-text-parameters.md
-      - name: "Container: Translate documents 🆕"
+      - name: "Container: Translate documents "
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/translate-document-parameters.md
   - name: Translator container FAQ
     href: containers/faq.yml
-- name: Custom translations (Microsoft Foundry)🆕
+- name: Custom translations (Microsoft Foundry)
   items:
   - name: What are Foundry Tools custom translations?
     href: custom-translator/azure-ai-foundry/overview.md
@@ -241,7 +241,7 @@ items:
   - name: Foundry Tools for beginners
     displayName: use case,usage,train,training,bleu,tuning,tune
     href: custom-translator/azure-ai-foundry/beginners-guide.md
-  - name: Foundry Tools adaptive custom translation (preview) 🆕
+  - name: Foundry Tools adaptive custom translation (preview) 
     displayName: foundry, gpt, api
     href: custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md
   - name: FAQ
@@ -346,8 +346,7 @@ items:
       href: neural-dictionary.md
   - name: Custom Translator portal concepts
     items:
-    - name: Custom text-translation/preview/get-languages.md
-      displayName: speech
+    - name: Custom text translation   
       href: custom-translator/concepts/customization.md
     - name: Workspaces and projects
       href: custom-translator/concepts/workspace-and-project.md

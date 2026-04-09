@@ -10,7 +10,6 @@ ms.reviewer: fasanti
 ms.custom:
   - classic-and-new
   - dev-focus
-  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to use langchain-azure-ai with Foundry Agent Service so that I can build practical intelligent applications with LangGraph and LangChain and the Agent Service.
 ---
@@ -19,12 +18,12 @@ ai-usage: ai-assisted
 
 Use the `langchain-azure-ai` package to connect LangGraph and LangChain
 applications to Foundry Agent Service. This article walks through practical
-scenarios, from basic prompt agents to tool-enabled workflows, human-in-the-
-loop approvals, and tracing.
+scenarios, from using existing agents and composing multi-agent graphs to
+tool-enabled workflows, human-in-the-loop approvals, and tracing.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
 - A deployed chat model (for example, `gpt-4.1`) in your project.
 - Python 3.10 or later.
@@ -54,9 +53,9 @@ export MODEL_DEPLOYMENT_NAME="gpt-4.1"
 
 The class `AgentServiceFactory` is your starting point to compose agents in LangGraph that interact with the Agent Service in Foundry.
 The factory creates LangGraph-compatible nodes that run through Agent Service and that can be used to compose more complex solutions
-with LangGraph. 
+with LangGraph.
 
-Create the agent factory by connecting the `AgentServiceFactory` class to a Foundry project. All agents you create through this factory are managed
+Create the agent factory by connecting the `AgentServiceFactory` class to a Foundry project. All agents you create or reference through this factory are managed
 within the project and visible in the Foundry portal (new).
 
 > [!NOTE]
@@ -77,10 +76,145 @@ factory = AgentServiceFactory(
 )	
 ```
 
+## Use an existing agent
+
+We recommend creating and configuring agents in the Foundry portal or Foundry SDK and then reference them by name with `get_agent_node` to compose graphs. This approach is recommended because it keeps agent configuration centralized in the Foundry and lets your code focus on orchestration. You can also create agents programmatically with `create_prompt_agent` when you need to define agents entirely in code.
+
+```python
+echo_node = factory.get_agent_node(
+	name="my-echo-agent",
+	version="latest",
+)
+```
+
+**What this snippet does:** Retrieves a reference to an existing Foundry agent as a LangGraph-compatible node. The agent must already exist in your Foundry project. Use `version="latest"` to always target the most recent version, or pin a specific version number for stability.
+
+Test that your agent can run:
+
+```python
+response = echo_node.invoke(
+	{"messages": [HumanMessage(content="Hello, world!")]}
+)
+pretty_print(response)
+```
+
+```output
+================================ Human Message =================================
+
+Hello, world!
+================================== Ai Message ==================================
+Name: my-echo-agent
+
+Goodbye, world!
+```
+
+### Conversations and state
+
+Nodes attached to the Agent Service automatically track responses in conversations. The `azure_ai_agents_conversation_id` property is added to the state so you can reference or continue conversations:
+
+```python
+print(
+	"azure_ai_agents_conversation_id:",
+	response["azure_ai_agents_conversation_id"],
+)
+```
+
+```output
+azure_ai_agents_conversation_id: <conversation-id>
+```
+
+### Compose graphs with existing agents
+
+You can use Agent Service nodes just like any other node in LangGraph to build complex graphs. The following example builds a conditional routing graph where a local `router_node` inspects the user message and decides whether to delegate to a Foundry agent.
+
+```python
+from typing import Literal
+from langchain_core.messages import AIMessage
+from langgraph.graph import StateGraph, MessagesState, START, END
+
+
+class RouterState(MessagesState):
+	jump_to: str | None
+
+
+def router_node(state: RouterState):
+	last_message = state["messages"][-1].content.lower()
+
+	# Simple logic simulating a model decision
+	if "negate" in last_message:
+		return RouterState(
+			messages=state["messages"], jump_to="delegate"
+		)
+	else:
+		return RouterState(
+			messages=[AIMessage(content="I can handle this!")],
+			jump_to=None,
+		)
+
+
+def route_decision(state: RouterState) -> Literal["expert_node", END]:
+	if state.get("jump_to", None) == "delegate":
+		return "expert_node"
+	return END
+
+
+workflow = StateGraph(RouterState)
+
+workflow.add_node("router_node", router_node)
+workflow.add_node("expert_node", echo_node)
+workflow.add_edge(START, "router_node")
+workflow.add_conditional_edges("router_node", route_decision)
+workflow.add_edge("expert_node", END)
+
+app = workflow.compile()
+```
+
+**What this snippet does:** Builds a LangGraph `StateGraph` with two nodes. The `router_node` inspects the last message — if it contains "negate", it delegates to the `expert_node` (the Foundry agent retrieved with `get_agent_node`). Otherwise, the router handles the request locally and ends the graph. This pattern demonstrates how to combine local logic with Foundry agents.
+
+The graph looks as follows:
+
+:::image type="content" source="../media/langchain-agents/router-delegate.png" alt-text="Diagram of the agent graph with a node running in Agent Service.":::
+
+Invoke the graph:
+
+```python
+print("--- Test 1 (Direct) ---")
+pretty_print(
+	app.invoke({"messages": [HumanMessage(content="Hello, world!")]})
+)
+
+print("\n--- Test 2 (Delegated) ---")
+pretty_print(
+	app.invoke(
+		{"messages": [HumanMessage(content="Negate that I'm a genius!")]}
+	)
+)
+```
+
+```output
+------------------------------- Test 1 (Direct) --------------------------------
+================================ Human Message =================================
+
+Hello, world!
+================================== Ai Message ==================================
+
+I can handle this!
+
+------------------------------ Test 2 (Delegated) ------------------------------
+================================ Human Message =================================
+
+Negate that I'm a genius!
+================================== Ai Message ==================================
+Name: my-echo-agent
+
+You're not a genius!
+```
+
+In Test 1, the router handles the request locally. In Test 2, the router delegates to the Foundry agent, which responds with the opposite of the user's statement.
+
 ## Create a basic prompt agent
 
-Start with a minimal ReAct-style prompt agent. This gives you the fastest path
-to a working integration.
+When you need to define agents entirely in code — for example, during prototyping or when agent configuration should live alongside your application — use `create_prompt_agent`. Start with a minimal ReAct-style prompt agent to verify your integration.
 
 ```python
 agent = factory.create_prompt_agent(
@@ -523,113 +657,6 @@ Name: mcp-github-specs-agent
 
 Azure Cosmos DB supports multiple APIs, ...
 ```
-
-## Compose graphs
-
-You can compose complex graphs creating nodes that run in the Agent Service
-and connecting them with other nodes. The method `create_prompt_agent_node`
-returns a node instead of a compiled graph, which can be used later with
-other nodes.
-
-```python
-from langchain_azure_ai.agents import AgentServiceFactory
-from langchain_azure_ai.agents.prebuilt import AgentServiceAgentState
-from langchain_azure_ai.tools import AzureAIDocumentIntelligenceTool
-
-factory = AgentServiceFactory()
-
-parser_node = factory.create_prompt_agent_node(
-    name="document-parser",
-    description="Extracts content from documents using Azure AI Document Intelligence.",
-    model="gpt-4.1",
-    instructions="""You are a document parsing specialist. Your job is to extract all 
-		content from documents provided by the user using the Azure AI Document Intelligence 
-		tool. When given a document URL or file:
-
-		1. Use the Document Intelligence tool to parse it.
-		2. Return the full extracted content faithfully, preserving structure (headings, tables, 
-		lists, key-value pairs).
-		3. Do NOT summarize or analyze — just extract and return the raw content.""",
-    tools=[AzureAIDocumentIntelligenceTool()],
-)
-
-analyst_node = service.create_prompt_agent_node(
-    name="document-analyst",
-    description="Analyzes extracted document content and produces a structured report.",
-    model="gpt-4.1",
-    instructions="""You are a senior document analyst. You receive raw extracted content 
-		from documents and produce a structured analysis. Your analysis should include:
-
-		1. **Document Type** — Classify the document (e.g., invoice, contract, report, form, 
-		receipt, letter, resume, etc.).
-		2. **Key Entities** — Extract names, dates, amounts, addresses, and other important 
-		entities.
-		3. **Summary** — Write a concise summary of the document's content and purpose.
-		4. **Action Items** — List any action items, deadlines, or follow-ups found in the 
-		document.
-		5. **Risks or Notable Clauses** — Flag anything unusual, risky, or noteworthy 
-		(especially for contracts and legal documents).
-
-		Be thorough but concise. Format your output clearly with markdown headings.""",
-)
-
-def route_parser_output(
-    state: AgentServiceAgentState,
-) -> Literal["tools", "prepare_analysis"]:
-    """Route parser output: call tools if needed, otherwise move to analysis."""
-    last = state["messages"][-1]
-    if isinstance(last, AIMessage) and last.tool_calls:
-        return "tools"
-    return "prepare_analysis"
-
-def prepare_analysis(state: AgentServiceAgentState) -> AgentServiceAgentState:
-    """Bridge between parser and analyst.
-
-    Takes the parser's AI response and wraps it in a HumanMessage so the
-    analyst agent can process it on its own thread. Resets the V2 agent
-    state fields so the analyst starts a fresh conversation.
-    """
-    parser_output = state["messages"][-1].content
-    handoff_message = HumanMessage(
-        content=(
-            "Analyze the following extracted document content and produce a "
-            "structured report:\n\n"
-            f"{parser_output}"
-        )
-    )
-    return AgentServiceAgentState(messages=[handoff_message])
-
-
-builder = StateGraph(AgentServiceAgentState)
-
-# Nodes
-builder.add_node("parser", parser_node)
-builder.add_node("tools", ToolNode(tools))
-builder.add_node("prepare_analysis", prepare_analysis)
-builder.add_node("analyst", analyst_node)
-
-# Edges
-builder.add_edge(START, "parser")
-builder.add_conditional_edges("parser", route_parser_output)
-builder.add_edge("tools", "parser")
-builder.add_edge("prepare_analysis", "analyst")
-builder.add_edge("analyst", END)
-
-# Compile with tracing
-graph = builder.compile(name="document-intake-agent")
-```
-
-**What this snippet does:** Builds a two-agent document intake pipeline as a
-LangGraph `StateGraph`. The `parser` node uses Document Intelligence to
-extract raw content from a document. A routing function checks whether the
-parser needs to call tools; if so, execution loops through a `tools` node and
-back to the parser. Once parsing is complete, the `prepare_analysis` bridge
-wraps the extracted content in a new `HumanMessage` and hands it to the
-`analyst` node, which produces a structured report (document type, key
-entities, summary, action items, and risks). The compiled graph runs both
-agents through Foundry Agent Service while keeping routing and bridging logic
-local.
-
 
 ## Observability
 

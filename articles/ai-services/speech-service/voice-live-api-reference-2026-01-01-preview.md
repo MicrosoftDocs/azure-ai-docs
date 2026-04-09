@@ -25,7 +25,7 @@ The API uses JSON-formatted events sent over WebSocket connections to manage con
 - **Intelligent Turn Detection**: Multiple VAD options including Azure semantic VAD and server-side detection
 - **Audio Enhancement**: Built-in noise reduction and echo cancellation
 - **Function Calling**: Tool integration for enhanced conversational capabilities
-- **Flexible Session Management**: Configurable modalities, instructions, and response parameters
+- **Flexible Session Management**: Configurable output modalities, instructions, and response parameters
 
 ## Client Events
 
@@ -33,7 +33,7 @@ The Voice Live API supports the following client events that can be sent from th
 
 | Event | Description |
 |-------|-------------|
-| [session.update](#sessionupdate) | Update the session configuration including voice, modalities, turn detection, and other settings |
+| [session.update](#sessionupdate) | Update the session configuration including voice, output modalities, turn detection, and other settings |
 | [session.avatar.connect](#sessionavatarconnect) | Establish avatar connection by providing client SDP for WebRTC negotiation |
 | [input_audio_buffer.append](#input_audio_bufferappend) | Append audio bytes to the input audio buffer |
 | [input_audio_buffer.commit](#input_audio_buffercommit) | Commit the input audio buffer for processing |
@@ -47,7 +47,7 @@ The Voice Live API supports the following client events that can be sent from th
 
 ### session.update
 
-Update the session's configuration. This event can be sent at any time to modify settings such as voice, modalities, turn detection, tools, and other session parameters. Note that once a session is initialized with a particular model, it can't be changed to another model.
+Update the session's configuration. This event can be sent at any time to modify settings such as voice, output modalities, turn detection, tools, and other session parameters. Note that once a session is initialized with a particular model, it can't be changed to another model.
 
 #### Event Structure
 
@@ -404,6 +404,30 @@ Instruct the server to create a response via model inference. This event can spe
   }
 }
 ```
+
+#### Example with pre-generated assistant message
+
+In some scenarios, you might want to generate an audio response for predefined text instead of having the model generate the text response. Use the `pre_generated_assistant_message` parameter in the `response.create` message. You can only include one text entry in the `content` field.
+
+```json
+{
+  "type": "response.create",
+  "response": {
+    "pre_generated_assistant_message": {
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "repeat what I say"
+        }
+      ]
+    }
+  }
+}
+```
+
+When the service receives this message, it generates an audio response for the predefined text. The message is also added to the conversation context history.
 
 ### response.cancel
 
@@ -2331,7 +2355,7 @@ Azure personal voice configuration.
 | type | string | Must be `"azure-personal"` |
 | name | string | Voice name (can't be empty) |
 | temperature | number | Optional. Temperature between 0.0 and 1.0 |
-| model | string | Underlying neural model: `DragonLatestNeural`, `PhoenixLatestNeural`, `PhoenixV2Neural` |
+| model | string | Underlying base model: `DragonLatestNeural`, `DragonHDOmniLatestNeural`, `MAI-Voice-1` |
 | custom_lexicon_url | string | Optional. URL to custom lexicon |
 | custom_text_normalization_url | string | Optional. URL to custom text normalization |
 | prefer_locales | string[] | Optional. Preferred locales<br/> Prefer locales change the accents of languages. If the value isn't set, TTS uses default accent of each language. For example when TTS speaking English, it uses the American English accent. And when speaking Spanish, it uses the Mexican Spanish accent. <br/>If set the prefer_locales to `["en-GB", "es-ES"]`, the English accent is British English and the Spanish accent is European Spanish. And TTS also able to speak other languages like French, Chinese, etc. |
@@ -2354,12 +2378,13 @@ Base VAD-based turn detection.
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"server_vad"` |
-| threshold | number | Optional. Activation threshold (0.0-1.0) |
-| prefix_padding_ms | integer | Optional. Audio padding before speech starts |
-| silence_duration_ms | integer | Optional. Silence duration to detect speech end |
+| threshold | float | Optional. Activation threshold (0.0-1.0) (default: 0.5) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech starts (default: 300) |
+| silence_duration_ms | integer | Optional. Silence duration to detect speech end (default: 500) |
+| speech_duration_ms | integer | Optional. Minimum speech duration (default: 200) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
-| create_response | boolean | Optional. Enable or disable whether a response is generated. |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ##### RealtimeOpenAISemanticVAD
@@ -2370,8 +2395,8 @@ OpenAI semantic VAD configuration which uses a model to determine when the user 
 |-------|------|-------------|
 | type | string | Must be `"semantic_vad"` |
 | eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` lets the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
-| create_response | boolean | Optional. Enable or disable whether a response is generated. |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
 
 ##### RealtimeAzureSemanticVAD
 
@@ -2380,15 +2405,15 @@ Azure semantic VAD, which determines when the user starts and speaking using a s
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad"` |
-| threshold | number | Optional. Activation threshold |
-| prefix_padding_ms | integer | Optional. Audio padding before speech |
-| silence_duration_ms | integer | Optional. Silence duration for speech end |
+| threshold | float | Optional. Activation threshold (default: 0.5) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
+| silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| speech_duration_ms | integer | Optional. Minimum speech duration |
+| speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
-| languages | string[] | Optional. Supports English. Other languages are ignored. |
-| create_response | boolean | Optional. Enable or disable whether a response is generated. |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| languages | string[] | Optional. Supports English. Other languages are ignored (default: none). |
+| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ##### RealtimeAzureSemanticVADMultilingual
@@ -2398,15 +2423,15 @@ Azure semantic VAD (default variant).
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"azure_semantic_vad_multilingual"` |
-| threshold | number | Optional. Activation threshold |
-| prefix_padding_ms | integer | Optional. Audio padding before speech |
-| silence_duration_ms | integer | Optional. Silence duration for speech end |
+| threshold | float | Optional. Activation threshold (default: 0.5) |
+| prefix_padding_ms | integer | Optional. Audio padding before speech (default: 300) |
+| silence_duration_ms | integer | Optional. Silence duration for speech end (default: 500) |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
-| speech_duration_ms | integer | Optional. Minimum speech duration |
-| remove_filler_words | boolean | Optional. Remove filler words (default: false). |
-| languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages are ignored. |
-| create_response | boolean | Optional. Enable or disable whether a response is generated. |
-| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| speech_duration_ms | integer | Optional. Minimum speech duration (default: 80) |
+| remove_filler_words | boolean | Optional. Remove filler words (default: false) |
+| languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages are ignored (default: none). |
+| create_response | boolean | Optional. Enable or disable whether a response is generated (default: true). |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: true). |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ### RealtimeEOUDetection
@@ -2427,13 +2452,15 @@ Configuration for avatar streaming and behavior.
 
 | Field | Type | Description |
 |-------|------|-------------|
+| type | string | Optional. Avatar type. Allowed values: `video-avatar`, `photo-avatar`. Default is `video-avatar` |
 | ice_servers | [RealtimeIceServer](#realtimeiceserver)[] | Optional. ICE servers for WebRTC |
 | character | string | Character name or ID for the avatar |
 | style | string | Optional. Avatar style (emotional tone, speaking style) |
 | customized | boolean | Whether the avatar is customized |
+| model | string | Optional. Base model name for the photo avatar, required if type is `photo-avatar`, valid value is `vasa-1` |
 | video | [RealtimeVideoParams](#realtimevideoparams) | Optional. Video configuration |
 | scene | [RealtimeAvatarScene](#realtimeavatarscene) | Optional. Configuration for the avatar's zoom level, position, rotation and movement amplitude in the video frame |
-| output_protocol | string | Optional. Output protocol for avatar streaming. Default is `webrtc` |
+| output_protocol | string | Optional. Output protocol for avatar streaming. Allowed values: `websocket` and `webrtc`. Default is `webrtc` |
 | output_audit_audio | boolean | Optional. When enabled, forwards audit audio via WebSocket for review/debugging purposes, even when avatar output is delivered via WebRTC. Default is `false` |
 
 #### RealtimeIceServer
@@ -2456,6 +2483,8 @@ Video streaming parameters for avatar.
 | codec | string | Optional. Video codec, currently only `h264` (default: `h264`) |
 | crop | [RealtimeVideoCrop](#realtimevideocrop) | Optional. Cropping settings |
 | resolution | [RealtimeVideoResolution](#realtimevideoresolution) | Optional. Resolution settings |
+| background | [RealtimeVideoBackground](#realtimevideobackground) | Optional. Background settings |
+| gop_size | integer | Optional. Group of Pictures size (default: 10, range: 1–2000) |
 
 #### RealtimeVideoCrop
 
@@ -2474,6 +2503,15 @@ Video resolution specification.
 |-------|------|-------------|
 | width | integer | Width in pixels (must be > 0) |
 | height | integer | Height in pixels (must be > 0) |
+
+#### RealtimeVideoBackground
+
+Video background configuration. Only one of `image_url` or `color` can be set.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| image_url | string | Optional. URL to a background image |
+| color | string | Optional. Background color value |
 
 #### RealtimeAvatarScene
 
@@ -2517,7 +2555,7 @@ Session configuration object used in `session.update` events.
 | Field | Type | Description |
 |-------|------|-------------|
 | model | string | Optional. Model name to use |
-| modalities | [RealtimeModality](#realtimemodality)[] | Optional. The supported modalities for the session. <br><br> For example, "modalities": ["text", "audio"] is the default setting that enables both text and audio modalities. To enable only text, set "modalities": ["text"]. To enable avatar output, set "modalities": ["text", "audio", "avatar"]. You can't enable only audio. |
+| modalities | [RealtimeModality](#realtimemodality)[] | Optional. The supported output modalities for the session. <br><br> For example, "modalities": ["text", "audio"] is the default setting that enables both text and audio output modalities. To enable only text output, set "modalities": ["text"]. To enable avatar output, set "modalities": ["text", "audio", "avatar"]. You can't enable only audio. |
 | animation | [RealtimeAnimation](#realtimeanimation) | Optional. Animation configuration |
 | voice | [RealtimeVoice](#realtimevoice) | Optional. Voice configuration |
 | instructions | string | Optional. System instructions for the model. The instructions could guide the output audio if OpenAI voices are used but may not apply to Azure voices. |
@@ -2536,14 +2574,15 @@ Session configuration object used in `session.update` events.
 | reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check [Azure Foundry doc](../../ai-foundry/openai/how-to/reasoning.md#reasoning-effort) for more details. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.  |
 | avatar | [RealtimeAvatarConfig](#realtimeavatarconfig) | Optional. Avatar configuration |
 | output_audio_timestamp_types | [RealtimeAudioTimestampType](#realtimeaudiotimestamptype)[] | Optional. Timestamp types for output audio |
+| metadata | map | Optional. Set of up to 16 key-value pairs that can be attached to the session. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. |
 
 #### RealtimeModality
 
-Supported session modalities.
+Supported session output modalities.
 
 **Allowed Values:**
-* `text` - Text input/output
-* `audio` - Audio input/output
+* `text` - Text output
+* `audio` - Audio output
 * `animation` - Animation output
 * `avatar` - Avatar video output
 
@@ -2684,7 +2723,7 @@ Configuration for LLM-based interim response generation. Uses LLM to generate co
 | type | string | Must be `"llm-interim-response"`. |
 | triggers | [InterimResponseTrigger](#interimresponsetrigger)[] | Optional. List of triggers that can fire the interim response. Any trigger can activate the interim response (OR logic). Supported values: `latency`, `tool`. Default is `["latency"]`. |
 | latency_threshold_ms | integer | Optional. Latency threshold in milliseconds before triggering interim response. Default is 2000ms. Minimum value is 0. |
-| model | string | Optional. The model to use for LLM-based interim response generation. Default is `gpt-4.1-mini`. |
+| model | string | Optional. The model to use for LLM-based interim response generation. Default is `gpt-4.1-mini`. The default model might change without a new API version. |
 | instructions | string | Optional. Custom instructions for generating interim responses. If not provided, a default prompt is used. |
 | max_completion_tokens | integer | Optional. Maximum number of tokens to generate for the interim response. Default is 50. Minimum value is 1. |
 
@@ -2902,7 +2941,7 @@ Response object representing a model inference response.
 | usage | [RealtimeUsage](#realtimeusage) | Optional. Token usage statistics |
 | conversation_id | string | Optional. Associated conversation ID |
 | voice | [RealtimeVoice](#realtimevoice) | Optional. Voice used for response |
-| modalities | string[] | Optional. Modalities used |
+| modalities | string[] | Optional. Output modalities used |
 | output_audio_format | [RealtimeOutputAudioFormat](#realtimeoutputaudioformat) | Optional. Audio format used |
 | temperature | number | Optional. Temperature used |
 | max_response_output_tokens | integer or "inf" | Optional. Max tokens used |
@@ -3074,7 +3113,7 @@ The definition of a function tool as used by the realtime endpoint.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| modalities | array | The modalities that the session supports.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio modalities. To enable only text, set `"modalities": ["text"]`. You can't enable only audio. |
+| modalities | array | The output modalities for the response.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio output modalities. To enable only text output, set `"modalities": ["text"]`. You can't enable only audio. |
 | instructions | string | The instructions (the system message) to guide the model's responses.|
 | voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br><br>Once the voice is used in the session for the model's audio response, it can't be changed. |
 | tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
@@ -3085,6 +3124,7 @@ The definition of a function tool as used by the realtime endpoint.
 | reasoning_effort | [ReasoningEffort](#reasoningeffort) | Optional. Constrains effort on reasoning for reasoning models. Check model documentation for supported values for each model. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br><br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br><br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation. <br><br>Defaults to `"auto"` |
 | metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
+| pre_generated_assistant_message | [RealtimeAssistantMessageItem](#realtimeconversationassistantmessageitem) | Optional. A pre-generated assistant message to use for generating the audio response instead of having the model generate the text. When provided, the server generates an audio response for the predefined text, bypassing model inference for text generation. The message is added to the conversation context history. The message must have the `role` set to `"assistant"` and include `content` with a single text content part. |
 
 ### RealtimeResponseSession
 
@@ -3097,7 +3137,7 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | object | string | The session object.<br><br>Allowed values: `realtime.session` |
 | id | string | The unique ID of the session. |
 | model | string | The model used for the session. |
-| modalities | array | The modalities that the session supports.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio modalities. To enable only text, set `"modalities": ["text"]`. You can't enable only audio. |
+| modalities | array | The output modalities for the session.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio output modalities. To enable only text output, set `"modalities": ["text"]`. You can't enable only audio. |
 | instructions | string | The instructions (the system message) to guide the model's text and audio responses.<br><br>Here are some example instructions to help guide content and format of text and audio responses:<br>`"instructions": "be succinct"`<br>`"instructions": "act friendly"`<br>`"instructions": "here are examples of good responses"`<br><br>Here are some example instructions to help guide audio behavior:<br>`"instructions": "talk quickly"`<br>`"instructions": "inject emotion into your voice"`<br>`"instructions": "laugh frequently"`<br><br>While the model might not always follow these instructions, they provide guidance on the desired behavior. |
 | voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br><br>Once the voice is used in the session for the model's audio response, it can't be changed. |
 | input_audio_sampling_rate | integer | The sampling rate for the input audio. |

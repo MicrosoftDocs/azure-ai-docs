@@ -1,7 +1,7 @@
 ---
 title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
-ms.date: 02/11/2026
+ms.date: 03/30/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -16,6 +16,15 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## March 2026
+
+| Item | Description |
+|--|--|
+| [Search Management 2026-03-01-preview](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) | New preview REST API version providing programmatic access to the control plane operations described in this table. |
+| [Service-level CMK](search-security-manage-encryption-keys.md#enable-service-level-cmk-on-new-objects-by-default-preview) (preview) | For security-conscious customers who want more control over how their data is protected, the new `serviceLevelEncryptionKey` property in the `encryptionWithCmk` configuration helps you enable a customer-managed key (CMK) on all newly created objects by default. It ensures all sensitive data in your search service is protected by a key you control, without having to specify key information each time an object is created. You can later rotate from the default key to one specifically for the object. Note that encryption is set at creation time and can't be added to existing objects. |
+| [`knowledgeRetrieval` property](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) (preview) | Search Management 2026-03-01-preview adds a `knowledgeRetrieval` property to the search service definition. This property doesn't affect any data plane versions, including Search Service 2025-11-01-preview. Ignore for now. |
+| [**Import data** wizard unification](search-import-data-portal.md) | The **Import data** and **Import data (new)** wizards have been unified into a single **Import data** wizard that supports keyword search, RAG, and multimodal RAG. |
 
 ## February 2026
 

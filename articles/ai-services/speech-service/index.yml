@@ -88,7 +88,7 @@ conceptualContent:
       links:
         - itemType: quickstart
           text: Speech MCP tool in Microsoft Foundry
-          url: /azure/ai-foundry/agents/how-to/tools/azure-ai-speech?view=foundry
+          url: /azure/foundry/agents/how-to/tools/azure-ai-speech
         - itemType: overview
           text: About Speech Studio
           url: speech-studio-overview.md
@@ -137,7 +137,7 @@ conceptualContent:
 
 tools:
   title: Speech SDK
-  summary: Get started with the Speech SDK in your favorite programming language. See also <a href="speech-sdk.md">About the Speech SDK</a>.
+  summary: Get started with the Speech SDK in your favorite programming language.
   items:
   - title: C#
     imageSrc: /media/logos/logo_Csharp.svg

@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: overview
-ms.date: 03/10/2026
+ms.date: 03/25/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 keywords:
@@ -45,7 +45,7 @@ An agent is an AI application that uses a large language model (LLM) to reason a
 | Component | What it does |
 | --- | --- |
 | **Agent Runtime** | Hosts and scales both prompt agents and hosted agents. Manages conversations, tool calls, and agent lifecycle. |
-| **Tools** | Built-in tools including web search, file search, memory, code interpreter, MCP servers, and custom functions. Extend your agent's capabilities without building infrastructure. Tools have managed authentication - service managed credentials and On-Behalf-Of (OBO) authentication. |
+| **Tools** | Built-in tools including web search, file search, memory, code interpreter, MCP servers, and custom functions. Extend your agent's capabilities without building infrastructure. Tools have managed authentication, including service managed credentials and On-Behalf-Of (OBO) authentication. Some MCP servers, such as Azure DevOps MCP Server (preview), require connecting an organization during setup. Access can be scoped through Foundry tool configuration. |
 | **Models** | Works with many models from the Foundry model catalog, such as GPT-4o, Llama, and DeepSeek. Swap models without changing your agent code. |
 | **Observability** | End-to-end tracing, metrics, and Application Insights integration. See every decision your agent makes. |
 | **Identity & Security** | Microsoft Entra identity, RBAC, content filters, and virtual network isolation. Enterprise-grade trust built in. |
@@ -105,6 +105,8 @@ Agent Service works with many models available in the Foundry model catalog. For
 
 Agent Service provides built-in tools and supports custom tools so your agents can take actions and access data. For a full list, see the [Foundry tool catalog](concepts/tool-catalog.md). For advanced tool selection patterns, see [Tool best practices](concepts/tool-best-practice.md).
 
+Foundry supports remote MCP servers that you can add from the **Add Tools** catalog in the Foundry portal. For example, the Azure DevOps MCP Server (public preview) can be added directly from the catalog. Connect your Azure DevOps organization to enable agent access, and configure a subset of available tools to control which actions agents can perform. The **Add Tools** catalog is the entry point for enabling MCP servers and selecting permitted tools for an agent.
+
 > [!NOTE]
 > Some tools, including memory and web search, are in preview. For availability by region and preview status, see [tool support by region and model](./concepts/tool-best-practice.md#tool-support-by-region-and-model).
 
@@ -113,7 +115,7 @@ Agent Service provides built-in tools and supports custom tools so your agents c
 Agent Service supports the full build-test-deploy-monitor workflow:
 
 1. **Create** — Define a prompt agent in the portal or build a hosted agent in code.
-1. **Test** — Chat with your agent in the [agents playground](../concepts/concept-playgrounds.md) or run locally.
+1. **Test** — Chat with your agent in the [agents playground](../concepts/concept-playgrounds.md) or run locally. MCP server integrations, such as Azure DevOps, can be exercised directly in the playground via chat prompts to validate tool access and behavior before publishing.
 1. **Trace** — Inspect every model call, tool invocation, and decision with [agent tracing](../observability/concepts/trace-agent-concept.md).
 1. **Evaluate** — Run evaluations to measure quality and catch regressions.
 1. **Publish** — [Promote your agent](how-to/publish-agent.md) to a managed resource with a stable endpoint.

@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
-ms.date: 02/02/2026
+ms.date: 03/17/2026
 ms.custom: azure-ai-agents, references_regions, pilot-ai-workflow-jan-2026
 ai-usage: ai-assisted
 ---
@@ -56,63 +56,62 @@ Foundry Agent Service supports the following Azure OpenAI models in the listed r
 Keep in mind that model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs.
 
 > [!NOTE]
->
+> - This article refers to Agents (classic), which are now deprecated. To use models later than gpt-5, see the [agents (new) documentation](../../../foundry/agents/overview.md).
 > - [Hub-based projects](../../what-is-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, and gpt-35-turbo.
-> - [Spillover traffic management](../../openai/how-to/spillover-traffic-management.md) for [provisioned throughput](../../openai/concepts/provisioned-throughput.md) is compatible with agents.
-> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
 > - The [file search tool](../how-to/tools-classic/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
 > - The gpt-5 models can use only the [code interpreter](../how-to/tools-classic/code-interpreter.md) and [file search](../how-to/tools-classic/file-search.md) tools.
 > - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.
 
 # [Global standard](#tab/global-standard)
 
-| Region | gpt-5.2 | gpt-5.1 | gpt-5 | gpt-5-mini | gpt-5-nano | gpt-5-chat | gpt-4.1 | gpt-4.1-nano | gpt-4.1-mini | gpt-4o (05-13) | gpt-4o (08-06) | gpt-4o (11-20) | gpt-4o-mini | gpt-4 | gpt-4-turbo |
-| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| australiaeast | | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| brazilsouth | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| canadaeast | | ✅ | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| eastus | | | ✅ | ✅ | | | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| eastus2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| francecentral | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| germanywestcentral | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| italynorth | | | | | | | ✅ | ✅ | ✅ | | | ✅ | ✅ | | |
-| japaneast | | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| norwayeast | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| southafricanorth | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| southcentralus | ✅ | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| southindia | | | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| swedencentral | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| switzerlandnorth | | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| uksouth | | ✅ | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westeurope | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ |
-| westus | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westus3 | | | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Region | gpt-5 | gpt-5-mini | gpt-5-nano | gpt-5-chat | gpt-4.1 | gpt-4.1-nano | gpt-4.1-mini | gpt-4o (05-13) | gpt-4o (08-06) | gpt-4o (11-20) | gpt-4o-mini | gpt-4 | gpt-4-turbo |
+| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| australiaeast | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| brazilsouth | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ |
+| canadaeast | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus | ✅ | ✅ | | | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| francecentral | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| germanywestcentral | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| italynorth | | | | | ✅ | ✅ | ✅ | | | ✅ | ✅ | | |
+| japaneast | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| norwayeast | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southafricanorth | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ |
+| southcentralus | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southindia | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| swedencentral | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| switzerlandnorth | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| uksouth | ✅ | ✅ | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westeurope | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | | ✅ |
+| westus | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westus3 | | | | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Global provisioned managed](#tab/ptu-global)
 
-| Region | gpt-5.2 | gpt-5.1 | gpt-5 | gpt-5-mini | gpt-4.1 | gpt-4.1-nano | gpt-4.1-mini | gpt-4o (05-13) | gpt-4o (08-06) | gpt-4o (11-20) | gpt-4o-mini |
-| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| australiaeast | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| brazilsouth | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| canadaeast | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| eastus | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| eastus2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| francecentral | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| germanywestcentral | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| italynorth | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| japaneast | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| norwayeast | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| polandcentral | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| southafricanorth | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| southcentralus | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| southeastasia | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| southindia | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| swedencentral | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| switzerlandnorth | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| uksouth | ✅ | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westeurope | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westus | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westus3 | | ✅ | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Region | gpt-5 | gpt-5-mini | gpt-4.1 | gpt-4.1-nano | gpt-4.1-mini | gpt-4o (05-13) | gpt-4o (08-06) | gpt-4o (11-20) | gpt-4o-mini |
+| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| australiaeast | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| brazilsouth | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| canadaeast | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| francecentral | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| germanywestcentral | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| italynorth | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| japaneast | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| norwayeast | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| polandcentral | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southafricanorth | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southcentralus | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southeastasia | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| southindia | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| swedencentral | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| switzerlandnorth | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| uksouth | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westeurope | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westus | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westus3 | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 # [Standard](#tab/standard)
 

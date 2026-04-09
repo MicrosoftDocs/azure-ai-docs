@@ -7,7 +7,8 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 10/27/2022
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Limited Access to embedded Speech
@@ -19,7 +20,7 @@ Embedded Speech is designed for on-device speech to text and text to speech scen
 
 As a Limited Access feature, embedded Speech requires registration. Only customers managed by Microsoft, meaning those who are working directly with Microsoft account teams, are eligible for access. Customers who wish to use this feature are required to register by [submitting a registration form](https://aka.ms/csgate-embedded-speech). The use of embedded Speech is limited to the use case selected at the time of registration. Microsoft may require customers to re-verify this information.
 
-The embedded Speech is made available to customers under the terms governing their subscription to Microsoft Azure Services (including the [Service Specific Terms](https://go.microsoft.com/fwlink/?linkid=2018760)). Please review these terms carefully as they contain important conditions and obligations governing your use of embedded Speech.
+The embedded Speech is made available to customers under the terms governing their subscription to Microsoft Azure Services (including the [Service Specific Terms](https://go.microsoft.com/fwlink/?linkid=2018760)). Review these terms carefully as they contain important conditions and obligations governing your use of embedded Speech.
 
 Learn more about the legal terms that apply to this feature [here](https://azure.microsoft.com/support/legal/).
 

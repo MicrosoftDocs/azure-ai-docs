@@ -4,7 +4,7 @@ description: Configure indexer connections to access content from other Azure re
 ms.reviewer: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/23/2026
+ms.date: 03/17/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
@@ -91,7 +91,7 @@ When you complete the steps in this section, you have a shared private link that
 
 ### [**Azure portal**](#tab/portal-create)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Settings** on the left pane, select **Networking**.
 
@@ -419,7 +419,7 @@ While both scenarios have a dependency on Azure Private Link, they're independen
 
 When evaluating shared private links for your scenario, remember these constraints:
 
-+ Several of the resource types used in a shared private link are in preview. If you're connecting to a preview resource (Azure Database for MySQL or Azure SQL Managed Instance), use a preview version of the Management REST API to create the shared private link. We recommend the [latest preview API](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true).
++ Several of the resource types used in a shared private link are in preview. If you're connecting to a preview resource (Azure Database for MySQL or Azure SQL Managed Instance), use a preview version of the Management REST API to create the shared private link. We recommend the [latest preview API version](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true).
 
 + Indexer execution must use the [private execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) that's specific to your search service. Private endpoint connections aren't supported from the multitenant content processing environment. The configuration setting for this requirement is covered in this article.
 

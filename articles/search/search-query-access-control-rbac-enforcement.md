@@ -22,9 +22,9 @@ This article explains how to set up queries that use permission metadata to filt
 - Permission metadata must consist of either POSIX-style permissions that identify the level of access and the group or user ID, or the resource ID of the container in ADLS Gen2 if you're using RBAC scope.
 
 - Depending on the data source:
-  + For ADLS Gen2 data sources, you must have configured Access Control Lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level.
+  + For ADLS Gen2 data sources, you must have configured access control lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level.
   + For Azure Blob data sources, you must have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md), a [knowledge source](agentic-knowledge-source-how-to-blob.md), or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
-  + For SharePoint data sources, you must have configured Access Control Lists (ACLs). You can use a [built-in SharePoint indexer](search-how-to-index-sharepoint-online.md) and configure it with [ACL ingestion capabilities](search-indexer-sharepoint-access-control-lists.md). 
+  + For SharePoint data sources, you must have configured access control lists (ACLs). You can use a [built-in SharePoint indexer](search-how-to-index-sharepoint-online.md) and configure it with [ACL ingestion capabilities](search-indexer-sharepoint-access-control-lists.md). 
 
 - Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a preview package of an Azure SDK to query the index or knowledge source. This API version supports internal queries that filter out unauthorized results.
 
@@ -40,7 +40,7 @@ This article explains how to set up queries that use permission metadata to filt
 
 ## ACL entry limits per data source
 
-Access Control List (ACL) entry limits define how many distinct permission records can be associated with a file, folder, or item within a connected data source. Each entry represents a single user or group identity and the access rights granted to that identity (for example, Read, Write, or Execute).
+Access control list (ACL) entry limits define how many distinct permission records can be associated with a file, folder, or item within a connected data source. Each entry represents a single user or group identity and the access rights granted to that identity (for example, Read, Write, or Execute).
 
 The maximum number of ACL entries supported by Azure AI Search functionality varies depending on the data source type:
 
@@ -113,7 +113,7 @@ You can accomplish these tasks by adding a custom header, `x-ms-enable-elevated-
 
 ### Permissions for elevated-read requests
 
-You must have [Search Index Data Contributor](search-security-rbac.md#built-in-roles-used-in-search) permissions or a [custom role](search-security-rbac.md#create-a-custom-role) that includes the Elevate Read permission.
+You must have [Search Index Data Contributor](search-security-rbac.md#built-in-roles) permissions or a [custom role](search-security-rbac.md#create-a-custom-role) that includes the Elevate Read permission.
 
 Queries are a data plane operation, so the custom role can only consist of atomic data plane permissions. For a custom role, add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission.
 

@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 02/25/2026
+ms.date: 03/23/2026
 ms.author: pafarley
 ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about the Ingestion Client tool that helps me quickly deploy a call center transcription solution to Azure with a no-code approach.
@@ -64,5 +64,5 @@ The tool is built to show customers results quickly. You can customize the tool 
 ## Next steps
 
 * [Learn more about Foundry Tools features for call center](./call-center-overview.md)
-* [Explore the Language service features](../language-service/overview.md#available-features)
+* [Explore the Language service features](../language-service/overview.md)
 * [Explore the Speech service features](./overview.md)
