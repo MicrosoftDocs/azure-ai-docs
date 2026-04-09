@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Model-based echo cancellation with the Microsoft Audio Stack
 
-The Microsoft Audio Stack (MAS) provides a model-based echo cancellation pipeline (`AUDIO_INPUT_PROCESSING_ENABLE_V2`) that uses machine learning models for enhanced acoustic echo suppression. This pipeline replaces the traditional DSP-based echo cancellation in the [default audio processing pipeline](audio-processing-overview.md) with a deep learning model, delivering improved echo suppression in challenging acoustic environments.
+The Microsoft Audio Stack (MAS) provides a model-based echo cancellation pipeline (`AUDIO_INPUT_PROCESSING_ENABLE_V2`) that uses machine learning models for enhanced acoustic echo suppression in voice call scenarios. This pipeline replaces the traditional DSP-based echo cancellation in the [default audio processing pipeline](audio-processing-overview.md) with a deep learning model, delivering improved echo suppression in challenging acoustic environments.
 
 > [!IMPORTANT]
 > This feature is only available on Windows x64 and ARM64 platforms.
