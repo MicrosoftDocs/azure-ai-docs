@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 To improve your ability to ship applications using on-device AI, there are substantial changes to the architecture of the C# SDK in version `0.8.0` and later. In this section, we outline the key changes to help you migrate your applications to the latest version of the SDK.
 
 > [!NOTE]
-> In the SDK version `0.8.0` and later, there are breaking changes in the API from previous versions.
+> In the SDK version `0.8.0` and later, there are breaking changes in the API from previous versions (`<=0.3.0`).
 
 The following diagram shows how the previous architecture - for versions earlier than `0.8.0` - relied heavily on using a REST webserver to manage models and inference like chat completions:
 

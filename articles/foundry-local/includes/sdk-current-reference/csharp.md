@@ -11,16 +11,28 @@ ai-usage: ai-assisted
 
 ## C# SDK Reference
 
-### Project setup guide
-
-There are two NuGet packages for the Foundry Local SDK - a WinML and a cross-platform package - that have the same API surface but are optimized for different platforms:
-
-- **Windows**: Uses the `Microsoft.AI.Foundry.Local.WinML` package that's specific to Windows applications, which uses the Windows Machine Learning (WinML) framework.
-- **Cross-platform**: Uses the `Microsoft.AI.Foundry.Local` package that can be used for cross-platform applications (Windows, Linux, macOS).
-
-Depending on your target platform, follow these instructions to create a new C# application and add the necessary dependencies:
+### Install packages
 
 [!INCLUDE [project-setup](./../csharp-project-setup.md)]
+
+### Project configuration
+
+The sample repositories include a `.csproj` file that handles platform detection automatically. If you're building a project from scratch, use this configuration as a reference:
+
+:::code language="xml" source="~/foundry-local-main/samples/cs/native-chat-completions/NativeChatCompletions.csproj":::
+
+The following table explains the key project settings:
+
+| Setting | Description |
+|---------|-------------|
+| `TargetFramework` | On Windows, targets `net9.0-windows10.0.26100` for WinML hardware acceleration. On other platforms, targets `net9.0`. |
+| `WindowsAppSDKSelfContained` | Set to `false` to use the system-installed Windows App SDK rather than bundling it. |
+| `WindowsPackageType` | Set to `None` to build as an unpackaged desktop app (no MSIX packaging). |
+| `EnableCoreMrtTooling` | Set to `false` to disable MRT Core resource tooling, which isn't needed for console apps. |
+| `RuntimeIdentifier` | Defaults to the current SDK's runtime identifier, ensuring the correct platform binaries are selected. |
+| `Microsoft.AI.Foundry.Local.WinML` | Windows-only package that uses WinML for hardware acceleration and automatic execution provider management. |
+| `Microsoft.AI.Foundry.Local` | Cross-platform package for macOS, Linux, and Windows without WinML. |
+| `Microsoft.ML.OnnxRuntime.Gpu` / `OnnxRuntimeGenAI.Cuda` | Linux GPU support packages for CUDA-enabled hardware. |
 
 ### Quickstart
 
