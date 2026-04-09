@@ -247,9 +247,9 @@ If your knowledge sources contain permission-protected content, the retrieval en
 
 Permissions enforcement has two parts:
 
-1. [**Ingestion time**](#ingestion-time-configuration): For indexed knowledge sources only, set `ingestionPermissionOptions` to ingest permission metadata alongside content.
+- [**Ingestion time**](#ingestion-time-configuration): For indexed knowledge sources only, set `ingestionPermissionOptions` to ingest permission metadata alongside content.
 
-1. [**Query time**](#query-time-authorization): Pass the user's access token in the `x-ms-query-source-authorization` header.
+- [**Query time**](#query-time-authorization): Pass the user's access token in the `x-ms-query-source-authorization` header.
 
 ### Ingestion-time configuration
 
