@@ -2,7 +2,7 @@
   "redirections": [
     {
       "source_path_from_root": "/articles/ai-foundry/openai/concepts/gov-provisioned.md",
-      "redirect_url": "/azure/ai-foundry/openai/azure-government",
+      "redirect_url": "/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov",
       "redirect_document_id": false
     },
     {
@@ -3147,7 +3147,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/azure-government.md",
-      "redirect_url": "/azure/foundry-classic/openai/azure-government",
+      "redirect_url": "/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov",
       "redirect_document_id": true
     },
     {
