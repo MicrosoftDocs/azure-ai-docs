@@ -8,7 +8,7 @@ ms.date: 04/09/2026
 ai-usage: ai-assisted
 ---
 
-[Reference documentation](/javascript/api/@azure/ai-speech-transcription?view=azure-node-preview) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-speech-transcription) | [GitHub samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/transcription/ai-speech-transcription/samples)
+[Reference documentation](/javascript/api/@azure/ai-speech-transcription) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-speech-transcription) | [GitHub samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/transcription/ai-speech-transcription/samples)
 
 ## Prerequisites
 
@@ -129,7 +129,7 @@ node index.js
 > [!TIP]
 > If you get the result `Enhanced mode is currently not supported yet`, verify that your endpoint is in a region that supports LLM speech.
 
-Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient?view=azure-node-preview)
+Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient)
 
 ### Output
 
@@ -190,7 +190,7 @@ main().catch((err) => {
 
 Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
 
-Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient?view=azure-node-preview)
+Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient)
 
 ## Use prompt-tuning
 
@@ -222,5 +222,5 @@ The application prints the transcription result to the console:
 Transcription: Hello this is a test of the LLM speech transcription service.
 ```
 
-Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient?view=azure-node-preview)
+Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient)
 
