@@ -89,6 +89,7 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 \* Calculated as the average request latency on a per-minute basis across the month.
 
 <sup>1</sup> For Llama-3.3-70B-Instruct, one output token counts as four input tokens towards your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. For more details, see [Exceptions to input and output throughput ratio](#exceptions-to-input-and-output-throughput-ratio).
+
 For a full list, see the [Foundry calculator](https://ai.azure.com/resource/calculator).
 
 ## Fireworks on Microsoft Foundry models
