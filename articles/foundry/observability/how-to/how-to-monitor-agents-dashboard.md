@@ -339,6 +339,17 @@ if (runs.GetArrayLength() > 0)
 
 ---
 
+## Use custom evaluators for continuous evaluations
+
+In addition to first-party evaluators, you can bring your own evaluators for continuous evaluations. To set up custom evaluators, follow the steps in [Custom evaluators (preview)](../../concepts/evaluation-evaluators/custom-evaluators.md).
+
+To add custom evaluators to continuous evaluations:
+
+1. From the **Monitor** tab, select **Settings**.
+1. Select the **Continuous evaluation** tab.
+1. Select **Add evaluator(s)**.
+1. Choose the custom evaluators you want to include.
+
 ## Full sample code
 
 To view the full sample code, see:
