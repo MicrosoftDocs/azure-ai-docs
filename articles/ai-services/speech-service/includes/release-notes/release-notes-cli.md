@@ -60,7 +60,7 @@ Updated to use Speech SDK 1.45.0
 * Updated SPX to use .NET 8.
     
 #### Bug fixes
-* Fixed SPX Docker container not working in on-prem batch scenarios.
+* Fixed SPX Docker container not working in on-premises batch scenarios.
 
 ### Speech CLI 1.40.0: August 2024 release
 Updated to use Speech SDK 1.40.0
