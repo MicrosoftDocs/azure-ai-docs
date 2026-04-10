@@ -31,17 +31,17 @@ In this article, you learn how to:
 
 ## Feature support
 
-| Feature | Python SDK | REST API | .NET SDK | JavaScript SDK |
-|---------|-----------|----------|----------|----------------|
-| Toolbox update / list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ |
-| Toolbox version create / list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ |
-| [MCP tool](model-context-protocol.md) | ✔️  | ✔️  | ✔️ | ✔️ |
-| [Web Search tool](web-search.md) | ✔️  | ✔️  | ✔️ | ✔️ |
-| [Azure AI Search tool](ai-search.md) | ✔️  | ✔️  | ✔️ | ✔️ |
-| [Code Interpreter tool](code-interpreter.md) | ✔️  | ✔️  | ✔️ | ✔️ |
-| [File Search tool](file-search.md) | ✔️  | ✔️  | ✔️ | ✔️ |
-| [OpenAPI tool](openapi.md) | ✔️  | ✔️  | ✔️ | ✔️ |
-| [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️  | ✔️  | ✔️ | ✔️ |
+| Feature | Python SDK | REST API | .NET SDK | JavaScript SDK | azd (deploy) |
+|---------|-----------|----------|----------|----------------|---------------|
+| Toolbox update / list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ | N/A |
+| Toolbox version create / list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ | N/A |
+| [MCP tool](model-context-protocol.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
+| [Web Search tool](web-search.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
+| [Azure AI Search tool](ai-search.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
+| [Code Interpreter tool](code-interpreter.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
+| [File Search tool](file-search.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
+| [OpenAPI tool](openapi.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
+| [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -51,6 +51,7 @@ In this article, you learn how to:
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
 - **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
+- **azd (deploy)**: [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) and the agent extension: `azd extension install azure.ai.agents`
 
 > [!IMPORTANT]
 > - A toolbox supports at most **one unnamed tool per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, use the `name` field to differentiate tool instances. Including two unnamed tool types returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
@@ -216,6 +217,45 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
+**`agent.yaml` (azd)** — no auth:
+
+```yaml
+resources:
+  - kind: toolbox
+    name: mcp-tools
+    description: Public MCP server tools
+    tools:
+      - type: mcp
+        server_label: myserver
+        server_url: https://your-mcp-server.example.com
+```
+
+**`agent.yaml` (azd)** — key-based auth:
+
+```yaml
+parameters:
+  mcp_api_key:
+    secret: true
+    description: API key for the MCP server
+resources:
+  - kind: connection
+    name: mcp-conn
+    target: https://your-mcp-server.example.com
+    category: RemoteTool
+    authType: CustomKeys
+    credentials:
+      keys:
+        Authorization: "Bearer {{ mcp_api_key }}"
+  - kind: toolbox
+    name: mcp-tools
+    description: MCP server tools with key auth
+    tools:
+      - type: mcp
+        server_label: myserver
+        server_url: https://your-mcp-server.example.com
+        project_connection_id: mcp-conn
+```
+
 > [!IMPORTANT]
 > The first time a user calls a toolbox with an OAuth based mcp in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
 >
@@ -269,6 +309,17 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
+**`agent.yaml` (azd)**:
+
+```yaml
+resources:
+  - kind: toolbox
+    name: websearch-tools
+    description: Web search toolbox
+    tools:
+      - type: web_search
+```
+
 **With a Grounding with custom Bing Search connection**:
 
 ```json
@@ -288,6 +339,34 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
     }
   ]
 }
+```
+
+**`agent.yaml` (azd)** — with Grounding with Bing Custom Search:
+
+```yaml
+parameters:
+  bing_api_key:
+    secret: true
+    description: Bing API key
+resources:
+  - kind: connection
+    name: bing-custom-conn
+    category: GroundingWithCustomSearch
+    authType: ApiKey
+    target: ""
+    credentials:
+      key: "{{ bing_api_key }}"
+    metadata:
+      ResourceId: /subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.Bing/accounts/<bing-account>
+      type: bing_custom_search
+  - kind: toolbox
+    name: bing-custom-tools
+    description: Bing Custom Search toolbox
+    tools:
+      - type: bing_custom_search
+        custom_search_configuration:
+          instance_name: your-bing-custom-instance
+        project_connection_id: bing-custom-conn
 ```
 
 > [!NOTE]
@@ -384,6 +463,30 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
+**`agent.yaml` (azd)**:
+
+```yaml
+parameters:
+  ai_search_key:
+    secret: true
+    description: Azure AI Search admin key
+resources:
+  - kind: connection
+    name: aisearch-conn
+    category: CognitiveSearch
+    authType: ApiKey
+    target: https://your-search-service.search.windows.net/
+    credentials:
+      key: "{{ ai_search_key }}"
+  - kind: toolbox
+    name: search-tools
+    description: Azure AI Search toolbox
+    tools:
+      - type: azure_ai_search
+        index_name: your-index-name
+        project_connection_id: aisearch-conn
+```
+
 #### Configure tool parameters
 
 | Azure AI Search tool parameter | Required | Notes |
@@ -436,6 +539,17 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
+**`agent.yaml` (azd)**:
+
+```yaml
+resources:
+  - kind: toolbox
+    name: codeinterp-tools
+    description: Code interpreter toolbox
+    tools:
+      - type: code_interpreter
+```
+
 ### [File Search](file-search.md)
 
 Use this pattern to let the agent search over uploaded files stored in a vector store. Provide `vector_store_ids` referencing vector stores already created in your Foundry project.
@@ -472,6 +586,25 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
     tools: [tool],
     description: "Search over uploaded documents"
 );
+```
+
+**`agent.yaml` (azd)**:
+
+```yaml
+resources:
+  - kind: toolbox
+    name: filesearch-tools
+    description: File search toolbox
+    tools:
+      - type: file_search
+        vector_store_ids:
+          - ${FILE_SEARCH_VECTOR_STORE_ID}
+```
+
+Set the vector store ID before deploying:
+
+```bash
+azd env set FILE_SEARCH_VECTOR_STORE_ID "vs_xxxxxxxxxxxx"
 ```
 
 > [!NOTE]
@@ -547,6 +680,54 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
     tools: [tool],
     description: "REST API via OpenAPI spec"
 );
+```
+
+**`agent.yaml` (azd)** — key-based auth:
+
+```yaml
+parameters:
+  api_key:
+    secret: true
+    description: API key for the target service
+resources:
+  - kind: connection
+    name: api-conn
+    category: CustomKeys
+    authType: CustomKeys
+    target: https://api.example.com
+    credentials:
+      keys:
+        key: "{{ api_key }}"
+  - kind: toolbox
+    name: openapi-tools
+    description: OpenAPI key-auth toolbox
+    tools:
+      - type: openapi
+        openapi:
+          name: my-api
+          spec:
+            openapi: "3.0.1"
+            info:
+              title: "My API"
+              version: "1.0"
+            servers:
+              - url: https://api.example.com/v1
+            paths:
+              /search:
+                get:
+                  operationId: search
+                  parameters:
+                    - name: query
+                      in: query
+                      required: true
+                      schema:
+                        type: string
+                  responses:
+                    "200":
+                      description: OK
+          auth:
+            type: connection_auth
+            connection_id: api-conn
 ```
 
 **Project connection auth** :
@@ -635,6 +816,23 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
+**`agent.yaml` (azd)**:
+
+```yaml
+resources:
+  - kind: connection
+    name: a2a-conn
+    category: RemoteA2A
+    authType: None
+    target: https://your-remote-agent.azurecontainerapps.io
+  - kind: toolbox
+    name: a2a-tools
+    description: Agent-to-Agent toolbox
+    tools:
+      - type: a2a_preview
+        project_connection_id: a2a-conn
+```
+
 ### Multiple tool types
 
 A single toolbox can bundle different tool types. The following example combines Web Search, Azure AI Search, and an MCP server in one toolbox:
@@ -669,6 +867,32 @@ A single toolbox can bundle different tool types. The following example combines
     }
   ]
 }
+```
+
+**`agent.yaml` (azd)** — multi-tool:
+
+```yaml
+parameters:
+  github_pat:
+    secret: true
+    description: GitHub Personal Access Token
+resources:
+  - kind: connection
+    name: github-mcp-conn
+    target: https://api.githubcopilot.com/mcp
+    category: RemoteTool
+    authType: CustomKeys
+    credentials:
+      keys:
+        Authorization: "Bearer {{ github_pat }}"
+  - kind: toolbox
+    name: agent-tools
+    description: Combined web search and GitHub MCP tools
+    tools:
+      - type: web_search
+      - type: mcp
+        server_label: github
+        project_connection_id: github-mcp-conn
 ```
 
 > [!NOTE]
@@ -1145,6 +1369,126 @@ github-copilot-sdk>=0.1.29
 azure-identity>=1.19.0
 mcp
 python-dotenv==1.1.1
+```
+
+### Deploy with azd
+
+Use the Azure Developer CLI (`azd`) to declare toolbox resources directly in an `agent.yaml` file and deploy your agent with a single command. With this approach, you don't need to create the toolbox separately through SDK or REST — `azd` provisions the toolbox, connections, and model deployment together.
+
+**Folder structure**:
+
+```
+my-agent/
+├── agent.yaml          # Agent, toolbox, and connection declarations
+├── main.py             # LangGraph agent (same as LangGraph section above)
+├── setup.py            # Shared setup: env, logging
+├── requirements.txt    # Azure hosting SDK dependencies
+├── requirements-pypi.txt  # PyPI dependencies (LangChain, LangGraph)
+├── Dockerfile          # Container build
+```
+
+**`agent.yaml`** (Web Search + GitHub MCP example):
+
+```yaml
+name: my-toolbox-agent
+description: LangGraph agent with Azure AI Foundry toolbox MCP.
+metadata:
+  tags:
+    - AI Agent Hosting
+    - LangGraph
+template:
+  name: my-toolbox-agent
+  kind: hosted
+  protocols:
+    - protocol: responses
+      version: 1.0.0
+  environment_variables:
+    - name: AZURE_AI_PROJECT_ENDPOINT
+      value: ${{AZURE_AI_PROJECT_ENDPOINT}}
+    - name: MODEL_DEPLOYMENT_NAME
+      value: ${{MODEL_DEPLOYMENT_NAME}}
+parameters:
+  github_pat:
+    secret: true
+    description: GitHub Personal Access Token for MCP connection
+resources:
+  - kind: connection
+    name: github-mcp-conn
+    target: https://api.githubcopilot.com/mcp
+    category: RemoteTool
+    authType: CustomKeys
+    credentials:
+      keys:
+        Authorization: "Bearer {{ github_pat }}"
+  - kind: toolbox
+    name: agent-tools
+    description: Web search and GitHub MCP tools
+    tools:
+      - type: web_search
+      - type: mcp
+        server_label: github
+        server_url: https://api.githubcopilot.com/mcp
+        project_connection_id: github-mcp-conn
+```
+
+> [!NOTE]
+> When deployed with toolbox resources in `agent.yaml`, the system auto-generates `TOOLBOX_{toolbox_name}_MCP_ENDPOINT` as an environment variable. For the toolbox named `agent-tools`, this becomes `TOOLBOX_AGENT_TOOLS_MCP_ENDPOINT`. Your `main.py` reads this value to connect to the toolbox.
+
+**`main.py`** (key pattern — reads the auto-generated endpoint):
+
+```python
+import os
+from langchain_mcp_adapters.client import MultiServerMCPClient
+from azure.identity import DefaultAzureCredential
+
+# The system auto-generates TOOLBOX_{toolbox_name}_MCP_ENDPOINT
+# for each toolbox resource in agent.yaml
+TOOLBOX_ENDPOINT = (
+    os.getenv("TOOLBOX_AGENT_TOOLS_MCP_ENDPOINT")
+    or os.getenv("TOOLBOX_ENDPOINT")  # fallback for local dev
+)
+
+def _get_toolbox_token() -> str:
+    credential = DefaultAzureCredential()
+    return credential.get_token("https://ai.azure.com/.default").token
+
+async def build_agent():
+    token = _get_toolbox_token()
+    client = MultiServerMCPClient({
+        "toolbox": {
+            "url": TOOLBOX_ENDPOINT,
+            "transport": "streamable_http",
+            "headers": {"Authorization": f"Bearer {token}"},
+        }
+    })
+    tools = await client.get_tools()
+    return tools
+```
+
+**`requirements.txt`**:
+
+```
+--extra-index-url https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-python/pypi/simple/
+azure-ai-agentserver-core[tracing]==2.0.0a20260331006
+azure-ai-agentserver-responses==1.0.0a20260331006
+```
+
+**`requirements-pypi.txt`**:
+
+```
+langchain-openai>=0.3.0
+langgraph>=0.2.0
+langchain-mcp-adapters==0.1.11
+python-dotenv==1.1.1
+```
+
+**Deploy**:
+
+```bash
+azd env set MODEL_DEPLOYMENT_NAME "gpt-4o"
+azd env set GITHUB_PAT "ghp_xxxxxxxxxxxx"
+azd ai agent init
+azd ai agent start
 ```
 
 ## Step 6: Manage toolbox versions

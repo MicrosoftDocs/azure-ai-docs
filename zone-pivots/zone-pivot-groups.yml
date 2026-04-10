@@ -2048,6 +2048,8 @@ groups:
     title: .NET
   - id: javascript
     title: JavaScript
+  - id: azd
+    title: azd (deploy)
 - id: selection-foundry-skills
   title: Selections
   prompt: What would you like to see?
