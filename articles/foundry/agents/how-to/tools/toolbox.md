@@ -504,6 +504,9 @@ Chunk metadata is returned in `result.structuredContent.documents[]`. Each docum
 
 Use this pattern to let the agent write and execute Python code. No project connection or extra configuration is required.
 
+> [!IMPORTANT]
+> Code Interpreter requires a **gpt-4.1** model deployment in the same Foundry project. This model is used internally for natural-language-to-code translation. If no gpt-4.1 deployment exists, code interpreter calls fail.
+
 **Toolbox payload** :
 
 ```json
