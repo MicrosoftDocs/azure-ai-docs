@@ -23,7 +23,7 @@ When you enable managed virtual network isolation, you create a managed virtual 
 :::image type="content" source="../how-to/media/managed-virtual-network/diagram-managed-network.png" alt-text="Diagram of managed virtual network configuration." lightbox="../how-to/media/managed-virtual-network/diagram-managed-network.png":::
 
 > [!NOTE]
-> The diagrams in this article represent logical connectivity only. Managed private endpoints in a Foundry managed virtual network do not create customer-visible network interfaces (NICs). All private endpoint connectivity is fully managed by Microsoft and abstracted from the customer’s virtual network resources.
+> The diagrams in this article represent logical connectivity only. Managed private endpoints in a Foundry managed virtual network do not create customer-visible network interfaces (NICs). Unlike standard VNet private endpoints that create a NIC with a private IP in your subnet, managed private endpoints are fully managed by Microsoft and abstracted from the customer’s virtual network resources. You won’t see these endpoints or associated NICs in your subscription.
 
 Two different configuration modes exist for outbound traffic from the managed virtual network:
 

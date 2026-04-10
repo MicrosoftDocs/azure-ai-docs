@@ -49,6 +49,9 @@ The high-level flow looks like this:
 
 Azure Functions is a serverless compute service that provides scale-to-zero capability, burst scaling, and enterprise features including identity-based access and virtual networking. The lightweight programming model makes it straightforward to build MCP servers so you can focus on implementing your business logic rather than infrastructure management.
 
+> [!NOTE]
+> The examples in this article use Azure Functions for convenience, but MCP is an open protocol that works with any HTTP server. You can host an MCP server using ASP.NET Core, Express.js, Flask, or any other web framework that can handle HTTP requests. The key requirement is that your server implements the [MCP specification](https://modelcontextprotocol.io/specification) endpoints. Azure Functions is one option that simplifies deployment and scaling.
+
 1. Open a terminal or command prompt and navigate to the folder where you want to create your project.
 
 1. Run the `azd init` command to initialize the project from [this sample MCP server template](https://github.com/Azure-Samples/remote-mcp-functions-python):
@@ -148,6 +151,10 @@ To register your MCP server:
    c. Configure which users or groups can access this MCP server through the organizational catalog.
 
 After registration, your MCP server appears in the Foundry tool catalog with the governance and authentication settings you configured.
+
+### Share MCP servers beyond your organization
+
+The organizational tool catalog (Azure API Center) is scoped to your organization. To share MCP servers with external teams or the broader community, consider distributing them through a public or private GitHub repository with setup instructions. There's currently no cross-organization MCP server marketplace, but the MCP ecosystem is evolving. Check the [MCP specification site](https://modelcontextprotocol.io/) for updates on server discovery and distribution.
 
 ## Connect the MCP server to Agent Service
 
