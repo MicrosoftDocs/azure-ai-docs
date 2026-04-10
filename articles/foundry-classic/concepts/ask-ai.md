@@ -2,7 +2,7 @@
 title: "Ask AI for help (classic)"
 description: "Learn how to ask AI for help, getting your questions answered and tasks supported. (classic)"
 ms.service: azure-ai-foundry
-ms.date: 01/06/2026
+ms.date: 04/06/2026
 ms.author: sgilley
 ms.reviewer: jeomhove
 author: sdgilley
@@ -18,7 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/ask-ai.md)
 
-You can ask AI to assist you in Microsoft Foundry. To start using AI to ask questions, select the AI icon in the upper right of the [!INCLUDE [foundry-link](../../foundry/includes/foundry-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time.
+You can ask AI to assist you in Microsoft Foundry. To start using AI to ask questions, select the AI icon in the upper right of the [!INCLUDE [foundry-link](../../foundry/includes/foundry-link.md)] portal. A chat window opens where you can type your questions and receive answers in real time.
 
 [!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
@@ -30,13 +30,13 @@ To use Ask AI, you need:
 
 ## Capabilities
 
-**What This AI Can Do** - The Ask AI experience is designed to provide assistance by answering questions based on:
+**What this AI can do** - The Ask AI experience is designed to provide assistance by answering questions based on:
 
-- **Documentation**: This documentation includes details about Foundry such as Quickstarts, How-tos, or reference documentation of the Microsoft Foundry SDK. The agent can help you navigate the documentation or find answers for you.
+- **Documentation**: This documentation includes details about Foundry such as quickstarts, how-tos, or reference documentation of the Microsoft Foundry SDK. The agent can help you navigate the documentation or find answers for you.
 - **Model Catalog**: Provide information about specific models in the Foundry model catalog, including their capabilities and features.
 - **Troubleshooting**: Help diagnose and resolve common Foundry problems by searching the troubleshooting knowledge base and providing step-by-step solutions.
 
-**What This AI Cannot Do** - While the agent is a powerful tool, it has some limitations:
+**What this AI can't do** - While the agent is a powerful tool, it has some limitations:
 
 - **No Access to Your Resources**: The agent can't access your Azure resources. For example, it can't answer questions like "How much capacity do I have?" or "What is the status of my deployment?"
 - **Limited Scope**: It's restricted to answering questions related to the Foundry documentation and model catalog. It can't provide support for unrelated Azure services or external systems.

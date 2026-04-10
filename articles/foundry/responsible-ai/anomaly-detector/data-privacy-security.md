@@ -34,7 +34,7 @@ In multivariate detection mode, Anomaly Detector processes the following types o
 - **Multiple time series data**:
     - **Time series data used for training**:
     
-      The request must include a source parameter to indicate an externally accessible Azure Storage URI (preferably a shared access signature URI). All time series used in generating the model must be zipped into a single file and stored to the Azure Storage URI that provided. Each time series is in a single CSV file, in which the first column is timestamp and the second column is value (Here's [one example](https://multiadsample.blob.core.windows.net/data/sample_data_5_3000.zip?sp=r&st=2021-03-05T12:02:17Z&se=2021-10-05T20:02:17Z&spr=https&sv=2020-02-10&sr=c&sig=t6xHqwRmr98li6ApWoZ04Gi%2BaZNPnVMXRp07t7r11xs%3D)). 
+      The request must include a source parameter to indicate an externally accessible Azure Storage URI (preferably a shared access signature URI). All time series used in generating the model must be zipped into a single file and stored to the Azure Storage URI that provided. Each time series is in a single CSV file, in which the first column is timestamp and the second column is value (Here's [one example](https://github.com/Azure-Samples/AnomalyDetector/blob/master/sampledata/multivariate/sample_data_5_3000.csv)). 
 
       To train a model according to a group of time series data, the service requires some historical data to be ingested. Anomaly Detector doesn't retain the training data. It is only used for training the model, and then the data is discarded.
 
@@ -71,7 +71,7 @@ Detection results and the metadata in the blob will be stored by default with a 
 
 Anomaly Detector API receives customer's input data including time series data, related metadata, and configuration data then processes it to return results. The service does not retain the input data after the processing. Similarly, any training data sent by the customer is used to train models for use only by the customer. The underlying training data is not retained after training is complete. 
 
-Customers may delete trained models at any time by using the [Delete Multivariate Model API](https://westus2.dev.cognitive.microsoft.com/docs/services/AnomalyDetector-v1-1-preview/operations/DeleteMultivariateModel).
+Customers may delete trained models at any time by using the [Azure AI Foundry REST API reference](/rest/api/aifoundry/).
 
 To learn more about Microsoft privacy and security commitments, see the [Microsoft Trust Center](https://www.microsoft.com/trust-center).
 

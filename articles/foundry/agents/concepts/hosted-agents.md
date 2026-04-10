@@ -279,9 +279,7 @@ This extension is currently in preview. Don't use it for production.
 
 To get started:
 
-1. Install the Azure Developer CLI on your device.
-
-   If you already have the Azure Developer CLI installed, check if you have the latest version of `azd` installed:
+1. Install the Azure Developer CLI on your device. If you already have it installed, verify you're running the latest version:
 
     ```bash
     azd version
@@ -289,49 +287,55 @@ To get started:
 
     To upgrade to the latest version, see [Install or update the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
-2. If you're starting with no existing Foundry resources and you want to simplify all the required infrastructure provisioning and RBAC, download the Foundry starter template. The template automatically installs the `ai agent` extension. When prompted, you can provide an environment name which creates a resource group named `rg-<name-you-provide>`.
+1. Install the `ai agent` extension:
 
     ```bash
-    azd init -t https://github.com/Azure-Samples/azd-ai-starter-basic
+    azd ext install azure.ai.agents
     ```
 
-    To check all installed extensions:
+    To verify the extension is installed, run:
 
     ```bash
     azd ext list
     ```
 
-    Make sure you have the latest version of the Foundry `azd` agent extension installed.
+1. Initialize your hosted agent project:
 
-    If you have an existing Foundry project where you want to deploy your agent, and you want to provision only the additional resources that you might need for deploying your agent, run this command afterward:
+    ```bash
+    azd ai agent init
+    ```
+
+    When prompted, select **Start new from a template**. The interactive flow guides you through selecting or creating Foundry resources and model deployments.
+
+    You can also start from a specific sample in the [foundry-samples](https://github.com/microsoft-foundry/foundry-samples) repo by passing a manifest URL directly:
+
+    ```bash
+    azd ai agent init -m <url-to-agent.yaml>
+    ```
+
+    The GitHub repo for an agent that you want to host on Foundry contains the application code, referenced dependencies, Dockerfile for containerization, and the `agent.yaml` file that contains an agent manifest. To configure your agent, set values for the parameters that you're prompted for. This action registers your agent under `Services` in `azure.yaml`.
+
+    If you already have an existing Foundry project, you can pass its resource ID directly instead of selecting it interactively:
 
     ```bash
     azd ai agent init --project-id /subscriptions/[SUBSCRIPTIONID]/resourceGroups/[RESOURCEGROUPNAME]/providers/Microsoft.CognitiveServices/accounts/[ACCOUNTNAME]/projects/[PROJECTNAME]
     ```
 
-3. Initialize the template by configuring the parameters in the agent definition:
-
-    ```bash
-    azd ai agent init -m <repo-path-to-agent.yaml>
-    ```
-
-    The GitHub repo for an agent that you want to host on Foundry contains the application code, referenced dependencies, Dockerfile for containerization, and the `agent.yaml` file that contains your agent's definition. To configure your agent, set values for the parameters that you're prompted for. This action registers your agent under `Services` in `azure.yaml` for the downloaded template. You can get started with samples on [GitHub](https://github.com/azure-ai-foundry/foundry-samples).
-
-4. To open and view all Bicep and configuration files associated with your `azd`-based deployments, use this command:
-
-    ```bash
-    code .
-    ```
-
-5. Package, provision, and deploy your agent code as a managed application on Foundry:
+1. Package, provision, and deploy your agent code as a managed application on Foundry:
 
     ```bash
     azd up
     ```
 
-    This command abstracts the underlying execution of the commands `azd infra generate`, `azd provision`, and `azd deploy`. It also creates a hosted agent version and deployment on Foundry Agent Service. If you already have a version of a hosted agent, `azd` creates a new version of the same agent. For more information, see the [Azure CLI documentation](/azure/developer/azure-developer-cli/extensions/azure-ai-foundry-extension).
-    
-To learn more about how you can do non-versioned updates, along with starting, stopping, and deleting your hosted agent deployments and versions, see the [management section](#manage-hosted-agents) of this article. 
+    This command abstracts the underlying execution of the commands `azd provision` and `azd deploy`. It also creates a hosted agent version and deployment on Foundry Agent Service. If you already have a version of a hosted agent, `azd` creates a new version of the same agent. For more information, see the [Azure Developer CLI documentation](/azure/developer/azure-developer-cli/extensions/azure-ai-foundry-extension).
+
+1. While `azd` provisions and deploys, you can explore the sample code and configuration files associated with your deployment in VS Code:
+
+    ```bash
+    code .
+    ```
+
+To learn more about how you can do non-versioned updates, along with deleting your hosted agent deployments and versions, see the [management section](#manage-hosted-agents) of this article.
 
 Make sure you have RBAC enabled so that `azd` can provision the services and models for you. For Foundry role guidance, see [Role-based access control in Foundry portal](../../concepts/rbac-foundry.md). For Azure built-in roles, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles).
 

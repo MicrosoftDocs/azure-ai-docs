@@ -5,7 +5,7 @@ description: "Manage Microsoft Foundry costs by estimating expenses, monitoring 
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: aashishb
-ms.date: 03/23/2026
+ms.date: 04/06/2026
 ms.topic: how-to
 ms.custom:
   - dev-focus
@@ -40,7 +40,7 @@ Azure OpenAI fine-tuned models are charged in three ways:
 Monitor hosted fine-tuned model costs closely to avoid unexpected charges. For current rates, see the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/azure-openai/).
 
 > [!IMPORTANT]
-> Fine-tuned deployments can incur hosting charges while deployed, even during low usage periods. Deployments inactive for more than 15 days might be automatically deleted. Remove or scale down deployments that you don't need, and verify current lifecycle behavior in the [fine-tuning documentation](../openai/how-to/fine-tuning.md) before relying on automatic cleanup behavior.
+> Fine-tuned deployments incur hosting charges while deployed, even during low usage periods. Remove or scale down deployments that you don't need. For details on deployment lifecycle and cleanup policies, see the [fine-tuning documentation](../openai/how-to/fine-tuning.md).
 
 ### HTTP Error response code and billing status
 
@@ -76,7 +76,7 @@ Access cost information from the [!INCLUDE [foundry-link](../includes/foundry-li
 1. Select **Operate** in the upper-right navigation.
 1. Select **Overview** in the left pane.
 1. At the top of the page, select the subscription, one or more projects, and a date range. 
-1. The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates.  These estimates do not currently include prompt agent and non-Foundry agent costs.
+1. The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates. These estimates don't include prompt agent and non-Foundry agent costs.
 
 :::image type="content" source="media/manage-costs/agent-costs.png" alt-text="Screenshot of the Agents tab under Assets, showing the Estimated costs column with monthly cost estimates for each agent based on configuration and usage." lightbox="media/manage-costs/agent-costs.png":::
 
@@ -101,7 +101,7 @@ To view detailed agent costs:
 
 **Reference:** [Monitor agent metrics](../observability/how-to/how-to-monitor-agents-dashboard.md)
 
-:::image type="content" source="media/manage-costs/agent-build-cost.png" alt-text="Screenshot of the Build page showing the Models pane with a selected model highlighted." lightbox="media/manage-costs/agent-build-cost.png":::
+:::image type="content" source="media/manage-costs/agent-build-cost.png" alt-text="Screenshot of the Monitor tab for an agent, showing operational metrics including total token cost, token usage, average inference latency, agent runs chart, and runs and token metrics." lightbox="media/manage-costs/agent-build-cost.png":::
 
 ### Model deployment costs
 
