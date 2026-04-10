@@ -227,13 +227,13 @@ The number of concurrent calls you can achieve on a deployment depends on each c
 
 ## Advanced topics
 
-| What you want to do | Article | Type |
-|---|---|---|
-| Create a provisioned deployment, verify quota, handle 429s, run a benchmark | [Get started with provisioned deployments](../how-to/provisioned-get-started.md) | How-to |
-| Understand hourly billing details, PTU-to-TPM ratios by model, PTU minimums, and reservation management | [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md) | How-to |
-| Route overflow traffic to a standard deployment when a provisioned deployment is fully utilized | [Manage traffic with spillover](../how-to/spillover-traffic-management.md) | How-to |
-| Optimize for latency, understand prompt size effects and call shape tradeoffs | [Performance and latency](../how-to/latency.md) | How-to |
-| Migrate from the older Commitment purchase model | [Provisioned August update](../../../foundry-classic/openai/concepts/provisioned-migration.md) | Concept |
+| What you want to do | Article |
+|---|---|
+| Create a provisioned deployment, verify quota, handle 429s, run a benchmark | [Get started with provisioned deployments](../how-to/provisioned-get-started.md) |
+| Understand hourly billing details, PTU-to-TPM ratios by model, PTU minimums, and reservation management | [PTU costs and billing](../how-to/provisioned-throughput-onboarding.md) |
+| Route overflow traffic to a standard deployment when a provisioned deployment is fully utilized | [Manage traffic with spillover](../how-to/spillover-traffic-management.md) |
+| Optimize for latency, understand prompt size effects and call shape tradeoffs | [Performance and latency](../how-to/latency.md) |
+| Migrate from the older Commitment purchase model | [Provisioned August update](../../../foundry-classic/openai/concepts/provisioned-migration.md) |
 
 ## Related content
 

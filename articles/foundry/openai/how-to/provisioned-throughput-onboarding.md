@@ -349,11 +349,13 @@ Monitoring reservation utilization helps you identify over-provisioning, catch u
 
 Use these Azure Cost Management resources to track and analyze your reservation usage:
 
-- [View Azure reservation utilization](/azure/cost-management-billing/reservations/reservation-utilization): See what percentage of your reserved PTUs are actively in use across your deployments.
-- [View Azure Reservation purchase and refund transactions](/azure/cost-management-billing/reservations/view-purchase-refunds): Review purchase history and any refund activity.
-- [View amortized benefit costs](/azure/cost-management-billing/reservations/view-amortized-costs): Understand the amortized cost impact of your reservations for clearer per-deployment billing visibility.
-- [Charge back Azure Reservation costs](/azure/cost-management-billing/reservations/charge-back-usage): Distribute reservation costs across teams or projects for internal cost attribution.
-- [Automatically renew Azure reservations](/azure/cost-management-billing/reservations/reservation-renew): Set up auto-renewal to prevent reservation expiry and maintain the discounted rate.
+| What you want to do | Article |
+|---|---|
+| See what percentage of your reserved PTUs are actively in use across your deployments | [View Azure reservation utilization](/azure/cost-management-billing/reservations/reservation-utilization) |
+| Review purchase history and any refund activity | [View Azure Reservation purchase and refund transactions](/azure/cost-management-billing/reservations/view-purchase-refunds) |
+| Understand the amortized cost impact of your reservations for clearer per-deployment billing visibility | [View amortized benefit costs](/azure/cost-management-billing/reservations/view-amortized-costs) |
+| Distribute reservation costs across teams or projects for internal cost attribution | [Charge back Azure Reservation costs](/azure/cost-management-billing/reservations/charge-back-usage) |
+| Set up auto-renewal to prevent reservation expiry and maintain the discounted rate | [Automatically renew Azure reservations](/azure/cost-management-billing/reservations/reservation-renew) |
 
 ### Adjust reservations as your workload changes
 
