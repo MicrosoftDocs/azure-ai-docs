@@ -176,17 +176,20 @@ console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.
 
 :::zone-end
 
+:::zone pivot="azd"
+
+With azd, you declare toolbox resources in an `agent.yaml` file instead of calling the SDK. Define your tools in the `resources` section and deploy with `azd ai agent init`. See [Step 2: Configure tools](#step-2-configure-tools) for `agent.yaml` examples for each tool type, and [Deploy with azd](#deploy-with-azd) for the full deployment workflow.
+
+:::zone-end
+
 
 ## Step 2: Configure tools
 
-Choose the tool type and authentication pattern that matches your scenario.
-
-> [!NOTE]
-> Each of the following JSON payloads is the request body for `POST {project_endpoint}/toolboxes/{toolbox_name}/versions?api-version=v1`. The JavaScript SDK accepts the same `tools` array shape as plain objects. The .NET SDK equivalent is shown after each payload.
+Choose the tool type and authentication pattern that matches your scenario. Select the tab for your preferred SDK or deployment method.
 
 ### [Model Context Protocol (MCP)](model-context-protocol.md)
 
-**Toolbox payload**:
+:::zone pivot="rest-api"
 
 ```json
 {
@@ -202,7 +205,25 @@ Choose the tool type and authentication pattern that matches your scenario.
 }
 ```
 
-**.NET SDK**:
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import MCPTool
+
+tools = [
+    MCPTool(
+        server_label="myserver",
+        server_url="https://your-mcp-server.example.com",
+        project_connection_id="my-mcp-connection",
+    )
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
 
 ```csharp
 ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
@@ -217,7 +238,26 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
-**`agent.yaml` (azd)** — no auth:
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "mcp",
+    server_label: "myserver",
+    server_url: "https://your-mcp-server.example.com",
+    project_connection_id: "my-mcp-connection",
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+**No auth:**
 
 ```yaml
 resources:
@@ -230,7 +270,7 @@ resources:
         server_url: https://your-mcp-server.example.com
 ```
 
-**`agent.yaml` (azd)** — key-based auth:
+**Key-based auth:**
 
 ```yaml
 parameters:
@@ -256,6 +296,8 @@ resources:
         project_connection_id: mcp-conn
 ```
 
+:::zone-end
+
 > [!IMPORTANT]
 > The first time a user calls a toolbox with an OAuth based mcp in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
 >
@@ -280,7 +322,7 @@ resources:
 
 Use this pattern to add web search. No project connection is required for the web search with Grounding with Bing. To use a Grounding with custom Bing Search instance, add a `web_search.custom_search_configuration` object pointing to your Grounding with Bing Custom Search connection.
 
-**Toolbox payload** :
+:::zone pivot="rest-api"
 
 ```json
 {
@@ -295,32 +337,7 @@ Use this pattern to add web search. No project connection is required for the we
 }
 ```
 
-**.NET SDK**:
-
-```csharp
-ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(
-    ResponseTool.CreateWebSearchTool()
-);
-
-ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
-    toolboxName: "my-toolbox",
-    tools: [tool],
-    description: "Built-in web search"
-);
-```
-
-**`agent.yaml` (azd)**:
-
-```yaml
-resources:
-  - kind: toolbox
-    name: websearch-tools
-    description: Web search toolbox
-    tools:
-      - type: web_search
-```
-
-**With a Grounding with custom Bing Search connection**:
+**With a Grounding with Bing Custom Search connection:**
 
 ```json
 {
@@ -341,7 +358,62 @@ resources:
 }
 ```
 
-**`agent.yaml` (azd)** — with Grounding with Bing Custom Search:
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import WebSearchTool
+
+tools = [
+    WebSearchTool()
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateWebSearchTool()
+);
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "Built-in web search"
+);
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "web_search",
+    name: "<OPTIONAL_TOOL_NAME>",
+    description: "<Optional description for the model>",
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+resources:
+  - kind: toolbox
+    name: websearch-tools
+    description: Web search toolbox
+    tools:
+      - type: web_search
+```
+
+**With Grounding with Bing Custom Search:**
 
 ```yaml
 parameters:
@@ -368,6 +440,8 @@ resources:
           instance_name: your-bing-custom-instance
         project_connection_id: bing-custom-conn
 ```
+
+:::zone-end
 
 > [!NOTE]
 > When Web Search returns results over MCP, the response is a `resource` content item containing the synthesized answer with inline Markdown source links. URL citations are in `content[].resource._meta.annotations[]`. For example:
@@ -419,7 +493,8 @@ resources:
 > ```
 
 ### [Azure AI Search](ai-search.md)
-**Toolbox payload** :
+
+:::zone pivot="rest-api"
 
 ```json
 {
@@ -442,7 +517,24 @@ resources:
 }
 ```
 
-**.NET SDK**:
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import AzureAISearchTool
+
+tools = [
+    AzureAISearchTool(
+        index_name="<INDEX_NAME>",
+        project_connection_id="<CONNECTION_NAME>",
+    )
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
 
 ```csharp
 ProjectsAgentTool tool = new AzureAISearchTool(
@@ -463,7 +555,31 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
-**`agent.yaml` (azd)**:
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "azure_ai_search",
+    name: "<OPTIONAL_TOOL_NAME>",
+    description: "<Optional description for the model>",
+    azure_ai_search: {
+      indexes: [
+        {
+          index_name: "<INDEX_NAME>",
+          project_connection_id: "<CONNECTION_NAME>",
+        },
+      ],
+    },
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
 
 ```yaml
 parameters:
@@ -487,6 +603,8 @@ resources:
         project_connection_id: aisearch-conn
 ```
 
+:::zone-end
+
 #### Configure tool parameters
 
 | Azure AI Search tool parameter | Required | Notes |
@@ -507,7 +625,7 @@ Use this pattern to let the agent write and execute Python code. No project conn
 > [!IMPORTANT]
 > Code Interpreter requires a **gpt-4.1** model deployment in the same Foundry project. This model is used internally for natural-language-to-code translation. If no gpt-4.1 deployment exists, code interpreter calls fail.
 
-**Toolbox payload** :
+:::zone pivot="rest-api"
 
 ```json
 {
@@ -526,7 +644,21 @@ Use this pattern to let the agent write and execute Python code. No project conn
 }
 ```
 
-**.NET SDK**:
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import CodeInterpreterTool
+
+tools = [
+    CodeInterpreterTool()
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
 
 ```csharp
 ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(
@@ -542,7 +674,27 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
-**`agent.yaml` (azd)**:
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "code_interpreter",
+    name: "<OPTIONAL_TOOL_NAME>",
+    description: "<Optional description for the model>",
+    container: {
+      type: "auto",
+      file_ids: ["<FILE_ID>"],
+    },
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
 
 ```yaml
 resources:
@@ -553,11 +705,13 @@ resources:
       - type: code_interpreter
 ```
 
+:::zone-end
+
 ### [File Search](file-search.md)
 
 Use this pattern to let the agent search over uploaded files stored in a vector store. Provide `vector_store_ids` referencing vector stores already created in your Foundry project.
 
-**Toolbox payload** :
+:::zone pivot="rest-api"
 
 ```json
 {
@@ -575,7 +729,23 @@ Use this pattern to let the agent search over uploaded files stored in a vector 
 }
 ```
 
-**.NET SDK**:
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import FileSearchTool
+
+tools = [
+    FileSearchTool(
+        vector_store_ids=["<VECTOR_STORE_ID>"]
+    )
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
 
 ```csharp
 ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(
@@ -591,7 +761,26 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
-**`agent.yaml` (azd)**:
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "file_search",
+    name: "<OPTIONAL_TOOL_NAME>",
+    description: "<Optional description for the model>",
+    file_search: {
+      vector_store_ids: ["<VECTOR_STORE_ID>"],
+    },
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
 
 ```yaml
 resources:
@@ -609,6 +798,8 @@ Set the vector store ID before deploying:
 ```bash
 azd env set FILE_SEARCH_VECTOR_STORE_ID "vs_xxxxxxxxxxxx"
 ```
+
+:::zone-end
 
 > [!NOTE]
 > When File Search returns results over MCP, chunk metadata is embedded in the tool response content as `【index†filename†file_id】` markers. For example:
@@ -646,7 +837,9 @@ Use this pattern to expose any REST API described by an OpenAPI spec. Choose the
 > [!IMPORTANT]
 > When using managed identity auth, you must assign the appropriate RBAC role to your **Foundry project's** managed identity on the target service. For example, assign Reader or higher on the target Azure resource. Without this assignment, the agent receives a `401 Unauthorized` response when calling the API. For full setup steps, see [Authenticate by using managed identity](openapi.md#authenticate-by-using-managed-identity-microsoft-entra-id).
 
-**Anonymous auth** :
+:::zone pivot="rest-api"
+
+**Anonymous auth:**
 
 ```json
 {
@@ -666,7 +859,75 @@ Use this pattern to expose any REST API described by an OpenAPI spec. Choose the
 }
 ```
 
-**.NET SDK** (anonymous auth):
+**Project connection auth:**
+
+Use this pattern when the API requires a key or token stored in a Foundry project connection.
+
+```json
+{
+  "description": "REST API with connection-based auth",
+  "tools": [
+    {
+      "type": "openapi",
+      "openapi": {
+        "name": "my-api",
+        "spec": { "<paste OpenAPI spec object here>" },
+        "auth": {
+          "type": "connection",
+          "security_scheme": {
+            "project_connection_id": "<CONNECTION_NAME>"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+**Managed identity auth:**
+
+Use this pattern when the target API authenticates via Microsoft Entra ID. The Foundry project's managed identity calls the API on behalf of the agent. Make sure the managed identity has the required RBAC role on the target service before using this pattern.
+
+```json
+{
+  "description": "REST API with managed identity auth",
+  "tools": [
+    {
+      "type": "openapi",
+      "openapi": {
+        "name": "my-api",
+        "spec": { "<paste OpenAPI spec object here>" },
+        "auth": {
+          "type": "managed_identity",
+          "security_scheme": {
+            "audience": "<TARGET_SERVICE_AUDIENCE>"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import OpenAPITool
+
+tools = [
+    OpenAPITool(
+        name="my-api",
+        spec={"<paste OpenAPI spec object here>"},
+        auth={"type": "anonymous"},
+    )
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
 
 ```csharp
 BinaryData specBytes = BinaryData.FromString("<OpenAPI spec JSON>");
@@ -685,7 +946,30 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
-**`agent.yaml` (azd)** — key-based auth:
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "openapi",
+    openapi: {
+      name: "my-api",
+      spec: { /* paste OpenAPI spec object here */ },
+      auth: {
+        type: "anonymous",
+      },
+    },
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+**Key-based auth:**
 
 ```yaml
 parameters:
@@ -733,61 +1017,13 @@ resources:
             connection_id: api-conn
 ```
 
-**Project connection auth** :
-
-Use this pattern when the API requires a key or token stored in a Foundry project connection.
-
-```json
-{
-  "description": "REST API with connection-based auth",
-  "tools": [
-    {
-      "type": "openapi",
-      "openapi": {
-        "name": "my-api",
-        "spec": { "<paste OpenAPI spec object here>" },
-        "auth": {
-          "type": "connection",
-          "security_scheme": {
-            "project_connection_id": "<CONNECTION_NAME>"
-          }
-        }
-      }
-    }
-  ]
-}
-```
-
-**Managed identity auth** :
-
-Use this pattern when the target API authenticates via Microsoft Entra ID. The Foundry project's managed identity calls the API on behalf of the agent. Make sure the managed identity has the required RBAC role on the target service before using this pattern.
-
-```json
-{
-  "description": "REST API with managed identity auth",
-  "tools": [
-    {
-      "type": "openapi",
-      "openapi": {
-        "name": "my-api",
-        "spec": { "<paste OpenAPI spec object here>" },
-        "auth": {
-          "type": "managed_identity",
-          "security_scheme": {
-            "audience": "<TARGET_SERVICE_AUDIENCE>"
-          }
-        }
-      }
-    }
-  ]
-}
-```
+:::zone-end
 
 ### [Agent-to-Agent (A2A)](agent-to-agent.md)
 
 Use this pattern to call another agent as a tool. Provide the base URL of the remote agent and, if it requires authentication, a project connection.
 
-**Toolbox payload** :
+:::zone pivot="rest-api"
 
 ```json
 {
@@ -804,7 +1040,26 @@ Use this pattern to call another agent as a tool. Provide the base URL of the re
 }
 ```
 
-**.NET SDK**:
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import A2APreviewTool
+
+tools = [
+    A2APreviewTool(
+        name="<AGENT_NAME>",
+        description="<What this agent does>",
+        base_url="<AGENT_BASE_URL>",
+        project_connection_id="<CONNECTION_NAME>",
+    )
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
 
 ```csharp
 ProjectsAgentTool tool = new A2APreviewTool()
@@ -819,7 +1074,25 @@ ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
 );
 ```
 
-**`agent.yaml` (azd)**:
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "a2a_preview",
+    name: "<AGENT_NAME>",
+    description: "<What this agent does>",
+    base_url: "<AGENT_BASE_URL>",
+    project_connection_id: "<CONNECTION_NAME>",
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
 
 ```yaml
 resources:
@@ -836,9 +1109,13 @@ resources:
         project_connection_id: a2a-conn
 ```
 
+:::zone-end
+
 ### Multiple tool types
 
 A single toolbox can bundle different tool types. The following example combines Web Search, Azure AI Search, and an MCP server in one toolbox:
+
+:::zone pivot="rest-api"
 
 ```json
 {
@@ -872,7 +1149,104 @@ A single toolbox can bundle different tool types. The following example combines
 }
 ```
 
-**`agent.yaml` (azd)** — multi-tool:
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import (
+    MCPTool,
+    WebSearchTool,
+    AzureAISearchTool,
+)
+
+tools = [
+    WebSearchTool(description="Search the web for current information"),
+    AzureAISearchTool(
+        name="my_aisearch",
+        description="Search internal product documentation",
+        index_name="<INDEX_NAME>",
+        project_connection_id="<CONNECTION_NAME>",
+    ),
+    MCPTool(
+        server_label="myserver",
+        server_url="https://your-mcp-server.example.com",
+        require_approval="never",
+        project_connection_id="my-key-auth-connection",
+    ),
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ProjectsAgentTool webTool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateWebSearchTool()
+);
+
+ProjectsAgentTool searchTool = new AzureAISearchTool(
+    new AzureAISearchToolOptions(
+        indexes: [
+            new AzureAISearchIndexResource(
+                indexName: "<INDEX_NAME>",
+                projectConnectionId: "<CONNECTION_NAME>"
+            )
+        ]
+    )
+);
+
+ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateMcpTool(
+        serverLabel: "myserver",
+        serverUri: new Uri("https://your-mcp-server.example.com")
+    )
+);
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [webTool, searchTool, mcpTool],
+    description: "Web search, knowledge base search, and custom MCP server"
+);
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "web_search",
+    description: "Search the web for current information",
+  },
+  {
+    type: "azure_ai_search",
+    name: "my_aisearch",
+    description: "Search internal product documentation",
+    azure_ai_search: {
+      indexes: [
+        {
+          index_name: "<INDEX_NAME>",
+          project_connection_id: "<CONNECTION_NAME>",
+        },
+      ],
+    },
+  },
+  {
+    type: "mcp",
+    server_label: "myserver",
+    server_url: "https://your-mcp-server.example.com",
+    require_approval: "never",
+    project_connection_id: "my-key-auth-connection",
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
 
 ```yaml
 parameters:
@@ -897,6 +1271,8 @@ resources:
         server_label: github
         project_connection_id: github-mcp-conn
 ```
+
+:::zone-end
 
 > [!NOTE]
 > Each unnamed tool type (`web_search`, `azure_ai_search`, `code_interpreter`, `file_search`) can appear at most once without a `name`. If you want two instances of the same type, add a unique `name` to each — see the next example.
