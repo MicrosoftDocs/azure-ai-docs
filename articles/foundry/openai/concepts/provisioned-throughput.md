@@ -173,7 +173,7 @@ All provisioned deployment types are billed at an hourly rate ($/PTU/hr) based o
 
 Azure Reservations are a financial discount applied to the PTU billing meter, not to individual deployments. In exchange for a 1-month or 1-year commitment, you receive a discounted effective $/PTU/hr rate. Reservations are purchased per deployment type (Global, Data Zone, or Regional) and can be scoped to cover one or more subscriptions or resource groups.
 
-Reservations and deployments are loosely coupled—you create or delete deployments and reservations independently.
+Reservations and deployments are loosely coupled—you create deployments and reservations independently.
 
 > [!NOTE]
 > Reservations don't guarantee capacity. Create deployments first to confirm that capacity is available, then purchase the reservation to lock in the discounted rate.

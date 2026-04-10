@@ -84,7 +84,7 @@ Hourly billing isn't recommended for deployments in production—use reservation
 
 An Azure Reservation is a term-discounting mechanism shared by many Azure products. For example, Compute and Cosmos DB. Azure Reservations for provisioned throughput (Regional, Data Zone, and Global) are a financial discount applied to PTU billing meters—not to service interactions like deployment creation. In exchange for committing to payment for a fixed number of PTUs over a one-month or one-year term, you receive a discounted effective $/PTU/hr rate. The discount makes reservations significantly more cost-effective than long-term hourly billing for sustained workloads.
 
-Reservations and deployments are loosely coupled: you create or delete deployments and reservations independently. This flexibility lets you change resources, subscriptions, or deployments without changing your billing construct.
+Reservations and deployments are loosely coupled: you create deployments and reservations independently. This flexibility lets you change resources, subscriptions, or deployments without changing your billing construct.
 
 > [!IMPORTANT]
 > Capacity availability for model deployments is dynamic and changes frequently across regions and models. Always create deployments first, then purchase the Azure Reservation to cover the PTUs you've deployed. This approach ensures you receive the full reservation discount and protects you from committing to a reservation for PTUs you can't deploy.
@@ -98,11 +98,11 @@ Key reservation facts:
 - **Model-independent**: The reservation discount applies to any supported model deployed within the matching scope. You don't purchase a reservation for a specific model. When you add a new model to your deployment portfolio, the existing reservation covers it automatically if it falls within scope.
 - **Excess is billed hourly**: If deployed PTUs in scope exceed the reservation quantity, the excess PTUs are charged at the standard hourly rate. See [Reservation overage example](#reservation-overage-example).
 - **Reservations don't guarantee capacity**: Purchasing a reservation doesn't reserve capacity on the service. Create deployments first to confirm that capacity is available, then purchase the reservation.
-- **Cancelable, with limits**: Reservations can be canceled or exchanged after purchase, but those actions might incur fees.
+- **Cancelable, with limits**: Reservations can be canceled or exchanged after purchase, but those actions might incur fees. See [Adjust reservations as your workload changes](#adjust-reservations-as-your-workload-changes) for more information.
 
 ### How reservation matching works
 
-The discount applies automatically when all three conditions match between a running deployment and a reservation:
+The reservation discount applies automatically when all three conditions match between a running deployment and a reservation:
 
 | Condition | What must match |
 |---|---|
@@ -146,7 +146,8 @@ To delete a provisioned deployment cleanly:
 1. In the [Foundry portal](https://ai.azure.com/?cid=learnDocs), navigate to the resource and delete the deployment.
 1. If you're removing the Azure resource too, delete all its deployments first, then delete the resource.
 1. Purge the resource to ensure billing stops. See [Recover or purge deleted Azure AI resources](../../../ai-services/recover-purge-resources.md) for instructions.
-1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to review your existing reservations. Deleting a deployment doesn't cancel or change any PTU reservation. You can exchange a reservation in the Azure portal, but this action might incur fees.
+1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to review your existing reservations. Deleting a deployment doesn't cancel or change any PTU reservation. You can cancel or exchange a reservation in the Azure portal, but this action might incur fees. See [Adjust reservations as your workload changes](#adjust-reservations-as-your-workload-changes) for more information.
+
 
 ### Follow the recommended order of operations for reservations
 
@@ -324,6 +325,12 @@ The PTU quantity in a reservation purchase is independent of your quota allocati
 > [!IMPORTANT]
 > Capacity availability for model deployments is dynamic and changes frequently across regions and models. Always create deployments first, then purchase the Azure Reservation to cover the PTUs you've deployed. This approach ensures you receive the full reservation discount and protects you from committing to a reservation for PTUs you can't deploy.
 
+## Purchase a reservation
+
+After your deployments are in place and you've determined the PTU quantity you need, purchase the reservation from the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations).
+
+For step-by-step guidance—including how to choose a reservation scope, term length, and billing frequency—see [Prepare to buy an Azure reservation](/azure/cost-management-billing/reservations/prepare-buy-reservation).
+
 ## Monitor your reservation and PTU usage
 
 Monitoring reservation utilization helps you identify over-provisioning, catch unexpected billing, and plan for future capacity needs.
@@ -340,13 +347,17 @@ Use these Azure Cost Management resources to track and analyze your reservation 
 
 ### Adjust reservations as your workload changes
 
-Once a reservation is created, you cannot delete it. You either exchange it for a different reservation or wait until the reservation term expires. If you don't need the reservation anymore, make sure that you've turned off the auto-renew option, so that the reservation doesn't renew at the end of its term.
-
 As your provisioned deployment footprint grows or shrinks, some ways to adjust your reservations include:
 
 - **Add coverage**: Purchase an additional reservation for the same scope to cover new deployments.
-- **Exchange coverage**: Exchange a reservation in the Azure portal. Exchanges reset the reservation term.
-- **Update scope**: Change the scope of an existing reservation at any time without penalty, for example to extend coverage to a new subscription.
+
+- **Cancel coverage**: Cancel a reservation in the Azure portal. Cancellations might incur an early termination fee. See [Exchanges and refunds for Azure Reservations](/azure/cost-management-billing/reservations/exchange-and-refund-azure-reservations) for cancellation terms and any applicable fees.
+
+- **Exchange coverage**: Exchange a reservation in the Azure portal for a different term or quantity. Exchanges reset the reservation term. See [Exchanges and refunds for Azure Reservations](/azure/cost-management-billing/reservations/exchange-and-refund-azure-reservations).
+
+- **Update scope**: Change the scope of an existing reservation at any time without penalty—for example, to extend coverage to a new subscription. See [Change the scope for a reservation](/azure/cost-management-billing/reservations/change-reservation-scope).
+
+If you no longer need a reservation, turn off auto-renew to prevent it from renewing at the end of its term. See [Automatically renew Azure reservations](/azure/cost-management-billing/reservations/reservation-renew).
 
 Manage all reservations from the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations).
 
