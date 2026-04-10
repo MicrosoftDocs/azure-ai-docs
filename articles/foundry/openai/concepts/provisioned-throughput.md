@@ -195,32 +195,9 @@ If your target region doesn't have available capacity:
 
 ## Utilization and HTTP 429 responses
 
-Once a provisioned deployment is running, the service tracks utilization using a leaky bucket algorithm:
+Once a provisioned deployment is running, the service tracks utilization using a leaky bucket algorithm. When utilization reaches 100%, the service returns HTTP 429 immediately rather than queuing traffic—letting your application decide how to handle the situation. A 429 from a provisioned deployment is a traffic-management signal, not a service error.
 
-1. The service estimates each incoming request's expected compute cost — the incremental utilization change needed to serve it — by combining the prompt token count, less any cached tokens, and the specified `max_tokens` parameter. A customer can receive up to a 100% discount on prompt tokens depending on cached token volume. If `max_tokens` isn't specified, the service estimates a value. This estimation can lead to lower concurrency than expected when actual generated tokens are fewer than assumed. For highest concurrency, set `max_tokens` as close as possible to the true generation size.
-1. If current utilization is at 100%, the service returns **HTTP 429** immediately, with the `retry-after-ms` and `retry-after` headers indicating how long to wait.
-1. Utilization drains continuously at a rate proportional to deployed PTUs. A deployment with more PTUs drains utilization faster, which means it recovers capacity more quickly between requests and can sustain a higher overall request rate.
-1. When a request finishes, the service corrects the utilization estimate using actual token counts. If the actual cost is greater than the estimate, the difference is added to the deployment's utilization. If the actual cost is less than the estimate, the difference is subtracted.
-
-Accepted requests always complete with predictable latency, because 429 responses are returned immediately rather than queuing traffic. A 429 from a provisioned deployment is a traffic-management signal—not an error indicating a service problem.
-
-> [!NOTE]
-> Calls are accepted until utilization reaches 100%. Bursts just over 100% might be permitted in short periods, but over time, your traffic is capped at 100% utilization.
-
-:::image type="content" source="../media/provisioned/utilization.jpg" alt-text="Diagram of the leaky bucket algorithm for provisioned throughput utilization showing how incoming requests add to utilization while capacity drains based on deployed PTU count." lightbox="../media/provisioned/utilization.jpg":::
-
-### How to handle HTTP 429 responses
-
-In all provisioned deployment types, when capacity is exceeded, the API returns a HTTP 429 status code. The HTTP 429 response isn't an error, but instead it's part of the design for telling users that a given PTU deployment is fully utilized at a point in time. The service continues to return the HTTP 429 status code until the utilization drops below 100%. By providing a fast-fail response, you have control over how to handle these situations in a way that best fits your application requirements.
-
-Here are some strategies for handling the HTTP 429 response:
-
-- **Redirect to a standard deployment or another model**: This option produces the lowest additional latency, because the action can be taken as soon as you receive the 429 signal. The [spillover feature](../how-to/spillover-traffic-management.md) automates the process of redirecting the request from your provisioned deployment to your standard deployment for processing.
-- **Retry using the wait time in the response header**: The `retry-after-ms` and `retry-after` headers in the response tell you the time to wait before the next call will be accepted. If you need the provisioned deployment and can tolerate added latency, implement client-side retry logic. The Foundry client libraries include built-in capabilities for handling retries.
-
-### Concurrent call limits
-
-The number of concurrent calls you can achieve on a deployment depends on each call's shape (prompt size, `max_tokens` parameter, and similar factors). The service continues to accept calls until the utilization reaches 100%. To determine the approximate number of concurrent calls, you can model out the maximum requests per minute for a particular call shape in the [capacity calculator](https://ai.azure.com/resource/calculator). If the system generates less than the number of output tokens set for the `max_tokens` parameter, then the provisioned deployment will accept more requests.
+For details on how the leaky bucket algorithm works, how to handle 429 responses, and how to configure retry logic in the client libraries, see [Measure deployment utilization](../how-to/provisioned-get-started.md#measure-deployment-utilization) and [Handle high utilization](../how-to/provisioned-get-started.md#handle-high-utilization).
 
 
 ## Advanced topics
