@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/13/2025
+ms.date: 03/17/2026
 ---
 
 For indexed knowledge sources only, you can pass the following `ingestionParameters` properties to control how content is ingested and processed.
@@ -16,4 +16,4 @@ For indexed knowledge sources only, you can pass the following `ingestionParamet
 | `ai_services` | A Microsoft Foundry resource to access Azure Content Understanding in Foundry Tools. Setting this parameter requires that `content_extraction_mode` is set to `standard`. | Object | Only `api_key` is editable | Yes |
 | `asset_store` | A blob container to store extracted images. Setting this parameter requires that `content_extraction_mode` is set to `standard`. | Object | No | No |
 | `ingestion_schedule` | Adds scheduling information to the generated indexer. You can also [add a schedule](../../search-howto-schedule-indexers.md) later to automate data refresh. | Object | Yes | No |
-| `ingestion_permission_options` | The document-level permissions to ingest from select knowledge sources: either [ADLS Gen2](../../agentic-knowledge-source-how-to-blob.md) or [indexed SharePoint](../../agentic-knowledge-source-how-to-sharepoint-indexed.md). If you specify `user_ids`, `group_ids`, or `rbac_scope`, the generated [ADLS Gen2 indexer](../../search-indexer-access-control-lists-and-role-based-access.md) or [SharePoint indexer](../../search-indexer-sharepoint-access-control-lists.md) will include the ingested permissions. | Array | No | No |
+| `ingestion_permission_options` | The document-level permissions to ingest alongside content. Specify `user_ids`, `group_ids`, or `rbac_scope` to store permission metadata in the index. For source-specific guidance, see [Ingest RBAC permissions from blob storage](../../search-blob-indexer-role-based-access.md#configure-a-knowledge-source) and [Ingest ACLs from ADLS Gen2](../../search-indexer-access-control-lists-and-role-based-access.md#configure-a-knowledge-source). To enforce these permissions at query time, see [Enforce permissions at query time](../../agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time). | Array | No | No |

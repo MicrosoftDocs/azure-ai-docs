@@ -6,11 +6,11 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 08/29/2024
-ms.custom: include, ignite-2024
+ms.date: 04/08/2026
+ms.custom: include
 ---
 
-You install the [Azure CLI](/cli/azure/what-is-azure-cli) and sign in from your local development environment, so that you can use your user credentials to call Azure OpenAI in Microsoft Foundry Models.
+You install the [Azure CLI](/cli/azure/what-is-azure-cli) and sign in from your local development environment so that your code can use your user credentials to call Azure services through Foundry.
 
 In most cases you can install Azure CLI from your terminal using the following command: 
 

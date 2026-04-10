@@ -9,12 +9,11 @@ ms.author: nakersha
 ms.reviewer: metang
 author: natke
 reviewer: metang
-zone_pivot_groups: foundry-local-sdk-vnext
+zone_pivot_groups: foundry-local-sdk
 ms.date: 11/17/2025
 ---
 
 # How to use tool calling with Foundry Local
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 Foundry Local can make use of tool calling, a technique where you prompt the model with definitions of available tools that together with a text prompt, allow the model to work out which tools should be called and with what input data. The application then calls those tools and adds the results to a subsequent model prompt to answer the user's query.
 
@@ -33,6 +32,12 @@ In the `Task` column, you can see that the `tools` task indicates that tool call
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/tool-calling/javascript.md)]
+::: zone-end
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python](../includes/tool-calling/python.md)]
+::: zone-end
+::: zone pivot="programming-language-rust"
+[!INCLUDE [Rust](../includes/tool-calling/rust.md)]
 ::: zone-end
 
 ## Related content

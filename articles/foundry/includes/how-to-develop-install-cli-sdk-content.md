@@ -60,7 +60,7 @@ The Extension Pack for Java is a collection of popular extensions that can help 
 
 ::: zone pivot="programming-language-javascript"
 
-Install [Node.js](https://nodejs.org/) (version 18 or later is recommended).
+Install [Node.js](https://nodejs.org/) (version 20 or later is recommended).
 
 ::: zone-end
 

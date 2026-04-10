@@ -90,8 +90,6 @@ You can pass the following properties to create a search index knowledge source.
 | `sourceDataFields` | The index fields returned when you specify `includeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
 | `searchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
 
----
-
 ## Assign to a knowledge base
 
 If you're satisfied with the knowledge source, continue to the next step: specify the knowledge source in a [knowledge base](../../agentic-retrieval-how-to-create-knowledge-base.md).

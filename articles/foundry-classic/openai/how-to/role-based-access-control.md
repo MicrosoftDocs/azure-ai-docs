@@ -168,7 +168,7 @@ When selecting an existing Azure Cognitive Search resource the search indices do
 
 To make a generic API call for listing Azure Cognitive Search services, the following call is made:
 
-``` https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Search/searchServices?api-version=2021-04-01-Preview ```
+`https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Search/searchServices?api-version=2021-04-01-Preview`
   
 Replace {subscriptionId} with your actual subscription ID.
 

@@ -116,7 +116,7 @@ For more information, see [What is Azure Policy?](/azure/governance/policy/overv
 ## Sample library
 
 Explore ready-to-use templates and examples in the GitHub repository:  
-[Custom policy definitions](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions)
+[Custom policy definitions](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions)
 
 This library includes JSON templates for common scenarios.
 

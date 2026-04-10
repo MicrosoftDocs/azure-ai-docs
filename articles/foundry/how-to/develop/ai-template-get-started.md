@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: how-to
-ms.date: 01/05/2026
+ms.date: 04/08/2026
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
@@ -60,7 +60,7 @@ Available templates:
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 1. Select **Discover** from the upper-right navigation.
 1. Select **Solution templates** from the left pane.
-1. Select **Open in Github** to view the entire sample application.
+1. Select **Open in GitHub** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
 
 [!INCLUDE [ai-template-get-started 1](../../includes/how-to-develop-ai-template-get-started-1.md)]

@@ -171,7 +171,7 @@ project_client.agents.delete_agent(agent.id)
 print(f"Deleted agent")
 ```
 
-For any issues with the Python code, create an issue on the [sample code repository](https://github.com/azure-ai-foundry/foundry-samples)
+For any issues with the Python code, create an issue on the [sample code repository](https://github.com/microsoft-foundry/foundry-samples)
 
 ::: zone-end
 
