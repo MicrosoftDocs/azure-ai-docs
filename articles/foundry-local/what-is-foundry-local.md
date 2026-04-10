@@ -1,12 +1,12 @@
 ---
 title: "What is Foundry Local?"
 titleSuffix: Foundry Local
-description: "Foundry Local is an on-device AI inference solution that lets you run AI models locally through a CLI, SDK, or REST API."
-keywords: Foundry Tools, cognitive
+description: "Foundry Local is an end-to-end local AI solution that handles model acquisition, hardware acceleration, and inference — all shipped inside your app."
+keywords: Foundry Local, on-device AI, local inference
 ms.service: microsoft-foundry
 ms.subservice: foundry-local
 ms.topic: overview
-ms.date: 01/06/2026
+ms.date: 03/27/2026
 ms.reviewer: samkemp
 ms.author: jburchel
 author: jonburchel
@@ -17,109 +17,78 @@ ai-usage: ai-assisted
 ---
 
 # What is Foundry Local?
-[!INCLUDE [foundry-local-preview](./includes/foundry-local-preview.md)]
 
-Foundry Local is an on-device AI inference solution that you use to run AI models locally through a CLI, SDK, or REST API.
+Foundry Local is an **end-to-end local AI solution for shipping applications that run entirely on the user's device**. It provides an easy-to-use SDK (C#, JavaScript, Rust, and Python), a curated catalog of optimized models, and automatic hardware acceleration — all in a lightweight package.
 
-## Prerequisites
+User data never leaves the device, responses start immediately with zero network latency, and your app works offline. There are no per-token costs and no backend infrastructure to maintain.
 
-- Install Foundry Local. Follow [Get started with Foundry Local](get-started.md).
-- Use a terminal (for example, Windows Terminal or macOS Terminal).
-- Have an internet connection for first-time model downloads.
-- If you use Foundry Local only on your device, you don't need an Azure subscription and there are no Azure RBAC role requirements.
+## Features
 
-## Try it (CLI)
+- **Lightweight runtime** — The runtime handles model acquisition, hardware acceleration, model management, and inference (via [ONNX Runtime](https://onnxruntime.ai/)). The runtime adds approximately 20 MB to your application package, making it practical to embed AI directly into applications where size matters.
 
-Run these commands to verify your installation and run a model locally.
+- **Curated model catalog** — A catalog of high-quality models optimized for on-device use across a wide range of consumer hardware. The catalog covers chat completions (for example, GPT OSS, Qwen, DeepSeek, Mistral and Phi ) and audio transcription (for example, Whisper). Every model goes through extensive quantization and compression to deliver the best balance of quality and performance. Models are versioned, so your application can pin to a specific version or automatically receive updates.
 
-```bash
-foundry --help
-foundry model list
-foundry model run qwen2.5-0.5b
-```
+- **Automatic hardware acceleration** — Foundry Local detects the available hardware on the user's device and selects the best execution provider. It accelerates inference on GPUs and NPUs when available and falls back to CPU seamlessly — no hardware detection code required. Execution provider and driver updates are managed automatically to ensure optimal performance across different hardware configurations.
 
-- `foundry --help` prints the available CLI commands.
-- `foundry model list` lists available models. The first run might download execution providers for your hardware.
-- `foundry model run qwen2.5-0.5b` downloads the model (first run) and starts an interactive prompt in your terminal.
+- **Smart model management** — Foundry Local handles the full lifecycle of models on end-user devices. Models download automatically on first use, are cached locally for instant subsequent launches, and the best-performing variant is selected for the user's specific hardware.
 
-Reference: [Foundry Local CLI reference](reference/reference-cli.md)
+- **OpenAI-compatible API** — Supports OpenAI request and response formats including the [OpenAI Responses API format](https://developers.openai.com/api/reference/resources/responses). If your application already uses the OpenAI SDK, point it to a Foundry Local endpoint with minimal code changes.
 
-## Supported capabilities
+- **Optional local server** — An OpenAI-compatible web server for serving models to multiple processes, integrating with tools like [LangChain](how-to/how-to-use-langchain-with-foundry-local.md), or experimenting through REST calls. For most embedded application scenarios, use the SDK directly — it runs inference in-process without the overhead of a separate server.
 
-Foundry Local is a unified local AI runtime that supports multiple AI tasks through a single SDK:
+## Motivation for on-device AI
 
-| Capability | Model aliases | SDK API |
-|------------|--------------|---------|
-| Chat completions (text generation) | `phi-3.5-mini`, `qwen2.5-0.5b`, `phi-4-mini`, etc. | Chat client |
-| Audio transcription (speech-to-text) | `whisper-tiny`, `whisper-small`, `whisper-base` | Audio client |
+Foundry Local is ideal for applications that need to:
 
-> [!TIP]
-> One SDK handles both chat and audio — no need for separate tools like `whisper.cpp`, `llama.cpp`, or `ollama`. Foundry Local automatically selects the best hardware acceleration (NPU > GPU > CPU) for your device.
-
-## Key features
-
- - **On-device inference**: Run models locally to reduce costs and help keep data on your device.
-
-- **Chat and audio in one runtime**: Text generation and speech-to-text through a single SDK. No need to install and manage separate inference engines.
-
-- **Zero hardware detection code**: Foundry Local automatically selects the best execution provider for your hardware — NPU, GPU, or CPU — with no platform-specific code required.
-
-- **Model customization**: Select a preset model or use your own to meet specific needs.
-
-- **Cost efficiency**: Use existing hardware to eliminate recurring cloud costs and make AI more accessible.
-
-- **Seamless integration**: Integrate with your apps through the SDK, API endpoints, or CLI. For multi-user or high-throughput workloads, move to [Microsoft Foundry](../foundry-classic/index.yml).
-
-## Use cases
-
-Foundry Local is ideal when you need to:
-
-- Keep sensitive data on your device
-- Operate in limited or offline environments
-- Reduce cloud inference costs
-- Get low latency AI responses for real-time applications
-- Transcribe audio on-device for privacy-sensitive applications (for example, voice journals, meeting notes, medical dictation)
-- Build apps that combine speech-to-text and text generation in a single pipeline
-- Experiment with AI models before you deploy to the cloud
-
-## Frequently asked questions
-
-### Does Foundry Local send my prompts or outputs to Microsoft?
-
-Foundry Local is designed to run inference on your device. When you send prompts to a local Foundry Local endpoint (for example, `http://localhost:PORT`), your prompts and model outputs are processed locally.
-
-Foundry Local can still use the network for operations like:
-
-- **Model and component downloads**: The first time you run a model, Foundry Local downloads the model files. It might also download execution providers for your hardware.
-- **Optional diagnostics you choose to share**: If you report a problem, you might choose to share logs (for example, by using `foundry zip-logs`).
-
-Your use of Foundry Local is governed by the product terms and licenses that apply to the software and the models you run. If the terms allow Microsoft to collect diagnostic information, the details are described in those terms and the [Microsoft Privacy Statement](https://www.microsoft.com/en-us/privacy/privacystatement).
-
-### Do I need an Azure subscription?
-
-No. Foundry Local runs on your hardware, letting you run supported models locally without requiring an Azure subscription.
-
-### Do I need special drivers for NPU acceleration?
-
-Install the driver for your NPU hardware:
-
-- Intel NPU: Install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration on Windows.
-
-- Qualcomm NPU: Install the [Qualcomm NPU driver](https://softwarecenter.qualcomm.com/catalog/item/QHND) to enable NPU acceleration. If you see the error `Qnn error code 5005: Failed to load from EpContext model. qnn_backend_manager.`, it likely indicates an outdated driver or an NPU resource conflict. Reboot to clear the conflict, especially after using Windows Copilot+ features.
-
-After you install the drivers, Foundry Local automatically detects and uses the NPU.
+- Keep sensitive data (audio, text, image, etc) on the user's device.
+- Operate in limited-connectivity or offline environments.
+- Reduce per-token cloud inference costs.
+- Deliver low-latency AI responses for real-time interactions.
 
 ## Get started
 
-Follow the [Get started with Foundry Local](get-started.md) guide to set up Foundry Local, discover models, and run your first local AI model.
+Follow the [Get started with Foundry Local](get-started.md) guide to build your first on-device AI application.
+
+## Frequently asked questions
+
+### Is Foundry Local a web server and CLI tool?
+
+No. Foundry Local is an **end-to-end local AI solution** that your application ships with. It handles model acquisition, hardware acceleration, and inference inside your app process through the SDK. The optional web server and CLI are available for development workflows, but the core product is the local AI runtime and SDK that you integrate directly into your application.
+
+### Why doesn't Foundry Local support every available model?
+
+Foundry Local is designed for shipping production applications, not for general-purpose model experimentation. The model catalog is intentionally curated to include models that are optimized for specific application scenarios, tested across a range of consumer hardware, and small enough to distribute to end users. This approach ensures that every model in the catalog delivers reliable performance when embedded in your application — rather than offering a broad selection of models with unpredictable on-device behavior.
+
+### Can Foundry Local run on a server?
+
+Foundry Local is optimized for hardware-constrained devices where a single user accesses the model at a time. While you can technically install and run it on server hardware, it isn't designed as a server inference stack.
+
+Server-oriented runtimes like [vLLM](https://docs.vllm.ai/en/latest/) or [Triton Inference Server](https://github.com/triton-inference-server/server) are built for multi-user scenarios — they handle concurrent request queuing, continuous batching, and efficient GPU sharing across many simultaneous clients. Foundry Local doesn't provide these capabilities. Instead, it focuses on lightweight, single-user inference with automatic hardware detection, KV-cache management, and model lifecycle handling that make sense for client applications.
+
+If you need to serve models to multiple concurrent users, use a dedicated server inference framework. Use Foundry Local when the model runs on the end user's own device.
+
+### Does Foundry Local send prompts or outputs to Microsoft?
+
+Foundry Local runs inference entirely on the device. When your application sends prompts to a Foundry Local endpoint, prompts and model outputs are processed locally.
+
+Foundry Local can still use the network for:
+
+- **Model and component downloads** — The first time a model runs, Foundry Local downloads the model files and might also download execution providers for the user's hardware.
+- **Optional diagnostics** — If a user reports a problem, they might choose to share logs.
+
+Use of Foundry Local is governed by the product terms and licenses that apply to the software and the models in use. If the terms allow Microsoft to collect diagnostic information, the details are described in those terms and the [Microsoft Privacy Statement](https://www.microsoft.com/en-us/privacy/privacystatement).
+
+### Is an Azure subscription required?
+
+No. Foundry Local runs entirely on local hardware. No Azure subscription is required.
+
+### What platforms are supported?
+
+Foundry Local supports Windows, macOS (Apple silicon), and Linux.
+
 
 ## Related content
 
-- [Get started with Foundry Local](get-started.md)
-- [Transcribe audio files with Foundry Local](how-to/how-to-transcribe-audio.md)
-- [Integrate inference SDKs with Foundry Local](how-to/how-to-integrate-with-inference-sdks.md)
-- [Foundry Local CLI reference](reference/reference-cli.md)
-- [Foundry Local REST API reference](reference/reference-rest.md)
+- [Foundry Local architecture](concepts/foundry-local-architecture.md)
+- [Integrate with inference SDKs](how-to/how-to-integrate-with-inference-sdks.md)
 - [Foundry Local SDK reference](reference/reference-sdk-current.md)
-- [Compile Hugging Face models for Foundry Local](how-to/how-to-compile-hugging-face-models.md)
-- [Foundry Local best practices and troubleshooting](reference/reference-best-practice.md)

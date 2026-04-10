@@ -1,10 +1,21 @@
 items:
-- name: Foundry Local (preview) documentation
+- name: Foundry Local documentation
   href: index.yml
-- name: What is Foundry Local (preview)?
+- name: What is Foundry Local?
   href: what-is-foundry-local.md
 - name: Get Started
   href: get-started.md
+- name: Tutorials
+  expanded: true
+  items:
+  - name: Build a multi-turn chat assistant
+    href: tutorials/tutorial-build-chat-assistant.md
+  - name: Build an AI assistant with tool calling
+    href: tutorials/tutorial-build-tool-calling-assistant.md
+  - name: Build a voice-to-text note taker
+    href: tutorials/tutorial-build-voice-to-text-note-taker.md
+  - name: Build a document summarizer
+    href: tutorials/tutorial-build-document-summarizer.md
 - name: Concepts
   expanded: true
   items:
@@ -21,17 +32,15 @@ items:
     href: how-to/how-to-transcribe-audio.md
   - name: Integrate with LangChain
     href: how-to/how-to-use-langchain-with-foundry-local.md
-  - name: Integrate with Open WebUI
-    href: how-to/how-to-chat-application-with-open-web-ui.md
   - name: Compile Hugging Face models to run on Foundry Local
     href: how-to/how-to-compile-hugging-face-models.md
   - name: Use tool calling
     href: how-to/how-to-use-tool-calling-with-foundry-local.md  
+  - name: Use the Foundry Local CLI (preview)
+    href: how-to/how-to-use-foundry-local-cli.md
 - name: Reference
   expanded: true
   items:
-  - name: Foundry Local CLI
-    href: reference/reference-cli.md
   - name: Foundry Local SDK
     expanded: true
     items:
@@ -41,14 +50,12 @@ items:
       href: reference/reference-sdk-legacy.md
     - name: Guidance for migrating from the legacy SDK
       href: reference/reference-sdk-migration.md
-  - name: APIs
+  - name: Foundry Local CLI (preview)
+    expanded: true
     items:
-    - name: REST API
-      href: reference/reference-rest.md
-    - name: Catalog API
-      href: reference/reference-catalog-api.md
-  - name: Foundry Local on Windows Server 2025
-    href: reference/windows-server-frequently-asked-questions.md      
-  - name: Best practice and troubleshooting
-    href: reference/reference-best-practice.md
- 
+    - name: CLI (preview) guide
+      href: reference/reference-cli.md
+    - name: CLI REST (preview) API
+      href: reference/reference-rest.md   
+    - name: CLI (preview) best practice and troubleshooting
+      href: reference/reference-best-practice.md
