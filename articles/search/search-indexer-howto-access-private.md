@@ -4,7 +4,7 @@ description: Configure indexer connections to access content from other Azure re
 ms.reviewer: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/23/2026
+ms.date: 04/10/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
@@ -24,7 +24,7 @@ Shared private link is a premium feature billed by usage. For details, see [Azur
 
 ## Prerequisites
 
-+ [A supported Azure resource](#supported-resource-types), configured to run in a virtual network.
++ A [supported Azure resource](#supported-resource-types) configured to run in a virtual network.
 
 + An Azure AI Search service. Requirements vary by workload:
 
@@ -308,7 +308,7 @@ This would return a JSON, where the connection state shows up as "status" under 
 }
 ```
 
-If the provisioning state (`properties.provisioningState`) of the resource is "Succeeded" and connection state(`properties.status`) is "Approved", it means that the shared private link resource is functional and the indexer can be configured to communicate over the private endpoint.
+If the provisioning state (`properties.provisioningState`) of the resource is "Succeeded" and connection state (`properties.status`) is "Approved", it means that the shared private link resource is functional and the indexer can be configured to communicate over the private endpoint.
 
 ## 4 - Configure the indexer to run in the private environment
 
@@ -423,7 +423,9 @@ When evaluating shared private links for your scenario, remember these constrain
 
 + Indexer execution must use the [private execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) that's specific to your search service. Private endpoint connections aren't supported from the multitenant content processing environment. The configuration setting for this requirement is covered in this article.
 
-+ Review shared private link [resource limits for each tier](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
++ Shared private link [resource limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits) vary by pricing tier.
+
++ When you [change your pricing tier](search-capacity-planning.md#change-your-pricing-tier), shared private link resources are evaluated against the target tier's limits. If your shared private link count exceeds the target tier's maximum, the tier change is blocked. If the tier change succeeds, existing shared private link resources aren't recreated and don't require reapproval. Private indexer connectivity continues to work after the search service returns to a "Succeeded" provisioning state and "Running" status, provided the shared private link provisioning state remains "Succeeded" and the connection status remains "Approved."
 
 + The resource type `Microsoft.CognitiveServices/accounts` for kind `AIServices` isn't currently supported. This means that shared private link for Foundry resources with this kind can't be created at this time. If you require to use an Azure OpenAI embedding model for your skill or vectorizer, and need private communication, create an Azure OpenAI resource and a shared private link with the `Microsoft.CognitiveServices/accounts` with subtype `openai_account` as a workaround.
 
