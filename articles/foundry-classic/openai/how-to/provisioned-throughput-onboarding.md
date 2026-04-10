@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
-ms.date: 04/09/2026
+ms.date: 04/10/2026
 manager: nitinme
 author: msakande 
 ms.author: mopeakande 
@@ -89,7 +89,6 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 \* Calculated as the average request latency on a per-minute basis across the month.
 
 <sup>1</sup> For Llama-3.3-70B-Instruct, one output token counts as four input tokens towards your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. For more details, see [Exceptions to input and output throughput ratio](#exceptions-to-input-and-output-throughput-ratio).
-
 For a full list, see the [Foundry calculator](https://ai.azure.com/resource/calculator).
 
 ## Fireworks on Microsoft Foundry models
@@ -101,6 +100,9 @@ The following Fireworks on Microsoft Foundry models currently support Global pro
 |Global provisioned minimum deployment|80|500|500|800|800|1200|80|400|700|800|
 |Global provisioned scale increment|40|275|275|400|400|600|40|200|350|400|
 |Input TPM per PTU|13,500|1,250|700|530|1,050|1,500|4,800|3,000|3,500|3,000|
+|Latency Target Value|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|
+
+\* Calculated as the average request latency on a per-minute basis across the month.
 
 ## Determine PTU requirements for a workload
 
