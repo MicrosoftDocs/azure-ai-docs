@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: aahill
 ms.author: aahi
 ms.reviewer: lagayhar
-ms.date: 04/02/2026
+ms.date: 04/10/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ---
@@ -73,8 +73,8 @@ pip install opentelemetry-exporter-otlp
 Add the required NuGet packages:
 
 ```dotnetcli
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.AI.Projects.Agents --prerelease
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
 dotnet add package Azure.Identity
 dotnet add package Azure.Monitor.OpenTelemetry.Exporter
 dotnet add package OpenTelemetry.Exporter.Console

@@ -10,7 +10,7 @@ ms.custom:
   - doc-kit-assisted
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 04/10/2026
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -103,11 +103,12 @@ npm install @azure/ai-projects @azure/identity dotenv
 
 The [Azure AI Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run this command to add the Azure.AI.Projects package to your .NET project.
+Run these commands to add the required packages to your .NET project.
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.AI.Projects.OpenAI --prerelease
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
+dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
 ::: zone-end

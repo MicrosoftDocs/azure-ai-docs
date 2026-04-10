@@ -5,7 +5,7 @@ description: "Learn how to monitor operational metrics, token usage, latency, an
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sonalimalik
-ms.date: 01/08/2026
+ms.date: 04/10/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026 , doc-kit-assisted
@@ -94,7 +94,9 @@ pip install "azure-ai-projects>=2.0.0" python-dotenv
 # [C#](#tab/csharp)
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
+dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
 
