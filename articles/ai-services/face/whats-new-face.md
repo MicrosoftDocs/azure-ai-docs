@@ -17,10 +17,6 @@ Learn what's new in Azure Face. Check this page to stay up to date with new feat
 
 ## March 2026
 
-### Face liveness service reliability updates
-
-The Face liveness detection service received reliability and performance improvements.
-
 ### Face liveness client-side SDK 1.4.7 and 1.4.8 releases
 
 Versions **1.4.7** and **1.4.8** of the Liveness SDK introduce several improvements:
