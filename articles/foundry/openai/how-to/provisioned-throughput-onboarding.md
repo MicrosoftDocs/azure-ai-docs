@@ -173,7 +173,7 @@ For all deployments, cached tokens are deducted 100% from the utilization calcul
 
 Some models use a throughput ratio that differs from their global standard price ratio. For example, with Llama-3.3-70B-Instruct, one output token counts as four input tokens toward your utilization limit, which differs from that model's standard price ratio. See [pricing for Llama models](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/) for the full input and output pricing breakdown.
 
-## Throughput and deployment parameters by model 
+## Throughput and deployment parameter values by model 
 
 For the tables in this section, each row represents a different deployment parameter:
 
@@ -232,7 +232,7 @@ For the tables in this section, each row represents a different deployment param
 
 <sup>2</sup> Calculated as the average request latency on a per-minute basis across the month. TPS = tokens per second.
 
-## Fireworks on Microsoft Foundry models
+### Fireworks on Microsoft Foundry models
 
 The following Fireworks on Microsoft Foundry models currently support Global provisioned throughput. Data zone and regional provisioned throughput aren't currently available.
 
