@@ -45,6 +45,12 @@ LLM speech is powered by a large-language-model-enhanced speech model that deliv
 
 ::: zone-end
 
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript SDK quickstart](includes/common/llm-speech-sdk-javascript.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-java"
 
 [!INCLUDE [Java SDK quickstart](includes/common/llm-speech-sdk-java.md)]
