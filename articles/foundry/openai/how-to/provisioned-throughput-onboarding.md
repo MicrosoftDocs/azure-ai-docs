@@ -339,7 +339,7 @@ The PTU quantity in a reservation purchase is independent of your quota allocati
 
 After your deployments are in place and you've determined the PTU quantity you need, purchase the reservation from the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations).
 
-For step-by-step guidance—including how to choose a reservation scope, term length, and billing frequency—see [Prepare to buy an Azure reservation](/azure/cost-management-billing/reservations/prepare-buy-reservation).
+For step-by-step guidance on purchasing and managing Foundry provisioned throughput reservations—including role requirements, scope selection, and term options—see [Save costs with Microsoft Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/microsoft-foundry).
 
 ## Monitor your reservation and PTU usage
 
