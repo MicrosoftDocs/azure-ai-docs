@@ -84,7 +84,7 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 
 <sup>1</sup> For Llama-3.3-70B-Instruct, one output token counts as four input tokens towards your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. For more details, see [Exceptions to input and output throughput ratio](#exceptions-to-input-and-output-throughput-ratio).
 
-## Fireworks on Microsoft Foundry models
+## Fireworks on Microsoft Foundry models (Preview)
 
 The following Fireworks on Microsoft Foundry models currently support Global provisioned throughput. Data zone and regional provisioned throughput aren't currently available.
 
@@ -93,7 +93,7 @@ The following Fireworks on Microsoft Foundry models currently support Global pro
 |Global provisioned minimum deployment|80|500|500|800|800|1200|80|400|700|800|
 |Global provisioned scale increment|40|275|275|400|400|600|40|200|350|400|
 |Input TPM per PTU|13,500|1,250|700|530|1,050|1,500|4,800|3,000|3,500|3,000|
-|Latency Target Value\*|99% > 50 Tokens Per Second|99% > 50 Tokens Per Second|99% > 50 Tokens Per Second|99% > 50 Tokens Per Second|99% > 50 Tokens Per Second|99% > 50 Tokens Per Second|99% > 50 Tokens Per Second|99% > 50 Tokens Per Second|99% > 50 Tokens Per Second|99% > 50 Tokens Per Second|
+|Latency Target Value|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|
 
 \* Calculated as p50 request latency on a per-5-minute basis.
 

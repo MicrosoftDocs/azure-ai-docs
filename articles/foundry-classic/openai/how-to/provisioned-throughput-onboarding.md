@@ -92,7 +92,7 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 
 For a full list, see the [Foundry calculator](https://ai.azure.com/resource/calculator).
 
-## Fireworks on Microsoft Foundry models
+## Fireworks on Microsoft Foundry models (Preview)
 
 The following Fireworks on Microsoft Foundry models currently support Global provisioned throughput. Data zone and regional provisioned throughput aren't currently available.
 
