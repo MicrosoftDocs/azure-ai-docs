@@ -223,8 +223,8 @@ For the tables in this section, each row represents a different deployment param
 | Global & data zone provisioned scale increment | 100 | 100 | 100 | 100 |
 | Regional provisioned minimum deployment | NA | NA | NA | NA |
 | Regional provisioned scale increment | NA | NA | NA | NA |
-| Input TPM per PTU | 8,450<sup>1</sup> | 4,000 | 4,000 | 4,000 |
-| Throughput ratio | 4 | 4 | 4 | N/A |
+| Input TPM per PTU | 8,450 | 4,000 | 4,000 | 4,000 |
+| Throughput ratio | 4<sup>1</sup> | 4 | 4 |  |
 | Latency target value<sup>2</sup> | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS | 99% > 50 TPS |
 
 <sup>1</sup> For Llama-3.3-70B-Instruct, one output token counts as four input tokens toward your utilization limit. This ratio differs from the global standard price ratio between input and output tokens. See [Exceptions to input and output throughput ratio](#exceptions-to-input-and-output-throughput-ratio) and [Llama model pricing](https://azure.microsoft.com/pricing/details/ai-foundry-models/llama/).
@@ -242,14 +242,11 @@ PTUs represent an amount of model processing capacity. Similar to your computer 
 
 - **Model type and version**: The minimum PTU deployment, increments, and processing capacity per PTU varies by model type and version. See [How much throughput per PTU you get for each model](#how-much-throughput-per-ptu-you-get-for-each-model) for per-model data in the tables.
 
-**Use the capacity calculator to estimate PTUs**: The [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal is useful for sizing specific workload shapes. 
-
-> [!NOTE]
-> Manual estimation of thr PTU and use of the capacity calculator provide PTU estimates based on the assumption of a static prompt and generation size and call rate. Variations on these values will cause changes to the overall throughput per PTU you receive. For more accurate evaluations, benchmark a deployment against representative traffic for your use case.
+You can perform a manual estimation of the PTUs needed or use the [capacity calculator](https://ai.azure.com/resource/calculator) in the Foundry portal to determine PTU estimates based on the assumption of a static prompt and generation size and call rate. Variations on these values will cause changes to the overall throughput per PTU you receive. For more accurate evaluations, benchmark a deployment against representative traffic for your use case.
 
 ### Estimate PTU for a workload manually
 
-You can estimate the PTUs your workload requires using your expected traffic and the per-model values from the [tables in the previous section](#how-much-throughput-per-ptu-you-get-for-each-model). The calculation converts your expected token volume into a single *converted input TPM* figure, then divides by the model's **Input TPM per PTU** value.
+You can estimate the PTUs your workload requires, using your expected traffic and the per-model values from the [tables in the previous section](#how-much-throughput-per-ptu-you-get-for-each-model). The calculation converts your expected token volume into a single *converted input TPM* figure, then divides by the model's **Input TPM per PTU** value.
 
 **Formulas:**
 
