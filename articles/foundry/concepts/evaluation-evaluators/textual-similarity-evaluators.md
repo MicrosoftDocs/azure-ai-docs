@@ -4,8 +4,8 @@ description: "Learn about textual similarity evaluators for generative AI, inclu
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: changliu2
-ms.date: 02/25/2026
+ms.reviewer: dlozier
+ms.date: 04/01/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -33,21 +33,23 @@ F1 score measures the similarity by shared tokens between the generated text and
 
 ## BLEU score
 
-Bleu score computes the Bilingual Evaluation Understudy (BLEU) score commonly used in natural language processing and machine translation. It measures how closely the generated text matches the reference text.
+Bleu score computes the Bilingual Evaluation Understudy (BLEU) score commonly used in natural language processing and machine translation. It measures how closely the generated text matches the reference text. It's well-suited for machine translation quality assessment, where exact n-gram matches between system output and human reference translations are a meaningful proxy for quality.
 
 ## GLEU score
 
-Gleu score computes the Google-BLEU (GLEU) score. It measures the similarity by shared n-grams between the generated text and ground truth. Similar to the BLEU score, it focuses on both precision and recall. It addresses the drawbacks of the BLEU score using a per-sentence reward objective.
+Gleu score computes the Google-BLEU (GLEU) score. It measures the similarity by shared n-grams between the generated text and ground truth. Similar to the BLEU score, it focuses on both precision and recall. It addresses the drawbacks of the BLEU score using a per-sentence reward objective, making it useful for sentence-level evaluation tasks where BLEU's corpus-level aggregation can mask per-sentence quality differences.
 
 ## ROUGE score
 
-Rouge score computes the Recall-Oriented Understudy for Gisting Evaluation (ROUGE) scores, a set of metrics used to evaluate automatic summarization and machine translation. It measures the overlap between generated text and reference summaries. ROUGE focuses on recall-oriented measures to assess how well the generated text covers the reference text. The ROUGE score is composed of precision, recall, and F1 score.
+Rouge score computes the Recall-Oriented Understudy for Gisting Evaluation (ROUGE) scores, a set of metrics used to evaluate automatic summarization and machine translation. It measures the overlap between generated text and reference summaries, with a focus on recall. Unlike other evaluators that return a single score, `builtin.rouge_score` returns three separate 0-1 float scores: precision, recall, and F1.
 
 ## METEOR score
 
 Meteor score measures the similarity by shared n-grams between the generated text and the ground truth. Similar to the BLEU score, it focuses on precision and recall. It addresses limitations of other metrics like the BLEU score by considering synonyms, stemming, and paraphrasing for content alignment.
 
-## Using textual similarity evaluators
+## Configure and run evaluators
+
+Use `builtin.similarity` when semantic meaning matters — for example, when paraphrases or synonyms should score as equivalent. Use the algorithmic evaluators (F1, BLEU, GLEU, ROUGE, METEOR) when exact token overlap is the criterion, such as machine translation quality assessment, fixed-answer retrieval, or NLP benchmarking. All six evaluators are generally available (GA).
 
 Textual similarity evaluators compare generated responses against ground truth text using different algorithms:
 
@@ -64,7 +66,7 @@ Examples:
 | `builtin.f1_score` | Token overlap using precision and recall | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
 | `builtin.bleu_score` | N-gram overlap (machine translation metric) | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
 | `builtin.gleu_score` | Per-sentence reward variant of BLEU | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
-| `builtin.rouge_score` | Recall-oriented n-gram overlap | `ground_truth`, `response` | `rouge_type` | 0-1 float | 0.5 |
+| `builtin.rouge_score` | Recall-oriented n-gram overlap | `ground_truth`, `response` | `rouge_type` | 3 floats: precision, recall, F1 | 0.5 per score |
 | `builtin.meteor_score` | Weighted alignment with synonyms | `ground_truth`, `response` | *(none)* | 0-1 float | 0.5 |
 
 ### Example input
@@ -119,9 +121,12 @@ testing_criteria = [
 
 See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
+> [!NOTE]
+> The `rouge_type` parameter accepts: `rouge1` (unigram overlap), `rouge2` (bigram overlap), `rouge3`, `rouge4`, `rouge5`, and `rougeL` (longest common subsequence). Use `rouge1` for general-purpose summarization evaluation.
+
 ### Example output
 
-LLM-based evaluators like `similarity` use a 1-5 Likert scale. Algorithmic evaluators output 0-1 floats. All evaluators output *pass* or *fail* based on their thresholds. Key output fields:
+LLM-based evaluators like `builtin.similarity` use a 1-5 Likert scale. Most algorithmic evaluators output a single 0-1 float score. `builtin.rouge_score` is an exception — it returns three separate scores. All evaluators output *pass* or *fail* based on their thresholds. Key output fields:
 
 ```json
 {
@@ -136,8 +141,11 @@ LLM-based evaluators like `similarity` use a 1-5 Likert scale. Algorithmic evalu
 }
 ```
 
+> [!NOTE]
+> `builtin.rouge_score` returns three separate scores rather than one: `rouge_precision`, `rouge_recall`, and `rouge_f1_score`, each with its own pass/fail result. The threshold of 0.5 applies independently to each score.
+
 ## Related content
 
-- [Complete working sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_ai_assisted.py)
+- [More examples for quality evaluators](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
 - [How to run agent evaluation](../../observability/how-to/evaluate-agent.md)
 - [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)

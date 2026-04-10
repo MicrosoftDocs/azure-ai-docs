@@ -33,6 +33,13 @@ The key to generating an ephemeral token is the REST API using
 url = https://{your azure resource}.openai.azure.com/openai/v1/realtime/client_secrets
 ```
 
+> [!NOTE]
+> This is the **GA endpoint** for WebRTC. If you're migrating from the Preview API, the endpoint has changed:
+> - **Preview (deprecated)**: `/openai/realtimeapi/sessions?api-version=2025-04-01-preview`
+> - **GA (current)**: `/openai/v1/realtime/client_secrets` (no API version parameter needed)
+>
+> For migration details, see [Migration from Preview to GA version of Realtime API](../how-to/realtime-audio-preview-api-migration-guide.md#update-webrtc-endpoints).
+
 You use this URL with either an api-key or Microsoft Entra ID token. This request retrieves an ephemeral token and sets up the session configuration you want the web browser to use, including the prompt instructions and output voice. 
 
 Here's some sample python code for a token service. The web browser application can call this service by using the /token endpoint to retrieve an ephemeral token. This sample code uses the DefaultAzureCredential to authenticate to the RealtimeAPI generating ephemeral tokens.
@@ -189,6 +196,11 @@ Your browser application calls your token service to get the token and then init
 ```text
 https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls
 ```
+
+> [!NOTE]
+> This is the **GA endpoint** for WebRTC connections. If you're migrating from the Preview API:
+> - **Preview (deprecated)**: `https://<region>.realtimeapi-preview.ai.azure.com/v1/realtimertc`
+> - **GA (current)**: `https://<your azure resource>.openai.azure.com/openai/v1/realtime/calls`
 
 Once connected, the browser application sends text over the data channel and audio over the media channel. Here's a sample HTML document to get you started.
 

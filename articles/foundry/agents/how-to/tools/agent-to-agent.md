@@ -1,12 +1,12 @@
 ---
-title: "Add an A2A agent endpoint to Foundry Agent Service"
-description: "Add an Agent2Agent (A2A) endpoint to Foundry Agent Service for cross-agent communication. Configure connections, authentication, and SDK integration."
+title: "Connect to an A2A agent endpoint from Foundry Agent Service"
+description: "Connect your Foundry agent to a remote Agent2Agent (A2A) endpoint. Configure connections, authentication, and use SDK integration to call external A2A agents."
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 04/03/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -14,13 +14,17 @@ ai-usage: ai-assisted
 zone_pivot_groups: selection-agent-to-agent
 ---
 
-# Add an A2A agent endpoint to Foundry Agent Service (preview)
+# Connect to an A2A agent endpoint from Foundry Agent Service (preview)
+
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 > [!NOTE]
 > For information on optimizing tool usage, see [best practices](../../concepts/tool-best-practice.md).
 
-You can extend the capabilities of your Microsoft Foundry agent by adding an Agent2Agent (A2A) agent endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A tool enables agent-to-agent communication, making it easier to share context between Foundry agents and external agent endpoints through a standardized protocol. This guide shows you how to configure and use the A2A tool in your Foundry Agent Service.
+You can extend the capabilities of your Microsoft Foundry agent by connecting to a remote Agent2Agent (A2A) endpoint that supports the [A2A protocol](https://a2a-protocol.org/latest/). The A2A tool enables agent-to-agent communication, making it easier to share context between Foundry agents and external agent endpoints through a standardized protocol. This guide shows you how to configure a connection and call a remote A2A endpoint from your Foundry Agent Service agent.
+
+> [!TIP]
+> This article covers how to **call** a remote A2A endpoint from your Foundry agent. If you want to **expose** your own agent as an A2A endpoint that other agents can call, see [Host an A2A-compatible agent endpoint](#host-an-a2a-compatible-agent-endpoint) later in this article.
 
 Connecting agents via the A2A tool versus a multi-agent workflow:
 
@@ -29,7 +33,7 @@ Connecting agents via the A2A tool versus a multi-agent workflow:
 
 ## Usage support
 
-The following table shows SDK and setup support. The following table shows SDK and setup support.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -76,9 +80,6 @@ Use your connection name in code. Your code uses this name to retrieve the full 
 - **REST API**: Include the connection ID in the `project_connection_id` field of the A2A tool definition.
 
 ## Code example
-
-> [!NOTE]
-> The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 
 :::zone pivot="python"
 ## Create an agent with the A2A tool
@@ -623,6 +624,33 @@ public class AgentToAgentExample {
 | Connection timeout | Remote agent slow to respond | Increase timeout settings or verify the remote agent's performance. Consider implementing retry logic with exponential backoff. |
 | Missing A2A tool in response | Tool not enabled for the agent | Recreate the agent with the A2A tool explicitly enabled, and verify the connection is active and properly configured. |
 
+## Host an A2A-compatible agent endpoint
+
+Foundry Agent Service doesn't natively expose hosted agents as A2A endpoints. To make your agent available as an A2A endpoint that other agents can call, use one of the following approaches.
+
+### Option 1: Register a custom A2A agent in Foundry Control Plane
+
+If you already have an agent deployed outside of Agent Service that supports the A2A protocol, register it in Foundry Control Plane for centralized management, observability, and governance.
+
+1. Deploy your A2A-compatible agent to any reachable endpoint.
+1. [Register the agent in Foundry Control Plane](../../../control-plane/register-custom-agent.md), and select **A2A** as the protocol.
+1. Foundry generates a proxy URL and discovers your agent card at `/.well-known/agent-card.json`.
+
+After registration, other agents can connect to your agent through the proxy URL. Foundry provides access control and monitoring through the AI gateway.
+
+For authentication setup, see [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md).
+
+### Option 2: Build a custom A2A server that wraps a Foundry agent
+
+Build a lightweight A2A server that delegates to your Foundry agent through the Responses API:
+
+1. Create an A2A server by using the official A2A SDK for your language ([Python](https://github.com/a2aproject/a2a-python), [.NET](https://github.com/a2aproject/a2a-dotnet), or [JavaScript](https://github.com/a2aproject/a2a-js)).
+1. Implement the server to call your Foundry agent through the Responses API.
+1. Serve an agent card at `/.well-known/agent-card.json` that describes your agent's capabilities.
+1. Deploy the server and [register it in Foundry Control Plane](../../../control-plane/register-custom-agent.md).
+
+For more information about the A2A protocol requirements for servers, see the [A2A specification](https://a2a-protocol.org/latest/).
+
 <!-- The verbiage in the following section is required. Do not remove or modify. -->
 ## Considerations for using non-Microsoft services
 
@@ -637,6 +665,7 @@ The A2A tool allows you to pass custom headers, such as authentication keys or s
 ## Related content
 
 - [Agent2Agent (A2A) authentication](../../concepts/agent-to-agent-authentication.md)
+- [Register and manage custom agents](../../../control-plane/register-custom-agent.md)
 - [Build a workflow in Microsoft Foundry](../../concepts/workflow.md)
 - [Best practices for tools](../../concepts/tool-best-practice.md)
 - [Foundry project REST API (preview)](../../../reference/foundry-project-rest-preview.md)

@@ -162,7 +162,7 @@ To learn more about Microsoft's privacy and security commitments see the [Micros
 - [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview) 
 - [Transparency note and use cases for Azure OpenAI Service](../openai/transparency-note.md)
 - [Data Residency in Azure](https://azure.microsoft.com/explore/global-infrastructure/data-residency/)
-- Compare [Azure OpenAI in Azure Government](/azure/ai-foundry/openai/azure-government) 
+- Compare [Foundry Models sold directly by Azure in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md) 
 - [Limited access to Azure OpenAI Service](../openai/limited-access.md)
 - Report abuse of Azure OpenAI Service through the [Report Abuse Portal](https://msrc.microsoft.com/report/abuse)
 - Report problematic to [cscraireport@microsoft.com](mailto:cscraireport@microsoft.com)

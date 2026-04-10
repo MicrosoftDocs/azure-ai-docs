@@ -30,7 +30,7 @@ For more information, see [Network security perimeter concepts](/azure/private-l
 
 Use REST or CLI to audit and reconcile:
 - REST reference (perimeter core): [Network security perimeter REST API](/rest/api/network-security-perimeter/)
-- (Example) Profile and association operations (CLI): [Azure CLI network perimeter commands](/cli/azure/network/perimeter?view=azure-cli-latest)
+- (Example) Profile and association operations (CLI): [Azure CLI network perimeter commands](/cli/azure/network/perimeter)
 
 Use API version `2024-10-01` or the latest version shown in the REST reference when scripting. Always confirm the current API version in the reference before scripting.
 
@@ -39,5 +39,5 @@ Use API version `2024-10-01` or the latest version shown in the REST reference w
 - [Role-based access control for Foundry](../concepts/rbac-foundry.md)
 - [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts)
 - [Azure OpenAI NSP article](/azure/ai-foundry/openai/how-to/network-security-perimeter)
-- [Azure CLI network perimeter reference](/cli/azure/network/perimeter?view=azure-cli-latest)
+- [Azure CLI network perimeter reference](/cli/azure/network/perimeter)
 - [What is Foundry Agent Service?](../agents/overview.md)

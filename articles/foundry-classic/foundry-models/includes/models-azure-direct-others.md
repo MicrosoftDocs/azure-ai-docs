@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 03/23/2026
+ms.date: 04/07/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
@@ -87,7 +87,7 @@ MAI-Image-2 is a text-to-image generation model designed to create high-quality,
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
-| `MAI-Image-2` | Text-to-Image. See [API endpoint](../how-to/use-foundry-models-mai.md#api-endpoint) for details. | - **Input:** text <br /> - **Output:** One image <br /> - **Context length**: 32,000 tokens <br /> - **Tool calling:** No <br /> - **Response formats:** Image (PNG) <br /> - **Languages:** `en` <br /> - **Key features:** High-quality text-to-image generation; photorealistic image synthesis with consistent visual structure; well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.  <br /> - **Parameters:** `width`, `height`, `prompt` <br /> Minimum 768×768 pixels; maximum total pixel count 1,048,576 (equivalent to 1024×1024). Either dimension can exceed 1024 as long as the total pixel count stays within the limit (for example, 768×1365). | - Global standard (all regions) | Foundry, Hub-based |
+| `MAI-Image-2` | Text-to-Image. See [API endpoint](../how-to/use-foundry-models-mai.md#api-endpoint) for details. | - **Input:** text <br /> - **Output:** One image <br /> - **Context length**: 32,000 tokens <br /> - **Tool calling:** No <br /> - **Response formats:** Image (PNG) <br /> - **Languages:** `en` <br /> - **Key features:** High-quality text-to-image generation; photorealistic image synthesis with consistent visual structure; well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.  <br /> - **Parameters:** `width`, `height`, `prompt` <br /> Minimum 768×768 pixels; maximum total pixel count 1,048,576 (equivalent to 1024×1024). Either dimension can exceed 1024 as long as the total pixel count stays within the limit (for example, 768×1365). | - Global standard (West Central US, East US, West US, West Europe, Sweden Central, South India) | Foundry, Hub-based |
 | [model-router](https://ai.azure.com/resource/models/model-router/version/2025-11-18/registry/azureml-routers/?cid=learnDocs)<sup>1</sup> | chat-completion | More details in [Model router overview](/azure/ai-foundry/openai/how-to/model-router). <br> - **Input:** text, image <br /> - **Output:** text (max output tokens varies<sup>2</sup>) <br> **Context window:** 200,000<sup>3</sup> <br /> - **Languages:** `en`  |- Global standard (East US 2, Sweden Central) <br> - Data Zone standard<sup>4</sup> (East US 2, Sweden Central) | Foundry, Hub-based |
 
 <sup>1</sup> **Model router version** `2025-11-18`. Earlier versions (`2025-08-07` and `2025-05-19`) are also available. 
@@ -127,6 +127,8 @@ xAI's Grok models in Foundry Models include a diverse set of reasoning and non-r
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
+| [grok-4-20-reasoning](https://ai.azure.com/explore/models/grok-4-20-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
+| [grok-4-20-non-reasoning](https://ai.azure.com/explore/models/grok-4-20-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
 | [grok-4.1-fast-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text, image (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
 | [grok-4.1-fast-non-reasoning](https://ai.azure.com/explore/models/grok-4-1-fast-non-reasoning/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text, image (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |
 | [grok-4](https://ai.azure.com/explore/models/grok-4/version/1/registry/azureml-xai/?cid=learnDocs)  | chat-completion | - **Input:** text (262,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  | Foundry, Hub-based |

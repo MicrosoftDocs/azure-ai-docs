@@ -127,7 +127,7 @@ The agent repository should contain:
 - Dockerfile for containerization
 - `agent.yaml` file with your agent's definition
 
-Get started with samples on [GitHub](https://github.com/azure-ai-foundry/foundry-samples).
+Get started with samples on [GitHub](https://github.com/microsoft-foundry/foundry-samples).
 
 ### Deploy your agent
 

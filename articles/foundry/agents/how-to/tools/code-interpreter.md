@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 04/01/2026
+ms.date: 04/03/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, references_regions, dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -153,13 +153,15 @@ The agent uploads your CSV file to Azure storage, creates a sandboxed Python env
 :::zone pivot="csharp"
 ## Create a chart with Code Interpreter in C#
 
-The following C# sample shows how to create an agent with the code interpreter tool and use it to generate a bar chart. The agent writes and executes Python code (using matplotlib) in a sandboxed container. For asynchronous usage, see the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample7_CodeInterpreter.md) in the Azure SDK for .NET repository on GitHub.
+The following C# sample shows how to create an agent with the Code Interpreter tool, upload a CSV file for analysis, and download the generated chart. For asynchronous usage, see the [code sample](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample32_CodeInterpreterFileGeneration.md) in the Azure SDK for .NET repository on GitHub.
 
 ```csharp
 using System;
+using System.IO;
 using Azure.AI.Projects;
 using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
+using OpenAI.Files;
 
 // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
 var projectEndpoint = "your_project_endpoint";
@@ -169,37 +171,78 @@ AIProjectClient projectClient = new(
     endpoint: new Uri(projectEndpoint),
     tokenProvider: new DefaultAzureCredential());
 
-// Create an agent with Code Interpreter enabled.
+// Upload a CSV file for Code Interpreter to analyze
+OpenAIFileClient fileClient = projectClient.ProjectOpenAIClient.GetOpenAIFileClient();
+OpenAIFile uploadedFile = fileClient.UploadFile(
+    filePath: "synthetic_500_quarterly_results.csv",
+    purpose: FileUploadPurpose.Assistants);
+Console.WriteLine($"Uploaded file: {uploadedFile.Id}");
+
+// Create an agent with Code Interpreter enabled
 DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
-    Instructions = "You are a data visualization assistant. When asked to create charts, write and run Python code using matplotlib to generate them.",
+    Instructions = "You are a helpful assistant.",
     Tools = {
         ResponseTool.CreateCodeInterpreterTool(
             new CodeInterpreterToolContainer(
                 CodeInterpreterToolContainerConfiguration.CreateAutomaticContainerConfiguration(
-                    fileIds: []
+                    fileIds: [uploadedFile.Id]
                 )
             )
         ),
     }
 };
-AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
+ProjectsAgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myChartAgent",
     options: new(agentDefinition));
 
-// Ask the agent to create a bar chart from inline data.
+// Request chart generation from the uploaded CSV data
 AgentReference agentReference = new(name: agentVersion.Name, version: agentVersion.Version);
 ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentReference);
 
 ResponseResult response = responseClient.CreateResponse(
-    "Create a bar chart showing quarterly revenue for 2025: Q1=$2.1M, Q2=$2.8M, Q3=$3.2M, Q4=$2.9M. " +
-    "Use a blue color scheme, add data labels on each bar, and title the chart 'Quarterly Revenue 2025'. " +
-    "Save the chart as a PNG file.");
+    "Could you please create bar chart in TRANSPORTATION sector for the operating profit " +
+    "from the uploaded csv file and provide file to me?");
 
 Console.WriteLine(response.GetOutputText());
 
-// Clean up
-projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+// Extract file information from response annotations
+ContainerFileCitationMessageAnnotation containerAnnotation = null;
+foreach (ResponseItem item in response.OutputItems)
+{
+    if (item is MessageResponseItem messageItem)
+    {
+        foreach (ResponseContentPart content in messageItem.Content)
+        {
+            foreach (ResponseMessageAnnotation annotation in content.OutputTextAnnotations)
+            {
+                if (annotation is ContainerFileCitationMessageAnnotation cntrAnnotation)
+                {
+                    containerAnnotation = cntrAnnotation;
+                }
+            }
+        }
+    }
+}
+
+// Download the generated chart if available
+if (containerAnnotation is not null)
+{
+    ContainerClient containerClient = projectClient.ProjectOpenAIClient.GetContainerClient();
+    BinaryData fileData = containerClient.DownloadContainerFile(
+        containerId: containerAnnotation.ContainerId,
+        fileId: containerAnnotation.FileId);
+    File.WriteAllBytes("chart.png", fileData.ToArray());
+    Console.WriteLine($"Chart downloaded: {Path.GetFullPath("chart.png")}");
+}
+else
+{
+    Console.WriteLine("No file generated in response");
+}
+
+// Clean up resources
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
+    agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output
@@ -207,10 +250,12 @@ projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersi
 The sample code produces output similar to the following example:
 
 ```console
-Here is the bar chart showing quarterly revenue for 2025. The chart displays Q1 ($2.1M), Q2 ($2.8M), Q3 ($3.2M), and Q4 ($2.9M) with a blue color scheme, data labels on each bar, and the title "Quarterly Revenue 2025".
+Uploaded file: file-xxxxxxxxxxxxxxxxxxxx
+Here is the bar chart showing operating profit by quarter in the TRANSPORTATION sector...
+Chart downloaded: C:\Users\you\chart.png
 ```
 
-The agent creates a Code Interpreter session, writes Python code by using matplotlib to generate the bar chart, runs the code in a sandboxed environment, and returns the chart as a generated file. For an example that uploads a CSV file and downloads the generated chart, select **Python** or **TypeScript** from the language selector at the top of this article.
+The agent uploads your CSV file to Azure storage, creates a sandboxed Python environment, analyzes the data to filter transportation sector records, and generates a PNG bar chart. The annotation parsing extracts the container ID and file ID from the response, which are used to download the chart to your local directory.
 
 :::zone-end
 

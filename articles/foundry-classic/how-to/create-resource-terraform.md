@@ -2,7 +2,7 @@
 title: "Use Terraform to create Microsoft Foundry (classic)"
 description: "In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates. (classic)"
 ms.topic: how-to
-ms.date: 01/23/2026
+ms.date: 04/08/2026
 ms.service: azure-ai-foundry
 ms.reviewer: deeikele 
 ms.author: sgilley
@@ -44,6 +44,11 @@ The following table shows which actions each provider supports:
 
 ## Verify your deployment
 
-Run `terraform state identities -json` to display the deployed resources. The last part of the `id` shows the resource names.
+Run the following commands to verify deployed resources:
+
+```terraform
+terraform state list
+terraform output
+```
 
 [!INCLUDE [create-resource-terraform 2](../../foundry/includes/how-to-create-resource-terraform-2.md)]

@@ -843,7 +843,7 @@ For the full API specification, see [Project Connections REST API reference](/re
 
 Use a Bicep template to create an Azure AI Search connection as part of your infrastructure deployment.
 
-See the [AI Search connection Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) in the foundry-samples repository for complete examples.
+See the [AI Search connection Bicep templates](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) in the foundry-samples repository for complete examples.
 
 For more information about deploying connections with Bicep, see [Add a new connection to your project](../../../how-to/connections-add.md).
 

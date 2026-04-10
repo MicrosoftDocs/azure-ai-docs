@@ -2,7 +2,7 @@
 title: "Use Terraform to create Microsoft Foundry"
 description: "In this article, you create a Microsoft Foundry resource, a Microsoft Foundry project, using Terraform infrastructure as code templates."
 ms.topic: how-to
-ms.date: 03/31/2026
+ms.date: 04/08/2026
 ms.service: azure-ai-foundry
 ms.reviewer: deeikele 
 ms.author: sgilley
@@ -30,7 +30,7 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 Terraform state files can include sensitive values. Use a secure backend and access controls for team scenarios.
 
 > [!TIP]
-> For production-ready Terraform configurations that cover common Foundry deployment scenarios, see the [infrastructure-setup-terraform](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform) folder in the Foundry samples repository. Clone the repository and customize the configurations instead of starting from scratch.
+> For production-ready Terraform configurations that cover common Foundry deployment scenarios, see the [infrastructure-setup-terraform](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform) folder in the Foundry samples repository. Clone the repository and customize the configurations instead of starting from scratch.
 
 
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
@@ -89,7 +89,7 @@ The exported Terraform code contains hardcoded values specific to your subscript
 - Remove any properties you don't need or that reference resources outside the deployment scope.
 - Add or adjust security configurations to match your organization's requirements.
 
-For production-ready Terraform configurations with enterprise security built in, see the [infrastructure-setup-terraform](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform) folder in the Foundry samples repository.
+For production-ready Terraform configurations with enterprise security built in, see the [infrastructure-setup-terraform](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-terraform) folder in the Foundry samples repository.
 
 ### Related security configurations
 

@@ -3,7 +3,7 @@ title: "Feature availability across cloud regions"
 description: "This article lists Microsoft Foundry feature availability across cloud regions."
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 01/23/2026
+ms.date: 04/03/2026
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -75,7 +75,7 @@ Use the following list to investigate regional availability for specific feature
 - **Azure OpenAI**: Some models might not be available within the Foundry model catalog. [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits).
 - **Speech capabilities**: Azure Speech in Foundry Tools capabilities, including custom neural voice, vary in regional availability due to underlying hardware availability. [Speech service supported regions](../../ai-services/speech-service/regions.md)
 - **Azure AI Content Safety**: To use the Content Safety APIs, create your Azure AI Content Safety resource in a supported region. [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)
-- **Foundry Agent Service**: Agent Service supports Azure OpenAI model deployments, but exact model and tool availability varies by region. [Agent Service region availability](../agents/concepts/limits-quotas-regions.md#azure-openai-model-support)
+- **Foundry Agent Service**: Agent Service supports Azure OpenAI model deployments, but exact model and tool availability varies by region. [Agent Service region availability](../agents/concepts/limits-quotas-regions.md#supported-regions)
 
 [!INCLUDE [region-support 1](../includes/reference-region-support-1.md)]
 

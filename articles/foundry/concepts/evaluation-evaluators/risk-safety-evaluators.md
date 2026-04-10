@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
-ms.date: 02/25/2026
+ms.date: 04/02/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -39,7 +39,7 @@ Evaluation calculates an aggregate *defect rate* based on the percentage of unde
 
 The risk and safety evaluators use hosted evaluation language models in the Foundry evaluation service. They require your Foundry project information to be instantiated. For supported regions, see [Region support for evaluation](../evaluation-regions-limits-virtual-network.md).
 
-## Using risk and safety evaluators
+## Configure and run evaluators
 
 Risk and safety evaluators assess whether AI responses contain harmful or inappropriate content:
 
@@ -74,6 +74,9 @@ Your test dataset should contain the fields referenced in your data mappings:
 
 ### Configuration example for evaluating model responses
 
+> [!NOTE]
+> Risk and safety evaluators use the hosted Foundry Evaluation service and don't require a `deployment_name` initialization parameter. Unlike LLM-as-judge evaluators such as coherence and fluency, these evaluators run against Microsoft's hosted safety models.
+
 **Data mapping syntax:**
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
@@ -104,6 +107,9 @@ testing_criteria = [
 ```
 
 ### Configuration example for evaluating agents
+
+> [!IMPORTANT]
+> `builtin.prohibited_actions` and `builtin.sensitive_data_leakage` are in preview. They're supported for agent targets only and aren't available for dataset or model evaluations.
 
 Agent-specific safety evaluators like `prohibited_actions` and `sensitive_data_leakage` require tool calls:
 

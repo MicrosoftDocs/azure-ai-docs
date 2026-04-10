@@ -15,12 +15,17 @@ ms.custom: references_regions
 
 MAI-Voice-1 is a new neural text-to-speech model built on Microsoft's in-house speech foundation models. It produces expressive, natural speech with consistent voice persona quality and supports emotion and style control via SSML `mstts:express-as`. MAI-Voice-1 is available in the East US region. For more information, see [MAI-Voice-1 in Azure Speech](../../mai-voices.md).
 
-| **Locale (BCP-47)** | **Voice name**                    |
-| ------------------- | --------------------------------- |
-| `en-US`             | `en-us-Noa:MAI-Voice-1` (Female) |
-| `en-US`             | `en-us-Teo:MAI-Voice-1` (Male)   |
+| Voice ID | Gender | Recommended use case |
+|--------|--------|----------|
+| `en-us-Jasper:MAI-Voice-1` | Male | General Conversation, Sales, Emotional styles |
+| `en-us-June:MAI-Voice-1` | Female | General Conversation, Customer Service, Professional, Emotional styles |
+| `en-us-Grant:MAI-Voice-1` | Male | General Conversation, Professional, Emotional styles |
+| `en-us-Iris:MAI-Voice-1` | Female | General Conversation, Narration, Emotional styles |
+| `en-us-Reed:MAI-Voice-1` | Male | General Conversation |
+| `en-us-Joy:MAI-Voice-1` | Female | General Conversation |
 
 #### Neural HD 2.5 update to Latest in Production
+
 Neural HD 2.5 is promoted to **Latest in Production**, delivering improvements in natural prosody, expressiveness, and output consistency—particularly for long‑form and complex content. This update expands support for expressive speaking styles and paralinguistic elements, enabling more human‑like and emotionally rich speech across narration, conversational AI, and virtual assistant scenarios.
 
 Key enhancements include:
@@ -51,12 +56,28 @@ Starting in March 2026, Neural HD voices expand beyond their original regions an
 
 #### Neural HD Multi‑Talker voices expansion
 Neural HD Multi‑Talker voices now support multi‑speaker synthesis across additional input languages, extending beyond en‑US to include **fr‑FR, es‑ES, de‑DE, it‑IT, pt‑BR, ko‑KR, ja‑JP, and zh‑CN**.
-A new model, `en‑MultiTalker‑1:DragonHDLatestNeural`, introduces an expanded set of speakers, enabling more flexible dialogue creation for podcasts, storytelling, and role‑based narration.
+Several new models: `en‑MultiTalker‑1:DragonHDLatestNeural`, `fr-Multitalker:DragonHDLatestNeural`, `zh-Multitalker:DragonHDLatestNeural` introduce an expanded set of speakers, enabling more flexible dialogue creation for podcasts, storytelling, and role‑based narration.
+
+Speakers in `en‑MultiTalker‑1:DragonHDLatestNeural`
 
 | **Gender** | **Speaker names**                     |
 |-----------|----------------------------------------|
 | Female    | Ada, Ava, Emma, Jane                   |
 | Male      | Andrew, Brian, Davis, Steffan           |
+
+Speakers in `fr-Multitalker:DragonHDLatestNeural`
+
+| **Gender** | **Speaker names**                     |
+|-----------|----------------------------------------|
+| Female    | Vivienne                   |
+| Male      | Remy          |
+
+Speakers in `zh-Multitalker:DragonHDLatestNeural`
+
+| **Gender** | **Speaker names**                     |
+|-----------|----------------------------------------|
+| Female    | Xiaoxiao                  |
+| Male      | Yunxiao         |
 
 #### Neural HD pricing update
 Effective March 2026, Neural HD pricing is reduced. Check out details at [Pricing](https://azure.microsoft.com/pricing/details/speech/).

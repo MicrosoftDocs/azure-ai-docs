@@ -57,13 +57,13 @@ No additional requirements.
 
 ## Required Mitigations for GitHub Offerings
 
-The below are the only required mitigations that apply to GitHub Offerings, and separately took effect in the Product Terms on November 1, 2023.
+The below are the only required mitigations that apply to GitHub Offerings, and as of April 3, 2026, there are no additional required mitigations. Use of the Duplicate Detection filter feature is no longer required for CCC coverage. This feature remains available for optional use. See [Managing policies and features for GitHub Copilot](https://gh.io/cfb-dd).
 
 **Required Mitigations for GitHub Offerings Only**
 
 |**Category**|**Required Mitigation**|**Effective Date**|
 |---|---|---|
-|GitHub Offerings| Either the Duplicate Detection filtering feature must be set to the "Block" setting, or, if using annotate mode, customers must comply with cited licenses. Customers can learn how to enable the Duplicate Detection filter at [https://gh.io/cfb-dd](https://gh.io/cfb-dd).|November 1, 2023|
+|GitHub Offerings| No additional required mitigations.|April 3, 2026|
 
 ## Required Mitigations for Microsoft Copilot Studio
 
