@@ -1957,6 +1957,8 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript
   - id: programming-language-java
     title: Java
 # Owner: haileytapia
