@@ -180,6 +180,9 @@ console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.
 
 With azd, you declare toolbox resources in an `agent.yaml` file instead of calling the SDK. Define your tools in the `resources` section and deploy with `azd ai agent init`. See [Step 2: Configure tools](#step-2-configure-tools) for `agent.yaml` examples for each tool type, and [Deploy with azd](#deploy-with-azd) for the full deployment workflow.
 
+> [!NOTE]
+> The azd CLI only supports **creating** a toolbox version (via `azd deploy`). To list, get, update, promote, or delete toolbox versions, use the Python SDK, .NET SDK, JavaScript SDK, or REST API.
+
 :::zone-end
 
 
@@ -2011,6 +2014,9 @@ azd ai agent start
 ```
 
 ## Step 6: Manage toolbox versions
+
+> [!NOTE]
+> Toolbox version management (list, get, promote, delete) is available through the Python SDK, .NET SDK, JavaScript SDK, and REST API. The azd CLI only supports creating toolbox versions during deployment.
 
 Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it — you decide when to update `default_version`. This lets you stage changes, test a new version independently, and promote it to production on your own schedule.
 
