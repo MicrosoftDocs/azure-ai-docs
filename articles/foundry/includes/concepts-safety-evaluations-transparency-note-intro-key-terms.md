@@ -12,7 +12,7 @@ ms.custom: include
 
 ### Introduction
 
-Models sold directly by Azure have been evaluated by Microsoft based on Microsoft’s Responsible AI standards. All other models, including but not limited to Anthropic models and Open models sourced from Hugging Face hub or Fireworks AI, are Non-Microsoft Products and have not been evaluated by Microsoft.
+Models sold directly by Azure have been evaluated by Microsoft based on Microsoft’s Responsible AI standards. All other models, including but not limited to Anthropic models and Open models sourced from Hugging Face hub or Fireworks AI, are Non-Microsoft Products under the Product Terms and have not been evaluated by Microsoft.
  
 Whether a model is sold directly by Azure or is a Non-Microsoft Product, Customers should conduct their own risk and safety evaluations. The Foundry risk and safety evaluations let users evaluate the output of their generative AI application for textual content risks: hateful and unfair content, sexual content, violent content, self-harm-related content, direct and indirect jailbreak vulnerability, and protected material in content. Safety evaluations can also help generate adversarial datasets to help you accelerate and augment the red-teaming operation. Foundry safety evaluations reflect Microsoft's commitments to ensure AI systems are built safely and responsibly, operationalizing our Responsible AI principles.
 
