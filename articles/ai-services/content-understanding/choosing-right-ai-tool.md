@@ -15,6 +15,8 @@ ai-usage: ai-assisted
 
 # Choose the right Foundry tool for document processing: Document Intelligence, Content Understanding, or Foundry models
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
 As organizations increasingly use Generative AI to manage documents and unstructured data, it's essential to select the right tool for building robust, secure, and scalable document processing workflows. This is a comparative overview of the leading Azure AI solutions for intelligent document processing (IDP) to help you evaluate and choose the most effective approach for your business requirements. This article compares the following options:
 
 * **Azure Document Intelligence in Foundry Tools**: Trusted service for extracting text, tables, and structured fields from documents with industry-leading OCR and proven accuracy.

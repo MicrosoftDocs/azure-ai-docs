@@ -16,6 +16,8 @@ ai-usage: ai-assisted
 
 # Azure Content Understanding in Foundry Tools video solutions
 
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
+
 Azure Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using generative models. Content Understanding helps you manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports features such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
 
 :::image type="content" source="../media/video/video-processing-flow.png" alt-text="Illustration of the Content Understanding video processing flow.":::
