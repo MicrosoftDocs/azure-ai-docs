@@ -3,7 +3,7 @@ title: "Connect an AI gateway to Foundry Agent Service (preview)"
 description: "Connect and use models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
-ms.date: 02/17/2026
+ms.date: 04/09/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -85,7 +85,7 @@ After creating the connection, create and run a prompt agent that uses models be
 
    A successful call returns an agent object with its `id`, `name`, and `version` fields populated.
 
-1. Get the OpenAI client with `project_client.get_openai_client()`, create a conversation with `conversations.create()`, and send a request with `responses.create()`. Pass the agent reference in `extra_body` as `{"agent": {"name": agent.name, "type": "agent_reference"}}`.
+1. Get the OpenAI client with `project.get_openai_client()`, create a conversation with `conversations.create()`, and send a request with `responses.create()`. Pass the agent reference in `extra_body` as `{"agent_reference": {"name": agent.name, "type": "agent_reference"}}`.
 
    A successful response returns the model's reply text, confirming the agent is routing through your gateway.
 

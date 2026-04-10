@@ -3,7 +3,7 @@ title: "Agent tools overview for Microsoft Foundry Agent Service"
 description: "Explore the tools available for agents in Foundry Agent Service, including built-in tools, web search, custom options, and the Foundry tool catalog. Get started today."
 author: aahill
 ms.author: aahi
-ms.date: 03/12/2026
+ms.date: 04/09/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -64,28 +64,31 @@ For the complete list of custom tool options, see [All custom tools](#all-custom
 To add a tool to an agent, include it in the agent's tool list when you create or update the agent definition. The following example creates an agent with the web search tool enabled and sends a query:
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, WebSearchTool
 
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+
+# Create clients to call Foundry API
 project = AIProjectClient(
-    endpoint=os.environ["PROJECT_ENDPOINT"],
+    endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
+openai = project.get_openai_client()
 
 # Create an agent with web search enabled
 agent = project.agents.create_version(
     agent_name="web-search-agent",
     definition=PromptAgentDefinition(
-        model=os.environ["MODEL_NAME"],
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant that can search the web.",
         tools=[WebSearchTool()],
     ),
 )
 
-# Start a conversation and send a query
-openai = project.get_openai_client()
+# Send a query
 response = openai.responses.create(
     input="What are the latest updates to Microsoft Foundry?",
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},

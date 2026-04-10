@@ -91,13 +91,13 @@ console.log('Response content:', result.choices[0].message.content);
 
 # [C#](#tab/csharp)
 
-First install the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet) before you can use DefaultAzureCredential:
+First install the [Azure Identity library](/dotnet/api/overview/azure/identity-readme) before you can use DefaultAzureCredential:
 
 ```dotnetcli
 dotnet add package Azure.Identity
 ```
 
-Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet). Then create the token provider, create a client to consume chat completions, and generate the response.
+Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential). Then create the token provider, create a client to consume chat completions, and generate the response.
 
 ```csharp
 using Azure.Identity;
