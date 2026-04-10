@@ -191,6 +191,8 @@ Choose the tool type and authentication pattern that matches your scenario. Sele
 
 :::zone pivot="rest-api"
 
+**Key-based auth:**
+
 ```json
 {
   "description": "my-mcp-toolbox",
@@ -204,6 +206,41 @@ Choose the tool type and authentication pattern that matches your scenario. Sele
   ]
 }
 ```
+
+**No auth (public MCP server):**
+
+```json
+{
+  "description": "Public MCP server",
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "myserver",
+      "server_url": "https://your-mcp-server.example.com"
+    }
+  ]
+}
+```
+
+**OAuth or identity-based auth:**
+
+For OAuth (managed connector, custom app registration), agent identity, or user Entra token auth, first create the appropriate connection in your Foundry project, then reference it with `project_connection_id`:
+
+```json
+{
+  "description": "MCP server with OAuth/identity auth",
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "myserver",
+      "server_url": "https://your-mcp-server.example.com",
+      "project_connection_id": "<OAUTH_OR_IDENTITY_CONNECTION_NAME>"
+    }
+  ]
+}
+```
+
+The connection's `authType` determines the authentication flow. Supported connection auth types for MCP include `CustomKeys`, `OAuth2` (managed or custom), `AgenticIdentity`, and `UserEntraToken`. See the [azd tab](#model-context-protocol-mcp) for connection configuration examples for each auth type.
 
 :::zone-end
 
@@ -295,6 +332,109 @@ resources:
         server_url: https://your-mcp-server.example.com
         project_connection_id: mcp-conn
 ```
+
+**OAuth — managed connector:**
+
+Use this pattern for MCP servers that support Foundry's managed OAuth flow. The `connectorName` value must match a managed connector available in the Foundry Tools Catalog.
+
+```yaml
+resources:
+  - kind: connection
+    name: github-oauth-conn
+    category: RemoteTool
+    authType: OAuth2
+    target: https://api.githubcopilot.com/mcp
+    connectorName: foundrygithubmcp
+  - kind: toolbox
+    name: oauth-tools
+    description: GitHub OAuth MCP toolbox
+    tools:
+      - type: mcp
+        server_label: github
+        project_connection_id: github-oauth-conn
+```
+
+**OAuth — custom app registration:**
+
+Use this pattern when you bring your own OAuth app registration for the MCP server.
+
+```yaml
+parameters:
+  oauth_client_id:
+    secret: true
+    description: OAuth client ID
+  oauth_client_secret:
+    secret: true
+    description: OAuth client secret
+resources:
+  - kind: connection
+    name: mcp-oauth-custom-conn
+    category: RemoteTool
+    authType: OAuth2
+    target: https://your-mcp-server.example.com
+    authorizationUrl: https://auth.example.com/authorize
+    tokenUrl: https://auth.example.com/token
+    refreshUrl: https://auth.example.com/token
+    scopes: []
+    credentials:
+      clientID: "{{ oauth_client_id }}"
+      clientSecret: "{{ oauth_client_secret }}"
+  - kind: toolbox
+    name: oauth-custom-tools
+    description: MCP toolbox with custom OAuth
+    tools:
+      - type: mcp
+        server_label: myserver
+        project_connection_id: mcp-oauth-custom-conn
+```
+
+**Agent identity (Entra ID):**
+
+Use this pattern for MCP servers that support Microsoft Entra ID authentication. The Foundry agent identity authenticates against the target resource.
+
+```yaml
+resources:
+  - kind: connection
+    name: language-mcp
+    category: RemoteTool
+    authType: AgenticIdentity
+    audience: <entra-audience>
+    target: https://<resource>.cognitiveservices.azure.com/language/mcp?api-version=2025-11-15-preview
+  - kind: toolbox
+    name: agent-identity-tools
+    description: MCP toolbox with agent identity auth
+    tools:
+      - type: mcp
+        server_label: language
+        project_connection_id: language-mcp
+```
+
+> [!NOTE]
+> You must assign your agent identity the required RBAC role on the target resource before the MCP server accepts requests.
+
+**User Entra token (1P OBO):**
+
+Use this pattern for MCP servers that require user identity via On-Behalf-Of (OBO) flow. Foundry proxies the user's Entra token to the MCP server.
+
+```yaml
+resources:
+  - kind: connection
+    name: workiq-mail-conn
+    category: RemoteTool
+    authType: UserEntraToken
+    audience: <entra-app-id>
+    target: https://agent365.svc.cloud.microsoft/agents/servers/mcp_MailTools
+  - kind: toolbox
+    name: workiq-tools
+    description: MCP toolbox with user Entra token auth
+    tools:
+      - type: mcp
+        server_label: workiq
+        project_connection_id: workiq-mail-conn
+```
+
+> [!NOTE]
+> The `audience` field is required for `UserEntraToken` connections. Without it, `tools/list` returns 0 tools.
 
 :::zone-end
 
