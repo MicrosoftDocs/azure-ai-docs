@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/10/2026
+ms.date: 11/19/2025
 ms.update-cycle: 180-days
 ---
 
@@ -143,10 +143,6 @@ To change your pricing tier:
    You can't cancel the operation or monitor its progress. However, the following message displays while changes are underway.
 
    :::image type="content" source="media/search-capacity-planning/updating-message.png" alt-text="Screenshot of the Updating message in the Azure portal." border="true" lightbox="media/search-capacity-planning/updating-message.png":::
-
-#### Shared private link resources and tier changes
-
-Shared private link resources are part of the service configuration checked during pricing tier changes. If the change succeeds, existing shared private link resources remain in place and continue to be usable. For more information, see [Shared private link limitations](search-indexer-howto-access-private.md#limitations).
 
 ## How scale requests are handled
 
