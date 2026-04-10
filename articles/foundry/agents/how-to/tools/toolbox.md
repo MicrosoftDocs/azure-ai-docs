@@ -46,7 +46,10 @@ In this article, you learn how to:
 ## Prerequisites
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
-- **RBAC**: Azure AI User role on the Foundry project.
+- **RBAC**: The following identities must have the **Azure AI User** role on the Foundry project:
+  - **Developer** — the identity that creates, updates, and manages toolbox versions.
+  - **Agent identity** — the agent's managed identity that calls tools at runtime.
+  - **End user** — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions).
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
