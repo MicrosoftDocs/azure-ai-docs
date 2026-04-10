@@ -324,11 +324,13 @@ Use the instructions in this section to migrate vector fields, configuration, an
    + For each vector query, rename `value` to `vector`.
    + Optionally, add `vectorFilterMode` if you're using [filter expressions](vector-search-filters.md). The default is  prefilter for indexes created after `2023-10-01`. Indexes created before that date only support postfilter, regardless of how you set the filter mode.
 
+*The `search` parameter is ignored in vector search.
+
     **Before (2023-07-01-preview)**:
 
     ```http
     {
-        "search": (this parameter is ignored in vector search),
+        "search": "",
         "vectors": [
           {
             "value": [
@@ -350,7 +352,7 @@ Use the instructions in this section to migrate vector fields, configuration, an
 
     ```http
     {
-      "search": "(this parameter is ignored in vector search)",
+      "search": "",
       "vectorQueries": [
         {
           "kind": "vector",
