@@ -68,11 +68,11 @@ pip install azure-ai-projects >=2.0.0
 
 | SDK Version   | Portal Version  | Status  | .NET Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.0.0-beta.1 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.OpenAI` |
+| 2.0.0 (GA) | Foundry (new)   | Stable | `Azure.AI.Projects`<br>`Azure.AI.Projects.Agents`<br>`Azure.AI.Extensions.OpenAI` |
 | 1.1.0 (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
 
 > [!IMPORTANT]
-> For agent scenarios, use `Azure.AI.Extensions.OpenAI` (GA) instead of `Azure.AI.Projects.OpenAI` (preview). Installing both packages causes ambiguous reference errors. See the install instructions later in this article for the recommended package set.
+> Don't install `Azure.AI.Projects.OpenAI` (preview) alongside `Azure.AI.Extensions.OpenAI` (GA). Both packages define the same types in different namespaces, which causes ambiguous reference errors. Use only `Azure.AI.Extensions.OpenAI` for agent scenarios.
 
 ::: zone-end
 
@@ -204,7 +204,7 @@ console.log(`Response output: ${response.output_text}`);
 
 ```csharp
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI; 
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 string endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
@@ -216,11 +216,9 @@ AIProjectClient projectClient = new(
 **Create an OpenAI-compatible client from your project:**
 
 ```csharp
-#pragma warning disable OPENAI001
-var responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5.2");
+var responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForModel("gpt-5.2");
 var response = responseClient.CreateResponse("What is the speed of light?");
-Console.WriteLine(response.Value.GetOutputText());
-#pragma warning restore OPENAI001
+Console.WriteLine(response.GetOutputText());
 ```
 ::: zone-end
 

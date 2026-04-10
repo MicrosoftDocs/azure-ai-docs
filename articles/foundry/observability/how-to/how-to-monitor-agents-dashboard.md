@@ -155,7 +155,8 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.ai
 
 ```csharp
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Projects.Agents;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 using OpenAI.Evals;
 
@@ -164,7 +165,7 @@ var endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
 
 AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
 #pragma warning disable OPENAI001
-EvaluationClient evaluationClient = projectClient.OpenAI.GetEvaluationClient();
+EvaluationClient evaluationClient = projectClient.ProjectOpenAIClient.GetEvaluationClient();
 #pragma warning restore OPENAI001
 
 PromptAgentDefinition agentDefinition = new(
@@ -173,7 +174,7 @@ PromptAgentDefinition agentDefinition = new(
     Instructions = "You are a helpful assistant that answers general questions",
 };
 
-AgentVersion agentVersion = await projectClient.Agents.CreateAgentVersionAsync(
+AgentVersion agentVersion = await projectClient.AgentAdministrationClient.CreateAgentVersionAsync(
     agentName: Environment.GetEnvironmentVariable("AZURE_AI_AGENT_NAME"),
     options: new(agentDefinition));
 
