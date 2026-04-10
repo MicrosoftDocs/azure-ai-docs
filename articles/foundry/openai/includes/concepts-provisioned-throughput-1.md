@@ -93,13 +93,13 @@ In Foundry, the deployment experience identifies when a region lacks the capacit
 
 Details on the deployment experience can be found in the Foundry [Provisioned get started guide](../how-to/provisioned-get-started.md).
 
-Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP) to programmatically identify the maximum sized deployment of a specified model.  The API considers both your quota and service capacity in the region.
+Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list) to programmatically identify the maximum sized deployment of a specified model.  The API considers both your quota and service capacity in the region.
 
 If an acceptable region isn't available to support the desired model, version, and/or PTU, customers can also try the following steps:
 
 - Attempt the deployment with a smaller number of PTUs.
 - Attempt the deployment at a different time. Capacity availability changes dynamically based on customer demand, and more capacity might become available later.
-- Ensure that quota is available in all acceptable regions. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP) and Foundry experience consider quota availability in returning alternative regions for creating a deployment.
+- Ensure that quota is available in all acceptable regions. The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list) and Foundry experience consider quota availability in returning alternative regions for creating a deployment.
 
 ## Monitor utilization and performance
 
