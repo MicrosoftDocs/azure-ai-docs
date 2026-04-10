@@ -71,6 +71,9 @@ pip install azure-ai-projects >=2.0.0
 | 2.0.0-beta.1 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.OpenAI` |
 | 1.1.0 (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
 
+> [!IMPORTANT]
+> For agent scenarios, use `Azure.AI.Extensions.OpenAI` (GA) instead of `Azure.AI.Projects.OpenAI` (preview). Installing both packages causes ambiguous reference errors. See the install instructions later in this article for the recommended package set.
+
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
