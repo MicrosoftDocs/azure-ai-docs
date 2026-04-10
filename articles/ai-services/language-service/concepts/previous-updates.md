@@ -83,7 +83,7 @@ This article contains a list of previously recorded updates for Azure Language i
 * The `2021-01-15` model version for the `PII` feature, which provides:
   * Expanded support for nine new languages
   * Improved AI quality
-* The S0 through S4 pricing tiers are being retired on March 8, 2021.
+* The S0 through S4 pricing tiers were retired on March 8, 2021.
 * The language detection container is now generally available.
 
 ## January 2021

@@ -97,7 +97,7 @@ Global
 
 > [!NOTE]
 >
-> The Microsoft Translator Hub will be retired on May 17, 2019. [View important migration information and dates](https://www.microsoft.com/translator/business/hub/).
+> The Microsoft Translator Hub was retired on May 17, 2019. [View migration information and dates](https://www.microsoft.com/translator/business/hub/).
 
 Azure Translator V3 uses neural machine translation by default. As such, it can't be used with the Microsoft Translator Hub. The Translator Hub only supports legacy statistical machine translation. Customization for neural translation is now available using the Custom Translator. [Learn more about customizing neural machine translation](../../custom-translator/overview.md)
 

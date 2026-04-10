@@ -95,7 +95,7 @@ As before, the models are available through the API and Microsoft Foundry playgr
 
 #### Conversation transcription multichannel diarization (retired)
 
-Conversation transcription multichannel diarization is retiring on March 28, 2025.
+Conversation transcription multichannel diarization was retired on March 28, 2025.
 
 To continue using speech to text with diarization, use the following features instead:
 
