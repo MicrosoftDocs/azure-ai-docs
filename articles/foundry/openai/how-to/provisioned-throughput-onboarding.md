@@ -316,9 +316,9 @@ After you fill in the required details, select **Calculate**. The output shows:
 
 ## Obtain PTU quota
 
-PTU quota must be requested. To request quota, submit the [quota request form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) directly. You receive an email notification when the request is approved.
+A default amount of global, data zone, and regional provisioned quota is assigned to eligible subscriptions in several regions. To request additional quota, submit the [quota request form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) directly. You receive an email notification when the request is approved.
 
-You can also request more quota in the Foundry portal as follows:
+You can also request additional quota in the Foundry portal as follows:
 
 1. In the Foundry portal, go to the **Operate** section > **Quota** pane and select the subscription and target region.
 1. Select **Request Quota** and complete the form.
