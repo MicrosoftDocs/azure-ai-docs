@@ -4,7 +4,7 @@ description: "This article describes how to create a Microsoft Foundry project s
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 03/24/2026
+ms.date: 04/08/2026
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:

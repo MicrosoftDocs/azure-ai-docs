@@ -12,4 +12,4 @@ ms.custom: include, classic-and-new
 ---
 
 > [!NOTE]
-> Some links in this article might open content in the new Microsoft Foundry documentation instead of the Foundry (classic) documentation you're viewing now.
+> Links in this article might open content in the new Microsoft Foundry documentation instead of the Foundry (classic) documentation you're viewing now.

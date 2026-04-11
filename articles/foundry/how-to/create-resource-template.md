@@ -26,7 +26,7 @@ In this quickstart, you deploy a [Microsoft Foundry](https://ai.azure.com/?cid=l
 If you already configured a Foundry resource in the Azure portal, you can [export that configuration as a Bicep file](#export-an-existing-resource-to-a-bicep-file) instead of authoring a template from scratch.
 
 > [!TIP]
-> For production-ready Bicep templates that cover common Foundry deployment scenarios, see the [infrastructure-setup-bicep](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep) folder in the Foundry samples repository. Clone the repository and customize the templates instead of starting from scratch.
+> For production-ready Bicep templates that cover common Foundry deployment scenarios, see the [infrastructure-setup-bicep](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep) folder in the Foundry samples repository. Clone the repository and customize the templates instead of starting from scratch.
 
 ## Prerequisites
 
@@ -40,14 +40,14 @@ Get the sample files:
 # [Azure CLI](#tab/cli)
 
 ```azurecli
-git clone https://github.com/Azure-AI-Foundry/foundry-samples
+git clone https://github.com/microsoft-foundry/foundry-samples
 cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
 ```
 
 # [Azure PowerShell](#tab/powershell)
 
 ```azurepowershell
-git clone https://github.com/Azure-AI-Foundry/foundry-samples
+git clone https://github.com/microsoft-foundry/foundry-samples
 cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
 ```
 
@@ -102,7 +102,7 @@ The exported Bicep file contains hardcoded values specific to your subscription 
 - Remove any properties you don't need or that reference resources outside the deployment scope.
 - Add or adjust security configurations to match your organization's requirements.
 
-For production-ready Bicep templates with enterprise security configurations already built in, see the [infrastructure-setup-bicep](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep) folder in the Foundry samples repository.
+For production-ready Bicep templates with enterprise security configurations already built in, see the [infrastructure-setup-bicep](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep) folder in the Foundry samples repository.
 
 ### Related security configurations
 

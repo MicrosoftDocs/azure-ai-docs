@@ -204,13 +204,13 @@ The regions in the following tables support most of the core features of Azure S
 
 # [LLM speech](#tab/llmspeech)
 
-| Region | Transcription | Translation |
-| ----- | ----- | ----- |
-| `centralindia` | ✅ | ✅ |
-| `eastus` | ✅ | ✅ |
+| Region | Transcribe | Translate | Transcribe with mai-transcribe model |
+| ----- | ----- | ----- | ----- |
+| `centralindia` | ✅ | ✅ | |
+| `eastus` | ✅ | ✅ | ✅ |
 | `northeurope` | ✅ | ✅ |
-| `southeastasia` | ✅ | ✅ |
-| `westus` | ✅ | ✅ |
+| `southeastasia` | ✅ | ✅ | |
+| `westus` | ✅ | ✅ | ✅ |
 
 # [Voice Live](#tab/voice-live)
 

@@ -4,7 +4,7 @@ description: "Learn how to migrate from the Assistants API and classic agents to
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 03/30/2026
+ms.date: 04/10/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -35,7 +35,9 @@ pip install "azure-ai-projects>=2.0.0"
 # [C#](#tab/csharp)
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
+dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
 
@@ -195,7 +197,7 @@ The following table compares agent tools available in classic agents and the new
 | Web Search | No | Yes (GA) |
 
 > [!IMPORTANT]
-> In the new API, the conversations and responses APIs use the **OpenAI client** (or its language equivalent). In Python, call `project.get_openai_client()`. In C#, use `projectClient.OpenAI.GetProjectResponsesClientForAgent()`. In JavaScript, call `projectClient.getOpenAIClient()`. In Java, use `AgentsClientBuilder` to build a `ResponsesClient`. Agent creation and versioning remain on the **project client**. The examples in each section show which client to use.
+> In the new API, the conversations and responses APIs use the **OpenAI client** (or its language equivalent). In Python, call `project.get_openai_client()`. In C#, use `projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent()`. In JavaScript, call `projectClient.getOpenAIClient()`. In Java, use `AgentsClientBuilder` to build a `ResponsesClient`. Agent creation and versioning remain on the **project client**. The examples in each section show which client to use.
 
 ## Migrate threads to conversations
 
@@ -905,7 +907,7 @@ var agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
-            new PromptAgentDefinition("gpt-4.1")
+            new DeclarativeAgentDefinition("gpt-4.1")
             {
                 Instructions =
                     "You politely help with math "
@@ -923,7 +925,7 @@ var agent = await projectClient.Agents
 
 ```javascript
 const agent =
-    await projectClient.agents.createVersion(
+    await projectClient.AgentAdministrationClient.createVersion(
         "my-agent",
         {
             kind: "prompt",
@@ -1137,7 +1139,7 @@ var agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
-            new PromptAgentDefinition("gpt-4.1")
+            new DeclarativeAgentDefinition("gpt-4.1")
             {
                 Instructions =
                     "You politely help with math "
@@ -1155,7 +1157,7 @@ var agent = await projectClient.Agents
 
 ```javascript
 const agent =
-    await projectClient.agents.createVersion(
+    await projectClient.AgentAdministrationClient.createVersion(
         "my-agent",
         {
             kind: "prompt",
@@ -1493,7 +1495,7 @@ var agent = await projectClient.Agents
     .CreateAgentVersionAsync(
         agentName: "my-agent",
         options: new(
-            new PromptAgentDefinition("gpt-4.1")
+            new DeclarativeAgentDefinition("gpt-4.1")
             {
                 Instructions =
                     "You politely help with math "
@@ -1535,7 +1537,7 @@ foreach (var item in result.OutputItems)
 
 ```javascript
 const agent =
-    await projectClient.agents.createVersion(
+    await projectClient.AgentAdministrationClient.createVersion(
         "my-agent",
         {
             kind: "prompt",

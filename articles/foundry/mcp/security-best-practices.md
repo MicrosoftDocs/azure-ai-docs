@@ -5,7 +5,7 @@ keywords: mcp, foundry mcp server, security, entra id, rbac
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sehan
-ms.date: 03/12/2026
+ms.date: 04/02/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.custom: doc-kit-assisted
@@ -144,6 +144,9 @@ After the policy is in place, designated users and groups can't obtain the Entra
 
 Foundry MCP Server currently doesn't support network isolation. It exposes the public endpoint `https://mcp.ai.azure.com` that any MCP client can use. It connects to your Foundry resource through its public endpoint. If your Foundry resources use Azure Private Links, the server can't reach them and operations fail with a connectivity error.
 
+> [!NOTE]
+> This limitation applies to the hosted Foundry MCP Server (`mcp.ai.azure.com`). If you build your own MCP server and connect it to Foundry Agent Service, Agent Service supports [private MCP server endpoints](../agents/how-to/tools/model-context-protocol.md#public-and-private-mcp-server-endpoints) through Standard Agent Setup with private networking.
+
 ### Data residency
 
 Foundry MCP Server uses a global stateless proxy architecture. Data created by backend services that interact with MCP Server stays encrypted at rest in the region you select. MCP Server itself doesn't store data. For performance and availability, requests and responses can be processed in data centers in the European Union (EU) or the United States (US), with all data encrypted in transit.  
@@ -183,7 +186,7 @@ If the MCP server fails to start or times out:
 1. Check for proxy or firewall rules that might block the endpoint.
 1. Try opening `https://mcp.ai.azure.com` in a browser to confirm reachability.
 
-If your Foundry resources use Azure Private Links, MCP Server can't reach them through the public endpoint. Disable Private Link or use a different access method.
+If your Foundry resources use Azure Private Links, the hosted Foundry MCP Server can't reach them through the public endpoint. Disable Private Link, use SDKs/REST APIs, or use a [custom MCP server with private networking](../agents/how-to/tools/model-context-protocol.md#public-and-private-mcp-server-endpoints) through Foundry Agent Service.
 
 ### Tool discovery problems
 

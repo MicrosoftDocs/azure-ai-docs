@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: concept-article
-ms.date: 05/12/2024
+ms.date: 04/01/2026
 ---
 
 # Azure Translator in Foundry Tools Transparency Note

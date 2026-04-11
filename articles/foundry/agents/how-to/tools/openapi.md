@@ -21,11 +21,11 @@ Connect your Microsoft Foundry agents to external APIs using OpenAPI 3.0 and 3.1
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 > [!NOTE]
 > For Java, use the `com.azure:azure-ai-agents` package for OpenAPI agent tools. The `com.azure:azure-ai-projects` package doesn't currently expose OpenAPI agent tool types.
@@ -41,7 +41,7 @@ Before you begin, make sure you have:
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - SDK installed for your preferred language:
   - Python: `azure-ai-projects`
-  - C#: `Azure.AI.Extensions.OpenAI` (prerelease)
+  - C#: `Azure.AI.Extensions.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
   - Java: `com.azure:azure-ai-agents`
 
@@ -291,24 +291,24 @@ class OpenAPIDemo
         OpenAPITool openapiTool = new(toolDefinition);
 
         // Create the agent definition and the agent version.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+        DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a helpful assistant.",
             Tools = { openapiTool }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition));
 
         // Create a response object and ask the question about the weather in Seattle, WA.
-        ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
         ResponseResult response = responseClient.CreateResponse(
                 userInputText: "Use the OpenAPI tool to print out, what is the weather in Seattle, WA today."
             );
         Console.WriteLine(response.GetOutputText());
 
         // Finally, delete all the resources created in this sample.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```
@@ -380,12 +380,12 @@ class OpenAPIConnectedDemo
         OpenAPITool openapiTool = new(toolDefinition);
 
         // Create the agent definition and the agent version.
-        PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+        DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
         {
             Instructions = "You are a helpful assistant.",
             Tools = { openapiTool }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition));
 
@@ -395,7 +395,7 @@ class OpenAPIConnectedDemo
         // ToolChoice = ResponseToolChoice.CreateRequiredChoice()`
         // in the ResponseCreationOptions. This setting will
         // force Agent to use tool and will trigger the error if it is not accessible.
-        ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
         CreateResponseOptions responseOptions = new()
         {
             ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
@@ -410,7 +410,7 @@ class OpenAPIConnectedDemo
         Console.WriteLine(response.GetOutputText());
 
         // Finally, delete all the resources we have created in this sample.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```

@@ -22,8 +22,11 @@ In this article, you learn how to create and connect to a secure Azure Machine L
 In this tutorial, you accomplish the following tasks:
 
 > [!div class="checklist"]
+> * Create a jump box virtual machine and enable Azure Bastion for secure browser-based access.
 > * Create an Azure Machine Learning workspace configured to use a managed virtual network.
-> * Create an Azure Machine Learning compute cluster. You use a compute cluster when __training machine learning models in the cloud__.
+> * Connect to the workspace through the jump box and Azure Machine Learning studio.
+> * Create a compute instance inside the managed network.
+> * Enable studio access to the workspace storage account.
 
 After completing this tutorial, you have the following architecture:
 
@@ -66,16 +69,14 @@ Use the following steps to create an Azure Virtual Machine to use as a jump box.
     * __Password__: The password for the username.
     * __Security type__: Standard.
     * __Image__: Windows 11 Enterprise.
+    * __Public inbound ports__: None
 
         > [!TIP]
         > If Windows 11 Enterprise isn't in the list for image selection, use _See all images__. Find the __Windows 11__ entry from Microsoft, and use the __Select__ drop-down to select the enterprise image.
 
-
     You can leave other fields at the default values.
 
-    :::image type="content" source="./media/tutorial-create-secure-workspace/create-virtual-machine-basic.png" alt-text="Screenshot of the virtual machine basics configuration.":::
-
-1. Select __Networking__. Review the networking information and make sure that it's not using the 172.17.0.0/16 IP address range. If it is, select a different range such as 172.16.0.0/16. The 172.17.0.0/16 range can cause conflicts with Docker.
+1. Select **Networking**. Under the **Virtual network** configuration, verify the address space isn't using the 172.17.0.0/16 IP address range. If it is, select a different range such as 172.16.0.0/16. The 172.17.0.0/16 range can cause conflicts with Docker.
 
     > [!NOTE]
     > The Azure Virtual Machine creates its own Azure Virtual Network for network isolation. This network is separate from the managed virtual network used by Azure Machine Learning.
@@ -102,20 +103,19 @@ By using Azure Bastion, you can connect to the VM desktop through your browser.
 
     :::image type="content" source="./media/tutorial-create-secure-workspace/create-workspace.png" alt-text="Screenshot of the workspace creation form.":::
 
-1. From the __Networking__ tab, select __Private with Internet Outbound__.
-
-    > [!NOTE]
-    > This tutorial uses internet outbound access to keep setup simple. If your organization requires stricter egress controls, use a managed virtual network configuration that allows only approved outbound traffic.
-
-    :::image type="content" source="./media/tutorial-create-secure-workspace/private-internet-outbound.png" alt-text="Screenshot of the workspace network tab with internet outbound selected.":::
-
-1. From the __Networking__ tab, in the __Workspace inbound access__ section, select __+ Add__.
-
-    :::image type="content" source="./media/tutorial-create-secure-workspace/workspace-inbound-access.png" alt-text="Screenshot showing the add button for inbound access.":::
+1. From the __Inbound Access__ tab, in the __Workspace inbound access__ section, select __+ Add__.
 
 1. From the __Create private endpoint__ form, enter a unique value in the __Name__ field. Select the __Virtual network__ you created earlier with the VM, and select the default __Subnet__. Leave the rest of the fields at the default values. Select __OK__ to save the endpoint.
 
     :::image type="content" source="./media/tutorial-create-secure-workspace/private-endpoint-workspace.png" alt-text="Screenshot of the form to create a private endpoint.":::
+
+
+1. From the __Outbound Access__ tab, select __Allow Internet Outbound__.
+
+    > [!NOTE]
+    > This tutorial uses internet outbound access to keep setup simple. If your organization requires stricter egress controls, use a managed virtual network configuration that allows only approved outbound traffic.
+
+   :::image type="content" source="./media/tutorial-create-secure-workspace/private-internet-outbound.png" alt-text="Screenshot of the workspace network tab with internet outbound selected.":::
 
 1. Select __Review + create__. Verify that the information is correct, and then select __Create__.
 
@@ -140,8 +140,6 @@ Use the following steps to create a compute instance.
 1. From the **VM desktop**, use the browser to open the [Azure Machine Learning studio](https://ml.azure.com) and select the workspace you created earlier.
 
 1. From studio, select **Compute**, **Compute instances**, and then **+ New**.
-
-    :::image type="content" source="./media/tutorial-create-secure-workspace/create-new-compute-instance.png" alt-text="Screenshot of the new compute option in studio.":::
     
 1. From the **Configure required settings** dialog, enter a unique value as the **Compute name**. Leave the rest of the selections at the default value.
 
@@ -163,26 +161,15 @@ Because Azure Machine Learning studio partially runs in the web browser on the c
 
     At this point, you can use the studio to interactively work with notebooks on the compute instance and run training jobs. For a tutorial, see [Tutorial: Model development](tutorial-cloud-workstation.md).
 
-## Stop compute instance
-
-While it's running (started), the compute instance continues charging your subscription. To avoid excess cost, __stop__ it when you don't use it.
-
-From studio, select __Compute__, __Compute instances__, and then select the compute instance. Finally, select __Stop__ from the top of the page.
-
-:::image type="content" source="./media/tutorial-create-secure-workspace/compute-instance-stop.png" alt-text="Screenshot of stop button for compute instance":::
-
 ## Clean up resources
 
-If you plan to continue using the secured workspace and other resources, skip this section.
+While the compute instance is running, it continues to charge your subscription. To avoid excess cost, stop it when not in use: from the Azure Machine Learning studio, select **Compute**, **Compute instances**, select the compute instance, and then select **Stop**.
 
-To delete all resources that you created in this tutorial, use the following steps:
+If you're done with the tutorial and want to delete all resources you created, use the following steps:
 
 1. In the Azure portal, select **Resource groups**.
 1. From the list, select the resource group that you created in this tutorial.
 1. Select **Delete resource group**.
-
-    :::image type="content" source="./media/tutorial-create-secure-workspace/delete-resources.png" alt-text="Screenshot of delete resource group button":::
-
 1. Enter the resource group name, and then select **Delete**.
 
 ## Next steps

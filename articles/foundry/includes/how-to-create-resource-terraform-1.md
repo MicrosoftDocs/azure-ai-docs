@@ -6,7 +6,7 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 03/31/2026
+ms.date: 04/08/2026
 ms.custom: include
 ---
 

@@ -67,7 +67,7 @@ This command creates or updates a managed outbound rule and starts creating the 
 
 ### References
 
-* [az ml workspace outbound-rule set](/cli/azure/ml/workspace/outbound-rule?view=azure-cli-latest#az-ml-workspace-outbound-rule-set)
+* [az ml workspace outbound-rule set](/cli/azure/ml/workspace/outbound-rule#az-ml-workspace-outbound-rule-set)
 
 ### Python
 

@@ -26,11 +26,11 @@ This guide shows how to integrate the computer use tool into an application loop
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -38,7 +38,7 @@ This guide shows how to integrate the computer use tool into an application loop
 - A [basic or standard agent environment](../../../agents/environment-setup.md).
 - The latest SDK package:
   - **Python**: `azure-ai-projects`
-  - **C#/.NET**: `Azure.AI.Extensions.OpenAI` (prerelease)
+  - **C#/.NET**: `Azure.AI.Extensions.OpenAI`
   - **TypeScript**: `@azure/ai-projects`
   - **Java**: `azure-ai-agents`
 - Access to the `computer-use-preview` model. See [Request access](#request-access) below.
@@ -349,7 +349,7 @@ class ComputerUseDemo
         };
 
         // Create a PromptAgentDefinition with ComputerTool.
-        PromptAgentDefinition agentDefinition = new(model: "computer-use-preview")
+        DeclarativeAgentDefinition agentDefinition = new(model: "computer-use-preview")
         {
             Instructions = "You are a computer automation assistant.\n\n" +
                             "Be direct and efficient. When you reach the search results page, read and describe the actual search result titles and descriptions you can see.",
@@ -361,14 +361,14 @@ class ComputerUseDemo
                 ),
             }
         };
-        AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+        AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
             agentName: "myAgent",
             options: new(agentDefinition)
         );
         // Create an `ResponseResult` using `ResponseItem`, containing two `ResponseContentPart`:
         // one with the image and another with the text. In the loop, request Agent
         // while it is continuing to browse web. Finally, print the tool output message.
-        ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+        ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
         CreateResponseOptions responseOptions = new()
         {
             TruncationMode = ResponseTruncationMode.Auto,
@@ -406,7 +406,7 @@ class ComputerUseDemo
         Console.WriteLine(response.GetOutputText());
 
         // Clean up resources by deleting Agent.
-        projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+        projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
     }
 }
 ```

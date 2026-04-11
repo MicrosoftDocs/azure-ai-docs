@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 # Import data assets (preview)
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
+[!INCLUDE [machine-learning-data-import-deprecation](includes/machine-learning-data-import-deprecation.md)]
+
 In this article, you learn how to import data into the Azure Machine Learning platform from external sources. A successful data import automatically creates and registers an Azure Machine Learning data asset with the name you provide during that import. An Azure Machine Learning data asset resembles a web browser bookmark (favorites). You don't need to remember long storage paths (URIs) that point to your most-frequently used data. Instead, you can create a data asset, and then access that asset by using a friendly name.
 
 A data import creates a cache of the source data, along with metadata, for faster and more reliable data access in Azure Machine Learning training jobs. The data cache avoids network and connection constraints. The cached data is versioned to support reproducibility. This feature provides versioning capabilities for data imported from SQL Server sources. Additionally, the cached data provides data lineage for auditing tasks. A data import uses Azure Data Factory (ADF) pipelines behind the scenes, which means that you can avoid complex interactions with ADF. Azure Machine Learning also handles management of ADF compute resource pool size, compute resource provisioning, and tear-down. This management optimizes data transfer by determining proper parallelization.
@@ -71,7 +73,7 @@ Not available.
 
 ---
 
-## Import from an external database as a mltable data asset
+## Import from an external database as an mltable data asset
 
 > [!NOTE]
 > External databases include Snowflake and Azure SQL.

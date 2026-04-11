@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 04/03/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -39,11 +39,14 @@ The grounding process involves several key steps:
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+> [!NOTE]
+> Not all models support Grounding with Bing Search or Grounding with Bing Custom Search. For a full list of models that support these tools, see [Tool support by region and model](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
 
 ## Prerequisites
 
@@ -55,9 +58,9 @@ Before you begin, make sure you have:
   - **Azure AI Project Manager** role to create project connections in Foundry. For more information, see [Role-based access control for Microsoft Foundry](../../../concepts/rbac-foundry.md).
 - A Foundry project created with a configured endpoint.
 - An AI model deployed in your project.
-- SDK installed for your preferred language. C# requires the prerelease version:
+- SDK installed for your preferred language:
   - Python: `azure-ai-projects`
-  - C#: `Azure.AI.Extensions.OpenAI` (prerelease)
+  - C#: `Azure.AI.Extensions.OpenAI`
   - TypeScript/JavaScript: `@azure/ai-projects`
   - Java: `com.azure:azure-ai-agents:2.0.0`
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
@@ -110,7 +113,7 @@ If you already have a project connection ID for the Bing resource you want to us
 ## Code examples
 
 > [!NOTE]
-> - You need the latest SDK package. C# requires the prerelease version. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+> - You need the latest SDK package. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 > - For SDK samples, use the project connection name. For REST samples, use the project connection ID in the format`/subscriptions/{{subscriptionID}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.CognitiveServices/accounts/{{foundryAccountName}}/projects/{{foundryProjectName}}/connections/{{foundryConnectionName}}`.
 
 :::zone pivot="python"
@@ -364,17 +367,17 @@ BingGroundingTool bingGroundingAgentTool = new(new BingGroundingSearchToolOption
   searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
     )
 );
-PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful agent.",
     Tools = { bingGroundingAgentTool, }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Output the agent version info
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 ResponseResult response = responseClient.CreateResponse("How does wikipedia explain Euler's Identity?");
 
@@ -402,7 +405,7 @@ Assert.That(response.Status, Is.EqualTo(ResponseStatus.Completed));
 Console.WriteLine($"{response.GetOutputText()}{citation}");
 
 // Clean up resources by deleting the agent version
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### What this code does
@@ -447,17 +450,17 @@ BingGroundingTool bingGroundingAgentTool = new(new BingGroundingSearchToolOption
   searchConfigurations: [new BingGroundingSearchConfiguration(projectConnectionId: bingConnection.Id)]
     )
 );
-PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful agent.",
     Tools = { bingGroundingAgentTool }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Stream the response from the agent version
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 string annotation = "";
 string text = "";
@@ -505,7 +508,7 @@ foreach (StreamingResponseUpdate streamResponse in responseClient.CreateResponse
 Console.WriteLine($"{text}{annotation}");
 
 // Clean up resources by deleting the agent version
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### What this code does
@@ -1168,7 +1171,7 @@ Admins can use RBAC role assignments to enable or disable the use of Grounding w
 1. The admin needs the **Owner** or **Contributor** role in the subscription.
 1. The admin deletes all Grounding with Bing Search and Grounding with Bing Custom Search resources in the subscription.
 1. The admin unregisters the `Microsoft.Bing` resource provider in the subscription (you can't unregister before deleting all resources). For more information, see [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
-1. The admin creates an Azure Policy to disallow creation of Grounding with Bing Search and Grounding with Bing Custom Search resources in their subscription, following the [sample](https://github.com/azure-ai-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json).
+1. The admin creates an Azure Policy to disallow creation of Grounding with Bing Search and Grounding with Bing Custom Search resources in their subscription, following the [sample](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/05-custom-policy-definitions/deny-disallowed-connections.json).
 
 ## Next steps
 

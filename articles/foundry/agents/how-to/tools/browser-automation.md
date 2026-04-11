@@ -31,11 +31,11 @@ By using [Microsoft Playwright Workspaces](https://aka.ms/pww/docs/manage-worksp
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## How it works
 
@@ -252,20 +252,20 @@ BrowserAutomationPreviewTool playwrightTool = new(
     ));
 
 // Create the Agent version with the Browser Automation tool.
-PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are an Agent helping with browser automation tasks.\n" +
     "You can answer questions, provide information, and assist with various tasks\n" +
     "related to web browsing using the Browser Automation tool available to you.",
     Tools = { playwrightTool }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Create the response stream. Also set ToolChoice = ResponseToolChoice.CreateRequiredChoice()
 // on the ResponseCreationOptions to ensure the agent uses the Browser Automation tool.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 CreateResponseOptions responseOptions = new()
 {
     ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
@@ -301,7 +301,7 @@ foreach (StreamingResponseUpdate update in responseClient.CreateResponseStreamin
 }
 
 // Delete the Agent version to clean up resources.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### What this code does

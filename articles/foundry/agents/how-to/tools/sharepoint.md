@@ -34,11 +34,11 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -47,9 +47,10 @@ This integration uses identity passthrough (On-Behalf-Of) so SharePoint permissi
   - If developers and end users don't have a Microsoft 365 Copilot license, you can enable the [pay-as-you-go model](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/paygo-retrieval).
 - Developers and end users have at least `Azure AI User` RBAC role assigned on the Foundry project. For more information about Azure role-based access control, see [Azure role-based access control in Foundry](../../../concepts/rbac-foundry.md).
 - Developers and end users have at least `READ` access to the SharePoint site.
+- Ensure your SharePoint tenant and your Foundry project are in the same Microsoft Entra tenant. Cross-tenant token exchange isn't supported.
 - The required SDK package installed:
   - **Python**: `pip install "azure-ai-projects>=2.0.0"`
-  - **C# (Preview)**: Install the `Azure.AI.Projects` NuGet package (prerelease)
+  - **C#**: Install the `Azure.AI.Projects` NuGet package
   - **TypeScript/JavaScript**: `npm install @azure/ai-projects`
   - **Java**: Add `com.azure:azure-ai-agents:2.0.0` to your `pom.xml`
 - Environment variables configured:
@@ -207,17 +208,17 @@ SharePointGroundingToolOptions sharepointToolOption = new()
 {
     ProjectConnections = { new ToolProjectConnection(projectConnectionId: sharepointConnection.Id) }
 };
-PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
     Instructions = "You are a helpful assistant.",
     Tools = { new SharepointPreviewTool(sharepointToolOption), }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Create the response and make sure we are always using tool.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 CreateResponseOptions responseOptions = new()
 {
     ToolChoice = ResponseToolChoice.CreateRequiredChoice(),
@@ -250,7 +251,7 @@ Console.WriteLine($"Response status: {response.Status}");
 Console.WriteLine($"{response.GetOutputText()}{annotation}");
 
 // After the sample is completed, delete the Agent we have created.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output
@@ -537,8 +538,6 @@ public class SharePointGroundingExample {
 - You can add only one SharePoint tool per agent.
 - The underlying Microsoft 365 Copilot Retrieval API returns text extracts. Retrieval from nontextual content, including images and charts, isn't supported.
 - For semantic and hybrid retrieval, the Microsoft 365 Copilot Retrieval API supports `.doc`, `.docx`, `.pptx`, `.pdf`, `.aspx`, and `.one` file types. For details, see the [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
-- The SharePoint tool doesn't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, but the SharePoint tool requires user identity passthrough (On-Behalf-Of).
-
 ## Setup
 
 > [!NOTE]

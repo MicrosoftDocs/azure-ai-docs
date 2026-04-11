@@ -7,9 +7,10 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 12/19/2025
+ms.date: 03/30/2026
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-azurecli
+ai-usage: ai-assisted
 # Customer intent: As a user who implements audio transcription, I want to learn how to locate audio files for batch transcription.
 ---
 
@@ -131,7 +132,7 @@ If you perform all actions in this section, your Storage account is configured a
 - Access to Storage account using Storage account key is prohibited.
 - Access to Storage account blob storage using [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) is prohibited.
 - Access to the selected Speech resource is allowed using the resource [system assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview).
-- 
+ 
 In effect, your Storage account becomes completely locked and can't be used in any scenario apart from transcribing audio files that were already present by the time the new configuration was applied. Consider this configuration as a model for the security of your audio data and customize it according to your needs.
 
 For example, you can allow traffic from selected public IP addresses and Azure Virtual networks. You can also set up access to your Storage account by using [private endpoints](/azure/storage/common/storage-private-endpoints) (see as well [this tutorial](/azure/private-link/tutorial-private-endpoint-storage-portal)), re-enable access by using Storage account key, allow access to other Azure trusted services, and so on.
@@ -245,7 +246,8 @@ Follow these steps to generate a SAS URL that you can use for batch transcriptio
 1. Complete the steps in [Azure Blob Storage upload](#upload-to-azure-blob-storage) to create a Storage account and upload audio files to a new container.
 1. Select the new container.
 1. In the **Settings** group in the left pane, select **Shared access tokens**.
-1. Select **+ Container**.
+    > [!NOTE]
+    > Make sure you navigate to the container first *before* opening **Shared access tokens**, so the token is scoped to that container.
 1. Select **Read** and **List** for **Permissions**.
 
     :::image type="content" source="media/storage/storage-container-shared-access-signature.png" alt-text="Screenshot of the container SAS URI permissions.":::

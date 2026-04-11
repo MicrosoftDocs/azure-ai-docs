@@ -24,11 +24,11 @@ The **image generation tool** in Microsoft Foundry Agent Service generates image
 
 ## Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -139,7 +139,7 @@ AIProjectClient projectClient = new(
 // when creating this tool. The ImageGenerationTool parameters include
 // the image generation model, image quality and resolution.
 // Supported image generation models include gpt-image-1.
-PromptAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-4.1-mini")
 {
 Instructions = "Generate images based on user prompts.",
 Tools = {
@@ -150,7 +150,7 @@ Tools = {
         )
     }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
@@ -170,7 +170,7 @@ foreach (ResponseItem item in response.OutputItems)
 }
 
 // Clean up resources by deleting the Agent.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 
 // To use image generation, provide the custom header to web requests,
 // which contain the model deployment name, for example:

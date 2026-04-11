@@ -29,7 +29,7 @@ In this article, you learn how to:
 ## Prerequisites
 
 - A [basic or standard agent environment](../../agents/environment-setup.md).
-- The latest SDK package for your language. The .NET SDK is currently in preview. See the [quickstart](../../quickstarts/get-started-code.md) for installation steps.
+- The latest SDK package for your language. See the [quickstart](../../quickstarts/get-started-code.md) for installation steps.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Your Foundry project endpoint URL and model deployment name.
 
@@ -148,7 +148,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create agent with handlebar templates in instructions
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant. "
         + "The user's name is {{userName}} and their role is {{userRole}}. "
@@ -161,13 +161,13 @@ PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
             { Description = "The user's role", IsRequired = true }
     }
 };
-AgentVersion agent = projectClient.Agents.CreateAgentVersion(
+AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "structured-input-agent", options: new(agentDefinition));
 
 // Send response with runtime structured input values
 AgentReference agentRef = new(name: agent.Name, version: agent.Version);
 ProjectResponsesClient responseClient =
-    projectClient.OpenAI.GetProjectResponsesClientForAgent(agentRef);
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentRef);
 
 CreateResponseOptions responseOptions = new()
 {
@@ -184,7 +184,7 @@ ResponseResult response = responseClient.CreateResponse(responseOptions);
 Console.WriteLine(response.GetOutputText());
 
 // Clean up
-projectClient.Agents.DeleteAgentVersion(
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
     agentName: agent.Name, agentVersion: agent.Version);
 ```
 
@@ -504,7 +504,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create agent with a structured input placeholder for the file ID
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful data analyst.",
     Tools = {
@@ -520,13 +520,13 @@ PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
             { Description = "File ID for the code interpreter", IsRequired = true }
     }
 };
-AgentVersion agent = projectClient.Agents.CreateAgentVersion(
+AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "code-interp-structured", options: new(agentDefinition));
 
 // Supply the actual file ID at runtime
 AgentReference agentRef = new(name: agent.Name, version: agent.Version);
 ProjectResponsesClient responseClient =
-    projectClient.OpenAI.GetProjectResponsesClientForAgent(agentRef);
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentRef);
 
 CreateResponseOptions responseOptions = new()
 {
@@ -541,7 +541,7 @@ ResponseResult response = responseClient.CreateResponse(responseOptions);
 Console.WriteLine(response.GetOutputText());
 
 // Clean up
-projectClient.Agents.DeleteAgentVersion(
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
     agentName: agent.Name, agentVersion: agent.Version);
 ```
 
@@ -853,7 +853,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create agent with a template placeholder for vector store ID
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant that searches product information.",
     Tools = {
@@ -866,13 +866,13 @@ PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
             { Description = "Vector store ID for file search", IsRequired = true }
     }
 };
-AgentVersion agent = projectClient.Agents.CreateAgentVersion(
+AgentVersion agent = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "file-search-structured", options: new(agentDefinition));
 
 // Supply the actual vector store ID at runtime
 AgentReference agentRef = new(name: agent.Name, version: agent.Version);
 ProjectResponsesClient responseClient =
-    projectClient.OpenAI.GetProjectResponsesClientForAgent(agentRef);
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentRef);
 
 CreateResponseOptions responseOptions = new()
 {
@@ -886,7 +886,7 @@ ResponseResult response = responseClient.CreateResponse(responseOptions);
 Console.WriteLine(response.GetOutputText());
 
 // Clean up
-projectClient.Agents.DeleteAgentVersion(
+projectClient.AgentAdministrationClient.DeleteAgentVersion(
     agentName: agent.Name, agentVersion: agent.Version);
 ```
 

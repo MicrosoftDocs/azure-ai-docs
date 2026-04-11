@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 04/07/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -31,11 +31,11 @@ The web search tool in Foundry Agent Service enables models to retrieve and grou
 
 ### Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (GA) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -242,69 +242,60 @@ Grounding with Bing Custom Search is a powerful tool that you can use to select 
 
 The following example shows how to use the `o3-deep-research` model with the web search tool. This approach replaces the deprecated [Deep Research tool](../../../../foundry-classic/agents/how-to/tools-classic/deep-research.md), enabling multi-step research using public web data directly through the web search tool.
 
-> [!NOTE]
-> Set the `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variable to your `o3-deep-research` deployment name.
-
 ```python
-import os
-import sys
-from dotenv import load_dotenv
-
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, WebSearchPreviewTool
 
-load_dotenv()
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
 
-project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
+openai = project.get_openai_client()
 
-openai_client = project_client.get_openai_client()
+# Create agent with web search tool using o3-deep-research model
+agent = project.agents.create_version(
+    agent_name="MyDeepResearchAgent",
+    definition=PromptAgentDefinition(
+        model="o3-deep-research",
+        instructions="You are a helpful assistant that can search the web",
+        tools=[WebSearchPreviewTool()],
+    ),
+    description="Agent for deep research with web search.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-with project_client:
-    # Create Agent with web search tool using o3-deep-research model
-    agent = project_client.agents.create_version(
-        agent_name="MyDeepResearchAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant that can search the web",
-            tools=[
-                WebSearchPreviewTool()
-            ],
-        ),
-        description="Agent for deep research with web search.",
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+# Create a conversation for the agent interaction
+conversation = openai.conversations.create()
+print(f"Created conversation (id: {conversation.id})")
 
-    # Create a conversation for the agent interaction
-    conversation = openai_client.conversations.create()
-    print(f"Created conversation (id: {conversation.id})")
+# Send a query to search the web
+stream_response = openai.responses.create(
+    stream=True,
+    conversation=conversation.id,
+    input="What are the latest advancements in quantum computing?",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    # Send a query to search the web
-    response = openai_client.responses.create(
-        stream=True,
-        conversation=conversation.id,
-        input="What are the latest advancements in quantum computing?",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
-    )
+# Process streaming events as they arrive
+for event in stream_response:
+    if event.type == "response.created":
+        print(f"Response created with ID: {event.response.id}")
+    elif event.type == "response.output_text.delta":
+        print(f"Delta: {event.delta}")
+    elif event.type == "response.text.done":
+        print(f"\nResponse done!")
+    elif event.type == "response.completed":
+        print(f"\nResponse completed!")
+        print(f"Full response: {event.response.output_text}")
 
-    # Process streaming events as they arrive
-    for event in response:
-        if event.type == "response.created":
-            print(f"Stream response created with ID: {event.response.id}")
-        elif event.type == "response.output_text.delta":
-            print(f"Delta: {event.delta}")
-        elif event.type == "response.text.done":
-            print(f"\nResponse done with full message: {event.text}")
-        elif event.type == "response.completed":
-            print(f"\nResponse completed!")
-            print(f"Full response: {event.response.output_text}")
-
-    print("\nCleaning up...")
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
+# Clean up resources
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
 ```
 :::zone-end
 
@@ -329,7 +320,7 @@ AIProjectClient projectClient = new(
     tokenProvider: new DefaultAzureCredential());
 
 // Create an agent with the web search tool
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful assistant that can search the web",
     Tools = {
@@ -341,12 +332,12 @@ PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
         ),
     }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
 // Ask a question related to London.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 ResponseResult response = responseClient.CreateResponse("Show me the latest London Underground service updates");
 
@@ -355,7 +346,7 @@ Console.WriteLine($"Response status: {response.Status}");
 Console.WriteLine(response.GetOutputText());
 
 // Delete the created agent version.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 **Expected output**
@@ -388,12 +379,12 @@ Synchronous sample:
 AIProjectConnection bingConnection = projectClient.Connections.GetConnection(connectionName: connectionName);
 WebSearchTool webSearchTool = ResponseTool.CreateWebSearchTool();
 webSearchTool.CustomSearchConfiguration = new(bingConnection.Id, customInstanceName);
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+DeclarativeAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful agent.",
     Tools = { webSearchTool }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 ```
@@ -403,12 +394,12 @@ Asynchronous sample:
 AIProjectConnection bingConnection = projectClient.Connections.GetConnection(connectionName: connectionName);
 WebSearchTool webSearchTool = ResponseTool.CreateWebSearchTool();
 webSearchTool.CustomSearchConfiguration = new(bingConnection.Id, customInstanceName);
-PromptAgentDefinition agentDefinition = new(model: modelDeploymentName)
+DeclarativeAgentDefinition agentDefinition = new(model: modelDeploymentName)
 {
     Instructions = "You are a helpful agent.",
     Tools = { webSearchTool }
 };
-AgentVersion agentVersion = await projectClient.Agents.CreateAgentVersionAsync(
+AgentVersion agentVersion = await projectClient.AgentAdministrationClient.CreateAgentVersionAsync(
     agentName: "myAgent",
     options: new(agentDefinition));
 ```
@@ -439,7 +430,7 @@ private static string GetFormattedAnnotation(ResponseItem item)
 
 Synchronous sample:
 ```C# Snippet:Sample_StreamResponse_WebSearchCustomStreaming_Sync
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 string annotation = "";
 string text = "";
@@ -479,7 +470,7 @@ Console.WriteLine($"{text}{annotation}");
 
 Asynchronous sample:
 ```C# Snippet:Sample_StreamResponse_WebSearchCustomStreaming_Async
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 string annotation = "";
 string text = "";
@@ -521,12 +512,12 @@ Console.WriteLine($"{text}{annotation}");
 
 Synchronous sample:
 ```C# Snippet:Sample_Cleanup_WebSearchCustomStreaming_Sync
-projectClient.Agents.DeleteAgentVersionAsync(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersionAsync(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 Asynchronous sample:
 ```C# Snippet:Sample_Cleanup_WebSearchCustomStreaming_Async
-await projectClient.Agents.DeleteAgentVersionAsync(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+await projectClient.AgentAdministrationClient.DeleteAgentVersionAsync(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 **Expected output**
 
