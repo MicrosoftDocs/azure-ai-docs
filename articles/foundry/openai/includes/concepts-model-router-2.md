@@ -30,7 +30,7 @@ Model router supports prompt caching because requests are processed by the under
 
 Cache behavior depends on which underlying model the router selects for a given request. Because routing decisions might vary, caching benefits apply only when the same model handles consecutive requests with overlapping prompt prefixes.
 
-For details on how prompt caching works and which models support it, see [Prompt caching](/azure/ai-foundry/openai/how-to/prompt-caching).
+For details on how prompt caching works and which models support it, see [Prompt caching](../how-to/prompt-caching.md).
 
 ## Limitations
 
