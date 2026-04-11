@@ -568,7 +568,7 @@ To create a custom analyzer based on the configuration structure described in th
 Use the following curl command to create a custom analyzer by submitting your analyzer configuration from a JSON file:
 
 ```bash
-curl -X PUT "https://{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01-preview" \
+curl -X PUT "https://{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01" \
   -H "Content-Type: application/json" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -d @analyzer-definition.json
