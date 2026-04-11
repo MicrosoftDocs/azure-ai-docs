@@ -20,6 +20,8 @@ zone_pivot_groups: selection-foundry-toolbox
 
 Toolbox in Foundry gives your agent access to tools through a unified MCP-compatible endpoint. Instead of wiring authentication and invocation separately for each tool type and framework, you configure a toolbox once in Microsoft Foundry and point your agent to it. The platform handles credential injection, token refresh, and enterprise policy enforcement at runtime.
 
+Because the toolbox is a managed resource, you can add, remove, or reconfigure tools without changing any boilerplate code in your agent framework. Your agent always connects to a single MCP endpoint — when you update the toolbox, every agent that points to it picks up the changes with no code changes and no redeployment.
+
 In this article, you learn how to:
 
 - Create a toolbox with one or more tools.
@@ -192,6 +194,220 @@ With azd, you declare toolbox resources in an `agent.yaml` file instead of calli
 ## Step 2: Configure tools
 
 Choose the tool type and authentication pattern that matches your scenario. Select the tab for your preferred SDK or deployment method.
+
+### Multiple tool types
+
+A single toolbox can bundle different tool types. The following example combines Web Search, Azure AI Search, and an MCP server in one toolbox:
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "description": "Web search, knowledge base search, and custom MCP server",
+  "tools": [
+    {
+      "type": "web_search",
+      "description": "Search the web for current information"
+    },
+    {
+      "type": "azure_ai_search",
+      "name": "my_aisearch",
+      "description": "Search internal product documentation",
+      "azure_ai_search": {
+        "indexes": [
+          {
+            "index_name": "<INDEX_NAME>",
+            "project_connection_id": "<CONNECTION_NAME>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "mcp",
+      "server_label": "myserver",
+      "server_url": "https://your-mcp-server.example.com",
+      "require_approval": "never",
+      "project_connection_id": "my-key-auth-connection"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import (
+    MCPTool,
+    WebSearchTool,
+    AzureAISearchTool,
+)
+
+tools = [
+    WebSearchTool(description="Search the web for current information"),
+    AzureAISearchTool(
+        name="my_aisearch",
+        description="Search internal product documentation",
+        index_name="<INDEX_NAME>",
+        project_connection_id="<CONNECTION_NAME>",
+    ),
+    MCPTool(
+        server_label="myserver",
+        server_url="https://your-mcp-server.example.com",
+        require_approval="never",
+        project_connection_id="my-key-auth-connection",
+    ),
+]
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ProjectsAgentTool webTool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateWebSearchTool()
+);
+
+ProjectsAgentTool searchTool = new AzureAISearchTool(
+    new AzureAISearchToolOptions(
+        indexes: [
+            new AzureAISearchIndexResource(
+                indexName: "<INDEX_NAME>",
+                projectConnectionId: "<CONNECTION_NAME>"
+            )
+        ]
+    )
+);
+
+ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateMcpTool(
+        serverLabel: "myserver",
+        serverUri: new Uri("https://your-mcp-server.example.com")
+    )
+);
+
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [webTool, searchTool, mcpTool],
+    description: "Web search, knowledge base search, and custom MCP server"
+);
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "web_search",
+    description: "Search the web for current information",
+  },
+  {
+    type: "azure_ai_search",
+    name: "my_aisearch",
+    description: "Search internal product documentation",
+    azure_ai_search: {
+      indexes: [
+        {
+          index_name: "<INDEX_NAME>",
+          project_connection_id: "<CONNECTION_NAME>",
+        },
+      ],
+    },
+  },
+  {
+    type: "mcp",
+    server_label: "myserver",
+    server_url: "https://your-mcp-server.example.com",
+    require_approval: "never",
+    project_connection_id: "my-key-auth-connection",
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+parameters:
+  github_pat:
+    secret: true
+    description: GitHub Personal Access Token
+resources:
+  - kind: connection
+    name: github-mcp-conn
+    target: https://api.githubcopilot.com/mcp
+    category: RemoteTool
+    authType: CustomKeys
+    credentials:
+      keys:
+        Authorization: "Bearer {{ github_pat }}"
+  - kind: toolbox
+    name: agent-tools
+    description: Combined web search and GitHub MCP tools
+    tools:
+      - type: web_search
+      - type: mcp
+        server_label: github
+        project_connection_id: github-mcp-conn
+```
+
+:::zone-end
+
+> [!NOTE]
+> Each unnamed tool type (`web_search`, `azure_ai_search`, `code_interpreter`, `file_search`) can appear at most once without a `name`. If you want two instances of the same type, add a unique `name` to each — see the next example.
+
+#### Multi-tool restrictions
+
+You can include at most one unnamed instance of each built-in tool type in a toolbox. If you include two unnamed instances of the same type, the API returns:
+
+```
+400 invalid_payload: Multiple tools without identifiers found...
+```
+
+### Two instances of the same tool type
+
+Use the `name` field to include multiple instances of the same tool type in one toolbox. Each named instance is treated as a separate tool and must have a unique name.
+
+```json
+{
+  "description": "Two Azure AI Search indexes in a single toolbox",
+  "tools": [
+    {
+      "type": "azure_ai_search",
+      "name": "product-search",
+      "description": "Search product catalog and specifications",
+      "azure_ai_search": {
+        "indexes": [
+          {
+            "index_name": "<PRODUCT_INDEX_NAME>",
+            "project_connection_id": "<PRODUCT_CONNECTION_NAME>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "azure_ai_search",
+      "name": "support-search",
+      "description": "Search support tickets and troubleshooting guides",
+      "azure_ai_search": {
+        "indexes": [
+          {
+            "index_name": "<SUPPORT_INDEX_NAME>",
+            "project_connection_id": "<SUPPORT_CONNECTION_NAME>"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+The following sections show each tool type's configuration in detail.
 
 ### [Model Context Protocol (MCP)](model-context-protocol.md)
 
@@ -1257,218 +1473,6 @@ resources:
 
 :::zone-end
 
-### Multiple tool types
-
-A single toolbox can bundle different tool types. The following example combines Web Search, Azure AI Search, and an MCP server in one toolbox:
-
-:::zone pivot="rest-api"
-
-```json
-{
-  "description": "Web search, knowledge base search, and custom MCP server",
-  "tools": [
-    {
-      "type": "web_search",
-      "description": "Search the web for current information"
-    },
-    {
-      "type": "azure_ai_search",
-      "name": "my_aisearch",
-      "description": "Search internal product documentation",
-      "azure_ai_search": {
-        "indexes": [
-          {
-            "index_name": "<INDEX_NAME>",
-            "project_connection_id": "<CONNECTION_NAME>"
-          }
-        ]
-      }
-    },
-    {
-      "type": "mcp",
-      "server_label": "myserver",
-      "server_url": "https://your-mcp-server.example.com",
-      "require_approval": "never",
-      "project_connection_id": "my-key-auth-connection"
-    }
-  ]
-}
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-from azure.ai.projects.models import (
-    MCPTool,
-    WebSearchTool,
-    AzureAISearchTool,
-)
-
-tools = [
-    WebSearchTool(description="Search the web for current information"),
-    AzureAISearchTool(
-        name="my_aisearch",
-        description="Search internal product documentation",
-        index_name="<INDEX_NAME>",
-        project_connection_id="<CONNECTION_NAME>",
-    ),
-    MCPTool(
-        server_label="myserver",
-        server_url="https://your-mcp-server.example.com",
-        require_approval="never",
-        project_connection_id="my-key-auth-connection",
-    ),
-]
-```
-
-:::zone-end
-
-:::zone pivot="dotnet"
-
-```csharp
-ProjectsAgentTool webTool = ProjectsAgentTool.AsProjectTool(
-    ResponseTool.CreateWebSearchTool()
-);
-
-ProjectsAgentTool searchTool = new AzureAISearchTool(
-    new AzureAISearchToolOptions(
-        indexes: [
-            new AzureAISearchIndexResource(
-                indexName: "<INDEX_NAME>",
-                projectConnectionId: "<CONNECTION_NAME>"
-            )
-        ]
-    )
-);
-
-ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(
-    ResponseTool.CreateMcpTool(
-        serverLabel: "myserver",
-        serverUri: new Uri("https://your-mcp-server.example.com")
-    )
-);
-
-ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
-    toolboxName: "my-toolbox",
-    tools: [webTool, searchTool, mcpTool],
-    description: "Web search, knowledge base search, and custom MCP server"
-);
-```
-
-:::zone-end
-
-:::zone pivot="javascript"
-
-```javascript
-const tools = [
-  {
-    type: "web_search",
-    description: "Search the web for current information",
-  },
-  {
-    type: "azure_ai_search",
-    name: "my_aisearch",
-    description: "Search internal product documentation",
-    azure_ai_search: {
-      indexes: [
-        {
-          index_name: "<INDEX_NAME>",
-          project_connection_id: "<CONNECTION_NAME>",
-        },
-      ],
-    },
-  },
-  {
-    type: "mcp",
-    server_label: "myserver",
-    server_url: "https://your-mcp-server.example.com",
-    require_approval: "never",
-    project_connection_id: "my-key-auth-connection",
-  },
-];
-```
-
-:::zone-end
-
-:::zone pivot="azd"
-
-```yaml
-parameters:
-  github_pat:
-    secret: true
-    description: GitHub Personal Access Token
-resources:
-  - kind: connection
-    name: github-mcp-conn
-    target: https://api.githubcopilot.com/mcp
-    category: RemoteTool
-    authType: CustomKeys
-    credentials:
-      keys:
-        Authorization: "Bearer {{ github_pat }}"
-  - kind: toolbox
-    name: agent-tools
-    description: Combined web search and GitHub MCP tools
-    tools:
-      - type: web_search
-      - type: mcp
-        server_label: github
-        project_connection_id: github-mcp-conn
-```
-
-:::zone-end
-
-> [!NOTE]
-> Each unnamed tool type (`web_search`, `azure_ai_search`, `code_interpreter`, `file_search`) can appear at most once without a `name`. If you want two instances of the same type, add a unique `name` to each — see the next example.
-
-#### Multi-tool restrictions
-
-You can include at most one unnamed instance of each built-in tool type in a toolbox. If you include two unnamed instances of the same type, the API returns:
-
-```
-400 invalid_payload: Multiple tools without identifiers found...
-```
-
-### Two instances of the same tool type
-
-Use the `name` field to include multiple instances of the same tool type in one toolbox. Each named instance is treated as a separate tool and must have a unique name.
-
-```json
-{
-  "description": "Two Azure AI Search indexes in a single toolbox",
-  "tools": [
-    {
-      "type": "azure_ai_search",
-      "name": "product-search",
-      "description": "Search product catalog and specifications",
-      "azure_ai_search": {
-        "indexes": [
-          {
-            "index_name": "<PRODUCT_INDEX_NAME>",
-            "project_connection_id": "<PRODUCT_CONNECTION_NAME>"
-          }
-        ]
-      }
-    },
-    {
-      "type": "azure_ai_search",
-      "name": "support-search",
-      "description": "Search support tickets and troubleshooting guides",
-      "azure_ai_search": {
-        "indexes": [
-          {
-            "index_name": "<SUPPORT_INDEX_NAME>",
-            "project_connection_id": "<SUPPORT_CONNECTION_NAME>"
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
 ## Step 3: Get the toolbox MCP endpoint
 
 There are two endpoint patterns depending on your role:
@@ -1476,10 +1480,10 @@ There are two endpoint patterns depending on your role:
 | Role | Endpoint | When to use |
 |------|----------|-------------|
 | **Toolbox developer** | `{project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1` | Test or validate a specific version before promoting it to default. |
-| **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. Requires `default_version` to be set on the toolbox. |
+| **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. The first version you create is automatically set as the default. |
 
-> [!IMPORTANT]
-> The consumer endpoint returns an error if the toolbox has no `default_version` set. Before you share the toolbox broadly, [promote a version to default](#promote-a-version-to-default) before pointing agents to the consumer endpoint.
+> [!NOTE]
+> The first version of a new toolbox is automatically promoted to `default_version` (v1). If you need to change the default later, see [Promote a version to default](#promote-a-version-to-default).
 
 ## Step 4: Verify tool availability
 
