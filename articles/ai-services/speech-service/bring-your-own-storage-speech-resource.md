@@ -208,7 +208,7 @@ To check BYOS configuration of a Foundry resource for Speech with Azure portal, 
 1.  Select *Storage* menu in the *Resource Management* group.
 1.  Check that:
     1. *Attached storage* field contains the Azure resource ID of the BYOS-associated Storage account.
-    1. *Identity type* has *System Assigned* selected. Note: *User Assigned* identity is not supported for BYOS..
+    1. *Identity type* has *System Assigned* selected. Note: *User Assigned* identity is not supported for BYOS.
 
 If *Storage* menu item is missing in the *Resource Management* group, the selected Speech resource isn't BYOS-enabled.
 
