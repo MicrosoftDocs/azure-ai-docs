@@ -390,4 +390,4 @@ You need to allow access for the machine, where you run the browser using Speech
 
 - [Use the Bring your own storage (BYOS) Speech resource for Speech to text](bring-your-own-storage-speech-resource-speech-to-text.md)
 - Foundry [Connect to your own storage](../../ai-foundry/how-to/bring-your-own-azure-storage-foundry.md)
-- Foundry [Connect your own storage for Speech and Language services](../../ai-foundry/how-to/bring-your-own-azure-storage-speech-language-services.md)**
+- Foundry [Connect your own storage for Speech and Language services](../../ai-foundry/how-to/bring-your-own-azure-storage-speech-language-services.md)
