@@ -326,7 +326,7 @@ If you perform all actions in the section, your Storage account is in the follow
 - External network traffic is allowed.
 - Access to Storage account using Storage account key is prohibited.
 - Access to Storage account blob storage using [shared access signatures (SAS)](/azure/storage/common/storage-sas-overview) is prohibited. (Except for [User delegation SAS](/azure/storage/common/shared-key-authorization-prevent#understand-how-disallowing-shared-key-affects-sas-tokens))
-- Access to the BYOS-enabled Speech resource is allowed using the resource [system assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) and [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas). Note: *User Assigned* identity is not supported for BYOS. Also, if you want to change the identity from user assigned to system assigned, you need to redeploy the Speech service as well. 
+- Access to the BYOS-enabled Speech resource is allowed using the resource [system assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) and [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas). Note: *User Assigned* identity is not supported for BYOS. Also, if you want to change the identity from *User Assigned* to *System Assigned*, you need to redeploy the Speech service. 
 
 These are the most restricted security settings possible for the text to speech scenario. You can further customize them according to your needs.
 
