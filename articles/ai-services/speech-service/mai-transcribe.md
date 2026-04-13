@@ -8,6 +8,8 @@ ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 04/01/2026
+zone_pivot_groups: llm-speech-quickstart
+
 # Customer intent: As a user who implements audio transcription, I want create transcriptions with MAI's latest mai-transcribe-1 model.
 ---
 
