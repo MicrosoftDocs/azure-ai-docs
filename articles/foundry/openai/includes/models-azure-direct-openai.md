@@ -17,7 +17,7 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 > - DeepSeek: `DeepSeek-V3.2`, `DeepSeek-V3.2-Speciale`, `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
 > - Moonshot AI: `Kimi-K2.5`
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
-> - Microsoft: `MAI-Image-2`, `model-router`, 
+> - Microsoft: `MAI-Image-2e`, `MAI-Image-2`, `model-router`
 > - Mistral: `mistral-document-ai-2512`, `mistral-document-ai-2505`, `Mistral-Large-3`
 > - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`, `grok-4.1-fast-reasoning`, `grok-4.1-fast-non-reasoning`, `grok-4-20-reasoning`, `grok-4-20-non-reasoning`
 > 
