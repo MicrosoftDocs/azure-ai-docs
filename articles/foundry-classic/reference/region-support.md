@@ -3,7 +3,7 @@ title: "Feature availability across cloud regions (classic)"
 description: "This article lists Microsoft Foundry feature availability across cloud regions. (classic)"
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 01/23/2026
+ms.date: 04/13/2026
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -77,9 +77,9 @@ Use the following list to investigate regional availability for specific feature
   - [Foundry Models from partners and community](../../foundry/foundry-models/concepts/models-from-partners.md) — models from third-party providers available through the model catalog.
   - [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits) — regional quota and capacity limits for Azure OpenAI models.
 - **Serverless deployment**: Some models in the model catalog can be deployed as serverless deployments. [Region availability for models in serverless deployment](../how-to/deploy-models-serverless-availability.md)
-- **Speech capabilities**: Azure Speech capabilities, including custom neural voice, vary in regional availability due to underlying hardware availability. [Speech service supported regions](../../ai-services/speech-service/regions.md)
+- **Speech capabilities**: Azure Speech in Foundry Tools capabilities, including custom neural voice, vary in regional availability due to underlying hardware availability. [Speech service supported regions](../../ai-services/speech-service/regions.md)
 - **Azure AI Content Safety**: To use the Content Safety APIs, create your Azure AI Content Safety resource in a supported region. [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)
-- **Agent Service**: Agent Service supports Azure OpenAI model deployments, but exact model and tool availability varies by region. [Agent Service region availability](../agents/concepts/model-region-support.md)
+- **Foundry Agent Service**: Agent Service supports Azure OpenAI model deployments, but exact model and tool availability varies by region. [Agent Service region availability](../agents/concepts/model-region-support.md)
 
 ## How to verify region support for your workload
 
