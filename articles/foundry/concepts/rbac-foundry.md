@@ -49,7 +49,7 @@ Use the following table to see the permissions allowed for each built-in role in
 |**Azure AI User**|||✔||✔||
 |**Azure AI Project Manager**|||✔|✔ (only assign Azure AI User role)|✔||
 |**Azure AI Account Owner**|✔|✔||✔ (only assign Azure AI User role)|✔|✔|
-|**Azure AI Owner**|✔|✔|✔|✔|✔|✔|
+|**Azure AI Owner**|✔|✔|✔||✔|✔|
 
 Use the following table to see the permissions allowed for each key Azure built-in roles (Owner, Contributor, Reader). 
 
