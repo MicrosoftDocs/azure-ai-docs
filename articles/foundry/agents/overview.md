@@ -7,7 +7,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: overview
-ms.date: 03/25/2026
+ms.date: 04/13/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 keywords:
@@ -105,7 +105,16 @@ Agent Service works with many models available in the Foundry model catalog. For
 
 Agent Service provides built-in tools and supports custom tools so your agents can take actions and access data. For a full list, see the [Foundry tool catalog](concepts/tool-catalog.md). For advanced tool selection patterns, see [Tool best practices](concepts/tool-best-practice.md).
 
-Foundry supports remote MCP servers that you can add from the **Add Tools** catalog in the Foundry portal. For example, the Azure DevOps MCP Server (public preview) can be added directly from the catalog. Connect your Azure DevOps organization to enable agent access, and configure a subset of available tools to control which actions agents can perform. The **Add Tools** catalog is the entry point for enabling MCP servers and selecting permitted tools for an agent.
+Foundry supports remote MCP servers that you can add from the **Add Tools** catalog in the Foundry portal. For example, the Azure DevOps MCP Server (public preview) can be added directly from the catalog. Connect your Azure DevOps organization to enable agent access, and configure a subset of available tools to control which actions agents can perform. You can also connect custom MCP servers hosted on Azure Functions using the Functions MCP webhook endpoint (`/runtime/webhooks/mcp`) to expose custom tools to your agents. The **Add Tools** catalog is the entry point for enabling MCP servers and selecting permitted tools for an agent.
+
+Supported authentication options for connecting MCP servers include:
+
+- Key-based access
+- Microsoft Entra (using the agent's managed identity or the project's managed identity)
+- OAuth identity passthrough (On-Behalf-Of)
+- Unauthenticated access, where appropriate
+
+These authentication options also apply when connecting remote MCP servers, with credentials and scopes managed in the tool configuration.
 
 > [!NOTE]
 > Some tools, including memory and web search, are in preview. For availability by region and preview status, see [tool support by region and model](./concepts/tool-best-practice.md#tool-support-by-region-and-model).
@@ -115,7 +124,7 @@ Foundry supports remote MCP servers that you can add from the **Add Tools** cata
 Agent Service supports the full build-test-deploy-monitor workflow:
 
 1. **Create** — Define a prompt agent in the portal or build a hosted agent in code.
-1. **Test** — Chat with your agent in the [agents playground](../concepts/concept-playgrounds.md) or run locally. MCP server integrations, such as Azure DevOps, can be exercised directly in the playground via chat prompts to validate tool access and behavior before publishing.
+1. **Test** — Chat with your agent in the [agents playground](../concepts/concept-playgrounds.md) or run locally. MCP server integrations, including custom MCP servers hosted on Azure Functions, can be exercised directly in the playground via chat prompts to validate tool connectivity, permissions, and behavior before publishing.
 1. **Trace** — Inspect every model call, tool invocation, and decision with [agent tracing](../observability/concepts/trace-agent-concept.md).
 1. **Evaluate** — Run evaluations to measure quality and catch regressions.
 1. **Publish** — [Promote your agent](how-to/publish-agent.md) to a managed resource with a stable endpoint.
@@ -127,7 +136,7 @@ For a detailed walkthrough, see [Agent development lifecycle](concepts/developme
 
 Agent Service provides enterprise-grade infrastructure for every agent you deploy:
 
-- **[Agent identity](concepts/agent-identity.md)** — Each agent can have a dedicated Microsoft Entra identity, enabling secure, scoped access to resources and APIs without sharing credentials.
+- **[Agent identity](concepts/agent-identity.md)** — Each agent can have a dedicated Microsoft Entra identity, enabling secure, scoped access to resources and APIs without sharing credentials. Agent identities can authenticate to external MCP servers, including those hosted on Azure Functions, and OAuth On-Behalf-Of (OBO) passthrough is supported when configured.
 - **[Private networking](how-to/virtual-networks.md)** — Run agents within your Azure virtual network for full network isolation and compliance with data residency requirements. Private networking is available for prompt agents and workflow agents. Hosted agents don't currently support private networking during preview.
 - **Role-based access control** — Fine-grained permissions through Microsoft Entra and Azure RBAC. Control who can create, invoke, and manage agents.
 - **Content safety** — Integrated content filters help mitigate prompt injection risks (including cross-prompt injection) and prevent unsafe outputs.
