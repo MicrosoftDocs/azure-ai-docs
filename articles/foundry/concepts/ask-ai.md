@@ -2,7 +2,7 @@
 title: "Ask AI for help"
 description: "Learn how to ask AI for help, getting your questions answered and tasks supported."
 ms.service: azure-ai-foundry
-ms.date: 01/06/2026
+ms.date: 04/06/2026
 ms.author: sgilley
 ms.reviewer: jeomhove
 author: sdgilley
@@ -15,7 +15,8 @@ ai-usage: ai-assisted
 ---
 
 # Ask AI for help (preview)
-You can ask AI to assist you in Foundry. To start using AI to ask questions or complete tasks, select its icon located in the top right bar of the [!INCLUDE [classic-link](../includes/classic-link.md)] portal. A chat window opens where you can type your questions and receive answers in real-time. You can also ask the agent to run tasks for you.
+
+You can ask AI to assist you in Foundry. To start using AI to ask questions or complete tasks, select its icon located in the top right bar of the [!INCLUDE [foundry-link](../includes/foundry-link.md)] portal. A chat window opens where you can type your questions and receive answers in real time. You can also ask the agent to run tasks for you.
 
 :::image type="content" source="media/ask-foundry-agent/ask-ai.png" alt-text="Screenshot shows the Ask AI button in the top right bar of the Foundry portal.":::
 
@@ -29,9 +30,9 @@ To use Ask AI, you need:
 
 ## Capabilities
 
-**What This AI Can Do** - The Ask AI experience provides assistance by answering questions and performing tasks through specialized sub-agents:
+**What this AI can do** - The Ask AI experience provides assistance by answering questions and performing tasks through specialized sub-agents:
 
-- **Documentation**: This documentation includes details about Foundry such as Quickstarts, How-tos, or reference documentation of the Microsoft Foundry SDK. The agent can help you navigate the documentation or find answers for you.
+- **Documentation**: This documentation includes details about Foundry such as quickstarts, how-tos, or reference documentation of the Microsoft Foundry SDK. The agent can help you navigate the documentation or find answers for you.
 - **Model Catalog**: Provide information about specific models in the model catalog, including their capabilities and features.
 - **Troubleshooting**: Help diagnose and resolve common Foundry problems by searching the troubleshooting knowledge base and providing step-by-step solutions.
 - **Quota & Model Operations**: Deploy models, debug deployment problems, find deployment details, check quota and capacity in specific regions, and delete model deployments.
@@ -39,7 +40,7 @@ To use Ask AI, you need:
 - **Monitoring Dashboard Insights**: Interpret evaluation dashboard visualizations, identify patterns and anomalies in monitoring data, and suggest optimizations based on performance metrics.
 - **Evaluation Management**: Manage evaluation workflows for large language models and agents, including setup, execution, and monitoring of evaluation jobs.
 
-**What This AI Can't Do** - While the agent is a powerful tool, it has some limitations and constraints:
+**What this AI can't do** - While the agent is a powerful tool, it has some limitations and constraints:
 
 - **Limited Scope**: It's restricted to answering questions related to the Foundry documentation and model catalog. It can't provide support for unrelated Azure services or external systems.
 - **Call External APIs**: This AI experience can only call for a specific subset of Foundry APIs. It can't access the web or APIs external to Microsoft.
@@ -101,4 +102,5 @@ The agent is updated daily to keep it up to date with the latest information. In
 
 - [Get started with the Foundry MCP Server](../mcp/get-started.md)
 - [Available MCP Server tools](../mcp/available-tools.md)
-- [MCP Server security best practices](../mcp/security-best-practices.md)- [What is Microsoft Foundry?](../what-is-foundry.md)
+- [MCP Server security best practices](../mcp/security-best-practices.md)
+- [What is Microsoft Foundry?](../what-is-foundry.md)

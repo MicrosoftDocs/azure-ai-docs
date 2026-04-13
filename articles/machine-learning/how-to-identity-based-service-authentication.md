@@ -100,9 +100,13 @@ Expected output: JSON object showing the managed identity configuration for the 
 
 ```python
 from azure.ai.ml import MLClient
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 ml_client = MLClient(credential, "<subscription-id>", "<resource-group>", "<workspace-name>")
 
 # Verify workspace identity
@@ -391,13 +395,17 @@ az ml workspace create --file workspace.yml --resource-group <RESOURCE_GROUP>
 ```python
 from azure.ai.ml import MLClient
 from azure.ai.ml.entities import Workspace
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
 # Replace with your Azure subscription and resource group
 subscription_id = "<SUBSCRIPTION_ID>"
 resource_group = "<RESOURCE_GROUP>"
 
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 ml_client = MLClient(credential, subscription_id, resource_group)
 
 workspace = Workspace(

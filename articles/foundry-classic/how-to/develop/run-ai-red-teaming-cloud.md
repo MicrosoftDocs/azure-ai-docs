@@ -178,5 +178,5 @@ curl --request GET \  --header 'authorization: Bearer {{ai_token}}'  --url https
 ## Related content
 
 - [Example workflow for agent red teaming in the cloud](https://aka.ms/airedteamingagent-sample)
-- [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/red-teams)
+- [REST API Reference Documentation](/rest/api/aifoundry)
 

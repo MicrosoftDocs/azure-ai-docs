@@ -4,7 +4,7 @@ description: Learn what multimodal search is, how Azure AI Search supports it fo
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 03/25/2026
 ---
 
 # Multimodal search in Azure AI Search

@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/10/2021
+ms.date: 04/01/2026
 ---
 
 # Transparency note for Named Entity Recognition including Personally Identifiable Information (PII)
@@ -89,7 +89,7 @@ You can adjust the threshold for confidence score your system uses to tune your 
 
 * Not all entity categories are supported in all languages for both NER and PII.  Be sure to check the [entity type](/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories?tabs=general) article for the entities in the language you want to detect.
 
-* Many international PII entities are supported. By default, the entity categories returned are those that match the language code sent with the API call. If you expect entities from locales other than the one specified, you will need to specify them with the `piiCategories` parameter. Learn more about how to specify what your response will include in the [API reference](https://westus2.dev.cognitive.microsoft.com/docs/services/TextAnalytics-v3-1/operations/EntitiesRecognitionPii). Learn more about the categories supported for each locale in the [named entity types documentation](/azure/ai-services/language-service/personally-identifiable-information/concepts/entity-categories).
+* Many international PII entities are supported. By default, the entity categories returned are those that match the language code sent with the API call. If you expect entities from locales other than the one specified, you will need to specify them with the `piiCategories` parameter. Learn more about how to specify what your response will include in the [Azure AI Foundry REST API reference](/rest/api/aifoundry). Learn more about the categories supported for each locale in the [named entity types documentation](/azure/ai-services/language-service/personally-identifiable-information/concepts/entity-categories).
 
 * In PII redaction scenarios, if you are using the version of the API that includes the optional parameter `piiCategories`, it is important that you consider all the PII categories that could be present in your text. If you are redacting only specific entity categories or the default entity categories for a specific locale, other PII entity categories that unexpectedly appear in your text will be leaked. For example, if you have sent the EN-US locale and not specified any optional PII categories and a German Driver's License Number is present in your text, it will be leaked. To prevent this you would need to specify the German Driver's License Number category in the `piiCategories` parameter.  In addition, if you have specified one or more categories using the `piiCategories` parameter for the specified locale, be aware that those are the *only* categories that would be redacted. For example, if you have sent the EN-US locale and have specified U.S. Social Security Number (SSN) as the PII category for redaction, then any other EN-US categories such as U.S. Driver's License Number or U.S. Passport Number would be leaked if they appear in the input text.
 

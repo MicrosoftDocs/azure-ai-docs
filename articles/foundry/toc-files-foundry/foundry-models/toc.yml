@@ -8,6 +8,9 @@ items:
   - name: Foundry Models sold directly by Azure
     displayName: Foundry Models sold directly by Azure
     href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
+  - name: Foundry Models sold directly by Azure (government)
+    displayName: Foundry Models sold directly by Azure (government)
+    href: ../../foundry-models/concepts/models-sold-directly-by-azure-gov.md
   - name: Foundry Models sold from partners and community
     displayName: Foundry Models from partners and community
     href: ../../foundry-models/concepts/models-from-partners.md
@@ -38,6 +41,9 @@ items:
     - name: Model versions
       displayName: Model versions in Microsoft Foundry Models
       href: ../../foundry-models/concepts/model-versions.md
+    - name: Model versions (government)
+      displayName: Model versions in Microsoft Foundry Models (government)
+      href: ../../foundry-models/concepts/model-versions-gov.md
     - name: Automatic model updates for Azure OpenAI Models
       displayName: Working with models
       href: ../../openai/how-to/working-with-models.md
@@ -73,12 +79,6 @@ items:
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
 
-  - name: Azure OpenAI supported programming languages
-    href: ../../openai/supported-languages.md
-  - name: Deploy and use Claude models in Microsoft Foundry 
-    displayName: Claude in Foundry Models
-    href: ../../foundry-models/how-to/use-foundry-models-claude.md
-
 - name: Quota limits and region availability
   items:
   - name: Manage quotas for Foundry resources
@@ -104,6 +104,9 @@ items:
   - name: Deployment types
     displayName: Deployment types for Microsoft Foundry Models
     href: ../../foundry-models/concepts/deployment-types.md
+  - name: Deployment types (government)
+    displayName: Deployment types for Microsoft Foundry Models (government)
+    href: ../../foundry-models/concepts/deployment-types-gov.md
   - name: Managed compute pay-as-you-go
     displayName: Deploy Microsoft Foundry Models to managed compute with pay-as-you-go billing
     href: ../../../foundry-classic/how-to/deploy-models-managed-pay-go.md?context=/azure/foundry/context/context
@@ -151,6 +154,20 @@ items:
   - name: Troubleshoot deployments and monitoring
     displayName: How to troubleshoot your deployments and monitors in Microsoft Foundry portal
     href: ../../../foundry-classic/how-to/troubleshoot-deploy-and-monitor.md?context=/azure/foundry/context/context
+
+- name: Model support
+  items:
+  - name: Azure OpenAI supported programming languages
+    href: ../../openai/supported-languages.md
+  - name: Microsoft AI (MAI) model in Foundry
+    displayName: MAI-image-2 model in Foundry
+    href: ../../foundry-models/how-to/use-foundry-models-mai.md
+  - name: Claude models in Foundry 
+    displayName: Claude in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-claude.md
+  - name: FLUX models in Foundry 
+    displayName: FLUX in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-flux.md
 
 - name: Develop with AI models
   items:

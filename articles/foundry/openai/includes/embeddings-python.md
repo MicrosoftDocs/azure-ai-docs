@@ -8,6 +8,8 @@ ms.topic: include
 ms.date: 09/30/2025
 author: mrbullwinkle #noabenefraim
 ms.author: mbullwin
+
+ms.custom: classic-and-new
 ---
 ## Prerequisites
 

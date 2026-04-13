@@ -7,6 +7,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 01/27/2025
+
+ms.custom: classic-and-new
 ---
 
 ## Batch limits

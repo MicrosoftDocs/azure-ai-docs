@@ -43,7 +43,7 @@ For a complete list of built-in evaluators, see [Built-in evaluators reference](
 
 Production monitoring ensures your deployed AI applications maintain quality and performance in real-world conditions. Integrated with Azure Monitor Application Insights, Microsoft Foundry delivers real-time dashboards tracking operational metrics, token consumption, latency, error rates, and quality scores. Teams can set up alerts when outputs fail quality thresholds or produce harmful content, enabling rapid issue resolution.
 
-For details on setting up production monitoring, see [Monitor agents dashboard](../../foundry/observability/how-to/how-to-monitor-agents-dashboard.md).
+For details on setting up production monitoring, see [Monitor your generative AI applications](..//how-to/monitor-applications.md) and [Continuously evaluate your AI agents](../how-to/continuous-evaluation-agents.md).
 
 ### Tracing
 
@@ -100,7 +100,7 @@ Integrated with Azure Monitor Application Insights, the Foundry Observability da
 | Purpose | Process | Parameters, guidance, and samples |
 | -----| -----| ----|
 | How to set up tracing? | Configure distributed tracing | [Trace your application](../how-to/develop/trace-application.md) <br></br> [Trace with Agents SDK](../how-to/develop/trace-agents-sdk.md) |
-| What are you evaluating for? | Identify or build relevant evaluators | [Built-in evaluators](built-in-evaluators.md) <br></br> [Custom evaluators](./evaluation-evaluators/custom-evaluators.md) <br></br> [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) <br></br> [C# SDK samples](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/tests/Samples/Agent/Sample_Agent_Functions.cs) |
+| What are you evaluating for? | Identify or build relevant evaluators | [Built-in evaluators](built-in-evaluators.md) <br></br> [Custom evaluators](./evaluation-evaluators/custom-evaluators.md) <br></br> [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/README.md) <br></br> [C# SDK samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Projects/samples) |
 | What data should you use? | Upload or generate relevant dataset | [Synthetic dataset generation](./concept-synthetic-data.md) <br></br> [Run AI red teaming in the cloud](../how-to/develop/run-ai-red-teaming-cloud.md) |
 | How to run evaluations? | Run evaluation | [Agent evaluation runs](../how-to/develop/agent-evaluate-sdk.md) <br></br> [Remote cloud run](../how-to/develop/cloud-evaluation.md) <br></br> [Local run](../how-to/develop/evaluate-sdk.md) |
 | How did my model/app perform? | Analyze results | [View evaluation results](../how-to/evaluate-results.md)|

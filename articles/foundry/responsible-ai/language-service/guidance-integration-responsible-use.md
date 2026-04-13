@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: best-practice
-ms.date: 08/15/2022
+ms.date: 04/01/2026
 ---
 
 # Guidance for integration and responsible use with Azure Language in Foundry Tools

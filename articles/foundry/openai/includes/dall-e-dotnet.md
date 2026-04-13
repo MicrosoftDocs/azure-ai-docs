@@ -10,6 +10,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 01/29/2026
 ai-usage: ai-assisted
+
+ms.custom: classic-and-new
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for C#.

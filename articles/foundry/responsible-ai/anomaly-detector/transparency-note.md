@@ -41,7 +41,7 @@ Anomaly Detector is an AI service that enables you to monitor and detect abnorma
 
 ### The basics of Anomaly Detector
 
-Using Anomaly Detector doesn't require any prior experience in machine learning. The [RESTful API](https://westus2.dev.cognitive.microsoft.com/docs/services/AnomalyDetector/operations/post-timeseries-last-detect) enables you to easily integrate the service into your applications and processes. Anomaly Detector API can be deployed using the cloud or the intelligent edge with containers.
+Using Anomaly Detector doesn't require any prior experience in machine learning. The RESTful API enables you to easily integrate the service into your applications and processes. For more information, see [Azure AI Foundry REST API reference](/rest/api/aifoundry/). Anomaly Detector API can be deployed using the cloud or the intelligent edge with containers.
 
 The Anomaly Detector RESTful API takes time series data as its input, the key parts of which are timestamps and the numerical values of metrics to be analyzed. The output of the API contains the anomalous status of each data point.
 

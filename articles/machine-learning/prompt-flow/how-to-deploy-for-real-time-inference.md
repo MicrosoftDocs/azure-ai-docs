@@ -9,11 +9,13 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 05/08/2024
+ms.date: 03/23/2026
 ms.custom:
   - ignite-2023
   - build-2024
   - sfi-image-nochange
+  - dev-focus
+ai-usage: ai-assisted
 ms.update-cycle: 365-days
 ---
 
@@ -45,7 +47,7 @@ In this article, you'll learn how to deploy a flow as a managed online endpoint 
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To be able to deploy an endpoint in prompt flow, your user account must be assigned the **AzureML Data scientist** or role with more privileges for the **Azure Machine Learning workspace**.
   
-- Have basic understanding on managed identities. [Learn more about managed identities.](/azure/active-directory/managed-identities-azure-resources/overview)
+- Have basic understanding on managed identities. [Learn more about managed identities.](/entra/identity/managed-identities-azure-resources/overview)
 
 > [!NOTE]
 > Managed online endpoint only supports managed virtual network. If your workspace is in custom vnet, you need to try other deployment options, such as deploy to [Kubernetes online endpoint using CLI/SDK](./how-to-deploy-to-code.md), or [deploy to other platforms such as Docker](https://microsoft.github.io/promptflow/how-to-guides/deploy-a-flow/index.html).
@@ -116,10 +118,13 @@ The authentication method for the endpoint. Key-based authentication provides a 
 
 The endpoint needs to access Azure resources such as the Azure Container Registry or your workspace connections for inferencing. You can allow the endpoint permission to access Azure resources via giving permission to its managed identity.
 
-System-assigned identity will be autocreated after your endpoint is created, while user-assigned identity is created by user. [Learn more about managed identities.](/azure/active-directory/managed-identities-azure-resources/overview)
+System-assigned identity will be autocreated after your endpoint is created, while user-assigned identity is created by user. [Learn more about managed identities.](/entra/identity/managed-identities-azure-resources/overview)
 
 ##### System-assigned
 You'll notice there is an option whether *Enforce access to connection secrets (preview)*. If your flow uses connections, the endpoint needs to access connections to perform inference. The option is by default enabled, the endpoint will be granted **Azure Machine Learning Workspace Connection Secrets Reader** role to access connections automatically if you have connection secrets reader permission. If you disable this option, you need to grant this role to the system-assigned identity manually by yourself or ask help from your admin. [Learn more about how to grant permission to the endpoint identity](#grant-permissions-to-the-endpoint).
+
+> [!NOTE]
+> For system-assigned identities, several roles (including **AcrPull**, **Storage Blob Data Reader**, and **AzureML Metrics Writer**) are automatically assigned. For details, see [Authentication and authorization for online endpoints](../concept-endpoints-online-auth.md#automatic-role-assignment-for-endpoint-identity).
 
 ##### User-Assigned
 
@@ -214,7 +219,7 @@ Once you configured and reviewed all the steps above, you can select **Review+Cr
  >
  > Granting permissions (adding role assignment) is only enabled to the **Owner** of the specific Azure resources. You might need to ask your IT admin for help.
  > It's recommended to grant roles to the **user-assigned** identity **before the deployment creation**.
- > It maight take more than 15 minutes for the granted permission to take effect.
+ > It might take more than 15 minutes for the granted permission to take effect.
 
 You can grant all permissions in Azure portal UI by following steps.
 
@@ -389,3 +394,4 @@ If you aren't going use the endpoint after completing this tutorial, you should 
 - [Enable trace and collect feedback for your deployment](./how-to-enable-trace-feedback-for-deployment.md)
 - [View costs for an Azure Machine Learning managed online endpoint](../how-to-view-online-endpoints-costs.md)
 - [Troubleshoot prompt flow deployments.](how-to-troubleshoot-prompt-flow-deployment.md)
+- [Deploy a flow for real-time inference in Foundry (classic)](/azure/foundry-classic/how-to/flow-deploy)

@@ -1,6 +1,4 @@
 items:
-- name: What's new in Microsoft Foundry?
-  href: ../../whats-new-foundry.md
 - name: Foundry (classic) FAQ
   href: ../../faq.yml
 - name: Foundry known issues

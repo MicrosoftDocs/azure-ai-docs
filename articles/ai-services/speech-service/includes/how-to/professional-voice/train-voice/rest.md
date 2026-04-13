@@ -66,7 +66,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",
   "trainingSetId": "JessicaTrainingSetId"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -117,7 +117,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "projectId": "ProjectId",
   "consentId": "JessicaConsentId",
   "trainingSetId": "JessicaTrainingSetId"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -185,7 +185,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
       "myStyle2": "JessicaStyle2TrainingSetId"
     }
   }
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -253,7 +253,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type:
   "consentId": "JessicaConsentId",
   "trainingSetId": "Jessica-en-US-TrainingSetId",
   "locale": "fr-FR"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -306,7 +306,7 @@ Make an HTTP GET request using the URI as shown in the following [Models_Get](/r
 - Replace `JessicaModelId` if you specified a different model ID in the previous step.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2024-02-01-preview" -H "Ocp-Apim-Subscription-Key: YourResourceKey"
+curl -v -X GET "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/models/JessicaModelId?api-version=2026-01-01" -H "Ocp-Apim-Subscription-Key: YourResourceKey"
 ```
 
 You should receive a response body in the following format. 

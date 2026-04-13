@@ -559,7 +559,7 @@ Even though the `green` deployment has 0 percent of traffic allocated to it, you
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-safe-rollout-online-endpoints.sh" ID="test_green" :::
 
-If you want to use a REST client to invoke the deployment directly without going through traffic rules, set the following HTTP header: `azureml-model-deployment: <deployment-name>`. The following code uses Client for URL (cURL) to invoke the deployment directly. You can run the code in a Unix or Windows Subsystem for Linux (WSL) environment. For instructions for retrieving the `$ENDPOINT_KEY` value, see [Get the key or token for data plane operations](how-to-authenticate-online-endpoint.md#get-the-key-or-token-for-data-plane-operations).
+If you want to use a REST client to invoke the deployment directly without going through traffic rules, set the following HTTP header: `azureml-model-deployment: <deployment-name>`. The following code uses Client for URL (cURL) to invoke the deployment directly. You can run the code in a Unix or Windows Subsystem for Linux (WSL) environment. For instructions for retrieving the `$ENDPOINT_KEY` value, see [Get a data plane key or token](how-to-authenticate-online-endpoint.md#get-a-data-plane-key-or-token).
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-safe-rollout-online-endpoints.sh" ID="test_green_using_curl" :::
 

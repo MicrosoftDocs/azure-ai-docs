@@ -11,7 +11,8 @@ reviewer: santiagxf
 ms.author: scottpolly
 author: s-polly
 ms.collection: ce-skilling-ai-copilot 
-ms.custom: build-2024, serverless, devx-track-azurecli
+ms.custom: build-2024, serverless, devx-track-azurecli, dev-focus
+ai-usage: ai-assisted
 ---
 
 # Deploy models as standard deployment
@@ -69,11 +70,17 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
     ```python
     from azure.ai.ml import MLClient
-    from azure.identity import InteractiveBrowserCredential
+    from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
     from azure.ai.ml.entities import MarketplaceSubscription, ServerlessEndpoint
 
+    try:
+        credential = DefaultAzureCredential()
+        credential.get_token("https://management.azure.com/.default")
+    except Exception:
+        credential = InteractiveBrowserCredential()
+
     client = MLClient(
-        credential=InteractiveBrowserCredential(tenant_id="<tenant-id>"),
+        credential=credential,
         subscription_id="<subscription-id>",
         resource_group_name="<resource-group>",
         workspace_name="<workspace-name>",

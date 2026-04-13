@@ -93,6 +93,39 @@ Follow these steps to create a console application.
 
 ## Remarks
 
+### Choose a voice name
+
+Voice names follow the format `{locale}-{VoiceName}:{VoiceType}`, where:
+- **locale** identifies the voice's primary language and region (for example, `en-US` for US English, `es-ES` for Spanish)
+- **VoiceName** is the unique identifier for that voice (for example, `Ava`, `Andrew`)
+- **VoiceType** indicates the voice technology (for example, `DragonHDLatestNeural` for HD neural voices, `MultilingualNeural` for multilingual voices)
+
+To find available voices:
+- Browse the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) to preview voices interactively
+- See the [full list of supported voices](~/articles/ai-services/speech-service/language-support.md?tabs=tts) for all available options
+- Call the [Voice List API](~/articles/ai-services/speech-service/rest-text-to-speech.md#get-a-list-of-voices) to retrieve voices programmatically
+
+### Save audio to a file
+
+To save synthesized speech to a file instead of playing it to the speaker, specify a filename in the `AudioOutputConfig`:
+
+```python
+# Save to a WAV file instead of playing to speaker
+audio_config = speechsdk.audio.AudioOutputConfig(filename="output.wav")
+
+speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
+speech_synthesis_result = speech_synthesizer.speak_text_async("Hello, world!").get()
+```
+
+To get the audio data as bytes for custom processing (such as streaming or format conversion), omit the `audio_config` parameter and access the result's `audio_data` property:
+
+```python
+# Get audio data as bytes
+speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=None)
+result = speech_synthesizer.speak_text_async("Hello, world!").get()
+audio_bytes = result.audio_data  # Raw audio bytes
+```
+
 ### More speech synthesis options
 
 This quickstart uses the `speak_text_async` operation to synthesize a short block of text that you enter. You can also use long-form text from a file and get finer control over voice styles, prosody, and other settings.

@@ -9,7 +9,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: concept-article
-ms.date: 11/21/2025
+ms.date: 03/25/2026
 ---
 
 # API versions in Azure AI Search
@@ -22,7 +22,7 @@ For more information about the deprecation path, see the [Azure SDK lifecycle an
 
 ## Deprecated versions
 
-**2023-07-01-preview** was deprecated on April 8, 2024 and won't be supported after July 8, 2024.
+**2023-07-01-preview** was deprecated on April 8, 2024 and is no longer supported as of July 8, 2024.
 
 This was the first REST API that offered vector search support. Newer API versions have a different vector configuration. You should [migrate to a newer version](search-api-migration.md) as soon as possible.
 

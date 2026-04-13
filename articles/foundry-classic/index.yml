@@ -3,7 +3,7 @@
 title: Microsoft Foundry (classic) portal documentation
 summary: Use the Microsoft Foundry (classic) portal for legacy hub-based project workflows and management of resources outside a project.
 metadata:
-  title: Microsoft Foundry Classic documentation
+  title: Microsoft Foundry (classic) portal documentation
   description: Use Microsoft Foundry (classic) for legacy hub-based project workflows and management of resources outside a project.
   ms.author: sgilley
   manager: mcleans
@@ -19,7 +19,7 @@ landingContent:
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Microsoft Foundry (classic)?
+          - text: What is Microsoft Foundry (classic) portal?
             url: ./what-is-foundry.md
           - text: Explore Microsoft Foundry Models
             url: ./concepts/foundry-models-overview.md

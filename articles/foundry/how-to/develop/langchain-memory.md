@@ -9,7 +9,6 @@ author: santiagxf
 ms.reviewer: sgilley
 ms.custom:
   - dev-focus
-  - doc-kit-assisted
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to use langchain-azure-ai with Foundry Memory so that my application can retrieve long-term user context across sessions.
 ---
@@ -30,7 +29,7 @@ in LangChain or LangGraph runtime state.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../../how-to/create-projects.md).
 - A deployed Microsoft Foundry chat model for memory retrieval.
 	- This tutorial uses "gpt-4.1".

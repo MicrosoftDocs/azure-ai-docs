@@ -8,7 +8,7 @@ ms.custom:
   - devx-track-azurecli
   - doc-kit-assisted
 ms.topic: quickstart
-ms.date: 01/16/2026
+ms.date: 04/13/2026
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
@@ -58,9 +58,12 @@ Create a Foundry project to organize your work. The project contains models, age
 
 # [Foundry portal](#tab/portal)
 
-1. Go to [Microsoft Foundry](https://ai.azure.com).
-1. Sign in with your Azure account.
-1. Select the project name in the upper-left corner, and then select **Create new project**.
+1. [!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
+1. Create a project.
+    * If this is your first use of Foundry, you'll be asked to create or search for a project to continue. Select **Create a new project** in the dropdown.
+        :::image type="content" source="../media/quickstart-create-foundry-resources/initial-foundry.png" alt-text="Screenshot of the Foundry portal showing the project selection dropdown with the Create new project option highlighted.":::
+    * If you already have a project loaded, select its name in the upper-left corner, and then select **Create new project**.
+        :::image type="content" source="../media/quickstart-create-foundry-resources/create-from-project.png" alt-text="Screenshot of Foundry portal showing the Create a new project dropdown selected and project creation form fields visible.":::
 1. Enter a project name, such as `my-foundry-project`.
 1. Select **Advanced options** to configure the resource group and location:
    - **Resource group**: Create a new resource group or select an existing one. If you create a new resource group, you can more easily manage the project and all its resources together.
@@ -104,8 +107,7 @@ Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservice
 
 # [Foundry portal](#tab/portal)
 
-1. In your project, select **Discover** in the upper-right navigation.
-1. Select **Models**.
+1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
 1. Search for **gpt-4.1-mini**.
 1. Select **Deploy** > **Default settings** to add it to your project.
 1. Note the deployment name (for example, `gpt-4.1-mini`). Your team needs this name to use the model.
@@ -137,7 +139,7 @@ If you're administering a team, assign the **Azure AI User** role to team member
 
 ### Verify team member access
 
-Ask a team member to verify their access by signing in to [Microsoft Foundry](https://ai.azure.com), selecting the project from the project list, and confirming the deployed model appears under **Build** > **Models**.
+Ask a team member to verify their access by signing in to [Microsoft Foundry](https://ai.azure.com), selecting the project from the project list, and confirming the deployed model appears by selecting **Build** in the upper-right navigation, then **Models** in the left pane.
 
 If the team member can't access the project, verify that the role assignment completed successfully. Check that you used the correct email address or security group ID. Make sure the team member's Azure account is in the same Microsoft Entra tenant.
 

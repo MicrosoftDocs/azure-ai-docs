@@ -11,9 +11,9 @@ items:
   - name: C#
     href: /dotnet/api/overview/azure/ai.projects-readme
   - name: JavaScript
-    href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-preview
+    href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-latest&preserve-view=true
   - name: Python
-    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-preview
+    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-latest&preserve-view=true
   - name: REST API
     href: ../../reference/foundry-project.md
   - name: REST API (preview)
@@ -85,4 +85,4 @@ items:
     href: /azure/templates/microsoft.cognitiveservices/accounts?pivots=deployment-language-bicep
     displayName: ARM, ARM template, template 
   - name: Azure CLI
-    href: /cli/azure/cognitiveservices?view=azure-cli-latest
+    href: /cli/azure/cognitiveservices?view=azure-cli-latest&preserve-view=true

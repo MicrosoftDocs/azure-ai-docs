@@ -7,7 +7,7 @@ ms.reviewer: fsunavala
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 04/02/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -284,7 +284,7 @@ Content-Type: application/json
 
 [!INCLUDE [foundry-iq-limitation](../../includes/foundry-iq-limitation.md)]
 
-Optionally, if your knowledge base includes a [remote SharePoint knowledge source](/azure/search/agentic-knowledge-source-how-to-sharepoint-remote), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
+Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time](/azure/search/agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 #### [Python](#tab/python)
 
@@ -337,6 +337,8 @@ Provide the header and token in the MCP tool configuration:
 ## Invoke the agent with a query
 
 Create a conversation session and send a user query to the agent. When appropriate, the agent orchestrates calls to the MCP tool to retrieve relevant content from the knowledge base. The agent then synthesizes this content into a natural-language response that cites the source documents.
+
+Citation URLs in agent responses vary by knowledge source. For example, blob knowledge sources return the original document URL, while search index knowledge sources fall back to the MCP endpoint of your knowledge base.
 
 ### [Python](#tab/python)
 

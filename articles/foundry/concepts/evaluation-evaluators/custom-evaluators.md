@@ -3,20 +3,20 @@ title: "Custom Evaluators"
 description: "Learn how to create custom evaluators for your AI applications using code-based or prompt-based approaches."
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: mithigpe
-ms.date: 03/06/2026
+ms.reviewer: dlozier
+ms.date: 04/10/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
-  - doc-kit-assisted
 # customer intent: As a developer, I want to create custom evaluators so I can measure domain-specific quality metrics for my AI application's generations.
 ai-usage: ai-assisted
 ---
 
 # Custom evaluators (preview)
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 Built-in evaluators provide an easy way to monitor the quality of your application's generations. To customize your evaluations, you can create your own code-based or prompt-based evaluators.
@@ -42,7 +42,7 @@ A code-based evaluator is a Python function named `grade` that receives two dict
 - **Model or agent target evaluation**: To fetch generated response text, use `item.get("sample", {}).get("output_text")`.
 
 > [!NOTE]
-> In a future update, generated response fields will move to the `sample` parameter directly. For now, access them through `item.get("sample")`.
+> Currently, generated response text from a model or agent target is accessed through `item.get("sample", {}).get("output_text")`. This access pattern is subject to change in a future API update.
 
 The following example scores responses based on length, preferring responses between 50 and 500 characters:
 
@@ -65,6 +65,9 @@ def grade(sample: dict, item: dict) -> float:
         return 0.5
     return 1.0
 ```
+
+> [!NOTE]
+> If the `grade()` function raises an exception or times out, the service records that item's result as `0.0` and marks it as an error in the evaluation report. Design your function defensively — use `try/except` for risky operations and return a fallback score rather than letting exceptions propagate.
 
 ### Supported packages and limits
 
@@ -96,7 +99,7 @@ The NLTK corpora `punkt`, `stopwords`, `wordnet`, `omw-1.4`, and `names` are pre
 
 ### Runtime parameters
 
-`pass_threshold` and `deployment_name` are required as initialization parameters when you create a code-based evaluator.
+`pass_threshold` and `deployment_name` are required as initialization parameters when you create a code-based evaluator. Even though code-based evaluators don't call an LLM, the service API schema requires `deployment_name` for evaluation-run orchestration. You can pass any valid model deployment name from your project.
 
 ## Prompt-based evaluators
 
@@ -182,6 +185,8 @@ client = project_client.get_openai_client()
 ### Create a code-based evaluator
 
 Pass the `grade()` function as a string in the `code_text` field. Define the `data_schema` to declare the input fields your function expects, and the `metrics` to describe the score your function returns. Code-based evaluators use the `continuous` metric type with a range of 0.0 to 1.0.
+
+First, define the evaluator version schema:
 
 ```python
 code_evaluator = project_client.beta.evaluators.create_version(
@@ -413,7 +418,7 @@ project_client.beta.evaluators.delete_version(
 client.evals.delete(eval_id=eval_object.id)
 ```
 
-For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md).
+For more information on data source options, evaluator mappings, and advanced scenarios, see [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
 
 For additional examples including listing, updating, and deleting evaluators, see the [evaluator catalog management Python SDK sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_eval_catalog.py).
 
@@ -448,5 +453,5 @@ For detailed steps on running evaluations from the portal, see [Run evaluations 
 
 ## Related content
 
-- [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md)
+- [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
 - [Built-in evaluators](../built-in-evaluators.md)

@@ -1,22 +1,22 @@
 ---
 title: "General Purpose Evaluators for Generative AI"
-description: "Learn about general-purpose evaluators for generative AI, including coherence, fluency, and question-answering composite evaluation."
+description: "Learn about general-purpose evaluators for generative AI, including coherence and fluency evaluators."
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
-ms.date: 02/25/2026
+ms.date: 04/01/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
-  - doc-kit-assisted
 ---
 
 # General purpose evaluators
-AI systems might generate textual responses that are incoherent, or lack the general writing quality beyond minimum grammatical correctness. To address these issues, Microsoft Foundry supports evaluating coherence and fluency.
+
+Use coherence and fluency evaluators to measure the writing quality of AI-generated text, independent of factual correctness. AI-generated text might lack logical flow or grammatical quality beyond minimum correctness — these evaluators surface those gaps systematically.
 
 ## Coherence
 
@@ -26,9 +26,11 @@ The coherence evaluator measures the logical and orderly presentation of ideas i
 
 The fluency evaluator measures the effectiveness and clarity of written communication. This measure focuses on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability. It assesses how smoothly ideas are conveyed and how easily the reader can understand the text.
 
-## Using general-purpose evaluators
+## Configure and run evaluators
 
-General-purpose evaluators assess the quality of AI-generated text independent of specific use cases.
+General-purpose evaluators assess the writing quality of AI-generated text independent of specific use cases. Use coherence when logical flow and argumentation matter — for example, in question answering or summarization. Use fluency when grammatical quality and readability matter independent of content. Run both evaluators together for a complete picture of writing quality.
+
+For LLM-as-judge evaluators, you can use Azure OpenAI or OpenAI reasoning and non-reasoning models for the LLM judge. For the best balance of performance and cost, use `gpt-5-mini`.
 
 Examples:
 
@@ -75,7 +77,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
@@ -94,6 +96,10 @@ These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excelle
 }
 ```
 
+> [!NOTE]
+> These evaluators use LLM-as-judge scoring and incur model inference costs per evaluation call. Scoring reliability might vary for very short responses (under approximately 20 tokens). Both evaluators currently support English-language responses.
+
 ## Related content
 
 - [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
+- [More examples for quality evaluators](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)

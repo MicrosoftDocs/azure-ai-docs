@@ -4,7 +4,7 @@ description: "Learn how to consume serverless APIs from a different project or h
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 03/31/2026
 manager: nitinme
 author: ssalgadodev
 ms.author: ssalgado

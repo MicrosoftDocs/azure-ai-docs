@@ -18,6 +18,7 @@ Each project is specific to a country/region and language, and the gender of the
 To create a professional voice project, use the [Projects_Create](/rest/api/aiservices/speechapi/projects/create) operation of the custom voice API. Construct the request body according to the following instructions:
 
 - Set the required `kind` property to `ProfessionalVoice`. The kind can't be changed later.
+- Optionally, set the `locale` property. The locale of this project. The locale code follows BCP-47. You can find the text to speech locale list [here](/azure/ai-services/speech-service/language-support?tabs=tts). If you provide the locale, the project is usable in [Speech Studio](https://aka.ms/speechstudio/customvoice).
 - Optionally, set the `description` property for the project description. The project description can be changed later.
 
 Make an HTTP PUT request using the URI as shown in the following [Projects_Create](/rest/api/aiservices/speechapi/projects/create) example. 
@@ -28,8 +29,9 @@ Make an HTTP PUT request using the URI as shown in the following [Projects_Creat
 ```azurecli-interactive
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
   "description": "Project description",
-  "kind": "ProfessionalVoice"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/projects/ProjectId?api-version=2024-02-01-preview"
+  "kind": "ProfessionalVoice",
+  "locale": "en-US"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/projects/ProjectId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:
@@ -39,6 +41,7 @@ You should receive a response body in the following format:
   "id": "ProjectId",
   "description": "Project description",
   "kind": "ProfessionalVoice",
+  "locale": "en-US",
   "createdDateTime": "2023-04-01T05:30:00.000Z"
 }
 ```

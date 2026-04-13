@@ -7,6 +7,8 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 08/28/2023
+
+ms.custom: classic-and-new
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for Go.

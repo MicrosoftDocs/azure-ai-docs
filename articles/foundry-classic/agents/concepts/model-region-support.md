@@ -58,7 +58,7 @@ Keep in mind that model availability varies by region and cloud. Certain tools a
 > [!NOTE]
 > - This article refers to Agents (classic), which are now deprecated. To use models later than gpt-5, see the [agents (new) documentation](../../../foundry/agents/overview.md).
 > - [Hub-based projects](../../what-is-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, and gpt-35-turbo.
-> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
 > - The [file search tool](../how-to/tools-classic/file-search.md) is currently unavailable in the Italy North and Brazil South regions.
 > - The gpt-5 models can use only the [code interpreter](../how-to/tools-classic/code-interpreter.md) and [file search](../how-to/tools-classic/file-search.md) tools.
 > - [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access is granted according to Microsoft's eligibility criteria.

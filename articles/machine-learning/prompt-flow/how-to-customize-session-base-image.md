@@ -13,13 +13,13 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
-ms.date: 03/11/2026
+ms.date: 03/12/2026
 ms.update-cycle: 365-days
 ---
 
 # Customize a  base image for compute session
 
-This section assumes you have knowledge of [Docker](https://www.docker.com/) and [Azure Machine Learning environments](../concept-environments.md).
+Before you begin, make sure you're familiar with [Docker](https://www.docker.com/) and [Azure Machine Learning environments](../concept-environments.md).
 
 ## Step 1: Prepare the Docker context
 
@@ -38,16 +38,16 @@ In your local environment, create a folder that contains the following files. Th
 
 **Optional**: Add packages in private PyPI repository.
 
-Use the following command to download your packages to local: `pip wheel <package_name> --index-url=<private pypi> --wheel-dir <local path to save packages>`
+Use the following command to download your packages locally: `pip wheel <package_name> --index-url=<private pypi> --wheel-dir <local path to save packages>`
 
 Open the `requirements.txt` file and add your extra packages and their specific versions. For example:
 
 ```
 ###### Requirements with Version Specifiers ######
-requests == 2.32.3          # Version Matching. Must be version 2.32.3
-numpy >= 1.26.0             # Minimum version 1.26.0
+numpy == 2.2.0              # Version Matching. Must be version 2.2.0
+requests >= 2.31.0          # Minimum version 2.31.0
 coverage != 3.5             # Version Exclusion. Anything except version 3.5
-pillow ~= 11.0              # Compatible release. Same as >= 11.0, == 11.*
+pydantic ~= 2.0             # Compatible release. Same as >= 2.0, == 2.*
 <path_to_local_package>     # reference to local pip wheel package
 ```
 
@@ -112,4 +112,4 @@ To learn more about environment CLI, see [Manage environments](../how-to-manage-
 
 ## Next steps
 
-- [Develop a flow](how-to-develop-flow.md)
+- [Develop a prompt flow](how-to-develop-flow.md)

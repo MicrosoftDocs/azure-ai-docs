@@ -132,8 +132,14 @@ See the sections in this article for the phonemes that are specific to each loca
 ## th-TH
 [!INCLUDE [th-TH](./includes/phonetic-sets/text-to-speech/th-th.md)]
 
+## ta-IN
+[!INCLUDE [ta-IN](./includes/phonetic-sets/text-to-speech/ta-in.md)]
+ 
 ## tr-TR
 [!INCLUDE [tr-TR](./includes/phonetic-sets/text-to-speech/tr-tr.md)]
+ 
+## ur-PK
+[!INCLUDE [ur-PK](./includes/phonetic-sets/text-to-speech/ur-pk.md)]
 
 ## vi-VN
 [!INCLUDE [vi-VN](./includes/phonetic-sets/text-to-speech/vi-vn.md)]

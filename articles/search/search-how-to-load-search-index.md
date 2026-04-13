@@ -36,7 +36,7 @@ This article explains how to import documents into a predefined search index usi
 
 In the Azure portal, use the [import wizard](search-import-data-portal.md) to create and load indexes in a seamless workflow. If you want to load an existing index, choose an alternative approach.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the **Overview** page, select **Import data** on the command bar to create and populate a search index.
 

@@ -50,7 +50,7 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 ## Create a debug session
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the left menu, select **Search management** > **Debug sessions**.
 

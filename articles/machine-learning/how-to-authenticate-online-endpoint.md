@@ -1,16 +1,16 @@
 ---
 title: Authenticate Clients for Online Endpoints
 titleSuffix: Azure Machine Learning
-description: Learn to authenticate clients for an Azure Machine Learning online endpoint.
+description: Learn how to authenticate clients for Azure Machine Learning online endpoints by using keys, Azure Machine Learning tokens, or Microsoft Entra tokens for control plane and data plane operations.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 01/05/2026
+ms.date: 03/24/2026
 ms.topic: how-to
-ms.custom: how-to, devplatv2, cliv2, sdkv2, devx-track-azurecli, build-2024, dev-focus
+ms.custom: how-to, devplatv2, cliv2, sdkv2, devx-track-azurecli, build-2024, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -18,18 +18,37 @@ ai-usage: ai-assisted
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-This article describes how to authenticate clients to perform control plane and data plane operations on online endpoints.
+In this article, you learn how to authenticate clients for Azure Machine Learning online endpoints. You set up permissions, create an endpoint, retrieve tokens or keys, and score data by using one of three authentication modes: key, Azure Machine Learning token (`aml_token`), or Microsoft Entra token (`aad_token`).
 
-A _control plane operation_ controls an endpoint and changes it. Control plane operations include create, read, update, and delete (CRUD) operations on online endpoints and online deployments.
+Online endpoint authentication involves two types of operations:
 
-A _data plane operation_ uses data to interact with an online endpoint without changing the endpoint. For example, a data plane operation could consist of sending a scoring request to an online endpoint and getting a response.
+- A _control plane operation_ controls an endpoint and changes it. Control plane operations include create, read, update, and delete (CRUD) operations on online endpoints and online deployments.
+- A _data plane operation_ uses data to interact with an online endpoint without changing the endpoint. For example, a data plane operation consists of sending a scoring request to an online endpoint and getting a response.
 
+## Choose an authentication mode
+
+Online endpoints support three authentication modes for data plane operations. Choose the mode that best fits your security requirements and endpoint type.
+
+| | Key | Azure Machine Learning token (`aml_token`) | Microsoft Entra token (`aad_token`) |
+|---|---|---|---|
+| **Security level** | Lowest — static keys don't expire | Medium — short-lived, auto-refreshed | Highest — identity-based, role-scoped |
+| **Endpoint types** | Managed and Kubernetes | Managed and Kubernetes | **Managed only** |
+| **RBAC required for scoring** | No | No | Yes (`score/action` role) |
+| **Token lifetime** | No expiry (rotate manually) | Short-lived with refresh | Short-lived (per Microsoft Entra policy) |
+| **Best for** | Development and testing | Automated pipelines | Production workloads |
+
+For production workloads on managed online endpoints, use Microsoft Entra token authentication (`aad_token`) for the strongest security. For development or Kubernetes endpoints, key-based authentication is the simplest option.
+
+> [!IMPORTANT]
+> Microsoft Entra token (`aad_token`) authentication is supported for managed online endpoints only. For Kubernetes online endpoints, use key or Azure Machine Learning token (`aml_token`) authentication. For more information, see [Authentication and authorization for online endpoints](concept-endpoints-online-auth.md).
 
 ## Prerequisites
 
 [!INCLUDE [cli & sdk v2](includes/machine-learning-cli-sdk-v2-prereqs.md)]
 
-- A user identity in Microsoft Entra ID. For information about creating a user identity, see [Set up authentication](how-to-setup-authentication.md#microsoft-entra-id). You'll need the identity ID later.
+- **Python SDK**: `azure-ai-ml` and `azure-identity` packages (`pip install azure-ai-ml azure-identity`)
+- **Azure CLI**: The `ml` extension (`az extension add -n ml`)
+- A user identity in Microsoft Entra ID. For information about creating a user identity, see [Set up authentication](how-to-setup-authentication.md#microsoft-entra-id). You need the identity ID in a later step.
 - **Required RBAC role for control plane and data plane operations**: Assign one of the following roles to your user identity at the workspace scope:
   - **AzureML Data Scientist** (built-in) — Includes permissions for CRUD operations on endpoints and scoring. See [AzureML Data Scientist role](/azure/role-based-access-control/built-in-roles#azureml-data-scientist).
   - **Owner** or **Contributor** — Full access to manage endpoints.
@@ -123,7 +142,7 @@ The `Azure Machine Learning Workspace Connection Secrets Reader` built-in role i
 
 ### (Optional) Create a custom role
 
-You can skip this step if you're using built-in roles or other pre-made custom roles.
+Skip this step if you're using built-in roles or other pre-made custom roles.
 
 1. Define the scope and actions for custom roles by creating JSON definitions of the roles. For example, the following role definition,  _custom-role-for-control-plane.json_, allows the user to perform CRUD operations on an online endpoint in a specified workspace.
 
@@ -237,11 +256,11 @@ You can skip this step if you're using built-in roles or other pre-made custom r
     ```
 
 
-## Get the Microsoft Entra token for control plane operations
+## Get a control plane token
 
 Complete this step if you plan to perform control plane operations by using the REST API, which directly uses the token. 
 
-If you plan to use other methods, like Azure CLI with the ml extension v2, Python SDK v2, or Azure Machine Learning studio, you don't need to get the Microsoft Entra token manually. Your user identity will authenticate during sign in, and the token will automatically be retrieved and passed for you.
+If you plan to use other methods, like Azure CLI with the ml extension v2, Python SDK v2, or Azure Machine Learning studio, you don't need to get the Microsoft Entra token manually. Your user identity authenticates during sign in, and the token is automatically retrieved and passed for you.
 
 You can retrieve the Microsoft Entra token for control plane operations from the Azure resource endpoint: `https://management.azure.com`.
 
@@ -327,9 +346,14 @@ The studio doesn't expose the Microsoft Entra token for control plane operations
 
 ---
 
-### (Optional) Verify the resource endpoint and client ID for the Microsoft Entra token
+### Verify the control plane token (optional)
 
-After you retrieve the Microsoft Entra token, you can verify that the token is for the right Azure resource endpoint (`management.azure.com`) and the right client ID by decoding the token via [jwt.ms](https://jwt.ms/), which returns a JSON response containing the following information:
+After you retrieve the Microsoft Entra token, you can verify that the token is for the right Azure resource endpoint (`management.azure.com`) and the right client ID by decoding the token via [jwt.ms](https://jwt.ms/).
+
+> [!TIP]
+> The [jwt.ms](https://jwt.ms/) site is a Microsoft-owned tool that decodes tokens entirely in the browser — no data is sent to a server. Never paste tokens into untrusted decoding tools.
+
+The decoded token returns a JSON response containing the following information:
 
 ```json
 {
@@ -341,7 +365,7 @@ After you retrieve the Microsoft Entra token, you can verify that the token is f
 
 ## Create an endpoint
 
-The following example creates the endpoint with a system-assigned identity as the endpoint identity. The system-assigned identity is the default identity type of the managed identity for endpoints. Some basic roles are automatically assigned for the system-assigned identity. For more information on role assignment for a system-assigned identity, see [Automatic role assignment for endpoint identity](concept-endpoints-online-auth.md#automatic-role-assignment-for-endpoint-identity).
+The following example creates the endpoint with a system-assigned identity (SAI) as the endpoint identity. SAI is the default identity type for endpoints, and some basic roles are automatically assigned. For more information, see [Automatic role assignment for endpoint identity](concept-endpoints-online-auth.md#automatic-role-assignment-for-endpoint-identity).
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -356,6 +380,9 @@ The CLI doesn't require you to explicitly provide the control plane token. Inste
     ```
 
    You can set `auth_mode` to `key` for key authentication or `aml_token` for Azure Machine Learning token authentication. This example uses `aad_token` for Microsoft Entra token authentication.
+
+   > [!NOTE]
+   > The `aad_token` authentication mode is supported for managed online endpoints only. For Kubernetes online endpoints, set `auth_mode` to `key` or `aml_token`.
 
 1. Create the endpoint: 
 
@@ -417,6 +444,9 @@ ml_client.online_endpoints.begin_create_or_update(endpoint).result()
 
 You can replace `auth_mode` with `key` for key authentication or with `aml_token` for Azure Machine Learning token authentication. The example uses `aad_token` for Microsoft Entra token authentication.
 
+> [!NOTE]
+> The `aad_token` authentication mode is supported for managed online endpoints only. For Kubernetes online endpoints, set `auth_mode` to `key` or `aml_token`.
+
 Reference: [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient), [ManagedOnlineEndpoint](/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlineendpoint), [begin_create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.onlineendpointoperations#azure-ai-ml-operations-onlineendpointoperations-begin-create-or-update)
 
 ### [REST](#tab/rest)
@@ -451,6 +481,9 @@ The REST API call requires you to explicitly provide the control plane token. Us
     ```
 
     You can replace `authMode` with `key` for key authentication or with `AMLToken` for Azure Machine Learning token authentication. In this example, you use `AADToken` for Microsoft Entra token authentication.
+
+    > [!NOTE]
+    > The `AADToken` authentication mode is supported for managed online endpoints only. For Kubernetes online endpoints, set `authMode` to `key` or `AMLToken`.
 
 1. Get the current status of the online endpoint:
 
@@ -523,7 +556,7 @@ For more information on deploying online endpoints, see [Deploy a machine learni
 ---
 
 
-## Get the scoring URI for the endpoint
+## Get the scoring URI
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -576,11 +609,17 @@ You can find the scoring URI on the __Details__ tab of the endpoint's page.
 ---
 
 
-## Get the key or token for data plane operations
+## Get a data plane key or token
 
-You can use a key or token for data plane operations, even though the process of getting the key or token is a control plane operation. In other words, you use a control plane token to get the key or token that you later use to perform your data plane operations.
+You can use a key or token for data plane operations, even though the process of getting the key or token is a control plane operation. In other words, you use a control plane token to get the key or token that you later use for data plane operations.
 
-To get the key or Azure Machine Learning token, the user identity that's requesting it needs to have the correct role assigned to it, as described in [Authorization for control plane operations](concept-endpoints-online-auth.md#control-plane-operations).
+Token lifetimes vary by auth mode:
+
+- **Key**: Keys don't expire but should be rotated regularly for security. Use the `regenerateKeys` action to rotate keys.
+- **Azure Machine Learning token (`aml_token`)**: Short-lived tokens that include a `refreshAfterTimeUtc` field. Request a new token after this time to avoid expiry.
+- **Microsoft Entra token (`aad_token`)**: Follows your Microsoft Entra ID token lifetime policy (typically 60–90 minutes). Refresh the token before `expiryTimeUtc`.
+
+To get the key or Azure Machine Learning token, the user identity that's requesting it needs to have the correct role assigned, as described in [Authorization for control plane operations](concept-endpoints-online-auth.md#control-plane-operations).
 The user identity doesn't need any extra roles to get the Microsoft Entra token.
 
 ### [Azure CLI](#tab/azure-cli)
@@ -753,9 +792,12 @@ You can find the key, Azure Machine Learning token, or Microsoft Entra token on 
 
 ---
 
-### Verify the resource endpoint and client ID for the Microsoft Entra token
+### Verify the data plane token (optional)
 
 After getting the Entra token, you can verify that the token is for the right Azure resource endpoint, `ml.azure.com`, and the right client ID by decoding the token via [jwt.ms](https://jwt.ms/), which returns a JSON response with the following information:
+
+> [!TIP]
+> The [jwt.ms](https://jwt.ms/) site is a Microsoft-owned tool that decodes tokens entirely in the browser — no data is sent to a server. Never paste tokens into untrusted decoding tools.
 
 ```json
 {
@@ -765,7 +807,7 @@ After getting the Entra token, you can verify that the token is for the right Az
 ```
 
 
-## Score data using the key or token
+## Score data
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -782,7 +824,7 @@ Reference: [az ml online-endpoint invoke](/cli/azure/ml/online-endpoint#az-ml-on
 Azure Machine Learning SDK `ml_client.online_endpoints.invoke()` is supported for keys, Azure Machine Learning tokens, and Microsoft Entra tokens.
 You can also use a generic Python SDK to send the POST request to the scoring URI.
 
-When calling the online endpoint for scoring, pass the key or token in the authorization header. The following code shows how to call the online endpoint by using a key or token with a generic Python SDK. In the code, replace the `api_key` variable with your key or token.
+When you call the online endpoint for scoring, pass the key or token in the authorization header. The following code shows how to call the online endpoint by using a key or token. In the code, replace the `api_key` variable with your key or token.
 
 ```python
 import urllib.request
@@ -828,7 +870,7 @@ Reference: [OnlineEndpointOperations.invoke](/python/api/azure-ai-ml/azure.ai.ml
 
 ### [REST](#tab/rest)
 
-When invoking the online endpoint for scoring, pass the key, Azure Machine Learning token, or Microsoft Entra token in the authorization header. The following code shows how to use the cURL utility to call the online endpoint by using a key or token:
+When you invoke the online endpoint for scoring, pass the key, Azure Machine Learning token, or Microsoft Entra token in the authorization header. The following example uses the cURL utility to call the online endpoint:
 
 ```bash
 curl --request POST "$scoringUri" \
@@ -846,15 +888,30 @@ The __Test__ tab of the deployment's detail page supports scoring for endpoints 
 ---
 
 
-## Log and monitor traffic
+## Monitor endpoint traffic
 
 To enable traffic logging in the diagnostics settings for the endpoint, complete the steps in [Turn on logs](how-to-monitor-online-endpoints.md#turn-on-logs).
 
 If the diagnostic setting is enabled, you can view the `AmlOnlineEndpointTrafficLogs` table to see the authentication mode and user identity.
 
 
+## Troubleshoot authentication errors
+
+The following table lists common authentication errors and their resolutions.
+
+| Error | Likely cause | Resolution |
+|-------|-------------|------------|
+| 401 Unauthorized | Missing, expired, or wrong-audience token | Verify the token audience matches the endpoint type: `management.azure.com` for control plane, `ml.azure.com` for data plane. Refresh expired tokens. |
+| 403 Forbidden | User identity lacks the required RBAC role | Assign `AzureML Data Scientist` or a custom role with the `score/action` permission at the endpoint scope. See [Assign permissions to the identity](#assign-permissions-to-the-identity). |
+| `aad_token` not accepted | Using `aad_token` on a Kubernetes endpoint | Switch to `key` or `aml_token`. Microsoft Entra token authentication is supported for managed online endpoints only. |
+| `AADSTS700016` or similar Entra error | Wrong resource or audience in the token request | Ensure the resource parameter matches the operation type: `https://management.azure.com` for control plane, `https://ml.azure.com` for data plane. |
+
+
 ## Related content
 
 * [Authentication and authorization for online endpoints](concept-endpoints-online-auth.md)
+* [Set up authentication for Azure Machine Learning](how-to-setup-authentication.md)
 * [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
+* [Use REST to deploy a model as an online endpoint](how-to-deploy-with-rest.md)
+* [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md)
 * [Secure managed online endpoints by using network isolation](how-to-secure-online-endpoint.md)

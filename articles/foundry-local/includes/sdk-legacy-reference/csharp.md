@@ -10,6 +10,10 @@ author: samuel100
 
 ## C# SDK Reference
 
+### Prerequisites
+
+- Install Foundry Local CLI and ensure the `foundry` command is available on your `PATH`.
+
 ### Installation
 
 To use the Foundry Local C# SDK, you need to install the NuGet package:

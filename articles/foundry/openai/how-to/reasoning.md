@@ -253,7 +253,7 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/complet
 ## Reasoning effort
 
 > [!NOTE]
-> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that aren't returned as part of the message response content but are used by the model to help generate a final answer to your request. `reasoning_effort` can be set to `low`, `medium`, or `high` for all reasoning models except `o1-mini`. GPT-5 reasoning models support a new `reasoning_effort` setting of `minimal`. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
+> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that aren't returned as part of the message response content but are used by the model to help generate a final answer to your request. `reasoning_effort` can be set to `low`, `medium`, or `high` for all reasoning models except `o1-mini`. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
 
 ### Developer messages
 
@@ -973,14 +973,14 @@ print(response.model_dump_json(indent=2))
 
 | Feature | Description |
 |----|----|
-|`reasoning_effort` | `xhigh` is only supported with `gpt-5.1-codex-max` <br> `minimal` is now supported with GPT-5 series reasoning models.<sup>*</sup> <br> `none` is only supported for `gpt-5.1` <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh` |
+|`reasoning_effort` | `xhigh` is only supported with `gpt-5.1-codex-max` <br> `minimal` is only supported with the original GPT-5 reasoning models. `minimal` is not supported with `gpt-5.1` or greater <sup>*</sup> <br><br> **Options**: `none`, `minimal`, `low`, `medium`, `high`, `xhigh` |
 |`verbosity` | A new parameter providing more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
 | `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
 | **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |
 | **custom tool type** | Enables raw text (non-json) outputs |
 | [`lark_tool`](#python-lark) | Allows you to use some of the capabilities of [Python lark](https://github.com/lark-parser/lark) for more flexible constraining of model responses |
 
-<sup>*</sup> `gpt-5-codex` does not support `reasoning_effort` minimal.
+<sup>*</sup> `gpt-5-codex` also does not support `reasoning_effort` `minimal`.
 
 For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbook guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) and their [GPT-5 feature guide](https://platform.openai.com/docs/guides/latest-model).
 

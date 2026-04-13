@@ -3,7 +3,7 @@ title: "Tutorial: Skillsets"
 description: Learn how to create a skillset that calls built-in skills to enrich content during indexing.
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 11/21/2025
+ms.date: 03/25/2026
 zone_pivot_groups: tutorial-create-skillset
 ---
 

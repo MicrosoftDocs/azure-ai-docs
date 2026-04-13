@@ -3,7 +3,7 @@ title: "Agent tools overview for Microsoft Foundry Agent Service"
 description: "Explore the tools available for agents in Foundry Agent Service, including built-in tools, web search, custom options, and the Foundry tool catalog. Get started today."
 author: aahill
 ms.author: aahi
-ms.date: 03/12/2026
+ms.date: 04/09/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: azure-ai-foundry
@@ -64,28 +64,31 @@ For the complete list of custom tool options, see [All custom tools](#all-custom
 To add a tool to an agent, include it in the agent's tool list when you create or update the agent definition. The following example creates an agent with the web search tool enabled and sends a query:
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, WebSearchTool
 
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
+
+# Create clients to call Foundry API
 project = AIProjectClient(
-    endpoint=os.environ["PROJECT_ENDPOINT"],
+    endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
+openai = project.get_openai_client()
 
 # Create an agent with web search enabled
 agent = project.agents.create_version(
     agent_name="web-search-agent",
     definition=PromptAgentDefinition(
-        model=os.environ["MODEL_NAME"],
+        model="gpt-4.1-mini",
         instructions="You are a helpful assistant that can search the web.",
         tools=[WebSearchTool()],
     ),
 )
 
-# Start a conversation and send a query
-openai = project.get_openai_client()
+# Send a query
 response = openai.responses.create(
     input="What are the latest updates to Microsoft Foundry?",
     extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
@@ -237,6 +240,7 @@ The following table lists all built-in tools available in Foundry Agent Service.
 | [Custom Code Interpreter (preview)](../how-to/tools/custom-code-interpreter.md) | Customize the code interpreter's resources, Python packages, and Container Apps environment. |
 | [File Search](../how-to/tools/file-search.md) | Augment agents with knowledge from uploaded files or proprietary documents. |
 | [Azure AI Search](../how-to/tools/ai-search.md) | Ground agents with data from an existing Azure AI Search index. |
+| [Azure Functions](../how-to/tools/azure-functions.md) | Enable agents to call your Azure Functions to perform custom actions and retrieve dynamic data. |
 | [Function calling](../how-to/tools/function-calling.md) | Define custom functions that the agent can call. Your app executes the function and returns the result. |
 | [Image Generation (preview)](../how-to/tools/image-generation.md) | Generate images as part of conversations and workflows. |
 | [Browser Automation (preview)](../how-to/tools/browser-automation.md) | Perform browser tasks through natural language prompts. |

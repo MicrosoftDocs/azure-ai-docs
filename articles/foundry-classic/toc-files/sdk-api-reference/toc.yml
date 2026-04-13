@@ -2,23 +2,23 @@ items:
 - name: Azure AI Projects
   items:
   - name: C#
-    href: /dotnet/api/overview/azure/ai.projects-readme?view=azure-dotnet-preview&preserve-view=true
+    href: https://azure.github.io/azure-sdk-for-net/cognitiveservices.html#azureaiprojects
   - name: JavaScript
-    href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-preview&preserve-view=true
+    href: https://azure.github.io/azure-sdk-for-js/cognitiveservices.html#azure-ai-projects
   - name: Python
-    href: /python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true
+    href: https://azure.github.io/azure-sdk-for-python/cognitiveservices.html#azure-ai-projects
   - name: REST API
     href: ../../reference/foundry-project.md
 - name: Azure AI Agents
   items:
     - name: C#
-      href: /dotnet/api/overview/azure/ai.agents.persistent-readme?view=azure-dotnet-preview&preserve-view=true
+      href: https://azure.github.io/azure-sdk-for-net/cognitiveservices.html#azureaiagentspersistent
     - name: Java
-      href: /java/api/overview/azure/ai-agents-persistent-readme
+      href: https://azure.github.io/azure-sdk-for-java/cognitiveservices.html#azure-ai-agents-persistent
     - name: JavaScript
-      href: /javascript/api/overview/azure/ai-agents-readme?view=azure-node-preview&preserve-view=true
+      href: https://azure.github.io/azure-sdk-for-js/cognitiveservices.html#azure-ai-agents
     - name: Python
-      href: /python/api/overview/azure/ai-agents-readme?view=azure-python-preview&preserve-view=true
+      href: https://azure.github.io/azure-sdk-for-python/cognitiveservices.html#azure-ai-agents
     - name: REST API
       href: /rest/api/aifoundry/aiagents 
     - name: Data monitoring reference

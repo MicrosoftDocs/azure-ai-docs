@@ -9,8 +9,8 @@ ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 03/09/2026
 ms.reviewer: erichen
-ms.author: johalexander
-author: ms-johnalex
+ms.author: rotabor
+author: bobtabor-msft
 ms.custom: doc-kit-assisted
 ---
 
@@ -30,7 +30,7 @@ After you [build an agent in Agent Service](./vs-code-agents.md) by using the Vi
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, [create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have one, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Foundry project with a deployed model.
 - [Visual Studio Code](https://code.visualstudio.com/) with the [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) installed.
 - An existing agent created through the VS Code extension. To create one, follow the steps in [Work with Agent Service in Visual Studio Code](./vs-code-agents.md).

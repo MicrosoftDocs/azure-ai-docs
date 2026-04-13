@@ -13,7 +13,6 @@ ms.reviewer: pafarley
 zone_pivot_groups: voice-live-quickstart-agents
 recommendations: false
 ai-usage: ai-assisted
-ms.custom: doc-kit-assisted
 ---
 
 # Quickstart: Voice Agent with Foundry Agent Service (new)
@@ -35,12 +34,12 @@ ms.custom: doc-kit-assisted
 [!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-agents/csharp.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java quickstart](./includes/quickstarts/voice-live-agents/java.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript quickstart](./includes/quickstarts/voice-live-agents/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java quickstart](./includes/quickstarts/voice-live-agents/java.md)]
 ::: zone-end
 
 ## Related content

@@ -7,6 +7,8 @@ ms.topic: include
 ms.date: 2/1/2024
 ms.author: pafarley
 author: PatrickFarley
+
+ms.custom: classic-and-new
 ---
 
 ## Prerequisites

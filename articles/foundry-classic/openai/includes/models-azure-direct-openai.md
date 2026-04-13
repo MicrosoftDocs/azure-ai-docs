@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 02/27/2026
+ms.date: 04/07/2026
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026
@@ -15,11 +15,11 @@ ms.custom: pilot-ai-workflow-jan-2026
 > - Black Forest Labs: `FLUX.2-flex`, `FLUX.2-pro`, `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
 > - Cohere: `Cohere-command-a`, `embed-v-4-0`, `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast`
 > - DeepSeek: `DeepSeek-V3.2`, `DeepSeek-V3.2-Speciale`, `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
-> - Moonshot AI: `Kimi-K2.5`, `Kimi-K2-Thinking`
+> - Moonshot AI: `Kimi-K2.5`
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
-> - Microsoft: `MAI-DS-R1`, `model-router`
+> - Microsoft: `MAI-Image-2`, `model-router`, 
 > - Mistral: `mistral-document-ai-2512`, `mistral-document-ai-2505`, `Mistral-Large-3`
-> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`, `grok-4.1-fast-reasoning`, `grok-4.1-fast-non-reasoning`
+> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`, `grok-4.1-fast-reasoning`, `grok-4.1-fast-non-reasoning`, `grok-4-20-reasoning`, `grok-4-20-non-reasoning`
 > 
 > To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. 
 
@@ -172,7 +172,7 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-oss-120b` (Preview)   | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available for deployment<sup>1</sup> and via [managed compute](../../how-to/deploy-models-managed.md)  | 131,072 | 131,072 | May 31, 2024 |
-| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../how-to/deploy-models-managed.md) and [Foundry Local](../../../foundry-local/get-started.md#optional-run-the-latest-gpt-oss-20b-model) | 131,072 | 131,072 | May 31, 2024 |
+| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../how-to/deploy-models-managed.md) and [Foundry Local](../../../foundry-local/what-is-foundry-local.md) | 131,072 | 131,072 | May 31, 2024 |
 
 <sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires a [Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry) to deploy the model.
 

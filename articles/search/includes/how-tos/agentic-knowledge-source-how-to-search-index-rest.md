@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 11/14/2025
+ms.date: 04/10/2026
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -66,9 +66,6 @@ Content-Type: application/json
         "sourceDataFields": [
           { "name": "description" },
           { "name": "category" }
-        ],
-        "searchFields": [
-          { "name": "*" }
         ]
     }
 }
@@ -89,8 +86,6 @@ You can pass the following properties to create a search index knowledge source.
 | `semanticConfigurationName` | Overrides the default semantic configuration for the search index. | String | Yes | No |
 | `sourceDataFields` | The index fields returned when you specify `includeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
 | `searchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
-
----
 
 ## Assign to a knowledge base
 

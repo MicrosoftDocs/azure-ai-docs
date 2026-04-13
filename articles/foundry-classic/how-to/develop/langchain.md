@@ -25,7 +25,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 LangChain is a developer ecosystem that makes it easier to build reasoning applications. It includes multiple components, and most of them can be used independently, so you can pick and choose the pieces you need.
 
 <!-- ::: moniker range="foundry-classic" -->
-You can use models deployed to [!INCLUDE [classic-link](../../../foundry/includes/classic-link.md)] with LangChain in two ways:
+You can use models deployed to [!INCLUDE [foundry-link](../../../foundry/includes/foundry-link.md)] with LangChain in two ways:
 <!-- ::: moniker-end
 
 -->

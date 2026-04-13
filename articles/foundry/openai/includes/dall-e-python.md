@@ -6,10 +6,11 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
-  - ignite-2023
+  - ignite-2023, classic-and-new
 ms.topic: include
 ms.date: 01/29/2026
 ai-usage: ai-assisted
+
 ---
 
 Use this guide to get started generating images with the Azure OpenAI SDK for Python.

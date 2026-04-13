@@ -5,7 +5,7 @@ description: "Learn how to get your environment ready with the Microsoft Foundry
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 03/30/2026
 ms.custom: ignite-2024, github-universe-2024
 author: ssalgadodev
 ms.author: ssalgado

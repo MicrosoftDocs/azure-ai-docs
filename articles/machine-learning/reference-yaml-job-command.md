@@ -6,7 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
-ms.custom: cliv2, devx-track-python, update-code3
+ms.custom: cliv2, devx-track-python, update-code3, dev-focus
+ai-usage: ai-assisted
 author: s-polly
 ms.author: scottpolly
 ms.date: 04/14/2025
@@ -38,17 +39,22 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `code` | string | Local path to the source code directory to be uploaded and used for the job. | | |
 | `environment` | string or object | The environment to use for the job. Can be either a reference to an existing versioned environment in the workspace or an inline environment specification. <br><br> To reference an existing environment, use the `azureml:<environment_name>:<environment_version>` syntax or `azureml:<environment_name>@latest` (to reference the latest version of an environment). <br><br> To define an environment inline, follow the [Environment schema](reference-yaml-environment.md#yaml-syntax). Exclude the `name` and `version` properties as they aren't supported for inline environments.<br><br> When you work with curated environments in the CLI or SDK, curated environment names begin with `AzureML-`. When you use the Azure Machine Learning studio, the curated environment names don't have this prefix. The reason for this difference is that the studio UI displays curated and custom environments on separate tabs, so the prefix isn't necessary. The CLI and SDK don't have this separation, so the prefix is used to differentiate between curated and custom environments. | | |
 | `environment_variables` | object | Dictionary of environment variable key-value pairs to set on the process where the command is executed. | | |
-| `distribution` | object | The distribution configuration for distributed training scenarios. One of [MpiConfiguration](#mpiconfiguration), [PyTorchConfiguration](#pytorchconfiguration), or [TensorFlowConfiguration](#tensorflowconfiguration). | | |
+| `distribution` | object | The distribution configuration for distributed training scenarios. One of [MpiConfiguration](#mpiconfiguration), [PyTorchConfiguration](#pytorchconfiguration), [TensorFlowConfiguration](#tensorflowconfiguration), or [RayConfiguration](#rayconfiguration). | | |
 | `compute` | string | Name of the compute target to execute the job on. Can be either a reference to an existing compute in the workspace (using the `azureml:<compute_name>` syntax) or `local` to designate local execution. **Note:** jobs in pipeline didn't support `local` as `compute` | | `local` |
 | `resources.instance_count` | integer | The number of nodes to use for the job. | | `1` |
-| `resources.instance_type` | string | The instance type to use for the job. Applicable for jobs running on Azure Arc-enabled Kubernetes compute (where the compute target specified in the `compute` field is of `type: kubernentes`). If omitted, defaults to the default instance type for the Kubernetes cluster. For more information, see [Create and select Kubernetes instance types](how-to-attach-kubernetes-anywhere.md). | | |
+| `resources.instance_type` | string | The instance type to use for the job. Applicable for jobs running on Azure Arc-enabled Kubernetes compute (where the compute target specified in the `compute` field is of `type: kubernetes`). If omitted, defaults to the default instance type for the Kubernetes cluster. For more information, see [Create and manage instance types](how-to-manage-kubernetes-instance-types.md). | | |
 | `resources.shm_size` | string | The size of the docker container's shared memory block. Should be in the format of `<number><unit>` where number has to be greater than 0 and the unit can be one of `b` (bytes), `k` (kilobytes), `m` (megabytes), or `g` (gigabytes). | | `2g` |
+| `resources.docker_args` | string | Extra arguments to pass to the Docker `run` command. | | |
+| `resources.locations` | array | List of region locations where the job is allowed to run. | | |
+| `resources.max_instance_count` | integer | The maximum number of nodes to use for the job (for elastically distributed training). | | |
 | `limits.timeout` | integer | The maximum time in seconds the job is allowed to run. When this limit is reached, the system cancels the job. | | |
 | `inputs` | object | Dictionary of inputs to the job. The key is a name for the input within the context of the job and the value is the input value. <br><br> Inputs can be referenced in the `command` using the `${{ inputs.<input_name> }}` expression. | | |
 | `inputs.<input_name>` | number, integer, boolean, string, or object | One of a literal value (of type number, integer, boolean, or string) or an object containing a [job input data specification](#job-inputs). | | |
 | `outputs` | object | Dictionary of output configurations of the job. The key is a name for the output within the context of the job and the value is the output configuration. <br><br> Outputs can be referenced in the `command` using the `${{ outputs.<output_name> }}` expression. | |
 | `outputs.<output_name>` | object | You can leave the object empty, in which case by default the output is of type `uri_folder` and Azure Machine Learning generates an output location for the output. Files to the output directory are written via read-write mount. If you want to specify a different mode for the output, provide an object containing the [job output specification](#job-outputs). | |
-| `identity` | object | The identity is used for data accessing. It can be [UserIdentityConfiguration](#useridentityconfiguration), [ManagedIdentityConfiguration](#managedidentityconfiguration), or None. If UserIdentityConfiguration, the identity of job submitter is used to access, input data and write result to output folder, otherwise, the managed identity of the compute target is used. | |
+| `queue_settings` | object | Queue settings for the job. Configure a job tier and scheduling priority. See [Queue settings](#queue-settings). | | |
+| `services` | object | Dictionary of interactive job services (endpoints). Supported service types: `ssh`, `tensor_board`, `vs_code`, `jupyter_lab`. | | |
+| `identity` | object | The identity is used for data accessing. It can be [UserIdentityConfiguration](#useridentityconfiguration), [ManagedIdentityConfiguration](#managedidentityconfiguration), [AMLTokenIdentityConfiguration](#amltokenidentityconfiguration), or None. If UserIdentityConfiguration, the identity of job submitter is used to access input data and write result to the output folder; otherwise, the managed identity of the compute target is used. | |
 
 ### Distribution configurations
 
@@ -73,6 +79,18 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `type` | const | **Required.** Distribution type.  | `tensorflow` |
 | `worker_count` | integer | The number of workers to launch for the job. | | Defaults to `resources.instance_count`. |
 | `parameter_server_count` | integer | The number of parameter servers to launch for the job. | | `0` |
+
+#### RayConfiguration
+
+| Key | Type | Description | Allowed values | Default value |
+| --- | ---- | ----------- | -------------- | ------------- |
+| `type` | const | **Required.** Distribution type. | `ray` | |
+| `address` | string | Address of an existing Ray cluster to connect to. If omitted, Azure Machine Learning starts a new Ray cluster. | | |
+| `port` | integer | Port of the head Ray process. | | |
+| `dashboard_port` | integer | Port of the Ray dashboard process. | | |
+| `include_dashboard` | boolean | Whether to start the Ray dashboard. | | |
+| `head_node_additional_args` | string | Extra arguments passed to `ray start` on the head node. | | |
+| `worker_node_additional_args` | string | Extra arguments passed to `ray start` on worker nodes. | | |
 
 ### Job inputs
 
@@ -102,6 +120,19 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | Key | Type | Description | Allowed values |
 | --- | ---- | ----------- | -------------- |
 | `type` | const | **Required.** Identity type.  | `managed` or `managed_identity` |
+
+#### AMLTokenIdentityConfiguration
+
+| Key | Type | Description | Allowed values |
+| --- | ---- | ----------- | -------------- |
+| `type` | const | **Required.** Identity type. The job uses the workspace's Azure Machine Learning token for data access. | `aml_token` |
+
+### Queue settings
+
+| Key | Type | Description | Allowed values | Default value |
+| --- | ---- | ----------- | -------------- | ------------- |
+| `job_tier` | string | The job tier. `spot` uses preemptible compute at lower cost. | `spot`, `basic`, `standard`, `premium` | |
+| `priority` | string | The scheduling priority within the selected tier. | `low`, `medium`, `high` | |
 
 ## Remarks
 

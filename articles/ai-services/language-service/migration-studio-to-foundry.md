@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: upgrade-and-migration-article
-ms.date: 02/05/2026
+ms.date: 04/03/2026
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD025 -->
@@ -39,11 +39,7 @@ You can migrate to Microsoft Foundry using one of two approaches:
 
 * **[Option II: Migrate to a new Foundry resource](#option-ii-migrate-to-a-new-foundry-resource)**. Export your projects from Language Studio and import them into a new Foundry resource. This approach consolidates your AI capabilities into a single resource and provides access to both Foundry classic and the new Foundry experiences.
 
-
-
 ---
-
-
 
 ## Option I: Start using Foundry with an existing Language resource
 
@@ -57,9 +53,9 @@ If you have an existing Azure Language resource with custom projects, you can co
 
 To use Azure AI Language capabilities with a Language resource, you need a Foundry hub and an associated hub-based project. Set up these resources using either of the following approaches:
 
-* **Azure portal**. Create a hub first, then create an associated project. This approach provides explicit control over resource configuration settings. For step-by-step instructions, *see* [Create a hub in the Azure portal](/azure/ai-foundry/how-to/create-azure-ai-resource?view=foundry-classic&preserve-view=true&tabs=portal#create-a-hub-in-the-azure-portal). After creating your hub, navigate to your hub resource, select **Projects** or **Management center** under **Resource management**, and then select **+ New project**.
+* **Azure portal**. Create a hub first, then create an associated project. This approach provides explicit control over resource configuration settings. For step-by-step instructions, *see* [Create a hub in the Azure portal](/azure/foundry-classic/how-to/create-azure-ai-resource?tabs=portal#create-a-hub-in-the-azure-portal). After creating your hub, navigate to your hub resource, select **Projects** or **Management center** under **Resource management**, and then select **+ New project**.
 
-* **Microsoft Foundry portal**. Create a hub-based project directly in Microsoft Foundry, which automatically provisions the underlying hub. This approach streamlines setup by handling hub creation automatically. For step-by-step instructions, *see* [Create a project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&preserve-view=true&tabs=foundry).
+* **Microsoft Foundry portal**. Create a hub-based project directly in Microsoft Foundry, which automatically provisions the underlying hub. This approach streamlines setup by handling hub creation automatically. For step-by-step instructions, *see* [Create a project](/azure/foundry-classic/how-to/create-projects?tabs=foundry).
 
 ### Step 2: Confirm prerequisites and region support
 
@@ -68,7 +64,7 @@ The following table lists the custom capabilities available in Microsoft Foundry
 |Capability|Required prerequisites|Region support|
 |---|---|---|
 |[**Conversational Language Understanding (CLU)**](conversational-language-understanding/quickstart.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for CLU](concepts/regional-support.md).|
-|[**Custom Question Answering (CQA)**](question-answering/quickstart/sdk.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your hub or hub-based project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal#create-a-new-connection).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|[**Custom Question Answering (CQA)**](question-answering/quickstart/sdk.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your hub or hub-based project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/foundry-classic/how-to/connections-add?tabs=foundry-portal#create-a-new-connection).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
 |[**Orchestration workflow**](orchestration-workflow/quickstart.md)|&bullet; Foundry resource and Foundry project, or Language resource and Foundry hub-based project.</br>&bullet; A `CLU` or `CQA` project created in the same resource.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Orchestration workflow](concepts/regional-support.md).|
 |[**Custom Named Entity Recognition (CNER)**](custom-named-entity-recognition/quickstart.md)|&bullet; Language resource with a storage account linked during resource creation.</br>&bullet; Foundry hub-based project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for CNER](concepts/regional-support.md).|
 
@@ -87,7 +83,7 @@ To access and manage your existing Language resource projects in Microsoft Found
 1. Select your Azure Language resource or Foundry resource from the list.
 1. Select **Add connection**.
 
-For more information, *see* [Connect Foundry Tools to a Foundry project](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal).
+For more information, *see* [Connect Foundry Tools to a Foundry project](/azure/foundry-classic/how-to/connections-add?tabs=foundry-portal).
 
 ### Step 4: Validate and test your migrated projects
 
@@ -145,7 +141,7 @@ To use Azure AI Language capabilities with a Foundry resource, you need both the
 
 * **Azure portal**. Create a Foundry resource first, then create an associated Foundry project. This approach provides explicit control over resource configuration settings. For step-by-step instructions, *see* [Create a Foundry resource in the Azure portal](/azure/ai-services/multi-service-resource?pivots=azportal#create-a-new-microsoft-foundry-resource).
 
-* **Microsoft Foundry portal**. Create a Foundry project directly, which automatically provisions the underlying Foundry resource. This approach streamlines setup by handling resource creation automatically. For step-by-step instructions, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&preserve-view=true&tabs=foundry).
+* **Microsoft Foundry portal**. Create a Foundry project directly, which automatically provisions the underlying Foundry resource. This approach streamlines setup by handling resource creation automatically. For step-by-step instructions, *see* [Create a Foundry project](/azure/foundry-classic/how-to/create-projects?tabs=foundry).
 
 > [!IMPORTANT]
 > **Custom NER (CNER)** requires a storage account to be linked to the Foundry resource during initial resource creation. To establish this link, you must configure the Foundry resource in the [Azure portal](https://portal.azure.com/).
@@ -166,17 +162,22 @@ You can now train and deploy your `CNER` project using the **Getting started** w
 
 #### Import a Custom Question Answering (CQA) project
 
-1. In Foundry, navigate to your project.
-1. Select **Fine-tuning** from the left navigation pane.
-1. From the main window, select the **AI Service fine-tuning** tab, and then select **+ Fine-tune**.
-1. In the **Create CQA fine-tuning task** window, select your connected Azure AI Search resource.
-1. Enter a **Name** for your project and select the **Language**.
-1. Optionally, update the **Default answer when no answer is returned** field (default is "No answer found").
-1. Select **Create**.
-1. From the **Getting started** menu, select **Manage sources**.
-1. Select **+ Add source**, and then select **Add Files** to upload your exported question-answer pairs.
+1. In Foundry, navigate to your AI foundry project.
+1. When you export a `CQA` project from Language Studio, you receive a `.zip` file containing your project data. Extract the contents of the `.zip` file to access the underlying files.
+1. In Foundry, select **Fine-tuning** from the left navigation pane.
+1. From the main window, select the **AI Service fine-tuning** tab, and then select your existing `CQA` project or select **+ Fine-tune** to create a new fine-tuning task.
+1. On your `CQA` project Getting started page, select **Edit knowledge base**.
+1. On the **Edit knowledge base** page, select the **Question Answer Pairs** tab then select **Import question and answers**.
+1. Browse for your extracted files then drag and drop the `.tsv` file to import your question-answer pairs (If you had any question-answer pairs in the original project).
 
-After adding your source files, you can train and deploy the `CQA` project using the **Getting started** workflow in Foundry.
+    :::image type="content" source="media/question-answer-pairs-import.png" alt-text="Screenshot of the import question-answer pairs dialogue box window.":::
+
+1. Next, select the **Synonyms** tab on the page.
+1. Select **Import Synonyms** and choose the extracted `Synonyms.tsv` file (If you had any synonyms in the original project).
+
+    :::image type="content" source="media/synonyms-import.png" alt-text="Screenshot of the import synonyms dialogue box window.":::
+
+1. After adding your source files, you can train and deploy the `CQA` project using the **Getting started** workflow in Foundry.
 
 #### Import a Conversational Language Understanding (CLU) project
 
@@ -215,9 +216,9 @@ After importing your projects, validate that the migration is successful:
 >
 > **Post-retirement project recreation**. After the March 20, 2027 retirement date, Language Studio export functionality is no longer available. However, you can recreate your custom projects directly in Microsoft Foundry:
 >
-> * **Existing Azure Language resources**. You can access and continue to use your current Azure Language resources within the Microsoft Foundry portal by creating a **Foundry hub** and an associated **hub-based project**. For more information, *see* [Create a hub in the Azure portal](/azure/ai-foundry/how-to/create-azure-ai-resource?view=foundry-classic&preserve-view=true&tabs=portal#create-a-hub-in-the-azure-portal).
+> * **Existing Azure Language resources**. You can access and continue to use your current Azure Language resources within the Microsoft Foundry portal by creating a **Foundry hub** and an associated **hub-based project**. For more information, *see* [Create a hub in the Azure portal](/azure/foundry-classic/how-to/create-azure-ai-resource?tabs=portal#create-a-hub-in-the-azure-portal).
 >
-> * **Existing Foundry resource-based projects**. You can access your current **Foundry projects** directly in the Microsoft Foundry portal. Alternatively, create a new project and transfer your project assets to the new environment. For more information, *see* [Create a Foundry project](/azure/ai-foundry/how-to/create-projects?view=foundry-classic&preserve-view=true&tabs=foundry).
+> * **Existing Foundry resource-based projects**. You can access your current **Foundry projects** directly in the Microsoft Foundry portal. Alternatively, create a new project and transfer your project assets to the new environment. For more information, *see* [Create a Foundry project](/azure/foundry-classic/how-to/create-projects?tabs=foundry).
 
 #### Pretrained models (prebuilt) supported in Microsoft Foundry
 
@@ -243,8 +244,8 @@ The following table lists the pretrained (prebuilt) capabilities available in Mi
 |Capability|Required prerequisites|Region support|
 |---|---|---|
 |[**Conversational Language Understanding (CLU)**](conversational-language-understanding/quickstart.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Conversational Language Understanding](concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).|
-|[**Custom Question Answering (CQA)**](question-answering/quickstart/sdk.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal#create-a-new-connection).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
-|[**Custom Question Answering agent**](question-answering/how-to/deploy-agent.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/ai-foundry/how-to/connections-add?view=foundry-classic&preserve-view=true&tabs=foundry-portal#create-a-new-connection).</br>&bullet; Deployed knowledge base.</br>&bullet; Deployed Azure OpenAI model in Microsoft Foundry.</br>&bullet; API key connected to your project.|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|[**Custom Question Answering (CQA)**](question-answering/quickstart/sdk.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/foundry-classic/how-to/connections-add?tabs=foundry-portal#create-a-new-connection).|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
+|[**Custom Question Answering agent**](question-answering/how-to/deploy-agent.md)|&bullet; Foundry resource and Foundry project created in the Azure portal.</br>&bullet; Azure AI Search resource connected to your project via the Foundry Management Center. For more information, *see* [Create a new connection](/azure/foundry-classic/how-to/connections-add?tabs=foundry-portal#create-a-new-connection).</br>&bullet; Deployed knowledge base.</br>&bullet; Deployed Azure OpenAI model in Microsoft Foundry.</br>&bullet; API key connected to your project.|Available in supported Azure regions. For more information, *see* [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).|
 |[**Custom Named Entity Recognition (CNER)**](custom-named-entity-recognition/quickstart.md)|&bullet; Language resource with a storage account **linked during resource creation** in the Foundry portal.</br>&bullet; Foundry project created in the Azure portal.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for CNER](concepts/regional-support.md#custom-named-entity-recognition).|
 |[**Orchestration Workflow**](orchestration-workflow/quickstart.md)|&bullet; Foundry resource and Foundry project, or Language resource and Foundry hub-based project.</br>&bullet; A `CLU` or `CQA` project created in the same resource.|Limited to select Azure regions. Some regions support both authoring and prediction; others support prediction only. For more information, *see* [Region support for Orchestration workflow](concepts/regional-support.md#conversational-language-understanding-and-orchestration-workflow).|
 

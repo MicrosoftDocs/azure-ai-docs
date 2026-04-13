@@ -4,7 +4,7 @@ description: "Learn how to upgrade your AI project to use models deployed in Mic
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 10/09/2025
+ms.date: 03/31/2026
 ms.custom: ignite-2024, github-universe-2024
 author: ssalgadodev
 ms.author: ssalgado

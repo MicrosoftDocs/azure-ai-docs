@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/foundry-classic/agents/how-to/tools-classic/logic-apps.md",
+      "redirect_url": "/azure/logic-apps/add-agent-action-create-run-workflow",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/luis/context/context.yml",
       "redirect_url": "/previous-versions/azure/ai-services/luis",
       "redirect_document_id": false
@@ -20,6 +25,12 @@
       "redirect_url": "/previous-versions/azure/ai-services/luis/app-schema-definition",
       "redirect_document_id": false
     },
+    {
+      "source_path": "articles/foundry/guardrails/how-to-task-adherence.md",
+      "redirect_url": "/‎articles/foundry/guardrails/task-adherence",
+      "redirect_document_id": false
+    },
+    
     {
       "source_path": "articles/ai-services/luis/choose-natural-language-processing-service.md",
       "redirect_url": "/previous-versions/azure/ai-services/luis/choose-natural-language-processing-service",
@@ -1279,6 +1290,41 @@
       "source_path": "articles/foundry-classic/foundry-models/how-to/configure-marketplace.md",
       "redirect_url": "/azure/foundry-classic/foundry-models/concepts/models-from-partners",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/whats-new-foundry.md",
+      "redirect_url": "/azure/foundry/whats-new-foundry",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/create-account-resource-manager-template.md",
+      "redirect_url": "/azure/foundry-classic/how-to/create-resource-template",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/responsible-use-of-ai-overview.md",
+      "redirect_url": "/azure/foundry/responsible-use-of-ai-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/whats-new-ai-services.md",
+      "redirect_url": "/azure/foundry/whats-new-foundry",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/language-support.md",
+      "redirect_url": "/azure/ai-services/language-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/reference/sdk-package-resources.md",
+      "redirect_url": "/azure/foundry/how-to/develop/sdk-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/ai-services/reference/rest-api-resources.md",
+      "redirect_url": "/azure/foundry/reference/foundry-project",
+      "redirect_document_id": true
     }
   ]
 }

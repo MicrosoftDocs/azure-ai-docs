@@ -67,7 +67,7 @@ Regardless of the parameter chosen, the index should contain text fields with ri
 
 [Search explorer](search-explorer.md) includes options for semantic ranking. Recall that you can't set the `semanticQuery` parameter in the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Open a search index and select **Search explorer**.
 

@@ -24,7 +24,7 @@ This quickstart uses text-based PDFs and simple images from the [azure-search-sa
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-+ An [Azure AI Search service](search-create-service-portal.md). We recommend the Basic tier or higher for managed identity support and higher limits.
++ An [Azure AI Search service](search-create-service-portal.md). This quickstart requires the Basic tier or higher for managed identity support.
 
 + A [supported data source](#supported-data-sources).
 
@@ -152,7 +152,7 @@ In this section, you prepare sample data for your chosen [data source](#supporte
 
 ### [Azure Blob Storage](#tab/blob-storage)
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
+1. Go to your Azure Storage account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Data storage** > **Containers**.
 
@@ -166,7 +166,7 @@ In this section, you prepare sample data for your chosen [data source](#supporte
 
 ### [ADLS Gen2](#tab/adls-gen2)
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
+1. Go to your Azure Storage account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Data storage** > **Containers**.
 
@@ -210,7 +210,7 @@ The wizard supports several embedding models from Azure OpenAI and the Microsoft
 
 ## Start the wizard
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the **Overview** page, select **Import data**.
 

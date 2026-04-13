@@ -88,7 +88,7 @@ conceptualContent:
       links:
         - itemType: quickstart
           text: Speech MCP tool in Microsoft Foundry
-          url: /azure/ai-foundry/agents/how-to/tools/azure-ai-speech?view=foundry
+          url: /azure/foundry/agents/how-to/tools/azure-ai-speech
         - itemType: overview
           text: About Speech Studio
           url: speech-studio-overview.md

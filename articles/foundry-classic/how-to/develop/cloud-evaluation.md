@@ -262,5 +262,5 @@ After you register your custom evaluator, you can view it in your [evaluator cat
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
 - [Get started with Foundry](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
-- [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations)
+- [REST API Reference Documentation](/rest/api/aifoundry)
 

@@ -12,7 +12,6 @@ ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
-  - doc-kit-assisted
 ---
 
 # Retrieval-Augmented Generation (RAG) evaluators
@@ -55,10 +54,6 @@ Process evaluation assesses the quality of the document retrieval step in RAG sy
 - Retrieval - How relevant are the retrieved context chunks to the query?
 - Document Retrieval - How well does retrieval match ground truth labels (requires qrels)?
 
-Examples:
-
-- [Retrieval sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/agentic_evaluators/sample_retrieval.py)
-
 For more examples, see [all quality evaluator samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations).
 
 ## Using RAG evaluators
@@ -67,7 +62,7 @@ RAG evaluators assess how well AI systems retrieve and use context to generate g
 
 | Evaluator | Required inputs | Required parameters |
 |-----------|-----------------|---------------------|
-| Groundedness | (`response`, `context`) OR (`query`, `response`) | `deployment_name` |
+| Groundedness | `response`, `context` (recommended); `query` optional for enhanced scoring; or `query`, `response` for agent response mode | `deployment_name` |
 | Groundedness Pro (preview) | `query`, `response`, `context` | *(none)* |
 | Relevance | `query`, `response` | `deployment_name` |
 | Response Completeness (preview) | `ground_truth`, `response` | `deployment_name` |
@@ -83,12 +78,26 @@ Your test dataset should contain the fields referenced in your data mappings:
 {"query": "What is the return policy?", "context": "Items can be returned within 30 days with original receipt for full refund.", "response": "You can return items within 30 days if you have your receipt."}
 ```
 
+### Context format
+
+The `context` field is a plain string containing the retrieved context provided to the model. For multi-chunk retrieval, concatenate chunks into a single string using a separator such as `\n\n` between chunks:
+
+```jsonl
+{"query": "What is the return policy?", "context": "Items can be returned within 30 days with receipt.\n\nGift items are eligible for store credit only.", "response": "You can return items within 30 days with your receipt."}
+```
+
+> [!NOTE]
+> For agent evaluation with `{{sample.output_items}}`, the `context` field is optional if the response contains tool call messages — the evaluator can extract context from tool call results.
+
 ### Configuration example
 
 **Data mapping syntax:**
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
 - `{{sample.output_items}}` references agent responses generated or retrieved during evaluation. Use this when evaluating with an agent target or agent response data source. For agent evaluation, `context` is optional if the response contains tool calls—the evaluator can extract context from tool call results.
+
+> [!TIP]
+> For best Groundedness results, provide all three fields — `query`, `response`, and `context`. The `query` field is optional but improves scoring accuracy when available.
 
 ```python
 testing_criteria = [
@@ -119,11 +128,11 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
-These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excellent). The default pass threshold is 3. Scores at or above the threshold are considered passing. Key output fields:
+These evaluators return scores from 1 to 5, where 1 is very poor and 5 is excellent. The default pass threshold is 3. Scores at or above the threshold are considered passing. Key output fields:
 
 ```json
 {
@@ -134,6 +143,19 @@ These evaluators return scores on a 1-5 Likert scale (1 = very poor, 5 = excelle
     "label": "pass",
     "reason": "The response is well-grounded in the provided context without fabricating content.",
     "threshold": 3,
+    "passed": true
+}
+```
+
+Groundedness Pro uses the Azure AI Content Safety service and returns a boolean result instead of a numeric score:
+
+```json
+{
+    "type": "azure_ai_evaluator",
+    "name": "Groundedness Pro",
+    "metric": "groundedness_pro",
+    "label": "pass",
+    "reason": "The response is strictly consistent with the provided context.",
     "passed": true
 }
 ```
@@ -163,12 +185,12 @@ testing_criteria = [
         "name": "document_retrieval",
         "evaluator_name": "builtin.document_retrieval",
         "initialization_parameters": {
-            "ground_truth_label_min": 1,
-            "ground_truth_label_max": 5,
+            "ground_truth_label_min": 1,  # SDK default: 0
+            "ground_truth_label_max": 5,  # SDK default: 4
         },
         "data_mapping": {
             "retrieval_ground_truth": "{{item.retrieval_ground_truth}}",
-            "retrieval_documents": "{{item.retrieved_documents}}",
+            "retrieved_documents": "{{item.retrieved_documents}}",
         },
     },
 ]
@@ -217,6 +239,8 @@ The `document_retrieval` evaluator returns multiple metrics for retrieval qualit
     # more metrics...
 ]
 ```
+
+The evaluator also returns `xdcg@3`, `top1_relevance`, `top3_max_relevance`, `holes`, and `holes_ratio` metrics.
 
 ## Related content
 

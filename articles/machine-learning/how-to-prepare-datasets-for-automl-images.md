@@ -8,25 +8,27 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
 ms.reviewer: sooryar
-ms.date: 09/06/2024
+ms.date: 03/23/2026
 ms.custom:
   - template-how-to
   - update-code
   - sdkv2
   - sfi-image-nochange
+  - dev-focus
+ai-usage: ai-assisted
 #customer intent: As a data scientist, I want to prepare image data for training computer vision models.
 ---
 
-# Prepare data for computer vision tasks with automated machine learning
+# Prepare data for computer vision tasks by using automated machine learning
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
 > [!IMPORTANT]
-> Support for training computer vision models with automated ML in Azure Machine Learning is an experimental public preview feature. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Support for training computer vision models by using automated ML in Azure Machine Learning is an experimental public preview feature. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-In this article, you learn how to prepare image data for training computer vision models with [automated machine learning in Azure Machine Learning](concept-automated-ml.md). To generate models for computer vision tasks with automated machine learning, you need to bring labeled image data as input for model training in the form of an `MLTable`.
+In this article, you learn how to prepare image data for training computer vision models by using [automated machine learning in Azure Machine Learning](concept-automated-ml.md). To generate models for computer vision tasks by using automated machine learning, you need to bring labeled image data as input for model training in the form of an `MLTable`.
 
-You can create an `MLTable` from labeled training data in JSONL format. If your labeled training data is in a different format, like Pascal Visual Object Classes (VOC) or COCO, you can use a [conversion script](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/image-object-detection/coco2jsonl.py) to convert it to JSONL, and then create an `MLTable`. Alternatively, you can use Azure Machine Learning's data labeling tool to manually label images. Then export the labeled data to use for training your AutoML model.
+You can create an `MLTable` from labeled training data in JSONL format. If your labeled training data is in a different format, such as Pascal Visual Object Classes (VOC) or COCO, you can use a [conversion script](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/jsonl-conversion) to convert it to JSONL, and then create an `MLTable`. Alternatively, you can use Azure Machine Learning's data labeling tool to manually label images. Then export the labeled data to use for training your AutoML model.
 
 ## Prerequisites
 
@@ -34,7 +36,7 @@ You can create an `MLTable` from labeled training data in JSONL format. If your 
 
 ## Get labeled data
 
-In order to train computer vision models using AutoML, you need to get labeled training data. The images need to be uploaded to the cloud. Label annotations need to be in JSONL format. You can either use the Azure Machine Learning Data Labeling tool to label your data or you could start with prelabeled image data.
+To train computer vision models by using AutoML, you need labeled training data. Upload the images to the cloud. Label annotations need to be in JSONL format. You can either use the Azure Machine Learning Data Labeling tool to label your data or you can start with prelabeled image data.
 
 ### Use Azure Machine Learning Data Labeling tool to label your training data
 
@@ -46,7 +48,7 @@ The tool helps to create, manage, and monitor data labeling tasks for:
 - Object detection (bounding box)
 - Instance segmentation (polygon)
 
-If you already have labeled data to use, export that labeled data as an Azure Machine Learning Dataset and access the dataset under the **Datasets** tab in Azure Machine Learning studio. You can pass this exported dataset as an input using `azureml:<tabulardataset_name>:<version>` format. For more information, see [Export the labels](how-to-manage-labeling-projects.md#export-the-labels).
+If you already have labeled data to use, export that labeled data as a data asset and access it under the **Data** section in Azure Machine Learning studio. You can pass this exported data asset as an input using `azureml:<data_asset_name>:<version>` format. For more information, see [Export the labels](how-to-manage-labeling-projects.md#export-the-labels).
 
 Here's an example of how to pass existing dataset as input for training computer vision models.
 
@@ -69,7 +71,7 @@ training_data:
 from azure.ai.ml.constants import AssetTypes, InputOutputModes
 from azure.ai.ml import Input
 
-# Training MLTable with v1 TabularDataset
+# Training MLTable from a registered dataset
 my_training_data_input = Input(
     type=AssetTypes.MLTABLE, path="azureml:odFridgeObjectsTrainingDataset:1",
     mode=InputOutputModes.DIRECT
@@ -117,7 +119,7 @@ az ml data create -f [PATH_TO_YML_FILE] --workspace-name [YOUR_AZURE_WORKSPACE] 
 
 # [Studio](#tab/Studio)
 
-:::image type="content" source="media\how-to-prepare-datasets-for-automl-images\ui-dataset-local.gif" alt-text="Animation showing how to register a dataset from local files.":::
+:::image type="content" source="media\how-to-prepare-datasets-for-automl-images\ui-dataset-local.gif" alt-text="Animation showing how to register a data asset from local files.":::
 
 ---
 
@@ -149,13 +151,13 @@ my_data = Data(
 
 # [Studio](#tab/Studio)
 
-:::image type="content" source="media\how-to-prepare-datasets-for-automl-images\ui-dataset-datastore.gif" alt-text="Animation showing how to register a dataset from data already present in datastore.":::
+:::image type="content" source="media\how-to-prepare-datasets-for-automl-images\ui-dataset-datastore.gif" alt-text="Animation showing how to register a data asset from data already present in datastore.":::
 
 ---
 
 Next, get the label annotations in JSONL format. The schema of labeled data depends on the computer vision task at hand. To learn more about the required JSONL schema for each task type, see [Data schemas to train computer vision models with automated machine learning](reference-automl-images-schema.md).
 
-If your training data is in a different format, like pascal VOC or COCO, [helper scripts](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/image-object-detection/coco2jsonl.py) can convert the data to JSONL. The scripts are available in [notebook examples](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs).
+If your training data is in a different format, like pascal VOC or COCO, [helper scripts](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/jsonl-conversion) can convert the data to JSONL. The scripts are available in [notebook examples](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs).
 
 After you create the *.jsonl* file, you can register it as a data asset using the UI. Make sure that you select `stream` type in schema section as shown in this animation.
 

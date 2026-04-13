@@ -5,7 +5,7 @@ description: "Learn how to monitor operational metrics, token usage, latency, an
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sonalimalik
-ms.date: 01/08/2026
+ms.date: 04/10/2026
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.custom: dev-focus, pilot-ai-workflow-jan-2026 , doc-kit-assisted
@@ -94,7 +94,9 @@ pip install "azure-ai-projects>=2.0.0" python-dotenv
 # [C#](#tab/csharp)
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
+dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
 
@@ -153,7 +155,8 @@ References: [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.ai
 
 ```csharp
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI;
+using Azure.AI.Projects.Agents;
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 using OpenAI.Evals;
 
@@ -162,7 +165,7 @@ var endpoint = Environment.GetEnvironmentVariable("AZURE_AI_PROJECT_ENDPOINT")
 
 AIProjectClient projectClient = new(new Uri(endpoint), new DefaultAzureCredential());
 #pragma warning disable OPENAI001
-EvaluationClient evaluationClient = projectClient.OpenAI.GetEvaluationClient();
+EvaluationClient evaluationClient = projectClient.ProjectOpenAIClient.GetEvaluationClient();
 #pragma warning restore OPENAI001
 
 PromptAgentDefinition agentDefinition = new(
@@ -171,7 +174,7 @@ PromptAgentDefinition agentDefinition = new(
     Instructions = "You are a helpful assistant that answers general questions",
 };
 
-AgentVersion agentVersion = await projectClient.Agents.CreateAgentVersionAsync(
+AgentVersion agentVersion = await projectClient.AgentAdministrationClient.CreateAgentVersionAsync(
     agentName: Environment.GetEnvironmentVariable("AZURE_AI_AGENT_NAME"),
     options: new(agentDefinition));
 
@@ -336,6 +339,17 @@ if (runs.GetArrayLength() > 0)
 ```
 
 ---
+
+## Use custom evaluators for continuous evaluations
+
+In addition to first-party evaluators, you can bring your own evaluators for continuous evaluations. To set up custom evaluators, follow the steps in [Custom evaluators (preview)](../../concepts/evaluation-evaluators/custom-evaluators.md).
+
+To add custom evaluators to continuous evaluations:
+
+1. From the **Monitor** tab, select **Settings**.
+1. Select the **Continuous evaluation** tab.
+1. Select **Add evaluator(s)**.
+1. Choose the custom evaluators you want to include.
 
 ## Full sample code
 

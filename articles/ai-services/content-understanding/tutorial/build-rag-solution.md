@@ -5,7 +5,8 @@ description: Learn to build a retrieval-augmented generation solution with Conte
 author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
-ms.date: 12/19/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
 ms.custom:
@@ -38,14 +39,14 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 * **Azure AI Search Resource:** Set up an [Azure AI Search resource](../../../search/search-create-service-portal.md) to enable indexing and retrieval of multimodal data.
 * **Azure OpenAI Chat Model Deployment:** Deploy an [Azure OpenAI chat model](../../../ai-foundry/foundry-models/concepts/deployment-types.md) that enables conversational interactions.
 * **Embedding Model Deployment:** Ensure you have an embedding model deployed to generate vector representations for semantic search.
-* **API Version:** This tutorial uses the latest preview [API version](/rest/api/contentunderstanding/operation-groups?preserve-view=true).
+* **API Version:** This tutorial uses the latest GA [API version](/rest/api/contentunderstanding/operation-groups?preserve-view=true).
 * **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.
 * This tutorial follows this sample code can be found in our [Python notebook](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples). Follow the [README](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/README.md) to create essential resources, grant resources the right Access control(IAM) roles and install all packages needed for this tutorial.
 * The multimodal data used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure Content Understanding in Foundry Tools.
 
 ## Extract data
 
-Retrieval-augmented generation (*RAG**) is a method that enhances the functionality of Large Language Models (**LLM**) by integrating data from external knowledge sources. Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
+Retrieval-augmented generation (**RAG**) is a method that enhances the functionality of Large Language Models (**LLM**) by integrating data from external knowledge sources. Building a robust multimodal RAG solution begins with extracting and structuring data from diverse content types. Azure Content Understanding provides three key components to facilitate this process: **content extraction**, **field extraction**, and **analyzers**. Together, these components form the foundation for creating a unified, reusable, and enhanced data pipeline for RAG workflows.
 
 ## Implementation steps
 
@@ -73,7 +74,7 @@ load_dotenv()
 
 # Load and validate Foundry Tools configs
 AZURE_AI_SERVICE_ENDPOINT = os.getenv("AZURE_AI_SERVICE_ENDPOINT")
-AZURE_AI_SERVICE_API_VERSION = os.getenv("AZURE_AI_SERVICE_API_VERSION") or "2024-12-01-preview"
+AZURE_AI_SERVICE_API_VERSION = os.getenv("AZURE_AI_SERVICE_API_VERSION") or "2025-11-01"
 AZURE_DOCUMENT_INTELLIGENCE_API_VERSION = os.getenv("AZURE_DOCUMENT_INTELLIGENCE_API_VERSION") or "2024-11-30"
 
 # Load and validate Azure OpenAI configs
@@ -355,6 +356,7 @@ for analyzer_result in analyzer_results:
 ```
 
 ---
+
 ### Extraction results
 
 The following code samples demonstrate the output of content and field extraction using Azure Content Understanding. The JSON response contains multiple fields, each serving a specific purpose in representing the extracted data.
@@ -379,7 +381,7 @@ The result shows the extraction of headers, paragraphs, tables, and other struct
   "status": "Succeeded",
   "result": {
     "analyzerId": "training_document_analyzer",
-    "apiVersion": "2024-12-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2024-11-13T07:15:46Z",
     "warnings": [],
     "contents": [
@@ -447,7 +449,7 @@ The result shows the conversion of visual information into searchable text by ve
   "status": "Succeeded",
   "result": {
     "analyzerId": "training_image_analyzer",
-    "apiVersion": "2024-12-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2024-11-09T08:41:00Z",
     "warnings": [],
     "contents": [
@@ -493,7 +495,7 @@ The result shows the extraction of speaker-aware transcriptions, capturing spoke
   "status": "Succeeded",
   "result": {
     "analyzerId": "training_audio_analyzer",
-    "apiVersion": "2024-12-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2024-11-09T08:42:58Z",
     "warnings": [],
     "contents": [
@@ -570,7 +572,7 @@ The result shows the extraction of video segments into meaningful units, spoken 
   "status": "Succeeded",
   "result": {
     "analyzerId": "sample_video_analyzer",
-    "apiVersion": "2024-12-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2024-11-09T08:57:21Z",
     "warnings": [],
     "contents": [

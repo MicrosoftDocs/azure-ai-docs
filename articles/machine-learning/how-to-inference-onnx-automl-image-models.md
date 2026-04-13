@@ -10,6 +10,7 @@ ms.subservice: automl
 ms.topic: how-to
 ms.date: 03/11/2025
 ms.custom: sdkv2
+ai-usage: ai-assisted
 ---
 
 # Make predictions with ONNX on computer vision models from AutoML
@@ -64,11 +65,15 @@ With the SDK, you can select the best child run (by primary metric) with the exp
 
 The following code returns the best child run based on the relevant primary metric.
 ```python
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 from azure.ai.ml import MLClient
 mlflow_client = MlflowClient()
 
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 ml_client = None
 try:
     ml_client = MLClient.from_config(credential)
@@ -333,7 +338,7 @@ Every ONNX model has a predefined set of input and output formats.
 
 # [Multi-class image classification](#tab/multi-class)
 
-This example applies the model trained on the [fridgeObjects](https://automlsamplenotebookdata.blob.core.windows.net/image-object-detection/odFridgeObjects.zip) dataset with 134 images and 4 classes/labels to explain ONNX model inference. For more information on training an image classification task, see the [multi-class image classification notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-classification-multiclass-task-fridge-items).
+This example applies the model trained on the `fridgeObjects` dataset with 134 images and 4 classes/labels to explain ONNX model inference. For more information on training an image classification task, see the [multi-class image classification notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-classification-multiclass-task-fridge-items).
 
 ### Input format
     
@@ -354,7 +359,7 @@ The output is an array of logits for all the classes/labels.
 
 # [Multi-label image classification](#tab/multi-label)
 
-This example uses the model trained on the [multi-label fridgeObjects dataset](https://automlsamplenotebookdata.blob.core.windows.net/image-classification/multilabelFridgeObjects.zip) with 128 images and 4 classes/labels to explain ONNX model inference. For more information on model training for multi-label image classification, see the [multi-label image classification notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-classification-multilabel-task-fridge-items).
+This example uses the model trained on the multi-label `fridgeObjects` dataset with 128 images and 4 classes/labels to explain ONNX model inference. For more information on model training for multi-label image classification, see the [multi-label image classification notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-classification-multilabel-task-fridge-items).
 
 ### Input format
 
@@ -375,7 +380,7 @@ The output is an array of logits for all the classes/labels.
 
 
 # [Object detection with Faster R-CNN or RetinaNet](#tab/object-detect-cnn)
-This object detection example uses the model trained on the [fridgeObjects detection dataset](https://automlsamplenotebookdata.blob.core.windows.net/image-object-detection/odFridgeObjects.zip) of 128 images and 4 classes/labels to explain ONNX model inference. This example trains Faster R-CNN models to demonstrate inference steps. For more information on training object detection models, see the [object detection notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items).
+This object detection example uses the model trained on the `fridgeObjects` detection dataset of 128 images and 4 classes/labels to explain ONNX model inference. This example trains Faster R-CNN models to demonstrate inference steps. For more information on training object detection models, see the [object detection notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items).
 
 ### Input format
 
@@ -407,7 +412,7 @@ The following table describes boxes, labels, and scores returned for each sample
 
 # [Object detection with YOLO](#tab/object-detect-yolo)
 
-This object detection example uses the model trained on the [fridgeObjects detection dataset](https://automlsamplenotebookdata.blob.core.windows.net/image-object-detection/odFridgeObjects.zip) of 128 images and 4 classes/labels to explain ONNX model inference. This example trains YOLO models to demonstrate inference steps. For more information on training object detection models, see the [object detection notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items). 
+This object detection example uses the model trained on the `fridgeObjects` detection dataset of 128 images and 4 classes/labels to explain ONNX model inference. This example trains YOLO models to demonstrate inference steps. For more information on training object detection models, see the [object detection notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-object-detection-task-fridge-items). 
 
 ### Input format
 
@@ -429,7 +434,7 @@ Each cell in the list indicates box detections of a sample with shape `(n_boxes,
 
 # [Instance segmentation](#tab/instance-segmentation)
 
-For this instance segmentation example, you use the Mask R-CNN model that has been trained on the [fridgeObjects dataset](https://automlsamplenotebookdata.blob.core.windows.net/image-object-detection/odFridgeObjects.zip) with 128 images and 4 classes/labels to explain ONNX model inference. For more information on training of the instance segmentation model, see the [instance segmentation notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-instance-segmentation-task-fridge-items).
+For this instance segmentation example, you use the Mask R-CNN model that has been trained on the `fridgeObjects` dataset with 128 images and 4 classes/labels to explain ONNX model inference. For more information on training of the instance segmentation model, see the [instance segmentation notebook](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs/automl-image-instance-segmentation-task-fridge-items).
 
 >[!IMPORTANT]
 > Only Mask R-CNN is supported for instance segmentation tasks. The input and output formats are based on Mask R-CNN only.

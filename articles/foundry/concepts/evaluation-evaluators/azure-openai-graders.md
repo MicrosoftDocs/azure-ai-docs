@@ -4,30 +4,32 @@ description: "Learn about Azure OpenAI Graders for evaluating AI model outputs, 
 ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: mithigpe
-ms.date: 02/25/2026
+ms.reviewer: dlozier
+ms.date: 04/02/2026
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
   - classic-and-new
   - build-aifnd
   - build-2025
-  - doc-kit-assisted
 ---
 
 # Azure OpenAI graders
-Azure OpenAI graders are a new set of evaluation tools in the Microsoft Foundry SDK that evaluate the performance of AI models and their outputs. These graders include:
+
+Azure OpenAI graders are evaluation tools in the Microsoft Foundry SDK that assess the performance of AI models and their outputs using either LLM-based scoring or deterministic comparison. These graders include:
 
 | Grader | What it measures | Required parameters | Output |
 |--------|------------------|---------------------|--------|
-| `label_model` | Classifies text into predefined categories | `model`, `input`, `labels`, `passing_labels` | Pass/Fail based on label |
-| `score_model` | Assigns a numeric score based on criteria | `model`, `input`, `range`, `pass_threshold` | 0-1 float |
+| `label_model` | Classifies text into predefined categories | `model`, `name`, `input`, `labels`, `passing_labels` | Pass/Fail based on label |
+| `score_model` | Assigns a numeric score based on criteria | `model`, `name`, `input` | 0-1 float |
 | `string_check` | Exact or pattern string matching | `input`, `reference`, `operation` | Pass/Fail |
 | `text_similarity` | Similarity between two text strings | `input`, `reference`, `evaluation_metric`, `pass_threshold` | 0-1 float |
 
 You can run graders locally or remotely. Each grader assesses specific aspects of AI models and their outputs.
 
-## Using Azure OpenAI graders
+## Configure and run graders
+
+Azure OpenAI graders use the OpenAI Evals API and are configured differently from [built-in evaluators](../built-in-evaluators.md), which use the `azure_ai_evaluator` type. Use graders when you need custom LLM-based classification or scoring with full control over the prompt, or when you need deterministic string or similarity checks without an LLM judge.
 
 Azure OpenAI graders provide flexible evaluation using LLM-based or deterministic approaches:
 
@@ -38,7 +40,7 @@ Examples:
 
 - [Azure OpenAI graders sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_graders.py)
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example input
 
@@ -89,6 +91,9 @@ The score grader (`score_model`) uses an LLM to assign a numeric score to model 
 
 **Output:** Returns a float score (for example, `0.85`). The grader passes if the score meets or exceeds `pass_threshold`.
 
+> [!NOTE]
+> `range` defaults to `[0, 1]` if omitted. `pass_threshold` is optional; if not set, the grader scores but doesn't produce a pass/fail result.
+
 ### String check grader
 
 The string check grader (`string_check`) performs deterministic string comparisons. Use it for exact match validation where responses must match a reference exactly.
@@ -138,7 +143,7 @@ The text similarity grader (`text_similarity`) compares two text strings using s
 | `gleu` | Google's variant of BLEU with sentence-level scoring |
 | `meteor` | Alignment-based metric considering synonyms and paraphrases |
 | `cosine` | Cosine similarity on vectorized text |
-| `rouge_*` | N-gram overlap variants (`rouge_1`, `rouge_2`, ..., `rouge_l`) |
+| `rouge_1`, `rouge_2`, `rouge_3`, `rouge_4`, `rouge_5`, `rouge_l` | N-gram overlap variants (unigram through 5-gram and longest common subsequence) |
 
 **Output:** Returns a similarity score as a float (higher means more similar). The grader passes if the score meets or exceeds `pass_threshold`.
 
@@ -157,6 +162,6 @@ Graders return results with pass/fail status. Key output fields:
 
 ## Related content
 
-- [Complete working sample.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_graders.py#L9)
+- [Azure OpenAI graders sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_graders.py)
 - [How to run agent evaluation](../../observability/how-to/evaluate-agent.md)
 - [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)
