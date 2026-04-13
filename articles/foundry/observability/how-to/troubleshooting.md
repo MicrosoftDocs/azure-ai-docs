@@ -18,12 +18,12 @@ This article provides information to help you solve common issues you might enco
 
 Evaluation features require a storage account linked to your Foundry project through a connection. If the storage account isn't connected, evaluations fail because the service can't read or write evaluation data.
 
-### Symptoms
+**Symptoms:**
 
 - Evaluations fail with errors related to storage access or missing storage configuration.
 - The evaluation service can't upload evaluation results or download datasets.
 
-### Solution
+### Connect a storage account to the Foundry project
 
 Connect your storage account to the Foundry project by creating an Azure Blob Storage connection. For step-by-step instructions, see [Add a new connection to your project](../../how-to/connections-add.md).
 
@@ -35,7 +35,7 @@ For more details on bringing your own storage for evaluations, see [Rate limits,
 
 If you connect your storage account by using Microsoft Entra ID authentication, the Foundry project's managed identity must have the **Storage Blob Data Contributor** role on the storage account. Without this role, the service can't read or write blob data and evaluations fail.
 
-### Symptoms
+**Symptoms:**
 
 - Evaluations fail with `403 Forbidden` or `AuthorizationPermissionMismatch` errors.
 - You see errors indicating insufficient permissions to access the storage account.
@@ -67,7 +67,7 @@ az role assignment list \
 
 Verify that the output includes a role assignment with `RoleDefinitionName` set to **Storage Blob Data Contributor** (or **Storage Blob Data Owner**).
 
-### Solution
+### Assign the Storage Blob Data Contributor role
 
 If the role assignment is missing, assign the **Storage Blob Data Contributor** role to the Foundry project's managed identity:
 
@@ -85,7 +85,7 @@ az role assignment create \
 
 When you use Microsoft Entra ID authentication, the storage account must have public network access enabled. If network access is restricted, the Foundry evaluation service might not be able to reach the storage account.
 
-### Symptoms
+**Symptoms:**
 
 - Evaluations fail with network-related errors or timeouts.
 - You see `403 Forbidden` errors even though RBAC roles are correctly assigned.
@@ -112,7 +112,7 @@ Check the output for the following values:
 
 If `publicNetworkAccess` is set to `Disabled` or `defaultAction` is set to `Deny`, the evaluation service can't reach the storage account.
 
-### Solution
+### Enable public network access
 
 Enable public network access on the storage account:
 
