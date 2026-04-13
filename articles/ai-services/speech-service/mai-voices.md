@@ -40,25 +40,18 @@ Speech offers MAI-Voice-1 as an advanced neural voice model optimized for expres
 | **High fidelity audio** | The model produces high-quality neural speech with natural prosody and clarity suitable for production-grade applications. |
 | **Real-time synthesis** | MAI-Voice-1 supports real-time speech synthesis using the Speech SDK and APIs. |
 
-
-
-## Use MAI-Voice-1
-
-MAI-Voice-1 uses the same Azure Speech SDKs and APIs as other Azure Neural and HD voices.
-
 ## Prerequisites
 
 - An Azure account. [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
-- A Speech resource in the **East US** region. See [Get started with text to speech](get-started-text-to-speech.md) to create one.
-- Your Speech resource key and region from the **Keys and Endpoint** page in the Azure portal.
-- The Azure Speech SDK installed: `pip install azure-cognitiveservices-speech`
+- [Create a Speech resource](get-started-text-to-speech.md) in the **East US** region. 
 
+## Use MAI-Voice-1
 
+MAI-Voice-1 uses the same Azure Speech SDKs and APIs as other Azure Neural and HD voices. Follow the [Text to speech quickstart](/azure/ai-services/speech-service/get-started-text-to-speech) in the platform of your choice. 
 
+Use the speech synthesis method that incorporates SSML specification, and enter one of the available MAI-Voice-1 prebuilt voices in the `name` attribute of the `<voice>` element.
 
-## Python example
-
-The following Python code synthesizes speech using `en-us-Teo:MAI-Voice-1` and saves it to `output.mp3`. Replace `<key>` with your Speech resource key.
+For example, the following Python code synthesizes speech using `en-us-Teo:MAI-Voice-1` and saves it to `output.mp3`. Replace `<key>` with your Speech resource key.
 
 ```python
 import azure.cognitiveservices.speech as speechsdk
