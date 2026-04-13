@@ -37,7 +37,8 @@ For tool configuration syntax and authentication options for each tool type, see
 | Feature | Python SDK | REST API | .NET SDK | JavaScript SDK | azd (deploy) |
 |---------|-----------|----------|----------|----------------|---------------|
 | Toolbox update / list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ | N/A |
-| Toolbox version create / list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ | N/A |
+| Toolbox version create | ✔️  | ✔️ | ✔️ | ✔️ | ✔️ |
+| Toolbox version list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ | N/A |
 | [MCP tool](model-context-protocol.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
 | [Web Search tool](web-search.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
 | [Azure AI Search tool](ai-search.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
@@ -49,10 +50,10 @@ For tool configuration syntax and authentication options for each tool type, see
 ## Prerequisites
 
 - An active [Microsoft Foundry project](../../../how-to/create-projects.md).
-- **RBAC**: The following identities must have the **Azure AI User** role on the Foundry project:
-  - **Developer** — the identity that creates, updates, and manages toolbox versions.
-  - **Agent identity** — the agent's managed identity that calls tools at runtime.
-  - **End user** — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
+- **RBAC**: Grant the **Azure AI User** role on the Foundry project to each identity that applies to your scenario:
+  - **Developer** (always required) — the identity that creates, updates, and manages toolbox versions.
+  - **Agent identity** (required if using a hosted agent) — the agent's managed identity that calls tools at runtime.
+  - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions).
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
@@ -60,7 +61,7 @@ For tool configuration syntax and authentication options for each tool type, see
 - **azd (deploy)**: [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) and the agent extension: `azd extension install azure.ai.agents`
 
 > [!IMPORTANT]
-> - A toolbox supports at most **one unnamed tool per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, use the `name` field to differentiate tool instances. Including two unnamed tool types returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
+> - A toolbox supports at most **one tool without a `name` field per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). "Unnamed" means no `name` field is set on the tool definition. To include more than one instance of the same tool type, set a unique `name` on each instance to differentiate them. Including two instances of the same type without a `name` returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
 > - We highly recommend adding a `description` to every tool in your toolbox to help the model select the right tool for each request.
 > - Carefully review each tool's documentation to learn more about individual tool setup, limitations, and warnings.
 
@@ -74,7 +75,7 @@ Create a toolbox version based on tools you need.
 import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MCPTool
+from azure.ai.projects.models import MCPTool, WebSearchTool
 
 client = AIProjectClient(
     endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
@@ -83,14 +84,15 @@ client = AIProjectClient(
 
 toolbox_version = client.beta.toolboxes.create_toolbox_version(
     toolbox_name="my-toolbox",
-    description="Toolbox with an MCP server",
+    description="Toolbox with web search and an MCP server",
     tools=[
+        WebSearchTool(description="Search the web for current information"),
         MCPTool(
             server_label="myserver",
             server_url="https://your-mcp-server.example.com",
             require_approval="never",
             project_connection_id="my-key-auth-connection",
-        )
+        ),
     ],
 )
 print(f"Created toolbox: {toolbox_version.name}, version: {toolbox_version.version}")
@@ -108,7 +110,10 @@ var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOI
 AIProjectClient projectClient = new(new Uri(projectEndpoint), new DefaultAzureCredential());
 AgentToolboxes toolboxClient = projectClient.AgentAdministrationClient.GetAgentToolboxes();
 
-ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
+ProjectsAgentTool webTool = ProjectsAgentTool.AsProjectTool(
+    ResponseTool.CreateWebSearchTool());
+
+ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
     serverLabel: "myserver",
     serverUri: new Uri("https://your-mcp-server.example.com"),
     toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
@@ -118,8 +123,8 @@ ProjectsAgentTool tool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpT
 
 ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
     toolboxName: "my-toolbox",
-    tools: [tool],
-    description: "Toolbox with an MCP server"
+    tools: [webTool, mcpTool],
+    description: "Toolbox with web search and an MCP server"
 );
 Console.WriteLine($"Created toolbox: {toolboxVersion.Name}, version: {toolboxVersion.Version}");
 ```
@@ -134,8 +139,12 @@ Authorization: Bearer {token}
 Content-Type: application/json
 
 {
-  "description": "Toolbox with an MCP server",
+  "description": "Toolbox with web search and an MCP server",
   "tools": [
+    {
+      "type": "web_search",
+      "description": "Search the web for current information"
+    },
     {
       "type": "mcp",
       "server_label": "myserver",
@@ -166,6 +175,10 @@ const toolboxVersion = await project.beta.toolboxes.createVersion(
   "my-toolbox",
   [
     {
+      type: "web_search",
+      description: "Search the web for current information",
+    },
+    {
       type: "mcp",
       server_label: "myserver",
       server_url: "https://your-mcp-server.example.com",
@@ -174,10 +187,11 @@ const toolboxVersion = await project.beta.toolboxes.createVersion(
     },
   ],
   {
-    description: "Toolbox with an MCP server",
+    description: "Toolbox with web search and an MCP server",
   },
 );
 console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.version}`);
+```
 ```
 
 :::zone-end
@@ -1067,11 +1081,11 @@ resources:
 :::zone-end
 
 > [!NOTE]
-> Each unnamed tool type (`web_search`, `azure_ai_search`, `code_interpreter`, `file_search`) can appear at most once without a `name`. If you want two instances of the same type, add a unique `name` to each — see the next example.
+> Each tool type (`web_search`, `azure_ai_search`, `code_interpreter`, `file_search`) can appear at most once without a `name` field. To include multiple instances of the same type, set a unique `name` on each instance — see the next example.
 
 #### Multi-tool restrictions
 
-You can include at most one unnamed instance of each built-in tool type in a toolbox. If you include two unnamed instances of the same type, the API returns:
+You can include at most one instance of each built-in tool type without a `name` field in a toolbox. If you include two instances of the same type without a `name`, the API returns:
 
 ```
 400 invalid_payload: Multiple tools without identifiers found...
