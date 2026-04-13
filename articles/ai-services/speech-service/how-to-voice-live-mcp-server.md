@@ -38,6 +38,8 @@ ai-usage: ai-assisted
 [!INCLUDE [JavaScript how-to](./includes/how-to/voice-live-mcp-server/javascript.md)]
 ::: zone-end
 
+[!INCLUDE [best-practices](includes/how-to/voice-live-mcp-server/best-practices.md)]
+
 ## Related content
 
 - [Function calling in Voice Live](how-to-voice-live-function-calling.md)
