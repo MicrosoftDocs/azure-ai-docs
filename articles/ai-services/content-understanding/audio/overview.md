@@ -108,7 +108,7 @@ The following prebuilt analyzers are available:
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-callCenter",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2025-05-06T22:53:28Z",
     "stringEncoding": "utf8",
     "warnings": [],
@@ -227,7 +227,7 @@ The following prebuilt analyzers are available:
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-audioSearch",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2025-05-06T23:00:12Z",
     "stringEncoding": "utf8",
     "warnings": [],
