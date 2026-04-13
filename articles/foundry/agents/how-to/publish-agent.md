@@ -133,7 +133,7 @@ This section shows you how to publish an agent using the Foundry portal interfac
 3. Configure authentication for your Agent Application:
 
       - By default, the authentication type is set to RBAC (Role-Based Access Control).
-      - Users calling the agent application using Responses protocol must be granted the **Azure AI User** built-in Azure RBAC role (or an equivalent custom role) on the Agent Application resource. For step-by-step instructions, see [Grant users access to invoke a published agent](#grant-users-access-to-invoke-a-published-agent).
+      - Users calling the agent application using Responses protocol must be granted the **Azure AI User** built-in Azure RBAC role (or an equivalent custom role) on the Agent Application resource. 
    <!--
    - For Azure Bot Service integration (to support Microsoft 365/Microsoft 365 Copilot), requests from a linked Azure Bot Service instance are automatically permitted
     -->
