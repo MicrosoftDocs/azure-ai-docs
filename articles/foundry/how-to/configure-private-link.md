@@ -270,6 +270,9 @@ Additionally, you can use a hub-and-spoke networking architecture where a virtua
 
 :::image type="content" source="../media/how-to/network/network-hub-spoke-diagram.png" alt-text="Diagram of the firewall configuration for egress traffic from Foundry projects and agents." lightbox="../media/how-to/network/network-hub-spoke-diagram.png":::
 
+> [!NOTE]
+> The preceding diagram reflects a hub-and-spoke architecture with a centralized firewall. If you use a standalone Foundry project without a hub-based topology, your network layout will differ. Adapt the firewall and peering configuration to match your specific virtual network design.
+
 ## Limitations and considerations
 
 Understand these limitations before implementing network isolation for Foundry. This section consolidates all known constraints across private endpoints, portal experiences, Agent Service, and tools. 
