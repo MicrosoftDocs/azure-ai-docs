@@ -72,7 +72,11 @@ Foundry is currently available in the following Azure regions.
 
 Use the following list to investigate regional availability for specific features you plan to use.
 
-- **Azure OpenAI**: Some models might not be available within the Foundry model catalog. [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits).
+- **Foundry Models**: Model availability depends on the provider and deployment type. Region support differs between Azure OpenAI models, models sold directly by Azure, and models from partners and community. Check the following pages for details:
+  - [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) — Azure OpenAI models and selected models from other providers, with deployment types and regional availability.
+  - [Deployment types](../foundry-models/concepts/deployment-types.md) — compare Global Standard, Provisioned, DataZone, and other deployment types that affect where data is processed.
+  - [Foundry Models from partners and community](../foundry-models/concepts/models-from-partners.md) — models from third-party providers available through the model catalog.
+  - [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits) — regional quota and capacity limits for Azure OpenAI models.
 - **Speech capabilities**: Azure Speech in Foundry Tools capabilities, including custom neural voice, vary in regional availability due to underlying hardware availability. [Speech service supported regions](../../ai-services/speech-service/regions.md)
 - **Azure AI Content Safety**: To use the Content Safety APIs, create your Azure AI Content Safety resource in a supported region. [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)
 - **Foundry Agent Service**: Agent Service supports Azure OpenAI model deployments, but exact model and tool availability varies by region. [Agent Service region availability](../agents/concepts/limits-quotas-regions.md#supported-regions)
