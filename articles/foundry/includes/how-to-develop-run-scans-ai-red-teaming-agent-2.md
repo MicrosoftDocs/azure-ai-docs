@@ -13,6 +13,6 @@ ms.custom: include
 ## Related content
 
 - Try an [example workflow](https://aka.ms/airedteamingagent-sample) in the GitHub samples.
-- [AI Red Teaming Agent concepts](../../concepts/ai-red-teaming-agent.md)
-- [Evaluation region limits and virtual network support](../../concepts/evaluation-regions-limits-virtual-network.md)
-- [Run evaluations in the portal](../evaluate-generative-ai-app.md)
+- [AI Red Teaming Agent concepts](../concepts/ai-red-teaming-agent.md)
+- [Evaluation region limits and virtual network support](../concepts/evaluation-regions-limits-virtual-network.md)
+- [Run evaluations in the portal](../how-to/evaluate-generative-ai-app.md)
