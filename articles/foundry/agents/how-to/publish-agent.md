@@ -370,59 +370,7 @@ After you publish an agent, callers need the **Azure AI User** role (or a custom
 > [!IMPORTANT]
 > Agent Application RBAC is managed through Azure Resource Manager, not through the Entra agent identity. The Entra agent identity that the published agent receives is for the agent's *own* outbound calls to tools and resources. To control who can *invoke* the published agent, assign Azure RBAC roles on the Agent Application ARM resource by using the Azure portal, Azure CLI, or REST API.
 
-### Azure CLI
-
-Use the [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create) command. The `--scope` parameter must point to the Agent Application resource.
-
-```azurecli
-az role assignment create \
-  --role "Azure AI User" \
-  --assignee "<user-or-service-principal-object-id>" \
-  --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/projects/<project-name>/applications/<application-name>"
-```
-
-Replace the placeholders:
-
-| Placeholder | Description |
-| --- | --- |
-| `<user-or-service-principal-object-id>` | The Microsoft Entra object ID or user principal name (UPN) of the caller, such as `joe@contoso.com`. |
-| `<subscription-id>` | The Azure subscription ID that contains the Foundry resource. |
-| `<resource-group>` | The resource group that contains the Foundry resource. |
-| `<account-name>` | The name of the Foundry resource (account). |
-| `<project-name>` | The Foundry project name. |
-| `<application-name>` | The name of the Agent Application you created when publishing. |
-
-### Azure portal
-
-1. Open the [Azure portal](https://portal.azure.com).
-1. Navigate to your **Foundry resource** > **Projects** > **your project** > **Applications** > **your Agent Application**.
-1. Select **Access control (IAM)**.
-1. Select **Add** > **Add role assignment**.
-1. Search for and select **Azure AI User**.
-1. On the **Members** tab, select **User, group, or service principal** and choose the caller.
-1. Select **Review + assign**.
-
-Because the role assignment is scoped to the Agent Application resource, the user receives invoke access to only that specific published agent — not all agents in the project.
-
-### REST API
-
-```
-PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/projects/<project-name>/applications/<application-name>/providers/Microsoft.Authorization/roleAssignments/<new-guid>?api-version=2022-04-01
-Authorization: Bearer <management-token>
-Content-Type: application/json
-
-{
-  "properties": {
-    "roleDefinitionId": "/subscriptions/<subscription-id>/providers/Microsoft.Authorization/roleDefinitions/a2c28857-e153-4060-a5c0-5e2739bad0e5",
-    "principalId": "<user-or-service-principal-object-id>"
-  }
-}
-```
-
-> [!NOTE]
-> The role definition ID `a2c28857-e153-4060-a5c0-5e2739bad0e5` is the built-in **Azure AI User** role. Replace `<new-guid>` with a unique GUID for the role assignment (generate one with `uuidgen` or `[guid]::NewGuid()` in PowerShell).
-
-For more information about Azure RBAC, see [Assign Azure roles using the REST API](/azure/role-based-access-control/role-assignments-rest).
+For more information about Azure RBAC, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)    
 
 ## Invoke your Agent Application
 
