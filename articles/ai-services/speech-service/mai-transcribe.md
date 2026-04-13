@@ -63,7 +63,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 
 ::: zone pivot="programming-language-python"
 
-First follow the /azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-python to start using transcription with enhanced mode. Then, specify `mai-transcribe-1` as the `model` in the `enhancedMode` property.
+First follow the [LLM Speech quickstart](/azure/ai-services/speech-service/llm-speech?tabs=new-foundry%2Cwindows&pivots=programming-language-python) to start using transcription with enhanced mode. Then, specify `mai-transcribe-1` as the `model` in the `enhancedMode` property.
 
 ::: zone-end
 
