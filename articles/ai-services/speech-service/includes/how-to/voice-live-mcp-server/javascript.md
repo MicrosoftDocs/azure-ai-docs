@@ -14,7 +14,6 @@ Learn how to connect remote MCP servers to a Voice Live session using the VoiceL
 
 [!INCLUDE [Header](../../common/voice-live-javascript.md)]
 
-[!INCLUDE [Introduction](intro.md)]
 
 Follow the how-to below or get the full sample code:
 

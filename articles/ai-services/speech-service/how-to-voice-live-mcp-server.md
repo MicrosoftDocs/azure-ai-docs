@@ -19,6 +19,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
+[!INCLUDE [Introduction](./includes/how-to/voice-live-mcp-server/intro.md)]
+
+
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python how-to](./includes/how-to/voice-live-mcp-server/python.md)]
 ::: zone-end
@@ -34,6 +37,8 @@ ai-usage: ai-assisted
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript how-to](./includes/how-to/voice-live-mcp-server/javascript.md)]
 ::: zone-end
+
+[!INCLUDE [best-practices](includes/how-to/voice-live-mcp-server/best-practices.md)]
 
 ## Related content
 
