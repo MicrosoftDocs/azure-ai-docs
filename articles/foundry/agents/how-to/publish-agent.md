@@ -406,7 +406,7 @@ Agents published as Agent Applications have the following limitations:
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
 | **Publish Agent** is disabled | Missing Azure AI Project Manager role on the Foundry resource scope | Assign the Azure AI Project Manager role on the Foundry resource (account) scope, not just on the project scope. |
-| `403 Forbidden` when invoking the endpoint | Caller lacks invoke permissions on the Agent Application resource | Assign the Azure AI User role on the Agent Application resource to the caller. See [Grant users access to invoke a published agent](#grant-users-access-to-invoke-a-published-agent) for Azure CLI, portal, and REST API instructions. |
+| `403 Forbidden` when invoking the endpoint | Caller lacks invoke permissions on the Agent Application resource | Assign the Azure AI User role on the Agent Application resource to the caller. See [Grant users access to invoke a published agent](#grant-users-access-to-invoke-a-published-agent). |
 | `401 Unauthorized` when invoking the endpoint | The access token is missing, expired, or for the wrong resource | Reauthenticate and request a token for `https://ai.azure.com`. |
 | Tool calls fail after publishing | The Agent Application identity doesn’t have the same access as the project identity | Reassign the required RBAC roles to the published agent identity for any downstream Azure resources it must access. |
 | Multi-turn conversations don’t work as expected | Agent Applications don’t store conversation state for you | Store conversation history in your client and send the context as part of your request. |
