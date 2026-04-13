@@ -81,6 +81,15 @@ Use the following list to investigate regional availability for specific feature
 - **Azure AI Content Safety**: To use the Content Safety APIs, create your Azure AI Content Safety resource in a supported region. [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)
 - **Agent Service**: Agent Service supports Azure OpenAI model deployments, but exact model and tool availability varies by region. [Agent Service region availability](../agents/concepts/model-region-support.md)
 
+## How to verify region support for your workload
+
+Use this process before you create resources:
+
+1. Select a candidate project region from the **Foundry projects** list in this article.
+1. Verify feature-specific support in the **Foundry features** list links.
+1. Check available quota for a specific model and region. In the Foundry portal, go to **Operate** > **Quota** and turn on the **Show all** toggle to see all models and regions, including models you haven't deployed yet. For more information, see [Quota in Foundry Control Plane](../../foundry/control-plane/overview.md#quota).
+1. Confirm the final service list in [Azure global infrastructure products by region](https://azure.microsoft.com/global-infrastructure/services/).
+
 [!INCLUDE [region-support 1](../../foundry/includes/reference-region-support-1.md)]
 
 ## Foundry in sovereign clouds
