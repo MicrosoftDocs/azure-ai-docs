@@ -552,7 +552,7 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 | Model        |   Deployment type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
 |:------------------|:----------------|:--------------|:--------------|:-----------|:-----------|
-| claude-opus-4-6   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
+| claude-opus-4-6   | [Global Standard](../concepts/deployment-types.md#global-standard)  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-5   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-1   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-sonnet-4-6 | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
