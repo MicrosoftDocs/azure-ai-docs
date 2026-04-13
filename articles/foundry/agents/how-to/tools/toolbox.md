@@ -184,7 +184,7 @@ console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.
 
 :::zone pivot="azd"
 
-With azd, you declare toolbox resources in an `agent.yaml` file instead of calling the SDK. Define your tools in the `resources` section and deploy with `azd ai agent init`. See [Step 2: Configure tools](#step-2-configure-tools) for `agent.yaml` examples for each tool type, and [Deploy with azd](#deploy-with-azd) for the full deployment workflow.
+With azd, you declare toolbox resources in an `agent.yaml` file instead of calling the SDK. Define your tools in the `resources` section and deploy with `azd ai agent init`. See [Configure tools](#configure-tools) for `agent.yaml` examples for each tool type, and [Deploy with azd](#deploy-with-azd) for the full deployment workflow.
 
 > [!NOTE]
 > The azd CLI only supports **creating** a toolbox version (via `azd deploy`). To list, get, update, promote, or delete toolbox versions, use the Python SDK, .NET SDK, JavaScript SDK, or REST API.
