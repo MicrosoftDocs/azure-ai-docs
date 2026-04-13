@@ -382,7 +382,7 @@ When you no longer need your customized model, you can delete the deployment and
 You can use either of these methods to delete the deployment for your customized model:
 
 - [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)
-- [Azure CLI](/cli/azure/cognitiveservices/account/deployment?view=azure-cli-latest#az-cognitiveservices-account-deployment-delete)
+- [Azure CLI](/cli/azure/cognitiveservices/account/deployment)
 
 ### Delete your customized model
 
