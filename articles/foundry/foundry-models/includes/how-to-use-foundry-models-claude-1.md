@@ -31,7 +31,7 @@ Claude models in Foundry include:
 To learn more about the individual models, see [Available Claude models](#available-claude-models).
 
 > [!IMPORTANT]
-> **Claude Mythos Preview** is only available as a *gated research preview*. Access to the model is prioritized by Anthropic for defensive cybersecurity use cases. See the [Claude Mythos Preview system card](https://www.anthropic.com/claude-mythos-preview-system-card) for responsible use guidance.
+> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 
 ## Prerequisites
 
@@ -470,7 +470,7 @@ For more details about the model capabilities, see [capabilities of Claude model
 ### Claude Mythos (gated research preview)
 
 > [!IMPORTANT]
-> **Claude Mythos Preview** is only available as a *gated research preview*. Access to the model is prioritized by Anthropic for defensive cybersecurity use cases. See the [Claude Mythos Preview system card](https://www.anthropic.com/claude-mythos-preview-system-card) for responsible use guidance.
+> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 >
 > Claude Mythos Preview supports **Microsoft Entra ID authentication only**.
 
@@ -547,6 +547,8 @@ For a full list of supported capabilities and tools, see [Claude's features over
 
 > [!IMPORTANT]
 > Currently, only Enterprise and MCA-E subscriptions are eligible for Claude model usage in Foundry.
+>
+> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 
 Claude models in Foundry have the following rate limits, measured in Tokens Per Minute (TPM) and Requests Per Minute (RPM):
 

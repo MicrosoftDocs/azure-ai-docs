@@ -22,7 +22,7 @@ ms.custom:
 
 <sup>1</sup> Claude models use the [Global Standard](../foundry-models/concepts/deployment-types.md#global-standard) deployment type. Your Foundry project or hub must also be in one of the regions listed in the table for you to deploy the model.
 
-<sup>2</sup> Claude Mythos Preview is only available as a *gated research preview*. Access to the model is prioritized by Anthropic for defensive cybersecurity use cases. See the [Claude Mythos Preview system card](https://www.anthropic.com/claude-mythos-preview-system-card) for responsible use guidance.
+<sup>2</sup> [!INCLUDE [claude-mythos-preview-restriction](../../foundry/foundry-models/includes/claude-mythos-preview-restriction.md)]
 
 ### Cohere models
 
