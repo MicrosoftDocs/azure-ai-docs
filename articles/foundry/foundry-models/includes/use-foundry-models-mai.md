@@ -32,14 +32,14 @@ In this article, you learn how to:
 
 MAI-Image-2 and MAI-Image-2e are available for [global standard deployment](../concepts/deployment-types.md#global-standard) in West Central US, East US, West US, West Europe, Sweden Central, and South India. To deploy a model, follow the instructions in [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md).
 
-Alternatively, you can deploy a model by using the Azure CLI. The following code shows deployment of MAI-Image-2e. To deploy MAI-Image-2 instead, replace `--model-name MAI-Image-2e` with `--model-name mai-image-2` and `--model-version 2026-04-09` with `--model-version 2026-02-20`.
+Alternatively, you can deploy a model by using the Azure CLI. The following code shows deployment of MAI-Image-2e. To deploy MAI-Image-2 instead, replace `--model-name MAI-Image-2e` with `--model-name MAI-Image-2` and `--model-version 2026-04-09` with `--model-version 2026-02-20`.
 
 ```bash
 az cognitiveservices account deployment create \
   --name <ACCOUNT_NAME> \
   --resource-group <RESOURCE_GROUP> \
   --deployment-name <DEPLOYMENT_NAME> \
-  --model-name mai-image-2e \
+  --model-name MAI-Image-2e \
   --model-format Microsoft \
   --model-version 2026-04-09 \
   --sku-name GlobalStandard \
@@ -60,13 +60,13 @@ Foundry supports use of MAI-Image-2 (Preview) and MAI-Image-2e (Preview). Each o
 
 For more details about the model capabilities, see capabilities of Microsoft models in [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md).
 
-### MAI-Image-2
+### MAI-Image-2 (Preview)
 
 MAI-Image-2 (Preview) is a text-to-image generation model designed to create high-quality, visually rich images from natural language prompts. It uses a diffusion-based generative approach to progressively refine images, enabling strong alignment between the input text and the generated output. The model is optimized to produce diverse and coherent images across a wide range of creative and design scenarios, making it well suited for tasks such as concept visualization, creative content generation, and image design workflows.
 
-### MAI-Image-2e
+### MAI-Image-2e (Preview)
 
-MAI-Image-2e (Preview) delivers high-quality image generation – just like MAI-Image-2 — but up to 23% faster and four times more efficient, making it the smartest choice for developers building at scale. MAI-Image-2e is best suited for high-volume, fast-turnaround scenarios — for example, product imagery at scale, marketing variations, branded assets, or any workflow where efficiency and cost per image are key.
+MAI-Image-2e (Preview) delivers high-quality image generation – just like MAI-Image-2 — but up to 22% faster and four times more efficient than MAI-Image-2, making it the smartest choice for developers building at scale. MAI-Image-2e is best suited for high-volume, fast-turnaround scenarios — for example, product imagery at scale, marketing variations, branded assets, or any workflow where efficiency and cost per image are key.
 
 ## Overview of image generation with MAI image generation models
 
@@ -249,10 +249,10 @@ MAI image generation models have the following rate limits measured in Requests 
 | -- | -- | -- | -- |
 | Global Standard | 1 | 18 | 9 |
 | Global Standard | 2 | 30 | 15 |
-| Global Standard | 3 | 90 | 30 |
-| Global Standard | 4 | 120 | 45 |
-| Global Standard | 5 | 180 | 60 |
-| Global Standard | 6 | — | 90 |
+| Global Standard | 3 | 60 | 30 |
+| Global Standard | 4 | 90 | 45 |
+| Global Standard | 5 | 120 | 60 |
+| Global Standard | 6 | 180 | 90 |
 
 To request a quota increase, submit the [quota increase request form](https://aka.ms/oai/stuquotarequest). Requests are processed in the order they're received, and priority goes to customers who actively use their existing quota allocation.
 
