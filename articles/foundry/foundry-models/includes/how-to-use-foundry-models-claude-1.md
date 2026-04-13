@@ -31,7 +31,7 @@ Claude models in Foundry include:
 To learn more about the individual models, see [Available Claude models](#available-claude-models).
 
 > [!IMPORTANT]
-> **Claude Mythos Preview** is only available as a *gated research preview*. Access to the model is prioritized by Anthropic for defensive cybersecurity use cases. See the [Claude Mythos Preview system card](https://www.anthropic.com/claude-mythos-preview-system-card) for responsible use guidance.
+> **Claude Mythos Preview** is only available as a *gated research preview*. Access to the model granted solely at Anthropic’s discretion and prioritized for defensive cybersecurity use cases. See the [Claude Mythos Preview system card](https://www.anthropic.com/claude-mythos-preview-system-card) for responsible use guidance.
 
 ## Prerequisites
 
