@@ -25,11 +25,12 @@ Because the toolbox is a managed resource, you can add, remove, or reconfigure t
 In this article, you learn how to:
 
 - Create a toolbox with one or more tools.
-- Configure authentication using project connections.
 - Get the toolbox MCP endpoint.
 - Verify that tools load correctly.
 - Integrate a toolbox into your hosted agent.
 - Manage toolbox versions and promote a version to default.
+
+For tool configuration syntax and authentication options for each tool type, see [Configure tools](#configure-tools).
 
 ## Feature support
 
@@ -191,7 +192,714 @@ With azd, you declare toolbox resources in an `agent.yaml` file instead of calli
 :::zone-end
 
 
-## Step 2: Configure tools
+## Step 2: Get the toolbox MCP endpoint
+
+There are two endpoint patterns depending on your role:
+
+| Role | Endpoint | When to use |
+|------|----------|-------------|
+| **Toolbox developer** | `{project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1` | Test or validate a specific version before promoting it to default. |
+| **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. The first version you create is automatically set as the default. |
+
+> [!NOTE]
+> The first version of a new toolbox is automatically promoted to `default_version` (v1). If you need to change the default later, see [Promote a version to default](#promote-a-version-to-default).
+
+## Step 3: Verify tool availability
+
+Before running the full agent, confirm that the toolbox loads the expected tools by using an MCP client SDK against the endpoint. Use the **version-specific endpoint** to validate a version before promoting it to default.
+
+:::zone pivot="python"
+
+Install the MCP client SDK:
+
+```bash
+pip install mcp
+```
+
+#### Step 1: Connect to the toolbox and list tools
+
+```python
+import asyncio
+from azure.identity import DefaultAzureCredential
+from mcp.client.streamable_http import streamablehttp_client
+from mcp import ClientSession
+
+url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/versions/<version>/mcp?api-version=v1"
+
+token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
+headers = {
+    "Authorization": f"Bearer {token}",
+}
+
+async def verify_toolbox():
+    async with streamablehttp_client(url, headers=headers) as (read, write, _):
+        async with ClientSession(read, write) as session:
+            await session.initialize()
+
+            # List available tools
+            tools_result = await session.list_tools()
+            print(f"Tools found: {len(tools_result.tools)}")
+            for tool in tools_result.tools:
+                print(f"  - {tool.name}: {(tool.description or '')[:80]}")
+
+            # Call a tool (replace with actual tool name and arguments)
+            result = await session.call_tool("<tool_name>", arguments={})
+            print(result)
+
+asyncio.run(verify_toolbox())
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+> [!NOTE]
+> .NET MCP client SDK sample coming soon. Use the REST API tab to verify tool availability from .NET, or use the Python MCP client SDK.
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+Use the version-specific endpoint (`/versions/{version}/mcp`) to validate a version before promoting it.
+
+**1. Initialize the MCP session**:
+
+```http
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}
+```
+
+**2. Send the initialized notification**:
+
+```http
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{"jsonrpc":"2.0","method":"notifications/initialized"}
+```
+
+**3. List available tools**:
+
+```http
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
+```
+
+**4. Call a tool**:
+
+```http
+POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"<TOOL_NAME>","arguments":{}}}
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+Install the MCP client SDK:
+
+```bash
+npm install @modelcontextprotocol/sdk
+```
+
+#### Step 1: Connect to the toolbox and list tools
+
+```javascript
+import { DefaultAzureCredential } from "@azure/identity";
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+
+const url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/versions/<version>/mcp?api-version=v1";
+
+const credential = new DefaultAzureCredential();
+const token = await credential.getToken("https://ai.azure.com/.default");
+
+const transport = new StreamableHTTPClientTransport(
+  new URL(url),
+  {
+    requestInit: {
+      headers: {
+        Authorization: `Bearer ${token.token}`,
+      },
+    },
+  },
+);
+
+const client = new Client({ name: "test", version: "1.0" });
+await client.connect(transport);
+
+// List available tools
+const toolsResult = await client.listTools();
+console.log(`Tools found: ${toolsResult.tools.length}`);
+for (const tool of toolsResult.tools) {
+  console.log(`  - ${tool.name}: ${(tool.description || "").slice(0, 80)}`);
+}
+
+// Call a tool (replace with actual tool name and arguments)
+const result = await client.callTool({ name: "<tool_name>", arguments: {} });
+console.log(result);
+
+await client.close();
+```
+
+:::zone-end
+
+**Check — initialize**: HTTP 200 and a non-empty `mcp-session-id` header. If you skip the initialize step, subsequent calls will fail.
+
+**Check — `tools/list`**:
+- `len(tools) > 0` — empty means the toolbox version was not provisioned correctly.
+- Each tool has `name`, `description`, and `inputSchema`. For tool naming conventions, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools).
+- `inputSchema` has a `properties` field (some MCP servers omit this, which breaks OpenAI).
+- For MCP tools, names are prefixed with the `server_label` — for example, `myserver.some_tool`. For all other tool types, the name is the `name` field value or the default tool name.
+- Note the exact parameter names for the call step (for example `query` vs `queries`).
+
+**Check — `tools/call`**:
+- No top-level `error` field. If present, inspect `error.code`. For standard MCP error codes, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools#error-handling):
+  - `-32006` → OAuth consent required (extract URL from `error.message`).
+  - Other codes → server-side failure.
+- `result.content[]` contains entries with `"type": "text"` — this is the tool output.
+- For AI Search, check `result.structuredContent.documents[]` for chunk metadata (`title`, `url`, `id`, `score`).
+- For File Search, check `result.content[].resource._meta` for chunk metadata (`title`, `file_id`, `document_chunk_id`, `score`).
+- For Web Search, check `result.content[].resource._meta.annotations[]` for URL citations (`type`, `url`, `title`, `start_index`, `end_index`).
+- Watch for `"ServerError"` in text content — the tool executed but hit an internal error.
+
+Tool-specific `tools/call` argument examples:
+
+| Tool type | Arguments |
+|-----------|-----------|
+| AI Search | `{"query": "search text"}` |
+| File Search | `{"queries": ["search text"]}` |
+| Code Interpreter | `{"code": "print(2 ** 100)"}` |
+| Web Search | `{"search_query": "weather in seattle"}` |
+| A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
+| MCP | `{"query": "what is agent service"}` |
+
+## Step 4: Integrate the toolbox into your agent
+
+### LangGraph
+
+Set `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` and `TOOLBOX_NAME` in your `.env` file. The agent constructs the full MCP endpoint as `{FOUNDRY_AGENT_TOOLBOX_ENDPOINT}/{TOOLBOX_NAME}/mcp?api-version=v1`. When deployed, `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` are injected by the platform automatically.
+
+**`.env` file**:
+
+```
+FOUNDRY_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
+FOUNDRY_AGENT_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes
+FOUNDRY_AGENT_TOOLBOX_FEATURES=Toolboxes=V1Preview
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
+TOOLBOX_NAME=<toolbox-name>
+```
+
+**`main.py`** (key pattern):
+
+```python
+# Resolve endpoint: prefer platform-injected per-toolbox var, fall back to constructed URL
+_TOOLBOX_NAME = os.getenv("TOOLBOX_NAME", "agent-tools")
+TOOLBOX_ENDPOINT = (
+    os.getenv(f"TOOLBOX_{_TOOLBOX_NAME.upper().replace('-', '_')}_MCP_ENDPOINT")
+    or f"{os.getenv('FOUNDRY_AGENT_TOOLBOX_ENDPOINT', '').rstrip('/')}/{_TOOLBOX_NAME}/mcp?api-version=v1"
+)
+
+# Auth: httpx.Auth subclass injects a Bearer token on every request
+class _ToolboxAuth(httpx.Auth):
+    def __init__(self, token_provider):
+        self._get_token = token_provider
+    def auth_flow(self, request):
+        request.headers["Authorization"] = f"Bearer {self._get_token()}"
+        yield request
+
+# Connect LangGraph to the toolbox MCP endpoint
+credential = DefaultAzureCredential()
+token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
+client = MultiServerMCPClient({
+    "toolbox": {
+        "url": TOOLBOX_ENDPOINT,
+        "transport": "streamable_http",
+        "headers": {"Foundry-Features": os.getenv("FOUNDRY_AGENT_TOOLBOX_FEATURES", "Toolboxes=V1Preview")},
+        "auth": _ToolboxAuth(token_provider),
+    }
+})
+tools = await client.get_tools()
+```
+
+**`requirements.txt`**:
+
+```
+langchain-mcp-adapters==0.1.11
+```
+
+### Microsoft Agent Framework
+
+Use `MCPStreamableHTTPTool` from the Agent Framework SDK to connect directly to the toolbox MCP endpoint without LangChain or LangGraph.
+
+**`.env` file**:
+
+```
+FOUNDRY_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
+FOUNDRY_AGENT_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes
+FOUNDRY_AGENT_TOOLBOX_FEATURES=Toolboxes=V1Preview
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
+TOOLBOX_NAME=<toolbox-name>
+```
+
+**`main.py`** (key pattern):
+
+```python
+# Auth: wrap token provider in an httpx.Auth subclass
+credential = DefaultAzureCredential()
+token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
+http_client = httpx.AsyncClient(
+    auth=_ToolboxAuth(token_provider),
+    headers={"Foundry-Features": os.getenv("FOUNDRY_AGENT_TOOLBOX_FEATURES", "Toolboxes=V1Preview")},
+    timeout=120.0,
+)
+
+# Connect MCPStreamableHTTPTool to the toolbox endpoint
+mcp_tool = MCPStreamableHTTPTool(
+    name="toolbox",
+    url=TOOLBOX_ENDPOINT,
+    http_client=http_client,
+    load_prompts=False,
+)
+
+agent = chat_client.as_agent(
+    name="my-toolbox-agent",
+    instructions="You are a helpful assistant with access to Foundry toolbox tools.",
+    tools=[mcp_tool],
+)
+ResponsesAgentServerHost().run()
+```
+
+> [!NOTE]
+> The Foundry Toolbox MCP server doesn't support the MCP `ping` method. Add `MCPStreamableHTTPTool._ensure_connected = lambda self: None` as a temporary monkey-patch until the server-side fix is deployed.
+
+**`requirements.txt`**:
+
+```
+agent-framework-core==1.0.0rc3
+agent-framework-azure-ai==1.0.0rc3
+azure-ai-agentserver-core[tracing]>=1.0.0a20260410006
+azure-ai-agentserver-responses>=1.0.0a20260410006
+aiohttp
+azure-identity>=1.19.0
+python-dotenv>=1.0.0
+```
+
+### Copilot SDK
+
+Use the GitHub Copilot SDK to build a toolbox-powered agent that bridges Copilot's tool invocation to the Foundry toolbox MCP endpoint.
+
+> [!NOTE]
+> The Copilot SDK rejects tool names containing dots. The bridge automatically replaces `.` with `_` in tool names — for example, `myserver.get_info` becomes `myserver_get_info`.
+
+**`.env` file**:
+
+```
+GITHUB_TOKEN=<your-github-token>
+FOUNDRY_AGENT_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes
+TOOLBOX_NAME=<toolbox-name>
+```
+
+**`agent.py`** (key pattern — MCP bridge):
+
+```python
+# 1. Open an MCP session to the toolbox endpoint
+bridge = McpBridge(endpoint=TOOLBOX_ENDPOINT, token=_get_toolbox_token())
+await bridge.initialize()
+mcp_tools = await bridge.list_tools()
+
+# 2. Map MCP tool list to Copilot SDK tool definitions
+#    Dots in tool names are replaced with underscores (Copilot SDK requirement)
+copilot_tools = [
+    {
+        "name": t["name"].replace(".", "_"),
+        "description": t.get("description", ""),
+        "parameters": t.get("inputSchema", {}),
+    }
+    for t in mcp_tools
+]
+
+# 3. Wire tool calls back to the MCP session
+async def tool_handler(name: str, arguments: dict) -> str:
+    return await bridge.call_tool(name.replace("_", ".", 1), arguments)
+
+# 4. Run the Copilot SDK agent
+agent = Agent(
+    tools=copilot_tools,
+    tool_handler=tool_handler,
+    token=os.environ["GITHUB_TOKEN"],
+)
+```
+
+**`requirements.txt`**:
+
+```
+github-copilot-sdk>=0.1.29
+azure-identity>=1.19.0
+mcp
+python-dotenv==1.1.1
+```
+
+### Deploy with azd
+
+Use the Azure Developer CLI (`azd`) to declare toolbox resources directly in an `agent.yaml` file and deploy your agent with a single command. With this approach, you don't need to create the toolbox separately through SDK or REST — `azd` provisions the toolbox, connections, and model deployment together.
+
+**Folder structure**:
+
+```
+my-agent/
+├── agent.yaml          # Agent, toolbox, and connection declarations
+├── main.py             # LangGraph agent
+├── requirements.txt    # All dependencies (Azure SDK + PyPI packages)
+├── Dockerfile          # Container build
+```
+
+**`agent.yaml`** (Web Search + GitHub MCP example):
+
+```yaml
+name: my-toolbox-agent
+description: LangGraph agent with Azure AI Foundry toolbox MCP.
+metadata:
+  tags:
+    - AI Agent Hosting
+    - LangGraph
+template:
+  name: my-toolbox-agent
+  kind: hosted
+  protocols:
+    - protocol: responses
+      version: 1.0.0
+  environment_variables:
+    # FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_AGENT_TOOLBOX_* are injected
+    # automatically by the platform at runtime — do NOT declare them here.
+    - name: AZURE_AI_MODEL_DEPLOYMENT_NAME
+      value: ${AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o}
+    - name: TOOLBOX_NAME
+      value: ${TOOLBOX_NAME=agent-tools}
+parameters:
+  github_pat:
+    secret: true
+    description: GitHub Personal Access Token for MCP connection
+resources:
+  - kind: connection
+    name: github-mcp-conn
+    target: https://api.githubcopilot.com/mcp
+    category: RemoteTool
+    authType: CustomKeys
+    credentials:
+      keys:
+        Authorization: "Bearer {{ github_pat }}"
+  - kind: toolbox
+    name: agent-tools
+    description: Web search and GitHub MCP tools
+    tools:
+      - type: web_search
+      - type: mcp
+        server_label: github
+        server_url: https://api.githubcopilot.com/mcp
+        project_connection_id: github-mcp-conn
+```
+
+> [!NOTE]
+> When deployed with toolbox resources in `agent.yaml`, the platform injects `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` (base URL) and `TOOLBOX_{toolbox_name}_MCP_ENDPOINT` (full per-toolbox endpoint) as environment variables. For the toolbox named `agent-tools`, the per-toolbox variable becomes `TOOLBOX_AGENT_TOOLS_MCP_ENDPOINT`. Your `main.py` reads the per-toolbox variable or constructs the URL from `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` and `TOOLBOX_NAME` at runtime.
+
+**`main.py`** follows the same LangGraph pattern shown above. With `azd`, `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` and `TOOLBOX_{toolbox_name}_MCP_ENDPOINT` are injected automatically — no extra endpoint configuration is needed in code.
+
+**`requirements.txt`**:
+
+```
+azure-ai-agentserver-core[tracing]==2.0.0a20260410002
+azure-ai-agentserver-responses==1.0.0a20260410002
+langchain-openai>=0.3.0
+langgraph>=0.2.0
+langchain-mcp-adapters==0.1.11
+python-dotenv>=1.0.0
+starlette<1.0.0
+aiohttp
+```
+
+**Deploy**:
+
+```bash
+azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-4o"
+azd env set GITHUB_PAT "ghp_xxxxxxxxxxxx"
+azd ai agent init
+azd ai agent start
+```
+
+## Step 5: Manage toolbox versions
+
+> [!NOTE]
+> Toolbox version management (list, get, promote, delete) is available through the Python SDK, .NET SDK, JavaScript SDK, and REST API. The azd CLI only supports creating toolbox versions during deployment.
+
+Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it — you decide when to update `default_version`. This lets you stage changes, test a new version independently, and promote it to production on your own schedule.
+
+| Object | Key fields | Description |
+|--------|-----------|-------------|
+| `ToolboxObject` | `id`, `name`, `default_version` | The toolbox container. `default_version` points to the active version. |
+| `ToolboxVersionObject` | `id`, `name`, `version`, `description`, `created_at`, `tools[]`, `policies` | An immutable snapshot of the toolbox's tool list at a point in time. |
+
+### Create a new version
+
+Each create call produces a new version. If the toolbox doesn't exist yet, it's automatically created. When you create the first version of a new toolbox, the default_version will be automatically assigned to v1 until you **manually** update to another version.
+
+:::zone pivot="python"
+
+```python
+toolbox_version = client.beta.toolboxes.create_toolbox_version(
+    toolbox_name="my-toolbox",
+    description="Updated tools v2",
+    tools=[...],
+)
+print(f"Created version: {toolbox_version.version}")
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
+    toolboxName: "my-toolbox",
+    tools: [tool],
+    description: "Updated tools v2"
+);
+Console.WriteLine($"Created version: {toolboxVersion.Version}");
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "description": "Updated tools v2",
+  "tools": [...]
+}
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const toolboxVersion = await project.beta.toolboxes.createVersion(
+  "my-toolbox",
+  [/* tools array */],
+  { description: "Updated tools v2" },
+);
+console.log(`Created version: ${toolboxVersion.version}`);
+```
+
+:::zone-end
+
+The response is a `ToolboxVersionObject` containing the new `version` identifier.
+
+### List versions
+
+:::zone pivot="python"
+
+```python
+versions = list(client.beta.toolboxes.list_toolbox_versions(toolbox_name="my-toolbox"))
+for v in versions:
+    print(f"{v.version} — created {v.created_at}")
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+List<ToolboxVersion> versions = await toolboxClient
+    .GetToolboxVersionsAsync("my-toolbox")
+    .ToListAsync();
+Console.WriteLine($"Found {versions.Count} toolbox version(s).");
+foreach (ToolboxVersion v in versions)
+{
+    Console.WriteLine($"  - {v.Name} ({v.Version})");
+}
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+GET {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
+Authorization: Bearer {token}
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const versions = project.beta.toolboxes.listVersions("my-toolbox");
+for await (const v of versions) {
+  console.log(`${v.version} — created ${v.createdAt}`);
+}
+```
+
+:::zone-end
+
+### Get a specific version
+
+:::zone pivot="python"
+
+```python
+version_obj = client.beta.toolboxes.get_toolbox_version(
+    toolbox_name="my-toolbox",
+    version="<version_id>",
+)
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ToolboxVersion versionObj = await toolboxClient.GetToolboxVersionAsync(
+    "my-toolbox",
+    "<version_id>"
+);
+Console.WriteLine($"Retrieved toolbox: {versionObj.Name} ({versionObj.Id})");
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+GET {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
+Authorization: Bearer {token}
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const versionObj = await project.beta.toolboxes.getVersion(
+  "my-toolbox",
+  "<version_id>",
+);
+console.log(`Retrieved version: ${versionObj.version}`);
+```
+
+:::zone-end
+
+### Promote a version to default
+
+The MCP endpoint always serves the `default_version`. To switch which version is active, update the toolbox:
+
+:::zone pivot="python"
+
+```python
+toolbox = client.beta.toolboxes.update(
+    toolbox_name="my-toolbox",
+    default_version="<version_id>",
+)
+print(f"Active version: {toolbox.default_version}")
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ToolboxRecord record = await toolboxClient.UpdateToolboxAsync(
+    "my-toolbox",
+    "<version_id>"
+);
+Console.WriteLine($"Active version: {record.DefaultVersion}");
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+PATCH {project_endpoint}/toolboxes/my-toolbox?api-version=v1
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "default_version": "<version_id>"
+}
+```
+
+`default_version` cannot be empty, you have to replace it with a new version if you want. 
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const toolbox = await project.beta.toolboxes.update(
+  "my-toolbox",
+  "<version_id>",
+);
+console.log(`Active version: ${toolbox.defaultVersion}`);
+```
+
+:::zone-end
+
+### Delete a version
+
+:::zone pivot="python"
+
+```python
+client.beta.toolboxes.delete_toolbox_version(
+    toolbox_name="my-toolbox",
+    version="<version_id>",
+)
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+await toolboxClient.DeleteToolboxVersionAsync(
+    "my-toolbox",
+    "<version_id>"
+);
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```http
+DELETE {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
+Authorization: Bearer {token}
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+await project.beta.toolboxes.deleteVersion(
+  "my-toolbox",
+  "<version_id>",
+);
+```
+
+:::zone-end
+
+
+## Configure tools
 
 Choose the tool type and authentication pattern that matches your scenario. Select the tab for your preferred SDK or deployment method.
 
@@ -1473,813 +2181,6 @@ resources:
 
 :::zone-end
 
-## Step 3: Get the toolbox MCP endpoint
-
-There are two endpoint patterns depending on your role:
-
-| Role | Endpoint | When to use |
-|------|----------|-------------|
-| **Toolbox developer** | `{project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1` | Test or validate a specific version before promoting it to default. |
-| **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. The first version you create is automatically set as the default. |
-
-> [!NOTE]
-> The first version of a new toolbox is automatically promoted to `default_version` (v1). If you need to change the default later, see [Promote a version to default](#promote-a-version-to-default).
-
-## Step 4: Verify tool availability
-
-Before running the full agent, confirm that the toolbox loads the expected tools by using an MCP client SDK against the endpoint. Use the **version-specific endpoint** to validate a version before promoting it to default.
-
-:::zone pivot="python"
-
-Install the MCP client SDK:
-
-```bash
-pip install mcp
-```
-
-#### Step 1: Connect to the toolbox and list tools
-
-```python
-import asyncio
-from azure.identity import DefaultAzureCredential
-from mcp.client.streamable_http import streamablehttp_client
-from mcp import ClientSession
-
-url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/versions/<version>/mcp?api-version=v1"
-
-token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
-headers = {
-    "Authorization": f"Bearer {token}",
-}
-
-async def verify_toolbox():
-    async with streamablehttp_client(url, headers=headers) as (read, write, _):
-        async with ClientSession(read, write) as session:
-            await session.initialize()
-
-            # List available tools
-            tools_result = await session.list_tools()
-            print(f"Tools found: {len(tools_result.tools)}")
-            for tool in tools_result.tools:
-                print(f"  - {tool.name}: {(tool.description or '')[:80]}")
-
-            # Call a tool (replace with actual tool name and arguments)
-            result = await session.call_tool("<tool_name>", arguments={})
-            print(result)
-
-asyncio.run(verify_toolbox())
-```
-
-:::zone-end
-
-:::zone pivot="dotnet"
-
-> [!NOTE]
-> .NET MCP client SDK sample coming soon. Use the REST API tab to verify tool availability from .NET, or use the Python MCP client SDK.
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-Use the version-specific endpoint (`/versions/{version}/mcp`) to validate a version before promoting it.
-
-**1. Initialize the MCP session**:
-
-```http
-POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}
-```
-
-**2. Send the initialized notification**:
-
-```http
-POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{"jsonrpc":"2.0","method":"notifications/initialized"}
-```
-
-**3. List available tools**:
-
-```http
-POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
-```
-
-**4. Call a tool**:
-
-```http
-POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"<TOOL_NAME>","arguments":{}}}
-```
-
-:::zone-end
-
-:::zone pivot="javascript"
-
-Install the MCP client SDK:
-
-```bash
-npm install @modelcontextprotocol/sdk
-```
-
-#### Step 1: Connect to the toolbox and list tools
-
-```javascript
-import { DefaultAzureCredential } from "@azure/identity";
-import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-
-const url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<name>/versions/<version>/mcp?api-version=v1";
-
-const credential = new DefaultAzureCredential();
-const token = await credential.getToken("https://ai.azure.com/.default");
-
-const transport = new StreamableHTTPClientTransport(
-  new URL(url),
-  {
-    requestInit: {
-      headers: {
-        Authorization: `Bearer ${token.token}`,
-      },
-    },
-  },
-);
-
-const client = new Client({ name: "test", version: "1.0" });
-await client.connect(transport);
-
-// List available tools
-const toolsResult = await client.listTools();
-console.log(`Tools found: ${toolsResult.tools.length}`);
-for (const tool of toolsResult.tools) {
-  console.log(`  - ${tool.name}: ${(tool.description || "").slice(0, 80)}`);
-}
-
-// Call a tool (replace with actual tool name and arguments)
-const result = await client.callTool({ name: "<tool_name>", arguments: {} });
-console.log(result);
-
-await client.close();
-```
-
-:::zone-end
-
-**Check — initialize**: HTTP 200 and a non-empty `mcp-session-id` header. If you skip the initialize step, subsequent calls will fail.
-
-**Check — `tools/list`**:
-- `len(tools) > 0` — empty means the toolbox version was not provisioned correctly.
-- Each tool has `name`, `description`, and `inputSchema`. For tool naming conventions, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools).
-- `inputSchema` has a `properties` field (some MCP servers omit this, which breaks OpenAI).
-- For MCP tools, names are prefixed with the `server_label` — for example, `myserver.some_tool`. For all other tool types, the name is the `name` field value or the default tool name.
-- Note the exact parameter names for the call step (for example `query` vs `queries`).
-
-**Check — `tools/call`**:
-- No top-level `error` field. If present, inspect `error.code`. For standard MCP error codes, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools#error-handling):
-  - `-32006` → OAuth consent required (extract URL from `error.message`).
-  - Other codes → server-side failure.
-- `result.content[]` contains entries with `"type": "text"` — this is the tool output.
-- For AI Search, check `result.structuredContent.documents[]` for chunk metadata (`title`, `url`, `id`, `score`).
-- For File Search, check `result.content[].resource._meta` for chunk metadata (`title`, `file_id`, `document_chunk_id`, `score`).
-- For Web Search, check `result.content[].resource._meta.annotations[]` for URL citations (`type`, `url`, `title`, `start_index`, `end_index`).
-- Watch for `"ServerError"` in text content — the tool executed but hit an internal error.
-
-Tool-specific `tools/call` argument examples:
-
-| Tool type | Arguments |
-|-----------|-----------|
-| AI Search | `{"query": "search text"}` |
-| File Search | `{"queries": ["search text"]}` |
-| Code Interpreter | `{"code": "print(2 ** 100)"}` |
-| Web Search | `{"search_query": "weather in seattle"}` |
-| A2A | `{"message": {"parts": [{"type": "text", "text": "Hello"}]}}` |
-| MCP | `{"query": "what is agent service"}` |
-
-## Step 5: Integrate the toolbox into your agent
-
-### LangGraph
-
-Set the `FOUNDRY_TOOLBOX_ENDPOINT` environment variable. The template picks up the endpoint automatically and connects to the toolbox on startup.
-
-**`.env` file**:
-
-```
-FOUNDRY_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/mcp?api-version=v1
-```
-
-**`main.py`** (key pattern):
-
-```python
-import os
-from langchain_mcp_adapters.client import MultiServerMCPClient
-from azure.identity import DefaultAzureCredential
-
-TOOLBOX_ENDPOINT = os.getenv("FOUNDRY_TOOLBOX_ENDPOINT")
-
-def _get_toolbox_token() -> str:
-    credential = DefaultAzureCredential()
-    return credential.get_token("https://ai.azure.com/.default").token
-
-async def build_agent():
-    token = _get_toolbox_token()
-    client = MultiServerMCPClient({
-        "toolbox": {
-            "url": TOOLBOX_ENDPOINT,
-            "transport": "streamable_http",
-            "headers": {
-                "Authorization": f"Bearer {token}",
-            },
-        }
-    })
-    tools = await client.get_tools()
-    return tools
-```
-
-**`requirements.txt`**:
-
-```
-langchain-mcp-adapters==0.1.11
-```
-
-### Microsoft Agent Framework
-
-Use `MCPStreamableHTTPTool` from the Agent Framework SDK to connect directly to the toolbox MCP endpoint without LangChain or LangGraph.
-
-**`.env` file**:
-
-```
-AZURE_AI_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
-FOUNDRY_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<name>/mcp?api-version=v1
-MODEL_DEPLOYMENT_NAME=gpt-4o
-```
-
-**`main.py`** (key pattern):
-
-```python
-import os
-from urllib.parse import urlparse
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from azure.ai.agentserver.agentframework import from_agent_framework
-from agent_framework import MCPStreamableHTTPTool
-from agent_framework.azure import AzureOpenAIChatClient
-
-PROJECT_ENDPOINT = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-MODEL_DEPLOYMENT_NAME = os.getenv("MODEL_DEPLOYMENT_NAME", "gpt-4o")
-TOOLBOX_ENDPOINT = os.getenv("FOUNDRY_TOOLBOX_ENDPOINT")
-
-_parsed = urlparse(PROJECT_ENDPOINT)
-OPENAI_ENDPOINT = f"{_parsed.scheme}://{_parsed.netloc}"
-
-def _get_toolbox_token() -> str:
-    credential = DefaultAzureCredential()
-    return credential.get_token("https://ai.azure.com/.default").token
-
-def _get_toolbox_headers(token: str) -> dict:
-    return {
-        "Authorization": f"Bearer {token}",
-    }
-
-credential = DefaultAzureCredential()
-token_provider = get_bearer_token_provider(
-    credential, "https://ai.azure.com/.default"
-)
-
-chat_client = AzureOpenAIChatClient(
-    endpoint=OPENAI_ENDPOINT,
-    deployment_name=MODEL_DEPLOYMENT_NAME,
-    ad_token_provider=token_provider,
-)
-
-tools = []
-if TOOLBOX_ENDPOINT:
-    token = _get_toolbox_token()
-    tools.append(MCPStreamableHTTPTool(
-        name="toolbox",
-        url=TOOLBOX_ENDPOINT,
-        headers=_get_toolbox_headers(token),
-    ))
-
-agent = chat_client.create_agent(
-    name="my-toolbox-agent",
-    instructions="You are a helpful assistant with access to Foundry toolbox tools.",
-    tools=tools,
-)
-
-from_agent_framework(agent).run()
-```
-
-**`requirements.txt`**:
-
-```
---extra-index-url https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-python/pypi/simple/
-agent-framework>=0.1.0
-azure-ai-agentserver-agentframework==1.0.0b14
-azure-identity>=1.19.0
-python-dotenv==1.1.1
-```
-
-### Copilot SDK
-
-Use the GitHub Copilot SDK to build a toolbox-powered agent that bridges Copilot's tool invocation to the Foundry toolbox MCP endpoint.
-
-> [!NOTE]
-> The Copilot SDK rejects tool names containing dots. The bridge automatically replaces `.` with `_` in tool names — for example, `myserver.get_info` becomes `myserver_get_info`.
-
-**`.env` file**:
-
-```
-GITHUB_TOKEN=<your-github-token>
-FOUNDRY_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<name>/mcp?api-version=v1
-```
-
-**`agent.py`** (key pattern — MCP bridge):
-
-```python
-from azure.identity import DefaultAzureCredential
-from mcp.client.streamable_http import streamablehttp_client
-from mcp import ClientSession
-
-def _get_toolbox_token() -> str:
-    credential = DefaultAzureCredential()
-    return credential.get_token("https://ai.azure.com/.default").token
-
-def _get_toolbox_headers(token: str) -> dict:
-    return {
-        "Authorization": f"Bearer {token}",
-    }
-
-class McpBridge:
-    """MCP client SDK bridge that connects Foundry toolbox tools to the Copilot SDK."""
-
-    def __init__(self, endpoint: str, token: str):
-        self.endpoint = endpoint
-        self.headers = _get_toolbox_headers(token)
-        self._session = None
-        self._read = None
-        self._write = None
-
-    async def initialize(self):
-        ctx = streamablehttp_client(self.endpoint, headers=self.headers)
-        self._transport = await ctx.__aenter__()
-        self._read, self._write, _ = self._transport
-        self._session = ClientSession(self._read, self._write)
-        await self._session.__aenter__()
-        await self._session.initialize()
-
-    async def list_tools(self) -> list[dict]:
-        result = await self._session.list_tools()
-        return [
-            {
-                "name": tool.name,
-                "description": tool.description or "",
-                "inputSchema": tool.inputSchema,
-            }
-            for tool in result.tools
-        ]
-
-    async def call_tool(self, name: str, arguments: dict) -> str:
-        result = await self._session.call_tool(name, arguments=arguments)
-        return "\n".join(
-            c.text for c in result.content if hasattr(c, "text")
-        )
-
-
-async def run_agent(user_message: str) -> str:
-    """Wire McpBridge into the Copilot SDK agent and run a single turn."""
-    import os
-    from copilot_sdk import Agent, Message
-
-    endpoint = os.environ["FOUNDRY_TOOLBOX_ENDPOINT"]
-    token = _get_toolbox_token()
-
-    bridge = McpBridge(endpoint=endpoint, token=token)
-    await bridge.initialize()
-    mcp_tools = await bridge.list_tools()
-
-    # Build Copilot SDK tool definitions from MCP tool list
-    # Tool names with dots are replaced with underscores automatically
-    copilot_tools = [
-        {
-            "name": t["name"].replace(".", "_"),
-            "description": t.get("description", ""),
-            "parameters": t.get("inputSchema", {}),
-        }
-        for t in mcp_tools
-    ]
-
-    async def tool_handler(name: str, arguments: dict) -> str:
-        # Map underscored name back to dotted name for MCP call
-        mcp_name = name.replace("_", ".", 1)
-        return await bridge.call_tool(mcp_name, arguments)
-
-    agent = Agent(
-        tools=copilot_tools,
-        tool_handler=tool_handler,
-        token=os.environ["GITHUB_TOKEN"],
-    )
-    response = await agent.run(Message(role="user", content=user_message))
-    return response.content
-```
-
-**`requirements.txt`**:
-
-```
-github-copilot-sdk>=0.1.29
-azure-identity>=1.19.0
-mcp
-python-dotenv==1.1.1
-```
-
-### Deploy with azd
-
-Use the Azure Developer CLI (`azd`) to declare toolbox resources directly in an `agent.yaml` file and deploy your agent with a single command. With this approach, you don't need to create the toolbox separately through SDK or REST — `azd` provisions the toolbox, connections, and model deployment together.
-
-**Folder structure**:
-
-```
-my-agent/
-├── agent.yaml          # Agent, toolbox, and connection declarations
-├── main.py             # LangGraph agent (same as LangGraph section above)
-├── setup.py            # Shared setup: env, logging
-├── requirements.txt    # Azure hosting SDK dependencies
-├── requirements-pypi.txt  # PyPI dependencies (LangChain, LangGraph)
-├── Dockerfile          # Container build
-```
-
-**`agent.yaml`** (Web Search + GitHub MCP example):
-
-```yaml
-name: my-toolbox-agent
-description: LangGraph agent with Azure AI Foundry toolbox MCP.
-metadata:
-  tags:
-    - AI Agent Hosting
-    - LangGraph
-template:
-  name: my-toolbox-agent
-  kind: hosted
-  protocols:
-    - protocol: responses
-      version: 1.0.0
-  environment_variables:
-    - name: AZURE_AI_PROJECT_ENDPOINT
-      value: ${{AZURE_AI_PROJECT_ENDPOINT}}
-    - name: MODEL_DEPLOYMENT_NAME
-      value: ${{MODEL_DEPLOYMENT_NAME}}
-parameters:
-  github_pat:
-    secret: true
-    description: GitHub Personal Access Token for MCP connection
-resources:
-  - kind: connection
-    name: github-mcp-conn
-    target: https://api.githubcopilot.com/mcp
-    category: RemoteTool
-    authType: CustomKeys
-    credentials:
-      keys:
-        Authorization: "Bearer {{ github_pat }}"
-  - kind: toolbox
-    name: agent-tools
-    description: Web search and GitHub MCP tools
-    tools:
-      - type: web_search
-      - type: mcp
-        server_label: github
-        server_url: https://api.githubcopilot.com/mcp
-        project_connection_id: github-mcp-conn
-```
-
-> [!NOTE]
-> When deployed with toolbox resources in `agent.yaml`, the system auto-generates `TOOLBOX_{toolbox_name}_MCP_ENDPOINT` as an environment variable. For the toolbox named `agent-tools`, this becomes `TOOLBOX_AGENT_TOOLS_MCP_ENDPOINT`. Your `main.py` reads this value to connect to the toolbox.
-
-**`main.py`** (key pattern — reads the auto-generated endpoint):
-
-```python
-import os
-from langchain_mcp_adapters.client import MultiServerMCPClient
-from azure.identity import DefaultAzureCredential
-
-# The system auto-generates TOOLBOX_{toolbox_name}_MCP_ENDPOINT
-# for each toolbox resource in agent.yaml
-TOOLBOX_ENDPOINT = (
-    os.getenv("TOOLBOX_AGENT_TOOLS_MCP_ENDPOINT")
-    or os.getenv("TOOLBOX_ENDPOINT")  # fallback for local dev
-)
-
-def _get_toolbox_token() -> str:
-    credential = DefaultAzureCredential()
-    return credential.get_token("https://ai.azure.com/.default").token
-
-async def build_agent():
-    token = _get_toolbox_token()
-    client = MultiServerMCPClient({
-        "toolbox": {
-            "url": TOOLBOX_ENDPOINT,
-            "transport": "streamable_http",
-            "headers": {"Authorization": f"Bearer {token}"},
-        }
-    })
-    tools = await client.get_tools()
-    return tools
-```
-
-**`requirements.txt`**:
-
-```
---extra-index-url https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-python/pypi/simple/
-azure-ai-agentserver-core[tracing]==2.0.0a20260331006
-azure-ai-agentserver-responses==1.0.0a20260331006
-```
-
-**`requirements-pypi.txt`**:
-
-```
-langchain-openai>=0.3.0
-langgraph>=0.2.0
-langchain-mcp-adapters==0.1.11
-python-dotenv==1.1.1
-```
-
-**Deploy**:
-
-```bash
-azd env set MODEL_DEPLOYMENT_NAME "gpt-4o"
-azd env set GITHUB_PAT "ghp_xxxxxxxxxxxx"
-azd ai agent init
-azd ai agent start
-```
-
-## Step 6: Manage toolbox versions
-
-> [!NOTE]
-> Toolbox version management (list, get, promote, delete) is available through the Python SDK, .NET SDK, JavaScript SDK, and REST API. The azd CLI only supports creating toolbox versions during deployment.
-
-Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it — you decide when to update `default_version`. This lets you stage changes, test a new version independently, and promote it to production on your own schedule.
-
-| Object | Key fields | Description |
-|--------|-----------|-------------|
-| `ToolboxObject` | `id`, `name`, `default_version` | The toolbox container. `default_version` points to the active version. |
-| `ToolboxVersionObject` | `id`, `name`, `version`, `description`, `created_at`, `tools[]`, `policies` | An immutable snapshot of the toolbox's tool list at a point in time. |
-
-### Create a new version
-
-Each create call produces a new version. If the toolbox doesn't exist yet, it's automatically created. When you create the first version of a new toolbox, the default_version will be automatically assigned to v1 until you **manually** update to another version.
-
-:::zone pivot="python"
-
-```python
-toolbox_version = client.beta.toolboxes.create_toolbox_version(
-    toolbox_name="my-toolbox",
-    description="Updated tools v2",
-    tools=[...],
-)
-print(f"Created version: {toolbox_version.version}")
-```
-
-:::zone-end
-
-:::zone pivot="dotnet"
-
-```csharp
-ToolboxVersion toolboxVersion = await toolboxClient.CreateToolboxVersionAsync(
-    toolboxName: "my-toolbox",
-    tools: [tool],
-    description: "Updated tools v2"
-);
-Console.WriteLine($"Created version: {toolboxVersion.Version}");
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "description": "Updated tools v2",
-  "tools": [...]
-}
-```
-
-:::zone-end
-
-:::zone pivot="javascript"
-
-```javascript
-const toolboxVersion = await project.beta.toolboxes.createVersion(
-  "my-toolbox",
-  [/* tools array */],
-  { description: "Updated tools v2" },
-);
-console.log(`Created version: ${toolboxVersion.version}`);
-```
-
-:::zone-end
-
-The response is a `ToolboxVersionObject` containing the new `version` identifier.
-
-### List versions
-
-:::zone pivot="python"
-
-```python
-versions = list(client.beta.toolboxes.list_toolbox_versions(toolbox_name="my-toolbox"))
-for v in versions:
-    print(f"{v.version} — created {v.created_at}")
-```
-
-:::zone-end
-
-:::zone pivot="dotnet"
-
-```csharp
-List<ToolboxVersion> versions = await toolboxClient
-    .GetToolboxVersionsAsync("my-toolbox")
-    .ToListAsync();
-Console.WriteLine($"Found {versions.Count} toolbox version(s).");
-foreach (ToolboxVersion v in versions)
-{
-    Console.WriteLine($"  - {v.Name} ({v.Version})");
-}
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-```http
-GET {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
-Authorization: Bearer {token}
-```
-
-:::zone-end
-
-:::zone pivot="javascript"
-
-```javascript
-const versions = project.beta.toolboxes.listVersions("my-toolbox");
-for await (const v of versions) {
-  console.log(`${v.version} — created ${v.createdAt}`);
-}
-```
-
-:::zone-end
-
-### Get a specific version
-
-:::zone pivot="python"
-
-```python
-version_obj = client.beta.toolboxes.get_toolbox_version(
-    toolbox_name="my-toolbox",
-    version="<version_id>",
-)
-```
-
-:::zone-end
-
-:::zone pivot="dotnet"
-
-```csharp
-ToolboxVersion versionObj = await toolboxClient.GetToolboxVersionAsync(
-    "my-toolbox",
-    "<version_id>"
-);
-Console.WriteLine($"Retrieved toolbox: {versionObj.Name} ({versionObj.Id})");
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-```http
-GET {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
-Authorization: Bearer {token}
-```
-
-:::zone-end
-
-:::zone pivot="javascript"
-
-```javascript
-const versionObj = await project.beta.toolboxes.getVersion(
-  "my-toolbox",
-  "<version_id>",
-);
-console.log(`Retrieved version: ${versionObj.version}`);
-```
-
-:::zone-end
-
-### Promote a version to default
-
-The MCP endpoint always serves the `default_version`. To switch which version is active, update the toolbox:
-
-:::zone pivot="python"
-
-```python
-toolbox = client.beta.toolboxes.update(
-    toolbox_name="my-toolbox",
-    default_version="<version_id>",
-)
-print(f"Active version: {toolbox.default_version}")
-```
-
-:::zone-end
-
-:::zone pivot="dotnet"
-
-```csharp
-ToolboxRecord record = await toolboxClient.UpdateToolboxAsync(
-    "my-toolbox",
-    "<version_id>"
-);
-Console.WriteLine($"Active version: {record.DefaultVersion}");
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-```http
-PATCH {project_endpoint}/toolboxes/my-toolbox?api-version=v1
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "default_version": "<version_id>"
-}
-```
-
-`default_version` cannot be empty, you have to replace it with a new version if you want. 
-:::zone-end
-
-:::zone pivot="javascript"
-
-```javascript
-const toolbox = await project.beta.toolboxes.update(
-  "my-toolbox",
-  "<version_id>",
-);
-console.log(`Active version: ${toolbox.defaultVersion}`);
-```
-
-:::zone-end
-
-### Delete a version
-
-:::zone pivot="python"
-
-```python
-client.beta.toolboxes.delete_toolbox_version(
-    toolbox_name="my-toolbox",
-    version="<version_id>",
-)
-```
-
-:::zone-end
-
-:::zone pivot="dotnet"
-
-```csharp
-await toolboxClient.DeleteToolboxVersionAsync(
-    "my-toolbox",
-    "<version_id>"
-);
-```
-
-:::zone-end
-
-:::zone pivot="rest-api"
-
-```http
-DELETE {project_endpoint}/toolboxes/my-toolbox/versions/{version}?api-version=v1
-Authorization: Bearer {token}
-```
-
-:::zone-end
-
-:::zone pivot="javascript"
-
-```javascript
-await project.beta.toolboxes.deleteVersion(
-  "my-toolbox",
-  "<version_id>",
-);
-```
-
-:::zone-end
 
 ## Troubleshoot
 
