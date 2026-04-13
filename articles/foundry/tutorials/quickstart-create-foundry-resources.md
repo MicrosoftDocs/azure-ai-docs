@@ -8,7 +8,7 @@ ms.custom:
   - devx-track-azurecli
   - doc-kit-assisted
 ms.topic: quickstart
-ms.date: 01/16/2026
+ms.date: 04/13/2026
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
@@ -107,8 +107,7 @@ Reference: [az cognitiveservices account deployment](/cli/azure/cognitiveservice
 
 # [Foundry portal](#tab/portal)
 
-1. In your project, select **Discover** in the upper-right navigation.
-1. Select **Models**.
+1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
 1. Search for **gpt-4.1-mini**.
 1. Select **Deploy** > **Default settings** to add it to your project.
 1. Note the deployment name (for example, `gpt-4.1-mini`). Your team needs this name to use the model.
@@ -140,7 +139,7 @@ If you're administering a team, assign the **Azure AI User** role to team member
 
 ### Verify team member access
 
-Ask a team member to verify their access by signing in to [Microsoft Foundry](https://ai.azure.com), selecting the project from the project list, and confirming the deployed model appears under **Build** > **Models**.
+Ask a team member to verify their access by signing in to [Microsoft Foundry](https://ai.azure.com), selecting the project from the project list, and confirming the deployed model appears by selecting **Build** in the upper-right navigation, then **Models** in the left pane.
 
 If the team member can't access the project, verify that the role assignment completed successfully. Check that you used the correct email address or security group ID. Make sure the team member's Azure account is in the same Microsoft Entra tenant.
 
