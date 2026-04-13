@@ -547,14 +547,11 @@ For a full list of supported capabilities and tools, see [Claude's features over
 
 > [!IMPORTANT]
 > Currently, only Enterprise and MCA-E subscriptions are eligible for Claude model usage in Foundry.
->
-> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 
 Claude models in Foundry have the following rate limits, measured in Tokens Per Minute (TPM) and Requests Per Minute (RPM):
 
 | Model        |   Deployment type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
 |:------------------|:----------------|:--------------|:--------------|:-----------|:-----------|
-| claude-mythos-preview     | [Global Standard](../concepts/deployment-types.md#global-standard)  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-6   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-5   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-1   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
