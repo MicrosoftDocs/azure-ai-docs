@@ -19,6 +19,9 @@ ai-usage: ai-assisted
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
+[!INCLUDE [Introduction](./includes/how-to/voice-live-mcp-server/intro.md)]
+
+
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python how-to](./includes/how-to/voice-live-mcp-server/python.md)]
 ::: zone-end
