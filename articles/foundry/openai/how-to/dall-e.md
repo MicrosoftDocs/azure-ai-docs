@@ -4,7 +4,7 @@ description: "Learn how to generate and edit images using Azure OpenAI image gen
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 11/21/2025
+ms.date: 04/13/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -31,17 +31,17 @@ Use the tabs at the start of this page to select your preferred API approach and
 
 Use this table to learn the differences between the different image generation models, and to help you choose the best model for your image generation needs.
 
-| Aspect | GPT-Image-1.5 | GPT-Image-1 | GPT-Image-1-Mini |
-|--------|---------------|--------------|------------------|
-|**Availability** | Limited access preview ([Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) |
-| **Strengths** | Best for realism, instruction following, multimodal context, and improved speed/cost | Best for realism, instruction following, and multimodal context | Best for fast prototyping, bulk generation, or cost-sensitive use cases |
-| **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). |
-| **Image Sizes / Resolutions** | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 |
-| **Quality Options** | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = medium) |
-| **Number of Images per Request** | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) |
-| **Editing (inpainting / variations)** | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt |
-| **Face Preservation** | ✅ Advanced **face preservation** for realistic, consistent results | ✅ Advanced **face preservation** for realistic, consistent results | ❌ No dedicated face preservation; better for **non-portrait/general creative** imagery |
-| **Performance & Cost** | High-fidelity, **realism-optimized** model; improved efficiency and latency over GPT-Image-1 | High-fidelity, **realism-optimized** model; higher latency and cost | **Cost-efficient** and **faster** for large-scale or iterative generation |
+| Aspect | GPT-Image-2 | GPT-Image-1.5 | GPT-Image-1 | GPT-Image-1-Mini |
+|--------|-------------|---------------|--------------|------------------|
+|**Availability** | Public preview | Limited access preview ([Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) |
+| **Strengths** | Best for high-resolution and 4K generation, improved image editing, and broad aspect-ratio support | Best for realism, instruction following, multimodal context, and improved speed/cost | Best for realism, instruction following, and multimodal context | Best for fast prototyping, bulk generation, or cost-sensitive use cases |
+| **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). |
+| **Image Sizes / Resolutions** | Arbitrary resolutions: both edges must be multiples of 16 px; long edge up to 3840 px (4K); aspect ratio up to 3:1; pixel count 655,360–8,294,400 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 |
+| **Quality Options** | Reworked quality controls: `low`, `medium`, `high`; `low` is optimized for latency-sensitive use cases | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = medium) |
+| **Number of Images per Request** | TBD | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) |
+| **Editing (inpainting / variations)** | ✅ Improved editing performance with inpainting and variations | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt |
+| **Face Preservation** | TBD | ✅ Advanced **face preservation** for realistic, consistent results | ✅ Advanced **face preservation** for realistic, consistent results | ❌ No dedicated face preservation; better for **non-portrait/general creative** imagery |
+| **Performance & Cost** | TBD | High-fidelity, **realism-optimized** model; improved efficiency and latency over GPT-Image-1 | High-fidelity, **realism-optimized** model; higher latency and cost | **Cost-efficient** and **faster** for large-scale or iterative generation |
 
 ## Quickstart
 
@@ -120,8 +120,9 @@ The following command shows the most basic way to use an image model with code. 
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
-- Deploy a `gpt-image-1`-series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
+- Deploy a `gpt-image-1`-series or `gpt-image-2` model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 series models are available in limited access: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access).
+    - GPT-image-2 is available in public preview.
 - Python 3.8 or later.
     - Install the required packages: `pip install openai azure-identity`
 
@@ -224,13 +225,21 @@ The following API body parameters are available for image generation models.
 
 #### Size
 
-Specify the size of the generated images. Must be one of `1024x1024`, `1024x1536`, or `1536x1024` for GPT-image-1 series models. Square images are faster to generate.
+For GPT-image-1 series models, specify the size of the generated images as one of `1024x1024`, `1024x1536`, or `1536x1024`. Square images are faster to generate.
+
+For `gpt-image-2`, arbitrary resolutions are supported with the following constraints:
+- Both edges must be a multiple of 16 pixels.
+- Long edge up to 3840 px (4K support).
+- Aspect ratio up to 3:1.
+- Total pixel count between 655,360 and 8,294,400.
 
 #### Quality
 
 There are three options for image quality: `low`, `medium`, and `high`. Lower quality images can be generated faster.
 
-The default value is `high`.
+The default value is `high` for GPT-image-1 series models.
+
+For `gpt-image-2`, quality controls are reworked. The `low` setting is optimized for latency-sensitive use cases and is a fully supported usage path, not just an optimization trick.
 
 #### Number
 
