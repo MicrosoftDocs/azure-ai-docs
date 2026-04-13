@@ -5,7 +5,7 @@ description: "Learn how agent identities and agent identity blueprints work in M
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 03/23/2026
+ms.date: 04/13/2026
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
@@ -218,8 +218,8 @@ Common role assignments for agent tools:
 | Tool scenario | Required role | Target scope |
 | --- | --- | --- |
 | MCP server that reads/writes blobs | Storage Blob Data Contributor | Storage account |
-| MCP server that triggers logic apps | Logic Apps Standard Reader | Logic App resource |
-| A2A tool that queries Cosmos DB | Cosmos DB Data Reader | Cosmos DB account |
+| MCP server that triggers logic apps | Logic Apps Standard Operator (Preview) | Logic App resource |
+| A2A tool that queries Cosmos DB | Cosmos DB Built-in Data Reader | Cosmos DB account |
 
 > [!IMPORTANT]
 > When you publish an agent, it receives a new distinct `agentIdentityId`. Repeat these role assignments for the new identity. The shared project identity roles don't carry over to the published agent's identity.
@@ -279,7 +279,7 @@ For tool-specific troubleshooting, see the tool documentation:
 
 Agent identities persist as long as the associated Foundry project or agent application resource exists. When you delete a Foundry project, the associated agent identity blueprint and shared agent identity are removed. Published agents have their own identity lifecycle tied to the agent application resource — deleting the agent application removes its distinct identity.
 
-You can view and manage all agent identities in your tenant through the Microsoft Entra admin center. Go to the [tab for agent identities](https://entra.microsoft.com/?Microsoft_AAD_RegisteredApps=stage1&exp.EnableAgentIDUX=true#view/Microsoft_AAD_RegisteredApps/AllAgents.MenuView/~/allAgentIds) to see an inventory of all agents in your tenant, including Foundry agents, Microsoft Copilot Studio agents, and others.
+You can view and manage all agent identities in your tenant through the Microsoft Entra admin center. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) and browse to **Entra ID** > **Agent ID** > **All agent identities** to see an inventory of all agents in your tenant, including Foundry agents, Microsoft Copilot Studio agents, and others.
 
 :::image type="content" source="../media/agent-identity/entra-admin-center-agent-identities.png" alt-text="Screenshot of the Microsoft Entra admin center that shows the tab for agent identities with an inventory of all agents in the tenant." lightbox="../media/agent-identity/entra-admin-center-agent-identities.png":::
 
