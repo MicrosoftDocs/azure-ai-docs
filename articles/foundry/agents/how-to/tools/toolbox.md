@@ -470,7 +470,7 @@ await client.close();
 :::zone pivot="azd"
 
 > [!NOTE]
-> Use the REST API tab to verify tool availability from .NET, or use the Python MCP client SDK.
+> Use the REST API tab to verify tool availability, or use the Python MCP client SDK.
 
 :::zone-end
 
@@ -805,6 +805,12 @@ console.log(`Created version: ${toolboxVersion.version}`);
 
 :::zone-end
 
+:::zone pivot="azd"
+
+This operation isn't supported with azd. To create a toolbox version, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
+
+:::zone-end
+
 The response is a `ToolboxVersionObject` containing the new `version` identifier.
 
 ### List versions
@@ -854,6 +860,12 @@ for await (const v of versions) {
 
 :::zone-end
 
+:::zone pivot="azd"
+
+This operation isn't supported with azd. To list toolbox versions, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
+
+:::zone-end
+
 ### Get a specific version
 
 :::zone pivot="python"
@@ -897,6 +909,12 @@ const versionObj = await project.beta.toolboxes.getVersion(
 );
 console.log(`Retrieved version: ${versionObj.version}`);
 ```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+This operation isn't supported with azd. To get a specific toolbox version, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
 
 :::zone-end
 
@@ -955,6 +973,12 @@ console.log(`Active version: ${toolbox.defaultVersion}`);
 
 :::zone-end
 
+:::zone pivot="azd"
+
+This operation isn't supported with azd. To promote a version to default, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
+
+:::zone-end
+
 ### Delete a version
 
 :::zone pivot="python"
@@ -996,6 +1020,12 @@ await project.beta.toolboxes.deleteVersion(
   "<version_id>",
 );
 ```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+This operation isn't supported with azd. To delete a toolbox version, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
 
 :::zone-end
 
