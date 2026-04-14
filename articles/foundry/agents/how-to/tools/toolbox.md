@@ -509,7 +509,7 @@ Tool-specific `tools/call` argument examples:
 
 ### LangGraph
 
-You can see the detailed samples [here](aka.ms/foundry-toolbox-langgraph).
+You can see the detailed samples [here](https://aka.ms/foundry-toolbox-langgraph).
 
 **`.env` file**:
 
