@@ -2276,17 +2276,17 @@
       "redirect_document_id": true
     },
        {
-      "source_path_from_root": "articles/foundry-classic/reference/foundry-project.md",
+      "source_path_from_root": "/articles/foundry-classic/reference/foundry-project.md",
       "redirect_url": "/rest/api/aifoundry/aiproject",
       "redirect_document_id": true
     },
        {
-      "source_path_from_root": "articles/foundry/reference/foundry-project-rest-preview.md",
+      "source_path_from_root": "/articles/foundry/reference/foundry-project-rest-preview.md",
       "redirect_url": "/rest/api/aifoundry/aiproject",
       "redirect_document_id": true
     },
       {
-      "source_path_from_root": "articles/foundry/reference/foundry-project.md",
+      "source_path_from_root": "/articles/foundry/reference/foundry-project.md",
       "redirect_url": "/rest/api/aifoundry/aiproject",
       "redirect_document_id": true
     },
