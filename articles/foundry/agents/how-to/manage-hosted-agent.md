@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-manage-method
 
 # Manage hosted agents
 
-This article shows you how to manage hosted agents in Foundry Agent Service. After you [deploy a hosted agent](deploy-hosted-agent.md), you can view its status, monitor logs, manage session files, and delete it when it's no longer needed.
+This article shows you how to manage hosted agents in Foundry Agent Service. After you [deploy a hosted agent](deploy-hosted-agent.md), you can view its status, create new versions, configure traffic routing, monitor logs, and delete agents when they're no longer needed.
 
 The platform manages the container lifecycle automatically. Compute is provisioned when a request arrives and deprovisioned after the idle timeout (15 minutes). There are no manual start or stop operations.
 
@@ -31,10 +31,7 @@ The platform manages the container lifecycle automatically. Compute is provision
 
 :::zone pivot="python"
 
-- Python SDK: `azure-ai-projects>=2.0.0` and `azure-identity`.
-
-> [!NOTE]
-> Session management and file operations use the preview sub-client `project.beta.agents`. Pass `api_version="2025-11-15-preview"` when you create the `AIProjectClient` to enable these operations.
+- Python SDK: `azure-ai-projects>=2.1.0` and `azure-identity`.
 
 :::zone-end
 
@@ -93,7 +90,7 @@ from azure.ai.projects import AIProjectClient
 project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
-    api_version="2025-11-15-preview",
+    allow_preview=True,
 )
 
 for agent in project.agents.list():
@@ -202,6 +199,58 @@ Version information is included in the output of `azd ai agent show`.
 
 :::zone-end
 
+### Create a new version
+
+Create a new agent version when you need to update the container image, change resource allocation, or modify environment variables.
+
+:::zone pivot="rest"
+
+```bash
+az rest --method PUT \
+    --url "${BASE_URL}/agents/my-agent/versions/2?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --body '{
+        "definition": {
+            "image": "myregistry.azurecr.io/my-agent:v2",
+            "cpu": "1",
+            "memory": "2Gi",
+            "containerProtocolVersions": [
+                {"protocol": "responses", "version": "1.0.0"}
+            ]
+        }
+    }'
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import HostedAgentDefinition, ProtocolVersionRecord
+
+agent = project.agents.create_version(
+    agent_name="my-agent",
+    definition=HostedAgentDefinition(
+        cpu="1",
+        memory="2Gi",
+        image="myregistry.azurecr.io/my-agent:v2",
+        container_protocol_versions=[
+            ProtocolVersionRecord(protocol="responses", version="1.0.0"),
+        ],
+    ),
+    metadata={"enableVnextExperience": "true"},
+)
+print(f"Created version: {agent.version}")
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+New versions are created automatically when you run `azd deploy` with updated code or configuration.
+
+:::zone-end
+
 ### Version status values
 
 After you create or update an agent version, poll the version endpoint until the status reaches `active`:
@@ -213,6 +262,30 @@ After you create or update an agent version, poll the version endpoint until the
 | `failed` | Provisioning failed. Check the `error` field in the response for details. |
 | `deleting` | Version is being cleaned up. |
 | `deleted` | Version has been fully removed. |
+
+:::zone pivot="python"
+
+Poll the version status after creation:
+
+```python
+import time
+
+def wait_for_version_active(project, agent_name, agent_version, max_attempts=60):
+    for attempt in range(max_attempts):
+        time.sleep(10)
+        version = project.agents.get_version(
+            agent_name=agent_name, agent_version=agent_version
+        )
+        status = version["status"]
+        print(f"Version status: {status} (attempt {attempt + 1})")
+        if status == "active":
+            return
+        if status == "failed":
+            raise RuntimeError(f"Version provisioning failed: {dict(version)}")
+    raise RuntimeError("Timed out waiting for version to become active")
+```
+
+:::zone-end
 
 ## Delete an agent
 
@@ -286,7 +359,8 @@ SESSION_ID="<session-id>"
 
 az rest --method GET \
     --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}:logstream?api-version=${API_VERSION}&kind=console&tail=100&follow=true" \
-    --resource "${RESOURCE}"
+    --resource "${RESOURCE}" \
+    --headers "Foundry-Features=HostedAgents=V1Preview"
 ```
 
 | Parameter | Description |
@@ -328,82 +402,49 @@ This command reads the agent name and version from the `azd` service entry in yo
 2026-04-09T08:43:59.0671054Z stdout F INFO: 127.0.0.1:42588 - "GET /readiness HTTP/1.1" 200 OK
 ```
 
-## Manage sessions
+## Configure agent endpoint routing
 
-Each hosted agent uses sessions to provide isolated sandbox compute for requests. Sessions are scoped to an agent and are identified by a session ID. You can list, inspect, and delete sessions for an agent.
-
-### List sessions
+Agent endpoints control how traffic is distributed across agent versions. Use version selectors to route a percentage of traffic to specific versions, enabling canary deployments or gradual rollouts.
 
 :::zone pivot="rest"
 
-```bash
-az rest --method GET \
-    --url "${BASE_URL}/agents/my-agent/endpoint/sessions?api-version=${API_VERSION}" \
-    --resource "${RESOURCE}"
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-for session in project.beta.agents.list_sessions(agent_name="my-agent"):
-    print(f"Session: {session.id}")
-```
-
-:::zone-end
-
-:::zone pivot="azd"
-
-Session management isn't currently available as a standalone command. Use the REST API or SDK.
-
-:::zone-end
-
-### Get session details
-
-:::zone pivot="rest"
+Endpoint routing is configured by patching the agent object. Use `PATCH /agents/{agent_name}` with `Content-Type: application/merge-patch+json`:
 
 ```bash
-SESSION_ID="<session-id>"
-
-az rest --method GET \
-    --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}?api-version=${API_VERSION}" \
-    --resource "${RESOURCE}"
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-session = project.beta.agents.get_session(
-    agent_name="my-agent", session_id="session-id"
-)
-print(f"Session ID: {session.id}")
-```
-
-:::zone-end
-
-:::zone pivot="azd"
-
-Session management isn't currently available as a standalone command. Use the REST API or SDK.
-
-:::zone-end
-
-### Delete a session
-
-Deleting a session terminates the sandbox and releases its resources. The `x-session-isolation-key` header must match the key used when the session was created.
-
-:::zone pivot="rest"
-
-```bash
-SESSION_ID="<session-id>"
-ISOLATION_KEY="<isolation-key>"
-
-az rest --method DELETE \
-    --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}?api-version=${API_VERSION}" \
+az rest --method PATCH \
+    --url "${BASE_URL}/agents/my-agent?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "x-session-isolation-key=${ISOLATION_KEY}"
+    --headers "Content-Type=application/merge-patch+json" \
+    --body '{
+        "agent_endpoint": {
+            "version_selector": {
+                "version_selection_rules": [
+                    {"agent_version": "1", "traffic_percentage": 100, "type": "FixedRatio"}
+                ]
+            },
+            "protocols": ["responses"]
+        }
+    }'
+```
+
+To split traffic between two versions (for example, 90/10 for a canary deployment):
+
+```bash
+az rest --method PATCH \
+    --url "${BASE_URL}/agents/my-agent?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --headers "Content-Type=application/merge-patch+json" \
+    --body '{
+        "agent_endpoint": {
+            "version_selector": {
+                "version_selection_rules": [
+                    {"agent_version": "1", "traffic_percentage": 90, "type": "FixedRatio"},
+                    {"agent_version": "2", "traffic_percentage": 10, "type": "FixedRatio"}
+                ]
+            },
+            "protocols": ["responses"]
+        }
+    }'
 ```
 
 :::zone-end
@@ -411,10 +452,27 @@ az rest --method DELETE \
 :::zone pivot="python"
 
 ```python
-project.beta.agents.delete_session(
+from azure.ai.projects.models import (
+    AgentEndpoint,
+    AgentEndpointProtocol,
+    FixedRatioVersionSelectionRule,
+    VersionSelector,
+)
+
+endpoint_config = AgentEndpoint(
+    version_selector=VersionSelector(
+        version_selection_rules=[
+            FixedRatioVersionSelectionRule(
+                agent_version="1", traffic_percentage=100
+            ),
+        ]
+    ),
+    protocols=[AgentEndpointProtocol.RESPONSES],
+)
+
+project.beta.agents.patch_agent_object(
     agent_name="my-agent",
-    session_id="session-id",
-    isolation_key="<isolation-key>",
+    agent_endpoint=endpoint_config,
 )
 ```
 
@@ -422,91 +480,9 @@ project.beta.agents.delete_session(
 
 :::zone pivot="azd"
 
-Session management isn't currently available as a standalone command. Use the REST API or SDK.
+Endpoint routing is configured automatically during `azd deploy`. To customize traffic distribution, use the REST API or SDK.
 
 :::zone-end
-
-## Session file operations
-
-Upload and download files to agent session sandboxes. Each file is scoped to a specific session.
-
-:::zone pivot="rest"
-
-```bash
-SESSION_ID="<session-id>"
-ENDPOINT_BASE="${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}/files"
-
-# Upload a file to a session (max 50 MB)
-az rest --method PUT \
-    --url "${ENDPOINT_BASE}/content?api-version=${API_VERSION}&path=/data.csv" \
-    --resource "${RESOURCE}" \
-    --body @data.csv \
-    --headers "Content-Type=application/octet-stream"
-
-# Download a file from a session
-az rest --method GET \
-    --url "${ENDPOINT_BASE}/content?api-version=${API_VERSION}&path=/data.csv" \
-    --resource "${RESOURCE}" \
-    --output-file output.csv
-
-# List files in a session
-az rest --method GET \
-    --url "${ENDPOINT_BASE}?api-version=${API_VERSION}&path=/" \
-    --resource "${RESOURCE}"
-
-# Delete a file from a session
-az rest --method DELETE \
-    --url "${ENDPOINT_BASE}?api-version=${API_VERSION}&path=/data.csv" \
-    --resource "${RESOURCE}"
-```
-
-:::zone-end
-
-:::zone pivot="python"
-
-```python
-# Upload a file to a session (max 50 MB)
-with open("./data.csv", "rb") as f:
-    project.beta.agents.upload_session_file(
-        agent_name="my-agent",
-        session_id="session-id",
-        content=f.read(),
-        path="/data.csv",
-    )
-
-# Download a file from a session
-chunks = project.beta.agents.download_session_file(
-    agent_name="my-agent", session_id="session-id", path="/data.csv"
-)
-with open("./output.csv", "wb") as f:
-    for chunk in chunks:
-        f.write(chunk)
-
-# List files in a session
-files = project.beta.agents.list_session_files(
-    agent_name="my-agent", session_id="session-id", path="/"
-)
-
-# Delete a file from a session
-project.beta.agents.delete_session_file(
-    agent_name="my-agent", session_id="session-id", path="/data.csv"
-)
-```
-
-:::zone-end
-
-:::zone pivot="azd"
-
-```bash
-azd ai agent files upload --file ./data.csv --target-path /data.csv
-azd ai agent files download --file /data.csv --target-path ./output.csv
-azd ai agent files list /
-azd ai agent files remove --file /data.csv
-```
-
-:::zone-end
-
-For details on invoking agents through these endpoints, see the [hosted agents quickstart](../../agents/quickstarts/quickstart-hosted-agent.md).
 
 ## Next steps
 
