@@ -381,7 +381,7 @@ print(response.model_dump_json(indent=2))
 
 We also recommend that you include the `suffix` parameter to more easily distinguish between iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. With the OpenAI Python API, you can add a string of up to 18 characters to the name of your fine-tuned model.
 
-If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Microsoft Foundry. Or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP) for an Azure OpenAI resource by using the REST API.
+If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Microsoft Foundry. Or you can generate a [list of models](/rest/api/azureopenai/models/list) for an Azure OpenAI resource by using the REST API.
 
 ## Clean up your deployments, customized models, and training files
 
@@ -394,7 +394,7 @@ When you no longer need your customized model, you can delete the deployment and
 You can use either of these methods to delete the deployment for your customized model:
 
 - [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
-- [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete)
+- [Azure CLI](/cli/azure/cognitiveservices/account/deployment)
 
 ### Delete your customized model
 

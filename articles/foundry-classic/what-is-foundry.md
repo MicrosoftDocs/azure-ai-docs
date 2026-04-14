@@ -4,7 +4,7 @@ description: "Microsoft Foundry is a trusted platform that empowers developers t
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
-ms.date: 11/06/2025
+ms.date: 04/13/2026
 ms.service: azure-ai-foundry
 ms.topic: overview
 ai-usage: ai-assisted
@@ -174,6 +174,7 @@ But for full functionality, you need an [Azure account](https://azure.microsoft.
 
 ## Related content
 
-- [Quickstart: Get started with Microsoft Foundry](quickstarts/get-started-code.md)- [Create a project](./how-to/create-projects.md)
+- [Quickstart: Get started with Microsoft Foundry](quickstarts/get-started-code.md)
+- [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
 - [What's new in Microsoft Foundry documentation?](whats-new-foundry.md)

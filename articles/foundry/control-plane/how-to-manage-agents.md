@@ -4,7 +4,7 @@ description: "Learn how to view your agent inventory, monitor agent health, and 
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
-ms.date: 01/02/2026
+ms.date: 04/13/2026
 ms.manager: mcleans
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -12,7 +12,7 @@ ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Manage agents in Foundry Control Plane
+# Manage agents at scale in Microsoft Foundry Control Plane
 
 Microsoft Foundry Control Plane provides centralized management and observability for agents that run across supported platforms and infrastructures. With Foundry Control Plane, you can manage agents that are distributed across multiple projects within a subscription.
 
@@ -46,7 +46,7 @@ The following information appears:
 | **Estimated cost** | The estimated cost of the agent executions in the last month, based on the number of tokens consumed. This column requires [observability configured](#observability-of-agents). | Foundry |
 | **Token usage** | The estimated tokens consumed by the runs in the last month. This column requires [observability configured](#observability-of-agents). | Foundry |
 | **Runs** | The number of executions in the last month. This column requires [observability configured](#observability-of-agents). | All |
-| **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of GenAIOps evaluation](../concepts/observability.md#the-three-stages-of-ai-application-lifecycle-evaluation). | Foundry |
+| **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of AI application lifecycle evaluation](../concepts/observability.md#the-three-stages-of-ai-application-lifecycle-evaluation). | Foundry |
 | **Entra ID** | The Microsoft Entra Agent ID application and object ID associated with the agent. An agent identity is a special service principal in Microsoft Entra ID. It represents an identity that the agent identity blueprint created and is authorized to impersonate. See [Agent identity concepts in Microsoft Foundry](../agents/concepts/agent-identity.md). | Foundry |
 
 ### Permissions model
@@ -156,7 +156,7 @@ To view them:
 
 Foundry Control Plane helps organizations control agents to manage usage and infrastructure cost. Different agent platforms support different operations.
 
-The following table summarizes supported actions for each platform. A foundry agent's support depends on the agent type and its publishing state.
+The following table summarizes supported actions for each platform. A Foundry agent's support depends on the agent type and its publishing state.
 
 | Platform | Agent type | Published | Supported actions | Notes |
 | -------- | ---------- | --------- | ----------------- | ----- |

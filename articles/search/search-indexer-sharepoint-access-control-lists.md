@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 04/26/2026
 ---
 
 # Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights
@@ -43,6 +43,18 @@ This article explains how to ingest an access control list (ACL) alongside other
   + [Shareable links](/sharepoint/shareable-links-anyone-specific-people-organization) scoped to "Anyone" or "People in your organization." Only links scoped to "Specific people" are supported.
 
   + [SharePoint groups](/sharepoint/modern-experience-sharing-permissions) that can't be resolved to Microsoft Entra groups (such as Owners, Members, Visitors groups).
+ 
++ The following indexer features don't support permission inheritance in indexed documents originating from ADLS Gen2. If you use any of these features in a skillset or indexer, document-level permissions aren't included in the indexed content.
+
+  + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
+
+  + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
+
+  + [Knowledge store](knowledge-store-concept-intro.md)
+
+  + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
+
+  + [Debug sessions](cognitive-search-debug-session.md)
 
 
 ## Support for the SharePoint permission model

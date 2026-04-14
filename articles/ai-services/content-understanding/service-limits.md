@@ -17,6 +17,8 @@ ai-usage: ai-assisted
 
 # Azure Content Understanding in Foundry Tools service quotas and limits
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
 This article lists the quotas and limits for the Azure Content Understanding in Foundry Tools service.
 
 ## General limits

@@ -142,6 +142,10 @@ Use the **Quota** pane to view, adjust, and request quotas.
 
 The **Quota** pane shows your model deployments and how much quota each deployment consumes. It gives insights into usage patterns and helps you manage resources effectively.
 
+By default, the quota view displays only models with active deployments. Turn on the **Show all** toggle to see the full list of available models and regions, including models you haven't deployed yet. Use **Show all** to explore available quota before you create a deployment, or to check which regions have capacity for a specific model.
+
+For more information, see [Manage and increase quotas for resources](../how-to/quota.md).
+
 ### Admin
 
 Use the **Admin** pane to view, organize, and administer all projects, users, and connected resources across your Foundry environment.

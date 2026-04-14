@@ -190,9 +190,9 @@ curl $AZURE_OPENAI_ENDPOINT/openai/v1/chat/completions \
 
 Developer deployments will auto-delete on their own regardless of activity. Each deployment has a fixed lifetime of **24 hours** after which it is subject to removal. The deletion of a deployment doesn't delete or affect the underlying customized model and the customized model can be redeployed at any time.
 
-To delete a deployment manually, you can use the Foundry portal or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
+To delete a deployment manually, you can use the Foundry portal or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-delete).
 
-To use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP) send an HTTP `DELETE` to the deployment resource. Like with creating deployments, you must include the following parameters:
+To use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete) send an HTTP `DELETE` to the deployment resource. Like with creating deployments, you must include the following parameters:
 
 - Azure subscription ID
 - Azure resource group name

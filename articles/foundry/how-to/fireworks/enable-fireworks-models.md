@@ -5,7 +5,7 @@ description: Learn how to enable, deploy, and use Fireworks models in Microsoft 
 author: ssalgadodev 
 ms.author: ssalgado
 manager: nitinme
-ms.date: 03/11/2026
+ms.date: 04/10/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
@@ -112,13 +112,18 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 
 The following Fireworks models are available in the Foundry model catalog:
 
-| Model provider | Model name | Model ID | Type | Description |
-| --- | --- | --- | --- | --- |
-| **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions | Reasoning-optimized open-weight model for complex tasks. |
-| **MiniMax** | MiniMax 2.5 | `FW-MiniMax-2.5` | Chat completions | General-purpose model for conversational and instruction-following tasks. |
-| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Multimodal model with strong long-context capabilities. |
-| **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions | Large-scale open-weight model for broad generative tasks. |
-| **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions | High-performance bilingual model for chat and reasoning. |
+| Model provider | Model name | Model ID | Type | Supported offers | Description |
+| --- | --- | --- | --- | --- | --- |
+| **DeepSeek** | DeepSeek v3.1 | `FW-DeepSeek-v3.1` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
+| **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions | Per-Token and PTU | Reasoning-optimized open-weight model for complex tasks. |
+| **MiniMax** | MiniMax 2.5 | `FW-MiniMax-2.5` | Chat completions | Per-Token and PTU | General-purpose model for conversational and instruction-following tasks. |
+| **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions | PTU | Instruction-tuned model for chat workloads. |
+| **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | Reasoning-focused model for multi-step problem solving. |
+| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Per-Token and PTU | Multimodal model with strong long-context capabilities. |
+| **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions | Per-Token and PTU | Large-scale open-weight model for broad generative tasks. |
+| **Qwen** | Qwen3 14B | `FW-Qwen3-14b` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
+| **Zhipu AI** | GLM-4.7 | `FW-GLM-4.7` | Chat completions | PTU | Bilingual model for chat and reasoning tasks. |
+| **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions | Per-Token and PTU | High-performance bilingual model for chat and reasoning. |
 
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for chat completions.
 
@@ -134,6 +139,7 @@ Custom models must be based on one of the following supported architectures:
 * **Kimi** (K2, K2.5)
 * **GLM** (4.7, 4.8)
 * **OpenAI** gpt-oss-120b
+* **Qwen** (qwen3-14b)
 
 ### Limitations
 
