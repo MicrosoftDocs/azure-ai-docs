@@ -3,8 +3,8 @@ title: "What Is Provisioned Throughput for Foundry Models?"
 description: "Learn how provisioned throughput enables efficient deployment of Azure OpenAI and Foundry Models with stable latency and allocated capacity. Get started today."
 #customer intent: As a developer, I want to understand provisioned throughput so I can deploy and manage AI models efficiently.
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 02/10/2026
 ms.custom:

@@ -4,7 +4,7 @@ description: Map classic terminology, features, SDKs, and portal navigation to t
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: nbrady
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 03/10/2026
 ms.custom:

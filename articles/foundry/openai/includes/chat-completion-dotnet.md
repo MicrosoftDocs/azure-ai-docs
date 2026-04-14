@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to work with the Chat Completion API using the Azure OpenAI .NET SDK.
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 03/04/2026
 manager: nitinme

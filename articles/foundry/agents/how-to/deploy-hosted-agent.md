@@ -6,8 +6,8 @@ ms.author: aahi
 ms.date: 03/04/2026
 ms.manager: nitinme
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: references_regions, doc-kit-assisted
 ai-usage: ai-assisted
 ---

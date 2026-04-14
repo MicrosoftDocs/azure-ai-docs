@@ -1,7 +1,7 @@
 ---
 title: "Feature availability across cloud regions (classic)"
 description: "This article lists Microsoft Foundry feature availability across cloud regions. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.date: 01/23/2026
 ms.reviewer: deeikele

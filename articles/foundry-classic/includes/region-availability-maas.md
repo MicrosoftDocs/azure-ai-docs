@@ -5,7 +5,7 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: scottpolly
 ms.date: 02/17/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.custom:
   - include

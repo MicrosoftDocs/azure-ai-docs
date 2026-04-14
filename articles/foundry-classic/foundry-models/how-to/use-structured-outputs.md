@@ -1,8 +1,8 @@
 ---
 title: "How to use structured outputs for chat models (classic)"
 description: "Learn how to use structure outputs with chat completions with Microsoft Foundry Models (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 08/28/2025
 ms.author: mopeakande

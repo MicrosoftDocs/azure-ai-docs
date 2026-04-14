@@ -1,8 +1,8 @@
 ---
 title: "Deployment options for Microsoft Foundry Models (classic)"
 description: "Learn about deployment options for Microsoft Foundry Models including standard, serverless API, and managed compute deployments. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.date: 01/30/2026
 ms.author: mopeakande

@@ -3,8 +3,8 @@ title: "What are tools in Foundry Agent Service (classic)"
 description: "Learn how to use the various tools available in the Foundry Agent Service. (classic)"
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
 author: alvinashcraft
