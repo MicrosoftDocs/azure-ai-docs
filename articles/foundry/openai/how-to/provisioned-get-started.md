@@ -173,7 +173,7 @@ The inferencing code for provisioned deployments is the same as a standard deplo
 
 ## Run a benchmark
 
-The exact performance and throughput capabilities of your deployment depend on the number of PTUs deployed, the kind of requests you make, and your workload shape (including input size, output size, and call rate). The best way to determine the throughput for your workload is to run a benchmark on your own data.
+The exact performance and throughput capabilities of your deployment depend on the number of PTUs deployed, the kind of requests you make, and your workload shape (including prompt size, generation size, call rate, and similar factors). The best way to determine the throughput for your workload is to run a benchmark on your own data.
 
 The **benchmarking tool** provides preconfigured workload shapes and outputs key performance metrics. Use this tool to run benchmarks on your deployment. For details and configuration settings, see the [azure-openai-benchmark](https://github.com/Azure/azure-openai-benchmark) repository on GitHub.
 
@@ -203,12 +203,12 @@ To view the metric:
 
 ### How utilization works
 
-The service tracks utilization using a variation of the leaky bucket algorithm:
+Each customer has a set amount of capacity they can use on a provisioned deployment. To maintain utilization below 100% while allowing some burstiness in traffic, the service uses a variation of the leaky bucket algorithm as follows:
 
-1. **Request estimate**: For each incoming request, the service estimates the compute cost by combining the prompt token count (less any cached tokens) and the `max_tokens` parameter. Cached tokens receive a 100% discount and don't contribute to utilization. If `max_tokens` isn't specified, the service estimates a value—this can lead to lower concurrency than expected when actual generated tokens are fewer than estimated. For highest concurrency, set `max_tokens` as close as possible to your true generation size.
-1. **Throttling at 100%**: If current utilization is at 100%, the service returns HTTP 429 immediately, with `retry-after-ms` and `retry-after` response headers indicating how long to wait.
-1. **Continuous drain**: Utilization drains continuously at a rate proportional to deployed PTUs. A deployment with more PTUs drains faster, recovers more quickly between requests, and can sustain a higher overall request rate.
-1. **Post-request correction**: When a request finishes, the service corrects the utilization estimate using actual token counts. If the actual cost exceeds the estimate, the difference is added to utilization; if it's less, the difference is subtracted.
+1. **Throttling at 100%**: When a request is made, if current utilization is at 100%, the service returns HTTP 429 immediately, with `retry-after-ms` and `retry-after` response headers indicating how long to wait.
+1. **Request estimate**: For each incoming request, the service estimates the compute cost by combining the prompt token count (less any cached tokens) and the specified `max_tokens` in the call. Cached tokens receive a 100% discount and don't contribute to utilization. If `max_tokens` isn't specified, the service estimates a value—this can lead to lower concurrency than expected when actual generated tokens are fewer than estimated. For highest concurrency, set `max_tokens` as close as possible to your true generation size.
+1. **Post-request correction**: When a request finishes, the service corrects the utilization estimate using actual token counts. If the actual compute cost exceeds the estimate, the difference is added to utilization; if it's less, the difference is subtracted.
+1. **Continuous drain**: Utilization drains continuously at a rate proportional to deployed PTUs. A deployment with more PTUs drains faster.
 
 Accepted requests always complete with predictable latency, because 429 responses are returned immediately rather than queuing traffic.
 
@@ -228,7 +228,7 @@ A 429 from a provisioned deployment is a traffic-management signal—not a servi
 The response includes the `retry-after-ms` and `retry-after` headers that tell you how long to wait before the next call is accepted. How you handle a 429 depends on your application requirements:
 
 - **Redirect to another deployment or model**: This option produces the lowest additional latency because the action can be taken as soon as you receive the 429 signal. The [spillover feature](./spillover-traffic-management.md) automates the process of redirecting requests from your provisioned deployment to a standard deployment.
-- **Retry using the wait time in the response headers**: If you need the provisioned deployment and can tolerate added latency, wait the time indicated in `retry-after-ms` and retry. The Azure OpenAI SDKs implement this retry behavior by default.
+- **Retry using the wait time in the response headers**: If you need the provisioned deployment and can tolerate added latency, wait the time indicated in `retry-after-ms` and retry. The [Azure OpenAI SDKs implement this retry behavior by default](#modify-retry-logic-in-the-client-libraries). You might still need further tuning based on your use-cases.
 
 ### Concurrent call limits
 
