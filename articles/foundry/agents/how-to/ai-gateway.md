@@ -3,7 +3,7 @@ title: "Bring Your Own Model to Foundry Agent Service"
 description: "Connect and bring your own models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
-ms.date: 04/09/2026
+ms.date: 04/14/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -12,8 +12,8 @@ ms.custom: doc-kit-assisted
 zone_pivot_groups: foundry-portal-and-cli
 ---
 
-# Bring your own model to Foundry Agent Service
-Foundry Agent Service allows you to connect and use models hosted behind your AI gateways such as **Azure API Management** or other **non-Azure managed AI model gateways**. This capability, called *bring your own model*, allows you to maintain control over your model endpoints while using Foundry agent capabilities.
+# Bring your own model to Foundry Agent Service (preview)
+Foundry Agent Service allows you to connect and use models hosted behind your AI gateways such as **Azure API Management** or other **non-Azure managed AI model gateways**. This capability, called *bring your own model* (preview), allows you to maintain control over your model endpoints while using Foundry agent capabilities.
 
 > [!IMPORTANT]
 > For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Azure Direct Models. Foundry Agent Service supports the ability to bring your own model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.
@@ -72,17 +72,17 @@ To add a model connection in the Foundry portal:
     :::image type="content" source="../media/ai-gateway/add-model-connection.png" alt-text="Screenshot of external models in the Foundry portal.":::
 
     The **Add model connection** wizard opens.
-1. On the **Connection Type** page, select **Azure API Management**, and then select an existing API Management resource name and model deployment.
+1. On the **Connection Type** page, select **Azure API Management**, and then select an existing API Management resource name and model deployment. The model must implement the OpenAI-compatible chat completions API.
 
    :::image type="content" source="../media/ai-gateway/add-api-management-model.png" alt-text="Screenshot of selecting an API Management resource in the Foundry portal.":::
 1. On the **Authentication** page, select an option to authenticate to API Management.
 
    Select either **API key** such as an API Management subscription key, or **Managed Identity** if one is configured in your Foundry project. 
 
-   When you select API key, enter the key value in the provided field. Optionally specify an **API key header name** to use when passing the API key if your gateway requires a custom header.
+   * **API key**: Enter the key value in the provided field. Optionally specify an **API key header name** to use when passing the API key if your gateway requires a custom header.
     
-   When you select a managed identity, in **Audience**, enter the target service for the managed identity token, such as `https://cognitiveservices.azure.com/`.
-1. On the **Model configuration** page, add at least one model to connect through this gateway. The model must implement the OpenAI-compatible chat completions API.
+   * **Managed Identity**: In **Audience**, enter the target service for the managed identity token, such as `https://cognitiveservices.azure.com/`.
+1. On the **Model configuration** page, configure at least one model deployment that will appear in Foundry for use with agents.
 
     1. Select **+ Add model**.
     1. Enter a **Deployment name** (used in API calls) and corresponding **Model name**, and **Version**. 
@@ -115,10 +115,10 @@ To add a model connection in the Foundry portal:
    :::image type="content" source="../media/ai-gateway/add-other-model.png" alt-text="Screenshot of selecting another model source in the Foundry portal.":::
 1. On the **Authentication** page, select either **API key** or **OAuth 2.0** to authenticate to the gateway.
 
-   When you select API key, enter the key value in the provided field. Optionally specify an **API key header name** to use when passing the API key if your gateway requires a custom header.
+   * **API key**: Enter the key value in the provided field. Optionally specify an **API key header name** to use when passing the API key if your gateway requires a custom header.
 
-   When selecting OAuth 2.0, enter details from an app registered in the identity provider, such as client ID, client secret, token URL endpoint, and default scope. 
-1. On the **Model configuration** page, specify at least one model to connect through this gateway. The model must implement the OpenAI-compatible chat completions API.
+   * **OAuth 2.0**: Enter details from an app registered in the identity provider, such as client ID, client secret, token URL endpoint, and default scope. 
+1. On the **Model configuration** page, configure at least one model deployment that will appear in Foundry for use with agents.
 
     1. Select **+ Add model**.
     1. Enter a **Deployment name** (used in API calls) and corresponding **Model name**, and **Version**. 
@@ -137,15 +137,13 @@ To add a model connection in the Foundry portal:
 
 The connection is created and appears in the list on the **Admin-connected models** tab.
 
-### External model deployments
+### Admin-connected model deployments
 
 Foundry automatically deploys models you add through a connection, so you can use them in your projects. 
 
-* Each model you add in the connection wizard corresponds to a *deployment* in Foundry. Foundry automatically routes requests from agents to these deployments through the connected gateway.
+* Each model you add in the connection wizard corresponds to a *deployment* in Foundry. 
 
-* To see a list of deployments, select the **Models** > **Admin-connected deployments** tab in the left pane of your Foundry project. You manage these deployments at the project level, and any agent within the project can use them.
-
-* Select a model deployment to see its details, including the connection it belongs to and the model information you provided in the connection setup. You can also access the playground from the deployment details page to test the model with sample prompts.
+* You can select an admin-connected deployment when configuring an agent's model. Foundry automatically routes requests from agents to these deployments through the connected gateway.
 
 ::: zone-end
 
