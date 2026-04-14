@@ -1,8 +1,8 @@
 ---
 title: Troubleshoot evaluation and observability issues - Microsoft Foundry
 description: Learn how to troubleshoot common issues with evaluations and observability in Microsoft Foundry, including storage account access, RBAC, and network configuration.
-author: naposani
-ms.author: naposani
+author: posaninagendra
+ms.author: posaninagendra
 ms.service: azure-ai-foundry
 ms.topic: troubleshooting
 ms.date: 04/13/2026
