@@ -133,7 +133,7 @@ Press **F5** in VS Code to start debugging. Alternatively, you can use the VS Co
 This will:
 
 1. Start the HTTP server with debugging enabled
-2. Open the AI Toolkit Agent Inspector for interactive testing
+2. Open the Foundry Toolkit Agent Inspector for interactive testing
 3. Allow you to set breakpoints and inspect the workflow execution in real time.
 
 ### Run your hosted agent in container mode
