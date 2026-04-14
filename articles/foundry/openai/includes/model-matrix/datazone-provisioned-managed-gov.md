@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models in Azure Government
 description: Regional availability for data zone provisioned managed models
 ms.author: challenp
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom: references_regions
 ms.date: 04/03/2026

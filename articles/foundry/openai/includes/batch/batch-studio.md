@@ -5,7 +5,7 @@ description: Azure OpenAI model global batch Studio
 manager: nitinme
 ms.date: 11/06/2025
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025, classic-and-new

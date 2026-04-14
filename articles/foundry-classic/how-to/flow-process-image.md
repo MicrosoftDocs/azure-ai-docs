@@ -1,7 +1,7 @@
 ---
 title: "Process images in prompt flow (classic)"
 description: "Learn how to use images in prompt flow. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - build-2024

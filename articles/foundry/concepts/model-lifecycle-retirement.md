@@ -3,7 +3,7 @@ title: "Model deprecation and retirement for Foundry Models"
 description: "Learn about model lifecycle stages, deprecation timelines, notifications, and migration steps for Microsoft Foundry Models."
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.date: 03/05/2026
 ms.author: mopeakande

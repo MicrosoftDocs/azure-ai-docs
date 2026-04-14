@@ -6,7 +6,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 11/06/2025
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.custom:
   - classic-and-new

@@ -5,7 +5,7 @@ description: Get started using the Azure OpenAI Python SDK to deploy and use the
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom: references_regions
 ms.date: 01/29/2026

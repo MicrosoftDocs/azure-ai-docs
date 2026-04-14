@@ -6,7 +6,7 @@ metadata:
   #services: cognitive-services
   manager: nitinme
   ms.service: microsoft-foundry
-  ms.subservice: azure-ai-foundry-agent-service
+  ms.subservice: foundry-agent-service
   ms.topic: faq
   ms.date: 03/11/2026
   ms.author: aahi

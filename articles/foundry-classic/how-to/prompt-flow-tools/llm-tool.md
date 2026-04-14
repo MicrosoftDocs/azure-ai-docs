@@ -1,7 +1,7 @@
 ---
 title: "LLM tool for flows in Microsoft Foundry portal (classic)"
 description: "This article introduces you to the large language model (LLM) tool for flows in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023

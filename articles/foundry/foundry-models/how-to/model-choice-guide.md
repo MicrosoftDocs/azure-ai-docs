@@ -5,7 +5,7 @@ manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: product-comparison
 ms.date: 02/12/2026
 ai-usage: ai-assisted

@@ -5,7 +5,7 @@ description: Use this article to get started using Microsoft Foundry to deploy a
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom: references_regions, ignite-2024
 ms.date: 01/29/2026

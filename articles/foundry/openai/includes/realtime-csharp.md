@@ -3,7 +3,7 @@ manager: nitinme
 author: alexeyo26
 ms.author: alexeyo
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 3/20/2025
 ---

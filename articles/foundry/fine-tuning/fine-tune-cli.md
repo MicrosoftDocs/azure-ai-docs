@@ -3,7 +3,7 @@ title: Fine-tune AI models in Microsoft Foundry with the Azure Developer CLI fin
 description: Learn how to use the Azure Developer CLI (azd) AI fine-tuning extension to initialize, submit, manage, and deploy fine-tuning jobs in Microsoft Foundry.
 ms.date: 03/12/2026
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: how-to
 author: williamliang
 ms.author: ssalgado

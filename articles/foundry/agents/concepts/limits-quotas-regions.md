@@ -5,7 +5,7 @@ manager: nitinme
 author: aahill
 ms.author: aahi
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 04/03/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026, references_regions, doc-kit-assisted

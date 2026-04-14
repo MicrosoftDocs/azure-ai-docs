@@ -4,7 +4,7 @@ description: "Learn how to use the Azure OpenAI v1 API, which simplifies authent
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 02/06/2026
 author: mrbullwinkle

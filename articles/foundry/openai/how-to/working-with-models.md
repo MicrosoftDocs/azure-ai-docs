@@ -2,7 +2,7 @@
 title: "Azure OpenAI in Microsoft Foundry Models working with models"
 description: "Learn about managing model deployment life cycle, updates, & retirement."
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 02/12/2026
 ms.custom:

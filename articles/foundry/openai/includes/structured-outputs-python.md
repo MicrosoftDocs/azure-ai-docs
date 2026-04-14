@@ -1,6 +1,6 @@
 ---
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 12/6/2025
 author: mrbullwinkle

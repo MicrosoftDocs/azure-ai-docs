@@ -3,7 +3,7 @@ manager: nitinme
 author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 02/23/2026
 ai-usage: ai-assisted

@@ -3,7 +3,7 @@ title: "Endpoints for Microsoft Foundry Models"
 description: "Learn how to access and use Microsoft Foundry Models endpoints for secure model inference, flexible deployments, and keyless authentication."
 author: msakande
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 11/21/2025
 ms.author: mopeakande

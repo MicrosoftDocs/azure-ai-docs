@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: concept-article
 zone_pivot_groups: openai-video-generation
 ms.date: 03/18/2026

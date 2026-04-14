@@ -4,7 +4,7 @@ description: "Compare Microsoft Foundry deployment types including Global Standa
 ai-usage: ai-assisted
 author: msakande
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.date: 02/04/2026
 ms.author: mopeakande

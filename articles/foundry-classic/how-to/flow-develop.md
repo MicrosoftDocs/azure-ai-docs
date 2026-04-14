@@ -1,7 +1,7 @@
 ---
 title: "How to build with prompt flow (classic)"
 description: "This article provides instructions on how to build with prompt flow. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023

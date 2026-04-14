@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI by using the Python SDK and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.custom:
   - ignite-2023, classic-and-new
 ms.topic: include

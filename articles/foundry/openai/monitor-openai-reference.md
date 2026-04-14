@@ -11,7 +11,7 @@ ms.topic: reference
 author: mrbullwinkle
 ms.author: mbullwin
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ---
 
 # Azure OpenAI monitoring data reference

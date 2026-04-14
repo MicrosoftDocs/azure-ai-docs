@@ -4,7 +4,7 @@ description: "Learn how to use function calling with OpenAI models."
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.custom:
   - devx-track-python
   - classic-and-new

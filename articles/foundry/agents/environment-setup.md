@@ -6,7 +6,7 @@ author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda 
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 02/11/2026
 ms.custom:

@@ -4,7 +4,7 @@ description: "Learn about ways of adding authentication to the Agent2Agent tool 
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 02/05/2026
 author: aahill

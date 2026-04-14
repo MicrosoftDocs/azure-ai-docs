@@ -1,7 +1,7 @@
 ---
 title: "Submit batch run and evaluate a flow (classic)"
 description: "Learn how to submit batch run and use built-in evaluation methods in prompt flow to evaluate how well your flow performs with a large dataset with Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023

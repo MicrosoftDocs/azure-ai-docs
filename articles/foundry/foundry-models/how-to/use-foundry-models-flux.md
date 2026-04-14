@@ -2,7 +2,7 @@
 title: "Deploy and use FLUX models in Microsoft Foundry"
 description: "Deploy Black Forest Labs FLUX image generation models in Microsoft Foundry to generate and edit high-quality images from text prompts and reference images."
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 03/23/2026
 ms.custom:

@@ -3,7 +3,7 @@ title: "Direct preference optimization"
 description: "Learn how to use direct preference optimization technique to fine-tune Azure OpenAI models."
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ai-usage: ai-assisted
 ms.custom:
   - build-2023, build-2023-dataai, devx-track-python, references_regions

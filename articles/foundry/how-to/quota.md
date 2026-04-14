@@ -2,7 +2,7 @@
 title: "Manage and increase quotas for resources"
 description: "Learn how to view, manage, and request increases for model deployment quotas in Microsoft Foundry, including token-per-minute and provisioned throughput allocations."
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.custom:
   - classic-and-new
   - ignite-2023

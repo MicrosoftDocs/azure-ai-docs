@@ -2,7 +2,7 @@
 title: "How to generate text responses with Microsoft Foundry Models"
 description: "Learn how to generate text responses from Foundry Models, such as Microsoft AI and DeepSeek models, by using the Responses API."
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 02/24/2026
 ms.author: mopeakande

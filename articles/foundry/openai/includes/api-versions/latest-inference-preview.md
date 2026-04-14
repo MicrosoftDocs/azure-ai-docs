@@ -5,7 +5,7 @@ description: Latest preview data plane inference documentation generated from Op
 manager: nitinme
 ms.date: 04/23/2025
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025

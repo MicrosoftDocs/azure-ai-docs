@@ -4,7 +4,7 @@ description: "Learn how to create and configure provisioned throughput deploymen
 ai-usage: ai-assisted
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.custom:
   - openai, pilot-ai-workflow-jan-2026
   - classic-and-new

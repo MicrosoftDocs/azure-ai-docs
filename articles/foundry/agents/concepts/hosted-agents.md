@@ -7,7 +7,7 @@ ms.date: 03/05/2026
 ms.manager: nitinme
 ms.topic: concept-article
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.custom: references_regions, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---

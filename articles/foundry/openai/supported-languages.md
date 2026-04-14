@@ -4,7 +4,7 @@ description: "Programming language support for Azure OpenAI."
 author: mrbullwinkle
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.custom:
   - classic-and-new
   - doc-kit-assisted

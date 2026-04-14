@@ -4,8 +4,8 @@ description: "Find supported Azure OpenAI models and regions for Microsoft Found
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 03/17/2026
 ms.custom: azure-ai-agents, references_regions, pilot-ai-workflow-jan-2026

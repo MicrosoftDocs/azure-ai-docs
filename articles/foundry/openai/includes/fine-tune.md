@@ -5,7 +5,7 @@ description: Describes the fine-tuning guidance for a model deployment that's in
 author: mrbullwinkle 
 ms.author: mbullwin 
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 03/26/2025
 manager: nitinme

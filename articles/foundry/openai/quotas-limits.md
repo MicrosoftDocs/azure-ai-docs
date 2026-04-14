@@ -6,7 +6,7 @@ ms.author: mbullwin
 manager: nitinme
 ms.date: 04/08/2026
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: limits-and-quotas
 ms.custom:
   - classic-and-new

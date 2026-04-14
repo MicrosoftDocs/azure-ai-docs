@@ -6,7 +6,7 @@ ms.author: ssalgado
 ms.date: 02/18/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ai-usage: ai-assisted
 
 ms.custom:

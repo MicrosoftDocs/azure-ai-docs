@@ -7,7 +7,7 @@ ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.reviewer: seramasu
 reviewer: rsethur
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 03/04/2026
 ms.custom:

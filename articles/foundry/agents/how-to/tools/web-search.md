@@ -4,7 +4,7 @@ description: "Use the web search tool in Foundry Agent Service to retrieve real-
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/07/2026
 author: alvinashcraft

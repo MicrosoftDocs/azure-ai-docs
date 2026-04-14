@@ -3,7 +3,7 @@ title: "Deploy models using Azure CLI and Bicep"
 description: "Learn how to add and configure Microsoft Foundry Models in your Foundry resource for use in inference applications using Azure CLI and Bicep templates."
 #customer intent: As an AI practitioner, I want to configure model deployments with Azure CLI or Bicep templates so that I can automate and standardize the deployment process.
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 02/09/2026
 ms.custom:

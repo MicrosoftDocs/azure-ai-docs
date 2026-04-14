@@ -5,7 +5,7 @@ author: aahil
 ms.author: aahi
 ms.date: 04/09/2026
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted

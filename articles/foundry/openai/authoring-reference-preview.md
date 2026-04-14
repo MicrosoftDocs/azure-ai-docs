@@ -3,7 +3,7 @@ title: "Azure OpenAI in Microsoft Foundry Models REST API authoring preview refe
 description: "Learn how to use Azure OpenAI's latest authoring preview REST API. In this article, you learn about authorization options,  how to structure a request and receive a response."
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: reference
 ms.date: 12/6/2025
 author: mrbullwinkle

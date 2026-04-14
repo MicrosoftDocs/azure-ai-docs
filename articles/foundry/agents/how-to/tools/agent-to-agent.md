@@ -4,7 +4,7 @@ description: "Connect your Foundry agent to a remote Agent2Agent (A2A) endpoint.
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/03/2026
 author: alvinashcraft

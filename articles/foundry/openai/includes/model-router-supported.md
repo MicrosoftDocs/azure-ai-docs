@@ -1,7 +1,7 @@
 ---
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley

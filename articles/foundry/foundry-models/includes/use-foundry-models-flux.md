@@ -6,7 +6,7 @@ author: msakande
 ms.reviewer: malpande
 reviewer: mpande98
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 03/23/2026
 ai-usage: ai-assisted

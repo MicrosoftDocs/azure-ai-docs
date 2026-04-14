@@ -7,7 +7,7 @@ ms.reviewer: fosteramanda
 ms.date: 02/13/2026
 ms.topic: how-to
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---

@@ -1,8 +1,8 @@
 ---
 title: "Deploy and use MAI models in Microsoft Foundry (classic)"
 description: "Deploy MAI-Image-2 and MAI-Image-2e, text-to-image generation models in Microsoft Foundry, to generate high-quality images from natural language prompts. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 04/13/2026
 ms.custom:

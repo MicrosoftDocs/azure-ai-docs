@@ -4,7 +4,7 @@ description: "Learn how to customize agent behavior at runtime using structured 
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/31/2026
 author: alvinashcraft

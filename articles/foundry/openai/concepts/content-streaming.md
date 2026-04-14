@@ -5,7 +5,7 @@ author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 01/15/2026
 ai-usage: ai-assisted

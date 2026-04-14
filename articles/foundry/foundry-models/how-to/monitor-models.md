@@ -4,7 +4,7 @@ description: "Learn how to use Azure Monitor tools like Log Analytics to capture
 author: ssalgadodev
 ms.author: ssalgado
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 02/13/2026
 ms.reviewer: fasantia

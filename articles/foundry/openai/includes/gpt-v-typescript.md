@@ -5,7 +5,7 @@ description: Get started using the OpenAI JavaScript SDK to deploy and use the G
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom: references_regions, classic-and-new
 ms.date: 01/29/2026

@@ -2,7 +2,7 @@
 ms.topic: include
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 2/1/2024
 ms.author: pafarley

@@ -5,7 +5,7 @@ description: Describes the models that support fine-tuning and the regions where
 ms.author: wujohn
 ms.date: 03/05/2026
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ---
 The following models are supported for fine-tuning:

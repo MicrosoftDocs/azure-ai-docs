@@ -3,7 +3,7 @@ manager: nitinme
 author: msakande
 ms.author: mopeakande
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 01/14/2026
 ms.custom: classic-and-new

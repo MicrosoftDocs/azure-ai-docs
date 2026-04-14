@@ -7,7 +7,7 @@ ms.date: 03/04/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
 ---

@@ -4,7 +4,7 @@ description: "Learn how system messages shape Azure OpenAI chat responses, with 
 author: mrbullwinkle
 ms.author: mbullwin 
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: concept-article 
 ms.date: 01/20/2026
 manager: nitinme

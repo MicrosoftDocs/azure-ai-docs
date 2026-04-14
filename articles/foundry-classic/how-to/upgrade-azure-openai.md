@@ -5,7 +5,7 @@ ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
 ms.date: 01/07/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.custom:
   - dev-focus

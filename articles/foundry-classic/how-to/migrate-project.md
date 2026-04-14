@@ -6,7 +6,7 @@ ms.topic: how-to
 ms.date: 12/24/2025
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - dev-focus
 ai-usage: ai-assisted

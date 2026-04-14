@@ -1,7 +1,7 @@
 ---
 title: "Tune prompts using variants (classic)"
 description: "Learn how to tune prompts using variants in Prompt flow with Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023

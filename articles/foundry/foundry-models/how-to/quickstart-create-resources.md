@@ -3,7 +3,7 @@ title: "Create and configure resources for Microsoft Foundry Models"
 titleSuffix: Microsoft Foundry
 description: "Learn how to get your environment ready with the Microsoft Foundry Models"
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 03/30/2026
 ms.custom: ignite-2024, github-universe-2024

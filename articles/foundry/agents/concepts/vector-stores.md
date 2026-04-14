@@ -4,7 +4,7 @@ description: "Learn how vector stores enable file search for agents, including i
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 02/04/2026
 author: aahill

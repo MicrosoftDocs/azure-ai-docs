@@ -4,7 +4,7 @@ description: "Create agents that interpret screenshots and automate UI actions l
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
 author: alvinashcraft

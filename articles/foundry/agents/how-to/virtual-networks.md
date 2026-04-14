@@ -4,7 +4,7 @@ description: "Set up private networking for Foundry Agent Service using Bicep or
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 02/27/2026
 author: aahill

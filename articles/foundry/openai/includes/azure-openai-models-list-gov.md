@@ -2,7 +2,7 @@
 author: challenp
 ms.author: chaparker
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 04/03/2026
 ms.custom: classic-and-new

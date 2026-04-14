@@ -4,7 +4,7 @@ description: "Learn how capability hosts route agent data to Microsoft-managed o
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 01/20/2026
 author: aahill

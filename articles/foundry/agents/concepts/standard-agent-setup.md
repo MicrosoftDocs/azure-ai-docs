@@ -5,7 +5,7 @@ manager: nitinme
 author: fosteramanda
 ms.author: fosteramanda
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 02/13/2026
 ms.custom:

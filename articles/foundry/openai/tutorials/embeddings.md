@@ -4,7 +4,7 @@ description: "Learn how to use Azure OpenAI's embeddings API for document search
 manager: nitinme
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: tutorial
 ms.date: 11/04/2025
 author: mrbullwinkle #noabenefraim

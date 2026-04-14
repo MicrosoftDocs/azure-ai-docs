@@ -3,8 +3,8 @@ title: "Vision-enabled chat model concepts (classic)"
 description: "Learn concepts for using images in your AI model chats, with GPT-4 Turbo with Vision and other models. (classic)"
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article 
 ms.date: 01/30/2026
 manager: nitinme

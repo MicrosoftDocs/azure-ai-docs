@@ -1,7 +1,7 @@
 ---
 title: "Develop an evaluation flow (classic)"
 description: "Learn how to customize or create your own evaluation flow tailored to your tasks and objectives, and then use in a batch run as an evaluation method in prompt flow with Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023

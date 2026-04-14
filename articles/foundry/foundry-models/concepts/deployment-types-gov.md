@@ -4,7 +4,7 @@ description: "Compare Microsoft Foundry deployment types including Standard, Dat
 ai-usage: ai-assisted
 author: challenp
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.date: 04/03/2026
 ms.author: chaparker

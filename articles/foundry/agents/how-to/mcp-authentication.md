@@ -4,7 +4,7 @@ description: "Learn how to set up authentication for Model Context Protocol (MCP
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/09/2026
 author: aahill

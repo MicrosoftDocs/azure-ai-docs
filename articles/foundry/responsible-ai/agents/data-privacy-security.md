@@ -5,7 +5,7 @@ author: aahill
 ms.author: aahi
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.date: 11/19/2025
 ms.topic: concept-article
 ai-usage: ai-assisted

@@ -2,7 +2,7 @@
 title: "Tutorial: Build a multi-turn chat assistant with Foundry Local"
 titleSuffix: Foundry Local
 description: Build an interactive chat assistant that maintains conversation context across multiple exchanges using the Foundry Local SDK. This tutorial covers model selection, system prompts, conversation history, and streaming responses.
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: tutorial
 ms.author: jburchel

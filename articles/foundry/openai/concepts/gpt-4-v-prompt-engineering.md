@@ -4,7 +4,7 @@ description: "Learn how to better engineer image prompts for vision-enabled chat
 author: PatrickFarley
 ms.author: pafarley
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 01/30/2026
 manager: nitinme

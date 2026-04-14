@@ -6,7 +6,7 @@ ms.author: mopeakande
 ms.reviewer: balapv
 reviewer: balapv
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 02/23/2026
 ms.custom: include

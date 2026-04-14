@@ -2,7 +2,7 @@
 title: "Configure Claude Code for Microsoft Foundry"
 description: "Set up Claude Code CLI and VS Code extension to use Claude models in Microsoft Foundry with enterprise security, authentication, and CI/CD integration."
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 02/24/2026
 ms.custom: dev-focus, doc-kit-assisted

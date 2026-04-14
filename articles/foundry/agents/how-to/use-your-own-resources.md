@@ -4,7 +4,7 @@ description: "Learn how to use resources that you already have with the Foundry 
 services: cognitive-services
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 02/19/2026
 author: aahill

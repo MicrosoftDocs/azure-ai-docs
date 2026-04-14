@@ -4,7 +4,7 @@ description: "Learn how provisioned throughput enables efficient deployment of A
 #customer intent: As a developer, I want to understand provisioned throughput so I can deploy and manage AI models efficiently.
 ai-usage: ai-assisted
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 02/10/2026
 ms.custom:

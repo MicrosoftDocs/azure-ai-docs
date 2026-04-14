@@ -7,7 +7,7 @@ ms.date: 03/12/2026
 ms.manager: nitinme
 ms.topic: quickstart
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: hosted-agent-deploy-method

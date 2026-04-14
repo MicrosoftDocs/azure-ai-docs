@@ -4,7 +4,7 @@ description: "Learn about the prompt transformation feature in Azure OpenAI imag
 author: PatrickFarley
 ms.author: pafarley
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: concept-article 
 ms.date: 02/09/2026
 manager: nitinme

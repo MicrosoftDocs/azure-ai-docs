@@ -5,7 +5,7 @@ description: Regional availability for Global Batch models
 manager: nitinme
 ms.date: 08/12/2025
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
   - references_regions

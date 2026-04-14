@@ -4,7 +4,7 @@ description: "Connect Azure AI Search indexes to Foundry agents for grounding re
 services: azure-ai-agent-service
 manager: nitinme
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
 author: alvinashcraft

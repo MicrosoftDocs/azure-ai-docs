@@ -6,7 +6,7 @@ ms.author: aahi
 manager: nitinme
 ms.date: 04/10/2026
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted

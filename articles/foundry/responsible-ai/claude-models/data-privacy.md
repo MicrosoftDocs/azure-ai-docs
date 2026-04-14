@@ -2,7 +2,7 @@
 title: "Data, privacy, and security for use of Anthropic Claude models in Microsoft Foundry (preview)"
 description: "This document details issues for data, privacy, and security for Anthropic Claude models in Microsoft Foundry in Public Preview."
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 12/16/2025
 ms.custom:

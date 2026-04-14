@@ -2,7 +2,7 @@
 title: "Microsoft Foundry REST Reference (classic)"
 description: "Learn how to use the Microsoft Foundry REST Reference (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: reference
 ms.date: 02/19/2026
 author: mrbullwinkle    
