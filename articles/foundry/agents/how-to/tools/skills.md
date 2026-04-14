@@ -634,10 +634,6 @@ Test the remote hosted agent:
 azd ai agent invoke --remote "What Azure products do you offer?"
 ```
 
-## Troubleshoot
-
-For common errors when importing, downloading, and using skills, see [Troubleshoot skills](troubleshoot-skills.md).
-
 ## Known fast follows and gaps
 
 The following capabilities are planned or have known limitations:
