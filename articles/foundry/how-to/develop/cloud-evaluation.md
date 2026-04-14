@@ -905,32 +905,107 @@ For a complete runnable example, see [sample_agent_response_evaluation.py](https
 
 ## Trace evaluation
 
-Evaluate agent interactions that were already captured in [Application Insights](/azure/azure-monitor/app/app-insights-overview) by providing trace IDs. Use the `azure_ai_traces` data source type. This scenario is useful for post-deployment evaluation of real production traffic — you select specific traces from your monitoring pipeline and run evaluators against them without replaying any requests.
+Evaluate agent interactions that were already captured in [Application Insights](/azure/azure-monitor/app/app-insights-overview). Use the `azure_ai_traces` data source type. This scenario is useful for post-deployment evaluation of real production traffic — you select traces from your monitoring pipeline and run evaluators against them without replaying any requests.
+
+Trace evaluation supports two modes:
+
+- **By trace IDs** — Evaluate specific agent interactions by providing their `operation_Id` values from Application Insights.
+- **By agent filter** — Automatically discover and evaluate recent traces for a given agent, without manually collecting trace IDs.
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started). This scenario also requires an [Application Insights resource connected to your Foundry project](../../observability/how-to/trace-agent-setup.md).
+
+### Trace data requirements
+
+Trace evaluation requires your agent to emit spans following the [OpenTelemetry semantic conventions for generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/). Specifically, the evaluation service reads **`invoke_agent` spans** from Application Insights and extracts conversation data from their attributes.
+
+The following span attributes are used:
+
+| Attribute | Required | Description |
+|-----------|----------|-------------|
+| `gen_ai.operation.name` | **Yes** | Must equal `"invoke_agent"`. The service ignores all other spans. |
+| `gen_ai.agent.id` | For agent filter mode | Unique agent identifier (format: `agent-name:version`). |
+| `gen_ai.agent.name` | For agent filter mode | Human-readable agent name. |
+| `gen_ai.input.messages` | For quality evaluators | JSON array of input messages following the [GenAI semantic conventions message format](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/#invoke-agent-span). Messages with role `user` or `system` map to `query`; messages with role `assistant` or `tool` map to `response`. |
+| `gen_ai.output.messages` | For quality evaluators | JSON array of model-generated output messages. All output messages map to `response`. |
+| `gen_ai.tool.definitions` | Optional | JSON array of tool schemas available to the agent. If absent, the service attempts to infer tool definitions from tool call messages, but inferred schemas may be incomplete. |
+| `gen_ai.conversation.id` | Optional | Conversation identifier, passed through to evaluation results for correlation. |
+
+> [!NOTE]
+> If `gen_ai.input.messages` and `gen_ai.output.messages` are empty or missing, quality evaluators (coherence, fluency, relevance, intent resolution) will return `score=None`. Safety evaluators (violence, self-harm, sexual, hate/unfairness) can still produce scores with partial data.
+
+For Python agents built with the Azure AI Agent Server SDK, add the `[tracing]` extra to enable automatic span emission:
+
+```bash
+pip install "azure-ai-agentserver-core[tracing]"
+```
 
 ### Prerequisites for trace evaluation
 
 In addition to the general [prerequisites](#prerequisites), trace evaluation requires:
 
 - An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your Foundry project. See [Set up tracing in Microsoft Foundry](../../observability/how-to/trace-agent-setup.md).
-- The `azure-monitor-query` Python package for querying trace IDs.
-- The agent ID used in the tracing integration (the `gen_ai.agent.id` attribute).
+- The project's managed identity must have the **Log Analytics Reader** role on both the Application Insights resource and its linked Log Analytics workspace.
+- The `azure-monitor-query` Python package (only needed if you collect trace IDs manually).
 
 ```bash
 pip install "azure-ai-projects>=2.0.0" azure-monitor-query
 ```
 
-Set these additional environment variables:
+Set these environment variables:
 
 - `APPINSIGHTS_RESOURCE_ID` — The Application Insights resource ID (for example, `/subscriptions/<subscription_id>/resourceGroups/<rg_name>/providers/Microsoft.Insights/components/<resource_name>`).
-- `AGENT_ID` — The agent identifier emitted by the Azure tracing integration, used to filter traces.
+- `AGENT_ID` — The agent identifier emitted by the tracing integration (`gen_ai.agent.id` attribute), used to filter traces. Format: `agent-name:version`.
 - `TRACE_LOOKBACK_HOURS` — (Optional) Number of hours to look back when querying traces. Defaults to `1`.
 
-### Collect trace IDs from Application Insights
+### Option A: Evaluate by agent filter
 
-Query Application Insights for `operation_Id` values from your agent's traces. Each `operation_Id` represents a complete agent interaction (a trace):
+The simplest approach — let the service automatically discover and evaluate recent traces for a specific agent. No manual trace ID collection needed.
+
+```python
+import os
+
+agent_id = os.environ["AGENT_ID"]  # e.g., "my-weather-agent:1"
+trace_lookback_hours = int(os.environ.get("TRACE_LOOKBACK_HOURS", "1"))
+
+# Create the evaluation
+data_source_config = {
+    "type": "azure_ai_source",
+    "scenario": "traces",
+}
+
+eval_object = client.evals.create(
+    name="Agent Trace Evaluation (by agent)",
+    data_source_config=data_source_config,
+    testing_criteria=testing_criteria,  # See "Set up evaluators" below
+)
+
+# Create a run — the service queries App Insights for matching traces
+data_source = {
+    "type": "azure_ai_traces",
+    "agent_id": agent_id,
+    "max_traces": 50,           # Maximum number of traces to evaluate
+    "lookback_hours": trace_lookback_hours,
+}
+
+eval_run = client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="agent-trace-eval-run",
+    data_source=data_source,
+)
+
+print(f"Evaluation run started: {eval_run.id}")
+```
+
+The service filters `invoke_agent` spans by the `gen_ai.agent.id` attribute, samples up to `max_traces` unique trace IDs, and evaluates all spans from those traces.
+
+### Option B: Evaluate by trace IDs
+
+For more control, collect specific trace IDs from Application Insights and evaluate them. This is useful when you want to evaluate a curated set of interactions (for example, traces flagged by alerts or sampled for quality review).
+
+#### Collect trace IDs from Application Insights
+
+Query Application Insights for `operation_Id` values from your agent's traces. Each `operation_Id` represents a complete agent interaction:
 
 ```python
 import os
@@ -968,18 +1043,56 @@ if response.status == LogsQueryStatus.SUCCESS:
 print(f"Found {len(trace_ids)} trace IDs")
 ```
 
+#### Create evaluation and run with trace IDs
+
+```python
+# Create the evaluation
+data_source_config = {
+    "type": "azure_ai_source",
+    "scenario": "traces",
+}
+
+eval_object = client.evals.create(
+    name="Agent Trace Evaluation (by trace IDs)",
+    data_source_config=data_source_config,
+    testing_criteria=testing_criteria,  # See "Set up evaluators" below
+)
+
+# Create a run using the collected trace IDs
+data_source = {
+    "type": "azure_ai_traces",
+    "trace_ids": trace_ids,
+    "lookback_hours": trace_query_hours,
+}
+
+eval_run = client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="agent-trace-eval-run",
+    metadata={
+        "agent_id": agent_id,
+        "start_time": start_time.isoformat(),
+        "end_time": end_time.isoformat(),
+    },
+    data_source=data_source,
+)
+
+print(f"Evaluation run started: {eval_run.id}")
+```
+
 ### Set up evaluators and data mappings
 
-When evaluating traces, the service automatically extracts `query`, `response`, and `tool_definitions` from the trace data. Use these field names directly in `data_mapping` (without the `item.` or `sample.` prefixes used in other scenarios):
+When evaluating traces, the service automatically extracts conversation data from the OTel span attributes. Use these field names directly in `data_mapping` (without the `item.` or `sample.` prefixes used in other scenarios):
 
-| Variable | Description | Use for |
-|----------|-------------|--------|
-| `{{query}}` | The user query extracted from the trace. | All evaluators that need the input query. |
-| `{{response}}` | The agent's response extracted from the trace. | All evaluators that need the response. |
-| `{{tool_definitions}}` | Tool definitions available to the agent, extracted from the trace. | Agent evaluators that assess tool usage (for example, `task_adherence`, `tool_call_accuracy`). |
+| Variable | Source attribute | Description |
+|----------|----------------|-------------|
+| `{{query}}` | `gen_ai.input.messages` (user/system roles) | The user query extracted from the trace. |
+| `{{response}}` | `gen_ai.input.messages` (assistant/tool roles) + `gen_ai.output.messages` | The agent's response extracted from the trace. |
+| `{{tool_definitions}}` | `gen_ai.tool.definitions` | Tool schemas available to the agent. |
+| `{{tool_calls}}` | Extracted from assistant messages in `gen_ai.input.messages` / `gen_ai.output.messages` | Tool calls made by the agent during the interaction. Used by tool evaluators. |
 
 ```python
 testing_criteria = [
+    # Quality evaluators — require query and response from trace data
     {
         "type": "azure_ai_evaluator",
         "name": "intent_resolution",
@@ -1006,45 +1119,35 @@ testing_criteria = [
             "deployment_name": model_deployment_name,
         },
     },
-]
-```
-
-### Create evaluation and run
-
-Create the evaluation with the `traces` scenario, then start a run with the collected trace IDs:
-
-```python
-# Create the evaluation with traces scenario
-data_source_config = {
-    "type": "azure_ai_source",
-    "scenario": "traces",
-}
-
-eval_object = client.evals.create(
-    name="Agent Trace Evaluation",
-    data_source_config=data_source_config,
-    testing_criteria=testing_criteria,
-)
-
-# Create a run using the collected trace IDs
-data_source = {
-    "type": "azure_ai_traces",
-    "trace_ids": trace_ids,
-    "lookback_hours": trace_query_hours,
-}
-
-eval_run = client.evals.runs.create(
-    eval_id=eval_object.id,
-    name="agent-trace-eval-run",
-    metadata={
-        "agent_id": agent_id,
-        "start_time": start_time.isoformat(),
-        "end_time": end_time.isoformat(),
+    # Tool evaluators — assess tool usage quality
+    {
+        "type": "azure_ai_evaluator",
+        "name": "tool_call_accuracy",
+        "evaluator_name": "builtin.tool_call_accuracy",
+        "data_mapping": {
+            "query": "{{query}}",
+            "response": "{{response}}",
+            "tool_calls": "{{tool_calls}}",
+            "tool_definitions": "{{tool_definitions}}",
+        },
+        "initialization_parameters": {
+            "deployment_name": model_deployment_name,
+        },
     },
-    data_source=data_source,
-)
-
-print(f"Evaluation run started: {eval_run.id}")
+    # Safety evaluators — work even with partial trace data
+    {
+        "type": "azure_ai_evaluator",
+        "name": "violence",
+        "evaluator_name": "builtin.violence",
+        "data_mapping": {
+            "query": "{{query}}",
+            "response": "{{response}}",
+        },
+        "initialization_parameters": {
+            "threshold": 4,
+        },
+    },
+]
 ```
 
 For a complete runnable example, see [sample_evaluations_builtin_with_traces.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_traces.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
