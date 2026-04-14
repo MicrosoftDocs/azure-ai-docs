@@ -27,7 +27,7 @@ The Foundry portal automatically selects the appropriate deployment option based
 
 | | Standard deployment in Foundry resources | Managed compute |
 |---|---|---|
-| **Models** | [ADM models](../foundry-models/concepts/models-sold-directly-by-azure.md) (Azure OpenAI + selected partner models billed through Azure) | [Non-ADM models](../foundry-models/concepts/models-from-partners.md) (Hugging Face, NVIDIA NIMs, industry models, Databricks, custom models) |
+| **Models** | [ADM models](../foundry-models/concepts/models-sold-directly-by-azure.md) (Azure OpenAI + selected partner models billed through Azure) | [Non-ADM models](../foundry-models/concepts/models-from-partners.md) (Anthropic, Hugging Face, NVIDIA NIMs, industry models, Databricks, custom models) |
 | **Billing** | Token usage or [provisioned throughput units (PTU)](../openai/concepts/provisioned-throughput.md) | Compute core hours (per-minute, per-instance) |
 | **Data processing** | Regional, data zone, or global | Regional only |
 | **Content filtering** | Built-in and customizable | Via Azure AI Content Safety APIs |
@@ -68,6 +68,7 @@ Managed compute deployment creates a dedicated endpoint that hosts the model on 
 
 Managed compute is the deployment option for models that aren't sold directly by Azure. Model collections that require managed compute include:
 
+- Anthropic
 - Hugging Face
 - NVIDIA inference microservices (NIMs)
 - Industry models (Saifr, Rockwell, Bayer, Cerence, Sight Machine, Page AI, SDAIA)
@@ -106,7 +107,7 @@ Use [Standard deployment in Foundry resources](#standard-deployment-in-foundry-r
 | Capability | Standard deployment in Foundry resources | Managed compute |
 |---|---|---|
 | Which models can be deployed? | [ADM models](../foundry-models/concepts/models-sold-directly-by-azure.md) | [Non-ADM models](../foundry-models/concepts/models-from-partners.md) (partner, community, custom) |
-| Deployment resource | Foundry resource | AI project (hub-based, classic) |
+| Deployment resource | Foundry resource | AI project (hub-based, classic portal) |
 | Requires AI Hub | No | Yes |
 | Data processing options | Regional, data zone, global | Regional |
 | Private networking | Yes | Yes |
