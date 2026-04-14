@@ -551,6 +551,8 @@ tools = await client.get_tools()
 
 #### Python
 
+You can see the detailed samples [here](https://aka.ms/foundry-toolbox-maf)
+
 Use `MCPStreamableHTTPTool` from the Agent Framework SDK to connect directly to the toolbox MCP endpoint.
 
 **`.env` file**:
@@ -758,6 +760,8 @@ agent = Agent(
 )
 ```
 
+:::zone pivot="azd"
+
 ### Deploy with azd
 
 Use the Azure Developer CLI (`azd`) to declare toolbox resources directly in an `agent.yaml` file and deploy your agent with a single command. With this approach, you don't need to create the toolbox separately through SDK or REST — `azd` provisions the toolbox, connections, and model deployment together.
@@ -853,6 +857,8 @@ azd deploy -e my-env
 # 6. Invoke the agent
 azd ai agent invoke --new-session "Hello, what tools do you have?" --timeout 120
 ```
+
+:::zone-end
 
 ## Step 5: Manage toolbox versions
 
