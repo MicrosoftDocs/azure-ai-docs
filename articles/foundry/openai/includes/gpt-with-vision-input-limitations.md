@@ -23,7 +23,7 @@ This section describes the limitations of vision-enabled chat models.
 
 
 > [!IMPORTANT]
-> Pricing details are subject to change in the future.
+> The following content is an example only, and prices are subject to change in the future.
 
 Vision-enabled models accrue charges like other Azure OpenAI chat models. You pay a per-token rate for the prompts and completions, detailed on the [Pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). The base charges and other features are outlined here:
 
@@ -35,8 +35,7 @@ See the [Tokens section of the overview](/azure/ai-foundry/openai/overview#token
 
 ### Example image price calculation
 
-> [!IMPORTANT]
-> The following content is an example only, and prices are subject to change in the future.
+
 
 For a typical use case, take an image with both visible objects and text and a 100-token prompt input. When the service processes the prompt, it generates 100 tokens of output. In the image, both text and objects can be detected. The price of this transaction would be:
 
