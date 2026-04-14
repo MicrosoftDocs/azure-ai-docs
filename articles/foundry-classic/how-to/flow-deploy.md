@@ -2,7 +2,7 @@
 title: "Deploy a Flow as a Managed Online Endpoint for Real-Time Inference (classic)"
 description: "Learn how to deploy a flow as a managed online endpoint for real-time inference with Microsoft Foundry. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024

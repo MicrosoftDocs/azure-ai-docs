@@ -2,7 +2,7 @@
 title: "Azure OpenAI GPT-4 Turbo with Vision tool in Microsoft Foundry portal (classic)"
 description: "This article introduces you to the Azure OpenAI GPT-4 Turbo with Vision tool for flows in Microsoft Foundry portal. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.subservice: prompt-flow
 ms.custom:
   - build-2024
   - hub-only

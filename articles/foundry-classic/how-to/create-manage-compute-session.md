@@ -2,7 +2,7 @@
 title: "Create and manage prompt flow compute sessions (classic)"
 description: "In this article, learn how to create and manage compute sessions to run prompt flows in Microsoft Foundry portal. (classic)"
 ms.service: microsoft-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
