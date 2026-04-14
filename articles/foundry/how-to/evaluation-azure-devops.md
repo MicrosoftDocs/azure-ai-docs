@@ -1,9 +1,9 @@
 ---
 title: "How to run an evaluation in Azure DevOps"
-description: "How to run evaluation in Azure DevOps, which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps." 
+description: "Run offline evaluation of Microsoft Foundry agents in Azure DevOps CI/CD pipelines using the AI Agent Evaluation extension."
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 01/16/2026
+ms.date: 04/10/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -23,9 +23,12 @@ To use this extension, provide a data set with test queries and a list of evalua
 
 ## Prerequisites
 
-  
 - A project. To learn more, see [Create a project](create-projects.md).
-- Install the [AI Agent AI evaluation extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation).
+- A [Foundry agent](../agents/overview.md).
+- The [AI Agent Evaluation extension](https://marketplace.visualstudio.com/items?itemName=ms-azure-exp-external.microsoft-extension-ai-agent-evaluation) installed in your Azure DevOps organization.
+
+> [!TIP]
+> The recommended authentication method is Microsoft Entra ID via an Azure Resource Manager service connection. Create a [service connection](/azure/devops/pipelines/library/connect-to-azure) in your Azure DevOps project, then reference it in your pipeline using the `AzureCLI@2` task before `AIAgentEvaluation@2`.
 
 ## Inputs
 
@@ -33,18 +36,21 @@ To use this extension, provide a data set with test queries and a list of evalua
 
 | Name | Required? | Description |
 | - | - | - |
-| azure-ai-project-endpoint | Yes | Endpoint of your Microsoft Foundry Project. |
-| deployment-name | Yes | The name of the Azure AI model deployment to use for evaluation. |
+| azure-ai-project-endpoint | Yes | Endpoint of your Microsoft Foundry Project. To find this value, open your project in [Foundry portal](https://ai.azure.com) and copy the endpoint from the **Overview** page. |
+| deployment-name | Yes | The name of an Azure AI model deployment to use for evaluation. Find existing deployments under **Models + endpoints** in the Foundry portal. |
 | data-path | Yes | Path to the data file that contains the evaluators and input queries for evaluations. |
-| agent-IDs | Yes | ID of one or more agents to evaluate in format `agent-name:version` (for example, `my-agent:1` or `my-agent:1,my-agent:2`). Multiple agents are comma-separated and compared with statistical test results. |
+| agent-ids | Yes | ID of one or more agents to evaluate in format `agent-name:version` (for example, `my-agent:1` or `my-agent:1,my-agent:2`). Multiple agents are comma-separated and compared with statistical test results. |
 | baseline-agent-id | No | ID of the baseline agent to compare against when evaluating multiple agents. If not provided, the first agent is used. |
 
-### Data file
+> [!NOTE]
+> To find your agent ID and version, open your project in [Foundry portal](https://ai.azure.com), go to **Agents**, select your agent, and copy the **Agent ID** from the details pane. The version is the deployment version number (for example, `my-agent:1`).
+
+#### Data file
 
 The input data file should be a JSON file with the following structure:
 
 | Field | Type | Required? | Description |
-| - | - | - |
+| - | - | - | - |
 | name | string | Yes | Name of the evaluation dataset. |
 | evaluators | string[] | Yes | List of evaluator names to use. Check out the list of available evaluators in your project's evaluator catalog in Foundry portal: **Build > Evaluations > Evaluator catalog**. |
 | data | object[] | Yes | Array of input objects with `query` and optional evaluator fields like `ground_truth`, `context`. Automapped to evaluators; use `data_mapping` to override. |
@@ -61,7 +67,7 @@ The input data file should be a JSON file with the following structure:
   "evaluators": [
     "builtin.fluency",
     "builtin.task_adherence",
-    "builtin.violence",
+    "builtin.violence"
   ],
   "data": [
     {
@@ -88,7 +94,7 @@ The input data file should be a JSON file with the following structure:
 
 ## Sample pipeline
 
-To use this Azure DevOps extension, add the task to your Azure Pipeline and configure authentication to access your Microsoft Foundry project.
+To use this extension, add the `AIAgentEvaluation@2` task to your Azure Pipeline. The following example shows a complete pipeline that authenticates using an Azure Resource Manager service connection and evaluates an agent.
 
 ```yaml
 steps:
@@ -103,15 +109,14 @@ steps:
 
 ## Evaluation results and outputs
 
-Evaluation results appear in the Azure DevOps pipeline summary with detailed metrics and comparisons between agents when multiple are evaluated.
+Evaluation results appear in the Azure DevOps pipeline summary. The report shows evaluation scores for each metric, confidence intervals, and — when you evaluate multiple agents — a pairwise statistical comparison that indicates whether differences are meaningful or within random variation.
 
-Evaluation results output to the summary section for each AI Evaluation task run in your Azure DevOps pipeline.
+The following screenshot shows a sample report comparing two agents.
 
-The following screenshot is a sample report for comparing two agents.
-
-:::image type="content" source="media/observability/github-action-agent-output.png" alt-text="Screenshot of agent evaluation result." lightbox="media/observability/github-action-agent-output.png":::
+:::image type="content" source="media/observability/github-action-agent-output.png" alt-text="Screenshot of Azure DevOps pipeline summary showing agent evaluation scores with confidence intervals and pairwise statistical comparison for two agents." lightbox="media/observability/github-action-agent-output.png":::
 
 ## Related content
 
+- [Evaluation in GitHub Actions](./evaluation-github-action.md)
 - [How to evaluate generative AI models and applications with Foundry](./evaluate-generative-ai-app.md)
 - [How to view evaluation results in Foundry portal](./evaluate-results.md)
