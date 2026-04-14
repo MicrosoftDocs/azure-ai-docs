@@ -61,6 +61,7 @@ The input data file should be a JSON file with the following structure:
 #### Basic sample data file
 
 ```json
+
 {
   "name": "test-data",
   "evaluators": [
@@ -77,6 +78,7 @@ The input data file should be a JSON file with the following structure:
     }
   ]
 }
+
 ```
 
 #### Additional sample data files
