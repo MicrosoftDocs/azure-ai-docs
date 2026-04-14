@@ -30,41 +30,43 @@ This guide walks you through the end-to-end process of setting up a provisioned 
 - A [Foundry resource](../../../foundry-classic/openai/how-to/create-resource.md) in each region where you intend to create a deployment. Foundry resources support multiple deployment types simultaneously—you don't need to dedicate a separate resource to provisioned deployments.
 - Azure CLI — [install the Azure CLI](/cli/azure/install-azure-cli) (required only for CLI-based deployment).
 
-## Verify PTU quota availability
-
-PTU quota is granted per subscription, per region, and limits the total PTUs you can deploy in that region across all models. Before creating a deployment, verify that your subscription has enough available (unused) quota to cover the PTU count you plan to deploy. For details on how quota and capacity relate, see [PTU quota vs. capacity](../concepts/provisioned-throughput.md#ptu-quota-vs-capacity).
-
-To view your quota and current usage:
-
-1. Go to the **Quota** pane in the [!INCLUDE [foundry-link](../../includes/foundry-link.md)] **Operate** section
-1. Select the desired subscription and region.
-
-To request additional quota, select **Request Quota** and complete the form.
-
-## Discover models with provisioned deployment option
-
-1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
-1. From the Foundry portal homepage, select the subscription and the resource in the region where you have quota.
-1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
-1. Select the **Collections** filter and filter by **Direct from Azure** to see models held and served directly by Azure. A selection of these models support the provisioned throughput deployment option.
-1. Select the model you want to deploy to open its model card.
-1. Select **Deploy** > **Custom settings** to configure your deployment. The **Deployment type** drop down menu lists provisioned deployment types is the option is available for the selected model.
-
 ## Estimate PTU requirements
 
 Before creating your deployment, estimate how many PTUs your workload requires. PTU requirements depend on your expected requests per minute, prompt size, response size, and cache hit rate. 
 
+1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 1. Select **Operate** > **Quota** > **Provisioned throughput unit**
 1. Select **Capacity calculator**.
 1. Add workloads to your PTU calculation.
 
 For the PTU estimation formulas, a worked example, and details about the parameters you need to provide in the capacity calculator, see [Determine PTU requirements for a workload](./provisioned-throughput-onboarding.md#determine-ptu-requirements-for-a-workload).
 
+## Verify PTU quota availability
+
+PTU quota is granted per subscription, per region, and limits the total PTUs you can deploy in that region across all models. Before creating a deployment, verify that your subscription has enough available (unused) quota to cover the PTU count you plan to deploy. For details on how quota and capacity relate, see [PTU quota vs. capacity](../concepts/provisioned-throughput.md#ptu-quota-vs-capacity).
+
+To view your quota and current usage:
+
+1. From the **Quota** pane in the **Operate** section, select the desired subscription and region.
+1. To request additional quota, select **Request Quota** and complete the form.
+
+## Discover models with provisioned deployment option
+
+1. Return to the Foundry portal homepage.
+1. Select the subscription and the resource in the region where you have quota.
+1. Select **Discover** in the upper-right navigation, then **Models** in the left pane.
+1. Select the **Collections** filter and filter by **Direct from Azure** to see models sold directly by Azure. A selection of these models support the provisioned throughput deployment option.
+1. Select the model you want to deploy to open its model card.
+1. Select **Deploy** > **Custom settings** to configure your deployment. The **Deployment type** drop down menu lists provisioned deployment typesthat are available for the selected model.
+
+
 ## Create a provisioned deployment
+
+When you're ready to create a provisioned deployment, you might encounter one of two situations. On one hand, is capacity is available, you can proceed to create thea provisioned deployment. On the other hand, if capacity isn't available, you can take some options to resolve the situation to create your deployment.
 
 ### When capacity is available
 
-**In the portal:**
+**In the Foundry portal:**
 
 Continuing from the model card, with **Deploy** > **Custom settings** open:
 
@@ -124,9 +126,15 @@ If no alternative region has enough capacity:
 - Use the [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list) to programmatically query deployable PTU counts across regions.
 - Retry later. Capacity availability changes dynamically throughout the day as demand fluctuates.
 
+## Create more deployments with your remaining quota
+
+PTU quota is shared across all provisioned deployments of the same deployment type within a region. If you have quota remaining after your initial deployment, you can use it to deploy other supported models without requesting more quota.
+
+The steps are the same as creating your first deployment. When you configure the new deployment, the deployment dialog shows the total available quota you can use. After you create the new deployment, check your updated quota usage in the **Quota** pane under **Operate** in the [Foundry portal](https://ai.azure.com/?cid=learnDocs). You can manage your quota by requesting additional quota, or by deleting existing deployments to free up PTUs for new deployments.
+
 ## Optionally purchase a reservation
 
-After your deployment is in place, consider purchasing an Azure Reservation to get a discounted rate on your PTU billing. A reservation provides a significant discount over hourly billing for deployments you plan to run for more than a few days.
+After your provisioned deployment is in place, consider purchasing an Azure Reservation to get a discounted rate on your PTU billing. A reservation provides a significant discount over hourly billing for deployments you plan to run for more than a few days.
 
 > [!IMPORTANT]
 > Capacity availability is dynamic. Always create your deployments first to confirm capacity is available, then purchase the reservation to cover the PTUs you've deployed. This approach ensures you can take full advantage of the reservation discount and prevents you from committing to PTUs you can't use.
@@ -165,9 +173,9 @@ The inferencing code for provisioned deployments is the same as a standard deplo
 
 ## Run a benchmark
 
-The exact performance and throughput capabilities of your deployment depend on the kind of requests you make and your workload shape. The best way to determine the throughput for your workload is to run a benchmark on your own data.
+The exact performance and throughput capabilities of your deployment depend on the number of PTUs deployed, the kind of requests you make, and your workload shape (including input size, output size, and call rate). The best way to determine the throughput for your workload is to run a benchmark on your own data.
 
-The benchmarking tool provides preconfigured workload shapes and outputs key performance metrics. For details and configuration settings, see the [azure-openai-benchmark](https://github.com/Azure/azure-openai-benchmark) repository on GitHub.
+The **benchmarking tool** provides preconfigured workload shapes and outputs key performance metrics. Use this tool to run benchmarks on your deployment. For details and configuration settings, see the [azure-openai-benchmark](https://github.com/Azure/azure-openai-benchmark) repository on GitHub.
 
 Recommended benchmarking workflow:
 
@@ -195,7 +203,7 @@ To view the metric:
 
 ### How utilization works
 
-The service tracks utilization using a leaky bucket algorithm:
+The service tracks utilization using a variation of the leaky bucket algorithm:
 
 1. **Request estimate**: For each incoming request, the service estimates the compute cost by combining the prompt token count (less any cached tokens) and the `max_tokens` parameter. Cached tokens receive a 100% discount and don't contribute to utilization. If `max_tokens` isn't specified, the service estimates a value—this can lead to lower concurrency than expected when actual generated tokens are fewer than estimated. For highest concurrency, set `max_tokens` as close as possible to your true generation size.
 1. **Throttling at 100%**: If current utilization is at 100%, the service returns HTTP 429 immediately, with `retry-after-ms` and `retry-after` response headers indicating how long to wait.
@@ -226,7 +234,7 @@ The response includes the `retry-after-ms` and `retry-after` headers that tell y
 
 The number of concurrent calls a deployment can sustain depends on each call's shape—prompt size, `max_tokens` value, and similar factors. The service accepts calls until utilization reaches 100%. To estimate the maximum concurrent calls for a specific call shape, use the [capacity calculator](https://ai.azure.com/resource/calculator). If the model generates fewer tokens than the `max_tokens` value, the deployment can accept more concurrent requests.
 
-### Modifying retry logic in the client libraries
+### Modify retry logic in the client libraries
 
 The Azure OpenAI SDKs retry 429 responses by default, respecting the `retry-after` time. You can configure or disable the retry behavior using the `max_retries` option:
 
