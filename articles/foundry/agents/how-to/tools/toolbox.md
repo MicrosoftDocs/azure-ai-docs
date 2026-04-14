@@ -549,6 +549,8 @@ tools = await client.get_tools()
 
 ### Microsoft Agent Framework
 
+#### Python
+
 Use `MCPStreamableHTTPTool` from the Agent Framework SDK to connect directly to the toolbox MCP endpoint.
 
 **`.env` file**:
@@ -588,6 +590,127 @@ agent = chat_client.as_agent(
     tools=[mcp_tool],
 )
 ResponsesAgentServerHost().run()
+```
+
+#### .NET
+
+Use `ToolboxMcpClient` with the `Azure.AI.AgentServer.Responses` hosting library to connect a .NET agent to the toolbox MCP endpoint.
+
+**Environment variables**:
+
+```
+AZURE_OPENAI_ENDPOINT=https://<account>.services.ai.azure.com
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
+TOOLBOX_MCP_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/mcp?api-version=v1
+```
+
+**`Program.cs`** (key pattern):
+
+```csharp
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
+using Azure.Identity;
+using OpenAI.Chat;
+
+var credential = new DefaultAzureCredential();
+var openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("Set AZURE_OPENAI_ENDPOINT");
+var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o";
+var toolboxEndpoint = Environment.GetEnvironmentVariable("TOOLBOX_MCP_ENDPOINT")
+    ?? throw new InvalidOperationException("Set TOOLBOX_MCP_ENDPOINT");
+
+var aoaiClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
+var chatClient = aoaiClient.GetChatClient(deployment);
+
+// Connect to the toolbox MCP endpoint
+var toolboxClient = new ToolboxMcpClient(toolboxEndpoint, credential);
+
+// Discover tools and run the agent server
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
+{
+    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
+});
+
+// ─── Agent config ───────────────────────────────────────────
+public record AgentConfig(ChatClient ChatClient, ToolboxMcpClient ToolboxClient);
+
+// ─── Response handler ────────────────────────────────────────
+public class ToolboxHandler : ResponseHandler
+{
+    private readonly AgentConfig _config;
+    public ToolboxHandler(AgentConfig config) => _config = config;
+
+    public override IAsyncEnumerable<ResponseStreamEvent> CreateAsync(
+        CreateResponse request, ResponseContext context, CancellationToken ct)
+        => new TextResponse(context, request,
+            createTextStream: c => ProcessAsync(request, c));
+
+    private async IAsyncEnumerable<string> ProcessAsync(
+        CreateResponse request,
+        [EnumeratorCancellation] CancellationToken ct)
+    {
+        var userMessage = request.GetInputText() ?? "Hello!";
+
+        // Discover tools from the toolbox MCP endpoint
+        var chatTools = await _config.ToolboxClient.GetChatToolsAsync();
+
+        var messages = new List<ChatMessage>
+        {
+            new SystemChatMessage(
+                "You are a helpful assistant with access to " +
+                "Azure AI Foundry toolbox tools."),
+            new UserChatMessage(userMessage),
+        };
+        var options = new ChatCompletionOptions();
+        foreach (var tool in chatTools)
+            options.Tools.Add(tool);
+
+        // Tool-calling loop (max 5 rounds)
+        for (int round = 0; round < 5; round++)
+        {
+            var completion = await _config.ChatClient
+                .CompleteChatAsync(messages, options, ct);
+            var result = completion.Value;
+
+            if (result.FinishReason == ChatFinishReason.ToolCalls)
+            {
+                messages.Add(new AssistantChatMessage(result));
+                foreach (var toolCall in result.ToolCalls)
+                {
+                    var toolResult = await _config.ToolboxClient.CallToolAsync(
+                        toolCall.FunctionName,
+                        toolCall.FunctionArguments.ToString());
+                    messages.Add(new ToolChatMessage(toolCall.Id, toolResult));
+                }
+                continue;
+            }
+            foreach (var part in result.Content)
+                if (part.Kind == ChatMessageContentPartKind.Text)
+                    yield return part.Text;
+            yield break;
+        }
+        yield return "Reached maximum tool-calling rounds.";
+    }
+}
+```
+
+**`ToolboxMafAgent.csproj`**:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Azure.AI.AgentServer.Responses"
+                      Version="1.0.0-alpha.20260406.1" />
+    <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0" />
+    <PackageReference Include="Azure.Identity" Version="1.20.0" />
+  </ItemGroup>
+</Project>
 ```
 
 ### Copilot SDK
