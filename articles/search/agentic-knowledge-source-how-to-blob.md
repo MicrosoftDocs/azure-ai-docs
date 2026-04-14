@@ -350,7 +350,7 @@ You can pass the following properties to create a blob knowledge source.
 
 ::: zone-end
 
-### `ingestionParameters` properties
+### Ingestion parameters properties
 
 ::: zone pivot="csharp"
 

@@ -299,7 +299,7 @@ You can pass the following properties to create an indexed OneLake knowledge sou
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
-| `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
+| `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
 | `Description` | A description of the knowledge source. | String | Yes | No |
 | `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
 | `IndexedOneLakeKnowledgeSourceParameters` | Parameters specific to OneLake knowledge sources: `FabricWorkspaceId`, `LakehouseId`, and `TargetPath`. | Object |  | Yes |
@@ -313,7 +313,7 @@ You can pass the following properties to create an indexed OneLake knowledge sou
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
 | `description` | A description of the knowledge source. | String | Yes | No |
 | `encryption_key` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
 | `indexed_one_lake_parameters` | Parameters specific to OneLake knowledge sources: `fabric_workspace_id`, `lakehouse_id`, and `target_path`. | Object |  | Yes |
@@ -327,7 +327,7 @@ You can pass the following properties to create an indexed OneLake knowledge sou
 
 | Name | Description | Type | Editable | Required |
 |--|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
 | `kind` | The kind of knowledge source, which is `indexedOneLake` in this case. | String | No | Yes |
 | `description` | A description of the knowledge source. | String | Yes | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
@@ -338,7 +338,7 @@ You can pass the following properties to create an indexed OneLake knowledge sou
 
 ::: zone-end
 
-### `ingestionParameters` properties
+### Ingestion parameters properties
 
 ::: zone pivot="csharp"
 

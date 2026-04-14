@@ -292,10 +292,6 @@ You can pass the following properties to create an indexed SharePoint knowledge 
 | `ContainerName` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
 | `Query` | Optional [query](search-how-to-index-sharepoint-online.md#query) to filter SharePoint content. | String | Yes | No |
 
-### `ingestion_parameters` properties
-
-[!INCLUDE [C# ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-csharp.md)]
-
 ::: zone-end
 
 ::: zone pivot="python"
@@ -309,10 +305,6 @@ You can pass the following properties to create an indexed SharePoint knowledge 
 | `connection_string` | The connection string to a SharePoint site. For more information, see [Connection string syntax](search-how-to-index-sharepoint-online.md#connection-string-format). | String | Yes | Yes |
 | `container_name` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
 | `query` | Optional [query](search-how-to-index-sharepoint-online.md#query) to filter SharePoint content. | String | Yes | No |
-
-### `ingestion_parameters` properties
-
-[!INCLUDE [Python ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-python.md)]
 
 ::: zone-end
 
@@ -329,7 +321,23 @@ You can pass the following properties to create an indexed SharePoint knowledge 
 | `containerName` | The SharePoint library to access. Use `defaultSiteLibrary` to index content from the site's default document library or `allSiteLibraries` to index content from every document library in the site. Ignore `useQuery` for now. | String | No | Yes |
 | `query` | Optional [query](search-how-to-index-sharepoint-online.md#query) to filter SharePoint content. | String | Yes | No |
 
-### `ingestionParameters` properties
+::: zone-end
+
+### Ingestion parameters properties
+
+::: zone pivot="csharp"
+
+[!INCLUDE [C# ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-csharp.md)]
+
+::: zone-end
+
+::: zone pivot="python"
+
+[!INCLUDE [Python ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-python.md)]
+
+::: zone-end
+
+::: zone pivot="rest"
 
 [!INCLUDE [REST ingestionParameters properties](includes/how-tos/knowledge-source-ingestion-parameters-rest.md)]
 

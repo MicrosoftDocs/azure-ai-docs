@@ -183,10 +183,10 @@ You can pass the following properties to create a search index knowledge source.
 | `Name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | No | Yes |
 | `Description` | A description of the knowledge source. | String | Yes | No |
 | `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
-| `SearchIndexParameters` | Parameters specific to search index knowledge sources: `search_index_name`, `SemanticConfigurationName`, `SourceDataFields`, and `SearchFields`. | Object | Yes | Yes |
+| `SearchIndexParameters` | Parameters specific to search index knowledge sources: `SearchIndexName`, `SemanticConfigurationName`, `SourceDataFields`, and `SearchFields`. | Object | Yes | Yes |
 | `SearchIndexName` | The name of the existing search index. | String | Yes | Yes |
 | `SemanticConfigurationName` | Overrides the default semantic configuration for the search index. | String | Yes | No |
-| `SourceDataFields` | The index fields returned when you specify `include_reference_source_data` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
+| `SourceDataFields` | The index fields returned when you specify `IncludeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | Yes | No |
 | `SearchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | Yes | No |
 
 ::: zone-end
