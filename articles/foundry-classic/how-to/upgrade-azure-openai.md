@@ -51,7 +51,7 @@ Microsoft Foundry provides a broader set of models and capabilities than an Azur
 
 However, **IT administrators should review any wildcard role assignments or policies that don't restrict access to a specific resource kind.** These broad definitions might unintentionally grant users access to Foundry-only features immediately after upgrade.
 
-If you plan to roll out non-OpenAI features gradually, update your RBAC role assignments, Azure Policy definitions, and any custom roles before you perform the upgrade. For details on permissions, see [Role Based Access Control](../concepts/rbac-foundry.md).
+If you plan to roll out non-OpenAI features gradually, update your RBAC role assignments, Azure Policy definitions, and any custom roles before you perform the upgrade. For details on permissions, see [Role-based access control](../concepts/rbac-foundry.md).
 
 Post-upgrade behavior depends on your existing governance setup:
 

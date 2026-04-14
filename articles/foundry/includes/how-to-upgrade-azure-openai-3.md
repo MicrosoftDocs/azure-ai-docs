@@ -6,7 +6,7 @@ ms.reviewer: deeikele
 ms.author: sgilley
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 04/13/2026
 ms.custom: include
 ---
 
@@ -81,6 +81,7 @@ To roll back, convert your template configuration back to `OpenAI` as kind.
       customSubDomainName: foundryName
       disableLocalAuth: true
   }
+}
   ```
 
   Run the template by using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/bicep-cli) or your [Visual Studio Code extension for Bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) as a patch operation on your current resource.
