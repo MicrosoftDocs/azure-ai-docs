@@ -1,8 +1,8 @@
 ---
 title: "Synthetic data generation in Microsoft Foundry portal (classic)"
 description: "Learn how to generate a synthetic dataset in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 01/29/2026
 ms.reviewer: vkann

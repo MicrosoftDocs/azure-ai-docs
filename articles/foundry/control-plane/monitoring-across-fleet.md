@@ -6,7 +6,7 @@ ms.author: scottpolly
 ms.reviewer: sonalimalik
 ms.date: 02/13/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 #CustomerIntent: As a system administrator, I want to access top-level metrics for all registered agents so that I can maintain an overview of the fleet.

@@ -6,7 +6,7 @@ ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
 ms.date: 03/31/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: quickstart
 ms.custom:
   - classic-and-new

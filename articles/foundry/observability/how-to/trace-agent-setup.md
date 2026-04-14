@@ -1,6 +1,6 @@
 ---
 title: "Set Up Tracing for AI Agents in Microsoft Foundry"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 description: "Learn how to set up tracing in Microsoft Foundry to debug AI agent runs and monitor behavior by sending telemetry to Azure Monitor Application Insights with OpenTelemetry."
 ai-usage: ai-assisted
 author: lgayhardt

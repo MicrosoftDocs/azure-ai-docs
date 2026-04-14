@@ -5,7 +5,7 @@ description: "Enable AI Gateway with Azure API Management to apply tokens-per-mi
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: ankamene
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 03/16/2026
 ms.custom: dev-focus, doc-kit-assisted

@@ -1,7 +1,7 @@
 ---
 title: "Monitoring dashboard insights in Microsoft Foundry with Ask AI"
-description: "Use Ask AI in Microsoft Foundry to get summaries and actionable insights from your agent monitoring and control plane dashboards."
-ms.service: azure-ai-foundry
+description: "Discover how to use Ask AI in Microsoft Foundry to interpret your monitoring dashboard and gain actionable insights for better decision-making."
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 04/14/2026
 ms.reviewer: hanch

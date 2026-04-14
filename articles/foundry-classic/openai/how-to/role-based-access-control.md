@@ -3,8 +3,8 @@ title: "Role-based access control for Azure OpenAI (classic)"
 description: "Learn how to use Azure RBAC for managing individual access to Azure OpenAI resources. (classic)"
 author: mrbullwinkle
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 1/31/2026
 ms.author: mbullwin

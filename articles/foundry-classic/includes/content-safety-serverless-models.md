@@ -1,8 +1,8 @@
 ---
 title: Include file
 description: Include file
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 07/12/2024
 ms.author: mopeakande

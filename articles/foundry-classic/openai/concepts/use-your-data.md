@@ -2,8 +2,8 @@
 title: "Using your data with Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "Use this article to learn about using your data for better text generation in Azure OpenAI. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
 author: aahill
 ms.author: aahi
