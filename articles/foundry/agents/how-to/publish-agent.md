@@ -133,7 +133,7 @@ This section shows you how to publish an agent using the Foundry portal interfac
 3. Configure authentication for your Agent Application:
 
       - By default, the authentication type is set to RBAC (Role-Based Access Control).
-      - Users calling the agent application using Responses protocol must be granted the **Azure AI User** built-in Azure RBAC role (or an equivalent custom role) on the Agent Application resource.
+      - Users calling the agent application using Responses protocol must be granted the **Azure AI User** built-in Azure RBAC role (or an equivalent custom role) on the Agent Application resource. 
    <!--
    - For Azure Bot Service integration (to support Microsoft 365/Microsoft 365 Copilot), requests from a linked Azure Bot Service instance are automatically permitted
     -->
@@ -363,6 +363,15 @@ To roll out an agent with a different name, you must:
 1. Create or update a deployment to reference the new agent version.
 1. If you created a new deployment, update the Agent Application's traffic routing policy so 100% of traffic goes to the new deployment.
 
+## Grant users access to invoke a published agent
+
+After you publish an agent, callers need the **Azure AI User** role (or a custom role that includes the `Microsoft.CognitiveServices/accounts/projects/applications/invoke/action` permission) on the **Agent Application** resource. This role assignment is scoped to the individual Agent Application, so you can grant access to a single published agent without giving users access to your entire Foundry project or other agents.
+
+> [!IMPORTANT]
+> Agent Application RBAC is managed through Azure Resource Manager, not through the Entra agent identity. The Entra agent identity that the published agent receives is for the agent's *own* outbound calls to tools and resources. To control who can *invoke* the published agent, assign Azure RBAC roles on the Agent Application ARM resource by using the Azure portal, Azure CLI, or REST API.
+
+For more information about Azure RBAC, see [Role-based access control for Microsoft Foundry](../../concepts/rbac-foundry.md)    
+
 ## Invoke your Agent Application
 
 > [!NOTE]
@@ -397,7 +406,7 @@ Agents published as Agent Applications have the following limitations:
 | Issue | Likely cause | Resolution |
 | --- | --- | --- |
 | **Publish Agent** is disabled | Missing Azure AI Project Manager role on the Foundry resource scope | Assign the Azure AI Project Manager role on the Foundry resource (account) scope, not just on the project scope. |
-| `403 Forbidden` when invoking the endpoint | Caller lacks invoke permissions on the Agent Application resource | Assign the Azure AI User role on the Agent Application resource to the caller. |
+| `403 Forbidden` when invoking the endpoint | Caller lacks invoke permissions on the Agent Application resource | Assign the Azure AI User role on the Agent Application resource to the caller. See [Grant users access to invoke a published agent](#grant-users-access-to-invoke-a-published-agent). |
 | `401 Unauthorized` when invoking the endpoint | The access token is missing, expired, or for the wrong resource | Reauthenticate and request a token for `https://ai.azure.com`. |
 | Tool calls fail after publishing | The Agent Application identity doesn’t have the same access as the project identity | Reassign the required RBAC roles to the published agent identity for any downstream Azure resources it must access. |
 | Multi-turn conversations don’t work as expected | Agent Applications don’t store conversation state for you | Store conversation history in your client and send the context as part of your request. |

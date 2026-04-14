@@ -3,7 +3,7 @@ title: "How to run an evaluation in GitHub Action"
 description: "How to run evaluation in GitHub Action to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production."
 ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 01/12/2026
+ms.date: 04/13/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -37,18 +37,21 @@ To use this action, provide a data set with test queries and a list of evaluator
 
 | Name | Required? | Description |
 | - | - | - |
-| azure-ai-project-endpoint | Yes | Endpoint of your Microsoft Foundry Project. |
-| deployment-name | Yes | The name of the Azure AI model deployment to use for evaluation. |
+| azure-ai-project-endpoint | Yes | Endpoint of your Microsoft Foundry Project. To find this value, open your project in [Foundry portal](https://ai.azure.com) and copy the endpoint from the **Overview** page. |
+| deployment-name | Yes | The name of an Azure AI model deployment to use for evaluation. Find existing deployments under **Models + endpoints** in the Foundry portal. |
 | data-path | Yes | Path to the data file that contains the evaluators and input queries for evaluations. |
-| agent-IDs | Yes | ID of one or more agents to evaluate in format `agent-name:version` (for example, `my-agent:1` or `my-agent:1,my-agent:2`). Multiple agents are comma-separated and compared with statistical test results. |
+| agent-ids | Yes | ID of one or more agents to evaluate in format `agent-name:version` (for example, `my-agent:1` or `my-agent:1,my-agent:2`). Multiple agents are comma-separated and compared with statistical test results. |
 | baseline-agent-id | No | ID of the baseline agent to compare against when evaluating multiple agents. If not provided, the first agent is used. |
+
+> [!NOTE]
+> To find your agent ID and version, open your project in [Foundry portal](https://ai.azure.com), go to **Agents**, select your agent, and copy the **Agent ID** from the details pane. The version is the deployment version number (for example, `my-agent:1`).
 
 #### Data file
 
 The input data file should be a JSON file with the following structure:
 
 | Field | Type | Required? | Description |
-| - | - | - |
+| - | - | - | - |
 | name | string | Yes | Name of the evaluation dataset. |
 | evaluators | string[] | Yes | List of evaluator names to use. Check out the list of available evaluators in your project's evaluator catalog in Foundry portal: **Build > Evaluations > Evaluator catalog**. |
 | data | object[] | Yes | Array of input objects with `query` and optional evaluator fields like `ground_truth`, `context`. Automapped to evaluators; use `data_mapping` to override. |
@@ -58,13 +61,13 @@ The input data file should be a JSON file with the following structure:
 
 #### Basic sample data file
 
-```JSON
+```json
 {
   "name": "test-data",
   "evaluators": [
     "builtin.fluency",
     "builtin.task_adherence",
-    "builtin.violence",
+    "builtin.violence"
   ],
   "data": [
     {
@@ -96,7 +99,7 @@ To use the GitHub Action, add the GitHub Action to your CI/CD workflows. Specify
 > [!TIP]
 > To minimize costs, don't run evaluation on every commit.  
 
-This example shows how you can run Azure Agent AI Evaluation when you compare different agents by using agent IDs.
+This example shows how you can run AI Agent Evaluation when you compare different agents by using agent IDs.
 
 ```yaml
 name: "AI Agent Evaluation"
@@ -137,13 +140,15 @@ jobs:
 
 ### AI agent evaluations output
 
-Evaluation results are output to the summary section for each AI Evaluation GitHub Action run under Actions in GitHub.
+Evaluation results are output to the summary section for each AI Evaluation GitHub Action run under **Actions** in GitHub. The report shows evaluation scores for each metric, confidence intervals, and — when you evaluate multiple agents — a pairwise statistical comparison that indicates whether differences are meaningful or within random variation.
 
-The following is a sample report for comparing two agents.
+The following screenshot shows a sample report comparing two agents.
 
-:::image type="content" source="media/observability/github-action-agent-output.png" alt-text="Screenshot of agent evaluation result in GitHub Action." lightbox="media/observability/github-action-agent-output.png":::
+:::image type="content" source="media/observability/github-action-agent-output.png" alt-text="Screenshot of GitHub Actions workflow summary showing agent evaluation scores with confidence intervals and pairwise statistical comparison for two agents." lightbox="media/observability/github-action-agent-output.png":::
+
 
 ## Related content
 
+- [Evaluation in Azure DevOps](./evaluation-azure-devops.md)
 - [How to evaluate generative AI models and applications with Microsoft Foundry](./evaluate-generative-ai-app.md)
 - [How to view evaluation results in Foundry portal](./evaluate-results.md)

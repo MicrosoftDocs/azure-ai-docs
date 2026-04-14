@@ -22,8 +22,8 @@ This article covers how to use Prompt Optimizer in the Foundry portal playground
 ## Prerequisites
 
 - A [Foundry project](../../how-to/create-projects.md) with at least one [prompt agent or workflow agent](../../agents/overview.md).
-- A model deployment in a [supported region](#supported-regions).
-- Access to the [model playground](../../concepts/concept-playgrounds.md#model-playground) in the Foundry portal.
+- A model deployment in a [supported region](#supported-regions). The region of your Foundry project determines feature availability.
+- Access to the agent configuration panel in the Foundry portal.
 
 ## How Prompt Optimizer works
 
@@ -41,10 +41,10 @@ Prompt Optimizer uses a multistep process that combines your input with LLM-driv
 
 To open Prompt Optimizer in the Foundry portal:
 
-1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the **New Foundry** toggle is on. These steps refer to Foundry (new).
-2. Navigate to the **Build** page and select your agent.
+1. Sign in to [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs). Make sure the **New Foundry** toggle is on.
+2. Go to **Build** > **Agents**, and select the agent you want to optimize.
 3. In the agent configuration panel, find the **Instructions** section.
-4. Select the pencil-with-sparkle icon (✏️✨) next to the *Instructions* header. This action opens the Prompt Optimizer dialog.
+4. Select the pencil with sparkle icon (✏️✨) next to the *Instructions* header. This action opens the Prompt Optimizer dialog.
 
 > [!TIP]
 > You can use Prompt Optimizer inside the model playground wherever a system instructions field is present.
@@ -57,7 +57,7 @@ If your agent doesn't have instructions yet:
 2. In the text area, enter a description of your agent's purpose and behavior. For example: *"A travel planning assistant that helps users plan multi-day trips with budget recommendations."*
 3. Select **Optimize**. The optimizer generates a full set of structured system instructions based on your description.
 4. Review the optimized instructions. Changed paragraphs are highlighted in purple with a left purple border.
-5. Select **Use prompt** to apply the optimized instructions to your agent.
+5. Select **Use prompt** to apply the optimized instructions to your agent. The dialog closes and the **Instructions** field updates with the optimized text.
 
 ## Optimize existing instructions
 
@@ -67,7 +67,7 @@ If your agent already has instructions, follow these steps:
 2. Optionally, enter a suggestion in the suggestion bar to guide the optimization. For example: *"Add guardrails for off-topic questions"* or *"Make the tone more conversational."*
 3. Select **Optimize**. The optimizer analyzes your current instructions and generates an improved version.
 4. Review the optimized instructions.
-5. Select **Use prompt** to replace your current instructions with the optimized version.
+5. Select **Use prompt** to replace your current instructions with the optimized version. The dialog closes and the **Instructions** field updates with the optimized text.
 
 > [!NOTE]
 > You can leave the suggestion field empty. In some cases, optimization without additional direction produces strong results, since the optimizer focuses purely on structural and clarity improvements.
@@ -88,7 +88,7 @@ You can refine the optimized result as many times as needed:
 1. After reviewing the optimized instructions, enter a new suggestion in the suggestion bar. For example: *"Shorten the response format section"* or *"Add a fallback behavior when the user asks something out of scope."*
 2. Select **Optimize** again. The optimizer uses your latest optimized text as the new baseline and applies your new suggestion.
 3. Repeat until you're satisfied.
-4. Select **Use prompt** to apply the final result.
+4. Select **Use prompt** to apply the final result. The dialog closes and the **Instructions** field updates with the optimized text.
 
 > [!IMPORTANT]
 > Optimization results aren't stored permanently. To apply results, select **Use prompt** before closing the dialog, or you lose the results.
@@ -127,7 +127,7 @@ In unsupported regions, the **Optimize** button doesn't appear.
 - **Use specific suggestions**: Vague suggestions like "make it better" produce less useful results than specific ones like "add error handling for invalid dates" or "restrict responses to English only."
 - **Review reasoning before accepting**: The per-paragraph reasoning helps you catch changes that might not align with your use case, even if they follow prompt-engineering best practices.
 - **Test after optimizing**: After applying optimized instructions, test your agent in the playground to verify the changes produce the expected behavior before deploying.
-- **Preserve your original prompt**: If you want to revert after applying an optimized prompt, simply reload the page. The optimized result isn't saved until you explicitly save your agent, so reloading restores your previous instructions.
+- **Preserve your original prompt**: Before optimizing, copy your current instructions if you want to revert. Reloading the page after applying restores your previous instructions as long as you haven't saved the agent.
 - **Run a full evaluation**: After optimizing, run an evaluation with your own dataset to measure whether the changes actually improve your agent's performance. Prompt Optimizer applies general best practices, but your evaluation data validates whether those changes work for your specific use case.
 
 ## Troubleshooting
@@ -142,3 +142,6 @@ In unsupported regions, the **Optimize** button doesn't appear.
 ## Related content
 
 - [Evaluate your AI agents](evaluate-agent.md)
+- [Agents overview](../../agents/overview.md)
+- [Prompt engineering techniques](../../openai/concepts/prompt-engineering.md)
+- [Monitor agents with the Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
