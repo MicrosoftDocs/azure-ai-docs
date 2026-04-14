@@ -73,7 +73,7 @@ GET https://[service name].search.windows.net/indexes?api-version=[api version]
 
 Use your preferred Azure SDK to retrieve all indexes on your search service.
 
-### [.NET](#tab/list-dotnet)
+### [.NET](#tab/dotnet)
 
 The Azure SDK for .NET provides [GetIndexesAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.getindexesasync) for this task.
 
@@ -90,7 +90,7 @@ await foreach (var index in indexClient.GetIndexesAsync())
 }
 ```
 
-### [Java](#tab/list-java)
+### [Java](#tab/java)
 
 The Azure SDK for Java provides `listIndexes` in the [SearchIndexAsyncClient](/java/api/com.azure.search.documents.indexes.searchindexasyncclient) class for this task.
 
@@ -110,7 +110,7 @@ searchIndexAsyncClient.listIndexes()
     );
 ```
 
-### [JavaScript](#tab/list-javascript)
+### [JavaScript](#tab/javascript)
 
 The Azure SDK for JavaScript provides `listIndexes` in the [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) class for this task.
 
@@ -129,7 +129,7 @@ const client = new SearchIndexClient(endpoint, new AzureKeyCredential(adminKey)
 })();
 ```
 
-### [Python](#tab/list-python)
+### [Python](#tab/python)
 
 The Azure SDK for Python provides `list_indexes` in the [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient) class for this task.
 
@@ -180,7 +180,7 @@ GET https://[service name].search.windows.net/indexes/[index name]/stats?api-ver
 
 Use your preferred Azure SDK to retrieve the document count, storage usage, and vector storage usage of an index.
 
-### [.NET](#tab/stats-dotnet)
+### [.NET](#tab/dotnet)
 
 The Azure SDK for .NET provides [GetIndexStatisticsAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.getindexstatisticsasync) for this task.
 
@@ -198,7 +198,7 @@ Console.WriteLine($"Storage consumed by index: {stats.StorageSize:N0} bytes");
 Console.WriteLine($"Storage consumed by vectors: {stats.VectorIndexSize:N0} bytes");
 ```
 
-### [Java](#tab/stats-java)
+### [Java](#tab/java)
 
 The Azure SDK for Java provides `getIndexStatistics` in the [SearchIndexAsyncClient](/java/api/com.azure.search.documents.indexes.searchindexasyncclient) class for this task.
 
@@ -218,7 +218,7 @@ System.out.println("Storage consumed by index: " + stats.getStorageSize() + " by
 System.out.println("Storage consumed by vectors: " + stats.getVectorIndexSize() + " bytes");
 ```
 
-### [JavaScript](#tab/stats-javascript)
+### [JavaScript](#tab/javascript)
 
 The Azure SDK for JavaScript provides `getIndexStatistics` in the [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) class for this task.
 
@@ -238,7 +238,7 @@ const client = new SearchIndexClient(endpoint, new AzureKeyCredential(adminKey)
 })();
 ```
 
-### [Python](#tab/stats-python)
+### [Python](#tab/python)
 
 The Azure SDK for Python provides [get_index_statistics](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient) for this task.
 
@@ -293,7 +293,7 @@ GET https://[service name].search.windows.net/indexes/[index name]?api-version=[
 
 Use your preferred Azure SDK to retrieve the JSON definition of an index.
 
-### [.NET](#tab/definition-dotnet)
+### [.NET](#tab/dotnet)
 
 The Azure SDK for .NET provides [GetIndexAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.getindexasync) for this task.
 
@@ -309,7 +309,7 @@ string indexJson = JsonSerializer.Serialize(index.Value, new JsonSerializerOptio
 Console.WriteLine(indexJson);
 ```
 
-### [Java](#tab/definition-java)
+### [Java](#tab/java)
 
 The Azure SDK for Java provides `getIndex` in the [SearchIndexAsyncClient](/java/api/com.azure.search.documents.indexes.searchindexasyncclient) class for this task.
 
@@ -336,7 +336,7 @@ searchIndexAsyncClient.getIndex("[index name]")
     });
 ```
 
-### [JavaScript](#tab/definition-javascript)
+### [JavaScript](#tab/javascript)
 
 The Azure SDK for JavaScript provides `getIndex` in the [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) class for this task.
 
@@ -354,7 +354,7 @@ const client = new SearchIndexClient(endpoint, new AzureKeyCredential(adminKey)
 })();
 ```
 
-### [Python](#tab/definition-python)
+### [Python](#tab/python)
 
 The Azure SDK for Python provides `get_index` in the [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient) class for this task.
 
@@ -409,7 +409,7 @@ If the index was deleted successfully, you should receive an `HTTP/1.1 204 No Co
 
 Use your preferred Azure SDK to permanently delete an index.
 
-### [.NET](#tab/delete-dotnet)
+### [.NET](#tab/dotnet)
 
 The Azure SDK for .NET provides [DeleteIndexAsync](/dotnet/api/azure.search.documents.indexes.searchindexclient.deleteindexasync) for this task.
 
@@ -424,7 +424,7 @@ await indexClient.DeleteIndexAsync("[index name]");
 Console.WriteLine("Index deleted successfully.");
 ```
 
-### [Java](#tab/delete-java)
+### [Java](#tab/java)
 
 The Azure SDK for Java provides `deleteIndex` in the [SearchIndexAsyncClient](/java/api/com.azure.search.documents.indexes.searchindexasyncclient) class for this task.
 
@@ -444,7 +444,7 @@ searchIndexAsyncClient.deleteIndex("[index name]")
     );
 ```
 
-### [JavaScript](#tab/delete-javascript)
+### [JavaScript](#tab/javascript)
 
 The Azure SDK for JavaScript provides `deleteIndex` in the [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient) class for this task.
 
@@ -462,7 +462,7 @@ const client = new SearchIndexClient(endpoint, new AzureKeyCredential(adminKey)
 })();
 ```
 
-### [Python](#tab/delete-python)
+### [Python](#tab/python)
 
 The Azure SDK for Python provides `delete_index` in the [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient) class for this task.
 
