@@ -18,9 +18,22 @@ zone_pivot_groups: selection-foundry-toolbox
 # Curate intent-based toolbox in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-Toolbox in Foundry gives your agent access to tools through a unified MCP-compatible endpoint. Instead of wiring authentication and invocation separately for each tool type and framework, you configure a toolbox once in Microsoft Foundry and point your agent to it. The platform handles credential injection, token refresh, and enterprise policy enforcement at runtime.
+When you build agents across different frameworks and runtimes, each agent typically wires tools directly — with its own authentication, credentials, and integration code. As usage scales, this leads to duplicated configuration, inconsistent security posture, and agents that are hard to move from prototype to production.
 
-Because the toolbox is a managed resource, you can add, remove, or reconfigure tools without changing any boilerplate code in your agent framework. Your agent always connects to a single MCP endpoint — when you update the toolbox, every agent that points to it picks up the changes with no code changes and no redeployment.
+Toolbox removes that friction. Define a curated set of tools once, manage them centrally in Foundry, and expose them through a single MCP-compatible endpoint that any agent can consume. The platform handles credential injection, token refresh, and enterprise policy enforcement at runtime.
+
+Toolbox covers the full tool lifecycle through four pillars — **Build** and **Consume** are available today:
+
+| Pillar | Status | What it enables |
+|--------|--------|-----------------|
+| **Discover** | Coming soon | Find existing, approved tools instead of rebuilding them, reducing duplication. |
+| **Build** | Available today | Select tools, configure authentication centrally, and publish a reusable toolbox that any team can consume. |
+| **Consume** | Available today | Connect any agent to a single MCP-compatible endpoint to dynamically discover and invoke all tools in the toolbox. |
+| **Govern** | Coming soon | Apply centralized authentication controls and observability to all tool calls flowing through a toolbox. |
+
+Toolboxes are created and governed in Foundry, but the consumption surface is open. Any agent runtime that supports MCP can use a toolbox — including agents built with Microsoft Agent Framework, LangGraph, GitHub Copilot, and MCP-enabled IDEs.
+
+Because a toolbox is a managed resource, you can add, remove, or reconfigure tools without changing code in your agent. Your agent always connects to a single endpoint — when you update the toolbox, every agent that points to it picks up the changes with no code changes and no redeployment.
 
 In this article, you learn how to:
 
