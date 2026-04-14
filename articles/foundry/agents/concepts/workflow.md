@@ -1,7 +1,7 @@
 ---
 title: "Build a workflow in Microsoft Foundry"
 description: "Build workflows in Microsoft Foundry to orchestrate AI agents with visual logic, branching, and Power Fx formulas. Create intelligent automation without writing code."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - build-2025

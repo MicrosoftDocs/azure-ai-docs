@@ -2,7 +2,7 @@
 title: "Use the GPT Realtime API via WebRTC"
 description: "Learn how to use the GPT Realtime API for speech and audio via WebRTC."
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 01/29/2026

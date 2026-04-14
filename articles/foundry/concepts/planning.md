@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Foundry Rollout Across My Organization"
 description: "Learn how to plan the rollout of Microsoft Foundry across your organization, including environment setup, data isolation, and governance."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 author: sdgilley
 ms.topic: concept-article
 ms.date: 12/24/2025

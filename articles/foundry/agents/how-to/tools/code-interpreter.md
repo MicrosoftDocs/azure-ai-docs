@@ -3,7 +3,7 @@ title: "Use Code Interpreter with Microsoft Foundry agents"
 description: "Create agents that run Python code in a sandboxed environment using Code Interpreter in Microsoft Foundry. Upload files, analyze data, and download generated charts."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 04/03/2026

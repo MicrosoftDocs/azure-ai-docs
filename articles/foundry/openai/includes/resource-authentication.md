@@ -1,7 +1,7 @@
 ---
 author: PatrickFarley 
 ms.author: pafarley 
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 1/7/2025

@@ -2,7 +2,7 @@
 title: "Speech to text with Whisper"
 description: "Learn how to use the Azure OpenAI Whisper model for speech to text conversion."
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - devx-track-python

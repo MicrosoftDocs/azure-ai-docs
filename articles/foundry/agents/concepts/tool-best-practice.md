@@ -7,7 +7,7 @@ ms.date: 03/09/2026
 ms.custom: references_regions, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ms.manager: nitinme
 ms.topic: concept-article
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 #CustomerIntent: As a developer building agents, I want to understand tool best practices so that I can configure reliable and secure tool usage.

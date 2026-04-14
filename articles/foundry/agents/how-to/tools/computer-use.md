@@ -3,7 +3,7 @@ title: "Use the computer use tool for agents"
 description: "Create agents that interpret screenshots and automate UI actions like clicking and typing. Includes Python, C#, TypeScript, Java SDK, and REST API samples for Foundry Agent Service."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026

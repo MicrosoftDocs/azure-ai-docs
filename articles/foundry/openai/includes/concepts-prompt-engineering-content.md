@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new

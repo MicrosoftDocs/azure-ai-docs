@@ -4,7 +4,7 @@ description: "Learn how to provision and configure customer-managed Azure resour
 manager: nitinme
 author: fosteramanda
 ms.author: fosteramanda
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 02/13/2026

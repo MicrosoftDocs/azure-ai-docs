@@ -3,7 +3,7 @@ title: "Prompt caching with Azure OpenAI in Microsoft Foundry Models"
 description: "Learn how to use prompt caching with Azure OpenAI"
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 11/08/2025

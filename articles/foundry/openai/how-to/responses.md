@@ -5,7 +5,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.date: 03/05/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom:

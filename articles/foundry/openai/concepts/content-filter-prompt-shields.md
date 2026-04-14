@@ -4,7 +4,7 @@ description: "Learn how Prompt Shields in Microsoft Foundry detect and block use
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 ms.date: 02/13/2026

@@ -3,7 +3,7 @@ title: 'Quickstart: Use Azure OpenAI in Microsoft Foundry Models with the Java S
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first image generation call with the Java SDK. 
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 author: PatrickFarley

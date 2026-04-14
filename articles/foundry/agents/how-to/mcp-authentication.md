@@ -3,7 +3,7 @@ title: "Set Up MCP Server Authentication"
 description: "Learn how to set up authentication for Model Context Protocol (MCP) servers used by agents in Microsoft Foundry Agent Service. Configure key-based, Entra, or OAuth auth."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 04/09/2026

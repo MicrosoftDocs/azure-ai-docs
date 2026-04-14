@@ -4,7 +4,7 @@ description: "Learn about content streaming options in Azure OpenAI, including d
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 ms.date: 01/15/2026

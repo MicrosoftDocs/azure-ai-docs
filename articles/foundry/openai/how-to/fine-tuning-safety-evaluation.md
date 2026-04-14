@@ -2,7 +2,7 @@
 title: "Safety evaluation for fine-tuning (preview)"
 description: "Learn how the safety evaluation works for Microsoft Foundry fine-tuning."
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ai-usage: ai-assisted
 ms.custom:

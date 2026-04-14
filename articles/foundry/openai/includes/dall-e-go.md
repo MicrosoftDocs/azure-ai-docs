@@ -3,7 +3,7 @@ title: 'Quickstart: Use the OpenAI service image generation Go SDK'
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Walkthrough on how to get started with Azure OpenAI image generation using the Go SDK. 
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 08/28/2023

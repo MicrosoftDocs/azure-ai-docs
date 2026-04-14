@@ -4,7 +4,7 @@ description: "Learn about Sora 2, an AI model for generating realistic and imagi
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 zone_pivot_groups: openai-video-generation

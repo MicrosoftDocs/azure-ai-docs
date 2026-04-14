@@ -7,7 +7,7 @@ author: lgayhardt
 ai-usage: ai-assisted
 ms.date: 03/13/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: references_regions
 ---
 

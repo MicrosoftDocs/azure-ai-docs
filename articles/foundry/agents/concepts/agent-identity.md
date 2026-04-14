@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.reviewer: fosteramanda
 ms.date: 04/13/2026
 ms.topic: concept-article
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted

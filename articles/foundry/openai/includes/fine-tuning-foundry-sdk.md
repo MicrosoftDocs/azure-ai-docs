@@ -6,7 +6,7 @@ author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
 ms.date: 09/01/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:

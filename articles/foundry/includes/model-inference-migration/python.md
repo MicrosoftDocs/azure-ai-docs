@@ -3,7 +3,7 @@ title: Python file for model inference SDK to OpenAI SDK migration
 description: Include file
 author: msakande
 ms.author: mopeakande
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 11/05/2025

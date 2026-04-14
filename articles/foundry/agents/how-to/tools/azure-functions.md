@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Build custom agent tools with Azure Functions using queue-based integration. Step-by-step guide with code examples for Foundry agents.
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026

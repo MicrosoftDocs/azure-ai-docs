@@ -4,7 +4,7 @@ description: "Learn about Microsoft Foundry Agent Service capabilities, agent ty
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: overview
 ms.date: 03/25/2026

@@ -3,7 +3,7 @@ title: "Azure OpenAI in Microsoft Foundry Models supported programming languages
 description: "Programming language support for Azure OpenAI."
 author: mrbullwinkle
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - classic-and-new

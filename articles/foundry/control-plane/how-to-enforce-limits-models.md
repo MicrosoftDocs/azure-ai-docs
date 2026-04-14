@@ -4,7 +4,7 @@ description: "Use Foundry Control Plane integration with an AI gateway to apply 
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.custom: dev-focus, doc-kit-assisted
 ms.date: 04/13/2026

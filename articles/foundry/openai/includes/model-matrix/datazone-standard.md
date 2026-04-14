@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for Global Batch models
 manager: nitinme
 ms.date: 08/12/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:

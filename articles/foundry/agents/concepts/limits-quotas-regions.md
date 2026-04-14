@@ -4,7 +4,7 @@ description: "Review default limits for Foundry Agent Service, including file si
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
 ms.date: 04/03/2026

@@ -6,7 +6,7 @@ author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
 ms.date: 04/10/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ai-usage: ai-assisted

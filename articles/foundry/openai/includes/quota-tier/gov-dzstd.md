@@ -3,7 +3,7 @@ title: Azure Government DataZone Standard Quota Limits
 description: Quota limits for DataZone standard in Azure Government
 author: challenp
 ms.author: challenp
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 04/03/2026

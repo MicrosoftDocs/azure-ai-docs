@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI model global batch REST
 manager: nitinme
 ms.date: 07/22/2024
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:

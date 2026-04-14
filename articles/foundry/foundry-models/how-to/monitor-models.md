@@ -3,7 +3,7 @@ title: "Monitor Model Deployments in Microsoft Foundry Models"
 description: "Learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for Foundry Models."
 author: ssalgadodev
 ms.author: ssalgado
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 02/13/2026

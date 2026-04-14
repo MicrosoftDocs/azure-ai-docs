@@ -5,7 +5,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.date: 11/05/2025
 ms.topic: concept-article
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ai-usage: ai-assisted
 ms.custom:

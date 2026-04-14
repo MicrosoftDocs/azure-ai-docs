@@ -5,7 +5,7 @@ author: aahill
 ms.author: aahi
 manager: nitinme
 ms.date: 04/10/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom: doc-kit-assisted

@@ -4,7 +4,7 @@ description: "Learn how to manage traffic bursts in Azure OpenAI provisioned dep
 #customer intent: As a developer, I want to enable spillover for my provisioned deployments so that I can manage traffic bursts effectively.
 author: msakande
 ms.author: mopeakande
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.reviewer: seramasu
 reviewer: rsethur
 ms.subservice: azure-ai-foundry-openai

@@ -1,7 +1,7 @@
 ---
 title: "Evaluation Cluster Analysis" 
 description: "Learn how to run and interact with an evaluation cluster analysis." 
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 02/25/2026
 ms.reviewer: hanch

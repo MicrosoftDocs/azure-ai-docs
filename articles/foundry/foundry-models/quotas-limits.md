@@ -3,7 +3,7 @@ title: "Microsoft Foundry Models quotas and limits"
 description: "Learn about quotas, rate limits, and best practices for Foundry Models, including per-model token and request limits, client timeouts, and how to request increases."
 ai-usage: ai-assisted
 author: msakande
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.custom:
   - ignite-2024, github-universe-2024

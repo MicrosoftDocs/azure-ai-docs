@@ -3,7 +3,7 @@ title: Azure OpenAI C# support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI C# support
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 08/31/2025

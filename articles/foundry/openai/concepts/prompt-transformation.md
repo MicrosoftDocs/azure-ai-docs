@@ -3,7 +3,7 @@ title: "Azure OpenAI prompt transformation concepts"
 description: "Learn about the prompt transformation feature in Azure OpenAI image generation models, how it works, and why it's necessary."
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article 
 ms.date: 02/09/2026

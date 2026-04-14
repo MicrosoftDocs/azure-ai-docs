@@ -1,6 +1,6 @@
 ---
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 04/13/2026

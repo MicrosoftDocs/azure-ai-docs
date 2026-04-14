@@ -3,7 +3,7 @@ title: "Work with chat completion models"
 description: "Learn about the options for how to use models with the chat completions API"
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - build-2023, build-2023-dataai, devx-track-python, devx-track-dotnet

@@ -2,7 +2,7 @@
 title: "Microsoft Foundry Project REST Reference (preview)"
 description: "Learn how to use Microsoft Foundry Project REST API (preview)"
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: reference
 ms.date: 11/17/2025
 author: mrbullwinkle    

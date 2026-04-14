@@ -2,7 +2,7 @@
 title: "Use the GPT Realtime API via WebSockets"
 description: "Learn how to use the GPT Realtime API for speech and audio via WebSockets."
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 04/01/2026

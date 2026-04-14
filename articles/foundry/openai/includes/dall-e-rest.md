@@ -3,7 +3,7 @@ title: 'Quickstart: Generate images with the REST APIs for Azure OpenAI in Micro
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI by using the REST APIs and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - ignite-2023, classic-and-new

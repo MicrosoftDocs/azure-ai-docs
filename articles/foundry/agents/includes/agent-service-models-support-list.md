@@ -2,7 +2,7 @@
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: include
 ms.date: 01/07/2026

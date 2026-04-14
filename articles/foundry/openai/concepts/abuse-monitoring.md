@@ -3,7 +3,7 @@ title: "Azure Direct Models abuse monitoring"
 description: "Learn about the abuse monitoring capabilities of Azure OpenAI"
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
 ms.date: 12/6/2025

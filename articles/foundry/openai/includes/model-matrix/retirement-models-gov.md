@@ -3,7 +3,7 @@ title: Model Retirement Differences in Azure Government
 titleSuffix: Azure OpenAI Model Retirements in Azure Government
 description: Model Retirement differences in Azure Government
 ms.author: challenp
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions

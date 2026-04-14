@@ -3,7 +3,7 @@ title: "How to use structured outputs with Azure OpenAI in Microsoft Foundry Mod
 description: "Learn how to improve your model responses with structured outputs"
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 12/6/2025

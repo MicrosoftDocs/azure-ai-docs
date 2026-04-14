@@ -2,7 +2,7 @@
 title: "Microsoft Foundry Playgrounds"
 description: "Learn how to use Microsoft Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment."
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.date: 02/10/2026

@@ -3,7 +3,7 @@ title: "Understanding deployment types in Microsoft Foundry Models"
 description: "Compare Microsoft Foundry deployment types including Global Standard, Provisioned, DataZone, and Batch. Learn about data residency, pricing, and when to use each type."
 ai-usage: ai-assisted
 author: msakande
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.date: 02/04/2026

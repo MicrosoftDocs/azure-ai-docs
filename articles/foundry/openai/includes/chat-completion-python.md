@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn how to work with the Chat Completion API. 
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 11/04/2025

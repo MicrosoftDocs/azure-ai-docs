@@ -4,7 +4,7 @@ titleSuffix: Microsoft Foundry
 description: Describes the models that support fine-tuning and the regions where fine-tuning is available.
 ms.author: wujohn
 ms.date: 03/05/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ---

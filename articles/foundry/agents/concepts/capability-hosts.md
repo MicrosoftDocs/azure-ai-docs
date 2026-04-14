@@ -3,7 +3,7 @@ title: "Capability hosts for Foundry Agent Service"
 description: "Learn how capability hosts route agent data to Microsoft-managed or your own Azure resources, and how to configure and troubleshoot them."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: concept-article
 ms.date: 01/20/2026

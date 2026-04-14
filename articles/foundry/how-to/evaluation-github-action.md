@@ -1,7 +1,7 @@
 ---
 title: "How to run an evaluation in GitHub Action" 
 description: "How to run evaluation in GitHub Action to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 01/12/2026
 ms.reviewer: hanch

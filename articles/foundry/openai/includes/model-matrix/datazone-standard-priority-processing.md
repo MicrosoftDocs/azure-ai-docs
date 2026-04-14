@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for priority processing of model deployments
 manager: nitinme
 ms.date: 03/24/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:

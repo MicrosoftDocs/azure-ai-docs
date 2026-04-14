@@ -3,7 +3,7 @@ title: "How to use function calling with Azure OpenAI in Microsoft Foundry Model
 description: "Learn how to use function calling with OpenAI models."
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - devx-track-python
