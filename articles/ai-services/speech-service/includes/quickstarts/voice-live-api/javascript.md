@@ -4,10 +4,10 @@ author: PatrickFarley
 ms.author: pafarley
 reviewer: patrickfarley
 ms.reviewer: pafarley
-ms.service: microsoft-foundry
+ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 3/2/2026
-ms.subservice: foundry-openai
+ms.subservice: azure-ai-foundry-openai
 ai-usage: ai-assisted
 ---
 
