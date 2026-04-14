@@ -120,8 +120,29 @@ Accept: application/json
 
 :::zone pivot="python"
 
-> [!NOTE]
-> Python sample not yet available.
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(
+        endpoint=endpoint, credential=credential, allow_preview=True
+    ) as project_client,
+):
+    created = project_client.beta.skills.create(
+        name="greeting",
+        description="Generate a personalized greeting for the user.",
+        instructions="You are a friendly greeting assistant. Include the user's name and keep greetings concise.",
+    )
+    print(
+        f"Created skill: {created.name} ({created.skill_id}) "
+        f"has_blob={created.has_blob}"
+    )
+```
 
 :::zone-end
 
@@ -184,8 +205,28 @@ Foundry-Features: Skills=V1Preview
 
 :::zone pivot="python"
 
-> [!NOTE]
-> Python sample not yet available.
+```python
+import os
+from pathlib import Path
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(
+        endpoint=endpoint, credential=credential, allow_preview=True
+    ) as project_client,
+):
+    imported = project_client.beta.skills.create_from_package(
+        Path("greeting.zip").read_bytes()
+    )
+    print(
+        f"Imported skill: {imported.name} ({imported.skill_id}) "
+        f"has_blob={imported.has_blob}"
+    )
+```
 
 :::zone-end
 
@@ -242,8 +283,24 @@ Foundry-Features: Skills=V1Preview
 
 :::zone pivot="python"
 
-> [!NOTE]
-> Python sample not yet available.
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(
+        endpoint=endpoint, credential=credential, allow_preview=True
+    ) as project_client,
+):
+    skills = list(project_client.beta.skills.list())
+    print(f"Found {len(skills)} skill(s)")
+    for skill in skills:
+        print(f"  {skill.name} (has_blob: {skill.has_blob})")
+```
 
 :::zone-end
 
@@ -302,8 +359,22 @@ Foundry-Features: Skills=V1Preview
 
 :::zone pivot="python"
 
-> [!NOTE]
-> Python sample not yet available.
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(
+        endpoint=endpoint, credential=credential, allow_preview=True
+    ) as project_client,
+):
+    skill = project_client.beta.skills.get("greeting")
+    print(f"{skill.name}: {skill.description}")
+```
 
 :::zone-end
 
@@ -343,8 +414,30 @@ Foundry-Features: Skills=V1Preview
 
 :::zone pivot="python"
 
-> [!NOTE]
-> Python sample not yet available.
+```python
+import os
+import tempfile
+from datetime import datetime
+from pathlib import Path
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+download_folder = Path(tempfile.gettempdir()).resolve()
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(
+        endpoint=endpoint, credential=credential, allow_preview=True
+    ) as project_client,
+):
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    download_path = download_folder / f"greeting_{timestamp}.zip"
+    download_path.write_bytes(
+        b"".join(project_client.beta.skills.download("greeting"))
+    )
+    print(f"Downloaded skill package to: {download_path}")
+```
 
 :::zone-end
 
@@ -382,8 +475,22 @@ Foundry-Features: Skills=V1Preview
 
 :::zone pivot="python"
 
-> [!NOTE]
-> Python sample not yet available.
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+
+with (
+    DefaultAzureCredential() as credential,
+    AIProjectClient(
+        endpoint=endpoint, credential=credential, allow_preview=True
+    ) as project_client,
+):
+    deleted = project_client.beta.skills.delete("greeting")
+    print(f"Deleted skill: {deleted}")
+```
 
 :::zone-end
 
@@ -472,13 +579,7 @@ azd ai agent invoke --remote "What Azure products do you offer?"
 
 ## Troubleshoot
 
-| Error | Cause | Fix |
-|-------|-------|-----|
-| HTTP 500 on import | Quoted `name` or `description` in YAML front matter | Use `name: foo`, not `name: 'foo'` |
-| HTTP 404 on get or download | Skill name not found | Verify the name with `GET /skills?api-version=v1` first |
-| HTTP 404 on download | Skill was created from JSON (`has_blob: false`) | Only ZIP-imported skills (`has_blob: true`) can be downloaded |
-| ZIP not extractable after download | Caller treated response as gzip | Response is `application/zip`; use `zipfile.ZipFile` to extract |
-| Skill not injected | `SKILL.md` placed at agent root, not in a subdirectory | Put it in `greeting/SKILL.md`, not `./SKILL.md` |
+For common errors when importing, downloading, and using skills, see [Troubleshoot skills](troubleshoot-skills.md).
 
 ## Known fast follows and gaps
 
@@ -486,7 +587,7 @@ The following capabilities are planned or have known limitations:
 
 | Feature | Status | Description |
 |---------|--------|-------------|
-| Python SDK samples for skill operations | Planned | Native Python SDK samples for create, import, list, get, download, and delete skill operations. Currently only REST API and JavaScript SDK samples are available. |
+| Python SDK samples for skill operations | Available | Native Python SDK samples for create, import, list, get, download, and delete skill operations are now available. |
 | .NET SDK samples for skill operations | Planned | Native .NET SDK samples for create, import, list, get, download, and delete skill operations. |
 | `"latest"` as `default_version` | Not supported | There is no way to set `default_version` to a special value like `"latest"` that automatically points to the most recently created version. Publishers must explicitly promote each new version via PATCH. See [Curate intent-based toolbox in Foundry](toolbox.md). |
 | Default project toolbox (`/mcp`) | Not yet implemented | A built-in, implicit toolbox at `{project_endpoint}/mcp` that serves all project-configured tools without toolbox CRUD. Currently, developers must create a named toolbox explicitly. |
