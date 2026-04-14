@@ -112,10 +112,10 @@ Use the SDK when you want to manage agent deployments directly from Python code.
 * [Python 3.10 or later](https://www.python.org/downloads/)
 * A container image in [Azure Container Registry](/azure/container-registry/container-registry-get-started-portal)
 * **Container Registry Repository Writer** or **AcrPush** role on the container registry (to push images)
-* Azure AI Projects SDK version 2.0.0 or later
+* Azure AI Projects SDK version 2.1.0 or later
 
     ```bash
-    pip install "azure-ai-projects>=2.0.0"
+    pip install "azure-ai-projects>=2.1.0"
     ```
 
 ### Build and push your container image
@@ -387,7 +387,7 @@ curl -X POST "$BASE_URL/agents/my-agent/versions?api-version=$API_VERSION" \
 
 ## Clean up resources
 
-To prevent charges, clean up resources when finished. Agent sessions auto-stop after an idle timeout (24 hours by default), so there's no cost when an agent isn't in use.
+To prevent charges, clean up resources when finished. Agent compute is deprovisioned after 15 minutes of inactivity, so there's no cost when an agent isn't serving requests.
 
 ### Azure Developer CLI cleanup
 
@@ -406,7 +406,7 @@ project.agents.delete_version(agent_name="my-agent", agent_version=agent.version
 Or delete the entire agent and all its versions:
 
 ```python
-project.agents.delete_agent(agent_name="my-agent")
+project.agents.delete(agent_name="my-agent")
 ```
 
 ### REST API cleanup
