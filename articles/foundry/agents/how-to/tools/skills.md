@@ -58,7 +58,7 @@ description: Generate a personalized greeting for the user.
 
 # Greeting Skill
 
-You are a friendly greeting assistant for Foundry Hosted Agents.
+You're a friendly greeting assistant for Foundry Hosted Agents.
 
 ## Instructions
 
@@ -75,7 +75,7 @@ You are a friendly greeting assistant for Foundry Hosted Agents.
 
 > [!IMPORTANT]
 > - The `name` and `description` values must be unquoted in the YAML front matter.
-> - Using quoted values (for example, `name: 'greeting'`) causes an HTTP 500
+> - The use of quoted values (for example, `name: 'greeting'`) causes an HTTP 500
 > error on import.
 
 Place each skill in its own subdirectory under the agent root directory.
@@ -589,7 +589,7 @@ them as additional instructions in every session.
 Download each skill into its own subdirectory under the agent root.
 Use the download operation from [Download a skill](#download-a-skill).
 
-After downloading, the agent directory looks like this:
+When the downloads are complete, the agent directory looks like this:
 
 ```
 my-agent/
@@ -641,10 +641,10 @@ The following capabilities are planned or have known limitations:
 | Feature | Status | Description |
 |---------|--------|-------------|
 | Python SDK samples for skill operations | Available | Native Python SDK samples for create, import, list, get, download, and delete skill operations are now available. |
-| .NET SDK samples for skill operations | Partially available | .NET SDK samples are now available for create, import, list, get, and delete. Download is not yet available. |
-| `"latest"` as `default_version` | Not supported | There is no way to set `default_version` to a special value like `"latest"` that automatically points to the most recently created version. Publishers must explicitly promote each new version via PATCH. See [Curate intent-based toolbox in Foundry](toolbox.md). |
+| .NET SDK samples for skill operations | Partially available | .NET SDK samples are now available for create, import, list, get, and delete. Download isn't available yet. |
+| `"latest"` as `default_version` | Not supported | There's no way to set `default_version` to a special value like `"latest"` that automatically points to the most recently created version. Publishers must explicitly promote each new version via PATCH. See [Curate intent-based toolbox in Foundry](toolbox.md). |
 | Default project toolbox (`/mcp`) | Not yet implemented | A built-in, implicit toolbox at `{project_endpoint}/mcp` that serves all project-configured tools without toolbox CRUD. Currently, developers must create a named toolbox explicitly. |
-| File and vector store updates without new version | Not supported | For toolbox tools like File Search and Code Interpreter, uploading new files or updating vector stores requires creating a new toolbox version. There is no way to update the underlying file or vector store content without re-creating the version. See [Curate intent-based toolbox in Foundry](toolbox.md). |
+| File and vector store updates without new version | Not supported | For toolbox tools like File Search and Code Interpreter, uploading new files or updating vector stores requires creating a new toolbox version. There's no way to update the underlying file or vector store content without re-creating the version. See [Curate intent-based toolbox in Foundry](toolbox.md). |
 | Tool configuration via `_meta` | Out of scope for public preview | Pass developer-controlled configuration (connection IDs, index names, query types) separately from model-provided arguments using MCP's standard `_meta` field on `tools/call`. |
 
 ## Related content
