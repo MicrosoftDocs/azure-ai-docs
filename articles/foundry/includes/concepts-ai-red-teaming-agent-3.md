@@ -12,7 +12,7 @@ ms.custom: include
 
 ## Supported attack strategies
 
-The following attack strategies are supported in the AI Red Teaming Agent from [PyRIT](https://azure.github.io/PyRIT/index.html):
+The following attack strategies are supported in the AI Red Teaming Agent from [PyRIT](https://github.com/microsoft/PyRIT):
 
 | **Attack Strategy** | **Description** |
 |---------------------|-----------------|
@@ -58,9 +58,9 @@ Get started with our [documentation on how to run an automated scan for safety r
 Learn more about the tools used by the AI Red Teaming Agent.
 
 - [Azure AI Risk and Safety Evaluations](../concepts/safety-evaluations-transparency-note.md)
-- [PyRIT: Python Risk Identification Tool](https://github.com/Azure/PyRIT)
+- [PyRIT: Python Risk Identification Tool](https://github.com/microsoft/PyRIT)
 
-The most effective strategies for risk assessment we've seen use automated tools to surface potential risks, which are then analyzed by expert human teams for deeper insights. If your organization is just starting with AI red teaming, we encourage you to explore the resources created by our own AI red team at Microsoft to help you get started.
+The most effective strategies for risk assessment combine automated tools that surface potential risks with expert human analysis for deeper insights. If your organization is just starting with AI red teaming, explore the resources created by the Microsoft AI red team:
 
 - [Planning red teaming for large language models (LLMs) and their applications](../openai/concepts/red-teaming.md)
 - [Three takeaways from red teaming 100 generative AI products](https://www.microsoft.com/security/blog/2025/01/13/3-takeaways-from-red-teaming-100-generative-ai-products/)

@@ -17,7 +17,7 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 > - DeepSeek: `DeepSeek-V3.2`, `DeepSeek-V3.2-Speciale`, `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
 > - Moonshot AI: `Kimi-K2.5`
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
-> - Microsoft: `MAI-Image-2`, `model-router`, 
+> - Microsoft: `MAI-Image-2e`, `MAI-Image-2`, `model-router`
 > - Mistral: `mistral-document-ai-2512`, `mistral-document-ai-2505`, `Mistral-Large-3`
 > - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`, `grok-4.1-fast-reasoning`, `grok-4.1-fast-non-reasoning`, `grok-4-20-reasoning`, `grok-4-20-non-reasoning`
 > 
@@ -166,7 +166,7 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-oss-120b` (Preview)   | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available for deployment<sup>1</sup> and via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md)  | 131,072 | 131,072 | May 31, 2024 |
-| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md) and [Foundry Local](../../../foundry-local/get-started.md#optional-run-the-latest-gpt-oss-20b-model) | 131,072 | 131,072 | May 31, 2024 |
+| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md) and [Foundry Local](../../../foundry-local/what-is-foundry-local.md) | 131,072 | 131,072 | May 31, 2024 |
 
 <sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires a [Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry) to deploy the model.
 
@@ -213,9 +213,9 @@ az cognitiveservices account deployment create \
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 128,000 (standard & provisioned managed deployments) <br> - 300,000 (batch deployments) | 32,768 | May 31, 2024 |
-| `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (standard & provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
-| `gpt-4.1-mini` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (standard & provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
+| `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments) | 32,768 | May 31, 2024 |
+| `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments)  | 32,768 | May 31, 2024 |
+| `gpt-4.1-mini` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments)  | 32,768 | May 31, 2024 |
 
 ## computer-use-preview
 

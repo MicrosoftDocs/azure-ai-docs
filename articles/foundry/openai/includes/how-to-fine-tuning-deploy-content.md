@@ -403,7 +403,7 @@ Developer deployments are available from all Azure OpenAI regions for the follow
 
 ## Clean up your deployment
 
-To delete a deployment, use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete?view=rest-aiservices-accountmanagement-2024-10-01&tabs=HTTP) and send an HTTP DELETE to the deployment resource. Like with creating deployments, you must include the following parameters:
+To delete a deployment, use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagement/deployments/delete) and send an HTTP DELETE to the deployment resource. Like with creating deployments, you must include the following parameters:
 
 - Azure subscription ID
 - Azure resource group name
@@ -417,7 +417,7 @@ curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resour
   -H "Authorization: Bearer <TOKEN>"
 ```
 
-You can also delete a deployment in Foundry portal, or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete).
+You can also delete a deployment in Foundry portal, or use [Azure CLI](/cli/azure/cognitiveservices/account/deployment).
 
 ## Next steps
 

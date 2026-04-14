@@ -289,11 +289,9 @@ Every response includes a `"finish_reason"` field. It has the following possible
 - `length`: Incomplete model output due to the `max_tokens` input parameter or model's token limit.
 - `content_filter`: Omitted content due to a flag from our content filters.
 
-## Pricing information
+[!INCLUDE [input limitations](./gpt-with-vision-input-limitations.md)]
 
-Extra usage fees might apply when using chat completion models with vision functionality.
 
-For details on how the image parameters impact tokens used and pricing please see - [What is Azure OpenAI? Image Tokens](../../foundry-models/concepts/models-sold-directly-by-azure.md)
 
 ## Troubleshooting
 

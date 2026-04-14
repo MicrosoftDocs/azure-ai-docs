@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 03/30/2026
+ms.date: 04/10/2026
 ms.custom: include
 ---
 
@@ -30,6 +30,8 @@ Make sure you install the correct version of the packages as shown here.
         
     ```bash
     dotnet add package Azure.AI.Projects
+    dotnet add package Azure.AI.Projects.Agents
+    dotnet add package Azure.AI.Extensions.OpenAI
     dotnet add package Azure.Identity
     ```
 
