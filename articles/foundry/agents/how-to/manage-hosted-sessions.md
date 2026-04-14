@@ -137,7 +137,7 @@ The isolation key is a string that you define. Use it to group sessions by user,
 
 ## Invoke an agent through a session
 
-After you create a session, invoke the agent by sending requests through the OpenAI Responses API with the session ID bound to the request.
+After you create a session, invoke the agent by sending requests through the OpenAI Responses API with the session ID bound to the request. For agents using the Invocations protocol, see [Deploy a hosted agent](deploy-hosted-agent.md#invoke-the-agent) — invocations agents manage state directly and don't use platform-managed sessions.
 
 :::zone pivot="rest"
 
@@ -349,7 +349,7 @@ files = project.beta.agents.list_session_files(
     path=".",
 )
 for entry in files.entries:
-    print(f"  {entry.name} (size: {entry.size}, directory: {entry.is_directory})")
+    print(f"  {entry.name} (size: {entry.size}, directory: {entry.is_dir})")
 ```
 
 :::zone-end

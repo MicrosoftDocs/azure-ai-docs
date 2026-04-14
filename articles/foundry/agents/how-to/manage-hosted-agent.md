@@ -206,20 +206,23 @@ Create a new agent version when you need to update the container image, change r
 :::zone pivot="rest"
 
 ```bash
-az rest --method PUT \
-    --url "${BASE_URL}/agents/my-agent/versions/2?api-version=${API_VERSION}" \
+az rest --method POST \
+    --url "${BASE_URL}/agents/my-agent/versions?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
     --body '{
         "definition": {
+            "kind": "hosted",
             "image": "myregistry.azurecr.io/my-agent:v2",
             "cpu": "1",
             "memory": "2Gi",
-            "containerProtocolVersions": [
+            "container_protocol_versions": [
                 {"protocol": "responses", "version": "1.0.0"}
             ]
         }
     }'
 ```
+
+Replace `responses` with `invocations` if your agent uses the Invocations protocol, or include both to expose both protocols. For details on protocol selection, see [Deploy a hosted agent](deploy-hosted-agent.md#container-requirements).
 
 :::zone-end
 
@@ -242,6 +245,8 @@ agent = project.agents.create_version(
 )
 print(f"Created version: {agent.version}")
 ```
+
+Replace `responses` with `invocations` if your agent uses the Invocations protocol, or pass both to expose both protocols.
 
 :::zone-end
 
@@ -355,24 +360,21 @@ Access container logs for debugging provisioning and runtime issues.
 Stream logs from a specific agent session:
 
 ```bash
+AGENT_VERSION="<version>"
 SESSION_ID="<session-id>"
 
 az rest --method GET \
-    --url "${BASE_URL}/agents/my-agent/endpoint/sessions/${SESSION_ID}:logstream?api-version=${API_VERSION}&kind=console&tail=100&follow=true" \
+    --url "${BASE_URL}/agents/my-agent/versions/${AGENT_VERSION}/sessions/${SESSION_ID}:logstream?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Foundry-Features=HostedAgents=V1Preview"
+    --headers "Foundry-Features=HostedAgents=V1Preview" "Accept=text/event-stream"
 ```
 
-| Parameter | Description |
-|-----------|-------------|
-| `kind` | Log type: `console` (stdout/stderr) or `system` (container events). |
-| `tail` | Number of trailing lines to fetch (1-300). |
-| `follow` | `true` to stream indefinitely, `false` to fetch and return. |
+The logstream endpoint returns Server-Sent Events (SSE) with `event: log` frames. Each frame contains a JSON payload with `timestamp`, `stream` (`stdout`, `stderr`, or `status`), and `message` fields.
 
 Timeouts:
 
-- Maximum connection duration: 10 minutes
-- Idle timeout: 1 minute
+- Maximum connection duration: 30 minutes
+- Idle timeout: 2 minutes
 
 :::zone-end
 
@@ -426,6 +428,8 @@ az rest --method PATCH \
         }
     }'
 ```
+
+Set `protocols` to `["invocations"]` or `["responses", "invocations"]` to match the protocols your agent exposes.
 
 To split traffic between two versions (for example, 90/10 for a canary deployment):
 
