@@ -148,8 +148,40 @@ with (
 
 :::zone pivot="dotnet"
 
-> [!NOTE]
-> .NET sample not yet available.
+```csharp
+#pragma warning disable AAIP001
+using Azure.AI.Projects.Agents;
+using Azure.Core.Pipeline;
+using Azure.Identity;
+
+var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+AgentAdministrationClientOptions options = new();
+options.AddPolicy(new FeaturePolicy("Skills=V1Preview"), PipelinePosition.PerCall);
+AgentAdministrationClient adminClient = new(new Uri(projectEndpoint), new DefaultAzureCredential(), options);
+AgentSkills skillsClient = adminClient.GetAgentSkills();
+
+AgentsSkill created = skillsClient.CreateSkill(
+    name: "greeting",
+    description: "Generate a personalized greeting for the user.",
+    instructions: "You are a friendly greeting assistant. Include the user's name and keep greetings concise."
+);
+Console.WriteLine($"Created skill: {created.Name} ({created.SkillId}) HasBlob={created.HasBlob}");
+
+// FeaturePolicy: inject the preview feature header on every request.
+internal class FeaturePolicy(string feature) : PipelinePolicy
+{
+    public override void Process(PipelineMessage msg, IReadOnlyList<PipelinePolicy> pipeline, int idx)
+    {
+        msg.Request.Headers.Add("Foundry-Features", feature);
+        ProcessNext(msg, pipeline, idx);
+    }
+    public override async ValueTask ProcessAsync(PipelineMessage msg, IReadOnlyList<PipelinePolicy> pipeline, int idx)
+    {
+        msg.Request.Headers.Add("Foundry-Features", feature);
+        await ProcessNextAsync(msg, pipeline, idx);
+    }
+}
+```
 
 :::zone-end
 :::zone pivot="javascript"
@@ -232,8 +264,14 @@ with (
 
 :::zone pivot="dotnet"
 
-> [!NOTE]
-> .NET sample not yet available.
+```csharp
+#pragma warning disable AAIP001
+// See the FeaturePolicy class definition and client setup in the Create a skill section above.
+
+// CreateSkillFromPackage accepts a local directory path containing a SKILL.md file.
+AgentsSkill imported = skillsClient.CreateSkillFromPackage("path/to/skill-directory");
+Console.WriteLine($"Imported skill: {imported.Name} ({imported.SkillId}) HasBlob={imported.HasBlob}");
+```
 
 :::zone-end
 
@@ -306,8 +344,17 @@ with (
 
 :::zone pivot="dotnet"
 
-> [!NOTE]
-> .NET sample not yet available.
+```csharp
+#pragma warning disable AAIP001
+// See the FeaturePolicy class definition and client setup in the Create a skill section above.
+
+List<AgentsSkill> skills = [.. skillsClient.GetSkills()];
+Console.WriteLine($"Found {skills.Count} skill(s).");
+foreach (AgentsSkill item in skills)
+{
+    Console.WriteLine($"  - {item.Name} ({item.SkillId})");
+}
+```
 
 :::zone-end
 :::zone pivot="javascript"
@@ -380,8 +427,13 @@ with (
 
 :::zone pivot="dotnet"
 
-> [!NOTE]
-> .NET sample not yet available.
+```csharp
+#pragma warning disable AAIP001
+// See the FeaturePolicy class definition and client setup in the Create a skill section above.
+
+AgentsSkill skill = skillsClient.GetSkill(skillName: "greeting");
+Console.WriteLine($"Retrieved skill: {skill.Name}, description: {skill.Description}");
+```
 
 :::zone-end
 
@@ -496,8 +548,13 @@ with (
 
 :::zone pivot="dotnet"
 
-> [!NOTE]
-> .NET sample not yet available.
+```csharp
+#pragma warning disable AAIP001
+// See the FeaturePolicy class definition and client setup in the Create a skill section above.
+
+skillsClient.DeleteSkill("greeting");
+Console.WriteLine("Skill deleted.");
+```
 
 :::zone-end
 
@@ -588,7 +645,7 @@ The following capabilities are planned or have known limitations:
 | Feature | Status | Description |
 |---------|--------|-------------|
 | Python SDK samples for skill operations | Available | Native Python SDK samples for create, import, list, get, download, and delete skill operations are now available. |
-| .NET SDK samples for skill operations | Planned | Native .NET SDK samples for create, import, list, get, download, and delete skill operations. |
+| .NET SDK samples for skill operations | Partially available | .NET SDK samples are now available for create, import, list, get, and delete. Download is not yet available. |
 | `"latest"` as `default_version` | Not supported | There is no way to set `default_version` to a special value like `"latest"` that automatically points to the most recently created version. Publishers must explicitly promote each new version via PATCH. See [Curate intent-based toolbox in Foundry](toolbox.md). |
 | Default project toolbox (`/mcp`) | Not yet implemented | A built-in, implicit toolbox at `{project_endpoint}/mcp` that serves all project-configured tools without toolbox CRUD. Currently, developers must create a named toolbox explicitly. |
 | File and vector store updates without new version | Not supported | For toolbox tools like File Search and Code Interpreter, uploading new files or updating vector stores requires creating a new toolbox version. There is no way to update the underlying file or vector store content without re-creating the version. See [Curate intent-based toolbox in Foundry](toolbox.md). |
