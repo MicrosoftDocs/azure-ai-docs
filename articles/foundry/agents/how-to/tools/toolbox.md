@@ -26,10 +26,8 @@ Toolbox covers the full tool lifecycle through four pillars — **Build** and **
 
 | Pillar | Status | What it enables |
 |--------|--------|-----------------|
-| **Discover** | Coming soon | Find existing, approved tools instead of rebuilding them, reducing duplication. |
 | **Build** | Available today | Select tools, configure authentication centrally, and publish a reusable toolbox that any team can consume. |
 | **Consume** | Available today | Connect any agent to a single MCP-compatible endpoint to dynamically discover and invoke all tools in the toolbox. |
-| **Govern** | Coming soon | Apply centralized authentication controls and observability to all tool calls flowing through a toolbox. |
 
 Toolboxes are created and governed in Foundry, but the consumption surface is open. Any agent runtime that supports MCP can use a toolbox — including agents built with Microsoft Agent Framework, LangGraph, GitHub Copilot, and MCP-enabled IDEs.
 
@@ -74,7 +72,7 @@ For tool configuration syntax and authentication options for each tool type, see
 - **azd (deploy)**: [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) and the agent extension: `azd extension install azure.ai.agents`
 
 > [!IMPORTANT]
-> - A toolbox supports at most **one tool without a `name` field per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). "Unnamed" means no `name` field is set on the tool definition. To include more than one instance of the same tool type, set a unique `name` on each instance to differentiate them. Including two instances of the same type without a `name` returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
+> - A toolbox supports at most **one tool without a `name` field per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, set a unique `name` on each instance to differentiate them. Including two instances of the same type without a `name` returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
 > - We highly recommend adding a `description` to every tool in your toolbox to help the model select the right tool for each request.
 > - Carefully review each tool's documentation to learn more about individual tool setup, limitations, and warnings.
 
@@ -99,7 +97,7 @@ toolbox_version = client.beta.toolboxes.create_toolbox_version(
     toolbox_name="my-toolbox",
     description="Toolbox with web search and an MCP server",
     tools=[
-        WebSearchTool(description="Search the web for current information"),
+        WebSearchTool(),
         MCPTool(
             server_label="myserver",
             server_url="https://your-mcp-server.example.com",
@@ -581,6 +579,9 @@ python-dotenv==1.1.1
 
 Use the Azure Developer CLI (`azd`) to declare toolbox resources directly in an `agent.yaml` file and deploy your agent with a single command. With this approach, you don't need to create the toolbox separately through SDK or REST — `azd` provisions the toolbox, connections, and model deployment together.
 
+> [!IMPORTANT]
+> The `-m` (or `--manifest`) flag is required for `azd ai agent init`. It tells the command where to find your agent definition and source files. `-m` can point to either a specific `agent.yaml` file or a folder containing one. All files in the manifest directory (`main.py`, `Dockerfile`, `requirements.txt`, etc.) are copied verbatim into the scaffolded project under `src/<agent-name>/`.
+
 **Folder structure**:
 
 ```
@@ -658,10 +659,29 @@ aiohttp
 **Deploy**:
 
 ```bash
-azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-4o"
-azd env set GITHUB_PAT "ghp_xxxxxxxxxxxx"
-azd ai agent init
-azd ai agent start
+# 1. Place agent.yaml and source files in a manifest directory
+mkdir my-agent/manifest
+# Copy agent.yaml, main.py, Dockerfile, requirements.txt into my-agent/manifest/
+
+# 2. Initialize the azd project (-m is required)
+cd my-agent
+PROJECT_ID="/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<account>/projects/<project>"
+azd ai agent init -m manifest/ --project-id $PROJECT_ID -e my-env
+# If agent.yaml declares {{ param }} secrets (for example, github_pat), you are prompted
+# to enter them interactively here. Do NOT use --no-prompt — it leaves credentials empty.
+
+# 3. Set required environment variables
+azd env set enableHostedAgentVNext "true" -e my-env
+azd env set AZURE_AI_MODEL_DEPLOYMENT_NAME "gpt-4o" -e my-env
+
+# 4. Provision infrastructure (creates connections via Bicep)
+azd provision -e my-env
+
+# 5. Deploy agent (creates toolboxes, container image, agent version)
+azd deploy -e my-env
+
+# 6. Invoke the agent
+azd ai agent invoke --new-session "Hello, what tools do you have?" --timeout 120
 ```
 
 ## Step 5: Manage toolbox versions
