@@ -63,7 +63,7 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 | Model | Region |
 |---|---|
 | `gpt-5.2` |  See the [models table](#model-summary-table-and-region-availability).   |
-| `gpt-5.2-chat` |  See the [models table](#model-summary-table-and-region-availability).  |
+| `gpt-5.2-chat` **Preview** |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.2-codex` |  See the [models table](#model-summary-table-and-region-availability) |
 
 - **[Registration is required for access to gpt-5.2 and gpt-5.2-codex](https://aka.ms/oai/gpt5access).**
@@ -94,7 +94,7 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | Model | Region |
 |---|---|
 | `gpt-5.1` |  See the [models table](#model-summary-table-and-region-availability).   |
-| `gpt-5.1-chat` |  See the [models table](#model-summary-table-and-region-availability).  |
+| `gpt-5.1-chat` **Preview** |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.1-codex` |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.1-codex-mini` |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.1-codex-max` |  See the [models table](#model-summary-table-and-region-availability).  | 
@@ -127,8 +127,8 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | `gpt-5` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
 | `gpt-5-mini` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
 | `gpt-5-nano` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-chat` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-chat` (2025-10-03) |  See the [models table](#model-summary-table-and-region-availability). |
+| `gpt-5-chat` (2025-08-07) **Preview** |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-chat` (2025-10-03) **Preview** |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-codex` (2025-09-11) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-pro` (2025-10-06) |  See the [models table](#model-summary-table-and-region-availability).  |
 
@@ -353,11 +353,11 @@ Details about maximum request tokens and training data are available in the foll
 
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |---|---|---|---|
-|`gpt-4o-mini-audio-preview` (2024-12-17) | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
+|`gpt-4o-mini-audio-preview` (2024-12-17)<br>**Preview** | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
 |`gpt-4o-audio-preview` (2024-12-17) | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
 |`gpt-4o-realtime-preview` (2025-06-03) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-realtime-preview` (2024-12-17) | Audio model for real-time audio processing. |Input: 16,000  <br> Output: 4,096 | October 2023 |
-|`gpt-4o-mini-realtime-preview` (2024-12-17) | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
+|`gpt-4o-mini-realtime-preview` (2024-12-17)<br>**Preview** | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | October 2023 |
 |`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini` (2025-12-15) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | October 2023 |
 |`gpt-audio-1.5` (2026-02-23) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | September 2024 |
@@ -374,10 +374,10 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 |  Model ID  | Description | Max request (audio file size) |
 | ----- | ----- | ----- |
 | `whisper` | General-purpose speech recognition model. | 25 MB |
-| `gpt-4o-transcribe` (2025-03-20) | Speech-to-text model powered by GPT-4o. | 25 MB|
-| `gpt-4o-mini-transcribe` (2025-03-20) | Speech-to-text model powered by GPT-4o mini. | 25 MB|
-| `gpt-4o-transcribe-diarize` (2025-10-15) | Speech-to-text model with automatic speech recognition. | 25 MB|
-| `gpt-4o-mini-transcribe` (2025-12-15) | Speech-to-text model with automatic speech recognition. Improved transcription accuracy and robustness. | 25 MB|
+| `gpt-4o-transcribe` (2025-03-20)<br>**Preview** | Speech-to-text model powered by GPT-4o. | 25 MB|
+| `gpt-4o-mini-transcribe` (2025-03-20)<br>**Preview** | Speech-to-text model powered by GPT-4o mini. | 25 MB|
+| `gpt-4o-transcribe-diarize` (2025-10-15)<br>**Preview** | Speech-to-text model with automatic speech recognition. | 25 MB|
+| `gpt-4o-mini-transcribe` (2025-12-15)<br>**Preview** | Speech-to-text model with automatic speech recognition. Improved transcription accuracy and robustness. | 25 MB|
 
 #### Speech translation models
 
@@ -389,8 +389,8 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 
 |  Model ID  | Description |
 |  --- | :--- |
-| `tts` | Text-to-speech model optimized for speed. |
-| `tts-hd` | Text-to-speech model optimized for quality.|
+| `tts`<br>**Preview** | Text-to-speech model optimized for speed. |
+| `tts-hd`<br>**Preview** | Text-to-speech model optimized for quality.|
 | `gpt-4o-mini-tts` (2025-03-20) | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 | `gpt-4o-mini-tts` (2025-12-15) | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 

@@ -5,7 +5,7 @@ ms.author: mopeakande
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 01/14/2026
+ms.date: 04/15/2026
 ms.custom: classic-and-new
 ---
 
@@ -15,10 +15,10 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 |--|--|
 | [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) | **NEW** `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
 | [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) | **NEW** `gpt-5.3-codex` |
-| [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | **NEW** `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` (**Preview**)|
-| [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) | **NEW** `gpt-5.1`, `gpt-5.1-chat`, `gpt-5.1-codex`, `gpt-5.1-codex-mini`|
+| [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | **NEW** `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` **Preview**|
+| [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) | **NEW** `gpt-5.1`, `gpt-5.1-chat` **Preview**, `gpt-5.1-codex`, `gpt-5.1-codex-mini`|
 | [Sora](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models) | **NEW** sora-2 |
-| [GPT-5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-5) | gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-chat |
+| [GPT-5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-5) | gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-chat **Preview** |
 | [gpt-oss](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-oss) | open-weight reasoning models |
 | [codex-mini](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models) | Fine-tuned version of o4-mini. |  
 | [GPT-4.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-41-series) | gpt-4.1, gpt-4.1-mini, gpt-4.1-nano |
