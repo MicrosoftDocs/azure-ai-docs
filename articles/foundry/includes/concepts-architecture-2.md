@@ -12,34 +12,46 @@ ms.custom: include
 
 ## Foundry resource hierarchy
 
-The following diagram shows a Foundry resource containing two projects (each with agents, evaluations, and files) and three connected services (Storage, Key Vault, and Azure AI Search):
+The following diagram shows a Foundry resource with model deployments, security settings, connections, and two projects. Connected Azure services such as Storage, Key Vault, and Azure AI Search are separate Azure resources under their own governance boundaries:
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│  Foundry resource (governance boundary)                 │
-│  ┌──────────────────┐  ┌──────────────────┐             │
-│  │  Project A       │  │  Project B       │             │
-│  │  ┌────────────┐  │  │  ┌────────────┐  │             │
-│  │  │ Agents     │  │  │  │ Agents     │  │             │
-│  │  │ Evaluations│  │  │  │ Evaluations│  │             │
-│  │  │ Files      │  │  │  │ Files      │  │             │
-│  │  └────────────┘  │  │  └────────────┘  │             │
-│  └──────────────────┘  └──────────────────┘             │
-│                                                         │
-│  Connected services:                                    │
-│  ┌──────────┐  ┌───────────┐  ┌──────────────────┐      │
-│  │ Storage  │  │ Key Vault │  │ Azure AI Search  │      │
-│  └──────────┘  └───────────┘  └──────────────────┘      │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│  Foundry resource (governance boundary)                  │
+│                                                          │
+│  Model deployments │ Security settings │ Connections ──────────┐
+│                                                          │     │
+│  ┌──────────────────┐  ┌──────────────────┐              │     │
+│  │  Project A       │  │  Project B       │              │     │
+│  │  ┌────────────┐  │  │  ┌────────────┐  │              │     │
+│  │  │ Agents     │  │  │  │ Agents     │  │              │     │
+│  │  │ Evaluations│  │  │  │ Evaluations│  │              │     │
+│  │  │ Files      │  │  │  │ Files      │  │              │     │
+│  │  └────────────┘  │  │  └────────────┘  │              │     │
+│  └──────────────────┘  └──────────────────┘              │     │
+└──────────────────────────────────────────────────────────┘     │
+                                                                 │
+┌──────────────────────────────────────────────────────────┐     │
+│  Connected resources (separate governance boundaries)    │◄────┘
+│  ┌──────────┐  ┌───────────┐  ┌──────────────────┐       │
+│  │ Storage  │  │ Key Vault │  │ Azure AI Search  │       │
+│  └──────────┘  └───────────┘  └──────────────────┘       │
+└──────────────────────────────────────────────────────────┘
 ```
+
+> [!IMPORTANT]
+> Connected resources like Storage, Key Vault, and Azure AI Search are independent Azure resources with their own governance boundaries. You manage networking, access policies, and compliance settings for these resources separately from the Foundry resource.
 
 Use this model when planning architecture and access boundaries:
 
 - **Foundry resource**: Top-level Azure resource where you manage governance settings such as networking, security, and model deployments.
-- **Project**: Development boundary inside the Foundry resource where teams build and evaluate use cases.
+- **Project**: Development boundary inside the Foundry resource where teams build and evaluate use cases. Projects let teams prototype within a preconfigured environment, reusing existing model deployments and connections without repeated IT setup.
 - **Project assets**: Files, agents, evaluations, and related artifacts scoped to a project.
+- **Connected resources**: Azure services such as Storage, Key Vault, and Azure AI Search that the Foundry resource references through connections. These resources have separate governance boundaries, so you manage their networking and access policies independently.
 
 This separation lets IT teams apply centralized controls at the resource level while development teams work within project-level boundaries.
+
+> [!NOTE]
+> Most new APIs are available at the project scope. However, some capabilities originally supported at the account level through Azure OpenAI, Speech, Vision, and Language services are available only at the Foundry resource level, not at the project scope. For example, the Translator API is available only from the Foundry resource level. Plan your deployment structure based on which API scopes your workloads require.
 
 ## Security-driven separation of concerns
 

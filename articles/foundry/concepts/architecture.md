@@ -70,7 +70,7 @@ Foundry supports two networking models for outbound isolation:
 
 ### Tenant isolation
 
-Workloads run in logically isolated environments per project. Customer code doesn't share runtime containers with other tenants.
+Workloads run in logically isolated environments per Foundry resource. Customer code doesn't share runtime containers with other tenants.
 
 ### Content safety and guardrails
 
