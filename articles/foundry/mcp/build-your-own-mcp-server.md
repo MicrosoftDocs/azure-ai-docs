@@ -6,7 +6,7 @@ keywords: Model Context Protocol, MCP server, Azure Functions, Azure API Center,
 #customer intent: As a developer, I want to build a custom MCP server using Azure Functions so that I can integrate internal APIs with Foundry Agent Service.
 author: jonburchel
 ms.author: jburchel
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 04/02/2026
 ai-usage: ai-assisted

@@ -2,8 +2,8 @@
 title: "Web search with the Responses API"
 description: "Learn how to use Web search with the Responses API"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 03/20/2025
 author: mrbullwinkle    

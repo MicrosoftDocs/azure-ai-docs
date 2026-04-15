@@ -2,8 +2,8 @@
 title: "Enable priority processing for Microsoft Foundry Models (classic)"
 description: "Learn how to enable priority processing for Microsoft Foundry models to achieve low latency and high availability for time-sensitive workloads. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 03/23/2026
 ms.author: mopeakande

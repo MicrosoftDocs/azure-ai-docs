@@ -2,8 +2,8 @@
 manager: salmanq
 author: pranavp
 ms.author: pranavp
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: include
 ms.date: 09/25/2025
 ---

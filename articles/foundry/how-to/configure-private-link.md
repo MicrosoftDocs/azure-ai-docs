@@ -3,7 +3,7 @@
 title: "How to configure network isolation for Microsoft Foundry"
 description: "Learn how to configure a network isolation end-to-end for Microsoft Foundry. A private link is used to secure communication with the Microsoft Foundry."
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023, devx-track-azurecli, build-2024, ignite-2024, dev-focus
   - classic-and-new

@@ -6,7 +6,7 @@ ms.author: scottpolly
 ms.reviewer: gregharen
 ms.date: 02/19/2026
 ms.topic: quickstart
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 #customer intent: As a subscription owner, I want to manage guardrail policies in Microsoft Foundry so that I can monitor compliance status in Foundry Control Plane.

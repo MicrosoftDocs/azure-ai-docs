@@ -7,7 +7,7 @@ ms.reviewer: fasantia
 ms.date: 02/04/2026
 ms.manager: mcleans
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---

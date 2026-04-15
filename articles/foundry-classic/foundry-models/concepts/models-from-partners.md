@@ -5,8 +5,8 @@ author: msakande
 ms.author: mopeakande
 manager: nitinme
 ms.date: 04/06/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: partner-tools
 ms.custom:
   - classic-and-new
@@ -58,7 +58,7 @@ Anthropic's flagship product is Claude, a frontier AI model trusted by leading e
 To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md)
 
 > [!NOTE]
-> Claude Mythos Preview is only available as a *gated research preview*. Access to the model is prioritized by Anthropic for defensive cybersecurity use cases. See the [Claude Mythos Preview system card](https://www.anthropic.com/claude-mythos-preview-system-card) for responsible use guidance.
+> [!INCLUDE [claude-mythos-preview-restriction](../../../foundry/foundry-models/includes/claude-mythos-preview-restriction.md)]
 
 #### Subscription type and region support
 
