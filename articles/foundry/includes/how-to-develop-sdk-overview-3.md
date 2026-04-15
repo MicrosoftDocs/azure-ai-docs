@@ -33,8 +33,7 @@ Foundry Tools endpoint: `https://<your-resource-name>.cognitiveservices.azure.co
 > [!NOTE]
 > Endpoints use either your resource name or a custom subdomain. If your organization set up a custom subdomain, replace `your-resource-name` with `your-custom-subdomain` in all endpoint examples.
 
-> [!NOTE]
-> If your workloads use retiring Azure AI Language features—for example, sentiment analysis, key phrase extraction, summarization, entity linking, CLU, or CQA—plan to migrate to Microsoft Foundry alternatives. For new development, consider using the Foundry SDK or the OpenAI-compatible endpoint as described earlier in this article. See [Migrate from Language Studio to Microsoft Foundry](/azure/ai-services/language-service/migration-studio-to-foundry).
+If your workloads use retiring Azure AI Language features—for example, sentiment analysis, key phrase extraction, summarization, entity linking, CLU, or CQA—plan to migrate to Microsoft Foundry alternatives. For new development, consider using the Foundry SDK or the OpenAI-compatible endpoint as described earlier in this article. See [Migrate from Language Studio to Microsoft Foundry](/azure/ai-services/language-service/migration-studio-to-foundry).
 
 For Speech and Translation Foundry Tools, use the endpoints in the following tables. Replace placeholders with your resource information.
 
