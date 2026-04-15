@@ -36,6 +36,10 @@ items:
     - name: Overview
       href: personally-identifiable-information/overview.md
       displayName: personally identifiable information, document
+    - name: Text PII overview
+      href: personally-identifiable-information/text-pii-overview.md
+    - name: Conversation PII overview
+      href: personally-identifiable-information/conversation-pii-overview.md
     - name: Document-based PII overview
       href: personally-identifiable-information/document-based-pii-overview.md
     - name: Quickstart

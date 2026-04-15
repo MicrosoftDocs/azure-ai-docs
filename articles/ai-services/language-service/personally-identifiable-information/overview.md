@@ -27,8 +27,8 @@ Use the following table to select the right experience before you start implemen
 
 | Modality | Input | Best for | Key strength |
 | --- | --- | --- | --- |
-| [Text PII](how-to/redact-text-pii.md) | Raw text strings | Apps, prompts, logs, tickets | Broad language coverage and flexible redaction options |
-| [Conversation PII](how-to/redact-conversation-pii.md) | Turn-based chat or transcript data | Contact centers, meetings, voice transcripts | Conversational context and transcript-aware output |
+| [Text PII](text-pii-overview.md) | Raw text strings | Apps, prompts, logs, tickets | Broad language coverage and flexible redaction options |
+| [Conversation PII](conversation-pii-overview.md) | Turn-based chat or transcript data | Contact centers, meetings, voice transcripts | Conversational context and transcript-aware output |
 | [Document-based PII](document-based-pii-overview.md) | Native files (`.pdf`, `.docx`, `.txt`) | Compliance workflows and document sharing | Redacted files with document fidelity and JSON metadata |
 
 ## Get started
@@ -90,7 +90,7 @@ An AI system includes not only the technology, but also the people who use it, t
 
 ## Next steps
 
-* [Text PII how-to](how-to/redact-text-pii.md)
-* [Conversation PII how-to](how-to/redact-conversation-pii.md)
+* [Text PII overview](text-pii-overview.md)
+* [Conversation PII overview](conversation-pii-overview.md)
 * [Document-based PII overview](document-based-pii-overview.md)
 * [Native document PII how-to](how-to/redact-document-pii.md)
