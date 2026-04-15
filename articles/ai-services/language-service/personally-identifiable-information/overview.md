@@ -35,11 +35,26 @@ Use the following table to select the right experience before you start implemen
 
 [!INCLUDE [development options](./includes/development-options.md)]
 
-For hands-on setup, start with:
+Use the same modality grouping as the table of contents:
 
+### Text PII next steps
+
+* [Text PII overview](text-pii-overview.md)
 * [Quickstart: Detect personally identifiable information (PII)](quickstart.md)
 * [Detect and redact Personally Identifiable Information in text](how-to/redact-text-pii.md)
+* [Text PII recognized entity categories (extended format)](concepts/entity-categories.md)
+* [Text PII recognized entity categories (list format)](concepts/entity-categories-list.md)
+
+### Conversation PII next steps
+
+* [Conversation PII overview](conversation-pii-overview.md)
 * [Detect and redact Personally Identifiable Information in conversations](how-to/redact-conversation-pii.md)
+* [Conversation PII recognized entity categories (extended format)](concepts/conversations-entity-categories.md)
+* [Conversation PII recognized entity categories (list format)](concepts/conversations-entities-list.md)
+
+### Document-based PII next steps
+
+* [Document-based PII overview](document-based-pii-overview.md)
 * [Detect and redact Personally Identifiable Information in native documents](how-to/redact-document-pii.md)
 
 [!INCLUDE [Typical workflow for pre-configured language features](../includes/overview-typical-workflow.md)]
@@ -90,7 +105,18 @@ An AI system includes not only the technology, but also the people who use it, t
 
 ## Next steps
 
+### Text PII
+
 * [Text PII overview](text-pii-overview.md)
+* [Quickstart: Detect personally identifiable information (PII)](quickstart.md)
+* [Detect and redact Personally Identifiable Information in text](how-to/redact-text-pii.md)
+
+### Conversation PII
+
 * [Conversation PII overview](conversation-pii-overview.md)
+* [Detect and redact Personally Identifiable Information in conversations](how-to/redact-conversation-pii.md)
+
+### Document-based PII
+
 * [Document-based PII overview](document-based-pii-overview.md)
-* [Native document PII how-to](how-to/redact-document-pii.md)
+* [Detect and redact Personally Identifiable Information in native documents](how-to/redact-document-pii.md)

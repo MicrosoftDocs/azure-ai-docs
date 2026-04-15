@@ -36,14 +36,6 @@ items:
     - name: Overview
       href: personally-identifiable-information/overview.md
       displayName: personally identifiable information, document
-    - name: Text PII overview
-      href: personally-identifiable-information/text-pii-overview.md
-    - name: Conversation PII overview
-      href: personally-identifiable-information/conversation-pii-overview.md
-    - name: Document-based PII overview
-      href: personally-identifiable-information/document-based-pii-overview.md
-    - name: Quickstart
-      href: personally-identifiable-information/quickstart.md
     - name: Language support
       href: personally-identifiable-information/language-support.md
     - name: Responsible use of AI
@@ -57,18 +49,21 @@ items:
       - name: Data, privacy, and security
         href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
         displayName: Data privacy, logging, data retention
-    - name: How-to guides
+
+    - name: Text PII
       items:
-      - name: Text PII redaction
-        href: personally-identifiable-information/how-to/redact-text-pii.md
-      - name: Conversation PII redaction
-        href: personally-identifiable-information/how-to/redact-conversation-pii.md
-      - name: Document-based PII redaction
-        href: personally-identifiable-information/how-to/redact-document-pii.md
-      - name: Adapt PII to your domain
-        href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
-      - name: Use Docker containers
+      - name: Overview
+        href: personally-identifiable-information/text-pii-overview.md
+      - name: Quickstart
+        href: personally-identifiable-information/quickstart.md
+      - name: How-to guides
         items:
+        - name: Detect and redact PII in text
+          href: personally-identifiable-information/how-to/redact-text-pii.md
+        - name: Adapt PII to your domain
+          href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
+        - name: Use Docker containers
+          items:
           - name: Install and run containers
             href: personally-identifiable-information/how-to/use-containers.md
           - name: Configure containers
@@ -79,20 +74,36 @@ items:
             href: ../containers/disconnected-containers.md
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
-    - name: Recognized entity categories
-      items:
-      - name: PII in text
+      - name: Recognized entity categories
         items:
         - name: Extended format
           href: personally-identifiable-information/concepts/entity-categories.md
         - name: List format
           href: personally-identifiable-information/concepts/entity-categories-list.md
-      - name: PII in conversations
+
+    - name: Conversation PII
+      items:
+      - name: Overview
+        href: personally-identifiable-information/conversation-pii-overview.md
+      - name: How-to guides
+        items:
+        - name: Detect and redact PII in conversations
+          href: personally-identifiable-information/how-to/redact-conversation-pii.md
+      - name: Recognized entity categories
         items:
         - name: Extended format
           href: personally-identifiable-information/concepts/conversations-entity-categories.md
         - name: List format
           href: personally-identifiable-information/concepts/conversations-entities-list.md
+
+    - name: Document-based PII
+      items:
+      - name: Overview
+        href: personally-identifiable-information/document-based-pii-overview.md
+      - name: How-to guides
+        items:
+        - name: Detect and redact PII in native documents
+          href: personally-identifiable-information/how-to/redact-document-pii.md
 
   - name: Language detection
     items:
