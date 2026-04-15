@@ -64,7 +64,7 @@ To configure network access:
 
 1. (Optional) Under **Exceptions**, select **Allow Azure services on the trusted services list to access this search service**.
  
-   This exception allows trusted Azure services with a valid managed identity and role assignment to bypass the firewall. For more information, see [Grant access to trusted services](#grant-access-to-trusted-azure-services).
+   This exception allows trusted Azure services with a valid managed identity and role assignment to bypass the firewall. For more information, see [Grant access to trusted Azure services](#grant-access-to-trusted-azure-services).
 
    :::image type="content" source="media/service-configure-firewall/exceptions.png" alt-text="Screenshot showing the exceptions checkbox on the network configuration page." lightbox="media/service-configure-firewall/exceptions.png":::
 
