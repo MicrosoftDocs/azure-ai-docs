@@ -1940,6 +1940,17 @@ groups:
     title: Azure Developer CLI
   - id: vscode
     title: VS Code
+# Owner: eamono
+- id: hosted-agent-manage-method
+  title: Management method
+  prompt: Choose a management method
+  pivots:
+  - id: rest
+    title: REST API
+  - id: python
+    title: Python SDK
+  - id: azd
+    title: Azure Developer CLI
 # Owner: pafarley
 - id: fast-transcription-quickstart
   title: Programming languages
