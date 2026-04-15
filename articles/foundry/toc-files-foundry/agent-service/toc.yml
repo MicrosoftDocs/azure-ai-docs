@@ -37,9 +37,9 @@ items:
     href: ../../agents/concepts/runtime-components.md
   - name: Tools overview
     items:
-    - name: Tools overview
+    - name: Overview
       href: ../../agents/concepts/tool-catalog.md
-    - name: Tool best practices
+    - name: Best practices
       href: ../../agents/concepts/tool-best-practice.md
     - name: Create a private tool catalog (preview)
       href: ../../agents/how-to/private-tool-catalog.md
