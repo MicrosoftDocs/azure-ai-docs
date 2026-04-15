@@ -112,7 +112,7 @@ To use overlapping fields, label your dataset with the overlaps and train the mo
 
 ## Supported regions
 
-As of October 18, 2022, Document Intelligence custom neural model training will only be available in the following Azure regions until further notice:
+As of October 18, 2022, Document Intelligence custom neural model training is only available in the following Azure regions:
 
 * Australia East
 * Brazil South

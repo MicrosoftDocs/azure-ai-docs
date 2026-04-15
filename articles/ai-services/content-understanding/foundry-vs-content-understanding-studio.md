@@ -17,6 +17,8 @@ ms.custom:
 
 # Compare Content Understanding in Foundry and Content Understanding Studio
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
 ## Overview
 
 Azure Content Understanding in Foundry Tools transforms unstructured content—documents, images, audio, and video—into structured, searchable data. The Foundry experience is complemented by Content Understanding Studio, which is designed for customers who are transitioning from Azure Document Intelligence in Foundry Tools or need advanced analyzer refinement capabilities. This article describes the capabilities available and planned in each experience.

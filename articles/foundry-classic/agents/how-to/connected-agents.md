@@ -2,8 +2,8 @@
 title: "How to use connected agents (classic)"
 description: "Learn how to create multi-agentic systems using connected agents in the Foundry Agent Service. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 12/17/2025
 author: aahill

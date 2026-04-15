@@ -7,7 +7,7 @@ manager: nitinme
 reviewer: santiagxf
 ms.reviewer: fasantia
 ms.date: 12/09/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.custom:
   - references_regions

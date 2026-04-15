@@ -1,7 +1,7 @@
 ---
 title: "Microsoft Foundry architecture (classic)"
 description: "Learn about the architecture of Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - build-2024

@@ -4,7 +4,7 @@ description: include file
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: andyaviles
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -161,7 +161,7 @@ resource "azurerm_cognitive_account" "foundry" {
 
 ### Sample repository
 
-See the infrastructure examples (including Speech/Language storage) in the [Foundry samples repository](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/02-storage-speech-language).
+See the infrastructure examples (including Speech/Language storage) in the [Foundry samples repository](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/02-storage-speech-language).
 
 ## Speech integration details
 
@@ -203,6 +203,6 @@ If the storage binding isn't visible or operations fail, see the troubleshooting
 - [Capability hosts for Agents](../agents/concepts/capability-hosts.md)
 - [Recover a storage account](/azure/storage/common/storage-account-recover)
 - [Azure Storage documentation](/azure/storage/)
-- [Samples: infrastructure setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples)
+- [Samples: infrastructure setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples)
 - [Terraform cognitive_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
 - [Speech BYOS resource guidance](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal)

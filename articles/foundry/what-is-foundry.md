@@ -4,8 +4,8 @@ description: "Microsoft Foundry is a trusted platform that empowers developers t
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
-ms.date: 11/06/2025
-ms.service: azure-ai-foundry
+ms.date: 04/13/2026
+ms.service: microsoft-foundry
 ms.topic: overview
 ai-usage: ai-assisted
 ms.custom:
@@ -88,7 +88,7 @@ In the Foundry portal, the project you're working with appears in the upper-left
 
 The Foundry portal displays only the **default** project for each Foundry resource, not other resources or hub-based projects you might have created in Foundry (classic). If you created multiple projects under the same Foundry resource, you can identify which project is the default by checking the Microsoft Foundry (classic) portal. The default project is marked with (default) next to its name.
 
-To find these other resources,  select the project name in the upper-left corner, then select **View all resources**.  A new browser tab opens the Foundry (classic) portal.  [Switch to Microsoft Foundry (classic) documentation]() to work with these other resources in the Foundry (classic) portal.
+To find these other resources,  select the project name in the upper-left corner, then select **View all resources**.  A new browser tab opens the Foundry (classic) portal.  [Switch to Microsoft Foundry (classic) documentation](../foundry-classic/what-is-foundry.md) to work with these other resources in the Foundry (classic) portal.
 
 ### Disable preview features
 
@@ -112,6 +112,7 @@ You need an [Azure account](https://azure.microsoft.com/pricing/purchase-options
 
 ## Related content
 
-- [Quickstart: Get started with Microsoft Foundry](./tutorials/quickstart-create-foundry-resources.md)- [Create a project](./how-to/create-projects.md)
+- [Quickstart: Get started with Microsoft Foundry](./tutorials/quickstart-create-foundry-resources.md)
+- [Create a project](./how-to/create-projects.md)
 - [Get started with an AI template](how-to/develop/ai-template-get-started.md)
 - [What's new in Microsoft Foundry documentation?](whats-new-foundry.md)

@@ -2,7 +2,7 @@
 title: "Add declarative agent workflows in Visual Studio Code"
 description: "Add and test declarative agent workflows in Foundry Agent Service by using the Microsoft Foundry for Visual Studio Code extension. Convert YAML workflows to Agent Framework code."
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted
