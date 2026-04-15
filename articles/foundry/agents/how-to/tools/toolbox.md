@@ -2207,7 +2207,7 @@ resources:
 
 ## Virtual network support
 
-When your Foundry project uses [network isolation (private link)](how-to/configure-private-link.md), not all toolbox tool types are supported. The following table shows the support status for each tool type and how traffic flows in a network-isolated environment.
+When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), not all toolbox tool types are supported. The following table shows the support status for each tool type and how traffic flows in a network-isolated environment.
 
 > [!NOTE]
 > This table covers tool support behind a VNet for agents created through the SDK, CLI, or the new Foundry portal. Agents created in the classic Foundry portal experience are not covered.
@@ -2225,7 +2225,7 @@ When your Foundry project uses [network isolation (private link)](how-to/configu
 > [!NOTE]
 > Web Search communicates over public endpoints even in network-isolated environments. If your organization requires all traffic to remain within a private network, Web Search might not meet your compliance requirements.
 
-For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](how-to/configure-private-link.md).
+For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
 
 ## Related content
 
@@ -2235,4 +2235,5 @@ For full network isolation setup instructions, including VNet injection for the 
 - [Azure AI Search tool](ai-search.md)
 - [Deploy a hosted agent](../deploy-hosted-agent.md)
 - [Add a connection to your project](../../../how-to/connections-add.md)
-- [Configure network isolation for Microsoft Foundry](how-to/configure-private-link.md)
+- [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md)
+
