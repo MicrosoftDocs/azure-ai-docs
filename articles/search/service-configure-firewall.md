@@ -17,7 +17,8 @@ This article explains how to restrict *inbound* network access to a search servi
 
 Firewall rules control which clients can send requests (queries, indexing, management operations) to your search service. They don't affect *outbound* connections from the search service to external resources. For outbound security, see [Indexer access to content protected by Azure network security](search-indexer-securing-resources.md).
 
-To block *all* data plane access to the public endpoint, use private endpoints instead. For more information, see [Create a private endpoint](service-create-private-endpoint.md).
+> [!TIP]
+> To block *all* data plane access to the public endpoint, use a [private endpoint](service-create-private-endpoint.md) or [network security perimeter](search-security-network-security-perimeter.md) instead.
 
 ## Prerequisites
 
