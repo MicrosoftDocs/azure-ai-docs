@@ -36,6 +36,8 @@ items:
     - name: Overview
       href: personally-identifiable-information/overview.md
       displayName: personally identifiable information, document
+    - name: Document-based PII overview
+      href: personally-identifiable-information/document-based-pii-overview.md
     - name: Quickstart
       href: personally-identifiable-information/quickstart.md
     - name: Language support
@@ -53,13 +55,13 @@ items:
         displayName: Data privacy, logging, data retention
     - name: How-to guides
       items:
-      - name: Redact PII from text
+      - name: Text PII redaction
         href: personally-identifiable-information/how-to/redact-text-pii.md
-      - name: Redact PII from conversations
+      - name: Conversation PII redaction
         href: personally-identifiable-information/how-to/redact-conversation-pii.md
-      - name: Redact PII from native documents
+      - name: Document-based PII redaction
         href: personally-identifiable-information/how-to/redact-document-pii.md
-      - name:  Adapt PII to your domain
+      - name: Adapt PII to your domain
         href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
       - name: Use Docker containers
         items:
