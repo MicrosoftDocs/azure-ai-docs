@@ -33,6 +33,9 @@ Foundry Tools endpoint: `https://<your-resource-name>.cognitiveservices.azure.co
 > [!NOTE]
 > Endpoints use either your resource name or a custom subdomain. If your organization set up a custom subdomain, replace `your-resource-name` with `your-custom-subdomain` in all endpoint examples.
 
+> [!NOTE]
+> If your workloads use retiring Azure AI Language features—for example, sentiment analysis, key phrase extraction, summarization, entity linking, CLU, or CQA—plan to migrate to Microsoft Foundry alternatives. For new development, consider using the Foundry SDK or the OpenAI-compatible endpoint as described earlier in this article. See [Migrate from Language Studio to Microsoft Foundry](/azure/ai-services/language-service/migration-studio-to-foundry).
+
 For Speech and Translation Foundry Tools, use the endpoints in the following tables. Replace placeholders with your resource information.
 
 #### Speech Endpoints
@@ -51,6 +54,21 @@ For Speech and Translation Foundry Tools, use the endpoints in the following tab
 |Document Translation|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
 
 The following sections include quickstart links for the Foundry Tools SDKs and reference information.
+
+> [!IMPORTANT]
+> Several Azure AI Language features are retiring on **March 20, 2027**. After this date, requests to these features return errors and related authoring and runtime in Language Studio, Microsoft Foundry, and REST APIs are unavailable:
+>
+> - Key Phrase Extraction
+> - Sentiment Analysis and Opinion Mining
+> - Custom Text Classification
+> - Conversational Language Understanding (CLU)
+> - Custom Question Answering (CQA)
+> - Orchestration Workflow
+> - Summarization (extractive and abstractive, for documents and conversations)
+> - Entity Linking
+>
+> Features that continue to be supported: Language Detection, PII Detection, Text Analytics for Health, Prebuilt NER, and Custom NER.
+> For migration options, see [Migrate from Language Studio to Microsoft Foundry](/azure/ai-services/language-service/migration-studio-to-foundry).
 
 <!-- ::: zone pivot="programming-language-cpp"
 [!INCLUDE [C++ include](sdk/cpp.md)]
