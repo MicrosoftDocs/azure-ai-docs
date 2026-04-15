@@ -58,52 +58,9 @@ If you already configured a Foundry resource in the Azure portal, you can [expor
 
 Deploy the Bicep file by using either Azure CLI or Azure PowerShell.
 
-# [Azure CLI](#tab/cli)
+[!INCLUDE [create-resource-template-deploy](../../foundry/includes/how-to-create-resource-template-deploy.md)]
 
-```azurecli
-az group create --name exampleRG --location eastus
-az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiFoundryName=myai aiProjectName=myai-proj 
-```
-
-Reference: [az group create](/cli/azure/group#az-group-create), [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create)
-
-# [Azure PowerShell](#tab/powershell)
-
-```azurepowershell
-New-AzResourceGroup -Name exampleRG -Location eastus
-New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiFoundryName myai -aiProjectName myai-proj
-```
-
-Reference: [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup), [New-AzResourceGroupDeployment](/powershell/module/az.resources/new-azresourcegroupdeployment)
-
----
-
-> [!NOTE]
-> Replace `myai` with the name of your resource. `exampleRG` is the name of the resource group, and `eastus` is the Azure region where resources are deployed.
-
-When the deployment finishes, you see a message indicating the deployment succeeded (output displays: `"provisioningState": "Succeeded"`). This confirms that your Foundry resource and project have been created.
-
-## Export an existing resource to a Bicep file
-
-If you already configured a Foundry resource in the Azure portal, you can export that configuration as a Bicep file. The exported file captures your current resource settings, including network rules, identity configuration, and project associations. Use it as a starting point for repeatable deployments across environments.
-
-1. In the [Azure portal](https://portal.azure.com), go to your Foundry resource.
-1. In the left menu under **Automation**, select **Export template**.
-1. Select the **Bicep** tab to view the generated Bicep code.
-1. Select **Download** to save the file locally, or **Copy** to copy the code to your clipboard.
-
-> [!NOTE]
-> The export might complete with warnings if some resource types don't support full export. Review the output and fill in any missing properties manually.
-
-### Customize the exported template
-
-The exported Bicep file contains hardcoded values specific to your subscription and resource group. Before you reuse the template, review and update the following:
-
-- Replace hardcoded subscription IDs, resource group names, and resource IDs with [Bicep parameters](/azure/azure-resource-manager/bicep/parameters).
-- Remove any properties you don't need or that reference resources outside the deployment scope.
-- Add or adjust security configurations to match your organization's requirements.
-
-For production-ready Bicep templates with enterprise security configurations already built in, see the [infrastructure-setup-bicep](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep) folder in the Foundry samples repository.
+[!INCLUDE [create-resource-template-export](../../foundry/includes/how-to-create-resource-template-export.md)]
 
 ### Related security configurations
 
