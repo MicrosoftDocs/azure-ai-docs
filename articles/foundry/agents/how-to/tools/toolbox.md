@@ -848,6 +848,8 @@ Console.WriteLine($"Created version: {toolboxVersion.Version}");
 
 :::zone pivot="rest-api"
 
+```
+
 POST {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
