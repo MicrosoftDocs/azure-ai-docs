@@ -35,14 +35,18 @@ items:
   items:
   - name: Agent runtime components
     href: ../../agents/concepts/runtime-components.md
-  - name: Tools overview
-    href: ../../agents/concepts/tool-catalog.md
-  - name: Tool best practices
-    href: ../../agents/concepts/tool-best-practice.md
+  - name: Agent tools
+    items:
+    - name: Tools overview
+      href: ../../agents/concepts/tool-catalog.md
+    - name: Best practices
+      href: ../../agents/concepts/tool-best-practice.md
+    - name: Create a private tool catalog (preview)
+      href: ../../agents/how-to/private-tool-catalog.md
+  - name: Toolbox (preview)
+    href: ../../agents/how-to/tools/toolbox.md
   - name: Structured inputs
     href: ../../agents/how-to/structured-inputs.md
-  - name: Create a private tool catalog (preview)
-    href: ../../agents/how-to/private-tool-catalog.md
   - name: Azure AI Search
     href: ../../agents/how-to/tools/ai-search.md
   - name: Code interpreter
@@ -75,6 +79,8 @@ items:
       href: ../../mcp/build-your-own-mcp-server.md
   - name: Additional tools
     items:
+    - name: Skills (preview)
+      href: ../../agents/how-to/tools/skills.md
     - name: Agent2Agent (A2A) (preview)
       href: ../../agents/how-to/tools/agent-to-agent.md
     - name: Agent2Agent (A2A) authentication (preview)
