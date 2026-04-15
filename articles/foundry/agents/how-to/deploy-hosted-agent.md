@@ -30,7 +30,7 @@ Every hosted agent deployment follows this sequence:
 ## Prerequisites
 
 * A [Microsoft Foundry project](../../how-to/create-projects.md).
-* Agent code using a [supported framework](../concepts/hosted-agents.md#framework-and-language-support).
+* Agent code using a [supported framework](../concepts/hosted-agents.md#language-support).
 * [Docker Desktop](https://docs.docker.com/get-docker/) installed for local container development.
 * [Azure CLI](/cli/azure/install-azure-cli) version 2.80 or later.
 
