@@ -437,10 +437,10 @@ Key points:
 
 + In this preview, `content.type` has one valid value: `text`.
 
-+ The `maxOutputSize` property on the [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) determines the length of the string.
++ The `maxOutputSize` property on the knowledge base determines the length of the string.
 
-> [!IMPORTANT]
-> A document that exceeds the `maxOutputSize` output budget can be silently omitted from the response without a warning. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
+    > [!IMPORTANT]
+    > A document that exceeds the `maxOutputSize` output budget can be silently omitted from the response without a warning. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
 
 ### Activity array
 
@@ -822,7 +822,7 @@ Content-Type: application/json
 
 ## Troubleshoot empty responses
 
-A document can be found during the search step but still be omitted from the final retrieve output if its grounded content exceeds the `maxOutputSize` output budget. When this happens, the activity array shows that matches were found, but the references array and grounded response content are empty for that document. No truncation warning or explicit error is returned.
+A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSize` output budget. When this happens, the activity array shows that matches were found, but the references array and grounded response content are empty for that document. No truncation warning or explicit error is returned.
 
 To avoid this behavior, index large source documents as smaller chunks with stable identifiers and source metadata. This applies especially to long manuals, policies, or knowledge base articles.
 
