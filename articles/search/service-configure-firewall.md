@@ -1,9 +1,9 @@
 ---
 title: Configure Network Access
-description: Configure IP control policies to restrict network access to your Azure AI Search service to specific IP addresses.
+description: Restrict inbound network access to Azure AI Search with IP firewall rules and trusted service exceptions.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/13/2026
+ms.date: 04/15/2026
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -13,9 +13,11 @@ ai-usage: ai-assisted
 
 # Configure network access and firewall rules for Azure AI Search
 
-This article explains how to restrict network access to a search service's public endpoint. You can configure IP firewall rules to allow only specific IP addresses, ranges, or subnets, and optionally enable exceptions for trusted Azure services.
+This article explains how to restrict *inbound* network access to a search service's public endpoint. You can configure IP firewall rules to allow access only from specific IP addresses, address ranges, or subnets. You can also enable exceptions for trusted Azure services.
 
-To block *all* data plane access to the public endpoint, use [private endpoints](service-create-private-endpoint.md) instead.
+Firewall rules control which clients can send requests (queries, indexing, management operations) to your search service. They don't affect *outbound* connections from the search service to external resources. For outbound security, see [Indexer access to content protected by Azure network security](search-indexer-securing-resources.md).
+
+To block *all* data plane access to the public endpoint, use private endpoints instead. For more information, see [Create a private endpoint](service-create-private-endpoint.md).
 
 ## Prerequisites
 
@@ -23,19 +25,37 @@ To block *all* data plane access to the public endpoint, use [private endpoints]
 
 + **Owner** or **Contributor** permissions on the search service.
 
-+ You can also use the [Management REST API](/rest/api/searchmanagement/), [Azure PowerShell](/powershell/module/az.search), or the [Azure CLI](/cli/azure/search) instead of the Azure portal.
+## Limitations and considerations
 
-## Configure network access in the Azure portal
++ Some workflows require access to a public endpoint. Specifically, the [**Import data** wizard](search-import-data-portal.md) in the Azure portal connects to built-in (hosted) sample data and embedding models over a public endpoint. For more information, see [Secure connections in the import wizard](search-import-data-portal.md#secure-connections).
+
++ Network rules are scoped to data plane operations against the search service's public endpoint, which include creating indexes, querying indexes, and all other actions described in the [Search Service REST APIs](/rest/api/searchservice/).
+
++ For control plane operations that target service administration, see the [network protections supported by Azure Resource Manager](/security/benchmark/azure/baselines/azure-resource-manager-security-baseline).
+
++ If you're in early stages of proof-of-concept testing with sample data, consider deferring network access controls until you need them.
+
+## Configure network access
+
+This section explains how to configure network access for your search service in the Azure portal. Alternatively, you can use the [Search Management REST API](/rest/api/searchmanagement/), [Azure PowerShell](/powershell/module/az.search), or [Azure CLI](/cli/azure/search).
+
+To configure network access:
 
 1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
-1. Under **Settings**, select **Networking** on the leftmost pane. If you don't see this option, check your service tier. Networking options are available on the Basic tier and higher.
+1. From the left pane, select **Settings** > **Networking**.
 
-1. Choose **Selected IP addresses**. Avoid the **Disabled** option unless you're configuring a [private endpoint](service-create-private-endpoint.md).
+   If you don't see this option, check your pricing tier. Networking options are available on the Basic tier and higher.
+
+1. For **Public network access**, select **Selected IP addresses**.
+   
+   Avoid the **Disabled** option unless you're configuring a [private endpoint](service-create-private-endpoint.md).
 
    :::image type="content" source="media/service-configure-firewall/azure-portal-firewall.png" alt-text="Screenshot showing the network access options in the Azure portal." lightbox="media/service-configure-firewall/azure-portal-firewall.png" :::
 
-1. Under **IP Firewall**, select **Add your client IP address**. This step creates an inbound rule for the public IP address of your personal device to Azure AI Search.
+1. Under **IP Firewall**, select **Add your client IP address**.
+
+   This step creates an inbound rule for the public IP address of your personal device to Azure AI Search.
 
    :::image type="content" source="media/service-configure-firewall/azure-portal-firewall-all.png" alt-text="Screenshot showing how to configure the IP firewall in the Azure portal." lightbox="media/service-configure-firewall/azure-portal-firewall-all.png":::
 
@@ -52,88 +72,56 @@ To block *all* data plane access to the public endpoint, use [private endpoints]
  
    :::image type="content" source="media/service-configure-firewall/exceptions.png" alt-text="Screenshot showing the exceptions checkbox on the network configuration page." lightbox="media/service-configure-firewall/exceptions.png":::
 
-   The trusted service list includes:
+   This exception allows trusted Azure services with a valid managed identity and role assignment to bypass the firewall. For more information, see [Grant access to trusted services](#grant-access-to-trusted-azure-services).
 
-   + `Microsoft.CognitiveServices` for Azure OpenAI and Foundry Tools
-   + `Microsoft.MachineLearningServices` for Azure Machine Learning
+1. Save your changes.
 
-   When you enable this exception, you take a dependency on Microsoft Entra ID authentication, managed identities, and role assignments. Any Foundry Tool or AML feature that has a valid role assignment on your search service can bypass the firewall. See [Grant access to trusted services](#grant-access-to-trusted-azure-services) for more details.
+   > [!NOTE]
+   > It can take several minutes for changes to take effect. Wait at least 15 minutes before troubleshooting.
 
-1. **Save** your changes.
-
-After you enable the IP access control policy for your Azure AI Search service, all requests to the data plane from machines outside the allowed list of IP address ranges are rejected.
-
-When requests originate from IP addresses that aren't in the allowed list, a generic **403 Forbidden** response is returned with no other details.
-
-> [!IMPORTANT]
-> It can take several minutes for changes to take effect. Wait at least 15 minutes before troubleshooting any problems related to network configuration.
+After you enable the IP access control policy, requests from IP addresses outside the allowed list are rejected with a **403 Forbidden** response.
 
 ## Grant access to trusted Azure services
 
-Did you select the trusted services exception? If yes, your search service admits requests and responses from a trusted Azure resource without checking for an IP address. A trusted resource must have a managed identity (either system or user-assigned, but usually system). A trusted resource must have a role assignment on Azure AI Search that gives it permission to data and operations. 
+If you enabled the trusted services exception, your search service accepts requests from trusted Azure resources without checking the IP address. Each trusted resource must have a managed identity (system-assigned or user-assigned, but usually system-assigned) and a role assignment on Azure AI Search that grants permissions for data and operations.
 
 The trusted service list for Azure AI Search includes:
 
-+ `Microsoft.CognitiveServices` for Azure OpenAI and Foundry Tools
-+ `Microsoft.MachineLearningServices` for Azure Machine Learning
++ `Microsoft.CognitiveServices` for Azure OpenAI and Foundry Tools.
++ `Microsoft.MachineLearningServices` for Azure Machine Learning.
 
-Workflows for this network exception are requests originating from Microsoft Foundry or other AML features to Azure AI Search. The trusted services exception is typically for [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) scenarios for retrieval augmented generation (RAG) and playground environments.
+This exception is commonly used when Microsoft Foundry or Azure Machine Learning sends requests to Azure AI Search, such as during agentic retrieval or integrated vectorization.
 
 ### Trusted resources must have a managed identity
 
-To set up managed identities for Azure OpenAI and Azure Machine Learning:
+To set up a managed identity for Azure OpenAI and Azure Machine Learning, see the following articles:
 
-+ [How to configure Azure OpenAI in Foundry Models with managed identities](/azure/ai-services/openai/how-to/managed-identity)
-+ [How to set up authentication between Azure Machine Learning and other services](/azure/machine-learning/how-to-identity-based-service-authentication).
++ [Configure Azure OpenAI with Microsoft Entra ID authentication](/azure/ai-services/openai/how-to/managed-identity)
++ [Set up authentication between Azure Machine Learning and other services](/azure/machine-learning/how-to-identity-based-service-authentication)
 
-To set up a managed identity for a Foundry resource:
+To set up a managed identity for a Microsoft Foundry resource:
 
-1. [Find your Foundry resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/microsoft.cognitiveServices%2Faccounts).
-
-1. From the left pane, select **Resource management** > **Identity**.
-
-1. Set **System assigned** to **On**.
+1. Go to your Microsoft Foundry resource in the [Azure portal](https://portal.azure.com).
+1. From the left pane, select **Resource Management** > **Identity**.
+1. Use the toggle to enable a system-assigned managed identity.
 
 ### Trusted resources must have a role assignment
 
-Once your Azure resource has a managed identity, [assign roles on Azure AI Search](search-security-rbac-client-code.md) to grant permissions to data and operations. 
+After your Azure resource has a managed identity, [assign roles on Azure AI Search](search-security-rbac.md#assign-roles-for-development) to grant the managed identity permissions. The role you assign depends on the workload:
 
-The trusted services are used for vectorization workloads: generating vectors from text and image content, and sending payloads back to the search service for query execution or indexing. Connections from a trusted service are used to deliver payloads to Azure AI search.
++ **Search Service Contributor** for object-level operations, such as creating indexes or knowledge bases.
++ **Search Index Data Contributor** for read-write content access.
++ **Search Index Data Reader** for read-only content access.
 
-1. Go to your search service in the [Azure portal](https://portal.azure.com).
-1. On the leftmost pane, under **Access control (IAM)**, select **Identity**.
-1. Select **Add** and then select **Add role assignment**.
-1. On the **Roles** page:
-
-   + Select **Search Index Data Contributor** to load a search index with vectors generated by an embedding model. Choose this role if you intend to use integrated vectorization during indexing.
-   + Or, select **Search Index Data Reader** to provide queries containing a vector generated by an embedding model at query time. The embedding used in a query isn't written to an index, so no write permissions are required.
-
-1. Select **Next**.
-1. On the **Members** page, select **Managed identity** and **Select members**.
-1. Filter by system-managed identity and then select the managed identity of your Foundry resource.
+When you assign the role, select **Managed identity** as the member type and choose the system-assigned identity of your Microsoft Foundry or Azure Machine Learning resource.
 
 > [!NOTE]
-> This article covers the trusted exception for admitting requests to your search service, but Azure AI Search is itself on the trusted services list of other Azure resources. Specifically, you can use the trusted service exception for [connections from Azure AI Search to Azure Storage](search-indexer-howto-access-trusted-service-exception.md).
+> This article covers the trusted exception for *inbound* requests to your search service. Azure AI Search is also on the trusted services list of other Azure resources. For example, you can use the trusted service exception for [indexer connections from Azure AI Search to Azure Storage](search-indexer-howto-access-trusted-service-exception.md).
 
-## Limitations and considerations
+## Next step
 
-Consider the following when configuring network access:
-
-+ Some workflows require access to a public endpoint. Specifically, the [**Import data** wizard](search-import-data-portal.md) in the Azure portal connects to built-in (hosted) sample data and embedding models over a public endpoint. For more information, see [Secure connections in the import wizard](search-import-data-portal.md#secure-connections).
-
-+ If you're in early stages of proof-of-concept testing with sample data, you might want to defer network access controls until you actually need them.
-
-+ Network rules are scoped to data plane operations against the search service's public endpoint (creating or querying indexes, and all other actions described by the [Search REST APIs](/rest/api/searchservice/)).
-
-+ For control plane operations that target service administration, refer to the [network protections supported by Azure Resource Manager](/security/benchmark/azure/baselines/azure-resource-manager-security-baseline).
-
-## Next steps
-
-Once a request is allowed through the firewall, it must be authenticated and authorized. You have two options:
+After a request is allowed through the firewall, it must be authenticated and authorized. You have two options:
 
 + [Key-based authentication](search-security-api-keys.md), where an admin or query API key is provided on the request. This option is the default.
 
-+ [Role-based access control](search-security-rbac.md) using Microsoft Entra ID, where the caller is a member of a security role on a search service. This is the most secure option. It uses Microsoft Entra ID for authentication and role assignments on Azure AI Search for permissions to data and operations.
-
-> [!div class="nextstepaction"]
-> [Enable RBAC on your search service](search-security-enable-roles.md)
++ [Role-based access control](search-security-rbac.md), where the caller is a member of a security role on a search service. This option is the most secure. It uses Microsoft Entra ID for authentication and role assignments on Azure AI Search for permissions to access data and perform operations.
