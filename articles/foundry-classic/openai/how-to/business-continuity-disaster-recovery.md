@@ -20,4 +20,4 @@ ai-usage: ai-assisted
 The content from this article has been consolidated into the comprehensive high availability and resiliency guide for Microsoft Foundry. For guidance on model deployment resiliency (Standard deployments, Provisioned deployments, Enterprise PTU pools), Generative AI Gateway patterns, supporting infrastructure, and agent service BCDR, see:
 
 > [!div class="nextstepaction"]
-> [High availability and resiliency for Microsoft Foundry projects and Agent Services](../../foundry-classic/how-to/high-availability-resiliency.md)
+> [High availability and resiliency for Microsoft Foundry projects and Agent Services](../../how-to/high-availability-resiliency.md)
