@@ -40,6 +40,7 @@ In this article, you learn how to:
 - Verify that tools load correctly.
 - Integrate a toolbox into your hosted agent.
 - Manage toolbox versions and promote a version to default.
+- Understand virtual network support for each tool type.
 
 For tool configuration syntax and authentication options for each tool type, see [Configure tools](#configure-tools).
 
@@ -2204,6 +2205,28 @@ resources:
 | `500` on `tools/list` | Transient server error | Retry after a few seconds. |
 | Environment variables overwritten at runtime | The platform reserves all environment variables prefixed with `FOUNDRY_` and might silently overwrite user-defined values. | Rename custom environment variables to avoid the `FOUNDRY_` prefix (for example, use `TOOLBOX_MCP_ENDPOINT` instead of `FOUNDRY_TOOLBOX_ENDPOINT`). |
 
+## Virtual network support
+
+When your Foundry project uses [network isolation (private link)](how-to/configure-private-link.md), not all toolbox tool types are supported. The following table shows the support status for each tool type and how traffic flows in a network-isolated environment.
+
+> [!NOTE]
+> This table covers tool support behind a VNet for agents created through the SDK, CLI, or the new Foundry portal. Agents created in the classic Foundry portal experience are not covered.
+
+| Tool type | VNet support | Traffic flow |
+|-----------|-------------|--------------|
+| [MCP](model-context-protocol.md) | ✅ Supported | Through your VNet subnet |
+| [Azure AI Search](ai-search.md) | ✅ Supported | Through private endpoint |
+| [Code Interpreter](code-interpreter.md) | ✅ Supported | Microsoft backbone network |
+| [Web Search](web-search.md) | ✅ Supported | Public endpoint |
+| [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
+| [File Search](file-search.md) | ❌ Not supported | Under development |
+| [Agent-to-Agent (A2A)](agent-to-agent.md) | ❌ Not supported | Under development |
+
+> [!NOTE]
+> Web Search communicates over public endpoints even in network-isolated environments. If your organization requires all traffic to remain within a private network, Web Search might not meet your compliance requirements.
+
+For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](how-to/configure-private-link.md).
+
 ## Related content
 
 - [Connect agents to Model Context Protocol servers](model-context-protocol.md)
@@ -2212,3 +2235,4 @@ resources:
 - [Azure AI Search tool](ai-search.md)
 - [Deploy a hosted agent](../deploy-hosted-agent.md)
 - [Add a connection to your project](../../../how-to/connections-add.md)
+- [Configure network isolation for Microsoft Foundry](how-to/configure-private-link.md)
