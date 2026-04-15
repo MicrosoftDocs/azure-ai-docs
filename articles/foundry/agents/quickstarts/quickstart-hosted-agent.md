@@ -202,11 +202,13 @@ Use the Microsoft Foundry extension in VS Code to scaffold a new hosted agent pr
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Create new Hosted Agent**.
 
-1. Select either the Single Agent or Multi-Agent Workflow template
-
+1. Select the Framework you want to use.
+    
 1. Select a programming language, Python or C#.
 
-1. Choose the existing gpt-4.1 model you deployed in the previous step.
+1. Select either Resposnes API or Invoke API.
+
+1. Select the sample code you want to use.
 
 1. Choose the folder where you want your project files to be saved.
 
@@ -239,10 +241,7 @@ Install the required Python dependencies using pip:
 ```bash
 pip install -r requirements.txt
 ```
-
-The required packages are:
-
-- `azure-ai-agentserver-agentframework` - Agent Framework and AgentServer SDK
+See the requirement.txt for a list of required packages.
 
 ## Step 5: Test the agent locally
 
@@ -299,9 +298,9 @@ Deploy your agent directly from VS Code.
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Deploy Hosted Agent**.
 
-1. Select the CPU and Memory configuration for the Hosted Agent container.
+1. Select "Default ACR"
 
-1. In the dialog that appears, select the Confirm and Deploy button.
+1. Select the CPU and Memory configuration for the Hosted Agent container.
 
 Switch to the Microsoft Foundry explorer by selecting the icon on the left. The agent appears in the **Hosted Agents (Preview)** tree view sidebar after deployment completes.
 
@@ -319,7 +318,7 @@ Check the status of your agent to confirm it's running.
 
 1. Select your hosted agent from the Hosted Agents (Preview) tree view.
 
-1. Select a version (v1) to open the detail page. 
+1. Select the agent you just deployed 
 
 The detail page shows the Status under the Container Details section.
 
@@ -328,8 +327,6 @@ The detail page shows the Status under the Container Details section.
 Microsoft Foundry for VS Code includes an integrated Playground to chat and interact with your agent. 
 
 1. Select your hosted agent from the Hosted Agents (Preview) tree view.
-
-1. Select a version (v1) to open the detail page. 
 
 1. Select the Playground option and type a message and send to test your agent.
 
@@ -452,9 +449,21 @@ You can check the console and system logs of the container to troubleshoot issue
 
 1. Select your hosted agent from the Hosted Agents (Preview) tree view.
 
-1. Select a version (v1) to open the detail page. 
+1. Select the "Playground" tab of your hosted agent 
 
-1. Select the Logs button on the right to open the log viewer.
+1. Select the "Logs" section in the session details.
+
+### View the session files of your agent
+
+You can view all the files stored on the home directory of your ADC based agent
+
+1. Select your hosted agent from Hosted Agents (Preview) tree view.
+
+1. Select the "Playground" tab of your hosted agent
+
+1. Select the "files" section in the session details.
+
+You can download, upload, and create folders within the current folder, clicking on a folder will step into the folder, and clicking on the top navbar will step back into that folder.
 
 | Issue | Solution |
 | ----- | -------- |
