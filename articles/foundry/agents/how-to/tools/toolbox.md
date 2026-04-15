@@ -40,7 +40,6 @@ In this article, you learn how to:
 - Verify that tools load correctly.
 - Integrate a toolbox into your hosted agent.
 - Manage toolbox versions and promote a version to default.
-- Understand virtual network support for each tool type.
 
 For tool configuration syntax and authentication options for each tool type, see [Configure tools](#configure-tools).
 
@@ -67,7 +66,7 @@ For tool configuration syntax and authentication options for each tool type, see
   - **Agent identity** (required if using a hosted agent) — the agent's managed identity that calls tools at runtime.
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions).
-- **Python SDK**: `pip install azure-ai-projects`
+- **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
 - **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
 - **azd (deploy)**: [Install the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) and the agent extension: `azd extension install azure.ai.agents`
@@ -508,6 +507,8 @@ Tool-specific `tools/call` argument examples:
 
 ## Step 4: Integrate the toolbox into your agent
 
+:::zone pivot="python"
+
 ### LangGraph
 
 You can see the detailed samples [here](https://aka.ms/foundry-toolbox-langgraph).
@@ -637,6 +638,74 @@ agent = Agent(
     token=os.environ["GITHUB_TOKEN"],
 )
 ```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+### Microsoft Agent Framework
+
+You can see the detailed samples [here](https://github.com/microsoft/hosted-agents-vnext-private-preview/tree/main/samples/dotnet/toolbox/maf).
+
+Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to discover and invoke toolbox tools via the MCP endpoint.
+
+**Environment variables**:
+
+```
+AZURE_OPENAI_ENDPOINT=https://<account>.services.ai.azure.com
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
+TOOLBOX_MCP_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1
+```
+
+**`Program.cs`** (key pattern):
+
+```csharp
+using Azure.AI.AgentServer.Responses;
+using Azure.AI.AgentServer.Responses.Models;
+using Azure.AI.OpenAI;
+using Azure.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using OpenAI.Chat;
+
+var openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("Set AZURE_OPENAI_ENDPOINT");
+var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o";
+var toolboxEndpoint = Environment.GetEnvironmentVariable("TOOLBOX_MCP_ENDPOINT")
+    ?? throw new InvalidOperationException(
+        "TOOLBOX_MCP_ENDPOINT is required. Set this variable " +
+        "(platform-injected at runtime) to enable toolbox integration.");
+
+// Azure OpenAI client
+var credential = new DefaultAzureCredential();
+var aoaiClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
+var chatClient = aoaiClient.GetChatClient(deployment);
+
+// Toolbox MCP client — discovers tools via tools/list, calls them via tools/call
+var toolboxClient = new ToolboxMcpClient(toolboxEndpoint, credential);
+
+ResponsesServer.Run<ToolboxHandler>(configure: builder =>
+{
+    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
+});
+```
+
+`ToolboxMcpClient` wraps direct JSON-RPC calls to the MCP endpoint. `ToolboxHandler` wires LLM tool calls back to the MCP client using a standard tool-calling loop. See the [full sample](https://github.com/microsoft/hosted-agents-vnext-private-preview/tree/main/samples/dotnet/toolbox/maf) for the complete implementation of both classes.
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+> [!NOTE]
+> Integration samples for this step are available for Python and .NET only.
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+> [!NOTE]
+> Integration samples for this step are available for Python and .NET only.
+
+:::zone-end
 
 :::zone pivot="azd"
 
@@ -2226,7 +2295,6 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 > Web Search communicates over public endpoints even in network-isolated environments. If your organization requires all traffic to remain within a private network, Web Search might not meet your compliance requirements.
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
-
 ## Related content
 
 - [Connect agents to Model Context Protocol servers](model-context-protocol.md)
