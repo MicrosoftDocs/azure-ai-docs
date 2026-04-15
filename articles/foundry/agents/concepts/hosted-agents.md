@@ -192,7 +192,6 @@ Hosted agents are available in: Australia East, Brazil South, Canada Central, Ca
 | Set up tracing and monitoring | [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md) |
 | Evaluate agent performance | [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) |
 | Publish to Teams, M365, or custom apps | [Publish and share agents](../how-to/publish-agent.md) |
-| Debug deployment or runtime errors | [Troubleshoot hosted agents](../../agents/how-to/troubleshoot-hosted-agents.md) |
 | Browse code samples | [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents) · [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents) |
 
 ## Related content
