@@ -18,10 +18,7 @@ ai-usage: ai-assisted
 
 Azure OpenAI models power agents in Foundry Agent Service. To use these models, you need a [Microsoft Foundry project](../../what-is-foundry.md) with access to Agent Service. Use the tabs to find a supported model, deployment type, and region combination. For details on deployment types, see [Deployment types for Microsoft Foundry Models](../../foundry-models/concepts/deployment-types.md).
 
-> [!IMPORTANT]
-> - Agents (classic) are deprecated. To use models later than gpt-5, see the [agents (new) documentation](../../../foundry/agents/overview.md).
-> - [Hub-based projects](../../what-is-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, and gpt-35-turbo.
-> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
+Agents (classic) are deprecated. To use models later than gpt-5, see the [agents (new) documentation](../../../foundry/agents/overview.md).
 
 ## Available models
 
@@ -119,6 +116,10 @@ Azure OpenAI models power agents in Foundry Agent Service. To use these models, 
 | westus3 | ✅ | | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ---
+
+> [!IMPORTANT]
+> - [Hub-based projects](../../what-is-foundry.md#types-of-projects) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, and gpt-35-turbo.
+> - For information on Class A subnet support, see the [setup guide on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup).
 
 - **gpt-5 family** (gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-chat): Frontier-scale reasoning for complex, multi-step tasks. [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required. These models can use only the [code interpreter](../how-to/tools-classic/code-interpreter.md) and [file search](../how-to/tools-classic/file-search.md) tools.
 - **gpt-4.1 family** (gpt-4.1, gpt-4.1-mini, gpt-4.1-nano): Cost-effective models for general-purpose agent workloads.
