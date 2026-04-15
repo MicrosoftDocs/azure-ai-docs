@@ -215,7 +215,7 @@ Use the Microsoft Foundry extension in VS Code to scaffold a new hosted agent pr
     
 1. Select a programming language, Python or C#.
 
-1. Select either Resposnes API or Invoke API.
+1. Select either Responses API or Invoke API.
 
 1. Select the sample code you want to use.
 
