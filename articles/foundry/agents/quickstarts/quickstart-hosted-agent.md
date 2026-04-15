@@ -90,6 +90,9 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
     >   value: <CONNECTION_ID_PLACEHOLDER>
     > ```
 
+    > [!TIP]
+    > If you're running in a non-interactive environment such as a CI/CD pipeline or an SSH session, use the `--no-prompt` flag with `azd ai agent init`. You must also supply all required values as command-line flags rather than responding to interactive prompts.
+
 1. Provision the required Azure resources:
 
     > [!NOTE]
@@ -126,6 +129,9 @@ Before deploying, verify the agent works locally.
 
     This command automatically sets up the environment, installs dependencies, and starts the agent. It uses the `startupCommand` defined in `azure.yaml` to launch your agent.
 
+    > [!NOTE]
+    > Preview packages can produce pip dependency version-conflict warnings during setup. These warnings are non-blocking — the agent starts and responds correctly despite them.
+
     If the agent fails to start, check these common issues:
 
     | Error | Solution |
@@ -152,6 +158,9 @@ azd deploy
 ```
 
 The agent container is built remotely, so Docker Desktop isn't required on your machine.
+
+> [!NOTE]
+> The `azd deploy` command assigns Azure RBAC roles to the agent's Agent identity. This role assignment requires **Owner** or **User Access Administrator** permissions on your subscription, in addition to the **Contributor** role required for provisioning.
 
 > [!WARNING]
 > Your hosted agent incurs charges while deployed. After you finish testing, complete [Clean up resources](#clean-up-resources) to delete resources and stop charges.
@@ -342,6 +351,21 @@ Check the status of your deployed agent:
 azd ai agent show
 ```
 
+To display the output in table format:
+
+```bash
+azd ai agent show --output table
+```
+
+If your project has multiple agent services, specify the agent name as a positional argument:
+
+```bash
+azd ai agent show <agent-name>
+```
+
+> [!TIP]
+> Find `<agent-name>` in the `azure.yaml` file under the `services:` section.
+
 ### Test the deployed agent
 
 Send a test message to your deployed agent:
@@ -357,7 +381,23 @@ You should see a response with web search results about Microsoft Foundry. The r
 Monitor your agent's live logs:
 
 ```bash
+# Fetch recent container console logs
 azd ai agent monitor
+
+# Fetch the last N lines of console logs
+azd ai agent monitor --tail 20
+
+# Fetch system event logs (container start and stop events)
+azd ai agent monitor --type system
+
+# Stream session logs in real time
+azd ai agent monitor --session <session-id> --follow
+```
+
+If your project has multiple agent services, specify the agent name as a positional argument:
+
+```bash
+azd ai agent monitor <agent-name> --follow
 ```
 
 :::zone-end
