@@ -23,6 +23,8 @@ items:
       href: ../../agents/how-to/deploy-hosted-agent.md
     - name: Manage hosted agent lifecycle
       href: ../../agents/how-to/manage-hosted-agent.md
+    - name: Manage hosted agent sessions
+      href: ../../agents/how-to/manage-hosted-sessions.md
   - name: Migrate agents
     href: ../../agents/how-to/migrate.md
   - name: Create a workflow
