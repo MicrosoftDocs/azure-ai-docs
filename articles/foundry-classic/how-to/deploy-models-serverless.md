@@ -1,8 +1,8 @@
 ---
 title: "Deploy models as serverless API deployments (classic)"
 description: "Learn to deploy models as serverless API deployments, using Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 1/26/2026
 author: ssalgadodev

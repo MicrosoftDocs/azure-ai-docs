@@ -4,7 +4,7 @@ ms.reviewer: gregharen
 description: "Discover how to manage compliance and secure your Microsoft Foundry assets by using guardrail policies, Microsoft Defender for Cloud, and Microsoft Purview DSPM."
 author: s-polly
 ms.author: scottpolly
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 03/02/2026
 ai-usage: ai-assisted

@@ -2,7 +2,7 @@
 title: "Create and manage Foundry agents in Visual Studio Code (classic)"
 description: "Create, configure, test, and deploy Foundry agents directly in Visual Studio Code by using the Foundry Agent Service extension and designer. (classic)"
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted

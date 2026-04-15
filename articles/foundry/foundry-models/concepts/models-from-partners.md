@@ -4,9 +4,9 @@ description: "Learn about Microsoft Foundry Models from partners and community, 
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 03/23/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.date: 04/06/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: partner-tools
 ms.custom:
   - classic-and-new
@@ -26,7 +26,7 @@ zone_pivot_groups: azure-ai-model-categories
 This article lists capabilities for a selection of Microsoft Foundry Models from partners and community.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
 The selection of models that you see in Foundry depends on the [kind of project](../../what-is-foundry.md#choosing-a-project) you use.
-To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md#models-from-partners-and-community).
+To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md#models-from-partners-and-community). Note that models from partners and community that are not sold directly by Azure are Non-Microsoft Products under the Product Terms.
 
 > [!NOTE]
 > For a list of models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md).
@@ -55,15 +55,17 @@ Anthropic's flagship product is Claude, a frontier AI model trusted by leading e
 
 To work with Claude models in Foundry, see [Deploy and use Claude models in Microsoft Foundry](../how-to/use-foundry-models-claude.md). 
 
+> [!NOTE]
+> [!INCLUDE [claude-mythos-preview-restriction](../includes/claude-mythos-preview-restriction.md)]
+
 #### Subscription type and region support
 
 [!INCLUDE [claude-usage-restriction](../includes/claude-usage-restriction.md)]
 
 
-
-
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
+| `claude-mythos-preview` <br><br> **(Gated research preview)** | Messages | - **Input:** text, image, and code <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000 <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br /> - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:** Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) <br /> - **Key parameters:** `top_p` must be at least 0.99. Requests with `top_p` below this threshold are rejected with a 400 error. When `top_p` is omitted, the default (0.99) is used. |
 | `claude-opus-4-6` <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text, image, and code (128,000 max tokens) <br /> - **Context window:** 1,000,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)|
 | `claude-opus-4-5` <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (64,000 max tokens) <br /> - **Context window:** 200,000   <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages)|
 | `claude-opus-4-1` <br><br> **(Preview)** | Messages | - **Input:**  text, image, and code  <br /> - **Output:** text (32,000 max tokens) <br /> - **Context window:** 200,000  <br /> - **Languages:** `en`, `fr`, `ar`, `zh`, `ja`, `ko`, `es`, `hi` <br />  - **Tool calling:** Yes (file search and code execution) <br /> - **Response formats:**  Text in various formats (e.g., prose, lists, Markdown tables, JSON, HTML, code in various programming languages) |

@@ -1,8 +1,8 @@
 ---
 title: "Deploy and use Claude models in Microsoft Foundry (classic)"
 description: "Deploy Anthropic's Claude models in Microsoft Foundry to integrate advanced conversational AI into your apps. Learn how to use Claude Opus, Sonnet, and Haiku models. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 03/11/2026
 ms.custom:
@@ -25,5 +25,3 @@ ROBOTS: NOINDEX, NOFOLLOW
 [!INCLUDE [classic-links](../../includes/classic-links.md)]
 
 [!INCLUDE [use-foundry-models-claude 1](../../../foundry/foundry-models/includes/how-to-use-foundry-models-claude-1.md)]
-
-[!INCLUDE [use-foundry-models-claude 2](../../../foundry/foundry-models/includes/how-to-use-foundry-models-claude-2.md)]

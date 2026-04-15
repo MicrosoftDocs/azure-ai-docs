@@ -17,6 +17,8 @@ ms.custom:
 
 # Create Content Understanding Standard and Pro tasks in the Microsoft Foundry (classic) portal (Preview)
 
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
+
 Suppose you have files of different types—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows. 
 
 This guide shows you how to use Content Understanding Standard and Pro modes in the Microsoft Foundry (classic) portal to build and test a custom analyzer that extracts structured information from your data.

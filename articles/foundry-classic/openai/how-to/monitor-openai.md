@@ -6,8 +6,8 @@ ms.custom: horz-monitor, subject-monitoring
 ms.topic: concept-article
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ---
 
 # Monitor Azure OpenAI (classic)

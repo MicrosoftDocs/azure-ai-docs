@@ -20,7 +20,6 @@ ai-usage: ai-assisted
 ---
 
 # Build a translation app with LangChain
-[!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
 This article shows you how to build a translation app by using the Foundry Local SDK and [LangChain](https://www.langchain.com/langchain). Use a local model to translate text between languages.
 
