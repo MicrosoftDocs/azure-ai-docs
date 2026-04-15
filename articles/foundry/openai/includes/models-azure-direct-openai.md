@@ -12,14 +12,14 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 > [!NOTE]
 > Foundry Models sold directly by Azure also include select models from top model providers. To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. Models from partners and community include:
 >
-> - Black Forest Labs: `FLUX.2-flex`, `FLUX.2-pro`, `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
+> - Black Forest Labs: `FLUX.2-flex` **Preview**, `FLUX.2-pro` **Preview**, `FLUX.1-Kontext-pro` **Preview**, `FLUX-1.1-pro` **Preview**
 > - Cohere: `Cohere-command-a`, `embed-v-4-0`, `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast`
-> - DeepSeek: `DeepSeek-V3.2`, `DeepSeek-V3.2-Speciale`, `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
-> - Moonshot AI: `Kimi-K2.5`
-> - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
+> - DeepSeek: `DeepSeek-V3.2` **Preview**, `DeepSeek-V3.2-Speciale` **Preview**, `DeepSeek-V3.1` **Preview**, `DeepSeek-V3-0324` **Preview**, `DeepSeek-R1-0528` **Preview**, `DeepSeek-R1`
+> - Moonshot AI: `Kimi-K2.5` **Preview**
+> - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8` **Preview**, `Llama-3.3-70B-Instruct` **Preview**
 > - Microsoft: `MAI-Image-2e`, `MAI-Image-2`, `model-router`
-> - Mistral: `mistral-document-ai-2512`, `mistral-document-ai-2505`, `Mistral-Large-3`
-> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`, `grok-4.1-fast-reasoning`, `grok-4.1-fast-non-reasoning`, `grok-4-20-reasoning`, `grok-4-20-non-reasoning`
+> - Mistral: `mistral-document-ai-2512`, `mistral-document-ai-2505` **Preview**, `Mistral-Large-3` **Preview**
+> - xAI: `grok-code-fast-1` **Preview**, `grok-3` **Preview**, `grok-3-mini` **Preview**, `grok-4-fast-reasoning` **Preview**, `grok-4-fast-non-reasoning` **Preview**, `grok-4`, `grok-4.1-fast-reasoning` **Preview**, `grok-4.1-fast-non-reasoning` **Preview**, `grok-4-20-reasoning`, `grok-4-20-non-reasoning`
 
 
 ## Azure OpenAI in Microsoft Foundry models
