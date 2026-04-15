@@ -27,6 +27,7 @@ Use this checklist before your first production rollout:
 
 1. Define environment boundaries across development, testing, and production.
 1. Assign ownership for each Foundry resource and project scope.
+1. Determine the Foundry features you plan to use. Not all feature APIs are available in the project context. If you plan to assign permissions at the lowest project scope for use case isolation, this might not be supported for classic Azure AI APIs such as Translator. Those require every user to have permissions on the parent Foundry resource level. For those cases, segregation by Foundry resource is recommended.
 1. Define RBAC assignments for admins, project managers, and project users.
 1. Define networking approach for each environment (public access, private endpoint, or hybrid).
 1. Decide whether customer-managed keys are required by policy.
@@ -43,15 +44,18 @@ To accelerate adoption while maintaining oversight, Contoso Enterprise IT aims t
 
 The Foundry resource defines the scope for configuring, securing, and monitoring your team's environment. It's available in the Foundry portal and through Azure APIs. Projects are like folders to organize your work within this resource context. Projects also control access and permissions to Foundry developer APIs and tools.
 
+> [!IMPORTANT]
+> Projects provide a pre-configured sandbox environment optimized for agent creation and Foundry-native capabilities. However, because Foundry is built on a number of classic Azure AI services, not every classic API is available in the project context. Identify the features your teams plan to use and verify whether they support project-level access. For services like Translator that require permissions at the parent Foundry resource level, consider using separate Foundry resources for cost isolation and access control.
+
 :::image type="content" source="../media/planning/foundry-resource.png" alt-text="Screenshot of a diagram showing Foundry resource.":::
 
 To ensure consistency, scalability, and governance across teams, consider the following environment setup practices when rolling out Foundry:
 
 - **Establish distinct environments for development, testing, and production.** Use separate resource groups or subscriptions, and Foundry resources to isolate workflows, manage access, and support experimentation with controlled releases.
 
-- **Create a separate Foundry resource for each business group.** Align deployments with logical boundaries such as data domains or business functions to ensure autonomy, governance, and cost tracking.
+- **Create a separate Foundry resource for each business group.** Align deployments with logical boundaries such as data domains or business functions to ensure autonomy, governance, and cost tracking. Also consider separate Foundry resources when teams need classic Azure AI APIs that don't support project-scoped access.
 
-- **Associate projects with use cases.** Foundry projects are designed to represent specific use cases. They're containers to organize components such as agents or files for an application. While they inherit security settings from their parent resource, they can also implement their own access controls, data integration, and other governance controls.
+- **Associate projects with use cases.** Foundry projects represent specific use cases and provide containers to organize components such as agents or files for an application. While they inherit security settings from their parent resource, they can also implement their own access controls, data integration, and other governance controls. Before assigning project-scoped permissions, verify that the APIs your team plans to use support project-level access.
 
 ## Securing the Foundry environment
 
