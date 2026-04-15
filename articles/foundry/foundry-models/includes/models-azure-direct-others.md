@@ -4,16 +4,13 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 04/13/2026
+ms.date: 04/15/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 
 ---
-
-> [!NOTE]
-> Foundry Models sold directly by Azure also include all Azure OpenAI models. To learn about these models, switch to the [Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai) collection at the top of this article. 
 
 ## Black Forest Labs models sold directly by Azure
 
@@ -34,20 +31,16 @@ To work with FLUX models in Foundry, see [Deploy and use FLUX models in Microsof
 
 <sup>i,ii</sup> Support for **multiple reference images** are available for FLUX.2 [pro] (Preview) and FLUX.2 [flex] (Preview) by using the API, but *not* in the playground.
 
-See [this model collection in Microsoft Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=black+forest+labs/?cid=learnDocs).
-
 ## Cohere models sold directly by Azure
 
 The Cohere family of models includes various models optimized for different use cases, including chat completions, rerank/text classification, and embeddings. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
 | Model  | Type | Capabilities | Deployment type (region availability) |
 | ------ | ---- | ------------ | ------------------------------------- |
-| [Cohere-rerank-v4.0-pro](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-pro/version/1/registry/azureml-cohere/?cid=learnDocs) | text classification (rerank) | - **Input:** text <br /> - **Output:** text <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `zh-cn`, `ar`, `vi`, `hi`, `ru`, `id`, and `nl` <br />  - **Tool calling:** No <br /> - **Response formats:** JSON | - Global standard (all regions) <br> - Managed compute |
-| [Cohere-rerank-v4.0-fast](https://ai.azure.com/resource/models/Cohere-rerank-v4.0-fast/version/2/registry/azureml-cohere/?cid=learnDocs) | text classification (rerank) | - **Input:** text <br /> - **Output:** text <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `zh-cn`, `ar`, `vi`, `hi`, `ru`, `id`, and `nl` <br />  - **Tool calling:** No <br /> - **Response formats:** JSON | - Global standard (all regions) <br> - Managed compute |
+| `Cohere-rerank-v4.0-pro` | text classification (rerank) | - **Input:** text <br /> - **Output:** text <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `zh-cn`, `ar`, `vi`, `hi`, `ru`, `id`, and `nl` <br />  - **Tool calling:** No <br /> - **Response formats:** JSON | - Global standard (all regions) <br> - Managed compute |
+| `Cohere-rerank-v4.0-fast` | text classification (rerank) | - **Input:** text <br /> - **Output:** text <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `zh-cn`, `ar`, `vi`, `hi`, `ru`, `id`, and `nl` <br />  - **Tool calling:** No <br /> - **Response formats:** JSON | - Global standard (all regions) <br> - Managed compute |
 | `Cohere-command-a` | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (8,182 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) |
 | `embed-v-4-0` | embeddings | - **Input:** text (512 tokens) and images (2MM pixels) <br /> - **Output:** Vector (256, 512, 1024, 1536 dim.) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` | - Global standard (all regions) |
-
-See [the Cohere model collection in the Foundry portal](https://ai.azure.com/explore/models?selectedCollection=Cohere/?cid=learnDocs,cohere).
 
 ## DeepSeek models sold directly by Azure
 
@@ -62,8 +55,6 @@ The DeepSeek family of models includes several reasoning models, which excel at 
 | `DeepSeek-V3-0324` (Preview) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) <br> - Global provisioned (all regions) |
 | `DeepSeek-R1` | chat-completion <br /> [(with reasoning content)](../../../foundry-classic/foundry-models/how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) <br> - Global provisioned (all regions) |
 
-See [this model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=DeepSeek/?cid=learnDocs).
-
 ## Meta models sold directly by Azure
 
 Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range in scale to include:
@@ -77,11 +68,11 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 | `Llama-4-Maverick-17B-128E-Instruct-FP8` (Preview) | chat-completion | - **Input:** text and images (1M tokens) <br /> - **Output:** text (1M tokens) <br /> - **Languages:** `ar`, `en`, `fr`, `de`, `hi`, `id`, `it`, `pt`, `es`, `tl`, `th`, and `vi` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) |
 | `Llama-3.3-70B-Instruct` (Preview) | chat-completion | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions)  <br> - Global provisioned (all regions) |
 
-See [this model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available [from partners and community](../concepts/models-from-partners.md#meta).
+Several Meta models are also available [from partners and community](../concepts/models-from-partners.md#meta).
 
 ## Microsoft models sold directly by Azure
 
-Microsoft models include various model groups such as Model Router, MAI models, Phi models, healthcare AI models, and more. See [the Microsoft model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). You can also find several Microsoft models available [from partners and community](../concepts/models-from-partners.md#microsoft).
+Microsoft models include various model groups such as Model Router, MAI models, Phi models, healthcare AI models, and more. Several Microsoft models are also available [from partners and community](../concepts/models-from-partners.md#microsoft).
 
 To work with `MAI-Image-2e` and `MAI-Image-2` text-to-image generation models in Foundry, see [Deploy and use MAI models in Microsoft Foundry](../how-to/use-foundry-models-mai.md).
 
@@ -89,7 +80,7 @@ To work with `MAI-Image-2e` and `MAI-Image-2` text-to-image generation models in
 | ------ | ---- | ------------ | ------------------------------------- |
 | `MAI-Image-2e` | Text-to-Image. See [API endpoint](../how-to/use-foundry-models-mai.md#api-endpoint) for details. | - **Input:** text <br /> - **Output:** One image <br /> - **Context length**: 32,000 tokens <br /> - **Tool calling:** No <br /> - **Response formats:** Image (PNG) <br /> - **Languages:** `en` <br /> - **Key features:** High-quality text-to-image generation; photorealistic image synthesis with consistent visual structure; well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.  <br /> - **Parameters:** `width`, `height`, `prompt` <br /> Minimum 768×768 pixels; maximum total pixel count 1,048,576 (equivalent to 1024×1024). Either dimension can exceed 1024 as long as the total pixel count stays within the limit (for example, 768×1365). | - Global standard (West Central US, East US, West US, West Europe, Sweden Central, South India) |
 | `MAI-Image-2` | Text-to-Image. See [API endpoint](../how-to/use-foundry-models-mai.md#api-endpoint) for details. | - **Input:** text <br /> - **Output:** One image <br /> - **Context length**: 32,000 tokens <br /> - **Tool calling:** No <br /> - **Response formats:** Image (PNG) <br /> - **Languages:** `en` <br /> - **Key features:** High-quality text-to-image generation; photorealistic image synthesis with consistent visual structure; well suited for product imagery, marketing visuals, brand assets, and commercial creative workflows.  <br /> - **Parameters:** `width`, `height`, `prompt` <br /> Minimum 768×768 pixels; maximum total pixel count 1,048,576 (equivalent to 1024×1024). Either dimension can exceed 1024 as long as the total pixel count stays within the limit (for example, 768×1365). | - Global standard (West Central US, East US, West US, West Europe, Sweden Central, South India) |
-| [model-router](https://ai.azure.com/resource/models/model-router/version/2025-11-18/registry/azureml-routers/?cid=learnDocs)<sup>1</sup> | chat-completion | More details in [Model router overview](/azure/ai-foundry/openai/how-to/model-router). <br> - **Input:** text, image <br /> - **Output:** text (max output tokens varies<sup>2</sup>) <br> **Context window:** 200,000<sup>3</sup> <br /> - **Languages:** `en` |- Global standard (East US 2, Sweden Central) <br> - Data Zone standard<sup>4</sup> (East US 2, Sweden Central) |
+| `model-router`<sup>1</sup> | chat-completion | More details in [Model router overview](/azure/ai-foundry/openai/how-to/model-router). <br> - **Input:** text, image <br /> - **Output:** text (max output tokens varies<sup>2</sup>) <br> **Context window:** 200,000<sup>3</sup> <br /> - **Languages:** `en` |- Global standard (East US 2, Sweden Central) <br> - Data Zone standard<sup>4</sup> (East US 2, Sweden Central) |
 
 <sup>1</sup> **Model router version** `2025-11-18`. Earlier versions (`2025-08-07` and `2025-05-19`) are also available. 
 
@@ -107,7 +98,7 @@ To work with `MAI-Image-2e` and `MAI-Image-2` text-to-image generation models in
 | `mistral-document-ai-2505` (Preview) | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** `en` <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |- Global standard (all regions) <br /> - Data zone standard (US and EU)  |
 | `Mistral-Large-3` (Preview) | chat-completion | - **Input:** text, image <br /> - **Output:** text  <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `zh`, `ja`, `ko`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON  |- Global standard (all regions) <br> - Data zone standard (US and EU)   |
 
-See [the Mistral model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs).  You can also find several Mistral models available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
+Several Mistral models are also available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
 
 ## Moonshot AI models sold directly by Azure
 
@@ -137,8 +128,6 @@ xAI's Grok models in Foundry Models include a diverse set of reasoning and non-r
 | `grok-code-fast-1` (Preview) | chat-completion | - **Input:** text (256,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions)  |
 | `grok-3` (Preview) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions) <br> - Data zone standard (US) |
 | `grok-3-mini` (Preview) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text | - Global standard (all regions) <br> - Data zone standard (US) |
-
-See [the xAI model collection in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=xAI/?cid=learnDocs).
 
 ## Model region availability by deployment type
 

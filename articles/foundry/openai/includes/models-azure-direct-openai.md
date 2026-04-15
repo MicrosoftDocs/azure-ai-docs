@@ -10,7 +10,7 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 ---
 
 > [!NOTE]
-> Foundry Models sold directly by Azure also include select models from top model providers, such as:
+> Foundry Models sold directly by Azure also include select models from top model providers. To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. Models from partners and community include:
 >
 > - Black Forest Labs: `FLUX.2-flex`, `FLUX.2-pro`, `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
 > - Cohere: `Cohere-command-a`, `embed-v-4-0`, `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast`
@@ -20,8 +20,7 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 > - Microsoft: `MAI-Image-2e`, `MAI-Image-2`, `model-router`
 > - Mistral: `mistral-document-ai-2512`, `mistral-document-ai-2505`, `Mistral-Large-3`
 > - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`, `grok-4.1-fast-reasoning`, `grok-4.1-fast-non-reasoning`, `grok-4-20-reasoning`, `grok-4-20-non-reasoning`
-> 
-> To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. 
+
 
 ## Azure OpenAI in Microsoft Foundry models
 
