@@ -45,39 +45,32 @@ To configure network access:
 
 1. From the left pane, select **Settings** > **Networking**.
 
-   If you don't see this option, check your pricing tier. Networking options are available on the Basic tier and higher.
-
-1. For **Public network access**, select **Selected IP addresses**.
-   
-   Avoid the **Disabled** option unless you're configuring a [private endpoint](service-create-private-endpoint.md).
+1. For **Public network access**, select **Selected IP addresses**. Select **Disabled** only if you're configuring a [private endpoint](service-create-private-endpoint.md).
 
    :::image type="content" source="media/service-configure-firewall/azure-portal-firewall.png" alt-text="Screenshot showing the network access options in the Azure portal." lightbox="media/service-configure-firewall/azure-portal-firewall.png" :::
 
 1. Under **IP Firewall**, select **Add your client IP address**.
 
-   This step creates an inbound rule for the public IP address of your personal device to Azure AI Search.
+   This step creates an inbound rule that allows your device's public IP address to reach the search service.
 
    :::image type="content" source="media/service-configure-firewall/azure-portal-firewall-all.png" alt-text="Screenshot showing how to configure the IP firewall in the Azure portal." lightbox="media/service-configure-firewall/azure-portal-firewall-all.png":::
 
    > [!TIP]
    > The portal uses your client IP address for a direct connection. If your client is in the allowed IP list, you can use all portal capabilities with no extra configuration.
 
-1. Add other client IP addresses for other devices and services that send requests to a search service.
-
-   Specify IP addresses and ranges in the CIDR format. An example of CIDR notation is 8.8.8.0/24, which represents the IPs that range from 8.8.8.0 to 8.8.8.255.
+1. Add client IP addresses for other devices or services that send requests to the search service. Use the CIDR format. For example, 8.8.8.0/24 represents IP addresses ranging from 8.8.8.0 to 8.8.8.255.
 
    To get the public IP addresses of Azure services, see [Azure IP Ranges and Service Tags](https://www.microsoft.com/download/details.aspx?id=56519). If your search client is hosted within an Azure function, see [IP addresses in Azure Functions](/azure/azure-functions/ip-addresses).
 
-1. Under **Exceptions**, select **Allow Azure services on the trusted services list to access this search service**. 
+1. (Optional) Under **Exceptions**, select **Allow Azure services on the trusted services list to access this search service**.
  
-   :::image type="content" source="media/service-configure-firewall/exceptions.png" alt-text="Screenshot showing the exceptions checkbox on the network configuration page." lightbox="media/service-configure-firewall/exceptions.png":::
-
    This exception allows trusted Azure services with a valid managed identity and role assignment to bypass the firewall. For more information, see [Grant access to trusted services](#grant-access-to-trusted-azure-services).
+
+   :::image type="content" source="media/service-configure-firewall/exceptions.png" alt-text="Screenshot showing the exceptions checkbox on the network configuration page." lightbox="media/service-configure-firewall/exceptions.png":::
 
 1. Save your changes.
 
-   > [!NOTE]
-   > It can take several minutes for changes to take effect. Wait at least 15 minutes before troubleshooting.
+It can take several minutes for changes to take effect. Wait at least 15 minutes before you troubleshoot problems related to network configuration.
 
 After you enable the IP access control policy, requests from IP addresses outside the allowed list are rejected with a **403 Forbidden** response.
 
