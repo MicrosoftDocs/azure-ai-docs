@@ -135,7 +135,7 @@ instance_count: 1
 default_instance_type: Standard_DS3_v2
 scoring_path: /score
 scoring_port: 5001
-allowed_instance_types: Standard_DS3_v2 Standard_DS3_v2
+allowed_instance_types: Standard_DS3_v2
 ```
 
 ## YAML: with model mount path
