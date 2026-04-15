@@ -5,7 +5,7 @@ author: haileytap
 ms.author: haileytapia
 ms.reviewer: fsunavala
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 04/02/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -284,7 +284,7 @@ Content-Type: application/json
 
 [!INCLUDE [foundry-iq-limitation](../../includes/foundry-iq-limitation.md)]
 
-Optionally, if your knowledge base includes a [remote SharePoint knowledge source](/azure/search/agentic-knowledge-source-how-to-sharepoint-remote), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
+Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time](/azure/search/agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 #### [Python](#tab/python)
 

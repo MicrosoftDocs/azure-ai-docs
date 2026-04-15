@@ -2,7 +2,7 @@
 title: "Control model deployment with custom policies (classic)"
 description: "Learn how to use custom Azure Policies to control Microsoft Foundry and Azure OpenAI in Foundry Models deployment with Microsoft Foundry. (classic)"
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to #Don't change
 ms.date: 01/05/2026
 ms.author: jburchel 

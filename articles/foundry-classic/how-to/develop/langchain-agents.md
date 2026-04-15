@@ -1,7 +1,7 @@
 ---
 title: "Use LangGraph with the Agent Service (classic)"
 description: "Learn how to build LangGraph and LangChain applications with Foundry Agent Service in the classic experience."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - dev-focus

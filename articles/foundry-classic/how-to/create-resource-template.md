@@ -4,8 +4,8 @@ description: "Learn how to use a Bicep file (template) to create a Microsoft Fou
 ms.author: sgilley
 author: sdgilley
 reviewer: deeikele
-ms.date: 04/08/2026
-ms.service: azure-ai-foundry
+ms.date: 12/24/2025
+ms.service: microsoft-foundry
 ms.topic: quickstart
 ms.custom:
   - classic-and-new
@@ -38,14 +38,14 @@ If you already configured a Foundry resource in the Azure portal, you can [expor
     # [Azure CLI](#tab/cli)
 
     ```azurecli
-    git clone https://github.com/Azure-AI-Foundry/foundry-samples
+    git clone https://github.com/microsoft-foundry/foundry-samples
     cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
     ```
 
     # [Azure PowerShell](#tab/powershell)
 
     ```azurepowershell
-    git clone https://github.com/Azure-AI-Foundry/foundry-samples
+    git clone https://github.com/microsoft-foundry/foundry-samples
     cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
     ```
 

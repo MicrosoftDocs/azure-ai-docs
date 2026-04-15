@@ -1,8 +1,8 @@
 ---
 title: "How to migrate from Azure AI Inference SDK to OpenAI SDK (classic)"
 description: "Learn how to migrate to OpenAI SDK from Azure AI Inference SDK for enhanced compatibility and unified APIs when working with Microsoft Foundry Models. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 11/05/2025
 ms.author: mopeakande

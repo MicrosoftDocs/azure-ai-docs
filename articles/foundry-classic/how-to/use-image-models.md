@@ -1,8 +1,8 @@
 ---
 title: "How to use image-to-text models in the model catalog (classic)"
 description: "Learn how to use image-to-text models from the Foundry model catalog. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 08/28/2025
 ms.author: mopeakande

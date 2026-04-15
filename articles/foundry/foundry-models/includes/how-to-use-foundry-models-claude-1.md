@@ -4,7 +4,7 @@ description: Include file
 author: msakande
 ms.reviewer: ambadal
 ms.author: mopeakande
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 04/06/2026
 ms.custom: include, classic-and-new
@@ -31,13 +31,13 @@ Claude models in Foundry include:
 To learn more about the individual models, see [Available Claude models](#available-claude-models).
 
 > [!IMPORTANT]
-> **Claude Mythos Preview** is only available as a *gated research preview*. Access to the model is prioritized by Anthropic for defensive cybersecurity use cases. See the [Claude Mythos Preview system card](https://www.anthropic.com/claude-mythos-preview-system-card) for responsible use guidance.
+> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 
 ## Prerequisites
 
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go). See [subscription type and region support](#subscription-type-and-region-support) for more details.
 - Access to Microsoft Foundry with appropriate permissions to create and manage resources.
-- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the supported regions: **East US2**, **West Central US**, or **Sweden Central**.
+- A [Microsoft Foundry project](../../how-to/create-projects.md) created in one of the supported regions: **East US2** or **Sweden Central**.
 - [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace** to create subscriptions. Ensure that you have the [permissions required to subscribe to model offerings](../how-to/configure-marketplace.md).
 - **Contributor** or **Owner** role on the resource group to deploy models. For more information, see [Azure RBAC roles](/azure/role-based-access-control/built-in-roles).
 
@@ -470,7 +470,7 @@ For more details about the model capabilities, see [capabilities of Claude model
 ### Claude Mythos (gated research preview)
 
 > [!IMPORTANT]
-> **Claude Mythos Preview** is only available as a *gated research preview*. Access to the model is prioritized by Anthropic for defensive cybersecurity use cases. See the [Claude Mythos Preview system card](https://www.anthropic.com/claude-mythos-preview-system-card) for responsible use guidance.
+> [!INCLUDE [claude-mythos-preview-restriction](claude-mythos-preview-restriction.md)]
 >
 > Claude Mythos Preview supports **Microsoft Entra ID authentication only**.
 
@@ -552,8 +552,7 @@ Claude models in Foundry have the following rate limits, measured in Tokens Per 
 
 | Model        |   Deployment type       | Default RPM   | Default TPM   |Enterprise and MCA-E RPM   |Enterprise and MCA-E TPM   |
 |:------------------|:----------------|:--------------|:--------------|:-----------|:-----------|
-| claude-mythos-preview     | [Global Standard](../concepts/deployment-types.md#global-standard)  |0        | 0    | 2,000      | 2,000,000  |
-| claude-opus-4-6   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
+| claude-opus-4-6   | [Global Standard](../concepts/deployment-types.md#global-standard)  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-5   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-opus-4-1   | Global Standard  |0        | 0    | 2,000      | 2,000,000  |
 | claude-sonnet-4-6 | Global Standard  |0        | 0    | 2,000      | 2,000,000  |

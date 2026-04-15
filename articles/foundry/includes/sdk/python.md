@@ -4,7 +4,7 @@ description: Include file
 author: bobtabor-msft
 ms.reviewer: sgilley
 ms.author: rotabor
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 12/02/2025
 ms.custom: include

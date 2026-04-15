@@ -122,5 +122,17 @@ conceptualContent:
         - itemType: reference
           text: REST API
           url: /rest/api/contentunderstanding/operation-groups
+        - itemType: reference
+          text: Python SDK reference
+          url: /python/api/overview/azure/content-understanding
+        - itemType: reference
+          text: .NET SDK reference
+          url: /dotnet/api/azure.ai.contentunderstanding
+        - itemType: reference
+          text: JavaScript SDK reference
+          url: /javascript/api/@azure/ai-content-understanding/
+        - itemType: reference
+          text: Java SDK reference
+          url: /java/api/overview/azure/content-understanding
 
 

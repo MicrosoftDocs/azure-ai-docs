@@ -1,7 +1,7 @@
 ---
 title: "Compare models using the model leaderboard (classic)"
 description: "Compare model benchmarks across quality, safety, cost, and throughput using the model leaderboard and side-by-side comparison features in Foundry portal. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - ai-learning-hub

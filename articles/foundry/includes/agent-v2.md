@@ -4,7 +4,7 @@ description: Include file
 author: jonburchel
 ms.reviewer: dantaylo
 ms.author: jburchel
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 11/04/2025
 ms.custom: include, classic-and-new

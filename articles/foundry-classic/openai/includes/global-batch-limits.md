@@ -3,8 +3,8 @@ title: Azure OpenAI Global Batch Limits
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Global batch limits for Azure OpenAI models.
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 01/27/2025
 ---
