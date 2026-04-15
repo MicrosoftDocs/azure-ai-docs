@@ -9,6 +9,42 @@ ms.date: 04/15/2026
 ms.custom: include
 ---
 
+In this quickstart, you deploy a [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) resource and project by using a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) template. Bicep helps you create related resources in one coordinated deployment and reuse the same configuration across environments.
+
+If you already configured a Foundry resource in the Azure portal, you can [export that configuration as a Bicep file](#export-an-existing-resource-to-a-bicep-file) instead of authoring a template from scratch.
+
+> [!TIP]
+> For production-ready Bicep templates that cover common Foundry deployment scenarios, see the [infrastructure-setup-bicep](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep) folder in the Foundry samples repository. Clone the repository and customize the templates instead of starting from scratch.
+
+## Prerequisites
+
+[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+
+- [!INCLUDE [rbac-assign-roles](../includes/rbac-assign-roles.md)]
+- [Install the Bicep CLI](/azure/azure-resource-manager/bicep/install).
+
+Get the sample files:
+
+# [Azure CLI](#tab/cli)
+
+```azurecli
+git clone https://github.com/microsoft-foundry/foundry-samples
+cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+```azurepowershell
+git clone https://github.com/microsoft-foundry/foundry-samples
+cd foundry-samples/infrastructure/infrastructure-setup-bicep/00-basic
+```
+
+---
+
+## Deploy the Bicep file
+
+Deploy the Bicep file by using either Azure CLI or Azure PowerShell:
+
 # [Azure CLI](#tab/cli)
 
 ```azurecli
