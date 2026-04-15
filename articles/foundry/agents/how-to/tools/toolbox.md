@@ -203,14 +203,15 @@ const toolboxVersion = await project.beta.toolboxes.createVersion(
 );
 console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.version}`);
 ```
-```
 
 :::zone-end
 
 :::zone pivot="azd"
 
 With azd, you declare toolbox resources in an `agent.yaml` file instead of calling the SDK. Define your tools in the `resources` section and deploy with `azd ai agent init`. See [Configure tools](#configure-tools) for `agent.yaml` examples for each tool type, and [Deploy with azd](#deploy-with-azd) for the full deployment workflow.
-> **IMPORTANT:** The `-m` (or `--manifest`) flag is **required** for `azd ai agent init`.
+
+> [!IMPORTANT] 
+> The `-m` (or `--manifest`) flag is **required** for `azd ai agent init`.
 > It tells the command where to find your agent definition and source files.
 >
 > `-m` can point to either:
@@ -330,7 +331,7 @@ Install the MCP client SDK:
 pip install mcp
 ```
 
-#### Step 1: Connect to the toolbox and list tools
+#### Connect to the toolbox and list tools
 
 ```python
 import asyncio
@@ -426,7 +427,7 @@ Install the MCP client SDK:
 npm install @modelcontextprotocol/sdk
 ```
 
-#### Step 1: Connect to the toolbox and list tools
+#### Connect to the toolbox and list tools
 
 ```javascript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -846,6 +847,7 @@ Console.WriteLine($"Created version: {toolboxVersion.Version}");
 :::zone-end
 
 :::zone pivot="rest-api"
+
 POST {project_endpoint}/toolboxes/my-toolbox/versions?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
@@ -2284,8 +2286,8 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [Code Interpreter](code-interpreter.md) | ✅ Supported | Microsoft backbone network |
 | [Web Search](web-search.md) | ✅ Supported | Public endpoint |
 | [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
-| [File Search](file-search.md) | ❌ Not supported | Under development |
-| [Agent-to-Agent (A2A)](agent-to-agent.md) | ❌ Not supported | Under development |
+| [File Search](file-search.md) | ❌ Not supported | Not yet available |
+| [Agent-to-Agent (A2A)](agent-to-agent.md) | ❌ Not supported | Not yet available |
 
 > [!NOTE]
 > Web Search communicates over public endpoints even in network-isolated environments. If your organization requires all traffic to remain within a private network, Web Search might not meet your compliance requirements.
