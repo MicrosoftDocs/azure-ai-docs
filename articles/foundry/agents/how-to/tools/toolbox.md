@@ -511,8 +511,6 @@ Tool-specific `tools/call` argument examples:
 
 ### LangGraph
 
-You can see the detailed samples [here](https://aka.ms/foundry-toolbox-langgraph).
-
 **`.env` file**:
 
 ```
@@ -550,8 +548,6 @@ tools = await client.get_tools()
 ```
 
 ### Microsoft Agent Framework
-
-You can see the detailed samples [here](https://aka.ms/foundry-toolbox-maf).
 
 Use `MCPStreamableHTTPTool` from the Agent Framework SDK to connect directly to the toolbox MCP endpoint.
 
@@ -596,7 +592,7 @@ ResponsesAgentServerHost().run()
 
 ### Copilot SDK
 
-You can see the detailed samples [here](https://aka.ms/foundry-toolbox-copilotsdk). Use the GitHub Copilot SDK to build a toolbox-powered agent that bridges Copilot's tool invocation to the Foundry toolbox MCP endpoint.
+Use the GitHub Copilot SDK to build a toolbox-powered agent that bridges Copilot's tool invocation to the Foundry toolbox MCP endpoint.
 
 > [!NOTE]
 > The Copilot SDK rejects tool names containing dots. The bridge automatically replaces `.` with `_` in tool names — for example, `myserver.get_info` becomes `myserver_get_info`.

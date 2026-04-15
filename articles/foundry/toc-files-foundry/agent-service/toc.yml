@@ -35,9 +35,9 @@ items:
   items:
   - name: Agent runtime components
     href: ../../agents/concepts/runtime-components.md
-  - name: Tools overview
+  - name: Agent tools
     items:
-    - name: Overview
+    - name: Tools overview
       href: ../../agents/concepts/tool-catalog.md
     - name: Best practices
       href: ../../agents/concepts/tool-best-practice.md
