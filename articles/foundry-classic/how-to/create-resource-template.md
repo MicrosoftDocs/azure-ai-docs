@@ -4,7 +4,7 @@ description: "Learn how to use a Bicep file (template) to create a Microsoft Fou
 ms.author: sgilley
 author: sdgilley
 reviewer: deeikele
-ms.date: 12/24/2025
+ms.date: 04/15/2026
 ms.service: microsoft-foundry
 ms.topic: quickstart
 ms.custom:
