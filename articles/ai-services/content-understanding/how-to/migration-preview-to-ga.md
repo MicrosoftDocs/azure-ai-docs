@@ -15,6 +15,8 @@ ms.custom:
 
 # Migrate from Azure Content Understanding Preview to GA
 
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
+
 The Azure Content Understanding API has reached general availability (GA). It introduces several new capabilities and updates to features that were released in earlier preview API versions. The [What's new](../whats-new.md) page provides an overview of all the changes in the `2025-11-01` Content Understanding GA API version.
 
 This article highlights changes needed to migrate analyzers and applications that were built with one of the preview API versions (`2024-12-01 preview` and `2025-05-01 preview`).

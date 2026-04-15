@@ -2,7 +2,7 @@
 title: "Create and manage connections (Hubs) (classic)"
 description: "Learn how to use connections in Microsoft Foundry hubs. (classic)"
 manager: scottpolly
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 01/05/2026
 ms.reviewer: scottpolly

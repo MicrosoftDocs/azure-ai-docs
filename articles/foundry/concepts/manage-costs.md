@@ -12,7 +12,7 @@ ms.custom:
   - classic-and-new
   - doc-kit-assisted
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ---
 
 # Plan and manage costs for Microsoft Foundry

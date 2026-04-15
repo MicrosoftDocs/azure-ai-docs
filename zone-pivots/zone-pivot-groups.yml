@@ -1794,6 +1794,19 @@ groups:
     title: JavaScript
   - id: programming-language-java
     title: Java
+- id: how-to-voice-live-mcp-server
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
@@ -1968,6 +1981,8 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript
   - id: programming-language-java
     title: Java
 # Owner: haileytapia

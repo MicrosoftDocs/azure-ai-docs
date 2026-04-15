@@ -4,20 +4,12 @@ description: Include file
 author: sdgilley
 ms.reviewer: deeikele
 ms.author: sgilley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
 ---
 
-## How to verify region support for your workload
-
-Use this process before you create resources:
-
-1. Select a candidate project region from the **Foundry projects** list in this article.
-1. Verify model and quota availability in [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits#regional-quota-capacity-limits).
-1. Verify feature-specific support in the **Foundry features** list links.
-1. Confirm the final service list in [Azure global infrastructure products by region](https://azure.microsoft.com/global-infrastructure/services/).
 
 ## Quick decision checklist
 

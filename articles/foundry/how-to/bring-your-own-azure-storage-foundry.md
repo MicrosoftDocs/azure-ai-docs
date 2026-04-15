@@ -5,7 +5,7 @@ description: "Learn how to bring your own storage to Microsoft Foundry for agent
 # customer intent: As a developer, I want to set up capability hosts for agents so that I can use my own storage instead of Microsoft-managed storage.
 author: jonburchel
 ms.author: jburchel
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2024, build-2025
   - classic-and-new

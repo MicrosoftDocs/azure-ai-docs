@@ -6,8 +6,8 @@ ms.author: aahi
 ms.date: 03/12/2026
 ms.manager: nitinme
 ms.topic: quickstart
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: hosted-agent-deploy-method

@@ -2,8 +2,8 @@
 title: "Configure content filters (classic)"
 description: "Learn how to use and configure the content filters that come with Microsoft Foundry, including getting approval for gated modifications. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 12/03/2025
 author: ssalgadodev

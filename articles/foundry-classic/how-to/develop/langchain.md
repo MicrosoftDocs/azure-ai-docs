@@ -1,7 +1,7 @@
 ---
 title: "Develop applications with LangChain and Microsoft Foundry (classic)"
 description: "Learn how to use LangChain with models deployed in Microsoft Foundry to build advanced, intelligent applications. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2024
   - update-code-2

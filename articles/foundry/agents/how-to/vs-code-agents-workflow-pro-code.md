@@ -2,7 +2,7 @@
 title: "Create hosted agent workflows in Visual Studio Code"
 description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Microsoft Foundry for Visual Studio Code extension."
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted

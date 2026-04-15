@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Idea to prototype - Build and evaluate an enterprise agent"
 description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Microsoft Foundry."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: tutorial
 ms.date: 03/31/2026
 ms.author: jburchel
@@ -49,6 +49,9 @@ This minimal sample demonstrates enterprise-ready patterns with realistic busine
   > To configure your Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../agents/how-to/tools/sharepoint.md).
 
 - (Optional) Git installed for cloning the sample repository
+
+> [!IMPORTANT]
+> SDK versions and sample repository structure may change after publication. Before you begin, check the [sample repository README](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/enterprise-agent-tutorial/1-idea-to-prototype) for the latest setup instructions, required package versions, and environment configuration. If a version referenced in this tutorial isn't available on [PyPI](https://pypi.org/project/azure-ai-projects/) or [NuGet](https://www.nuget.org/packages/Azure.AI.Projects), use the latest published version instead.
 
 ## Step 1: Get the sample code
 
