@@ -4,7 +4,7 @@ description: "Deploy Anthropic's Claude models in Microsoft Foundry to integrate
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: how-to
-ms.date: 04/06/2026
+ms.date: 04/14/2026
 ms.custom:
   - ignite-2024, dev-focus, pilot-ai-workflow-jan-2026
   - classic-and-new
