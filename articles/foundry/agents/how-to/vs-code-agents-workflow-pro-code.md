@@ -209,22 +209,10 @@ To run the agent in container mode:
 3. Submit a request to the agent through the playground interface. For example, enter a prompt such as: "Create a slogan for a new electric SUV that's affordable and fun to drive."
 4. Review the agent's response in the playground interface.
 
-::: zone-end
-
 ## Visualize hosted agent workflow execution
 
 The Foundry for Visual Studio Code extension provides a real-time execution graph that shows how agents in your workflow interact and collaborate. Enable observability in your project to use this visualization.
 
-::: zone pivot="python"
-Enable visualization in your workflows by adding the following code snippet:
-
-```python
-from agent_framework.observability import setup_observability
-setup_observability(vs_code_extension_port=4319) # Default port is 4319
-```
-::: zone-end
-
-::: zone pivot="csharp"
 Add the following reference to your csproj file:
 
 ```xml
@@ -265,7 +253,6 @@ var s_tracerProvider = OpenTelemetry
     })
     .Build();
 ```
-::: zone-end
 
 ### Monitor and visualize your hosted agent workflow
 
@@ -286,28 +273,7 @@ For port conflicts, you can change the visualization port by setting it in the F
 1. Locate the `Hosted Agent Visualization Port` setting and change it to an available port number.
 1. Restart VS Code to apply the changes.
 
-#### Change port in code 
-
-::: zone pivot="python"
-Change the visualization port by setting the `FOUNDRY_OTLP_PORT` environment variable. Update the observability port in the `workflow.py` file accordingly.
-
-For example, to change the port to 4318, use this command:
-
-```bash
-  export FOUNDRY_OTLP_PORT=4318
-```
-
-In `workflow.py`, update the port number in the observability configuration:
-
-```python
-  setup_observability(vs_code_extension_port=4318)
-```
-> [!TIP]
-> To enable more debugging information, add the `enable_sensitive_data=True` parameter to the `setup_observability` function.
-
-::: zone-end
-
-::: zone pivot="csharp"
+#### Change port in code
 
 For any port conflicts, change the visualization port by setting the `FOUNDRY_OTLP_PORT` environment variable. Update the OTLP endpoint in your program accordingly.
 
@@ -322,23 +288,14 @@ In your program, update the OTLP endpoint to use the new port number:
 var otlpEndpoint =
     Environment.GetEnvironmentVariable("OTLP_ENDPOINT") ?? "http://localhost:4318";
 ```
-::: zone-end
 
 ## Deploy the hosted agent
 
 After testing your hosted agent locally, deploy it to your Foundry workspace so other team members and applications can use it.
 
 >[!IMPORTANT]
-> Make sure you give the necessary permissions to deploy hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to get the required role assignments. 
+> Make sure you give the necessary permissions to deploy hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to get the required role assignments.
 
-::: zone pivot="python"
-1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
-1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`container.py`), and defining any other deployment parameters as needed.
-1. Upon successful deployment, the hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
-1. Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
-::: zone-end
-
-::: zone pivot="csharp"
 1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
 1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`<your-project-name>.csproj`), and defining any other deployment parameters as needed.
 1. Upon successful deployment, the hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
