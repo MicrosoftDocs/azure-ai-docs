@@ -8,7 +8,6 @@ manager: nitinme
 ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: limits-and-quotas
-ai-usage: ai-assisted
 ms.custom:
   - build-2025
 ---
