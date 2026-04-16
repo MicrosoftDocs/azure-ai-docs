@@ -128,6 +128,11 @@ Typical examples include:
 
 ## Next steps
 
-Use the following reference for service limits:
+Use the following references to continue implementation:
 
+* [Quickstart: Detect personally identifiable information (PII)](quickstart.md)
+* [Detect and redact Personally Identifiable Information in text](how-to/redact-text-pii.md)
+* [Detect and redact Personally Identifiable Information in conversations](how-to/redact-conversation-pii.md)
+* [Detect and redact Personally Identifiable Information in native documents](how-to/redact-document-pii.md)
+* [Language support for text, document, and conversation PII](language-support.md)
 * [Quotas and limits](../concepts/data-limits.md)

@@ -94,9 +94,9 @@ items:
         - name: Detect and redact PII in native documents
           href: personally-identifiable-information/how-to/redact-document-pii.md
         - name: Create SAS tokens for storage containers
-          href: personally-identifiable-information/how-to/shared-access-signatures.md
+          href: native-document-support/shared-access-signatures.md
         - name: Create a managed identity for storage containers
-          href: personally-identifiable-information/how-to/managed-identities.md
+          href: native-document-support/managed-identities.md
 
     - name: Responsible use of AI
       items:

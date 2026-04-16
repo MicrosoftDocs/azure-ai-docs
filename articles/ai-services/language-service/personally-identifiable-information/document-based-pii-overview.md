@@ -115,5 +115,5 @@ Document-based PII redaction uses Azure AI Language pricing. For current pricing
 
 Use the following references to continue implementation:
 
-* [Create SAS tokens for storage containers](how-to/shared-access-signatures.md)
-* [Create a managed identity for storage containers](how-to/managed-identities.md)
+* [Create SAS tokens for storage containers](../native-document-support/shared-access-signatures.md)
+* [Create a managed identity for storage containers](../native-document-support/managed-identities.md)
