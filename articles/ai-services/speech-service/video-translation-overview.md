@@ -11,6 +11,7 @@ ms.date: 10/21/2025
 ms.author: pafarley
 ms.reviewer: pafarley
 ms.custom: references_regions
+ai-usage: ai-assisted
 #Customer intent: As a developer, I want to learn about video translation in Azure Speech in Foundry Tools.
 ---
 
@@ -78,6 +79,31 @@ This diagram provides a high-level overview of the workflow.
 1. Periodically get the status of the translation and iteration. The status will indicate whether the translation is in progress, completed, or failed.
 1. Once the translation is complete, you can download the translated video and subtitles. The translated video will have the original speech replaced with the translated speech, and the subtitles will be synchronized with the translated speech.
 1. You can also delete the translation and iteration if you no longer need them. Deleting a translation will remove all associated iterations and data.
+
+## Data retention
+
+Translation data, including videos and associated iterations, has a defined retention period that varies by access method:
+
+### REST API
+
+Starting from API version 2026-03-01, each translation includes an `expiresDateTime` property that indicates when the data expires.
+
+- **API version 2026-03-01 or later**: Translation data is retained for **31 days** from the last action.
+- **API version 2025-05-20 or earlier**: Translation data is retained for **300 days** from the last action.
+
+After the retention period expires, the translation and all associated data are automatically deleted. To extend the retention period, create a new iteration for the translation.
+
+### Microsoft Foundry portal and Speech Studio portal
+
+Projects created through Microsoft Foundry portal or Speech Studio portal follow a different retention policy:
+
+- **Effective date**: The automatic deletion of expired tasks and projects begins on **August 1, 2026**.
+- **Retention period**: Projects are automatically deleted after **360 days** of inactivity (no changes or updates to the project or its tasks).
+- **Advance notification**: For projects scheduled for deletion within the next three months, a notification message appears in the portal three months before the deletion date. This gives you time to take action if you want to keep the project.
+- **Extending retention**: To prevent deletion, make any change to the project or its associated tasks. This resets the 360-day retention period from the date of the last activity.
+
+> [!TIP]
+> Regularly review your projects and update them as needed to maintain active projects. If you no longer need a project, you can manually delete it to free up resources immediately.
 
 ## Supported regions and languages
 

@@ -4,7 +4,7 @@ description: Include file
 author: msakande
 ms.reviewer: seramasu
 ms.author: mopeakande
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -16,7 +16,7 @@ Priority processing provides low-latency performance with the flexibility of pay
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry project with a model of the deployment type `GlobalStandard` or `DataZoneStandard` deployed.
-- API version `2025-12-01` or later.
+- Model versions `2025-12-01` or later.
 
 ## Key use cases
 

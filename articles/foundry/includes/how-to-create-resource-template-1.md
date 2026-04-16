@@ -4,7 +4,7 @@ description: Include file
 author: sdgilley
 ms.reviewer: sgilley
 ms.author: sgilley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/31/2026
 ms.custom: include
@@ -14,7 +14,7 @@ ms.custom: include
 
 Optionally, review the Bicep template to understand the resource definitions. 
 
-You can find the Bicep file used in this article at [https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic).
+You can find the Bicep file used in this article at [https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/00-basic).
 
 This template creates the following resources:
 

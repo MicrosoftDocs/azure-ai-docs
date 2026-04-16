@@ -368,6 +368,8 @@ items:
         href: how-to-voice-live-auto-truncation.md
       - name: Improve tool calling and latency wait times (preview)
         href: how-to-voice-live-interim-response.md
+      - name: Add an MCP server (preview)
+        href: how-to-voice-live-mcp-server.md
       - name: Voice Live telephony integration
         href: voice-live-telephony.md
     - name: Voice Live FAQ
@@ -503,6 +505,8 @@ items:
           href: audio-processing-overview.md
         - name: Use the Microsoft Audio Stack (MAS)
           href: audio-processing-speech-sdk.md
+        - name: Model-based acoustic echo cancellation
+          href: audio-processing-model-based-echo-cancellation.md
         - name: Microphone array recommendations
           href: speech-sdk-microphone.md
     - name: Embedded speech

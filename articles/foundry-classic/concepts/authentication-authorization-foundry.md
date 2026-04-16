@@ -1,6 +1,6 @@
 ---
 title: "Authentication and authorization in Microsoft Foundry (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.date: 02/23/2026
 ms.reviewer: meerakurup
 ms.author: jburchel

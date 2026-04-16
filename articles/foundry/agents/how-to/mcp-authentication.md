@@ -3,10 +3,10 @@ title: "Set Up MCP Server Authentication"
 description: "Learn how to set up authentication for Model Context Protocol (MCP) servers used by agents in Microsoft Foundry Agent Service. Configure key-based, Entra, or OAuth auth."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 04/09/2026
 author: aahill
 ms.author: aahi
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
@@ -121,7 +121,7 @@ When the agent invokes the MCP server, Agent Service uses the project's managed 
 ## OAuth identity passthrough
 
 > [!NOTE]
-> To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project.
+> To use OAuth identity passthrough, users interacting with your agent need at least the **Azure AI User** role on the project. The user's Microsoft Entra tenant must match the tenant of your Foundry project. Cross-tenant token exchange isn't supported.
 
 OAuth identity passthrough is available for authentication to Microsoft and non-Microsoft MCP servers and underlying services that are compliant with OAuth, including Microsoft Entra.
 
@@ -171,7 +171,7 @@ The scope of OAuth is per tool (connection) name per Foundry project. Each new u
 - After the user has closed the dialog, you need to submit another response with the previous response ID
 
    ```python
-   # Requires: azure-ai-projects >= 1.0.0
+   # Requires: azure-ai-projects >= 2.0.0
    from azure.ai.projects import AIProjectClient
    from azure.identity import DefaultAzureCredential
 
@@ -180,7 +180,7 @@ The scope of OAuth is per tool (connection) name per Foundry project. Each new u
        previous_response_id="YOUR_PREVIOUS_RESPONSE_ID",
        input=user_input,
        extra_body={
-           "agent": {"name": agent.name, "type": "agent_reference"},
+           "agent_reference": {"name": agent.name, "type": "agent_reference"},
            "tool_choice": "required",
            "stream": True
        },

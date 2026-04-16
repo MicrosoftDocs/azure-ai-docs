@@ -1794,6 +1794,19 @@ groups:
     title: JavaScript
   - id: programming-language-java
     title: Java
+- id: how-to-voice-live-mcp-server
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
@@ -1927,6 +1940,17 @@ groups:
     title: Azure Developer CLI
   - id: vscode
     title: VS Code
+# Owner: eamono
+- id: hosted-agent-manage-method
+  title: Management method
+  prompt: Choose a management method
+  pivots:
+  - id: rest
+    title: REST API
+  - id: python
+    title: Python SDK
+  - id: azd
+    title: Azure Developer CLI
 # Owner: pafarley
 - id: fast-transcription-quickstart
   title: Programming languages
@@ -1940,6 +1964,8 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript
   - id: programming-language-java
     title: Java
 # Owner: pafarley
@@ -1955,6 +1981,8 @@ groups:
     title: Python
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-javascript
+    title: JavaScript
   - id: programming-language-java
     title: Java
 # Owner: haileytapia
@@ -2031,6 +2059,8 @@ groups:
   pivots:
   - id: python
     title: Python
+  - id: csharp
+    title: C#
   - id: typescript
     title: TypeScript
   - id: rest

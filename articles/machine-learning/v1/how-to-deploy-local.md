@@ -24,7 +24,7 @@ ms.custom:
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 > [!NOTE]
-> For the recommended v2 approach to local deployment and debugging, see [Deploy and debug locally by using a local endpoint](/azure/machine-learning/how-to-deploy-online-endpoints?view=azureml-api-2#deploy-and-debug-locally-by-using-a-local-endpoint).
+> For the recommended v2 approach to local deployment and debugging, see [Deploy and debug locally by using a local endpoint](/azure/machine-learning/how-to-deploy-online-endpoints?view=azureml-api-2#deploy-and-debug-locally-by-using-a-local-endpoint&preserve-view=true).
 
 This article describes how to use your local computer as a target for training or deploying models created in Azure Machine Learning. Azure Machine Learning is flexible enough to work with most Python machine learning frameworks. Machine learning solutions generally have complex dependencies that can be difficult to duplicate. This article shows you how to balance total control with ease of use.
 

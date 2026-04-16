@@ -6,8 +6,8 @@ ms.author: aahi
 ms.date: 03/12/2026
 ms.manager: nitinme
 ms.topic: quickstart
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: hosted-agent-deploy-method
@@ -90,6 +90,9 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
     >   value: <CONNECTION_ID_PLACEHOLDER>
     > ```
 
+    > [!TIP]
+    > If you're running in a non-interactive environment such as a CI/CD pipeline or an SSH session, use the `--no-prompt` flag with `azd ai agent init`. You must also supply all required values as command-line flags rather than responding to interactive prompts.
+
 1. Provision the required Azure resources:
 
     > [!NOTE]
@@ -126,6 +129,9 @@ Before deploying, verify the agent works locally.
 
     This command automatically sets up the environment, installs dependencies, and starts the agent. It uses the `startupCommand` defined in `azure.yaml` to launch your agent.
 
+    > [!NOTE]
+    > Preview packages can produce pip dependency version-conflict warnings during setup. These warnings are non-blocking — the agent starts and responds correctly despite them.
+
     If the agent fails to start, check these common issues:
 
     | Error | Solution |
@@ -152,6 +158,9 @@ azd deploy
 ```
 
 The agent container is built remotely, so Docker Desktop isn't required on your machine.
+
+> [!NOTE]
+> The `azd deploy` command assigns Azure RBAC roles to the agent's Agent identity. This role assignment requires **Owner** or **User Access Administrator** permissions on your subscription, in addition to the **Contributor** role required for provisioning.
 
 > [!WARNING]
 > Your hosted agent incurs charges while deployed. After you finish testing, complete [Clean up resources](#clean-up-resources) to delete resources and stop charges.
@@ -202,11 +211,13 @@ Use the Microsoft Foundry extension in VS Code to scaffold a new hosted agent pr
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Create new Hosted Agent**.
 
-1. Select either the Single Agent or Multi-Agent Workflow template
-
+1. Select the Framework you want to use.
+    
 1. Select a programming language, Python or C#.
 
-1. Choose the existing gpt-4.1 model you deployed in the previous step.
+1. Select either Responses API or Invoke API.
+
+1. Select the sample code you want to use.
 
 1. Choose the folder where you want your project files to be saved.
 
@@ -239,10 +250,7 @@ Install the required Python dependencies using pip:
 ```bash
 pip install -r requirements.txt
 ```
-
-The required packages are:
-
-- `azure-ai-agentserver-agentframework` - Agent Framework and AgentServer SDK
+See the requirement.txt for a list of required packages.
 
 ## Step 5: Test the agent locally
 
@@ -299,9 +307,9 @@ Deploy your agent directly from VS Code.
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Deploy Hosted Agent**.
 
-1. Select the CPU and Memory configuration for the Hosted Agent container.
+1. Select "Default ACR"
 
-1. In the dialog that appears, select the Confirm and Deploy button.
+1. Select the CPU and Memory configuration for the Hosted Agent container.
 
 Switch to the Microsoft Foundry explorer by selecting the icon on the left. The agent appears in the **Hosted Agents (Preview)** tree view sidebar after deployment completes.
 
@@ -319,7 +327,7 @@ Check the status of your agent to confirm it's running.
 
 1. Select your hosted agent from the Hosted Agents (Preview) tree view.
 
-1. Select a version (v1) to open the detail page. 
+1. Select the agent you just deployed 
 
 The detail page shows the Status under the Container Details section.
 
@@ -328,8 +336,6 @@ The detail page shows the Status under the Container Details section.
 Microsoft Foundry for VS Code includes an integrated Playground to chat and interact with your agent. 
 
 1. Select your hosted agent from the Hosted Agents (Preview) tree view.
-
-1. Select a version (v1) to open the detail page. 
 
 1. Select the Playground option and type a message and send to test your agent.
 
@@ -344,6 +350,21 @@ Check the status of your deployed agent:
 ```bash
 azd ai agent show
 ```
+
+To display the output in table format:
+
+```bash
+azd ai agent show --output table
+```
+
+If your project has multiple agent services, specify the agent name as a positional argument:
+
+```bash
+azd ai agent show <agent-name>
+```
+
+> [!TIP]
+> Find `<agent-name>` in the `azure.yaml` file under the `services:` section.
 
 ### Test the deployed agent
 
@@ -360,7 +381,23 @@ You should see a response with web search results about Microsoft Foundry. The r
 Monitor your agent's live logs:
 
 ```bash
+# Fetch recent container console logs
 azd ai agent monitor
+
+# Fetch the last N lines of console logs
+azd ai agent monitor --tail 20
+
+# Fetch system event logs (container start and stop events)
+azd ai agent monitor --type system
+
+# Stream session logs in real time
+azd ai agent monitor --session <session-id> --follow
+```
+
+If your project has multiple agent services, specify the agent name as a positional argument:
+
+```bash
+azd ai agent monitor <agent-name> --follow
 ```
 
 :::zone-end
@@ -452,9 +489,21 @@ You can check the console and system logs of the container to troubleshoot issue
 
 1. Select your hosted agent from the Hosted Agents (Preview) tree view.
 
-1. Select a version (v1) to open the detail page. 
+1. Select the "Playground" tab of your hosted agent 
 
-1. Select the Logs button on the right to open the log viewer.
+1. Select the "Logs" section in the session details.
+
+### View the session files of your agent
+
+You can view all the files stored on the home directory of your ADC based agent
+
+1. Select your hosted agent from Hosted Agents (Preview) tree view.
+
+1. Select the "Playground" tab of your hosted agent
+
+1. Select the "files" section in the session details.
+
+You can download, upload, and create folders within the current folder, clicking on a folder will step into the folder, and clicking on the top navbar will step back into that folder.
 
 | Issue | Solution |
 | ----- | -------- |

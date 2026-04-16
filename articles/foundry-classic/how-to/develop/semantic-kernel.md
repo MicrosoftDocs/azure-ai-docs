@@ -7,7 +7,7 @@ ms.author: lagayhar
 ms.reviewer: taochen
 ms.date: 01/30/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ---
 
 # Develop applications with Semantic Kernel and Microsoft Foundry (classic)

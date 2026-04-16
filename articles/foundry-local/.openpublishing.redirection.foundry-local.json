@@ -4,6 +4,21 @@
             "source_path_from_root": "/articles/foundry-local/reference/reference-sdk.md",
             "redirect_url": "/azure/foundry-local/reference/reference-sdk-current",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/foundry-local/reference/windows-server-frequently-asked-questions.md",
+            "redirect_url": "/azure/foundry-local/what-is-foundry-local",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/foundry-local/how-to/how-to-chat-application-with-open-web-ui.md",
+            "redirect_url": "/azure/foundry-local/reference/reference-cli#use-open-webui-with-the-local-server",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/foundry-local/reference/reference-catalog-api.md",
+            "redirect_url": "/azure/foundry-local/reference/reference-rest",
+            "redirect_document_id": false
         }
     ]
 }

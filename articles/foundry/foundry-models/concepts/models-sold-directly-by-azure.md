@@ -5,8 +5,8 @@ author: msakande
 ms.author: mopeakande
 manager: nitinme
 ms.date: 02/12/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: product-comparison
 ms.custom:
   - classic-and-new

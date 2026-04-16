@@ -1,7 +1,7 @@
 ---
 title: "How to create and manage a Microsoft Foundry hub (classic)"
 description: "Learn how to create and manage a Microsoft Foundry hub from the Azure portal or from the Microsoft Foundry portal. Your developers can then create projects from the hub. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023
   - build-2024
