@@ -14,29 +14,7 @@ ms.custom: include
 
 The following diagram shows a Foundry resource with model deployments, security settings, connections, and two projects. Connected Azure services such as Storage, Key Vault, and Azure AI Search are separate Azure resources under their own governance boundaries:
 
-```
-┌──────────────────────────────────────────────────────────┐
-│  Foundry resource (governance boundary)                  │
-│                                                          │
-│  Model deployments │ Security settings │ Connections ──────────┐
-│                                                          │     │
-│  ┌──────────────────┐  ┌──────────────────┐              │     │
-│  │  Project A       │  │  Project B       │              │     │
-│  │  ┌────────────┐  │  │  ┌────────────┐  │              │     │
-│  │  │ Agents     │  │  │  │ Agents     │  │              │     │
-│  │  │ Evaluations│  │  │  │ Evaluations│  │              │     │
-│  │  │ Files      │  │  │  │ Files      │  │              │     │
-│  │  └────────────┘  │  │  └────────────┘  │              │     │
-│  └──────────────────┘  └──────────────────┘              │     │
-└──────────────────────────────────────────────────────────┘     │
-                                                                 │
-┌──────────────────────────────────────────────────────────┐     │
-│  Connected resources (separate governance boundaries)    │◄────┘
-│  ┌──────────┐  ┌───────────┐  ┌──────────────────┐       │
-│  │ Storage  │  │ Key Vault │  │ Azure AI Search  │       │
-│  └──────────┘  └───────────┘  └──────────────────┘       │
-└──────────────────────────────────────────────────────────┘
-```
+:::image type="content" source="../media/architecture/architecture.svg" alt-text="Diagram showing the Foundry resource hierarchy with a governance boundary containing model deployments, security settings, connections, and two projects. Connected resources like Storage, Key Vault, and Azure AI Search are shown as separate governance boundaries.":::
 
 > [!IMPORTANT]
 > Connected resources like Storage, Key Vault, and Azure AI Search are independent Azure resources with their own governance boundaries. You manage networking, access policies, and compliance settings for these resources separately from the Foundry resource.
