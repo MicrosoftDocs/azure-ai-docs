@@ -23,7 +23,7 @@ zone_pivot_groups: azure-ai-model-categories
 ---
 
 # Foundry Models from partners and community
-This article lists capabilities for a selection of Microsoft Foundry Models from partners and community.
+This article lists capabilities for a selection of Microsoft Foundry Models from partners and community excluding deprecated and retired models.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
 The selection of models that you see in Foundry depends on the [kind of project](../../what-is-foundry.md#choosing-a-project) you use.
 To learn more about attributes of Foundry Models from partners and community, see [Explore Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md#models-from-partners-and-community). Note that models from partners and community that are not sold directly by Azure are Non-Microsoft Products under the Product Terms.
