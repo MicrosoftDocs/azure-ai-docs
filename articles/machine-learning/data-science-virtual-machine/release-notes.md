@@ -377,7 +377,7 @@ Primary changes:
 - General OS level updates.
 
 ## July 11, 2022
-[Data Science VM – Ubuntu 18.04](https://azuremarketplace.microsoft.com/marketplace/apps/tidalmediainc.ubuntu-18-04?tab=Overview) [Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+[Data Science VM – Ubuntu 18.04](https://marketplace.microsoft.com/) [Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
 
 Version `22.07.08`
 
@@ -391,7 +391,7 @@ Primary changes:
 
 Version `22.06.10`
 
-[Data Science VM – Ubuntu 18.04](https://azuremarketplace.microsoft.com/marketplace/apps/tidalmediainc.ubuntu-18-04?tab=Overview)
+[Data Science VM – Ubuntu 18.04](https://marketplace.microsoft.com/)
 
 Version `22.06.13`
 
@@ -409,7 +409,7 @@ Primary changes:
 - Upgraded `log4j(v2)` to version `2.17.2`
 
 ## April 29, 2022
-[Data Science VM – Ubuntu 18.04](https://azuremarketplace.microsoft.com/marketplace/apps/tidalmediainc.ubuntu-18-04?tab=Overview)
+[Data Science VM – Ubuntu 18.04](https://marketplace.microsoft.com/)
 [Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
 
 Version `22.04.27`
@@ -436,7 +436,7 @@ A new Data Science Virtual Machine (DSVM) offering for [Data Science VM – Ubun
 Version: `22.04.05`
 
 ## April 04, 2022
-A new image for [Data Science VM – Ubuntu 18.04](https://azuremarketplace.microsoft.com/marketplace/apps/tidalmediainc.ubuntu-18-04?tab=Overview)
+A new image for [Data Science VM – Ubuntu 18.04](https://marketplace.microsoft.com/)
 
 Version: `22.04.01`
 
@@ -529,7 +529,7 @@ Primary changes:
 
 ## November 4, 2021
 
-A new image for [Ubuntu 18.04](https://azuremarketplace.microsoft.com/marketplace/apps/tidalmediainc.ubuntu-18-04?tab=Overview)
+A new image for [Ubuntu 18.04](https://marketplace.microsoft.com/)
 
 Version: `21.11.04`
 
@@ -565,7 +565,7 @@ Primary changes:
 
 ## October 7, 2021
 
-A new image for [Ubuntu 18.04](https://azuremarketplace.microsoft.com/marketplace/apps/tidalmediainc.ubuntu-18-04?tab=Overview)
+A new image for [Ubuntu 18.04](https://marketplace.microsoft.com/)
 
 Version: `21.10.07`
 
@@ -596,7 +596,7 @@ Primary changes:
 
 ## July 12, 2021
 
-A new image for [Ubuntu 18.04](https://azuremarketplace.microsoft.com/marketplace/apps/tidalmediainc.ubuntu-18-04?tab=Overview)
+A new image for [Ubuntu 18.04](https://marketplace.microsoft.com/)
 
 Primary changes:
 
@@ -619,7 +619,7 @@ Primary changes:
 
 ## June 1, 2021
 
-A new image for [Ubuntu 18.04](https://azuremarketplace.microsoft.com/marketplace/apps/tidalmediainc.ubuntu-18-04?tab=Overview)
+A new image for [Ubuntu 18.04](https://marketplace.microsoft.com/)
 
 Version: `21.06.01`
 
@@ -668,7 +668,7 @@ Dark mode; changed icons on desktop; wallpaper background change.
 
 ## May 12, 2021
 
-A new image for [Ubuntu 18.04](https://azuremarketplace.microsoft.com/marketplace/apps/tidalmediainc.ubuntu-18-04?tab=Overview)
+A new image for [Ubuntu 18.04](https://marketplace.microsoft.com/)
 
 Selected version updates include:
 - azcopy 10.10
@@ -706,7 +706,7 @@ sudo systemctl start docker
 
 ## February 24, 2020
 
-The Data Science Virtual Machine (DSVM) images for [Ubuntu 18.04](https://azuremarketplace.microsoft.com/marketplace/apps/tidalmediainc.ubuntu-18-04?tab=Overview) and [Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview) images are now available.
+The Data Science Virtual Machine (DSVM) images for [Ubuntu 18.04](https://marketplace.microsoft.com/) and [Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview) images are now available.
 
 ## October 8, 2019
 

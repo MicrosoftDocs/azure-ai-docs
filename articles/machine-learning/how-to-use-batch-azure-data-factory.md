@@ -143,14 +143,14 @@ To create this pipeline in your existing Azure Data Factory and invoke batch end
 
 1. Download the pipeline template *.zip* file to your local machine, and then select it in the import dialog:
 
-   - To use managed identities: [Run-BatchEndpoint-MI.zip](https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-MI.zip).
-   - To use a service principal: [Run-BatchEndpoint-SP.zip](https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-SP.zip).
+   - To use managed identities: Run-BatchEndpoint-MI.zip.
+   - To use a service principal: Run-BatchEndpoint-SP.zip.
 
-1. A preview of the pipeline appears in the portal. Select **Use this template**.
+2. A preview of the pipeline appears in the portal. Select **Use this template**.
 
    The pipeline is created for you with the name **Run-BatchEndpoint**.
 
-1. Configure the parameters of the batch deployment:
+3. Configure the parameters of the batch deployment:
 
    # [Use a managed identity](#tab/mi)
 
