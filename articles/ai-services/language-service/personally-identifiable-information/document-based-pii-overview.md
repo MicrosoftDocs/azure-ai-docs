@@ -1,24 +1,38 @@
 ---
-title: Document-based Personally Identifiable Information (PII) redaction overview
+title: Document-based PII overview
 titleSuffix: Foundry Tools
 description: Learn how document-based PII redaction in Azure Language detects and redacts sensitive data from native documents while preserving file structure.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 04/15/2026
+ms.date: 04/16/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Document-based Personally Identifiable Information (PII) redaction overview
+# Document-based PII overview
 
-Document-based PII redaction helps you detect and redact sensitive data directly in native document files. It is designed for workflows where output file quality matters, such as compliance review, external sharing, and record processing.
+[**Document-based PII**](document-based-pii-overview.md) is a preview feature in Azure AI Language Personally Identifiable Information (PII) detection. It helps you detect and redact sensitive data directly in native document files, including Microsoft Word and PDF files, without building your own text extraction and reconstruction pipeline.
+
+This feature uses an asynchronous API workflow and returns redacted output that preserves document structure and formatting. You can use it when document fidelity is important for compliance review, sharing, analytics, and downstream AI workflows.
+
+> [!IMPORTANT]
+> Document-based PII is currently in preview and may change before general availability (GA).
+
+## At a glance
+
+Document-based PII provides the following capabilities:
+
+* Native document redaction for `.pdf`, `.docx`, and `.txt` files.
+* Preserved layout in output documents, including font, spacing, and color.
+* A single asynchronous API workflow for extraction, detection, and redaction.
+* Enterprise-ready outputs: a redacted document and a structured JSON result.
 
 ## Why use document-based PII?
 
-Many custom pipelines require multiple steps to extract text, run detection, and rebuild the document. Document-based PII simplifies this workflow with a single asynchronous API pattern and output artifacts tailored for document operations.
+Many custom pipelines require multiple steps to extract text, run detection, and reconstruct document output. Document-based PII simplifies this flow with a single asynchronous API pattern and output artifacts designed for document-processing systems.
 
 Document-based PII is especially useful when you need to:
 
@@ -26,9 +40,11 @@ Document-based PII is especially useful when you need to:
 * Preserve document layout for downstream business processes.
 * Generate structured JSON output for auditing and integration.
 
+Document-based PII uses the same predefined PII categories as text PII, including entities such as addresses, phone numbers, and credit card numbers.
+
 ## What it returns
 
-When a job succeeds, the service returns:
+When a job succeeds, you receive:
 
 * A redacted document in your target storage container.
 * A JSON result file with detected entities, categories, confidence scores, and processing metadata.
@@ -38,22 +54,58 @@ When a job succeeds, the service returns:
 Document-based PII uses an asynchronous workflow:
 
 1. Submit a job with source and target storage locations.
-2. Poll the job status by using the operation location.
-3. Retrieve output artifacts from your target storage location.
+1. Poll the job status by using the operation location.
+1. Retrieve output artifacts from your target storage location.
+
+:::image type="content" source="media/document-pii-workflow.png" alt-text="Diagram showing the asynchronous workflow for document-based PII detection.":::
 
 For implementation details and request samples, see [Detect and redact Personally Identifiable Information in native documents](how-to/redact-document-pii.md).
 
-## How it differs from text PII
+## How it differs from other PII feature types
 
-Text PII and document-based PII both use predefined entity categories, but they optimize for different goals:
+All PII feature types use predefined entity categories, but they optimize for different input types:
 
-* Text PII is optimized for direct string input and low-latency API integration.
 * Document-based PII is optimized for native-file redaction workflows and file output fidelity.
+* Text PII is optimized for direct string-based input and app integration.
+* Conversation PII is optimized for turn-based and transcript-oriented conversational input.
+
+## Common use cases
+
+Document-based PII is designed for enterprise and regulated-industry workflows where teams need to anonymize files before storage, analytics, external sharing, or downstream AI processing.
+
+Typical examples include:
+
+* Court records and legal documentation.
+* Government forms and internal records.
+* Financial documents.
+* Internal enterprise documentation workflows.
 
 ## Supported formats and limits
 
-* Supported formats: `.txt`, `.pdf`, `.docx`
-* See [language support](language-support.md) and [quotas and limits](../concepts/data-limits.md) for current support details.
+Document-based PII accepts native file formats directly, without requiring text preprocessing. The following table lists the supported formats:
+
+| File type      | File extension | Description                                  |
+| -------------- | -------------- | -------------------------------------------- |
+| Text           | `.txt`         | An unformatted text document.                |
+| Adobe PDF      | `.pdf`         | A portable document file formatted document. |
+| Microsoft Word | `.docx`        | A Microsoft Word document file.              |
+
+The following input constraints apply:
+
+| Attribute                      | Limit    |
+| ------------------------------ | -------- |
+| Total documents per request    | <= 20    |
+| Total content size per request | <= 10 MB |
+
+The following content types are not supported:
+
+| Type                        | Limitation                                           |
+| --------------------------- | ---------------------------------------------------- |
+| Fully scanned PDFs          | Not supported.                                       |
+| Images with embedded text   | Digital images with embedded text are not supported. |
+| Tables in scanned documents | Not supported.                                       |
+
+See [language support](language-support.md) and [quotas and limits](../concepts/data-limits.md) for current language coverage and service limit details.
 
 ## Pricing
 
@@ -61,5 +113,7 @@ Document-based PII redaction uses Azure AI Language pricing. For current pricing
 
 ## Next steps
 
-* [Detect and redact Personally Identifiable Information in native documents](how-to/redact-document-pii.md)
-* [PII feature overview](overview.md)
+Use the following references to continue implementation:
+
+* [Create SAS tokens for storage containers](how-to/shared-access-signatures.md)
+* [Create a managed identity for storage containers](how-to/managed-identities.md)

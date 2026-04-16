@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 04/15/2026
+ms.date: 04/16/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -14,7 +14,18 @@ ms.custom: language-service-pii
 <!-- markdownlint-disable MD025 -->
 # Text Personally Identifiable Information (PII) redaction overview
 
-Text PII redaction helps you detect and redact sensitive data in raw text strings. It is designed for application workflows where you process chat messages, logs, prompts, forms, or other text content directly.
+Text PII redaction in Azure AI Language helps you detect and redact sensitive data in raw text strings. You can use this feature when your application handles logs, prompts, forms, chat messages, or other text content directly.
+
+Text PII is optimized for synchronous request/response integration and configurable redaction behavior, so you can apply PII controls inline in application and data-processing workflows.
+
+## At a glance
+
+Text PII provides the following capabilities:
+
+* Direct text redaction for unstructured string input.
+* Low-latency request/response integration for application pipelines.
+* Configurable entity filters and redaction policies.
+* Structured entity output with categories, offsets, and confidence scores.
 
 ## Why use text PII?
 
@@ -43,13 +54,24 @@ Text PII is typically used with a synchronous workflow:
 
 For implementation details and request samples, see [Detect and redact Personally Identifiable Information in text](how-to/redact-text-pii.md).
 
-## How it differs from other PII modalities
+## How it differs from other PII feature types
 
-All PII modalities use predefined entity categories, but they optimize for different input types:
+All PII feature types use predefined entity categories, but they optimize for different input types:
 
 * Text PII is optimized for direct string-based input and app integration.
 * Conversation PII is optimized for turn-based conversational structures.
 * Document-based PII is optimized for native-file workflows and file output fidelity.
+
+## Common use cases
+
+Text PII is useful when you need to detect and redact sensitive data before storage, analytics, sharing, or downstream AI processing.
+
+Typical examples include:
+
+* User input and output fields in web and mobile applications.
+* Application logs and telemetry data streams.
+* Prompt and response filtering in AI workflows.
+* Batch preprocessing for unstructured text datasets.
 
 ## Supported formats and limits
 
@@ -61,6 +83,8 @@ All PII modalities use predefined entity categories, but they optimize for diffe
 Text PII redaction uses Azure AI Language pricing. For current pricing details, see [Azure AI Language pricing](https://aka.ms/unifiedLanguagePricing).
 
 ## Next steps
+
+Use the following references to continue implementation:
 
 * [Detect and redact Personally Identifiable Information in text](how-to/redact-text-pii.md)
 * [PII feature overview](overview.md)
