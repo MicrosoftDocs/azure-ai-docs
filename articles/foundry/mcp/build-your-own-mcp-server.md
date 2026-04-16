@@ -8,7 +8,7 @@ author: jonburchel
 ms.author: jburchel
 ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 04/02/2026
+ms.date: 04/13/2026
 ai-usage: ai-assisted
 ms.custom: ai-assisted, doc-kit-assisted
 ---
@@ -89,6 +89,8 @@ Azure Functions is a serverless compute service that provides scale-to-zero capa
 
    If you prefer a CLI workflow to retrieve function access keys, see [Work with access keys in Azure Functions](/azure/azure-functions/function-keys-how-to?tabs=azure-cli#get-your-function-access-keys).
 
+1. (Optional) To use Microsoft Entra authentication instead of key-based access, enable Azure Functions Authentication on the Function App, set the allowed audience to the Application ID URI expected by the MCP endpoint, and verify the MCP webhook path (`/runtime/webhooks/mcp`). For detailed setup steps, see the tutorial [Host an MCP server on Azure Functions](/azure/azure-functions/functions-mcp-tutorial?tabs=mcp-extension&pivots=programming-language-python).
+
 For additional implementation details including advanced authentication patterns and troubleshooting, refer to the tutorial [Host an MCP server on Azure Functions](/azure/azure-functions/functions-mcp-tutorial?tabs=mcp-extension&pivots=programming-language-python).
 
 ## Secure your MCP server endpoint
@@ -99,6 +101,13 @@ Before you share your MCP server with others, define and apply a security baseli
 - Treat credentials as secrets. Don't hard-code keys in code or check them into source control. Store secrets in a secure store such as [Azure Key Vault](/azure/key-vault/general/overview).
 - Implement least privilege for downstream calls. If your MCP server calls internal APIs, scope permissions to only what the exposed tools need.
 - Log and monitor tool calls. Use Azure Functions logging to trace requests and troubleshoot failures.
+
+When you use Azure Functions to host your MCP server, the authentication options map to Foundry as follows:
+
+- **Function keys** (`x-functions-key`): Corresponds to key-based authentication in Foundry.
+- **Microsoft Entra**: Corresponds to Microsoft Entra authentication in Foundry (agent identity or project managed identity).
+- **OAuth identity passthrough**: Corresponds to OAuth identity passthrough (OBO) in Foundry.
+- **Unauthenticated**: Supported for limited scenarios, but not recommended for production workloads.
 
 For Agent Service authentication patterns (for example, key-based authentication, Microsoft Entra identities, and OAuth identity passthrough), see [MCP server authentication](../agents/how-to/mcp-authentication.md).
 
@@ -172,6 +181,8 @@ If you registered your MCP server in Azure API Center, users with appropriate ac
 
 1. Follow the configuration guidance displayed in the tool catalog to add the server to your agent.
 
+The same MCP server can be reused by multiple clients (such as Foundry Agent Service and developer tools like Visual Studio Code) provided authentication is configured appropriately.
+
 > [!TIP]
 > Foundry also surfaces Microsoft-provided MCP servers in the **Add Tools** catalog. For example, you can select **Azure DevOps MCP Server (preview)** and connect your organization to enable agent access. After you select a catalog MCP server, you can limit which tools are enabled for the agent by selecting a subset of available tools. This enforces least privilege and governance as part of the Foundry configuration flow.
 
@@ -189,14 +200,16 @@ If you don't register your MCP server in the organizational catalog, add it dire
 
    - **Name**: Unique name for your remote MCP server
    - **Remote MCP Server endpoint**: Enter your remote MCP server endpoint URL (for example, `https://{function_app_name}.azurewebsites.net/runtime/webhooks/mcp`)
-   - **Authentication**: Select the authentication method. For **Key-based** authentication, provide the following credential:
-       - **Credential**: `"x-functions-key": "{mcp_extension_system_key}"`
+   - **Authentication**: Select the authentication method:
+       - **Key-based**: Provide the credential as `"x-functions-key": "{mcp_extension_system_key}"`.
+       - **Microsoft Entra ID**: Select **Agent identity** or **Project managed identity**. Provide the **Audience** (Application ID URI) configured on your MCP server. Ensure the selected identity has the required permissions on the Function App.
+       - **OAuth identity passthrough (OBO)**: Provide the **Client ID**, **Client Secret**, **Authorization URL**, **Token URL**, **Refresh URL** (if applicable), and **Scopes** for your OAuth provider. Use this option when you need to act on behalf of the signed-in user.
 
 1. Select **Connect** to register the custom MCP tool.
 
 For detailed configuration steps (including project connections and approval workflows), see [Connect to Model Context Protocol servers (preview)](../agents/how-to/tools/model-context-protocol.md).
 
-After connecting your MCP server, agents in your Foundry project can call the tools and functions exposed by your custom server.
+After connecting your MCP server, agents in your Foundry project can call the tools and functions exposed by your custom server. The same MCP server can be reused by multiple clients (such as Foundry Agent Service and developer tools like Visual Studio Code) provided authentication is configured appropriately.
 
 ## Verify the MCP server works end to end
 
@@ -219,6 +232,8 @@ Here are some common issues you might encounter when building and connecting you
 
 - **MCP server connection fails**: Confirm the server URL is reachable from Agent Service and uses the MCP webhook path (`/runtime/webhooks/mcp`). For public endpoints, verify the URL is publicly accessible. For private endpoints, verify your [Standard Agent Setup with private networking](../agents/how-to/tools/model-context-protocol.md#public-and-private-mcp-server-endpoints) is configured correctly. Check the Function App logs in Azure portal for errors.
 - **Authentication errors (401/403)**: Verify you're using the correct key or token for the authentication method you selected. Rotate keys that might have been exposed, and update any saved credentials.
+- **Microsoft Entra authentication failures (401/403)**: Verify the audience (Application ID URI) in the Foundry tool configuration matches the allowed audience configured in your Function App's authentication settings. Confirm the selected identity (agent identity or project managed identity) has the required role assignments on the Function App. Check that the issuer URL is correct for your Microsoft Entra tenant.
+- **OAuth identity passthrough failures**: Verify the authorization URL, token URL, and scopes in the Foundry tool configuration match your OAuth provider settings. Confirm the client ID and client secret are correct and not expired. Scope mismatches or incorrect endpoint URLs are common causes of OBO token exchange failures.
 - **Tool discovery problems**: If you registered the server in Azure API Center, confirm the API is published and you have access to it. If you added a custom tool, confirm the endpoint URL is correct.
 - **Tool call succeeds but an internal API fails**: Review your MCP server logs to confirm what request was sent to the downstream API. Verify the MCP server identity or API credentials have the required permissions.
 
