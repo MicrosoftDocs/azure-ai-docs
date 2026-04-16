@@ -116,7 +116,7 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Search for or navigate to **Microsoft Entra ID**, and then select **Add** > **App registration**. 
+1. Search for or navigate to **Microsoft Entra ID**, then select **Add** > **App registration**. 
 
 1. Select **+ New registration**:
     1. Enter a name for your app.
@@ -294,7 +294,7 @@ You can get the managed identity `object (principal) ID` from the [Configuring t
 > [!NOTE]
 > If the SharePoint site is in the same tenant as the search service and system-assigned managed identity is enabled, `TenantId` doesn't have to be included in the connection string. If the SharePoint site is in a different tenant from the search service, `TenantId` must be included.
 
-If your indexer uses [SharePoint ACL configuration (preview)](search-indexer-sharepoint-access-control-lists.md) or [preserves and honors Microsoft Purview sensitivity labels (preview)](search-indexer-sensitivity-labels.md), review the related articles for data source setup before you create the indexer. Each feature has specific configuration steps.
+If your indexer uses [SharePoint ACL configuration (preview)](search-indexer-sharepoint-access-control-lists.md) or [preserves and honors Microsoft Purview sensitivity labels (preview)](search-indexer-sensitivity-labels.md), review the related articles for data source configuration before you create the indexer. Each feature has specific configuration steps.
 
 ### Step 5: Create an index
 
@@ -325,7 +325,7 @@ api-key: [admin key]
 > [!IMPORTANT]
 > Only [`metadata_spo_site_library_item_id`](#metadata) may be used as the key field in an index populated by the SharePoint in Microsoft 365 indexer. If a key field doesn't exist in the data source, `metadata_spo_site_library_item_id` is automatically mapped to the key field.
 
-If your indexer uses [SharePoint ACL configuration (preview)](search-indexer-sharepoint-access-control-lists.md) or [preserves and honors Microsoft Purview sensitivity labels (preview)](search-indexer-sensitivity-labels.md), review each article for index and skillset configuration before you create the indexer. Each feature has specific configuration steps.
+If your indexer uses [SharePoint ACL configuration (preview)](search-indexer-sharepoint-access-control-lists.md) or [preserves and honors Microsoft Purview sensitivity labels (preview)](search-indexer-sensitivity-labels.md), review the related articles for index and skillset configuration before you create the indexer. Each feature has specific configuration steps.
 
 ### Step 6: Create an indexer
 
