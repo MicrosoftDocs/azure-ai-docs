@@ -289,6 +289,8 @@ var otlpEndpoint =
     Environment.GetEnvironmentVariable("OTLP_ENDPOINT") ?? "http://localhost:4318";
 ```
 
+::: zone-end
+
 ## Deploy the hosted agent
 
 After testing your hosted agent locally, deploy it to your Foundry workspace so other team members and applications can use it.
@@ -296,11 +298,20 @@ After testing your hosted agent locally, deploy it to your Foundry workspace so 
 >[!IMPORTANT]
 > Make sure you give the necessary permissions to deploy hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to get the required role assignments.
 
+::: zone pivot="python"
+
+1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
+1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`container.py`), and defining any other deployment parameters as needed.
+1. Upon successful deployment, the hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
+1. Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
+::: zone-end
+
+::: zone pivot="csharp"
+
 1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
 1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`<your-project-name>.csproj`), and defining any other deployment parameters as needed.
 1. Upon successful deployment, the hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
 1. Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
-::: zone-end
 
 ## Related content
 
