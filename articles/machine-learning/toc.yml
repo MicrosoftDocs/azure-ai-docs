@@ -617,6 +617,15 @@ items:
         items:
           - name: What is prompt flow?
             href: ./prompt-flow/overview-what-is-prompt-flow.md
+      - name: Migrate to Microsoft Agent Framework
+        href: ./prompt-flow/migrate-prompt-flow-to-agent-framework.md
+        items:
+          - name: Migration overview
+            href: ./prompt-flow/migrate-prompt-flow-to-agent-framework.md
+          - name: Rebuild and validate your workflow
+            href: ./prompt-flow/how-to-migrate-prompt-flow-to-agent-framework.md
+          - name: Deploy and cut over
+            href: ./prompt-flow/how-to-deploy-migrated-agent-framework-workflow.md
           - name: Concepts
             items:
               - name: Connections
