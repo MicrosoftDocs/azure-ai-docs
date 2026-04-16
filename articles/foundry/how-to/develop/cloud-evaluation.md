@@ -1106,19 +1106,6 @@ testing_criteria = [
             "deployment_name": model_deployment_name,
         },
     },
-    {
-        "type": "azure_ai_evaluator",
-        "name": "task_adherence",
-        "evaluator_name": "builtin.task_adherence",
-        "data_mapping": {
-            "query": "{{item.query}}",
-            "response": "{{item.response}}",
-            "tool_definitions": "{{item.tool_definitions}}",
-        },
-        "initialization_parameters": {
-            "deployment_name": model_deployment_name,
-        },
-    },
     # Tool evaluators — assess tool usage quality
     {
         "type": "azure_ai_evaluator",
