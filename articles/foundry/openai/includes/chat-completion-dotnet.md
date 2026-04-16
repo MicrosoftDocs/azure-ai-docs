@@ -326,7 +326,7 @@ It's your responsibility to ensure that the prompt and completion fall within th
 
 The following code sample shows a simple chat loop example that trims the conversation history when the number of stored messages approaches a limit. It removes the oldest non-system messages to keep the conversation within bounds.
 
-You can install the [Microsoft.ML.Tokenizers](https://www.nuget.org/packages/Microsoft.ML.Tokenizers) and [Microsoft.ML.Tokenizers.Data.0200kBase](https://www.nuget.org/packages/Microsoft.ML.Tokenizers.Data.0200kBase) packages for accurate token counting:
+You can install the [Microsoft.ML.Tokenizers](https://www.nuget.org/packages/Microsoft.ML.Tokenizers) and [Microsoft.ML.Tokenizers.Data.0200kBase](https://www.nuget.org/packages/Microsoft.ML.Tokenizers.Data.O200kBase) packages for accurate token counting:
 
 ```dotnetcli
 dotnet add package Microsoft.ML.Tokenizers
