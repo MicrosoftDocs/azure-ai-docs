@@ -17,6 +17,8 @@ ms.update-cycle: 365-days
 
 # Connections in prompt flow
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 In Azure Machine Learning prompt flow, use connections to manage credentials or secrets for APIs and data sources.
 
 ## Connections

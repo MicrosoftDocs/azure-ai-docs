@@ -17,6 +17,8 @@ ms.update-cycle: 365-days
 
 # Content Safety (Text) tool
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 Azure AI Content Safety is a content moderation service developed by Microsoft that helps you detect harmful content from different modalities and languages. The Content Safety (Text) tool is a wrapper for the Azure AI Content Safety Text API, which allows you to detect text content and get moderation results. For more information, see [Azure AI Content Safety](https://aka.ms/acs-doc).
 
 ## Prerequisites
