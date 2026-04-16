@@ -926,13 +926,13 @@ The following span attributes are used:
 | `gen_ai.operation.name` | **Yes** | Must equal `"invoke_agent"`. The service ignores all other spans. |
 | `gen_ai.agent.id` | For agent filter mode | Unique agent identifier (format: `agent-name:version`). |
 | `gen_ai.agent.name` | For agent filter mode | Human-readable agent name. |
-| `gen_ai.input.messages` | For quality evaluators | JSON array of input messages following the [GenAI semantic conventions message format](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/#invoke-agent-span). Messages with role `user` or `system` map to `query`; messages with role `assistant` or `tool` map to `response`. |
-| `gen_ai.output.messages` | For quality evaluators | JSON array of model-generated output messages. All output messages map to `response`. |
+| `gen_ai.input.messages` | For evaluators query inputs | JSON array of input messages following the [GenAI semantic conventions message format](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/#invoke-agent-span). Messages with role `user` or `system` map to `query`; messages with role `assistant` or `tool` map to `response`. |
+| `gen_ai.output.messages` | For evaluators query inputs | JSON array of model-generated output messages. All output messages map to `response`. If output also contains type: tool_call or type: tool_result, it maps to `tool_call` |
 | `gen_ai.tool.definitions` | Optional | JSON array of tool schemas available to the agent. If absent, the service attempts to infer tool definitions from tool call messages, but inferred schemas may be incomplete. |
 | `gen_ai.conversation.id` | Optional | Conversation identifier, passed through to evaluation results for correlation. |
 
 > [!NOTE]
-> If `gen_ai.input.messages` and `gen_ai.output.messages` are empty or missing, quality evaluators (coherence, fluency, relevance, intent resolution) will return `score=None`. Safety evaluators (violence, self-harm, sexual, hate/unfairness) can still produce scores with partial data.
+> If `gen_ai.input.messages` and `gen_ai.output.messages` are empty or missing, quality evaluators (coherence, fluency, relevance, intent resolution) will return `score=None`. Safety evaluators (violence, self-harm, sexual, hate/unfairness) can still produce scores with partial data but they may not produce meaningful results.
 
 For Python agents built with the Azure AI Agent Server SDK, add the `[tracing]` extra to enable automatic span emission:
 
@@ -1085,10 +1085,10 @@ When evaluating traces, the service automatically extracts conversation data fro
 
 | Variable | Source attribute | Description |
 |----------|----------------|-------------|
-| `{{query}}` | `gen_ai.input.messages` (user/system roles) | The user query extracted from the trace. |
-| `{{response}}` | `gen_ai.input.messages` (assistant/tool roles) + `gen_ai.output.messages` | The agent's response extracted from the trace. |
-| `{{tool_definitions}}` | `gen_ai.tool.definitions` | Tool schemas available to the agent. |
-| `{{tool_calls}}` | Extracted from assistant messages in `gen_ai.input.messages` / `gen_ai.output.messages` | Tool calls made by the agent during the interaction. Used by tool evaluators. |
+| `{{item.query}}` | `gen_ai.input.messages` (user/system roles) | The user query extracted from the trace. |
+| `{{item.response}}` | `gen_ai.input.messages` (assistant/tool roles) + `gen_ai.output.messages` | The agent's response extracted from the trace. |
+| `{{item.tool_definitions}}` | `gen_ai.tool.definitions` | Tool schemas available to the agent. |
+| `{{item.tool_calls}}` | Extracted from assistant messages in `gen_ai.input.messages` / `gen_ai.output.messages` | Tool calls made by the agent during the interaction. Used by tool evaluators. |
 
 ```python
 testing_criteria = [
@@ -1098,9 +1098,9 @@ testing_criteria = [
         "name": "intent_resolution",
         "evaluator_name": "builtin.intent_resolution",
         "data_mapping": {
-            "query": "{{query}}",
-            "response": "{{response}}",
-            "tool_definitions": "{{tool_definitions}}",
+            "query": "{{item.query}}",
+            "response": "{{item.response}}",
+            "tool_definitions": "{{item.tool_definitions}}",
         },
         "initialization_parameters": {
             "deployment_name": model_deployment_name,
@@ -1111,9 +1111,9 @@ testing_criteria = [
         "name": "task_adherence",
         "evaluator_name": "builtin.task_adherence",
         "data_mapping": {
-            "query": "{{query}}",
-            "response": "{{response}}",
-            "tool_definitions": "{{tool_definitions}}",
+            "query": "{{item.query}}",
+            "response": "{{item.response}}",
+            "tool_definitions": "{{item.tool_definitions}}",
         },
         "initialization_parameters": {
             "deployment_name": model_deployment_name,
@@ -1125,10 +1125,10 @@ testing_criteria = [
         "name": "tool_call_accuracy",
         "evaluator_name": "builtin.tool_call_accuracy",
         "data_mapping": {
-            "query": "{{query}}",
-            "response": "{{response}}",
-            "tool_calls": "{{tool_calls}}",
-            "tool_definitions": "{{tool_definitions}}",
+            "query": "{{item.query}}",
+            "response": "{{item.response}}",
+            "tool_calls": "{{item.tool_calls}}",
+            "tool_definitions": "{{item.tool_definitions}}",
         },
         "initialization_parameters": {
             "deployment_name": model_deployment_name,
@@ -1140,8 +1140,8 @@ testing_criteria = [
         "name": "violence",
         "evaluator_name": "builtin.violence",
         "data_mapping": {
-            "query": "{{query}}",
-            "response": "{{response}}",
+            "query": "{{item.query}}",
+            "response": "{{item.response}}",
         },
         "initialization_parameters": {
             "threshold": 4,
