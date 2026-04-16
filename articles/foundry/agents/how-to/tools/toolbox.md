@@ -316,6 +316,9 @@ There are two endpoint patterns depending on your role:
 | **Toolbox developer** | `{project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1` | Test or validate a specific version before promoting it to default. |
 | **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. The first version you create is automatically set as the default. |
 
+> [!IMPORTANT]
+> Every request to the toolbox MCP endpoint must include the header `Foundry-Features: Toolboxes=V1Preview`. Calls that omit this header fail. Include it in all HTTP clients, MCP transports, and SDK wrappers that call the toolbox endpoint.
+
 > [!NOTE]
 > The first version of a new toolbox is automatically promoted to `default_version` (v1). If you need to change the default later, see [Promote a version to default](#promote-a-version-to-default).
 
@@ -344,6 +347,7 @@ url = "https://<account>.services.ai.azure.com/api/projects/<proj>/toolboxes/<na
 token = DefaultAzureCredential().get_token("https://ai.azure.com/.default").token
 headers = {
     "Authorization": f"Bearer {token}",
+    "Foundry-Features": "Toolboxes=V1Preview",
 }
 
 async def verify_toolbox():
@@ -383,6 +387,7 @@ Use the version-specific endpoint (`/versions/{version}/mcp`) to validate a vers
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
+Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}
 ```
@@ -393,6 +398,7 @@ Content-Type: application/json
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
+Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","method":"notifications/initialized"}
 ```
@@ -403,6 +409,7 @@ Content-Type: application/json
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
+Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 ```
@@ -413,6 +420,7 @@ Content-Type: application/json
 POST {project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1
 Authorization: Bearer {token}
 Content-Type: application/json
+Foundry-Features: Toolboxes=V1Preview
 
 {"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"<TOOL_NAME>","arguments":{}}}
 ```
@@ -445,6 +453,7 @@ const transport = new StreamableHTTPClientTransport(
     requestInit: {
       headers: {
         Authorization: `Bearer ${token.token}`,
+        "Foundry-Features": "Toolboxes=V1Preview",
       },
     },
   },
@@ -642,7 +651,7 @@ agent = Agent(
 
 ### Microsoft Agent Framework
 
-You can see the detailed samples [here](https://github.com/microsoft/hosted-agents-vnext-private-preview/tree/main/samples/dotnet/toolbox/maf).
+You can see the detailed samples [here](https://aka.ms/foundry-toolbox-maf-dotnet).
 
 Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to discover and invoke toolbox tools via the MCP endpoint.
 
