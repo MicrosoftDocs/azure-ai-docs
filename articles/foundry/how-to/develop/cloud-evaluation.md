@@ -927,7 +927,7 @@ The following span attributes are used:
 | `gen_ai.agent.id` | For agent filter mode | Unique agent identifier (format: `agent-name:version`). |
 | `gen_ai.agent.name` | For agent filter mode | Human-readable agent name. |
 | `gen_ai.input.messages` | For evaluators query inputs | JSON array of input messages following the [GenAI semantic conventions message format](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/#invoke-agent-span). Messages with role `user` or `system` map to `query`; messages with role `assistant` or `tool` map to `response`. |
-| `gen_ai.output.messages` | For evaluators query inputs | JSON array of model-generated output messages. All output messages map to `response`. If output also contains type: tool_call or type: tool_result, it maps to `tool_call` |
+| `gen_ai.output.messages` | For evaluators query inputs | JSON array of model-generated output messages. All output messages map to `response`. If output also contains type: tool_call or type: tool_result, it maps to `tool_calls` |
 | `gen_ai.tool.definitions` | Optional | JSON array of tool schemas available to the agent. If absent, the service attempts to infer tool definitions from tool call messages, but inferred schemas may be incomplete. |
 | `gen_ai.conversation.id` | Optional | Conversation identifier, passed through to evaluation results for correlation. |
 
@@ -1087,8 +1087,8 @@ When evaluating traces, the service automatically extracts conversation data fro
 |----------|----------------|-------------|
 | `{{item.query}}` | `gen_ai.input.messages` (user/system roles) | The user query extracted from the trace. |
 | `{{item.response}}` | `gen_ai.input.messages` (assistant/tool roles) + `gen_ai.output.messages` | The agent's response extracted from the trace. |
-| `{{item.tool_definitions}}` | `gen_ai.tool.definitions` | Tool schemas available to the agent. |
-| `{{item.tool_calls}}` | Extracted from assistant messages in `gen_ai.input.messages` / `gen_ai.output.messages` | Tool calls made by the agent during the interaction. Used by tool evaluators. |
+| `{{item.tool_definitions}}` | `gen_ai.tool.definitions` | Tool schemas available to the agent. Only required for tool-related evaluators |
+| `{{item.tool_calls}}` | Extracted from assistant messages in `gen_ai.input.messages` / `gen_ai.output.messages` | Tool calls made by the agent during the interaction. Used by tool evaluators. Only required for tool-related evaluators |
 
 ```python
 testing_criteria = [
