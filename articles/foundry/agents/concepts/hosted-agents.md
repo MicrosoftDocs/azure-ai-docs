@@ -938,11 +938,11 @@ The hosting adapter provides:
 
 ### Local tracing
 
-1. Install and set up AI Toolkit for Visual Studio Code (VS Code) by following [Trace in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
+1. Install and set up Foundry Toolkit for Visual Studio Code (VS Code) by following [Trace in Foundry Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
 
-1. Set up and export the environment variable `OTEL_EXPORTER_ENDPOINT`. You can find the endpoint from AI Toolkit for VS Code after you select the **Start Collector** button.
+1. Set up and export the environment variable `OTEL_EXPORTER_ENDPOINT`. You can find the endpoint from Foundry Toolkit for VS Code after you select the **Start Collector** button.
 
-1. Invoke the agent and find traces in AI Toolkit.
+1. Invoke the agent and find traces in Foundry Toolkit.
 
 ### Tracing in the Foundry portal
 
