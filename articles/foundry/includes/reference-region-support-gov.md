@@ -37,7 +37,7 @@ Available only to US government entities and their partners. For more informatio
   - Tracing (preview)
   - Guardrails & controls
     - Content filters
-    - Profanity blocklist (preview)
+    - Profanity block list (preview)
   - Management center
 - **Unsupported features in Azure Government regions:**
   - Serverless endpoints  
