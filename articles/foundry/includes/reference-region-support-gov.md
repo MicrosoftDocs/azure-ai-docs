@@ -23,7 +23,7 @@ Available only to US government entities and their partners. For more informatio
 - **Available pricing tiers:**
   - Standard. For more information, see [Foundry pricing](https://azure.microsoft.com/pricing/details/ai-foundry/).
 - **Supported features:**
-  - [Azure OpenAI in Foundry Models](../openai/azure-government.md)
+  - [Azure OpenAI in Foundry Models](../foundry-models/concepts/models-sold-directly-by-azure-gov.md)
   - Foundry Tools
     - [Speech](../../ai-services/speech-service/regions.md)
     - Speech playground (preview)
