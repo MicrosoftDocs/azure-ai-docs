@@ -8,6 +8,7 @@ manager: nitinme
 ms.date: 12/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: limits-and-quotas
+ai-usage: ai-assisted
 ms.custom:
   - build-2025
 ---
@@ -82,7 +83,7 @@ The currently supported models are:
 
 | Supported file types | File size | Length |
 | --- | --- |  --- |
-| ✓ `.wav` (PCM, A-law, μ-law) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.amr` (AMR-NB, AMR-WB) <br> ✓ `.3gp` (AMR-NB, AMR-WB)<br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (AAC, ALAC)<br> ✓ `.spx` | Max: 300 MB<sup>†</sup> | Max: Two hours<sup>†</sup> |
+| ✓ `.wav` (PCM: `pcm_s8`, `pcm_u8`, `pcm_s16*`, `pcm_u16*`, `pcm_s24*`, `pcm_u24*`, `pcm_s32*`, `pcm_u32*`, `pcm_f32*`, `pcm_f64*`) <br> ✓ `.mp3` <br> ✓ `.mp4` <br> ✓ `.opus`, `.ogg` (Opus)<br> ✓ `.flac` <br> ✓ `.wma` <br> ✓ `.aac` <br> ✓ `.webm` (Opus, Vorbis) <br> ✓ `.m4a` (AAC, AC-3) | Max: 300 MB<sup>†</sup> | Max: Two hours<sup>†</sup> |
 
 <sup>†</sup> Content Understanding supports audio files up to 1 GB and 4 hours in duration, but transcription time is substantially reduced for files 300 MB or less or Two hours or less.
 
