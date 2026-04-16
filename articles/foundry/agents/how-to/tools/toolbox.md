@@ -4,7 +4,7 @@ description: "Use toolbox in Microsoft Foundry to add MCP servers, web search, A
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: zhuoqunli
-ms.date: 04/03/2026
+ms.date: 04/16/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -12,26 +12,25 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.custom: dev-focus
 ai-usage: ai-assisted
 zone_pivot_groups: selection-foundry-toolbox
-
 ---
 
 # Curate intent-based toolbox in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-When you build agents across different frameworks and runtimes, each agent typically wires tools directly — with its own authentication, credentials, and integration code. As usage scales, this leads to duplicated configuration, inconsistent security posture, and agents that are hard to move from prototype to production.
+When you build agents across different frameworks and runtimes, each agent typically wires tools directly - with its own authentication, credentials, and integration code. As usage scales, this approach leads to duplicated configuration, inconsistent security posture, and agents that are hard to move from prototype to production.
 
 Toolbox removes that friction. Define a curated set of tools once, manage them centrally in Foundry, and expose them through a single MCP-compatible endpoint that any agent can consume. The platform handles credential injection, token refresh, and enterprise policy enforcement at runtime.
 
-Toolbox covers the full tool lifecycle through four pillars — **Build** and **Consume** are available today:
+Toolbox covers the full tool lifecycle through four pillars - **Build** and **Consume** are available today:
 
 | Pillar | Status | What it enables |
-|--------|--------|-----------------|
+| ------ | ------ | --------------- |
 | **Build** | Available today | Select tools, configure authentication centrally, and publish a reusable toolbox that any team can consume. |
 | **Consume** | Available today | Connect any agent to a single MCP-compatible endpoint to dynamically discover and invoke all tools in the toolbox. |
 
-Toolboxes are created in Foundry, but the consumption surface is open. Any agent runtime that supports MCP can use a toolbox — including agents built with Microsoft Agent Framework, LangGraph, GitHub Copilot, and MCP-enabled IDEs.
+You create toolboxes in Foundry, but the consumption surface is open. Any agent runtime that supports MCP can use a toolbox - including agents built with Microsoft Agent Framework, LangGraph, GitHub Copilot, and MCP-enabled IDEs.
 
-Because a toolbox is a managed resource, you can add, remove, or reconfigure tools without changing code in your agent. Your agent always connects to a single endpoint — when you update the toolbox, every agent that points to it picks up the changes with no code changes and no redeployment.
+Because a toolbox is a managed resource, you can add, remove, or reconfigure tools without changing code in your agent. Your agent always connects to a single endpoint - when you update the toolbox, every agent that points to it picks up the changes with no code changes and no redeployment.
 
 In this article, you learn how to:
 
@@ -46,17 +45,17 @@ For tool configuration syntax and authentication options for each tool type, see
 ## Feature support
 
 | Feature | Python SDK | REST API | .NET SDK | JavaScript SDK | azd (deploy) |
-|---------|-----------|----------|----------|----------------|---------------|
-| Toolbox update / list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ | N/A |
-| Toolbox version create | ✔️  | ✔️ | ✔️ | ✔️ | ✔️ |
-| Toolbox version list / get / delete | ✔️  | ✔️ | ✔️ | ✔️ | N/A |
-| [MCP tool](model-context-protocol.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
-| [Web Search tool](web-search.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
-| [Azure AI Search tool](ai-search.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
-| [Code Interpreter tool](code-interpreter.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
-| [File Search tool](file-search.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
-| [OpenAPI tool](openapi.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
-| [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️  | ✔️  | ✔️ | ✔️ | ✔️ |
+| ------- | ---------- | -------- | -------- | -------------- | ------------ |
+| Toolbox update, list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
+| Toolbox version create | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| Toolbox version list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
+| [MCP tool](model-context-protocol.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Web Search tool](web-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Azure AI Search tool](ai-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Code Interpreter tool](code-interpreter.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -73,12 +72,12 @@ For tool configuration syntax and authentication options for each tool type, see
 
 > [!IMPORTANT]
 > - A toolbox supports at most **one tool without a `name` field per tool type** (Web Search, Azure AI Search, Code Interpreter, File Search). To include more than one instance of the same tool type, set a unique `name` on each instance to differentiate them. Including two instances of the same type without a `name` returns an `invalid_payload` error. For details, see [Multiple tool types](#multiple-tool-types).
-> - We highly recommend adding a `description` to every tool in your toolbox to help the model select the right tool for each request.
+> - Add a `description` to every tool in your toolbox to help the model select the right tool for each request.
 > - Carefully review each tool's documentation to learn more about individual tool setup, limitations, and warnings.
 
 ## Step 1: Create a toolbox version
 
-Create a toolbox version based on tools you need.
+Create a toolbox version based on the tools you need.
 
 :::zone pivot="python"
 
@@ -168,7 +167,7 @@ Content-Type: application/json
 ```
 
 > [!NOTE]
-> Use token scope `https://ai.azure.com/.default` when obtaining the bearer token.
+> Use token scope `https://ai.azure.com/.default` when getting the bearer token.
 
 :::zone-end
 
@@ -208,7 +207,7 @@ console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.
 
 :::zone pivot="azd"
 
-With azd, you declare toolbox resources in an `agent.yaml` file instead of calling the SDK. Define your tools in the `resources` section and deploy with `azd ai agent init`. See [Configure tools](#configure-tools) for `agent.yaml` examples for each tool type, and [Deploy with azd](#deploy-with-azd) for the full deployment workflow.
+By using `azd`, you declare toolbox resources in an `agent.yaml` file instead of calling the SDK. Define your tools in the `resources` section and deploy by using `azd ai agent init`. For `agent.yaml` examples for each tool type, see [Configure tools](#configure-tools). For the full deployment workflow, see [Deploy with azd](#deploy-with-azd).
 
 > [!IMPORTANT] 
 > The `-m` (or `--manifest`) flag is **required** for `azd ai agent init`.
@@ -218,7 +217,7 @@ With azd, you declare toolbox resources in an `agent.yaml` file instead of calli
 > - **A specific `agent.yaml` file** — init copies all files from the same directory as the manifest
 > - **A folder containing `agent.yaml`** — init copies all files from that folder
 >
-> All files in the manifest directory (main.py, Dockerfile, requirements.txt, setup.py, etc.)
+> All files in the manifest directory (main.py, Dockerfile, requirements.txt, setup.py, and so on)
 > are copied into the scaffolded project under `src/<agent-name>/`.
 
 ```powershell
@@ -306,13 +305,12 @@ resources:
 
 :::zone-end
 
-
 ## Step 2: Get the toolbox MCP endpoint
 
-There are two endpoint patterns depending on your role:
+Two endpoint patterns exist depending on your role:
 
 | Role | Endpoint | When to use |
-|------|----------|-------------|
+| ---- | -------- | ----------- |
 | **Toolbox developer** | `{project_endpoint}/toolboxes/{toolbox_name}/versions/{version}/mcp?api-version=v1` | Test or validate a specific version before promoting it to default. |
 | **Toolbox consumer** | `{project_endpoint}/toolboxes/{toolbox_name}/mcp?api-version=v1` | Connect agents to the toolbox. Always serves the `default_version`. The first version you create is automatically set as the default. |
 
@@ -485,29 +483,31 @@ await client.close();
 :::zone-end
 
 
-**Check — initialize**: HTTP 200. If you skip the initialize step, subsequent calls will fail.
+**Check — initialize**: HTTP 200. If you skip the initialize step, subsequent calls fail.
 
 **Check — `tools/list`**:
-- `len(tools) > 0` — empty means the toolbox version was not provisioned correctly.
+
+- `len(tools) > 0` — empty means the toolbox version wasn't provisioned correctly.
 - Each tool has `name`, `description`, and `inputSchema`. For tool naming conventions, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools).
-- `inputSchema` has a `properties` field (some MCP servers omit this, which breaks OpenAI).
-- For MCP tools, names are prefixed with the `server_label` — for example, `myserver.some_tool`. For all other tool types, the name is the `name` field value or the default tool name.
+- `inputSchema` has a `properties` field (some MCP servers omit this field, which breaks OpenAI).
+- For MCP tools, names are prefixed with the `server_label` - for example, `myserver.some_tool`. For all other tool types, the name is the `name` field value or the default tool name.
 - Note the exact parameter names for the call step (for example `query` vs `queries`).
 
-**Check — `tools/call`**:
+**Check - `tools/call`**:
+
 - No top-level `error` field. If present, inspect `error.code`. For standard MCP error codes, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools#error-handling):
   - `-32006` → OAuth consent required (extract URL from `error.message`).
   - Other codes → server-side failure.
-- `result.content[]` contains entries with `"type": "text"` — this is the tool output.
+- `result.content[]` contains entries with `"type": "text"` - this is the tool output.
 - For AI Search, check `result.structuredContent.documents[]` for chunk metadata (`title`, `url`, `id`, `score`).
 - For File Search, check `result.content[].resource._meta` for chunk metadata (`title`, `file_id`, `document_chunk_id`, `score`).
 - For Web Search, check `result.content[].resource._meta.annotations[]` for URL citations (`type`, `url`, `title`, `start_index`, `end_index`).
-- Watch for `"ServerError"` in text content — the tool executed but hit an internal error.
+- Watch for `"ServerError"` in text content - the tool executed but hit an internal error.
 
 Tool-specific `tools/call` argument examples:
 
 | Tool type | Arguments |
-|-----------|-----------|
+| --------- | --------- |
 | AI Search | `{"query": "search text"}` |
 | File Search | `{"queries": ["search text"]}` |
 | Code Interpreter | `{"code": "print(2 ** 100)"}` |
@@ -605,7 +605,7 @@ ResponsesAgentServerHost().run()
 Use the GitHub Copilot SDK to build a toolbox-powered agent that bridges Copilot's tool invocation to the Foundry toolbox MCP endpoint.
 
 > [!NOTE]
-> The Copilot SDK rejects tool names containing dots. The bridge automatically replaces `.` with `_` in tool names — for example, `myserver.get_info` becomes `myserver_get_info`.
+> The Copilot SDK rejects tool names containing dots. The bridge automatically replaces `.` with `_` in tool names. For example, `myserver.get_info` becomes `myserver_get_info`.
 
 **`.env` file**:
 
@@ -717,10 +717,10 @@ ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 
 ### Deploy with azd
 
-Use the Azure Developer CLI (`azd`) to declare toolbox resources directly in an `agent.yaml` file and deploy your agent with a single command. With this approach, you don't need to create the toolbox separately through SDK or REST — `azd` provisions the toolbox, connections, and model deployment together.
+Use the Azure Developer CLI (`azd`) to declare toolbox resources directly in an `agent.yaml` file and deploy your agent with a single command. By using this approach, you don't need to create the toolbox separately through SDK or REST. `azd` provisions the toolbox, connections, and model deployment together.
 
 > [!IMPORTANT]
-> The `-m` (or `--manifest`) flag is required for `azd ai agent init`. It tells the command where to find your agent definition and source files. `-m` can point to either a specific `agent.yaml` file or a folder containing one. All files in the manifest directory (`main.py`, `Dockerfile`, `requirements.txt`, etc.) are copied verbatim into the scaffolded project under `src/<agent-name>/`.
+> The `-m` (or `--manifest`) flag is required for `azd ai agent init`. It tells the command where to find your agent definition and source files. `-m` can point to either a specific `agent.yaml` file or a folder containing one. All files in the manifest directory (`main.py`, `Dockerfile`, `requirements.txt`, and so on) are copied verbatim into the scaffolded project under `src/<agent-name>/`.
 
 **Folder structure**:
 
@@ -779,9 +779,9 @@ resources:
 ```
 
 > [!NOTE]
-> When deployed with toolbox resources in `agent.yaml`, the platform injects `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` (base URL) and `TOOLBOX_{toolbox_name}_MCP_ENDPOINT` (full per-toolbox endpoint) as environment variables. For the toolbox named `agent-tools`, the per-toolbox variable becomes `TOOLBOX_AGENT_TOOLS_MCP_ENDPOINT`. Your `main.py` reads the per-toolbox variable or constructs the URL from `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` and `TOOLBOX_NAME` at runtime.
+> When you deploy with toolbox resources in `agent.yaml`, the platform injects `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` (base URL) and `TOOLBOX_{toolbox_name}_MCP_ENDPOINT` (full per-toolbox endpoint) as environment variables. For the toolbox named `agent-tools`, the per-toolbox variable becomes `TOOLBOX_AGENT_TOOLS_MCP_ENDPOINT`. Your `main.py` reads the per-toolbox variable or constructs the URL from `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` and `TOOLBOX_NAME` at runtime.
 
-**`main.py`** follows the same LangGraph pattern shown above. With `azd`, `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` and `TOOLBOX_{toolbox_name}_MCP_ENDPOINT` are injected automatically — no extra endpoint configuration is needed in code.
+**`main.py`** follows the same LangGraph pattern shown earlier. By using `azd`, `FOUNDRY_AGENT_TOOLBOX_ENDPOINT` and `TOOLBOX_{toolbox_name}_MCP_ENDPOINT` are injected automatically - no extra endpoint configuration is needed in code.
 
 **Deploy**:
 
@@ -816,9 +816,9 @@ azd ai agent invoke --new-session "Hello, what tools do you have?" --timeout 120
 ## Step 5: Manage toolbox versions
 
 > [!NOTE]
-> Toolbox version management (list, get, promote, delete) is available through the Python SDK, .NET SDK, JavaScript SDK, and REST API. The azd CLI only supports creating toolbox versions during deployment.
+> You can manage toolbox versions (list, get, promote, delete) through the Python SDK, .NET SDK, JavaScript SDK, and REST API. The azd CLI only supports creating toolbox versions during deployment.
 
-Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it — you decide when to update `default_version`. This lets you stage changes, test a new version independently, and promote it to production on your own schedule.
+Toolbox versions are immutable snapshots of a toolbox's tool configuration. Every call to the create endpoint produces a new `ToolboxVersionObject`. The parent `ToolboxObject` has a `default_version` field that controls which version the MCP endpoint serves. Creating a new version doesn't automatically promote it - you decide when to update `default_version`. This process lets you stage changes, test a new version independently, and promote it to production on your own schedule.
 
 | Object | Key fields | Description |
 |--------|-----------|-------------|
@@ -827,7 +827,7 @@ Toolbox versions are immutable snapshots of a toolbox's tool configuration. Ever
 
 ### Create a new version
 
-Each create call produces a new version. If the toolbox doesn't exist yet, it's automatically created. When you create the first version of a new toolbox, the default_version will be automatically assigned to v1 until you **manually** update to another version.
+Each create call produces a new version. If the toolbox doesn't exist yet, the process automatically creates it. When you create the first version of a new toolbox, the default version is `v1` until you **manually** update to another version.
 
 :::zone pivot="python"
 
@@ -1037,7 +1037,7 @@ Content-Type: application/json
 }
 ```
 
-`default_version` cannot be empty, you have to replace it with a new version if you want. 
+`default_version` can't be empty. Replace it with a new version. 
 :::zone-end
 
 :::zone pivot="javascript"
@@ -1111,7 +1111,7 @@ This operation isn't supported with azd. To delete a toolbox version, use the **
 
 ## Configure tools
 
-Choose the tool type and authentication pattern that matches your scenario. Select the tab for your preferred SDK or deployment method.
+Choose the tool type and authentication pattern that match your scenario. Select the tab for your preferred SDK or deployment method.
 
 ### Multiple tool types
 
@@ -1150,7 +1150,7 @@ A single toolbox can bundle different tool types. The following example combines
 ```
 
 > [!NOTE]
-> Each tool type (`web_search`, `azure_ai_search`, `code_interpreter`, `file_search`) can appear at most once without a `name` field. To include multiple instances of the same type, set a unique `name` on each instance — see the next example.
+> Each tool type (`web_search`, `azure_ai_search`, `code_interpreter`, `file_search`) can appear at most once without a `name` field. To include multiple instances of the same type, set a unique `name` on each instance - see the next example.
 
 #### Multi-tool restrictions
 
@@ -1427,7 +1427,7 @@ resources:
 
 **User Entra token (1P OBO):**
 
-Use this pattern for MCP servers that require user identity via On-Behalf-Of (OBO) flow. Foundry proxies the user's Entra token to the MCP server.
+Use this pattern for MCP servers that require user identity through the On-Behalf-Of (OBO) flow. Foundry proxies the user's Entra token to the MCP server.
 
 ```yaml
 resources:
@@ -1452,7 +1452,7 @@ resources:
 :::zone-end
 
 > [!IMPORTANT]
-> The first time a user calls a toolbox with an OAuth based mcp in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
+> The first time a user calls a toolbox with an OAuth-based MCP in a project, the MCP endpoint returns a `CONSENT_REQUIRED` error (code `-32006`) with a consent URL:
 >
 > ```json
 > {
@@ -1463,7 +1463,7 @@ resources:
 > }
 > ```
 >
-> This is expected. Open the consent URL in a browser, complete the OAuth authorization flow, then retry the agent call. Subsequent calls succeed without re-prompting.
+> This error is expected. Open the consent URL in a browser, complete the OAuth authorization flow, and then retry the agent call. Subsequent calls succeed without re-prompting.
 
 ### [Web Search](web-search.md)
 
@@ -1769,14 +1769,14 @@ resources:
 | `filter` | No | Applies to all queries the agent makes to the index. |
 
 
-Chunk metadata is returned in `result.structuredContent.documents[]`. Each document includes `title`, `url`, `id`, and `score` fields that you can use to generate citation details in your application.
+The search results include chunk metadata in `result.structuredContent.documents[]`. Each document includes `title`, `url`, `id`, and `score` fields that you can use to generate citation details in your application.
 
 ### [Code Interpreter](code-interpreter.md)
 
-Use this pattern to let the agent write and execute Python code. No project connection or extra configuration is required.
+Use this pattern to let the agent write and execute Python code. The pattern doesn't require a project connection or extra configuration.
 
 > [!IMPORTANT]
-> Code Interpreter requires a **gpt-4.1** model deployment in the same Foundry project. This model is used internally for natural-language-to-code translation. If no gpt-4.1 deployment exists, code interpreter calls fail.
+> Code Interpreter requires a **gpt-4.1** model deployment in the same Foundry project. The agent uses this model internally for natural-language-to-code translation. If the project doesn't have a gpt-4.1 deployment, code interpreter calls fail.
 
 :::zone pivot="rest-api"
 
@@ -2264,7 +2264,6 @@ resources:
 
 :::zone-end
 
-
 ## Troubleshoot
 
 | Symptom | Likely cause | Fix |
@@ -2288,7 +2287,7 @@ resources:
 When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), not all toolbox tool types are supported. The following table shows the support status for each tool type and how traffic flows in a network-isolated environment.
 
 > [!NOTE]
-> This table covers tool support behind a VNet for agents created through the SDK, CLI, or the new Foundry portal. Agents created in the classic Foundry portal experience are not covered.
+> This table covers tool support behind a VNet for agents created through the SDK, CLI, or the new Foundry portal. Agents created in the classic Foundry portal experience aren't covered.
 
 | Tool type | VNet support | Traffic flow |
 |-----------|-------------|--------------|
@@ -2304,6 +2303,7 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 > Web Search communicates over public endpoints even in network-isolated environments. If your organization requires all traffic to remain within a private network, Web Search might not meet your compliance requirements.
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
+
 ## Related content
 
 - [Connect agents to Model Context Protocol servers](model-context-protocol.md)
@@ -2313,4 +2313,3 @@ For full network isolation setup instructions, including VNet injection for the 
 - [Deploy a hosted agent](../deploy-hosted-agent.md)
 - [Add a connection to your project](../../../how-to/connections-add.md)
 - [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md)
-

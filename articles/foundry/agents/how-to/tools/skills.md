@@ -4,7 +4,7 @@ description: "Manage skills in Microsoft Foundry using the Skills REST API. Auth
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: zhuoqunli
-ms.date: 04/05/2026
+ms.date: 04/16/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -17,11 +17,11 @@ ai-usage: ai-assisted
 # Use skills in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-A skill is a `SKILL.md` file that a hosted agent discovers at startup and injects as additional instructions into every conversation session. Skills let you define reusable behavioral guidelines—such as a greeting style, a code review checklist, or domain-specific constraints—and manage them centrally through the Skills REST API.
+A skill is a `SKILL.md` file that a hosted agent discovers at startup and injects as additional instructions into every conversation session. Skills let you define reusable behavioral guidelines - such as a greeting style, a code review checklist, or domain-specific constraints - and manage them centrally through the Skills REST API.
 
 In this article, you learn how to:
 
-- Import, list, get, download, and delete skills using the Skills REST API.
+- Import, list, get, download, and delete skills by using the Skills REST API.
 - Bundle downloaded skills into a hosted agent.
 
 > [!IMPORTANT]
@@ -34,12 +34,12 @@ In this article, you learn how to:
 ## Feature support
 
 | Feature | REST API | Python | .NET | JavaScript | Hosted agent | Prompt agent |
-|---------|----------|--------|------|------------|--------------|---------------|
+| ------- | -------- | ------ | ---- | ---------- | ------------ | ------------- |
 | Skills CRUD (create, import, list, get, download, delete) | ✔️ | ✔️ | ✔️ | ✔️ | N/A | N/A |
 | Include downloaded skills in agent | N/A | N/A | N/A | N/A | ✔️ | N/A |
 
 > [!IMPORTANT]
-> Skills are used in **hosted agents** only. The Skills REST API handles storage and retrieval; the hosted agent bundles the downloaded `SKILL.md` files into its container image and injects them at session startup.
+> Use skills in **hosted agents** only. The Skills REST API handles storage and retrieval. The hosted agent bundles the downloaded `SKILL.md` files into its container image and injects them at session startup.
 
 ## Prerequisites
 
@@ -68,7 +68,7 @@ You're a friendly greeting assistant for Foundry Hosted Agents.
 ```
 
 | Field | Required | Rules |
-|-------|----------|-------|
+| ----- | -------- | ----- |
 | `name` | Yes | Short identifier, no spaces. **Must be unquoted** in YAML. |
 | `description` | Yes | One-liner shown in skill listings. **Must be unquoted** in YAML. |
 | Body | Yes | Free Markdown. Becomes the skill's injected instructions. |
@@ -78,28 +78,23 @@ You're a friendly greeting assistant for Foundry Hosted Agents.
 > - The use of quoted values (for example, `name: 'greeting'`) causes an HTTP 500
 > error on import.
 
-Place each skill in its own subdirectory under the agent root directory.
-For example, `greeting/SKILL.md`, not `SKILL.md` at the root.
+Place each skill in its own subdirectory under the agent root directory. For example, `greeting/SKILL.md`, not `SKILL.md` at the root.
 
 ## Manage skills with the REST API
 
-The Skills REST API stores skills centrally so any hosted agent in your
-Foundry project can download and use them.
+The Skills REST API stores skills centrally so any hosted agent in your Foundry project can download and use them.
 
 **Skills endpoint:** `{FOUNDRY_PROJECT_ENDPOINT}/skills`
 
-**Authentication:** Bearer token from `DefaultAzureCredential` with scope
-`https://ai.azure.com/.default`.
+**Authentication:** Bearer token from `DefaultAzureCredential` with scope `https://ai.azure.com/.default`.
 
 ### Create a skill
 
-There are two ways to create a skill: submit the content directly as JSON, or
-upload a ZIP archive containing a `SKILL.md` file.
+You can create a skill in two ways: submit the content directly as JSON, or upload a ZIP archive containing a `SKILL.md` file.
 
 #### Option 1: Create from JSON
 
-Use this option when you want to supply the skill's `instructions` text
-directly without packaging a file.
+Use this option when you want to supply the skill's `instructions` text directly without packaging a file.
 
 :::zone pivot="rest-api"
 
@@ -217,9 +212,7 @@ Example response:
 
 #### Option 2: Import from a SKILL.md ZIP
 
-Use this option when you have a `SKILL.md` file. Package it as a ZIP and POST
-to the `:import` endpoint. The skill name and description are read from the
-`SKILL.md` front matter. The request body must be a valid ZIP file with a `SKILL.md` entry at the root.
+Use this option when you have a `SKILL.md` file. Package it as a ZIP and POST to the `:import` endpoint. The skill name and description come from the `SKILL.md` front matter. The request body must be a valid ZIP file with a `SKILL.md` entry at the root.
 
 :::zone pivot="rest-api"
 
@@ -303,8 +296,7 @@ Example response:
 }
 ```
 
-`has_blob: true` means the skill was created from a ZIP and can be downloaded.
-Skills created from JSON have `has_blob: false` and can't be downloaded.
+`has_blob: true` means the skill was created from a ZIP and can be downloaded. Skills created from JSON have `has_blob: false` and can't be downloaded.
 
 ### List skills
 
@@ -450,8 +442,7 @@ Returns the skill metadata. Returns HTTP 404 if the skill doesn't exist.
 
 ### Download a skill
 
-Downloads the original ZIP archive for skills created via `:import`
-(`has_blob: true`). Returns HTTP 404 for skills created via JSON.
+Downloads the original ZIP archive for skills created through `:import` (`has_blob: true`). Returns HTTP 404 for skills created through JSON.
 
 :::zone pivot="rest-api"
 
@@ -496,7 +487,7 @@ with (
 :::zone pivot="dotnet"
 
 > [!NOTE]
-> .NET sample not yet available.
+> .NET sample isn't available yet.
 
 :::zone-end
 
@@ -580,14 +571,11 @@ Returns HTTP 200 on success:
 
 ## Use skills in a hosted agent
 
-After importing skills to Foundry, download them and bundle them into your
-hosted agent's container image. The agent discovers them at startup and injects
-them as additional instructions in every session.
+After importing skills to Foundry, download them and bundle them into your hosted agent's container image. The agent discovers them at startup and injects them as additional instructions in every session.
 
 ### Step 1: Download skills into the agent directory
 
-Download each skill into its own subdirectory under the agent root.
-Use the download operation from [Download a skill](#download-a-skill).
+Download each skill into its own subdirectory under the agent root. Use the download operation from [Download a skill](#download-a-skill).
 
 When the downloads are complete, the agent directory looks like this:
 
@@ -602,7 +590,7 @@ my-agent/
 
 ### Step 2: Initialize the agent locally
 
-After downloading the skills, initialize the agent. Skills are autodiscovered at startup—the agent scans the project root for any `*/SKILL.md` pattern.
+After downloading the skills, initialize the agent. The agent autodiscovers skills at startup by scanning the project root for any `*/SKILL.md` pattern.
 
 ```bash
 azd ai agent init --skills --name my-agent
@@ -639,7 +627,7 @@ azd ai agent invoke --remote "What Azure products do you offer?"
 The following capabilities are planned or have known limitations:
 
 | Feature | Status | Description |
-|---------|--------|-------------|
+| ------- | ------ | ----------- |
 | Python SDK samples for skill operations | Available | Native Python SDK samples for create, import, list, get, download, and delete skill operations are now available. |
 | .NET SDK samples for skill operations | Partially available | .NET SDK samples are now available for create, import, list, get, and delete. Download isn't available yet. |
 | `"latest"` as `default_version` | Not supported | There's no way to set `default_version` to a special value like `"latest"` that automatically points to the most recently created version. Publishers must explicitly promote each new version via PATCH. See [Curate intent-based toolbox in Foundry](toolbox.md). |
