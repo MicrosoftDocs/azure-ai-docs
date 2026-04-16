@@ -31,6 +31,7 @@ Extended prompt cache retention is available for the following models:
 - `gpt-5.1`
 - `gpt-5.1-codex`
 - `gpt-5.1-codex-mini`
+- `gpt-5.1-chat`
 - `gpt-5`
 - `gpt-5-codex`
 - `gpt-4.1`
