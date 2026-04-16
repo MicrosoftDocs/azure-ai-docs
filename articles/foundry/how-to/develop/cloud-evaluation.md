@@ -1081,7 +1081,7 @@ print(f"Evaluation run started: {eval_run.id}")
 
 ### Set up evaluators and data mappings
 
-When evaluating traces, the service automatically extracts conversation data from the OTel span attributes. Use these field names directly in `data_mapping` (without the `item.` or `sample.` prefixes used in other scenarios):
+When evaluating traces, the service automatically extracts conversation data from the OpenTelemetry span attributes. Use these field names directly in `data_mapping` (without the `item.` or `sample.` prefixes used in other scenarios):
 
 | Variable | Source attribute | Description |
 |----------|----------------|-------------|
