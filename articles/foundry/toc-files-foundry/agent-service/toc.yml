@@ -27,6 +27,8 @@ items:
       href: ../../agents/how-to/manage-hosted-sessions.md
   - name: Migrate agents
     href: ../../agents/how-to/migrate.md
+  - name: Migrate hosted agents to the refreshed public preview
+    href: ../../agents/how-to/migrate-hosted-agent-preview.md
   - name: Create a workflow
     href: ../../agents/concepts/workflow.md
   - name: Retrieval Augmented Generation (RAG) overview
