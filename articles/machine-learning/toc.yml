@@ -617,114 +617,114 @@ items:
         items:
           - name: What is prompt flow?
             href: ./prompt-flow/overview-what-is-prompt-flow.md
-        - name: Migrate to Microsoft Agent Framework
-          items:
-            - name: Migration overview
-              href: ./prompt-flow/migrate-prompt-flow-to-agent-framework.md
-            - name: Rebuild and validate your workflow
-              href: ./prompt-flow/how-to-migrate-prompt-flow-to-agent-framework.md
-            - name: Deploy and cut over
-              href: ./prompt-flow/how-to-deploy-migrated-agent-framework-workflow.md
-        - name: Concepts
-          items:
-            - name: Connections
-              href: ./prompt-flow/concept-connections.md
-            - name: Session
-              href: ./prompt-flow/concept-session.md
-            - name: Flows
-              href: ./prompt-flow/concept-flows.md
-            - name: Tools
-              href: ./prompt-flow/concept-tools.md
-            - name: Variants
-              href: ./prompt-flow/concept-variants.md
-            - name: Evaluation monitoring metrics
-              href: ./prompt-flow/concept-model-monitoring-generative-ai-evaluation-metrics.md
-        - name: Get started in prompt flow
-          href: ./prompt-flow/get-started-prompt-flow.md
-        - name: Prompt flow Ecosystem
-          href: ./prompt-flow/community-ecosystem.md
-        - name: Set up infrastructure
-          items:
-            - name: Manage compute_session
-              href: ./prompt-flow/how-to-manage-compute-session.md
-            - name: Customize base image for compute session
-              href: ./prompt-flow/how-to-customize-session-base-image.md
-            - name: Network isolation in prompt flow
-              href: ./prompt-flow/how-to-secure-prompt-flow.md
-        - name: Develop flows
-          items:
-            - name: Develop a flow
-              href: ./prompt-flow/how-to-develop-flow.md
-            - name: Integrate Langchain in prompt flow
-              href: ./prompt-flow/how-to-integrate-with-langchain.md
-            - name: Tune prompts using variants
-              href: ./prompt-flow/how-to-tune-prompts-using-variants.md
-            - name: Incorporate images into prompt flow
-              href: ./prompt-flow/how-to-process-image.md
-        - name: Evaluate flows
-          items:
-            - name: Submit batch run and evaluate a flow
-              href: ./prompt-flow/how-to-bulk-test-evaluate-flow.md
-            - name: Customize evaluation flow and metrics
-              href: ./prompt-flow/how-to-develop-an-evaluation-flow.md
-            - name: Evaluate your Semantic Kernel with prompt flow
-              href: ./prompt-flow/how-to-evaluate-semantic-kernel.md
-        - name: Deploy a flow to online endpoint for real-time inference with UI
-          href: ./prompt-flow/how-to-deploy-for-real-time-inference.md
-        - name: "Code first: Dev to Prod"
-          items:
-            - name: Integrate prompt flow with LLM-based application DevOps
-              href: ./prompt-flow/how-to-integrate-with-llm-app-devops.md
-            - name: Deploy a flow to online endpoint for real-time inference with CLI
-              href: ./prompt-flow/how-to-deploy-to-code.md
-            - name: Enable trace and collect feedback for a flow deployment
-              href: ./prompt-flow/how-to-enable-trace-feedback-for-deployment.md
-            - name: How to use streaming endpoints deployed from prompt flow
-              href: ./prompt-flow/how-to-enable-streaming-mode.md
-            - name: Set up end-to-end GenAIOps with prompt flow and GitHub
-              href: ./prompt-flow/how-to-end-to-end-llmops-with-prompt-flow.md
-              displayName: LLMOps, DevOps
-            - name: Set up end-to-end GenAIOps with prompt flow and Azure DevOps
-              href: ./prompt-flow/how-to-end-to-end-azure-devops-with-prompt-flow.md
-              displayName: LLMOps, DevOps
-            - name: Custom tool package creation and usage
-              href: ./prompt-flow/how-to-custom-tool-package-creation-and-usage.md
-            - name: Advance your maturity level
-              href: ./prompt-flow/concept-llmops-maturity.md
-        - name: Monitor generative AI applications in production
-          href: ./prompt-flow/how-to-monitor-generative-ai-applications.md
-        - name: Troubleshoot prompt flow
-          href: ./prompt-flow/troubleshoot-guidance.md
-        - name: Transparency note
-          href: ./prompt-flow/transparency-note.md
-        - name: Tools Reference
-          items:
-            - name: Overview
-              href: ./prompt-flow/tools-reference/overview.md
-            - name: LLM tool
-              href: ./prompt-flow/tools-reference/llm-tool.md
-            - name: Prompt tool
-              href: ./prompt-flow/tools-reference/prompt-tool.md
-            - name: Python tool
-              href: ./prompt-flow/tools-reference/python-tool.md
-            - name: Embedding tool
-              href: ./prompt-flow/tools-reference/embedding-tool.md
-            - name: Content Safety (text) tool
-              href: ./prompt-flow/tools-reference/content-safety-text-tool.md
-            - name: Index Lookup tool
-              href: ./prompt-flow/tools-reference/index-lookup-tool.md
-            - name: Rerank tool
-              href: ./prompt-flow/tools-reference/rerank-tool.md
-            - name: SERP API tool
-              href: ./prompt-flow/tools-reference/serp-api-tool.md
-            - name: Open Model LLM tool
-              href: ./prompt-flow/tools-reference/open-model-llm-tool.md
-            - name: Azure OpenAI GPT-4 Turbo with Vision tool
-              href: ./prompt-flow/tools-reference/azure-open-ai-gpt-4v-tool.md
-            - name: OpenAI GPT-4V tool
-              href: ./prompt-flow/tools-reference/openai-gpt-4v-tool.md
-            - name: Troubleshoot Guidance
-              href: ./prompt-flow/tools-reference/troubleshoot-guidance.md
+          - name: Migrate to Microsoft Agent Framework
+            items:
+              - name: Migration overview
+                href: ./prompt-flow/migrate-prompt-flow-to-agent-framework.md
+              - name: Rebuild and validate your workflow
+                href: ./prompt-flow/how-to-migrate-prompt-flow-to-agent-framework.md
+              - name: Deploy and cut over
+                href: ./prompt-flow/how-to-deploy-migrated-agent-framework-workflow.md
+          - name: Concepts
+            items:
+              - name: Connections
+                href: ./prompt-flow/concept-connections.md
+              - name: Session
+                href: ./prompt-flow/concept-session.md
+              - name: Flows
+                href: ./prompt-flow/concept-flows.md
+              - name: Tools
+                href: ./prompt-flow/concept-tools.md
+              - name: Variants
+                href: ./prompt-flow/concept-variants.md
+              - name: Evaluation monitoring metrics
+                href: ./prompt-flow/concept-model-monitoring-generative-ai-evaluation-metrics.md
+          - name: Get started in prompt flow
+            href: ./prompt-flow/get-started-prompt-flow.md
+          - name: Prompt flow Ecosystem
+            href: ./prompt-flow/community-ecosystem.md
+          - name: Set up infrastructure
+            items:
+              - name: Manage compute_session
+                href: ./prompt-flow/how-to-manage-compute-session.md
+              - name: Customize base image for compute session
+                href: ./prompt-flow/how-to-customize-session-base-image.md
+              - name: Network isolation in prompt flow
+                href: ./prompt-flow/how-to-secure-prompt-flow.md
+          - name: Develop flows
+            items:
+              - name: Develop a flow
+                href: ./prompt-flow/how-to-develop-flow.md
+              - name: Integrate Langchain in prompt flow
+                href: ./prompt-flow/how-to-integrate-with-langchain.md
+              - name: Tune prompts using variants
+                href: ./prompt-flow/how-to-tune-prompts-using-variants.md
+              - name: Incorporate images into prompt flow
+                href: ./prompt-flow/how-to-process-image.md
+          - name: Evaluate flows
+            items:
+              - name: Submit batch run and evaluate a flow
+                href: ./prompt-flow/how-to-bulk-test-evaluate-flow.md
+              - name: Customize evaluation flow and metrics
+                href: ./prompt-flow/how-to-develop-an-evaluation-flow.md
+              - name: Evaluate your Semantic Kernel with prompt flow
+                href: ./prompt-flow/how-to-evaluate-semantic-kernel.md
+          - name: Deploy a flow to online endpoint for real-time inference with UI
+            href: ./prompt-flow/how-to-deploy-for-real-time-inference.md
+          - name: "Code first: Dev to Prod"
+            items:
+              - name: Integrate prompt flow with LLM-based application DevOps
+                href: ./prompt-flow/how-to-integrate-with-llm-app-devops.md
+              - name: Deploy a flow to online endpoint for real-time inference with CLI
+                href: ./prompt-flow/how-to-deploy-to-code.md
+              - name: Enable trace and collect feedback for a flow deployment
+                href: ./prompt-flow/how-to-enable-trace-feedback-for-deployment.md
+              - name: How to use streaming endpoints deployed from prompt flow
+                href: ./prompt-flow/how-to-enable-streaming-mode.md
+              - name: Set up end-to-end GenAIOps with prompt flow and GitHub
+                href: ./prompt-flow/how-to-end-to-end-llmops-with-prompt-flow.md
+                displayName: LLMOps, DevOps
+              - name: Set up end-to-end GenAIOps with prompt flow and Azure DevOps
+                href: ./prompt-flow/how-to-end-to-end-azure-devops-with-prompt-flow.md
+                displayName: LLMOps, DevOps
+              - name: Custom tool package creation and usage
+                href: ./prompt-flow/how-to-custom-tool-package-creation-and-usage.md
+              - name: Advance your maturity level
+                href: ./prompt-flow/concept-llmops-maturity.md
+          - name: Monitor generative AI applications in production
+            href: ./prompt-flow/how-to-monitor-generative-ai-applications.md
+          - name: Troubleshoot prompt flow
+            href: ./prompt-flow/troubleshoot-guidance.md
+          - name: Transparency note
+            href: ./prompt-flow/transparency-note.md
+          - name: Tools Reference
+            items:
+              - name: Overview
+                href: ./prompt-flow/tools-reference/overview.md
+              - name: LLM tool
+                href: ./prompt-flow/tools-reference/llm-tool.md
+              - name: Prompt tool
+                href: ./prompt-flow/tools-reference/prompt-tool.md
+              - name: Python tool
+                href: ./prompt-flow/tools-reference/python-tool.md
+              - name: Embedding tool
+                href: ./prompt-flow/tools-reference/embedding-tool.md
+              - name: Content Safety (text) tool
+                href: ./prompt-flow/tools-reference/content-safety-text-tool.md
+              - name: Index Lookup tool
+                href: ./prompt-flow/tools-reference/index-lookup-tool.md
+              - name: Rerank tool
+                href: ./prompt-flow/tools-reference/rerank-tool.md
+              - name: SERP API tool
+                href: ./prompt-flow/tools-reference/serp-api-tool.md
+              - name: Open Model LLM tool
+                href: ./prompt-flow/tools-reference/open-model-llm-tool.md
+              - name: Azure OpenAI GPT-4 Turbo with Vision tool
+                href: ./prompt-flow/tools-reference/azure-open-ai-gpt-4v-tool.md
+              - name: OpenAI GPT-4V tool
+                href: ./prompt-flow/tools-reference/openai-gpt-4v-tool.md
+              - name: Troubleshoot Guidance
+                href: ./prompt-flow/tools-reference/troubleshoot-guidance.md
       - name: Retrieval Augmented Generation (RAG)
         items:
           - name: What is RAG
