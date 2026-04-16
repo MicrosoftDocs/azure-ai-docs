@@ -22,7 +22,7 @@ ms.collection: ce-skilling-fresh-tier1
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
 You need a compute session to run [prompt flows](../concepts/prompt-flow.md). Use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) to create and manage prompt flow compute sessions.
 
