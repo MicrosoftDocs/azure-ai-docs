@@ -8,7 +8,7 @@ ms.date: 02/02/2026
 
 # What is a knowledge source?
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 A knowledge source specifies the content used for agentic retrieval. It either encapsulates a search index populated by external data, or it's a direct connection to a remote target such as Bing or SharePoint that's queried directly. A knowledge source is a required definition in a knowledge base.
 

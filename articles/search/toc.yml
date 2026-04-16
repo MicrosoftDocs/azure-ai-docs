@@ -477,11 +477,11 @@ items:
         href: agentic-knowledge-source-how-to-blob.md
       - name: OneLake
         href: agentic-knowledge-source-how-to-onelake.md
-      - name: SharePoint
+      - name: SharePoint (preview)
         href: agentic-knowledge-source-how-to-sharepoint-indexed.md
     - name: Create a remote source
       items:
-      - name: SharePoint
+      - name: SharePoint (preview)
         href: agentic-knowledge-source-how-to-sharepoint-remote.md
       - name: Web
         href: agentic-knowledge-source-how-to-web.md
@@ -491,9 +491,9 @@ items:
     items:
     - name: Create a knowledge base
       href: agentic-retrieval-how-to-create-knowledge-base.md
-    - name: Enable answer synthesis
+    - name: Enable answer synthesis (preview)
       href: agentic-retrieval-how-to-answer-synthesis.md
-    - name: Set retrieval reasoning effort
+    - name: Set retrieval reasoning effort (preview)
       href: agentic-retrieval-how-to-set-retrieval-reasoning-effort.md
     - name: Query a knowledge base (APIs or MCP)
       href: agentic-retrieval-how-to-retrieve.md

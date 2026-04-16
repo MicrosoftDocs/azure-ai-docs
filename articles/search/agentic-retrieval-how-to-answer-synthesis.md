@@ -8,7 +8,7 @@ ms.date: 03/25/2026
 
 # Use answer synthesis for citation-backed responses in Azure AI Search
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [Preview announcement](./includes/previews/agentic-retrieval-preview-feature.md)]
 
 By default, a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) in Azure AI Search performs *data extraction*, which returns raw grounding chunks from your knowledge sources. Data extraction is useful for retrieving specific information but lacks the context and reasoning necessary for complex queries.
 
