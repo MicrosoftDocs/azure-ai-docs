@@ -9,7 +9,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create a blob knowledge source from Azure Blob Storage and ADLS Gen2
 
-[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-feature.md)]
+[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 Use a *blob knowledge source* to index and query Azure blob content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
 

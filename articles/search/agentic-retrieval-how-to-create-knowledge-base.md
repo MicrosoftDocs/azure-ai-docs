@@ -9,7 +9,7 @@ zone_pivot_groups: search-csharp-python-rest
 
 # Create a knowledge base in Azure AI Search
 
-[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-feature.md)]
+[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 In Azure AI Search, a *knowledge base* is a top-level object that orchestrates [agentic retrieval](agentic-retrieval-overview.md). It defines which knowledge sources to query and the default behavior for retrieval operations. At query time, the [retrieve method](agentic-retrieval-how-to-retrieve.md) targets the knowledge base to run the configured retrieval pipeline.
 
