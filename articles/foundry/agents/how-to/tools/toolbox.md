@@ -1775,9 +1775,6 @@ Chunk metadata is returned in `result.structuredContent.documents[]`. Each docum
 
 Use this pattern to let the agent write and execute Python code. No project connection or extra configuration is required.
 
-> [!IMPORTANT]
-> Code Interpreter requires a **gpt-4.1** model deployment in the same Foundry project. This model is used internally for natural-language-to-code translation. If no gpt-4.1 deployment exists, code interpreter calls fail.
-
 :::zone pivot="rest-api"
 
 ```json
@@ -1859,6 +1856,68 @@ resources:
 ```
 
 :::zone-end
+
+#### Download output files from Code Interpreter
+
+When Code Interpreter produces output files (for example, a generated CSV or chart), the files are stored in the container's `/mnt/data` directory. To retrieve them, include a directory-listing snippet as part of your `code` argument. This causes the tool to report the file IDs in its output, which you can then pass to the File API to download the bytes.
+
+**Step 1: Call the tool with a listing snippet**
+
+Include the following Python code in your `code` parameter. You can append it to your actual task code or call it as a standalone diagnostic step:
+
+```python
+import os
+for root, dirs, files in os.walk('/mnt/data'):
+    for f in files:
+        path = os.path.join(root, f)
+        print(f'{path} ({os.path.getsize(path)} bytes)')
+if not os.listdir('/mnt/data'):
+    print('NO FILES IN /mnt/data')
+```
+
+**Step 2: Locate the file ID in the response**
+
+The `tools/call` response includes `content[].\_meta.container_file_citations[]` with the file IDs of all output files written to `/mnt/data`. Each entry in `container_file_citations` maps a file path to a file ID you can use to download the file:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "ci-diag-ls-1",
+  "result": {
+    "_meta": {
+      "tool_configuration": {
+        "type": "code_interpreter",
+        "name": "code-interpreter-uploaded",
+        "file_ids": [
+          "assistant-TKeKCzTCP4o7W4mDrG6FWm"
+        ]
+      }
+    },
+    "content": [
+      {
+        "type": "text",
+        "text": "content_type='execution_output' text='/mnt/data/assistant-TKeKCzTCP4o7W4mDrG6FWm-profits_1_2_2024.csv (122 bytes)\\n'",
+        "annotations": {
+          "audience": ["assistant"]
+        },
+        "_meta": {
+          "code": "import os\nfor root, dirs, files in os.walk('/mnt/data'):\n    for f in files:\n        path = os.path.join(root, f)\n        print(f'{path} ({os.path.getsize(path)} bytes)')\nif not os.listdir('/mnt/data'):\n    print('NO FILES IN /mnt/data')",
+          "container_id": "cntr_69e1235538d88190ba90e220fdc0cb7f082b11cf1b58ff16",
+          "container_file_citations": null,
+          "response_id": "resp_087066f228acca1f0069e12354b28c8196812fd8acfd9d0a12"
+        }
+      }
+    ],
+    "isError": false
+  }
+}
+```
+
+Look for `container_file_citations` inside each `content[]._meta` object. When output files are present, `container_file_citations` contains file IDs you can pass to the File API. In this example, `container_file_citations` is `null` because the listing snippet itself doesn't produce a new output file — the file ID (`assistant-TKeKCzTCP4o7W4mDrG6FWm`) is visible in the `text` output and in `tool_configuration.file_ids[]`.
+
+**Step 3: Download the file**
+
+Pass the file ID to the [File API download endpoint](/azure/foundry/openai/latest#download-file) to retrieve the file bytes.
 
 ### [File Search](file-search.md)
 
