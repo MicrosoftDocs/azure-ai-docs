@@ -115,7 +115,7 @@ MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 
 ### Authenticate your hosted agent
 
-The hosted agent sample authenticates using [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python). Configure your development environment to provide credentials via one of the supported sources, for example:
+The hosted agent sample authenticates using [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential). Configure your development environment to provide credentials via one of the supported sources, for example:
 
 - Azure CLI (`az login`)
 - Visual Studio Code account sign-in
@@ -312,6 +312,8 @@ After testing your hosted agent locally, deploy it to your Foundry workspace so 
 1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`<your-project-name>.csproj`), and defining any other deployment parameters as needed.
 1. Upon successful deployment, the hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
 1. Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
+
+::: zone-end
 
 ## Related content
 
