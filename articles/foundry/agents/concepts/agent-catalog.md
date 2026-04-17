@@ -190,7 +190,7 @@ To create an agent from a manifest:
 
     After creation, you can continue to modify the instructions, swap tools, or change the model deployment at any time. 
     > [!NOTE]
-    > Agent templates are for [educational and experimentation purposes only](#agent-manifests-for-foundry-agent-service). Resulting agents are not production ready. 
+    > Agent manifests are for [educational and experimentation purposes only](#agent-manifests-for-foundry-agent-service). Resulting agents are not production ready. 
 1. Test your agent in the [agents playground](../../concepts/concept-playgrounds.md).
 1. When you're satisfied with the results, [publish your agent](../how-to/publish-agent.md).
 
