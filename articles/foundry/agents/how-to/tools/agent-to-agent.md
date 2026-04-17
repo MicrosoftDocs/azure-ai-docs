@@ -436,7 +436,7 @@ To delete an agent version, send a `DELETE` request to the same endpoint with th
 
 :::zone pivot="typescript"
 
-This sample demonstrates how to create an AI agent with A2A capabilities by using the `A2ATool` and the Azure AI Projects client. The agent can communicate with other agents and provide responses based on inter-agent interactions by using the A2A protocol.
+This sample demonstrates how to create an AI agent with A2A capabilities by using the `A2APreviewTool` and the Azure AI Projects client. The agent can communicate with other agents and provide responses based on inter-agent interactions by using the A2A protocol.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
