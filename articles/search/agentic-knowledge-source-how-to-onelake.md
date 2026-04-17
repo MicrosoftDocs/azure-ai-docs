@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 04/14/2026
+ms.date: 04/17/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -390,6 +390,8 @@ We recommend using the Azure portal to validate output creation. The workflow is
 1. Check the index for searchable content. Use Search Explorer to run queries.
 1. Check the skillset to learn how your content is chunked and optionally vectorized.
 1. Check the data source for connection details. Our example uses API keys for simplicity, but you can use Microsoft Entra ID for authentication and role-based access control for authorization.
+
+[!INCLUDE [Private network indexer note](includes/how-tos/knowledge-source-private-network-note.md)]
 
 ## Assign to a knowledge base
 
