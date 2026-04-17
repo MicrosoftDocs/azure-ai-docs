@@ -175,6 +175,8 @@ items:
   items:
   - name: Quotas, limits, and region support
     href: ../../agents/concepts/limits-quotas-regions.md
+  - name: Hosted agent permissions reference
+    href: ../../agents/concepts/hosted-agent-permissions.md
   - name: FAQ
     href: ../../agents/faq.yml
   - name: Capability hosts
