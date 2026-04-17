@@ -1775,6 +1775,9 @@ The search results include chunk metadata in `result.structuredContent.documents
 
 Use this pattern to let the agent write and execute Python code. The pattern doesn't require a project connection or extra configuration.
 
+> [!IMPORTANT]
+> When using Code Interpreter through a toolbox in a hosted agent, **user isolation is not supported**. All users in the same project share the same container context.
+
 :::zone pivot="rest-api"
 
 ```json
@@ -1879,6 +1882,9 @@ Use the file name returned from Step 1 to download the file via the [File API do
 ### [File Search](file-search.md)
 
 Use this pattern to let the agent search over uploaded files stored in a vector store. Provide `vector_store_ids` referencing vector stores already created in your Foundry project.
+
+> [!IMPORTANT]
+> When using File Search through a toolbox in a hosted agent, **user isolation is not supported**. All users in the same project share access to the same vector store.
 
 :::zone pivot="rest-api"
 
