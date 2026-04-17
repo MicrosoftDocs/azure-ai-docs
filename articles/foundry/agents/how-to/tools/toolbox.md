@@ -519,6 +519,8 @@ Tool-specific `tools/call` argument examples:
 
 :::zone pivot="python"
 
+You can see the detailed samples [here](https://aka.ms/foundry-toolbox-maf).
+
 ### LangGraph
 
 **`.env` file**:
