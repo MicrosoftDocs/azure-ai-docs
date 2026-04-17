@@ -64,6 +64,7 @@ ms.date: 02/18/2026
 | gpt-image-1-mini               | GlobalStandard    | 27          | -           |
 | gpt-image-1.5                  | DataZoneStandard  | 5           | -           |
 | gpt-image-1.5                  | GlobalStandard    | 15          | -           |
+| gpt-image-2                  | DataZoneStandard  | 3   (TBD)        | -           |
 | gpt-realtime                   | GlobalStandard    | 200         | 100,000     |
 | model-router                   | DataZoneStandard  | 190         | 190,000     |
 | o1                             | DataZoneStandard  | 225         | 1,350,000   |

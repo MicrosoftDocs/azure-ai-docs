@@ -8475,7 +8475,7 @@ A tool that generates images using a model like `gpt-image-1`.
 | input_image_mask | object | Optional mask for inpainting. Contains `image_url`<br>(string, optional) and `file_id` (string, optional). | No |  |
 | └─ file_id | string | File ID for the mask image. | No |  |
 | └─ image_url | string | Base64-encoded mask image. | No |  |
-| model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1` | No |  |
+| model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1`, `gpt-image-2` (TBD) | No |  |
 | moderation | enum | Moderation level for the generated image. Default: `auto`.<br>Possible values: `auto`, `low` | No |  |
 | output_compression | integer | Compression level for the output image. Default: 100. | No | 100 |
 | output_format | enum | The output format of the generated image. One of `png`, `webp`, or<br>`jpeg`. Default: `png`.<br>Possible values: `png`, `webp`, `jpeg` | No |  |

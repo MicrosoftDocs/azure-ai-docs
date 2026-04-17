@@ -103,7 +103,7 @@ The following table shows tool availability by [region](../../openai/how-to/resp
 Tools are supported by the following models.
 
 > [!NOTE]
-> For the image generation tool, you need both the `gpt-image-1` model and a large language model (LLM) as the orchestrator in the same Microsoft Foundry project.
+> For the image generation tool, you need both the image generation model and a large language model (LLM) as the orchestrator in the same Microsoft Foundry project.
 
 | Model | Agent2Agent | Azure AI Search | Azure Functions | Grounding Bing Custom | Grounding Bing Search | Browser Automation | Code Interpreter | Computer Use | Fabric Data Agent | File Search | Functions | Image Generation | MCP | OpenAPI | SharePoint | Web Search |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |

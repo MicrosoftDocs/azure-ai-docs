@@ -101,6 +101,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Default GPT-image-1 quota limits | 9 requests per minute |
 | Default GPT-image-1-mini quota limits | 12 requests per minute |
 | Default GPT-image-1.5 quota limits | 9 requests per minute |
+| Default GPT-image-2 quota limits | 9 requests per minute (TBD) |
 | Default Sora quota limits | 60 requests per minute. |
 | Default Sora 2 quota limits | 2 job requests<sup>1</sup> per minute| 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |

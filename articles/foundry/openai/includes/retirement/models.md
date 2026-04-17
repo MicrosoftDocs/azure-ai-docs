@@ -94,6 +94,7 @@ ms.custom: references_regions, build-2025
 | `gpt-image-1-mini` | 2025-10-06 | `Generally Available` | 2026-10-06 | 2027-04-07 |  |
 | `gpt-image-1.5`    | 2025-12-16   | `Generally Available`    | n/a | No earlier than 2026-12-16 |  |
 | `sora-2` | 2025-10-15 | `Preview` | n/a | No earlier than 2026-09-15 |  |
+| `gpt-image-2` | TBD | `Preview` | n/a | No earlier than TBD |  |
 
 
 # [Embedding](#tab/embedding)

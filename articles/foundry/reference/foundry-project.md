@@ -9257,6 +9257,7 @@ A tool that generates images using the GPT image models.
 ```
 gpt-image-1
 gpt-image-1-mini
+gpt-image-2 (TBD)
 ```
 
 | Name | Type | Description | Required | Default |

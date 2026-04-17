@@ -49,7 +49,7 @@ https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deploymen
 Replace the following values:
 
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
-- `<your_deployment_name>` is the name of your GPT-image-1 series model deployment.
+- `<your_deployment_name>` is the name of your model deployment.
 - `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
 
 **Required headers**:
@@ -95,7 +95,7 @@ The response from a successful image generation API call looks like the followin
 
 Streaming lets you receive partial images as they're generated, providing faster visual feedback for your users. This is useful for applications where you want to show generation progress. The `partial_images` parameter (1-3) controls how many intermediate images are returned before the final result.
 
-You can stream image generation requests to `gpt-image-1`-series models by setting the `stream` parameter to `true`, and setting the `partial_images` parameter to a value between 0 and 3.
+You can stream image generation requests to `gpt-image-1`-series and `gpt-image-2` models (TBD) by setting the `stream` parameter to `true`, and setting the `partial_images` parameter to a value between 0 and 3.
 
 ```python
 import base64
@@ -149,9 +149,7 @@ For `gpt-image-2`, arbitrary resolutions are supported with the following constr
 
 There are three options for image quality: `low`, `medium`, and `high`. Lower quality images can be generated faster.
 
-The default value is `high` for GPT-image-1 series models.
-
-For `gpt-image-2`, quality controls are reworked. The `low` setting is optimized for latency-sensitive use cases and is a fully supported usage path, not just an optimization trick.
+The default value is `high`.
 
 #### Number
 

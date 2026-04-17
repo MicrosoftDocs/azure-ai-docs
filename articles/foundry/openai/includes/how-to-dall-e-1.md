@@ -97,5 +97,6 @@ Image generation has default rate limits per deployment:
 | Model | Default quota (images/min) |
 |-------|---------------------------|
 | GPT-image-1 series | 5 |
+| GPT-image-2 | TBD |
 
 To view your current quota or request an increase, see [Manage Azure OpenAI quotas](/azure/ai-foundry/openai/how-to/quota).
