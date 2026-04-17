@@ -2308,9 +2308,6 @@ resources:
 
 When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), not all toolbox tool types are supported. The following table shows the support status for each tool type and how traffic flows in a network-isolated environment.
 
-> [!NOTE]
-> This table covers tool support behind a VNet for agents created through the SDK, CLI, or the new Foundry portal. Agents created in the classic Foundry portal experience aren't covered.
-
 | Tool type | VNet support | Traffic flow |
 |-----------|-------------|--------------|
 | [MCP](model-context-protocol.md) | ✅ Supported | Through your VNet subnet |
@@ -2320,9 +2317,6 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
 | [File Search](file-search.md) | ❌ Not supported | Not yet available |
 | [Agent-to-Agent (A2A)](agent-to-agent.md) | ❌ Not supported | Not yet available |
-
-> [!NOTE]
-> Web Search communicates over public endpoints even in network-isolated environments. If your organization requires all traffic to remain within a private network, Web Search might not meet your compliance requirements.
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
 
