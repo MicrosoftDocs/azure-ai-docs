@@ -5,7 +5,7 @@ author: sdgilley
 ms.author: sgilley
 ms.reviewer: ailsaleen
 ms.date: 12/09/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom:

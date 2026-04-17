@@ -4,7 +4,7 @@ description: "Learn how to create and manage memory in Foundry Agent Service to 
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: liulewis
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 04/10/2026
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted

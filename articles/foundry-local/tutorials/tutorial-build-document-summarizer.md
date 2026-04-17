@@ -2,7 +2,7 @@
 title: "Tutorial: Build a document summarizer"
 titleSuffix: Foundry Local
 description: Build a document summarization application that reads text files and generates concise summaries using the Foundry Local SDK. Everything runs locally on your device.
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: tutorial
 ms.author: jburchel

@@ -6,7 +6,7 @@ ms.author: lagayhar
 ms.reviewer: skohlmeier
 ms.date: 02/10/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ai-usage: ai-assisted
 ms.custom:
   - references_regions

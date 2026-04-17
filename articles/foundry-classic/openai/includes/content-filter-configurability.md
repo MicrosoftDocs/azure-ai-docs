@@ -1,8 +1,8 @@
 ---
 titleSuffix: Azure OpenAI
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley

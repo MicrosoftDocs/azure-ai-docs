@@ -1,7 +1,7 @@
 ---
 title: "Part 1: Set up project and development environment to build a custom knowledge retrieval (RAG) app (classic)"
 description:  "Build a custom chat app using the Microsoft Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you need for parts 2 and 3. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2024
   - update-code

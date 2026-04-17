@@ -1,8 +1,8 @@
 ---
 title: "Microsoft Foundry Models overview (classic)"
 description: "This article introduces Microsoft Foundry Models and the model catalog in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.custom:
   - build-2025
   - ai-learning-hub

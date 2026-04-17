@@ -4,8 +4,8 @@ description: Quota tier limits for free tier
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 02/18/2026
 ---

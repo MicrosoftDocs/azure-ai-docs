@@ -6,7 +6,7 @@ author: aahill
 ms.author: aahi
 ms.reviewer: lagayhar
 ms.date: 04/10/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ---
 

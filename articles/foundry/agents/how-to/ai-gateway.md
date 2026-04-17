@@ -4,8 +4,8 @@ description: "Connect and use models hosted behind enterprise AI gateways like A
 author: aahil
 ms.author: aahi
 ms.date: 04/09/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted

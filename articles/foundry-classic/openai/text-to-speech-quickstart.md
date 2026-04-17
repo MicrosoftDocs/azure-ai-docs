@@ -2,8 +2,8 @@
 title: "Text to speech with Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "Convert text to speech using Azure OpenAI voices. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: quickstart
 ms.date: 01/30/2026
 ms.author: pafarley

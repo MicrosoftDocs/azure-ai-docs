@@ -5,8 +5,8 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.date: 02/10/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: whats-new
 
 ms.custom:

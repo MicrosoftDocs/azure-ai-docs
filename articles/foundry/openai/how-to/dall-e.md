@@ -4,9 +4,9 @@ description: "Learn how to generate and edit images using Azure OpenAI image gen
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 04/13/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.date: 04/17/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.custom:
   - classic-and-new

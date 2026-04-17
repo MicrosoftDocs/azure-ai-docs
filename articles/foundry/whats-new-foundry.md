@@ -5,7 +5,7 @@ ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-foundry
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ai-usage: ai-assisted
 ms.custom:
   - classic-and-new
@@ -29,7 +29,7 @@ Welcome! This article highlights key changes and updates in Microsoft Foundry do
 - [Foundry Local SDK migration guide](../foundry-local/reference/reference-sdk-migration.md)
 - [Foundry Local SDK reference](../foundry-local/reference/reference-sdk-current.md)
 - [Get started with LangChain and LangGraph with Foundry](../foundry/how-to/develop/langchain.md)
-- [Govern agent infrastructure as a Microsoft Entra global administrator](../foundry/control-plane/govern-agent-infrastructure-entra-admin.md)
+- [Govern agent infrastructure as a Microsoft Entra administrator](../foundry/control-plane/govern-agent-infrastructure-entra-admin.md)
 - [How to use Task Adherence for your Agentic workflows](../foundry/guardrails/how-to-task-adherence.md)
 - [Import custom models with Fireworks (preview)](../foundry/how-to/fireworks/import-custom-models.md)
 - [Microsoft Foundry Models overview](../foundry/concepts/foundry-models-overview.md)

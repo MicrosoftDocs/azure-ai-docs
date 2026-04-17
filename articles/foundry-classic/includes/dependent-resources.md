@@ -5,7 +5,7 @@ author: Blackmist
 ms.author: larryfr
 ms.reviewer: larryfr
 ms.date: 12/05/2024
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.custom:
   - include
