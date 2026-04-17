@@ -13,8 +13,8 @@ Microsoft Foundry Models in the model catalog comprise two main categories, name
 This article lists a selection of Foundry Models from partners and community, along with their capabilities, deployment types, and regions of availability, excluding deprecated and retired models.
 Most Foundry Model providers are trusted third-party organizations, partners, research labs, and community contributors. 
 
-> [!NOTE]
-> Note that Models from partners and community that are not sold directly by Azure are Non-Microsoft Products under the Product Terms.
+> [!IMPORTANT]
+> Models from partners and community that are not sold directly by Azure are Non-Microsoft Products under the Product Terms.
 
 For a list of Foundry Models sold directly by Azure, see [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), and for a list of Foundry Models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
 
