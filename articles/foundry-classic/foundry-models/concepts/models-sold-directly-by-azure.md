@@ -4,7 +4,7 @@ description: "Learn about Microsoft Foundry Models sold directly by Azure, their
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 02/12/2026
+ms.date: 04/17/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: product-comparison

@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: include
-ms.date: 04/15/2026
+ms.date: 04/17/2026
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
