@@ -18,4 +18,4 @@ ai-usage: ai-assisted
 
 # Retired Azure OpenAI models in Microsoft Foundry
 
-[!INCLUDE [legacy-models content](../includes/concepts-legacy-models-content.md)]
+[!INCLUDE [retired-models content](../includes/concepts-retired-models-content.md)]

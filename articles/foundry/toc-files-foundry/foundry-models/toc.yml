@@ -56,9 +56,9 @@ items:
     - name: Azure OpenAI model retirement
       displayName: Azure OpenAI model retirement in Microsoft Foundry Models
       href: ../../openai/concepts/model-retirements.md
-    - name: Legacy models
+    - name: Retired models
       displayName: Retired Azure OpenAI models in Microsoft Foundry
-      href: ../../openai/concepts/legacy-models.md
+      href: ../../openai/concepts/retired-models.md
 
   - name: Data, privacy, and security for model catalog
     displayName: Data, privacy, and security for Azure Direct Models

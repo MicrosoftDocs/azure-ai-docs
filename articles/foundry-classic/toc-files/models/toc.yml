@@ -266,8 +266,8 @@ items:
           href: ../../openai/concepts/safety-system-message-templates.md
       - name: Model versions
         href: ../../openai/concepts/model-versions.md
-      - name: Legacy models
-        href: ../../openai/concepts/legacy-models.md
+      - name: Retired models
+        href: ../../openai/concepts/retired-models.md
   - name: How-to 
     items:
     - name: Assistants (preview)

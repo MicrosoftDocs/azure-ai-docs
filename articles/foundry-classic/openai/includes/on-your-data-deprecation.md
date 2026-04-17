@@ -19,6 +19,6 @@ ms.custom: classic-and-new
 > + GPT-4o-mini (version 2024-07-18)
 > + GPT-4.1, GPT-4.1-mini, and GPT-4.1-nano (version 2025-04-14)
 >
-> [Once the GPT‑4.1 models retire](../concepts/model-retirements.md#current-models), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
+> [Once the GPT‑4.1 models retire](../concepts/model-retirements.md), all Azure OpenAI On Your Data API endpoints and supported data source connectors stop functioning.
 > 
 > We recommend that you migrate Azure OpenAI On Your Data workloads to [Foundry Agent Service](../../agents/overview.md) with [Foundry IQ](../../../foundry/agents/concepts/what-is-foundry-iq.md) to retrieve content and generate grounded answers from your data. To get started, see [Connect a Foundry IQ knowledge base](../../../foundry/agents/how-to/foundry-iq-connect.md).
