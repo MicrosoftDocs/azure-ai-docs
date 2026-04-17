@@ -17,9 +17,13 @@ zone_pivot_groups: selection-foundry-toolbox
 # Curate intent-based toolbox in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-When you build agents across different frameworks and runtimes, each agent typically wires tools directly - with its own authentication, credentials, and integration code. As usage scales, this approach leads to duplicated configuration, inconsistent security posture, and agents that are hard to move from prototype to production.
+A single agent can depend on multiple tools — APIs, MCP servers, connectors, and flows — each with its own authentication model and owning team. As you scale across an organization, teams re-implement the same tools independently, credentials get duplicated, governance becomes inconsistent, and there's little visibility into what tools exist or who's using them. Developers stall, not because the models aren't capable, but because tool integration has become the bottleneck.
 
-Toolbox removes that friction. Define a curated set of tools once, manage them centrally in Foundry, and expose them through a single MCP-compatible endpoint that any agent can consume. The platform handles credential injection, token refresh, and enterprise policy enforcement at runtime.
+:::image type="content" source="../../media/tools/toolbox/toolbox-before.png" alt-text="Diagram showing multiple agents each wiring their own tools with different authentication models and duplicated credentials." lightbox="../../media/tools/toolbox/toolbox-before.png":::
+
+Enterprises already have the infrastructure: gateways, credential vaults, policies, and observability. What's been missing is a developer experience that packages this infrastructure into something reusable, discoverable, and governed by default.
+
+Toolbox provides that experience. Define a curated set of tools once, manage them centrally in Foundry, and expose them through a single MCP-compatible endpoint that any agent can consume. The platform handles credential injection, token refresh, and enterprise policy enforcement at runtime.
 
 Toolbox covers the full tool lifecycle through four pillars - **Build** and **Consume** are available today:
 
@@ -28,9 +32,11 @@ Toolbox covers the full tool lifecycle through four pillars - **Build** and **Co
 | **Build** | Available today | Select tools, configure authentication centrally, and publish a reusable toolbox that any team can consume. |
 | **Consume** | Available today | Connect any agent to a single MCP-compatible endpoint to dynamically discover and invoke all tools in the toolbox. |
 
-You create toolboxes in Foundry, but the consumption surface is open. Any agent runtime that supports MCP can use a toolbox - including agents built with Microsoft Agent Framework, LangGraph, GitHub Copilot, and MCP-enabled IDEs.
+:::image type="content" source="../../media/tools/toolbox/toolbox-architecture.png" alt-text="Diagram showing Toolboxes in Foundry architecture: Build and Consume pillars consumed by LangGraph, Microsoft Agent Framework, GitHub Copilot, Claude Code, and Microsoft Copilot Studio, governed by default." lightbox="../../media/tools/toolbox/toolbox-architecture.png":::
 
-Because a toolbox is a managed resource, you can add, remove, or reconfigure tools without changing code in your agent. Your agent always connects to a single endpoint - when you update the toolbox, every agent that points to it picks up the changes with no code changes and no redeployment.
+You create toolboxes in Foundry, but the consumption surface is open. Any MCP-compatible agent runtime or client can use a toolbox — including agents built with any framework, MCP-enabled IDEs, and custom code.
+
+Because a toolbox is a managed resource, you can add, remove, or reconfigure tools without changing code in your agent. Your agent always connects to a single endpoint. Toolbox versioning gives you explicit control over when changes take effect — create and test a new version, then promote it to default when you're ready. Every agent that points to the toolbox picks up the promoted version automatically, with no code changes and no redeployment.
 
 In this article, you learn how to:
 
@@ -557,6 +563,8 @@ client = MultiServerMCPClient({
 tools = await client.get_tools()
 ```
 
+See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
+
 ### Microsoft Agent Framework
 
 Use `MCPStreamableHTTPTool` from the Agent Framework SDK to connect directly to the toolbox MCP endpoint.
@@ -582,7 +590,7 @@ http_client = httpx.AsyncClient(
     timeout=120.0,
 )
 
-TOOLBOX_ENDPOINT = os.getenv("TFOUNDRY_AGENT_TOOLBOX_ENDPOINT")
+TOOLBOX_ENDPOINT = os.getenv("FOUNDRY_AGENT_TOOLBOX_ENDPOINT")
 
 # Connect MCPStreamableHTTPTool to the toolbox endpoint
 mcp_tool = MCPStreamableHTTPTool(
@@ -599,6 +607,8 @@ agent = chat_client.as_agent(
 )
 ResponsesAgentServerHost().run()
 ```
+
+See the [full sample](https://aka.ms/foundry-toolbox-maf) for the complete implementation.
 
 ### Copilot SDK
 
@@ -645,13 +655,49 @@ agent = Agent(
 )
 ```
 
+See the [full sample](https://aka.ms/foundry-toolbox-copilotsdk) for the complete implementation.
+
 :::zone-end
 
 :::zone pivot="dotnet"
 
-### Microsoft Agent Framework
+### LangGraph
 
-You can see the detailed samples [here](https://aka.ms/foundry-toolbox-maf-dotnet).
+Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to implement a ReAct (Reason + Act) loop. The LLM reasons about which tool to call, executes it via the toolbox MCP endpoint, then reasons again until it produces a final answer.
+
+**Environment variables**:
+
+```
+AZURE_OPENAI_ENDPOINT=https://<account>.services.ai.azure.com
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
+TOOLBOX_MCP_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1
+```
+
+**`Program.cs`** (key pattern):
+
+```csharp
+var openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("Set AZURE_OPENAI_ENDPOINT");
+var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o";
+var toolboxEndpoint = Environment.GetEnvironmentVariable("TOOLBOX_MCP_ENDPOINT");
+
+// Azure OpenAI client
+var credential = new DefaultAzureCredential();
+var aoaiClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
+var chatClient = aoaiClient.GetChatClient(deployment);
+
+// Toolbox MCP client — discovers tools via tools/list, calls them via tools/call
+var toolboxClient = new ToolboxMcpClient(toolboxEndpoint, credential);
+
+ResponsesServer.Run<ReActHandler>(configure: builder =>
+{
+    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
+});
+```
+
+`ReActHandler` implements the ReAct loop: it discovers tools via `GetChatToolsAsync()`, calls them via `CallToolAsync()`, and streams the final answer. `ToolboxMcpClient` handles authentication and MCP JSON-RPC calls. See the [full sample](https://aka.ms/foundry-toolbox-langgraph-dotnet) for the complete implementation of both classes.
+
+### Microsoft Agent Framework
 
 Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to discover and invoke toolbox tools via the MCP endpoint.
 
@@ -1776,7 +1822,7 @@ The search results include chunk metadata in `result.structuredContent.documents
 Use this pattern to let the agent write and execute Python code. The pattern doesn't require a project connection or extra configuration.
 
 > [!IMPORTANT]
-> Code Interpreter requires a **gpt-4.1** model deployment in the same Foundry project. The agent uses this model internally for natural-language-to-code translation. If the project doesn't have a gpt-4.1 deployment, code interpreter calls fail.
+> When using Code Interpreter through a toolbox in a hosted agent, **user isolation is not supported**. All users in the same project share the same container context.
 
 :::zone pivot="rest-api"
 
@@ -1860,9 +1906,31 @@ resources:
 
 :::zone-end
 
+#### Download output files from Code Interpreter
+
+When Code Interpreter produces output files (for example, a generated CSV or chart), use the following steps to list and download them.
+
+**Step 1: List files using the Container API**
+
+Extract the `container_id` from `content[]._meta.container_id` in the `tools/call` response, then call the Container Files API to list all files in the container:
+
+```http
+GET {project_endpoint}/containers/{container_id}/files?api-version=v1
+Authorization: Bearer {token}
+```
+
+The response returns a list of files with their names and IDs.
+
+**Step 2: Download the file using the File API**
+
+Use the file name returned from Step 1 to download the file via the [File API download endpoint](/azure/foundry/openai/latest#download-file).
+
 ### [File Search](file-search.md)
 
 Use this pattern to let the agent search over uploaded files stored in a vector store. Provide `vector_store_ids` referencing vector stores already created in your Foundry project.
+
+> [!IMPORTANT]
+> When using File Search through a toolbox in a hosted agent, **user isolation is not supported**. All users in the same project share access to the same vector store.
 
 :::zone pivot="rest-api"
 
@@ -2286,9 +2354,6 @@ resources:
 
 When your Foundry project uses [network isolation (private link)](../../../how-to/configure-private-link.md), not all toolbox tool types are supported. The following table shows the support status for each tool type and how traffic flows in a network-isolated environment.
 
-> [!NOTE]
-> This table covers tool support behind a VNet for agents created through the SDK, CLI, or the new Foundry portal. Agents created in the classic Foundry portal experience aren't covered.
-
 | Tool type | VNet support | Traffic flow |
 |-----------|-------------|--------------|
 | [MCP](model-context-protocol.md) | ✅ Supported | Through your VNet subnet |
@@ -2298,9 +2363,6 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
 | [File Search](file-search.md) | ❌ Not supported | Not yet available |
 | [Agent-to-Agent (A2A)](agent-to-agent.md) | ❌ Not supported | Not yet available |
-
-> [!NOTE]
-> Web Search communicates over public endpoints even in network-isolated environments. If your organization requires all traffic to remain within a private network, Web Search might not meet your compliance requirements.
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
 
