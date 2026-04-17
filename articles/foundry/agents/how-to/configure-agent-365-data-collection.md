@@ -40,11 +40,13 @@ These properties are part of the `Microsoft.CognitiveServices/accounts` resource
 
 ### Default state
 
-When Agent 365 is enabled for a tenant, Foundry resources have `loggingEnabled` set to `disabled` by default. Organizations must explicitly opt in to data collection on each resource, or use an Azure Policy to enable it at scale.
+When Agent 365 is enabled for an Entra tenant, Foundry resources in the same Azure tenant will have `loggingEnabled` set to `enabled` by default. Organizations must explicitly opt out to disable data collection on each resource. You may use Azure Policy to deny data collection for select Azure Subscriptions or Azure Mangement Groups.
 
 ### Scope of the setting
 
-The `agent365Config` setting applies at the **Foundry resource level**. Every Foundry project and every agent contained within that resource inherits the same data-collection setting. There's no per-project or per-agent override.
+The `agent365Config` setting applies at the **Foundry resource level**. Every Foundry project and every prompt agent contained within that resource inherits the same data-collection setting. There's no per-project or per-agent override possible.
+
+[Hosted Agents](./deploy-hosted-agent.md) require manual configuration of Agent 365 by packing and configuring the Agent 365 SDK along with your agent code. Without manual configuration steps, data will not flow. Explicit Agent 365 SDK configurations in hosted agents override logging disablement settings on the Foundry resource level.
 
 ## Disable data collection on a Foundry resource
 
