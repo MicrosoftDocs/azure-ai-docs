@@ -4,7 +4,7 @@ description: Include file
 author: jonburchel
 ms.reviewer: deeikele
 ms.author: jburchel
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -157,5 +157,5 @@ To maintain optimal security and compliance, implement the following practices:
 ## Related content
 
 - [Azure Key Vault documentation](/azure/key-vault/)
-- [GitHub Bicep example: Customer-managed keys with a user-assigned identity](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity)
+- [GitHub Bicep example: Customer-managed keys with a user-assigned identity](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/32-customer-managed-keys-user-assigned-identity)
 - [Overview of Azure managed identities](/entra/identity/managed-identities-azure-resources/overview)

@@ -5,8 +5,8 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: yinchang
 reviewer: ychang-msft
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.date: 02/04/2026
 ms.custom: ignite-2024, github-universe-2024, template-concept, devx-track-python

@@ -4,10 +4,10 @@ description: include file
 author: sdgilley
 ms.reviewer: sgilley
 ms.author: sgilley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 12/18/2025
-ms.custom: include, ignite-2024
+ms.date: 04/08/2026
+ms.custom: include
 ---
 
 First, create a new Python environment. Don't install packages into your global Python installation. Always use a virtual or conda environment when installing Python packages. Otherwise, you can break your global install of Python.

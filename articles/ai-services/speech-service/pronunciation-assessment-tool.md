@@ -8,7 +8,8 @@ ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 # Customer intent: As a language learner, I want to use the pronunciation assessment tool in the Microsoft Foundry portal to get feedback on my speech.
 ---
@@ -27,7 +28,7 @@ This article describes how to use the pronunciation assessment tool without writ
 
 
 
-## Reading, speaking and gaming scenarios
+## Reading, speaking, and gaming scenarios
 
 For pronunciation assessment, there are three scenarios: Reading, Speaking and Gaming.
 - Reading: This scenario is designed for [scripted assessment](#conduct-a-reading-assessment). It requires the learner to read a given text. The reference text is provided in advance.

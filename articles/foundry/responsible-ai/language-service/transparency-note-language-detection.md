@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 01/31/2024
+ms.date: 04/01/2026
 ---
 
 # Transparency note for Language Detection

@@ -7,7 +7,8 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 05/17/2021
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Characteristics and limitations of Pronunciation Assessment

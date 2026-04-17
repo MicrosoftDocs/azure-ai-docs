@@ -14,9 +14,9 @@ ms.topic: reference
 
 > [!CAUTION]
 >
-> On June 02, 2023, Microsoft will retire the Custom Translator v1.0 model platform. Existing v1.0 models must migrate to the new platform for continued processing and support.
+> On June 02, 2023, Microsoft retired the Custom Translator v1.0 model platform. Existing v1.0 models needed to migrate to the new platform for continued processing and support.
 
-Following measured and consistent high-quality results using models trained on the Custom Translator new platform, the v1.0 platform is retiring. The new Custom Translator platform delivers significant improvements in many domains compared to both standard and Custom v1.0 platform translations. Migrate your v1.0 models to the new platform by June 02, 2023.
+Following measured and consistent high-quality results using models trained on the Custom Translator new platform, the v1.0 platform was retired. The new Custom Translator platform delivers significant improvements in many domains compared to both standard and Custom v1.0 platform translations.
 
 ## Custom Translator v1.0 upgrade timeline
 

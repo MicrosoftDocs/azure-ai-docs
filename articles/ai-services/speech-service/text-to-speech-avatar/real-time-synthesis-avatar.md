@@ -5,7 +5,8 @@ description: Learn how to use text to speech avatar with real-time synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ms.author: pafarley
 author: PatrickFarley
 ---
@@ -14,7 +15,7 @@ author: PatrickFarley
 
 This guide shows you how to use text to speech avatar with real-time synthesis. The avatar video is generated almost instantly after you enter text.
 
-Text to speech avatar can be used in the Voice Live API to create a more personalized voice conversation. See [Voice Live API overview](../voice-live.md) and [Avatar in Voice Live sample code](../voice-live-how-to.md#azure-text-to-speech-avatar) to learn more
+Text to speech avatar can be used in the Voice Live API to create a more personalized voice conversation. See [Voice Live API overview](../voice-live.md) and [Avatar in Voice Live sample code](../voice-live-how-to.md#azure-text-to-speech-avatar) to learn more.
 
 ## Prerequisites
 

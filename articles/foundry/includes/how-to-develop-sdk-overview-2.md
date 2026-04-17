@@ -1,10 +1,10 @@
 ---
 title: Include file
 description: Include file
-author: ms-johnalex
+author: sdgilley
 ms.reviewer: dantaylo
-ms.author: johalexander
-ms.service: azure-ai-foundry
+ms.author: sgilley
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -48,5 +48,5 @@ If code samples fail with `AttributeError` or `ModuleNotFoundError`:
   npm list @azure/ai-projects  # JavaScript
   dotnet list package  # .NET
   ```
-- **Verify moniker alignment**: 2.x SDK requires Foundry portal, 1.x SDK requires Foundry classic
+
 - **Reinstall with correct version flags**: See installation commands in each language section above

@@ -3,8 +3,8 @@ title: "Agent2Agent (A2A) authentication"
 description: "Learn about ways of adding authentication to the Agent2Agent tool in the Foundry Agent Service."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 02/05/2026
 author: aahill

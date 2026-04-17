@@ -367,6 +367,8 @@ items:
       href: https://go.microsoft.com/fwlink/?linkid=2087185
     - name: Compliance and certification
       href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
+  - name: Known issues and troubleshooting
+    href: reference/known-issues.md
   - name: Support and help options
     href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/document-intelligence/context/context
   - name: Privacy and cookies

@@ -5,7 +5,7 @@ ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
 ms.date: 12/24/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.custom:
   - ignite-2023

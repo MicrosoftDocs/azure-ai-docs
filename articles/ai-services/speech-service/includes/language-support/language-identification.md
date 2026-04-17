@@ -1,7 +1,7 @@
----
+﻿---
 author: PatrickFarley
 ms.service: azure-ai-speech
-ms.date: 8/1/2025
+ms.date: 04/02/2026
 ms.topic: include
 ms.author: pafarley
 ---

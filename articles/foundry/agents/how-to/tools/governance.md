@@ -3,8 +3,8 @@ title: "Govern MCP Tools by Using an AI Gateway"
 description: "Learn how to govern MCP tools by using an AI gateway in Microsoft Foundry. Apply rate limits, IP filters, and routing policies by using Azure API Management."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 02/02/2026
 author: aahill

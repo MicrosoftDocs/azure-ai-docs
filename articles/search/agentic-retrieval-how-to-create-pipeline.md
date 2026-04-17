@@ -1,11 +1,12 @@
 ---
 title: 'Tutorial: Build an Agentic Retrieval Solution'
 description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
-ms.date: 03/11/2026
+ms.date: 04/15/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
   - build-2025
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Build an end-to-end agentic retrieval solution using Azure AI Search
@@ -45,6 +46,9 @@ In this tutorial, you:
 + The latest version of [Python](https://www.python.org/downloads/).
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) extensions.
+
+> [!IMPORTANT]
+> If you've disabled public network access for your search service and use it as an agent tool with a network-isolated Microsoft Foundry resource, you must use the Microsoft Foundry (new) portal, SDK, or CLI to build agents. The Microsoft Foundry (classic) portal doesn't support this scenario. For more information, see [Agent tools with network isolation](/azure/ai-foundry/how-to/configure-private-link#agent-tools-with-network-isolation).
 
 ## Understand the solution
 
@@ -413,7 +417,7 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 [!INCLUDE [foundry-iq-limitation](../foundry/includes/foundry-iq-limitation.md)]
 
-Optionally, if your knowledge base includes a [remote SharePoint knowledge source](agentic-knowledge-source-how-to-sharepoint-remote.md), you must also include the `x-ms-query-source-authorization` header in the MCP tool connection.
+Optionally, if your knowledge base includes a remote SharePoint knowledge source, you must also include the `x-ms-query-source-authorization` header in the MCP tool connection. For more information, see [Enforce permissions at query time](agentic-retrieval-how-to-retrieve.md#enforce-permissions-at-query-time).
 
 ```python
 from azure.search.documents.indexes.models import RemoteSharePointKnowledgeSource, KnowledgeSourceReference
@@ -591,6 +595,8 @@ To optimize performance and reduce latency, consider the following strategies:
 + Use `gpt-4.1-mini` or a smaller model that performs faster.
 
 + Set `maxOutputSize` on the [retrieve action](agentic-retrieval-how-to-retrieve.md) to govern the size of the response or `maxRuntimeInSeconds` for time-bound processing.
+
++ Chunk large documents into smaller pieces before indexing. Documents that exceed the output budget can be [silently omitted from grounded results](agentic-retrieval-how-to-retrieve.md#troubleshoot-empty-responses).
 
 ## Related content
 

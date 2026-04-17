@@ -11,7 +11,7 @@ ms.date: 01/31/2026
 
 - An Azure Speech in Foundry Tools resource in one of the regions where the LLM speech API is available. For the current list of supported regions, see [Speech service regions](../../regions.md?tabs=llmspeech).
   
-- An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](../../batch-transcription-audio-data.md#supported-input-formats-and-codecs).
+- An audio file (less than 5 hours long and less than 500 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](../../batch-transcription-audio-data.md#supported-input-formats-and-codecs).
   
 
 ## Use the LLM speech API
@@ -39,6 +39,10 @@ You can provide audio data in the following ways:
 ```
   --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
 ```
+
+> [!TIP]
+> For long audio files, uploading from a public URL is recommended.
+
 
 In the sections below, inline audio upload is used as an example.
 
@@ -142,6 +146,33 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 
 Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM speech, and can be omitted from the request. Learn more from [configuration options of fast transcription](../../fast-transcription-create.md#request-configuration-options). 
 
+#### Use the mai-transcribe model (Preview)
+
+You can also use the mai-transcribe-1 model provided by Microsoft AI (MAI) with the LLM Speech API. 
+
+For the current list of regions where the mai-transcribe model is supported, see [Speech service regions](../../regions.md?tabs=llmspeech).
+
+The following languages are currently supported for mai-transcribe-1 model:
+ - `Arabic`, `Chinese`, `Czech`, `Danish`, `Dutch`, `English`, `Finnish`, `French`, `German`, `Hindi`, `Hungarian`, `Indonesian`, `Italian`, `Japanese`, `Korean`, `Norwegian Bokmål`, `Polish`, `Portuguese`, `Romanian`, `Russian`, `Spanish`, `Swedish`, `Thai`, `Turkish`, and `Vietnamese`.
+
+
+To use the mai-transcribe-1 model, set the `model` property accordingly in the request.
+```azurecli-interactive
+curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
+--header 'Content-Type: multipart/form-data' \
+--header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
+--form 'audio=@"YourAudioFile.wav"' \
+--form 'definition={
+  "enhancedMode": {
+    "enabled": true,
+    "model":"mai-transcribe-1"
+  }
+}'
+```
+
+There are a few extra limits using the mai-transcribe model:
+- The audio file should be less than 70 MB in size;
+- Diarization isn't supported.
 
 
 #### Sample response

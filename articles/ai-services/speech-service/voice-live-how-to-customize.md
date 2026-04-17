@@ -68,7 +68,7 @@ Example session configuration with custom speech models. In this example when th
 
 > [!NOTE]
 > In order to use a custom speech model with Voice Live API, the model must be available on the same Microsoft Foundry resource you are using to call the Voice Live API. If you trained the model on a different Microsoft Foundry or Azure Speech in Foundry Tools resource you have to copy the model to the resource you are using to call the Voice Live API.
-> You pay separately for custom speech training and model hosting. 
+> You pay separately for custom speech training and model hosting.
 
 ## Speech output customization
 
@@ -122,14 +122,14 @@ Personal voice enables your users to get AI generated replication of their own v
 {
   "voice": {
     "type": "azure-personal",
-    "model": "DragonLatestNeural",  // required, specify the base model for personal voice        
+    "model": "DragonLatestNeural",  // required, specify the base model for personal voice
     "name": "your-personal-voice-name", // the name of the personal voice
     "temperature": 0.8  // optional, value range 0.0-1.0
   }
 }
 ```
 
-The `model` property specifies the base model voice name. Supported base model names include `DragonLatestNeural` and `DragonHDOmniLatestNeural`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). For the full schema, see [RealtimeAzurePersonalVoice](./voice-live-api-reference-2026-01-01-preview.md#realtimeazurepersonalvoice).
+The `model` property specifies the base model voice name. Supported base model names include `DragonLatestNeural`, `DragonHDOmniLatestNeural` and `MAI-Voice-1`. For more information about base model differences, see [Use personal voice in your application](./personal-voice-how-to-use.md). For the full schema, see [RealtimeAzurePersonalVoice](./voice-live-api-reference-2026-01-01-preview.md#realtimeazurepersonalvoice).
 
 ### Azure custom avatar
 
@@ -142,7 +142,7 @@ The configuration for a custom avatar doesn't differ from the configuration of a
 
 > [!NOTE]
 > In order to use a custom voice model with Voice Live API, the model must be available on the same Microsoft Foundry resource you are using to call the Voice Live API. If you trained the model on a different Microsoft Foundry or Azure Speech resource you have to copy the model to the resource you are using to call the Voice Live API.
-> You pay separately for custom avatar training and model hosting. 
+> You pay separately for custom avatar training and model hosting.
 > For more information on supported regions, see [Speech service supported regions](./regions.md?tabs=ttsavatar).
 
 > [!NOTE]

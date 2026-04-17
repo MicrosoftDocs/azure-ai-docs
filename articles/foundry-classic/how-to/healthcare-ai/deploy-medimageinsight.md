@@ -1,8 +1,8 @@
 ---
 title: "Deploy MedImageInsight for Medical Image Embeddings (classic)"
 description: "Deploy MedImageInsight to generate medical image embeddings for X-Ray, CT, MRI, and more. Get step-by-step deployment guidance and API examples. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 01/26/2026
 ms.reviewer: itarapov

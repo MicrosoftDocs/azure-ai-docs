@@ -1,7 +1,7 @@
 ---
 title: "Run AI Red Teaming Agent in the cloud (Microsoft Foundry SDK) (classic)"
 description: "This article provides instructions on how to use the AI Red Teaming Agent to run an automated scan in the cloud of a Generative AI application with the Microsoft Foundry SDK. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - references_regions
@@ -178,5 +178,5 @@ curl --request GET \  --header 'authorization: Bearer {{ai_token}}'  --url https
 ## Related content
 
 - [Example workflow for agent red teaming in the cloud](https://aka.ms/airedteamingagent-sample)
-- [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/red-teams)
+- [REST API Reference Documentation](/rest/api/aifoundry)
 

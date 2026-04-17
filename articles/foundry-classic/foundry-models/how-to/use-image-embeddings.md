@@ -1,8 +1,8 @@
 ---
 title: "How to generate image embeddings with Microsoft Foundry Models service (classic)"
 description: "Learn how to generate image embeddings with Microsoft Foundry Models (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 11/21/2025
 ms.author: mopeakande

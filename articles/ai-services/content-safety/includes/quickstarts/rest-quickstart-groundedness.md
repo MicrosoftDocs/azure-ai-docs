@@ -251,7 +251,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
       "groundingSources": [
         "I'm 21 years old and I need to make a decision about the next two years of my life. Within a week. I currently work for a bank that requires strict sales goals to meet. IF they aren't met three times (three months) you're canned. They pay me 10/hour and it's not unheard of to get a raise in 6ish months. The issue is, **I'm not a salesperson**. That's not my personality. I'm amazing at customer service, I have the most positive customer service \"reports\" done about me in the short time I've worked here. A coworker asked \"do you ask for people to fill these out? you have a ton\". That being said, I have a job opportunity at Chase Bank as a part time teller. What makes this decision so hard is that at my current job, I get 40 hours and Chase could only offer me 20 hours/week. Drive time to my current job is also 21 miles **one way** while Chase is literally 1.8 miles from my house, allowing me to go home for lunch. I do have an apartment and an awesome roommate that I know wont be late on his portion of rent, so paying bills with 20hours a week isn't the issue. It's the spending money and being broke all the time.\n\nI previously worked at Wal-Mart and took home just about 400 dollars every other week. So I know i can survive on this income. I just don't know whether I should go for Chase as I could definitely see myself having a career there. I'm a math major likely going to become an actuary, so Chase could provide excellent opportunities for me **eventually**."
       ],
-      "reasoning": True
+      "reasoning": True,
       "llmResource": {
        "resourceType": "AzureOpenAI",
        "azureOpenAIEndpoint": "<your_OpenAI_endpoint>",
@@ -341,21 +341,21 @@ The JSON objects in the output are defined here:
 | -**`reason`** |  Offers explanations for detected ungroundedness. | String  |
 
 
-## Check groundedness with the correction feature
+## Check groundedness with the mitigating feature
 
-The groundedness detection API includes a correction feature that automatically corrects any detected ungroundedness in the text based on the provided grounding sources. When the correction feature is enabled, the response includes a `"correction Text"` field that presents the corrected text aligned with the grounding sources.
+The groundedness detection API includes a mitigating feature that automatically corrects any detected ungroundedness in the text based on the provided grounding sources. When the mitigating feature is enabled, the response includes a `"correctionText"` field that presents the corrected text aligned with the grounding sources.
 
 ### Connect your own GPT deployment
 
 > [!TIP]
-> Currently, the correction feature supports only **Azure OpenAI GPT-4o (versions 0513, 0806)** resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your Azure OpenAI GPT-4o (versions 0513, 0806) in the same region as your Azure AI Content Safety resources. For more details on data privacy, refer to the [Data, privacy and security guidelines for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/data-privacy)
+> Currently, the mitigating feature supports only **Azure OpenAI GPT-4o (versions 0513, 0806)** resources. To minimize latency and adhere to data privacy guidelines, it's recommended to deploy your Azure OpenAI GPT-4o (versions 0513, 0806) in the same region as your Azure AI Content Safety resources. For more details on data privacy, refer to the [Data, privacy and security guidelines for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/data-privacy)
  and [Data, privacy, and security for Azure AI Content Safety](/azure/ai-foundry/responsible-ai/content-safety/data-privacy).
 
-To use your Azure OpenAI GPT-4o (versions 0513, 0806) resource for enabling the correction feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource. Follow the steps in the [earlier section](#connect-your-own-gpt-deployment) to set up the Managed Identity.
+To use your Azure OpenAI GPT-4o (versions 0513, 0806) resource for enabling the mitigating feature, use Managed Identity to allow your Content Safety resource to access the Azure OpenAI resource. Follow the steps in the [earlier section](#connect-your-own-gpt-deployment) to set up the Managed Identity.
 
 
 ### Make the API request
-In your request to the groundedness detection API, set the `"correction"` body parameter to `true`, and provide the other necessary parameters:
+In your request to the groundedness detection API, set the `"mitigating"` body parameter to `true`, and provide the other necessary parameters:
 
 ```json
 {
@@ -365,7 +365,7 @@ In your request to the groundedness detection API, set the `"correction"` body p
   "groundingSources": [
     "The patient name is Jane."
   ],
-  "correction": true,
+  "mitigating": true,
   "llmResource": {
     "resourceType": "AzureOpenAI",
     "azureOpenAIEndpoint": "<your_OpenAI_endpoint>",
@@ -392,7 +392,7 @@ curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness
   "groundingSources": [
     "The patient name is Jane."
   ],
-  "correction": true,
+  "mitigating": true,
   "llmResource": {
         "resourceType": "AzureOpenAI",
         "azureOpenAIEndpoint": "<your_OpenAI_endpoint>",
@@ -404,6 +404,8 @@ curl --location --request POST '<endpoint>/contentsafety/text:detectGroundedness
 
 Create a Python script named quickstart.py and include the following code. Update the endpoint URL and key as appropriate:
 ```Python
+import http.client
+import json
 
 conn = http.client.HTTPSConnection("<endpoint>/contentsafety/text:detectGroundedness?api-version=2024-09-15-preview")
 payload = json.dumps({
@@ -413,7 +415,7 @@ payload = json.dumps({
   "groundingSources": [
     "The patient name is Jane."
   ],
-  "correction": True,
+  "mitigating": True,
   "llmResource": {
    "resourceType": "AzureOpenAI",
    "azureOpenAIEndpoint": "<your_OpenAI_endpoint>",
@@ -443,17 +445,17 @@ The parameters in the request body are defined in this table:
 | - `query`       | (Optional) This represents the question in a QnA task. Character limit: 7,500. | String  |
 | **text**   | (Required) The LLM output text to be checked. Character limit: 7,500. |  String  |
 | **groundingSources**  | (Required) Uses an array of grounding sources to validate AI-generated text. See [Input requirements](../../overview.md#input-requirements) for limits. | String Array    |
-| **correction**  | (Optional) Set to `true`, the service uses Azure OpenAI resources to provide the corrected text, ensuring consistency with the grounding sources. Be careful: using correction increases the processing time and incurs extra fees.| Boolean   |
-| **llmResource**  | (Required) If you want to use your own Azure OpenAI GPT-4o (versions 0513, 0806) resource to enable reasoning, add this field and include the subfields for the resources used. | String   |
+| **mitigating**  | (Optional) Set to `true`, the service uses Azure OpenAI resources to provide the corrected text, ensuring consistency with the grounding sources. Be careful: using mitigating increases the processing time and incurs extra fees.| Boolean   |
+| **llmResource**  | (Required) If you want to use your own Azure OpenAI GPT-4o (versions 0513, 0806) resource to enable the mitigating feature, add this field and include the subfields for the resources used. | String   |
 | - `resourceType `| Specifies the type of resource being used. Currently it only allows `AzureOpenAI`. We only support Azure OpenAI GPT-4o (versions 0513, 0806) resources and do not support other models. | Enum|
 | - `azureOpenAIEndpoint `| Your endpoint URL for Azure OpenAI service.  | String |
 | - `azureOpenAIDeploymentName` | The name of the specific model deployment to use. | String|
 
 ### Interpret the API response
 
-The response includes a `"correction Text"` field containing the corrected text, ensuring consistency with the provided grounding sources.
+The response includes a `"correctionText"` field containing the corrected text, ensuring consistency with the provided grounding sources.
 
-The correction feature detects that `Kevin` is ungrounded because it conflicts with the grounding source `Jane`. The API returns the corrected text: `"The patient name is Jane."`
+The mitigating feature detects that `Kevin` is ungrounded because it conflicts with the grounding source `Jane`. The API returns the corrected text: `"The patient name is Jane."`
 
 ```json
 {
@@ -464,7 +466,7 @@ The correction feature detects that `Kevin` is ungrounded because it conflicts w
       "text": "The patient name is Kevin"
     }
   ],
-  "correction Text": "The patient name is Jane"
+  "correctionText": "The patient name is Jane"
 }
 ```
 
@@ -484,7 +486,7 @@ The JSON objects in the output are defined here:
 | - `length > utf8`       | The length of the ungrounded text in UTF-8 encoding.      | Integer   |
 | - `length > utf16`      | The length of the ungrounded text in UTF-16 encoding.       | Integer |
 | - `length > codePoint`  | The length of the ungrounded text in terms of Unicode code points. |Integer    |
-| -**`correction Text`** |	The corrected text, ensuring consistency with the grounding sources.|String|
+| -**`correctionText`** |	The corrected text, ensuring consistency with the grounding sources.|String|
 
 
 ## Clean up resources

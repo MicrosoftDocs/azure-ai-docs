@@ -1,8 +1,8 @@
 ---
 title: "Python tool for flows in Microsoft Foundry portal (classic)"
 description: "This article introduces you to the Python tool for flows in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom: 
   - ignite-2023
   - devx-track-python

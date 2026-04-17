@@ -3,8 +3,8 @@ title: "System message design for Azure OpenAI (classic)"
 description: "Learn how system messages shape Azure OpenAI chat responses, with best practices for control, safety, and consistency. (classic)"
 author: mrbullwinkle
 ms.author: mbullwin 
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article 
 ms.date: 01/20/2026
 manager: nitinme

@@ -7,10 +7,12 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 11/16/2023
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Disclosure design patterns for text to speech avatar
+
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 ## Overview
@@ -149,7 +151,7 @@ For example, when asked a question that hard to be answered by AI, the avatar ca
 - [Microsoft Windows UWP Speech Design Guidelines](/windows/uwp/design/input/speech-interactions)
 - [Microsoft Windows Mixed Reality Voice Commanding Guidelines](/windows/mixed-reality/voice-design#top-things-users-should-know-about-speech-in-mixed-reality)
 
-## See also
+## Related content
 
 * [Disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent)
 * [Guidelines for responsible deployment of synthetic voice technology](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)

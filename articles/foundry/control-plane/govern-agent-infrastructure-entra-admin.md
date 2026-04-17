@@ -2,7 +2,7 @@
 title: Govern agent infrastructure as a Microsoft Entra global administrator
 description: Learn how to elevate access, assign the right roles, and take infrastructure-level actions on Foundry agents as a Microsoft Entra global administrator.
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.date: 02/27/2026
 ms.author: mahender
 author: mattchenderson

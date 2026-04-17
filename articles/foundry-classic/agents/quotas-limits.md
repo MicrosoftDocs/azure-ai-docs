@@ -4,8 +4,8 @@ description: "Learn the quotas and limits for Foundry Agent Service, including f
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 02/02/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026

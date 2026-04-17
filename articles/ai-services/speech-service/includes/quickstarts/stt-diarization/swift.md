@@ -8,4 +8,6 @@ ms.author: pafarley
 
 [!INCLUDE [Header](../../common/swift.md)]
 
+## Availability
+
 The Speech SDK for Swift does support conversation transcription, but we haven't yet included a guide here. Please select another programming language to get started and learn about the concepts, or see the Swift reference and samples linked from the beginning of this article. 

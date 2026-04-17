@@ -1,6 +1,6 @@
 ---
 title: "What is Microsoft Foundry Control Plane?"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.date: 02/19/2026
 ms.reviewer: mesameki
@@ -141,6 +141,10 @@ Use the **Quota** pane to view, adjust, and request quotas.
 :::image type="content" source="media/overview/quota-view.png" alt-text="Screenshot of the Quota pane that shows model deployments, their quota usage, and usage patterns with options to adjust or request additional quotas." lightbox="media/overview/quota-view.png":::
 
 The **Quota** pane shows your model deployments and how much quota each deployment consumes. It gives insights into usage patterns and helps you manage resources effectively.
+
+By default, the quota view displays only models with active deployments. Turn on the **Show all** toggle to see the full list of available models and regions, including models you haven't deployed yet. Use **Show all** to explore available quota before you create a deployment, or to check which regions have capacity for a specific model.
+
+For more information, see [Manage and increase quotas for resources](../how-to/quota.md).
 
 ### Admin
 

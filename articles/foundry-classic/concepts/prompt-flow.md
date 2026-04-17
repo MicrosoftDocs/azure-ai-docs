@@ -1,8 +1,8 @@
 ---
 title: "Prompt flow in Microsoft Foundry portal (classic)"
 description: "This article introduces prompt flow in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024

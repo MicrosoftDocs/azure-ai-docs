@@ -3,7 +3,7 @@
 title: "How to configure network isolation for Microsoft Foundry"
 description: "Learn how to configure a network isolation end-to-end for Microsoft Foundry. A private link is used to secure communication with the Microsoft Foundry."
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023, devx-track-azurecli, build-2024, ignite-2024, dev-focus
   - classic-and-new
@@ -269,6 +269,9 @@ To secure egress (outbound) traffic through network injection, configure an Azur
 Additionally, you can use a hub-and-spoke networking architecture where a virtual network is created for a shared firewall (the hub) and a separate virtual network for Foundry networking (a spoke). These virtual networks are then peered together. 
 
 :::image type="content" source="../media/how-to/network/network-hub-spoke-diagram.png" alt-text="Diagram of the firewall configuration for egress traffic from Foundry projects and agents." lightbox="../media/how-to/network/network-hub-spoke-diagram.png":::
+
+> [!NOTE]
+> The preceding diagram reflects a hub-and-spoke architecture with a centralized firewall. If you use a standalone Foundry project without a hub-based topology, your network layout will differ. Adapt the firewall and peering configuration to match your specific virtual network design.
 
 ## Limitations and considerations
 

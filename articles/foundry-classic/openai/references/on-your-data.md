@@ -2,8 +2,8 @@
 title: "Azure OpenAI On Your Data Python & REST API reference (classic)"
 description: "Learn how to use Azure OpenAI On Your Data Python & REST API. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: reference
 ms.date: 02/06/2026
 author: aahill

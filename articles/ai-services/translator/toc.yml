@@ -346,8 +346,7 @@ items:
       href: neural-dictionary.md
   - name: Custom Translator portal concepts
     items:
-    - name: Custom text-translation/preview/get-languages.md
-      displayName: speech
+    - name: Custom text translation   
       href: custom-translator/concepts/customization.md
     - name: Workspaces and projects
       href: custom-translator/concepts/workspace-and-project.md
@@ -422,7 +421,7 @@ items:
   - name: Modifications to Azure Translator
     displayName: deprecation, deprecate, changes, modify, modifications
     href: modifications-deprecations.md
-  - name: Azure Translator known issues
+  - name: Azure Translator known issues and troubleshooting
     displayName: error, bug, issue, problem, troubleshoot, troubleshooting
     href: text-translation/reference/known-issues.md
   - name: Azure Translator compliance and certification

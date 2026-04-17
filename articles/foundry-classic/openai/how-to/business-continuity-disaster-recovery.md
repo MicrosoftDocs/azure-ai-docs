@@ -2,8 +2,8 @@
 title: "Business Continuity and Disaster Recovery (BCDR) with Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "Considerations for implementing Business Continuity and Disaster Recovery (BCDR) with Azure OpenAI (classic)" 
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 12/6/2025
 author: mrbullwinkle    

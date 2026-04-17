@@ -4,10 +4,10 @@ titleSuffix: Microsoft Foundry
 description: Build custom agent tools with Azure Functions using queue-based integration. Step-by-step guide with code examples for Foundry agents.
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/23/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents, doc-kit-assisted
@@ -29,11 +29,11 @@ Functions offer several hosting plans. The [Flex Consumption plan](/azure/azure-
 
 ## Usage support
 
-✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | - | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | - | ✔️ |
 
 ## Prerequisites
 
@@ -121,7 +121,7 @@ tool = AzureFunctionTool(
 agent = project.agents.create_version(
     agent_name="azure-function-agent-get-weather",
     definition=PromptAgentDefinition(
-        model="gpt-5-mini",
+        model="gpt-5.1",
         instructions="You are a helpful support agent. Answer the user's questions to the best of your ability.",
         tools=[tool],
     ),
@@ -218,8 +218,8 @@ For the full sample, see [Azure Functions weather sample](https://github.com/Azu
 Install the Azure AI Projects client libraries:
 
 ```dotnetcli
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.AI.Extensions.OpenAI --prerelease
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
 
@@ -276,14 +276,14 @@ AzureFunctionTool azureFnTool = new(
     )
 );
 
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful support agent. Answer the user's questions "
         + "to the best of your ability.",
     Tools = { azureFnTool },
 };
 
-AgentVersion agentVersion = await projectClient.Agents.CreateAgentVersionAsync(
+AgentVersion agentVersion = await projectClient.AgentAdministrationClient.CreateAgentVersionAsync(
     agentName: "azure-function-agent-get-weather",
     options: new(agentDefinition));
 Console.WriteLine($"Agent created (id: {agentVersion.Id}, name: {agentVersion.Name}, "
@@ -294,7 +294,7 @@ Console.WriteLine($"Agent created (id: {agentVersion.Id}, name: {agentVersion.Na
 
 ```csharp
 ProjectResponsesClient responseClient =
-    projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+    projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 CreateResponseOptions responseOptions = new()
 {
@@ -311,7 +311,7 @@ Console.WriteLine(response.GetOutputText());
 ### Clean up
 
 ```csharp
-await projectClient.Agents.DeleteAgentVersionAsync(
+await projectClient.AgentAdministrationClient.DeleteAgentVersionAsync(
     agentName: agentVersion.Name,
     agentVersion: agentVersion.Version);
 Console.WriteLine("Agent deleted");
@@ -392,7 +392,7 @@ Add the Azure AI Agents dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 <dependency>
     <groupId>com.azure</groupId>
@@ -445,7 +445,7 @@ AzureFunctionTool azureFnTool = new AzureFunctionTool(
     )
 );
 
-PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5-mini")
+PromptAgentDefinition agentDefinition = new PromptAgentDefinition("gpt-5.1")
     .setInstructions("You are a helpful support agent. Answer the user's "
         + "questions to the best of your ability.")
     .setTools(Collections.singletonList(azureFnTool));
@@ -570,7 +570,7 @@ const agent = await project.agents.createVersion(
   "azure-function-agent-get-weather",
   {
     kind: "prompt",
-    model: "gpt-5-mini",
+    model: "gpt-5.1",
     instructions:
       "You are a helpful support agent. Answer the user's questions to the best of your ability.",
     tools: [
@@ -713,7 +713,7 @@ curl --request POST \
     "description": "Agent with Azure Function tool",
     "definition": {
       "kind": "prompt",
-      "model": "gpt-5-mini",
+      "model": "gpt-5.1",
       "instructions": "You are a helpful support agent. Answer the user's questions to the best of your ability.",
       "tools": [
         { 

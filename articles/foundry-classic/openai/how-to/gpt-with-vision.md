@@ -4,8 +4,8 @@ description: "Learn how to use vision-enabled chat models in Azure OpenAI, inclu
 author: PatrickFarley #dereklegenzoff
 ms.author: pafarley #delegenz
 #customer intent: As a developer, I want to learn how to use vision-enabled chat models so that I can integrate image processing capabilities into my applications.
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 01/29/2026
 manager: nitinme

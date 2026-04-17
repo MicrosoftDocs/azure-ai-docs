@@ -2,13 +2,13 @@
 title: "How to get started with an AI template (classic)"
 description: "Find, explore, and deploy AI solution templates from the Foundry portal to accelerate your development. (classic)"
 keywords: ai templates, solution accelerators, foundry templates, code samples
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - dev-focus
   - ignite-2024
 ms.topic: how-to
-ms.date: 01/05/2026
+ms.date: 04/08/2026
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
@@ -59,7 +59,7 @@ Available templates include:
 1. Open your project.
 1. On the left pane, select **Templates**.
 1. Find the solution template you want to use.
-1. Select **Open in Github** to view the entire sample application.
+1. Select **Open in GitHub** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
 
 [!INCLUDE [ai-template-get-started 1](../../../foundry/includes/how-to-develop-ai-template-get-started-1.md)]

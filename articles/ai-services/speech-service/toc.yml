@@ -89,6 +89,8 @@ items:
       items:
       - name: How to recognize speech
         href: how-to-recognize-speech.md
+      - name: How to use post-processing
+        href: how-to-post-processing.md
       - name: Get speech recognition results
         href: get-speech-recognition-results.md
       - name: Language identification
@@ -289,6 +291,9 @@ items:
     - name: OpenAI text to speech voices
       href: openai-voices.md
       displayName: tts
+    - name: MAI-Voice
+      displayName: mai voice, neural voice
+      href: mai-voices.md
     - name: Text to speech FAQ
       displayName: FAQ,TTS,frequently asked questions
       href: faq-tts.yml
@@ -312,6 +317,8 @@ items:
   items:
     - name: Use LLM speech
       href: llm-speech.md
+    - name: Use MAI-Transcribe-1
+      href: mai-transcribe.md
     - name: Reference
       items:
       - name: LLM speech REST API reference
@@ -361,6 +368,8 @@ items:
         href: how-to-voice-live-auto-truncation.md
       - name: Improve tool calling and latency wait times (preview)
         href: how-to-voice-live-interim-response.md
+      - name: Add an MCP server (preview)
+        href: how-to-voice-live-mcp-server.md
       - name: Voice Live telephony integration
         href: voice-live-telephony.md
     - name: Voice Live FAQ
@@ -496,6 +505,8 @@ items:
           href: audio-processing-overview.md
         - name: Use the Microsoft Audio Stack (MAS)
           href: audio-processing-speech-sdk.md
+        - name: Model-based acoustic echo cancellation
+          href: audio-processing-model-based-echo-cancellation.md
         - name: Microphone array recommendations
           href: speech-sdk-microphone.md
     - name: Embedded speech

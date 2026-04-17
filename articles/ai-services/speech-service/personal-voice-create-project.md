@@ -33,7 +33,7 @@ Make an HTTP PUT request using the URI as shown in the following [Projects_Creat
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourResourceKey" -H "Content-Type: application/json" -d '{
   "description": "Project description",
   "kind": "PersonalVoice"
-} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/projects/ProjectId?api-version=2024-02-01-preview"
+} '  "https://YourResourceRegion.api.cognitive.microsoft.com/customvoice/projects/ProjectId?api-version=2026-01-01"
 ```
 
 You should receive a response body in the following format:

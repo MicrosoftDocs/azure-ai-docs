@@ -10,4 +10,5 @@ ms.author: nitinme
 ---
 
 > [!IMPORTANT]
-> Starting on the 20th of September, 2023 you won’t be able to create new Anomaly Detector resources. The Anomaly Detector service is being retired on the 1st of October, 2026.
+> Starting 20 September 2023 you won’t be able to create new Anomaly Detector resources. The Anomaly Detector service is being retired 1 October 2026.
+> We recommend migrating to [Microsoft Fabric](/fabric/real-time-intelligence/anomaly-detection), which integrates the open-source [microsoft/anomaly-detector](https://github.com/microsoft/anomaly-detector), or to the open-source anomaly-detector project directly.

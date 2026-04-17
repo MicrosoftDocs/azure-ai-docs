@@ -3,10 +3,10 @@ title: "Connect to MCP Server Endpoints for agents"
 description: "Connect your Foundry agents to Model Context Protocol (MCP) servers using the MCP tool. Extend capabilities with external tools and data."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 03/30/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -31,11 +31,11 @@ For conceptual details about how MCP integration works, see [How it works](#how-
 
 ### Usage support
 
-The following table shows SDK and setup support for MCP connections. ✔️ (GA) indicates general availability, ✔️ (Preview) indicates public preview, and a dash (-) indicates the feature isn't available.
+The following table shows SDK and setup support for MCP connections. The following table shows SDK and setup support.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ✔️ | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ (Preview) | ✔️ (GA) | ✔️ | ✔️ |
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ Before you begin, ensure you have:
 
 - An Azure subscription with an active Microsoft Foundry project.
 - Azure role-based access control (RBAC): Contributor or Owner role on the Foundry project.
-- The latest SDK package for your language. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
+- The latest SDK package for your language. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Access to a remote MCP server endpoint (such as GitHub's MCP server at `https://api.githubcopilot.com/mcp`).
 
@@ -99,7 +99,7 @@ When you use MCP servers, follow these practices:
 
 ## Create an agent in Python with the MCP tool
 
-Use the following code sample to create an agent and call the function. The .NET and Java SDKs are currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
+Use the following code sample to create an agent and call the function. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for details.
 
 :::zone pivot="python"
 
@@ -227,7 +227,7 @@ AIProjectClient projectClient = new(
 // Create Agent with the `MCPTool`. Note that in this scenario 
 // GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval is used,
 // which means that any calls to the MCP server must be approved.
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
     Tools = { ResponseTool.CreateMcpTool(
@@ -236,7 +236,7 @@ PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
         toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval
     )) }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
@@ -246,7 +246,7 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 // the server label is "api-specs" and approves the tool call.
 // All other calls are denied because they should not occur for
 // the current configuration.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 CreateResponseOptions nextResponseOptions = new([ResponseItem.CreateUserMessageItem("Please summarize the Azure REST API specifications README")]);
 ResponseResult latestResponse = null;
@@ -284,7 +284,7 @@ while (nextResponseOptions is not null)
 Console.WriteLine(latestResponse.GetOutputText());
 
 // Clean up resources by deleting the agent version.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output
@@ -345,12 +345,12 @@ McpTool tool = ResponseTool.CreateMcpTool(
         toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval
     ));
 tool.ProjectConnectionId = mcpConnectionName;
-PromptAgentDefinition agentDefinition = new(model: "gpt-5-mini")
+DeclarativeAgentDefinition agentDefinition = new(model: "gpt-5-mini")
 {
     Instructions = "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
     Tools = { tool }
 };
-AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
+AgentVersion agentVersion = projectClient.AgentAdministrationClient.CreateAgentVersion(
     agentName: "myAgent",
     options: new(agentDefinition));
 
@@ -360,7 +360,7 @@ AgentVersion agentVersion = projectClient.Agents.CreateAgentVersion(
 // the server label is "api-specs" and approves the tool call,
 // All other calls are denied because they shouldn't happen given
 // the current configuration.
-ProjectResponsesClient responseClient = projectClient.OpenAI.GetProjectResponsesClientForAgent(agentVersion.Name);
+ProjectResponsesClient responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForAgent(agentVersion.Name);
 
 CreateResponseOptions nextResponseOptions = new([ResponseItem.CreateUserMessageItem("What is my username in my GitHub profile?")]);
 ResponseResult latestResponse = null;
@@ -398,7 +398,7 @@ while (nextResponseOptions is not null)
 Console.WriteLine(latestResponse.GetOutputText());
 
 // Clean up resources by deleting the agent version.
-projectClient.Agents.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
+projectClient.AgentAdministrationClient.DeleteAgentVersion(agentName: agentVersion.Name, agentVersion: agentVersion.Version);
 ```
 
 ### Expected output
@@ -731,7 +731,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-agents</artifactId>
-    <version>2.0.0-beta.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -948,7 +948,6 @@ This catalog-based setup creates the MCP tool for use by agents without requirin
 ## Known limitations
 
 - **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
-- **Identity passthrough not supported in Teams**: MCP tools that use OAuth identity passthrough don't work when the agent is published to Microsoft Teams. Agents published to Teams use project managed identity for authentication, which isn't compatible with identity passthrough (On-Behalf-Of).
 - **Private MCP requires Standard Agent Setup**: Private MCP server connectivity is only available with [Standard Agent Setup with private networking](../virtual-networks.md) (BYO VNet). Basic agent setup doesn't support private MCP endpoints.
 - **Private MCP hosting**: Azure Container Apps on a dedicated MCP subnet is the tested configuration for private MCP servers. Function Apps or App Services as the private MCP server host might work but haven't been internally validated.
 

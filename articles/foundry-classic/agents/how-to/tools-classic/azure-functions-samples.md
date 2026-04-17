@@ -3,8 +3,8 @@ title: "How to use Azure Functions with Azure Storage Queues (classic)"
 description: "Learn how to use Azure Functions with Azure Storage Queues to extend Azure AI Agents with custom tools. (classic)"
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
 author: alvinashcraft
@@ -171,7 +171,7 @@ project_client.agents.delete_agent(agent.id)
 print(f"Deleted agent")
 ```
 
-For any issues with the Python code, create an issue on the [sample code repository](https://github.com/azure-ai-foundry/foundry-samples)
+For any issues with the Python code, create an issue on the [sample code repository](https://github.com/microsoft-foundry/foundry-samples)
 
 ::: zone-end
 

@@ -1,6 +1,6 @@
 { 
     "$schema": "https://whatsnewapi.azurewebsites.net/schema",
-    "docSetProductName": "Azure AI Services",
+    "docSetProductName": "Microsoft Foundry",
     "rootDirectory": "articles/",
     "docLinkSettings": {
         "linkFormat": "relative",
@@ -11,25 +11,24 @@
         "tocParentNode": "Latest documentation updates",
         "repoTocFolder": "articles/whats-new",
         "indexParentNode": "Latest documentation updates",
-        "repoIndexFolder": "articles/whats-new"
+        "repoIndexFolder": "articles"
     },
     "areas": [
         {
-            "names": [ "ai-services" ],
-            "heading": "Azure AI Services"
+            "names": [ "foundry" ],
+            "heading": "Microsoft Foundry"
         },
         {
-            "names": [ "ai-foundry" ],
-            "heading": "Azure Foundry"
+            "names": [ "foundry-classic" ],
+            "heading": "Microsoft Foundry Classic"
         },
         {
             "names": [ "machine-learning" ],
-            "heading": "Machine Learning"
+            "heading": "Azure Machine Learning"
         },
         {
-            "names": [ "search" ],
-            "heading": "Azure AI Search"
-    
+            "names": [ "foundry-local" ],
+            "heading": "Foundry Local"
         }
     ]
 }

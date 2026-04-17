@@ -5,7 +5,7 @@ description: "Configure customer-managed storage for Speech and Language capabil
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: andyaviles
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2024, build-2025, dev-focus
   - classic-and-new

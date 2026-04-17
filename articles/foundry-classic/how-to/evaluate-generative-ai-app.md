@@ -2,7 +2,7 @@
 title: "Evaluate Generative AI Models and Apps with Microsoft Foundry (classic)"
 description: "Evaluate your generative AI models and applications by using Microsoft Foundry. (classic)"
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new

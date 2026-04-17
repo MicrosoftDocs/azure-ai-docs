@@ -78,5 +78,11 @@ items:
      href: ../../observability/concepts/trace-agent-concept.md
    - name: Set up tracing
      href: ../../observability/how-to/trace-agent-setup.md
+   - name: Add client-side tracing
+     href: ../../observability/how-to/trace-agent-client-side.md
    - name: Tracing integrations
      href: ../../observability/how-to/trace-agent-framework.md
+
+# Troubleshooting
+- name: Troubleshoot evaluation and observability issues
+  href: ../../observability/how-to/troubleshooting.md

@@ -3,8 +3,8 @@ title: "Use Foundry Agent Service with OpenAPI Tools (classic)"
 description: "Learn how to configure Azure AI Agents with OpenAPI tools for API integration. Connect external APIs with authentication options including managed identity and API keys. (classic)"
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
 author: alvinashcraft

@@ -323,7 +323,7 @@ After you create new keys via portal or management layer, access is restored to 
 
 ## Migrate from keys to roles
 
-If you want to transition to role-based access, it's helpful to understand how keys map to [built-in roles in Azure AI Search](search-security-rbac.md#built-in-roles-used-in-search):
+If you want to transition to role-based access, it's helpful to understand how keys map to [built-in roles in Azure AI Search](search-security-rbac.md#built-in-roles):
 
 + An admin key corresponds to the **Search Service Contributor** and **Search Index Data Contributor** roles.
 + A query key corresponds to the **Search Index Data Reader** role.

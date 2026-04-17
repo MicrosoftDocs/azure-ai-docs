@@ -1,7 +1,7 @@
 ---
 title: "Monitor your Generative AI Applications (classic)"
 description: "This article provides instructions on how to continuously monitor Generative AI Applications. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 01/30/2026
 ms.reviewer: amibp

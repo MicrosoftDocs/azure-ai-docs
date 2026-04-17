@@ -1,8 +1,8 @@
 ---
 title: "Tutorial: Get started with DeepSeek-R1 in Foundry Models"
 description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning."
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: tutorial
 ms.date: 02/17/2026
 ms.author: mopeakande
@@ -47,7 +47,7 @@ Use the Foundry Models endpoint and credentials to connect to the model.
 1. Select the **Details** pane from the upper pane of the Playgrounds to see the deployment's details. Here, you can find the deployment's URI and API key. 
 1. Get your resource name from the deployment's URI to use for inferencing the model via code. 
 
-Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet).
+Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme).
 
 The following code examples demonstrate how to:
 1. Authenticate with Microsoft Entra ID using `DefaultAzureCredential`, which automatically attempts multiple authentication methods (environment variables, managed identity, Azure CLI, and others). The exact order depends on the Azure Identity SDK version you're using.

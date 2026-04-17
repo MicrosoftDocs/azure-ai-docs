@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/10/2021
+ms.date: 04/01/2026
 ---
 
 # Transparency note for Named Entity Recognition including Personally Identifiable Information (PII)

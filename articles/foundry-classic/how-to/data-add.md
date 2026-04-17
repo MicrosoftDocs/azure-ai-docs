@@ -2,7 +2,7 @@
 title: "How to add and manage data in your Microsoft Foundry hub-based project (classic)"
 description: "Learn how to add and manage data in your Microsoft Foundry hub-based project. (classic)"
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023
   - build-2024

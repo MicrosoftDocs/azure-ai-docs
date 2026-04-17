@@ -1,8 +1,8 @@
 ---
 title: "Overview of prompt flow tools in Microsoft Foundry portal (classic)"
 description: "Learn about prompt flow tools that are available in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom:
   - build-2024
   - hub-only

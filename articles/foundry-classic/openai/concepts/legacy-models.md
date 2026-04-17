@@ -1,8 +1,8 @@
 ---
 title: "Retired Azure OpenAI models in Microsoft Foundry (classic)"
 description: "Learn about retired Azure OpenAI models in Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 02/12/2026
 ms.custom:

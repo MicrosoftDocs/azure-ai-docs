@@ -1,6 +1,6 @@
 ---
 title: "Foundry Agent Service platform outage recovery"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.reviewer: ckittel
 description: "Recover Foundry Agent Service projects from Azure platform and regional outages with warm standby, failover, and failback procedures."
 #customer intent: As a developer, I want to understand how to recreate projects in a standby region so that I can restore critical functionality during a regional outage.

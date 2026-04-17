@@ -6,7 +6,7 @@ ms.reviewer: deeikele
 author: sdgilley
 ms.author: sgilley
 ms.date: 01/23/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ai-usage: ai-assisted
 ms.custom:

@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 04/09/2022
+ms.date: 04/01/2026
 ---
 
 # Characteristics and limitations for Summarization

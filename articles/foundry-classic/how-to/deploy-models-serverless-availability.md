@@ -1,8 +1,8 @@
 ---
 title: "Region availability for models in serverless APIs (classic)"
 description: "Learn about the regions where each model is available for deployment in serverless APIs via Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 11/24/2025
 author: ssalgadodev

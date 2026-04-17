@@ -1,7 +1,7 @@
 ---
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 10/15/2025
 ms.author: mopeakande

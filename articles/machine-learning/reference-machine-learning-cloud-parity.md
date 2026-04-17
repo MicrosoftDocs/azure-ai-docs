@@ -24,12 +24,6 @@ In the list of global Azure regions, there are several regions that serve specif
 * Azure Government regions **US-Arizona** and **US-Virginia**.
 * Azure operated by 21Vianet region **China-East-2**.
 
-Azure Machine Learning is still in development in air-gap Regions. 
-
-For the Italy North Region, Application Insights isn't available until 12/12/2023 without allowlist. This will affect the following service until then - Job schedule  - Feature store  - Model monitor - Data import
-
-
-
 The information in the rest of this document provides information on what features of Azure Machine Learning are available in these regions, along with region-specific information on using these features.
 ## Azure Government    
 
@@ -190,28 +184,7 @@ The information in the rest of this document provides information on what featur
 
 
 ### Azure OpenAI Models in Model Catalog in USGOV Virginia and Arizona 
-| Model Name | Azure OpenAI Deployment | MaaP Inference  | Batch Enabled | MaaS (serverless Compute Inferencing)|
-|----------------------------------------------------------------------------|:----------------------:|:--------------------:|:-------------:|:-------------:|
-|gpt-35-turbo|    aoai-deployment    
-|gpt-4    |aoai-deployment    
-|OpenAI GPT-4o mini    |aoai-deployment    
-|OpenAI GPT-4o    |aoai-deployment    
-|OpenAI Text Embedding 3 (large)    |aoai-deployment    
-|OpenAI-CLIP-Image-Text-Embeddings-vit-base-patch32    ||maap-inference    |batch-enabled
-|OpenAI-CLIP-Image-Text-Embeddings-ViT-Large-Patch14-336    ||maap-inference    |batch-enabled
-|openai-clip-vit-base-patch32|    |maap-inference|    batch-enabled
-|openai-clip-vit-large-patch14||    maap-inference| batch-enabled
-|openai-whisper-large||    maap-inference|    batch-enabled
-|openai-whisper-large-v3    ||maap-inference|    batch-enabled
-|text-embedding-ada-002    |aoai-deployment
-|gpt2    ||maap-inference    |batch-enabled
-|gpt2-large||    maap-inference    |batch-enabled
-|gpt2-medium    || maap-inference|    batch-enabled
-
-
-
-
-
+To learn more about attributes of Azure OpenAI and all Foundry Models sold directly by Azure in Azure Government, see [Models Sold Directly by Azure in Azure Government](../foundry/foundry-models/concepts/models-sold-directly-by-azure-gov.md).
 
 ### Azure Machine Learning Features
 

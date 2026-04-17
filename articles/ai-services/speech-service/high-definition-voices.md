@@ -70,36 +70,47 @@ For example, for the persona `en-US-Ava` you can specify:
 
 The following table lists the available DragonHD voices:
 
-| Voice Name                                 | Gender | Status  | Note                                  |
-|-------------------------------------------|--------|---------|---------------------------------------|
-| de-DE-Florian:DragonHDLatestNeural        | Male   | GA      |                                       |
-| de-DE-Seraphina:DragonHDLatestNeural      | Female | GA      |                                       |
-| en-US-Adam:DragonHDLatestNeural           | Male   | GA      |                                       |
-| en-US-Alloy:DragonHDLatestNeural          | Male   | GA |                                       |
-| en-US-Andrew:DragonHDLatestNeural         | Male   | GA      |                                       |
-| en-US-Andrew2:DragonHDLatestNeural        | Male   | GA      | Optimized for conversational content  |
-| en-US-Andrew3:DragonHDLatestNeural        | Male   | Preview | Optimized for podcast content         |
-| en-US-Aria:DragonHDLatestNeural           | Female | GA |                                       |
-| en-US-Ava:DragonHDLatestNeural            | Female | GA      |                                       |
-| en-US-Ava3:DragonHDLatestNeural           | Female | Preview | Optimized for podcast content         |
-| en-US-Brian:DragonHDLatestNeural          | Male   | GA      |                                       |
-| en-US-Davis:DragonHDLatestNeural          | Male   | GA      |                                       |
-| en-US-Emma:DragonHDLatestNeural           | Female | GA      |                                       |
-| en-US-Emma2:DragonHDLatestNeural          | Female | GA      | Optimized for conversational content  |
-| en-US-Jenny:DragonHDLatestNeural          | Female | GA |                                       |
-| en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural | Male | Preview |                                       |
-| en-US-Nova:DragonHDLatestNeural           | Female | GA |                                       |
-| en-US-Phoebe:DragonHDLatestNeural         | Female | GA |                                       |
-| en-US-Serena:DragonHDLatestNeural         | Female | GA |                                       |
-| en-US-Steffan:DragonHDLatestNeural        | Male   | GA      |                                       |
-| es-ES-Tristan:DragonHDLatestNeural        | Male   | GA      |                                       |
-| es-ES-Ximena:DragonHDLatestNeural         | Female | GA      |                                       |
-| fr-FR-Remy:DragonHDLatestNeural           | Male   | GA      |                                       |
-| fr-FR-Vivienne:DragonHDLatestNeural       | Female | GA      |                                       |
-| ja-JP-Masaru:DragonHDLatestNeural         | Male   | GA      |                                       |
-| ja-JP-Nanami:DragonHDLatestNeural         | Female | GA      |                                       |
-| zh-CN-Xiaochen:DragonHDLatestNeural       | Female | GA      |                                       |
-| zh-CN-Yunfan:DragonHDLatestNeural         | Male   | GA      |                                       |
+| Voice Name | Gender | Status | Note |
+|-----------|--------|--------|------|
+| `de-de-Florian:DragonHDLatestNeural` | Male | GA | |
+| `de-de-Seraphina:DragonHDLatestNeural` | Female | GA | |
+| `en-us-Adam:DragonHDLatestNeural` | Male | GA | |
+| `en-us-Alloy:DragonHDLatestNeural` | Male | GA | |
+| `en-us-Andrew:DragonHDLatestNeural` | Male | GA | |
+| `en-us-Andrew2:DragonHDLatestNeural` | Male | GA | Optimized for conversational content |
+| `en-us-Andrew3:DragonHDLatestNeural` | Male | Preview | Optimized for podcast content |
+| `en-us-Aria:DragonHDLatestNeural` | Female | GA | |
+| `en-us-Ava:DragonHDLatestNeural` | Female | GA | |
+| `en-us-Ava3:DragonHDLatestNeural` | Female | Preview | Optimized for podcast content |
+| `en-us-Brian:DragonHDLatestNeural` | Male | GA | |
+| `en-us-Davis:DragonHDLatestNeural` | Male | GA | |
+| `en-us-Emma:DragonHDLatestNeural` | Female | GA | |
+| `en-us-Emma2:DragonHDLatestNeural` | Female | GA | Optimized for conversational content |
+| `en-us-Jenny:DragonHDLatestNeural` | Female | GA | |
+| `en-us-MultiTalker-Ava-Andrew:DragonHDLatestNeural` | Male | Preview | |
+| `en-us-Nova:DragonHDLatestNeural` | Female | GA | |
+| `en-us-Phoebe:DragonHDLatestNeural` | Female | GA | |
+| `en-us-Serena:DragonHDLatestNeural` | Female | GA | |
+| `en-us-Steffan:DragonHDLatestNeural` | Male | GA | |
+| `es-es-Tristan:DragonHDLatestNeural` | Male | GA | |
+| `es-es-Ximena:DragonHDLatestNeural` | Female | GA | |
+| `fr-fr-Remy:DragonHDLatestNeural` | Male | GA | |
+| `fr-fr-Vivienne:DragonHDLatestNeural` | Female | GA | |
+| `ja-jp-Masaru:DragonHDLatestNeural` | Male | GA | |
+| `ja-jp-Nanami:DragonHDLatestNeural` | Female | GA | |
+| `zh-cn-Xiaochen:DragonHDLatestNeural` | Female | GA | |
+| `zh-cn-Yunfan:DragonHDLatestNeural` | Male | GA | |
+
+The following Styles and Paralinguistic tags are supported in HD voices
+
+| Type                                | Tag | 
+|-------------------------------------------|--------|
+| Styles    | `amazed`, `amused`, `angry`, `annoyed`, `anxious`, `appreciative`, `calm`, `cautious`, `concerned`, `confident`, `confused`, `curious`, `defeated`, `defensive`, `defiant`, `determined`, `disappointed`, `disgusted`, `doubtful`, `ecstatic`, `encouraging`, `excited`, `fast`, `fearful`, `frustrated`, `happy`, `hesitant`, `hurt`, `impatient`, `impressed`, `intrigued`, `joking`, `laughing`, `optimistic`, `painful`, `panicked`, `panting`, `pleading`, `proud`, `quiet`, `reassuring`, `reflective`, `relieved`, `remorseful`, `resigned`, `sad`, `sarcastic`, `secretive`, `serious`, `shocked`, `shouting`, `shy`, `skeptical`, `slow`, `struggling`, `surprised`, `suspicious`, `sympathetic`, `terrified`, `upset`, `urgent`, `whispering`   |
+| Paralinguistics    | `laughter`, `coughing`, `throat_clearing`, `breathing`, `sighing`, `yawning`   |
+
+> [!NOTE]
+> Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
+> Paralingsuitics are available on all voices with all languages.
 
 ### Dragon HD Omni voices
 
@@ -114,13 +125,16 @@ Dragon HD Omni is Azure Speech's unified next-generation model that combines pre
 - **Word Boundary Event Support**: Enables precise word-level timing for synchronized applications
 
 #### Supported styles for Dragon HD Omni
+The following Styles and Paralinguistic tags are supported in HDOmni voices
 
-Dragon HD Omni supports a comprehensive set of 100+ speaking styles. Use the `style` attribute within `<mstts:express-as>` to apply any of these styles:
-
-`angry`, `chill surfer`, `confused`, `curious`, `determined`, `disgusted`, `embarrassed`, `emo teenager`, `empathetic`, `encouraging`, `excited`, `fearful`, `friendly`, `grateful`, `joyful`, `mad scientist`, `meditative`, `narration`, `neutral`, `new yorker`, `news`, `reflective`, `regretful`, `relieved`, `sad`, `santa`, `shy`, `soft voice`, `surprised`
+| Type                                | Tag | 
+|-------------------------------------------|--------|
+| Styles    | `amazed`, `amused`, `angry`, `annoyed`, `anxious`, `appreciative`, `calm`, `cautious`, `concerned`, `confident`, `confused`, `curious`, `defeated`, `defensive`, `defiant`, `determined`, `disappointed`, `disgusted`, `doubtful`, `ecstatic`, `encouraging`, `excited`, `fast`, `fearful`, `frustrated`, `happy`, `hesitant`, `hurt`, `impatient`, `impressed`, `intrigued`, `joking`, `laughing`, `optimistic`, `painful`, `panicked`, `panting`, `pleading`, `proud`, `quiet`, `reassuring`, `reflective`, `relieved`, `remorseful`, `resigned`, `sad`, `sarcastic`, `secretive`, `serious`, `shocked`, `shouting`, `shy`, `skeptical`, `slow`, `struggling`, `surprised`, `suspicious`, `sympathetic`, `terrified`, `upset`, `urgent`   |
+| Paralinguistics    | `laughter`, `coughing`, `throat_clearing`, `breathing`, `sighing`, `yawning`  |
 
 > [!NOTE]
-> Styles are available on `en-US-Ava` and `en-US-Andrew` for this version. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
+> Styles are available on all English content for all voices. Style results are strongly relevant to the input content: the model adapts style application based on the semantic meaning of the text.
+> Paralingsuitics are available on all voices with all languages.
 
 #### Dragon HD Omni voice naming convention
 
@@ -139,17 +153,27 @@ Check out the full [Dragon HD Omni voice list](https://github.com/Azure-Samples/
 
 HD Flash voices are optimized variants of selected DragonHD voices, currently supporting Chinese (`zh-CN`) and English (`en-US`) text. These voices deliver enhanced naturalness and are available in standard Azure regions (`eastus`, `westeurope`, `southeastasia`) as well as China regions (`chinaeast2`, `chinanorth2`, `chinanorth3`).
 
-Below is the complete list of available HD Flash voices:
+Below is the complete list of available HD Flash voices and supported Styles
 
-| Voice Name                                 | Gender |
-|-------------------------------------------|--------|
-| zh-CN-Xiaochen:DragonHDFlashLatestNeural  | Female |
-| zh-CN-Xiaoxiao:DragonHDFlashLatestNeural  | Female |
-| zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural | Female |
-| zh-CN-Yunxia:DragonHDFlashLatestNeural    | Male   |
-| zh-CN-Yunxiao:DragonHDFlashLatestNeural   | Male   |
-| zh-CN-Yunye:DragonHDFlashLatestNeural     | Male   |
-| zh-CN-Yunyi:DragonHDFlashLatestNeural     | Male   |
+| **Voice name** | **Supported styles** |
+|---------------|----------------------|
+| `zh-CN-Xiaoxiao:DragonHDFlashLatestNeural` | `angry`, `chat`, `cheerful`, `customer-service`, `excited`, `fearful`, `sad`, `voice-assistant` |
+| `zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural` | `affectionate`, `angry`, `anxious`, `cheerful`, `curious`, `disappointed`, `empathetic`, `encouraging`, `excited`, `fearful`, `guilty`, `lonely`, `poetry-reading`, `sad`, `sentimental`, `sorry`, `story`, `surprised`, `tired`, `whispering` |
+| `zh-CN-Xiaochen:DragonHDFlashLatestNeural` | `cheerful`, `debating`, `empathetic`, `live-commercial`, `poetry-reading`, `sad`, `sorry` |
+| `zh-CN-Xiaoyi:DragonHDFlashLatestNeural` | `angry`, `complaining`, `cute`, `gentle`, `nervous`, `sad`, `shy`, `strict` |
+| `zh-CN-Xiaoyu:DragonHDFlashLatestNeural` | `angry`, `debating`, `cheerful`, `comforting`, `sad`, `sorry` |
+| `zh-CN-Xiaohan:DragonHDFlashLatestNeural` | `affectionate`, `angry`, `cheerful`, `complaining`, `fearful`, `gentle`, `sad`, `shy`, `strict` |
+| `zh-CN-Xiaoshuang:DragonHDFlashLatestNeural` | `chat` |
+| `zh-CN-Xiaoyou:DragonHDFlashLatestNeural` | `chat`, `angry`, `cheerful`, `poetry-reading`, `sad`, `story`, `cute` |
+| `zh-CN-Yunxi:DragonHDFlashLatestNeural` | `angry`, `chat`, `cheerful`, `complaining`, `depressed`, `fearful`, `news`, `sad`, `shy`, `strict`, `voice-assistant` |
+| `zh-CN-Yunyi:DragonHDFlashLatestNeural` | `assassin`, `captain`, `cavalier`, `prince`, `game-narrator`, `geomancer`, `poet` |
+| `zh-CN-Yunxiao:DragonHDFlashLatestNeural` | — |
+| `zh-CN-Yunhan:DragonHDFlashLatestNeural` | `angry`, `cheerful`, `curious`, `empathetic`, `encouraging`, `excited`, `guilty`, `lonely`, `sad`, `serious`, `sorry`, `whispering`, `surprised`, `tired` |
+| `zh-CN-Yunxia:DragonHDFlashLatestNeural` | `affectionate`, `angry`, `cheerful`, `comforting`, `encouraging`, `excited`, `fearful`, `sad`, `surprised` |
+| `zh-CN-Yunye:DragonHDFlashLatestNeural` | — |
+| `en-US-Tiana:DragonHDFlashLatestNeural` | — |
+| `en-US-Tyler:DragonHDFlashLatestNeural` | — |
+| `en-US-Jimmie:DragonHDFlashLatestNeural` | — |
 
 > [!NOTE]
 > HD Flash only supports text in `zh-CN` and `en-US`.
@@ -336,7 +360,7 @@ For detailed information on the supported and unsupported SSML elements for Azur
 | `<sub>`  |  Indicates that the alias attribute's text value should be pronounced instead of the element's enclosed text.  | Yes | Yes |
 | `<math>` | Uses the MathML as input text to properly pronounce mathematical notations in the output audio.  | No | No |
 | `<bookmark>` | Gets the offset of each marker in the audio stream.  | No | No |
-| `<break>`  | Overrides the default behavior of breaks or pauses between words. | No | No |
+| `<break>`  | Overrides the default behavior of breaks or pauses between words. | Yes | No |
 | `<mstts:silence>`  | Inserts pause before or after text, or between two adjacent sentences.  | No | No |
 | `<mstts:viseme>` | Defines the position of the face and mouth while a person is speaking.  | No | No |
 | `<p>`  | Denotes paragraphs in SSML documents.  | Yes | Yes |
@@ -344,6 +368,23 @@ For detailed information on the supported and unsupported SSML elements for Azur
 
 > [!NOTE]
 > Although a [previous section in this guide](#comparison-of-azure-speech-hd-voices-to-other-azure-text-to-speech-voices) also compared Azure Speech HD voices to Azure OpenAI HD voices, the SSML elements supported by Azure Speech aren't applicable to Azure OpenAI voices.
+
+## Parameter enhancePronunciation
+The enhancePronunciation parameter enables enhanced pronunciation handling during speech synthesis. When set to true, the NeuralHD voices apply additional pronunciation optimizations to improve the clarity and correctness of spoken output, particularly for complex, ambiguous, or non‑standard text.
+
+When enhancePronunciation is enabled, the service prioritizes pronunciation accuracy by applying enhanced linguistic processing during synthesis. This can help improve how the system reads:
+- Proper nouns, names, and uncommon words
+- Acronyms, abbreviations, and mixed‑case text
+- Words with multiple possible pronunciations depending on context
+This parameter is designed to complement existing pronunciation controls such as SSML‑based pronunciation tags and lexicons, and does not replace them. enhancePronunciation is off by default to preserve predictable, backward‑compatible speech output, and can be enabled when developers want the service to apply additional pronunciation optimizations for improved clarity and naturalness.
+
+### Recommended use cases
+Enable enhancePronunciation in scenarios with structured or technical domain-specific content.
+
+> [!NOTE]
+> The parameter affects pronunciation handling only; it does not change voice selection, speaking style, or prosody controls.
+> Results may vary depending on language, voice, and input text.
+> For deterministic pronunciation control, SSML pronunciation elements remain the recommended approach.
 
 ## Choosing between DragonHD and Dragon HD Omni
 

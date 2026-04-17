@@ -1,10 +1,10 @@
 ---
 title: Include file
 description: Include file
-author: ms-johnalex
+author: sdgilley
 ms.reviewer: dantaylo
-ms.author: johalexander
-ms.service: azure-ai-foundry
+ms.author: sgilley
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -54,8 +54,19 @@ Before proceeding, confirm:
 
 - Azure subscription is active: `az account show`
 - You have the required RBAC role: Check Azure portal → Foundry resource → Access control (IAM)
+::: zone pivot="programming-language-python"
 - Language runtime installed:
   - Python: `python --version` (≥3.8)
+::: zone-end
+::: zone pivot="programming-language-javascript"
+- Language runtime installed:
   - Node.js: `node --version` (≥18)
+::: zone-end
+::: zone pivot="programming-language-csharp"
+- Language runtime installed:
   - .NET: `dotnet --version` (≥6.0)
+::: zone-end
+::: zone pivot="programming-language-java"
+- Language runtime installed:
   - Java: `java --version` (≥11)
+::: zone-end

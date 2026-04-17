@@ -5,8 +5,8 @@ author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
 ms.date: 02/27/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom: references_regions
 ---

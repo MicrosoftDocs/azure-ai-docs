@@ -3,8 +3,8 @@ title: Azure OpenAI Python support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI Python support
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 08/29/2024
 ai-usage: ai-assisted
