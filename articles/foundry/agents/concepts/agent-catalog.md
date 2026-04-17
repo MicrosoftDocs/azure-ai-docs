@@ -13,15 +13,15 @@ ai-usage: ai-assisted
 
 # Agent manifests for Foundry Agent Service
 
-Microsoft Foundry Agent Service provides a collection of pre-built agent manifests that you can deploy with one click. Each manifest is a working business automation agent and a prompt engineering learning resource. Browse manifests to find one that matches your scenario, select **Create Agent**, and start running it in minutes.
+> [!NOTE]
+> Agent Manifests are for educational and experimentation purposes. Resulting agents are not production ready. Review all provided resources and carefully test agent behavior in the context of your use case. Agents you create may be subject to legal and regulatory requirements, may require licenses, or may not be suitable for all industries, scenarios, or use cases. By using any template, you are acknowledging that resulting agents and other output are solely your responsibility, and that you will comply with all applicable laws, regulations, and relevant safety standards, terms of service, and codes of conduct. See the [Transparency note for Azure Agent Service](../../responsible-ai/agents/transparency-note.md) for more information.
+
+Microsoft Foundry Agent Service provides a collection of pre-built agent manifests that help you easily jumpstart building and deploying agents with just a few clicks. Each manifest is an educational sample of a business automation agent and a prompt engineering learning resource. Browse manifests to find one that matches your scenario, select **Create Agent**, and start running it in minutes.
 
 Manifests serve two purposes:
 
-- **Deploy immediately** — Each manifest creates a working agent that you can run against your own data without writing prompt instructions from scratch.
+- **Deploy immediately** — Each manifest helps you create a simple, experimental working agent that you can run without writing prompt instructions from scratch.
 - **Learn prompt patterns** — Each manifest demonstrates a specific prompt engineering technique, such as XML-structured instructions or autonomous decision logic, that you can study and adapt for your own agents.
-
-> [!NOTE]
-> Agent manifests are educational resources you build from. They don't perform actions directly on your behalf. You configure each agent with your own data sources, tools, and business context before running it.
 
 ## Prerequisites
 
@@ -36,9 +36,9 @@ To browse the agent manifests:
 1. Open the [Foundry portal](https://ai.azure.com).
 1. Navigate to your project.
 1. Select **Discover** > **Agents**.
-
-:::image type="content" source="../../media/agent-catalog/agents-catalog-browse.png" alt-text="Screenshot of the Foundry agent manifests showing 30 agent manifests with search, sort, and tool icons for each manifest." lightbox="../../media/agent-catalog/agents-catalog-browse.png":::
-
+    
+    :::image type="content" source="../../media/agent-catalog/agents-catalog-browse.png" alt-text="Screenshot of the Foundry agent manifests showing 30 agent manifests with search, sort, and tool icons for each manifest." lightbox="../../media/agent-catalog/agents-catalog-browse.png":::
+    
 You can search for manifests by name or sort by **Featured** to find the right starting point for your scenario. Each manifest card shows the agent name, publisher, and the tools it uses.
 
 ## Manifest components
@@ -47,7 +47,7 @@ Every agent manifest includes these components:
 
 | Component | Description |
 |---|---|
-| **Tools** | The Foundry tools the agent uses, such as web search, code interpreter, or SharePoint. Most manifests use one or two tools. |
+| **Tools** | The [tools](../concepts/tool-catalog.md) the agent uses, such as web search, code interpreter, or SharePoint. Most manifests use one or two tools. |
 | **Industry** | Whether the manifest is cross-industry (generic) or vertical-specific, such as marketing or manufacturing. |
 | **Tone** | The communication style: formal, technical, coaching, conversational, or concise. |
 | **Output format** | What the agent produces: reports, dashboards, code, emails, narratives, presentations, or tables. |
@@ -188,7 +188,9 @@ To create an agent from a manifest:
    - Connect the required tools (for example, add a SharePoint connection or configure web search).
    - Optionally customize the instructions to match your specific requirements.
 
-   After creation, you can continue to modify the instructions, swap tools, or change the model deployment at any time.
+    After creation, you can continue to modify the instructions, swap tools, or change the model deployment at any time. 
+    > [!NOTE]
+    > Agent templates are for [educational and experimentation purposes only](#agent-manifests-for-foundry-agent-service). Resulting agents are not production ready. 
 1. Test your agent in the [agents playground](../../concepts/concept-playgrounds.md).
 1. When you're satisfied with the results, [publish your agent](../how-to/publish-agent.md).
 
@@ -203,3 +205,4 @@ To create an agent from a manifest:
 - [What is Foundry Agent Service?](../overview.md)
 - [Agent development lifecycle](development-lifecycle.md)
 - [Create a private tool catalog](../how-to/private-tool-catalog.md)
+- [Transparency note for Azure Agent Service](../../responsible-ai/agents/transparency-note.md)
