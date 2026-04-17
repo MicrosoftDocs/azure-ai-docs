@@ -6,78 +6,16 @@ ms.author: mopeakande
 ms.reviewer: rasavage
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/31/2026
+ms.date: 04/16/2026
 ms.custom: include, classic-and-new
 ---
 
-Microsoft Foundry Models are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
+Microsoft Foundry continuously refreshes its model catalog with newer, more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model.
 
-This article covers general deprecation and retirement information for Foundry Models. For details specific to Azure OpenAI in Foundry Models, see [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md). 
-
-## Model lifecycle stages
-
-Models in the model catalog belong to one of these stages:
-
-- Preview
-- Generally available
-- Legacy
-- Deprecated
-- Retired
-
-### Preview
-
-Models labeled _Preview_ are experimental in nature. A model's weights, runtime, and API schema can change while the model is in preview. Models in preview aren't guaranteed to become generally available. Models in preview have a _Preview_ label next to their name in the model catalog.  
-
-### Generally available (GA)
-
-This stage is the default model stage. Models that don't include a lifecycle label next to their name are GA and suitable for use in production environments. In this stage, model weights and APIs are fixed. However, model containers or runtimes with vulnerabilities might get patched, but patches don't affect model outputs.  
- 
-### Legacy
-
-Models labeled _Legacy_ are intended for deprecation. You should plan to move to a different model, such as a new, improved model that might be available in the same model family. While a model is in the legacy stage, existing deployments of the model continue to work, and you can create new deployments of the model until the deprecation date.
-
-### Deprecated
-
-Models labeled _Deprecated_ are no longer available for new deployments. You can't create any new deployments for the model; however, existing deployments continue to work until the retirement date.
-
-### Retired
-
-Models labeled _Retired_ are no longer available for use. You can't create new deployments, and attempts to use existing deployments return `404` errors.
-
-## Notifications for Foundry Models
-
-Customers that have Foundry Model deployments receive notifications for upcoming model retirements according to the following schedule:
-
-- Models are labeled as _Legacy_ and remain in the legacy state for at least 30 days before being moved to the deprecated state. During this notification period, you can create new deployments as you prepare for deprecation and retirement.
-
-- Models are labeled _Deprecated_ and remain in the deprecated state for at least 90 days before being moved to the retired state. During this notification period, you can migrate any existing deployments to newer or replacement models.
+For full details on lifecycle stages (Preview, GA, Legacy, Deprecated, Retired), notification timelines, automatic upgrade behavior, and migration guidance, see [Model Lifecycle and Support Policy](../openai/concepts/model-retirements.md).
 
 > [!IMPORTANT]
 > In some cases, model providers might retire models on an accelerated schedule with shorter notice periods. Always check the specific dates in the [upcoming retirements](#upcoming-retirements-for-foundry-models) table for your model, as the actual timeline for a given model takes precedence over the general policy.
-
-For each subscription that has a model deployed as a serverless API deployment or deployed to a Foundry resource, members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _monitoring reader_ roles receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
-
-### How to check for notifications
-
-To stay informed about model lifecycle changes:
-
-1. Monitor your email for notifications sent to subscription role members.
-1. Review the [upcoming retirements](#upcoming-retirements-for-foundry-models) tables in this article for the latest dates.
-1. Set up [Azure Service Health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal) for your subscription to receive automated notifications about service changes.
-
-## Notifications for Azure OpenAI in Foundry Models
-
-For Azure OpenAI models, customers with active Azure OpenAI deployments receive notice for models with upcoming retirement as follows:
-
-- At model launch, we programmatically designate a "not sooner than" retirement date (typically one year out).
-- At least 60 days notice before model retirement for GA models.
-- At least 30 days notice before preview model version upgrades.
-
-Members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _monitoring reader_ roles receive notification for each subscription with a deployment of a model that has an upcoming retirement.
-
-Retirements are done on a rolling basis, region by region.
-
-To learn more about the Azure OpenAI models lifecycle, including information for current, deprecated, and retired models, see [Azure OpenAI in Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md). 
 
 ## Upcoming retirements for Foundry Models
 

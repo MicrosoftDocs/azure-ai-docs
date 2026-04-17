@@ -18,6 +18,6 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Retired Azure OpenAI models in Microsoft Foundry (classic)
 
-**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/legacy-models.md)
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/retired-models.md)
 
-[!INCLUDE [legacy-models content](../../../foundry/openai/includes/concepts-legacy-models-content.md)]
+[!INCLUDE [retired-models content](../../../foundry/openai/includes/concepts-retired-models-content.md)]
