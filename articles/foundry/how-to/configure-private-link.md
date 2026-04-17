@@ -252,7 +252,7 @@ Certain Agent tools are supported when Foundry is network isolated, while others
 
 **Tools using your virtual network subnet** (MCP Tool, Azure AI Search):
 
-For private MCP support and setup, see [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup).
+For more information on private MCP support and setup, see [19-hybrid-private-resources-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/19-hybrid-private-resources-agent-setup).
 
 For Azure AI Search, ensure that the search service has a private endpoint on your virtual network so the agent can query the index securely. If the Azure AI Search tool also relies on an indexer to populate the index, such as indexed knowledge sources (blob, OneLake, SharePoint) or the **Import data** wizard, set `executionEnvironment` to `"Private"` on the indexer. Without this setting, the indexer defaults to multitenant execution, which can't traverse private endpoints and results in silent indexing failures and an empty index. For more information, see [Indexer access to content protected by Azure network security](/azure/search/search-indexer-howto-access-private).
 
