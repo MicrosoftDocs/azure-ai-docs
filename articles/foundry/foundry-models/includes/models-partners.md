@@ -16,7 +16,7 @@ Most Foundry Model providers are trusted third-party organizations, partners, re
 > [!NOTE]
 > Note that Models from partners and community that are not sold directly by Azure are Non-Microsoft Products under the Product Terms.
 
-For a list of Foundry Models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md), and for a list of Foundry Models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
+For a list of Foundry Models sold directly by Azure, see [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), and for a list of Foundry Models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
 
 Foundry Models support several [deployment types](../../foundry-models/concepts/deployment-types.md) to a Foundry resource. Some models in the model catalog require a hub-based project hosted by a Foundry hub for deployment. Selecting those models in the catalog opens them up in the [Foundry (classic) portal experience](../../../foundry-classic/what-is-foundry.md).
 
@@ -145,7 +145,7 @@ To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference 
 
 <sup>1</sup> This model requires a hub-based project for deployment. Selecting the model in the model catalog opens it in the [Foundry (classic) portal experience](../../../foundry-classic/what-is-foundry.md).
 
-For more details on pricing for Nixtla models, see [Nixtla](../../concepts/models-inference-examples.md#nixtla).
+For more details on pricing for Nixtla models, see [Nixtla](../../../foundry-classic/concepts/models-inference-examples.md#nixtla).
 
 See [Nixtla models in the Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=nixtla/?cid=learnDocs).
 
@@ -190,7 +190,7 @@ Use the following troubleshooting guide to find and solve errors when deploying 
 
 - [Deployment overview for Foundry Models](../../../foundry-classic/concepts/deployments-overview.md)
 - [Deploy Microsoft Foundry Models in the Foundry portal](../how-to/deploy-foundry-models.md)
-- [Deployment types in Foundry Models](deployment-types.md)
+- [Deployment types for Microsoft Foundry Models](../concepts/deployment-types.md)
 - [Region availability for Foundry Models](../../../foundry-classic/how-to/deploy-models-serverless-availability.md)
 - [Explore Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md)
 
