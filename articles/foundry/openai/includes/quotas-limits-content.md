@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -57,6 +57,73 @@ curl -X PATCH \
 ### Can I request more quota?
 
 Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can always request more quota. If the request is approved, the current tier will remain the same, but with more quota assigned.  
+
+### How do I check my subscription's quota tier?
+
+You can currently check you quota tier with the [control plane API](/rest/api/aifoundry/accountmanagement/quota-tiers/get?view=rest-aifoundry-accountmanagement-2025-10-01-preview&tabs=HTTP&preserve-view=true):
+
+# [Bash](#tab/bash)
+
+```bash
+curl -X GET \
+  "https://management.azure.com/subscriptions/9d295860-44e3-44bb-ade9-235cc45c68ba/providers/Microsoft.CognitiveServices/quotaTiers?api-version=2025-10-01-preview" \
+  -H "Authorization: Bearer $(az account get-access-token --resource https://management.azure.com --query accessToken -o tsv)" \
+  -H "Content-Type: application/json"
+```
+
+
+# [Python](#tab/python)
+
+
+```python
+import requests
+import json
+from azure.identity import DefaultAzureCredential
+
+
+subscriptionId = "{YOUR-SUBSCRIPTION-ID}"
+api_version = "2025-10-01-preview" 
+base_url = "https://management.azure.com"
+
+token_credential = DefaultAzureCredential()
+token = token_credential.get_token('https://management.azure.com/.default')
+headers = {
+    'Authorization': 'Bearer ' + token.token,
+    'Content-Type': 'application/json'
+}
+
+
+list_url = (
+    f"{base_url}/subscriptions/{subscriptionId}"
+    f"/providers/Microsoft.CognitiveServices/quotaTiers"
+    f"?api-version={api_version}"
+)
+
+response = requests.get(list_url, headers=headers)
+print(json.dumps(response.json(), indent=2))
+
+```
+
+# [Output](#tab/output)
+
+```json
+{
+  "value": [
+    {
+      "properties": {
+        "currentTierName": "Tier 1",
+        "assignmentDate": "2025-10-18T05:09:05.6334222Z",
+        "tierUpgradePolicy": "OnceUpgradeIsAvailable"
+      },
+      "id": "/subscriptions/aaaaa-bbbbb-ccccc-dddd-eeeeeee/providers/Microsoft.CognitiveServices/quotaTiers/default",
+      "name": "default",
+      "type": "Microsoft.CognitiveServices/quotaTiers"
+    }
+  ]
+}
+```
+
+---
 
 ### Quota tier reference
 
@@ -171,6 +238,13 @@ If you encounter 429 errors or notice increased latency variability, here’s wh
 - Request a quota increase: visit the Azure portal to request a higher quota for your subscription.
 - Consider upgrading to a premium offer (PTU): for latency-critical or high-volume workloads, upgrade to Provisioned Throughput Units (PTU). PTU provides dedicated resources, guaranteed capacity, and predictable latency—even at scale. This is the best choice for mission-critical applications that require consistent performance.
 - Monitor your usage: regularly review your usage metrics in the Azure portal to ensure you're operating within your tier limits. Adjust your workload or deployment strategy as needed.
+
+You may receive **429 (Too Many Requests)** responses even when token usage metrics appear below your quota.
+
+This can occur in the following scenarios:
+- Requests rejected due to **input or context length limits (HTTP 400)**. These requests are not billed and may not appear in token usage metrics, but they can still count toward rate limiting.
+- Requests evaluated based on **potential token usage** (for example, `max_tokens`), even if no tokens are ultimately generated.
+- **Distributed rate‑limiting behavior**, where enforcement may not be perfectly precise or immediately reflected in aggregated metrics.
 
 The usage limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model. It's the total number of tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 

@@ -1,16 +1,16 @@
 ---
 title: "Evaluation Cluster Analysis" 
 description: "Learn how to run and interact with an evaluation cluster analysis." 
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 02/25/2026
+ms.date: 04/14/2026
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted 
 ---
 
-# Analyze evaluation results (preview)
+# Analyze evaluation results with cluster analysis (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 After you run one or more evaluation runs, you can generate an evaluation cluster analysis to understand your evaluation results. This analysis provides an intuitive way to identify the top patterns and errors in your evaluation runs, along with recommended next steps to improve evaluator scores.
@@ -21,12 +21,19 @@ This article explains how to generate and interact with an evaluation cluster an
 
 - A [Foundry project](../../how-to/create-projects.md).
 - One or more [completed evaluation runs](../../how-to/develop/cloud-evaluation.md).
+- A deployed model in your project to use for cluster analysis generation. To learn more, see [Create model deployments](../../foundry-models/how-to/create-model-deployments.md).
 
 ## Generate an evaluation cluster analysis
 
-On the evaluation detail page, select one or more runs and then select **Cluster analysis**. A window appears and prompts you to select a model to generate the cluster analysis. It also shows an estimated time and tokens based on the samples selected from the evaluation runs.  
+1. On the evaluation detail page, select one or more completed evaluation runs.
+1. Select **Cluster analysis**. A setup window opens showing the estimated time and token usage based on the number of samples in the selected runs.
+1. Select a model from the dropdown to use for generating the analysis.
+1. Select **Generate**. The analysis is generated and the cluster map opens automatically.
 
-:::image type="content" source="../../media/observability/cluster-analysis-set-up.png" alt-text="Screenshot of the setup cluster analysis window." lightbox="../../media/observability/cluster-analysis-set-up.png":::
+:::image type="content" source="../../media/observability/cluster-analysis-set-up.png" alt-text="Screenshot of the cluster analysis setup window showing model selection dropdown and estimated token usage." lightbox="../../media/observability/cluster-analysis-set-up.png":::
+
+> [!IMPORTANT]
+> The analysis result isn't stored. If you leave the page, the result is lost. To keep a copy, [download the analysis](#download-the-analysis) before navigating away.
 
 ## View cluster analysis
 
@@ -36,11 +43,13 @@ Cluster analysis provides an intuitive visualization of performance by grouping 
 
 At the top of the view, summary statistics for the evaluation run are displayed:
 
-- Total samples: Total number of evaluated responses (for example, 48).
-- Clusters – Number of automatically identified clusters (for example, 2).
-- Passed/failed: Breakdown of successful versus problematic samples.
-- Avg Score – The overall average quality score for the run.
-- Hover/click: Hovering over a dot or cluster label reveals detailed information, including example responses and evaluator feedback.
+- **Total samples** – Total number of evaluated responses (for example, 48).
+- **Clusters** – Number of automatically identified clusters (for example, 2).
+- **Passed/failed** – Breakdown of successful versus problematic samples.
+- **Avg Score** – The overall average quality score for the run.
+
+> [!NOTE]
+> Hover over a dot or cluster label to reveal detailed information, including example responses and evaluator feedback. Select to open the detail panel.
 
 ### Visualization
 
@@ -95,7 +104,7 @@ Selecting a dot / entry ID opens a side panel that includes:
 
 ### Filter panel
 
-The Filter Panel on the right side of the Cluster Analysis view allows users to customize how clusters are displayed and filtered for targeted inspection.
+The filter panel on the right side of the cluster analysis view lets you customize how clusters are displayed for targeted inspection.
 
 - Color by
   - Lets you adjust how the samples are color-coded on the visualization.
@@ -125,13 +134,23 @@ To view the analysis offline, select **download** to get a copy of the analysis 
 
 ## Next steps
 
-The cluster analysis view helps you move from surface-level evaluation metrics to actionable insights. By combining semantic grouping, diagnostic summaries, and per-sample context, it bridges the gap between quantitative scoring and qualitative understanding.
+Use the insights from cluster analysis to:
 
-Use the insights discovered here to:
+- **Refine prompts** — Update your agent's instructions to address recurring failure patterns identified in the clusters.
+- **Retrain or fine-tune** — Use identified failure categories as signal for fine-tuning data curation.
+- **Re-evaluate** — After making changes, run a new evaluation and generate a fresh cluster analysis to compare results. See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md).
 
-- Refine prompts or models based on recurring issue patterns.
-- Validate improvements after fine-tuning or retraining, and reevaluate to compare the old and new analysis results.
+## Troubleshooting
+
+| Symptom | Likely cause | Fix |
+| - | - | - |
+| **Cluster analysis** button is unavailable | No completed evaluation runs are selected | Select at least one completed evaluation run on the evaluation detail page before selecting **Cluster analysis**. |
+| No models appear in the generation window | No models are deployed in the project | Deploy a model in your project. See [Create model deployments](../../foundry-models/how-to/create-model-deployments.md). |
+| Analysis generation fails or times out | Data volume too large or service throttling | Reduce the number of evaluation runs selected, or try again later. |
+| Analysis disappears after navigating away | Results aren't persisted | Run cluster analysis again and [download the results](#download-the-analysis) before navigating away. |
 
 ## Related content
 
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
+- [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md)
+- [How to evaluate generative AI models and applications with Foundry](../../how-to/evaluate-generative-ai-app.md)

@@ -1,7 +1,7 @@
 ---
 title: "Get started with Microsoft Foundry SDKs and Endpoints"
 description: "This article provides an overview of the Microsoft Foundry SDKs and endpoints and how to get started using them."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - build-2024
@@ -10,7 +10,7 @@ ms.custom:
   - doc-kit-assisted
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 04/10/2026
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -68,8 +68,11 @@ pip install azure-ai-projects >=2.0.0
 
 | SDK Version   | Portal Version  | Status  | .NET Package                    |
 |---------------|-----------------|---------|---------------------------------|
-| 2.0.0-beta.1 (preview) | Foundry (new)   | Preview | `Azure.AI.Projects`<br>`Azure.AI.Projects.OpenAI` |
+| 2.0.0 (GA) | Foundry (new)   | Stable | `Azure.AI.Projects`<br>`Azure.AI.Projects.Agents`<br>`Azure.AI.Extensions.OpenAI` |
 | 1.1.0 (GA)      | Foundry classic | Stable  | `Azure.AI.Projects`             |
+
+> [!IMPORTANT]
+> Don't install `Azure.AI.Projects.OpenAI` (preview) alongside `Azure.AI.Extensions.OpenAI` (GA). Both packages define the same types in different namespaces, which causes ambiguous reference errors. Use only `Azure.AI.Extensions.OpenAI` for agent scenarios.
 
 ::: zone-end
 
@@ -103,11 +106,12 @@ npm install @azure/ai-projects @azure/identity dotenv
 
 The [Azure AI Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
-Run this command to add the Azure.AI.Projects package to your .NET project.
+Run these commands to add the required packages to your .NET project.
 
 ```bash
-dotnet add package Azure.AI.Projects --prerelease
-dotnet add package Azure.AI.Projects.OpenAI --prerelease
+dotnet add package Azure.AI.Projects
+dotnet add package Azure.AI.Projects.Agents
+dotnet add package Azure.AI.Extensions.OpenAI
 dotnet add package Azure.Identity
 ```
 ::: zone-end
@@ -200,7 +204,7 @@ console.log(`Response output: ${response.output_text}`);
 
 ```csharp
 using Azure.AI.Projects;
-using Azure.AI.Projects.OpenAI; 
+using Azure.AI.Extensions.OpenAI;
 using Azure.Identity;
 
 string endpoint = "https://<resource-name>.services.ai.azure.com/api/projects/<project-name>";
@@ -212,11 +216,9 @@ AIProjectClient projectClient = new(
 **Create an OpenAI-compatible client from your project:**
 
 ```csharp
-#pragma warning disable OPENAI001
-var responseClient = projectClient.OpenAI.GetProjectResponsesClientForModel("gpt-5.2");
+var responseClient = projectClient.ProjectOpenAIClient.GetProjectResponsesClientForModel("gpt-5.2");
 var response = responseClient.CreateResponse("What is the speed of light?");
-Console.WriteLine(response.Value.GetOutputText());
-#pragma warning restore OPENAI001
+Console.WriteLine(response.GetOutputText());
 ```
 ::: zone-end
 

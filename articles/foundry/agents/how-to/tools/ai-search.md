@@ -3,8 +3,8 @@ title: "Connect an Azure AI Search index to Foundry agents"
 description: "Connect Azure AI Search indexes to Foundry agents for grounding responses with citations. Includes Python, C#, TypeScript, and REST samples."
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
 author: alvinashcraft
@@ -843,7 +843,7 @@ For the full API specification, see [Project Connections REST API reference](/re
 
 Use a Bicep template to create an Azure AI Search connection as part of your infrastructure deployment.
 
-See the [AI Search connection Bicep templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) in the foundry-samples repository for complete examples.
+See the [AI Search connection Bicep templates](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/01-connections) in the foundry-samples repository for complete examples.
 
 For more information about deploying connections with Bicep, see [Add a new connection to your project](../../../how-to/connections-add.md).
 

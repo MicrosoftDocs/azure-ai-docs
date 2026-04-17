@@ -27,11 +27,6 @@ MAI‑Transcribe‑1 is a speech recognition model developed by the Microsoft AI
 
 ## Use the MAI-Transcribe-1 model
 
-
-The following languages are currently supported for mai-transcribe-1 model:
- - `Arabic`, `Chinese`, `Czech`, `Danish`, `Dutch`, `English`, `Finnish`, `French`, `German`, `Hindi`, `Hungarian`, `Indonesian`, `Italian`, `Japanese`, `Korean`, `Norwegian Bokmål`, `Polish`, `Portuguese`, `Romanian`, `Russian`, `Spanish`, `Swedish`, `Thai`, `Turkish`, and `Vietnamese`.
-
-
 ### Upload audio
 
 You can provide audio data in the following ways:
@@ -54,12 +49,14 @@ In the sections below, inline audio upload is used as an example.
 ### Create transcription
 
 To use the MAI-Transcribe-1 model, set the `model` property accordingly in the request.
+
 ```azurecli-interactive
 curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
 --header 'Content-Type: multipart/form-data' \
 --header 'Ocp-Apim-Subscription-Key: <YourSpeechResourceKey>' \
 --form 'audio=@"YourAudioFile.wav"' \
 --form 'definition={
+  "locales": ["en"],
   "enhancedMode": {
     "enabled": true,
     "model":"mai-transcribe-1"
@@ -68,6 +65,37 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 ```
 Note the following limitations using the MAI-Transcribe-1 model:
 - Diarization isn't supported.
+- Prompt isn't supported.
+
+Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don’t specify a language, the service automatically detects it. The following languages are currently supported for mai-transcribe-1 model:
+
+| Language code | Language |
+| ----- | ----- |
+| `ar` | Arabic |
+| `zh` | Chinese |
+| `cs` | Czech |
+| `da` | Danish |
+| `nl` | Dutch |
+| `en` | English |
+| `fi` | Finnish |
+| `fr` | French |
+| `de` | German |
+| `hi` | Hindi |
+| `hu` | Hungarian |
+| `id` | Indonesian |
+| `it` | Italian |
+| `ja` | Japanese |
+| `ko` | Korean |
+| `nb` | Norwegian Bokmål |
+| `pl` | Polish |
+| `pt` | Portuguese |
+| `ro` | Romanian |
+| `ru` | Russian |
+| `es` | Spanish |
+| `sv` | Swedish |
+| `th` | Thai |
+| `tr` | Turkish |
+| `vi` | Vietnamese |
 
 > [!TIP]
 > For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md)

@@ -3,8 +3,8 @@ title: "Connect to an A2A agent endpoint from Foundry Agent Service"
 description: "Connect your Foundry agent to a remote Agent2Agent (A2A) endpoint. Configure connections, authentication, and use SDK integration to call external A2A agents."
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 04/03/2026
 author: alvinashcraft
@@ -436,7 +436,7 @@ To delete an agent version, send a `DELETE` request to the same endpoint with th
 
 :::zone pivot="typescript"
 
-This sample demonstrates how to create an AI agent with A2A capabilities by using the `A2ATool` and the Azure AI Projects client. The agent can communicate with other agents and provide responses based on inter-agent interactions by using the A2A protocol.
+This sample demonstrates how to create an AI agent with A2A capabilities by using the `a2a_preview` tool type and the Azure AI Projects client. The agent can communicate with other agents and provide responses based on inter-agent interactions by using the A2A protocol.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";

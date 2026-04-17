@@ -113,7 +113,7 @@ You can accomplish these tasks by adding a custom header, `x-ms-enable-elevated-
 
 ### Permissions for elevated-read requests
 
-You must have [Search Index Data Contributor](search-security-rbac.md#built-in-roles-used-in-search) permissions or a [custom role](search-security-rbac.md#create-a-custom-role) that includes the Elevate Read permission.
+You must have [Search Index Data Contributor](search-security-rbac.md#built-in-roles) permissions or a [custom role](search-security-rbac.md#create-a-custom-role) that includes the Elevate Read permission.
 
 Queries are a data plane operation, so the custom role can only consist of atomic data plane permissions. For a custom role, add the `Microsoft.Search/searchServices/indexes/contentSecurity/elevatedOperations/read` permission.
 

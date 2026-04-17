@@ -6,7 +6,7 @@ author: yanchen-ms
 ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 03/18/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.custom: references_regions
 ---

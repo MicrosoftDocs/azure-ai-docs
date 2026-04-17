@@ -3,8 +3,8 @@ title: "How to use Risks & Safety monitoring in Microsoft Foundry (classic)"
 description: "Learn how to check statistics and insights from your Azure OpenAI content filtering activity. (classic)"
 author: PatrickFarley 
 ms.author: pafarley 
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 01/30/2026
 manager: nitinme

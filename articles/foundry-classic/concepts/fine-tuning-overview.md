@@ -1,8 +1,8 @@
 ---
 title: "Fine-tune models with Microsoft Foundry (classic)"
 description: "This article explains what fine-tuning is and under what circumstances you should consider doing it. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.custom:
   - build-2024
   - code01
