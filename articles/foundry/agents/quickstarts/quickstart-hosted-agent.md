@@ -40,7 +40,7 @@ Before you begin, you need:
 
 :::zone pivot="vscode"
 * [Visual Studio Code](https://code.visualstudio.com/)
-* [Microsoft Foundry Toolkit for Visual Studio Code extension](aka.ms/foundrytk)
+* [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk)
 :::zone-end
 
 > [!NOTE]
@@ -512,7 +512,7 @@ You can download, upload, and create folders within the current folder, clicking
 
 | Issue | Solution |
 | ----- | -------- |
-| Extension not found | Install the [Microsoft Foundry Toolkit for VS Code extension](aka.ms/foundrytk) from the VS Code Marketplace. |
+| Extension not found | Install the [Microsoft Foundry Toolkit for VS Code extension](https://aka.ms/foundrytk) from the VS Code Marketplace. |
 
 :::zone-end
 
