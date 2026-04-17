@@ -1,35 +1,33 @@
 ---
-title: MAI-Transcribe-1 in LLM Speech API - Speech service
+title: MAI-Transcribe-1 in LLM Speech API - Speech Service
 titleSuffix: Foundry Tools
-description: Learn how to use MAI-Transcribe-1 model in Azure Speech LLM Speech API
+description: Learn how to use the MAI-Transcribe-1 model in Azure Speech LLM Speech API.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 04/01/2026
-# Customer intent: As a user who implements audio transcription, I want create transcriptions with MAI's latest mai-transcribe-1 model.
+# Customer intent: As a user who implements audio transcription, I want to create transcriptions with MAI's latest mai-transcribe-1 model.
 ---
 
 # MAI-Transcribe-1 in Azure Speech (preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-MAI‑Transcribe‑1 is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team with a dual focus: high accuracy and high efficiency. You can use the MAI‑Transcribe‑1 model with the LLM Speech API.
+MAI‑Transcribe‑1 is a speech recognition model developed by the Microsoft AI (MAI) Superintelligence team. The model has a dual focus: high accuracy and high efficiency. You can use the MAI‑Transcribe‑1 model with the LLM Speech API.
 
 ## Prerequisites
 
 > [!div class="checklist"]
 > - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-> - [Create a Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
-> - Get the Speech resource key and region. After your Speech resource is deployed, select **Go to resource** to view and manage keys. For the current list of supported regions, see [Speech service regions](regions.md?tabs=llmspeech).
-> - An audio file (less than 300 MB in size) in one of the formats: WAV, MP3, and FLAC.
+> - [A Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
+> - The Speech resource key and region. After your Speech resource is deployed, select **Go to resource** to view and manage keys. For the current list of supported regions, see [Speech service regions](regions.md?tabs=llmspeech).
+> - An audio file (less than 300 MB in size) in one of these formats: WAV, MP3, or FLAC.
 
 ## Use the MAI-Transcribe-1 model
 
-### Upload audio
-
-You can provide audio data in the following ways:
+You can provide audio data in either of the following ways:
 
 - Pass inline audio data.
 
@@ -37,14 +35,13 @@ You can provide audio data in the following ways:
   --form 'audio=@"YourAudioFile"'
 ```
 
-- Upload audio file from a public `audioUrl`.
+- Upload an audio file from a public `audioUrl`.
 
 ```
   --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
 ```
 
-In the sections below, inline audio upload is used as an example.
-
+This article uses the inline audio upload as an example.
 
 ### Create transcription
 
@@ -63,11 +60,10 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
   }
 }'
 ```
-Note the following limitations using the MAI-Transcribe-1 model:
-- Diarization isn't supported.
-- Prompt isn't supported.
 
-Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don’t specify a language, the service automatically detects it. The following languages are currently supported for mai-transcribe-1 model:
+When you use the MAI-Transcribe-1 model, note that diarization and prompt aren't supported.
+
+Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don't specify a language, the service automatically detects it. The following languages are currently supported:
 
 | Language code | Language |
 | ----- | ----- |
@@ -98,7 +94,7 @@ Optionally, specify a language code in `locales` to force recognition in a singl
 | `vi` | Vietnamese |
 
 > [!TIP]
-> For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md)
+> For more information about using LLM Speech API, see [LLM Speech API](llm-speech.md).
 
 ## Related content
 
