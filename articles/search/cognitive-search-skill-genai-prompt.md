@@ -6,7 +6,8 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 02/26/2026
+ms.date: 04/17/2026
+ai-usage: ai-assisted
 ---
 
 # GenAI Prompt skill
@@ -67,7 +68,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 | Limit | Notes |
 |-------|-------|
 | `maxTokens` | Default is **1024** if omitted. Maximum value is model-dependent. |
-| Request time-out | 30 seconds (default). Override with the `timeout` property (`PT##S`). |
+| Request time-out | Fixed at 30 seconds. Consider this limit when you choose a model for bulk indexing, as reasoning models (such as o1 and o3) might exceed it. |
 | Images | Base 64–encoded images and image URLs are supported. Size limit is model-dependent. |
 
 ## Skill parameters
@@ -123,7 +124,6 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
   "name": "Summarizer",
   "description": "Summarizes document content.",
   "context": "/document",
-  "timeout": "PT30S",
   "inputs": [
     { "name": "text", "source": "/document/content" },
     { "name": "systemMessage", "source": "='You are a concise AI assistant.'" },
