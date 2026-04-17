@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Create an agent from the catalog"
-description: "Create and test an AI agent from the Foundry agent catalog. Pick a pre-built template, configure a model, and chat with your agent in the playground."
+title: "Quickstart: Create an agent from a manifest"
+description: "Create and test an AI agent from the Foundry agent manifests. Pick a pre-built manifest, configure a model, and chat with your agent in the playground."
 author: nicholasdbrady
 ms.author: nbrady
 ms.date: 04/03/2026
@@ -9,18 +9,18 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: quickstart
 ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
-# customer intent: As a developer, I want to create an agent from a pre-built template so that I can quickly start building AI-powered automation without writing instructions from scratch.
+# customer intent: As a developer, I want to create an agent from a pre-built manifest so that I can quickly start building AI-powered automation without writing instructions from scratch.
 ---
 
-# Quickstart: Create an agent from the catalog
+# Quickstart: Create an agent from a manifest
 
-In this quickstart, you create an agent from a pre-built template in the Foundry agent catalog and test it in the playground. The agent catalog provides ready-to-use agent templates that combine tested prompts, tool configurations, and interaction patterns so you can skip writing instructions from scratch.
+In this quickstart, you create an agent from a pre-built manifest and test it in the playground. Agent manifests are ready-to-use configurations that combine tested prompts, tool configurations, and interaction patterns so you can skip writing instructions from scratch.
 
 **In this quickstart, you:**
 
 > [!div class="checklist"]
-> * Browse the agent catalog and select a template
-> * Create an agent from the template
+> * Browse the agent manifests and select a manifest
+> * Create an agent from the manifest
 > * Test the agent in the playground
 
 ## Prerequisites
@@ -28,21 +28,21 @@ In this quickstart, you create an agent from a pre-built template in the Foundry
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A Microsoft Foundry project with a model deployed (for example, `gpt-4o`). If you don't have a project, first complete [Quickstart: Set up Microsoft Foundry resources](../../tutorials/quickstart-create-foundry-resources.md).
 
-## Browse the agent catalog
+## Browse the agent manifests
 
 1. Open the [Foundry portal](https://ai.azure.com).
 1. Navigate to your project.
 1. Select **Discover** (1), then select **Agents** (2).
 
-   :::image type="content" source="../../media/agent-catalog/agents-catalog-browse.png" alt-text="Screenshot of the Foundry portal showing the Discover tab highlighted in the top navigation and the Agents link highlighted in the left sidebar, with the agent catalog displaying 30 available templates." lightbox="../../media/agent-catalog/agents-catalog-browse.png":::
+   :::image type="content" source="../../media/agent-catalog/agents-catalog-browse.png" alt-text="Screenshot of the Foundry portal showing the Discover tab highlighted in the top navigation and the Agents link highlighted in the left sidebar, with the agent manifests displaying 30 available manifests." lightbox="../../media/agent-catalog/agents-catalog-browse.png":::
 
-   The catalog displays available agent templates. Each card shows the agent name, publisher, and the tools the agent uses.
+   The page displays available agent manifests. Each card shows the agent name, publisher, and the tools the agent uses.
 
-1. Select the **Industry News & Trend Scanner** template.
+1. Select the **Industry News & Trend Scanner** manifest.
 
-   The template detail page shows what the agent does, the tools it uses, and the prompt engineering pattern it demonstrates.
+   The manifest detail page shows what the agent does, the tools it uses, and the prompt engineering pattern it demonstrates.
 
-   :::image type="content" source="../../media/agent-catalog/agent-catalog-template-detail.png" alt-text="Screenshot of the Industry News and Trend Scanner template detail page showing the agent description, tools, and the Create agent button highlighted in the top-right corner." lightbox="../../media/agent-catalog/agent-catalog-template-detail.png":::
+   :::image type="content" source="../../media/agent-catalog/agent-catalog-template-detail.png" alt-text="Screenshot of the Industry News and Trend Scanner manifest detail page showing the agent description, tools, and the Create agent button highlighted in the top-right corner." lightbox="../../media/agent-catalog/agent-catalog-template-detail.png":::
 
 ## Create the agent
 
@@ -56,7 +56,7 @@ In this quickstart, you create an agent from a pre-built template in the Foundry
 
 ## Configure the tool connection
 
-After the agent is created, the playground opens with the template's instructions and tools pre-configured. Before you can test the agent, you need to connect the **Grounding with Bing Search** tool to a Bing Search resource.
+After the agent is created, the playground opens with the manifest's instructions and tools pre-configured. Before you can test the agent, you need to connect the **Grounding with Bing Search** tool to a Bing Search resource.
 
 1. Under **Tools**, find **Grounding with Bing Search**.
 1. Select a connection from the **Connections** dropdown.
@@ -94,7 +94,7 @@ If you no longer need the agent:
 
 ## Related content
 
-- [Agent catalog overview](../concepts/agent-catalog.md)
+- [Agent manifests overview](../concepts/agent-catalog.md)
 - [Agent tools overview](../concepts/tool-catalog.md)
 - [Quickstart: Create a prompt agent](prompt-agent.md)
 - [Agent development lifecycle](../concepts/development-lifecycle.md)

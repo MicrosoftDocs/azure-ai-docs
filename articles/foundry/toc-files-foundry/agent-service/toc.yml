@@ -3,9 +3,9 @@ items:
   items: 
   - name: What is the Foundry Agent service
     href: ../../agents/overview.md
-  - name: Agent catalog
+  - name: Agent manifests
     href: ../../agents/concepts/agent-catalog.md
-  - name: Quickstart - Create an agent from the catalog
+  - name: Quickstart - Create an agent from a manifest
     href: ../../agents/quickstarts/quickstart-agent-catalog.md
   - name: Quickstart - Create a prompt agent
     href: ../../agents/quickstarts/prompt-agent.md

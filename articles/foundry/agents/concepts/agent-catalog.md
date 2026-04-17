@@ -1,6 +1,6 @@
 ---
-title: "Agent catalog for Foundry Agent Service"
-description: "Explore pre-built agent templates in the Foundry agent catalog. Browse templates across industries with tools, prompt patterns, and one-click deployment."
+title: "Agent manifests for Foundry Agent Service"
+description: "Explore pre-built agent manifests for the Foundry Agent Service. Browse manifests across industries with tools, prompt patterns, and one-click deployment."
 author: nicholasdbrady
 ms.author: nbrady
 ms.date: 04/03/2026
@@ -11,17 +11,17 @@ ms.custom: doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Agent catalog for Foundry Agent Service
+# Agent manifests for Foundry Agent Service
 
-The agent catalog in Microsoft Foundry Agent Service is a collection of pre-built agent templates that you can deploy with one click. Each template is a working business automation agent and a prompt engineering learning resource. Browse the catalog to find a template that matches your scenario, select **Create Agent**, and start running it in minutes.
+Microsoft Foundry Agent Service provides a collection of pre-built agent manifests that you can deploy with one click. Each manifest is a working business automation agent and a prompt engineering learning resource. Browse manifests to find one that matches your scenario, select **Create Agent**, and start running it in minutes.
 
-Templates serve two purposes:
+Manifests serve two purposes:
 
-- **Deploy immediately** — Each template creates a working agent that you can run against your own data without writing prompt instructions from scratch.
-- **Learn prompt patterns** — Each template demonstrates a specific prompt engineering technique, such as XML-structured instructions or autonomous decision logic, that you can study and adapt for your own agents.
+- **Deploy immediately** — Each manifest creates a working agent that you can run against your own data without writing prompt instructions from scratch.
+- **Learn prompt patterns** — Each manifest demonstrates a specific prompt engineering technique, such as XML-structured instructions or autonomous decision logic, that you can study and adapt for your own agents.
 
 > [!NOTE]
-> Agent templates are educational resources you build from. They don't perform actions directly on your behalf. You configure each agent with your own data sources, tools, and business context before running it.
+> Agent manifests are educational resources you build from. They don't perform actions directly on your behalf. You configure each agent with your own data sources, tools, and business context before running it.
 
 ## Prerequisites
 
@@ -29,26 +29,26 @@ Templates serve two purposes:
 - A [Foundry project](../../how-to/create-projects.md).
 - A [model deployment](../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-5-mini`).
 
-## Browse the catalog
+## Browse the manifests
 
-To browse the agent catalog:
+To browse the agent manifests:
 
 1. Open the [Foundry portal](https://ai.azure.com).
 1. Navigate to your project.
 1. Select **Discover** > **Agents**.
 
-:::image type="content" source="../../media/agent-catalog/agents-catalog-browse.png" alt-text="Screenshot of the Foundry agent catalog showing 30 agent templates with search, sort, and tool icons for each template." lightbox="../../media/agent-catalog/agents-catalog-browse.png":::
+:::image type="content" source="../../media/agent-catalog/agents-catalog-browse.png" alt-text="Screenshot of the Foundry agent manifests showing 30 agent manifests with search, sort, and tool icons for each manifest." lightbox="../../media/agent-catalog/agents-catalog-browse.png":::
 
-You can search for templates by name or sort by **Featured** to find the right starting point for your scenario. Each template card shows the agent name, publisher, and the tools it uses.
+You can search for manifests by name or sort by **Featured** to find the right starting point for your scenario. Each manifest card shows the agent name, publisher, and the tools it uses.
 
-## Template components
+## Manifest components
 
-Every agent template in the catalog includes these components:
+Every agent manifest includes these components:
 
 | Component | Description |
 |---|---|
-| **Tools** | The Foundry tools the agent uses, such as web search, code interpreter, or SharePoint. Most templates use one or two tools. |
-| **Industry** | Whether the template is cross-industry (generic) or vertical-specific, such as marketing or manufacturing. |
+| **Tools** | The Foundry tools the agent uses, such as web search, code interpreter, or SharePoint. Most manifests use one or two tools. |
+| **Industry** | Whether the manifest is cross-industry (generic) or vertical-specific, such as marketing or manufacturing. |
 | **Tone** | The communication style: formal, technical, coaching, conversational, or concise. |
 | **Output format** | What the agent produces: reports, dashboards, code, emails, narratives, presentations, or tables. |
 | **Interaction style** | How the agent engages: autonomous (no mid-flow input), single-shot (one request, one response), or multi-turn (ongoing conversation). |
@@ -56,9 +56,9 @@ Every agent template in the catalog includes these components:
 | **Prompt structure** | The instruction format: XML tags, Markdown headers, natural language, or numbered rules. |
 | **Memory** | Whether the agent retains context across conversations (on) or treats each conversation independently (off). |
 
-## Tools used by catalog templates
+## Tools used by manifests
 
-Templates use the most common enterprise tools available in Agent Service. The following table lists each tool and its purpose.
+Manifests use the most common enterprise tools available in Agent Service. The following table lists each tool and its purpose.
 
 | Tool | Type | Description |
 |---|---|---|
@@ -73,17 +73,17 @@ Templates use the most common enterprise tools available in Agent Service. The f
 | **[Browser Automation](../how-to/tools/browser-automation.md) (preview)** | Built-in | Interacts with web UIs through natural language prompts. |
 | **[OpenAPI tool](../how-to/tools/openapi.md)** | Custom | Calls external APIs using an OpenAPI specification. |
 
-Most templates use two tools. A few single-tool templates show that well-crafted instructions can handle complex workflows without additional tools.
+Most manifests use two tools. A few single-tool manifests show that well-crafted instructions can handle complex workflows without additional tools.
 
 For more information about configuring tools, see [Agent tools overview](tool-catalog.md).
 
 ## Industries and use cases
 
-The catalog covers both cross-industry and vertical-specific scenarios:
+The manifests cover both cross-industry and vertical-specific scenarios:
 
 | Category | Coverage | Examples |
 |---|---|---|
-| **Generic** | Cross-industry templates for common business workflows | Competitive research, status reporting, incident analysis, meeting prep |
+| **Generic** | Cross-industry manifests for common business workflows | Competitive research, status reporting, incident analysis, meeting prep |
 | **Marketing** | Campaign analysis, brand monitoring, content planning | A/B test analysis, social campaign performance, content calendars |
 | **Manufacturing** | Supply chain and operations | Supplier qualification, procurement automation |
 | **Retail** | Customer insights and store operations | Review synthesis, handbook assistants |
@@ -92,15 +92,15 @@ The catalog covers both cross-industry and vertical-specific scenarios:
 | **E-commerce** | Product optimization | SEO optimization for product listings |
 
 > [!TIP]
-> Cross-industry templates work in any vertical. A template like the "Competitive Landscape Researcher" applies equally to technology, retail, or manufacturing.
+> Cross-industry manifests work in any vertical. A manifest like the "Competitive Landscape Researcher" applies equally to technology, retail, or manufacturing.
 
-## Available templates
+## Available manifests
 
-The following tables list all agent templates currently available in the catalog, grouped by industry.
+The following tables list all agent manifests currently available, grouped by industry.
 
 ### Generic
 
-| Template | Tools | Interaction | Complexity |
+| Manifest | Tools | Interaction | Complexity |
 |---|---|---|---|
 | Competitive Landscape Researcher | Web search, Code Interpreter | Autonomous | Multi-step |
 | Weekly Team Status Reporter | GitHub, SharePoint | Autonomous | Simple |
@@ -124,7 +124,7 @@ The following tables list all agent templates currently available in the catalog
 
 ### Marketing
 
-| Template | Tools | Interaction | Complexity |
+| Manifest | Tools | Interaction | Complexity |
 |---|---|---|---|
 | Content Calendar Planner | Web search, SharePoint | Multi-turn | Decision-tree |
 | Brand Mention Monitor | Grounding with Bing Search, Code Interpreter | Autonomous | Decision-tree |
@@ -133,39 +133,39 @@ The following tables list all agent templates currently available in the catalog
 
 ### Manufacturing
 
-| Template | Tools | Interaction | Complexity |
+| Manifest | Tools | Interaction | Complexity |
 |---|---|---|---|
 | Supplier Qualification Checker | Web search, File Search | Multi-turn | Decision-tree |
 | Internal Procurement Portal | Browser Automation, Microsoft Fabric, OpenAPI tool | Autonomous | Decision-tree |
 
 ### Retail
 
-| Template | Tools | Interaction | Complexity |
+| Manifest | Tools | Interaction | Complexity |
 |---|---|---|---|
 | Customer Review Synthesizer | Code Interpreter | Autonomous | Multi-step |
 | Store Operations Handbook Assistant | SharePoint, Azure AI Search | Multi-turn | Decision-tree |
 
 ### Travel and hospitality
 
-| Template | Tools | Interaction | Complexity |
+| Manifest | Tools | Interaction | Complexity |
 |---|---|---|---|
 | Trip Itinerary Designer | Web search, File Search | Multi-turn | Decision-tree |
 
 ### Non-profit
 
-| Template | Tools | Interaction | Complexity |
+| Manifest | Tools | Interaction | Complexity |
 |---|---|---|---|
 | Donor Engagement Strategist | Azure AI Search, Grounding with Bing Search, OpenAPI tool | Multi-turn | Multi-step |
 
 ### E-commerce
 
-| Template | Tools | Interaction | Complexity |
+| Manifest | Tools | Interaction | Complexity |
 |---|---|---|---|
 | Product Listing SEO Optimizer | Web search, Browser Automation | Multi-turn | Multi-step |
 
 ## Prompt engineering patterns
 
-Each template uses one of four prompt structure styles. You can study these patterns to improve your own agent instructions:
+Each manifest uses one of four prompt structure styles. You can study these patterns to improve your own agent instructions:
 
 | Pattern | Best for | Example |
 |---|---|---|
@@ -176,12 +176,12 @@ Each template uses one of four prompt structure styles. You can study these patt
 
 No single pattern is universally best. Choose a structure based on how your agent needs to process its instructions: strict compliance favors numbered rules, complex multi-phase workflows benefit from XML tags, and conversational agents work well with natural language.
 
-## Create an agent from a template
+## Create an agent from a manifest
 
-To create an agent from a catalog template:
+To create an agent from a manifest:
 
-1. Open the agent catalog in the Foundry portal.
-1. Select a template that matches your use case.
+1. Open the agent manifests in the Foundry portal.
+1. Select a manifest that matches your use case.
 1. Select **Create Agent**.
 1. Configure your agent:
    - Select a model deployment (for example, `gpt-5-mini`).
@@ -193,11 +193,11 @@ To create an agent from a catalog template:
 1. When you're satisfied with the results, [publish your agent](../how-to/publish-agent.md).
 
 > [!TIP]
-> Start by running a template with its default instructions before customizing. This helps you understand the agent's workflow and identify which parts to adjust for your scenario.
+> Start by running a manifest with its default instructions before customizing. This helps you understand the agent's workflow and identify which parts to adjust for your scenario.
 
 ## Related content
 
-- [Quickstart: Create an agent from the catalog](../quickstarts/quickstart-agent-catalog.md)
+- [Quickstart: Create an agent from a manifest](../quickstarts/quickstart-agent-catalog.md)
 - [Agent tools overview](tool-catalog.md)
 - [Tool best practices](tool-best-practice.md)
 - [What is Foundry Agent Service?](../overview.md)
