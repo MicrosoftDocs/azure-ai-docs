@@ -565,20 +565,20 @@ The following capabilities from the initial preview aren't yet available in the 
 
 Use this checklist to track your migration:
 
-- [ ] Update `azure-ai-projects` SDK to version 2.1.0 or later.
-- [ ] **Agent Framework users**: Update Agent Framework packages (`agent-framework-core`, `agent-framework-foundry`, `agent-framework-foundry-hosting`, etc.). Replace `from_agent_framework(agent).run()` with `ResponsesHostServer(agent, store=InMemoryResponseProvider()).run()`. Update `AzureAIAgentClient` → `FoundryChatClient`, `ChatAgent` → `Agent`, and `@ai_function` → `@tool`.
-- [ ] **LangGraph users**: Replace `azure-ai-agentserver-langgraph` with `azure-ai-agentserver-responses`. Replace `from_langgraph(graph).run()` with a `ResponsesAgentServerHost` handler that invokes the graph and yields `ResponseEventStream` events. Add `langchain-mcp-adapters` and `mcp` if using Foundry Toolbox.
-- [ ] **Custom/BYO users**: Replace framework adapter packages with protocol libraries (`azure-ai-agentserver-responses` or `azure-ai-agentserver-invocations`). Rewrite agent entry points using `ResponsesAgentServerHost` or `InvocationAgentServerHost`.
-- [ ] Update protocol version strings from `"v1"` to `"1.0.0"` in code and `agent.yaml`.
-- [ ] Update `agent.yaml` if using `azd` (protocol version format, remove any `tools` definitions from agent definition).
-- [ ] Remove `az cognitiveservices agent` CLI calls from scripts and CI/CD pipelines; replace with `az rest` or `azd ai agent` commands.
-- [ ] Remove capability host creation steps from provisioning scripts.
-- [ ] Update agent invocation code — use `project.get_openai_client(agent_name=...)` instead of `extra_body` with `agent_reference`.
-- [ ] Review RBAC — grant downstream resource access to the agent's dedicated Entra identity, not the project managed identity.
-- [ ] Update `azd` Foundry agents extension to the latest version.
-- [ ] Build container image with `--platform linux/amd64` (if not already).
-- [ ] Redeploy your agent using `azd up` or the SDK `create_version` method.
-- [ ] Verify the new version reaches `active` status before sending traffic.
+- Update `azure-ai-projects` SDK to version 2.1.0 or later.
+- **Agent Framework users**: Update Agent Framework packages (`agent-framework-core`, `agent-framework-foundry`, `agent-framework-foundry-hosting`, etc.). Replace `from_agent_framework(agent).run()` with `ResponsesHostServer(agent, store=InMemoryResponseProvider()).run()`. Update `AzureAIAgentClient` → `FoundryChatClient`, `ChatAgent` → `Agent`, and `@ai_function` → `@tool`.
+- **LangGraph users**: Replace `azure-ai-agentserver-langgraph` with `azure-ai-agentserver-responses`. Replace `from_langgraph(graph).run()` with a `ResponsesAgentServerHost` handler that invokes the graph and yields `ResponseEventStream` events. Add `langchain-mcp-adapters` and `mcp` if using Foundry Toolbox.
+- **Custom/BYO users**: Replace framework adapter packages with protocol libraries (`azure-ai-agentserver-responses` or `azure-ai-agentserver-invocations`). Rewrite agent entry points using `ResponsesAgentServerHost` or `InvocationAgentServerHost`.
+- Update protocol version strings from `"v1"` to `"1.0.0"` in code and `agent.yaml`.
+- Update `agent.yaml` if using `azd` (protocol version format, remove any `tools` definitions from agent definition).
+- Remove `az cognitiveservices agent` CLI calls from scripts and CI/CD pipelines; replace with `az rest` or `azd ai agent` commands.
+- Remove capability host creation steps from provisioning scripts.
+- Update agent invocation code — use `project.get_openai_client(agent_name=...)` instead of `extra_body` with `agent_reference`.
+- Review RBAC — grant downstream resource access to the agent's dedicated Entra identity, not the project managed identity.
+- Update `azd` Foundry agents extension to the latest version.
+- Build container image with `--platform linux/amd64` (if not already).
+- Redeploy your agent using `azd up` or the SDK `create_version` method.
+- Verify the new version reaches `active` status before sending traffic.
 
 ## Next steps
 
