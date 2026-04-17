@@ -68,9 +68,9 @@ Before you delete an Azure Machine Learning workspace in the Azure portal or wit
 * Azure Virtual Network
 * Bandwidth
 
-Each VM is billed per hour that it runs. Cost depends on VM specifications. VMs that run but don't actively work on a dataset are still charged via the load balancer. For each compute instance, one load balancer is billed per day. Every 50 nodes of a compute cluster have one standard load balancer billed. Each load balancer is billed around $0.33/day. To avoid load balancer costs on stopped compute instances and compute clusters, delete the compute resource.
+Each VM is billed per hour that it runs. Cost depends on VM specifications. Every 50 nodes of a compute cluster have one standard load balancer billed. Each load balancer is billed around $0.33/day. 
 
-Compute instances also incur P10 disk costs even in stopped state because any user content saved there persists across the stopped state similar to Azure VMs. The OS disk on a compute instance has a 120-GB capacity. Currently, it isn't possible to change the OS disk type. For Azure Virtual Networks, one virtual network is billed per subscription and per region. Virtual networks can't span regions or subscriptions. Setting up private endpoints in a virtual network might also incur charges. If your virtual network uses an Azure Firewall, it might also incur charges. Bandwidth charges reflect usage; the more data transferred, the greater the charge. 
+For Azure Virtual Networks, one virtual network is billed per subscription and per region. Virtual networks can't span regions or subscriptions. Setting up private endpoints in a virtual network might also incur charges. If your virtual network uses an Azure Firewall, it might also incur charges. Bandwidth charges reflect usage; the more data transferred, the greater the charge. 
 
 > [!TIP]
 > - Using an Azure Machine Learning managed virtual network is free. However, some features of the managed network rely on Azure Private Link (for private endpoints) and Azure Firewall (for FQDN rules), which incur charges. For more information, see [Managed virtual network isolation](how-to-managed-network.md#pricing).
