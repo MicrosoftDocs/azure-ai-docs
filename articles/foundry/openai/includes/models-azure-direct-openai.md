@@ -9,22 +9,28 @@ ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 ---
 
-> [!NOTE]
-> Foundry Models sold directly by Azure also include select models from top model providers. To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. Models from partners and community include:
->
-> - Black Forest Labs: `FLUX.2-flex` **Preview**, `FLUX.2-pro` **Preview**, `FLUX.1-Kontext-pro` **Preview**, `FLUX-1.1-pro` **Preview**
-> - Cohere: `Cohere-command-a`, `embed-v-4-0`, `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast`
-> - DeepSeek: `DeepSeek-V3.2` **Preview**, `DeepSeek-V3.2-Speciale` **Preview**, `DeepSeek-V3.1` **Preview**, `DeepSeek-V3-0324` **Preview**, `DeepSeek-R1-0528` **Preview**, `DeepSeek-R1`
-> - Moonshot AI: `Kimi-K2.5` **Preview**
-> - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8` **Preview**, `Llama-3.3-70B-Instruct` **Preview**
-> - Microsoft: `MAI-Image-2e`, `MAI-Image-2`, `model-router`
-> - Mistral: `mistral-document-ai-2512`, `mistral-document-ai-2505` **Preview**, `Mistral-Large-3` **Preview**
-> - xAI: `grok-code-fast-1` **Preview**, `grok-3` **Preview**, `grok-3-mini` **Preview**, `grok-4-fast-reasoning` **Preview**, `grok-4-fast-non-reasoning` **Preview**, `grok-4`, `grok-4.1-fast-reasoning` **Preview**, `grok-4.1-fast-non-reasoning` **Preview**, `grok-4-20-reasoning`, `grok-4-20-non-reasoning`
-
-
 ## Azure OpenAI in Microsoft Foundry models
 
-[!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
+Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, refer to [Azure OpenAI in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md).
+
+| Models | Description |
+|--|--|
+| [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) | **NEW** `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
+| [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) | **NEW** `gpt-5.3-chat`, `gpt-5.3-codex`  |
+| [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | **NEW** `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` **Preview**|
+| [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) | **NEW** `gpt-5.1`, `gpt-5.1-chat` **Preview**, `gpt-5.1-codex`, `gpt-5.1-codex-mini`|
+| [Sora](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models) | **NEW** sora-2 |
+| [GPT-5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-5) | gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-chat **Preview** |
+| [gpt-oss](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-oss) | open-weight reasoning models |
+| [codex-mini](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models) | Fine-tuned version of o4-mini. |  
+| [GPT-4.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-41-series) | gpt-4.1, gpt-4.1-mini, gpt-4.1-nano |
+| [computer-use-preview](../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
+| [o-series models](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models) |[Reasoning models](../how-to/reasoning.md) with advanced problem solving and increased focus and capability. |
+| [GPT-4o, GPT-4o mini, and GPT-4 Turbo](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-4o-and-gpt-4-turbo) | Capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
+| [Embeddings](../../foundry-models/concepts/models-sold-directly-by-azure.md#embeddings) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
+| [Image generation](../../foundry-models/concepts/models-sold-directly-by-azure.md#image-generation-models) | A series of models that can generate original images from natural language. |
+| [`Video generation`](../../foundry-models/concepts/models-sold-directly-by-azure.md#video-generation-models) | A model that can generate original video scenes from text instructions. |
+| [Audio](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
 
 ## GPT-5.4
 
