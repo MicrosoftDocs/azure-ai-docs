@@ -477,6 +477,8 @@ If you encounter issues, try these solutions for common problems:
 | Agent doesn't start locally | Verify environment variables are set and run `az login` to refresh credentials. |
 | `AcrPullUnauthorized` error | Grant **AcrPull** role to the project's managed identity on the container registry. |
 
+For comprehensive details about all permissions and role assignments involved in hosted agent deployment, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+
 :::zone pivot="azd"
 
 | Issue | Solution |
