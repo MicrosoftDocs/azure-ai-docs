@@ -44,6 +44,9 @@ You need **Azure AI User** at project scope to create and deploy hosted agents. 
 > [!NOTE]
 > The platform creates a dedicated Entra agent identity for each hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually.
 
+> [!NOTE]
+> While azd and VS Code extensions handle basic RBAC assignments automatically, complex scenarios may require additional manual configuration. For comprehensive details about all permissions and role assignments involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
+
 For more information, see [Authentication and authorization](../../concepts/authentication-authorization-foundry.md).
 
 ## Container requirements
@@ -442,6 +445,8 @@ Provisioning errors surface on the version object's `error.code` and `error.mess
 | `RegistryNotFound` | 400/404 | Fix registry DNS or network reachability |
 
 For 5xx errors, contact Microsoft support.
+
+For detailed RBAC requirements and permission troubleshooting, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 ## Next steps
 
