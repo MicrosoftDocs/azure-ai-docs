@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Deploy your first hosted agent"
-description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry for VS Code."
+description: "Learn how to deploy a containerized AI agent to Foundry Agent Service using the Azure Developer CLI or Microsoft Foundry Toolkit extension for VS Code."
 author: aahill
 ms.author: aahi
 ms.date: 03/12/2026
@@ -40,7 +40,7 @@ Before you begin, you need:
 
 :::zone pivot="vscode"
 * [Visual Studio Code](https://code.visualstudio.com/)
-* [Microsoft Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry)
+* [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk)
 :::zone-end
 
 > [!NOTE]
@@ -179,9 +179,14 @@ Deploying services (azd deploy)
 
 :::zone pivot="vscode"
 
+> [!IMPORTANT]
+> Make sure you are using the prelease version of the Microsoft Foundry Toolkit extension and the Foundry extension in VS Code.
+>
+> In your VS Code extensions page, choose Foundry Toolkit extension and Foundry extension and switch to the pre-release version.
+
 ## Step 1: Create a Foundry project
 
-Use the Microsoft Foundry extension in VS Code to create a new Microsoft Foundry Project resource.
+Use the Microsoft Foundry Toolkit extension in VS Code to create a new Microsoft Foundry Project resource.
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Create Project**.
 
@@ -195,7 +200,7 @@ Once the project creation is complete, continue to the next step and deploy a mo
 
 ## Step 2: Deploy a model
 
-Use the Microsoft Foundry extension in VS Code to deploy a model to Foundry.
+Use the Microsoft Foundry Toolkit extension in VS Code to deploy a model to Foundry.
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Open Model Catalog**.
 
@@ -207,7 +212,7 @@ Once the model is deployed successfully, move on to the next step and create a H
 
 ## Step 3: Create a Hosted Agent project
 
-Use the Microsoft Foundry extension in VS Code to scaffold a new hosted agent project.
+Use the Microsoft Foundry Toolkit extension in VS Code to scaffold a new hosted agent project.
 
 1. Open the Command Palette (**Ctrl+Shift+P**) and select **Microsoft Foundry: Create new Hosted Agent**.
 
@@ -311,7 +316,7 @@ Deploy your agent directly from VS Code.
 
 1. Select the CPU and Memory configuration for the Hosted Agent container.
 
-Switch to the Microsoft Foundry explorer by selecting the icon on the left. The agent appears in the **Hosted Agents (Preview)** tree view sidebar after deployment completes.
+Switch to the Microsoft Foundry Toolkit explorer by selecting the icon on the left. The agent appears in the **Hosted Agents (Preview)** tree view sidebar after deployment completes.
 
 :::zone-end
 
@@ -333,7 +338,7 @@ The detail page shows the Status under the Container Details section.
 
 ### Test in the playground using VS Code
 
-Microsoft Foundry for VS Code includes an integrated Playground to chat and interact with your agent. 
+Microsoft Foundry Toolkit for VS Code includes an integrated playground to chat and interact with your agent. 
 
 1. Select your hosted agent from the Hosted Agents (Preview) tree view.
 
@@ -507,7 +512,7 @@ You can download, upload, and create folders within the current folder, clicking
 
 | Issue | Solution |
 | ----- | -------- |
-| Extension not found | Install the [Microsoft Foundry for VS Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry) from the VS Code Marketplace. |
+| Extension not found | Install the [Microsoft Foundry Toolkit for VS Code extension](https://aka.ms/foundrytk) from the VS Code Marketplace. |
 
 :::zone-end
 
