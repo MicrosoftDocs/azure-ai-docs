@@ -61,7 +61,7 @@ Start at [Azure Machine Learning studio](https://ml.azure.com).
 
 ## Manage
 
-You can start, stop, restart, and delete a compute instance. A compute instance doesn't always automatically scale down, so make sure to stop the resource to prevent ongoing charges. Stopping a compute instance deallocates it. Then start it again when you need it. While stopping the compute instance stops the billing for compute hours, you still pay for disk, public IP, and standard load balancer. 
+You can start, stop, restart, and delete a compute instance. A compute instance doesn't always automatically scale down, so make sure to stop the resource to prevent ongoing charges. Stopping a compute instance deallocates it. Then start it again when you need it. While stopping the compute instance stops the billing for compute hours, you still pay for public IP. 
 
 You can [enable automatic shutdown](how-to-create-compute-instance.md#configure-idle-shutdown) to automatically stop the compute instance after a specified time.
 
