@@ -17,7 +17,9 @@ ai-usage: ai-assisted
 # Use skills in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-A skill is a `SKILL.md` file that a hosted agent discovers at startup and injects as additional instructions into every conversation session. Skills let you define reusable behavioral guidelines - such as a greeting style, a code review checklist, or domain-specific constraints - and manage them centrally through the Skills REST API.
+As agents grow beyond simple prototypes, teams accumulate behavioral guidelines that need to be consistent across every conversation — a support agent should always follow a specific escalation policy, a code-review agent should always apply the same checklist, a sales agent should always respect certain messaging constraints. Embedding these guidelines directly in each agent's system prompt or code creates duplication: when the policy changes, every agent that uses it needs to be updated and redeployed.
+
+Skills solve this by decoupling behavioral guidelines from agent code. A skill is a `SKILL.md` file you author once, store centrally in Foundry through the Skills REST API, and reference from any hosted agent. At startup, the agent downloads the skill files it needs and injects their contents as additional instructions into every conversation session. Update a skill in one place and every agent that references it picks up the change on its next deployment — no code changes required.
 
 In this article, you learn how to:
 
