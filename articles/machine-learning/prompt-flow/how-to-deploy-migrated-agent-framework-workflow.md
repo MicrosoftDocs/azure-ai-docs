@@ -14,6 +14,8 @@ ai-usage: ai-assisted
 
 # Deploy and operate your migrated Agent Framework workflow
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 This article covers the operations and cutover steps of the Prompt Flow to Microsoft Agent Framework migration: setting up tracing, deploying to Azure Container Apps, adding a CI/CD quality gate, and cutting over production traffic. For the audit, rebuild, and validation steps, see [Rebuild and validate your Prompt Flow workflow in Microsoft Agent Framework](how-to-migrate-prompt-flow-to-agent-framework.md).
 
 ## Prerequisites

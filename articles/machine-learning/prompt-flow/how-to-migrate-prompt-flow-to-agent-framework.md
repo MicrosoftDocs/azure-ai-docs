@@ -14,7 +14,10 @@ ai-usage: ai-assisted
 
 # Audit, rebuild, and validate your Prompt Flow workflow in Microsoft Agent Framework
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 This article walks you through the first three phases of the Prompt Flow to Microsoft Agent Framework migration: auditing your existing flow, rebuilding it in Agent Framework, and validating output parity. For the migration overview and concept mapping, see [Migrate from Prompt Flow to Microsoft Agent Framework](migrate-prompt-flow-to-agent-framework.md).
+
 
 ## Prerequisites
 
