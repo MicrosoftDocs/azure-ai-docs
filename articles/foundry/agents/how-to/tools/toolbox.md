@@ -582,7 +582,7 @@ http_client = httpx.AsyncClient(
     timeout=120.0,
 )
 
-TOOLBOX_ENDPOINT = os.getenv("TFOUNDRY_AGENT_TOOLBOX_ENDPOINT")
+TOOLBOX_ENDPOINT = os.getenv("FOUNDRY_AGENT_TOOLBOX_ENDPOINT")
 
 # Connect MCPStreamableHTTPTool to the toolbox endpoint
 mcp_tool = MCPStreamableHTTPTool(
@@ -1859,65 +1859,22 @@ resources:
 
 #### Download output files from Code Interpreter
 
-When Code Interpreter produces output files (for example, a generated CSV or chart), the files are stored in the container's `/mnt/data` directory. To retrieve them, include a directory-listing snippet as part of your `code` argument. This causes the tool to report the file IDs in its output, which you can then pass to the File API to download the bytes.
+When Code Interpreter produces output files (for example, a generated CSV or chart), use the following steps to list and download them.
 
-**Step 1: Call the tool with a listing snippet**
+**Step 1: List files using the Container API**
 
-Include the following Python code in your `code` parameter. You can append it to your actual task code or call it as a standalone diagnostic step:
+Extract the `container_id` from `content[]._meta.container_id` in the `tools/call` response, then call the Container Files API to list all files in the container:
 
-```python
-import os
-for root, dirs, files in os.walk('/mnt/data'):
-    for f in files:
-        path = os.path.join(root, f)
-        print(f'{path} ({os.path.getsize(path)} bytes)')
-if not os.listdir('/mnt/data'):
-    print('NO FILES IN /mnt/data')
+```http
+GET {project_endpoint}/containers/{container_id}/files?api-version=v1
+Authorization: Bearer {token}
 ```
 
-**Step 2: Locate the file ID in the response**
+The response returns a list of files with their names and IDs.
 
-The `tools/call` response includes `content[].\_meta.container_file_citations[]` with the file IDs of all output files written to `/mnt/data`. Each entry in `container_file_citations` maps a file path to a file ID you can use to download the file:
+**Step 2: Download the file using the File API**
 
-```json
-{
-  "jsonrpc": "2.0",
-  "id": "ci-diag-ls-1",
-  "result": {
-    "_meta": {
-      "tool_configuration": {
-        "type": "code_interpreter",
-        "name": "code-interpreter-uploaded",
-        "file_ids": [
-          "assistant-TKeKCzTCP4o7W4mDrG6FWm"
-        ]
-      }
-    },
-    "content": [
-      {
-        "type": "text",
-        "text": "content_type='execution_output' text='/mnt/data/assistant-TKeKCzTCP4o7W4mDrG6FWm-profits_1_2_2024.csv (122 bytes)\\n'",
-        "annotations": {
-          "audience": ["assistant"]
-        },
-        "_meta": {
-          "code": "import os\nfor root, dirs, files in os.walk('/mnt/data'):\n    for f in files:\n        path = os.path.join(root, f)\n        print(f'{path} ({os.path.getsize(path)} bytes)')\nif not os.listdir('/mnt/data'):\n    print('NO FILES IN /mnt/data')",
-          "container_id": "cntr_69e1235538d88190ba90e220fdc0cb7f082b11cf1b58ff16",
-          "container_file_citations": null,
-          "response_id": "resp_087066f228acca1f0069e12354b28c8196812fd8acfd9d0a12"
-        }
-      }
-    ],
-    "isError": false
-  }
-}
-```
-
-Look for `container_file_citations` inside each `content[]._meta` object. When output files are present, `container_file_citations` contains file IDs you can pass to the File API. In this example, `container_file_citations` is `null` because the listing snippet itself doesn't produce a new output file — the file ID (`assistant-TKeKCzTCP4o7W4mDrG6FWm`) is visible in the `text` output and in `tool_configuration.file_ids[]`.
-
-**Step 3: Download the file**
-
-Pass the file ID to the [File API download endpoint](/azure/foundry/openai/latest#download-file) to retrieve the file bytes.
+Use the file name returned from Step 1 to download the file via the [File API download endpoint](/azure/foundry/openai/latest#download-file).
 
 ### [File Search](file-search.md)
 
