@@ -7,7 +7,7 @@ ms.date: 04/14/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
-# Create a remote SharePoint knowledge source
+# Create a remote SharePoint knowledge source (preview)
 
 [!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 

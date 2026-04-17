@@ -7,7 +7,7 @@ ms.date: 01/26/2026
 ms.custom: references_regions
 ---
 
-# Set the retrieval reasoning effort
+# Set the retrieval reasoning effort (preview)
 
 [!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 

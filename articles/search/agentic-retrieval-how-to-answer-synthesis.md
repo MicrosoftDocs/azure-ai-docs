@@ -6,7 +6,7 @@ ms.topic: how-to
 ms.date: 03/25/2026
 ---
 
-# Use answer synthesis for citation-backed responses in Azure AI Search
+# Use answer synthesis in Azure AI Search (preview)
 
 [!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 
