@@ -1821,6 +1821,8 @@ The search results include chunk metadata in `result.structuredContent.documents
 
 Use this pattern to let the agent write and execute Python code. The pattern doesn't require a project connection or extra configuration.
 
+To upload a file for Code Interpreter to use, call `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`. The returned file ID is the value you supply as `<FILE_ID>` in the tool configuration. See [Code Interpreter](code-interpreter.md) for full upload examples.
+
 > [!IMPORTANT]
 > When using Code Interpreter through a toolbox in a hosted agent, **user isolation is not supported**. All users in the same project share the same container context.
 
@@ -1928,6 +1930,13 @@ Use the file name returned from Step 1 to download the file via the [File API do
 ### [File Search](file-search.md)
 
 Use this pattern to let the agent search over uploaded files stored in a vector store. Provide `vector_store_ids` referencing vector stores already created in your Foundry project.
+
+To create a file and vector store, use the `{project_endpoint}/openai/v1` API:
+
+1. Upload your file: `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`.
+1. Create a vector store: `POST {project_endpoint}/openai/v1/vector_stores` with the returned file ID.
+
+The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
 > [!IMPORTANT]
 > When using File Search through a toolbox in a hosted agent, **user isolation is not supported**. All users in the same project share access to the same vector store.
