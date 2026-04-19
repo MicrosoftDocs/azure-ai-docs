@@ -36,6 +36,8 @@ items:
     - name: Overview
       href: personally-identifiable-information/overview.md
       displayName: personally identifiable information, document
+    - name: Quickstart
+      href: personally-identifiable-information/quickstart.md
     - name: Language support
       href: personally-identifiable-information/language-support.md
 
@@ -43,8 +45,6 @@ items:
       items:
       - name: Overview
         href: personally-identifiable-information/text-pii-overview.md
-      - name: Quickstart
-        href: personally-identifiable-information/quickstart.md
       - name: How-to guides
         items:
         - name: Detect and redact PII in text
