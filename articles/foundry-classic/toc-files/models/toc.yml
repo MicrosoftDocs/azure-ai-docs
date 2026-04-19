@@ -78,6 +78,8 @@ items:
     href: ../../how-to/use-image-models.md
   - name: Claude in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-claude.md
+  - name: FLUX models in Foundry Models
+    href: ../../foundry-models/how-to/use-foundry-models-flux.md
   - name: Microsoft AI (MAI) in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-mai.md
   - name: Develop with LangChain and LangGraph

@@ -1,6 +1,6 @@
 ---
 title: "Foundry Agent Service disaster recovery (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.reviewer: ckittel
 description: "Plan disaster recovery for Foundry Agent Service: limitations, readiness checklist, and recovery paths for platform outages and data loss. (classic)"
 #customer intent: As a developer, I want to automate the redeployment of agent definitions so that I can speed up disaster recovery processes.

@@ -5,8 +5,8 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
-ms.date: 04/02/2026
-ms.service: azure-ai-foundry
+ms.date: 04/03/2026
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.custom:
   - classic-and-new

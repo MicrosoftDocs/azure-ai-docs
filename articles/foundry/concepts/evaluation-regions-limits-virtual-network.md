@@ -5,8 +5,8 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
 ms.date: 04/03/2026
-ms.topic: concept-article
-ms.service: azure-ai-foundry
+ms.topic: how-to
+ms.service: microsoft-foundry
 ai-usage: ai-assisted
 ms.custom:
   - references_regions

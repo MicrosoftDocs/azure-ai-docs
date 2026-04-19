@@ -7,7 +7,7 @@ ms.reviewer: fasantia
 ms.date: 02/04/2026
 ms.manager: mcleans
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
@@ -91,11 +91,11 @@ Before you register the custom agent that you added to a Foundry project, make s
 
 Your project is configured for observability and tracing.
 
-### Register the agent
+### Register the agent (asset)
 
 1. On the toolbar, select **Operate**.
 
-1. On the **Overview** pane, select **Register agent**.
+1. On the **Overview** pane, select **Register asset**.
 
     :::image type="content" source="media/register-custom-agent/register-custom-agent.png" alt-text="Screenshot of the button for registering an agent on the Overview pane of the Foundry portal." lightbox="media/register-custom-agent/register-custom-agent.png":::
 

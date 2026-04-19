@@ -4,7 +4,7 @@ description: include file
 author: msakande
 ms.author: mopeakande
 ms.reviewer: rasavage
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/31/2026
 ms.custom: include, classic-and-new
@@ -82,12 +82,6 @@ To learn more about the Azure OpenAI models lifecycle, including information for
 ## Upcoming retirements for Foundry Models
 
 The following tables list the timelines for models that are on track for retirement. The lifecycle stages go into effect at 00:00:00 UTC on the specified dates.
-
-#### Bayer
-
-| Model | Legacy date | Deprecation date | Retirement date | Suggested replacement model |
-|-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [E.L.Y.Crop-Protection](https://ai.azure.com/explore/models/E.L.Y.Crop-Protection/version/1/registry/azureml/?cid=learnDocs) | March 16, 2026 | April 16, 2026 | July 31, 2026 | N/A |
 
 #### Cohere
 
