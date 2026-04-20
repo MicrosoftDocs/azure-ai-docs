@@ -29,7 +29,7 @@ For Anthropic Claude models, Microsoft provides and manages the API deployment i
 
 ## Where can I learn about screening for harmful content in data for the Anthropic Claude models in Microsoft Foundry?
 
-To learn more about storage of data, screening for harmful content, or other topics specific to the Anthropic Claude API, please see Anthropic's documentation.
+To learn more about screening for harmful content in data or other topics specific to the Anthropic Claude API, please see Anthropic's documentation.
 
 ## Where is data processed for Anthropic Claude models in Microsoft Foundry
 
