@@ -95,7 +95,7 @@ The response from a successful image generation API call looks like the followin
 
 Streaming lets you receive partial images as they're generated, providing faster visual feedback for your users. This is useful for applications where you want to show generation progress. The `partial_images` parameter (1-3) controls how many intermediate images are returned before the final result.
 
-You can stream image generation requests to `gpt-image-1`-series and `gpt-image-2` models (TBD) by setting the `stream` parameter to `true`, and setting the `partial_images` parameter to a value between 0 and 3.
+You can stream image generation requests to `gpt-image-1`-series and `gpt-image-2` models by setting the `stream` parameter to `true`, and setting the `partial_images` parameter to a value between 0 and 3.
 
 ```python
 import base64

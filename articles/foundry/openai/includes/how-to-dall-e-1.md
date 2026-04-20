@@ -29,10 +29,10 @@ Use this table to learn the differences between the different image generation m
 | **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). |
 | **Image Sizes / Resolutions** | Arbitrary resolutions: both edges must be multiples of 16 px; long edge up to 3840 px (4K); aspect ratio up to 3:1; pixel count 655,360–8,294,400 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 |
 | **Quality Options** | Reworked quality controls: `low`, `medium`, `high`; `low` is optimized for latency-sensitive use cases | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = medium) |
-| **Number of Images per Request** | TBD | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) |
+| **Number of Images per Request** | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) |
 | **Editing (inpainting / variations)** | ✅ Improved editing performance with inpainting and variations | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt |
-| **Face Preservation** | TBD | ✅ Advanced **face preservation** for realistic, consistent results | ✅ Advanced **face preservation** for realistic, consistent results | ❌ No dedicated face preservation; better for **non-portrait/general creative** imagery |
-| **Performance & Cost** | TBD | High-fidelity, **realism-optimized** model; improved efficiency and latency over GPT-Image-1 | High-fidelity, **realism-optimized** model; higher latency and cost | **Cost-efficient** and **faster** for large-scale or iterative generation |
+| **Face Preservation** | ✅ Advanced **face preservation** for realistic, consistent results | ✅ Advanced **face preservation** for realistic, consistent results | ✅ Advanced **face preservation** for realistic, consistent results | ❌ No dedicated face preservation; better for **non-portrait/general creative** imagery |
+| **Performance & Cost** | High-fidelity, **realism-optimized** model; higher latency and cost | High-fidelity, **realism-optimized** model; improved efficiency and latency over GPT-Image-1 | High-fidelity, **realism-optimized** model; higher latency and cost | **Cost-efficient** and **faster** for large-scale or iterative generation |
 
 ## Quickstart
 
@@ -97,6 +97,6 @@ Image generation has default rate limits per deployment:
 | Model | Default quota (images/min) |
 |-------|---------------------------|
 | GPT-image-1 series | 5 |
-| GPT-image-2 | TBD |
+| GPT-image-2 | 5 |
 
 To view your current quota or request an increase, see [Manage Azure OpenAI quotas](/azure/ai-foundry/openai/how-to/quota).

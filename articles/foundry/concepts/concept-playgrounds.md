@@ -248,7 +248,7 @@ Follow these steps to use the images playground:
 1. Enter your text prompt. For models that support image-to-image generation, upload an image attachment to the prompt bar.
 1. Adjust generation controls such as number of variations and aspect ratio to understand model responsiveness and constraints.
 1. Visually observe outputs in the grid view across prompt tweaks or parameter changes.
-1. Use inpainting to transform parts of your image. Inpainting with text transformation is available for gpt-image-1 and gpt-image-2 (TBD). Use text prompts to specify the change.
+1. Use inpainting to transform parts of your image. Inpainting with text transformation is available for gpt-image-1 and gpt-image-2. Use text prompts to specify the change.
 1. Select **View Code** to access multilingual code samples for production integration.
 
 ### What to validate when experimenting in images playground
