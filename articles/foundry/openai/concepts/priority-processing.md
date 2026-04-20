@@ -24,6 +24,8 @@ ms.custom:
 [!INCLUDE [priority-processing 1](../includes/concepts-priority-processing-1.md)]
 
 ## Priority processing availability by deployment type
+Include mini models as well and keep the supported models list up to date - <img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/6d0ddcb2-4039-45b6-83b7-f3670f3b9440" />
+
 
 Priority processing can be enabled in Global standard deployments or Data Zone standard (US) deployments. For pricing information, see [the Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/azure-openai/).
 
