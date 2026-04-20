@@ -63,7 +63,7 @@ client = AzureOpenAIChatClient(
 ```
 
 > [!NOTE]
-> If you migrate to a Microsoft Foundry project endpoint (`https://<resource>.services.ai.azure.com`), use `FoundryChatClient` instead. See the [Foundry migration guide](../../foundry-classic/how-to/prompt-flow-migration-overview.md) for details.
+> If you migrate to a Microsoft Foundry project endpoint (`https://<resource>.services.ai.azure.com`), use `FoundryChatClient` instead. 
 
 ### Environment variables
 
