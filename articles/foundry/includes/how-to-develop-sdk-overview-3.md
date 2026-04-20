@@ -52,7 +52,11 @@ For Speech and Translation Foundry Tools, use the endpoints in the following tab
 |Text Translation|`https://api.cognitive.microsofttranslator.com/`|
 |Document Translation|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
 
-The following sections include quickstart links for the Foundry Tools SDKs and reference information.
+#### Language Endpoints
+
+| Foundry Tool | Endpoint |
+| --- | --- |
+| Text analysis| `https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com`|
 
 > [!IMPORTANT]
 > On March 20, 2027, Azure Language Studio will retire and migrate to Microsoft Foundry; all capabilities and future enhancements will be available in Microsoft Foundry.
