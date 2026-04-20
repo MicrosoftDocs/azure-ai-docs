@@ -27,7 +27,7 @@ ms.custom: include
 
 ## Identify Azure services for Foundry
 
-Foundry is an Azure native service with fewer implicit dependencies than the earlier hub/workspace model. Foundry projects can attach resources based on workload patterns, such as retrieval, orchestration, monitoring, and integration. Treat attached resources as optional unless your workload requires them.
+Foundry is an Azure native service with fewer implicit dependencies than the earlier workspace model. Foundry projects can attach resources based on workload patterns, such as retrieval, orchestration, monitoring, and integration. Treat attached resources as optional unless your workload requires them.
 
 Service categories include:
 
