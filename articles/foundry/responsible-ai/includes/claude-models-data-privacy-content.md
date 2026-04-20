@@ -33,7 +33,7 @@ To learn more about screening for harmful content in data or other topics specif
 
 ## Where is data processed for Anthropic Claude models in Microsoft Foundry
 
-For the Anthropic Claude API, prompts and outputs may be processed anywhere in the world, including outside of your region, for operational purposes. Operational purposes include performance and capacity management. To learn about the terms that govern data processing, see [Anthropic's privacy policy](https://www.anthropic.com/legal/privacy) and for terms of service, see [Anthropic's Commercial Terms of Service](https://aka.ms/anthropic_tandc).
+For the Anthropic Claude API, prompts and outputs may be processed outside of your region, for operational purposes. Operational purposes include performance and capacity management. To learn about the terms that govern data processing, see [Anthropic's privacy policy](https://www.anthropic.com/legal/privacy) and [Anthropic's Commercial Terms of Service](https://aka.ms/anthropic_tandc).
 
 ## Related content
 
