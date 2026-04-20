@@ -14,10 +14,22 @@ ms.custom: language-service-pii
 <!-- markdownlint-disable MD025 -->
 # What is PII detection in Azure Language?
 
-Personally Identifiable Information (PII) detection is an Azure Language [core capability](../overview.md#core-capabilities) that helps you identify, classify, and redact sensitive data across text, conversations, and native documents. Submit content to the service and receive structured output with entity categories, confidence scores, and redacted results based on your API configuration. You can use this capability to implement privacy controls, reduce sensitive data exposure, and support compliance requirements in application and data-processing workflows.
+Personally Identifiable Information (PII) detection is an Azure Language [core capability](../overview.md#core-capabilities) that helps you identify, classify, and redact sensitive data across text, conversations, and native documents. Submit input text to the service and receive structured output with entity categories, confidence scores, and redacted results based on your API configuration. You can use this capability to implement privacy controls, reduce sensitive data exposure, and support compliance requirements in application and data-processing workflows.
 
 > [!TIP]
 > Try PII detection in [Microsoft Foundry](https://ai.azure.com/) and choose the feature type that matches your input data.
+
+## Video demonstration
+
+In this video, we introduce the PII detection service and show you how it detects and redacts sensitive data across text, documents, and conversational transcripts. We cover:
+
+* How to try the service in the Azure Foundry portal playground
+* Key customization options for entity types, masking styles, and exclusions
+* Why PII protection matters and the business impact of data breaches
+
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=17262a01-0c8c-40fa-98e3-826b766d5db4]
+
+Closed captions are available for this video.
 
 ## PII documentation by feature type
 
