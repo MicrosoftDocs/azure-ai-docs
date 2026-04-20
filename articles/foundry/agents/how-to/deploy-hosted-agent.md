@@ -36,13 +36,15 @@ Every hosted agent deployment follows this sequence:
 
 ### Required permissions
 
-You need **Azure AI User** at project scope to create and deploy hosted agents. If you use `azd` or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
+You need **Azure AI Project Manager** at project scope to create and deploy hosted agents. This role includes both the data plane permissions to create agents and the ability to assign the **Azure AI User** role to the platform-created agent identity. The agent identity needs **Azure AI User** on the project to access models and artifacts at runtime.
+
+If you use `azd` or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
 
 - **Container Registry Repository Reader** for the project managed identity (image pulls)
 - **Azure AI User** for the platform-created agent identity (runtime model and tool access)
 
 > [!NOTE]
-> The platform creates a dedicated Entra agent identity for each hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually.
+> The platform creates a dedicated Entra agent identity for each hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Azure AI User** to that identity — which is why **Azure AI Project Manager** is recommended over **Azure AI User** alone.
 
 > [!NOTE]
 > While azd and VS Code extensions handle basic RBAC assignments automatically, complex scenarios may require additional manual configuration. For comprehensive details about all permissions and role assignments involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
@@ -52,6 +54,9 @@ For more information, see [Authentication and authorization](../../concepts/auth
 ## Container requirements
 
 Your container image must meet the following requirements to run on the hosted agent platform.
+
+> [!IMPORTANT]
+> The hosting platform requires x86_64 (linux/amd64) container images. If you build on Apple Silicon or other ARM-based machines, use `docker build --platform linux/amd64 .` to avoid producing an incompatible ARM image.
 
 ### Protocol libraries
 
@@ -66,14 +71,11 @@ A single container can expose **both protocols simultaneously** by declaring bot
 
 ### Health endpoints
 
-The protocol libraries automatically expose `/liveness` and `/readiness` endpoints for platform health checks. You don't need to implement these yourself.
+The protocol libraries automatically expose a `/readiness` endpoint for platform health checks. You don't need to implement this yourself.
 
 ### Port
 
 Containers serve traffic on port **8088** locally. In production, the Foundry gateway handles routing — your container doesn't need to expose a public port.
-
-> [!IMPORTANT]
-> The hosting platform requires x86_64 (linux/amd64) container images. If you build on Apple Silicon or other ARM-based machines, use `docker build --platform linux/amd64 .` to avoid producing an incompatible ARM image.
 
 ## Package and test your agent locally
 
