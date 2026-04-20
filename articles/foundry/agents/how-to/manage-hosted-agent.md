@@ -55,6 +55,7 @@ The REST API examples in this article use `az rest` to call the Foundry Agent Se
 ```bash
 ACCOUNT_NAME="<your-foundry-account-name>"
 PROJECT_NAME="<your-project-name>"
+AGENT_NAME="<your-agent-name>"
 BASE_URL="https://${ACCOUNT_NAME}.services.ai.azure.com/api/projects/${PROJECT_NAME}"
 API_VERSION="2025-11-15-preview"
 RESOURCE="https://ai.azure.com"
@@ -116,7 +117,7 @@ azd ai agent show
 
 ```bash
 az rest --method GET \
-    --url "${BASE_URL}/agents/my-agent?api-version=${API_VERSION}" \
+    --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}"
 ```
 
@@ -148,7 +149,7 @@ azd ai agent show
 
 ```bash
 az rest --method GET \
-    --url "${BASE_URL}/agents/my-agent/versions/1?api-version=${API_VERSION}" \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions/1?api-version=${API_VERSION}" \
     --resource "${RESOURCE}"
 ```
 
@@ -178,7 +179,7 @@ Version information is included in the output of `azd ai agent show`.
 
 ```bash
 az rest --method GET \
-    --url "${BASE_URL}/agents/my-agent/versions?api-version=${API_VERSION}" \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions?api-version=${API_VERSION}" \
     --resource "${RESOURCE}"
 ```
 
@@ -207,7 +208,7 @@ Create a new agent version when you need to update the container image, change r
 
 ```bash
 az rest --method POST \
-    --url "${BASE_URL}/agents/my-agent/versions?api-version=${API_VERSION}" \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
     --body '{
         "definition": {
@@ -241,7 +242,6 @@ agent = project.agents.create_version(
             ProtocolVersionRecord(protocol="responses", version="1.0.0"),
         ],
     ),
-    metadata={"enableVnextExperience": "true"},
 )
 print(f"Created version: {agent.version}")
 ```
@@ -302,7 +302,7 @@ You can delete a specific version or an entire agent with all its versions.
 
 ```bash
 az rest --method DELETE \
-    --url "${BASE_URL}/agents/my-agent/versions/1?api-version=${API_VERSION}" \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions/1?api-version=${API_VERSION}" \
     --resource "${RESOURCE}"
 ```
 
@@ -331,7 +331,7 @@ Not currently supported as a standalone command. Use the REST API or SDK.
 
 ```bash
 az rest --method DELETE \
-    --url "${BASE_URL}/agents/my-agent?api-version=${API_VERSION}" \
+    --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}"
 ```
 
@@ -364,7 +364,7 @@ AGENT_VERSION="<version>"
 SESSION_ID="<session-id>"
 
 az rest --method GET \
-    --url "${BASE_URL}/agents/my-agent/versions/${AGENT_VERSION}/sessions/${SESSION_ID}:logstream?api-version=${API_VERSION}" \
+    --url "${BASE_URL}/agents/${AGENT_NAME}/versions/${AGENT_VERSION}/sessions/${SESSION_ID}:logstream?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
     --headers "Foundry-Features=HostedAgents=V1Preview" "Accept=text/event-stream"
 ```
@@ -414,7 +414,7 @@ Endpoint routing is configured by patching the agent object. Use `PATCH /agents/
 
 ```bash
 az rest --method PATCH \
-    --url "${BASE_URL}/agents/my-agent?api-version=${API_VERSION}" \
+    --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
     --headers "Content-Type=application/merge-patch+json" \
     --body '{
@@ -435,7 +435,7 @@ To split traffic between two versions (for example, 90/10 for a canary deploymen
 
 ```bash
 az rest --method PATCH \
-    --url "${BASE_URL}/agents/my-agent?api-version=${API_VERSION}" \
+    --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
     --headers "Content-Type=application/merge-patch+json" \
     --body '{
@@ -485,6 +485,124 @@ project.beta.agents.patch_agent_object(
 :::zone pivot="azd"
 
 Endpoint routing is configured automatically during `azd deploy`. To customize traffic distribution, use the REST API or SDK.
+
+:::zone-end
+
+## Retrieve the agent identity for role assignments
+
+Each hosted agent has an *instance identity* — a Microsoft Entra ID service principal that the agent uses at runtime to authenticate to downstream resources. To grant the agent access to services such as Azure Storage or Azure Cosmos DB, you need the identity's principal ID so you can create RBAC role assignments.
+
+For more information on how agent identities work, see [Agent identity concepts](../concepts/agent-identity.md).
+
+### Extract the agent identity principal ID
+
+:::zone pivot="rest"
+
+Use the `--query` parameter to extract the `instance_identity.principal_id` directly from the agent details:
+
+```bash
+AGENT_IDENTITY=$(az rest --method GET \
+    --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
+    --resource "${RESOURCE}" \
+    --query "instance_identity.principal_id" \
+    --output tsv)
+
+echo "Agent identity principal ID: ${AGENT_IDENTITY}"
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+```python
+agent = project.agents.get(agent_name="my-agent")
+agent_identity = agent.instance_identity["principal_id"]
+print(f"Agent identity principal ID: {agent_identity}")
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Use the REST API or Python SDK to retrieve the agent identity principal ID.
+
+:::zone-end
+
+### Assign roles to the agent identity
+
+After you have the principal ID, assign RBAC roles to the agent identity at the appropriate resource scope. Use `--assignee-object-id` with `--assignee-principal-type ServicePrincipal` to avoid Microsoft Graph lookup issues with agent identity service principals.
+
+The agent identity works with any Azure resource that supports RBAC. The following examples show two common scenarios: granting access to the Foundry project and granting access to a storage account.
+
+:::zone pivot="rest"
+
+Assign a role on the Foundry project (for example, to allow the agent to use project resources):
+
+```bash
+az role assignment create \
+    --assignee-object-id "$AGENT_IDENTITY" \
+    --assignee-principal-type ServicePrincipal \
+    --role "Azure AI Developer" \
+    --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/projects/<project-name>"
+```
+
+Assign a role on a storage account (for example, to allow the agent to read and write blobs):
+
+```bash
+az role assignment create \
+    --assignee-object-id "$AGENT_IDENTITY" \
+    --assignee-principal-type ServicePrincipal \
+    --role "Storage Blob Data Contributor" \
+    --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account>"
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+Role assignments are an Azure Resource Manager operation. Use the Azure CLI commands shown in the REST tab with the `agent_identity` value from the previous step, or use the [Azure Authorization Management](/python/api/azure-mgmt-authorization) SDK to create role assignments programmatically.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Use the Azure CLI directly to create role assignments. Retrieve the agent identity principal ID by using the REST API or Python SDK, then run `az role assignment create` as shown in the REST tab.
+
+:::zone-end
+
+### Verify role assignments
+
+:::zone pivot="rest"
+
+List the roles assigned to the agent identity on the Foundry project:
+
+```bash
+az role assignment list \
+    --assignee "$AGENT_IDENTITY" \
+    --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>/projects/<project-name>" \
+    --output table
+```
+
+List the roles assigned to the agent identity on a storage account:
+
+```bash
+az role assignment list \
+    --assignee "$AGENT_IDENTITY" \
+    --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account>" \
+    --output table
+```
+
+:::zone-end
+
+:::zone pivot="python"
+
+Use the Azure CLI commands shown in the REST tab to verify role assignments.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+Use the Azure CLI directly to verify role assignments as shown in the REST tab.
 
 :::zone-end
 
