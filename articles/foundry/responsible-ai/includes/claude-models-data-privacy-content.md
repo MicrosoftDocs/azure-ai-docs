@@ -29,11 +29,11 @@ For Anthropic Claude models, Microsoft provides and manages the API deployment i
 
 ## Where can I learn about screening for harmful content in data for the Anthropic Claude models in Microsoft Foundry?
 
-To learn more about screening for harmful content in data or other topics specific to the Anthropic Claude API, please see [Anthropic's usage policy](https://www.anthropic.com/legal/aup).
+To learn more about storage of data, screening for harmful content, or other topics specific to the Anthropic Claude API, please see Anthropic's documentation.
 
 ## Where is data processed for Anthropic Claude models in Microsoft Foundry
 
-For the Anthropic Claude API, prompts and outputs may be processed outside of your region, for operational purposes. Operational purposes include performance and capacity management. To learn about the terms that govern data processing, see [Anthropic's privacy policy](https://www.anthropic.com/legal/privacy) and [Anthropic's Commercial Terms of Service](https://aka.ms/anthropic_tandc).
+For the Anthropic Claude API, prompts and outputs may be processed outside of your region, for operational purposes. Operational purposes include performance and capacity management. To learn about the terms that govern data processing, see [Anthropic's Data processing Addendum](https://www.anthropic.com/legal/data-processing-addendum) and [Anthropic's Commercial Terms of Service](https://aka.ms/anthropic_tandc).
 
 ## Related content
 
