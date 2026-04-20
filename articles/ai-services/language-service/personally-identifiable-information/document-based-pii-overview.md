@@ -30,6 +30,14 @@ Document-based PII provides the following capabilities:
 * A single asynchronous API workflow for extraction, detection, and redaction.
 * Enterprise-ready outputs: a redacted document and a structured JSON result.
 
+## Video demonstration
+
+In this video, we introduce the PII detection service and show you how it detects and redacts sensitive data directly from native documents while preserving file structure and formatting. We also cover common use cases, supported formats, and how to get started with document-based PII in Azure AI Language:
+
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=ec4b7c3d-c2ff-45c6-ba4f-a816b0e5d7ce]
+
+Closed captions are available for this video.
+
 ## Why use document-based PII?
 
 Many custom pipelines require multiple steps to extract text, run detection, and reconstruct document output. Document-based PII simplifies this flow with a single asynchronous API pattern and output artifacts designed for document-processing systems.
