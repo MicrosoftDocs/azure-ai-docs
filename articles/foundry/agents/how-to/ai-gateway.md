@@ -85,14 +85,13 @@ To add a model connection in the Foundry portal:
 1. On the **Model configuration** page, configure at least one model deployment that will appear in Foundry for use with agents.
 
     1. Select **+ Add model**.
-    1. Enter a **Deployment name** (used in API calls) and corresponding **Model name**, and **Version**. 
-    1. Select a supported **Format** for the model.
+    1. Enter a **Deployment name** (used in API calls) and corresponding **Name**, and **Display name**. 
     1. **Save** the model configuration.
 
     Repeat the preceding steps to add more models to the connection if needed.
 1. On the **Advanced** page, optionally do the following steps:
-    1. Enter an **Inference API version** if required by your model deployments.
-    1. Enable the **Deployment path** setting if your gateway exposes the chat completions API on an OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
+    1. Enter an **API version** if required by your model deployments.
+    1. Enable the **Include deployment name in URL path** setting if your gateway exposes the chat completions API on an OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
        Leave the setting disabled if your gateway uses an Azure OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
     1. Select **+ Add header** to add a static header that should be included in requests to the gateway. Repeat to add multiple headers if needed.
 1. Select **Add**.
@@ -110,7 +109,7 @@ To add a model connection in the Foundry portal:
 1. On the **Connection Type** page, select **Other source** to connect to a self-hosted, non-Azure hosted, or custom solution.
 
    1. Enter a **Connection name** of your choice.
-   1. In **Target URL**, enter a URL to the gateway for your model endpoints. The URL can include a specific path if needed.
+   1. In **Base URL**, enter a URL to the gateway for your model endpoints. The URL can include a specific path if needed.
 
    :::image type="content" source="../media/ai-gateway/add-other-model.png" alt-text="Screenshot of selecting another model source in the Foundry portal.":::
 1. On the **Authentication** page, select either **API key** or **OAuth 2.0** to authenticate to the gateway.
@@ -121,14 +120,14 @@ To add a model connection in the Foundry portal:
 1. On the **Model configuration** page, configure at least one model deployment that will appear in Foundry for use with agents.
 
     1. Select **+ Add model**.
-    1. Enter a **Deployment name** (used in API calls) and corresponding **Model name**, and **Version**. 
+    1. Enter a **Deployment name** (used in API calls) and corresponding **Model name**, and **Display name**. 
     1. **Save** the model configuration.
 
     Repeat the preceding steps to add more models to the connection if needed.
 
 1. On the **Advanced** page, optionally do the following steps:
-    1. Enter an **Inference API version** if required by your model deployments.
-    1. Enable the **Deployment path** setting if your gateway exposes the chat completions API on an OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
+    1. Enter an **API version** if required by your model deployments.
+    1. Enable the **Include deployment name in URL path** setting if your gateway exposes the chat completions API on an OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
        Leave the setting disabled if your gateway uses an Azure OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
     1. Select **+ Add header** to add a static header that should be included in requests to the gateway. Repeat to add multiple headers if needed.
 1. Select **Add**.
@@ -153,20 +152,20 @@ Foundry automatically deploys models you add through a connection, so you can us
 
 Use the Azure CLI to create a connection to models behind your AI gateway.
 
-Agent Service supports two connection types: **API Management (APIM)** connections and **Model Gateway** connections.
+Agent Service supports two connection types: **API Management** connections and **Model Gateway** connections.
 
 Choose the connection type that matches your gateway:
 
 | Connection type | Use when | Category value |
 |----------------|----------|----------------|
-| **APIM** | You already use Azure API Management for model routing and want intelligent APIM defaults. | `ApiManagement` |
+| **API Management** | You already use Azure API Management for model routing and want intelligent API Management defaults. | `ApiManagement` |
 | **Model Gateway** | You use OpenAI, MuleSoft, or a custom gateway and need static or dynamic model discovery. | `ModelGateway` |
 
 For detailed connection specifications, see the [connection samples on GitHub](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md).
 
 ### Deploy the connection
 
-1. Clone or download the [Foundry samples repository](https://github.com/microsoft-foundry/foundry-samples) and locate the Bicep template for your connection type under `infrastructure/infrastructure-setup-bicep/01-connections/`. The directory contains separate Bicep files and parameter files for APIM and Model Gateway connections.
+1. Clone or download the [Foundry samples repository](https://github.com/microsoft-foundry/foundry-samples) and locate the Bicep template for your connection type under `infrastructure/infrastructure-setup-bicep/01-connections/`. The directory contains separate Bicep files and parameter files for API Management and Model Gateway connections.
 
 1. Deploy the connection by running `az deployment group create` with your resource group, the Bicep template file, and the corresponding parameters file. Replace the placeholder values in the parameters file with your gateway endpoint URL and credentials before deploying. For the full command reference, see [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create).
 
@@ -211,7 +210,7 @@ After deploying your agent, confirm that the full pipeline works correctly:
 
 1. **Send a test prompt** — Use the SDK to create a conversation and send a request as described in the previous section. A successful response returns the model's reply text, confirming the agent can reach the model through your gateway.
 
-1. **Review gateway logs** — Confirm requests are routed correctly. For APIM, check **API Management analytics** in the Azure portal. For other gateways, review your gateway's request logging. You should see incoming requests from the Agent Service endpoint.
+1. **Review gateway logs** — Confirm requests are routed correctly. For API Management, check **API Management analytics** in the Azure portal. For other gateways, review your gateway's request logging. You should see incoming requests from the Agent Service endpoint.
 
 > [!TIP]
 > If any step fails, see the [Troubleshoot common issues](#troubleshoot-common-issues) section for resolution steps.
@@ -222,9 +221,9 @@ After deploying your agent, confirm that the full pipeline works correctly:
 
 This section provides reference details about each connection type and their configuration options.
 
-### API Management (APIM) connection
+### API Management connection
 
-APIM connections provide intelligent defaults and follow APIM standard conventions:
+API Management connections provide intelligent defaults and follow API Management standard conventions:
 
 | Setting | Default value |
 |---------|---------------|
@@ -235,7 +234,7 @@ APIM connections provide intelligent defaults and follow APIM standard conventio
 Configuration priority:
 
 1. Explicit metadata values (highest priority).
-1. APIM standard defaults (fallback).
+1. API Management standard defaults (fallback).
 
 Authentication methods:
 
@@ -260,18 +259,17 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 | Connection shows **Inactive** status | Verify the gateway endpoint URL is reachable and authentication credentials are valid. |
 | Agent returns `model not found` error | Confirm the `FOUNDRY_MODEL_DEPLOYMENT_NAME` value uses the correct format: `<connection-name>/<model-name>`. |
 | Timeout errors from the gateway | Check that your gateway endpoints are accessible from the Agent Service network. For private networks, see the network isolation guidance in the Limitations section. |
-| Authentication failures | For APIM, verify your subscription key. For Model Gateway, verify the API key or OAuth 2.0 configuration. |
+| Authentication failures | For API Management, verify your subscription key. For Model Gateway, verify the API key or OAuth 2.0 configuration. |
 
-## Limitations
+## Supported configurations
 
 - Only prompt agents in the Agent SDK support this feature.
 - Supported agent tools: Code Interpreter, Functions, File Search, OpenAPI, Foundry IQ, SharePoint Grounding, Fabric Data Agent, MCP, and Browser Automation.
-- Public networking is supported for both API Management and self-hosted gateways.
-- For full network isolation:
-  - **APIM as your AI gateway**: Deploy Foundry and APIM together using [this GitHub template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview).
-  - **Self-hosted gateway**: Ensure your gateway endpoints are accessible inside the virtual network used by Agent Service.
-- This feature is different from the AI Gateway in Foundry feature, which deploys a new API Management instance with your Foundry resource. For more information, see [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal).
-- Dynamic discovery of model endpoints is currently not available with model connections configured using the Foundry portal.
+- Supported networking configurations:
+    - Public networking is supported for both API Management and self-hosted gateways.
+    - For full network isolation:
+      - **API Management as your AI gateway**: Deploy Foundry and API Management together using [this GitHub template](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup-preview).
+      - **Self-hosted gateway**: Ensure your gateway endpoints are accessible inside the virtual network used by Agent Service.
 
 ## Related content
 
@@ -279,5 +277,5 @@ Supported authentication types are API key and OAuth 2.0. API keys are stored se
 - [Agent environment setup](../../agents/environment-setup.md)
 - [Create a Foundry project](../../how-to/create-projects.md)
 - [Agent SDK samples on GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents)
-- [APIM and model gateway integration guide](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
+- [API Management and model gateway integration guide](https://github.com/microsoft-foundry/foundry-samples/blob/main/infrastructure/infrastructure-setup-bicep/01-connections/apim-and-modelgateway-integration-guide.md)
 - [Enforce token limits with AI Gateway](/azure/ai-foundry/configuration/enable-ai-api-management-gateway-portal)
