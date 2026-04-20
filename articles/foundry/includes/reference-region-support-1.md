@@ -4,9 +4,9 @@ description: Include file
 author: sdgilley
 ms.reviewer: deeikele
 ms.author: sgilley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 04/13/2026
 ms.custom: include
 ---
 
@@ -35,4 +35,4 @@ If a feature isn't available in your selected region:
 - Create the required dependent resource in a supported region.
 - Re-check model availability and quota limits for that region.
 - For Speech workloads, confirm that your app configuration uses the same region as your Speech resource.
-- If your organization requires a sovereign cloud, review **Foundry in sovereign clouds** in this article.
+- If your organization requires a sovereign cloud, see [Foundry in sovereign clouds](#foundry-in-sovereign-clouds).

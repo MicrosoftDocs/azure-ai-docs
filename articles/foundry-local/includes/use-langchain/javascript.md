@@ -1,7 +1,7 @@
 ---
 title: Include file
 description: Include file
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: build-2025
 ms.topic: include
 ms.date: 05/02/2025

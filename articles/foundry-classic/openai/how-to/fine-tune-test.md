@@ -5,8 +5,8 @@ author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
 ms.date: 09/30/2025
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.custom: build-2025
 ---

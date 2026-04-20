@@ -90,6 +90,9 @@ items:
   - name: Azure OpenAI quotas and limits
     displayName: Azure OpenAI in Microsoft Foundry Models quotas and limits
     href: ../../openai/quotas-limits.md
+  - name: Azure OpenAI quotas and limits in Azure Government
+    displayName: Azure OpenAI in Microsoft Foundry Models quotas and limits (Azure Government)
+    href: ../../openai/quotas-limits-gov.md
   # - name: Model availability by region
   #   href: 
   - name: Feature availability by region
@@ -159,13 +162,13 @@ items:
   items:
   - name: Azure OpenAI supported programming languages
     href: ../../openai/supported-languages.md
-  - name: Microsoft AI (MAI) model in Foundry
+  - name: Microsoft AI (MAI) models
     displayName: MAI-image-2 model in Foundry
     href: ../../foundry-models/how-to/use-foundry-models-mai.md
-  - name: Claude models in Foundry 
+  - name: Claude models
     displayName: Claude in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-claude.md
-  - name: FLUX models in Foundry 
+  - name: FLUX models
     displayName: FLUX in Foundry Models
     href: ../../foundry-models/how-to/use-foundry-models-flux.md
 

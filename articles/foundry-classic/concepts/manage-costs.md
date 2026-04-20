@@ -11,7 +11,7 @@ ms.custom:
   - dev-focus
   - classic-and-new
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ROBOTS: NOINDEX, NOFOLLOW
 ---
 

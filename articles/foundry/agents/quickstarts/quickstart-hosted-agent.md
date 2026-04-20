@@ -6,8 +6,8 @@ ms.author: aahi
 ms.date: 03/12/2026
 ms.manager: nitinme
 ms.topic: quickstart
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.custom: mode-other, dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 zone_pivot_groups: hosted-agent-deploy-method
@@ -259,7 +259,7 @@ Press **F5** in VS Code to start debugging. Alternatively, you can use the VS Co
 This will:
 
 1. Start the HTTP server with debugging enabled
-2. Open the AI Toolkit Agent Inspector for interactive testing
+2. Open the Foundry Toolkit Agent Inspector for interactive testing
 3. Allow you to set breakpoints and inspect the workflow
 
 #### Option 2: Run in Terminal

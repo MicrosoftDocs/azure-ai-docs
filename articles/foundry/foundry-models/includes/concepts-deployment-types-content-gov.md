@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: challenp
 ms.author: challenp
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 04/03/2026
 ms.custom: include, classic-and-new
@@ -78,7 +78,7 @@ Learn more in the "Model region availability by deployment type" section of [Fou
 
 Data Zone Standard deployments dynamically route traffic to datacenters within the Microsoft-defined data zone (USGov). This deployment type provides higher default quotas than geography-based deployment types while keeping data within the specified zone.
 
-Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more about Azure OpenAI quotas in Azure Government, see the [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md). For workloads that require low latency variance at large volume, consider provisioned deployment types.
+Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more about Azure OpenAI quotas in Azure Government, see the [Quotas and limits in Azure OpenAI](../../openai/quotas-limits-gov.md). For workloads that require low latency variance at large volume, consider provisioned deployment types.
 
 ## Data Zone Provisioned
 
@@ -111,7 +111,7 @@ Common issues when creating or using deployments:
 | Region unavailable | Model not deployed in selected region | Select a region from the model's availability list |
 | Provisioned capacity unavailable | No PTU capacity in region | Try a different region or use DataZone Provisioned for broader availability |
 
-For Azure OpenAI quota limits by deployment type in Azure Government, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
+For Azure OpenAI quota limits by deployment type in Azure Government, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits-gov.md).
 
 ## Abuse Monitoring in Azure Government
 
@@ -123,7 +123,7 @@ Not all features of Abuse Monitoring are enabled for Azure OpenAI deployments in
 - [Create and deploy an Azure OpenAI in Microsoft Foundry Models resource](../../../foundry-classic/openai/how-to/create-resource.md)
 - [Foundry Models sold directly by Azure in Azure Government](../concepts/models-sold-directly-by-azure-gov.md)
 - [Model region availability by deployment type  in Azure Government](../concepts/models-sold-directly-by-azure-gov.md)
-- [Azure OpenAI in Azure Government quotas and limits](../../openai/quotas-limits.md)
+- [Azure OpenAI in Azure Government quotas and limits](../../openai/quotas-limits-gov.md)
 - [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
 - [Azure OpenAI Service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)
 - [Data privacy and security for Foundry Models](../../../foundry-classic/how-to/concept-data-privacy.md)
