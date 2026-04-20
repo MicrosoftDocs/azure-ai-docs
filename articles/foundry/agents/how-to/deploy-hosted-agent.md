@@ -81,21 +81,18 @@ Containers serve traffic on port **8088** locally. In production, the Foundry ga
 
 The hosted agent platform automatically injects environment variables into your container at runtime. Your code can read these without declaring them in `agent.yaml` or `environment_variables`. The `FOUNDRY_*` prefix is reserved for platform use.
 
-| Variable | Purpose | Local via `azd ai agent run` |
-|----------|---------|------------------------------|
-| `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint URL | Yes — translated from `AZURE_AI_PROJECT_ENDPOINT` |
-| `FOUNDRY_PROJECT_ARM_ID` | Foundry project ARM resource ID | Yes — translated from `AZURE_AI_PROJECT_ID` |
-| `FOUNDRY_AGENT_NAME` | Name of the running agent | Yes — translated from `AGENT_{SVC}_NAME` |
-| `FOUNDRY_AGENT_VERSION` | Version of the running agent | Yes — translated from `AGENT_{SVC}_VERSION` |
-| `FOUNDRY_AGENT_SESSION_ID` | Session ID for the current request | No — hosted containers only |
-| `APPLICATIONINSIGHTS_CONNECTION_STRING` | Application Insights connection string for telemetry | Passed through (same key in azd env) |
+| Variable | Purpose |
+|----------|---------|
+| `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint URL |
+| `FOUNDRY_PROJECT_ARM_ID` | Foundry project ARM resource ID |
+| `FOUNDRY_AGENT_NAME` | Name of the running agent |
+| `FOUNDRY_AGENT_VERSION` | Version of the running agent |
+| `FOUNDRY_AGENT_SESSION_ID` | Session ID for the current request (hosted containers only) |
+| `APPLICATIONINSIGHTS_CONNECTION_STRING` | Application Insights connection string for telemetry |
 
 Don't redeclare platform-injected variables in `agent.yaml` — they're set automatically.
 
 Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME` or toolbox MCP endpoints, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call.
-
-> [!NOTE]
-> When running locally with `azd ai agent run`, only `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_PROJECT_ARM_ID`, `FOUNDRY_AGENT_NAME`, and `FOUNDRY_AGENT_VERSION` are translated from their azd environment keys. `FOUNDRY_AGENT_SESSION_ID` is only present in hosted containers.
 
 ## Package and test your agent locally
 
