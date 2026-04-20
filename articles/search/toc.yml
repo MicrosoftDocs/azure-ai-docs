@@ -79,6 +79,8 @@ items:
       href: search-capacity-planning.md
     - name: Plan and manage costs
       href: search-sku-manage-costs.md
+    - name: Handling regional capacity constraints 
+      href: search-region-capacity.md
   - name: Reliability and tenancy
     items:
     - name: Reliability
