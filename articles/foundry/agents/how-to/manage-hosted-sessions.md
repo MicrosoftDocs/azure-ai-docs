@@ -90,24 +90,18 @@ project = AIProjectClient(
 
 ## Create a session
 
-Create a session to establish an isolated sandbox for your agent. Each session requires an isolation key that identifies the session owner and an agent version to run.
+Create a session to establish an isolated sandbox for your agent. Each session requires an isolation key that identifies the session owner. The agent endpoint automatically resolves the active version.
 
 :::zone pivot="rest"
 
 ```bash
 AGENT_NAME="my-agent"
-AGENT_VERSION="1"
 
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/sessions?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
     --headers "x-session-isolation-key=user-123" "Foundry-Features=HostedAgents=V1Preview" \
-    --body "{
-        \"version_indicator\": {
-            \"agent_version\": \"${AGENT_VERSION}\",
-            \"type\": \"version_ref\"
-        }
-    }"
+    --body "{}"
 ```
 
 :::zone-end
@@ -115,12 +109,10 @@ az rest --method POST \
 :::zone pivot="python"
 
 ```python
-from azure.ai.projects.models import VersionRefIndicator
-
 session = project.beta.agents.create_session(
     agent_name="my-agent",
     isolation_key="user-123",
-    version_indicator=VersionRefIndicator(agent_version="1"),
+    body={},
 )
 print(f"Session created (ID: {session.agent_session_id}, status: {session.status})")
 ```
