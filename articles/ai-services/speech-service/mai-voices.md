@@ -43,7 +43,7 @@ Speech offers MAI-Voice-1 as an advanced neural voice model optimized for expres
 ## Prerequisites
 
 - An Azure account. [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
-- [Create a Speech resource](get-started-text-to-speech.md) in the **East US** region. 
+- [Create a Speech resource](get-started-text-to-speech.md) in a region that supports MAI-Voice-1 ([region support](./regions.md)). 
 
 ## Use MAI-Voice-1
 
