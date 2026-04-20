@@ -11,26 +11,26 @@ ms.topic: concept-article
 
 # How to handle regional capacity constraints in Azure AI Search
 
-This article helps you decide what to do when your preferred Azure AI Search region is unavailable due to capacity constraints and provides evaluation criteria for selecting an alternative region.
+This article helps you decide what to do when your preferred Azure AI Search region is unavailable due to capacity constraints. It also provides evaluation criteria for selecting an alternative region.
 
 ## Capacity constraint options
 
 When a preferred Azure region is unavailable due to capacity constraints, you have two options:
 
-1. Deploy to an alternative region, or 
-2. Retry deployment during off-peak hours.
+1. Deploy to an alternative region. 
+1. Retry deployment during off-peak hours.
 
-**Deploying to an alternative region is the recommended path.**
-Azure AI Search is available across many Azure regions with consistent APIs, SDKs, SLAs, and compliance certifications. For most workloads, the operational difference between regions within the same geography is negligible. See Criteria for selecting an alternative region below for a full evaluation framework.
+**Deploy to an alternative region.** (Recommended path)
+Azure AI Search is available across many Azure regions with consistent APIs, SDKs, SLAs, and compliance certifications. For most workloads, the operational difference between regions within the same geography is negligible. See the following section, *Criteria for selecting an alternative region*, for a full evaluation framework.
 
 **Retrying the service during off-peak hours is also a viable consideration.**
-Capacity constraints are sometimes temporary. Retrying deployment during low-traffic periods, such as nights or weekends in UTC, may succeed when peak-hour attempts fail. This option is not guaranteed and is not a substitute for evaluating an alternative region. If retries do not succeed within a reasonable window, proceed with an alternative region.
+Capacity constraints are sometimes temporary. Retrying deployment during low-traffic periods, such as nights or weekends in UTC, might succeed when peak-hour attempts fail. This option isn't guaranteed and isn't a substitute for evaluating an alternative region. If retries don't succeed within a reasonable window, proceed with an alternative region.
 
 Retry during off-peak hours when:
 
 - The deployment timeline allows for a delay of several days.
 - The constraint is likely the result of a temporary regional surge.
-- No infrastructure changes are preferred at this time.
+- You prefer no infrastructure changes at this time.
 
 ## Criteria for selecting an alternative region
 
@@ -45,24 +45,24 @@ Evaluate the following criteria before selecting an alternative region:
 
 ### Network latency
 
-If existing services — such as applications or databases — remain in a different region than the new Azure AI Search deployment, each API call between them incurs cross-region round-trip time (RTT). For US-to-US regional pairs, this is typically 26–50ms. For most search workloads, latency under 50ms RTT is not perceptible to end users.
+If existing services, such as applications or databases, remain in a different region than the new Azure AI Search deployment, each API call between them incurs cross-region round-trip time (RTT). For US-to-US regional pairs, this time is typically 26–50ms. For most search workloads, latency under 50ms RTT isn't perceptible to end users.
 Co-locating the application and the search service in the same region eliminates cross-region RTT entirely.
 For current region-to-region latency measurements, see [Azure network round-trip latency statistics](/azure/networking/azure-network-latency).
 
 ### Compliance
 
-Azure compliance certifications — including FedRAMP High, HIPAA, CJIS, DoD IL2, IRS 1075, PCI DSS, and StateRAMP — are applied at the geography level, not the individual region level. All commercial Azure regions within the same geography carry an identical compliance posture.
+Azure compliance certifications - including FedRAMP High, HIPAA, CJIS, DoD IL2, IRS 1075, PCI DSS, and StateRAMP - are applied at the geography level, not the individual region level. All commercial Azure regions within the same geography carry an identical compliance posture.
 
 For more information, see:
 
 - [Azure compliance documentation](/azure/compliance)
-- [Azure regions list](/azure/reliability/azure-regions-list)
+- [Azure regions list](/azure/reliability/regions-list)
 
 ### Availability Zones
 
-Availability Zones (AZ) are physically separate datacenters within an Azure region. When a search service has two or more replicas in an AZ-supported region, Azure automatically distributes them across zones at no additional cost and with no configuration required.
+Availability Zones (AZ) are physically separate datacenters within an Azure region. When a search service has two or more replicas in an AZ-supported region, Azure automatically distributes them across zones at no extra cost and with no configuration required.
 
-AZ support is relevant when the workload requires a 99.99% query SLA or operates in a regulated industry with documented high-availability requirements. For dev/test environments or workloads protected by a multi-region disaster recovery strategy, AZ support is generally not a blocking requirement.
+AZ support is relevant when the workload requires a 99.99% query SLA or operates in a regulated industry with documented high-availability requirements. For dev/test environments or workloads protected by a multiregion disaster recovery strategy, AZ support is generally not a blocking requirement.
 
 For the current list of regions that support Availability Zones for Azure AI Search, see [Azure regions with Availability Zones](/azure/reliability/availability-zones-region-support).
 
@@ -76,43 +76,43 @@ For more information, see:
 
 - [Azure AI Search regional availability](/azure/search/search-region-support)
 - [Azure OpenAI Service models by region](/azure/ai-services/openai/concepts/models)
-- [Azure AI Foundry regional availability](/azure/ai-foundry/concepts/region-support)
-- [Azure OpenAI quotas and limits](azure/ai-services/openai/quotas-limits)
+- [Azure AI Foundry regional availability](/azure/foundry/reference/region-support)
+- [Azure OpenAI quotas and limits](/azure/foundry/openai/quotas-limits)
 
 ### Data residency and sovereignty
 
-Azure replicates data for resiliency within the same geography. For all commercial Azure regions within the United States geography, data at rest remains within the United States. This satisfies data residency requirements common in federal, state, and regulated industry workloads.
+Azure replicates data for resiliency within the same geography. For all commercial Azure regions within the United States geography, data at rest stays within the United States. This replication satisfies data residency requirements common in federal, state, and regulated industry workloads.
 
 For more information, see:
 
 - [Data, privacy, and built-in protections in Azure AI Search](/azure/search/search-security-overview)
-- [Azure data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/)
+- [Azure data residency](https://azure.microsoft.com/en-us/explore/global-infrastructure/data-residency/)
 
 ### Pricing
 
-Azure AI Search service pricing is uniform across all regions within the same geography. Selecting an alternative region within the same geography incurs no change in service tier pricing.
+Azure AI Search service pricing is uniform across all regions within the same geography. Selecting an alternative region within the same geography doesn't change the service tier pricing.
 
 For current pricing, see [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
 ## Move or restore an Azure AI Search service
 
-Indexes, skillsets, indexers, and synonym maps can be backed up and restored to any region using official scripts and tooling. This enables both migration to an alternative region and a return to the original region when capacity becomes available.
+You can back up and restore indexes, skillsets, indexers, and synonym maps to any region by using official scripts and tooling. This process enables both migration to an alternative region and a return to the original region when capacity becomes available.
 
 For more information, see:
-- [Backup and restore scripts (GitHub)](https://github.com/Azure/azure-search-backup-restore)
+
 - [Move your Azure AI Search service to another region](/azure/search/search-howto-move-across-resource-group)
+- [Code sample demonstrating how to copy an index from one Azure AI Search service to another](/samples/azure-samples/azure-search-dotnet-utilities/azure-search-backup-restore-index/)
 
 ## Related content
-
 
 - [Azure AI Search regional availability](/azure/search/search-region-support)
 - [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/)
 - [Azure network round-trip latency statistics](/azure/networking/azure-network-latency)
-- [Azure regions list](/azure/reliability/azure-regions-list)
+- [Azure regions list](/azure/reliability/regions-list)
 - [Azure compliance documentation](/azure/compliance/)
 - [Azure OpenAI Service models by region](/azure/ai-services/openai/concepts/models)
-- [Azure AI Foundry regional availability](/azure/ai-foundry/concepts/region-support)
-- [Move your Azure AI Search service to another region](/azure/search/search-howto-move-across-resource-group)
+- [Azure AI Foundry regional availability](/azure/foundry/reference/region-support
+- [Move your Azure AI Search service to another region](/azure/search/search-howto-move-across-regions)
 - [Azure regions with Availability Zones](/azure/reliability/availability-zones-region-support)
 - [Data, privacy, and built-in protections in Azure AI Search](/azure/search/search-security-overview)
 
