@@ -36,7 +36,7 @@ For the full list of Agent 365 capabilities and prerequisites, see the [Agent 36
 
 Foundry and Agent 365 connect in two ways:
 
-- **Automatic registry sync** &mdash; Published Foundry agents automatically appear in the Agent 365 registry. This gives IT administrators a single pane of glass for agent inventory without manual registration.
+- **Automatic registry sync** &mdash; Published Foundry agents automatically appear in the Agent 365 registry when subscribed. This gives IT administrators a single pane of glass for agent inventory without manual registration.
 
 - **Digital worker publishing** &mdash; Foundry hosted agents can be published as *digital workers* to Agent 365. A digital worker is an agent that acts autonomously on behalf of a user and receives its own Microsoft Entra Agent ID. After publishing and admin approval, the digital worker appears in the Agent 365 registry and can be connected to Microsoft Teams and other Microsoft 365 surfaces.
 
@@ -58,11 +58,11 @@ Before Foundry can send agent activity data to Agent 365, your organization must
 
 1. **Obtain a license** &mdash; Your tenant needs at least one Microsoft 365 Copilot license and enrollment in the [Frontier preview program](https://adoption.microsoft.com/copilot/frontier-program/). For licensing details and enrollment FAQs, see [Agent 365 prerequisites](/microsoft-agent-365/overview#prerequisites).
 
-1. **Enable Agent 365 and accept terms** &mdash; A global administrator signs into the [Microsoft 365 admin center](https://admin.microsoft.com/), navigates to **Copilot** > **Settings** > **User access** > **Copilot Frontier**, and selects which users or groups get access. The administrator is prompted to agree to the terms of service before Agent 365 is activated. For the full walkthrough, see [Enable Agent 365](/microsoft-agent-365/overview#enable-agent-365).
+1. **Enable Agent 365 and accept terms** &mdash; A global administrator signs into the [Microsoft 365 admin center](https://admin.microsoft.com/), and selects which users or groups get access. The administrator is prompted to agree to the terms of service before Agent 365 is activated. For the full walkthrough, see [Enable Agent 365](/microsoft-agent-365/overview#enable-agent-365).
 
 Both steps are required before any data flows from Foundry to Agent 365, even if the Azure Resource Manager properties on a Foundry resource are set to enabled for A365. 
 
-After these steps are complete, agent activity data from Foundry is ingested into the Agent 365 control plane, powering the registry, analytics dashboards, and security features. Logging is controlled per Foundry resource through the `agent365Config` resource provider configuration. For details on how logging works and how to opt out, see [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md).
+After these steps are complete, agent activity data from Foundry is ingested into the Agent 365 control plane, powering the registry, analytics dashboards, and security features. Logging options are controlled per Foundry resource through the `agent365Config` resource provider configuration. For details on how logging works and how to opt out, see [Configure Agent 365 data collection for Microsoft Foundry](../how-to/configure-agent-365-data-collection.md).
 
 > [!NOTE]
 > Even if the logging property is set to enabled on a Foundry resource, no data is ingested unless your tenant has a valid Agent 365 license and the administrator has accepted the Agent 365 terms of service.
