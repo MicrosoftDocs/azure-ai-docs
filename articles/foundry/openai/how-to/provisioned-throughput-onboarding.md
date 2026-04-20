@@ -95,7 +95,7 @@ The following Fireworks on Microsoft Foundry models currently support Global pro
 |Input TPM per PTU|13,500|1,250|700|530|1,050|1,500|4,800|3,000|3,500|3,000|
 |Latency Target Value|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|
 
-\* Calculated as p50 request latency on a per-5-minute basis.
+\* Calculated as the average request latency on a per-minute basis across the month.
 
 ## Determine PTU requirements for a workload
 
