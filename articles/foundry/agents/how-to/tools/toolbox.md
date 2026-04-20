@@ -661,42 +661,6 @@ See the [full sample](https://aka.ms/foundry-toolbox-copilotsdk) for the complet
 
 :::zone pivot="dotnet"
 
-### LangGraph
-
-Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to implement a ReAct (Reason + Act) loop. The LLM reasons about which tool to call, executes it via the toolbox MCP endpoint, then reasons again until it produces a final answer.
-
-**Environment variables**:
-
-```
-AZURE_OPENAI_ENDPOINT=https://<account>.services.ai.azure.com
-AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
-TOOLBOX_MCP_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1
-```
-
-**`Program.cs`** (key pattern):
-
-```csharp
-var openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
-    ?? throw new InvalidOperationException("Set AZURE_OPENAI_ENDPOINT");
-var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o";
-var toolboxEndpoint = Environment.GetEnvironmentVariable("TOOLBOX_MCP_ENDPOINT");
-
-// Azure OpenAI client
-var credential = new DefaultAzureCredential();
-var aoaiClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
-var chatClient = aoaiClient.GetChatClient(deployment);
-
-// Toolbox MCP client — discovers tools via tools/list, calls them via tools/call
-var toolboxClient = new ToolboxMcpClient(toolboxEndpoint, credential);
-
-ResponsesServer.Run<ReActHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
-});
-```
-
-`ReActHandler` implements the ReAct loop: it discovers tools via `GetChatToolsAsync()`, calls them via `CallToolAsync()`, and streams the final answer. `ToolboxMcpClient` handles authentication and MCP JSON-RPC calls. See the [full sample](https://aka.ms/foundry-toolbox-langgraph-dotnet) for the complete implementation of both classes.
-
 ### Microsoft Agent Framework
 
 Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to discover and invoke toolbox tools via the MCP endpoint.
