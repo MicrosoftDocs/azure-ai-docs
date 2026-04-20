@@ -16,7 +16,7 @@ OpenAI's image generation models create images from user-provided text prompts a
 
 You can do image generation via [image generation API](/azure/ai-foundry/openai/dall-e-quickstart) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key). Or you can experiment with image generation in the [Foundry portal](https://ai.azure.com)
 
-Use the tabs at the start of this page to select your preferred API approach and model.
+To select your preferred API approach and model, use the tabs at the start of this page.
 
 ## Models and capabilities
 
@@ -25,9 +25,9 @@ Use this table to learn the differences between the different image generation m
 | Aspect | GPT-Image-2 | GPT-Image-1.5 | GPT-Image-1 | GPT-Image-1-Mini |
 |--------|-------------|---------------|--------------|------------------|
 |**Availability** | Public preview | Limited access preview ([Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) | Limited access preview ([Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access)) |
-| **Strengths** | Best for high-resolution and 4K generation, improved image editing, and broad aspect-ratio support | Best for realism, instruction following, multimodal context, and improved speed/cost | Best for realism, instruction following, and multimodal context | Best for fast prototyping, bulk generation, or cost-sensitive use cases |
+| **Strengths** | Best for high-resolution and 4K generation, improved image editing, and broad aspect-ratio support | Best for realism, instruction-following, multimodal context, and improved speed/cost | Best for realism, instruction-following, and multimodal context | Best for fast prototyping, bulk generation, or cost-sensitive use cases |
 | **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). |
-| **Image Sizes / Resolutions** | Arbitrary resolutions: both edges must be multiples of 16 px; long edge up to 3840 px (4K); aspect ratio up to 3:1; pixel count 655,360–8,294,400 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 |
+| **Image Sizes / Resolutions** | Arbitrary resolutions: both edges must be multiples of 16 px; long edge up to 3,840 px (4K); aspect ratio up to 3:1; pixel count 655,360–8,294,400 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1536, 1536×1024 |
 | **Quality Options** | Reworked quality controls: `low`, `medium`, `high`; `low` is optimized for latency-sensitive use cases | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = high) | `low`, `medium`, `high` (default = medium) |
 | **Number of Images per Request** | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) | 1–10 images per request (`n` parameter) |
 | **Editing (inpainting / variations)** | ✅ Improved editing performance with inpainting and variations | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt | ✅ Supports inpainting and variations with mask + prompt |
