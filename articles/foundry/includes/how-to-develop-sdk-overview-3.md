@@ -55,7 +55,9 @@ For Speech and Translation Foundry Tools, use the endpoints in the following tab
 The following sections include quickstart links for the Foundry Tools SDKs and reference information.
 
 > [!IMPORTANT]
-> Several Azure AI Language features are retiring on **March 20, 2027**. After this date, requests to these features return errors and related authoring and runtime in Language Studio, Microsoft Foundry, and REST APIs are unavailable:
+> On March 20, 2027, Azure Language Studio will retire and migrate to Microsoft Foundry; all capabilities and future enhancements will be available in Microsoft Foundry.
+>
+> On March 31, 2029, the following Azure Language capabilities will retire (end of support). Before that date, users should migrate existing workloads and onboard new projects to [Microsoft Foundry models](https://review.learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview) for enhanced natural language understanding and simplified application integration:
 >
 > - Key Phrase Extraction
 > - Sentiment Analysis and Opinion Mining
@@ -66,7 +68,8 @@ The following sections include quickstart links for the Foundry Tools SDKs and r
 > - Summarization (extractive and abstractive, for documents and conversations)
 > - Entity Linking
 >
-> Features that continue to be supported: Language Detection, PII Detection, Text Analytics for Health, Prebuilt NER, and Custom NER.
+> Core features with continued support: Language Detection, PII Detection, Text Analytics for Health, Prebuilt NER, and Custom NER.
+>
 > For migration options, see [Migrate from Language Studio to Microsoft Foundry](/azure/ai-services/language-service/migration-studio-to-foundry).
 
 <!-- ::: zone pivot="programming-language-cpp"
