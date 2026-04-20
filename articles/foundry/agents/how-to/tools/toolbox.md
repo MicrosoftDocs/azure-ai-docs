@@ -661,42 +661,6 @@ See the [full sample](https://aka.ms/foundry-toolbox-copilotsdk) for the complet
 
 :::zone pivot="dotnet"
 
-### LangGraph
-
-Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to implement a ReAct (Reason + Act) loop. The LLM reasons about which tool to call, executes it via the toolbox MCP endpoint, then reasons again until it produces a final answer.
-
-**Environment variables**:
-
-```
-AZURE_OPENAI_ENDPOINT=https://<account>.services.ai.azure.com
-AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
-TOOLBOX_MCP_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1
-```
-
-**`Program.cs`** (key pattern):
-
-```csharp
-var openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
-    ?? throw new InvalidOperationException("Set AZURE_OPENAI_ENDPOINT");
-var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o";
-var toolboxEndpoint = Environment.GetEnvironmentVariable("TOOLBOX_MCP_ENDPOINT");
-
-// Azure OpenAI client
-var credential = new DefaultAzureCredential();
-var aoaiClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
-var chatClient = aoaiClient.GetChatClient(deployment);
-
-// Toolbox MCP client — discovers tools via tools/list, calls them via tools/call
-var toolboxClient = new ToolboxMcpClient(toolboxEndpoint, credential);
-
-ResponsesServer.Run<ReActHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
-});
-```
-
-`ReActHandler` implements the ReAct loop: it discovers tools via `GetChatToolsAsync()`, calls them via `CallToolAsync()`, and streams the final answer. `ToolboxMcpClient` handles authentication and MCP JSON-RPC calls. See the [full sample](https://aka.ms/foundry-toolbox-langgraph-dotnet) for the complete implementation of both classes.
-
 ### Microsoft Agent Framework
 
 Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to discover and invoke toolbox tools via the MCP endpoint.
@@ -1821,6 +1785,8 @@ The search results include chunk metadata in `result.structuredContent.documents
 
 Use this pattern to let the agent write and execute Python code. The pattern doesn't require a project connection or extra configuration.
 
+To upload a file for Code Interpreter to use, call `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`. The returned file ID is the value you supply as `<FILE_ID>` in the tool configuration. See [Code Interpreter](code-interpreter.md) for full upload examples.
+
 > [!IMPORTANT]
 > When using Code Interpreter through a toolbox in a hosted agent, **user isolation is not supported**. All users in the same project share the same container context.
 
@@ -1928,6 +1894,13 @@ Use the file name returned from Step 1 to download the file via the [File API do
 ### [File Search](file-search.md)
 
 Use this pattern to let the agent search over uploaded files stored in a vector store. Provide `vector_store_ids` referencing vector stores already created in your Foundry project.
+
+To create a file and vector store, use the `{project_endpoint}/openai/v1` API:
+
+1. Upload your file: `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`.
+1. Create a vector store: `POST {project_endpoint}/openai/v1/vector_stores` with the returned file ID.
+
+The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
 > [!IMPORTANT]
 > When using File Search through a toolbox in a hosted agent, **user isolation is not supported**. All users in the same project share access to the same vector store.
