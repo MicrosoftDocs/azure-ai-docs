@@ -31,7 +31,7 @@ Prompt flow provides various prebuilt connections, including Azure OpenAI, OpenA
 
 | Connection type                                              | Built-in tools                  |
 | ------------------------------------------------------------ | ------------------------------- |
-| [Azure OpenAI](https://azure.microsoft.com/en-us/products/ai-foundry/) | LLM or Python                   |
+| [Azure OpenAI](https://azure.microsoft.com/products/ai-foundry/) | LLM or Python                   |
 | [OpenAI](https://openai.com/)                               | LLM or Python                   |
 | [Azure Content Safety](https://aka.ms/acs-doc)               | Content Safety (Text) or Python |
 | [Azure AI Search](https://azure.microsoft.com/products/search) (formerly Cognitive Search) | Vector DB Lookup or Python      |
