@@ -7,7 +7,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/03/2026
+ms.date: 04/17/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -43,7 +43,7 @@ Cloud evaluation supports the following scenarios:
 | **[Model target evaluation](#model-target-evaluation)** | Provide queries and generate responses from a model at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_model` |
 | **[Agent target evaluation](#agent-target-evaluation)** | Provide queries and generate responses from a Foundry agent at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
-| **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. | `azure_ai_traces` | — |
+| **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). | `azure_ai_traces` | — |
 | **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
 | **[Red team evaluation](run-ai-red-teaming-cloud.md)** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
 
@@ -906,6 +906,9 @@ For a complete runnable example, see [sample_agent_response_evaluation.py](https
 ## Trace evaluation
 
 Evaluate agent interactions that were already captured in [Application Insights](/azure/azure-monitor/app/app-insights-overview). Use the `azure_ai_traces` data source type. This scenario is useful for post-deployment evaluation of real production traffic — you select traces from your monitoring pipeline and run evaluators against them without replaying any requests.
+
+> [!IMPORTANT]
+> Trace evaluation is the recommended approach for evaluating **agents not built with the Microsoft Foundry Agent Service** — including LangChain and custom frameworks. As long as your agent emits [OpenTelemetry spans following the GenAI semantic conventions](#trace-data-requirements) to Application Insights, trace evaluation can assess its interactions using the same evaluators available for Foundry agents.
 
 Trace evaluation supports two modes:
 
