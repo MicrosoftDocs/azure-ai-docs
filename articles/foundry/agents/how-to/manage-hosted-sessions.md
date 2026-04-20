@@ -343,7 +343,7 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-files = project.beta.agents.list_session_files(
+files = project.beta.agents.get_session_files(
     agent_name="my-agent",
     session_id="<session-id>",
     path=".",
