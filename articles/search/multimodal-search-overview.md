@@ -4,7 +4,7 @@ description: Learn what multimodal search is, how Azure AI Search supports it fo
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 03/25/2026
+ms.date: 04/20/2026
 ---
 
 # Multimodal search in Azure AI Search
@@ -39,7 +39,7 @@ To simplify the creation of a multimodal pipeline, Azure AI Search offers the **
 
 The wizard follows these steps to create a multimodal pipeline:
 
-1. **Extract content:** Choose from the [Document Extraction skill](cognitive-search-skill-document-extraction.md), [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), or [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) to obtain page text, inline images, and structural metadata. Each skill offers different capabilities for metadata extraction, table handling, and file format support. For detailed comparisons, see [Options for multimodal content extraction](#options-for-multimodal-content-extraction).
+1. **Extract content:** Choose from the [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) to obtain page text, inline images, and structural metadata. Each skill offers different capabilities for metadata extraction, table handling, and file format support. For detailed comparisons, see [Options for multimodal content extraction](#options-for-multimodal-content-extraction).
 
 1. **Chunk text:** The [Text Split skill](cognitive-search-skill-textsplit.md) breaks the extracted text into manageable chunks for use in the remaining pipeline, such as the embedding skill.
 
