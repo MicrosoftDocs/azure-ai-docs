@@ -19,9 +19,6 @@ Declarative agent workflows define predefined sequences of actions for your agen
 
 After you [build an agent in Foundry Agent Service](/azure/ai-foundry/quickstarts/get-started-code?tabs=portal#create-an-agent) in the portal, you can add workflows to orchestrate multiple agents into predefined action sequences for complex automation scenarios.
 
-> [!IMPORTANT]
-> Items marked (preview) in this article are currently in public preview. This preview is provided without a service-level agreement, and isn't recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
 ## Prerequisites
 
 - A Foundry project with at least one deployed agent. To create one in the Foundry portal, see [Quickstart: Chat with an agent](/azure/ai-foundry/quickstarts/get-started-code?tabs=portal#create-an-agent).

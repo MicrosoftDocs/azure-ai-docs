@@ -95,7 +95,7 @@ For **Global** deployment types, prompts and responses might be processed in any
 Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md).
 
 > [!NOTE]
-> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [business continuity and disaster recovery guide](../../../foundry-classic/openai/how-to/business-continuity-disaster-recovery.md).
+> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [high availability and disaster recovery guide](../../../foundry-classic/how-to/high-availability-resiliency.md).
 
 ## Global Standard
 
@@ -225,4 +225,4 @@ Use the following policy to disable access to a specific Foundry deployment type
 - [Global Batch processing](../../openai/how-to/batch.md)
 - [Azure OpenAI Service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)
 - [Data privacy and security for Foundry Models](../../../foundry-classic/how-to/concept-data-privacy.md)
-- [Business continuity and disaster recovery](../../../foundry-classic/openai/how-to/business-continuity-disaster-recovery.md)
+- [High availability and disaster recovery](../../../foundry-classic/how-to/high-availability-resiliency.md)
