@@ -38,7 +38,7 @@ Prompt flow provides various prebuilt connections, including Azure OpenAI, OpenA
 | [Serp](https://serpapi.com/)                                 | Serp API or Python              |
 | [Custom](./tools-reference/python-tool.md#use-a-custom-connection-in-python)                                                       | Python                          |
 
-By leveraging connections in prompt flow, you can easily establish and manage connections to external APIs and data sources. This capability facilitates efficient data exchange and interaction within your AI applications.
+By using connections in prompt flow, you can easily establish and manage connections to external APIs and data sources. This capability facilitates efficient data exchange and interaction within your AI applications.
 
 ## Next steps
 
