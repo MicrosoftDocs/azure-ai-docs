@@ -77,6 +77,27 @@ The protocol libraries automatically expose a `/readiness` endpoint for platform
 
 Containers serve traffic on port **8088** locally. In production, the Foundry gateway handles routing — your container doesn't need to expose a public port.
 
+### Platform-injected environment variables
+
+The hosted agent platform automatically injects environment variables into your container at runtime. Your code can read these without declaring them in `agent.yaml` or `environment_variables`.
+
+| Variable | Purpose | Available locally (`azd ai agent run`) |
+|----------|---------|----------------------------------------|
+| `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint URL | Yes (translated from `AZURE_AI_PROJECT_ENDPOINT`) |
+| `FOUNDRY_PROJECT_ARM_ID` | Foundry project ARM resource ID | Yes (translated from `AZURE_AI_PROJECT_ID`) |
+| `FOUNDRY_AGENT_NAME` | Name of the running agent | Yes (translated from `AGENT_{SVC}_NAME`) |
+| `FOUNDRY_AGENT_VERSION` | Version of the running agent | Yes (translated from `AGENT_{SVC}_VERSION`) |
+| `FOUNDRY_AGENT_SESSION_ID` | Session ID for the current request | No |
+| `FOUNDRY_AGENT_TOOLSET_ENDPOINT` | Base URL for the toolset MCP proxy | No |
+| `FOUNDRY_AGENT_TOOLSET_FEATURES` | Feature-flag headers for toolset proxy requests | No |
+| `APPLICATIONINSIGHTS_CONNECTION_STRING` | Application Insights connection string for telemetry | Yes (same key in azd env) |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | OpenTelemetry collector endpoint | No |
+
+Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME`, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call. Don't redeclare the platform-injected variables — they're set automatically.
+
+> [!NOTE]
+> When running locally with `azd ai agent run`, a subset of these variables are translated from their corresponding `azd` environment keys. Variables marked "No" for local availability are only present in hosted containers.
+
 ## Package and test your agent locally
 
 Before deploying to Foundry, validate your agent works locally using the protocol library. The container serves the same endpoints locally as it does in production.
