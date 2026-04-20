@@ -10,7 +10,7 @@ ms.date: 04/20/2026
 ms.custom: include, classic-and-new
 ---
 
-This article describes how the data that you provide is processed, used, and stored when you use Anthropic Claude models from the Microsoft Marketplace in Microsoft Foundry. Claude in Foundry processes data differently from models sold directly by Azure. When you transact for Claude in Foundry, you'll agree to Anthropic's terms of use and Anthropic (not Microsoft) is the processor of the data. 
+This article describes how the data that you provide is processed, used, and stored when you use Anthropic Claude models from the Microsoft Marketplace in Microsoft Foundry. Claude in Foundry processes data differently from models sold directly by Azure. When you transact for Claude in Foundry, you will agree to Anthropic's terms of use and Anthropic (not Microsoft) is the processor of the data. 
 
 As detailed in the following sections, to the extent Microsoft plays a role in processing data in connection with Claude on Foundry, it will do so pursuant to its own terms.
 
@@ -29,7 +29,7 @@ For Anthropic Claude models, Microsoft provides and manages the API deployment i
 
 ## Where can I learn about screening for harmful content in data for the Anthropic Claude models in Microsoft Foundry?
 
-To learn more about screening for harmful content in data or other topics specific to the Anthropic Claude API, please see Anthropic's documentation.
+To learn more about screening for harmful content in data or other topics specific to the Anthropic Claude API, see Anthropic's documentation.
 
 ## Where is data processed for Anthropic Claude models in Microsoft Foundry
 
