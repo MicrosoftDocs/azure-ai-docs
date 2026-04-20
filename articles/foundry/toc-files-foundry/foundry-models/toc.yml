@@ -90,9 +90,9 @@ items:
   - name: Azure OpenAI quotas and limits
     displayName: Azure OpenAI in Microsoft Foundry Models quotas and limits
     href: ../../openai/quotas-limits.md
-    - name: Azure OpenAI quotas and limits in Azure Government
-      displayName: Azure OpenAI in Microsoft Foundry Models quotas and limits (Azure Government)
-      href: ../../openai/quotas-limits-gov.md
+  - name: Azure OpenAI quotas and limits in Azure Government
+    displayName: Azure OpenAI in Microsoft Foundry Models quotas and limits (Azure Government)
+    href: ../../openai/quotas-limits-gov.md
   # - name: Model availability by region
   #   href: 
   - name: Feature availability by region
