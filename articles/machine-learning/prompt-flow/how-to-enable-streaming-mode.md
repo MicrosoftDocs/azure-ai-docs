@@ -22,11 +22,11 @@ ms.update-cycle: 365-days
 
 In prompt Flow, you can [deploy flow to an Azure Machine Learning managed online endpoint](how-to-deploy-for-real-time-inference.md) for real-time inference.
 
-When consuming the endpoint by sending a request, the default behavior is that the online endpoint will keep waiting until the whole response is ready, and then send it back to the client. This can cause a long delay for the client and a poor user experience.
+When consuming the endpoint by sending a request, the default behavior is that the online endpoint keeps waiting until the whole response is ready, and then send it back to the client. This can cause a long delay for the client and a poor user experience.
 
-To avoid this, you can use streaming when you consume the endpoints. Once streaming enabled, you don't have to wait for the whole response to be ready. Instead, the server will send back the response in chunks as they're generated. The client can then display the response progressively, with less waiting time and more interactivity.
+To avoid this, you can use streaming when you consume the endpoints. Once streaming enabled, you don't have to wait for the whole response to be ready. Instead, the server sends back the response in chunks as they're generated. The client can then display the response progressively, with less waiting time and more interactivity.
 
-This article will describe the scope of streaming, how streaming works, and how to consume streaming endpoints.
+This article describes the scope of streaming, how streaming works, and how to consume streaming endpoints.
 
 ## Create a streaming enabled flow
 
@@ -61,9 +61,9 @@ If you want to use the streaming mode, you need to create a flow that has a node
 > [!IMPORTANT]
 > Only the output of the last node of the flow can support streaming.
 >
-> "Last node" means the node output is not consumed by other nodes.
+> "Last node" means the node output isn't consumed by other nodes.
 
-In this guide, we will use the "Chat with Wikipedia" sample flow as an example. This flow processes the user's question, searches Wikipedia for relevant articles, and answers the question with information from the articles. It uses streaming mode to show the progress of the answer generation.
+In this guide, we'll use the "Chat with Wikipedia" sample flow as an example. This flow processes the user's question, searches Wikipedia for relevant articles, and answers the question with information from the articles. It uses streaming mode to show the progress of the answer generation.
 
 To learn how to create a chat flow, see  [how to develop a chat flow in prompt flow](how-to-develop-a-chat-flow.md) to create a chat flow.
 
@@ -71,7 +71,7 @@ To learn how to create a chat flow, see  [how to develop a chat flow in prompt f
 
 ## Deploy the flow as an online endpoint
 
-To use the streaming mode, you need to deploy your flow as an online endpoint. This will allow you to send requests and receive responses from your flow in real time.
+To use the streaming mode, you need to deploy your flow as an online endpoint. This allows you to send requests and receive responses from your flow in real time.
 
 To learn how to deploy your flow as an online endpoint, see  [Deploy a flow to online endpoint for real-time inference with CLI](./how-to-deploy-to-code.md) to deploy your flow as an online endpoint.
 
@@ -91,7 +91,7 @@ Content negotiation is like a conversation between the client and the server abo
 
 To understand the streaming process, consider the following steps:
 
-- First, the client constructs an HTTP request with the desired media type included in the `Accept` header. The media type tells the server what kind of data format the client expects. It's like the client saying, "Hey, I'm looking for a specific format for the data you'll send me. It could be JSON, text, or something else." For example, `application/json` indicates a preference for JSON data, `text/event-stream` indicates a desire for streaming data, and `*/*` means the client accepts any data format.
+- First, the client constructs an HTTP request with the desired media type included in the `Accept` header. The media type tells the server what kind of data format the client expects. It's like the client saying, "Hey, I'm looking for a specific format for the data you send me. It could be JSON, text, or something else." For example, `application/json` indicates a preference for JSON data, `text/event-stream` indicates a desire for streaming data, and `*/*` means the client accepts any data format.
     > [!NOTE]
     >
     > If a request lacks an `Accept` header or has empty `Accept` header, it implies that the client will accept any media type in response. The server treats it as `*/*`.
@@ -252,7 +252,7 @@ If the response code is "424 Model Error", it means that the error is caused by 
 }
 ```
 
-- It is always a JSON dictionary with only one key "error" defined.
+- It's always a JSON dictionary with only one key "error" defined.
 - The value for "error" is a dictionary, containing "code", "message".
 - "code" defines the error category. Currently, it might be "UserError" for bad user inputs and "SystemError" for errors inside the service.
 - "message" is a description of the error. It can be displayed to the end user.
@@ -261,7 +261,7 @@ If the response code is "424 Model Error", it means that the error is caused by 
 
 ### Consume using Python
 
-In this sample usage, we are using the `SSEClient` class. This class is not a built-in Python class and needs to be installed separately. You can install it via pip:
+In this sample usage, we're using the `SSEClient` class. This class isn't a built-in Python class and needs to be installed separately. You can install it via pip:
 
 ```bash
 pip install sseclient-py
@@ -292,7 +292,7 @@ except HTTPError:
 
 ### Consume using JavaScript
 
-There are several libraries to consume server-sent events in JavaScript. Here is [one of them as an example](https://www.npmjs.com/package/sse.js?activeTab=code).
+There are several libraries to consume server-sent events in JavaScript. Here's [one of them as an example](https://www.npmjs.com/package/sse.js?activeTab=code).
 
 ## A sample chat app using Python
 
@@ -300,15 +300,15 @@ There are several libraries to consume server-sent events in JavaScript. Here is
 
 :::image type="content" source="./media/how-to-enable-streaming-mode/chat-app.gif" alt-text="Gif a sample chat app using Python."lightbox ="./media/how-to-enable-streaming-mode/chat-app.gif":::
 
-## Advanced usage - hybrid stream and non-stream flow output
+## Advanced usage - hybrid stream and nonstream flow output
 
-Sometimes, you might want to get both stream and non-stream results from a flow output. For example, in the "Chat with Wikipedia" flow, you might want to get not only LLM's answer, but also the list of URLs that the flow searched. To do this, you need to modify the flow to output a combination of stream LLM's answer and non-stream URL list.
+Sometimes, you might want to get both stream and nonstream results from a flow output. For example, in the "Chat with Wikipedia" flow, you might want to get not only LLM's answer, but also the list of URLs that the flow searched. To do this, you need to modify the flow to output a combination of stream LLM's answer and nonstream URL list.
 
 In the sample "Chat With Wikipedia" flow, the output is connected to the LLM node `augmented_chat`. To add the URL list to the output, you need to add an output field with the name `url` and the value `${get_wiki_url.output}`.
 
 :::image type="content" source="./media/how-to-enable-streaming-mode/chat-wikipedia-dual-output-center.png" alt-text="Screenshot of hybrid chat with Wikipedia flow." lightbox = "./media/how-to-enable-streaming-mode/chat-wikipedia-dual-output-center.png":::
 
-The output of the flow will be a non-stream field as the base and a stream field as the delta. Here's an example of request and response.
+The output of the flow will be a nonstream field as the base and a stream field as the delta. Here's an example of request and response.
 
 ### Advanced usage - 0. The client sends a message to the server
 
