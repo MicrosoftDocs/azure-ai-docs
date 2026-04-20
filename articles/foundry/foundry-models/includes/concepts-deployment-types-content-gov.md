@@ -70,7 +70,7 @@ For **DataZone** deployment types, prompts and responses are processed only with
 Learn more in the "Model region availability by deployment type" section of [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure-gov.md).
 
 > [!NOTE]
-> With Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [business continuity and disaster recovery guide](../../../foundry-classic/openai/how-to/business-continuity-disaster-recovery.md).
+> With Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic initially routed to this region is affected. To learn more, see the [high availability and disaster recovery guide](../../../foundry-classic/how-to/high-availability-resiliency.md).
 
 ## Data Zone Standard
 
@@ -127,4 +127,4 @@ Not all features of Abuse Monitoring are enabled for Azure OpenAI deployments in
 - [Provisioned throughput concepts](../../openai/concepts/provisioned-throughput.md)
 - [Azure OpenAI Service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)
 - [Data privacy and security for Foundry Models](../../../foundry-classic/how-to/concept-data-privacy.md)
-- [Business continuity and disaster recovery](../../../foundry-classic/openai/how-to/business-continuity-disaster-recovery.md)
+- [High availability and disaster recovery](../../../foundry-classic/how-to/high-availability-resiliency.md)
