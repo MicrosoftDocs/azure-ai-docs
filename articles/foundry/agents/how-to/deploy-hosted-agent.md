@@ -79,7 +79,7 @@ Containers serve traffic on port **8088** locally. In production, the Foundry ga
 
 ### Platform-injected environment variables
 
-The hosted agent platform automatically injects environment variables into your container at runtime. Your code can read these without declaring them in `agent.yaml` or `environment_variables`.
+The hosted agent platform automatically injects environment variables into your container at runtime. Your code can read these without declaring them in `agent.yaml` or `environment_variables`. The `FOUNDRY_*` prefix is reserved for platform use.
 
 | Variable | Purpose | Local via `azd ai agent run` |
 |----------|---------|------------------------------|
@@ -88,15 +88,34 @@ The hosted agent platform automatically injects environment variables into your 
 | `FOUNDRY_AGENT_NAME` | Name of the running agent | Yes — translated from `AGENT_{SVC}_NAME` |
 | `FOUNDRY_AGENT_VERSION` | Version of the running agent | Yes — translated from `AGENT_{SVC}_VERSION` |
 | `FOUNDRY_AGENT_SESSION_ID` | Session ID for the current request | No — hosted containers only |
-| `FOUNDRY_AGENT_TOOLSET_ENDPOINT` | Base URL for the toolset MCP proxy | No — hosted containers only |
-| `FOUNDRY_AGENT_TOOLSET_FEATURES` | Feature-flag headers for toolset proxy requests | No — hosted containers only |
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | Application Insights connection string for telemetry | Passed through (same key in azd env) |
-| `OTEL_EXPORTER_OTLP_ENDPOINT` | OpenTelemetry collector endpoint | No — hosted containers only |
 
-Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME`, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call. Don't redeclare the platform-injected variables — they're set automatically.
+Don't redeclare platform-injected variables in `agent.yaml` — they're set automatically.
+
+Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME`, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call.
+
+#### Toolbox MCP endpoints
+
+When your agent uses toolbox resources (declared as `kind: toolbox` in `agent.manifest.yaml`), the `azd ai agent init` command auto-generates an environment variable for each toolbox using the naming pattern:
+
+```
+TOOLBOX_{SANITIZED_NAME}_MCP_ENDPOINT
+```
+
+Where `{SANITIZED_NAME}` is the toolbox resource `name` uppercased with non-alphanumeric characters replaced by underscores. For example, a toolbox named `agent-tools` produces `TOOLBOX_AGENT_TOOLS_MCP_ENDPOINT`. The variable is injected into `agent.yaml` with `${...}` syntax and populated with the full MCP endpoint URL during `azd provision`.
+
+In your application code, read the auto-generated env var name matching your toolbox resource name:
+
+```python
+import os
+
+toolbox_endpoint = os.environ.get("TOOLBOX_AGENT_TOOLS_MCP_ENDPOINT")
+```
+
+Don't manually declare toolbox endpoint variables in `agent.yaml` `environment_variables` — they're auto-generated from the toolbox resource definition.
 
 > [!NOTE]
-> When running locally with `azd ai agent run`, only `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_PROJECT_ARM_ID`, `FOUNDRY_AGENT_NAME`, and `FOUNDRY_AGENT_VERSION` are translated from their corresponding azd environment keys. Variables marked "No" are only present in hosted containers.
+> When running locally with `azd ai agent run`, only `FOUNDRY_PROJECT_ENDPOINT`, `FOUNDRY_PROJECT_ARM_ID`, `FOUNDRY_AGENT_NAME`, and `FOUNDRY_AGENT_VERSION` are translated from their azd environment keys. `FOUNDRY_AGENT_SESSION_ID` is only present in hosted containers. Toolbox MCP endpoint variables are available locally because `azd provision` stores the full URL in the azd environment.
 
 ## Package and test your agent locally
 
