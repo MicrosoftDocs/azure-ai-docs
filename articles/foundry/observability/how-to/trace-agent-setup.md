@@ -85,13 +85,13 @@ After running your agent, you can begin to [view and analyze traces in Foundry p
 
 For detailed instructions and SDK-specific code examples, see [Tracing with azure-ai-projects (Python SDK)](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects#tracing) and [Telemetry samples for agents](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/agents/telemetry).
 
-### Trace locally with AI Toolkit in VS Code
+### Trace locally with Foundry Toolkit in VS Code
 
-AI Toolkit lets you trace locally in VS Code using a local OTLP-compatible collector, which is ideal for development and debugging.
+Foundry Toolkit lets you trace locally in VS Code using a local OTLP-compatible collector, which is ideal for development and debugging.
 
 The toolkit supports AI frameworks such as Foundry Agents Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
 
-For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
+For detailed setup instructions and SDK-specific code examples, see [Tracing in Foundry Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
 
 ## View and analyze traces
 

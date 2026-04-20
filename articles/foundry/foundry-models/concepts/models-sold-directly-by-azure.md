@@ -4,7 +4,7 @@ description: "Learn about Microsoft Foundry Models sold directly by Azure, their
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 02/12/2026
+ms.date: 04/17/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-model-inference
 ms.topic: product-comparison
@@ -23,14 +23,8 @@ zone_pivot_groups: models-sold-directly-by-azure
 ---
 
 # Foundry Models sold directly by Azure
-This article lists a selection of Microsoft Foundry Models sold directly by Azure along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). To see a list of Azure OpenAI models that are supported by the Foundry Agent Service, see [Models supported by Agent Service](../../agents/concepts/limits-quotas-regions.md).
-Models sold directly by Azure include all Azure OpenAI models and specific, selected models from top providers. These models are billed through your Azure subscription, covered by Azure service-level agreements, and supported by Microsoft. For models offered by partners outside of this list, see [Foundry Models from partners and community](models-from-partners.md).
 
-Use the tabs at the top of this page to switch between **Azure OpenAI models** and **other model collections** from providers like Cohere, DeepSeek, Meta, Mistral AI, and xAI.
-
-Foundry Models are available for standard deployment to a Foundry resource.
-
-To learn more about attributes of Foundry Models sold directly by Azure, see [Explore Foundry Models](../../../foundry-classic/concepts/foundry-models-overview.md#models-sold-directly-by-azure).
+[!INCLUDE [models-azure-direct-openai-intro](../../openai/includes/models-azure-direct-openai-intro.md)]
 
 ::: zone pivot="azure-openai"
 
@@ -43,4 +37,3 @@ To learn more about attributes of Foundry Models sold directly by Azure, see [Ex
 [!INCLUDE [models-azure-direct-others](../includes/models-azure-direct-others.md)]
 
 ::: zone-end
-
