@@ -22,13 +22,13 @@ Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foun
 Choose hosted agents over prompt-based agents when you need to:
 
 - **Bring your own code** — use any framework (Agent Framework, LangGraph, Semantic Kernel, or custom code) rather than prompt-only definitions.
-- **Use custom protocols** — accept webhooks, non-OpenAI payloads, or agent-to-agent calls via the Invocations protocol.
+- **Use custom protocols** — accept webhooks or non-OpenAI payloads via the Invocations protocol.
 - **Control compute resources** — specify CPU and memory for your agent’s sandbox.
 - **Run stateful workloads** — persist files and state across turns via $HOME and the /files endpoint.
 
 ### How it works
 
-You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, provisions compute, assigns a dedicated Entra identity, and exposes a dedicated endpoint. At runtime, your agent code handles requests from clients and can call Foundry models, Foundry Toolbox tools, and downstream Azure services using its managed identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
+You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, provisions compute, assigns a dedicated Entra agent identity, and exposes a dedicated endpoint. At runtime, your agent code handles requests from clients and can call Foundry models, Foundry Toolbox tools, and downstream Azure services using its agent identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
 
 ## Key concepts
 
@@ -106,7 +106,6 @@ A session ID identifies a logical session with persisted state — including $HO
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
 - **Session lifetime**: Sessions persist for up to 30 days. The idle timeout is 15 minutes — if no request arrives within that window, the platform deprovisions the compute and persists the session state.
 - **Session management APIs**: List sessions, terminate sessions, and upload or download files per session.
-- **Persistent memory**: Memory is maintained across sessions.
 
 #### Conversations
 
@@ -149,7 +148,7 @@ Environment variables are the primary mechanism for passing configuration to you
 
 ### Foundry Toolbox
 
-Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries — the platform doesn't inject tools automatically. For details, see [Connect to Model Context Protocol servers](../how-to/tools/model-context-protocol.md).
+Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries — the platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
 
 ### Language support
 
