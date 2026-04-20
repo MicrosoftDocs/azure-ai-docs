@@ -113,7 +113,7 @@ If you want to use a private feed in Azure DevOps, follow these steps:
 
 1. [Add or update user-assigned identities to your project](/azure/machine-learning/how-to-identity-based-service-authentication#to-create-a-workspace-with-multiple-user-assigned-identities-use-one-of-the-following-methods).
 
-1. Add `{private}` to your private feed URL. For example, if you want to install `test_package` from `test_feed` in Azure devops, add `-i https://{private}@{test_feed_url_in_azure_devops}` in `requirements.txt`:
+1. Add `{private}` to your private feed URL. For example, if you want to install `test_package` from `test_feed` in Azure DevOps, add `-i https://{private}@{test_feed_url_in_azure_devops}` in `requirements.txt`:
 
     ```txt
     -i https://{private}@{test_feed_url_in_azure_devops}

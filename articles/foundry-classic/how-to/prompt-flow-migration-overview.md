@@ -110,7 +110,7 @@ The following table maps Prompt Flow concepts to their Agent Framework equivalen
 | `WorkflowContext` (no type parameters) | Side effects only. No message sent downstream and no workflow output yielded. |
 | `WorkflowContext[str]` | Sends a `str` downstream via `ctx.send_message()`. |
 | `WorkflowContext[Never, str]` | Yields a `str` as the final workflow output via `ctx.yield_output()`. |
-| `WorkflowContext[str, str]` | Both sends a message downstream and yields a workflow output. |
+| `WorkflowContext[str, str]` | Both send a message downstream and yields a workflow output. |
 
 Import `Never` from `typing` (Python 3.11+) or `typing_extensions` (Python 3.10). The `Never` type indicates that an executor doesn't send messages downstream. Use it in terminal executors that only yield final workflow output.
 
