@@ -80,7 +80,7 @@ You can configure inbound authentication on the agent endpoint:
 
 | Scheme type | Description | Isolation key source |
 |-------------|-------------|----------------------|
-| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Azure AI User** on the Foundry project. | `Entra` — derives user identity from the Microsoft Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
+| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Azure AI User** role on the Foundry project. | `Entra` — derives user identity from the Microsoft Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
 | **`BotService`** | Azure Bot Service channel authorization. Used when publishing to M365/Teams. Configured automatically during the channel publish flow. | N/A |
 | **`BotServiceRbac`** | Azure Bot Service authorization combined with Azure RBAC. Use when you need Bot Service channel auth with additional RBAC enforcement. | N/A |
 
@@ -133,7 +133,10 @@ Foundry-Features: AgentEndpoints=V1Preview
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
-    AgentEndpoint, VersionSelector, VersionSelectionRule
+    AgentEndpoint,
+    AgentEndpointProtocol,
+    FixedRatioVersionSelectionRule,
+    VersionSelector,
 )
 from azure.identity import DefaultAzureCredential
 
@@ -306,7 +309,7 @@ Foundry-Features: AgentEndpoints=V1Preview
 To view your agent's current properties—identity, protocols, authorization, and endpoint configuration—run:
 
 ```
-GET {endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
+GET {endpoint}/agents/{agent_name}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 Foundry-Features: AgentEndpoints=V1Preview

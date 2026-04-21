@@ -30,7 +30,7 @@ This article describes how Foundry agents can be managed and governed in Microso
 
 ## How does Foundry integrate with Agent 365?
 
-**All Foundry agents automatically appear in the Agent 365 agent registry on creation.** In A365, admins can see critical agent metadata such as the name, description, tools, agent identity, agent blueprint, and more associate with an agent. 
+**All Foundry agents automatically appear in the Agent 365 agent registry on creation.** In A365, admins can see critical agent metadata such as the name, description, tools, agent identity, agent blueprint, and more associated with an agent. 
 
 ## Create AI teammates
 
@@ -58,7 +58,7 @@ The rest of this article walks through that process.
 The sample provisions Azure resources and publishes a hosted agent end-to-end. Specifically: 
 
 - Creates or updates Azure resources required to run the sample.
-- Creates an agent version and configures endpoint traffic to route to always route to that version
+- Creates an agent version and configures endpoint traffic to always route to that version
 - Submits an AI teammate request that requires admin approval in the Microsoft 365 admin center.
 
 ### Run the code sample
