@@ -53,7 +53,7 @@ AGENT_NAME="MyAgent"
 ```
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/typescript/quickstart/agent-service/src)
+> [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/typescript/quickstart/)
 
 Sign in using the CLI `az login` command to authenticate before running your TypeScript scripts.
 
