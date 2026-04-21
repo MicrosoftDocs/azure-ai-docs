@@ -13,20 +13,26 @@ ai-usage: ai-assisted
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
 - [Node.js LTS](https://nodejs.org/) installed.
-- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) created in a region that supports LLM speech. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions?tabs=llmspeech).
+
+- A [Microsoft Foundry resource](/azure/ai-services/multi-service-resource) created in a region that supports LLM Speech. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions?tabs=llmspeech).
+
 - A sample `.wav` audio file to transcribe.
 
 ### Microsoft Entra ID prerequisites
 
 For the recommended keyless authentication with Microsoft Entra ID, you need to:
+
 1. Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
+
 1. Sign in with the Azure CLI by running `az login`.
-1. Assign the `Cognitive Services User` role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
+
+1. Assign the Cognitive Services User role to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**.
 
 ## Set up the project
 
-1. Create a new folder named `llm-speech-quickstart` and go to the folder:
+1. Create a new folder named `llm-speech-quickstart`, and then go to the folder:
 
     ```shell
     mkdir llm-speech-quickstart && cd llm-speech-quickstart
@@ -44,17 +50,20 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 You need to retrieve your resource endpoint for authentication.
 
 1. Sign in to [Foundry portal](https://ai.azure.com).
-1. Select **Management center** from the left menu. Under **Connected resources**, select your Speech or multi-service resource.
+
+1. Select **Management center** from the left menu. Under **Connected resources**, select your Speech or multiservice resource.
+
 1. Select **Keys and Endpoint**.
+
 1. Copy the **Endpoint** value and set it as an environment variable:
 
-    # [Windows](#tab/windows)
+   # [Windows](#tab/windows)
 
     ```powershell
     $env:AZURE_SPEECH_ENDPOINT="<your-speech-endpoint>"
     ```
 
-    # [Linux/macOS](#tab/linux-macos)
+   # [Linux/macOS](#tab/linux-macos)
 
     ```bash
     export AZURE_SPEECH_ENDPOINT="<your-speech-endpoint>"
@@ -62,9 +71,9 @@ You need to retrieve your resource endpoint for authentication.
 
     ---
 
-## Transcribe audio with LLM speech
+## Transcribe audio with LLM Speech
 
-LLM speech uses the `enhancedMode` option to enable large-language-model-enhanced transcription. The model automatically detects the language in your audio.
+LLM Speech uses the `enhancedMode` option to enable transcription that's enhance by a large language model. The model automatically detects the language in your audio.
 
 Create a file named `index.js` with the following code:
 
@@ -127,11 +136,11 @@ node index.js
 ```
 
 > [!TIP]
-> If you get the result `Enhanced mode is currently not supported yet`, verify that your endpoint is in a region that supports LLM speech.
+> If you get the result `Enhanced mode is currently not supported yet`, verify that your endpoint is in a region that supports LLM Speech.
 
-Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient)
+For more information, see the following reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient).
 
-### Output
+### Transcription output
 
 The application prints the transcription result to the console:
 
@@ -146,9 +155,9 @@ Transcription: Hi there. This is a sample voice recording created for speech syn
   [22480ms] (en-US): This audio is provided by samplefiles.com.
 ```
 
-## Translate audio with LLM speech
+## Translate audio with LLM Speech
 
-You can also use LLM speech to translate audio to a target language. Set `task` to `translate` and specify the `targetLanguage`:
+You can also use LLM Speech to translate audio to a target language. Set `task` to `translate`, and then specify the `targetLanguage`:
 
 ```javascript
 const {
@@ -190,9 +199,9 @@ main().catch((err) => {
 
 Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
 
-Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient)
+For more information, see the following reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient).
 
-## Use prompt-tuning
+## Tune a prompt
 
 You can provide an optional prompt to guide the output style for transcription or translation tasks:
 
@@ -209,9 +218,12 @@ console.log("Transcription:", result.combinedPhrases[0]?.text);
 
 ### Best practices for prompts
 
-- Prompts are subject to a maximum length of 4,096 characters.
+- Prompts have a maximum length of 4,096 characters.
+
 - Prompts should preferably be written in English.
+
 - Use `Output must be in lexical format.` to enforce lexical formatting instead of the default display format.
+
 - Use `Pay attention to *phrase1*, *phrase2*, …` to improve recognition of specific phrases or acronyms.
 
 ### Output
@@ -222,5 +234,4 @@ The application prints the transcription result to the console:
 Transcription: Hello this is a test of the LLM speech transcription service.
 ```
 
-Reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient)
-
+For more information, see the following reference: [`TranscriptionClient`](/javascript/api/@azure/ai-speech-transcription/transcriptionclient).
