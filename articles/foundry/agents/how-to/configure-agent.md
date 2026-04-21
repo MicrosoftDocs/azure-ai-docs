@@ -46,7 +46,7 @@ After you configure your endpoint and are ready to share it, grant others access
 
 Before working with your agent's endpoint, understand the relationship between projects, agents, agent versions, and the stable endpoint.
 
-:::image type="content" source="../../media/agent-object-model.png" alt-text="Diagram illustrating how Foundry projects organize agent versions and agents.":::
+:::image type="content" source="../media/agent-object-model.png" alt-text="Diagram illustrating how Foundry projects organize agent versions and agents.":::
 
 
 **Foundry project**: A Foundry project is a folder that groups related resources such as agents, files, and tools.
@@ -62,21 +62,22 @@ For a full list of agent object properties, see the [reference section](#referen
 
 ### Traffic routing
 
-The agent's `version_selector` determines how traffic is routed to agent versions. By default, 100% of traffic routes to the latest agent version. You can override this to:
+The agent's `version_selector` determines how traffic is routed to agent versions. Two routing policies are available:
 
-- Pin traffic to a specific version referred to as the "active agent version"
+- **Always use latest** (default) — 100% of traffic routes to the most recently created agent version. When the agent is published to Teams or Microsoft 365, creating a new version automatically updates what's served in those channels.
+- **Pinned to a specific version** — 100% of traffic routes to the agent version you select, referred to as the "active agent version." New versions don't change what's served until you update the selector.
 
-When the routing policy is set to auto-update (latest) and the agent is published to Teams/M365, creating a new version automatically updates what's served in those channels.
+Pin to a specific version when you need stability across new version creation — for example, when an agent is in production or published to end users in Teams or Microsoft 365.
 
 ### Protocols
 
 An agent can expose multiple protocols simultaneously:
 
-| Protocol | Endpoint pattern | Use case |
-|----------|-----------------|----------|
-| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/openai/v1/responses` | OpenAI-compatible stateless API |
-| **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/activityprotocol` | Microsoft Teams and M365 Copilot integration |
-| **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/invocations` | Agent-to-agent communication |
+| Protocol | Endpoint pattern |
+|----------|-----------------|
+| **Responses** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/openai/v1/responses` |
+| **Activity Protocol** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/activityprotocol` |
+| **Invocations** | `https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/invocations` |
 
 ### Authorization schemes
 
@@ -101,20 +102,16 @@ The agent's stable endpoint is available from the moment the agent is created. B
 
 By default, the routing policy is **Always use latest**. To pin traffic to a specific version, update the `version_selector`.
 
-> [!NOTE]
-> When the routing policy is set to **Always use latest** and the agent is published to Teams/M365, creating a new agent version automatically updates what's served in those channels. Make sure this is the behavior you want before publishing to channels.
-
 #### [Foundry portal](#tab/portal)
 
 1. In the Foundry portal, create an agent or open an existing agent.
-
-2. Expand the **Publish** dropdown to see endpoint configuration options.
+1. Expand the **Publish** dropdown to see endpoint configuration options.
 
    **Expected result**: You see the available endpoints for your agent and the current version routing configuration. The endpoints are live from agent creation — no publish step is required to activate them.
 
-3. Click the version selector arrow and choose a specific version.
+1. Select the version selector arrow and choose a specific version.
 
-   **Expected result**: The stable endpoint now routes 100% of traffic to the selected version. When pinned, creating new versions doesn't change what's being served.
+   **Expected result**: The stable endpoint now routes 100% of traffic to the selected version. When pinned, creating new versions doesn't change what's served.
 
 #### [REST API](#tab/rest)
 
