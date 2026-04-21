@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Foundry agents in Microsoft Agent 365 
 
-This article describes how Foundry agents can be managed and governed in Microsoft Agent 365. Additionally, it describes how AI teammates can be created, approved, and hired in A365. 
+This article describes how Foundry agents can be managed and governed in Microsoft Agent 365. Additionally, it describes how AI teammates can be created, approved, and hired in Agent 365. 
 
 ## What is Microsoft Agent 365?
 
@@ -30,7 +30,7 @@ This article describes how Foundry agents can be managed and governed in Microso
 
 ## How does Foundry integrate with Agent 365?
 
-All Foundry agents automatically appear in the Agent 365 agent registry on creation. In A365, admins can see critical agent metadata such as the name, description, tools, agent identity, agent blueprint, and more associate with an agent. 
+**All Foundry agents automatically appear in the Agent 365 agent registry on creation.** In A365, admins can see critical agent metadata such as the name, description, tools, agent identity, agent blueprint, and more associate with an agent. 
 
 ## Create AI teammates
 

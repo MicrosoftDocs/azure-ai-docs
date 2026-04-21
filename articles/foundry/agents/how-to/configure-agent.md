@@ -13,13 +13,14 @@ ai-usage: ai-assisted
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
 
-# Configure and share your agent 
+# Configure and share your agent
 
 Every agent in Microsoft Foundry has a stable endpoint from the moment it's created. When end users interact with your agent through Microsoft 365 Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint. Before you share your agent, verify these settings:
-- **Active agent version** — Confirm the version that receives traffic is the one you want end users to interact with. By default, the agent auto-updates to the latest version, which means a newly created version is immediately served. If that isn't what you want, pin traffic to a specific version.
+- **Active agent version** — Confirm the version that receives traffic is the one you want end users to interact with. By default, the agent automatically updates to the latest version, which means a newly created version is immediately served. If that isn't what you want, pin traffic to a specific version.
 - **Protocols and authorization schemes** — Make sure they match where and how your users interact with the agent. For example, an agent published to Microsoft 365 or Teams must have the Activity protocol enabled and use a BotService or BotServiceRbac authorization scheme.
 
-This article shows you how to select the active version, enable protocols, set authorization schemes, and add an agent card. Once your endpoint is configured, you can
+This article shows you how to select the active version, enable protocols, set authorization schemes, and add an agent card. After you configure the endpoint, you can:
+
 - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
 - [Publish an agent as a digital worker in Agent 365](./agent-365.md)
 
@@ -39,29 +40,29 @@ This article shows you how to select the active version, enable protocols, set a
 
 ## Understand the agent object model
 
-Before working with your agent's endpoint, understand the relationship between projects, agents, agent versions, and the stable endpoint.
+Before you configure the endpoint, understand how projects, agents, agent versions, and the stable endpoint relate to each other.
 
 :::image type="content" source="../media/agent-object-model.png" alt-text="Diagram illustrating how Foundry projects organize agent versions and agents.":::
 
-**Foundry project**: A Foundry project is a folder that groups related resources such as agents, files, and tools.
+**Foundry project**: A folder that groups related resources such as agents, files, and tools.
 
-**Agent version**: is an immutable snapshot of the agent's configuration. Any change (even a single prompt edit) produces a new version.
+**Agent version**: An immutable snapshot of the agent's configuration. Any change, even a single prompt edit, produces a new version.
 
-**Agent**: The stable, consumer-facing representation of an agent. An agent's "self" is defined by its evolving context, capabilities, and behavior—not by a fixed implementation snapshot. The agent anchors that evolution to a consistent identity, endpoint, and authorization surface, so consumers always interact with the same entity even as the underlying agent versions change.
+**Agent**: The stable, consumer-facing representation of an agent. The agent's identity, endpoint, and authorization surface stay consistent as its underlying versions evolve, so consumers always interact with the same entity.
 
-**Agent endpoint**: The URL consumers call to invoke the agent. It's live the moment you create the agent—there's no separate publish step—and the URL doesn't change as you roll out new versions. You configure which version it serves, which protocols it speaks, and how callers authenticate.
+**Agent endpoint**: The URL consumers call to invoke the agent. It's live the moment you create the agent, with no separate publish step, and the URL doesn't change as you roll out new versions. You configure which version it serves, which protocols it speaks, and how callers authenticate.
 
-For a full list of agent object properties, see the [reference section](#reference-agent-object-properties) at the bottom of this article.
+For the full list of agent object properties, see the [reference section](#reference-agent-object-properties) at the end of this article.
 
 
 ### Traffic routing
 
-The agent's `version_selector` determines how traffic is routed to agent versions. Two routing policies are available:
+The agent's `version_selector` determines how traffic routes to agent versions. Two routing policies are available:
 
-- **Always use latest** (default) — 100% of traffic routes to the most recently created agent version. When the agent is published to Teams or Microsoft 365, creating a new version automatically updates what's served in those channels.
-- **Pinned to a specific version** — 100% of traffic routes to the agent version you select, referred to as the "active agent version." New versions don't change what's served until you update the selector.
+- **Always use latest** (default): 100% of traffic routes to the most recently created agent version. When the agent is published to Teams or Microsoft 365, creating a new version automatically updates what's served in those channels.
+- **Pinned to a specific version**: 100% of traffic routes to the agent version you select, called the *active agent version*. New versions don't change what's served until you update the selector.
 
-Pin to a specific version when you need stability across new version creation — for example, when an agent is in production or published to end users in Teams or Microsoft 365.
+Pin to a specific version when you need stability across new versions, such as when an agent is in production or published to end users in Teams or Microsoft 365.
 
 ### Protocols
 
@@ -79,7 +80,7 @@ You can configure inbound authentication on the agent endpoint:
 
 | Scheme type | Description | Isolation key source |
 |-------------|-------------|----------------------|
-| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Azure AI User** on the Foundry project. | `Entra` — derives user identity from the Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
+| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Azure AI User** on the Foundry project. | `Entra` — derives user identity from the Microsoft Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
 | **`BotService`** | Azure Bot Service channel authorization. Used when publishing to M365/Teams. Configured automatically during the channel publish flow. | N/A |
 | **`BotServiceRbac`** | Azure Bot Service authorization combined with Azure RBAC. Use when you need Bot Service channel auth with additional RBAC enforcement. | N/A |
 
@@ -87,10 +88,7 @@ API key authentication isn't supported. Use Microsoft Entra ID (Azure RBAC) to a
 
 ## Configure the agent properties
 
-If not explicitly set, by default the version sector routes 100% of traffic to the latest agent version, responses protocol is enable, and authorization is set as Entra. You can reconfigure the version routing, enable protocols, set authorization schemes, and add an agent card.
-
-> [!TIP]
-> Each section below shows how to update one setting at a time so the examples are easy to follow. When you use the REST API or SDK, you can update several settings at once in a single request — only the fields you include change, and everything else stays the same.
+By default, the version selector routes 100% of traffic to the latest agent version, the Responses protocol is enabled, and authorization is set to `Entra`. You can change the version routing, enable more protocols, set authorization schemes, and add an agent card.
 
 ### Select the active agent version
 
@@ -101,11 +99,11 @@ By default, the routing policy is **Always use latest**. To pin traffic to a spe
 1. In the Foundry portal, create an agent or open an existing agent.
 1. Expand the **Publish** dropdown to see endpoint configuration options.
 
-   **Expected result**: You see the available endpoints for your agent and the current version routing configuration. The endpoints are live from agent creation — no publish step is required to activate them.
+   **Expected result**: You see the available endpoints for your agent and the current version routing configuration. The endpoints are live from agent creation; no publish step is required to activate them.
 
-1. Click the version selector arrow and choose a specific version.
+1. Select the version selector arrow and choose a specific version.
 
-   **Expected result**: The stable endpoint now routes 100% of traffic to the selected version. When pinned, creating new versions doesn't change what's served.
+   **Expected result**: The stable endpoint routes 100% of traffic to the selected version. When pinned, creating new versions doesn't change what's served.
 
 #### [REST API](#tab/rest)
 
@@ -305,7 +303,7 @@ Foundry-Features: AgentEndpoints=V1Preview
 
 ## Get your agent properties
 
-To view the current properties of your agent including identity, protocols, authorization, and endpoint configuration:
+To view your agent's current properties—identity, protocols, authorization, and endpoint configuration—run:
 
 ```
 GET {endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
@@ -317,14 +315,14 @@ Foundry-Features: AgentEndpoints=V1Preview
 
 ## Security and privacy considerations
 
-- Use least privilege. Grant users the minimum role they need (for example, create custom roles that separate agent creation permissions from agent invoke permissions).
-- Don’t embed access tokens in source code, scripts, or client applications. Use Microsoft Entra authentication flows appropriate for your app.
+- Use least privilege. Grant users the minimum role they need. For example, create custom roles that separate agent creation permissions from agent invocation permissions.
+- Don't embed access tokens in source code, scripts, or client applications. Use the Microsoft Entra authentication flow appropriate for your app.
 
 ## Limitations
 
 | Limitation | Description |
 | --- | --- |
-| No traffic routing supported | Currently, only one agent version can be active and receiving traffic |
+| No traffic splitting | Only one agent version can be active and receive traffic at a time. |
 
 ## Troubleshooting
 
