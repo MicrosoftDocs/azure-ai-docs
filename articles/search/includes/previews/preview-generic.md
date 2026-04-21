@@ -1,5 +1,5 @@
 ---
-title: Include file
+title: Include File
 description: Include file
 ms.service: azure-ai-search
 ms.topic: include

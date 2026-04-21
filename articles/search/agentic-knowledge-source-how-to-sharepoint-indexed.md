@@ -7,9 +7,9 @@ ms.date: 04/14/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
-# Create an indexed SharePoint knowledge source
+# Create an indexed SharePoint knowledge source (preview)
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+[!INCLUDE [Preview feature](./includes/previews/agentic-retrieval-preview-feature.md)]
 
 Use an *indexed SharePoint knowledge source* to index and query SharePoint content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve action](agentic-retrieval-how-to-retrieve.md) at query time.
 

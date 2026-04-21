@@ -8,8 +8,6 @@ ms.date: 03/25/2026
 
 # Migrate agentic retrieval code to the latest version
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
 If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an early preview REST API, this article explains when and how to migrate to a newer version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
 
 Migration instructions are intended to help you run an existing solution on a newer API version. The instructions in this article help you address breaking changes at the API level so that your app runs as before. For help with adding new functionality, start with [What's new in Azure AI Search](whats-new.md).
