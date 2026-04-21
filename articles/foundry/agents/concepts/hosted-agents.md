@@ -21,14 +21,17 @@ Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foun
 
 Choose hosted agents over prompt-based agents when you need to:
 
-- **Bring your own code** — use any framework (Agent Framework, LangGraph, Semantic Kernel, or custom code) rather than prompt-only definitions.
-- **Use custom protocols** — accept webhooks or non-OpenAI payloads via the Invocations protocol.
-- **Control compute resources** — specify CPU and memory for your agent’s sandbox.
-- **Run stateful workloads** — persist files and state across turns via $HOME and the /files endpoint.
+- **Bring your own code** - use any framework (Agent Framework, LangGraph, Semantic Kernel, or custom code) rather than prompt-only definitions.
+- **Use custom protocols** - accept webhooks or non-OpenAI payloads via the Invocations protocol.
+- **Control compute resources** - specify CPU and memory for your agent’s sandbox.
+- **Run stateful workloads** - persist files and state across turns via $HOME and the /files endpoint.
 
 ### How it works
 
 You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, provisions compute, assigns a dedicated Entra agent identity, and exposes a dedicated endpoint. At runtime, your agent code handles requests from clients and can call Foundry models, Foundry Toolbox tools, and downstream Azure services using its agent identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
+
+> [!IMPORTANT]
+> When you use Hosted Agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations. If you use Hosted Agents with any third-party servers, agents, code, or models that are not Azure Direct models ("Third-Party Systems"), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms.  You are responsible for any usage and associated costs. We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. It is your responsibility to manage whether your data will flow outside of your organization’s Azure compliance and geographic boundaries and any related implications. Microsoft has no responsibility to you or others in relation use of Third-Party Systems, and you are responsible for implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems.
 
 ## Key concepts
 
@@ -77,7 +80,7 @@ Hosted agents also support the **Activity** protocol for Teams and M365 channel 
 
 Every hosted agent deployed to a Foundry project gets its own **dedicated Entra agent identity** and **dedicated endpoint** — both created automatically at deploy time. You don't need to configure managed identities or routing manually.
 
-The endpoint is available immediately after deployment — publishing is not required for programmatic access:
+The endpoint is available immediately after deployment—publishing is not required for programmatic access:
 
 - **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/responses
 - **Invocations**: {project_endpoint}/agents/{name}/endpoint/protocols/invocations
@@ -99,12 +102,12 @@ Hosted agents use **sessions** and **conversations** to manage state. How they w
 
 #### Sessions
 
-A session ID identifies a logical session with persisted state — including $HOME and files uploaded via the /files endpoint. The platform provisions compute on demand and restores persisted state onto it.
+A session ID identifies a logical session with persisted state, including $HOME and files uploaded via the /files endpoint. The platform provisions compute on demand and restores persisted state onto it.
 
 - **State persistence**: $HOME and /files content are persisted across turns and across idle periods. When compute goes idle and is brought back (on new or existing infrastructure), the session's state is automatically restored.
 - **Isolation**: Each session is isolated from other sessions.
 - **Automatic lifecycle**: Sessions are created on first use. The platform provisions and deprovisions compute automatically.
-- **Session lifetime**: Sessions persist for up to 30 days. The idle timeout is 15 minutes — if no request arrives within that window, the platform deprovisions the compute and persists the session state.
+- **Session lifetime**: Sessions persist for up to 30 days. The idle timeout is 15 minutes—if no request arrives within that window, the platform deprovisions the compute and persists the session state.
 - **Session management APIs**: List sessions, terminate sessions, and upload or download files per session.
 
 #### Conversations
@@ -116,9 +119,9 @@ A conversation ID is a durable record of conversation history (messages, tool ca
 
 #### How sessions and conversations work with each protocol
 
-**Responses protocol**: conversation ID is the primary concept. The platform manages conversation history automatically and associates a session ID with each conversation. The platform returns the session ID to the client, which can use it to upload files via the /files endpoint — making those files available to the conversation's compute.
+**Responses protocol**: conversation ID is the primary concept. The platform manages conversation history automatically and associates a session ID with each conversation. The platform returns the session ID to the client, which can use it to upload files via the /files endpoint, making those files available to the conversation's compute.
 
-**Invocations protocol**: session ID is the primary concept. The client manages the session ID directly to maintain state across interactions. The client can upload content via the /files endpoint using the session ID to make it available for the session. There is no platform-managed conversation history — you manage state in your own code.
+**Invocations protocol**: session ID is the primary concept. The client manages the session ID directly to maintain state across interactions. The client can upload content via the /files endpoint using the session ID to make it available for the session. There is no platform-managed conversation history—you manage state in your own code.
 
 #### Session compute lifecycle
 
@@ -142,17 +145,17 @@ Treat a hosted agent like production application code.
 
 ### Versioning
 
-Each call to create a version produces an **immutable agent version** — a snapshot of the container image, resource allocation, environment variables, and protocol configuration. Deployments reference a specific version. To update your agent, you create a new version and the platform deploys it. You can also split traffic between versions for canary or blue-green deployments.
+Each call to create a version produces an **immutable agent version**—a snapshot of the container image, resource allocation, environment variables, and protocol configuration. Deployments reference a specific version. To update your agent, you create a new version and the platform deploys it. You can also split traffic between versions for canary or blue-green deployments.
 
 Environment variables are the primary mechanism for passing configuration to your container at runtime (for example, the project endpoint, model deployment name, and custom settings). They are set per version and are immutable once the version is created.
 
 ### Foundry Toolbox
 
-Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries — the platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
+Hosted agents access Foundry-managed tools (Code Interpreter, Web Search, Azure AI Search, OpenAPI, custom MCP connections, A2A) through a **Toolbox MCP endpoint** provisioned in your Foundry project. Your agent code connects to this endpoint using standard MCP client libraries—the platform doesn't inject tools automatically. For details, see [Curate intent-based toolbox in Foundry](../how-to/tools/toolbox.md).
 
 ### Language support
 
-Hosted agents support **Python** and **C#**. You can use any agent framework — the protocol libraries are framework-agnostic. For samples using Microsoft Agent Framework, LangGraph, and custom code, see the [foundry-samples repo](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents).
+Hosted agents support **Python** and **C#**. You can use any agent framework—the protocol libraries are framework-agnostic. For samples using Microsoft Agent Framework, LangGraph, and custom code, see the [foundry-samples repo](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents).
 
 ### Sandbox sizes
 
@@ -168,18 +171,37 @@ Hosted agents are currently in preview.
 
 ### Limitations during preview
 
-| Dimension | Limit |
-| --------- | ----- |
-| Microsoft Foundry resources with hosted agents per Azure subscription | 100 |
-| Maximum number of hosted agents per Foundry resource | 200 |
+| Limit | Scope | Default Value | Adjustable |
+| --------- | ------ | ----- | ------- |
+| Maximum active concurrent sessions | per subscription per region | 50 | Yes, with quota requests to Microsoft Support |
 
 ### Pricing
 
-Managed hosting runtime is billed during preview. For current rates, see the Foundry [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+Managed hosting runtime billing is based on consumption of CPU and memory resources during active sessions. For current rates, see the Foundry [pricing page](https://azure.microsoft.com/pricing/details/foundry-agent-service/).
 
 ### Region availability
 
-Hosted agents are available in: Australia East, Brazil South, Canada Central, Canada East, East US, East US 2, France Central, Germany West Central, Italy North, Japan East, Korea Central, North Central US, Norway East, Poland Central, South Africa North, South Central US, South India, Southeast Asia, Spain Central, Sweden Central, Switzerland North, UAE North, UK South, West US, and West US 3.
+Hosted agents are currently available in the following regions: 
+
+- East US2
+- Sweden Central
+- West US
+- Australia East
+- Germany West Central
+- France Central
+- Japan East
+- South India
+- North Central US
+- Switzerland North
+- West US3
+- Norway East
+- South East Asia
+- Korea Central
+- Poland Central
+- Brazil South
+- Canada Central
+- South Africa North
+- Spain Central
 
 ## Next steps
 
