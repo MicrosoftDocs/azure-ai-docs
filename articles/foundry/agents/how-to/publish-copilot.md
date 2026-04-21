@@ -112,7 +112,9 @@ For more information on selecting an active agent version and configuring other 
    - Once approved, the agent appears under **Built by your org** in the agent store for all tenant users.
    - App policies in your tenant control which users can access the agent.
    - To check approval status, go to the [Microsoft 365 admin center](https://admin.cloud.microsoft/?#/agents/all/requested) and look for your agent under **Requests**.
-    ![Agent store](agent-store.png)
+
+     :::image type="content" source="../media/agent-store.png" alt-text="A screenshot of the Agent store in Microsoft 365 Copilot.":::
+
 1. Select **Publish**.
 
    **Expected result**: A **Publish successful** dialog confirms the agent was successfully published.
