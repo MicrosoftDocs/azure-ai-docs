@@ -15,16 +15,11 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 
 # Configure and share your agent 
 
-Every agent in Microsoft Foundry has a stable endpoint, unique identity, user isolation, and channel-publishing capability from the moment it's created. When end users interact with your agent through Microsoft 365 Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint.
-
-Before you share your agent, verify these settings:
-
+Every agent in Microsoft Foundry has a stable endpoint from the moment it's created. When end users interact with your agent through Microsoft 365 Copilot, Teams, your existing application, or other surfaces, they interact with the agent's stable endpoint. Before you share your agent, verify these settings:
 - **Active agent version** — Confirm the version that receives traffic is the one you want end users to interact with. By default, the agent auto-updates to the latest version, which means a newly created version is immediately served. If that isn't what you want, pin traffic to a specific version.
 - **Protocols and authorization schemes** — Make sure they match where and how your users interact with the agent. For example, an agent published to Microsoft 365 or Teams must have the Activity protocol enabled and use a BotService or BotServiceRbac authorization scheme.
 
-This article shows you how to select the active agent version, enable protocols, add an agent card, and set authorization schemes.
-
-After you configure your endpoint and are ready to share it, grant others access if required by the authorization scheme, or distribute your agent endpoint to external channels:
+This article shows you how to select the active version, enable protocols, set authorization schemes, and add an agent card. Once your endpoint is configured, you can
 - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
 - [Publish an agent as a digital worker in Agent 365](./agent-365.md)
 
@@ -380,7 +375,3 @@ Foundry-Features: AgentEndpoints=V1Preview
 - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
 - [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md)
 
-## Next steps
-
-> [!div class="nextstepaction"]
-> [Manage agents at scale](../../control-plane/how-to-manage-agents.md)

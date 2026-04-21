@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 This article describes how Foundry agents can be managed and governed in Microsoft Agent 365. Additionally, it describes how AI teammates can be created, approved, and hired in A365. 
 
-## What is Microsft Agent 365?
+## What is Microsoft Agent 365?
 
 [Microsoft Agent 365 (A365)](/microsoft-agent-365/overview) is Microsoft's IT admin control plane for AI agents. It helps you apply identity, security, governance, and lifecycle management controls to AI agents and manage them at scale, regardless of where they're built or acquired.
 
@@ -32,9 +32,9 @@ This article describes how Foundry agents can be managed and governed in Microso
 
 All Foundry agents automatically appear in the Agent 365 agent registry on creation. In A365, admins can see critical agent metadata such as the name, description, tools, agent identity, agent blueprint, and more associate with an agent. 
 
-## Create AI Teamnmates
+## Create AI teammates
 
-There's also a specific use case in which Foundry hosted agents can be pushed as AI teammates to Agent 365. Once approved in the Microsoft admin center, these agents can then be hired by others in your organization This experience currently has no UI and must be completed by using a code sample.
+There's also a specific use case in which Foundry hosted agents can be pushed as AI teammates to Agent 365. Once approved in the Microsoft admin center, these agents can then be hired by others in your organization. This experience currently has no UI and must be completed by using a code sample.
 
 
 The rest of this article walks through that process.
@@ -87,8 +87,8 @@ When the sample completes successfully (for example, the `azd` commands finish w
 
 ### Validate
 
-1. Approve the agent blueprint request in the Microsoft 365 admin center. 
-  You can review approval requests at: https://admin.cloud.microsoft/?#/agents/all/requested
+1. Approve the agent blueprint request in the Microsoft 365 admin center.
+  You can review approval requests at <https://admin.cloud.microsoft/?#/agents/all/requested>.
   :::image type="content" source="../media/approve-agent.png" alt-text="Screenshot of an agent awaiting or showing approval in the Microsoft 365 admin center agent registry." lightbox="../media/approve-agent.png":::
 1. Once approved, verify your agent shows up in the Agent 365 agent registry.
   :::image type="content" source="../media/agent-in-registry.png" alt-text="Screenshot of an approved agent in A365 registry." lightbox="../media/agent-in-registry.png":::
