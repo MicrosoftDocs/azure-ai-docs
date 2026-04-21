@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 12/19/2025
+ms.date: 04/16/2026
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to train a custom speech model to improve recognition accuracy for the Microsoft base model or a custom model.
@@ -276,61 +276,81 @@ After the model is successfully copied, you'll be notified and can view it in th
 
 Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
 
-Copying a model directly to a project in another region isn't supported with the Speech CLI. You can copy a model to a project in another region using the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs), [Speech Studio](https://aka.ms/speechstudio/customspeech), or [Speech to text REST API](rest-speech-to-text.md).
+The Speech CLI supports the `spx csr model copy` command for copying a model. However, the CLI doesn't yet include an authorize copy command. To perform the full copy flow, use the [Speech to text REST API](rest-speech-to-text.md) or the [Microsoft Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+For Speech CLI help with model copy, run the following command:
+
+```azurecli-interactive
+spx help csr model copy
+```
 
 ::: zone-end
 
 ::: zone pivot="rest-api"
 
-To copy a model to another Speech resource, use the [Models_Copy](/rest/api/speechtotext/models/copy) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
+Copying a model to another Speech resource with the [Speech to text REST API](rest-speech-to-text.md) v3.2 requires two steps:
 
-- Set the required `targetSubscriptionKey` property to the key of the destination Speech resource.
+1. [Authorize the copy](#step-1-authorize-the-copy) on the **target** Speech resource.
+1. [Copy the model](#step-2-copy-the-model) from the **source** Speech resource.
 
-Make an HTTP POST request using the URI as shown in the following example. Use the region and URI of the model you want to copy from. Replace `YourModelId` with the model ID, replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
+### Step 1: Authorize the copy
+
+Call the [Models_AuthorizeCopy](/rest/api/speechtotext/models/authorize-copy) operation on the **target** Speech resource. In the request body, set the `sourceResourceId` property to the Azure Resource ID of the **source** Speech resource where the model currently resides.
+
+Replace `YourTargetSpeechResourceKey` with the target resource key, and `YourTargetServiceRegion` with the target resource region.
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
-  "targetSubscriptionKey": "ModelDestinationSpeechResourceKey"
-} '  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/models/YourModelId:copy"
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourTargetSpeechResourceKey" -H "Content-Type: application/json" -d '{
+  "sourceResourceId": "/subscriptions/YourSourceSubscriptionId/resourceGroups/YourSourceResourceGroup/providers/Microsoft.CognitiveServices/accounts/YourSourceSpeechResourceName"
+}'  "https://YourTargetServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/models:authorizecopy"
 ```
 
-> [!NOTE]
-> Only the `targetSubscriptionKey` property in the request body has information about the destination Speech resource.
-
-You should receive a response body in the following format:
+You receive a `ModelCopyAuthorization` response in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/eeeeffff-4444-aaaa-5555-bbbb6666cccc",
-  "baseModel": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ffffaaaa-5555-bbbb-6666-cccc7777dddd"
-  },
-  "links": {
-    "manifest": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9df35ddb-edf9-4e91-8d1a-576d09aabdae/manifest",
-    "copy": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9df35ddb-edf9-4e91-8d1a-576d09aabdae:copy"
-  },
-  "properties": {
-    "deprecationDates": {
-      "adaptationDateTime": "2023-01-15T00:00:00Z",
-      "transcriptionDateTime": "2024-07-15T00:00:00Z"
-    }
-  },
-  "lastActionDateTime": "2022-05-22T23:15:27Z",
-  "status": "NotStarted",
-  "createdDateTime": "2022-05-22T23:15:27Z",
-  "locale": "en-US",
-  "displayName": "My Model",
-  "description": "My Model Description",
-  "customProperties": {
-    "PortalAPIVersion": "3",
-    "Purpose": "",
-    "VadKind": "None",
-    "ModelClass": "None",
-    "UsesHalide": "False",
-    "IsDynamicGrammarSupported": "False"
-  }
+  "targetResourceRegion": "westus2",
+  "targetResourceId": "/subscriptions/targetSubscriptionId/resourceGroups/targetResourceGroupName/providers/Microsoft.CognitiveServices/accounts/targetSpeechResourceName",
+  "targetResourceEndpoint": "https://westus2.api.cognitive.microsoft.com/speechtotext/v3.2/models",
+  "sourceResourceId": "/subscriptions/sourceSubscriptionId/resourceGroups/sourceResourceGroupName/providers/Microsoft.CognitiveServices/accounts/sourceSpeechResourceName",
+  "expirationDateTime": "2025-01-07T11:34:12Z",
+  "id": "d61573c6-788b-4eff-b3f5-38a1c7a9585b"
 }
 ```
+
+Save the entire response body. You pass it as the request body in the next step.
+
+### Step 2: Copy the model
+
+Call the [Models_Copy](/rest/api/speechtotext/models/copy) operation on the **source** Speech resource. Pass the full `ModelCopyAuthorization` response from step 1 as the request body.
+
+Replace `YourModelId` with the model ID, `YourSourceSpeechResourceKey` with the source resource key, and `YourSourceServiceRegion` with the source resource region.
+
+```azurecli-interactive
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSourceSpeechResourceKey" -H "Content-Type: application/json" -d '{
+  "targetResourceRegion": "westus2",
+  "targetResourceId": "/subscriptions/targetSubscriptionId/resourceGroups/targetResourceGroupName/providers/Microsoft.CognitiveServices/accounts/targetSpeechResourceName",
+  "targetResourceEndpoint": "https://westus2.api.cognitive.microsoft.com/speechtotext/v3.2/models",
+  "sourceResourceId": "/subscriptions/sourceSubscriptionId/resourceGroups/sourceResourceGroupName/providers/Microsoft.CognitiveServices/accounts/sourceSpeechResourceName",
+  "expirationDateTime": "2025-01-07T11:34:12Z",
+  "id": "d61573c6-788b-4eff-b3f5-38a1c7a9585b"
+}'  "https://YourSourceServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/models/YourModelId:copy"
+```
+
+You receive a `202 Accepted` response with an `Operation-Location` header that you can use to track the copy status. The response body contains the operation details:
+
+```json
+{
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/operations/models/copy/e30f6a27-82be-4cca-9258-0399c70489ff",
+  "createdDateTime": "2025-01-07T11:34:12Z",
+  "lastActionDateTime": "2025-01-07T11:34:12Z",
+  "status": "NotStarted",
+  "id": "e30f6a27-82be-4cca-9258-0399c70489ff"
+}
+```
+
+> [!NOTE]
+> The copy authorization is valid only until the `expirationDateTime` returned in step 1. Start the copy before the authorization expires.
 
 ::: zone-end
 

@@ -339,8 +339,8 @@ items:
           href: ../../openai/how-to/latency.md
         - name: Role-based access control (Azure RBAC)
           href: ../../openai/how-to/role-based-access-control.md
-        - name: Business continuity & disaster recovery (BCDR)
-          href: ../../openai/how-to/business-continuity-disaster-recovery.md
+        - name: High availability & disaster recovery
+          href: ../../how-to/high-availability-resiliency.md
     - name: Deploy and use web apps
       href: ../../openai/how-to/use-web-app.md
   - name: Tutorials
@@ -359,8 +359,8 @@ items:
         href: ../../openai/how-to/managed-identity.md
       - name: Role-based access control (Azure RBAC)
         href: ../../openai/how-to/role-based-access-control.md
-      - name: Business continuity & disaster recovery (BCDR)
-        href: ../../openai/how-to/business-continuity-disaster-recovery.md
+      - name: High availability & disaster recovery
+        href: ../../how-to/high-availability-resiliency.md
       - name: Use your data
         items:
         - name: Network and access configuration
