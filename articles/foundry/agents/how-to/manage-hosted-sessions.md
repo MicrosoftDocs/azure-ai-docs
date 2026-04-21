@@ -54,7 +54,7 @@ The REST API examples in this article use `az rest` to call the Foundry Agent Se
 ACCOUNT_NAME="<your-foundry-account-name>"
 PROJECT_NAME="<your-project-name>"
 BASE_URL="https://${ACCOUNT_NAME}.services.ai.azure.com/api/projects/${PROJECT_NAME}"
-API_VERSION="2025-11-15-preview"
+API_VERSION="v1"
 RESOURCE="https://ai.azure.com"
 ```
 
@@ -337,7 +337,7 @@ az rest --method GET \
 ```python
 files = project.beta.agents.get_session_files(
     agent_name="my-agent",
-    session_id="<session-id>",
+    agent_session_id="<session-id>",
     path=".",
 )
 for entry in files.entries:
@@ -376,7 +376,7 @@ az rest --method GET \
 content_bytes = b"".join(
     project.beta.agents.download_session_file(
         agent_name="my-agent",
-        session_id="<session-id>",
+        agent_session_id="<session-id>",
         path="data.csv",
     )
 )
@@ -414,7 +414,7 @@ az rest --method DELETE \
 ```python
 project.beta.agents.delete_session_file(
     agent_name="my-agent",
-    session_id="<session-id>",
+    agent_session_id="<session-id>",
     path="data.csv",
 )
 ```
