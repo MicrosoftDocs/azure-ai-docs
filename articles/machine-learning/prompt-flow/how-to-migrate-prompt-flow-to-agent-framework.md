@@ -99,10 +99,10 @@ Prompt Flow connections become environment variables in Agent Framework. The `Az
 
 **Checklist before rebuilding:**
 
-- [ ] `flow.dag.yaml` exported and reviewed.
-- [ ] Every node has a mapped Agent Framework equivalent.
-- [ ] `.env` file populated.
-- [ ] You know which sample patterns match your flow.
+- `flow.dag.yaml` exported and reviewed.
+- Every node has a mapped Agent Framework equivalent.
+- `.env` file populated.
+- You know which sample patterns match your flow.
 
 ## Rebuild in Agent Framework
 

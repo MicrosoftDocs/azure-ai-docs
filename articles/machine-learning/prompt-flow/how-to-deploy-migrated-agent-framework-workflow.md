@@ -265,11 +265,11 @@ Switch production traffic to Agent Framework and decommission Prompt Flow resour
 
 Verify all of the following before proceeding:
 
-- [ ] Mean parity score ≥ 3.5 across the full test suite.
-- [ ] Agent Framework Container App is healthy (`az containerapp show`).
-- [ ] Tracing is confirmed in Application Insights.
-- [ ] CI/CD quality gate is passing on the main branch.
-- [ ] API gateway or client configuration is updated to point at the Agent Framework endpoint.
+- Mean parity score ≥ 3.5 across the full test suite.
+- Agent Framework Container App is healthy (`az containerapp show`).
+- Tracing is confirmed in Application Insights.
+- CI/CD quality gate is passing on the main branch.
+- API gateway or client configuration is updated to point at the Agent Framework endpoint.
 
 ### Run the cutover
 
