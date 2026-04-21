@@ -36,19 +36,27 @@ Every hosted agent deployment follows this sequence:
 
 ### Required permissions
 
-You need **Azure AI User** at project scope to create and deploy hosted agents. If you use `azd` or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
+You need **Azure AI Project Manager** at project scope to create and deploy hosted agents. This role includes both the data plane permissions to create agents and the ability to assign the **Azure AI User** role to the platform-created agent identity. The agent identity needs **Azure AI User** on the project to access models and artifacts at runtime.
+
+If you use `azd` or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
 
 - **Container Registry Repository Reader** for the project managed identity (image pulls)
 - **Azure AI User** for the platform-created agent identity (runtime model and tool access)
 
 > [!NOTE]
-> The platform creates a dedicated Entra agent identity for each hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually.
+> The platform creates a dedicated Entra agent identity for each hosted agent at deploy time. This identity is a service principal that your running container uses to call models and tools. You don't need to configure managed identities manually. However, the user who creates the agent must have permission to assign **Azure AI User** to that identity — which is why **Azure AI Project Manager** is recommended over **Azure AI User** alone.
+
+> [!NOTE]
+> While azd and VS Code extensions handle basic RBAC assignments automatically, complex scenarios may require additional manual configuration. For comprehensive details about all permissions and role assignments involved, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 For more information, see [Authentication and authorization](../../concepts/authentication-authorization-foundry.md).
 
 ## Container requirements
 
 Your container image must meet the following requirements to run on the hosted agent platform.
+
+> [!IMPORTANT]
+> The hosting platform requires x86_64 (linux/amd64) container images. If you build on Apple Silicon or other ARM-based machines, use `docker build --platform linux/amd64 .` to avoid producing an incompatible ARM image.
 
 ### Protocol libraries
 
@@ -63,14 +71,28 @@ A single container can expose **both protocols simultaneously** by declaring bot
 
 ### Health endpoints
 
-The protocol libraries automatically expose `/liveness` and `/readiness` endpoints for platform health checks. You don't need to implement these yourself.
+The protocol libraries automatically expose a `/readiness` endpoint for platform health checks. You don't need to implement this yourself.
 
 ### Port
 
 Containers serve traffic on port **8088** locally. In production, the Foundry gateway handles routing — your container doesn't need to expose a public port.
 
-> [!IMPORTANT]
-> The hosting platform requires x86_64 (linux/amd64) container images. If you build on Apple Silicon or other ARM-based machines, use `docker build --platform linux/amd64 .` to avoid producing an incompatible ARM image.
+### Platform-injected environment variables
+
+The hosted agent platform automatically injects environment variables into your container at runtime. Your code can read these without declaring them in `agent.yaml` or `environment_variables`. The `FOUNDRY_*` prefix is reserved for platform use.
+
+| Variable | Purpose |
+|----------|---------|
+| `FOUNDRY_PROJECT_ENDPOINT` | Foundry project endpoint URL |
+| `FOUNDRY_PROJECT_ARM_ID` | Foundry project ARM resource ID |
+| `FOUNDRY_AGENT_NAME` | Name of the running agent |
+| `FOUNDRY_AGENT_VERSION` | Version of the running agent |
+| `FOUNDRY_AGENT_SESSION_ID` | Session ID for the current request (hosted containers only) |
+| `APPLICATIONINSIGHTS_CONNECTION_STRING` | Application Insights connection string for telemetry |
+
+Don't redeclare platform-injected variables in `agent.yaml` — they're set automatically.
+
+Variables that you declare yourself, such as `MODEL_DEPLOYMENT_NAME` or toolbox MCP endpoints, go in the `environment_variables` section of `agent.yaml` or the SDK `create_version` call.
 
 ## Package and test your agent locally
 
@@ -270,8 +292,9 @@ url = f"{PROJECT_ENDPOINT}/agents/my-agent/endpoint/protocols/invocations"
 
 response = requests.post(url, headers={
     "Authorization": f"Bearer {token}",
-    "Content-Type": "application/json"
-}, params={"api-version": "2025-05-15-preview"}, json={
+    "Content-Type": "application/json",
+    "Foundry-Features": "HostedAgents=V1Preview"
+}, params={"api-version": "v1"}, json={
     "message": "Process this task"
 })
 
@@ -290,7 +313,7 @@ Before you begin, [build and push your container image](#build-and-push-your-con
 
 ```bash
 BASE_URL="https://{account}.services.ai.azure.com/api/projects/{project}"
-API_VERSION="2025-05-15-preview"
+API_VERSION="v1"
 TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
 ```
 
@@ -356,6 +379,7 @@ curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/openai/responses?api-
 curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/invocations?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
+  -H "Foundry-Features: HostedAgents=V1Preview" \
   -d '{
     "message": "Process this task"
   }'
@@ -442,6 +466,8 @@ Provisioning errors surface on the version object's `error.code` and `error.mess
 | `RegistryNotFound` | 400/404 | Fix registry DNS or network reachability |
 
 For 5xx errors, contact Microsoft support.
+
+For detailed RBAC requirements and permission troubleshooting, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 ## Next steps
 

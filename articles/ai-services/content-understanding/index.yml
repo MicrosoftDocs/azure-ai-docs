@@ -102,6 +102,9 @@ conceptualContent:
           url: tutorial/build-person-directory.md
     - title: Resources
       links:
+        - itemType: how-to-guide
+          text: Bring your own cross-resource capacity
+          url: how-to/bring-your-own-cross-resource-capacity.md
         - itemType: reference
           text: Service limits
           url: service-limits.md

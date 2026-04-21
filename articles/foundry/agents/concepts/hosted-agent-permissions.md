@@ -7,7 +7,7 @@ ms.author: mahender
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: reference
-ms.date: 04/16/2026
+ms.date: 04/21/2026
 ms.custom:
   - azure-ai-agents
   - classic-and-new
@@ -32,6 +32,8 @@ For end-to-end deployment and lifecycle tasks, see [Deploy a hosted agent][deplo
 
 ## Roles in this article
 
+Azure AI Foundry permissions span two planes: the Azure Resource Manager (ARM) control plane and the Foundry data plane. [Owner][role-owner] and [Contributor][role-contributor] roles have broad ARM control plane permissions but don't include data plane permissions. Data plane operations—such as creating agents or interacting with them—require specific Azure AI Foundry roles like [Azure AI User][role-ai-user], [Azure AI Project Manager][role-project-manager], or [Azure AI Owner][role-ai-owner].
+
 This article references the following built-in roles. For information about custom role definitions, see [Azure custom roles](/azure/role-based-access-control/custom-roles).
 
 | Role | Purpose in hosted agent deployment |
@@ -51,8 +53,8 @@ This article references the following built-in roles. For information about cust
 | [Cognitive Services OpenAI User][role-openai-user] | Access account-level OpenAI endpoints directly |
 | [Cognitive Services User][role-cog-services-user] | Access account-level capabilities (Speech, Vision, Language) directly |
 
-> [!NOTE]
-> Azure AI Foundry permissions span two planes: the Azure Resource Manager (ARM) control plane and the Foundry data plane. [Owner][role-owner] and [Contributor][role-contributor] roles have broad ARM control plane permissions but don't include data plane permissions. Data plane operations—such as creating agents or interacting with them—require specific Azure AI Foundry roles like [Azure AI User][role-ai-user], [Azure AI Project Manager][role-project-manager], or [Azure AI Owner][role-ai-owner].
+> [!CAUTION]
+> Although it might sound like an appropriate role for a developer working with hosted agents, the **Azure AI Developer** built-in role is insufficient for hosted agent scenarios. This role is scoped to Azure Machine Learning and Foundry hubs, not to the Foundry project resources used by hosted agents, and it doesn't include the resource management permissions required for hosted agent deployment.
 
 ## Quick diagnosis by symptom
 
@@ -64,6 +66,7 @@ Use these links to jump directly to sections that address common permission issu
 - **Agent can't pull images at runtime**: See [Azure Container Registry setup](#azure-container-registry-setup)
 - **Agent interaction fails**: See [Agent interaction](#agent-interaction)
 - **Role assignment fails**: See [Creating that role assignment requires](#azure-resource-setup) sections and [Connections setup](#connections-setup)
+- **Can't publish agent to Teams or M365 Copilot**: See [Azure Bot Service setup](#azure-bot-service-setup)
 
 ## Hosted agent solution architecture
 
@@ -88,6 +91,9 @@ Role assignments:
 • Hosted Agent → Azure AI User role on Foundry Project  
 • Foundry Project → Container Registry Repository Reader role on Azure Container Registry
 • Foundry Project → Log Analytics Data Reader role on Log Analytics Workspace
+
+Optional (Teams / M365 Copilot publishing):
+└── Azure Bot Service → connected to agent application (Channels auth mode)
 ```
 
 The diagram above shows how resources are organized hierarchically and which role assignments enable communication between them. The following sections provide detailed configuration requirements for each component.
@@ -350,7 +356,7 @@ Account-level capabilities aren't proxied by the project endpoint. These capabil
 
 ## Hosted agent deployment
 
-For step-by-step deployment guidance, for more information, see [Deploy a hosted agent][deploy].
+Hosted agent deployment operations are control plane operations. For step-by-step deployment guidance, see [Deploy a hosted agent][deploy].
 
 ### Push an image to the registry
 
@@ -406,6 +412,48 @@ If instead you use the _agent application_, version selection is configured on t
 | Azure AI Account Owner | Foundry account | ✔ Yes |
 | Azure AI Owner | Foundry account | ✔ Yes |
 
+### Azure Bot Service setup
+
+Publishing your agent to Microsoft Teams or Microsoft 365 Copilot is optional. When you do, the publishing flow performs control plane operations to create an Azure Bot Service resource and configure its channels, then updates either the agent or the agent application to allow requests from Bot Service.
+
+#### Creating the bot service
+
+Creating the bot service resource requires the `Microsoft.BotService/botServices/write` permission at the scope of the resource group.
+
+| Built-in role | Scope | Can assignee create a bot service? |
+| --- | --- | --- |
+| Owner | Resource group | ✔ Yes |
+| Contributor | Resource group | ✔ Yes |
+| Azure AI User | Resource group | ✗ No |
+| Azure AI Project Manager | Resource group | ✗ No |
+| Azure AI Account Owner | Resource group | ✗ No |
+| Azure AI Owner | Resource group | ✗ No |
+
+> [!NOTE]
+> Azure Bot Service is a separate resource type from Foundry. Azure AI–scoped built-in roles don't include `Microsoft.BotService/*` permissions.
+
+#### Configuring channels
+
+Configuring the Teams and Microsoft 365 Extensions channels on the bot service requires the `Microsoft.BotService/botServices/channels/write` permission at the scope of the bot service resource.
+
+| Built-in role | Scope | Can assignee configure channels? |
+| --- | --- | --- |
+| Owner | Bot service | ✔ Yes |
+| Contributor | Bot service | ✔ Yes |
+| Azure AI User | Bot service | ✗ No |
+| Azure AI Project Manager | Bot service | ✗ No |
+| Azure AI Account Owner | Bot service | ✗ No |
+| Azure AI Owner | Bot service | ✗ No |
+
+#### Updating the agent or agent application
+
+The publishing flow sets Channels (Azure Bot Service) as the authentication mode on the agent or agent application. The object that is updated depends on your scenario:
+
+- **Agent application scenario**: The agent application object is updated. This is a control plane write operation. The same role requirements apply as documented in [Agent applications](#agent-applications-1).
+- **Agent endpoint scenario**: The agent object is updated. This is a data plane write operation. The same role requirements apply as documented in [Create a new agent version](#create-a-new-agent-version).
+
+For step-by-step guidance on publishing to Teams or M365 Copilot, see [Publish agents to Microsoft 365 Copilot and Microsoft Teams][publish-copilot].
+
 ## Agent interaction
 
 Interacting with the agent requires the calling user or service principal to have a data plane permission. To interact with an _agent application_, they need `Microsoft.CognitiveServices/accounts/AIServices/applications/invoke/action` at the scope of the agent application.
@@ -434,6 +482,7 @@ Interacting with the agent requires the calling user or service principal to hav
 [hosted-agents]: ./hosted-agents.md
 [deploy]: ../how-to/deploy-hosted-agent.md
 [lifecycle]: ../how-to/manage-hosted-agent.md
+[publish-copilot]: ../how-to/publish-copilot.md
 
 [create-role-assignment]: /azure/role-based-access-control/role-assignments-steps
 

@@ -4,7 +4,7 @@ description: "Use toolbox in Microsoft Foundry to add MCP servers, web search, A
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: zhuoqunli
-ms.date: 04/16/2026
+ms.date: 04/21/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -71,6 +71,8 @@ For tool configuration syntax and authentication options for each tool type, see
   - **Agent identity** (required if using a hosted agent) — the agent's managed identity that calls tools at runtime.
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions). Individual tool types within a toolbox are further limited by region and model — not all tool types are available in every region or with every model. See [Region and model compatibility](#region-and-model-compatibility).
+- [Visual Studio Code](https://code.visualstudio.com/).
+- [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) and the pre-release **Foundry** extension. Toolbox support in Foundry Toolkit is currently in preview and is only available in pre-release versions.
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
 - **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
@@ -211,6 +213,24 @@ console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.
 
 :::zone-end
 
+:::zone pivot="vscode"
+
+Use Foundry Toolkit in Visual Studio Code to create and publish a toolbox
+from the **Tools** view.
+
+1. Select **Foundry Toolkit** in the Activity Bar.
+1. Under **My Resources**, expand **Your project name** > **Tools**.
+1. Select the **+ Add Toolbox** icon.
+1. On the **Build a Custom Toolbox** tab, enter the toolbox name and
+  description, add the tools you want, and then select **Publish**.
+
+Publishing a new toolbox creates its first version. That version becomes
+the default version automatically.
+
+:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-create.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Build a Custom Toolbox view with fields for the toolbox name, description, and tools, plus the Publish action." lightbox="../../media/tools/toolbox/toolbox-vscode-create.png":::
+
+:::zone-end
+
 :::zone pivot="azd"
 
 By using `azd`, you declare toolbox resources in an `agent.yaml` file instead of calling the SDK. Define your tools in the `resources` section and deploy by using `azd ai agent init`. For `agent.yaml` examples for each tool type, see [Configure tools](#configure-tools). For the full deployment workflow, see [Deploy with azd](#deploy-with-azd).
@@ -325,6 +345,24 @@ Two endpoint patterns exist depending on your role:
 
 > [!NOTE]
 > The first version of a new toolbox is automatically promoted to `default_version` (v1). If you need to change the default later, see [Promote a version to default](#promote-a-version-to-default).
+
+:::zone pivot="vscode"
+
+In Foundry Toolkit for Visual Studio Code, copy the toolbox consumer
+endpoint from the **Toolboxes** view.
+
+1. Select **Foundry Toolkit** in the Activity Bar.
+1. Under **My Resources**, expand **Your project name** > **Tools**.
+1. On the **Toolboxes** tab, locate your toolbox.
+1. In the **Endpoint URL** column, copy the endpoint.
+
+The **Endpoint URL** value is the toolbox consumer endpoint. To
+construct a version-specific endpoint, use the developer pattern shown
+in the table above.
+
+:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-list.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Toolboxes view with the toolbox endpoint URL and the Scaffold code template action." lightbox="../../media/tools/toolbox/toolbox-vscode-list.png":::
+
+:::zone-end
 
 ## Step 3: Verify tool availability
 
@@ -481,6 +519,26 @@ await client.close();
 ```
 
 :::zone-end
+
+:::zone pivot="vscode"
+
+Use the endpoint from Step 2 together with a scaffolded hosted agent
+sample to validate toolbox loading in VS Code.
+
+1. In **Foundry Toolkit**, under **My Resources** > **Your project
+  name** > **Tools**, locate the toolbox you want to test.
+1. Select **Scaffold code template**.
+1. Choose a project folder when prompted.
+1. Follow the generated `README.md` to install dependencies, configure
+  environment variables, and run the sample locally.
+1. Use **Agent Inspector** or run `python main.py` to confirm the
+  toolbox tools load and respond.
+
+For version-specific validation before you promote a new toolbox version,
+use the Python or REST API tab in this step.
+
+:::zone-end
+
 :::zone pivot="azd"
 
 > [!NOTE]
@@ -497,6 +555,7 @@ await client.close();
 - Each tool has `name`, `description`, and `inputSchema`. For tool naming conventions, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools).
 - `inputSchema` has a `properties` field (some MCP servers omit this field, which breaks OpenAI).
 - For MCP tools, names are prefixed with the `server_label` - for example, `myserver.some_tool`. For all other tool types, the name is the `name` field value or the default tool name.
+- MCP tools include a `_meta.tool_configuration` block containing runtime settings such as `require_approval`. See [Handle tool approval requirements](#handle-tool-approval-requirements).
 - Note the exact parameter names for the call step (for example `query` vs `queries`).
 
 **Check - `tools/call`**:
@@ -661,42 +720,6 @@ See the [full sample](https://aka.ms/foundry-toolbox-copilotsdk) for the complet
 
 :::zone pivot="dotnet"
 
-### LangGraph
-
-Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to implement a ReAct (Reason + Act) loop. The LLM reasons about which tool to call, executes it via the toolbox MCP endpoint, then reasons again until it produces a final answer.
-
-**Environment variables**:
-
-```
-AZURE_OPENAI_ENDPOINT=https://<account>.services.ai.azure.com
-AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
-TOOLBOX_MCP_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1
-```
-
-**`Program.cs`** (key pattern):
-
-```csharp
-var openAiEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
-    ?? throw new InvalidOperationException("Set AZURE_OPENAI_ENDPOINT");
-var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-4o";
-var toolboxEndpoint = Environment.GetEnvironmentVariable("TOOLBOX_MCP_ENDPOINT");
-
-// Azure OpenAI client
-var credential = new DefaultAzureCredential();
-var aoaiClient = new AzureOpenAIClient(new Uri(openAiEndpoint), credential);
-var chatClient = aoaiClient.GetChatClient(deployment);
-
-// Toolbox MCP client — discovers tools via tools/list, calls them via tools/call
-var toolboxClient = new ToolboxMcpClient(toolboxEndpoint, credential);
-
-ResponsesServer.Run<ReActHandler>(configure: builder =>
-{
-    builder.Services.AddSingleton(new AgentConfig(chatClient, toolboxClient));
-});
-```
-
-`ReActHandler` implements the ReAct loop: it discovers tools via `GetChatToolsAsync()`, calls them via `CallToolAsync()`, and streams the final answer. `ToolboxMcpClient` handles authentication and MCP JSON-RPC calls. See the [full sample](https://aka.ms/foundry-toolbox-langgraph-dotnet) for the complete implementation of both classes.
-
 ### Microsoft Agent Framework
 
 Use `ResponsesServer` from the Agent Framework SDK with a custom `ToolboxMcpClient` to discover and invoke toolbox tools via the MCP endpoint.
@@ -756,6 +779,30 @@ ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 
 > [!NOTE]
 > Integration samples for this step are available for Python and .NET only.
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+Use Foundry Toolkit to scaffold a hosted agent sample that is already
+wired to your toolbox.
+
+1. Select **Foundry Toolkit** in the Activity Bar.
+1. Under **My Resources**, expand **Your project name** > **Tools**.
+1. On the **Toolboxes** tab, locate the toolbox you want to consume,
+  and then select **Scaffold code template**.
+1. In the Command Palette, choose a project folder when prompted.
+1. Open the generated `README.md` and follow the setup, local run, and
+  deployment steps for the scaffold.
+
+The generated project includes the hosted agent entry point, deployment
+files, and a `README.md` with the exact setup, run, and deployment
+steps. The scaffolded agent handles the `Foundry-Features:
+Toolboxes=V1Preview` header for you.
+
+If you want to integrate a toolbox into an existing hosted agent project
+instead of generating a new sample, use the copied endpoint from Step 2
+with the Python or .NET patterns in this section.
 
 :::zone-end
 
@@ -859,6 +906,170 @@ azd ai agent invoke --new-session "Hello, what tools do you have?" --timeout 120
 
 :::zone-end
 
+## Handle tool approval requirements
+
+The toolbox gateway injects a `_meta.tool_configuration` object into every tool entry returned by `tools/list`. When a tool has `require_approval` set to `"always"`, the agent runtime must present the pending action to the user and wait for confirmation before invoking the tool. The MCP proxy does **not** block `tools/call` — enforcement is entirely the agent runtime's responsibility.
+
+### Read `require_approval` from `tools/list`
+
+Each tool entry in a `tools/list` response includes a `_meta` block injected by the toolbox gateway:
+
+```json
+{
+  "name": "myserver.my_tool",
+  "description": "...",
+  "inputSchema": { "type": "object" },
+  "_meta": {
+    "tool_configuration": {
+      "type": "mcp",
+      "server_label": "myserver",
+      "server_url": "https://your-mcp-server.example.com",
+      "require_approval": "always"
+    }
+  }
+}
+```
+
+| `require_approval` value | Behavior |
+|--------------------------|----------|
+| `"always"` | The agent must ask the user for confirmation before every invocation. |
+| `"never"` | The agent can invoke the tool freely. |
+
+### Implement approval gating (LangGraph)
+
+Query `tools/list` at startup to build an approval map, then inject a constraint into the system prompt for any tool that requires approval:
+
+```python
+async def _fetch_require_approval_tools(
+    endpoint: str,
+    auth: httpx.Auth,
+    extra_headers: dict,
+) -> dict[str, str]:
+    async with httpx.AsyncClient(auth=auth, headers=extra_headers, timeout=30.0) as hc:
+        payload = {"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {}}
+        resp = await hc.post(endpoint, json=payload)
+        resp.raise_for_status()
+    return {
+        t["name"]: t["_meta"]["tool_configuration"]["require_approval"]
+        for t in resp.json().get("result", {}).get("tools", [])
+        if t.get("_meta", {}).get("tool_configuration", {}).get("require_approval")
+    }
+```
+
+After loading tools from the MCP client, detect which tools require approval and adjust the system prompt:
+
+```python
+approval_map = await _fetch_require_approval_tools(
+    TOOLBOX_ENDPOINT, toolbox_auth, extra_headers
+)
+always_approval = [name for name, val in approval_map.items() if val == "always"]
+
+approval_prompt_note = ""
+if always_approval:
+    tools_str = ", ".join(f"`{n}`" for n in always_approval)
+    approval_prompt_note = (
+        f"\n\nAPPROVAL REQUIRED: The following tools must not be called "
+        f"without explicit user confirmation: {tools_str}. "
+        f"Before invoking any of these tools, describe what you are about "
+        f"to do and ask the user to confirm they want to proceed."
+    )
+
+return create_agent(llm, tools, extra_prompt=approval_prompt_note), client
+```
+
+> [!NOTE]
+> - **Detection happens at startup.** The approval check runs once when the agent initializes. There's no per-call overhead.
+> - **Graceful fallback.** If no tools have `require_approval: "always"`, the system prompt is unchanged and the agent behaves as before.
+> - **`require_approval` is agent-enforced.** The toolbox MCP proxy executes `tools/call` regardless of this setting. Your agent runtime is responsible for gating the call.
+
+### Configure `require_approval` on a tool
+
+Set `require_approval` when you create a toolbox version. The MCP tool examples in [Step 1](#step-1-create-a-toolbox-version) show both `"always"` and `"never"` values. You can also set it through the SDK:
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import MCPTool
+
+toolbox_version = client.beta.toolboxes.create_toolbox_version(
+    toolbox_name="my-toolbox",
+    tools=[
+        MCPTool(
+            server_label="myserver",
+            server_url="https://your-mcp-server.example.com",
+            require_approval="always",  # "always" | "never"
+            project_connection_id="my-connection",
+        )
+    ],
+)
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "myserver",
+      "server_url": "https://your-mcp-server.example.com",
+      "require_approval": "always",
+      "project_connection_id": "my-connection"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
+    serverLabel: "myserver",
+    serverUri: new Uri("https://your-mcp-server.example.com"),
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval
+    )
+));
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "mcp",
+    server_label: "myserver",
+    server_url: "https://your-mcp-server.example.com",
+    require_approval: "always",
+    project_connection_id: "my-connection",
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+resources:
+  - kind: toolbox
+    name: my-toolbox
+    tools:
+      - type: mcp
+        server_label: myserver
+        server_url: https://your-mcp-server.example.com
+        require_approval: always
+        project_connection_id: my-connection
+```
+
+:::zone-end
+
 ## Step 5: Manage toolbox versions
 
 > [!NOTE]
@@ -930,6 +1141,14 @@ console.log(`Created version: ${toolboxVersion.version}`);
 
 :::zone-end
 
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, or REST API tab to create a new
+toolbox version. The Foundry Toolkit workflow in this article focuses on
+creating a toolbox and scaffolding a hosted agent that consumes it.
+
+:::zone-end
+
 :::zone pivot="azd"
 
 This operation isn't supported with azd. To create a toolbox version, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
@@ -985,6 +1204,13 @@ for await (const v of versions) {
 
 :::zone-end
 
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, or REST API tab to list toolbox
+versions.
+
+:::zone-end
+
 :::zone pivot="azd"
 
 This operation isn't supported with azd. To list toolbox versions, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
@@ -1034,6 +1260,13 @@ const versionObj = await project.beta.toolboxes.getVersion(
 );
 console.log(`Retrieved version: ${versionObj.version}`);
 ```
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, or REST API tab to get a specific
+toolbox version.
 
 :::zone-end
 
@@ -1098,6 +1331,13 @@ console.log(`Active version: ${toolbox.defaultVersion}`);
 
 :::zone-end
 
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, or REST API tab to promote a toolbox
+version to default.
+
+:::zone-end
+
 :::zone pivot="azd"
 
 This operation isn't supported with azd. To promote a version to default, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
@@ -1145,6 +1385,13 @@ await project.beta.toolboxes.deleteVersion(
   "<version_id>",
 );
 ```
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, or REST API tab to delete a toolbox
+version.
 
 :::zone-end
 
@@ -1821,6 +2068,8 @@ The search results include chunk metadata in `result.structuredContent.documents
 
 Use this pattern to let the agent write and execute Python code. The pattern doesn't require a project connection or extra configuration.
 
+To upload a file for Code Interpreter to use, call `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`. The returned file ID is the value you supply as `<FILE_ID>` in the tool configuration. See [Code Interpreter](code-interpreter.md) for full upload examples.
+
 > [!IMPORTANT]
 > When using Code Interpreter through a toolbox in a hosted agent, **user isolation is not supported**. All users in the same project share the same container context.
 
@@ -1928,6 +2177,13 @@ Use the file name returned from Step 1 to download the file via the [File API do
 ### [File Search](file-search.md)
 
 Use this pattern to let the agent search over uploaded files stored in a vector store. Provide `vector_store_ids` referencing vector stores already created in your Foundry project.
+
+To create a file and vector store, use the `{project_endpoint}/openai/v1` API:
+
+1. Upload your file: `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`.
+1. Create a vector store: `POST {project_endpoint}/openai/v1/vector_stores` with the returned file ID.
+
+The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
 > [!IMPORTANT]
 > When using File Search through a toolbox in a hosted agent, **user isolation is not supported**. All users in the same project share access to the same vector store.

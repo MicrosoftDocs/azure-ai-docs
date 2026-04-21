@@ -272,7 +272,7 @@ Press **F5** in VS Code to start debugging. Alternatively, you can use the VS Co
 This will:
 
 1. Start the HTTP server with debugging enabled
-2. Open the AI Toolkit Agent Inspector for interactive testing
+2. Open the Foundry Toolkit Agent Inspector for interactive testing
 3. Allow you to set breakpoints and inspect the workflow
 
 #### Option 2: Run in Terminal
@@ -476,6 +476,8 @@ If you encounter issues, try these solutions for common problems:
 | `AuthorizationFailed` during provisioning | Request **Contributor** role on your subscription or resource group. |
 | Agent doesn't start locally | Verify environment variables are set and run `az login` to refresh credentials. |
 | `AcrPullUnauthorized` error | Grant **AcrPull** role to the project's managed identity on the container registry. |
+
+For comprehensive details about all permissions and role assignments involved in hosted agent deployment, see [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md).
 
 :::zone pivot="azd"
 

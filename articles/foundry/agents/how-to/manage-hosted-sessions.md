@@ -54,7 +54,7 @@ The REST API examples in this article use `az rest` to call the Foundry Agent Se
 ACCOUNT_NAME="<your-foundry-account-name>"
 PROJECT_NAME="<your-project-name>"
 BASE_URL="https://${ACCOUNT_NAME}.services.ai.azure.com/api/projects/${PROJECT_NAME}"
-API_VERSION="2025-11-15-preview"
+API_VERSION="v1"
 RESOURCE="https://ai.azure.com"
 ```
 
@@ -90,24 +90,18 @@ project = AIProjectClient(
 
 ## Create a session
 
-Create a session to establish an isolated sandbox for your agent. Each session requires an isolation key that identifies the session owner and an agent version to run.
+Create a session to establish an isolated sandbox for your agent. Each session requires an isolation key that identifies the session owner. The agent endpoint automatically resolves the active version.
 
 :::zone pivot="rest"
 
 ```bash
 AGENT_NAME="my-agent"
-AGENT_VERSION="1"
 
 az rest --method POST \
     --url "${BASE_URL}/agents/${AGENT_NAME}/endpoint/sessions?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
     --headers "x-session-isolation-key=user-123" "Foundry-Features=HostedAgents=V1Preview" \
-    --body "{
-        \"version_indicator\": {
-            \"agent_version\": \"${AGENT_VERSION}\",
-            \"type\": \"version_ref\"
-        }
-    }"
+    --body "{}"
 ```
 
 :::zone-end
@@ -115,12 +109,10 @@ az rest --method POST \
 :::zone pivot="python"
 
 ```python
-from azure.ai.projects.models import VersionRefIndicator
-
 session = project.beta.agents.create_session(
     agent_name="my-agent",
     isolation_key="user-123",
-    version_indicator=VersionRefIndicator(agent_version="1"),
+    body={},
 )
 print(f"Session created (ID: {session.agent_session_id}, status: {session.status})")
 ```
@@ -343,9 +335,9 @@ az rest --method GET \
 :::zone pivot="python"
 
 ```python
-files = project.beta.agents.list_session_files(
+files = project.beta.agents.get_session_files(
     agent_name="my-agent",
-    session_id="<session-id>",
+    agent_session_id="<session-id>",
     path=".",
 )
 for entry in files.entries:
@@ -384,7 +376,7 @@ az rest --method GET \
 content_bytes = b"".join(
     project.beta.agents.download_session_file(
         agent_name="my-agent",
-        session_id="<session-id>",
+        agent_session_id="<session-id>",
         path="data.csv",
     )
 )
@@ -422,7 +414,7 @@ az rest --method DELETE \
 ```python
 project.beta.agents.delete_session_file(
     agent_name="my-agent",
-    session_id="<session-id>",
+    agent_session_id="<session-id>",
     path="data.csv",
 )
 ```

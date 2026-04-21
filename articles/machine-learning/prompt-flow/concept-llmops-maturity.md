@@ -15,6 +15,8 @@ ms.update-cycle: 365-days
 
 # Advance your maturity level for Generative Artificial Intelligence Operations (GenAIOps)
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 Generative Artificial Intelligence Operations, or **GenAIOps** (sometimes called LLMOps), describes the operational practices and strategies for managing large language models (LLMs) in production. This article provides guidance on how to advance your capabilities in GenAIOps, based on your organization's current maturity level.
 
 :::image type="content" source="../media/concept-llmops-maturity/llmopsml.png" alt-text="Diagram shows maturity level of GenAIOps." lightbox="../media/concept-llmops-maturity/llmopsml.png":::
