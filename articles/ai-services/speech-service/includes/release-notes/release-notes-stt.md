@@ -12,9 +12,9 @@ ms.custom: references_regions
 
 #### Improved pronunciation assessment model
 
-We rolled out significant upgrades to the pronunciation assessment model for `de-DE`. You're seeing a noticeable jump in Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
+We've updated the pronunciation assessment model for `de-DE`, improving the Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
 
-The updated model is ready to use through the API and the Microsoft Foundry playground, just like before.
+The updated model is ready to use through the API and the Microsoft Foundry playground.
 
 ### March 2026 release
 
