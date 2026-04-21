@@ -177,8 +177,9 @@ with project_client:
 
 An agent can expose multiple protocols simultaneously. Configure protocols and inbound authorization on the agent endpoint.
 
-> [!NOTE]
-> Updating protocols and authorization schemes is available through the REST API and Python SDK only. These options aren't configurable in the Foundry portal.
+#### [Foundry portal](#tab/portal)
+
+Updating protocols and authorization schemes isn't yet configurable in the Foundry portal. Use the REST API or Python SDK.
 
 #### [REST API](#tab/rest)
 
@@ -241,8 +242,9 @@ with project_client:
 
 An agent card surfaces details and capabilities to consumers, including for agent-to-agent (A2A) discovery.
 
-> [!NOTE]
-> Adding an agent card is available through the REST API and Python SDK only. This option isn't configurable in the Foundry portal.
+#### [Foundry portal](#tab/portal)
+
+Adding an agent card isn't yet configurable in the Foundry portal. Use the REST API or SDK.
 
 #### [REST API](#tab/rest)
 
