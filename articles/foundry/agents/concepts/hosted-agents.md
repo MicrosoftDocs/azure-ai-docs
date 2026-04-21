@@ -30,6 +30,9 @@ Choose hosted agents over prompt-based agents when you need to:
 
 You package your agent as a container image and push it to Azure Container Registry. When you deploy, Agent Service pulls the image, provisions compute, assigns a dedicated Entra agent identity, and exposes a dedicated endpoint. At runtime, your agent code handles requests from clients and can call Foundry models, Foundry Toolbox tools, and downstream Azure services using its agent identity. The platform handles scaling, session state persistence, observability, and lifecycle management.
 
+> [!IMPORTANT]
+> When you use Hosted Agents with other Microsoft products and services, you must read all relevant documentation for such products and services and understand related risks and compliance considerations. If you use Hosted Agents with any third-party servers, agents, code, or models that are not Azure Direct models (“Third-Party Systems”), you do so at your own risk. Third-Party Systems are Non-Microsoft Products under the Microsoft Product Terms and are governed by their own third-party license terms.  You are responsible for any usage and associated costs. We recommend reviewing all data being shared with and received from Third-Party Systems and being cognizant of third-party practices for handling, sharing, retention, and location of data. It is your responsibility to manage whether your data will flow outside of your organization’s Azure compliance and geographic boundaries and any related implications. Microsoft has no responsibility to you or others in relation use of Third-Party Systems, and you are responsible for implementing your own responsible AI mitigations, such as metaprompts, content filters, or other safety systems.
+
 ## Key concepts
 
 ### Hosted agents
@@ -168,18 +171,37 @@ Hosted agents are currently in preview.
 
 ### Limitations during preview
 
-| Dimension | Limit |
-| --------- | ----- |
-| Microsoft Foundry resources with hosted agents per Azure subscription | 100 |
-| Maximum number of hosted agents per Foundry resource | 200 |
+| Limit | Scope | Default Value | Adjustable |
+| --------- | ------ | ----- | ------- |
+| Maximum active concurrent sessions | per subscription per region | 50 | Yes, with quota requests to Microsoft Support |
 
 ### Pricing
 
-Managed hosting runtime is billed during preview. For current rates, see the Foundry [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+Managed hosting runtime billing is based on consumption of CPU and memory resources during active sessions. For current rates, see the Foundry [pricing page](https://azure.microsoft.com/en-us/pricing/details/foundry-agent-service/).
 
 ### Region availability
 
-Hosted agents are available in: Australia East, Brazil South, Canada Central, Canada East, East US, East US 2, France Central, Germany West Central, Italy North, Japan East, Korea Central, North Central US, Norway East, Poland Central, South Africa North, South Central US, South India, Southeast Asia, Spain Central, Sweden Central, Switzerland North, UAE North, UK South, West US, and West US 3.
+Hosted agents are currently available in the following regions: 
+
+- East US2
+- Sweden Central
+- West US
+- Australia East
+- Germany West Central
+- France Central
+- Japan East
+- South India
+- North Central US
+- Switzerland North
+- West US3
+- Norway East
+- South East Asia
+- Korea Central
+- Poland Central
+- Brazil South
+- Canada Central
+- South Africa North
+- Spain Central
 
 ## Next steps
 
