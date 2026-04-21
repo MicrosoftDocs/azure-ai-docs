@@ -5,7 +5,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/16/2026
+ms.date: 04/21/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -15,9 +15,7 @@ ms.custom: include, classic-and-new
 >
 > **Purpose**: One place to understand how models move from launch to retirement, what commitments we make for replacement overlap, and how customers are notified.
 >
-> **Retirement tables**: For specific model dates, see [Model Retirement Schedule](../concepts/model-retirements.md).
-
----
+> **Retirement tables**: For specific model dates, see [Model Retirement Schedule](../concepts/model-retirement-schedule.md).
 
 ## How model lifecycle works
 
@@ -32,55 +30,54 @@ Every model in the Foundry catalog belongs to exactly one of five stages:
 | **Preview** | Experimental. Weights, runtime, and API schema may change. Not guaranteed to become GA. Labeled "Preview" in the catalog. | Yes | Yes |
 | **Generally Available (GA)** | Production-ready. Weights and APIs are fixed. Runtime patches for security vulnerabilities don't affect outputs. No label shown (default state). | Yes | Yes |
 | **Legacy** | Newer, more capable models exist. You should plan on migrating workloads. This stage is **optional** — models may skip directly from GA to Deprecated. | Yes (until deprecation) | Yes |
-| **Deprecated** | Existing customers may continue to create and manage deployments. No longer available to new customers — new customers cannot create deployments or access the model. "Existing customer" is determined at the subscription level: whether that Azure subscription has ever deployed the specific model version. A new subscription under the same tenant doesn't inherit access. | Existing customers: Yes. New customers: **No** | Yes |
+| **Deprecated** | Existing customers may continue to create and manage deployments. No longer available to new customers — new customers cannot create deployments or access the model. "Existing customer" is determined at the subscription level: whether that Azure subscription has ever deployed the specific model version. A new subscription under the same tenant doesn't inherit access. | - Existing customers: Yes.<br> - New customers: **No** | Yes |
 | **Retired** | Removed from service. All inference requests return `410 Gone`. | **No** | **No** |
 
 > [!NOTE]
 > - **Fine-tuned models** follow a separate retirement schedule for training and deployment. See [Fine-tuned models](#fine-tuned-models) for details.
-> - **Foundry Models (catalog)**: Some model providers define a shorter GA lifecycle — for example, 12 months instead of 18. When this applies, it is noted directly on the model in the [Model Retirement Schedule](../concepts/model-retirements.md).
+> - **Foundry Models (catalog)**: Some model providers define a shorter GA lifecycle — for example, 12 months instead of 18. When this applies, it is noted directly on the model in the [Model Retirement Schedule](../concepts/model-retirement-schedule.md).
 
 ### Stage transitions at a glance
 
 ```
-Preview ──► GA ──► Legacy ──► Deprecated ──► Retired
-              │     optional      (+6 mo)            │
-              │                   existing            │
-              │                   customers           │
-              │                   only                │
-              └────── 18 months total (GA lifecycle) ─┘
+Preview ──►  GA  ──►  Legacy  ──►  Deprecated  ──►  Retired
+              │     (optional)      (+6 mo)             │
+              │                     existing            │
+              │                     customers           │
+              │                     only                │
+              │                                         │
+              └──────  18 months total (GA lifecycle)  ─┘
 ```
-
----
 
 ## Model launch and availability
 
 New models become available through deployment types in a predictable order:
 
-1. **Global Standard** — Models launch here first, offering the broadest availability and lowest latency across regions.
-2. **Global Provisioned** — Follows closely after Global Standard, providing reserved throughput with global routing.
-3. **Data Zone Standard and Data Zone Provisioned** — Availability expands to data zone deployment types, keeping data processing within a defined geographic boundary.
-4. **Standard and Provisioned** — Regional-only deployments come last, only as older models retire and capacity is reallocated.
+1. **Global Standard**: Models launch here first, offering the broadest availability and lowest latency across regions.
+2. **Global Provisioned**: Follows closely after Global Standard, providing reserved throughput with global routing.
+3. **Data Zone Standard** and **Data Zone Provisioned**: Availability expands to data zone deployment types, keeping data processing within a defined geographic boundary.
+4. **Standard** and **Provisioned**: Regional-only deployments come last, only as older models retire and capacity is reallocated.
 
 ### Availability rollout at a glance
 
 ```
-Global Standard ──► Global Provisioned ──► Data Zone Standard ──► Standard
-                                           Data Zone Provisioned   Provisioned
-       (launch)         (follows              (expands to             (regional,
-                         closely)              data zones)            as capacity
-                                                                      permits)
+Global Standard  ──►  Global Provisioned  ──►  Data Zone Standard  ──►   Standard
+                                                     and                   and
+                                               Data Zone Provisioned     Provisioned
+
+  (at launch)        (follows closely)         (expands to data zones)   (regional,
+                                                                          as capacity
+                                                                          permits)
 ```
 
 > [!TIP]
-> For a full comparison of deployment types, see [Deployment type comparison](/azure/foundry/foundry-models/concepts/deployment-types?view=foundry-classic#deployment-type-comparison).
-
----
+> For a full comparison of deployment types, see [Deployment type comparison](../../foundry-models/concepts/deployment-types.md).
 
 ## Special considerations
 
 ### Regional availability
 
-- Not all model + version combinations are available in all regions.
+- Not all model and version combinations are available in all regions.
 - Typically, more specialized models—for example, audio, image, and video generation—are only available as Data Zone or Global deployment types.
 - Successive model versions may not be available in the same regions. A newer version may appear in some regions before upgrades are scheduled in others.
 - Microsoft may limit new customers in specific regions to maintain service quality for existing customers.
@@ -97,23 +94,21 @@ For more details, see [Foundry Models sold directly by Azure (government)](/azur
 
 If a model is found to have compliance or security issues, Microsoft reserves the right to invoke an **emergency retirement** with shortened notice. Refer to the Azure terms of service for details.
 
----
-
 ## Lifecycle timeline commitments
 
 ### Generally Available (GA) replacement model overlap commitments
 
 We commit to meaningful overlap between a retiring GA model and its replacement so customers can test, evaluate, and migrate with confidence.
 
-![GA model lifecycle overlap — replacement transition timeframes](../media/concepts/ga-lifecycle-overlap.png)
+:::image type="content" source="../media/concepts/ga-lifecycle-overlap.png" alt-text="General availability model lifecycle overlap showing replacement transition timeframes." lightbox="../media/concepts/ga-lifecycle-overlap.png":::
 
 | Phase | Pattern |
 |-------|---------|
-| **GA launch** | Each model launches per its own deployment type and region availability matrix. Retirement date (18 months out) is set programmatically and available via the [Models API](/rest/api/aiservices/accountmanagement/models?view=rest-aiservices-accountmanagement-2024-10-01). |
-| **Deprecated (existing customers only)** | At +12 months, existing customers may continue to create and manage deployments. New customers cannot access the model. |
-| **Replacement available in global standard** | Customers can use and test the replacement model in global standard ~90 days before retirement. |
-| **Replacement available in provisioned regions** | Replacement becomes available to test in provisioned regions where the predecessor is retiring ~30 days before retirement, giving provisioned customers a manual migration window. |
-| **Model version retired** | At +18 months, all inference returns `410 Gone`. |
+| **GA launch** | Each model launches per its own deployment type and region availability matrix. Retirement date (18 months out) is set programmatically and available via the [Models API](/rest/api/aiservices/accountmanagement/models). |
+| **Deprecated (existing customers only)** | At 12 months from launch, existing customers may continue to create and manage deployments. New customers cannot access the model. |
+| **Replacement available in global standard** | Customers can use and test the replacement model in global standard approximately 90 days before retirement. |
+| **Replacement available in provisioned regions** | Replacement model becomes available to test in provisioned regions where the predecessor is retiring approximately 30 days before retirement, giving provisioned customers a manual migration window. |
+| **Model version retired** | At 18 months from launch, all inference returns `410 Gone`. |
 
 > [!TIP]
 > **Why 90–120 days?** The official replacement model is selected and declared approximately 90–120 days before the retiring model's retirement date — not sooner. Given the rapid pace of improvement in generative AI, declaring a replacement too early risks directing customers to a model that is no longer the best available option by the time they need to migrate.
@@ -125,7 +120,7 @@ Preview models have a fundamentally different lifecycle than GA models. They lau
 > [!NOTE]
 > Preview models are not recommended for production workloads.
 
-![Preview lifecycle — replacement transition timeframes](../media/concepts/preview-lifecycle.png)
+:::image type="content" source="../media/concepts/preview-lifecycle.png" alt-text="Preview lifecycle showing the replacement transition timeframes." lightbox="../media/concepts/preview-lifecycle.png":::
 
 | Outcome | What happens |
 |---------|-------------|
@@ -144,7 +139,7 @@ For **Global Standard**, **Data Zone Standard**, and **Standard** deployment typ
 > [!IMPORTANT]
 > **Provisioned deployments are NOT auto-upgraded.** Provisioned customers must manually migrate to the replacement model.
 >
-> Use the [Models API](/rest/api/aiservices/accountmanagement/models?view=rest-aiservices-accountmanagement-2024-10-01) to programmatically check `lifecycleStatus`, `deprecation`, and per-SKU `deprecationDate` for any model at any time.
+> Use the [Models API](/rest/api/aiservices/accountmanagement/models) to programmatically check `lifecycleStatus`, `deprecation`, and per-SKU `deprecationDate` for any model at any time.
 
 ### Example: gpt-4o → gpt-5.1 upgrade
 
@@ -154,11 +149,9 @@ When gpt-4o versions `2024-05-13` and `2024-08-06` retired on **2026-03-31**, th
 
 When a model you use enters the Legacy or Deprecated stage, check the "Suggested Replacement" column in the [Model Retirement Schedule](../concepts/model-retirements.md) and follow the steps in [Working with models](/azure/foundry/openai/how-to/working-with-models) to deploy, test, and migrate to the replacement.
 
----
-
 ## Notifications
 
-GA models have their retirement date set programmatically at launch (18 months out) — there is no separate "announcement." Legacy and Deprecated transitions follow the published timeline and are visible in real time via the [Models API](/rest/api/aiservices/accountmanagement/models?view=rest-aiservices-accountmanagement-2024-10-01).
+GA models have their retirement date set programmatically at launch (18 months out) — there is no separate "announcement." Legacy and Deprecated transitions follow the published timeline and are visible in real time via the [Models API](/rest/api/aiservices/accountmanagement/models).
 
 ### When you receive active notifications
 
@@ -176,13 +169,13 @@ GA models have their retirement date set programmatically at launch (18 months o
 
 ### Want to use programmatic methods?
 
-Customers can check lifecycle and deprecation fields on any model using the [Models API](/rest/api/aiservices/accountmanagement/models?view=rest-aiservices-accountmanagement-2024-10-01) (subscription-scoped, all models in a region):
+Customers can check lifecycle and deprecation fields on any model using the [Models API](/rest/api/aiservices/accountmanagement/models) (subscription-scoped, all models in a region):
+
 ```http
 GET https://management.azure.com/subscriptions/{sub}/providers/Microsoft.CognitiveServices/locations/{location}/models?api-version=2024-10-01
 ```
-Fields: `lifecycleStatus`, `deprecation.inference`, `deprecation.fineTune`, per-SKU `deprecationDate` (ISO dates).
 
----
+Fields: `lifecycleStatus`, `deprecation.inference`, `deprecation.fineTune`, per-SKU `deprecationDate` (ISO dates).
 
 ## Fine-tuned models
 
@@ -194,16 +187,14 @@ At deployment retirement, inference and deployment return error responses.
 
 | Model | Version | Training retirement date | Deployment retirement date |
 |-------|---------|--------------------------|----------------------------|
-| gpt-4o | 2024-08-06 | No earlier than 2027-04-01¹ | 2027-10-01 |
-| gpt-4o-mini | 2024-07-18 | No earlier than 2027-04-01¹ | 2027-10-01 |
-| gpt-4.1 | 2025-04-14 | No earlier than 2027-04-14¹ | 2027-10-14 |
-| gpt-4.1-mini | 2025-04-14 | No earlier than 2027-04-14¹ | 2027-10-14 |
-| gpt-4.1-nano | 2025-04-14 | No earlier than 2027-04-14¹ | 2027-10-14 |
+| gpt-4o | 2024-08-06 | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
+| gpt-4o-mini | 2024-07-18 | No earlier than 2027-04-01<sup>1</sup> | 2027-10-01 |
+| gpt-4.1 | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| gpt-4.1-mini | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
+| gpt-4.1-nano | 2025-04-14 | No earlier than 2027-04-14<sup>1</sup> | 2027-10-14 |
 | o4-mini | 2025-04-16 | Base model retirement | One year after training retirement |
 
-¹ For existing customers only. Otherwise, training retirement occurs at base model retirement.
-
----
+<sup>1</sup> For existing customers only. Otherwise, training retirement occurs at base model retirement.
 
 ## Frequently asked questions
 
@@ -213,23 +204,17 @@ At deployment retirement, inference and deployment return error responses.
 | **Can I control when my Standard deployment auto-upgrades?** | Yes. Set the `versionUpgradeOption` property on your deployment to one of three values: `OnceNewDefaultVersionAvailable` (upgrade when a new default is set), `OnceCurrentVersionExpired` (upgrade only at retirement), or `NoAutoUpgrade` (never auto-upgrade — deployment stops working at retirement). You can set this via REST API, Azure PowerShell, or the Foundry portal. | [Working with models — upgrade configuration](/azure/foundry/openai/how-to/working-with-models#model-deployment-upgrade-configuration) |
 | **How do I migrate a Provisioned deployment?** | Provisioned deployments are not auto-upgraded. You have two options: *In-place migration* (Azure handles traffic migration over a 20–30 minute window with no downtime) or *Side-by-side (multi-deployment) migration* (you create a new deployment, test, switch traffic, and delete the old one). | [Managing models on provisioned deployment types](/azure/foundry/openai/how-to/working-with-models#managing-models-on-provisioned-deployment-types) |
 | **Will my quota carry over to the replacement model?** | For Standard auto-upgrades, yes — quota is handled automatically. For Provisioned deployments, you must ensure quota is available for the target model before migrating. PTU capacity is model-agnostic and fungible across provisioned managed deployments. | [Provisioned throughput — quota](/azure/foundry/openai/concepts/provisioned-throughput) |
-| **Can I get an exception to extend a model's retirement date?** | No. Retirement dates are not extendable. Plan your migration using the timelines published in the [Model Retirement Schedule](../concepts/model-retirements.md) and the [Models API](/rest/api/aiservices/accountmanagement/models?view=rest-aiservices-accountmanagement-2024-10-01). | — |
+| **Can I get an exception to extend a model's retirement date?** | No. Retirement dates are not extendable. Plan your migration using the timelines published in the [Model Retirement Schedule](../concepts/model-retirements.md) and the [Models API](/rest/api/aiservices/accountmanagement/models). | N/A |
 | **What tools can help me evaluate a replacement model?** | Use the model leaderboard in the [Foundry portal](https://ai.azure.com/explore/models) to compare benchmarks, the model comparison feature when deploying, and [Evaluations](/azure/foundry/openai/concepts/model-retirements?tabs=text#preparation-for-model-retirements-and-version-upgrades) for custom workload testing. Apply prompt engineering and fine-tuning as needed to match prior accuracy. | [Preparation for model retirements](/azure/foundry/openai/concepts/model-retirements?tabs=text#preparation-for-model-retirements-and-version-upgrades) |
 | **Do embeddings models follow the same lifecycle?** | Embeddings models (text-embedding-3-large, text-embedding-3-small, text-embedding-ada-002) have extended timelines and are handled differently from inference models. Check the [Model Retirement Schedule](../concepts/model-retirements.md) for specific dates. | [Model retirements — embeddings](/azure/foundry/openai/concepts/model-retirements) |
 | **How do Priority Processing and Batch deployments upgrade?** | Priority Processing follows the same upgrade process as Standard deployments (auto-upgrade supported). Batch deployments follow the side-by-side (multi-deployment) migration approach — deploy the new model, resubmit jobs, then retire the old deployment. | [Working with models](/azure/foundry/openai/how-to/working-with-models) |
 | **I can't find "Microsoft Foundry" in Azure Service Health — how do I set up alerts?** | Select `Azure OpenAI Service` as the service name when configuring Service Health alerts. There is no separate "Microsoft Foundry" service in Service Health. | [Set up Service Health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal) |
 
-For additional questions about pricing and more, see [Model Lifecycle FAQ](../concepts/model-retirements.md#frequently-asked-questions).
-
----
-
 ## Related content
 
-- [Model Retirement Schedule](../concepts/model-retirements.md) — specific dates for all current, deprecated, and retired models
-- [Models API reference](/rest/api/aiservices/accountmanagement/models?view=rest-aiservices-accountmanagement-2024-10-01) — programmatically query `lifecycleStatus`, `deprecation`, and per-SKU `deprecationDate` for any model
-- [Azure OpenAI model versions](/azure/foundry/foundry-models/concepts/model-versions) — how version upgrades work
-- [Getting started with model evaluation](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/how-to-evaluate-amp-upgrade-model-versions-in-the-azure-openai/ba-p/4218880) — evaluation guide
+- [Model Retirement Schedule](../concepts/model-retirements.md) for specific dates for all current, deprecated, and retired models
+- [Models API reference](/rest/api/aiservices/accountmanagement/models) to programmatically query `lifecycleStatus`, `deprecation`, and per-SKU `deprecationDate` for any model
+- [Model versions in Microsoft Foundry Models](../../foundry-models/concepts/model-versions.md) for how version upgrades work
+- [Getting started with model evaluation](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/how-to-evaluate-amp-upgrade-model-versions-in-the-azure-openai/ba-p/4218880)
 - [Managing models on provisioned deployment types](/azure/foundry/openai/how-to/working-with-models#managing-models-on-provisioned-deployment-types)
 - [Set up Service Health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal)
-
-

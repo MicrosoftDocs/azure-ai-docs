@@ -4,7 +4,7 @@ description: "Retirement dates and replacement models for all models available t
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: concept-article
-ms.date: 04/16/2026
+ms.date: 04/21/2026
 ms.custom:
   - classic-and-new
 manager: nitinme
@@ -21,9 +21,7 @@ recommendations: false
 >
 > **Retired models**: See [Retired Models](retired-models.md)
 
----
-
-## Foundry Models (sold by Azure)
+## Foundry Models sold directly by Azure
 
 ### Azure OpenAI
 
