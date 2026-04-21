@@ -53,7 +53,9 @@ AI Red Teaming Agent has several important limitations to consider when running 
 
 ## Learn more
 
-Get started with our [documentation on how to run an automated scan for safety risks with the AI Red Teaming Agent](../how-to/develop/run-scans-ai-red-teaming-agent.md).
+Get started with our documentation on how to run an automated scan for safety risks with the AI Red Teaming Agent  
+- [Run AI Red Teaming Agent in the cloud](../how-to/develop/run-ai-red-teaming-cloud.md).
+- [Run AI Red Teaming Agent locally (preview)](../how-to/develop/run-scans-ai-red-teaming-agent.md).
 
 Learn more about the tools used by the AI Red Teaming Agent.
 

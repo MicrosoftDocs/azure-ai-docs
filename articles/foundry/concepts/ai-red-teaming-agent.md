@@ -3,7 +3,7 @@ title: "AI Red Teaming Agent"
 description: "This article provides conceptual overview of the AI Red Teaming Agent."
 ms.service: microsoft-foundry
 ms.topic: concept-article
-ms.date: 02/25/2026
+ms.date: 04/22/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -12,7 +12,7 @@ ms.custom:
   - classic-and-new
 ---
 
-# AI Red Teaming Agent (preview)
+# AI Red Teaming Agent
 
 [!INCLUDE [ai-red-teaming-agent 1](../includes/concepts-ai-red-teaming-agent-1.md)]
 
