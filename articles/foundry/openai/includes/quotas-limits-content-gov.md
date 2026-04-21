@@ -39,6 +39,8 @@ Yes, using the [Azure Gov Quota Request Form](https://aka.ms/AOAIGovQuota) you c
 
 [!INCLUDE [Quota](quota-tier/gov-std.md)]
 
+---
+
 ### General best practices to remain within rate limits
 
 To minimize issues related to rate limits, it's a good idea to use the following techniques:

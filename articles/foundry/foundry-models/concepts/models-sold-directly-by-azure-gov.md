@@ -1,6 +1,6 @@
 ---
 title: "Foundry Models sold directly by Azure in Azure Government"
-description: "Learn about Microsoft Foundry Models sold directly by Azure, their capabilities, deployment types, and regional availability for AI applications."
+description: "Learn about Microsoft Foundry Models sold directly by Azure in Azure Government, their capabilities, deployment types, and regional availability for AI applications."
 author: challenp
 ms.author: chaparker
 ms.date: 04/03/2026
