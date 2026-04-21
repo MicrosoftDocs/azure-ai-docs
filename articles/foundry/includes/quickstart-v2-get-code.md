@@ -75,7 +75,7 @@ AgentName = "MyAgent"
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/java/quickstart/create-agent/)
+> [Get the code](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/java/quickstart/)
 
 Sign in using the CLI `az login` command to authenticate before running your Java scripts.
 
