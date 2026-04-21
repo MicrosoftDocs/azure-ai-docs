@@ -292,8 +292,9 @@ url = f"{PROJECT_ENDPOINT}/agents/my-agent/endpoint/protocols/invocations"
 
 response = requests.post(url, headers={
     "Authorization": f"Bearer {token}",
-    "Content-Type": "application/json"
-}, params={"api-version": "2025-05-15-preview"}, json={
+    "Content-Type": "application/json",
+    "Foundry-Features": "HostedAgents=V1Preview"
+}, params={"api-version": "v1"}, json={
     "message": "Process this task"
 })
 
@@ -312,7 +313,7 @@ Before you begin, [build and push your container image](#build-and-push-your-con
 
 ```bash
 BASE_URL="https://{account}.services.ai.azure.com/api/projects/{project}"
-API_VERSION="2025-05-15-preview"
+API_VERSION="v1"
 TOKEN=$(az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv)
 ```
 
@@ -378,6 +379,7 @@ curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/openai/responses?api-
 curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/invocations?api-version=$API_VERSION" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
+  -H "Foundry-Features: HostedAgents=V1Preview" \
   -d '{
     "message": "Process this task"
   }'
