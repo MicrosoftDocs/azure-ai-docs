@@ -119,3 +119,20 @@ The AI Red Teaming Agent currently supported red teaming Foundry agents with Azu
 For a comprehensive list of tools, see [Tools](../agents/concepts/tool-catalog.md).
 
 [!INCLUDE [ai-red-teaming-agent 3](../includes/concepts-ai-red-teaming-agent-3.md)]
+
+## Learn more
+
+Get started with our documentation on how to run an automated scan for safety risks with the AI Red Teaming Agent  
+- [Run AI Red Teaming Agent in the cloud](../how-to/develop/run-ai-red-teaming-cloud.md).
+- [Run AI Red Teaming Agent locally](../how-to/develop/run-scans-ai-red-teaming-agent.md).
+
+Learn more about the tools used by the AI Red Teaming Agent.
+
+- [Azure AI Risk and Safety Evaluations](../concepts/safety-evaluations-transparency-note.md)
+- [PyRIT: Python Risk Identification Tool](https://github.com/microsoft/PyRIT)
+
+The most effective strategies for risk assessment combine automated tools that surface potential risks with expert human analysis for deeper insights. If your organization is just starting with AI red teaming, explore the resources created by the Microsoft AI red team:
+
+- [Planning red teaming for large language models (LLMs) and their applications](../openai/concepts/red-teaming.md)
+- [Three takeaways from red teaming 100 generative AI products](https://www.microsoft.com/security/blog/2025/01/13/3-takeaways-from-red-teaming-100-generative-ai-products/)
+- [Microsoft AI Red Team building future of safer AI](https://www.microsoft.com/security/blog/2023/08/07/microsoft-ai-red-team-building-future-of-safer-ai/)
