@@ -152,8 +152,6 @@ items:
     href: ../../agents/how-to/publish-copilot.md
   - name: Agent 365
     href: ../../agents/how-to/agent-365.md
-  - name: Invoke your Agent Application using the Responses API protocol
-    href: ../../agents/how-to/publish-responses.md
   - name: Migrate from Agent Applications to the new agent model
     href: ../../agents/how-to/migrate-agent-applications.md
 # Monitor and Evaluate
