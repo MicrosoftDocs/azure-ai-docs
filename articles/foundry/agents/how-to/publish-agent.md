@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
 
-# Publish and share agents in Microsoft Foundry
+# Publish your agent as an Agent Application
 Publishing promotes an agent from a development asset inside your Foundry project into a managed Azure resource that external consumers can call through a stable endpoint. Think of it as the step that moves your agent from "works in my project" to "ready for others to use."
 
 This article shows you how to publish an agent, configure its authentication and permissions, and update your Agent Application as you roll out new agent versions. After publishing, see the following articles to use your Agent Application:
