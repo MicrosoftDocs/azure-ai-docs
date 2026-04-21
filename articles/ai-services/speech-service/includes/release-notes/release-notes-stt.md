@@ -3,10 +3,18 @@ author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 03/06/2026
+ms.date: 4/21/2026
 ms.author: pafarley
 ms.custom: references_regions
 ---
+
+### April 2026 release
+
+#### Improved pronunciation assessment model
+
+We rolled out significant upgrades to the pronunciation assessment model for `de-DE`. You're seeing a noticeable jump in Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
+
+The updated model is ready to use through the API and the Microsoft Foundry playground, just like before.
 
 ### March 2026 release
 
