@@ -48,6 +48,15 @@ Before you begin, you need:
 
 :::zone pivot="azd"
 
+## Required Permission
+You need Azure AI Project Manager at project scope to create and deploy hosted agents. This role includes both the data plane permissions to create agents and the ability to assign the Azure AI User role to the platform-created agent identity. The agent identity needs Azure AI User on the project to access models and artifacts at runtime.
+
+If you use azd or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
+
+Container Registry Repository Reader for the project managed identity (image pulls)
+Azure AI User for the platform-created agent identity (runtime model and tool access)
+
+
 ## Step 1: Set up the sample project
 
 Install the Azure Developer CLI agent extension and initialize a new hosted agent project.
@@ -90,6 +99,25 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
     >   value: <CONNECTION_ID_PLACEHOLDER>
     > ```
 
+    Alternatively you can also use this cmd:
+    ```bash
+    azd init -t Azure-Samples/azd-ai-starter-basic
+    ```
+    The -t flag means template.
+
+    You're telling azd to use this specific template:
+
+    Azure-Samples/azd-ai-starter-basic → a starter project from Microsoft’s sample repository
+
+    The AI starter basic template sets up a minimal AI-powered app using Azure services. Typically it includes:
+
+        * A simple backend (often Python or Node.js)
+        * Integration with Azure OpenAI Service
+        * Infrastructure to deploy:
+            * Web app (Azure App Service)
+            * AI resources
+        * Preconfigured environment for quick deployment
+    
 1. Provision the required Azure resources:
 
     > [!NOTE]
