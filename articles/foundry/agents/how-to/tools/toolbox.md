@@ -70,7 +70,7 @@ For tool configuration syntax and authentication options for each tool type, see
   - **Developer** (always required) — the identity that creates, updates, and manages toolbox versions.
   - **Agent identity** (required if using a hosted agent) — the agent's managed identity that calls tools at runtime.
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
-- Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions).
+- Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions). Individual tool types within a toolbox are further limited by region and model — not all tool types are available in every region or with every model. See [Region and model compatibility](#region-and-model-compatibility).
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
 - **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
@@ -2365,6 +2365,15 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [Agent-to-Agent (A2A)](agent-to-agent.md) | ❌ Not supported | Not yet available |
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
+
+## Region and model compatibility
+
+Toolbox availability depends on two factors beyond the project region:
+
+- **Region**: Some tool types aren't available in every region that supports the agent service. For example, a region that supports the toolbox endpoint might not support all built-in tool types.
+- **Model**: Not all models support every tool type. For example, `gpt-4o` and `gpt-4.1` support most built-in tools, while many third-party and open-source models support only a subset.
+
+Before deploying a toolbox, verify that your target region and model both support the tool types you plan to use. For the full compatibility tables, see [Tool support by region and model](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
 
 ## Related content
 
