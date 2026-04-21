@@ -240,7 +240,7 @@ Code samples for how to run these Agent tools within a network secured set-up ca
 | Fabric Data Agent | ✅ Supported | Through private endpoint |
 | OpenAPI tool | ✅ Supported | Through your VNET |
 | Azure Functions | ✅ Supported | Through your VNET |
-| Agent-to-Agent (A2A) | ✅ Supported | Through your VNET |
+| Agent-to-Agent (A2A) | ❌ Not supported | Through your VNET |
 | Logic Apps | ❌ Not supported | Under development |
 | File Search | ❌ Not supported | Under development |
 | Browser Automation | ❌ Not supported | Under development |
