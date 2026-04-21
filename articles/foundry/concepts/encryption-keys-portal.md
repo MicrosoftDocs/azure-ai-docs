@@ -26,4 +26,7 @@ Microsoft Foundry provides robust encryption capabilities, including the ability
 
 This article explains how to configure CMK encryption by using Key Vault for your Foundry resource.
 
+> [!NOTE]
+> Due to capacity constraints in the underlying Azure AI Search infrastructure, customer-managed key (CMK) encryption is currently available only in select regions. For the list of supported regions, see [Azure AI Search regional availability](/azure/search/search-region-support#americas).
+
 [!INCLUDE [encryption-keys-portal 1](../includes/concepts-encryption-keys-portal-1.md)]
