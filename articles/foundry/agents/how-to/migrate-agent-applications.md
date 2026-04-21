@@ -1,5 +1,5 @@
 ---
-title: "Migrate from Agent Applications to the new agent model"
+title: "Migrate from Agent Applications to the new Microsoft Foundry agent model"
 description: "Migrate from the legacy Agent Application publishing model to the new agent object model in Microsoft Foundry."
 author: aahill
 ms.author: aahi

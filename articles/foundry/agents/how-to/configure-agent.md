@@ -1,5 +1,5 @@
 ---
-title: "Configure and share your agent"
+title: "Configure and share your Microsoft Foundry agent"
 description: "Learn how to configure your agent's stable endpoint, select the active version, and share your agent with consumers in Microsoft Foundry."
 #customer intent: As a developer, I want to configure my agent's stable endpoint in Microsoft Foundry so that consumers can invoke it.
 author: sdgilley
