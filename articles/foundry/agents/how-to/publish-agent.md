@@ -16,7 +16,7 @@ ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 # Publish your agent as an Agent Application
 
 > [!NOTE]
-> This article describes the legacy publishing experience.
+> This article describes the legacy publishing experience. For the new agent publishing model, see [Migrate from agent applications to the new agent endpoint and publishing experience](migrate-agent-applications.md).
 
 Publishing promotes an agent from a development asset inside your Foundry project into a managed Azure resource that external consumers can call through a stable endpoint. Think of it as the step that moves your agent from "works in my project" to "ready for others to use."
 
