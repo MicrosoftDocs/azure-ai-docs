@@ -555,6 +555,7 @@ use the Python or REST API tab in this step.
 - Each tool has `name`, `description`, and `inputSchema`. For tool naming conventions, see the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26/server/tools).
 - `inputSchema` has a `properties` field (some MCP servers omit this field, which breaks OpenAI).
 - For MCP tools, names are prefixed with the `server_label` - for example, `myserver.some_tool`. For all other tool types, the name is the `name` field value or the default tool name.
+- MCP tools include a `_meta.tool_configuration` block containing runtime settings such as `require_approval`. See [Handle tool approval requirements](#handle-tool-approval-requirements).
 - Note the exact parameter names for the call step (for example `query` vs `queries`).
 
 **Check - `tools/call`**:
@@ -901,6 +902,170 @@ azd deploy -e my-env
 
 # 6. Invoke the agent
 azd ai agent invoke --new-session "Hello, what tools do you have?" --timeout 120
+```
+
+:::zone-end
+
+## Handle tool approval requirements
+
+The toolbox gateway injects a `_meta.tool_configuration` object into every tool entry returned by `tools/list`. When a tool has `require_approval` set to `"always"`, the agent runtime must present the pending action to the user and wait for confirmation before invoking the tool. The MCP proxy does **not** block `tools/call` — enforcement is entirely the agent runtime's responsibility.
+
+### Read `require_approval` from `tools/list`
+
+Each tool entry in a `tools/list` response includes a `_meta` block injected by the toolbox gateway:
+
+```json
+{
+  "name": "myserver.my_tool",
+  "description": "...",
+  "inputSchema": { "type": "object" },
+  "_meta": {
+    "tool_configuration": {
+      "type": "mcp",
+      "server_label": "myserver",
+      "server_url": "https://your-mcp-server.example.com",
+      "require_approval": "always"
+    }
+  }
+}
+```
+
+| `require_approval` value | Behavior |
+|--------------------------|----------|
+| `"always"` | The agent must ask the user for confirmation before every invocation. |
+| `"never"` | The agent can invoke the tool freely. |
+
+### Implement approval gating (LangGraph)
+
+Query `tools/list` at startup to build an approval map, then inject a constraint into the system prompt for any tool that requires approval:
+
+```python
+async def _fetch_require_approval_tools(
+    endpoint: str,
+    auth: httpx.Auth,
+    extra_headers: dict,
+) -> dict[str, str]:
+    async with httpx.AsyncClient(auth=auth, headers=extra_headers, timeout=30.0) as hc:
+        payload = {"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {}}
+        resp = await hc.post(endpoint, json=payload)
+        resp.raise_for_status()
+    return {
+        t["name"]: t["_meta"]["tool_configuration"]["require_approval"]
+        for t in resp.json().get("result", {}).get("tools", [])
+        if t.get("_meta", {}).get("tool_configuration", {}).get("require_approval")
+    }
+```
+
+After loading tools from the MCP client, detect which tools require approval and adjust the system prompt:
+
+```python
+approval_map = await _fetch_require_approval_tools(
+    TOOLBOX_ENDPOINT, toolbox_auth, extra_headers
+)
+always_approval = [name for name, val in approval_map.items() if val == "always"]
+
+approval_prompt_note = ""
+if always_approval:
+    tools_str = ", ".join(f"`{n}`" for n in always_approval)
+    approval_prompt_note = (
+        f"\n\nAPPROVAL REQUIRED: The following tools must not be called "
+        f"without explicit user confirmation: {tools_str}. "
+        f"Before invoking any of these tools, describe what you are about "
+        f"to do and ask the user to confirm they want to proceed."
+    )
+
+return create_agent(llm, tools, extra_prompt=approval_prompt_note), client
+```
+
+> [!NOTE]
+> - **Detection happens at startup.** The approval check runs once when the agent initializes. There's no per-call overhead.
+> - **Graceful fallback.** If no tools have `require_approval: "always"`, the system prompt is unchanged and the agent behaves as before.
+> - **`require_approval` is agent-enforced.** The toolbox MCP proxy executes `tools/call` regardless of this setting. Your agent runtime is responsible for gating the call.
+
+### Configure `require_approval` on a tool
+
+Set `require_approval` when you create a toolbox version. The MCP tool examples in [Step 1](#step-1-create-a-toolbox-version) show both `"always"` and `"never"` values. You can also set it through the SDK:
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import MCPTool
+
+toolbox_version = client.beta.toolboxes.create_toolbox_version(
+    toolbox_name="my-toolbox",
+    tools=[
+        MCPTool(
+            server_label="myserver",
+            server_url="https://your-mcp-server.example.com",
+            require_approval="always",  # "always" | "never"
+            project_connection_id="my-connection",
+        )
+    ],
+)
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "myserver",
+      "server_url": "https://your-mcp-server.example.com",
+      "require_approval": "always",
+      "project_connection_id": "my-connection"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
+    serverLabel: "myserver",
+    serverUri: new Uri("https://your-mcp-server.example.com"),
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval
+    )
+));
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "mcp",
+    server_label: "myserver",
+    server_url: "https://your-mcp-server.example.com",
+    require_approval: "always",
+    project_connection_id: "my-connection",
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+resources:
+  - kind: toolbox
+    name: my-toolbox
+    tools:
+      - type: mcp
+        server_label: myserver
+        server_url: https://your-mcp-server.example.com
+        require_approval: always
+        project_connection_id: my-connection
 ```
 
 :::zone-end
