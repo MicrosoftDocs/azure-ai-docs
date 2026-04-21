@@ -57,7 +57,7 @@ ACCOUNT_NAME="<your-foundry-account-name>"
 PROJECT_NAME="<your-project-name>"
 AGENT_NAME="<your-agent-name>"
 BASE_URL="https://${ACCOUNT_NAME}.services.ai.azure.com/api/projects/${PROJECT_NAME}"
-API_VERSION="2025-11-15-preview"
+API_VERSION="v1"
 RESOURCE="https://ai.azure.com"
 ```
 
@@ -91,7 +91,6 @@ from azure.ai.projects import AIProjectClient
 project = AIProjectClient(
     endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
-    allow_preview=True,
 )
 
 for agent in project.agents.list():
@@ -416,7 +415,7 @@ Endpoint routing is configured by patching the agent object. Use `PATCH /agents/
 az rest --method PATCH \
     --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Content-Type=application/merge-patch+json" \
+    --headers "Content-Type=application/merge-patch+json" "Foundry-Features=AgentEndpoints=V1Preview" \
     --body '{
         "agent_endpoint": {
             "version_selector": {
@@ -437,7 +436,7 @@ To split traffic between two versions (for example, 90/10 for a canary deploymen
 az rest --method PATCH \
     --url "${BASE_URL}/agents/${AGENT_NAME}?api-version=${API_VERSION}" \
     --resource "${RESOURCE}" \
-    --headers "Content-Type=application/merge-patch+json" \
+    --headers "Content-Type=application/merge-patch+json" "Foundry-Features=AgentEndpoints=V1Preview" \
     --body '{
         "agent_endpoint": {
             "version_selector": {
@@ -474,7 +473,7 @@ endpoint_config = AgentEndpoint(
     protocols=[AgentEndpointProtocol.RESPONSES],
 )
 
-project.beta.agents.patch_agent_object(
+project.beta.agents.patch_agent_details(
     agent_name="my-agent",
     agent_endpoint=endpoint_config,
 )
