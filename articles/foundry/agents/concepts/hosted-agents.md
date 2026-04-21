@@ -177,7 +177,7 @@ Hosted agents are currently in preview.
 
 ### Pricing
 
-Managed hosting runtime billing is based on consumption of CPU and memory resources during active sessions. For current rates, see the Foundry [pricing page](https://azure.microsoft.com/en-us/pricing/details/foundry-agent-service/).
+Managed hosting runtime billing is based on consumption of CPU and memory resources during active sessions. For current rates, see the Foundry [pricing page](https://azure.microsoft.com/pricing/details/foundry-agent-service/).
 
 ### Region availability
 
