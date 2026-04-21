@@ -21,7 +21,7 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 
 [!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
 
 The prompt flow Python tool provides customized code snippets as self-contained executable nodes. You can quickly create Python tools, edit code, and verify results.
 

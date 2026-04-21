@@ -642,6 +642,68 @@ Different content types support different configuration options. Here's a quick 
 - ✅ `returnDetails`
 - ✅ `disableFaceBlurring`
 
+## Content filter results in the analyze response
+
+When a Foundry model deployment processes content, the associated **Guardrails** instance evaluates both the input prompt and the model completion for potentially harmful content. If any category is flagged or blocked, Content Understanding includes a `content_filters` array in the analyze response.
+
+Each object in the `content_filters` array has the following structure:
+
+| Property | Type | Description |
+|---|---|---|
+| `blocked` | boolean | `true` if the content was blocked by the Guardrails instance; `false` if it was annotated but allowed through. |
+| `source_type` | string | Whether the flag came from the model input (`"prompt"`) or the model output (`"completion"`). |
+| `content_filter_raw` | array | Raw filter output from the Guardrails instance. May be empty. |
+| `content_filter_results` | object | Per-category severity ratings. Each category contains `filtered` (boolean) and `severity` (`"safe"`, `"low"`, `"medium"`, or `"high"`). |
+
+The following categories can appear in `content_filter_results`:
+
+| Category | Description |
+|---|---|
+| `hate` | Content that attacks or uses pejorative language based on a protected characteristic. |
+| `sexual` | Explicit or implicit sexual content. |
+| `violence` | Content that depicts or glorifies violent acts. |
+| `self_harm` | Content that promotes or describes self-harm. |
+
+### Example `content_filters` output
+
+The following example shows a `content_filters` entry where a completion was blocked because of high-severity sexual content:
+
+```json
+"content_filters": [
+  {
+    "blocked": true,
+    "source_type": "completion",
+    "content_filter_raw": [],
+    "content_filter_results": {
+      "hate": {
+        "filtered": false,
+        "severity": "safe"
+      },
+      "sexual": {
+        "filtered": true,
+        "severity": "high"
+      },
+      "violence": {
+        "filtered": false,
+        "severity": "safe"
+      }
+    }
+  }
+]
+```
+
+When `blocked` is `true`, the analyze operation returns an error response and no field extraction results are included. When `blocked` is `false` but categories appear with nonzero severity, the content is annotated and passed through—you can inspect the `content_filter_results` to decide how to handle the output in your own workflow.
+
+### Changing content filter behavior
+
+Content filter thresholds and block/annotate behavior are configured on the Guardrails instance attached to your Foundry model deployment. To change the behavior:
+
+1. In your Azure AI Foundry project, navigate to the model deployment used by your analyzer.
+1. Select the associated Guardrails configuration.
+1. Adjust thresholds or switch categories from **Block** to **Annotate** as needed.
+
+If you need to reduce or disable a filter category in a way that isn't permitted by default, you can apply for modified content filters. For more information, see [Content filtering and Guardrails](../overview.md#content-filtering-and-guardrails).
+
 ## Related content
 
 * Learn about [prebuilt analyzers](prebuilt-analyzers.md) available in Content Understanding.

@@ -4,7 +4,7 @@ description: Set up a SharePoint in Microsoft 365 indexer to automate indexing o
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/16/2026
+ms.date: 04/20/2026
 ms.custom:
   - ignite-2025
   - sfi-image-nochange
@@ -141,7 +141,7 @@ The SharePoint in Microsoft 365 indexer uses a Microsoft Entra application for a
       - If you need to enable content indexing and/or limit [ACL sync (preview)](search-indexer-sharepoint-access-control-lists.md) to specific sites, select:
         - `Sites.Selected`
 
-          Then grant the application full control only for those selected sites.
+          Then grant the application full control only for those selected sites. Review this [SharePoint blog post](https://techcommunity.microsoft.com/blog/spblog/develop-applications-that-use-sites-selected-permissions-for-spo-sites-/3790476) that explains this process.
 
      
           Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret or secretless configuration is also required for authentication. Setting up the authentication mechanism is described later in this article under [authentication modes for application API permissions only](#available-authentication-methods-for-application-api-permissions-only).

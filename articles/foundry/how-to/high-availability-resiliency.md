@@ -6,12 +6,13 @@ ms.topic: how-to
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: andyaviles
-ms.date: 02/24/2026
+ms.date: 04/15/2026
 ms.custom:
   - dev-focus
   - classic-and-new
   - doc-kit-assisted
 ai-usage: ai-assisted
+# CustomerIntent: As an IT architect or platform engineer, I want to configure high availability and disaster recovery for Foundry projects and Agent Services so that my workloads survive regional outages and accidental resource deletion.
 ---
 
 # High availability and resiliency for Microsoft Foundry projects and Agent Services
@@ -20,12 +21,7 @@ ai-usage: ai-assisted
 
 Plan ahead to maintain business continuity and prepare for disaster recovery with [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs).
 
-Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. Create a disaster recovery plan to handle regional service outages. In this article, you learn how to:
-
-* Plan a multi-region deployment of Foundry and associated resources.
-* Maximize your chances to recover logs, notebooks, Docker images, and other metadata.
-* Design your solution for high availability.
-* Fail over to another region.
+Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. This article walks you through configuring multi-region deployments, hardening infrastructure resources, designing model deployment resiliency, and preparing failover procedures for Foundry projects and Agent Services.
 
 > [!IMPORTANT]
 > Foundry itself doesn't provide automatic failover or disaster recovery.
