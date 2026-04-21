@@ -4,7 +4,7 @@ description: "Use toolbox in Microsoft Foundry to add MCP servers, web search, A
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: zhuoqunli
-ms.date: 04/16/2026
+ms.date: 04/21/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -71,6 +71,8 @@ For tool configuration syntax and authentication options for each tool type, see
   - **Agent identity** (required if using a hosted agent) — the agent's managed identity that calls tools at runtime.
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions).
+- [Visual Studio Code](https://code.visualstudio.com/).
+- [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) and the pre-release **Foundry** extension. Toolbox support in Foundry Toolkit is currently in preview and is only available in pre-release versions.
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
 - **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
@@ -211,6 +213,24 @@ console.log(`Created toolbox: ${toolboxVersion.name}, version: ${toolboxVersion.
 
 :::zone-end
 
+:::zone pivot="vscode"
+
+Use Foundry Toolkit in Visual Studio Code to create and publish a toolbox
+from the **Tools** view.
+
+1. Select **Foundry Toolkit** in the Activity Bar.
+1. Under **My Resources**, expand **Your project name** > **Tools**.
+1. Select the **+ Add Toolbox** icon.
+1. On the **Build a Custom Toolbox** tab, enter the toolbox name and
+  description, add the tools you want, and then select **Publish**.
+
+Publishing a new toolbox creates its first version. That version becomes
+the default version automatically.
+
+:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-create.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Build a Custom Toolbox view with fields for the toolbox name, description, and tools, plus the Publish action." lightbox="../../media/tools/toolbox/toolbox-vscode-create.png":::
+
+:::zone-end
+
 :::zone pivot="azd"
 
 By using `azd`, you declare toolbox resources in an `agent.yaml` file instead of calling the SDK. Define your tools in the `resources` section and deploy by using `azd ai agent init`. For `agent.yaml` examples for each tool type, see [Configure tools](#configure-tools). For the full deployment workflow, see [Deploy with azd](#deploy-with-azd).
@@ -325,6 +345,24 @@ Two endpoint patterns exist depending on your role:
 
 > [!NOTE]
 > The first version of a new toolbox is automatically promoted to `default_version` (v1). If you need to change the default later, see [Promote a version to default](#promote-a-version-to-default).
+
+:::zone pivot="vscode"
+
+In Foundry Toolkit for Visual Studio Code, copy the toolbox consumer
+endpoint from the **Toolboxes** view.
+
+1. Select **Foundry Toolkit** in the Activity Bar.
+1. Under **My Resources**, expand **Your project name** > **Tools**.
+1. On the **Toolboxes** tab, locate your toolbox.
+1. In the **Endpoint URL** column, copy the endpoint.
+
+The **Endpoint URL** value is the toolbox consumer endpoint. To
+construct a version-specific endpoint, use the developer pattern shown
+in the table above.
+
+:::image type="content" source="../../media/tools/toolbox/toolbox-vscode-list.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Toolboxes view with the toolbox endpoint URL and the Scaffold code template action." lightbox="../../media/tools/toolbox/toolbox-vscode-list.png":::
+
+:::zone-end
 
 ## Step 3: Verify tool availability
 
@@ -481,6 +519,26 @@ await client.close();
 ```
 
 :::zone-end
+
+:::zone pivot="vscode"
+
+Use the endpoint from Step 2 together with a scaffolded hosted agent
+sample to validate toolbox loading in VS Code.
+
+1. In **Foundry Toolkit**, under **My Resources** > **Your project
+  name** > **Tools**, locate the toolbox you want to test.
+1. Select **Scaffold code template**.
+1. Choose a project folder when prompted.
+1. Follow the generated `README.md` to install dependencies, configure
+  environment variables, and run the sample locally.
+1. Use **Agent Inspector** or run `python main.py` to confirm the
+  toolbox tools load and respond.
+
+For version-specific validation before you promote a new toolbox version,
+use the Python or REST API tab in this step.
+
+:::zone-end
+
 :::zone pivot="azd"
 
 > [!NOTE]
@@ -723,6 +781,30 @@ ResponsesServer.Run<ToolboxHandler>(configure: builder =>
 
 :::zone-end
 
+:::zone pivot="vscode"
+
+Use Foundry Toolkit to scaffold a hosted agent sample that is already
+wired to your toolbox.
+
+1. Select **Foundry Toolkit** in the Activity Bar.
+1. Under **My Resources**, expand **Your project name** > **Tools**.
+1. On the **Toolboxes** tab, locate the toolbox you want to consume,
+  and then select **Scaffold code template**.
+1. In the Command Palette, choose a project folder when prompted.
+1. Open the generated `README.md` and follow the setup, local run, and
+  deployment steps for the scaffold.
+
+The generated project includes the hosted agent entry point, deployment
+files, and a `README.md` with the exact setup, run, and deployment
+steps. The scaffolded agent handles the `Foundry-Features:
+Toolboxes=V1Preview` header for you.
+
+If you want to integrate a toolbox into an existing hosted agent project
+instead of generating a new sample, use the copied endpoint from Step 2
+with the Python or .NET patterns in this section.
+
+:::zone-end
+
 :::zone pivot="azd"
 
 ### Deploy with azd
@@ -894,6 +976,14 @@ console.log(`Created version: ${toolboxVersion.version}`);
 
 :::zone-end
 
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, or REST API tab to create a new
+toolbox version. The Foundry Toolkit workflow in this article focuses on
+creating a toolbox and scaffolding a hosted agent that consumes it.
+
+:::zone-end
+
 :::zone pivot="azd"
 
 This operation isn't supported with azd. To create a toolbox version, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
@@ -949,6 +1039,13 @@ for await (const v of versions) {
 
 :::zone-end
 
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, or REST API tab to list toolbox
+versions.
+
+:::zone-end
+
 :::zone pivot="azd"
 
 This operation isn't supported with azd. To list toolbox versions, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
@@ -998,6 +1095,13 @@ const versionObj = await project.beta.toolboxes.getVersion(
 );
 console.log(`Retrieved version: ${versionObj.version}`);
 ```
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, or REST API tab to get a specific
+toolbox version.
 
 :::zone-end
 
@@ -1062,6 +1166,13 @@ console.log(`Active version: ${toolbox.defaultVersion}`);
 
 :::zone-end
 
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, or REST API tab to promote a toolbox
+version to default.
+
+:::zone-end
+
 :::zone pivot="azd"
 
 This operation isn't supported with azd. To promote a version to default, use the **Python**, **.NET**, **REST API**, or **JavaScript** tab.
@@ -1109,6 +1220,13 @@ await project.beta.toolboxes.deleteVersion(
   "<version_id>",
 );
 ```
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, or REST API tab to delete a toolbox
+version.
 
 :::zone-end
 

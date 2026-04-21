@@ -2078,6 +2078,8 @@ groups:
     title: .NET
   - id: javascript
     title: JavaScript
+  - id: vscode
+    title: VS Code
   - id: azd
     title: azd (deploy)
 - id: selection-foundry-skills
