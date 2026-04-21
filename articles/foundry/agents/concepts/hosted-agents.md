@@ -21,10 +21,10 @@ Hosted agents in Foundry Agent Service solve these challenges for Microsoft Foun
 
 Choose hosted agents over prompt-based agents when you need to:
 
-- **Bring your own code** — use any framework (Agent Framework, LangGraph, Semantic Kernel, or custom code) rather than prompt-only definitions.
-- **Use custom protocols** — accept webhooks or non-OpenAI payloads via the Invocations protocol.
-- **Control compute resources** — specify CPU and memory for your agent’s sandbox.
-- **Run stateful workloads** — persist files and state across turns via $HOME and the /files endpoint.
+- **Bring your own code** - use any framework (Agent Framework, LangGraph, Semantic Kernel, or custom code) rather than prompt-only definitions.
+- **Use custom protocols** - accept webhooks or non-OpenAI payloads via the Invocations protocol.
+- **Control compute resources** - specify CPU and memory for your agent’s sandbox.
+- **Run stateful workloads** - persist files and state across turns via $HOME and the /files endpoint.
 
 ### How it works
 
