@@ -12,6 +12,7 @@ You can try LLM Speech in [Microsoft Foundry](https://ai.azure.com/?cid=learnDoc
 ## Prerequisites
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+
 - A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../../foundry/how-to/create-projects.md).
 
 ## Try LLM speech
