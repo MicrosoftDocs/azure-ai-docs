@@ -10,17 +10,16 @@ ms.date: 11/18/2025
 ms.topic: reference
 ---
 
-# Foundry Tools adaptive custom translation (preview)
+# Foundry Tools adaptive custom translation (GA)
 
 > [!IMPORTANT]
 >
-> * Azure Translator adaptive custom translation is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+> * Azure Translator adaptive custom translation Foundry playground is available in GA June 2026. 
 
-Azure Translator in Foundry Tools adaptive custom translation (adaptCT) is a translation enhancement feature, designed to adapt and optimize large language model (LLM) outputs—such as GPT-4o deployed in Microsoft Foundry—using a small set of reference sentence pairs.
+Azure Translator in Foundry Tools adaptive custom translation (adaptCT) is a translation enhancement feature, designed to adapt and optimize large language model (LLM) outputs—such as GPT-5.1 deployed in Microsoft Foundry—using a small set of reference sentence pairs.
 
-AdaptCT lets you upload 5–10,000 pre‑aligned bilingual segment pairs (source+target). Each pair can contain up to 512 total characters (combined across both sides). The service builds a custom language‑pair dataset index in minutes, which you can then query with the [Azure Translator 2025-05-01-preview APIs](/azure/ai-services/translator/text-translation/preview/overview).
+AdaptCT lets you upload 5–10,000 pre‑aligned bilingual segment pairs (source+target). Each source can contain up to 250 characters and each target can contain up to 250 characters. The service builds a custom language‑pair dataset index in minutes, which you can then query with the [Azure Translator 2026-06-06 APIs](../../../text-translation/2026-06-06/translate-api.md).   
+
 Unlike traditional custom models that require large training sets and separate deployment, AdaptCT uses few‑shot retrieval at inference time: it selects relevant sentence pairs from your dataset index on the fly to adapt and optimize the LLM’s output toward your domain terminology, context, and style. `Availability: Foundry.`
 
 ### Key differences
@@ -29,10 +28,11 @@ Unlike traditional custom models that require large training sets and separate d
 
 
 > [!IMPORTANT]
+> - The Adaptive custom translation playground (GA in Foundry NextGen) enables no-code adaptCT dataset indexes lifecycle management capabilities.
 > - The Adaptive custom translation API (v1.0 preview) enables adaptCT dataset indexes lifecycle management capabilities.
-> - This API requires proper authentication and foundry project setup before use.
+> - This API requires proper authentication and foundry resource setup before use.
 > - Make sure to test thoroughly before using in production environments.
-> - Project and workspace are used interchangeably to mean a Foundry created project.
+> - Project and workspace are used interchangeably to mean a Foundry auto-created project.
 
 ## Compare adaptive and custom translation
 
@@ -62,7 +62,7 @@ Each request to an adaptCT API must include an authentication header. This heade
 * Authenticate with a [bearer token](../../../text-translation/reference/authentication.md#authenticating-with-an-access-token).
 
 
-Form more information about Azure resources, *see* [Azure resources for Azure AI translation](../../../how-to/create-translator-resource.md)
+For more information about Azure resources, *see* [Azure resources for Azure AI translation](../../../how-to/create-translator-resource.md)
 
 ### Required headers
 
@@ -70,11 +70,10 @@ Form more information about Azure resources, *see* [Azure resources for Azure AI
 |--------|-------|----------|-------------|
 | `Ocp-Apim-Subscription-Key` | Your subscription key | **True** | Azure Translator subscription key |
 | `Ocp-Apim-Subscription-Region` | Your resource region | **True** | Azure resource region (for example, "eastus2") |
-| `Authorization` | `Bearer <your-token>` | **True** | OAuth Bearer token for enhanced authentication |
 
 ## How to create and use a dataset index
 1. You must use a Foundry resource. To learn how to create and manage a Foundry resource see [Create your first Foundry resource](../../../how-to/create-translator-resource.md)
-2. [Create Project](#create-project)
+2. [Create workspace](#create-workspace)
 3. [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
 4. [Create Dataset Index](#create-dataset-index)
 5. To translate with dataset index see [Use Text Translation API](/azure/ai-services/translator/text-translation/preview/overview)
@@ -82,12 +81,12 @@ Form more information about Azure resources, *see* [Azure resources for Azure AI
 
 ## API operations
 
-The Adaptive custom translation API is organized into three main operation categories ([project operations](#project-operations-1), [document operations](#document-operations-1), and [dataset index operations](#dataset-index-operations-1)):
+The Adaptive custom translation API is organized into three main operation categories ([workspace operations](#project-operations-1), [document operations](#document-operations-1), and [dataset index operations](#dataset-index-operations-1)):
 
-### Project operations
-* [Get All Projects](#get-all-projects)
-* [Get Project](#get-project)
-* [Create Project](#create-project)
+### Workspace operations
+* [Get All Workspaces](#get-all-workspaces)
+* [Get workspace](#get-workspace)
+* [Create workspace](#create-workspace)
 
 ### Document operations
 * [Get Adaptive Documents](#get-documents)
@@ -100,11 +99,11 @@ The Adaptive custom translation API is organized into three main operation categ
 * [Get All Dataset Indexes](#get-all-dataset-indexes)
 * [Delete Dataset Index](#delete-dataset-index)
 
-## Project operations
+## Workspace operations
 
-### Get all projects
+### Get all workspaces
 
-Retrieves all projects available to the authenticated user.
+Retrieves all workspaces available to the authenticated user.
 
 #### Request URL
 
@@ -128,9 +127,9 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
  -H "Ocp-Apim-Subscription-Region: <your-region>"
 ```
 
-### Get project
+### Get workspace
 
-Retrieves details for a specific project.
+Retrieves details for a specific workspace.
 
 #### Request URL
 
@@ -160,63 +159,13 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
  -H "Ocp-Apim-Subscription-Region: <your-region>"
 ```
 
-### Create project
+### Create workspace
 
-Creates a new project for organizing adaptCT translation dataset data and indexes.
+A workspace must be created in Foundry NextGen after you create the Foundry resource and a  project. In Foundry NextGen,
 
-#### Request URL
-
-```bash
-   POST /workspaces
-```
-
-#### Request headers
-
-| Header | Value | Required |
-|--------|-------|----------|
-| `Content-Type` | `application/json` | **True** |
-| `Ocp-Apim-Subscription-Key` | Your subscription key | **True** |
-| `Ocp-Apim-Subscription-Region` | Your resource region | **True** |
-
-#### Request body
-
-```json
-{
-    "name": "string",
-    "subscription": {
-        "billingRegionCode": "string",
-        "subscriptionKey": "string"
-    }
-}
-```
-
-#### Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `name` | string | **True** | Name for the new workspace |
-| `subscription.billingRegionCode` | string | **True** | Billing region code (for example, "USE2") |
-| `subscription.subscriptionKey` | string | **True** | Subscription key for billing |
-
-#### Request example
-
-**Windows**
-```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces" ^
- -H "Ocp-Apim-Subscription-Key: <your-key>" ^
- -H "Ocp-Apim-Subscription-Region: <your-region>" ^
- -H "Content-Type: application/json" ^
- -d "{\"name\": \"my-workspace\", \"subscription\": {\"billingRegionCode\": \"USE2\", \"subscriptionKey\": \"<your-key>\"}}"
-```
-
-**Linux/macOS**
-```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces" \
- -H "Ocp-Apim-Subscription-Key: <your-key>" \
- -H "Ocp-Apim-Subscription-Region: <your-region>" \
- -H "Content-Type: application/json" \
- -d "{\"name\": \"my-workspace\", \"subscription\": {\"billingRegionCode\": \"USE2\", \"subscriptionKey\": \"<your-key>\"}}"
-```
+- Select a project
+- Select Build > Models > AI Services > Azure Translator - Text Translation > Adaptive LLM. The workspace is automatically created. Now you can use provided adaptive demo documents or upload your own documents to create adaptive dataset indexes. 
+- Find the workspace Id by creating your first adaptive dataset index in the playground using the Adaptive LLM tab. The index Id is constructed as <`workspace-Id`>-adaptive-general, or invoking [GET Workspaces](#get-all-workspaces).
 
 ## Document operations
 
@@ -504,7 +453,7 @@ curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/transla
 
 ## Translate with dataset index
 
-[Use Text Translation API](/azure/ai-services/translator/text-translation/preview/overview)
+[Use Text Translation API with AdaptiveDatasetId](../../../text-translation/2026-06-06/translate-api.md#text-translation-request-applying-adaptive-custom-translation-with-dataset)
 
 ## Error responses
 
@@ -541,7 +490,7 @@ The API returns standard HTTP status codes. Common error responses:
 
 ## Next steps
 
-* [Learn about custom translator models](/azure/ai-services/translator/custom-translator/overview)
-* [Learn about the text translation API](/azure/ai-services/translator/text-translation/preview/overview)
-* [Explore Foundry for advanced AI capabilities](/azure/ai-foundry/)
+* [Learn about custom translator models](../../../custom-translator/azure-ai-foundry/overview.md)
+* [Learn about the text translation API](../../../text-translation/2026-06-06/overview.md)
+* [Explore Foundry for advanced AI capabilities](../../../overview.md)
 

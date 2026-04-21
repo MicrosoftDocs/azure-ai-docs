@@ -124,15 +124,15 @@ items:
     
 
 
-- name: Text translation (2025-10-01-preview) 
+- name: Text translation (2026-06-06) 
   items:
   - name: Overview 
     displayName: gpt, adaptive, tone, gender
     href: text-translation/preview/overview.md
-  - name: "Migrate to 2025-10-01-preview "
+  - name: "Migrate to 2026-06-06 "
     displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
     href: text-translation/how-to/migrate-to-preview.md
-  - name: REST API guide (2025-10-01-preview) 
+  - name: REST API guide (2026-06-06) 
     displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
     href: text-translation/preview/rest-api-guide.md
   - name: Get languages 
@@ -346,7 +346,8 @@ items:
       href: neural-dictionary.md
   - name: Custom Translator portal concepts
     items:
-    - name: Custom text translation   
+    - name: Custom text-translation/preview/get-languages.md
+      displayName: speech
       href: custom-translator/concepts/customization.md
     - name: Workspaces and projects
       href: custom-translator/concepts/workspace-and-project.md
@@ -421,7 +422,7 @@ items:
   - name: Modifications to Azure Translator
     displayName: deprecation, deprecate, changes, modify, modifications
     href: modifications-deprecations.md
-  - name: Azure Translator known issues and troubleshooting
+  - name: Azure Translator known issues
     displayName: error, bug, issue, problem, troubleshoot, troubleshooting
     href: text-translation/reference/known-issues.md
   - name: Azure Translator compliance and certification

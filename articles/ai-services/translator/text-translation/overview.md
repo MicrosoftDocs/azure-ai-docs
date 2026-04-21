@@ -26,28 +26,28 @@ Text translation documentation contains the following article types:
 
 Use the following tabs to compare the latest preview version and the latest GA version.
 
-### [Latest preview version](#tab/preview)
+### [Latest version](#tab/2026-06-06)
 
-The latest preview release (`2025-10-01-preview`) lets you optionally select either the standard neural machine translation (NMT) or a Large Language Model (LLM) deployment (GPT-4o-mini or GPT-4o). However, using an LLM model requires a Microsoft Foundry resource. For more information, see [configure Azure resources](../how-to/create-translator-resource.md).
+The latest release (`2026-06-06`) lets you optionally select either the standard neural machine translation (NMT) or a Large Language Model (LLM) deployment (e.g., GPT-5.1). However, using an LLM model requires a Microsoft Foundry resource. For more information, see [configure Azure resources](../how-to/create-translator-resource.md).
 
 For a quick overview of Microsoft Foundry, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md)
 
 * [**Languages**](preview/get-languages.md). Returns a list of languages supported by the [**Translate**](preview/translate-api.md) and [**Transliterate**](preview/transliterate-api.md) APIs. This request doesn't require authentication. Copy and paste the following `GET` request into your preferred REST API tool or browser:
 
     ```bash
-        https://api.cognitive.microsofttranslator.com/languages?api-version=2025-10-01-preview
+        https://api.cognitive.microsofttranslator.com/languages?api-version=2026-06-06
     ```
 
 * [**Translate**](preview/translate-api.md). Renders single source-language text to multiple target-language texts with a single `POST` request.
 
-    For an end-to-end request example, see [REST API guide (preview)](preview/rest-api-guide.md).
+    For an end-to-end request example, see [REST API guide](preview/rest-api-guide.md).
 
 
 * [**Transliterate**](preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
 
 ### [Latest GA version](#tab/ga)
 
-The latest GA release uses API version `3.0`.
+The latest GA release uses API version `2026-06-06`.
 
 * [**Languages**](reference/v3/languages.md). Returns a list of languages supported by **Translate**, **Transliterate**, and **Dictionary Lookup** operations. This request doesn't require authentication. Copy and paste the following `GET` request into your preferred REST API tool or browser:
 

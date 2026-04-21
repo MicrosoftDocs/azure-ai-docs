@@ -21,6 +21,25 @@ Azure Translator in Foundry Tools is a language service that enables users to tr
 
 Azure Translator supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
 
+## June 2026
+
+### Microsoft Foundry (new)
+
+* The Foundry portal streamlines access to models, agents, and tools for Foundry projects.
+
+* For text translation, you have these model options: Azure-MT (neural machine translation),
+gpt-5, gpt-5-mini, gpt-5.1, gpt-5.2, and gpt-5.2-chat. These models allow you to generate translations tailored to a specific gender or tone, and you can refine your results using your domain-specific data and terminology. Azure Translator text translation playground in Foundry is available to test translation quality using these models.
+
+* Document translation is available through a built-in playground, where you can select or provide a source document or text, specify the target language, and receive your translated output.
+
+* Adaptive custom translation (adaptCT) GA is available in Foundry > Build > AI Services > Azure Translator - Text Translation > Adaptive LLM playground, where you can upload adaptive documents (or use provided Demo samples), create bilingual dataset index, and test in the playground.
+
+### Azure Translator in Foundry Tools 2026-06-06 (GA)
+
+Translator `2026-06-06` GA is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from various generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
+
+For more information, *see* [Text translation overview](text-translation/overview.md).
+
 ## December 2025
 
 ### Translate image files (2025-12-01-preview)
@@ -48,11 +67,11 @@ Translator `2025-10-01-preview` is our newest cloud-based multilingual translati
 For more information, *see* [Text translation overview (preview)](text-translation/preview/overview.md).
 
 
-## September 2025
+## June 2026
 
-### Azure Translator in Foundry Tools 2025-05-01-preview
+### Azure Translator in Foundry Tools 2026-06-06
 
-Azure Translator `2025-05-01-preview` is our latest cloud-based, multilingual, neural machine translation service. You can choose between general neural machine translation (NMT) or select from a list of generative AI large language models (LLMs) at the request level. The service enables robust and scalable translation capabilities, making it suitable for diverse applications. For more information, *see* [Text translation overview](text-translation/overview.md).
+Azure Translator `2026-06-06` is our latest cloud-based, multilingual, neural machine translation service. You can choose between general neural machine translation (NMT) or select from a list of generative AI large language models (LLMs) at the request level. The service enables robust and scalable translation capabilities, making it suitable for diverse applications. For more information, *see* [Text translation overview](text-translation/overview.md).
 
 ## July 2025
 
