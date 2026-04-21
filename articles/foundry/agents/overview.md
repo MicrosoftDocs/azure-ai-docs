@@ -164,10 +164,15 @@ Agent Service is designed for enterprise workloads where you need strong control
 - **Bring your own resources**: Use your own Azure resources (for example, storage, Azure AI Search, and Azure Cosmos DB for conversation state) to meet compliance and operational needs. See [Use your own resources](how-to/use-your-own-resources.md).
 - **Responsible AI guidance**: For a broader set of recommendations and governance resources, see [Responsible AI for Microsoft Foundry](../responsible-use-of-ai-overview.md).
 
+## Agent manifests
+
+Agent manifests are pre-built configurations that you can deploy with one click. Each manifest combines tested instructions, tool configurations, and interaction patterns for common enterprise workflows. Browse manifests by industry, tools, or complexity to find a starting point, then customize for your scenario. For more information, see [Agent manifests for Foundry Agent Service](concepts/agent-catalog.md).
+
 ## Related content
 
 - [Set up your environment](environment-setup.md)
 - [Agent development lifecycle](concepts/development-lifecycle.md)
+- [Agent manifests](concepts/agent-catalog.md)
 - [Deploy your first hosted agent](quickstarts/quickstart-hosted-agent.md)
 - [Tool catalog](concepts/tool-catalog.md)
 - [Quotas, limits, and regional support](concepts/limits-quotas-regions.md)
