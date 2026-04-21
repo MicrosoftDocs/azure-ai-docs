@@ -44,6 +44,12 @@ items:
   - name: Create custom policy definitions
     href: ../../how-to/custom-policy-definition.md
 
+# Monitor
+- name: Monitor
+  items:
+  - name: Diagnostic logging
+    href: ../../../ai-services/diagnostic-logging.md?context=/azure/foundry/context/context
+
 # Reliability and Recovery
 - name: High availability and disaster recovery
   items:
