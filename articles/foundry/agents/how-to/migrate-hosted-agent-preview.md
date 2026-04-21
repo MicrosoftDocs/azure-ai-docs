@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 This article walks you through migrating hosted agents from the initial public preview to the refreshed public preview of Foundry Agent Service. The refreshed preview introduces a new hosting backend, protocol libraries, identity model, and management APIs.
 
 > [!IMPORTANT]
-> The initial public preview hosting backend is being retired. You must redeploy your agents using the new model described in this article. Existing agent deployments on the old backend won't be migrated automatically.
+> The initial public preview hosting backend is being retired. You must redeploy your agents using the new model described in this article. Existing agent deployments on the old backend won't be migrated automatically and will be supported only until May 22, 2026. 
 
 This guide applies to you if you deployed a hosted agent before April 2026 using the `azure-ai-agentserver-agentframework` or `azure-ai-agentserver-langgraph` packages, or any custom code that used the initial preview hosting APIs.
 
