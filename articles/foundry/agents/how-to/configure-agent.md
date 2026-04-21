@@ -29,7 +29,7 @@ After you configure your endpoint and are ready to share it, grant others access
 - [Publish an agent as a digital worker in Agent 365](./agent-365.md)
 
 > [!NOTE]
-> If you're migrating from the previous publishing model, see [Migrate from Agent Applications to the new agent model](./migration-guide.md).
+> If you're migrating from the previous publishing model, see [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md).
 
 
 ## Prerequisites
@@ -48,14 +48,13 @@ Before working with your agent's endpoint, understand the relationship between p
 
 :::image type="content" source="../media/agent-object-model.png" alt-text="Diagram illustrating how Foundry projects organize agent versions and agents.":::
 
-
 **Foundry project**: A Foundry project is a folder that groups related resources such as agents, files, and tools.
 
 **Agent version**: is an immutable snapshot of the agent's configuration. Any change (even a single prompt edit) produces a new version.
 
-**Agent**: The stable, consumer-facing representation of an agent. An agent's "self" is defined by its evolving context, capabilities, and behavior — not by a fixed implementation snapshot. The agent anchors that evolution to a consistent identity, endpoint, and authorization surface, so consumers always interact with the same entity even as the underlying agent versions change.
+**Agent**: The stable, consumer-facing representation of an agent. An agent's "self" is defined by its evolving context, capabilities, and behavior—not by a fixed implementation snapshot. The agent anchors that evolution to a consistent identity, endpoint, and authorization surface, so consumers always interact with the same entity even as the underlying agent versions change.
 
-**Agent endpoint**: The URL consumers call to invoke the agent. It's live the moment you create the agent — there's no separate publish step — and the URL doesn't change as you roll out new versions. You configure which version it serves, which protocols it speaks, and how callers authenticate.
+**Agent endpoint**: The URL consumers call to invoke the agent. It's live the moment you create the agent—there's no separate publish step—and the URL doesn't change as you roll out new versions. You configure which version it serves, which protocols it speaks, and how callers authenticate.
 
 For a full list of agent object properties, see the [reference section](#reference-agent-object-properties) at the bottom of this article.
 
@@ -81,11 +80,11 @@ An agent can expose multiple protocols simultaneously:
 
 ### Authorization schemes
 
-Configure inbound authentication on the agent endpoint:
+You can configure inbound authentication on the agent endpoint:
 
 | Scheme type | Description | Isolation key source |
 |-------------|-------------|----------------------|
-| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Azure AI User** on the Foundry project. Use this for invoking via the Responses API and agent-to-agent calls. | `Entra` — derives user identity from the Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
+| **`Entra`** | Microsoft Entra ID authorization. The caller must have the **Azure AI User** on the Foundry project. | `Entra` — derives user identity from the Entra token. `Header` — reads isolation keys from custom headers (`user_isolation_key`, `chat_isolation_key`). |
 | **`BotService`** | Azure Bot Service channel authorization. Used when publishing to M365/Teams. Configured automatically during the channel publish flow. | N/A |
 | **`BotServiceRbac`** | Azure Bot Service authorization combined with Azure RBAC. Use when you need Bot Service channel auth with additional RBAC enforcement. | N/A |
 
@@ -93,7 +92,7 @@ API key authentication isn't supported. Use Microsoft Entra ID (Azure RBAC) to a
 
 ## Configure the agent properties
 
-The agent's stable endpoint is available from the moment the agent is created. By default it routes 100% of traffic to the latest agent version. You can reconfigure the version routing, enable protocols, set authorization schemes, and add an agent card.
+If not explicitly set, by default the version sector routes 100% of traffic to the latest agent version, responses protocol is enable, and authorization is set as Entra. You can reconfigure the version routing, enable protocols, set authorization schemes, and add an agent card.
 
 > [!TIP]
 > Each section below shows how to update one setting at a time so the examples are easy to follow. When you use the REST API or SDK, you can update several settings at once in a single request — only the fields you include change, and everything else stays the same.
@@ -109,14 +108,14 @@ By default, the routing policy is **Always use latest**. To pin traffic to a spe
 
    **Expected result**: You see the available endpoints for your agent and the current version routing configuration. The endpoints are live from agent creation — no publish step is required to activate them.
 
-1. Select the version selector arrow and choose a specific version.
+1. Click the version selector arrow and choose a specific version.
 
    **Expected result**: The stable endpoint now routes 100% of traffic to the selected version. When pinned, creating new versions doesn't change what's served.
 
 #### [REST API](#tab/rest)
 
 ```
-PATCH {endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
+PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
 Foundry-Features: AgentEndpoints=V1Preview
@@ -184,7 +183,7 @@ Updating protocols and authorization schemes isn't yet configurable in the Found
 #### [REST API](#tab/rest)
 
 ```
-PATCH {endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
+PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
 Foundry-Features: AgentEndpoints=V1Preview
@@ -211,7 +210,13 @@ Foundry-Features: AgentEndpoints=V1Preview
 
 ```python
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import AgentEndpoint, AgentEndpointProtocol
+from azure.ai.projects.models import (
+    AgentEndpoint,
+    AgentEndpointProtocol,
+    EntraAuthorizationScheme,
+    BotServiceRbacAuthorizationScheme,
+    EntraIsolationKeySource,
+)
 from azure.identity import DefaultAzureCredential
 
 PROJECT_ENDPOINT = "https://{account}.services.ai.azure.com/api/projects/{project}"
@@ -226,14 +231,24 @@ project_client = AIProjectClient(
 
 with project_client:
     endpoint_config = AgentEndpoint(
-        protocols=[AgentEndpointProtocol.RESPONSES, AgentEndpointProtocol.ACTIVITY, AgentEndpointProtocol.INVOCATIONS],
+        protocols=[
+            AgentEndpointProtocol.RESPONSES,
+            AgentEndpointProtocol.ACTIVITY,
+            AgentEndpointProtocol.INVOCATIONS,
+        ],
+        authorization_schemes=[
+            EntraAuthorizationScheme(
+                isolation_key_source=EntraIsolationKeySource(),
+            ),
+            BotServiceRbacAuthorizationScheme(),
+        ],
     )
 
     patched_agent = project_client.beta.agents.patch_agent_details(
         agent_name=agent_name,
         agent_endpoint=endpoint_config,
     )
-    print(f"Protocols updated for agent: {patched_agent.name}")
+    print(f"Protocols and authorization updated for agent: {patched_agent.name}")
 ```
 
 ---
@@ -249,7 +264,7 @@ Adding an agent card isn't yet configurable in the Foundry portal. Use the REST 
 #### [REST API](#tab/rest)
 
 ```
-PATCH {endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
+PATCH {{endpoint}}/agents/{{agent_name}}?api-version=v1
 Authorization: Bearer {{token}}
 Content-Type: application/merge-patch+json
 Foundry-Features: AgentEndpoints=V1Preview
@@ -293,9 +308,9 @@ Foundry-Features: AgentEndpoints=V1Preview
 
 ---
 
-## View agent details
+## Get your agent properties
 
-To view the full agent object including identity, protocols, authorization, and endpoint configuration:
+To view the current properties of your agent including identity, protocols, authorization, and endpoint configuration:
 
 ```
 GET {endpoint}/agents/{agent_name}?api-version=2025-11-15-preview
@@ -304,37 +319,6 @@ Content-Type: application/json
 Foundry-Features: AgentEndpoints=V1Preview
 ```
 
-The response includes:
-- **Active agent versions and traffic routing** configuration
-- **Entra Agent Identity** (name, client ID, object ID)
-- **Entra Agent Blueprint** (name, client ID, object ID)
-- **Protocols** enabled on the endpoint
-- **Authorization schemes** configured
-- **Endpoints** for each enabled protocol
-- **Status** (Enabled/Disabled)
-- **M365 Card** (if published to M365/Teams)
-
-## Invoke your agent
-
-The stable endpoint is live from the moment the agent is created. You can invoke it immediately — no configuration changes are required unless you want to change the default behavior (latest version, Responses protocol, Azure RBAC auth).
-
-### Quick verification
-
-```azurecli
-az account get-access-token --resource https://ai.azure.com
-```
-
-```bash
-curl -X POST \
-  "https://{account}.services.ai.azure.com/api/projects/{project}/agents/{agent}/protocols/openai/v1/responses?api-version=2025-11-15-preview" \
-  -H "Authorization: Bearer <access-token>" \
-  -H "Content-Type: application/json" \
-  -d '{"input":"Say hello"}'
-```
-
-If you receive `403 Forbidden`, confirm the caller has the **Foundry Agent Consumer** or **Azure AI User** role on the agent.
-
-For detailed instructions on using the Responses API, see [Invoke your agent using the Responses API protocol](./publish-responses.md).
 
 ## Security and privacy considerations
 
@@ -354,7 +338,7 @@ For detailed instructions on using the Responses API, see [Invoke your agent usi
 | `403 Forbidden` when invoking the endpoint | Caller lacks the required role on the agent | Assign the **Azure AI User** role on the Foundry project resource. |
 | `401 Unauthorized` when invoking the endpoint | The access token is missing, expired, or for the wrong resource | Reauthenticate and request a token for `https://ai.azure.com`. |
 | Tool calls fail | The agent identity doesn't have access to downstream resources | Assign the required RBAC roles to the agent's identity for any Azure resources it accesses. |
-| Publishing to M365/Teams fails | The agent doesn't have a unique identity (`agent.identity` is null) | See the [migration guide](./migration-guide.md) for steps to resolve this. |
+| Publishing to M365/Teams fails | The agent doesn't have a unique identity (`agent.identity` is null) | See the [migration guide](./migrate-agent-applications.md) for steps to resolve this. |
 
 ## Reference: Agent object properties
 
@@ -368,8 +352,8 @@ For detailed instructions on using the Responses API, see [Invoke your agent usi
 | `name` | string (max 63 chars) | Name of the agent | No | No |
 | `versions` | object | Contains `latest` with the latest `AgentVersion` | Yes (via create_version) | Yes |
 | `agent_endpoint` | AgentEndpoint | Endpoint configuration (version selector, protocols, authorization). See the AgentEndpoint table below. | Yes (`PATCH /agents/{name}`) | Partial (version selector only) |
-| `instance_identity` | object | The agent's unique Entra identity (`principal_id`, `client_id`) | No (read-only) | No |
-| `blueprint` / `blueprint_reference` | object | Reference to the agent's Entra agent blueprint (`principal_id`, `client_id`, or `type`, `blueprint_id`) | No (read-only) | No |
+| `instance_identity` | object | The agent's unique Microsoft Entra identity (`principal_id`, `client_id`) | No (read-only) | No |
+| `blueprint` / `blueprint_reference` | object | Reference to the agent's Microsoft Entra agent blueprint (`principal_id`, `client_id`, or `type`, `blueprint_id`) | No (read-only) | No |
 | `agent_card` | AgentCard | Agent details for consumers and A2A | Yes (`PATCH /agents/{name}`) | No (REST API / SDK only) |
 | `status` | enum (`Enabled`, `Disabled`) | Whether the agent is serving traffic | Not yet supported | No |
 | `m365_card` | M365Card | Publishing config for M365/Teams. Set by the publish API. | No | No |
@@ -385,8 +369,8 @@ For detailed instructions on using the Responses API, see [Invoke your agent usi
 | Property | Type | Description |
 | --- | --- | --- |
 | `version_selector` | VersionSelector | How traffic is routed to agent versions |
-| `protocols` | array of string | Protocols enabled (e.g., `responses`, `activity`, `a2a`) |
-| `authorization_schemes` | array of objects | Authorization schemes (e.g., `Entra`, `BotServiceRbac`) |
+| `protocols` | array of string | Protocols enabled (for example, `responses`, `activity`, `a2a`) |
+| `authorization_schemes` | array of objects | Authorization schemes (for example, `Entra`, `BotServiceRbac`) |
 
 </details>
 
@@ -413,7 +397,7 @@ For detailed instructions on using the Responses API, see [Invoke your agent usi
 - Learn about [Agent identity concepts in Foundry](../concepts/agent-identity.md)
 - Learn about [Hosted agents](../concepts/hosted-agents.md)
 - [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
-- [Migrate from Agent Applications to the new agent model](./migration-guide.md)
+- [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md)
 
 ## Next steps
 
