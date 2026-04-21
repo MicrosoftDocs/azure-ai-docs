@@ -1,5 +1,5 @@
 ---
-title: "Configure your agent endpoint and settings"
+title: "Configure and share your agent"
 description: "Learn how to configure your agent's stable endpoint, select the active version, and share your agent with consumers in Microsoft Foundry."
 #customer intent: As a developer, I want to configure my agent's stable endpoint in Microsoft Foundry so that consumers can invoke it.
 author: sdgilley
@@ -356,7 +356,6 @@ Foundry-Features: AgentEndpoints=V1Preview
 | `blueprint` / `blueprint_reference` | object | Reference to the agent's Microsoft Entra agent blueprint (`principal_id`, `client_id`, or `type`, `blueprint_id`) | No (read-only) | No |
 | `agent_card` | AgentCard | Agent details for consumers and A2A | Yes (`PATCH /agents/{name}`) | No (REST API / SDK only) |
 | `status` | enum (`Enabled`, `Disabled`) | Whether the agent is serving traffic | Not yet supported | No |
-| `m365_card` | M365Card | Publishing config for M365/Teams. Set by the publish API. | No | No |
 
 > [!NOTE]
 > The `version_selector`, `protocols`, and `authorization_schemes` are nested under `agent_endpoint`. To update any of them, use `PATCH /agents/{agent_name}` with the changes inside the `agent_endpoint` property bag.
@@ -371,24 +370,6 @@ Foundry-Features: AgentEndpoints=V1Preview
 | `version_selector` | VersionSelector | How traffic is routed to agent versions |
 | `protocols` | array of string | Protocols enabled (for example, `responses`, `activity`, `a2a`) |
 | `authorization_schemes` | array of objects | Authorization schemes (for example, `Entra`, `BotServiceRbac`) |
-
-</details>
-
-<details>
-<summary>M365Card properties</summary>
-
-| Property | Type | Required | Description |
-| --- | --- | --- | --- |
-| `displayName` | string | Yes | Display name in Teams/M365 |
-| `version` | string | Yes | User-facing version |
-| `shortDescription` | string | Yes | Short description |
-| `fullDescription` | string | Yes | Full description |
-| `developerName` | string | Yes | Organization or developer name |
-| `website` | string (https://) | Yes | Website URL |
-| `termsOfUseUrl` | string (https://) | Yes | Terms of use URL |
-| `privacyStatementUrl` | string (https://) | Yes | Privacy URL |
-| `agentPublishScope` | enum | Yes | `Individual`, `Shared`, or `Organization` |
-| `isDigitalWorker` | boolean | Yes | Whether this is a digital worker |
 
 </details>
 
