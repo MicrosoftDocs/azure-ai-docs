@@ -17,6 +17,8 @@ ms.update-cycle: 365-days
 
 # Flows in prompt flow
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 In Azure Machine Learning prompt flow, you can develop an LLM-based AI application by engaging in the stages of developing, testing, tuning, and deploying a flow. This comprehensive workflow allows you to harness the power of Large Language Models (LLMs) and create sophisticated AI applications with ease.
 
 ## Flows
