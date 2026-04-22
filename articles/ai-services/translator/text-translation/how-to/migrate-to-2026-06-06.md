@@ -50,7 +50,7 @@ The following section compares available methods in Translator Text API `2026-06
 | **targets**<br>&bullet; An array that defines one or more translation targets. | &bullet; *The `targets` array isn't used in the v3.0 schema.* |
 | **language**<br>&bullet; Target language code specified within the `targets` array.<br>&bullet; Values must be from the [supported languages](../../language-support.md). | **to**<br>&bullet; Specifies the target language for translation.<br>&bullet; Values must be from the [supported languages](../../language-support.md#translation). |
 
-For details about supported **`targets` array** values, see [Translate text](../preview/translate-api.md).
+For details about supported **`targets` array** values, see [Translate text](../2026-06-06/translate-api.md).
 
 ## API compatibility
 

@@ -1330,6 +1330,31 @@
       "source_path": "articles/foundry-classic/openai/how-to/business-continuity-disaster-recovery.md",
       "redirect_url": "/azure/foundry-classic/how-to/high-availability-resiliency",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/translator/text-translation/preview/get-languages.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/2026-06-06/get-languages",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/ai-services/translator/text-translation/preview/overview.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/2026-06-06/overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/ai-services/translator/text-translation/preview/rest-api-guide.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/2026-06-06/rest-api-guide",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/ai-services/translator/text-translation/preview/translate-api.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/2026-06-06/translate-api",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/ai-services/translator/text-translation/preview/transliterate-api.md",
+      "redirect_url": "/azure/ai-services/translator/text-translation/2026-06-06/transliterate-api",
+      "redirect_document_id": true
     }
   ]
 }
