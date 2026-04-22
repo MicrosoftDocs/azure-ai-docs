@@ -31,15 +31,15 @@ You can provide audio data in either of the following ways:
 
 - Pass inline audio data.
 
-```
-  --form 'audio=@"YourAudioFile"'
-```
+  ```
+    --form 'audio=@"YourAudioFile"'
+  ```
 
 - Upload an audio file from a public `audioUrl`.
 
-```
-  --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
-```
+  ```
+    --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
+  ```
 
 This article uses the inline audio upload as an example.
 
@@ -61,7 +61,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-When you use the MAI-Transcribe-1 model, diarization and prompt aren't supported.
+When you use the MAI-Transcribe-1 model, diarization and prompt features aren't supported.
 
 Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don't specify a language, the service automatically detects it. The following languages are currently supported:
 
