@@ -14,9 +14,9 @@ ms.date: 04/03/2026
 
 | Model Name    | Default TPM | Enterprise TPM | 
 |:--------------|------------:|---------------:|
-| gpt4.1        | 300	      | 2,000          |
-| gpt-4.1-mini	| 300	      | 2,000          |
-| gpt-4o        | 80          | 80             |
-| text-embedding-3-large | 350	| 350 |
-| text-embedding-3-small | 350	| 350 |
-| text-embedding-ada-002 | 350	| 350 |
+| gpt4.1        | 300,000	      | 2,000,000          |
+| gpt-4.1-mini	| 300,000	      | 2,000,000          |
+| gpt-4o        | 80,000          | 80,000             |
+| text-embedding-3-large | 350,000	| 350,000 |
+| text-embedding-3-small | 350,000	| 350,000 |
+| text-embedding-ada-002 | 350,000	| 350,000 |
