@@ -4,7 +4,7 @@ description: Learn how to handle a regional capacity constraint that effects you
 author: mattwojo
 ms.author: mattwoj
 ms.reviewer: angiesi
-ms.date: 04/20/2026
+ms.date: 04/22/2026
 ms.service: azure-ai-search
 ms.topic: concept-article
 ---
@@ -30,7 +30,7 @@ Retry during off-peak hours when:
 
 - The deployment timeline allows for a delay of several days.
 - The constraint is likely the result of a temporary regional surge.
-- You prefer no infrastructure changes at this time.
+- You prefer no architectural changes at this time.
 
 ## Criteria for selecting an alternative region
 
