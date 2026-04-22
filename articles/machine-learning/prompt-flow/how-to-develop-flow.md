@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 ---
 # Develop prompt flow
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 Prompt flow is a development tool that streamlines the development cycle of AI applications that are powered by Large Language Models (LLMs). In this article, you learn how to create and develop a prompt flow and a chat flow in Azure Machine Learning studio.
 
 As the momentum for LLM-based AI applications grows, prompt flow provides a comprehensive solution that simplifies the process of prototyping, experimenting, iterating, and deploying AI applications. By using prompt flow, you can:

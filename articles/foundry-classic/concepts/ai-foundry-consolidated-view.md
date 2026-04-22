@@ -7,7 +7,7 @@ ms.author: jburchel
 ms.reviewer: aashishb
 ms.date: 01/05/2026
 ms.topic: concept-article
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - dev-focus
 ai-usage: ai-assisted

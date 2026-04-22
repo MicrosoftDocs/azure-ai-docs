@@ -4,7 +4,7 @@ description: Include file
 author: lgayhardt
 ms.reviewer: minthigpen
 ms.author: lagayhar
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -51,17 +51,3 @@ AI Red Teaming Agent has several important limitations to consider when running 
 - Red teaming runs only represent adversarial population and don't include any observational population.
 - Red teaming runs use generative models to evaluate Attack Success Rates (ASR) and can be non-deterministic, non-predictive. Therefore, there's always a chance of false positives and we always recommend reviewing results before taking mitigation actions.
 
-## Learn more
-
-Get started with our [documentation on how to run an automated scan for safety risks with the AI Red Teaming Agent](../how-to/develop/run-scans-ai-red-teaming-agent.md).
-
-Learn more about the tools used by the AI Red Teaming Agent.
-
-- [Azure AI Risk and Safety Evaluations](../concepts/safety-evaluations-transparency-note.md)
-- [PyRIT: Python Risk Identification Tool](https://github.com/microsoft/PyRIT)
-
-The most effective strategies for risk assessment combine automated tools that surface potential risks with expert human analysis for deeper insights. If your organization is just starting with AI red teaming, explore the resources created by the Microsoft AI red team:
-
-- [Planning red teaming for large language models (LLMs) and their applications](../openai/concepts/red-teaming.md)
-- [Three takeaways from red teaming 100 generative AI products](https://www.microsoft.com/security/blog/2025/01/13/3-takeaways-from-red-teaming-100-generative-ai-products/)
-- [Microsoft AI Red Team building future of safer AI](https://www.microsoft.com/security/blog/2023/08/07/microsoft-ai-red-team-building-future-of-safer-ai/)

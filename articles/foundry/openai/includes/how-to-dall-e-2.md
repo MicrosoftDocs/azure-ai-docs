@@ -4,7 +4,7 @@ description: Include file
 author: PatrickFarley
 ms.reviewer: sgilley
 ms.author: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -27,7 +27,7 @@ https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deploymen
 
 Replace the following values:
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
-- `<your_deployment_name>` is the name of your GPT-image-1 series model deployment.
+- `<your_deployment_name>` is the name of your GPT-image series model deployment.
 - `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
 
 **Required headers**:

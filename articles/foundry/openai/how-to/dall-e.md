@@ -4,9 +4,9 @@ description: "Learn how to generate and edit images using Azure OpenAI image gen
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 11/21/2025
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.date: 04/17/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.custom:
   - classic-and-new
@@ -32,8 +32,9 @@ The following command shows the most basic way to use an image model with code. 
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
-- Deploy a `gpt-image-1`-series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
+- Deploy a `gpt-image-1`-series or `gpt-image-2` model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 series models are available in limited access: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access).
+    - GPT-image-2 is available in public preview.
 - Python 3.8 or later.
     - Install the required packages: `pip install openai azure-identity`
 
@@ -48,7 +49,7 @@ https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deploymen
 Replace the following values:
 
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
-- `<your_deployment_name>` is the name of your GPT-image-1 series model deployment.
+- `<your_deployment_name>` is the name of your model deployment.
 - `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
 
 **Required headers**:
@@ -94,7 +95,7 @@ The response from a successful image generation API call looks like the followin
 
 Streaming lets you receive partial images as they're generated, providing faster visual feedback for your users. This is useful for applications where you want to show generation progress. The `partial_images` parameter (1-3) controls how many intermediate images are returned before the final result.
 
-You can stream image generation requests to `gpt-image-1`-series models by setting the `stream` parameter to `true`, and setting the `partial_images` parameter to a value between 0 and 3.
+You can stream image generation requests to `gpt-image-1`-series and `gpt-image-2` models by setting the `stream` parameter to `true`, and setting the `partial_images` parameter to a value between 0 and 3.
 
 ```python
 import base64
@@ -136,7 +137,13 @@ The following API body parameters are available for image generation models.
 
 #### Size
 
-Specify the size of the generated images. Must be one of `1024x1024`, `1024x1536`, or `1536x1024` for GPT-image-1 series models. Square images are faster to generate.
+For GPT-image-1 series models, specify the size of the generated images as one of `1024x1024`, `1024x1536`, or `1536x1024`. Square images are faster to generate.
+
+For `gpt-image-2`, arbitrary resolutions are supported with the following constraints:
+- Both edges must be a multiple of 16 pixels.
+- Long edge up to 3840 px (4K support).
+- Aspect ratio up to 3:1.
+- Total pixel count between 655,360 and 8,294,400.
 
 #### Quality
 

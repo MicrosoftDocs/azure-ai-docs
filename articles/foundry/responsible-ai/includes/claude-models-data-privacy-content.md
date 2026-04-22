@@ -1,12 +1,12 @@
 ---
-title: include file
+title: Include file
 description: include file
 author: msakande
 ms.author: mopeakande
 ms.reviewer: keijik
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 04/20/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -27,13 +27,13 @@ For Anthropic Claude models, Microsoft provides and manages the API deployment i
 > [!NOTE]
 > As explained during the deployment process for Anthropic Claude API deployment, Microsoft will share customer contact information and transaction details (including the usage volume associated with the offering) with the model publisher so that the publisher can contact customers regarding the model. To learn more about information available to model publishers, see [Access insights for the Microsoft commercial marketplace in Partner Center](/partner-center/insights/analytics).
 
-## Where can I learn about data storage and screening for harmful content for the Anthropic Claude models in Microsoft Foundry?
+## Where can I learn about screening for harmful content in data for the Anthropic Claude models in Microsoft Foundry?
 
-To learn more about storage of data, screening for harmful content, or other topics specific to the Anthropic Claude API, please see Anthropic's documentation.
+To learn more about screening for harmful content in data or other topics specific to the Anthropic Claude API, see Anthropic's documentation.
 
-## Where is data stored for Anthropic Claude models in Microsoft Foundry
+## Where is data processed for Anthropic Claude models in Microsoft Foundry
 
-For the Anthropic Claude API, prompts and outputs may be processed anywhere in the world, including outside of your region, for operational purposes. Operational purposes include performance and capacity management.
+For the Anthropic Claude API, prompts and outputs may be processed outside of your region, for operational purposes. Operational purposes include performance and capacity management. To learn about the terms that govern data processing, see [Anthropic's Data processing Addendum](https://www.anthropic.com/legal/data-processing-addendum) and [Anthropic's Commercial Terms of Service](https://aka.ms/anthropic_tandc).
 
 ## Related content
 

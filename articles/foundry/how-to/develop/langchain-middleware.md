@@ -1,7 +1,7 @@
 ---
 title: Use Azure AI Content Safety middleware with LangChain
 description: "Learn how to use Azure AI Content Safety middleware in LangChain agents with the langchain-azure-ai package."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 03/24/2026
 ms.author: sgilley

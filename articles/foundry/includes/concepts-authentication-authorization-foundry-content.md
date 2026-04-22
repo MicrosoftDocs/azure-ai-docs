@@ -4,7 +4,7 @@ description: include file
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: meerakurup
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -170,6 +170,7 @@ Reference the following matrix to understand what capabilities in Foundry suppor
 | Support in automation pipelines | Yes (secret) | Yes (service principal or managed identity) | Entra ID reduces secret rotation. |
 | Assistants API | Yes | Yes | Recommended to use Entra ID. |
 | Batch inferencing | Yes | Yes |  |
+| Toolbox | No | Yes | Use Entra ID for managed identity tool access. |
 
 ## Identity types
 

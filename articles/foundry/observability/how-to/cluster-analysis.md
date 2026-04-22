@@ -1,7 +1,7 @@
 ---
-title: "Analyze evaluation results with cluster analysis"
-description: "Use cluster analysis in Microsoft Foundry to identify patterns and errors in evaluation results and get recommendations to improve your agent."
-ms.service: azure-ai-foundry
+title: "Evaluation Cluster Analysis" 
+description: "Learn how to run and interact with an evaluation cluster analysis." 
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 04/14/2026
 ms.reviewer: hanch

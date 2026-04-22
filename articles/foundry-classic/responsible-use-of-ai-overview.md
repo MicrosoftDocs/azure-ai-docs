@@ -3,7 +3,7 @@ title: "Responsible AI for Microsoft Foundry (classic)"
 description: "Learn how to use Foundry Tools and features responsibly with Microsoft Foundry. (classic)"
 manager: nitinme
 keywords: Foundry Tools, cognitive
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: overview
 ms.date: 02/13/2026
 ms.author: pafarley

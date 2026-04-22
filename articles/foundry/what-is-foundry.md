@@ -5,7 +5,7 @@ author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
 ms.date: 04/13/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: overview
 ai-usage: ai-assisted
 ms.custom:
@@ -101,6 +101,8 @@ Microsoft Foundry is monetized through individual products customers access and 
 The platform is free to use and explore. Pricing occurs at the deployment level. 
 
 Using Foundry also incurs costs associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./concepts/manage-costs.md).
+
+Use the [Total Economic Impact calculator for Foundry](https://aka.ms/Foundry-ROI-Calculator) to estimate your return on investment and identify ongoing value and cost optimization opportunities.
 
 ## Region availability
 

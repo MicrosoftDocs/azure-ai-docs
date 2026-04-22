@@ -4,8 +4,8 @@ description: "Upgrade your Azure OpenAI resource to Microsoft Foundry to access 
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 04/13/2026
-ms.service: azure-ai-foundry
+ms.date: 01/07/2026
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.custom:
   - dev-focus

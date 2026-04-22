@@ -1,7 +1,7 @@
 ---
 title: "How to run an evaluation in Azure DevOps"
-description: "Run offline evaluation of Microsoft Foundry agents in Azure DevOps CI/CD pipelines using the AI Agent Evaluation extension."
-ms.service: azure-ai-foundry
+description: "How to run evaluation in Azure DevOps, which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps." 
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 04/10/2026
 ms.reviewer: hanch

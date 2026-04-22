@@ -4,13 +4,11 @@ description: Include file
 author: lgayhardt
 ms.reviewer: minthigpen
 ms.author: lagayhar
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
 ---
-
-[!INCLUDE [feature-preview](feature-preview.md)]
 
 The AI Red Teaming Agent is a powerful tool designed to help organizations proactively find safety risks associated with generative AI systems during design and development of generative AI models and applications.
 
