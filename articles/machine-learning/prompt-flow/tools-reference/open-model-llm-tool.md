@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # Open Model LLM tool
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 The Open Model LLM tool enables the utilization of various Open Model and Foundational Models, such as [Falcon](https://ml.azure.com/models/tiiuae-falcon-7b/version/4/catalog/registry/azureml) and [Llama 2](https://ml.azure.com/models/Llama-2-7b-chat/version/14/catalog/registry/azureml-meta), for natural language processing in Azure Machine Learning prompt flow.
 
 > [!CAUTION]

@@ -1325,6 +1325,11 @@
       "source_path": "articles/ai-services/reference/rest-api-resources.md",
       "redirect_url": "/azure/foundry/reference/foundry-project",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/how-to/business-continuity-disaster-recovery.md",
+      "redirect_url": "/azure/foundry-classic/how-to/high-availability-resiliency",
+      "redirect_document_id": false
     }
   ]
 }

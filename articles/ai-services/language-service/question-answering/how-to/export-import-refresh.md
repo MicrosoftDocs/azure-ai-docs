@@ -6,7 +6,7 @@ ms.topic: how-to
 author: laujan
 ms.author: lajanuar
 recommendations: false
-ms.date: 12/15/2025
+ms.date: 04/20/2026
 ---
 # Export-import-refresh in custom question answering
 
@@ -20,7 +20,6 @@ You might want to create a copy of your custom question answering project or rel
 
 * An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A [language resource](https://aka.ms/create-language-resource) with the custom question answering feature enabled. Remember your Microsoft Entra ID, Subscription, language resource name you selected when you created the resource.
-
 
 ### Export a project programmatically
 
@@ -49,13 +48,12 @@ curl -X PATCH -H "Ocp-Apim-Subscription-Key: {API-KEY}" -H "Content-Type: applic
     "value": {
       "displayName": "source5",
       "sourceKind": "url",
-      "sourceUri": https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf,
+      "sourceUri": "https://support.microsoft.com/en-US/surface/models/surface-book-3-specs-and-features",
       "refresh": "true"
     }
   }
 ]'  -i 'https://{ENDPOINT}.cognitiveservices.azure.com/language/query-knowledgebases/projects/{PROJECT-NAME}/sources?api-version=2021-10-01'
 ```
-
 
 ## Next steps
 

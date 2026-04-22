@@ -41,7 +41,6 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | `gpt-5.4-mini` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central |
 | `gpt-5.4.nano` | **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> South Central US  |
 
-- **[Registration is required for access to gpt-5.4 & gpt-5.4-pro](https://aka.ms/OAI/gpt53codexaccess).**
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -57,7 +56,6 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | `gpt-5.3-codex` |  See the [models table](#model-summary-table-and-region-availability) |
 | `gpt-5.3-chat` | East US2 & Sweden Central (Global Standard) |
 
-- **[Registration is required for access to gpt-5.3-codex](https://aka.ms/OAI/gpt53codexaccess).**
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -74,9 +72,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | `gpt-5.2-chat` **Preview** |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.2-codex` |  See the [models table](#model-summary-table-and-region-availability) |
 
-- **[Registration is required for access to gpt-5.2 and gpt-5.2-codex](https://aka.ms/oai/gpt5access).**
 
-Access will be granted based on Microsoft's eligibility criteria. Customers who previously applied and received access to a limited access model, don't need to reapply as their approved subscriptions will automatically be granted access upon model release.
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -321,11 +317,7 @@ OpenAI's MTEB benchmark testing found that even when the third generation model'
 
 ## Image generation models
 
-The image generation models generate images from text prompts that the user provides. GPT-image-1 series models are in limited access preview.
-
-Registration is required to access `gpt-image-1`, `gpt-image-1-mini`, or `gpt-image-1.5`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
-
-To request access, fill out an application form: [Apply for GPT-image-1 access](https://aka.ms/oai/gptimage1access); [Apply for GPT-image-1.5 access](https://aka.ms/oai/gptimage1.5access). When access is granted, you need to create a deployment for the model.
+The image generation models generate images from text prompts that the user provides. GPT-image-1 series models include `gpt-image-1`, `gpt-image-1-mini`, and `gpt-image-1.5`.
 
 ### Region availability
 

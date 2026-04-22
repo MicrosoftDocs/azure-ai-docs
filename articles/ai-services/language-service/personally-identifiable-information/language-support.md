@@ -1,7 +1,7 @@
 ---
 title: Personally Identifiable Information (PII) detection language support
 titleSuffix: Foundry Tools
-description: This article explains which natural languages the PII detection feature supports of Azure Language in Foundry Tools.
+description: This article explains which natural languages the PII detection feature in Azure Language in Foundry Tools supports.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -10,11 +10,16 @@ ms.date: 11/18/2025
 ms.author: lajanuar
 ms.custom: language-service-pii, build-2024
 ---
+<!-- markdownlint-disable MD025 -->
 # Personally Identifiable Information (PII) detection language support
 
-Use this article to learn which natural languages text PII, document PII, and conversation PII features support.
+Use this article to learn which natural languages each PII feature type supports:
 
-# [Text PII](#tab/text)
+* Text PII
+* Conversation PII
+* Document-based PII
+
+# [Text PII](#tab/text-pii)
 
 ## Text PII language support
 
@@ -100,9 +105,26 @@ Use this article to learn which natural languages text PII, document PII, and co
 |Vietnamese           |`vi`         |                  |
 |Welsh                |`cy`         |                  |
 
-# [PII for documents](#tab/documents)
+# [Conversation PII](#tab/conversation-pii)
 
-## PII language support
+## Conversation PII language support
+
+Conversation PII preview version `2023-04-15-preview` supports the following languages:
+
+* English
+* French
+* German
+* Spanish
+
+Conversation PII generally available (GA) version currently supports the following languages:
+
+* English
+* French
+* Spanish
+
+# [Document-based PII](#tab/document-based-pii)
+
+## Document-based PII language support
 
 |Language             |Language code|Notes             |
 |---------------------|-------------|------------------|
@@ -186,28 +208,13 @@ Use this article to learn which natural languages text PII, document PII, and co
 |Chinese-Simplified   |`zh-hans`    |`zh` also accepted|
 |Chinese-Traditional  |`zh-hant`    |                  |
 
-# [PII for conversations](#tab/conversations)
-
-## PII language support
-
-PII conversation preview version `2023-04-15-preview` supports the following languages:
-
-* English
-* French
-* German
-* Spanish
-
-
-PII conversation generally available (GA) version currently supports the following languages:
-
-* English
-* French
-* Spanish
-
-
-
 ---
 
 ## Next steps
 
-[PII feature overview](overview.md)
+Use these PII pages for implementation details:
+
+* [Text PII overview](text-pii-overview.md)
+* [Conversation PII overview](conversation-pii-overview.md)
+* [Document-based PII overview](document-based-pii-overview.md)
+* [PII feature overview](overview.md)
