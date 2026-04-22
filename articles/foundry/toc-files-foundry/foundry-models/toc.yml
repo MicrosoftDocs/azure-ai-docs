@@ -78,6 +78,9 @@ items:
     - name: Get started with model router
       displayName: Use model router for Microsoft Foundry
       href: ../../openai/how-to/model-router.md
+    - name: How model router works
+      displayName: How model router works in Microsoft Foundry
+      href: ../../openai/concepts/model-router-how-it-works.md
 
 - name: Quota limits and region availability
   items:
