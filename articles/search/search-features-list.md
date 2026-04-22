@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: concept-article
-ms.date: 01/23/2026
+ms.date: 04/22/2026
 ---
 
 # Features of Azure AI Search
@@ -40,7 +40,7 @@ The following table summarizes features by category. There's feature parity in a
 
 | Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | Features |
 |-------------------|----------|
-| Chat completion models used during indexing | [**GenAI prompt skill (preview)**](cognitive-search-skill-genai-prompt.md) is a skill that calls a large language model during indexing and provides a prompt that determines the task. You decide what the task is. It might describing an image, summarizing or manipulating content, or any task the model can perform. Output is added as a new field in a searchable index. |
+| Chat completion models used during indexing | [**GenAI prompt skill**](cognitive-search-skill-genai-prompt.md) is a skill that calls a large language model during indexing and provides a prompt that determines the task. You decide what the task is. It might describing an image, summarizing or manipulating content, or any task the model can perform. Output is added as a new field in a searchable index. |
 | Chat completion models used at query time | [**Agentic retrieval (preview)**](agentic-retrieval-overview.md) uses a large language model for query planning, decomposing and paraphrasing complex queries for better query coverage over your index. Responses from agentic retrieval are designed for agent-to-agent workflows. You can pass search results as single large string, which simplifies agent consumption of your proprietary content. The response also includes citations and query execution information. </br></br>[**Answer synthesis (preview)**](agentic-retrieval-how-to-answer-synthesis.md) uses the LLM to generate citation-backed responses from search results returned by agentic retrieval. </br></br>[**RAG patterns**](retrieval-augmented-generation-overview.md) can be implemented using existing capabilities. The ability to [tune for relevance](search-relevance-overview.md) and construct hybrid queries improve the quality of the content sent to chat bots for answer generation. |
 
 ## Applied AI and AI enriched content

@@ -1,7 +1,7 @@
 ---
 title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
-ms.date: 03/30/2026
+ms.date: 04/22/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -16,6 +16,14 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## April 2026
+
+| Item | Description |
+|--|--|
+| [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | New stable REST API version providing programmatic access to the data plane operations described in this table. |
+| [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) | Now generally available. |
+| [GenAI Prompt skill property removals](cognitive-search-skill-genai-prompt.md) | Starting with REST API version 2026-04-01, the following properties are removed from the GenAI Prompt skill definition: `httpMethod`, `timeout`, `batchSize`, `degreeOfParallelism`, `httpHeaders`, and `authResourceId`. The request timeout is fixed at 30 seconds and can't be overridden. If your skill definitions include any of these properties, remove them to avoid validation errors. |
 
 ## March 2026
 
