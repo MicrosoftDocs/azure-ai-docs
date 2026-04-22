@@ -81,7 +81,7 @@ Complete the following workflow to provision your workspace, import bilingual da
 1. [Create workspace](#create-workspace)
 1. [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
 1. [Create Dataset Index](#create-dataset-index)
-1. To translate with dataset index see [Use Text Translation API](/azure/ai-services/translator/text-translation/preview/overview)
+1. To translate with dataset index see [Use Text Translation API](/azure/ai-services/translator/text-translation/2026-06-06/overview)
 
 ## API operations
 

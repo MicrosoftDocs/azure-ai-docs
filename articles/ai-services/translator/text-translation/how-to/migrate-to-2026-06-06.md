@@ -58,9 +58,9 @@ The following table summarizes method-level changes between Translator Text API 
 
 | Azure Translator v3.0 | Azure Translator 2026-06-06 |
 | --- | --- |
-| [Translate text](../reference/v3/translate.md) | [Translate text](../preview/translate-api.md) |
-| [Transliterate](../reference/v3/transliterate.md) | [Transliterate](../preview/transliterate-api.md) |
-| [Languages](../reference/v3/languages.md) | [Languages](../preview/get-languages.md) |
+| [Translate text](../reference/v3/translate.md) | [Translate text](../2026-06-06/translate-api.md) |
+| [Transliterate](../reference/v3/transliterate.md) | [Transliterate](../2026-06-06/transliterate-api.md) |
+| [Languages](../reference/v3/languages.md) | [Languages](../2026-06-06/get-languages.md) |
 | [BreakSentence](../reference/v3/break-sentence.md) | No longer supported.<br>Use a sentence delimiter or an NLP library compatible with your programming language. |
 | [Detect](../reference/v3/detect.md) | No longer supported.<br>Use the [Language detection API](../../../language-service/language-detection/how-to/call-api.md). |
 | [Dictionary Lookup](../reference/v3/dictionary-lookup.md) | No longer supported. |

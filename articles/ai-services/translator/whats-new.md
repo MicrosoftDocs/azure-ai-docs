@@ -38,7 +38,7 @@ Translator **2026-06-06** is our latest cloud-based multilingual translation ser
 
 **Adaptive custom translation (AdaptCT)**: Available in Foundry under **Build** → **Models** → **AI Services** → **Azure Translator** — **Text Translation** → **Adaptive LLM**. Allows you to upload bilingual documents, create language-pair dataset indexes, and validate translation results.
 
-    :::image type="content" source="media/adaptive-custom-translation.png" alt-text="Screen shot of the adaptive custom translation pane in Foundry":::
+  :::image type="content" source="media/adaptive-custom-translation.png" alt-text="Screen shot of the adaptive custom translation pane in Foundry":::
 
 ## December 2025
 
@@ -64,21 +64,13 @@ Translator **2026-06-06** is our latest cloud-based multilingual translation ser
 
 Translator `2025-10-01-preview` is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from various generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
 
-For more information, *see* [Text translation overview (preview)](text-translation/preview/overview.md).
-
-
-## June 2026
-
-### Azure Translator in Foundry Tools 2026-06-06
-
-Azure Translator `2026-06-06` is our latest cloud-based, multilingual, neural machine translation service. You can choose between general neural machine translation (NMT) or select from a list of generative AI large language models (LLMs) at the request level. The service enables robust and scalable translation capabilities, making it suitable for diverse applications. For more information, *see* [Text translation overview](text-translation/overview.md).
+For more information, *see* [Text translation overview](text-translation/2026-06-06/overview.md).
 
 ## July 2025
 
 ### Microsoft Translator Pro expanded on-device language support
 
 [**Microsoft Translator Pro**](translator-pro/overview.md) is a mobile app that delivers accurate real-time speech-to-speech translations. It now offers expanded multilingual support on-device (doesn't require internet connectivity). For more information, *see* our [Translator Pro Language support](solutions/translator-pro/language-support.md).
-
 
 ## June 2025
 
