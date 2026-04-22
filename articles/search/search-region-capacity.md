@@ -100,7 +100,7 @@ You can back up and restore indexes, skillsets, indexers, and synonym maps to an
 
 For more information, see:
 
-- [Move your Azure AI Search service to another region](azure/search/search-howto-move-across-regions)
+- [Move your Azure AI Search service to another region](/azure/search/search-howto-move-across-regions)
 - [Code sample demonstrating how to copy an index from one Azure AI Search service to another](/samples/azure-samples/azure-search-dotnet-utilities/azure-search-backup-restore-index/)
 
 ## Related content
