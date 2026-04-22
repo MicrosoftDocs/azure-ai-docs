@@ -128,7 +128,6 @@ import os
 from agent_framework import Agent, tool
 from agent_framework.foundry import FoundryChatClient
 from agent_framework_foundry_hosting import ResponsesHostServer
-from azure.ai.agentserver.responses import InMemoryResponseProvider
 from azure.identity import DefaultAzureCredential
 from pydantic import Field
 from typing_extensions import Annotated
@@ -155,7 +154,7 @@ agent = Agent(
     default_options={"store": False},
 )
 
-server = ResponsesHostServer(agent, store=InMemoryResponseProvider())
+server = ResponsesHostServer(agent)
 server.run()
 ```
 
@@ -164,7 +163,7 @@ Key differences:
 - `AzureAIAgentClient` → `FoundryChatClient` (from `agent_framework.foundry`).
 - `ChatAgent` → `Agent` (from `agent_framework`).
 - `@ai_function` → `@tool(approval_mode="never_require")` with `Annotated` type hints for parameter descriptions.
-- `from_agent_framework(agent).run()` → `ResponsesHostServer(agent, store=InMemoryResponseProvider()).run()`.
+- `from_agent_framework(agent).run()` → `ResponsesHostServer(agent).run()`.
 - Add `default_options={"store": False}` because conversation history is managed by the hosting platform.
 
 For MCP tools, use `client.get_mcp_tool()` instead of defining tools in the `create_version` API:
