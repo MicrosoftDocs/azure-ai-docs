@@ -35,7 +35,7 @@ Translator is an optimal solution for managing extensive multilingual content. I
 
 * **Tone variant translations**. Use generative AI LLMs translate text across multiple tonal categories—formal, informal, and neutral—ensuring precise contextual adaptation.
 
-*  **Gender-specific language translations**. Apply generative AI LLMs for the linguistic transformation of text according to specified gender parameters—male, female, and neutral—to ensure targeted stylistic and semantic alignment.
+* **Gender-specific language translations**. Apply generative AI LLMs for the linguistic transformation of text according to specified gender parameters—male, female, and neutral—to ensure targeted stylistic and semantic alignment.
 
 ## Language support
 
