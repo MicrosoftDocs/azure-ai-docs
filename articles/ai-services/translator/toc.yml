@@ -16,8 +16,6 @@ items:
   - name: Language Support
     displayName: iso,language code,translation,transliteration,detection,detect,pdf,document
     href: language-support.md
-  - name: Enable Microsoft Entra ID authentication
-    href: how-to/microsoft-entra-id-auth.md
   - name: Pricing
     displayName: cost,free,standard,custom,tier,S1,S2,S3,S4,C2,C3,C4,D3,hosting
     href: https://azure.microsoft.com/pricing/details/cognitive-services/translator
@@ -27,42 +25,36 @@ items:
   - name: Azure Translator FAQ
     displayName: character,count,usage,attribution, cognitive
     href: faq.md
-  - name: Secure deployment guide
-    displayName: support,plan,issue,problem,bug,troubleshoot,troubleshooting
-    href: secure-deployment.md
 
-- name: Text translation (GA)
+- name: Security principles and guidance
   items:
-  - name: What is Translator text translation?
-    displayName: features,develop,development,free
-    href: text-translation/overview.md
-  - name: Text translation HTTP reference
-    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/reference/v3/reference.md
-  - name: Text translation SDK
-    displayName: get started,sdk,keys,endpoint
-    href: text-translation/sdk-overview.md
-  - name: Text translation REST APIs
-    items:
-    - name: Text translation REST API guide
-      href:  text-translation/reference/rest-api-guide.md
-    - name: Get languages
-      href: text-translation/reference/v3/languages.md
-    - name: Translate
-      displayName: detection,detect
-      href: text-translation/reference/v3/translate.md
-    - name: Transliterate
-      href: text-translation/reference/v3/transliterate.md
-    - name: Detect
-      href: text-translation/reference/v3/detect.md
-    - name: BreakSentence
-      displayName: detection,detect
-      href: text-translation/reference/v3/break-sentence.md
-    - name: Dictionary Lookup
-      href: text-translation/reference/v3/dictionary-lookup.md
-    - name: Dictionary Examples
-      href: text-translation/reference/v3/dictionary-examples.md
+   - name: Secure deployment guide
+     displayName: support,plan,issue,problem,bug,troubleshoot,troubleshooting
+     href: secure-deployment.md
+   - name: Enable Microsoft Entra ID
+     href: how-to/microsoft-entra-id-auth.md
 
+- name: Text translation
+  items:
+  - name: Overview
+    displayName: gpt, adaptive, tone, gender
+    href: text-translation/2026-06-06/overview.md
+  - name: "Migrate to 2026-06-06 "
+    displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+    href: text-translation/how-to/migrate-to-2026-06-06.md
+  - name: REST API guide (2026-06-06)
+    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
+    href: text-translation/2026-06-06/rest-api-guide.md
+  - name: Get languages
+    href: text-translation/2026-06-06/get-languages.md
+  - name: Translate
+    displayName: detection,detect
+    href: text-translation/2026-06-06/translate-api.md
+  - name: Transliterate
+    href: text-translation/2026-06-06/transliterate-api.md
+  - name: Text translation authentication
+    displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
+    href: text-translation/reference/authentication.md
 
   - name: Quickstarts
     items:
@@ -110,7 +102,7 @@ items:
     - name: Ruby
       href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
 
-  - name: Reference (GA)
+  - name: Reference
     items:
       - name: Status codes
         displayName: 401000,405000,400000
@@ -121,28 +113,37 @@ items:
       - name: Migrate to v3 text translation API
         displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
         href: text-translation/how-to/migrate-to-v3.md
-
-- name: Text translation 2026-06-06 (GA)
-  items:
-  - name: Overview
-    displayName: gpt, adaptive, tone, gender
-    href: text-translation/2026-06-06/overview.md
-  - name: "Migrate to 2026-06-06 "
-    displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-    href: text-translation/how-to/migrate-to-2026-06-06.md
-  - name: REST API guide (2026-06-06)
-    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/2026-06-06/rest-api-guide.md
-  - name: Get languages
-    href: text-translation/2026-06-06/get-languages.md
-  - name: Translate
-    displayName: detection,detect
-    href: text-translation/2026-06-06/translate-api.md
-  - name: Transliterate
-    href: text-translation/2026-06-06/transliterate-api.md
-  - name: Text translation authentication
-    displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/reference/authentication.md
+      - name: Text translation v3
+        items:
+        - name: What is Translator text translation?
+          displayName: features,develop,development,free
+          href: text-translation/overview.md
+        - name: Text translation HTTP reference
+          displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
+          href: text-translation/reference/v3/reference.md
+        - name: Text translation SDK
+          displayName: get started,sdk,keys,endpoint
+          href: text-translation/sdk-overview.md
+        - name: Text translation REST APIs
+          items:
+          - name: Text translation REST API guide
+            href:  text-translation/reference/rest-api-guide.md
+          - name: Get languages
+            href: text-translation/reference/v3/languages.md
+          - name: Translate
+            displayName: detection,detect
+            href: text-translation/reference/v3/translate.md
+          - name: Transliterate
+            href: text-translation/reference/v3/transliterate.md
+          - name: Detect
+            href: text-translation/reference/v3/detect.md
+          - name: BreakSentence
+            displayName: detection,detect
+            href: text-translation/reference/v3/break-sentence.md
+          - name: Dictionary Lookup
+            href: text-translation/reference/v3/dictionary-lookup.md
+          - name: Dictionary Examples
+            href: text-translation/reference/v3/dictionary-examples.md
 
 - name: Document translation
   items:
