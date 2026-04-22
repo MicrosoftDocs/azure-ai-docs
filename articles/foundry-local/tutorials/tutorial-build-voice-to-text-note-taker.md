@@ -2,7 +2,7 @@
 title: "Tutorial: Build a voice-to-text note taker"
 titleSuffix: Foundry Local
 description: Build a note-taking application that transcribes audio files and summarizes them using the Foundry Local SDK. Combines speech-to-text and chat models in one app.
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: tutorial
 ms.author: jburchel

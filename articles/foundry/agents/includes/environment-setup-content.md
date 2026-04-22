@@ -4,7 +4,7 @@ description: include file
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -24,6 +24,9 @@ Creating your first agent is a two-step process:
 | Create an account and project                                          | Azure AI Account Owner           |
 | [standard setup](#choose-your-setup) Only: Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Control Administrator  |
 | Create and edit agents                                                 | Azure AI User                    |
+
+> [!NOTE]
+> For hosted agents, additional permissions and RBAC configurations are required. See [Hosted agent permissions reference](../concepts/hosted-agent-permissions.md) for detailed requirements.
 
 ## Set up your agent environment
 To get started, you need a Microsoft Foundry resource and a Foundry project.  

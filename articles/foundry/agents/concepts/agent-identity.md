@@ -5,10 +5,10 @@ description: "Learn how agent identities and agent identity blueprints work in M
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: fosteramanda
-ms.date: 03/23/2026
+ms.date: 04/13/2026
 ms.topic: concept-article
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
@@ -182,6 +182,15 @@ Common scenarios that require distinct identities include:
 
 To find the distinct agent identity blueprint and agent identity, go to your agent application resource in the Azure portal. On the **Overview** pane, select **JSON View**. Choose the latest API version to view and copy the identities.
 
+## Automation and deployment tooling
+
+Deployment tools like the Azure Developer CLI (azd) provide limited automation for agent identity permissions:
+
+- **Development**: azd automatically assigns Azure AI User to the shared project agent identity for unpublished agents
+- **Production**: Published agents receive distinct identities that require manual role assignments
+
+azd does not configure Container Registry, Application Insights, or custom resource permissions. For production deployments and the complete permission requirements for hosted agents, see [Hosted agent permissions reference](hosted-agent-permissions.md).
+
 ## Tool authentication
 
 Agents access remote resources and tools by using agent identities for authentication. The authentication mechanism differs based on the agent's publication status:
@@ -218,11 +227,14 @@ Common role assignments for agent tools:
 | Tool scenario | Required role | Target scope |
 | --- | --- | --- |
 | MCP server that reads/writes blobs | Storage Blob Data Contributor | Storage account |
-| MCP server that triggers logic apps | Logic Apps Standard Reader | Logic App resource |
-| A2A tool that queries Cosmos DB | Cosmos DB Data Reader | Cosmos DB account |
+| MCP server that triggers logic apps | Logic Apps Standard Operator (Preview) | Logic App resource |
+| A2A tool that queries Cosmos DB | Cosmos DB Built-in Data Reader | Cosmos DB account |
 
 > [!IMPORTANT]
 > When you publish an agent, it receives a new distinct `agentIdentityId`. Repeat these role assignments for the new identity. The shared project identity roles don't carry over to the published agent's identity.
+
+> [!TIP]
+> For comprehensive details about all permissions involved in hosted agent deployment, including Azure Container Registry, Application Insights, and multi-resource RBAC configurations, see [Hosted agent permissions reference](hosted-agent-permissions.md).
 
 ### Supported tools
 
@@ -279,7 +291,7 @@ For tool-specific troubleshooting, see the tool documentation:
 
 Agent identities persist as long as the associated Foundry project or agent application resource exists. When you delete a Foundry project, the associated agent identity blueprint and shared agent identity are removed. Published agents have their own identity lifecycle tied to the agent application resource — deleting the agent application removes its distinct identity.
 
-You can view and manage all agent identities in your tenant through the Microsoft Entra admin center. Go to the [tab for agent identities](https://entra.microsoft.com/?Microsoft_AAD_RegisteredApps=stage1&exp.EnableAgentIDUX=true#view/Microsoft_AAD_RegisteredApps/AllAgents.MenuView/~/allAgentIds) to see an inventory of all agents in your tenant, including Foundry agents, Microsoft Copilot Studio agents, and others.
+You can view and manage all agent identities in your tenant through the Microsoft Entra admin center. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) and browse to **Entra ID** > **Agent ID** > **All agent identities** to see an inventory of all agents in your tenant, including Foundry agents, Microsoft Copilot Studio agents, and others.
 
 :::image type="content" source="../media/agent-identity/entra-admin-center-agent-identities.png" alt-text="Screenshot of the Microsoft Entra admin center that shows the tab for agent identities with an inventory of all agents in the tenant." lightbox="../media/agent-identity/entra-admin-center-agent-identities.png":::
 

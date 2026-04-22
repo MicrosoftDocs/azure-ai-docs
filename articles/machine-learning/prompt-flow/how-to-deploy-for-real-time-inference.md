@@ -22,6 +22,8 @@ ms.update-cycle: 365-days
 
 # Deploy a flow as a managed online endpoint for real-time inference
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 After you build a flow and test it properly, you might want to deploy it as an endpoint so that you can invoke the endpoint for real-time inference.
 
 In this article, you'll learn how to deploy a flow as a managed online endpoint for real-time inference. The steps you'll take are:

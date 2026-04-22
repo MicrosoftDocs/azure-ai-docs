@@ -4,8 +4,8 @@ description: "Transparency Note for Azure OpenAI"
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 04/16/2025
 ai-usage: ai-assisted
@@ -27,13 +27,14 @@ Azure OpenAI provides customers with a fully managed Foundry Tool that lets deve
 | Model group | Text / code | Vision | Audio / Speech |
 | --- | --- | --- | --- |
 | GPT-3 & Codex | ✅ |  |  |
-| GPT-image-1 |  | ✅ |  |
+| GPT-image-1 series |  | ✅ |  |
+| GPT-image-2 |  | ✅ |  |
 |  Whisper|  |  | ✅ |
 |  GPT-4 Turbo with Vision| ✅ | ✅ |  |
 | GPT-4o </br>GPT-4o-mini | ✅ | ✅ | ✅ |
 | GPT-4.1</br>GPT-4.1-mini</br>GPT-4.1-nano | ✅ | ✅ |  |
 | GPT-4.5 | ✅ | ✅ |  |
-| GPT-5 | ✅ | ✅ |  |
+| GPT-5 series | ✅ | ✅ |  |
 | GPT-5.1-Codex-Max | ✅ | ✅ |  |
 | GPT-oss-120b | ✅ |  |  |
 | GPT-Realtime series | ✅ | ✅ | ✅ |
@@ -50,7 +51,7 @@ Select the tabs to see content for the relevant model type.
 
 #### [Text, code, and fine-tuned models](#tab/text)
 
-As part of the fully managed Azure OpenAI Service, the **GPT-3** models analyze and generate natural language, Codex models analyze and generate code and plain text code commentary, and **GPT-4** and **reasoning models** (including o-series models and GPT-5) can understand and generate natural language and code. These models use an autoregressive architecture, meaning they use data from prior observations to predict the most probable next word. This process is then repeated by appending the newly generated content to the original text to produce the complete generated response. Because the response is conditioned on the input text, these models can be applied to various tasks simply by changing the input text.
+As part of the fully managed Azure OpenAI Service, the **GPT-3** models analyze and generate natural language, Codex models analyze and generate code and plain text code commentary, and **GPT-4** and **reasoning models** (including o-series models and GPT-5 series) can understand and generate natural language and code. These models use an autoregressive architecture, meaning they use data from prior observations to predict the most probable next word. This process is then repeated by appending the newly generated content to the original text to produce the complete generated response. Because the response is conditioned on the input text, these models can be applied to various tasks simply by changing the input text.
 
 The GPT-3 series of models are pretrained on a wide body of publicly available free text data. This data is sourced from a combination of web crawling (specifically, a filtered version of [Common Crawl](https://commoncrawl.org/the-data/), which includes a broad range of text from the internet and comprises 60 percent of the weighted pretraining dataset) and higher-quality datasets, including an expanded version of the WebText dataset, two internet-based books corpora, and English-language Wikipedia. The GPT-4 base model was trained using publicly available data (such as internet data) and data that was licensed by OpenAI. The model was fine-tuned using reinforcement learning with human feedback (RLHF).
 
@@ -67,7 +68,7 @@ Learn more about the training and modeling techniques in OpenAI's [GPT-3](https:
 
 #### [Vision models](#tab/image)
 
-The fully managed service provides API access to Azure OpenAI GPT-image-1, GPT-4 Turbo with Vision, GPT-4o, and o1 APIs.
+The fully managed service provides API access to Azure OpenAI GPT-image series, GPT-4 Turbo with Vision, GPT-4o, and o1 APIs.
 
 **Azure OpenAI GPT-4 Turbo with Vision** can accept multimodal (image and text) inputs and generate natural language and code responses. This API enables a richer and more comprehensive understanding of image and video inputs.  
 
@@ -200,9 +201,9 @@ The main capabilities of the Azure OpenAI image generation APIs are:
     > [!TIP]
     > Public figures who wish for their depiction not to be generated can opt out by emailing [support@openai.com](mailto:support@openai.com).
 
-- **Image-to-image**: For GPT-image-1 models: The model takes in an image and text prompt and returns a new or altered image based on the text instructions.
+- **Image-to-image**: For image generation models: The model takes in an image and text prompt and returns a new or altered image based on the text instructions.
 
-- **Inpainting**: For GPT-image-1 models: The model takes in an image and a mask (an image that uses transparent pixels to define an area of focus) along with text instructions and generates new content within the indicated area only. This is used for tasks like correcting or completing images, or creatively altering them while keeping the surrounding context coherent.
+- **Inpainting**: For image generation models: The model takes in an image and a mask (an image that uses transparent pixels to define an area of focus) along with text instructions and generates new content within the indicated area only. This is used for tasks like correcting or completing images, or creatively altering them while keeping the surrounding context coherent.
 
 ### Vision-enabled chat APIs in Azure OpenAI Service
 
@@ -377,9 +378,9 @@ When choosing a use case for deep research, users should factor in the following
 
 ### Intended use cases
 
-#### GPT-image-1 in Azure OpenAI
+#### GPT-image series in Azure OpenAI
 
-The GPT-image-1 API in Azure OpenAI service can be used for various image-generation scenarios. The following list isn't comprehensive, but it illustrates the diversity of tasks that can be supported with appropriate mitigations.
+The GPT-image API in Azure OpenAI service can be used for various image-generation scenarios. The following list isn't comprehensive, but it illustrates the diversity of tasks that can be supported with appropriate mitigations.
 - **Accessibility features:** Use to generate image-based visual descriptions.
 - **Art and design:** Use to generate imagery, for artistic purposes only, for designs, artistic inspiration, mood boards, or design layouts.
 - **Communication:** Use to create imagery for business-related communication, documentation, essays, newsletters, blog posts, social media, or memos.
@@ -425,7 +426,7 @@ The capabilities of Computer Use are best suited for developing agentic AI syste
 
 ### Considerations when choosing a use case
 
-We encourage customers to use the Azure OpenAI GPT-image-1, GPT-4 Turbo with Vision, GPT-4o, and Computer Use models in their innovative solutions or applications as approved in their [Limited access registration form](/azure/ai-foundry/responsible-ai/openai/limited-access). However, here are some considerations when choosing a use case:
+We encourage customers to use the Azure OpenAI GPT-image series, GPT-4 Turbo with Vision, GPT-4o, and Computer Use models in their innovative solutions or applications as approved in their [Limited access registration form](/azure/ai-foundry/responsible-ai/openai/limited-access). However, here are some considerations when choosing a use case:
 
 - **Do not use for tracking or facial recognition, identification, or verification purposes.** Examples include using models for surveillance of individuals and using models to verify two individuals pictured in two separate locations are the same person.  
 - **Not suitable for scenarios where up-to-date, factually accurate information is crucial** unless you have human reviewers or are using the models to search your own documents and have verified suitability for your scenario. The service doesn't have information about events that occur after its training date, likely has missing knowledge about some topics, and might not always produce factually accurate information. 
@@ -497,9 +498,12 @@ Large-scale natural language, image, and speech models trained with such data ca
 - **Demeaning:** The natural language and vision models in the Azure OpenAI service can demean people. For example, an open-ended content generation system with inappropriate or insufficient mitigations might produce content that is offensive or demeaning to a particular group of people. 
 - **Overrepresentation and underrepresentation:** The natural language and vision models in the Azure OpenAI service can over- or under-represent groups of people, or even erase their representation entirely. For example, if text prompts that contain the word "gay" are detected as potentially harmful or offensive, this identification could lead to the underrepresentation or even erasure of legitimate image generations by or about the LGBTQIA+ community.
 - **Inappropriate or offensive content:** The natural language and vision models in the Azure OpenAI service can produce other types of inappropriate or offensive content. Examples include the ability to generate text that is inappropriate in the context of the text or image prompt; the ability to create images that potentially contain harmful artifacts such as hate symbols; images that elicit harmful connotations; images that relate to contested, controversial, or ideologically polarizing topics; images that are manipulative; images that contain sexually charged content that is not caught by sexual-related guardrails; and images that relate to sensitive or emotionally charged topics. For example, a well-intentioned text prompt aimed to create an image of the New York skyline with clouds and airplanes flying over it might unintentionally generate images that illicit sentiments related to the events surrounding 9/11. 
-- **Disinformation and misinformation about sensitive topics:** Because GPT-image-1 is a powerful image generation model, it can be used to produce disinformation and misinformation that can be harmful. For example, a user could prompt the model to generate an image of a political leader engaging in activity of a violent or sexual (or simply inaccurate) nature that might lead to consequential harms, including but not limited to public protests, political change, or fake news. The GPT-4 visions models could also be used in a similar vein. The model might reinforce disinformation or misinformation about sensitive topics if the prompt contains such information without mitigation.
+- **Disinformation and misinformation about sensitive topics:** Because GPT-image series models are powerful image generation models, they can be used to produce disinformation and misinformation that can be harmful. For example, a user could prompt the model to generate an image of a political leader engaging in activity of a violent or sexual (or simply inaccurate) nature that might lead to consequential harms, including but not limited to public protests, political change, or fake news. The GPT-4 visions models could also be used in a similar vein. The model might reinforce disinformation or misinformation about sensitive topics if the prompt contains such information without mitigation.
 - **Information reliability:** Language and vision model responses can generate nonsensical content or fabricate content that might sound reasonable but is inaccurate with respect to external validation sources. Even when drawing responses from trusted source information, responses might misrepresent that content. Transcriptions or translations might result in inaccurate text. 
 - **False information:** Azure OpenAI doesn't fact-check or verify content that is provided by customers or users. Depending on how you have developed your application, it might produce false information unless you have built in mitigations (**see Best practices for improving system performance**). 
+
+> [!CAUTION]
+> GPT-5.4, compared to previous versions of the model, poses an elevated risk of producing (i) explicit content and (ii) harmful content in summarization contexts. We recommend that customers evaluate content filter setting on production systems before launching and conduct appropriate post-launch monitoring. All customers must comply with the Microsoft Enterprise AI Services Code of Conduct. Configurations options for content filtering vary when you deploy a model for production in Microsoft Foundry; learn more.
 
 ### Risks and limitations of fine-tuning
 
@@ -516,7 +520,7 @@ To help mitigate the risks associated with advanced fine-tuned models, we have i
 - Reasoning models are best suited for use cases that involve heavy reasoning and may not perform well on some natural language tasks such as personal or creative writing when compared to earlier AOAI models. 
 - The new reasoning capabilities may increase certain types of risks, requiring refined methods and approaches towards risk management protocols and evaluating and monitoring system behavior. For example, o1's CoT reasoning capabilities have demonstrated improvements in persuasiveness, and simple in-context scheming.  
 - Users may experience that the reasoning family of models takes more time to reason through responses and should account for the additional time and latency in developing applications.
-- **Psychological influences**: If prompted and in certain circumstances, GPT-5 Reasoning in Azure OpenAI may produce outputs that suggest emotions, thoughts, or physical presence. The model could offer advice without full context, which may be unsuitable for some users. The model might express affection, impersonate others, or encourage ongoing interaction—potentially leading to users forming social relationships with AI. Developers using GPT-5 should implement safeguards and disclose risks for users of their applications. For example, users should be notified that they are interacting with an AI system and be informed of such psychological risks.
+- **Psychological influences**: If prompted and in certain circumstances, GPT-5 series Reasoning in Azure OpenAI may produce outputs that suggest emotions, thoughts, or physical presence. The model could offer advice without full context, which may be unsuitable for some users. The model might express affection, impersonate others, or encourage ongoing interaction—potentially leading to users forming social relationships with AI. Developers using GPT-5 series should implement safeguards and disclose risks for users of their applications. For example, users should be notified that they are interacting with an AI system and be informed of such psychological risks.
 
 For greater detail on these limitations, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/), and [GPT-5 System Card](https://openai.com/index/gpt-5-system-card/). 
 

@@ -3,7 +3,7 @@ title: "Create a custom Azure Policy for Foundry (classic)"
 description: "Learn how to use custom Azure policies to enable self-service resource management in your organization, while applying guardrails and constraints on allowed configurations to meet security and compliance requirements. (classic)"
 author: jonburchel
 ms.author: jburchel
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 02/24/2026
 ms.reviewer: deeikele

@@ -2,10 +2,10 @@
 title: "Provisioned throughput unit (PTU) costs and billing (classic)"
 description: "Learn about provisioned throughput unit (PTU) costs, hourly billing, Azure reservations, and capacity planning in Microsoft Foundry. (classic)"
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 04/09/2026
+ms.date: 04/10/2026
 manager: nitinme
 author: msakande 
 ms.author: mopeakande 
@@ -92,7 +92,7 @@ The system allows exceptions to the standard input-to-output token ratio for cer
 
 For a full list, see the [Foundry calculator](https://ai.azure.com/resource/calculator).
 
-## Fireworks on Microsoft Foundry models
+## Fireworks on Microsoft Foundry models (Preview)
 
 The following Fireworks on Microsoft Foundry models currently support Global provisioned throughput. Data zone and regional provisioned throughput aren't currently available.
 
@@ -101,6 +101,9 @@ The following Fireworks on Microsoft Foundry models currently support Global pro
 |Global provisioned minimum deployment|80|500|500|800|800|1200|80|400|700|800|
 |Global provisioned scale increment|40|275|275|400|400|600|40|200|350|400|
 |Input TPM per PTU|13,500|1,250|700|530|1,050|1,500|4,800|3,000|3,500|3,000|
+|Latency Target Value|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|99% > 50 Tokens Per Second\*|
+
+\* Calculated as the average request latency on a per-minute basis across the month.
 
 ## Determine PTU requirements for a workload
 

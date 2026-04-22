@@ -368,6 +368,8 @@ items:
         href: how-to-voice-live-auto-truncation.md
       - name: Improve tool calling and latency wait times (preview)
         href: how-to-voice-live-interim-response.md
+      - name: Add an MCP server (preview)
+        href: how-to-voice-live-mcp-server.md
       - name: Voice Live telephony integration
         href: voice-live-telephony.md
     - name: Voice Live FAQ

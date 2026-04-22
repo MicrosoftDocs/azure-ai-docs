@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: challenp
 ms.author: challenp
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 04/03/2026
 ms.custom: include, classic-and-new
@@ -38,6 +38,8 @@ Yes, using the [Azure Gov Quota Request Form](https://aka.ms/AOAIGovQuota) you c
 # [Standard](#tab/standard)
 
 [!INCLUDE [Quota](quota-tier/gov-std.md)]
+
+---
 
 ### General best practices to remain within rate limits
 

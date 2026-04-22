@@ -1,8 +1,8 @@
 ---
 title: "MedImageParse: Medical Image Segmentation Models (classic)"
 description: "Learn how to use MedImageParse and MedImageParse 3D healthcare AI models for medical image segmentation with Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 01/26/2026
 ms.custom: dev-focus

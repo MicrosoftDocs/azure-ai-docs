@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # Integrate prompt flow with DevOps for LLM-based applications
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 Azure Machine Learning prompt flow is a developer-friendly and easy-to-use code-first method to develop and iterate flows for large language model (LLM)-based application development. Prompt flow provides an SDK and CLI, a Visual Studio Code extension, and a flow authoring UI. These tools facilitate local flow development, local flow run and evaluation run triggering, and transitioning flows between local and cloud workspace environments.
 
 You can combine the prompt flow experience and code capabilities with developer operations (DevOps) to enhance your LLM-based application development workflows. This article focuses on integrating prompt flow and DevOps for Azure Machine Learning LLM-based applications.

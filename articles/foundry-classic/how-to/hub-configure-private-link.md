@@ -3,7 +3,7 @@
 title: "How to configure a private link for a Microsoft Foundry hub (classic)"
 description: "Learn how to configure a private link for Microsoft Foundry hubs. A private link is used to secure communication with the Microsoft Foundry hub. (classic)"
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: 
     - ignite-2023
     - devx-track-azurecli

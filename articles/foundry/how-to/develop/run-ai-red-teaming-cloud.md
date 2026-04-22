@@ -1,12 +1,12 @@
 ---
 title: "Run AI Red Teaming Agent in the cloud (Microsoft Foundry SDK)"
 description: "This article provides instructions on how to use the AI Red Teaming Agent to run an automated scan in the cloud of a Generative AI application with the Microsoft Foundry SDK."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - references_regions
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 04/22/2026
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -14,9 +14,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to run AI Red Teaming Agent scans in the cloud using the Microsoft Foundry SDK so I can perform comprehensive pre-deployment safety analysis at scale.
 ---
 
-# Run AI Red Teaming Agent in the cloud (preview)
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+# Run AI Red Teaming Agent in the cloud
 
 Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-agent.md) during prototyping and development to help identify safety risks, running them in the cloud allows for the following scenarios:
 
@@ -28,13 +26,15 @@ Though the AI Red Teaming Agent can be run [locally](run-scans-ai-red-teaming-ag
 
 - A [Foundry project](/azure/ai-foundry/how-to/create-projects).
 - **Azure AI User** role on the Foundry project.
+- Python 3.9 or later.
+- For agentic scenarios: an existing Foundry Agent deployed in your project. The agent's name is required as `AZURE_AI_AGENT_NAME`.
 
 ## Getting started
 
 First, install Microsoft Foundry SDK's project client, which runs the AI Red Teaming Agent in the cloud.
 
 ```bash
-pip install azure-ai-projects>=2.0.0
+pip install "azure-ai-projects>=2.0.0"
 ```
 
 Then, set your environment variables for your Microsoft Foundry resources
@@ -42,8 +42,8 @@ Then, set your environment variables for your Microsoft Foundry resources
 ```python
 import os
 
-endpoint = os.environ["PROJECT_ENDPOINT"] # Sample : https://<account_name>.services.ai.azure.com/api/projects/<project_name>
-agent_name = os.environ["AZURE_AI_AGENT_NAME"] # Required. The name of the Agent to perform red teaming evaluation on.
+endpoint = os.environ["AZURE_AI_PROJECT_ENDPOINT"]  # Example: https://<account_name>.services.ai.azure.com/api/projects/<project_name>
+agent_name = os.environ["AZURE_AI_AGENT_NAME"]  # Required. The name of the agent to red team.
 ```
 
 ## Supported targets
@@ -60,14 +60,16 @@ You can configure your target model deployment in two ways:
 
 ### Option 1: Foundry project deployments
 
-If you're using model deployments that are part of your Foundry project, set up the following environment variables:
+If you're using model deployments that are part of your Foundry project, pass the deployment name directly in the `initialization_parameters.deployment_name` field when you [create a red team](#create-an-ai-red-team). Microsoft recommends keyless authentication via `DefaultAzureCredential` — run `az login` before executing.
+
+If your scenario requires API key authentication instead:
 
 ```python
 import os
 
-model_endpoint = os.environ["MODEL_ENDPOINT"] # Sample : https://<account_name>.openai.azure.com
-model_api_key = os.environ["MODEL_API_KEY"]
-model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # Sample : gpt-4o-mini
+model_endpoint = os.environ["MODEL_ENDPOINT"]  # Example: https://<account_name>.openai.azure.com
+model_api_key = os.environ["MODEL_API_KEY"]    # Use DefaultAzureCredential when possible
+model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"]  # Example: gpt-4o-mini
 ```
 
 ### Option 2: Azure OpenAI/Foundry Tools deployments
@@ -140,7 +142,7 @@ curl --request POST \
   --header 'authorization: Bearer <token>' \
   --header 'content-type: application/json' \
   --data '{
-  "name": "bardus earum bellum",
+  "name": "Red Team Safety Evaluation",
   "data_source_config": {
     "type": "azure_ai_source",
     "scenario": "red_team"
@@ -313,7 +315,7 @@ curl --request POST \
   --header 'authorization: Bearer <token>' \
   --header 'content-type: application/json' \
   --data '{
-  "name": "vitiosus delectatio doloremque",
+  "name": "Red Team Agent Run 1",
   "data_source": {
     "type": "azure_ai_red_team",
     "item_generation_params": {
@@ -417,3 +419,5 @@ curl --request GET \
 
 - [Example workflow for agent red teaming in the cloud](https://aka.ms/agent-redteam-sample)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
+- [Run AI Red Teaming Agent locally](run-scans-ai-red-teaming-agent.md)
+- [AI Red Teaming Agent concepts](../../concepts/ai-red-teaming-agent.md)

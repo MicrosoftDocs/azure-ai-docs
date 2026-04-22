@@ -3,7 +3,7 @@ title: Query Knowledge Base via APIs or MCP
 description: Learn how to Query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/17/2026
+ms.date: 04/15/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
@@ -257,9 +257,9 @@ The following table shows which knowledge sources require ingestion-time configu
 
 | Knowledge source | Requires `ingestionPermissionOptions` | How permissions are enforced |
 |---|---|---|
-| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestionparameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
-| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestionparameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
-| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestionparameters-properties) | ✅ | Ingested SharePoint ACLs matched against user identity. |
+| [Blob or ADLS Gen2](agentic-knowledge-source-how-to-blob.md#ingestion-parameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
+| [OneLake](agentic-knowledge-source-how-to-onelake.md#ingestion-parameters-properties) | ✅ | Ingested RBAC scopes or ACLs matched against user identity. |
+| [Indexed SharePoint](agentic-knowledge-source-how-to-sharepoint-indexed.md#ingestion-parameters-properties) | ✅ | Ingested SharePoint ACLs matched against user identity. |
 | [Remote SharePoint](agentic-knowledge-source-how-to-sharepoint-remote.md#assign-to-a-knowledge-base) | ❌ | Copilot Retrieval API queries SharePoint directly using the user's token. |
 
 > [!IMPORTANT]
@@ -437,7 +437,10 @@ Key points:
 
 + In this preview, `content.type` has one valid value: `text`.
 
-+ The `maxOutputSize` property on the [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) determines the length of the string.
++ The `maxOutputSize` property on the knowledge base determines the length of the string.
+
+    > [!IMPORTANT]
+    > A document that exceeds the `maxOutputSize` output budget can be silently omitted from the response without a warning. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
 
 ### Activity array
 
@@ -816,6 +819,12 @@ Content-Type: application/json
 **Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 :::zone-end
+
+## Troubleshoot empty responses
+
+A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSize` output budget. When this happens, the activity array shows that matches were found, but the references array and grounded response content are empty for that document. No truncation warning or explicit error is returned.
+
+To avoid this behavior, index large source documents as smaller chunks with stable identifiers and source metadata. This applies especially to long manuals, policies, or knowledge base articles.
 
 ## Related content
 

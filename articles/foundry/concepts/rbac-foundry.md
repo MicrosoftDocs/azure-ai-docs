@@ -1,7 +1,7 @@
 ---
 title: "Role-based access control for Microsoft Foundry"
 description: "This article introduces role-based access control in Microsoft Foundry portal."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - ignite-2023
@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - doc-kit-assisted
 ms.topic: concept-article
-ms.date: 12/31/2025
+ms.date: 04/13/2026
 ms.reviewer: meerakurup
 ms.author: sgilley 
 author: sdgilley 
@@ -44,20 +44,22 @@ For Foundry resources, use additional built-in roles to follow least-privilege a
 
 Use the following table to see the permissions allowed for each built-in role in Microsoft Foundry. 
 
-|Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|
-|---|---|---|---|---|---|---|
-|**Azure AI User**|||✔||✔||
-|**Azure AI Project Manager**|||✔|✔ (only assign Azure AI User role)|✔||
-|**Azure AI Account Owner**|✔|✔||✔ (only assign Azure AI User role)|✔|✔|
-|**Azure AI Owner**|✔|✔|✔|✔|✔|✔|
+|Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|Publish agents|
+|---|---|---|---|---|---|---|---|
+|**Azure AI User**|||✔||✔|||
+|**Azure AI Project Manager**|||✔|✔ (only assign Azure AI User role)|✔||✔|
+|**Azure AI Account Owner**|✔|✔||✔ (only assign Azure AI User role)|✔|✔||
+|**Azure AI Owner**|✔|✔|✔||✔|✔|✔|
 
 Use the following table to see the permissions allowed for each key Azure built-in roles (Owner, Contributor, Reader). 
 
-|Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|
-|---|---|---|---|---|---|---|
-|**Owner**|✔|✔||✔ (assign any role to any user)|✔|✔|
-|**Contributor**|✔|✔|||✔|✔|
-|**Reader**|||||✔||
+|Built-in role|Create Foundry projects|Create Foundry accounts|Build and develop in a project (data actions)|Complete role assignments|Reader access to projects and accounts|Manage models|Publish agents|
+|---|---|---|---|---|---|---|---|
+|**Owner**|✔|✔||✔ (assign any role to any user)|✔|✔|✔|
+|**Contributor**|✔|✔|||✔|✔||
+|**Reader**|||||✔|||
+
+To publish agents, you need the **Azure AI Project Manager** role (minimum) on the Foundry resource scope. For more information, see [Publish and share agents in Microsoft Foundry](../agents/how-to/publish-agent.md).
 
 :::image type="content" source="../media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../media/how-to/network/detailed-rbac-diagram.png":::
  
@@ -71,7 +73,7 @@ To manage roles in Foundry, you must have permission to assign and remove roles 
 
 In the Foundry portal, manage permissions by:
 
-1. Open the **Admin** page in [Foundry](https://ai.azure.com/nextgen), then select **Operate** > **Admin**.
+1. Open the **Admin** page in [Foundry](https://ai.azure.com), then select **Operate** > **Admin**.
 1. Select your project name.
 1. Select **Add user** to manage project access. This action is available only if you have role-assignment permissions.
 1. Apply the same flow for Foundry resource-level access.
@@ -92,5 +94,6 @@ az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --
 - [Check access for a user to a single Azure resource](/azure/role-based-access-control/check-access?tabs=default).
 - [Authentication and Authorization in Foundry](../concepts/authentication-authorization-foundry.md).
 - [Disable preview features in Microsoft Foundry](../how-to/disable-preview-features.md).
+- [Hosted agent permissions reference](../agents/concepts/hosted-agent-permissions.md).
 
 [!INCLUDE [rbac-foundry 4](../includes/concepts-rbac-foundry-4.md)]

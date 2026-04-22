@@ -4,8 +4,8 @@ description: Quota tier limits for tier 6
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 02/18/2026
 ---
@@ -64,6 +64,8 @@ ms.date: 02/18/2026
 | gpt-image-1-mini               | GlobalStandard    | 180         | -           |
 | gpt-image-1.5                  | DataZoneStandard  | 30          | -           |
 | gpt-image-1.5                  | GlobalStandard    | 90          | -           |
+| gpt-image-2                    | DataZoneStandard  | 30          | -           |
+| gpt-image-2                    | GlobalStandard    | 90          | -           |
 | gpt-realtime                   | GlobalStandard    | 300         | 150,000     |
 | model-router                   | DataZoneStandard  | 450         | 450,000     |
 | o1                             | DataZoneStandard  | 2,000       | 12,000,000  |

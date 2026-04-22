@@ -4,7 +4,7 @@ description: include file
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: ckittel
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -88,11 +88,11 @@ Plan for scenarios where recovery isn't possible or where recovery restores only
 
 ## Disaster prevention
 
-Preventing disasters is easier and less costly than recovering from them. Stop disasters from happening in the first place by applying proactive measures. For more information, see [High availability and resiliency for Foundry projects and agent services](../how-to/high-availability-resiliency.md#disaster-prevention).
+Preventing disasters is easier and less costly than recovering from them. Stop disasters from happening in the first place by applying proactive measures. For more information, see [High availability and resiliency for Foundry projects and agent services](../how-to/high-availability-resiliency.md#prevent-disasters-and-data-loss).
 
 ## Resource configuration to support recovery
 
-Configure your resources to support recovery before an incident happens. Enable specific features and settings that facilitate recovery processes. For more information, see [High availability and resiliency: Resource configuration to support recovery](../how-to/high-availability-resiliency.md#resource-configuration-to-support-recovery).
+Configure your resources to support recovery before an incident happens. Enable specific features and settings that facilitate recovery processes. For more information, see [High availability and resiliency: Resource configuration to support recovery](../how-to/high-availability-resiliency.md#configure-resources-to-support-recovery).
 
 ## Recover from Azure outages
 
