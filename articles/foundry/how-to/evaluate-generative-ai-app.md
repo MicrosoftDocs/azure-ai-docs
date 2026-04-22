@@ -7,7 +7,7 @@ ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new
 ms.topic: how-to
-ms.date: 04/03/2026
+ms.date: 04/22/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -55,7 +55,7 @@ Provide a dataset for the evaluation. You can upload your own dataset or synthet
 
 #### Multimodal content (image and audio)
 
-All evaluation targets—Agent, Model, Dataset, and Traces—support image and audio content. Each content type uses a specific JSONL schema:
+All evaluation targets - Agent, Model, Dataset, and Traces - support image and audio content. Each content type uses a specific JSONL schema:
 
 **Image content**:
 
@@ -77,57 +77,52 @@ All evaluation targets—Agent, Model, Dataset, and Traces—support image and a
 
 Datasets can also be in the chat message conversation format, where audio and image data are embedded within a singular chat message column. This audio and image data can be stored in the form of data URIs or publicly accessible URLs. 
 
-Here is an example of what a column from a conversation dataset could look like:
+Here's an example of what a column from a conversation dataset could look like:
 
 ```jsonl
-[ 
-  { 
-    "role": "system", 
-    "content": "..." 
-  }, 
-
-  { 
-    "role": "user", 
-    "content": [ 
-      { 
-        "type": "text", 
-        "text": "What are in these images?" 
-      }, 
-      { 
-        "type": "image_url", 
-        "image_url": { 
-          "url": "https://my-website.com/path/image.png" 
-        } 
-      }, 
-      { 
-        "type": "image_url", 
-        "image_url": { 
-          "url": "data:image/png;base64,iVBORw0KGgo..." 
-        } 
-      } 
-    ] 
+[
+  {
+    "role": "system",
+    "content": "..."
   },
- 
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "What are in these images?"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "https://my-website.com/path/image.png"
+        }
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,iVBORw0KGgo..."
+        }
+      }
+    ]
+  },
   { 
     "role": "assistant", 
     "content": "..." 
   }, 
-
   { 
     "role": "user", 
-    "content": [ 
-      { 
-        "type": "text", 
+    "content": [
+      {         "type": "text", 
         "text": "Tell me the tones for the voices?" 
-      }, 
+      },
       { 
         "type": "input_audio", 
-        "input_audio": { 
+        "input_audio": {
           "data": "https://my-website.com/path/voice.wav", 
           "format": "wav" 
-        } 
+        }
       },
-
       { 
         "type": "input_audio", 
         "input_audio": { 
@@ -135,7 +130,6 @@ Here is an example of what a column from a conversation dataset could look like:
           "format": "wav" 
         } 
       }
-
     ] 
   } 
 ] 
