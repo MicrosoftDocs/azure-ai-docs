@@ -150,6 +150,11 @@ Analyze responses include a `usage` property. This property reports token usage 
 
 For details on how billing works for Content Understanding, see the [pricing explainer](../pricing-explainer.md).
 
+## Content filtering and Guardrails
+
+Each Foundry model deployment has an associated **Guardrails** instance that evaluates content for safety. Content Understanding surfaces the Guardrails output directly in the analyze response as a `content_filters` array. If a Guardrails instance blocks content, the analyze operation returns an error; if it annotates content, the result passes through with filter metadata attached.
+
+To adjust content filter thresholds or switch from blocking to annotating, update the Guardrails configuration on the model deployment in your Azure AI Foundry project. For more information, see [Content filtering and Guardrails](../overview.md#content-filtering-and-guardrails) and the [`content_filters` response object reference](analyzer-reference.md#content-filter-results-in-the-analyze-response).
 
 ## Related content
 

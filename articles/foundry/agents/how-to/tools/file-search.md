@@ -81,6 +81,7 @@ project = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 openai = project.get_openai_client()
+# The openai client uses {PROJECT_ENDPOINT}/openai/v1 for file and vector store operations
 
 # Create vector store and upload file
 vector_store = openai.vector_stores.create(name="ProductInfoStore")
@@ -366,6 +367,7 @@ export async function main(): Promise<void> {
 
   // Create clients to call Foundry API
   const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  // The openai client uses {PROJECT_ENDPOINT}/openai/v1 for file and vector store operations
   const openai = project.getOpenAIClient();
 
   // Create vector store and upload file
@@ -442,6 +444,8 @@ Add the dependency to your `pom.xml`:
 
 ### Create an agent with file search
 
+Before running this sample, create a file and vector store using the `{projectEndpoint}/openai/v1/files` and `{projectEndpoint}/openai/v1/vector_stores` REST endpoints. See the **REST API** tab for the curl commands, or the [Java SDK samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents/src/samples/) for a complete example that includes file upload.
+
 ```java
 import com.azure.ai.agents.AgentsClient;
 import com.azure.ai.agents.AgentsClientBuilder;
@@ -462,6 +466,7 @@ public class FileSearchExample {
     public static void main(String[] args) {
         // Format: "https://resource_name.ai.azure.com/api/projects/project_name"
         String projectEndpoint = "your_project_endpoint";
+        // Create a vector store first using the {projectEndpoint}/openai/v1/vector_stores API
         String vectorStoreId = "your_vector_store_id";
 
         AgentsClientBuilder builder = new AgentsClientBuilder()
