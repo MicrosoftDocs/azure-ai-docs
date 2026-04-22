@@ -3,12 +3,13 @@ title: Migrate Agentic Retrieval Code
 description: Learn how to migrate your agentic retrieval code to the latest REST API version. This article focuses on breaking changes and backwards compatibility.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 04/22/2026
+ai-usage: ai-assisted
 ---
 
 # Migrate agentic retrieval code to the latest version
 
-If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an early preview REST API, this article explains when and how to migrate to a newer version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
+If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using a preview REST API, this article explains when and how to migrate to a newer version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
 
 Migration instructions are intended to help you run an existing solution on a newer API version. The instructions in this article help you address breaking changes at the API level so that your app runs as before. For help with adding new functionality, start with [What's new in Azure AI Search](whats-new.md).
 
@@ -17,13 +18,13 @@ Migration instructions are intended to help you run an existing solution on a ne
 
 ## When to migrate
 
-Each new API version that supports agentic retrieval has introduced breaking changes, from the original [2025-05-01-preview](#2025-05-01-preview) to [2025-08-01-preview](#2025-08-01-preview-1), to the latest [2025-11-01-preview](#2025-11-01-preview-1).
+Each new API version that supports agentic retrieval has introduced breaking changes, from the original [2025-05-01-preview](#2025-05-01-preview) to [2025-08-01-preview](#2025-08-01-preview-1), to [2025-11-01-preview](#2025-11-01-preview-1), to the latest stable version [2026-04-01](#2026-04-01-1).
 
 You can continue to run older code with no updates if you retain the API version value. However, to benefit from bug fixes, improvements, and newer functionality, you must update your code.
 
 ## How to migrate
 
-+ The supported migration path is incremental. If your code targets 2025-05-01-preview, first migrate to 2025-08-01-preview, and then migrate to 2025-11-01-preview.
++ The supported migration path is incremental. If your code targets 2025-05-01-preview, first migrate to 2025-08-01-preview, and then to 2025-11-01-preview. From 2025-11-01-preview, you can migrate directly to 2026-04-01.
 
 + To understand the scope of changes, review [breaking and nonbreaking changes](#version-specific-changes) for each version.
 
@@ -32,6 +33,129 @@ You can continue to run older code with no updates if you retain the API version
 + For each object that you migrate, start by getting the current definition from the search service so that you can review existing properties before specifying the new one.
 
 + Delete older versions only after your migration is fully tested and deployed.
+
+### [**2026-04-01**](#tab/migrate-26-04)
+
+If you're migrating from [2025-11-01-preview](#2025-11-01-preview-1), this migration is more than an API version update. The knowledge base behavior changes from a preview mode that plans queries and synthesizes answers to a stable, extractive retrieval contract that accepts semantic intents and returns grounded references.
+
+> [!NOTE]
+> The Azure portal uses the 2025-11-01-preview API for agentic retrieval and will continue to do so in a future release. The 2026-04-01 GA API is available through REST and SDK only.
+
+1. [Migrate the knowledge source](#migrate-the-knowledge-source).
+1. [Create a simplified knowledge base](#create-a-simplified-knowledge-base).
+1. [Rewrite the retrieve request](#rewrite-the-retrieve-request).
+1. [Update code and clients](#update-code-and-clients-for-2026-04-01).
+
+#### Migrate the knowledge source
+
+For a `searchIndex` knowledge source, the migration is minimal. The core schema is unchanged: keep the same `searchIndexName` and `sourceDataFields`, update the API version to `2026-04-01`, and create the object with a unique name. The underlying index and its content don't change.
+
+1. Get the current definition to identify which fields your code depends on.
+
+   ```http
+   GET {{search-endpoint}}/knowledge-sources/{{knowledge-source-name}}?api-version=2025-11-01-preview
+   api-key: {{api-key}}
+   Content-Type: application/json
+   ```
+
+1. Create a new knowledge source using the GA API version and a unique name.
+
+   ```http
+   PUT {{search-endpoint}}/knowledge-sources/{{new-knowledge-source-name}}?api-version=2026-04-01
+   api-key: {{api-key}}
+   Content-Type: application/json
+
+   {
+     "name": "{{new-knowledge-source-name}}",
+     "description": "GA knowledge source backed by a search index.",
+     "kind": "searchIndex",
+     "searchIndexParameters": {
+       "searchIndexName": "{{index-name}}",
+       "sourceDataFields": [
+         { "name": "id" },
+         { "name": "page_chunk" },
+         { "name": "page_number" }
+       ]
+     }
+   }
+   ```
+
+#### Create a simplified knowledge base
+
+The GA knowledge base for a `searchIndex`-only scenario removes preview-specific answer-generation settings. Omit `models`, `outputMode`, and `answerInstructions`, and keep only the `knowledgeSources` reference.
+
+1. Get the current knowledge base definition.
+
+   ```http
+   GET {{search-endpoint}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
+   api-key: {{api-key}}
+   Content-Type: application/json
+   ```
+
+1. Create a new knowledge base using the GA API version and a unique name.
+
+   ```http
+   PUT {{search-endpoint}}/knowledgebases/{{new-knowledge-base-name}}?api-version=2026-04-01
+   api-key: {{api-key}}
+   Content-Type: application/json
+
+   {
+     "name": "{{new-knowledge-base-name}}",
+     "description": "Minimal GA knowledge base for search-index retrieval.",
+     "knowledgeSources": [
+       { "name": "{{new-knowledge-source-name}}" }
+     ]
+   }
+   ```
+
+   > [!NOTE]
+   > If you use a **web knowledge source**, the knowledge base still requires a `models` entry for web-content summarization. Web retrieval in GA depends on model-backed summarization, domain restrictions still apply, and retrieval can return `206 Partial Content` if summarization fails.
+
+#### Rewrite the retrieve request
+
+The GA retrieve request uses `intents` instead of `messages` and removes several preview-only parameters. Use `maxOutputSizeInTokens` instead of `maxOutputSize`. For follow-up questions, send a new retrieve request with a new semantic intent — the GA API doesn't maintain a running messages transcript.
+
+To test your knowledge base output with a query, use the 2026-04-01 of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2026-04-01&preserve-view=true).
+
+```http
+POST {{search-endpoint}}/knowledgebases/{{new-knowledge-base-name}}/retrieve?api-version=2026-04-01
+api-key: {{api-key}}
+Content-Type: application/json
+
+{
+  "intents": [
+    {
+      "type": "semantic",
+      "search": "{{your-query-text}}"
+    }
+  ],
+  "knowledgeSourceParams": [
+    {
+      "knowledgeSourceName": "{{new-knowledge-source-name}}",
+      "kind": "searchIndex",
+      "includeReferences": true,
+      "includeReferenceSourceData": true,
+      "rerankerThreshold": 2.5
+    }
+  ],
+  "maxRuntimeInSeconds": 30,
+  "maxOutputSizeInTokens": 6000
+}
+```
+
+If the response has a `200 OK` HTTP code, your knowledge base successfully retrieved content from the knowledge source.
+
+#### Update code and clients for 2026-04-01
+
+To complete your migration, follow these cleanup steps:
+
+1. Update all retrieve request code to use `intents` instead of `messages`.
+1. Remove `retrievalReasoningEffort`, `outputMode`, and `alwaysQuerySource` from your code.
+1. Rename `maxOutputSize` to `maxOutputSizeInTokens`.
+1. Update code that builds a running messages transcript. Send each follow-up query as a new retrieve request with a new semantic intent.
+1. Update client calls to use the `2026-04-01` API version.
+1. Validate the GA response shape. Responses center on extractive grounding content, `activity`, and `references`—not preview-style synthesized answers.
+1. Delete preview objects only after the GA objects are fully validated and deployed.
 
 ### [**2025-11-01-preview**](#tab/migrate-11-01)
 
@@ -640,9 +764,46 @@ To complete your migration, follow these cleanup steps:
 
 This section covers breaking and nonbreaking changes for the following REST API versions:
 
++ [2026-04-01](#2026-04-01-1)
 + [2025-11-01-preview](#2025-11-01-preview-1)
 + [2025-08-01-preview](#2025-08-01-preview-1)
 + [2025-05-01-preview](#2025-05-01-preview)
+
+### 2026-04-01
+
+This is the first stable (GA) API version for agentic retrieval. The release establishes a minimal, extractive retrieval contract and removes preview-era answer-synthesis configuration.
+
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) for this version, make sure the 2026-04-01 API version is selected in the filter at the top of the page.
+
+#### [**Breaking changes**](#tab/breaking-26-04)
+
++ **Retrieve requests use `intents` instead of `messages`.** Requests that include `messages` in the retrieve body are rejected by the GA service.
+
++ **`retrievalReasoningEffort` is removed from the retrieve request.** The GA contract standardizes on minimal, extractive retrieval and doesn't expose preview reasoning modes.
+
++ **`outputMode` is removed from the retrieve request.** The GA service returns extractive grounded content. Preview-style answer-synthesis configuration is no longer accepted.
+
++ **`alwaysQuerySource` is removed from `knowledgeSourceParams`.** Retrieve requests that include this parameter fail against the `2026-04-01` API.
+
++ **`maxOutputSize` is renamed to `maxOutputSizeInTokens`.** Update any code that sets `maxOutputSize` on the retrieve request.
+
++ **Conversational state isn't maintained across requests.** If your code appended turns to a running `messages` list and resent the entire transcript, change it to send one or more semantic intents per new retrieve request.
+
+#### [**Nonbreaking changes**](#tab/nonbreaking-26-04)
+
++ Existing indexes and indexed content remain valid. You don't need to rebuild your underlying search index to migrate from `2025-11-01-preview` to `2026-04-01`.
+
++ The `searchIndex` knowledge source concept is unchanged. You still create a knowledge source that points to an Azure AI Search index and identifies the fields to return as source data.
+
++ Runtime source controls in `knowledgeSourceParams` remain valid: `includeReferences`, `includeReferenceSourceData`, `rerankerThreshold`, and `filterAddOn`.
+
++ The `models` array remains an optional property on knowledge bases. For search-index-only scenarios, you can omit it entirely.
+
++ Retrieve responses still include `activity` and `references`, even though the request contract is narrower.
+
++ Web knowledge sources remain supported as a special case. For the GA migration, the knowledge base still requires a `models` entry for web-content summarization, and retrieval can return `206 Partial Content` if summarization fails.
+
+---
 
 ### 2025-11-01-preview
 
