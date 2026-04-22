@@ -81,7 +81,7 @@ Complete the following workflow to provision your workspace, import bilingual da
 1. [Create workspace](#create-workspace)
 1. [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
 1. [Create Dataset Index](#create-dataset-index)
-1. To translate with dataset index see [Use Text Translation API](/azure/ai-services/translator/text-translation/2026-06-06/overview)
+1. To translate with dataset index see [Use Text Translation API](/azure/ai-services/translator/text-translation/overview)
 
 ## API operations
 
@@ -525,5 +525,5 @@ If requests fail, use the following checks to isolate authentication, ingestion,
 Use these resources to deepen implementation knowledge and connect AdaptCT with broader Azure AI translation capabilities.
 
 * [Custom translator models](../../../custom-translator/azure-ai-foundry/overview.md)
-* [Text translation API](../../../text-translation/2026-06-06/overview.md)
+* [Text translation API](../../../text-translation/overview.md)
 * [Explore Foundry](../../../overview.md)

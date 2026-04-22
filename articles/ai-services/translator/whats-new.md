@@ -64,7 +64,7 @@ Translator **2026-06-06** is our latest cloud-based multilingual translation ser
 
 Translator `2025-10-01-preview` is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from various generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
 
-For more information, *see* [Text translation overview](text-translation/2026-06-06/overview.md).
+For more information, *see* [Text translation overview](text-translation/overview.md).
 
 ## July 2025
 
