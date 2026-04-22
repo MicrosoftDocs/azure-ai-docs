@@ -189,7 +189,7 @@ Hosted agents are currently available in the following regions:
 - Sweden Central
 
 > [!NOTE]
-> More regions will be available soon.
+> This list will be updated as additional regions become available.
 
 ## Next steps
 
