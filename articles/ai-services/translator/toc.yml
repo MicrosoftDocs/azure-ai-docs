@@ -29,7 +29,7 @@ items:
     href: faq.md
   - name: Secure deployment guide
     displayName: support,plan,issue,problem,bug,troubleshoot,troubleshooting
-    href: secure-deployment.md  
+    href: secure-deployment.md
 
 - name: Text translation (GA)
   items:
@@ -62,7 +62,7 @@ items:
       href: text-translation/reference/v3/dictionary-lookup.md
     - name: Dictionary Examples
       href: text-translation/reference/v3/dictionary-examples.md
-  
+
 
   - name: Quickstarts
     items:
@@ -120,41 +120,39 @@ items:
         href: text-translation/reference/metrics.md
       - name: Migrate to v3 text translation API
         displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
-        href: text-translation/how-to/migrate-to-v3.md  
-    
+        href: text-translation/how-to/migrate-to-v3.md
 
-
-- name: Text translation (2026-06-06) 
+- name: Text translation 2026-06-06 (GA)
   items:
-  - name: Overview 
+  - name: Overview
     displayName: gpt, adaptive, tone, gender
-    href: text-translation/preview/overview.md
+    href: text-translation/2026-06-06/overview.md
   - name: "Migrate to 2026-06-06 "
     displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-    href: text-translation/how-to/migrate-to-preview.md
-  - name: REST API guide (2026-06-06) 
+    href: text-translation/how-to/migrate-to-2026-06-06.md
+  - name: REST API guide (2026-06-06)
     displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/preview/rest-api-guide.md
-  - name: Get languages 
-    href: text-translation/preview/get-languages.md
-  - name: Translate 
+    href: text-translation/2026-06-06/rest-api-guide.md
+  - name: Get languages
+    href: text-translation/2026-06-06/get-languages.md
+  - name: Translate
     displayName: detection,detect
-    href: text-translation/preview/translate-api.md
-  - name: Transliterate 
-    href: text-translation/preview/transliterate-api.md
+    href: text-translation/2026-06-06/translate-api.md
+  - name: Transliterate
+    href: text-translation/2026-06-06/transliterate-api.md
   - name: Text translation authentication
     displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/reference/authentication.md   
+    href: text-translation/reference/authentication.md
 
 - name: Document translation
   items:
   - name: What is Azure Translator document translation?
     displayName: ocr,batch,features,development,formats,file types
     href: document-translation/overview.md
-  - name: Document translation SDK guide 
+  - name: Document translation SDK guide
     displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
     href: document-translation/document-sdk-overview.md
-  - name: Document translation REST APIs 
+  - name: Document translation REST APIs
     displayName: get,post,cancel,delete
     href: document-translation/reference/rest-api-guide.md
   - name: Quickstarts
@@ -241,13 +239,13 @@ items:
   - name: Foundry Tools for beginners
     displayName: use case,usage,train,training,bleu,tuning,tune
     href: custom-translator/azure-ai-foundry/beginners-guide.md
-  - name: Foundry Tools adaptive custom translation (preview) 
+  - name: Foundry Tools adaptive custom translation (preview)
     displayName: foundry, gpt, api
     href: custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md
   - name: FAQ
     href: custom-translator/azure-ai-foundry/faq.md
   - name: How-to guides
-  
+
     items:
     - name: Create a Foundry Tools project
       displayName: models,pairs,label,edit,delete

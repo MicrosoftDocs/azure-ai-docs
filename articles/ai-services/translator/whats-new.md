@@ -12,6 +12,7 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
+<!-- markdownlint-disable MD025 -->
 
 # What's new in Azure Translator?
 
@@ -23,22 +24,21 @@ Azure Translator supports language translation for more than 100 languages. If y
 
 ## June 2026
 
+### Azure Translator 2026-06-06 (GA) release
+
+Translator **2026-06-06** is our latest cloud-based multilingual translation service. You can choose between neural machine translation (NMT) or generative AI language models (LLMs) for each request. Both approaches are available at production scale. To learn more about migrating to Translator 2026-06-06, *see* [Migrate from Azure Translator Text API v3 to Azure Translator Text API 2026-06-06](text-translation/how-to/migrate-to-2026-06-06.md).
+
 ### Microsoft Foundry (new)
 
-* The Foundry portal streamlines access to models, agents, and tools for Foundry projects.
+**Microsoft Foundry portal**: Provides unified access to translation models, agents, and tools in a single interface. Enables you to manage projects and experiments, build end-to-end translation workflows, and test configurations in real time before deployment.
 
-* For text translation, you have these model options: Azure-MT (neural machine translation),
-gpt-5, gpt-5-mini, gpt-5.1, gpt-5.2, and gpt-5.2-chat. These models allow you to generate translations tailored to a specific gender or tone, and you can refine your results using your domain-specific data and terminology. Azure Translator text translation playground in Foundry is available to test translation quality using these models.
+**Text translation**: Lets you choose from multiple models and tailor translations by gender or tone. Allows you to refine output using domain-specific data and terminology, with access to a playground for testing translation quality.
 
-* Document translation is available through a built-in playground, where you can select or provide a source document or text, specify the target language, and receive your translated output.
+**Document translation**: Enables you to upload or paste content, select a target language, and preview translated output directly in an integrated playground.
 
-* Adaptive custom translation (adaptCT) GA is available in Foundry > Build > AI Services > Azure Translator - Text Translation > Adaptive LLM playground, where you can upload adaptive documents (or use provided Demo samples), create bilingual dataset index, and test in the playground.
+**Adaptive custom translation (AdaptCT)**: Available in Foundry under **Build** → **Models** → **AI Services** → **Azure Translator** — **Text Translation** → **Adaptive LLM**. Allows you to upload bilingual documents, create language-pair dataset indexes, and validate translation results.
 
-### Azure Translator in Foundry Tools 2026-06-06 (GA)
-
-Translator `2026-06-06` GA is our newest cloud-based multilingual translation solution. It offers flexibility to use either standard neural machine translation (NMT) or select from various generative AI large language models (LLMs) for each translation request. This service provides powerful and scalable translation functionality, making it ideal for a wide range of needs and applications.
-
-For more information, *see* [Text translation overview](text-translation/overview.md).
+    :::image type="content" source="media/adaptive-custom-translation.png" alt-text="Screen shot of the adaptive custom translation pane in Foundry":::
 
 ## December 2025
 
@@ -54,11 +54,11 @@ For more information, *see* [Text translation overview](text-translation/overvie
 
 ### Microsoft Foundry (new)
 
-* The Foundry portal streamlines access to models, agents, and tools for Foundry projects.
+**Microsoft Foundry portal**: Streamlines access to models, agents, and tools for Foundry projects.
 
-* For text translation, you have three model options: Azure-MT (neural machine translation), GPT-4o, and GPT-4o mini. These models allow you to generate translations tailored to a specific gender or tone, and you can refine your results using your domain-specific data and terminology.
+**Text translation**: Choose from three model options: Azure-MT (neural machine translation), GPT-4o, and GPT-4o mini. Tailor translations to specific gender or tone preferences, and refine results with your domain-specific data and terminology.
 
-* Document translation is available through a built-in playground, where you can select or provide a source document or text, specify the target language, and receive your translated output.
+**Document translation**: Available through a built-in playground where you can upload or paste content, select a target language, and preview translated output.
 
 ### Azure Translator in Foundry Tools 2025-10-01-preview
 

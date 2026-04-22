@@ -1,40 +1,28 @@
 ---
-title: Foundry Tools adaptive custom translation
-titleSuffix: Foundry Tools
+title: Adaptive custom translation
+titleSuffix: Microsoft Foundry
 description: Understand the parameters, headers, and body messages for the Azure AI adaptive custom translation API v1.0 preview to create and manage adaptive dataset indexes.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.author: lajanuar
-ms.date: 11/18/2025
+ms.date: 04/21/2026
 ms.topic: reference
 ---
+<!-- markdownlint-disable MD025 -->
+<!-- markdownlint-disable MD036 -->
 
-# Foundry Tools adaptive custom translation (GA)
+# Azure Translation adaptive custom translation (GA)
 
-> [!IMPORTANT]
->
-> * Azure Translator adaptive custom translation Foundry playground is available in GA June 2026. 
+Azure Translator adaptive custom translation (**AdaptCT**) is a runtime translation adaptation capability available in Microsoft Foundry. It improves large language model (LLM) outputs, such as GPT-5.1, using a compact set of reference sentence pairs.
 
-Azure Translator in Foundry Tools adaptive custom translation (adaptCT) is a translation enhancement feature, designed to adapt and optimize large language model (LLM) outputs—such as GPT-5.1 deployed in Microsoft Foundry—using a small set of reference sentence pairs.
+With **AdaptCT**, you upload 5-10,000 prealigned bilingual segment pairs (source and target). Each source segment can contain up to 250 characters, and each target segment can contain up to 250 characters. The service builds a language-pair dataset index in minutes, which you can apply through the [Azure Translator 2026-06-06 APIs](../../../text-translation/2026-06-06/translate-api.md).
 
-AdaptCT lets you upload 5–10,000 pre‑aligned bilingual segment pairs (source+target). Each source can contain up to 250 characters and each target can contain up to 250 characters. The service builds a custom language‑pair dataset index in minutes, which you can then query with the [Azure Translator 2026-06-06 APIs](../../../text-translation/2026-06-06/translate-api.md).   
-
-Unlike traditional custom models that require large training sets and separate deployment, AdaptCT uses few‑shot retrieval at inference time: it selects relevant sentence pairs from your dataset index on the fly to adapt and optimize the LLM’s output toward your domain terminology, context, and style. `Availability: Foundry.`
-
-### Key differences
-*    **Custom translator**: Fine-tunes a dedicated translation model using your dataset; model is trained and deployed within ~48 hours.
-*    **Adaptive custom translation**: No fine-tuning or deployment required; updates by rebuilding the dataset index, ready within minutes. ​
-
-
-> [!IMPORTANT]
-> - The Adaptive custom translation playground (GA in Foundry NextGen) enables no-code adaptCT dataset indexes lifecycle management capabilities.
-> - The Adaptive custom translation API (v1.0 preview) enables adaptCT dataset indexes lifecycle management capabilities.
-> - This API requires proper authentication and foundry resource setup before use.
-> - Make sure to test thoroughly before using in production environments.
-> - Project and workspace are used interchangeably to mean a Foundry auto-created project.
+Unlike traditional custom translation workflows that require large training corpora and separate model deployment, **AdaptCT** uses few-shot retrieval at inference time. For each request, the system retrieves relevant segment pairs from your dataset index and uses them to steer output toward domain-specific terminology, context, and style.
 
 ## Compare adaptive and custom translation
+
+The following comparison highlights when to choose adaptive custom translation versus a fully trained Custom Translator model.
 
 | Feature | Adaptive custom translation | Custom translator |
 | --- | --- | --- |
@@ -44,9 +32,22 @@ Unlike traditional custom models that require large training sets and separate d
 | **Maintenance** | Simplifies operational management by focusing on dataset index updates and integrity checks, removing the need for ongoing model maintenance. | Supports sustained translation quality with periodic maintenance, including retraining and redeployment, to keep the model current and accurate. |
 | **Use Case** | Best for rapidly evolving or low-volume content (for example, support tickets) where quick updates to terminology or phrasing are needed without retraining a model. | Ideal for high-volume, consistent translation of domain-specific content (for example, legal contracts) where strict terminology and style adherence are critical across all documents. |
 
+### Key differences
 
+Use these key points as a quick decision guide before you invest in data preparation, training, or deployment.
 
-## Base URL
+* **Custom translator**: Fine-tunes a dedicated translation model using your dataset; model is trained and deployed within ~48 hours.
+* **Adaptive custom translation**: No fine-tuning or deployment required; updates by rebuilding the dataset index, ready within minutes. ​
+
+> [!IMPORTANT]
+>
+> * The Adaptive custom translation playground (GA in Foundry NextGen) enables no-code adaptCT dataset indexes lifecycle management capabilities.
+> * The Adaptive custom translation API (v1.0 preview) enables adaptCT dataset indexes lifecycle management capabilities.
+> * This API requires proper authentication and foundry resource setup before use.
+> * Make sure to test thoroughly before using in production environments.
+> * Project and workspace are used interchangeably to mean a Foundry auto-created project.
+
+## Adaptive Custom Translation base URL
 
 Here's the base URL for all adaptive custom translation API requests:
 
@@ -56,15 +57,16 @@ Here's the base URL for all adaptive custom translation API requests:
 
 ## Authentication
 
-Each request to an adaptCT API must include an authentication header. This header passes along a Foundry resource secret key and authentication token, which is used to validate your subscription for a service or group of services. 
+Each request to an adaptCT API must include an authentication header. This header passes along a Foundry resource secret key and authentication token, which is used to validate your subscription for a service or group of services.
 
 * Authenticate with a [secret key](../../../text-translation/reference/authentication.md#secret-key).
 * Authenticate with a [bearer token](../../../text-translation/reference/authentication.md#authenticating-with-an-access-token).
 
-
 For more information about Azure resources, *see* [Azure resources for Azure AI translation](../../../how-to/create-translator-resource.md)
 
 ### Required headers
+
+Include the following headers in every request to ensure the service can authenticate and route your call correctly.
 
 | Header | Value | Required | Description |
 |--------|-------|----------|-------------|
@@ -72,171 +74,188 @@ For more information about Azure resources, *see* [Azure resources for Azure AI 
 | `Ocp-Apim-Subscription-Region` | Your resource region | **True** | Azure resource region (for example, "eastus2") |
 
 ## How to create and use a dataset index
-1. You must use a Foundry resource. To learn how to create and manage a Foundry resource see [Create your first Foundry resource](../../../how-to/create-translator-resource.md)
-2. [Create workspace](#create-workspace)
-3. [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
-4. [Create Dataset Index](#create-dataset-index)
-5. To translate with dataset index see [Use Text Translation API](/azure/ai-services/translator/text-translation/preview/overview)
 
+Complete the following workflow to provision your workspace, import bilingual data, create a dataset index, and apply it during translation.
+
+1. You must use a Foundry resource. To learn how to create and manage a Foundry resource see [Create your first Foundry resource](../../../how-to/create-translator-resource.md)
+1. [Create workspace](#create-workspace)
+1. [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
+1. [Create Dataset Index](#create-dataset-index)
+1. To translate with dataset index see [Use Text Translation API](/azure/ai-services/translator/text-translation/preview/overview)
 
 ## API operations
 
-The Adaptive custom translation API is organized into three main operation categories ([workspace operations](#project-operations-1), [document operations](#document-operations-1), and [dataset index operations](#dataset-index-operations-1)):
+The Adaptive custom translation API is organized into three main operation categories.
 
-### Workspace operations
-* [Get All Workspaces](#get-all-workspaces)
+### Workspace operation index
+
+Use these endpoints to discover and retrieve workspaces.
+
+* [Get all workspaces](#get-all-workspaces)
 * [Get workspace](#get-workspace)
 * [Create workspace](#create-workspace)
 
-### Document operations
-* [Get Adaptive Documents](#get-documents)
-* [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
-* [Get Import Job Status](#get-import-job-status)
+### Document operation index
 
-### Dataset index operations
-* [Create Dataset Index](#create-dataset-index)
-* [Get Dataset Index](#get-dataset-index)
-* [Get All Dataset Indexes](#get-all-dataset-indexes)
-* [Delete Dataset Index](#delete-dataset-index)
+Use these endpoints to list documents, import TMX or TSV files, and track import jobs.
 
-## Workspace operations
+* [Get documents](#get-documents)
+* [Import documents (TSV, TMX)](#import-documents-tsv-tmx)
+* [Get import job status](#get-import-job-status)
 
-### Get all workspaces
+### Dataset index operation index
+
+Use these endpoints to create, read, list, and delete dataset indexes.
+
+* [Create dataset index](#create-dataset-index)
+* [Get dataset index](#get-dataset-index)
+* [Get all dataset indexes](#get-all-dataset-indexes)
+* [Delete dataset index](#delete-dataset-index)
+
+### Workspace operation reference
+
+#### Get all workspaces
 
 Retrieves all workspaces available to the authenticated user.
 
-#### Request URL
+**Request URL**
 
 ```bash
-   GET /workspaces/
+GET /workspaces/
 ```
 
-#### Request example
+**Request example**
 
-**Windows**
+Windows:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces/" ^
  -H "Ocp-Apim-Subscription-Key: <your-key>" ^
  -H "Ocp-Apim-Subscription-Region: <your-region>"
 ```
 
-**Linux/macOS**
+Linux/macOS:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces/" \
  -H "Ocp-Apim-Subscription-Key: <your-key>" \
  -H "Ocp-Apim-Subscription-Region: <your-region>"
 ```
 
-### Get workspace
+#### Get workspace
 
 Retrieves details for a specific workspace.
 
-#### Request URL
+**Request URL**
 
 ```bash
-   GET /workspaces/<workspaceId>
+GET /workspaces/<workspaceId>
 ```
 
-#### Parameters
+**Parameters**
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `workspaceId` | string | **True** | Unique identifier for the project |
 
-#### Request example
+**Request example**
 
-**Windows**
+Windows:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces/<workspaceId>" ^
  -H "Ocp-Apim-Subscription-Key: <your-key>" ^
  -H "Ocp-Apim-Subscription-Region: <your-region>"
 ```
 
-**Linux/macOS**
+Linux/macOS:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces/<workspaceId>" \
  -H "Ocp-Apim-Subscription-Key: <your-key>" \
  -H "Ocp-Apim-Subscription-Region: <your-region>"
 ```
 
-### Create workspace
+#### Create workspace
 
-A workspace must be created in Foundry NextGen after you create the Foundry resource and a  project. In Foundry NextGen,
+Create a workspace in Microsoft Foundry after creating your Foundry resource and project.
 
-- Select a project
-- Select Build > Models > AI Services > Azure Translator - Text Translation > Adaptive LLM. The workspace is automatically created. Now you can use provided adaptive demo documents or upload your own documents to create adaptive dataset indexes. 
-- Find the workspace Id by creating your first adaptive dataset index in the playground using the Adaptive LLM tab. The index Id is constructed as <`workspace-Id`>-adaptive-general, or invoking [GET Workspaces](#get-all-workspaces).
+1. Select a project.
+1. Select Build > Models > AI Services > Azure Translator - Text Translation > Adaptive LLM. The workspace is created automatically.
+1. Retrieve the workspace ID by creating your first adaptive dataset index in the playground using the Adaptive LLM tab, or by calling [Get all workspaces](#get-all-workspaces).
 
-## Document operations
+### Document operation reference
 
-### Get documents
+#### Get documents
 
 Retrieves a paginated list of documents in a project.
 
-#### Request URL
+**Request URL**
 
 ```bash
-  GET /documents?workspaceId=<workspaceId>&pageIndex={pageIndex}
+GET /documents?workspaceId=<workspaceId>&pageIndex={pageIndex}
 ```
 
-#### Parameters
+**Parameters**
 
 | Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
+| --------- | ---- | -------- | ----------- |
 | `workspaceId` | string | **True** | Project identifier |
 | `pageIndex` | integer | False | Page index for pagination (default: 0) |
 
-#### Request headers
+**Request headers**
 
 | Header | Value | Required |
-|--------|-------|----------|
+| -- | -- | -- |
 | `Authorization` | `Bearer <token>` | **True** |
 | `Content-Type` | `multipart/form-data` | False |
 
-#### Request example
+**Request example**
 
-**Windows**
+Windows:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents?workspaceId=<workspaceId>&pageIndex=0" ^
  -H "Authorization: Bearer <token>"
 ```
 
-**Linux/macOS**
+Linux/macOS:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents?workspaceId=<workspaceId>&pageIndex=0" \
  -H "Authorization: Bearer <token>"
 ```
 
-### Import documents (TSV, TMX)
+#### Import documents (TSV, TMX)
 
 Imports adaptive documents in TSV and TMX format to a project.
 
-#### Request URL
+**Request URL**
 
 ```bash
-   POST /documents/import?workspaceId=<workspaceId>
+POST /documents/import?workspaceId=<workspaceId>
 ```
 
-#### Parameters
+**Parameters**
 
 | Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
+| --------- | ---- | -------- | ----------- |
 | `workspaceId` | string | **True** | Project identifier |
 
-#### Request headers
+**Request headers**
 
 | Header | Value | Required |
-|--------|-------|----------|
+| -------- | ----- | -------- |
 | `Authorization` | `Bearer <token>` | **True** |
 
-#### Request body (multipart form data)
+**Request body (multipart form data)**
 
 | Field | Type | Required | Description |
-|-------|------|----------|-------------|
+| ------- | ------ | ---------- | ------------- |
 | `DocumentDetails` | string | **True** | JSON string containing document metadata |
 | `FILES` | file | **True** | TSV or TMX file to upload |
 
-#### DocumentDetails JSON format
+**DocumentDetails JSON format**
 
 ```json
 [{
@@ -250,11 +269,12 @@ Imports adaptive documents in TSV and TMX format to a project.
 }]
 ```
 
-#### TMX request example
+**TMX request example**
 
-***English to supported target language, for example, French.***
+English to a supported target language, for example, French.
 
-**Windows**
+Windows:
+
 ```bash
 curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents/import?workspaceId=<workspaceId>" ^
  -H "Authorization: Bearer <token>" ^
@@ -262,76 +282,78 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translato
  -F "FILES=@path/to/data.tmx"
 ```
 
-**Linux/macOS**
+Linux/macOS:
+
 ```bash
 curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents/import?workspaceId=<workspaceId>" \
  -H "Authorization: Bearer <token>" \
  -F "DocumentDetails=[{\"DocumentName\": \"my-document\",\"DocumentType\": \"Adaptive\",\"FileDetails\": [{\"Name\": \"data.tmx\",\"LanguageCode\": \"en\",\"OverwriteIfExists\": true}]}]" \
  -F "FILES=@path/to/data.tmx"
-
 ```
 
-### Get import job status
+#### Get import job status
 
 Retrieves the status of a document import job.
 
-#### Request URL
+**Request URL**
 
 ```bash
-   GET /documents/import/jobs/<jobId>
+GET /documents/import/jobs/<jobId>
 ```
 
-#### Parameters
+**Parameters**
 
 | Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
+| --------- | ---- | -------- | ----------- |
 | `jobId` | string | **True** | Import job identifier |
 
-#### Request headers
+**Request headers**
 
 | Header | Value | Required |
-|--------|-------|----------|
+| -------- | ----- | -------- |
 | `Authorization` | `Bearer <token>` | **True** |
 
-#### Request example
+**Request example**
 
-**Windows**
+Windows:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents/import/jobs/<jobId>" ^
  -H "Authorization: Bearer <token>"
 ```
 
-**Linux/macOS**
+Linux/macOS:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/documents/import/jobs/<jobId>" \
  -H "Authorization: Bearer <token>"
 ```
 
-## Dataset index operations
+### Dataset index operation reference
 
-### Create Dataset Index
+#### Create dataset index
 
 Creates a new dataset index for adaptive translation using specified documents.
 
-#### Request URL
+**Request URL**
 
 ```bash
-   POST /index?workspaceId=<workspaceId>
+POST /index?workspaceId=<workspaceId>
 ```
 
-#### Parameters
+**Parameters**
 
 | Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
+| --------- | ---- | -------- | ----------- |
 | `workspaceId` | string | **True** | Project identifier |
 
-#### Request headers
+**Request headers**
 
 | Header | Value | Required |
-|--------|-------|----------|
+| -------- | ----- | -------- |
 | `Content-Type` | `application/json` | **True** |
 
-#### Request body
+**Request body**
 
 ```json
 {
@@ -342,111 +364,119 @@ Creates a new dataset index for adaptive translation using specified documents.
 }
 ```
 
-#### Parameters
+**Request body fields**
 
 | Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `documentIds` | array | **True** | Array of document ID identifiers that include in dataset index. |
+| --------- | ---- | -------- | ----------- |
+| `documentIds` | array | **True** | Array of document IDs to include in the dataset index |
 | `IndexName` | string | **True** | Name for the new dataset index |
 | `SourceLanguage` | string | **True** | Source language code |
 | `TargetLanguage` | string | **True** | Target language code |
 
-#### Request example
+**Request example**
 
-**Windows**
+Windows:
+
 ```bash
 curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index?workspaceId=<workspaceId>" ^
  -H "Content-Type: application/json" ^
  -d "{\"documentIds\": [\"1457362\"],\"IndexName\": \"my-index\",\"SourceLanguage\": \"en\",\"TargetLanguage\": \"de\"}"
 ```
 
-**Linux/macOS**
+Linux/macOS:
+
 ```bash
 curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index?workspaceId=<workspaceId>" \
  -H "Content-Type: application/json" \
  -d "{\"documentIds\": [\"1457362\"],\"IndexName\": \"my-index\",\"SourceLanguage\": \"en\",\"TargetLanguage\": \"de\"}"
 ```
 
-### Get dataset index
+#### Get dataset index
 
 Retrieves details for a specific dataset index.
 
-#### Request URL
+**Request URL**
 
 ```bash
-   GET /index/{indexId}
+GET /index/{indexId}
 ```
 
-#### Parameters
+**Parameters**
 
 | Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
+| --------- | ---- | -------- | ----------- |
 | `indexId` | string | **True** | Index identifier |
 
-#### Request example
+**Request example**
 
-**Windows**
+Windows:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
 ```
 
-**Linux/macOS**
+Linux/macOS:
+
 ```bash
-cucurl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
+curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
 ```
 
-### Get all dataset indexes
+#### Get all dataset indexes
 
 Retrieves all dataset indexes in a project.
 
-#### Request URL
+**Request URL**
 
 ```bash
-   GET /index?workspaceId=<workspaceId>
+GET /index?workspaceId=<workspaceId>
 ```
 
-#### Parameters
+**Parameters**
 
 | Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
+| --------- | ---- | -------- | ----------- |
 | `workspaceId` | string | **True** | Project identifier |
 
-#### Request example
+**Request example**
 
-**Windows**
+Windows:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index?workspaceId=<workspaceId>"
 ```
 
-**Linux/macOS**
+Linux/macOS:
+
 ```bash
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index?workspaceId=<workspaceId>"
 ```
 
-### Delete dataset index
+#### Delete dataset index
 
 Deletes a specific dataset index.
 
-#### Request URL
+**Request URL**
 
 ```bash
-   DELETE /index/<indexId>
+DELETE /index/<indexId>
 ```
 
-#### Parameters
+**Parameters**
 
 | Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
+| --------- | ---- | -------- | ----------- |
 | `indexId` | string | **True** | Dataset index identifier |
 
-#### Request example
+**Request example**
 
-**Windows**
+Windows:
+
 ```bash
 curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
 ```
 
-**Linux/macOS**
+Linux/macOS:
+
 ```bash
 curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
 ```
@@ -460,7 +490,7 @@ curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/transla
 The API returns standard HTTP status codes. Common error responses:
 
 | Status Code | Description |
-|-------------|-------------|
+| ------------- | ------------- |
 | 400 | Bad Request - Invalid parameters or request format |
 | 401 | Unauthorized - Missing or invalid authentication |
 | 403 | Forbidden - Insufficient permissions |
@@ -469,12 +499,16 @@ The API returns standard HTTP status codes. Common error responses:
 
 ## Best practices
 
+Apply these practices to improve reliability, maintainability, and translation quality in production workloads.
+
 1. **Authentication**: Use Bearer tokens for document operations
 1. **Error Handling**: Implement proper error handling and retry logic for API calls
 1. **Project Organization**: Use descriptive names for projects and dataset indexes to maintain organization
 1. **Document Management**: Ensure TSV and TMX files are properly formatted with well aligned source-target pairs
 
 ## Troubleshooting
+
+If requests fail, use the following checks to isolate authentication, ingestion, and indexing issues.
 
 1. **Authentication Errors**
    * Verify your Azure tokens are valid and not expired.
@@ -486,11 +520,10 @@ The API returns standard HTTP status codes. Common error responses:
    * Check that the Custom Translator API endpoint is accessible.
    * Ensure your subscription is active.
 
-
-
 ## Next steps
+
+Use these resources to deepen implementation knowledge and connect AdaptCT with broader Azure AI translation capabilities.
 
 * [Learn about custom translator models](../../../custom-translator/azure-ai-foundry/overview.md)
 * [Learn about the text translation API](../../../text-translation/2026-06-06/overview.md)
 * [Explore Foundry for advanced AI capabilities](../../../overview.md)
-
