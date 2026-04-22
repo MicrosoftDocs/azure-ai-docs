@@ -88,7 +88,7 @@ TranscriptionClient client = new TranscriptionClient(endpoint, credential);
 string audioFilePath = "<path-to-your-audio-file.wav>";
 using FileStream audioStream = File.OpenRead(audioFilePath);
 
-// Create enhanced mode properties for LLM speech transcription
+// Create enhanced mode properties for LLM Speech transcription
 TranscriptionOptions options = new TranscriptionOptions(audioStream)
 {
     EnhancedMode = new EnhancedModeProperties
@@ -147,7 +147,7 @@ TranscriptionClient client = new TranscriptionClient(endpoint, credential);
 string audioFilePath = "<path-to-your-audio-file.wav>";
 using FileStream audioStream = File.OpenRead(audioFilePath);
 
-// Create enhanced mode properties for LLM speech translation
+// Create enhanced mode properties for LLM Speech translation
 TranscriptionOptions options = new TranscriptionOptions(audioStream)
 {
     EnhancedMode = new EnhancedModeProperties

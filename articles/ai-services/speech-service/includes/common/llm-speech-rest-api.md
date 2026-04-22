@@ -145,15 +145,15 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 
 Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM Speech. You can omit these options from the request. Learn more from [configuration options of fast transcription](../../fast-transcription-create.md#request-configuration-options).
 
-#### Use the MAI-transcribe model (preview)
+#### Use the MAI-Transcribe model (preview)
 
-You can also use the MAI-transcribe-1 model provided by Microsoft AI (MAI) with the LLM Speech API.
+You can also use the MAI-Transcribe-1 model provided by Microsoft AI (MAI) with the LLM Speech API.
 
 For the current list of regions where this model is supported, see [Speech service regions](../../regions.md?tabs=llmspeech).
 
 The following languages are currently supported for mai-transcribe-1 model: `Arabic`, `Chinese`, `Czech`, `Danish`, `Dutch`, `English`, `Finnish`, `French`, `German`, `Hindi`, `Hungarian`, `Indonesian`, `Italian`, `Japanese`, `Korean`, `Norwegian Bokmål`, `Polish`, `Portuguese`, `Romanian`, `Russian`, `Spanish`, `Swedish`, `Thai`, `Turkish`, and `Vietnamese`.
 
-To use the MAI-transcribe-1 model, set the `model` property accordingly in the request.
+To use the MAI-Transcribe-1 model, set the `model` property accordingly in the request.
 
 ```azurecli-interactive
 curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \

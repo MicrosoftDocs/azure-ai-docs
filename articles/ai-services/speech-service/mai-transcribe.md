@@ -8,7 +8,7 @@ ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 04/01/2026
-# Customer intent: As a user who implements audio transcription, I want to create transcriptions with MAI's latest mai-transcribe-1 model.
+# Customer intent: As a user who implements audio transcription, I want to create transcriptions with MAI's latest MAI-Transcribe-1 model.
 ---
 
 # MAI-Transcribe-1 in Azure Speech (preview)
@@ -21,7 +21,7 @@ MAI‑Transcribe‑1 is a speech recognition model developed by the Microsoft AI
 
 > [!div class="checklist"]
 > - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-> - [A Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
+> - [A Microsoft Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
 > - The Speech resource key and region. After your Speech resource is deployed, select **Go to resource** to view and manage keys. For the current list of supported regions, see [Speech service regions](regions.md?tabs=llmspeech).
 > - An audio file (less than 300 MB in size) in one of these formats: WAV, MP3, or FLAC.
 

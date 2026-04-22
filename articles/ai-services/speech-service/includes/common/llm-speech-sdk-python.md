@@ -152,7 +152,7 @@ LLM Speech uses the `EnhancedModeProperties` class to enable transcription that'
 
     # Open and read the audio file
     with open(audio_file_path, "rb") as audio_file:
-        # Create enhanced mode properties for LLM speech transcription
+        # Create enhanced mode properties for LLM Speech transcription
         enhanced_mode = EnhancedModeProperties(
             task="transcribe",
             prompt=[],
@@ -243,7 +243,7 @@ You can also use LLM Speech to translate audio into a target language. Set the `
     
     # Open and read the audio file
     with open(audio_file_path, "rb") as audio_file:
-        # Create enhanced mode properties for LLM speech translation
+        # Create enhanced mode properties for LLM Speech translation
         # Translate to another language
         enhanced_mode = EnhancedModeProperties(
             task="translate",
@@ -314,7 +314,7 @@ audio_file_path = "<path-to-your-audio-file.wav>"
 
 # Open and read the audio file
 with open(audio_file_path, "rb") as audio_file:
-    # Create enhanced mode properties for LLM speech transcription
+    # Create enhanced mode properties for LLM Speech transcription
     enhanced_mode = EnhancedModeProperties(
         task="transcribe",
         prompt=[
