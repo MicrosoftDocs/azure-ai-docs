@@ -64,7 +64,7 @@ You need to retrieve your resource endpoint for authentication.
 
 ## Transcribe audio with LLM speech
 
-LLM Speech uses the `EnhancedModeProperties` class to enable transcription enhanced by a large language model. When you create an `EnhancedModeProperties` instance, you automatically enable enhanced mode. The model automatically detects the language in your audio.
+LLM Speech uses the `EnhancedModeProperties` class to enable transcription that's enhanced by a large language model. When you create an `EnhancedModeProperties` instance, you automatically enable enhanced mode. The model automatically detects the language in your audio.
 
 Replace the contents of `Program.cs` with the following code:
 

@@ -73,7 +73,7 @@ You need to retrieve your resource endpoint for authentication.
 
 ## Transcribe audio with LLM Speech
 
-LLM Speech uses the `enhancedMode` option to enable transcription that's enhance by a large language model. The model automatically detects the language in your audio.
+LLM Speech uses the `enhancedMode` option to enable transcription that's enhanced by a large language model. The model automatically detects the language in your audio.
 
 Create a file named `index.js` with the following code:
 

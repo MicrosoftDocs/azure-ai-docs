@@ -102,7 +102,7 @@ ms.date: 01/31/2026
 
 Your application must be authenticated to access Azure Speech. The SDK supports both API key and Microsoft Entra ID authentication. It automatically detects which method to use based on the environment variables you set.
 
-First, set the endpoint for your Speech resource. Replace `<your-speech-endpoint>` with your actual resource name:
+First, set the endpoint for your Speech resource. Replace `<your-speech-endpoint>` with your actual resource name.
 
 # [Windows](#tab/windows)
 
@@ -124,7 +124,7 @@ export AZURE_SPEECH_ENDPOINT="<your-speech-endpoint>"
 
 ---
 
-Then, choose one of the following authentication methods:
+Then, choose one of the following authentication methods.
 
 ### API key authentication (recommended for getting started)
 

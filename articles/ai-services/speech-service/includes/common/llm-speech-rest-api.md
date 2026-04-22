@@ -110,7 +110,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 
 Here are some best practices for prompts:
 
-- Prompts are subject to a maximum length of 4,096 characters.
+- Prompts have a maximum length of 4,096 characters.
 
 - Prompts should preferably be written in English.
 
