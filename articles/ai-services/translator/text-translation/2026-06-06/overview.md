@@ -1,7 +1,7 @@
 ---
-title: Azure Translator in Foundry Tools 2026-06-06 reference
+title: Azure Translator in Foundry Tools latest GA release reference
 titleSuffix: Foundry Tools
-description: Reference documentation for Azure Translator in Foundry Tools 2026-06-06 operations and capabilities.
+description: Reference documentation for Azure Translator in Foundry Tools latest GA release operations and capabilities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -11,7 +11,7 @@ ms.date: 01/18/2026
 ms.author: lajanuar
 ---
 
-# Azure Translator in Foundry Tools 2026-06-06
+# Azure Translator in Foundry Tools latest GA release
 
 Azure Translator in Foundry Tools `2026-06-06` is our latest cloud-based, multilingual, neural machine translation service. The Text translation API enables robust and scalable translation capabilities suitable for diverse applications.
 
@@ -25,14 +25,13 @@ Translator is an optimal solution for managing extensive multilingual content. I
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
+## What's new for `2026-06-06` (GA) release?
 
-## What's new for 2026-06-06?
+* **Revised request and response JSON format**. The REST API structure is revised to add specific key names for both the request and response arrays. The request array now uses "inputs" as its key name, while the response array uses "value" as its key name. For more information, *see* [REST API guide](rest-api-guide.md#rest-api-code-sample-translate).
 
-* **Revised request and response JSON format**. The REST API structure has been revised to add specific key names for both the request and response arrays. The request array now uses "inputs" as its key name, while the response array uses "value" as its key name. For more information, *see* [REST API guide](rest-api-guide.md#rest-api-code-sample-translate).
+* **`LLM` choice**. By default, Azure Translator uses neural Machine Translation (NMT) technology. With the newest release, you now can optionally select either the standard NMT translation or Large Language Model (LLM), for example, GPT-5.1. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have a Microsoft Foundry resource**. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md)
 
-* **`LLM` choice**. By default, Azure Translator uses neural Machine Translation (NMT) technology. With the newest release, you now can optionally select either the standard NMT translation or Large Language Model (LLM), e.g., GPT-5.1. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have a Microsoft Foundry resource**. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md)
-
-* **Adaptive custom translation**. You can provide up to five reference translations or adaptive dataset index Id to enable an `LLM` model to perform few-shot translations in a similar style and tailored to your needs. For more information, *see* [Adaptive custom translation](../../custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md)
+* **Adaptive custom translation**. You can provide up to five reference translations or adaptive dataset index ID to enable an `LLM` model to perform few-shot translations in a similar style and tailored to your needs. For more information, *see* [Adaptive custom translation](../../custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md)
 
 * **Tone variant translations**. Use generative AI LLMs translate text across multiple tonal categories—formal, informal, and neutral—ensuring precise contextual adaptation.
 
