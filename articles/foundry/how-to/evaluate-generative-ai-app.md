@@ -57,7 +57,7 @@ Provide a dataset for the evaluation. You can upload your own dataset or synthet
 
 All evaluation targets - Agent, Model, Dataset, and Traces - support image and audio content. Each content type uses a specific JSONL schema:
 
-**Image content**:
+Image content:
 
 - `image_url`: The image as a data URI (for example, `data:image/png;base64,...`) or a publicly accessible URL.
 - `caption`: A text description of the image content.
@@ -66,7 +66,7 @@ All evaluation targets - Agent, Model, Dataset, and Traces - support image and a
 {"image_url": "data:image/png;base64,iVBOR...", "caption": "A red to blue color gradient"}
 ```
 
-**Audio content**:
+Audio content:
 
 - `audio_data`: The audio as a data URI with base64-encoded WAV data (for example, `data:audio/wav;base64,...`).
 - `expected`: A text description of the expected audio content.
@@ -75,9 +75,9 @@ All evaluation targets - Agent, Model, Dataset, and Traces - support image and a
 {"audio_data": "data:audio/wav;base64,UklGR...", "expected": "A short beep tone at 440 Hz"}
 ```
 
-Datasets can also be in the chat message conversation format, where audio and image data are embedded within a singular chat message column. This audio and image data can be stored in the form of data URIs or publicly accessible URLs. 
+Datasets can also use the chat message conversation format, where audio and image data are embedded within a single chat message column as data URIs or publicly accessible URLs.
 
-Here's an example of what a column from a conversation dataset could look like:
+The following example shows a conversation dataset column with embedded image and audio content:
 
 ```jsonl
 [
