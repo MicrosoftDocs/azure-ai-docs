@@ -1188,7 +1188,7 @@ Status Code: 200
 POST https://{endpoint}/openai/deployments/{deployment-id}/images/generations?api-version=2025-04-01-preview
 ```
 
-Generates a batch of images from a text caption on a given DALL-E or gpt-image-1 series model deployment
+Generates a batch of images from a text caption on a given image generation model deployment
 
 ### URI Parameters
 
