@@ -28,7 +28,7 @@ The refreshed preview updates the existing platform with a session-based sandbox
 - **Session-based isolation** — Each session gets its own sandbox with persistent `$HOME` and `/files` storage across turns and idle periods.
 - **Protocol libraries replace framework adapters** — The framework-specific adapter packages (`azure-ai-agentserver-agentframework`, `azure-ai-agentserver-langgraph`) are replaced by protocol-specific libraries (`azure-ai-agentserver-responses`, `azure-ai-agentserver-invocations`). See [Protocol library and framework migration](#protocol-library-and-framework-migration).
 - **Dedicated agent identity from deploy time** — Every agent gets its own Entra identity at creation, replacing the shared project managed identity model. See [Identity and RBAC changes](#identity-and-rbac-changes).
-- **Dedicated agent endpoint** — Each agent gets its own endpoint URL (`{project_endpoint}/agents/{name}/endpoint/protocols/responses`). You no longer route through a shared project endpoint with `agent_reference` in the request body. See [Agent invocation changes](#agent-invocation-changes).
+- **Dedicated agent endpoint** — Each agent gets its own endpoint URL (for example, `{project_endpoint}/agents/{name}/endpoint/protocols/openai/v1/responses`). You no longer route through a shared project endpoint with `agent_reference` in the request body. See [Agent invocation changes](#agent-invocation-changes).
 - **New protocols** — Invocations, Activity, and A2A protocols join the existing Responses protocol. A single agent can expose multiple protocols simultaneously.
 - **REST API for full lifecycle** — Complete REST coverage for agent, version, session, and file operations. See [SDK method changes](#sdk-method-changes).
 - **Capability host creation removed** — The platform handles infrastructure provisioning automatically. You no longer need to create an account-level capability host. See [Removed APIs](#removed-apis).
@@ -341,7 +341,7 @@ langchain-mcp-adapters>=0.1.0
 mcp>=1.0.0
 ```
 
-For complete samples, see the [LangGraph hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/langchain).
+For complete samples, see the [LangGraph hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/langgraph).
 
 ## Migrate custom or BYO agents
 
@@ -503,7 +503,7 @@ curl -X POST "$BASE_URL/agents/my-agent/endpoint/protocols/openai/responses?api-
 > [!IMPORTANT]
 > REST calls to hosted agent endpoints require the `Foundry-Features: HostedAgents=V1Preview` header during preview. Without it, the request returns a `preview_feature_required` error. The SDK sets this header automatically.
 
-The endpoint URL format is `{project_endpoint}/agents/{name}/endpoint/protocols/{protocol}`. Active endpoints depend on which protocols you declare in your agent version definition.
+Active endpoints depend on the protocols you declare in your agent version definition. The Responses and Conversations routes live under the OpenAI-compatible namespace at `{project_endpoint}/agents/{name}/endpoint/protocols/openai/v1/{responses|conversations}`, while Invocations, Activity, and A2A route directly at `{project_endpoint}/agents/{name}/endpoint/protocols/{invocations|activityprotocol|a2a}`.
 
 ## Version status changes
 
