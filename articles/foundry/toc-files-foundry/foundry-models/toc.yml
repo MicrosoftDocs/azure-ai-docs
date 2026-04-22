@@ -240,6 +240,9 @@ items:
   - name: Claude Code
     displayName: Configure Claude Code for Microsoft Foundry
     href: ../../foundry-models/how-to/configure-claude-code.md
+  - name: Claude Desktop
+    displayName: Configure Claude Desktop for Microsoft Foundry
+    href: ../../foundry-models/how-to/configure-claude-desktop.md
 
 - name: Model capabilities
   items:

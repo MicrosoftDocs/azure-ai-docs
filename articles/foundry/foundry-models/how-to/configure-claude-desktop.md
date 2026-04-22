@@ -85,9 +85,9 @@ You can export full session telemetry to your own OpenTelemetry collector for au
 
 Anthropic-bound telemetry (crash reports and product analytics) contains no conversation content and can be fully disabled via managed configuration. For details, see [Telemetry and egress](https://claude.com/docs/cowork/3p/telemetry-egress).
 
-## Important notes
+## Operational considerations
 
-- **Data residency**: Conversations are stored on the user's local device. Inference requests go to your Azure AI Foundry endpoint.
+- **Data residency**: Conversations are stored on the user's local device. Inference requests go to your Microsoft Foundry endpoint.
 - **Compliance**: Anthropic has noted that data-residency and "no conversation data sent to Anthropic" guarantees equivalent to those for Vertex AI and Amazon Bedrock are coming for Microsoft Foundry. Refer to [Anthropic's documentation](https://claude.com/docs/cowork/3p/overview) for the latest status.
 - **Billing**: All inference is billed through your Azure account as token-based consumption. There's no seat licensing from Anthropic.
 - **Updates**: Auto-updates are enabled by default. You can disable them and redistribute builds through your MDM on your own schedule.
