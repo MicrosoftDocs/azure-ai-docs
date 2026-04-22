@@ -74,6 +74,72 @@ All evaluation targets—Agent, Model, Dataset, and Traces—support image and a
 {"audio_data": "data:audio/wav;base64,UklGR...", "expected": "A short beep tone at 440 Hz"}
 ```
 
+Datasets can also be in the chat message conversation format, where audio and image data are embedded within a singular chat message column. This audio and image data can be stored in the form of data URIs or publicly accessible URLs. 
+
+Here is an example of what a column from a conversation dataset could look like:
+
+```jsonl
+[ 
+  { 
+    "role": "system", 
+    "content": "..." 
+  }, 
+
+  { 
+    "role": "user", 
+    "content": [ 
+      { 
+        "type": "text", 
+        "text": "What are in these images?" 
+      }, 
+      { 
+        "type": "image_url", 
+        "image_url": { 
+          "url": "https://my-website.com/path/image.png" 
+        } 
+      }, 
+      { 
+        "type": "image_url", 
+        "image_url": { 
+          "url": "data:image/png;base64,iVBORw0KGgo..." 
+        } 
+      } 
+    ] 
+  },
+ 
+  { 
+    "role": "assistant", 
+    "content": "..." 
+  }, 
+
+  { 
+    "role": "user", 
+    "content": [ 
+      { 
+        "type": "text", 
+        "text": "Tell me the tones for the voices?" 
+      }, 
+      { 
+        "type": "input_audio", 
+        "input_audio": { 
+          "data": "https://my-website.com/path/voice.wav", 
+          "format": "wav" 
+        } 
+      },
+
+      { 
+        "type": "input_audio", 
+        "input_audio": { 
+          "data": "data:audio/wav;base64,UklGRigAAA...", 
+          "format": "wav" 
+        } 
+      }
+
+    ] 
+  } 
+] 
+```
+
 You can preview images and play audio clips directly in the evaluation creation flow and in the evaluation results view.
 
 ### Configure testing criteria
