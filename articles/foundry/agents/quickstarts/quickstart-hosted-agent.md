@@ -52,7 +52,7 @@ Before you begin, you need:
 
 > [!WARNING]
 > This document is for the new Hosted Agent experience for version azd ai agent 0.1.26-preview or later.
-> For the legacy experience, please continue using 0.1.25-preview.
+> For the legacy experience that uses Azure Container Apps, please continue using 0.1.25-preview.
 
 Install the Azure Developer CLI agent extension and initialize a new hosted agent project.
 
