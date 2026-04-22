@@ -233,11 +233,13 @@ Use this option when your application already knows what the agent should say—
 * Randomly selected greetings from a predefined list
 * Personalized welcome text (for example, 'Welcome back, Lisa!')
 
-The message is,
+The message is:
 
-* inserted directly into the conversation context as an assistant message
-* synthesized by TTS
-* under full developer control
+* Inserted directly into the conversation context as an assistant message
+* Synthesized by TTS
+* Under full developer control
+
+For the full parameter specification, see [`pre_generated_assistant_message` in the API reference](./voice-live-api-reference-2026-01-01-preview.md#realtimeresponseoptions).
 
 #### Example: Pregenerated greeting
 
@@ -771,5 +773,5 @@ async function sendLlmGeneratedGreeting(session) {
 
 - Try the Voice Live **Playground in [Foundry portal](./voice-live-quickstart.md?pivots=ai-foundry-portal)** to experiment with proactive engagement
 - Learn more about [How to use the Voice live API](./voice-live-how-to.md)
-- See the [Voice live API reference](./voice-live-api-reference.md)
+- See the [Voice live API reference](./voice-live-api-reference-2026-01-01-preview.md)
 - Explore [How to improve tool calling and latency wait times](./how-to-voice-live-interim-response.md)

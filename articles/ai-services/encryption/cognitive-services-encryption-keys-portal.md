@@ -34,7 +34,7 @@ When you use a customer-managed key, these resources live in _your_ Azure subscr
 These Microsoft-managed resources are located in a new Azure resource group is created in your subscription. This resource group exists in addition to the resource group for your project. It contains the Microsoft-managed resources that your key is used with. The resource group is named using the formula of `<Azure AI resource group name><GUID>`. It isn't possible to change the naming of the resources in this managed resource group.
 
 > [!TIP]
-> If your AI resource uses a private endpoint, this resource group will also contain a Microsoft-managed Azure Virtual Network. This VNet is used to secure communications between the managed services and the project. You cannot provide your own VNet for use with the Microsoft-managed resources. You also cannot modify the virtual network. For example, you cannot change the IP address range that it uses.
+> If your AI resource uses a private endpoint, this resource group will also contain a Microsoft-managed Azure Virtual Network. This virtual network is used to secure communications between the managed services and the project. You cannot provide your own virtual network for use with the Microsoft-managed resources. You also cannot modify the virtual network. For example, you cannot change the IP address range that it uses.
 
 > [!IMPORTANT]
 > If your subscription does not have enough quota for these services, a failure will occur.
@@ -52,7 +52,7 @@ The process to enable customer-managed keys with Azure Key Vault for Foundry Too
 * [Azure OpenAI](../../ai-foundry/openai/encrypt-data-at-rest.md)
 * [Azure Custom Vision ](../custom-vision-service/encrypt-data-at-rest.md)
 * [Azure AI Content Safety ](../content-safety/how-to/encrypt-data-at-rest.md)
-* [Azure AI Face ](../computer-vision/identity-encrypt-data-at-rest.md)
+* [Azure AI Face ](../face/identity-encrypt-data-at-rest.md)
 * [Azure Document Intelligence ](../../ai-services/document-intelligence/authentication/encrypt-data-at-rest.md)
 * [Azure Translator](../translator/encrypt-data-at-rest.md)
 * [Azure Language](../language-service/concepts/encryption-data-at-rest.md)

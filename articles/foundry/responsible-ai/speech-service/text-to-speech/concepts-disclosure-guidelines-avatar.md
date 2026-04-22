@@ -7,10 +7,12 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 11/16/2023
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Disclosure design guidelines for avatars
+
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
 Learn how to build and maintain trust with customers by being transparent about the synthetic nature of your avatar experience.

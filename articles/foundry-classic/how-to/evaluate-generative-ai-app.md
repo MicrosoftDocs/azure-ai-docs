@@ -2,7 +2,7 @@
 title: "Evaluate Generative AI Models and Apps with Microsoft Foundry (classic)"
 description: "Evaluate your generative AI models and applications by using Microsoft Foundry. (classic)"
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023, references_regions, build-2024, ignite-2024
   - classic-and-new
@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Evaluate generative AI models and applications by using Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/evaluate-generative-ai-app.md)
 
 To thoroughly assess the performance of your generative AI models and applications on a substantial dataset, initiate an evaluation process. During this evaluation, the model or application is tested with the given dataset, and its performance is measured using mathematical metrics and AI-assisted metrics. This evaluation run provides comprehensive insights into the application's capabilities and limitations.
 

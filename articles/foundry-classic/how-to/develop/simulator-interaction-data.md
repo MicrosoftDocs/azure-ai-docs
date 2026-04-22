@@ -1,7 +1,7 @@
 ---
 title: "Generate Synthetic and Simulated Data for Evaluation (classic)"
 description: "This article provides instructions on how to generate synthetic data to run simulations to evaluate the performance and safety of your generative AI application. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023
   - build-2024
@@ -175,7 +175,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 def call_to_your_ai_application(query: str) -> str:
     # logic to call your application
     # use a try except block to catch any errors
-    token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
 
     deployment = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
     endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")

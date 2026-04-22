@@ -89,7 +89,7 @@ In this quickstart, use the following features to analyze and extract data and v
 1. In console window (such as cmd, PowerShell, or Bash), create a new directory for your app called **form-recognize-app**, and navigate to it.
 
     ```console
-    mkdir form-recognize-app && form-recognize-app
+    mkdir form-recognize-app && cd form-recognize-app
     ```
 
     ```powershell

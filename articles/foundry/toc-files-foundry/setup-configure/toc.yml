@@ -1,5 +1,7 @@
 items:
 # Planning and Preparation
+- name: General availability overview
+  href: ../../concepts/general-availability.md
 - name: Plan rollout
   href: ../../concepts/planning.md
 
@@ -32,11 +34,9 @@ items:
     href: ../../agents/concepts/standard-agent-setup.md
   - name: Use your own Azure resources
     href: ../../agents/how-to/use-your-own-resources.md
-  - name: Migrate agents
-    href: ../../agents/how-to/migrate.md
   - name: Virtual networks
     href: ../../agents/how-to/virtual-networks.md
-  - name: Use an AI Gateway
+  - name: Bring your own models with AI gateways
     href: ../../agents/how-to/ai-gateway.md
 
 # Connections and Integration

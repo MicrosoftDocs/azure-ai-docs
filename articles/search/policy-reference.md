@@ -1,7 +1,7 @@
 ---
 title: Built-in Policy Definitions
-description: Lists Azure Policy built-in policy definitions for Azure Cognitive Search. These built-in policy definitions provide common approaches to managing your Azure resources.
-ms.date: 12/10/2024
+description: Lists Azure Policy built-in policy definitions for Azure AI Search. These built-in policy definitions provide common approaches to managing your Azure resources.
+ms.date: 03/25/2026
 ms.update-cycle: 365-days
 ms.topic: concept-article
 ms.service: azure-ai-search
@@ -9,13 +9,9 @@ ms.custom: subject-policy-reference
 ---
 # Azure Policy built-in definitions for Azure AI Search
 
-This page is an index of [Azure Policy](/azure/governance/policy/overview) built-in policy
-definitions for Azure AI Search. For additional Azure Policy built-ins for other services,
-see [Azure Policy built-in definitions](/azure/governance/policy/samples/built-in-policies).
+This page is an index of [Azure Policy](/azure/governance/policy/overview) built-in policy definitions for Azure AI Search. For additional Azure Policy built-ins for other services, see [Azure Policy built-in definitions](/azure/governance/policy/samples/built-in-policies).
 
-The name of each built-in policy definition links to the policy definition in th Azure portal. Use
-the link in the **Version** column to view the source on the
-[Azure Policy GitHub repo](https://github.com/Azure/azure-policy).
+The name of each built-in policy definition links to the policy definition in the Azure portal. Use the link in the **Version** column to view the source on the [Azure Policy GitHub repo](https://github.com/Azure/azure-policy).
 
 ## Azure AI Search
 

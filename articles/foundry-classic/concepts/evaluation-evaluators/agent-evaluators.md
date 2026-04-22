@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
 ms.date: 02/25/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: reference
 ms.custom:
   - classic-and-new
@@ -17,7 +17,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Agent evaluators (preview) (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/concepts/evaluation-evaluators/agent-evaluators.md)
 
 [!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 

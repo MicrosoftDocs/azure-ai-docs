@@ -4,7 +4,10 @@ description: Learn how to configure Azure AI Search knowledge sources and indexe
 ms.reviewer: vaishalishah
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 03/25/2026
+ms.custom:
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Use a blob indexer or knowledge source to ingest RBAC scopes metadata
@@ -40,9 +43,9 @@ This article focuses on the indexing automation approaches, built on this founda
 
 + You should understand how indexers and knowledge sources work and how to create an index. This article explains the configuration settings for the data source and indexer, but doesn't provide steps for creating the index. For more information about indexes designed for permission filters, see [Create an index with permission filter fields](search-index-access-control-lists-and-rbac-push-api.md#create-an-index-with-permission-filter-fields).
 
-+ This functionality is currently not supported in the Azure portal, this includes Permission filters created through the [Import wizards](search-import-data-portal.md). Use a programmatic approach to create or modify existing objects for document-level access. 
++ This functionality isn't currently supported in the Azure portal, which includes permission filters created through the [**Import data** wizard](search-import-data-portal.md). Use a programmatic approach to create or modify existing objects for document-level access. 
 
-## Configure Blob storage
+## Configure Blob Storage
 
 Verify your blob container uses role-based access.
 
@@ -50,7 +53,7 @@ Verify your blob container uses role-based access.
 
 1. Expand **containers** and select the container that has the blobs you want to index.
 
-1. Select **Access Control (IAM)** to check role assignments. Users and groups with **Storage Blob Data Reader** or **Storage Blob Data Contributor** will have access to search documents in the index after the container is indexed.
+1. Select **Access Control (IAM)** to check role assignments. Users and groups with **Storage Blob Data Reader** or **Storage Blob Data Contributor** have access to search documents in the index after the container is indexed.
 
 ### Authorization
 
@@ -73,7 +76,7 @@ If you're using a knowledge source, definitions in the knowledge source are used
 
 Key points about the configuration that make it work for this scenario:
 
-+ `isADLSGen2` is set to false, which means the data source is Azure Blob storage.
++ `isADLSGen2` is set to false, which means the data source is Azure Blob Storage.
 + `ingestionPermissionOptions` specifies `rbacScope`.
 
 ```http
@@ -117,6 +120,8 @@ Content-Type: application/json
 }
 ```
 
+**Reference:** [Create or Update Knowledge Source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API)
+
 ## Configure indexer-based indexing
 
 If you're using an indexer, configure it, the data source, and the index to pull permission metadata from blobs.
@@ -130,7 +135,7 @@ If you're using an indexer, configure it, the data source, and the index to pull
 + Data source must have `indexerPermissionOptions` with `rbacScope`.
 
   + For `rbacScope`, configure the [connection string](search-how-to-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
-  
+
   + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity-preview), you must also specify the `identity` property.
 
 <!-- Question/Comment: check this example -->
@@ -225,7 +230,7 @@ JSON schema example:
 
 ### Run the indexer
 
-Once your indexer, data source, and index are configured, run the indexer to set the process in motion. If there's a problem with configuration or permissions, those problems will surface in this step.
+After your indexer, data source, and index are configured, run the indexer to set the process in motion. If there's a problem with configuration or permissions, those problems surface in this step.
 
 By default, an indexer runs as soon as you post it to a search service, but if the indexer configuration includes `disabled` set to true, the indexer is posted in a disabled state so that you can run the indexer manually.
 
@@ -235,7 +240,7 @@ Assuming no errors, the index is now populated and you can move forward with [qu
 
 ## Deletion tracking 
 
-To effectively manage blob deletion, ensure that you have enabled [deletion tracking](search-how-to-index-azure-blob-changed-deleted.md) before your indexer runs for the first time. This feature allows the system to detect deleted blobs from your source and delete the corresponding content from the index.  
+To effectively manage blob deletion, ensure that you have enabled [deletion tracking](search-how-to-index-azure-blob-changed-deleted.md) before your indexer runs for the first time. This feature allows the system to detect deleted blobs from your source and delete the corresponding content from the index.
 
 ## See also
 

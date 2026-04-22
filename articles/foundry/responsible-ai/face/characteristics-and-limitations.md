@@ -7,7 +7,8 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: concept-article
-ms.date: 06/21/2022
+ms.date: 03/31/2026
+ai-usage: ai-assisted
 ---
 
 # Characteristics, limitations, and best practices for improving accuracy
@@ -127,7 +128,7 @@ In addition to telemetry data, you may also want to analyze feedback from the pe
 
 Making sure the face in an enrollment or probe image is sufficiently large is critical to high quality matches. 
 
-Faces are detectable when their size is as small as 36x36 pixels, but for best performance Microsoft recommends a minimum size of 200x200 pixels with at least 100 pixels between the eyes. Note that higher image resolution increases latency, but [there are ways to optimize latency](/azure/ai-services/computer-vision/how-to/mitigate-latency). The maximum size allowed is 4096 x 4096.
+Faces are detectable when their size is as small as 36x36 pixels, but for best performance Microsoft recommends a minimum size of 200x200 pixels with at least 100 pixels between the eyes. Note that higher image resolution increases latency, but [there are ways to optimize latency](/azure/ai-services/face/how-to/mitigate-latency). The maximum size allowed is 4096 x 4096.
 
 ![A small photo of people walking.](media/face-size.png)
 
@@ -228,7 +229,7 @@ Use [the latest detection and recognition models](/azure/ai-services/computer-vi
 
 ### Use the provided quality attributes to provide user feedback and determine if the image is good enough for facial recognition
 
-From our investigation, many issues are caused by low quality images affected by the limitations and tradeoffs described above used for facial recognition purposes. In such cases, even a human can struggle to make the correct decision. To support the capture of high-quality images, the facial detection API offers an image quality attribute which flags issues that pertain to lighting, blur, occlusions or head angle that may limit the usability of images for facial recognition. See the face [QuickStart](/azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library?tabs=visual-studio&pivots=programming-language-csharp) for how to add users into a face using the quality filter and how to call Face Detect using the face client SDKs, and visit the [API Console](https://go.microsoft.com/fwlink/?linkid=2175142) to test out the endpoint.
+From our investigation, many issues are caused by low quality images affected by the limitations and tradeoffs described above used for facial recognition purposes. In such cases, even a human can struggle to make the correct decision. To support the capture of high-quality images, the facial detection API offers an image quality attribute which flags issues that pertain to lighting, blur, occlusions or head angle that may limit the usability of images for facial recognition. See the face [QuickStart](/azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library?tabs=visual-studio&pivots=programming-language-csharp) for how to add users into a face using the quality filter and how to call Face Detect using the face client SDKs, and visit the [Face Detect API reference](/rest/api/face/face-detection-operations/detect) to test out the endpoint.
 
 ## Best practices for improving facial recognition with facial liveness detection abuse monitoring
 

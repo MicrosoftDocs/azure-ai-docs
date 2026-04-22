@@ -2,8 +2,8 @@
 title: "Computer Use in Azure OpenAI (classic)"
 description: "Learn about Computer Use in Azure OpenAI, which allows AI to interact with computer applications. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 03/09/2026
 author: mrbullwinkle
@@ -54,7 +54,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from openai import OpenAI
 import json
 
-token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
 
 client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
@@ -386,7 +386,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from playwright.async_api import async_playwright, TimeoutError
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 # Configuration
@@ -800,7 +800,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from playwright.async_api import async_playwright, TimeoutError
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 # Configuration

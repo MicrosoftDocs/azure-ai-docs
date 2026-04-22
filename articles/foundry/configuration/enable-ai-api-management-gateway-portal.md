@@ -5,10 +5,10 @@ description: "Enable AI Gateway with Azure API Management to apply tokens-per-mi
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: ankamene
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
-ms.date: 02/23/2026
-ms.custom: dev-focus
+ms.date: 03/16/2026
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -40,6 +40,9 @@ When you select **Use existing APIM**, only API Management instances that meet a
 > * The API Management instance isn't already associated with another AI Gateway.
 
 If none of your API Management instances appear in the list, verify that the instance meets the requirements above and that you have the required permissions.
+
+> [!NOTE]
+> If your Foundry resource has public network access disabled, make sure that your API Management instance is also privately accessible to integrate with your private Foundry resource. In this case, use a Standard v2 or Premium v2 instance with a private endpoint, or a Premium v2 instance that's injected in a virtual network. For more information, see [Azure API Management networking options](/azure/api-management/virtual-network-concepts).
 
 ## Create an AI Gateway
 
@@ -119,6 +122,9 @@ Once you configure AI Gateway for your resource and project, you can:
 
 ## Troubleshooting
 
+> [!NOTE]
+> The Foundry portal UI is updated frequently. Screenshots and step numbering in this article might differ slightly from what you see. If a step doesn't match, look for the equivalent option in the current UI.
+
 | Issue | Cause | Resolution |
 | ----- | ----- | ---------- |
 | AI Gateway doesn't appear after creation. | Provisioning is still in progress. | Wait a few minutes and refresh the page. Basic v2 instances typically provision within 5-10 minutes. |
@@ -127,6 +133,8 @@ Once you configure AI Gateway for your resource and project, you can:
 | Permission error when creating gateway. | Missing required RBAC role. | Verify you have **Contributor** or **Owner** on the resource group (to create) or **API Management Service Contributor** on an existing instance. |
 | Existing API Management instance does not appear in the list when selecting **Use existing APIM** | The API Management instance does not meet the eligibility requirements or the user does not have sufficient permissions. | Verify that the API Management instance is in the same tenant, uses a supported SKU, is not already associated with another AI Gateway, and that you have the API Management Service Contributor role (or Owner) on the instance. |
 | Token limits don't apply to requests. | Limits aren't configured, or the project isn't using the gateway. | Verify the project is enabled for AI Gateway, then configure token limits in the Admin console. |
+| 500 errors on model calls after gateway setup. | The auto-created APIM endpoints may not be fully provisioned, or the model deployment isn't correctly mapped through the gateway. | Wait several minutes for provisioning to complete. Verify the model deployment is accessible without the gateway first. Check the APIM **Monitoring** > **Logs** for detailed error information. If the issue persists, try removing and re-adding the project to the gateway. |
+| Projects don't appear in the AI Gateway tab after association. | The project list may take time to refresh, or the project was created before the gateway was enabled. | Refresh the page or navigate away and return to the AI Gateway tab. If projects still don't appear, verify the gateway status shows **Enabled** at the resource level. For existing projects, you must manually add them to the gateway by selecting **Add project to gateway**. |
 
 For tools-specific troubleshooting, see [Tools governance with AI Gateway](/azure/ai-foundry/agents/how-to/tools/governance#troubleshooting).
 

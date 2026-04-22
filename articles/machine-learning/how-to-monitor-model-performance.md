@@ -950,7 +950,7 @@ Use a script that's similar to the following Python code to set up model monitor
 | \<start-minutes\> | The minutes after the specified hour to start monitoring | 15 |
 
 ```python
-from azure.identity import InteractiveBrowserCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 from azure.ai.ml import Input, MLClient
 from azure.ai.ml.constants import (
     MonitorDatasetContext
@@ -977,11 +977,17 @@ from azure.ai.ml.entities import (
 )
 
 # Get a handle to the workspace.
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
+
 subscription_id = "<subscription-ID>"
 resource_group = "<resource-group-name>"
 workspace = "<workspace-name>"
 ml_client = MLClient(
-   InteractiveBrowserCredential(),
+   credential,
    subscription_id,
    resource_group,
    workspace

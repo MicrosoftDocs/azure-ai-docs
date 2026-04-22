@@ -11,6 +11,7 @@ ms.date: 09/16/2025
 ms.author: ssalgado
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Quickstart: Protected material detection for code (preview)

@@ -15,8 +15,24 @@ keywords: speech translation
 
 # Quickstart: Recognize and translate speech to text
 
+::: zone pivot="programming-language-rest"
+[!INCLUDE [REST include](includes/quickstarts/speech-translation-basics/rest.md)]
+::: zone-end
+
+::: zone pivot="programming-language-python"
+[!INCLUDE [Python include](./includes/quickstarts/speech-translation-basics/python.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/speech-translation-basics/csharp.md)]
+::: zone-end
+
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript include](includes/quickstarts/speech-translation-basics/javascript.md)]
+::: zone-end
+
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java include](includes/quickstarts/speech-translation-basics/java.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cpp"
@@ -27,14 +43,6 @@ keywords: speech translation
 [!INCLUDE [Go include](includes/quickstarts/speech-translation-basics/go.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-java"
-[!INCLUDE [Java include](includes/quickstarts/speech-translation-basics/java.md)]
-::: zone-end
-
-::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript include](includes/quickstarts/speech-translation-basics/javascript.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-objectivec"
 [!INCLUDE [ObjectiveC include](includes/quickstarts/speech-translation-basics/objectivec.md)]
 ::: zone-end
@@ -43,16 +51,8 @@ keywords: speech translation
 [!INCLUDE [Swift include](includes/quickstarts/speech-translation-basics/swift.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-python"
-[!INCLUDE [Python include](./includes/quickstarts/speech-translation-basics/python.md)]
-::: zone-end
-
 ::: zone pivot="programming-language-typescript"
 [!INCLUDE [TypeScript include](includes/quickstarts/speech-translation-basics/typescript.md)]
-::: zone-end
-
-::: zone pivot="programming-language-rest"
-[!INCLUDE [REST include](includes/quickstarts/speech-translation-basics/rest.md)]
 ::: zone-end
 
 

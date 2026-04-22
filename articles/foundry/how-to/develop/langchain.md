@@ -1,7 +1,7 @@
 ---
 title: Get started with LangChain and LangGraph with Foundry
 description: Learn how to use langchain-azure-ai as an entry point for LangChain and LangGraph apps with Microsoft Foundry capabilities.
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 03/05/2026
 ms.author: fasantia
@@ -23,7 +23,7 @@ right deep-dive documentation for each capability.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
 - The **Azure AI User** role on the Foundry project (least-privilege role for
   development). If you also create or manage resources, use **Contributor** or
@@ -58,16 +58,23 @@ pip install -U "langchain-azure-ai[opentelemetry]"
 
 Use this map to pick the right namespace for your solution:
 
+
+
+
+
+
+
 | Capability | Namespace | Typical use |
 |---|---|---|
-| Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes to build complex graph and flows for LangGraph and LangChain. |
-| Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat models. |
-| Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. |
+| Foundry Agent Service | `langchain_azure_ai.agents` | Build managed agent nodes to build complex graph and flows for LangGraph and LangChain. [See detailed examples](langchain-agents.md). |
+| Foundry Content Safety | `langchain_azure_ai.agents.middleware` | Use Foundry Content Safety and Moderation to make sure you can deploy solution with the right guardrails. [See detailed examples](langchain-middleware.md). |
+| Chat models | `langchain_azure_ai.chat_models` | Call Azure OpenAI and model catalog chat models. [See detailed examples](langchain-models.md). |
+| Embeddings | `langchain_azure_ai.embeddings` | Call embedding models from the catalog and generate vectors for search, retrieval, and ranking workflows. [See detailed examples](langchain-models.md#use-embedding-models).|
 | Vector stores | `langchain_azure_ai.vectorstores` | Use Azure AI Search and Cosmos DB vector integrations. |
 | Retrievers | `langchain_azure_ai.retrievers` | Run retrieval over Azure-backed indexes and stores. |
-| Chat history stores | `langchain_azure_ai.chat_message_histories` | Persist and replay chat history across sessions. Use memory-powered histories to retrieve consolidated pass chat history. |
+| Chat history stores | `langchain_azure_ai.chat_message_histories` | Persist and replay chat history across sessions. Use memory-powered histories to retrieve consolidated pass chat history. [See detailed examples](langchain-memory.md). |
 | Tools | `langchain_azure_ai.tools` | Add tools such as Document Intelligence, Vision, health text analytics, and Logic Apps. |
-| Callbacks and tracing | `langchain_azure_ai.callbacks` | Capture run events and emit OpenTelemetry traces. |
+| Callbacks and tracing | `langchain_azure_ai.callbacks` | Capture run events and emit OpenTelemetry traces. [See detailed examples](langchain-traces.md). |
 | Query constructors | `langchain_azure_ai.query_constructors` | Build backend-specific query filters for retrieval scenarios. |
 
 See the section [Learn each capability in detail](#learn-each-capability-in-detail) for specific walkthroughs. 
@@ -80,16 +87,29 @@ classes.
 
 ```bash
 export AZURE_AI_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>"
-export AZURE_AI_OPENAI_ENDPOINT="https://<resource>.openai.azure.com/openai/v1"
 ```
 
 When you use `project_endpoint`, authentication uses Microsoft Entra ID and
-Azure RBAC on the project. API keys are for direct service endpoints, such as
-`/openai/v1`.
+Azure RBAC on the project. 
 
-### Example: use `project_endpoint` or `endpoint`
+API keys are for direct service endpoints, such as `/openai/v1`.
 
-Use `AzureAIChatCompletionsModel` as a representative pattern:
+```bash
+export OPENAI_BASE_URL="https://<resource>.services.ai.azure.com/openai/v1"
+export OPENAI_API_KEY="<your-key>"
+```
+
+### Example: Use Foundry Models
+
+Once the environment variables are configured, you can use a model by:
+
+```python
+import langchain.chat_models import init_chat_model
+
+model = init_chat_model("azure_ai:gpt-5.2")
+```
+
+You can also configure clients specifically. As an example, let's see `AzureAIOpenAIApiChatModel` as a representative pattern:
 
 ```python
 import os
@@ -101,21 +121,21 @@ from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
 model_from_project = AzureAIOpenAIApiChatModel(
   project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
   credential=DefaultAzureCredential(),
-  model="gpt-4.1",
+  model="gpt-5.2",
 )
 
 # Option B: Use a service endpoint directly.
 model_from_endpoint = AzureAIOpenAIApiChatModel(
-  endpoint=os.environ["AZURE_AI_OPENAI_ENDPOINT"],
+  endpoint=os.environ["OPENAI_BASE_URL"],
   credential=DefaultAzureCredential(),
-  model="gpt-4.1",
+  model="gpt-5.2",
 )
 
 # Option C: Use a different credential strategy.
 model_with_cli_credential = AzureAIOpenAIApiChatModel(
-  endpoint=os.environ["AZURE_AI_OPENAI_ENDPOINT"],
+  endpoint=os.environ["OPENAI_BASE_URL"],
   credential="super-secret",
-  model="gpt-4.1",
+  model="gpt-5.2",
 )
 ```
 
@@ -152,6 +172,7 @@ The same project-endpoint pattern is also used by other classes.
 Start with these guides in this documentation set:
 
 - [Use Foundry Models with LangChain and LangGraph](langchain-models.md)
+- [Use Foundry Content Safety middleware](langchain-middleware.md)
 - [Use Foundry Agent Service with LangGraph](langchain-agents.md)
 - [Use Foundry Memory with LangChain and LangGraph](langchain-memory.md)
 - [Use Foundry Observability to trace apps](langchain-traces.md)

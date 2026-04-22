@@ -4,7 +4,7 @@ description: Configure an indexer connection to access content in an Azure SQL M
 ms.reviewer: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/23/2026
+ms.date: 03/17/2026
 ms.update-cycle: 365-days
 ms.custom: sfi-ropc-nochange
 ---
@@ -83,10 +83,10 @@ For more information about connection properties, see [Create an Azure SQL Manag
 
 1. Call the `az rest` command to use the [Management REST API](/rest/api/searchmanagement) of Azure AI Search. 
 
-   Because shared private link support for SQL managed instances is still in preview, you need a preview version of the management REST API. Use `2021-04-01-preview` or a later preview API version for this step. We recommend using the latest preview API version.
+   Shared private link support for SQL managed instances is in preview, so you must use a preview version of the Management REST API. We recommend the latest preview API version.
 
    ```azurecli
-   az rest --method put --uri https://management.azure.com/subscriptions/{{search-service-subscription-ID}}/resourceGroups/{{search service-resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}/sharedPrivateLinkResources/{{shared-private-link-name}}?api-version=2025-05-01-preview --body @create-pe.json
+   az rest --method put --uri https://management.azure.com/subscriptions/{{search-service-subscription-ID}}/resourceGroups/{{search service-resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}/sharedPrivateLinkResources/{{shared-private-link-name}}?api-version=2026-03-01-preview --body @create-pe.json
    ```
 
    Provide the subscription ID, resource group name, and service name of your Azure AI Search resource.
@@ -186,9 +186,9 @@ An easy choice is [running an indexer](search-howto-run-reset-indexers.md) in Az
 
 Here are some reminders for testing:
 
-+ If you use a REST client, use the [Management REST API](/rest/api/searchmanagement/) and the [2021-04-01-Preview API version](/rest/api/searchmanagement/management-api-versions) to create the shared private link. Use the [Search REST API](/rest/api/searchservice/) and a [stable API version](/rest/api/searchservice/search-service-api-versions) to create and invoke indexers and data sources.
++ If you use a REST client, use the [Management REST API](/rest/api/searchmanagement/) and the [latest preview API version](/rest/api/searchmanagement/management-api-versions) to create the shared private link. Use the [Search REST API](/rest/api/searchservice/) and a [stable API version](/rest/api/searchservice/search-service-api-versions) to create and invoke indexers and data sources.
 
-+ You can use the Import data wizard to create an indexer, data source, and index. However, the generated indexer won't have the correct execution environment setting.
++ You can use the **Import data** wizard to create an indexer, data source, and index. However, the generated indexer won't have the correct execution environment setting.
 
 + You can edit data source and indexer JSON in Azure portal to change properties, including the execution environment and the connection string.
 

@@ -40,7 +40,7 @@ To configure role-based access:
 
 1. [Enable roles](search-security-enable-roles.md) on your search service. We recommend using both API keys and roles.
 
-1. [Assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. An owner only needs Search Index Data Reader, but developers need [more roles](search-security-rbac.md#assign-roles).
+1. [Assign data plane roles](search-security-rbac.md) to replace the functionality lost when you disable API keys. An owner only needs Search Index Data Reader, but developers need [more roles](search-security-rbac.md#assign-built-in-roles).
 
    Role assignments can take several minutes to take effect. Until then, portal pages used for data plane operations display the following message:
 
@@ -66,7 +66,7 @@ Before you move on to network security, consider testing all points of connectio
 By default, a search service accepts authenticated and authorized requests over public internet connections. You have two options for enhancing network security:
 
 + [Configure firewall rules](service-configure-firewall.md) to restrict network access by IP address.
-+ [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the import wizards won't run.
++ [Configure a private endpoint](service-create-private-endpoint.md) to only allow traffic from Azure virtual networks. Note that when you turn off the public endpoint, the **Import data** wizard won't run.
 
 To learn about inbound and outbound calls in Azure AI Search, see [Understand network traffic patterns](search-security-best-practices.md#understand-network-traffic-patterns).
 
@@ -99,7 +99,7 @@ To connect to Azure AI Search, developers need:
 + An endpoint or URL from the **Overview** page.
 + An API key from the **Keys** page or a role assignment. We recommend Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
-We recommend portal access for the [import wizards](search-get-started-portal.md) and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
+We recommend portal access for the [**Import data** wizard](search-get-started-portal.md) and [Search explorer](search-explorer.md). You must be a Contributor or higher to run the wizard.
 
 ## Related content
 

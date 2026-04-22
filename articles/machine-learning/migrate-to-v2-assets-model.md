@@ -1,29 +1,32 @@
 ---
 title:  Upgrade model management to SDK v2
 titleSuffix: Azure Machine Learning
-description: Upgrade model management from v1 to v2 of Azure Machine Learning SDK
+description: Compare model registration and management patterns between Azure Machine Learning SDK v1 and SDK v2.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.date: 12/01/2022
+ms.date: 03/30/2026
 ms.reviewer: kritifaujdar
-ms.custom: migration
+ms.custom: migration, dev-focus
+ai-usage: ai-assisted
 monikerRange: 'azureml-api-1 || azureml-api-2'
 ---
 
 # Upgrade model management to SDK v2
 
-This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
+> [!IMPORTANT]
+> This article references Azure Machine Learning SDK v1. SDK v1 is deprecated as of March 31, 2025. Support for it ends on June 30, 2026. Your existing workflows that use SDK v1 continue to operate after the end-of-support date, but they could be exposed to security risks or breaking changes. Transition to SDK v2 before June 30, 2026. For more information, see [What is Azure Machine Learning CLI and Python SDK v2?](concept-v2.md)
+
+This article provides a comparison of scenarios in SDK v1 and SDK v2.
 
 ## Create model
 
 * SDK v1
 
     ```python
-    import urllib.request
     from azureml.core.model import Model
     
     # Register model
@@ -40,12 +43,13 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
         path="mlflow-model/model.pkl",
         type=AssetTypes.CUSTOM_MODEL,
         name="local-file-example",
-        description="Model created from local file."
+        description="Model created from local file.",
+        stage="Development"  # Optional lifecycle stage: Development, Production, or Archived
     )
     ml_client.models.create_or_update(file_model)
     ```
 
-## Use model in an experiment/job
+## Use model in an experiment or job
 
 * SDK v1
 
@@ -83,7 +87,7 @@ For more information about models, see [Work with models in Azure Machine Learni
 
 ## Next steps
 
-For more information, see the documentation here:
+For more information, see the following documentation:
 
 * [Create a model in v1](v1/how-to-deploy-and-where.md?tabs=python#register-a-model-from-a-local-file)
 * [Deploy a model in v1](v1/how-to-deploy-and-where.md?tabs=azcli#workflow-for-deploying-a-model)

@@ -5,12 +5,13 @@ description: Use Azure Machine Learning registry with Azure Virtual Networks
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.custom: build-2023
+ms.custom: dev-focus
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 04/04/2025
+ms.date: 03/18/2026
 ms.topic: how-to
+ai-usage: ai-assisted
 ---
 
 # Network isolation with Azure Machine Learning registries
@@ -79,14 +80,20 @@ Using assets from registry to a secure workspace requires configuring outbound a
 
 To deploy a model from a registry to a secure managed online endpoint, the deployment must have `egress_public_network_access=disabled` set. Azure Machine Learning creates the necessary private endpoints to the registry during endpoint deployment. For more information, see [Create secure managed online endpoints](how-to-secure-online-endpoint.md). 
 
+> [!TIP]
+> The recommended approach for securing outbound communication from managed online endpoints is [workspace managed virtual network isolation](how-to-managed-network.md). The `egress_public_network_access=disabled` flag described here is a [legacy network isolation method](concept-secure-online-endpoint.md#secure-outbound-access-with-legacy-network-isolation-method).
+
 __Outbound network configuration to access any Azure Machine Learning registry__ 
 
 | Service tag | Protocol and ports | Purpose |
 | ----- | ----- | ----- |
-| `AzureMachineLearning` | TCP: 443, 877, 18881</br>UDP: 5831 | Using Azure Machine Learning services. |
+| `AzureMachineLearning` | TCP: 443, 8787, 18881</br>UDP: 5831 | Using Azure Machine Learning services. |
 | `Storage.<region>` | TCP: 443 | Access data stored in the Azure Storage Account for compute clusters and compute instances. This outbound can be used to exfiltrate data. For more information, see [Data exfiltration protection](how-to-prevent-data-loss-exfiltration.md). |
 | `MicrosoftContainerRegistry.<region>` | TCP: 443 | Access Docker images provided by Microsoft. |
 | `AzureContainerRegistry.<region>` | TCP: 443 | Access Docker images for environments. |
+
+> [!NOTE]
+> These rules are in addition to the [required outbound rules for Azure Machine Learning workspaces](how-to-access-azureml-behind-firewall.md#basic-configuration).
 
 
 ## Scenario: workspace configuration is secure and Azure Machine Learning registry is connected to virtual networks using private endpoints
@@ -146,6 +153,9 @@ Create a private endpoint to the registry, storage, and ACR in the **same subnet
 
 To deploy a model from a registry to a secure managed online endpoint, the deployment must have `egress_public_network_access=disabled` set. Azure Machine Learning creates the necessary private endpoints to the registry during endpoint deployment. For more information, see [Create secure managed online endpoints](how-to-secure-online-endpoint.md). 
 
+> [!TIP]
+> The recommended approach for securing outbound communication from managed online endpoints is [workspace managed virtual network isolation](how-to-managed-network.md). The `egress_public_network_access=disabled` flag described here is a [legacy network isolation method](concept-secure-online-endpoint.md#secure-outbound-access-with-legacy-network-isolation-method).
+
 ### How to create a private endpoint
 
 Use the tabs to view instructions to either add a private endpoint to an __existing registry__ or create a __new registry__ that has a private endpoint:
@@ -162,7 +172,7 @@ Use the tabs to view instructions to either add a private endpoint to an __exist
 1. If you would like to set public network access to disabled, use the following command. Confirm the storage and ACR has the public network access disabled as well.
 
     ```azurecli
-    az ml registry update --set publicNetworkAccess=Disabled --name <name-of-registry>
+    az ml registry update --public-network-access Disabled --name <name-of-registry>
     ```
 
 

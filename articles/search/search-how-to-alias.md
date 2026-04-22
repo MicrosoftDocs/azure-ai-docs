@@ -72,9 +72,9 @@ POST /aliases?api-version=2025-11-01-preview
 
 ### [**Azure portal**](#tab/portal)
 
-Follow the steps below to create an index alias in the Azure portal.
+To create an index alias in the Azure portal.
 
-1. Navigate to your search service in the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. Find and select **Aliases**.
 1. Select **+ Add Alias**.
 1. Give your index alias a name and select the search index you want to map the alias to. Then, select **Save**.

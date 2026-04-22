@@ -1,14 +1,15 @@
-﻿---
+---
 title: Fireworks models on Microsoft Foundry (preview)
 titleSuffix: Microsoft Foundry
 description: Learn how to enable, deploy, and use Fireworks models in Microsoft Foundry, including catalog models, custom model import (BYOM), data privacy, and frequently asked questions.
 author: ssalgadodev 
 ms.author: ssalgado
 manager: nitinme
-ms.date: 03/11/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.date: 04/10/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
+ai-usage: ai-assisted
 ms.custom: doc-kit-assisted, references_regions
 ---
 
@@ -27,7 +28,7 @@ All of these capabilities are available directly within your Foundry project, wi
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A [Foundry resource](/azure/ai-foundry/how-to/create-azure-ai-resource) with a [Foundry project](../../how-to/create-projects.md).
 * An Azure identity with the **Subscription Owner** or **Subscription Contributor** role to enable the preview feature.
 * To deploy models, you need the **Azure AI Owner** role on the Foundry project. For more information, see [Azure built-in roles](/azure/foundry/concepts/rbac-foundry#permissions-for-each-built-in-role).
@@ -64,7 +65,7 @@ While in preview, **Fireworks requires an administrator to enable the preview fe
 
 1. From the left menu, under **Settings**, select **Preview features**.
 
-1. Search for and select the **Fireworks.Enable.Deploy** preview feature.
+1. Search for and select the **Fireworks.EnableDeploy** preview feature.
 
 1. Review the terms provided in the **Description** and the [data privacy](#data-privacy) section in this documentation.
 
@@ -111,13 +112,18 @@ After the feature is enabled, you can deploy Fireworks models from the Foundry m
 
 The following Fireworks models are available in the Foundry model catalog:
 
-| Model provider | Model name | Model ID | Type | Description |
-| --- | --- | --- | --- | --- |
-| **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions | Reasoning-optimized open-weight model for complex tasks. |
-| **MiniMax** | MiniMax 2.5 | `FW-MiniMax-2.5` | Chat completions | General-purpose model for conversational and instruction-following tasks. |
-| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Multimodal model with strong long-context capabilities. |
-| **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions | Large-scale open-weight model for broad generative tasks. |
-| **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions | High-performance bilingual model for chat and reasoning. |
+| Model provider | Model name | Model ID | Type | Supported offers | Description |
+| --- | --- | --- | --- | --- | --- |
+| **DeepSeek** | DeepSeek v3.1 | `FW-DeepSeek-v3.1` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
+| **DeepSeek** | DeepSeek v3.2 | `FW-DeepSeek-v3.2` | Chat completions | Per-Token and PTU | Reasoning-optimized open-weight model for complex tasks. |
+| **MiniMax** | MiniMax 2.5 | `FW-MiniMax-2.5` | Chat completions | Per-Token and PTU | General-purpose model for conversational and instruction-following tasks. |
+| **Moonshot AI** | Kimi K2 Instruct 0905 | `FW-Kimi-K2-Instruct-0905` | Chat completions | PTU | Instruction-tuned model for chat workloads. |
+| **Moonshot AI** | Kimi K2 Thinking | `FW-Kimi-K2-Thinking` | Chat completions | PTU | Reasoning-focused model for multi-step problem solving. |
+| **Moonshot AI** | Kimi K2.5 | `FW-Kimi-K2.5` | Chat completions | Per-Token and PTU | Multimodal model with strong long-context capabilities. |
+| **OpenAI** | gpt-oss-120b | `FW-gpt-oss-120b` | Chat completions | Per-Token and PTU | Large-scale open-weight model for broad generative tasks. |
+| **Qwen** | Qwen3 14B | `FW-Qwen3-14b` | Chat completions | PTU | General-purpose open-weight model for chat and reasoning tasks. |
+| **Zhipu AI** | GLM-4.7 | `FW-GLM-4.7` | Chat completions | PTU | Bilingual model for chat and reasoning tasks. |
+| **Zhipu AI** | GLM-5 | `FW-GLM-5` | Chat completions | Per-Token and PTU | High-performance bilingual model for chat and reasoning. |
 
 All catalog models support the [OpenAI/v1 API](https://aka.ms/openai/v1) for chat completions.
 
@@ -133,6 +139,7 @@ Custom models must be based on one of the following supported architectures:
 * **Kimi** (K2, K2.5)
 * **GLM** (4.7, 4.8)
 * **OpenAI** gpt-oss-120b
+* **Qwen** (qwen3-14b)
 
 ### Limitations
 
@@ -144,15 +151,19 @@ For step-by-step instructions, see [Import custom models into Foundry](import-cu
 
 ## Data privacy
 
-Fireworks model deployments made available via Foundry send inference traffic outside of Azure to the Fireworks AI cloud. Your Microsoft customer agreements (including the Product Terms and Microsoft's Data Protection Addendum) don't apply to your use of Fireworks services from within Microsoft Foundry.
+When you use Fireworks on Foundry, data is shared between Microsoft and Fireworks AI, and different compliance and data handling rules will apply. See below for details. Customers are responsible for evaluating whether data sharing between Microsoft and Fireworks is appropriate for their organizations compliance requirements.
 
-Consult the Fireworks AI [Trust Center](https://trust.fireworks.ai/) to review their Data Processing Addendum and certifications and their [Privacy Notice](https://fireworks.ai/privacy-policy) to understand their privacy commitment.
+- Fireworks on Foundry is currently excluded from EU Data Boundary commitments.
+
+- FedRAMP isn't achieved for Fireworks on Foundry. If your organization requires FedRAMP, before use, consult with your Authorization Official to determine if use of Fireworks on Foundry is allowed.
+
+- Payment Card Industry (PCI) Data Security Standard (DSS) isn't applicable to Fireworks on Foundry. You shouldn't use Fireworks on Foundry to store, process, or transmit payment and cardholder data.
 
 ## Transparency note
 
 Fireworks on Foundry allows customers to deploy and operate third-party and open-weight AI models using Microsoft Foundry platform services.
 
-* Microsoft doesn't develop, train, fineâ€‘tune, or evaluate the safety, security, or Responsible AI characteristics of models deployed through Fireworks on Foundry.
+* Microsoft doesn't develop, train, fine-tune, or evaluate the safety, security, or Responsible AI characteristics of models deployed through Fireworks on Foundry.
 * Microsoft makes no representations regarding the behavior, performance, or risk profile of these models.
 * Customers are solely responsible for assessing the suitability of any model for their intended use, including performing any required safety, compliance, and Responsible AI evaluations, before deploying models in production or customer-facing applications.
 

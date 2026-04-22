@@ -2,20 +2,21 @@
 title: "Evaluate your AI agents"
 description: "Learn how to evaluate AI agents using built-in evaluators for quality, safety, and agent-specific behaviors."
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.date: 02/06/2026
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: changliu2
 ai-usage: ai-assisted
 #CustomerIntent: As an AI developer, I want to evaluate my agent so that I ensure quality and safety before and after deployment.
+ms.custom: doc-kit-assisted
 ---
 
 # Evaluate your AI agents
 
 Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds, such as an 85% task adherence passing rate, before releasing it to users.
 
-In this article, you learn how to run an agent-targeted evaluation against a [Foundry agent](../../agents/overview.md) using built-in evaluators for quality, safety, and agent behavior. Specifically, you:
+In this article, you learn how to run an agent-targeted evaluation against a [Foundry agent](../../agents/overview.md) or [hosted agent](../../agents/concepts/hosted-agents.md) using built-in evaluators for quality, safety, and agent behavior. Specifically, you:
 
 - Set up the SDK client for evaluation.
 - Choose evaluators for quality, safety, and agent behavior.
@@ -27,7 +28,7 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 
 ## Prerequisites
 
-- A [Foundry project](../../how-to/create-projects.md) with an [agent](../../agents/overview.md).
+- A [Foundry project](../../how-to/create-projects.md) with an [agent](../../agents/overview.md) or [hosted agent](../../agents/concepts/hosted-agents.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
 - **Azure AI User** role on the Foundry project.
 
@@ -190,6 +191,12 @@ eval_run = client.evals.runs.create(
 print(f"Evaluation run started: {eval_run.id}")
 ```
 
+> [!TIP]
+> This sample works for both prompt agents and hosted agents that use the responses protocol. For hosted agents that use the invocations protocol, the `input_messages` format is different — provide a freeform JSON object instead of the structured template. For details and code samples, see [Hosted agent invocations protocol](../../how-to/develop/cloud-evaluation.md#hosted-agent-invocations-protocol) in the cloud evaluation guide.
+
+> [!TIP]
+> To evaluate agent interactions that already occurred using traces from Application Insights, see [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation) in the cloud evaluation guide.
+
 ## Interpret results
 
 Evaluations typically complete in a few minutes, depending on the number of queries. Poll for completion and retrieve the report URL to view the results in the Microsoft Foundry portal under the **Evaluations** tab:
@@ -264,7 +271,6 @@ Each evaluation run returns output items per row in your test dataset, providing
             ... // agent response messages with tool calls
         ]
     },
-    
     "results": [
         {
             "type": "azure_ai_evaluator",
@@ -305,3 +311,5 @@ Use evaluation to iterate and improve your agent:
 - [Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
 - [Agent evaluators reference](../../concepts/evaluation-evaluators/agent-evaluators.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
+- [Trace evaluation in the cloud](../../how-to/develop/cloud-evaluation.md#trace-evaluation)
+- [Set up tracing in Microsoft Foundry](trace-agent-setup.md)

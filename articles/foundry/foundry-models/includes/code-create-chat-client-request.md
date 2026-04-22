@@ -1,7 +1,7 @@
 ---
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 02/17/2026
 ms.author: mopeakande
@@ -24,7 +24,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -63,7 +63,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
@@ -91,13 +91,13 @@ console.log('Response content:', result.choices[0].message.content);
 
 # [C#](#tab/csharp)
 
-First install the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet) before you can use DefaultAzureCredential:
+First install the [Azure Identity library](/dotnet/api/overview/azure/identity-readme) before you can use DefaultAzureCredential:
 
 ```dotnetcli
 dotnet add package Azure.Identity
 ```
 
-Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet). Then create the token provider, create a client to consume chat completions, and generate the response.
+Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential). Then create the token provider, create a client to consume chat completions, and generate the response.
 
 ```csharp
 using Azure.Identity;
@@ -109,7 +109,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "DeepSeek-R1", // Replace with your model deployment name.
@@ -146,7 +146,7 @@ Authentication is straightforward using `DefaultAzureCredential`. It finds the b
 Credential tokenCredential = BearerTokenCredential.create(
         AuthenticationUtil.getBearerTokenSupplier(
                 new DefaultAzureCredentialBuilder().build(),
-                "https://cognitiveservices.azure.com/.default"));
+                "https://ai.azure.com/.default"));
 OpenAIClient client = OpenAIOkHttpClient.builder()
         .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
         .credential(tokenCredential)
@@ -176,7 +176,7 @@ public class OpenAITest {
                     .baseUrl(resourceName)
                     // Set the Azure Entra ID
                     .credential(BearerTokenCredential.create(AuthenticationUtil.getBearerTokenSupplier(
-                        new DefaultAzureCredentialBuilder().build(), "https://cognitiveservices.azure.com/.default")))
+                        new DefaultAzureCredentialBuilder().build(), "https://ai.azure.com/.default")))
                     .build();
 
            ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()

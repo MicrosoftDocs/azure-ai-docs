@@ -1,7 +1,7 @@
 ---
-title: Develop applications with LangChain and models in Microsoft Foundry
-description: Learn how to use OpenAI-compatible LangChain classes with models deployed in Microsoft Foundry.
-ms.service: azure-ai-foundry
+title: Use LangChain with models in Microsoft Foundry
+description: Learn how to use OpenAI-compatible LangChain classes with chat and embedding models deployed in Microsoft Foundry, including prompt chains, async calls, and vector search.
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 03/09/2026
 ms.author: fasantia
@@ -15,17 +15,17 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to use OpenAI-compatible LangChain classes with Foundry models so I can build chat, embedding, and chained workflows.
 ---
 
-# Develop applications with LangChain and models in Microsoft Foundry
+# Use LangChain with models in Microsoft Foundry
 
 Use `langchain-azure-ai` to build LangChain apps that call models deployed
 in Microsoft Foundry. Models with **OpenAI-compatible APIs** can be directly
 used. In this article, you create
-chat and embeddings clients, run prompt chains, and combine generation plus
-verification patterns.
+chat and embeddings clients, run prompt chains, and combine generation with
+verification workflows.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A [Foundry project](../create-projects.md).
 - The **Azure AI User** role on the Foundry project.
 - A deployed chat model that supports OpenAI-compatible APIs, such as
@@ -40,7 +40,7 @@ pip install -U langchain langchain-azure-ai azure-identity
 ```
 
 > [!IMPORTANT]
-> `langchain-azure-ai` uses the new Microsoft Foundry SDK (v2). If you are using Foundry classic or Foundry Hubs, use `langchain-azure-ai[v1]`,
+> `langchain-azure-ai` uses the new Microsoft Foundry SDK (v2). If you're using Foundry classic, use `langchain-azure-ai[v1]`,
 > which uses Azure AI Inference SDK (legacy). [Learn more](../../../foundry-classic/how-to/develop/langchain.md).
 
 ## Configure the environment
@@ -59,68 +59,37 @@ os.environ["AZURE_AI_PROJECT_ENDPOINT"] = (
 )
 
 # Option 2: Direct OpenAI-compatible endpoint + API key
-os.environ["AZURE_OPENAI_ENDPOINT"] = (
+os.environ["OPENAI_BASE_URL"] = (
 	"https://<resource>.services.ai.azure.com/openai/v1"
 )
-os.environ["AZURE_OPENAI_API_KEY"] = "<your-api-key>"
+os.environ["OPENAI_API_KEY"] = "<your-api-key>"
 ```
 
 **What this snippet does:** Defines environment variables used by the
 `langchain-azure-ai` model classes for project-based or direct endpoint access.
 
-You can configure the following environment variables. Those values can also be configured when constructing the objects:
-
-| Variable | Role | Example | Parameter in constructor |
-|----------|------|---------|--------------------------|
-| `AZURE_AI_PROJECT_ENDPOINT` | Foundry project endpoint. Use of the project endpoint requires Microsoft Entra ID authentication (recommended). | `https://contoso.services.ai.azure.com/api/projects/my-project` | `project_endpoint` |
-| `AZURE_AI_OPENAI_ENDPOINT` | Direct OpenAI-compatible endpoint used for model calls. | `https://contoso.services.ai.azure.com/openai/v1` | `endpoint` |
-| `AZURE_OPENAI_ENDPOINT` | Root for OpenAI resources.  | `https://contoso.openai.azure.com` | None. |
-| `AZURE_OPENAI_API_KEY` | API key used with `AZURE_OPENAI_ENDPOINT` for key-based authentication. | `<your-api-key>` | `credential` |
-| `AZURE_OPENAI_DEPLOYMENT_NAME` | Deployment name in the Foundry or OpenAI resource. Any model supporting OpenAI-compatible APIs can be used, however, not all the parameters may be supported. | `Mistral-Large-3` | `model` |
-| `AZURE_OPENAI_API_VERSION` | The API version to use. When an `api_version` is available we construct the OpenAI clients and inject the `api-version` query parameter via `default_query`. | `v1` or `preview` | `api_version` |
-
-> [!IMPORTANT]
-> Environment variables `AZURE_AI_INFERENCE_ENDPOINT` and `AZURE_AI_CREDENTIALS` used for `AzureAIChatCompletionsModel` or `AzureAIEmbeddingsModel` (legacy) are not longer used.
-
-**References:**
-- [AzureAIOpenAIApiChatModel](https://python.langchain.com/api_reference/azure_ai/chat_models/langchain_azure_ai.chat_models.AzureAIOpenAIApiChatModel.html)
-- [AzureAIOpenAIApiEmbeddingsModel](https://python.langchain.com/api_reference/azure_ai/embeddings/langchain_azure_ai.embeddings.AzureAIOpenAIApiEmbeddingsModel.html)
 
 ## Use chat models
 
-Create a chat model client by using `AzureAIOpenAIApiChatModel`. All Foundry Models supporting OpenAI-compatible APIs can be used with the client:
+You can easily instantiate a model by using `init_chat_model`:
 
 ```python
-import os
+from langchain.chat_models import init_chat_model
 
-from azure.identity import DefaultAzureCredential
-from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
-
-# Project endpoint + Microsoft Entra ID
-model = AzureAIOpenAIApiChatModel(
-	project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-	credential=DefaultAzureCredential(),
-	model="gpt-4.1", # Or any model like "Mistral-Large-3"
-)
+model = init_chat_model("azure_ai:gpt-4.1")
 ```
 
-Using `project_endpoint` requires Microsoft Entra ID for authentication and the role **Azure AI User**. For direct endpoint and API key authentication:
+> [!IMPORTANT]
+> Using `init_chat_model` requires `langchain>=1.2.13`. If you can't update your version, [configure clients directly](#configure-clients-directly).
 
-```python
-import os
+All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `AZURE_AI_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Azure AI User**.
 
-from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
+**What this snippet does:** Creates a chat model client by using the
+`init_chat_model` convenience method. The client routes to the specified model
+through the Foundry project endpoint or direct endpoint configured in the environment.
 
-model = AzureAIOpenAIApiChatModel(
-	endpoint=os.environ["AZURE_AI_OPENAI_ENDPOINT"],
-	credential=os.environ["AZURE_OPENAI_API_KEY"],
-	model="Mistral-Large-3",
-)
-```
-
-**What this snippet does:** Creates a chat model client by using either a
-Foundry project endpoint with Microsoft Entra ID or a direct endpoint with API
-key authentication.
+**References:**
+- [AzureAIOpenAIApiChatModel](https://python.langchain.com/api_reference/azure_ai/chat_models/langchain_azure_ai.chat_models.AzureAIOpenAIApiChatModel.html)
 
 ### Verify your setup
 
@@ -128,11 +97,12 @@ Run a simple model invocation:
 
 ```python
 response = model.invoke("Say hello")
-print(response.content)
+response.pretty_print()
 ```
 
 ```output
-[{'type': 'text', 'text': 'Hello! 👋 How can I help you today?', 'annotations': [], 'id': 'msg_a0b1c2d3e5...'}]
+================================== Ai Message ==================================
+Hello! 👋 How can I help you today?
 ```
 
 **What this snippet does:** Sends a basic prompt to verify endpoint,
@@ -142,11 +112,68 @@ authentication, and model routing.
 - [LangChain runnable interface](https://python.langchain.com/docs/concepts/runnables/)
 
 
-### Responses vs chat completions APIs
+### Configurable models
 
-By default `AzureAIOpenAIApiChatModel` uses OpenAI Responses API. You can change this behavior by passing `use_responses_api=False`:
+You can also create a runtime-configurable model by specifying `configurable_fields`. When you omit the `model` parameter, it becomes a configurable field by default.
 
 ```python
+from langchain.chat_models import init_chat_model
+from azure.identity import DefaultAzureCredential
+
+configurable_model = init_chat_model(
+    model_provider="azure_ai", 
+    temperature=0,
+	credential=DefaultAzureCredential()
+)
+
+
+configurable_model.invoke(
+    "what's your name",
+    config={"configurable": {"model": "gpt-5-nano"}},  # Run with GPT-5-nano
+).pretty_print()
+
+configurable_model.invoke(
+    "what's your name",
+    config={"configurable": {"model": "Mistral-Large-3"}}, # Run with Mistral Large
+).pretty_print()
+```
+
+```output
+================================== Ai Message ==================================
+
+Hi! I'm ChatGPT, an AI assistant built by OpenAI. You can call me ChatGPT or just Assistant. How can I help you today?
+================================== Ai Message ==================================
+
+I don't have a name, but you can call me **Assistant** or anything you like! 😊 What can I help you with today?
+```
+
+**What this snippet does:** Creates a configurable model instance that allows you to switch
+models easily at invocation time. Because the `model` parameter is missing in `init_chat_model`,
+it's by default a *configurable field* and can be passed with `invoke()`. You can add other
+fields to be configurable by configuring `configurable_fields`.
+
+### Configure clients directly
+
+You can also create a chat model client by using `AzureAIOpenAIApiChatModel` class.
+
+```python
+import os
+
+from azure.identity import DefaultAzureCredential
+from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
+
+model = AzureAIOpenAIApiChatModel(
+	project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+	credential=DefaultAzureCredential(),
+	model="Mistral-Large-3",
+)
+```
+
+By default, `AzureAIOpenAIApiChatModel` uses the OpenAI Responses API. You can change this behavior by passing `use_responses_api=False`:
+
+```python
+import os
+
 from azure.identity import DefaultAzureCredential
 from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
 
@@ -178,14 +205,19 @@ model = AzureAIOpenAIApiChatModel(
 
 async def main():
 	response = await model.ainvoke("Say hello asynchronously")
-	print(response.content)
+	response.pretty_print()
 
 
-await main()
+import asyncio
+asyncio.run(main())
 ```
 
+> [!TIP]
+> If you run this code in a Jupyter notebook, you can use `await main()` directly instead of `asyncio.run(main())`.
+
 ```output
-Hello! How can I help you today?
+================================== Ai Message ==================================
+Hello! 👋 How can I help you today?
 ```
 
 **What this snippet does:** Creates an async client and runs a non-blocking
@@ -195,142 +227,175 @@ request with `ainvoke`.
 - [Async credentials in Azure Identity](/python/api/overview/azure/identity-readme)
 - [LangChain runnable interface](https://python.langchain.com/docs/concepts/runnables/)
 
-### Using runnables
+## Reasoning
 
-`AzureAIOpenAIApiChatModel` implements LangChain's runnable interface, so you
-can invoke it with message lists.
+Many models can perform multi-step reasoning to arrive at a conclusion. This involves breaking down complex problems into smaller, more manageable steps.
 
 ```python
-from langchain_core.messages import HumanMessage
+from langchain.chat_models import init_chat_model
 
-messages = [
-	{
-		"role": "developer",
-		"content": "Translate the following from English into Italian",
-	},
-	HumanMessage(content="hi!"),
-]
+model = init_chat_model("azure_ai:DeepSeek-R1-0528")
 
-model.invoke(messages).pretty_print()
+for chunk in model.stream("Why do parrots have colorful feathers?"):
+    reasoning_steps = [r for r in chunk.content_blocks if r["type"] == "reasoning"]
+    print(reasoning_steps if reasoning_steps else chunk.text, end="")
+
+print("\n")
+```
+
+```output
+Parrots have colorful feathers primarily due to a combination of evolutionary ...
+```
+
+**References:**
+- [LangChain streaming](https://python.langchain.com/docs/concepts/streaming/)
+
+## Server-side tools
+
+OpenAI models deployed in Foundry support server-side tool-calling loops: models can interact with web search, code interpreters, and other tools, and then analyze the results in a single conversational turn.
+If a model invokes a tool server-side, the content of the response message will include content representing the invocation and result of the tool.
+
+> [!IMPORTANT]
+> Tools in the namespace `langchain_azure_ai.tools.builtin` are only supported in OpenAI models. 
+
+These are tools provided by OpenAI that extend the model's capabilities. To see the full list of supported tools, see [built-in tools](https://platform.openai.com/docs/guides/tools).
+
+The following example shows how to use web search:
+
+```python
+from langchain.chat_models import init_chat_model
+from langchain_azure_ai.tools.builtin import WebSearchTool
+from azure.identity import DefaultAzureCredential
+
+model = init_chat_model("azure_ai:gpt-4.1", credential=DefaultAzureCredential())
+model_with_web_search = model.bind_tools([WebSearchTool()])
+
+result = model_with_web_search.invoke("What is the current price of gold? Give me the answer in one sentence.")
+result.content[-1]["text"]
+```
+
+```output
+As of today, March 24, 2026, the spot price of gold is approximately $4,397.80 per ounce. ([tradingeconomics.com](https://tradingeconomics.com/commodity/gold))
+```
+
+Some tools might require configuration of other resources in your project. Use `azure-ai-projects` to configure those resources and then reference them from LangChain/LangGraph.
+
+The following example shows how to configure a file store before using it in a tool:
+
+```python
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
+)
+openai = project.get_openai_client()
+
+# Create vector store and upload file
+vector_store = openai.vector_stores.create(name="ProductInfoStore")
+vector_store_id = vector_store.id
+
+with open("product_info.md", "rb") as file_handle:
+    vector_store_file = openai.vector_stores.files.upload_and_poll(
+        vector_store_id=vector_store.id,
+        file=file_handle,
+    )
+```
+
+**What this snippet does:** Sets up a vector store with a file in Microsoft
+Foundry so that a model can later search over that file's content (used 
+with the `FileSearchTool` in the next code block).
+
+```python
+from langchain_azure_ai.tools.builtin import FileSearchTool
+
+model_with_tools = model.bind_tools([FileSearchTool(vector_store_ids=[vector_store.id])])
+
+results = model_with_tools.invoke("Tell me about Contoso products")
+print("Answer:", results.content[-1]["text"])
+print("Annotations:", results.content[-1]["annotations"])
+```
+
+```output
+Answer: Contoso offers the following products:
+
+1. **The widget**
+   - Description: A high-quality widget that is perfect for all your widget needs.
+   - Price: $19.99
+
+2. **The gadget**
+   - Description: An advanced gadget that offers exceptional performance and reliability.
+   - Price: $49.99
+
+These products are part of Contoso's main offerings as detailed in their product information documentation.
+Annotations: [{'file_id': 'assistant-MvU5SEqUcUBumoLUV5BXxn', 'filename': 'product_info.md', 'type': 'file_citation', 'file_index': 395}]
+```
+
+## Use Foundry models in agents
+
+Use `create_agent` with models connected to Foundry to create ReAct-style agent loops:
+
+```python
+from langchain.agents import create_agent
+
+agent = create_agent(
+    model="azure_ai:gpt-5.2", 
+    system_prompt="You're an informational agent. Answer questions cheerfully.", 
+)
+
+response = agent.invoke({"messages": "what's your name?"})
+response["messages"][-1].pretty_print()
 ```
 
 ```output
 ================================== Ai Message ==================================
-Ciao! Come posso aiutarti oggi?
+
+I’m ChatGPT, your AI assistant.
 ```
 
-**What this snippet does:** Sends structured chat messages to the model and
-prints the assistant response.
-
-**References:**
-- [LangChain messages](https://python.langchain.com/docs/concepts/messages/)
-
-### Build prompt chains
-
-Compose prompts, model calls, and output parsing by using the pipe operator.
+Server-side tools can also be used, but they require calling `bind_tools`.
 
 ```python
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
+from langchain.chat_models import init_chat_model
+from langchain.agents import create_agent
+from langchain_azure_ai.tools.builtin import ImageGenerationTool
 
-system_template = "Translate the following into {language}:"
-prompt_template = ChatPromptTemplate.from_messages(
-	[("system", system_template), ("user", "{text}")]
-)
-parser = StrOutputParser()
+model = init_chat_model("azure_ai:gpt-5.2")
+tools = [ImageGenerationTool(model="gpt-image-1.5", size="1024x1024")]
+model_with_tools = model.bind_tools(tools)
 
-chain = prompt_template | model | parser
-result = chain.invoke({"language": "italian", "text": "hi"})
-print(result)
-```
-
-```output
-ciao
-```
-
-**What this snippet does:** Builds and invokes a simple translation chain with
-templating and string output parsing.
-
-**References:**
-- [ChatPromptTemplate](https://python.langchain.com/docs/concepts/prompt_templates/)
-- [Output parsers](https://python.langchain.com/docs/concepts/output_parsers/)
-
-### Chain multiple models
-
-Use one model to generate content and another model to verify it.
-
-```python
-import os
-
-from azure.identity import DefaultAzureCredential
-from langchain_azure_ai.chat_models import AzureAIOpenAIApiChatModel
-
-producer = AzureAIOpenAIApiChatModel(
-	project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-	credential=DefaultAzureCredential(),
-	model="gpt-4.1",
-)
-
-verifier = AzureAIOpenAIApiChatModel(
-	project_endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
-	credential=DefaultAzureCredential(),
-	model="Mistral-Large-3",
+agent = create_agent(
+    model=model_with_tools,
+    tools=tools,
+    system_prompt="You're an informational agent. Answer questions with graphics.", 
 )
 ```
 
-```python
-from pprint import pprint
-
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import PromptTemplate
-from langchain_core.runnables import RunnableParallel, RunnablePassthrough
-
-producer_template = PromptTemplate(
-	template=(
-		"You are an urban poet. Write verses about this topic:\n"
-		"{topic}"
-	),
-	input_variables=["topic"],
-)
-
-verifier_template = PromptTemplate(
-	template=(
-		"You are a poem verifier. Reply with one word, True or False, based "
-		"on whether the poem includes abusive language.\n"
-		"Poem:\n"
-		"{input}"
-	),
-	input_variables=["input"],
-)
-
-parser = StrOutputParser()
-generate_poem = producer_template | producer | parser
-verify_poem = verifier_template | verifier | parser
-
-chain = generate_poem | RunnableParallel(
-	poem=RunnablePassthrough(),
-	verification=RunnablePassthrough() | verify_poem,
-)
-
-output = chain.invoke({"topic": "living in a foreign country"})
-pprint(output)
-```
-
-```output
-{'poem': '...generated poem text...', 'verification': 'False'}
-```
-
-**What this snippet does:** Builds a producer-verifier workflow that returns
-both generated content and a safety-style verification result.
-
-**References:**
-- [LangChain runnables](https://python.langchain.com/docs/concepts/runnables/)
-- [PromptTemplate](https://python.langchain.com/docs/concepts/prompt_templates/)
+> [!TIP]
+> The image generation tool in Foundry requires passing the model deployment name for image generation
+> as part of a header, `x-ms-oai-image-generation-deployment`. When using `langchain-azure-ai`, this is handled
+> automatically. However, if you plan to use this tool with `langchain-openai`, you must pass the header
+> manually.
 
 ## Use embedding models
 
-Create an embeddings client with
-`AzureAIOpenAIApiEmbeddingsModel`.
+You can easily instantiate a model by using `init_embeddings`:
+
+```python
+from langchain.embeddings import init_embeddings
+
+embed_model = init_embeddings("azure_ai:text-embedding-3-small")
+```
+
+**What this snippet does:** Creates an embeddings model client by using the
+`init_embeddings` convenience method.
+
+All Foundry models supporting OpenAI-compatible APIs can be used with the client, but they need to be deployed to your Foundry resource first. Using `project_endpoint` (environment variable `AZURE_AI_PROJECT_ENDPOINT`) requires Microsoft Entra ID for authentication and the role **Azure AI User**.
+
+Or create the embeddings client with `AzureAIOpenAIApiEmbeddingsModel`.
 
 ```python
 import os
@@ -353,14 +418,17 @@ import os
 from langchain_azure_ai.embeddings import AzureAIOpenAIApiEmbeddingsModel
 
 embed_model = AzureAIOpenAIApiEmbeddingsModel(
-	endpoint=os.environ["AZURE_AI_OPENAI_ENDPOINT"],
-	credential=os.environ["AZURE_OPENAI_API_KEY"],
+	endpoint=os.environ["OPENAI_BASE_URL"],
+	credential=os.environ["OPENAI_API_KEY"],
 	model="text-embedding-3-large",
 )
 ```
 
 **What this snippet does:** Configures embeddings generation for vector search,
 retrieval, and ranking workflows.
+
+**References:**
+- [AzureAIOpenAIApiEmbeddingsModel](https://python.langchain.com/api_reference/azure_ai/embeddings/langchain_azure_ai.embeddings.AzureAIOpenAIApiEmbeddingsModel.html)
 
 
 ### Example: Run similarity search with a vector store
@@ -420,7 +488,30 @@ that help troubleshoot endpoint or payload issues.
 **References:**
 - [Python logging](https://docs.python.org/3/library/logging.html)
 
+## Environment variables reference
+
+You can configure the following environment variables. These values can also be configured when constructing the objects:
+
+| Variable | Role | Example | Parameter in constructor |
+|----------|------|---------|--------------------------|
+| `AZURE_AI_PROJECT_ENDPOINT` | Foundry project endpoint. Use of the project endpoint requires Microsoft Entra ID authentication (recommended). | `https://contoso.services.ai.azure.com/api/projects/my-project` | `project_endpoint` |
+| `AZURE_OPENAI_ENDPOINT` | Root for OpenAI resources.  | `https://contoso.openai.azure.com` | None. |
+| `OPENAI_BASE_URL` | Direct OpenAI-compatible endpoint used for model calls. | `https://contoso.services.ai.azure.com/openai/v1` | `endpoint` |
+| `OPENAI_API_KEY` or `AZURE_OPENAI_API_KEY` | API key used with `OPENAI_BASE_URL` or `AZURE_OPENAI_ENDPOINT` for key-based authentication. | `<your-api-key>` | `credential` |
+| `AZURE_OPENAI_DEPLOYMENT_NAME` | Model's deployment name in the Foundry or OpenAI resource. Check the name in the Foundry portal as deployment names can be different from the underlying model used. Any model supporting OpenAI-compatible APIs can be used, however, not all parameters might be supported. | `Mistral-Large-3` | `model` |
+| `AZURE_OPENAI_API_VERSION` | The API version to use. When an `api_version` is available we construct the OpenAI clients and inject the `api-version` query parameter via `default_query`. | `v1` or `preview` | `api_version` |
+
+> [!IMPORTANT]
+> Environment variables `AZURE_AI_INFERENCE_ENDPOINT` and `AZURE_AI_CREDENTIALS` used for `AzureAIChatCompletionsModel` or `AzureAIEmbeddingsModel` (legacy) are no longer used.
+
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Use Foundry Agent Service with LangGraph](langchain-agents.md)
+> [Use Foundry Content Safety with LangGraph](langchain-middleware.md)
+
+## Related content
+
+- [Foundry models overview](../../concepts/foundry-models-overview.md)
+- [Microsoft Foundry SDK overview](sdk-overview.md)
+- [Use LangChain with memory in Foundry](langchain-memory.md)
+- [Use LangChain with Foundry Agent Service](langchain-agents.md)

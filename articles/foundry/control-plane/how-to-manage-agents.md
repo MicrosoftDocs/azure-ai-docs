@@ -4,16 +4,17 @@ description: "Learn how to view your agent inventory, monitor agent health, and 
 author: santiagxf
 ms.author: scottpolly
 ms.reviewer: fasantia
-ms.date: 01/02/2026
+ms.date: 04/13/2026
 ms.manager: mcleans
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.custom: dev-focus
+ms.service: microsoft-foundry
+ms.custom: dev-focus, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Manage agents in Foundry Control Plane
-Microsoft Foundry Control Plane provides centralized management and observability for agents running across various platforms and infrastructures. Use Control Plane to gain a unified view of agents across your subscription, monitor their health, control their lifecycle, and troubleshoot issues from a single pane of glass.
+# Manage agents at scale in Microsoft Foundry Control Plane
+
+Microsoft Foundry Control Plane provides centralized management and observability for agents that run across supported platforms and infrastructures. With Foundry Control Plane, you can manage agents that are distributed across multiple projects within a subscription.
 
 This article explains how to view your agent inventory, monitor agent health, and perform lifecycle operations by using the Foundry portal.
 
@@ -45,23 +46,23 @@ The following information appears:
 | **Estimated cost** | The estimated cost of the agent executions in the last month, based on the number of tokens consumed. This column requires [observability configured](#observability-of-agents). | Foundry |
 | **Token usage** | The estimated tokens consumed by the runs in the last month. This column requires [observability configured](#observability-of-agents). | Foundry |
 | **Runs** | The number of executions in the last month. This column requires [observability configured](#observability-of-agents). | All |
-| **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of GenAIOps evaluation](../concepts/observability.md#the-three-stages-of-ai-application-lifecycle-evaluation). | Foundry |
+| **Monitoring features** | The number of monitoring features that are enabled in the agent. See [The three stages of AI application lifecycle evaluation](../concepts/observability.md#the-three-stages-of-ai-application-lifecycle-evaluation). | Foundry |
 | **Entra ID** | The Microsoft Entra Agent ID application and object ID associated with the agent. An agent identity is a special service principal in Microsoft Entra ID. It represents an identity that the agent identity blueprint created and is authorized to impersonate. See [Agent identity concepts in Microsoft Foundry](../agents/concepts/agent-identity.md). | Foundry |
 
 ### Permissions model
 
-Foundry Control Plane automatically discovers agents that users have access to. Because Foundry Control Plane aggregates information across resources within the subscription, different users might see different agents listed on the **Assets** pane, depending on their access level on each resource.
+Foundry Control Plane automatically discovers agents that users can access. Because Foundry Control Plane aggregates information across resources within the subscription, different users might see different agents listed on the **Assets** pane, depending on their access level on each resource.
 
 The following roles affect what you can see and do:
 
 | Role | Scope | Capabilities |
 |------|-------|--------------|
-| Reader | Resource / resource group / subscription | View agent inventory and traces |
-| Contributor | Resource / resource group / subscription | View and perform lifecycle operations (start, stop, block) |
-| Owner | Resource / resource group / subscription | Full management, including permissions |
+| Reader | Resource, resource group, or subscription | View agent inventory and traces |
+| Contributor | Resource, resource group, or subscription | View and perform lifecycle operations (start, stop, block) |
+| Owner | Resource, resource group, or subscription | Full management, including permissions |
 
 > [!NOTE]
-> These are minimum role requirements. Custom roles with equivalent permissions also work. The agents visible to you depend on your role assignments across the resources in the selected subscription.
+> These roles are the minimum requirements. Custom roles with equivalent permissions also work. The agents you see depend on your role assignments across the resources in the selected subscription.
 
 ## Supported agent platforms
 
@@ -76,14 +77,14 @@ Foundry Control Plane automatically discovers agents in the following platforms:
 
 ### Foundry agents
 
-Foundry Control Plane can help you manage agents across all your Foundry projects. When you create an agent or workflow in a Foundry project, the agent appears in the inventory. Foundry Control Plane lists all the agents across all the projects within a subscription.
+Foundry Control Plane helps you manage agents across all your Foundry projects. When you create an agent or workflow in a Foundry project, the agent appears in the inventory. Foundry Control Plane lists all the agents across all the projects within a subscription.
 
 For each agent, the information includes:
 
 * The latest version of the agent.
 * Versions [published as agent applications](../agents/how-to/publish-agent.md).
 
-In this way, you can monitor versions consumed by your users and new versions under development. The following example shows multiple Foundry agents listed. Version 6 of the `format-agent` agent was published, but version 7 (latest) is still under development.
+You can monitor versions consumed by your users and new versions under development. The following example shows multiple Foundry agents listed. Version 6 of the `format-agent` agent was published, but version 7 (latest) is still under development.
 
 :::image type="content" source="media/how-to-manage-agents/inventory-foundry-agent.png" alt-text="Screenshot of multiple Foundry agents listed in an inventory." lightbox="media/how-to-manage-agents/inventory-foundry-agent.png":::
 
@@ -124,7 +125,7 @@ Foundry Control Plane uses the Application Insights resources that host your age
 If you don't see such information for your agent, you need to [configure Application Insights](monitoring-across-fleet.md#configure-monitoring). Ensure that you also have [the appropriate permissions to view Application Insights data and cost metrics](monitoring-across-fleet.md#prerequisites).
 
 > [!TIP]
-> We strongly advise configuring Application Insights for each of the resources that host agents. For Foundry agents, Application Insights is configured per Foundry project. However, you can connect multiple Foundry projects to the same Application Insights resources to optimize those resources.
+> Configure Application Insights for each of the resources that host agents. For Foundry agents, configure Application Insights per Foundry project. However, you can connect multiple Foundry projects to the same Application Insights resources to optimize those resources.
 
 ### View traces
 
@@ -155,12 +156,12 @@ To view them:
 
 Foundry Control Plane helps organizations control agents to manage usage and infrastructure cost. Different agent platforms support different operations.
 
-The following table summarizes supported actions for each platform. A foundry agent's support depends on the agent type and its publishing state.
+The following table summarizes supported actions for each platform. A Foundry agent's support depends on the agent type and its publishing state.
 
 | Platform | Agent type | Published | Supported actions | Notes |
 | -------- | ---------- | --------- | ----------------- | ----- |
 | Foundry | Prompt<br><br>Workflow | No | None | Unpublished agents don't have dedicated deployments, and they use the project's endpoint to receive requests. Their lifecycle is attached to the project's lifecycle. To stop an unpublished prompt agent or workflow, you must delete it. |
-| Foundry | Hosted | No | Start/stop | Stopping a hosted agent stops the deployment associated with it. Any compute attached to it is deallocated. |
+|Foundry | Hosted | No | Start/stop | Stopping a hosted agent stops the deployment associated with it. Any compute attached to it is deallocated. |
 | Foundry | Prompt<br><br>Workflow<br><br>Hosted | Yes | Start/stop | Stopping a published agent stops the deployment associated with it. It deallocates any compute attached. |
 | Azure SRE Agent | Not applicable | Not applicable | Start/stop | |
 | Azure Logic Apps | Not applicable | Not applicable | Start/stop | You can stop an Azure Logic Apps agent loop by stopping the Logic Apps resource that hosts it. Stopping a Logic Apps resource stops all the workflows associated with it. |
@@ -168,7 +169,7 @@ The following table summarizes supported actions for each platform. A foundry ag
 
 ### Start and stop agents
 
-Stopping an agent stops the infrastructure that's associated with it and moves the agent to the **Stopped** state.
+When you stop an agent, you stop the infrastructure that's associated with it and move the agent to the **Stopped** state.
 
 Stopping an agent deprovisions its infrastructure and prevents new runs. Any workflows or resources connected to this agent can't access it. This operation *doesn't terminate existing runs*.
 

@@ -1,7 +1,7 @@
 ---
 title: "Role-based access control for Microsoft Foundry (Hubs and Projects) (classic)"
 description: "This article introduces role-based access control in Microsoft Foundry portal (hub-focused version). (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023
   - build-2024

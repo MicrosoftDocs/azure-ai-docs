@@ -3,8 +3,8 @@ title: "Grounding with Bing Search code samples (classic)"
 description: "Find code samples to ground Azure AI Agents using Bing Search results. (classic)"
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/06/2026
 author: alvinashcraft
@@ -17,7 +17,7 @@ ms.custom: azure-ai-agents-code
 
 > [!NOTE]
 > This document refers to the Microsoft Foundry (classic) agents.
-> - We recommend customers to start with new [Web Search tool (preview)](../../../../foundry/agents/how-to/tools/web-search.md) with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more [here](../../../../foundry/agents/how-to/tools/web-overview.md).
+> - We recommend customers to start with new [Web Search tool](../../../../foundry/agents/how-to/tools/web-search.md) with the agents API. If you want to understand the difference between Web Search tool vs Grounding with Bing Search tool, you can learn more [here](../../../../foundry/agents/how-to/tools/web-overview.md).
 > 
 > 🔍 [View the new Grounding with Bing Search documentation](../../../../foundry/agents/how-to/tools/bing-tools.md).
 > Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.

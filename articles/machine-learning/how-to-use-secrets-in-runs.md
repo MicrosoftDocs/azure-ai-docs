@@ -105,10 +105,14 @@ You can get secrets during training in two ways:
 
     ```python
     import os
-    from azure.identity import DefaultAzureCredential
+    from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
     from azure.keyvault.secrets import SecretClient
 
-    credential = DefaultAzureCredential()
+    try:
+        credential = DefaultAzureCredential()
+        credential.get_token("https://management.azure.com/.default")
+    except Exception:
+        credential = InteractiveBrowserCredential()
 
     vault_url = os.environ["KEY_VAULT_URL"]
     secret_client = SecretClient(vault_url=vault_url, credential=credential)

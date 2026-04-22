@@ -7,7 +7,7 @@ author: msakande
 ms.reviewer: aashishb
 reviewer: aashishb
 ms.date: 09/26/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.custom:
   - ignite-2023

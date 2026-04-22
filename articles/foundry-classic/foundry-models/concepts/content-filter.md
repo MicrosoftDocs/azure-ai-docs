@@ -5,8 +5,8 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: yinchang
 reviewer: ychang-msft
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.date: 02/04/2026
 ms.custom: ignite-2024, github-universe-2024, template-concept, devx-track-python
@@ -49,6 +49,7 @@ The content filtering system integrated in the Foundry Models service in Foundry
 | [Personally identifiable information (PII)](/azure/ai-services/openai/concepts/content-filter-personal-information)  | Personally identifiable information (PII) refers to any information that can be used to identify a particular individual. PII detection involves analyzing text content in LLM completions and filtering any PII that was returned. |
 |[User Prompt Attacks](/azure/ai-foundry/openai/concepts/content-filter-prompt-shields) |User prompt attacks are user prompts designed to provoke the generative AI model into exhibiting behaviors it was trained to avoid or to break the rules set in the system message. Such attacks can vary from intricate roleplay to subtle subversion of the safety objective. |
 |[Indirect Attacks](/azure/ai-foundry/openai/concepts/content-filter-prompt-shields) |Indirect Attacks, also referred to as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks, are a potential vulnerability where third parties place malicious instructions inside of documents that the generative AI system can access and process. Requires [OpenAI models with document embedding and formatting](/azure/ai-foundry/openai/concepts/content-filter-document-embedding). |
+| [Task Adherence](../../../foundry/guardrails/task-adherence.md) | Task Adherence helps ensure AI Agents consistently behave in alignment with user instructions and task objectives. It identifies discrepancies, such as misaligned tool invocations, improper tool input or output relative to user intent, and inconsistencies between responses and customer input.  |
 
 <sup>1</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
 

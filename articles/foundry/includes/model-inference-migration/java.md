@@ -3,8 +3,8 @@ title: Java file for model inference SDK to OpenAI SDK migration
 description: Include file
 author: msakande
 ms.author: mopeakande
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 11/05/2025
 ms.custom: include
@@ -72,7 +72,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
     .credential(BearerTokenCredential.create(
         AuthenticationUtil.getBearerTokenSupplier(
             tokenCredential, 
-            "https://cognitiveservices.azure.com/.default"
+            "https://ai.azure.com/.default"
         )
     ))
     .build();

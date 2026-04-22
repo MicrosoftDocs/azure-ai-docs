@@ -3,8 +3,8 @@ title: Azure OpenAI C# support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI C# support
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 08/31/2025
 ai-usage: ai-assisted
@@ -44,7 +44,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "gpt-4.1-nano",
@@ -101,7 +101,7 @@ using System.ClientModel.Primitives;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 ChatClient client = new(
     model: "o4-mini",
@@ -166,7 +166,7 @@ using Azure.Identity;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 OpenAIResponseClient client = new(
     model: "o4-mini",
@@ -203,7 +203,7 @@ using Azure.Identity;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 #pragma warning disable OPENAI001
 
@@ -251,7 +251,7 @@ using Azure.Identity;
 
 BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
+    "https://ai.azure.com/.default");
 
 OpenAIResponseClient client = new(
     model: "o4-mini",

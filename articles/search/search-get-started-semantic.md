@@ -9,7 +9,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 03/04/2026
+ms.date: 03/25/2026
 zone_pivot_groups: search-sdks-rest
 ---
 

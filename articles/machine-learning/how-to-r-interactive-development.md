@@ -4,12 +4,14 @@ titleSuffix: Azure Machine Learning
 description: 'Learn how to work with R interactively on Azure Machine Learning'
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 03/21/2025
+ms.date: 03/18/2026
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: mavaisma
 ms.devlang: r
+ms.custom: dev-focus
+ai-usage: ai-assisted
 # customer intent: As a data scientist, I want to use R interactively in Azure Machine Learning so that I can develop and test my models.
 ---
 
@@ -19,28 +21,28 @@ ms.devlang: r
 
 This article shows how to use R in Azure Machine Learning studio on a compute instance that runs an R kernel in a Jupyter notebook.
 
-The popular RStudio IDE also works. You can install RStudio or Posit Workbench in a custom container on a compute instance. However, this has limitations in reading and writing to your Azure Machine Learning workspace.
+The popular RStudio IDE also works. You can install RStudio or Posit Workbench in a custom container on a compute instance. However, this solution has limitations in reading and writing to your Azure Machine Learning workspace.
 
 > [!IMPORTANT]
 > The code shown in this article works on an Azure Machine Learning compute instance. The compute instance has an environment and configuration file necessary for the code to run successfully.
 
 ## Prerequisites
 
-- If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today
-- An [Azure Machine Learning workspace and a compute instance](quickstart-create-resources.md)
-- A basic understand of using Jupyter notebooks in Azure Machine Learning studio. Visit the [Model development on a cloud workstation](tutorial-cloud-workstation.md) resource for more information.
+- If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
+- An [Azure Machine Learning workspace and a compute instance](quickstart-create-resources.md).
+- A basic understanding of using Jupyter notebooks in Azure Machine Learning studio. Visit the [Model development on a cloud workstation](tutorial-cloud-workstation.md) resource for more information.
 
 ## Run R in a notebook in studio
 
-You'll use a notebook in your Azure Machine Learning workspace, on a compute instance.
+Use a notebook in your Azure Machine Learning workspace, on a compute instance.
 
-1. Sign in to [Azure Machine Learning studio](https://ml.azure.com)
-1. Open your workspace if it isn't already open
-1. On the left navigation, select **Notebooks**
-1. Create a new notebook, named **RunR.ipynb**
+1. Sign in to [Azure Machine Learning studio](https://ml.azure.com).
+1. Open your workspace if it isn't already open.
+1. On the left navigation, select **Notebooks**.
+1. Create a new notebook, named **RunR.ipynb**.
 
     > [!TIP]
-    > If you're not sure how to create and work with notebooks in studio, review [Run Jupyter notebooks in your workspace](how-to-run-jupyter-notebooks.md)
+    > If you're not sure how to create and work with notebooks in studio, review [Run Jupyter notebooks in your workspace](how-to-run-jupyter-notebooks.md).
 
 1. Select the notebook.
 1. On the notebook toolbar, make sure your compute instance is running. If not, start it now.
@@ -63,20 +65,20 @@ To install these packages:
 
     :::code language="bash" source="~/azureml-examples-mavaisma-r-azureml/tutorials/using-r-with-azureml/01-setup-compute-instance-for-interactive-r/setup-ci-for-interactive-data-reads.sh":::
 
-1. Select  **Save and run script in terminal** to run the script
+1. Select  **Save and run script in terminal** to run the script.
 
 The install script handles these steps:
 
-* `pip` installs `azureml-fsspec` in the default conda environment for the compute instance
-* Installs the R `reticulate` package if necessary (version must be 1.26 or greater)
+* `pip` installs `azureml-fsspec` in the default conda environment for the compute instance.
+* Installs the R `reticulate` package if necessary (version must be 1.26 or greater).
 
 ### Read tabular data from registered data assets or datastores
 
 For data stored in a data asset [created in Azure Machine Learning](how-to-create-data-assets.md#create-a-data-asset-file-type), use these steps to read that tabular file into a Pandas DataFrame or an R `data.frame`:
 > [!NOTE]
-> Reading a file with `reticulate` only works with tabular data.
+> Reading a file by using `reticulate` only works with tabular data.
 
-1. Ensure you have the correct version of `reticulate`. For a version less than 1.26, try to use a newer compute instance.
+1. Confirm that the `reticulate` package is installed.
 
     ```r
     packageVersion("reticulate")
@@ -89,7 +91,7 @@ For data stored in a data asset [created in Azure Machine Learning](how-to-creat
 
 1. Find the URI path to the data file.
 
-    1. First, get a handle to your workspace
+    1. First, get a handle to your workspace.
 
         [!Notebook-r[](~/azureml-examples-mavaisma-r-azureml/tutorials/using-r-with-azureml/02-develop-in-interactive-r/work-with-data-assets.ipynb?name=configure-ml_client)]
     
@@ -111,12 +113,12 @@ For data stored in a data asset [created in Azure Machine Learning](how-to-creat
     
 ## Install R packages
 
-A compute instance has many preinstalled R packages.
+A compute instance comes with many preinstalled R packages.
 
 To install other packages, you must explicitly state the location and dependencies.
 
 > [!TIP]
-> When you create or use a different compute instance, you must re-install any packages you've installed.
+> When you create or use a different compute instance, you must reinstall any packages you installed.
 
 For example, to install the `tsibble` package:
 
@@ -127,7 +129,7 @@ install.packages("tsibble",
 ```
 
 > [!NOTE]
-> If you install packages within an R session that runs in a Jupyter notebook, `dependencies = TRUE` is required. Otherwise, dependent packages will not automatically install. The lib location is also required to install in the correct compute instance location.
+> If you install packages within an R session that runs in a Jupyter notebook, include `dependencies = TRUE`. Otherwise, dependent packages won't automatically install. You also need to specify the lib location to install in the correct compute instance location.
 
 ## Load R libraries
 
@@ -140,7 +142,7 @@ Add `/home/azureuser` to the R library path.
 > [!TIP]
 > You must update the `.libPaths` in each interactive R script to access user installed libraries. Add this code to the top of each interactive R script or notebook.
 
-Once the libPath is updated, load libraries as usual.
+Once you update the libPath, load libraries as usual.
 
 ```r
 library('tsibble')
@@ -148,8 +150,8 @@ library('tsibble')
 
 ## Use R in the notebook
 
-Beyond the issues described earlier, use R as you would in any other environment, including your local workstation. In your notebook or script, you can read and write to the path where the notebook/script is stored.
+Besides the earlier described issues, use R as you would in any other environment, including your local workstation. In your notebook or script, you can read and write to the path where the notebook or script is stored.
 
 > [!NOTE]
 > - From an interactive R session, you can only write to the workspace file system.
-> - From an interactive R session, you cannot interact with MLflow (such as log model or query registry).
+> - From an interactive R session, you can't interact with MLflow (such as log model or query registry).

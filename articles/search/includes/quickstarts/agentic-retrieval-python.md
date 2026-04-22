@@ -187,7 +187,7 @@ The index schema contains fields for document identification and page content, e
 
 ```python
 # Create an index
-azure_openai_token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
+azure_openai_token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
 
 index = SearchIndex(
     name=index_name,

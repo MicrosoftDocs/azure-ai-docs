@@ -3,8 +3,8 @@ title: JavaScript file for model inference SDK to OpenAI SDK migration
 description: Include file
 author: msakande
 ms.author: mopeakande
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 11/05/2025
 ms.custom: include
@@ -63,7 +63,7 @@ import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default'
+    'https://ai.azure.com/.default'
 );
 
 const client = new OpenAI({
@@ -181,7 +181,7 @@ import { getBearerTokenProvider, DefaultAzureCredential } from "@azure/identity"
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
+    'https://ai.azure.com/.default');
 const client = new OpenAI({
     baseURL: "https://<resource>.openai.azure.com/openai/v1/",
     apiKey: tokenProvider

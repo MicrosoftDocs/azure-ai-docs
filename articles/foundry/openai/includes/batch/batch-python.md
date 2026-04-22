@@ -4,12 +4,13 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI model global batch Python
 manager: nitinme
 ms.date: 10/15/2024
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
-  - build-2025
+  - build-2025, classic-and-new
 ai-usage: ai-assisted
+
 ---
 
 ## Prerequisites
@@ -131,7 +132,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
 )
 
 client = OpenAI(  
@@ -575,7 +576,7 @@ from datetime import datetime, timedelta
 from azure.identity import DefaultAzureCredential
 
 token_credential = DefaultAzureCredential()
-token = token_credential.get_token('https://cognitiveservices.azure.com/.default')
+token = token_credential.get_token('https://ai.azure.com/.default')
 
 endpoint = "https://{YOUR_RESOURCE_NAME}.openai.azure.com/"
 api_version = "2025-03-01-preview"

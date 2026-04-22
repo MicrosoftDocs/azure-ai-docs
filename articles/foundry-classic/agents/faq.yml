@@ -5,8 +5,8 @@ metadata:
   description: Get answers to common questions about Foundry Agent Service, including setup options, data handling, pricing, and networking.
   #services: cognitive-services
   manager: nitinme
-  ms.service: azure-ai-foundry
-  ms.subservice: azure-ai-foundry-agent-service
+  ms.service: microsoft-foundry
+  ms.subservice: foundry-agent-service
   ms.topic: faq
   ms.date: 02/02/2026
   ms.author: aahi

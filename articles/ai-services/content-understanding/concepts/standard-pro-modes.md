@@ -15,6 +15,8 @@ ms.custom:
 
 # Azure Content Understanding in Foundry Tools standard and pro modes (preview)
 
+[!INCLUDE [preview-notice](../includes/preview-notice.md)]
+
 Azure Content Understanding in Foundry Tools is a generative AI service designed to derive structured insights from multimodal content such as documents, images, videos, and audio. With the introduction of the `2025-05-01-preview` version, the service offers two modes: `standard` and `pro`.
 
 * **Standard**: This mode is the default for processing diverse content types. It's optimized to provide efficient schema extraction tailored to specific tasks across data formats. This mode emphasizes cost-effectiveness and reduced latency.

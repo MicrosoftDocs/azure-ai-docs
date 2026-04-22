@@ -3,7 +3,7 @@ title: Run or Reset Indexers
 description: Run indexers in full, or reset an indexer, skills, or individual documents to refresh all or part of a search index or knowledge store.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/02/2025
+ms.date: 03/26/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -25,6 +25,9 @@ This article explains how to run indexers on demand, with and without a reset. I
 Indexers are one of the few subsystems that make overt outbound calls to other Azure resources. Depending on the external data source, you can use keys or roles to authenticate the connection.
 
 In terms of Azure roles, indexers don't have separate identities: a connection from the search engine to another Azure resource is made using the [system or user-assigned managed identity](search-how-to-managed-identities.md) of a search service, plus a role assignment on the target Azure resource. If the indexer connects to an Azure resource on a virtual network, you should create a [shared private link](search-indexer-howto-access-private.md) for that connection.
+
+> [!NOTE]
+> Indexers operate with service-level permissions rather than user permissions. An indexer can write to any index on the search service, even if you assigned roles to restrict access to specific indexes. For more information, see [Per-index scope and indexer operations](search-security-rbac.md#per-index-scope-and-indexer-operations).
 
 ## Indexer execution
 
@@ -117,7 +120,7 @@ Once you reset an indexer, you can't undo the action.
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 1. On the **Overview** page, select the **Indexers** tab.
 1. Select an indexer.
 1. Select the **Reset** command, and then select **Yes** to confirm the action.
@@ -270,7 +273,7 @@ An indexer is considered synchronized with its data source when specific fields 
 
 If a document is modified in the data source, the indexer becomes unsynchronized. Generally, change tracking mechanisms will resynchronize the indexer during the next run. For example, in Azure Storage, modifying a blob updates its last modified time, allowing it to be re-indexed in the subsequent indexer run because the updated time surpasses the high-water mark set by the previous run.
 
-In contrast, for certain data sources like ADLS Gen2, altering the Access Control Lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACLs are to be ingested. Consequently, the modified blob will not be re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
+In contrast, for certain data sources like ADLS Gen2, altering the access control lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACLs are to be ingested. Consequently, the modified blob will not be re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
 
 While using either "reset" or "reset docs" can address this issue, "reset" can be time-consuming and inefficient for large datasets, and "reset docs" requires identifying the document key of the blob intended for update.
 

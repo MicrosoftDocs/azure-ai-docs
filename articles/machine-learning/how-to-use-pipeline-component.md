@@ -9,28 +9,30 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 09/13/2024
+ms.date: 03/19/2026
 ms.custom:
   - sdkv2
   - cliv2
   - devx-track-python
   - ignite-2023
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Use multistep pipeline components in pipeline jobs
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-It's common to use pipeline components to develop complex machine learning pipelines. You can group multiple steps into a pipeline component that you use as a single step to do tasks like data preprocessing or model training.
+It's common to use pipeline components to develop complex machine learning pipelines. You can group multiple steps into a single pipeline component that you use as one step to handle tasks like data preprocessing or model training.
 
 This article shows you how to nest multiple steps in components that you use to build complex Azure Machine Learning pipeline jobs. You can develop and test these multistep components standalone, which helps you share your work and collaborate better with team members.
 
-By using multistep pipeline components, you can focus on developing subtasks and easily integrate them with the entire pipeline job. A pipeline component has a well-defined input and output interface, so multistep pipeline component users don't need to know the implementation details of the component.
+By using multistep pipeline components, you can focus on developing subtasks and easily integrate them with the entire pipeline job. A pipeline component has a well-defined input and output interface, so users of multistep pipeline components don't need to know the implementation details of the component.
 
 Both pipeline components and pipeline jobs contain groups of steps or components, but defining a pipeline component differs from defining a pipeline job in the following ways:
 
 - Pipeline components define only the interfaces of inputs and outputs. In a pipeline component, you explicitly set the input and output types, but you don't directly assign values to them.
-- Pipeline components don't have runtime settings, so you can't hardcode a compute or data node in a pipeline component. Instead you must promote these nodes as pipeline level inputs and assign values during runtime.
+- Pipeline components don't have runtime settings, so you can't hardcode a compute or data node in a pipeline component. Instead, you must promote these nodes as pipeline level inputs and assign values during runtime.
 - Pipeline level settings such as `default_datastore` and `default_compute` are also runtime settings that aren't part of pipeline component definitions.
 
 ## Prerequisites
@@ -45,6 +47,7 @@ Both pipeline components and pipeline jobs contain groups of steps or components
 
 # [Python SDK](#tab/python)
 
+- Python 3.10 or later.
 - Install the [Azure Machine Learning SDK v2 for Python](/python/api/overview/azure/ai-ml-readme).
 - Understand how to [create and run Azure Machine Learning pipelines and components with the Python SDK v2](how-to-create-component-pipeline-python.md).
 
@@ -90,16 +93,20 @@ To access components in Azure Machine Learning studio, you need to register the 
 
 You reference pipeline components as child jobs in a pipeline job just like you reference other types of components. You can provide runtime settings like `default_datastore` and `default_compute` at the pipeline job level.
 
-You need to promote any parameters you want to change during runtime as pipeline job inputs. Otherwise, they're hard-coded in the pipeline component. Promoting compute definition to a pipeline level input supports heterogeneous pipelines that can use different compute targets in different steps.
+You need to promote any parameters you want to change during runtime as pipeline job inputs. Otherwise, hard-code them in the pipeline component. Promoting compute definition to a pipeline level input supports heterogeneous pipelines that use different compute targets in different steps.
+You need to promote any parameters you want to change during runtime as pipeline job inputs. Otherwise, you hard-code them in the pipeline component. Promoting compute definition to a pipeline level input supports heterogeneous pipelines that can use different compute targets in different steps.
 
-To submit the pipeline job, edit the `cpu-cluster` in the `default_compute` section before you run the `az ml job create -f pipeline.yml` command.
+To submit the pipeline job, edit the `cpu-cluster` in the `default_compute` section before running the `az ml job create --file pipeline.yml` command.
+
+> [!NOTE]
+> To use [serverless compute](how-to-use-serverless-compute.md), replace `default_compute: azureml:cpu-cluster` with `default_compute: azureml:serverless` in the pipeline YAML.
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/pipeline_with_pipeline_component/pipeline_with_train_eval_pipeline_component/pipeline.yml" highlight="17,18,27,28,40,50,55":::
 
 >[!NOTE]
->To share or reuse components across jobs in the workspace, you need to register the components. You can use [`az ml component create`](/cli/azure/ml/component#az-ml-component-create) to register pipeline components.
+>To share or reuse components across jobs in the workspace, register the components. Use [`az ml component create`](/cli/azure/ml/component#az-ml-component-create) to register pipeline components.
 
-You can find other Azure CLI pipeline component-related examples and information at [pipelines-with-components](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components) in the [Azure Machine Learning examples repository](https://github.com/Azure/azureml-examples).
+Find other Azure CLI pipeline component-related examples and information at [pipelines-with-components](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components) in the [Azure Machine Learning examples repository](https://github.com/Azure/azureml-examples).
 
 # [Python SDK](#tab/python)
 
@@ -108,9 +115,9 @@ You can use the pipeline component as a step like other components in the pipeli
 [!Notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component/pipeline_with_train_eval_pipeline_component/pipeline_with_train_eval_pipeline_component.ipynb?name=pipeline-component-pipeline-job)]
 
 >[!NOTE]
->To share or reuse components across jobs in the workspace, you need to register the components. You can use [`ml_client.components.create_or_update`](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update) to register pipeline components.
+>To share or reuse components across jobs in the workspace, register the components. Use [`ml_client.components.create_or_update`](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update) to register pipeline components.
 
-You can find other Python SDK v2 pipeline component-related notebooks and information at [Pipeline component](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component) in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository.
+Find other Python SDK v2 pipeline component-related notebooks and information at [Pipeline component](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1j_pipeline_with_pipeline_component) in the [Azure Machine Learning examples](https://github.com/Azure/azureml-examples) GitHub repository.
 
 # [Studio UI](#tab/ui)
 
@@ -120,7 +127,7 @@ The following screenshots are from the [nyc_taxi_data_regression_with_pipeline_c
 
 :::image type="content" source="./media/how-to-use-pipeline-component/pipeline-component-authoring.png" alt-text="Screenshot of the Designer canvas page to build a pipeline job with a pipeline component." lightbox= "./media/how-to-use-pipeline-component/pipeline-component-authoring.png":::
 
-After you submit a pipeline job, you can go to the pipeline job detail page to change pipeline component status. You can also drill down to child components in the pipeline component to debug the components.
+After you submit a pipeline job, you can go to the pipeline job detail page to change the pipeline component status. You can also drill down to child components in the pipeline component to debug the components.
 
 :::image type="content" source="./media/how-to-use-pipeline-component/pipeline-component-right-panel.png" alt-text="Screenshot of View pipeline component on the pipeline job detail page." lightbox= "./media/how-to-use-pipeline-component/pipeline-component-right-panel.png":::
 

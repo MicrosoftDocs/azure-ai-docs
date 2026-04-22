@@ -8,6 +8,7 @@ ms.author: lajanuar
 ms.custom: language-service-pii
 ai-usage: ai-assisted
 ---
+
 ## Prerequisites
 
 > [!TIP]
@@ -59,7 +60,7 @@ Select either **Extract PII from conversation** or **Extract PII from text** fro
 
 ### Extract PII from conversation
 
-**Extract PII from conversation** is designed to identify and mask personally identifying information in conversational text.
+**Extract PII from conversation** is designed to identify and mask personally identifiable information in conversational text.
 
 In **Configuration** there are the following options:
 
@@ -90,7 +91,7 @@ Verify that each PII entity appears highlighted with the correct category label.
 
 ### Extract PII from text
 
-**Extract PII from text** is designed to identify and mask personally identifying information in text.
+**Extract PII from text** is designed to identify and mask personally identifiable information in text.
 
 In **Configuration** you can select from the following options:
 
@@ -160,7 +161,7 @@ There are two ways to access the PII interface:
 
 ## Detect PII in the Foundry playground
 
-The **extract PII from text** feature detects and masks personally identifying information within written content.
+The **extract PII from text** feature detects and masks personally identifiable information within written content.
 
 1. On the **Playground** tab, select the sample text, use the paperclip icon to upload your text, or enter your own text.
 

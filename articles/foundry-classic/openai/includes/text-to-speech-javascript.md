@@ -1,8 +1,8 @@
 ---
 ms.topic: include
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 09/12/2024
 ms.author: pafarley
@@ -80,7 +80,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     // keyless authentication    
     const credential = new DefaultAzureCredential();
-    const scope = "https://cognitiveservices.azure.com/.default";
+    const scope = "https://ai.azure.com/.default";
     const azureADTokenProvider = getBearerTokenProvider(credential, scope);
 
     function getClient() {

@@ -5,13 +5,15 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.date: 02/18/2026
 ms.topic: how-to
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ai-usage: ai-assisted
 
 ms.custom:
   - classic-and-new
+  - doc-kit-assisted
 ---
 
 # Groundedness detection filter
-[!INCLUDE [groundedness-detection-overview](../../../ai-services/content-safety/includes/groundedness-detection-overview.md)]
+
+[!INCLUDE [content-filter-groundedness content](../includes/concepts-content-filter-groundedness-content.md)]

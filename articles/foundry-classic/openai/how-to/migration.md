@@ -3,8 +3,8 @@ title: "How to migrate to OpenAI Python v1.x (classic)"
 description: "Learn about migrating to the latest release of the OpenAI Python library with Azure OpenAI. (classic)"
 author: mrbullwinkle 
 ms.author: mbullwin 
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
 ms.date: 11/26/2025
@@ -242,7 +242,7 @@ asyncio.run(main())
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from openai import AzureOpenAI
 
-token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default")
 
 api_version = "2024-02-01"
 endpoint = "https://my-resource.openai.azure.com"
