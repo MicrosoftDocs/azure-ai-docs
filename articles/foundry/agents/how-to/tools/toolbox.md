@@ -50,18 +50,18 @@ For tool configuration syntax and authentication options for each tool type, see
 
 ## Feature support
 
-| Feature | Python SDK | REST API | .NET SDK | JavaScript SDK | azd (deploy) |
-| ------- | ---------- | -------- | -------- | -------------- | ------------ |
-| Toolbox update, list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
-| Toolbox version create | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| Toolbox version list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
-| [MCP tool](model-context-protocol.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [Web Search tool](web-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [Azure AI Search tool](ai-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [Code Interpreter tool](code-interpreter.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| Feature | Python SDK | REST API | .NET SDK | JavaScript SDK | azd (deploy) | Foundry Toolkit |
+| ------- | ---------- | -------- | -------- | -------------- | ------------ | --------------- |
+| Toolbox update, list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A | ✔️ |
+| Toolbox version create | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| Toolbox version list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A | No. UI shows the latest version only. |
+| [MCP tool](model-context-protocol.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Web Search tool](web-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Azure AI Search tool](ai-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Code Interpreter tool](code-interpreter.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 
 ## Prerequisites
 
@@ -1051,6 +1051,15 @@ const tools = [
   },
 ];
 ```
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, REST API, or azd tab to configure
+`require_approval` in your toolbox definition. The Foundry Toolkit
+workflow in this article focuses on creating and consuming the toolbox
+in Visual Studio Code.
 
 :::zone-end
 
