@@ -17,8 +17,8 @@ This article helps you decide what to do when your preferred Azure AI Search reg
 
 When a preferred Azure region is unavailable due to capacity constraints, you have two options:
 
-1. Deploy to an alternative region. 
-1. Retry deployment during off-peak hours.
+- Deploy to an alternative region. 
+- Retry deployment during off-peak hours.
 
 **Deploy to an alternative region.** (Recommended path)
 Azure AI Search is available across many Azure regions with consistent APIs, SDKs, SLAs, and compliance certifications. For most workloads, the operational difference between regions within the same geography is negligible. See the following section, *Criteria for selecting an alternative region*, for a full evaluation framework.
@@ -111,7 +111,7 @@ For more information, see:
 - [Azure regions list](/azure/reliability/regions-list)
 - [Azure compliance documentation](/azure/compliance/)
 - [Azure OpenAI Service models by region](/azure/ai-services/openai/concepts/models)
-- [Azure AI Foundry regional availability](/azure/foundry/reference/region-support
+- [Azure AI Foundry regional availability](/azure/foundry/reference/region-support)
 - [Move your Azure AI Search service to another region](/azure/search/search-howto-move-across-regions)
 - [Azure regions with Availability Zones](/azure/reliability/availability-zones-region-support)
 - [Data, privacy, and built-in protections in Azure AI Search](/azure/search/search-security-overview)
