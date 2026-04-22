@@ -431,8 +431,8 @@ Where `BASE_URL` is `https://{account}.services.ai.azure.com/api/projects/{proje
 | `ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="v1")` | `ProtocolVersionRecord(protocol=AgentProtocol.RESPONSES, version="1.0.0")` |
 | `tools=[...]` in `HostedAgentDefinition` | Removed — use Foundry Toolbox MCP endpoint instead |
 | Not available | `project.beta.agents.create_session(agent_name, isolation_key=..., version_indicator=...)`, `.get_session()`, `.list_sessions()`, `.delete_session(isolation_key=...)` |
-| Not available | `project.beta.agents.download_session_file(path=...)`, `.list_session_files(path=...)`, `.delete_session_file(path=...)` |
-| Not available | `project.beta.agents.patch_agent_object()` for endpoint routing and traffic splitting |
+| Not available | `project.beta.agents.download_session_file(path=...)`, `.get_session_files(path=...)`, `.delete_session_file(path=...)` |
+| Not available | `project.beta.agents.patch_agent_details()` for endpoint routing and traffic splitting |
 | Not available | `metadata={"enableVnextExperience": "true"}` parameter on `client.agents.create_version()` |
 
 ## Agent invocation changes
