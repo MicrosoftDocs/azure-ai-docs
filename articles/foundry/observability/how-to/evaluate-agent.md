@@ -16,7 +16,7 @@ ms.custom: doc-kit-assisted
 
 Evaluation is essential for ensuring your agent meets quality and safety standards before deployment. By running evaluations during development, you establish a baseline for your agent's performance and can set acceptance thresholds, such as an 85% task adherence passing rate, before releasing it to users.
 
-In this article, you learn how to run an agent-targeted evaluation against a [Foundry agent](../../agents/overview.md) using built-in evaluators for quality, safety, and agent behavior. Specifically, you:
+In this article, you learn how to run an agent-targeted evaluation against a [Foundry agent](../../agents/overview.md) or [hosted agent](../../agents/concepts/hosted-agents.md) using built-in evaluators for quality, safety, and agent behavior. Specifically, you:
 
 - Set up the SDK client for evaluation.
 - Choose evaluators for quality, safety, and agent behavior.
@@ -28,7 +28,7 @@ In this article, you learn how to run an agent-targeted evaluation against a [Fo
 
 ## Prerequisites
 
-- A [Foundry project](../../how-to/create-projects.md) with an [agent](../../agents/overview.md).
+- A [Foundry project](../../how-to/create-projects.md) with an [agent](../../agents/overview.md) or [hosted agent](../../agents/concepts/hosted-agents.md).
 - An Azure OpenAI deployment with a GPT model that supports chat completion (for example, `gpt-4o` or `gpt-4o-mini`).
 - **Azure AI User** role on the Foundry project.
 
@@ -190,6 +190,9 @@ eval_run = client.evals.runs.create(
 
 print(f"Evaluation run started: {eval_run.id}")
 ```
+
+> [!TIP]
+> This sample works for both prompt agents and hosted agents that use the responses protocol. For hosted agents that use the invocations protocol, the `input_messages` format is different — provide a freeform JSON object instead of the structured template. For details and code samples, see [Hosted agent invocations protocol](../../how-to/develop/cloud-evaluation.md#hosted-agent-invocations-protocol) in the cloud evaluation guide.
 
 > [!TIP]
 > To evaluate agent interactions that already occurred using traces from Application Insights, see [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation) in the cloud evaluation guide.

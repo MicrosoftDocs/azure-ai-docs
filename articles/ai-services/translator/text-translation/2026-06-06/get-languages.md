@@ -15,6 +15,7 @@ ms.author: lajanuar
 # Languages (2026-06-06)
 
 Get the set of languages currently supported by the latest Azure Translator version.
+
 ## Request URL
 
 Send a `GET` request to:

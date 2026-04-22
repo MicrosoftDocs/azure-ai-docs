@@ -5,8 +5,9 @@ ms.service: azure-ai-language
 ms.author: lajanuar
 author: laujan
 ms.topic: reference
-ms.date: 12/15/2025
+ms.date: 04/20/2026
 ---
+
 # Format guidelines for custom question answering
 
 Review these formatting guidelines to get the best results for your content.
@@ -31,7 +32,7 @@ Custom question answering identifies sections and subsections and relationships 
 
 ### Product manuals
 
-A manual is typically guidance material that accompanies a product. It helps the user to set up, use, maintain, and troubleshoot the product. When custom question answering processes a manual, it extracts the headings and subheadings as questions and the subsequent content as answers. See an example [here](https://download.microsoft.com/download/2/9/B/29B20383-302C-4517-A006-B0186F04BE28/surface-pro-4-user-guide-EN.pdf).
+A manual is typically guidance material that accompanies a product. It helps the user to set up, use, maintain, and troubleshoot the product. When custom question answering processes a manual, it extracts the headings and subheadings as questions and the subsequent content as answers. For example, *see*, [Surface Book 3 Specs and Features guide](https://support.microsoft.com/en-US/surface/models/surface-book-3-specs-and-features).
 
 To follow is an example of a manual with an index page, and hierarchical content
 
@@ -49,21 +50,6 @@ To follow is an example of a semi-structured doc, without an index:
 
 > [!div class="mx-imgBorder"]
 > ![Azure Blob storage semi-structured Doc](../media/qnamaker-concepts-datasources/semi-structured-doc.png)
-
-### Unstructured document support
-
-Custom question answering now supports unstructured documents. A  document that doesn't have its content organized in a hierarchical manner, is missing a set structure or has its content free flowing can be considered as an unstructured document.
-
-To follow is an example of an unstructured PDF document:
-
-> [!div class="mx-imgBorder"]
-> ![Unstructured  document example for a project](../media/qnamaker-concepts-datasources/unstructured-qna-pdf.png)
-
-> [!NOTE]
-> QnA pairs aren't extracted in the "Edit sources" tab for unstructured sources.
-
-> [!IMPORTANT]
-> Support for unstructured file/content is available only in custom question answering.
 
 ### Structured custom question answering document
 
@@ -112,7 +98,7 @@ Importing a project replaces the content of the existing project. Import require
 * First character of heading must be capitalized.
 * Don't end a heading with a question mark, `?`.
 
-**Sample documents**:<br>[Surface Pro (docx)](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/qna-maker/data-source-formats/multi-turn.docx)<br>[Contoso Benefits (docx)](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/qna-maker/data-source-formats/Multiturn-ContosoBenefits.docx)<br>[Contoso Benefits (pdf)](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/qna-maker/data-source-formats/Multiturn-ContosoBenefits.pdf)
+**Sample documents**:<br>[Surface Pro (docx)](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/qna-maker/data-source-formats/multi-turn.docx)<br>[Contoso Benefits (docx)](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/qna-maker/data-source-formats/Multiturn-ContosoBenefits.docx)<br>[Surface Book 3 (web)](https://support.microsoft.com/en-US/surface/models/surface-book-3-specs-and-features)
 
 ## FAQ URLs
 

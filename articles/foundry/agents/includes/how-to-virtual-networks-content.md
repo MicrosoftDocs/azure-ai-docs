@@ -15,7 +15,7 @@ Foundry Agent Service offers a **Standard Setup with private networking** enviro
 By default, the Standard Setup with private networking ensures:
 
 - **No public egress**: Foundational infrastructure provides the right authentication and security for your agents and tools, without requiring trusted service bypass.
-- **Container injection**: The platform network hosts APIs and injects a subnet into your network, enabling local communication of your Azure resources within the same virtual network.
+- **Subnet integration**: You provide a delegated subnet from your virtual network. The platform connects agent compute to this subnet, enabling local communication with your Azure resources within the same virtual network.
 - **Private resource access**: If your resources are marked as private and nondiscoverable from the internet, the platform network can still access them when the necessary credentials and authorization are in place.
 
 If you don't have an existing virtual network, the Standard Setup with private networking template simplifies deployment by automatically provisioning the necessary network infrastructure.
@@ -64,6 +64,9 @@ If you don't have an existing virtual network, the Standard Setup with private n
 > - Programmatic deployment is required to set up a network-secured environment for Agent Service. Deployment through the Azure portal isn't currently supported.
 > - If you want to delete your Foundry resource and Standard Agent with secured network setup, delete your Foundry resource and virtual network last. Before deleting the virtual network, delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your Foundry resource.
 > - In the Standard Setup, agents use customer-owned, single-tenant resources. You have full control and visibility over these resources, but you incur costs based on your usage.
+
+> [!IMPORTANT]
+> For hosted agents, the virtual network configuration (network injection) must be included when you first create the Foundry account. Adding network injection to an existing Foundry account after creation isn't supported for hosted agents. If you need to change the network configuration, delete and recreate the Foundry account with the desired network settings.
 
 At a high level, the deployment involves these steps:
 
