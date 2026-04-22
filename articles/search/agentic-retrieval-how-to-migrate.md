@@ -46,7 +46,7 @@ If you're migrating from [2025-11-01-preview](#2025-11-01-preview-1), you can mi
 
 #### Migrate knowledge sources
 
-The `searchIndex`, `azureBlob`, `indexedOneLake`, and `web` knowledge source types have no schema changes from 2025-11-01-preview. Only the API version and object name change.
+`searchIndex`, `azureBlob`, `indexedOneLake`, and `web` knowledge source types are generally available in 2026-04-01. Other knowledge source types remain in preview.
 
 1. Use [Knowledge Sources - Get](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (REST API) to get the current definition.
 
@@ -56,9 +56,15 @@ The `searchIndex`, `azureBlob`, `indexedOneLake`, and `web` knowledge source typ
    Content-Type: application/json
    ```
 
-1. Use [Knowledge Sources - Create Or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge source with a unique name, the `2026-04-01` API version, and the property values from the `GET` response.
+1. In the response, identify what to carry forward and what to remove:
 
-   The following example shows a `searchIndex` knowledge source. Use the same pattern for `azureBlob`, `indexedOneLake`, and `web` knowledge sources.
+   - For `searchIndex` and `web`, carry forward all property values.
+
+   - For `azureBlob` and `indexedOneLake`, carry forward all property values, but omit `ingestionPermissionOptions` from `ingestionParameters`. This property isn't supported in 2026-04-01.
+
+1. Use [Knowledge Sources - Create Or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge source with a unique name, the `2026-04-01` API version, and the property values from the previous step.
+
+   The following example shows a `searchIndex` knowledge source. Use a similar pattern for `azureBlob`, `indexedOneLake`, and `web` knowledge sources.
 
    ```http
    PUT {{search-endpoint}}/knowledge-sources/{{new-knowledge-source-name}}?api-version=2026-04-01
@@ -96,9 +102,9 @@ The 2026-04-01 knowledge base has a simpler schema than the 2025-11-01-preview v
 
    - Note the `knowledgeSources` references. Carry these forward into the new knowledge base.
 
-   - Remove `models`, `outputMode`, and `answerInstructions`. These properties aren't supported in 2026-04-01.
+   - Remove `outputMode`, `answerInstructions`, and `retrievalInstructions`. These properties aren't supported in 2026-04-01.
 
-   - If your knowledge base uses a `web` knowledge source, retain `models`. Web retrieval requires model-backed summarization.
+   - If your knowledge base uses a `web` knowledge source, keep `models`. Web retrieval requires model-backed summarization. For all other knowledge source types, remove `models`.
 
 1. Use [Knowledge Bases - Create Or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge base with a unique name, the `2026-04-01` API version, and only the supported properties.
 
@@ -827,12 +833,16 @@ The following changes affect the retrieve request only:
     
   + Conversational state isn't maintained across requests. The `messages`-based multi-turn pattern isn't supported.
 
+The following change affects `azureBlob` and `indexedOneLake` knowledge sources:
+
+  + `ingestionPermissionOptions` is removed from `ingestionParameters`. `azureBlob` and `indexedOneLake` knowledge sources that include this property must be recreated without it.
+
 > [!NOTE]
 > Sending removed fields returns a `400 Bad Request` HTTP code. The retrieve request doesn't drop or tolerate fields that no longer exist in this version.
 
 #### [**Nonbreaking changes**](#tab/nonbreaking)
 
-+ Generally available knowledge source types (`searchIndex`, `azureBlob`, `indexedOneLake`, and `web`) are supported in 2026-04-01. Existing indexed content remains valid; migration requires recreating knowledge source objects, not rebuilding indexes.
++ `searchIndex`, `azureBlob`, `indexedOneLake`, and `web` knowledge source types are generally available in 2026-04-01. Existing indexed content remains valid; migration requires recreating knowledge source objects, not rebuilding indexes.
 
 + Indexed and remote SharePoint knowledge sources remain in preview and aren't available in 2026-04-01.
 
