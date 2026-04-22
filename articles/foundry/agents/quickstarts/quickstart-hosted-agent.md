@@ -35,7 +35,7 @@ Before you begin, you need:
 * [Python 3.10 or later](https://www.python.org/downloads/)
 
 :::zone pivot="azd"
-* [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.23.0 or later
+* [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) version 1.24.0 or later
 :::zone-end
 
 :::zone pivot="vscode"
@@ -49,6 +49,10 @@ Before you begin, you need:
 :::zone pivot="azd"
 
 ## Step 1: Set up the sample project
+
+> [!WARNING]
+> This document is for Hosted Agents on the new backend and requires azd ai agent version 0.1.26-preview or later.
+> For the legacy experience that uses Azure Container Apps, please continue using 0.1.25-preview.
 
 Install the Azure Developer CLI agent extension and initialize a new hosted agent project.
 
