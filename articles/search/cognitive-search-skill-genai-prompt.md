@@ -21,7 +21,7 @@ Here are some examples of how the GenAI prompt skill can help you create content
 - Simplify complex content
 - Perform any other task that you can articulate in a prompt
 
-The GenAI Prompt skill is generally available in the [2026-04-01 REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2026-04-01&preserve-view=true) and in Azure SDKs that target this version. This skill supports text, image, and multimodal content, such as images with visuals and text extracted from PDF files.
+The GenAI Prompt skill is generally available in the [2026-04-01 Search Service REST API](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) and in Azure SDKs that target this version. This skill supports text, image, and multimodal content, such as images with visuals and text extracted from PDF files.
 
 > [!TIP]
 > It's common to combine this skill with a data chunking skill. The [Multimodal tutorial](tutorial-multimodal.md) demonstrates image verbalization with two different data chunking strategies.
@@ -38,6 +38,7 @@ The GenAI Prompt skill is generally available in the [2026-04-01 REST API](/rest
 
 > [!NOTE]
 > The search service connects to your model over a public endpoint, so there are no region location requirements. However, if you're using an all-up Azure solution, you should check the [Azure AI Search regions](search-region-support.md) and the [Azure OpenAI model regions](/azure/ai-services/openai/concepts/models) to find suitable pairs, especially if you have data residency requirements.
+
 ## Prerequisites
 
 - An [Azure OpenAI in Foundry Models resource](../ai-foundry/openai/how-to/create-resource.md) or [Foundry project](../ai-foundry/how-to/create-projects.md).
