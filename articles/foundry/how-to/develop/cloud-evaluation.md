@@ -7,7 +7,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/03/2026
+ms.date: 04/17/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -41,9 +41,9 @@ Cloud evaluation supports the following scenarios:
 | **[Dataset evaluation](#dataset-evaluation)** | Evaluate pre-computed responses in a JSONL file. | `jsonl` | — |
 | **[CSV dataset evaluation](#csv-dataset-evaluation)** | Evaluate pre-computed responses in a CSV file. | `csv` | — |
 | **[Model target evaluation](#model-target-evaluation)** | Provide queries and generate responses from a model at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_model` |
-| **[Agent target evaluation](#agent-target-evaluation)** | Provide queries and generate responses from a Foundry agent at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_agent` |
+| **[Agent target evaluation](#agent-target-evaluation)** | Provide queries and generate responses from a Foundry agent (prompt or hosted) at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
-| **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. | `azure_ai_traces` | — |
+| **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). | `azure_ai_traces` | — |
 | **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
 | **[Red team evaluation](run-ai-red-teaming-cloud.md)** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
 
@@ -619,10 +619,12 @@ For a complete runnable example, see [sample_model_evaluation.py](https://github
 
 ## Agent target evaluation
 
-Send queries to a Foundry agent at runtime and evaluate the responses using the `azure_ai_target_completions` data source type with an `azure_ai_agent` target.
+Send queries to a Foundry agent at runtime and evaluate the responses using the `azure_ai_target_completions` data source type with an `azure_ai_agent` target. This scenario works for both [prompt agents](../../agents/overview.md) and [hosted agents](../../agents/concepts/hosted-agents.md).
 
 > [!TIP]
 > Before you begin, complete [Get started](#get-started) and [Prepare input data](#uploading-evaluation-data).
+> [!TIP]
+> Hosted agents that use the responses protocol work with the same code samples shown here. For hosted agents that use the invocations protocol, the `input_messages` format is different. See [Hosted agent invocations protocol](#hosted-agent-invocations-protocol) for details.
 
 ### Define the message template and target
 
@@ -798,6 +800,83 @@ curl --request POST \
 
 For a complete runnable example, see [sample_agent_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
+### Hosted agent invocations protocol
+
+[Hosted agents](../../agents/concepts/hosted-agents.md) that use the invocations protocol support the same `azure_ai_agent` target type but use a **freeform `input_messages`** format. Instead of the structured template format, provide a JSON object that maps directly to the agent's `/invocations` request body. Use `{{item.*}}` placeholders to substitute fields from your input data.
+
+If a hosted agent supports both the responses and invocations protocols, the service defaults to using the invocations protocol.
+
+#### Define the message format and target
+
+```python
+input_messages = {"message": "{{item.query}}"}
+
+target = {
+    "type": "azure_ai_agent",
+    "name": "my-hosted-agent",  # Replace with your hosted agent name
+    "version": "1",
+}
+```
+
+#### Create evaluation and run
+
+# [Python](#tab/python)
+
+```python
+eval_object = client.evals.create(
+    name="Hosted Agent Invocations Evaluation",
+    data_source_config=data_source_config,
+    testing_criteria=testing_criteria,
+)
+
+data_source = {
+    "type": "azure_ai_target_completions",
+    "source": {
+        "type": "file_id",
+        "id": data_id,
+    },
+    "input_messages": input_messages,
+    "target": target,
+}
+
+eval_run = client.evals.runs.create(
+    eval_id=eval_object.id,
+    name="hosted-agent-invocations-evaluation",
+    data_source=data_source,
+)
+```
+
+# [cURL](#tab/curl)
+
+```bash
+curl --request POST \
+  --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/v1/evals/${EVAL_ID}/runs" \
+  --header "Authorization: Bearer ${TOKEN}" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "name": "hosted-agent-invocations-evaluation",
+    "data_source": {
+      "type": "azure_ai_target_completions",
+      "source": {
+        "type": "file_id",
+        "id": "YOUR_DATASET_ID"
+      },
+      "input_messages": {
+        "message": "{{item.query}}"
+      },
+      "target": {
+        "type": "azure_ai_agent",
+        "name": "my-hosted-agent",
+        "version": "1"
+      }
+    }
+  }'
+```
+
+---
+
+The evaluator setup and data mappings are the same as for [prompt agent evaluation](#set-up-evaluators-and-data-mappings-1). Use `{{sample.output_text}}` for the agent's text response and `{{sample.output_items}}` for the full structured output including tool calls.
+
 ## Agent response evaluation
 
 Retrieve and evaluate Foundry agent responses by response IDs using the `azure_ai_responses` data source type. Use this scenario to evaluate specific agent interactions after they occur.
@@ -906,6 +985,9 @@ For a complete runnable example, see [sample_agent_response_evaluation.py](https
 ## Trace evaluation
 
 Evaluate agent interactions that were already captured in [Application Insights](/azure/azure-monitor/app/app-insights-overview). Use the `azure_ai_traces` data source type. This scenario is useful for post-deployment evaluation of real production traffic — you select traces from your monitoring pipeline and run evaluators against them without replaying any requests.
+
+> [!IMPORTANT]
+> Trace evaluation is the recommended approach for evaluating **agents not built with the Microsoft Foundry Agent Service** — including LangChain and custom frameworks. As long as your agent emits [OpenTelemetry spans following the GenAI semantic conventions](#trace-data-requirements) to Application Insights, trace evaluation can assess its interactions using the same evaluators available for Foundry agents.
 
 Trace evaluation supports two modes:
 

@@ -22,15 +22,15 @@ zone_pivot_groups: programming-languages-text-analytics
 ai-usage: ai-assisted
 ---
 
-# Quickstart: Detect personally identifiable information (PII)
 <!-- markdownlint-disable MD025 -->
+# Quickstart: Detect personally identifiable information (PII)
 
 In this quickstart, you use the Azure Language in Foundry Tools PII detection feature to identify and redact personally identifiable information in text. You can get started using your preferred client library, the REST API, or the Microsoft Foundry portal.
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 > [!NOTE]
-> This quickstart covers PII detection in documents. To detect PII in conversations, see [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md). To detect PII in text, see [How to detect and redact PII in text](how-to/redact-text-pii.md).
+> This quickstart focuses on text PII. For conversation workflows, see [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md). For document workflows, see [Document-based PII overview](document-based-pii-overview.md) and [How to detect and redact PII in native documents](how-to/redact-document-pii.md).
 
 ::: zone pivot="programming-language-csharp"
 
@@ -88,6 +88,7 @@ If you no longer need the resources you created in this quickstart, delete the i
 ## Related content
 
 * [PII overview](overview.md)
+* [Document-based PII overview](document-based-pii-overview.md)
 * [How to detect and redact PII in text](how-to/redact-text-pii.md)
 * [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md)
 * [Supported entity categories for text](concepts/entity-categories.md)
