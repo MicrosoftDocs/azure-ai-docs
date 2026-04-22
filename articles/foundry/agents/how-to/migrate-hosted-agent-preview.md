@@ -506,13 +506,13 @@ The identity model changed significantly:
 | **Unpublished agent runtime identity** | Project managed identity (shared) | Dedicated Entra agent identity (per agent) |
 | **When dedicated identity is created** | At publish time only | At deploy time (every agent) |
 | **Project managed identity role** | Runtime identity for all unpublished agents | Infrastructure only — used for container image pulls |
-| **Required deployment role** | Azure AI Owner (new project), AI Owner + Contributor (new resources), or Reader + Azure AI User (existing project) | **Azure AI User** at project scope |
+| **Required deployment role** | Azure AI Owner (new project), AI Owner + Contributor (new resources), or Reader + Azure AI User (existing project) | **Azure AI Project Manager** at project scope |
 | **Post-publish RBAC reconfiguration** | Required — project MI permissions don't transfer to agent identity | Not required — agent has its own identity from the start |
 
 ### Action required
 
 1. **Update RBAC assignments**: The project managed identity is no longer the runtime identity. Grant RBAC roles for any downstream Azure resources directly to the agent's Entra identity instead.
-2. **Simplify deployment roles**: You need only **Azure AI User** at project scope to create and deploy hosted agents.
+2. **Simplify deployment roles**: You need **Azure AI Project Manager** at project scope to create and deploy hosted agents.
 
 ## Azure Developer CLI changes
 
