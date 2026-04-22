@@ -514,10 +514,11 @@ Claude Sonnet 4.6 delivers frontier intelligence at scale—built for coding, ag
 ### Claude Sonnet 4.5 (preview)
 
 > [!WARNING]
-> The 1M context beta (`context-1m-2025-08-07`) is retired and no longer supported on Claude Sonnet 4.5 after April 30, 2026. Starting May 1, 2026:
+> 1M context beta on Claude Sonnet 4.5 will be retired after April 30, 2026.
 >
-> - Requests **greater than 200K tokens** that include the `context-1m-2025-08-07` beta header on Sonnet 4.5 return an error.
-> - Requests **200K tokens or fewer** are unaffected, even with the header present.
+> Starting May 1, 2026:
+> - Requests **greater than 200K tokens** that include the `context-1m-2025-08-07` beta header on Sonnet 4.5 will return an error.
+> - Requests **200K tokens or fewer** will remain unaffected, even with the header present.
 >
 > To migrate, remove the `context-1m-2025-08-07` beta header from your requests. For workloads that require 1M context, migrate to **Claude Sonnet 4.6** (where 1M context is generally available) or to **Claude Opus 4.6** for higher-intelligence workloads.
 
