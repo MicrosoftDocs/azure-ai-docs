@@ -99,9 +99,15 @@ Content Understanding is a Foundry service. To use Content Understanding, you mu
 
 Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. The service uses the standard Foundry infrastructure, including the Azure AI Content Safety, integrating content safety results into the Content Understanding output. For more information and a full list of prohibited content, see the [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and the [**Code of Conduct**](https://aka.ms/AI-CoC).
 
-### Modified content filtering
+### Content filtering and Guardrails
 
-Content Understanding supports modified content filtering for approved customers. The subscription IDs (identifiers) with approved modified content filtering impact Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. Modified content filtering allows the system to annotate rather than block potentially harmful output, giving you the ability to determine how to handle potentially harmful content. For more information on content filter types, see [Content filter types](../openai/concepts/content-filter.md#content-filter-types).
+Content Understanding surfaces content filter results directly from the Foundry model deployment it uses. Each Foundry model deployment has an associated **Guardrails** instance that evaluates both the prompts sent to the model and the completions returned. When the Guardrails instance flags content, the result is included in the Content Understanding analyze response as a `content_filters` array. 
+
+To change the content filtering behavior for your analyzers, update the Guardrails instance associated with the model deployment in your Azure AI Foundry project. You can adjust the thresholds for each category or switch from blocking to annotating mode. For details, see [Content filtering](../../ai-foundry/openai/concepts/content-filter.md).
+
+You can modify content filters to adjust the severity blocked or annotate rather than block content, giving you the ability to handle potentially harmful content in your own workflow.
+
+For more information on content filter types, see [Content filter types](../openai/concepts/content-filter.md#content-filter-types).
 
 > [!IMPORTANT]
 >

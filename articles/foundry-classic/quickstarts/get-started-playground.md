@@ -1,7 +1,7 @@
 ---
 title: "Get Answers in Chat Playground - Microsoft Foundry Quickstart (classic)"
 description: "Get answers using the chat playground in Microsoft Foundry portal. Learn how to deploy models, ask questions, and get AI responses quickly with this step-by-step tutorial. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - build-2024
   - ignite-2024

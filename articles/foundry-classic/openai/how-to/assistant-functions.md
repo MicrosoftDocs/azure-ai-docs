@@ -3,8 +3,8 @@ title: "How to use Azure OpenAI Assistants function calling (classic)"
 description: "Learn how to use Assistants function calling (classic)"
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 02/17/2026
 author: aahill

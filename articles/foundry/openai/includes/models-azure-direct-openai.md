@@ -3,29 +3,34 @@ title: Azure OpenAI in Microsoft Foundry Models
 author: msakande
 ms.author: mopeakande
 manager: nitinme
-ms.date: 02/27/2026
-ms.service: azure-ai-foundry
+ms.date: 04/17/2026
+ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 ---
 
-> [!NOTE]
-> Foundry Models sold directly by Azure also include select models from top model providers, such as:
->
-> - Black Forest Labs: `FLUX.2-flex`, `FLUX.2-pro`, `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
-> - Cohere: `Cohere-command-a`, `embed-v-4-0`, `Cohere-rerank-v4.0-pro`, `Cohere-rerank-v4.0-fast`
-> - DeepSeek: `DeepSeek-V3.2`, `DeepSeek-V3.2-Speciale`, `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
-> - Moonshot AI: `Kimi-K2.5`, `Kimi-K2-Thinking`
-> - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
-> - Microsoft: `MAI-DS-R1`, `model-router`
-> - Mistral: `mistral-document-ai-2512`, `mistral-document-ai-2505`, `Mistral-Large-3`
-> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`, `grok-4.1-fast-reasoning`, `grok-4.1-fast-non-reasoning`
-> 
-> To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. 
-
 ## Azure OpenAI in Microsoft Foundry models
 
-[!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
+Azure OpenAI is powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. For Azure Government model availability, refer to [Azure OpenAI in Azure Government](../../foundry-models/concepts/models-sold-directly-by-azure-gov.md).
+
+| Models | Description |
+|--|--|
+| [GPT-5.4 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-54) | **NEW** `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-5.4`, `gpt-5.4-pro` |
+| [GPT-5.3 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-53) | **NEW** `gpt-5.3-chat`, `gpt-5.3-codex`  |
+| [GPT-5.2 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-52) | **NEW** `gpt-5.2-codex`, `gpt-5.2`, `gpt-5.2-chat` **Preview**|
+| [GPT-5.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-51) | **NEW** `gpt-5.1`, `gpt-5.1-chat` **Preview**, `gpt-5.1-codex`, `gpt-5.1-codex-mini`|
+| [Sora](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models) | **NEW** sora-2 |
+| [GPT-5 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-5) | `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-5-chat` **Preview** |
+| [gpt-oss](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-oss) | open-weight reasoning models |
+| [codex-mini](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models) | Fine-tuned version of `o4-mini`. |  
+| [GPT-4.1 series](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-41-series) | `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano` |
+| [computer-use-preview](../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
+| [o-series models](../../foundry-models/concepts/models-sold-directly-by-azure.md#o-series-models) |[Reasoning models](../how-to/reasoning.md) with advanced problem solving and increased focus and capability. |
+| [GPT-4o, GPT-4o mini, and GPT-4 Turbo](../../foundry-models/concepts/models-sold-directly-by-azure.md#gpt-4o-and-gpt-4-turbo) | Capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
+| [Embeddings](../../foundry-models/concepts/models-sold-directly-by-azure.md#embeddings) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
+| [Image generation](../../foundry-models/concepts/models-sold-directly-by-azure.md#image-generation-models) | A series of models that can generate original images from natural language. |
+| [`Video generation`](../../foundry-models/concepts/models-sold-directly-by-azure.md#video-generation-models) | A model that can generate original video scenes from text instructions. |
+| [Audio](../../foundry-models/concepts/models-sold-directly-by-azure.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
 
 ## GPT-5.4
 
@@ -50,12 +55,14 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 | Model | Region |
 |---|---|
 | `gpt-5.3-codex` |  See the [models table](#model-summary-table-and-region-availability) |
+| `gpt-5.3-chat` | East US2 & Sweden Central (Global Standard) |
 
 - **[Registration is required for access to gpt-5.3-codex](https://aka.ms/OAI/gpt53codexaccess).**
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-5.3-codex` (2026-02-24) |  - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md). <br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | August 2025 |
+| `gpt-5.3-chat` (2026-03-03)<br>**Preview** |  - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs <br> - Functions, tools, and parallel tool calling. |128,000 <br><br>Input: 111,616 <br> Output: 16,384  | 16,384 | August 2025 |
 
 ## GPT-5.2
 
@@ -64,7 +71,7 @@ ms.custom: pilot-ai-workflow-jan-2026, classic-and-new
 | Model | Region |
 |---|---|
 | `gpt-5.2` |  See the [models table](#model-summary-table-and-region-availability).   |
-| `gpt-5.2-chat` |  See the [models table](#model-summary-table-and-region-availability).  |
+| `gpt-5.2-chat` **Preview** |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.2-codex` |  See the [models table](#model-summary-table-and-region-availability) |
 
 - **[Registration is required for access to gpt-5.2 and gpt-5.2-codex](https://aka.ms/oai/gpt5access).**
@@ -95,7 +102,7 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | Model | Region |
 |---|---|
 | `gpt-5.1` |  See the [models table](#model-summary-table-and-region-availability).   |
-| `gpt-5.1-chat` |  See the [models table](#model-summary-table-and-region-availability).  |
+| `gpt-5.1-chat` **Preview** |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.1-codex` |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.1-codex-mini` |  See the [models table](#model-summary-table-and-region-availability).  |
 | `gpt-5.1-codex-max` |  See the [models table](#model-summary-table-and-region-availability).  | 
@@ -128,8 +135,8 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 | `gpt-5` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
 | `gpt-5-mini` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
 | `gpt-5-nano` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-chat` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-5-chat` (2025-10-03) |  See the [models table](#model-summary-table-and-region-availability). |
+| `gpt-5-chat` (2025-08-07) **Preview** |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-chat` (2025-10-03) **Preview** |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-codex` (2025-09-11) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-5-pro` (2025-10-06) |  See the [models table](#model-summary-table-and-region-availability).  |
 
@@ -166,7 +173,7 @@ Access will be granted based on Microsoft's eligibility criteria. Customers who 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-oss-120b` (Preview)   | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available for deployment<sup>1</sup> and via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md)  | 131,072 | 131,072 | May 31, 2024 |
-| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md) and [Foundry Local](../../../foundry-local/get-started.md#optional-run-the-latest-gpt-oss-20b-model) | 131,072 | 131,072 | May 31, 2024 |
+| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../../foundry-classic/how-to/deploy-models-managed.md) and [Foundry Local](../../../foundry-local/what-is-foundry-local.md) | 131,072 | 131,072 | May 31, 2024 |
 
 <sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires a [Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry) to deploy the model.
 
@@ -213,9 +220,9 @@ az cognitiveservices account deployment create \
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 128,000 (standard & provisioned managed deployments) <br> - 300,000 (batch deployments) | 32,768 | May 31, 2024 |
-| `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (standard & provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
-| `gpt-4.1-mini` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (standard & provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
+| `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments) | 32,768 | May 31, 2024 |
+| `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments)  | 32,768 | May 31, 2024 |
+| `gpt-4.1-mini` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 300,000 (standard & provisioned managed deployments) <br> - 128,000 (batch deployments)  | 32,768 | May 31, 2024 |
 
 ## computer-use-preview
 
@@ -354,11 +361,11 @@ Details about maximum request tokens and training data are available in the foll
 
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |---|---|---|---|
-|`gpt-4o-mini-audio-preview` (2024-12-17) | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
+|`gpt-4o-mini-audio-preview` (2024-12-17)<br>**Preview** | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
 |`gpt-4o-audio-preview` (2024-12-17) | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
 |`gpt-4o-realtime-preview` (2025-06-03) | Audio model for real-time audio processing. |Input: 32,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-realtime-preview` (2024-12-17) | Audio model for real-time audio processing. |Input: 16,000  <br> Output: 4,096 | October 2023 |
-|`gpt-4o-mini-realtime-preview` (2024-12-17) | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
+|`gpt-4o-mini-realtime-preview` (2024-12-17)<br>**Preview** | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | October 2023 |
 |`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-realtime-mini` (2025-12-15) | Audio model for real-time audio processing. |Input: 32,00  <br> Output: 4,096 | October 2023 |
 |`gpt-audio-1.5` (2026-02-23) | Audio model for audio and text generation. |Input: 128,00  <br> Output: 16,384 | September 2024 |
@@ -375,10 +382,10 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 |  Model ID  | Description | Max request (audio file size) |
 | ----- | ----- | ----- |
 | `whisper` | General-purpose speech recognition model. | 25 MB |
-| `gpt-4o-transcribe` (2025-03-20) | Speech-to-text model powered by GPT-4o. | 25 MB|
-| `gpt-4o-mini-transcribe` (2025-03-20) | Speech-to-text model powered by GPT-4o mini. | 25 MB|
-| `gpt-4o-transcribe-diarize` (2025-10-15) | Speech-to-text model with automatic speech recognition. | 25 MB|
-| `gpt-4o-mini-transcribe` (2025-12-15) | Speech-to-text model with automatic speech recognition. Improved transcription accuracy and robustness. | 25 MB|
+| `gpt-4o-transcribe` (2025-03-20)<br>**Preview** | Speech-to-text model powered by GPT-4o. | 25 MB|
+| `gpt-4o-mini-transcribe` (2025-03-20)<br>**Preview** | Speech-to-text model powered by GPT-4o mini. | 25 MB|
+| `gpt-4o-transcribe-diarize` (2025-10-15)<br>**Preview** | Speech-to-text model with automatic speech recognition. | 25 MB|
+| `gpt-4o-mini-transcribe` (2025-12-15)<br>**Preview** | Speech-to-text model with automatic speech recognition. Improved transcription accuracy and robustness. | 25 MB|
 
 #### Speech translation models
 
@@ -390,8 +397,8 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 
 |  Model ID  | Description |
 |  --- | :--- |
-| `tts` | Text-to-speech model optimized for speed. |
-| `tts-hd` | Text-to-speech model optimized for quality.|
+| `tts`<br>**Preview** | Text-to-speech model optimized for speed. |
+| `tts-hd`<br>**Preview** | Text-to-speech model optimized for quality.|
 | `gpt-4o-mini-tts` (2025-03-20) | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 | `gpt-4o-mini-tts` (2025-12-15) | Text-to-speech model powered by GPT-4o mini.<br/><br/>You can guide the voice to speak in a specific style or tone. |
 

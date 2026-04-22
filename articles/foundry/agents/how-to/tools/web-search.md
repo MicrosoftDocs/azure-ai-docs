@@ -3,10 +3,10 @@ title: "Use web search tool in Foundry Agent Service"
 description: "Use the web search tool in Foundry Agent Service to retrieve real-time information and ground AI responses. Includes code examples."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 04/07/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: 
@@ -242,69 +242,60 @@ Grounding with Bing Custom Search is a powerful tool that you can use to select 
 
 The following example shows how to use the `o3-deep-research` model with the web search tool. This approach replaces the deprecated [Deep Research tool](../../../../foundry-classic/agents/how-to/tools-classic/deep-research.md), enabling multi-step research using public web data directly through the web search tool.
 
-> [!NOTE]
-> Set the `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variable to your `o3-deep-research` deployment name.
-
 ```python
-import os
-import sys
-from dotenv import load_dotenv
-
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import PromptAgentDefinition, WebSearchPreviewTool
 
-load_dotenv()
+# Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+PROJECT_ENDPOINT = "your_project_endpoint"
 
-project_client = AIProjectClient(
-    endpoint=os.environ["AZURE_AI_PROJECT_ENDPOINT"],
+# Create clients to call Foundry API
+project = AIProjectClient(
+    endpoint=PROJECT_ENDPOINT,
     credential=DefaultAzureCredential(),
 )
+openai = project.get_openai_client()
 
-openai_client = project_client.get_openai_client()
+# Create agent with web search tool using o3-deep-research model
+agent = project.agents.create_version(
+    agent_name="MyDeepResearchAgent",
+    definition=PromptAgentDefinition(
+        model="o3-deep-research",
+        instructions="You are a helpful assistant that can search the web",
+        tools=[WebSearchPreviewTool()],
+    ),
+    description="Agent for deep research with web search.",
+)
+print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
 
-with project_client:
-    # Create Agent with web search tool using o3-deep-research model
-    agent = project_client.agents.create_version(
-        agent_name="MyDeepResearchAgent",
-        definition=PromptAgentDefinition(
-            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
-            instructions="You are a helpful assistant that can search the web",
-            tools=[
-                WebSearchPreviewTool()
-            ],
-        ),
-        description="Agent for deep research with web search.",
-    )
-    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+# Create a conversation for the agent interaction
+conversation = openai.conversations.create()
+print(f"Created conversation (id: {conversation.id})")
 
-    # Create a conversation for the agent interaction
-    conversation = openai_client.conversations.create()
-    print(f"Created conversation (id: {conversation.id})")
+# Send a query to search the web
+stream_response = openai.responses.create(
+    stream=True,
+    conversation=conversation.id,
+    input="What are the latest advancements in quantum computing?",
+    extra_body={"agent_reference": {"name": agent.name, "type": "agent_reference"}},
+)
 
-    # Send a query to search the web
-    response = openai_client.responses.create(
-        stream=True,
-        conversation=conversation.id,
-        input="What are the latest advancements in quantum computing?",
-        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
-    )
+# Process streaming events as they arrive
+for event in stream_response:
+    if event.type == "response.created":
+        print(f"Response created with ID: {event.response.id}")
+    elif event.type == "response.output_text.delta":
+        print(f"Delta: {event.delta}")
+    elif event.type == "response.text.done":
+        print(f"\nResponse done!")
+    elif event.type == "response.completed":
+        print(f"\nResponse completed!")
+        print(f"Full response: {event.response.output_text}")
 
-    # Process streaming events as they arrive
-    for event in response:
-        if event.type == "response.created":
-            print(f"Stream response created with ID: {event.response.id}")
-        elif event.type == "response.output_text.delta":
-            print(f"Delta: {event.delta}")
-        elif event.type == "response.text.done":
-            print(f"\nResponse done with full message: {event.text}")
-        elif event.type == "response.completed":
-            print(f"\nResponse completed!")
-            print(f"Full response: {event.response.output_text}")
-
-    print("\nCleaning up...")
-    project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
-    print("Agent deleted")
+# Clean up resources
+project.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
+print("Agent deleted")
 ```
 :::zone-end
 
@@ -371,13 +362,14 @@ Agent deleted
 ### Domain restricted web search
 To enable your Agent to use Web Search with Grounding with Bing Custom Search instance.
 
-1. First, we need to create project client and read the environment variables, which will be used in the next steps.
+1. First, create the project client and define the values used in the next steps.
 
 ```C# Snippet:Sample_CreateAgentClient_WebSearchCustomStreaming
-var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
-var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
-var connectionName = System.Environment.GetEnvironmentVariable("CUSTOM_BING_CONNECTION_NAME");
-var customInstanceName = System.Environment.GetEnvironmentVariable("BING_CUSTOM_SEARCH_INSTANCE_NAME");
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+var projectEndpoint = "your_project_endpoint";
+var modelDeploymentName = "gpt-4.1-mini";
+var connectionName = "your_custom_bing_connection_name";
+var customInstanceName = "your_bing_custom_search_instance_name";
 AIProjectClient projectClient = new(endpoint: new Uri(projectEndpoint), tokenProvider: new DefaultAzureCredential());
 ```
 
@@ -655,22 +647,21 @@ The following TypeScript example demonstrates how to create an agent with the we
 
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
-import "dotenv/config";
 
-const projectEndpoint = process.env["AZURE_AI_PROJECT_ENDPOINT"] || "<project endpoint>";
-const deploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "<model deployment name>";
+// Format: "https://resource_name.ai.azure.com/api/projects/project_name"
+const PROJECT_ENDPOINT = "your_project_endpoint";
 
 export async function main(): Promise<void> {
   // Create AI Project client
-  const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
-  const openAIClient = project.getOpenAIClient();
+  const project = new AIProjectClient(PROJECT_ENDPOINT, new DefaultAzureCredential());
+  const openai = project.getOpenAIClient();
 
   console.log("Creating agent with web search tool...");
 
   // Create Agent with web search tool
   const agent = await project.agents.createVersion("agent-web-search", {
     kind: "prompt",
-    model: deploymentName,
+    model: "gpt-5-mini",
     instructions: "You are a helpful assistant that can search the web",
     tools: [
       {
@@ -687,12 +678,12 @@ export async function main(): Promise<void> {
   console.log(`Agent created (id: ${agent.id}, name: ${agent.name}, version: ${agent.version})`);
 
   // Create a conversation for the agent interaction
-  const conversation = await openAIClient.conversations.create();
+  const conversation = await openai.conversations.create();
   console.log(`Created conversation (id: ${conversation.id})`);
 
   // Send a query to search the web
   console.log("\nSending web search query...");
-  const response = await openAIClient.responses.create(
+  const response = await openai.responses.create(
     {
       conversation: conversation.id,
       input: "Show me the latest London Underground service updates",
@@ -705,7 +696,7 @@ export async function main(): Promise<void> {
 
   // Clean up resources
   console.log("\nCleaning up resources...");
-  await openAIClient.conversations.delete(conversation.id);
+  await openai.conversations.delete(conversation.id);
   console.log("Conversation deleted");
 
   await project.agents.deleteVersion(agent.name, agent.version);

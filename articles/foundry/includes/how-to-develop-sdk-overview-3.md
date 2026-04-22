@@ -4,7 +4,7 @@ description: Include file
 author: sdgilley
 ms.reviewer: dantaylo
 ms.author: sgilley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/20/2026
 ms.custom: include
@@ -33,6 +33,8 @@ Foundry Tools endpoint: `https://<your-resource-name>.cognitiveservices.azure.co
 > [!NOTE]
 > Endpoints use either your resource name or a custom subdomain. If your organization set up a custom subdomain, replace `your-resource-name` with `your-custom-subdomain` in all endpoint examples.
 
+If your workloads use retiring Azure AI Language features—for example, sentiment analysis, key phrase extraction, summarization, entity linking, CLU, or CQA—plan to migrate to Microsoft Foundry alternatives. For new development, consider using the Foundry SDK or the OpenAI-compatible endpoint as described earlier in this article. See [Migrate from Language Studio to Microsoft Foundry](/azure/ai-services/language-service/migration-studio-to-foundry).
+
 For Speech and Translation Foundry Tools, use the endpoints in the following tables. Replace placeholders with your resource information.
 
 #### Speech Endpoints
@@ -50,7 +52,29 @@ For Speech and Translation Foundry Tools, use the endpoints in the following tab
 |Text Translation|`https://api.cognitive.microsofttranslator.com/`|
 |Document Translation|`https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com/`|
 
-The following sections include quickstart links for the Foundry Tools SDKs and reference information.
+#### Language Endpoints
+
+| Foundry Tool | Endpoint |
+| --- | --- |
+| Text analysis| `https://<YOUR-RESOURCE-NAME>.cognitiveservices.azure.com`|
+
+> [!IMPORTANT]
+> On March 20, 2027, Azure Language Studio will retire and migrate to Microsoft Foundry; all capabilities and future enhancements will be available in Microsoft Foundry.
+>
+> On March 31, 2029, the following Azure Language capabilities will retire (end of support). Before that date, users should migrate existing workloads and onboard new projects to [Microsoft Foundry models](../concepts/foundry-models-overview.md) for enhanced natural language understanding and simplified application integration:
+>
+> - Key Phrase Extraction
+> - Sentiment Analysis and Opinion Mining
+> - Custom Text Classification
+> - Conversational Language Understanding (CLU)
+> - Custom Question Answering (CQA)
+> - Orchestration Workflow
+> - Summarization (extractive and abstractive, for documents and conversations)
+> - Entity Linking
+>
+> Core features with continued support: Language Detection, PII Detection, Text Analytics for Health, Prebuilt NER, and Custom NER.
+>
+> For migration options, see [Migrate from Language Studio to Microsoft Foundry](/azure/ai-services/language-service/migration-studio-to-foundry).
 
 <!-- ::: zone pivot="programming-language-cpp"
 [!INCLUDE [C++ include](sdk/cpp.md)]

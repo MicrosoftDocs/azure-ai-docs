@@ -4,9 +4,9 @@ description: include file
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/19/2026
+ms.date: 04/08/2026
 ms.custom: include, classic-and-new
 ---
 

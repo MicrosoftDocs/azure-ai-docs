@@ -19,6 +19,8 @@ ms.update-cycle: 365-days
 
 # Troubleshoot guidance
 
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
+
 This article addresses frequent questions about prompt flow usage.
 
 ## Flow authoring related issues

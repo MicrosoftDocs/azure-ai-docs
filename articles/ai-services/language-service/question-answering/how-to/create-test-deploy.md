@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 12/15/2025
+ms.date: 04/20/2026
 ms.custom: language-service-question-answering, mode-other
 ---
 # Create, test, and deploy: CQA knowledge base
@@ -81,12 +81,12 @@ A CQA knowledge base is a structured set of question-and-answer pairs optimized 
 1. In the **Add URLs** window, add the following values:
 
    * **URL name**: **Surface Book User Guide**
-   * **URL**: **https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf** 
+   * **URL**: **<https://support.microsoft.com/en-US/surface/models/surface-book-3-specs-and-features>**
    * **Classify file structure**: Leave the default setting (**Auto-detect**)
 
      :::image type="content" source="../media/agents/add-urls.png" alt-text="Screenshot of the select url source selection and add button in the Foundry.":::
 
-1. Finally, select the **Add URLs** button. 
+1. Finally, select the **Add URLs** button.
 
     The extraction process requires a short amount of time to analyze the document and detect questions and answers. During this step, the service evaluates whether the content is structured or unstructured.<br>
 

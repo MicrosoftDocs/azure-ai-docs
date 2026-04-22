@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 02/26/2026
+ms.date: 04/16/2026
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
@@ -9,7 +9,42 @@ ms.reviewer: pafarley
 ---
 
 > [!IMPORTANT]
+> Speech SDK 1.48.2 and newer releases include a critical fix for Certificate Revocation List (CRL) partitioning on Linux and Android. If you use either platform with CRL checking enabled, upgrade to 1.48.2 or newer before July 1, 2026. For details, see [CRL compatibility update](../../migrate-to-sdk-1-48-2.md).
+
+> [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.49.1: 2026-April release
+
+#### Bug fixes:
+  * Fixed a crash in embedded speech telemetry handling.
+
+### Speech SDK 1.49: 2026-April release
+
+Notes on target platform support:
+  * Android x86 support is removed in this release.
+
+#### New features:
+  * Updated Android OpenSSL to 3.0.19.
+  * **Python:** Optimized the Linux wheel size.
+
+#### Bug fixes:
+  * Fixed memory leaks in embedded speech.
+  * Fixed symbols not transcribed correctly in embedded speech recognition.
+  * **Python:** Fixed speech synthesis event handle leaks.
+
+### Speech SDK for JavaScript
+
+#### New features:
+  * Added handling for `PropertyId.SpeechServiceResponse_PostProcessingOption`.
+  * Added speech synthesis latency measurements.
+  * Added speech synthesis input text streaming support.
+  * Added support for translation synthesis update when languages change.
+
+#### Bug fixes:
+  * Fixed detailed recognition results not requested properly.
+  * Fixed infinite recursion when using `DialogServiceConnector` with an invalid token.
+  * Fixed speech synthesis URL redirection not working with a user-specified path.
 
 ### Speech SDK 1.48.2: 2026-February release
 
@@ -1049,7 +1084,7 @@ This table shows the previous and new object names for real-time diarization and
 
 #### Highlights summary
 - Smaller memory and disk footprint making the SDK more efficient.
-- Higher fidelity output formats available for custom-neural voice private preview.
+- Higher fidelity output formats available for custom-neural voice preview.
 - Intent Recognizer can now get return more than the top intent, giving you the ability to make a separate assessment about your customer's intent.
 - Voice assistants and bots are now easier to set up, and you can make it stop listening immediately, and exercise greater control over how it responds to errors.
 - Improved on device performance through making compression optional.
@@ -1066,7 +1101,7 @@ This table shows the previous and new object names for real-time diarization and
   - Android libraries are 3-5% smaller.
 
 #### New features
-- **All**: New 48 KHz output formats available for the private preview of custom-neural voice through the TTS speech synthesis API: Audio48Khz192KBitRateMonoMp3, audio-48khz-192kbitrate-mono-mp3, Audio48Khz96KBitRateMonoMp3, audio-48khz-96kbitrate-mono-mp3, Raw48Khz16BitMonoPcm, raw-48khz-16bit-mono-pcm, Riff48Khz16BitMonoPcm, riff-48khz-16bit-mono-pcm.
+- **All**: New 48 KHz output formats available for the preview of custom-neural voice through the TTS speech synthesis API: Audio48Khz192KBitRateMonoMp3, audio-48khz-192kbitrate-mono-mp3, Audio48Khz96KBitRateMonoMp3, audio-48khz-96kbitrate-mono-mp3, Raw48Khz16BitMonoPcm, raw-48khz-16bit-mono-pcm, Riff48Khz16BitMonoPcm, riff-48khz-16bit-mono-pcm.
 - **All**: Custom voice is also easier to use. Added support for setting custom voice via `EndpointId` ([C++](/cpp/cognitive-services/speech/speechconfig#setendpointid), [C#](/dotnet/api/microsoft.cognitiveservices.speech.speechconfig.endpointid#Microsoft_CognitiveServices_Speech_SpeechConfig_EndpointId), [Java](/java/api/com.microsoft.cognitiveservices.speech.speechconfig.setendpointid#com_microsoft_cognitiveservices_speech_SpeechConfig_setEndpointId_String_), [JavaScript](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechconfig#endpointId), [Objective-C](/objectivec/cognitive-services/speech/spxspeechconfiguration#endpointid), [Python](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechconfig#endpoint-id)). Before this change, custom voice users needed to set the endpoint URL via the `FromEndpoint` method. Now customers can use the `FromSubscription` method just like standard voices, and then provide the deployment ID by setting `EndpointId`. This simplifies setting up custom voices.
 - **C++/C#/Java/Objective-C/Python**: Get more than the top intent from`IntentRecognizer`. It now supports configuring the JSON result containing all intents and not only the top scoring intent via `LanguageUnderstandingModel FromEndpoint` method by using `verbose=true` uri parameter. This addresses [GitHub issue #880](https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/880). See updated documentation [here](../../get-started-intent-recognition.md#add-a-languageunderstandingmodel-and-intents).
 - **C++/C#/Java**: Make your voice assistant or bot stop listening immediately. `DialogServiceConnector` ([C++](/cpp/cognitive-services/speech/dialog-dialogserviceconnector), [C#](/dotnet/api/microsoft.cognitiveservices.speech.dialog.dialogserviceconnector), [Java](/java/api/com.microsoft.cognitiveservices.speech.dialog.dialogserviceconnector)) now has a `StopListeningAsync()` method to accompany `ListenOnceAsync()`. This will immediately stop audio capture and gracefully wait for a result, making it perfect for use with "stop now" button-press scenarios.

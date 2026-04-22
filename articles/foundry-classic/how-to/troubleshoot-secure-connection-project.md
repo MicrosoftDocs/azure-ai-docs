@@ -1,7 +1,7 @@
 ---
 title: "Troubleshoot private endpoint connection (classic)"
 description: "Learn how to troubleshoot connectivity problems to a project that is configured with a private endpoint. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - build-2024
   - hub-only

@@ -5,8 +5,8 @@ services: cognitive-services, azure-logic-apps
 manager: nitinme
 author: alvinashcraft
 ms.author: aashcraft
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/04/2026
 zone_pivot_groups: selection-logic-apps
@@ -198,7 +198,7 @@ project_client = AIProjectClient(
 
 ## 2: Register the logic app
 
-Provide the trigger name and details to register the logic app resource. To find the `AzureLogicAppTool` utility code, visit the [full sample on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/logic_apps/user_logic_apps.py).
+Provide the trigger name and details to register the logic app resource. To find the `AzureLogicAppTool` utility code, visit the [full sample on GitHub](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/logic_apps/user_logic_apps.py).
 
 ```python
 from user_logic_apps import AzureLogicAppTool
