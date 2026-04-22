@@ -104,9 +104,11 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
     > ```
 
     Alternatively you can also use this cmd:
+
     ```bash
     azd init -t Azure-Samples/azd-ai-starter-basic
     ```
+
     The -t flag means template.
 
     You're telling azd to use this specific template:
