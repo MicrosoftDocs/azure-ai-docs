@@ -495,7 +495,7 @@ Using an `LLM` model requires you to have a Foundry resource. For more informati
 "targetTokensCharged": 32
 ```
 
-#### Text translation request applying adaptive custom translation with dataset
+#### Translate using adaptiveDatasetId
 
 Adaptive custom translation deploys on Translator infrastructure. Charges are based on source characters.
 

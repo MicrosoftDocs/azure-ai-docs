@@ -483,7 +483,7 @@ curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/transla
 
 ## Translate with dataset index
 
-[Use Text Translation API with AdaptiveDatasetId](../../../text-translation/2026-06-06/translate-api.md#text-translation-request-applying-adaptive-custom-translation-with-dataset)
+[Translate with dataset index](../../../text-translation/2026-06-06/translate-api.md#translate-using-adaptivedatasetid)
 
 ## Error responses
 
@@ -524,6 +524,6 @@ If requests fail, use the following checks to isolate authentication, ingestion,
 
 Use these resources to deepen implementation knowledge and connect AdaptCT with broader Azure AI translation capabilities.
 
-* [Learn about custom translator models](../../../custom-translator/azure-ai-foundry/overview.md)
-* [Learn about the text translation API](../../../text-translation/2026-06-06/overview.md)
-* [Explore Foundry for advanced AI capabilities](../../../overview.md)
+* [Custom translator models](../../../custom-translator/azure-ai-foundry/overview.md)
+* [Text translation API](../../../text-translation/2026-06-06/overview.md)
+* [Explore Foundry](../../../overview.md)
