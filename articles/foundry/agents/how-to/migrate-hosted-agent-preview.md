@@ -208,29 +208,49 @@ if __name__ == "__main__":
 ```python
 import asyncio
 import os
-from collections.abc import AsyncIterable
-from typing import Any
 
+import httpx
 from azure.ai.agentserver.responses import (
     CreateResponse,
     ResponseContext,
-    ResponseEventStream,
     ResponsesAgentServerHost,
+    ResponsesServerOptions,
+    TextResponse,
 )
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from langchain_openai import AzureChatOpenAI
+from langchain_core.messages import AIMessage, HumanMessage
+from langchain_openai import ChatOpenAI
 from langgraph.prebuilt import create_react_agent
 
-llm = AzureChatOpenAI(
-    azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-    azure_deployment=os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4.1"),
-    api_version="2024-10-21",
-    azure_ad_token_provider=get_bearer_token_provider(
-        DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-    ),
+
+FOUNDRY_PROJECT_ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+MODEL = os.environ.get("AZURE_AI_MODEL_DEPLOYMENT_NAME", "gpt-4.1")
+
+_token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://ai.azure.com/.default"
+)
+
+
+# httpx auth hook that injects a fresh Microsoft Entra token on every request.
+class _AzureTokenAuth(httpx.Auth):
+    def auth_flow(self, request):
+        request.headers["Authorization"] = f"Bearer {_token_provider()}"
+        yield request
+
+
+llm = ChatOpenAI(
+    base_url=f"{FOUNDRY_PROJECT_ENDPOINT}/openai/v1",
+    api_key="placeholder",  # overridden by _AzureTokenAuth
+    model=MODEL,
+    use_responses_api=True,
+    http_client=httpx.Client(auth=_AzureTokenAuth()),
 )
 tools = [my_tool_a, my_tool_b]
-app = ResponsesAgentServerHost()
+graph = create_react_agent(llm, tools=tools, prompt=SYSTEM_PROMPT)
+
+app = ResponsesAgentServerHost(
+    options=ResponsesServerOptions(default_fetch_history_count=20)
+)
 
 
 @app.response_handler
@@ -238,37 +258,37 @@ async def handle(
     request: CreateResponse,
     context: ResponseContext,
     cancellation_signal: asyncio.Event,
-) -> AsyncIterable[dict[str, Any]]:
-    user_input = await context.get_input_text()
-    graph = create_react_agent(llm, tools=tools, prompt=SYSTEM_PROMPT)
+):
+    async def run_graph():
+        try:
+            history = await context.get_history()
+        except Exception:
+            history = []
+        user_input = await context.get_input_text() or ""
 
-    result = await graph.ainvoke(
-        {"messages": [{"role": "user", "content": user_input}]},
-    )
+        # Convert platform history to LangChain messages
+        lc_messages = []
+        for item in history:
+            if hasattr(item, "content"):
+                for c in item.content:
+                    if hasattr(c, "text") and c.text:
+                        if item.role == "user":
+                            lc_messages.append(HumanMessage(content=c.text))
+                        else:
+                            lc_messages.append(AIMessage(content=c.text))
+        lc_messages.append(HumanMessage(content=user_input))
 
-    # Extract the final AI message from the graph result
-    messages = result.get("messages", [])
-    answer = ""
-    for msg in reversed(messages):
-        if hasattr(msg, "content") and getattr(msg, "type", None) == "ai":
-            answer = msg.content
-            break
+        result = await graph.ainvoke({"messages": lc_messages})
+        raw = result["messages"][-1].content
+        if isinstance(raw, list):
+            yield "".join(
+                block.get("text", "") if isinstance(block, dict) else str(block)
+                for block in raw
+            )
+        else:
+            yield raw or ""
 
-    stream = ResponseEventStream(
-        response_id=context.response_id,
-        model=request.model or "gpt-4.1",
-    )
-    yield stream.emit_created()
-    yield stream.emit_in_progress()
-    message_item = stream.add_output_item_message()
-    yield message_item.emit_added()
-    text_content = message_item.add_text_content()
-    yield text_content.emit_added()
-    yield text_content.emit_delta(answer)
-    yield text_content.emit_text_done(answer)
-    yield text_content.emit_done()
-    yield message_item.emit_done()
-    yield stream.emit_completed()
+    return TextResponse(context, request, text=run_graph())
 
 
 if __name__ == "__main__":
@@ -278,9 +298,10 @@ if __name__ == "__main__":
 Key differences:
 
 - `azure-ai-agentserver-langgraph` → `azure-ai-agentserver-responses`. The LangGraph-specific adapter is removed.
-- `from_langgraph(graph).run()` → Explicit `ResponsesAgentServerHost` with a `@app.response_handler` that invokes the graph and yields `ResponseEventStream` events.
-- You now control how input is extracted (`context.get_input_text()`) and how output is streamed. This gives full flexibility for multi-turn, tool-calling, and streaming patterns.
-- LangGraph agent logic (model, tools, graph creation) is unchanged.
+- `from_langgraph(graph).run()` → Explicit `ResponsesAgentServerHost` with a `@app.response_handler` that returns a `TextResponse`.
+- Uses `ChatOpenAI` with `base_url=f"{FOUNDRY_PROJECT_ENDPOINT}/openai/v1"` instead of `AzureChatOpenAI`. This uses the project-scoped endpoint, which requires only project-level permissions.
+- Conversation history is fetched via `context.get_history()` and converted to LangChain message types for multi-turn support.
+- LangGraph agent logic (tools, graph creation) is unchanged. For fine-grained control over function calls, reasoning items, or multiple output types, use `ResponseEventStream` instead of `TextResponse`.
 
 ### MCP Toolbox integration
 
@@ -310,7 +331,7 @@ async def handle(request, context, cancellation_signal):
             result = await graph.ainvoke(
                 {"messages": [{"role": "user", "content": user_input}]},
             )
-            # ... extract answer and yield ResponseEventStream events
+            # ... extract answer and return TextResponse
 ```
 
 Add these packages to your `requirements.txt`:
