@@ -2615,7 +2615,7 @@ When your Foundry project uses [network isolation (private link)](../../../how-t
 | [Web Search](web-search.md) | ✅ Supported | Public endpoint |
 | [OpenAPI](openapi.md) | ✅ Supported | Depends on target API network configuration |
 | [File Search](file-search.md) | ❌ Not supported | Not yet available |
-| [Agent-to-Agent (A2A)](agent-to-agent.md) | ❌ Not supported | Not yet available |
+| [Agent-to-Agent (A2A)](agent-to-agent.md) | ✅ Supported | Through private endpoint |
 
 For full network isolation setup instructions, including VNet injection for the agent client, DNS configuration, and private endpoint requirements, see [Configure network isolation for Microsoft Foundry](../../../how-to/configure-private-link.md).
 
