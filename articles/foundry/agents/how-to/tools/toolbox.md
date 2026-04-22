@@ -50,18 +50,18 @@ For tool configuration syntax and authentication options for each tool type, see
 
 ## Feature support
 
-| Feature | Python SDK | REST API | .NET SDK | JavaScript SDK | azd (deploy) |
-| ------- | ---------- | -------- | -------- | -------------- | ------------ |
-| Toolbox update, list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
-| Toolbox version create | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| Toolbox version list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A |
-| [MCP tool](model-context-protocol.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [Web Search tool](web-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [Azure AI Search tool](ai-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [Code Interpreter tool](code-interpreter.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| Feature | Python SDK | REST API | .NET SDK | JavaScript SDK | azd (deploy) | Foundry Toolkit |
+| ------- | ---------- | -------- | -------- | -------------- | ------------ | --------------- |
+| Toolbox update, list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A | ✔️ |
+| Toolbox version create | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| Toolbox version list, get, and delete | ✔️ | ✔️ | ✔️ | ✔️ | N/A | No. UI shows the latest version only. |
+| [MCP tool](model-context-protocol.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Web Search tool](web-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Azure AI Search tool](ai-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Code Interpreter tool](code-interpreter.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [File Search tool](file-search.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [OpenAPI tool](openapi.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
+| [Agent-to-Agent (A2A) tool](agent-to-agent.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | No |
 
 ## Prerequisites
 
@@ -966,7 +966,106 @@ always_approval = [name for name, val in approval_map.items() if val == "always"
 ```
 
 > [!NOTE]
-> - **`require_approval` is agent-enforced.** Your agent runtime is responsible for gating the call.
+> - **Detection happens at startup.** The approval check runs once when the agent initializes. There's no per-call overhead.
+> - **Graceful fallback.** If no tools have `require_approval: "always"`, the system prompt is unchanged and the agent behaves as before.
+> - **`require_approval` is agent-enforced.** The toolbox MCP proxy executes `tools/call` regardless of this setting. Your agent runtime is responsible for gating the call.
+
+### Configure `require_approval` on a tool
+
+Set `require_approval` when you create a toolbox version. The MCP tool examples in [Step 1](#step-1-create-a-toolbox-version) show both `"always"` and `"never"` values. You can also set it through the SDK:
+
+:::zone pivot="python"
+
+```python
+from azure.ai.projects.models import MCPTool
+
+toolbox_version = client.beta.toolboxes.create_toolbox_version(
+    toolbox_name="my-toolbox",
+    tools=[
+        MCPTool(
+            server_label="myserver",
+            server_url="https://your-mcp-server.example.com",
+            require_approval="always",  # "always" | "never"
+            project_connection_id="my-connection",
+        )
+    ],
+)
+```
+
+:::zone-end
+
+:::zone pivot="rest-api"
+
+```json
+{
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "myserver",
+      "server_url": "https://your-mcp-server.example.com",
+      "require_approval": "always",
+      "project_connection_id": "my-connection"
+    }
+  ]
+}
+```
+
+:::zone-end
+
+:::zone pivot="dotnet"
+
+```csharp
+ProjectsAgentTool mcpTool = ProjectsAgentTool.AsProjectTool(ResponseTool.CreateMcpTool(
+    serverLabel: "myserver",
+    serverUri: new Uri("https://your-mcp-server.example.com"),
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(
+        GlobalMcpToolCallApprovalPolicy.AlwaysRequireApproval
+    )
+));
+```
+
+:::zone-end
+
+:::zone pivot="javascript"
+
+```javascript
+const tools = [
+  {
+    type: "mcp",
+    server_label: "myserver",
+    server_url: "https://your-mcp-server.example.com",
+    require_approval: "always",
+    project_connection_id: "my-connection",
+  },
+];
+```
+
+:::zone-end
+
+:::zone pivot="vscode"
+
+Use the Python, .NET, JavaScript, REST API, or azd tab to configure
+`require_approval` in your toolbox definition. The Foundry Toolkit
+workflow in this article focuses on creating and consuming the toolbox
+in Visual Studio Code.
+
+:::zone-end
+
+:::zone pivot="azd"
+
+```yaml
+resources:
+  - kind: toolbox
+    name: my-toolbox
+    tools:
+      - type: mcp
+        server_label: myserver
+        server_url: https://your-mcp-server.example.com
+        require_approval: always
+        project_connection_id: my-connection
+```
+
+:::zone-end
 
 ## Step 5: Manage toolbox versions
 
