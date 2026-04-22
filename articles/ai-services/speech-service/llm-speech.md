@@ -16,7 +16,7 @@ zone_pivot_groups: llm-speech-quickstart
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-LLM Speech is an API in Microsoft Foundry. It's powered by a speech model that's enhanced by a large language model (LLM). LLM Speech delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It uses GPU acceleration for ultra-fast inference, making it ideal for a wide range of scenarios. For example, use LLM Speech to generate captions and subtitles from audio files, summarize meeting notes, assist call center agents, and transcribe voicemails.
+LLM Speech is an API in Microsoft Foundry. A large language model (LLM) enhances a speech model, delivering improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It uses GPU acceleration for ultra-fast inference, making it ideal for a wide range of scenarios. For example, use LLM Speech to generate captions and subtitles from audio files, summarize meeting notes, assist call center agents, and transcribe voicemails.
 
 [!INCLUDE [transcription-features](includes/transcription-features.md)]
 

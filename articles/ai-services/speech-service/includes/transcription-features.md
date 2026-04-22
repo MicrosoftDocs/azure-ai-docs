@@ -10,7 +10,7 @@ ai-usage: ai-assisted
 
 ## Feature availability
 
-This table shows which transcription features are supported by the fast transcription API, with and without LLM Speech (enhanced mode):
+This table shows transcription features that the fast transcription API supports, with and without LLM Speech (enhanced mode):
 
 | Feature             | Fast transcription (default)      | LLM Speech (enhanced)          |
 |---------------------|-----------------------------------|--------------------------------|

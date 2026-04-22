@@ -51,6 +51,6 @@ Don't retry on the following errors, because they indicate client-side issues th
 
 - Reset the audio file stream (`seek(0)`) before each retry attempt.
 
-- When you use concurrent workers, be aware that the default HTTP read timeout (300 seconds) might be exceeded under heavy rate limiting.
+- When you use concurrent workers, the default HTTP read timeout (300 seconds) might be exceeded under heavy rate limiting.
 
-- Be aware that the API might accept a request but time out while generating the response. This condition can appear as an SDK-wrapped network error rather than a standard HTTP error.
+- The API might accept a request but time out while generating the response. This condition can appear as an SDK-wrapped network error rather than a standard HTTP error.

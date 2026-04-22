@@ -35,7 +35,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     mkdir llm-speech-quickstart && cd llm-speech-quickstart
     ```
 
-1. Create and activate a virtual Python environment to install the packages you need for this tutorial. We recommend that you always use a virtual or conda environment when you install Python packages. Otherwise, you can break your global installation of Python. If you already have Python 3.9 or higher installed, create a virtual environment by using the following commands:
+1. To install the packages you need for this tutorial, create and activate a virtual Python environment. We recommend that you always use a virtual or conda environment when you install Python packages. Otherwise, you can break your global installation of Python. If you already have Python 3.9 or higher installed, create a virtual environment by using the following commands:
 
    # [Windows](#tab/windows)
 
@@ -83,7 +83,7 @@ You need to retrieve your resource endpoint and API key for authentication.
 
 1. Select **Management center** from the left menu.
 
-1. Select **Connected resources** on the left, and find your Microsoft Foundry resource (or add a connection if it isn't there). Then copy the **API Key** and **Target** (endpoint) values. Use these values to set environment variables.
+1. Select **Connected resources**, and find your Microsoft Foundry resource (or add a connection if it isn't there). Then copy the **API Key** and **Target** (endpoint) values. Use these values to set environment variables.
 
 1. Set the following environment variables:
 

@@ -61,7 +61,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-When you use the MAI-Transcribe-1 model, note that diarization and prompt aren't supported.
+When you use the MAI-Transcribe-1 model, diarization and prompt aren't supported.
 
 Optionally, specify a language code in `locales` to force recognition in a single language (for example, `en`). If you don't specify a language, the service automatically detects it. The following languages are currently supported:
 
