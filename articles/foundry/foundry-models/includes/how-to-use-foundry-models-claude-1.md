@@ -520,7 +520,7 @@ Claude Sonnet 4.6 delivers frontier intelligence at scale—built for coding, ag
 > - Requests **greater than 200K tokens** that include the `context-1m-2025-08-07` beta header on Sonnet 4.5 will return an error.
 > - Requests **200K tokens or fewer** will remain unaffected, even with the header present.
 >
-> To migrate, remove the `context-1m-2025-08-07` beta header from your requests. For workloads that require 1M context, migrate to **Claude Sonnet 4.6** (where 1M context is generally available) or to **Claude Opus 4.6** for higher-intelligence workloads.
+> To migrate, remove the `context-1m-2025-08-07` beta header from your requests. For workloads that require 1M context, migrate to **Claude Sonnet 4.6** (where 1M context is generally available) or to **Claude Opus 4.6** or **Claude Opus 4.7** for higher-intelligence workloads.
 
 Claude Sonnet 4.5 is a highly capable model designed for building real-world agents and handling complex, long-horizon tasks. It offers a strong balance of speed and cost for high-volume use cases. Sonnet 4.5 also provides advanced accuracy for computer use, enabling developers to direct Claude to use computers the way people do.
 
