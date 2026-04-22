@@ -15,8 +15,6 @@ recommendations: false
 
 # Model Retirement Schedule
 
-> **Auto-generated**: April 17, 2026 from live manifest data
->
 > **Policy reference**: See [Model Lifecycle and Support Policy](model-retirements.md)
 >
 > **Retired models**: See [Retired Models](retired-models.md)
@@ -155,15 +153,15 @@ recommendations: false
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| grok-3 | 1 | Deprecated | 2026-05-01 | — |
-| grok-3-mini | 1 | Deprecated | 2026-05-01 | — |
+| grok-3 | 1 | Deprecated | 2026-05-01 | grok-4 |
+| grok-3-mini | 1 | Deprecated | 2026-05-01 | grok-4-1-fast-reasoning |
 | grok-4 | 1 | GA | — | — |
 | grok-4-1-fast-non-reasoning | 1 | GA | — | — |
 | grok-4-1-fast-reasoning | 1 | GA | — | — |
 | grok-4-20-non-reasoning | 1 | Preview | 2027-04-06 | — |
 | grok-4-20-reasoning | 1 | Preview | 2027-04-06 | — |
-| grok-4-fast-non-reasoning | 1 | Deprecated | 2026-05-01 | — |
-| grok-4-fast-reasoning | 1 | Deprecated | 2026-05-01 | — |
+| grok-4-fast-non-reasoning | 1 | Deprecated | 2026-05-01 | grok-4-1-fast-non-reasoning |
+| grok-4-fast-reasoning | 1 | Deprecated | 2026-05-01 | grok-4-1-fast-reasoning |
 | grok-code-fast-1 | 1 | GA | — | — |
 
 ## Foundry Models from partners and community
@@ -193,8 +191,15 @@ recommendations: false
 |-------|---------|-----------|-----------------|-------------|
 | Cohere-command-r-08-2024 | 1 | Deprecated | 2026-05-12 | — |
 | Cohere-command-r-plus-08-2024 | 1 | Deprecated | 2026-05-12 | — |
+| Cohere-rerank-v3.5 | 1 | Deprecated | 2026-05-14 | Cohere-rerank-v4.0-pro, Cohere-rerank-v4.0-fast |
 | Cohere-embed-v3-english | 1 | GA | — | — |
 | Cohere-embed-v3-multilingual | 1 | GA | — | — |
+
+### Deci AI
+
+| Model | Version | Lifecycle | Retirement date | Replacement |
+|-------|---------|-----------|-----------------|-------------|
+| deci-decidiffusion-v1-0 | — | Deprecated | 2026-07-31 | — |
 
 ### Meta
 
@@ -204,12 +209,17 @@ recommendations: false
 | Llama-3.2-90B-Vision-Instruct | — | Deprecated | 2026-06-13 | — |
 | Llama-4-Scout-17B-16E-Instruct | — | GA | — | — |
 | Meta-Llama-3.1-405B-Instruct | — | Deprecated | 2026-06-13 | — |
+| Meta-Llama-3.1-8B | — | Deprecated | 2026-06-13 | — |
 | Meta-Llama-3.1-8B-Instruct | — | Deprecated | 2026-06-13 | — |
 
 ### Microsoft
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
+| financial-reports-analysis | — | Deprecated | 2026-07-31 | — |
+| financial-reports-analysis-v2 | — | Deprecated | 2026-07-31 | — |
+| supply-chain-trade-regulations | — | Deprecated | 2026-07-31 | — |
+| supply-chain-trade-regulations-v2 | — | Deprecated | 2026-07-31 | — |
 | Phi-4 | — | GA | — | — |
 | Phi-4-mini-instruct | — | GA | — | — |
 | Phi-4-mini-reasoning | — | GA | — | — |

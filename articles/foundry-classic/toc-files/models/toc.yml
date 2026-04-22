@@ -268,7 +268,7 @@ items:
         href: ../../openai/concepts/model-versions.md
       - name: Model retirement schedule
         href: ../../../foundry/openai/concepts/model-retirement-schedule.md
-      - name: Retired models
+      - name: Retired Foundry Models
         href: ../../openai/concepts/retired-models.md
   - name: How-to 
     items:

@@ -1,21 +1,17 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: msakande
+ms.author: mopeakande
+ms.reviewer: josander
+reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 04/21/2026
+ms.date: 04/23/2026
 ms.custom: include, classic-and-new
 ---
 
-## Model Lifecycle and Support Policy
-
-> **Scope**: All models available through Microsoft Foundry — Azure OpenAI models and Foundry Models (third-party/open-source via the model catalog).
->
-> **Purpose**: One place to understand how models move from launch to retirement, what commitments we make for replacement overlap, and how customers are notified.
->
-> **Retirement tables**: For specific model dates, see [Model Retirement Schedule](../concepts/model-retirement-schedule.md).
+Microsoft Foundry Models move through a predictable lifecycle — from preview to general availability (GA) to eventual retirement — giving you time to evaluate replacements and migrate workloads. This article explains each lifecycle stage, the overlap commitments Microsoft makes when a model retires, and how you're notified. For specific retirement dates, see [Model Retirement Schedule](concepts/model-retirement-schedule.md).
 
 ## How model lifecycle works
 
@@ -53,19 +49,21 @@ Preview ──►  GA  ──►  Legacy  ──►  Deprecated  ──►  Reti
 
 New models become available through deployment types in a predictable order:
 
-1. **Global Standard**: Models launch here first, offering the broadest availability and lowest latency across regions.
-2. **Global Provisioned**: Follows closely after Global Standard, providing reserved throughput with global routing.
-3. **Data Zone Standard** and **Data Zone Provisioned**: Availability expands to data zone deployment types, keeping data processing within a defined geographic boundary.
-4. **Standard** and **Provisioned**: Regional-only deployments come last, only as older models retire and capacity is reallocated.
+| Order | Deployment type | When available |
+|-------|----------------|---------------|
+| 1 | **Global Standard** | At launch — broadest availability and lowest latency across regions |
+| 2 | **Global Provisioned** | Follows closely after Global Standard — provides reserved throughput with global routing |
+| 3 | **Data Zone Standard** and **Data Zone Provisioned** | After Global Provisioned — data processing stays within a defined geographic boundary |
+| 4 | **Standard** and **Provisioned** | Last — regional-only, as older models retire and capacity is reallocated |
 
 ### Availability rollout at a glance
 
 ```
 Global Standard  ──►  Global Provisioned  ──►  Data Zone Standard  ──►   Standard
                                                      and                   and
-                                               Data Zone Provisioned     Provisioned
-
-  (at launch)        (follows closely)         (expands to data zones)   (regional,
+  (at launch)         (follows closely)        Data Zone Provisioned     Provisioned   
+                                               
+                                               (expands to data zones)   (regional,
                                                                           as capacity
                                                                           permits)
 ```
@@ -74,6 +72,8 @@ Global Standard  ──►  Global Provisioned  ──►  Data Zone Standard  �
 > For a full comparison of deployment types, see [Deployment type comparison](../../foundry-models/concepts/deployment-types.md).
 
 ## Special considerations
+
+Several factors affect how the standard lifecycle applies to your deployments, including the region you operate in, the cloud environment you use, and security requirements.
 
 ### Regional availability
 
@@ -95,6 +95,8 @@ For more details, see [Foundry Models sold directly by Azure (government)](/azur
 If a model is found to have compliance or security issues, Microsoft reserves the right to invoke an **emergency retirement** with shortened notice. Refer to the Azure terms of service for details.
 
 ## Lifecycle timeline commitments
+
+Microsoft makes specific commitments about how long model versions stay available and when replacements appear, so you can plan migrations with confidence.
 
 ### Generally Available (GA) replacement model overlap commitments
 
@@ -167,7 +169,7 @@ GA models have their retirement date set programmatically at launch (18 months o
 | **Email** | Sent automatically to subscription owners with active deployments. |
 | **Azure Service Health** | Health advisories appear for affected subscriptions. Go to [Service Health > Health advisories](https://portal.azure.com/#blade/Microsoft_Azure_Health/AzureHealthBrowseBlade/healthAdvisories), filter by `Azure OpenAI Service`, and create an alert rule for email, SMS, or webhook notifications. |
 
-### Want to use programmatic methods?
+### Programmatic methods to check model lifecycle and deprecation
 
 Customers can check lifecycle and deprecation fields on any model using the [Models API](/rest/api/aiservices/accountmanagement/models) (subscription-scoped, all models in a region):
 

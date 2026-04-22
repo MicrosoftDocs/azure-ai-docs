@@ -1,22 +1,25 @@
 ---
-title: "Retired Azure OpenAI models in Microsoft Foundry (classic)"
-description: "Learn about retired Azure OpenAI models in Microsoft Foundry. (classic)"
+title: "Retired Microsoft Foundry Models (classic)"
+description: "Retired Foundry Models: Find out which Microsoft Foundry Models are retired and explore alternatives (classic)"
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 02/12/2026
+ms.date: 04/23/2026
 ms.custom:
   - references_regions, build-2023, build-2023-dataai
   - classic-and-new
 manager: nitinme
-author: mrbullwinkle 
-ms.author: mbullwin 
+author: msakande
+ms.author: mopeakande
+ms.reviewer: josander
+reviewer: johnrsanders
 recommendations: false
 ai-usage: ai-assisted
 ROBOTS: NOINDEX, NOFOLLOW
+#customer intent: As a developer, I want to find out which Foundry Models are retired so that I can avoid using unsupported models in my projects.
 ---
 
-# Retired Azure OpenAI models in Microsoft Foundry (classic)
+# Retired Foundry Models (classic)
 
 **Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/concepts/retired-models.md)
 

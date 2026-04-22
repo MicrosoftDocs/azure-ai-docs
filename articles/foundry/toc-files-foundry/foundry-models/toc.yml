@@ -59,7 +59,7 @@ items:
     - name: Model retirement schedule
       displayName: Model retirement schedule for Microsoft Foundry
       href: ../../openai/concepts/model-retirement-schedule.md
-    - name: Retired models
+    - name: Retired Foundry Models
       displayName: Retired Azure OpenAI models in Microsoft Foundry
       href: ../../openai/concepts/retired-models.md
 
