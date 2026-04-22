@@ -113,16 +113,16 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
 
     You're telling azd to use this specific template:
 
-    Azure-Samples/azd-ai-starter-basic → a starter project from Microsoft’s sample repository
+    Azure-Samples/azd-ai-starter-basic - a starter project from Microsoft’s sample repository
 
     The AI starter basic template sets up a minimal AI-powered app using Azure services. Typically it includes:
 
-        * A simple backend (often Python or Node.js)
-        * Integration with Azure OpenAI Service
-        * Infrastructure to deploy:
-            * Web app (Azure App Service)
-            * AI resources
-        * Preconfigured environment for quick deployment
+    * A simple backend (often Python or Node.js)
+    * Integration with Azure OpenAI Service
+    * Infrastructure to deploy:
+       * Web app (Azure App Service)
+       * AI resources
+    * Preconfigured environment for quick deployment
     
     > [!TIP]
     > If you're running in a non-interactive environment such as a CI/CD pipeline or an SSH session, use the `--no-prompt` flag with `azd ai agent init`. You must also supply all required values as command-line flags rather than responding to interactive prompts.
