@@ -79,7 +79,7 @@ Every hosted agent deployed to a Foundry project gets its own **dedicated Entra 
 
 The endpoint is available immediately after deployment — publishing is not required for programmatic access:
 
-- **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/responses
+- **Responses**: {project_endpoint}/agents/{name}/endpoint/protocols/openai/v1/responses
 - **Invocations**: {project_endpoint}/agents/{name}/endpoint/protocols/invocations
 
 Which endpoints are active depends on the protocols declared in the agent version definition (set in agent.yaml when using azd, or via container_protocol_versions when using the SDK).
@@ -157,7 +157,7 @@ Hosted agents support **Python** and **C#**. You can use any agent framework —
 
 ### Sandbox sizes
 
-Hosted agent sandboxes support CPU and memory allocations ranging from 0.25 vCPU / 0.5 GiB to 4 vCPU / 8 GiB.
+Hosted agent sandboxes support CPU and memory allocations ranging from 0.25 vCPU / 0.5 GiB to 2 vCPU / 4 GiB.
 
 ### Private networking
 
