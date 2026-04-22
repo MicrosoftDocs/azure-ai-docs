@@ -1335,11 +1335,6 @@
       "source_path": "articles/foundry/agents/how-to/publish-responses.md",
       "redirect_url": "/azure/foundry/agents/how-to/publish-agent",
       "redirect_document_id": false
-    },
-    {
-      "source_path": "articles/ai-services/translator/text-translation/2026-06-06/overview.md",
-      "redirect_url": "/azure/ai-services/translator/text-translation/overview",
-      "redirect_document_id": true
     }
   ]
 }

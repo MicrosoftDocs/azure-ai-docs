@@ -26,7 +26,7 @@ items:
     displayName: character,count,usage,attribution, cognitive
     href: faq.md
 
-- name: Security principles and guidance
+- name: Security principles
   items:
    - name: Secure deployment guide
      displayName: support,plan,issue,problem,bug,troubleshoot,troubleshooting
@@ -39,7 +39,7 @@ items:
   - name: Overview
     displayName: gpt, adaptive, tone, gender
     href: text-translation/overview.md
-  - name: "Migrate to text translation 2026-06-06 API"
+  - name: "2026-06-06 migration guide"
     displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
     href: text-translation/how-to/migrate-to-2026-06-06.md
   - name: REST API guide
