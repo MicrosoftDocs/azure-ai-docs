@@ -4,7 +4,7 @@ description: Use language models to caption your images and facilitate an image 
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/17/2026
+ms.date: 04/22/2026
 ms.update-cycle: 180-days
 ms.custom:
   - devx-track-csharp
@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 In this article, learn how to generate captions using AI enrichment and a skillset. Images often contain useful information that's relevant in search scenarios. You can [vectorize images](search-get-started-portal-image-search.md) to represent visual content in your search index. Or, you can use [AI enrichment and skillsets](cognitive-search-concept-intro.md) to create and extract searchable *text* from images.
 
-The GenAI Prompt skill (preview) can generate a description of each image in your data source, and the indexer pushes that description into a search index. To view the descriptions, run a query that includes them in the response.
+The GenAI Prompt skill can generate a description of each image in your data source, and the indexer pushes that description into a search index. To view the descriptions, run a query that includes them in the response.
 
 ## Prerequisites
 
