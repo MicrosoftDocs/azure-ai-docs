@@ -102,6 +102,8 @@ The platform is free to use and explore. Pricing occurs at the deployment level.
 
 Using Foundry also incurs costs associated with the underlying services. To learn more, read [Plan and manage costs for Foundry Tools](./concepts/manage-costs.md).
 
+Use the [Total Economic Impact calculator for Foundry](https://aka.ms/Foundry-ROI-Calculator) to estimate your return on investment and identify ongoing value and cost optimization opportunities.
+
 ## Region availability
 
 Foundry is available in most regions where Foundry Tools are available. For more information, see [region support for Microsoft Foundry](reference/region-support.md).

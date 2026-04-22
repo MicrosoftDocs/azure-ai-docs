@@ -182,6 +182,15 @@ Common scenarios that require distinct identities include:
 
 To find the distinct agent identity blueprint and agent identity, go to your agent application resource in the Azure portal. On the **Overview** pane, select **JSON View**. Choose the latest API version to view and copy the identities.
 
+## Automation and deployment tooling
+
+Deployment tools like the Azure Developer CLI (azd) provide limited automation for agent identity permissions:
+
+- **Development**: azd automatically assigns Azure AI User to the shared project agent identity for unpublished agents
+- **Production**: Published agents receive distinct identities that require manual role assignments
+
+azd does not configure Container Registry, Application Insights, or custom resource permissions. For production deployments and the complete permission requirements for hosted agents, see [Hosted agent permissions reference](hosted-agent-permissions.md).
+
 ## Tool authentication
 
 Agents access remote resources and tools by using agent identities for authentication. The authentication mechanism differs based on the agent's publication status:
@@ -223,6 +232,9 @@ Common role assignments for agent tools:
 
 > [!IMPORTANT]
 > When you publish an agent, it receives a new distinct `agentIdentityId`. Repeat these role assignments for the new identity. The shared project identity roles don't carry over to the published agent's identity.
+
+> [!TIP]
+> For comprehensive details about all permissions involved in hosted agent deployment, including Azure Container Registry, Application Insights, and multi-resource RBAC configurations, see [Hosted agent permissions reference](hosted-agent-permissions.md).
 
 ### Supported tools
 
