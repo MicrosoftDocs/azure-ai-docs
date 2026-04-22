@@ -341,7 +341,7 @@ langchain-mcp-adapters>=0.1.0
 mcp>=1.0.0
 ```
 
-For complete samples, see the [LangGraph hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/langchain).
+For complete samples, see the [LangGraph hosted agent samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents/langgraph).
 
 ## Migrate custom or BYO agents
 
