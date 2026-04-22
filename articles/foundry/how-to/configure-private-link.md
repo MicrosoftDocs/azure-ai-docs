@@ -197,7 +197,7 @@ This section guides you through creating a new Foundry resource with outbound ne
 
 ### Deep dive into network injection for Agent Service and evaluations
 
-If you're building agents or running evaluations and you want end-to-end network isolation, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). That article provides details on required DNS zones, reference architecture, and known limitations.
+If you're building agents, either prompt agents or hosted (preview) agents , or running evaluations and you want end-to-end network isolation, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). That article provides details on required DNS zones, reference architecture, and known limitations. The same networking injection for outbound traffic applies for both types of agents you create, prompt and hosted agents. 
 
 :::image type="content" source="../media/how-to/network/agent-eval-network-diagram.png" alt-text="Diagram of the recommended network isolation for Foundry." lightbox="../media/how-to/network/agent-eval-network-diagram.png":::
 
@@ -240,7 +240,7 @@ Code samples for how to run these Agent tools within a network secured set-up ca
 | Fabric Data Agent | ✅ Supported | Through private endpoint |
 | OpenAPI tool | ✅ Supported | Through your VNET |
 | Azure Functions | ✅ Supported | Through your VNET |
-| Agent-to-Agent (A2A) | ❌ Not supported | Through your VNET |
+| Agent-to-Agent (A2A) | ✅ Supported | Through your VNET |
 | Logic Apps | ❌ Not supported | Under development |
 | File Search | ❌ Not supported | Under development |
 | Browser Automation | ❌ Not supported | Under development |
@@ -285,7 +285,6 @@ The following features in Foundry do not yet support network isolation.
 
 | Feature | Network Isolation Status | Notes |
 |---------|--------------------------|-------|
-| Hosted Agents | Not supported | Hosted Agents do not have virtual network support yet. |
 | Publish Agent to Teams/M365 | Not supported | Requires public endpoints for Teams/M365 integration. |
 | Synthetic Data Gen for Evaluations | Not supported | Bring your own data to run evaluations. |
 | Traces | Not supported | Traces don't have virtual network support with a private Application Insights yet. |
