@@ -162,7 +162,7 @@ If the response has a `200 OK` HTTP code, your knowledge base successfully retri
 
 Starting with 2026-04-01, agentic retrieval billing consent is controlled by a dedicated `knowledgeRetrieval` property that's separate from `semanticSearch`, which now applies only to semantic ranker billing. `knowledgeRetrieval` is a management plane property, so you set it through the Search Management REST API, not the Search Service REST API.
 
-Use the 2026-03-01-preview version of [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-management-2026-03-01-preview&preserve-view=true) (REST API) to set `knowledgeRetrieval` on your search service.
+Use the latest preview version of [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-management-2026-03-01-preview&preserve-view=true) (REST API) to set `knowledgeRetrieval` on your search service.
 
 ```http
 PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
@@ -176,10 +176,10 @@ Authorization: Bearer {{token}}
 }
 ```
 
-For valid values and billing details, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md) and [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md).
+For valid values and billing details, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
 > [!NOTE]
-> The Azure portal doesn't yet expose the `knowledgeRetrieval` setting. Portal-based agentic retrieval still uses the 2025-11-01-preview REST API version and follows `semanticSearch` consent during this period. If you previously set `semanticSearch` to `disabled`, that value is treated as `free`.
+> The Azure portal doesn't yet expose the `knowledgeRetrieval` setting. Portal-based agentic retrieval still uses the 2025-11-01-preview Search Service REST API version and follows `semanticSearch` consent during this period. If you previously set `semanticSearch` to `disabled`, that value is treated as `free`.
 
 #### Update code and clients for 2026-04-01
 
@@ -811,21 +811,21 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 #### [**Breaking changes**](#tab/breaking)
 
-+ The following changes affect both the knowledge base schema and the retrieve request:
+The following changes affect both the knowledge base schema and the retrieve request:
 
-    + `retrievalReasoningEffort` is removed. Knowledge bases previously configured with `low` or `medium` reasoning effort aren't compatible with 2026-04-01 and must be recreated.
+  + `retrievalReasoningEffort` is removed. Knowledge bases previously configured with `low` or `medium` reasoning effort aren't compatible with 2026-04-01 and must be recreated.
     
-    + `outputMode` is removed. Retrieval returns extractive grounded content by default. Answer synthesis isn't supported.
+  + `outputMode` is removed. Retrieval returns extractive grounded content by default. Answer synthesis isn't supported.
 
-+ The following changes affect the retrieve request only:
+The following changes affect the retrieve request only:
 
-    + `intents` replaces `messages`.
+  + `intents` replaces `messages`.
     
-    + `alwaysQuerySource` is removed from `knowledgeSourceParams`.
+  + `alwaysQuerySource` is removed from `knowledgeSourceParams`.
     
-    + `maxOutputSize` is renamed to `maxOutputSizeInTokens`.
+  + `maxOutputSize` is renamed to `maxOutputSizeInTokens`.
     
-    + Conversational state isn't maintained across requests. The `messages`-based multi-turn pattern isn't supported.
+  + Conversational state isn't maintained across requests. The `messages`-based multi-turn pattern isn't supported.
 
 > [!NOTE]
 > Sending removed fields returns a `400 Bad Request` HTTP code. The retrieve request doesn't drop or tolerate fields that no longer exist in this version.
@@ -846,7 +846,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + Retrieve responses still include `activity` and `references`, even though the request contract is narrower.
 
-+ A new management plane property, `knowledgeRetrieval`, controls agentic retrieval billing independently of `semanticSearch` on `2026-04-01` and later. The default value is `free`. To enable paid usage, set `knowledgeRetrieval: standard` using the [Search Management REST API](/rest/api/searchmanagement/) (version `2026-03-01-preview` or later). For details, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
++ A new management plane property, `knowledgeRetrieval`, controls agentic retrieval billing independently of `semanticSearch` on 2026-04-01 and later. The default value is `free`. To enable paid usage, set `knowledgeRetrieval` to `standard`. For more information, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
 ---
 
