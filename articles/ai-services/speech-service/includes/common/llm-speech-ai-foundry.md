@@ -15,7 +15,7 @@ You can try LLM Speech in [Microsoft Foundry](https://ai.azure.com/?cid=learnDoc
 
 - A Foundry project. If you need to create a project, see [Create a Microsoft Foundry project](../../../../foundry/how-to/create-projects.md).
 
-## Try LLM speech
+## Try LLM Speech
 
 ### [Foundry (new) portal](#tab/new-foundry)
 
