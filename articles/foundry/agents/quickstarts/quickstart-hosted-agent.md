@@ -53,7 +53,7 @@ You need Azure AI Project Manager at project scope to create and deploy hosted a
 
 If you use azd or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
 
-Container Registry Repository Reader for the project managed identity (image pulls)
+Ensure that the Foundry Project's managed identity has ACR pull role on the Azure Container Registry you use. if you prefer and have Owner or "User Access Administrator" access then the tooling azd/vscode can also do this assignment for you.
 Azure AI User for the platform-created agent identity (runtime model and tool access)
 
 
