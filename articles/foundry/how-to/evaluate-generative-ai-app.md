@@ -53,6 +53,95 @@ Provide a dataset for the evaluation. You can upload your own dataset or synthet
 > [!NOTE]
 > Synthetic data generation requires a model with Responses API capability. For availability, see [Responses API region availability](../openai/how-to/responses.md#region-availability).
 
+#### Multimodal content (image and audio)
+
+All evaluation targets—Agent, Model, Dataset, and Traces—support image and audio content. Each content type uses a specific JSONL schema:
+
+**Image content**:
+
+- `image_url`: The image as a data URI (for example, `data:image/png;base64,...`) or a publicly accessible URL.
+- `caption`: A text description of the image content.
+
+```jsonl
+{"image_url": "data:image/png;base64,iVBOR...", "caption": "A red to blue color gradient"}
+```
+
+**Audio content**:
+
+- `audio_data`: The audio as a data URI with base64-encoded WAV data (for example, `data:audio/wav;base64,...`).
+- `expected`: A text description of the expected audio content.
+
+```jsonl
+{"audio_data": "data:audio/wav;base64,UklGR...", "expected": "A short beep tone at 440 Hz"}
+```
+
+Datasets can also be in the chat message conversation format, where audio and image data are embedded within a singular chat message column. This audio and image data can be stored in the form of data URIs or publicly accessible URLs. 
+
+Here is an example of what a column from a conversation dataset could look like:
+
+```jsonl
+[ 
+  { 
+    "role": "system", 
+    "content": "..." 
+  }, 
+
+  { 
+    "role": "user", 
+    "content": [ 
+      { 
+        "type": "text", 
+        "text": "What are in these images?" 
+      }, 
+      { 
+        "type": "image_url", 
+        "image_url": { 
+          "url": "https://my-website.com/path/image.png" 
+        } 
+      }, 
+      { 
+        "type": "image_url", 
+        "image_url": { 
+          "url": "data:image/png;base64,iVBORw0KGgo..." 
+        } 
+      } 
+    ] 
+  },
+ 
+  { 
+    "role": "assistant", 
+    "content": "..." 
+  }, 
+
+  { 
+    "role": "user", 
+    "content": [ 
+      { 
+        "type": "text", 
+        "text": "Tell me the tones for the voices?" 
+      }, 
+      { 
+        "type": "input_audio", 
+        "input_audio": { 
+          "data": "https://my-website.com/path/voice.wav", 
+          "format": "wav" 
+        } 
+      },
+
+      { 
+        "type": "input_audio", 
+        "input_audio": { 
+          "data": "data:audio/wav;base64,UklGRigAAA...", 
+          "format": "wav" 
+        } 
+      }
+
+    ] 
+  } 
+] 
+```
+
+You can preview images and play audio clips directly in the evaluation creation flow and in the evaluation results view.
 
 ### Configure testing criteria
 
