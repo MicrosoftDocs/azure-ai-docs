@@ -906,13 +906,13 @@ azd ai agent invoke --new-session "Hello, what tools do you have?" --timeout 120
 
 :::zone-end
 
-## Handle tool approval requirements
+### Handle tool approval requirements
 
-The toolbox gateway injects a `_meta.tool_configuration` object into every tool entry returned by `tools/list`. When a tool has `require_approval` set to `"always"`, the agent runtime must present the pending action to the user and wait for confirmation before invoking the tool. The MCP proxy does **not** block `tools/call` — enforcement is entirely the agent runtime's responsibility.
+The toolbox returns a `_meta.tool_configuration` object into every tool entry returned by `tools/list`. When a tool has `require_approval` set to `"always"`, the agent runtime must present the pending action to the user and wait for confirmation before invoking the tool. The MCP endpoint does **not** block `tools/call` — enforcement is entirely the agent runtime's responsibility.
 
 ### Read `require_approval` from `tools/list`
 
-Each tool entry in a `tools/list` response includes a `_meta` block injected by the toolbox gateway:
+Each tool entry in a `tools/list` response includes a `_meta` block returned by the toolbox :
 
 ```json
 {
@@ -935,7 +935,7 @@ Each tool entry in a `tools/list` response includes a `_meta` block injected by 
 | `"always"` | The agent must ask the user for confirmation before every invocation. |
 | `"never"` | The agent can invoke the tool freely. |
 
-### Implement approval gating (LangGraph)
+#### Implement approval gating (LangGraph)
 
 Query `tools/list` at startup to build an approval map, then inject a constraint into the system prompt for any tool that requires approval:
 
@@ -963,18 +963,6 @@ approval_map = await _fetch_require_approval_tools(
     TOOLBOX_ENDPOINT, toolbox_auth, extra_headers
 )
 always_approval = [name for name, val in approval_map.items() if val == "always"]
-
-approval_prompt_note = ""
-if always_approval:
-    tools_str = ", ".join(f"`{n}`" for n in always_approval)
-    approval_prompt_note = (
-        f"\n\nAPPROVAL REQUIRED: The following tools must not be called "
-        f"without explicit user confirmation: {tools_str}. "
-        f"Before invoking any of these tools, describe what you are about "
-        f"to do and ask the user to confirm they want to proceed."
-    )
-
-return create_agent(llm, tools, extra_prompt=approval_prompt_note), client
 ```
 
 > [!NOTE]
@@ -2636,9 +2624,8 @@ For full network isolation setup instructions, including VNet injection for the 
 Toolbox availability depends on two factors beyond the project region:
 
 - **Region**: Some tool types aren't available in every region that supports the agent service. For example, a region that supports the toolbox endpoint might not support all built-in tool types.
-- **Model**: Not all models support every tool type. For example, `gpt-4o` and `gpt-4.1` support most built-in tools, while many third-party and open-source models support only a subset.
 
-Before deploying a toolbox, verify that your target region and model both support the tool types you plan to use. For the full compatibility tables, see [Tool support by region and model](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
+Before deploying a toolbox, verify that your target region supports the tool types you plan to use. For the full compatibility tables, see [Tool support by region and model](../../concepts/tool-best-practice.md#tool-support-by-region-and-model).
 
 ## Related content
 
