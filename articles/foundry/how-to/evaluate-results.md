@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 12/22/2025
+ms.date: 04/22/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
@@ -34,7 +34,7 @@ In this article, you learn to:
 
 ## See your evaluation results
 
-After submitting an evaluation, you can track its progress on the Evaluation details page. When the evaluation completes, the page displays key information such as:
+After you submit an evaluation, track its progress on the **Evaluation** details page. When the evaluation completes, the page displays key information such as:
 
 - Name of the run
 - Target
@@ -45,6 +45,10 @@ After submitting an evaluation, you can track its progress on the Evaluation det
 - Scores for each evaluator used
 
 :::image type="content" source="../media/observability/evaluation-runs.png" alt-text="Screenshot of the evaluation details page showing evaluation runs." lightbox="../media/observability/evaluation-runs.png":::
+
+Hover over results to see more details.
+
+:::image type="content" source="../media/observability/evaluation-runs-hover.png" alt-text="Screenshot of the evaluation details page showing evaluation runs hovered over token usage." lightbox="../media/observability/evaluation-runs-hover.png":::
 
 Select a specific run to drill into row‑level results.
 
@@ -98,9 +102,6 @@ To learn more, see [Built in evaluators](../concepts/built-in-evaluators.md).
 
 ## Related content
 
-- Improve low metrics with prompt iteration or [fine-tuning](../openai/how-to/fine-tuning.md).
-- [How to run batch evaluation](./develop/cloud-evaluation.md).
-
-Learn how to evaluate your generative AI applications:
-
-- [Evaluate your generative AI apps with the Foundry portal or SDK](./evaluate-generative-ai-app.md).
+- [Run evaluations from the Microsoft Foundry portal](./evaluate-generative-ai-app.md)
+- [Run batch evaluations from the SDK](./develop/cloud-evaluation.md)
+- [Improve model performance with fine-tuning](../openai/how-to/fine-tuning.md)
