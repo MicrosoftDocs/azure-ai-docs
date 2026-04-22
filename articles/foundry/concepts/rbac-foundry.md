@@ -92,5 +92,6 @@ az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --
 - [Check access for a user to a single Azure resource](/azure/role-based-access-control/check-access?tabs=default).
 - [Authentication and Authorization in Foundry](../concepts/authentication-authorization-foundry.md).
 - [Disable preview features in Microsoft Foundry](../how-to/disable-preview-features.md).
+- [Hosted agent permissions reference](../agents/concepts/hosted-agent-permissions.md).
 
 [!INCLUDE [rbac-foundry 4](../includes/concepts-rbac-foundry-4.md)]

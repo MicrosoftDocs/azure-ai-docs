@@ -1330,6 +1330,11 @@
       "source_path": "articles/foundry-classic/openai/how-to/business-continuity-disaster-recovery.md",
       "redirect_url": "/azure/foundry-classic/how-to/high-availability-resiliency",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/agents/how-to/publish-responses.md",
+      "redirect_url": "/azure/foundry/agents/how-to/publish-agent",
+      "redirect_document_id": false
     }
   ]
 }
