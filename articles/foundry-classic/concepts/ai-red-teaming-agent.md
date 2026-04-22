@@ -16,7 +16,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 **Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/ai-red-teaming-agent.md)
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 
 [!INCLUDE [ai-red-teaming-agent 1](../../foundry/includes/concepts-ai-red-teaming-agent-1.md)]
 
