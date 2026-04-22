@@ -86,7 +86,7 @@ Azure replicates data for resiliency within the same geography. For all commerci
 For more information, see:
 
 - [Data, privacy, and built-in protections in Azure AI Search](/azure/search/search-security-overview)
-- [Azure data residency](https://azure.microsoft.com/en-us/explore/global-infrastructure/data-residency/)
+- [Azure data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/)
 
 ### Pricing
 
@@ -100,7 +100,7 @@ You can back up and restore indexes, skillsets, indexers, and synonym maps to an
 
 For more information, see:
 
-- [Move your Azure AI Search service to another region](/azure/search/search-howto-move-across-resource-group)
+- [Move your Azure AI Search service to another region](azure/search/search-howto-move-across-regions)
 - [Code sample demonstrating how to copy an index from one Azure AI Search service to another](/samples/azure-samples/azure-search-dotnet-utilities/azure-search-backup-restore-index/)
 
 ## Related content
