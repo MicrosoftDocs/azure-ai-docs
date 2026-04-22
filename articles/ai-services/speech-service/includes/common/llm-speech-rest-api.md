@@ -27,15 +27,15 @@ You can provide audio data in the following ways:
 
 - Pass inline audio data.
 
-```
-  --form 'audio=@"YourAudioFile"'
-```
+  ```
+    --form 'audio=@"YourAudioFile"'
+  ```
 
 - Upload an audio file from a public `audioUrl`.
 
-```
-  --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
-```
+  ```
+    --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
+  ```
 
 > [!TIP]
 > For long audio files, we recommend that you upload from a public URL.
