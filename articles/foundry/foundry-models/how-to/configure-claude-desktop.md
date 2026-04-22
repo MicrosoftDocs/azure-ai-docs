@@ -83,7 +83,7 @@ You can export full session telemetry to your own OpenTelemetry collector for au
 - Errors and performance metrics
 - Session and user attribution for per-team cost breakdowns
 
-Anthropic-bound telemetry (crash reports and product analytics) contains no conversation content and can be fully disabled via managed configuration. For details, see [Telemetry and egress](https://claude.com/docs/cowork/3p/telemetry-egress).
+Anthropic-bound telemetry (crash reports and product analytics) contains no conversation content and can be fully disabled via managed configuration. For details, see [Telemetry and egress](https://claude.com/docs/cowork/3p/telemetry).
 
 ## Operational considerations
 
