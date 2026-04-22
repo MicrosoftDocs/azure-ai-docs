@@ -185,7 +185,6 @@ Hosted agents are currently available in the following regions:
 
 - Australia East
 - Canada Central
-- East Asia
 - North Central US
 - Sweden Central
 
