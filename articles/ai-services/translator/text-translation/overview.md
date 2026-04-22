@@ -32,18 +32,17 @@ The latest release (`2026-06-06`) lets you optionally select either the standard
 
 For a quick overview of Microsoft Foundry, see [What is Microsoft Foundry?](../../../ai-foundry/what-is-foundry.md)
 
-* [**Languages**](preview/get-languages.md). Returns a list of languages supported by the [**Translate**](preview/translate-api.md) and [**Transliterate**](preview/transliterate-api.md) APIs. This request doesn't require authentication. Copy and paste the following `GET` request into your preferred REST API tool or browser:
+* [**Languages**](2026-06-06/get-languages.md). Returns a list of languages supported by the [**Translate**](2026-06-06/translate-api.md) and [**Transliterate**](2026-06-06/transliterate-api.md) APIs. This request doesn't require authentication. Copy and paste the following `GET` request into your preferred REST API tool or browser:
 
     ```bash
         https://api.cognitive.microsofttranslator.com/languages?api-version=2026-06-06
     ```
 
-* [**Translate**](preview/translate-api.md). Renders single source-language text to multiple target-language texts with a single `POST` request.
+* [**Translate**](2026-06-06/translate-api.md). Renders single source-language text to multiple target-language texts with a single `POST` request.
 
-    For an end-to-end request example, see [REST API guide](preview/rest-api-guide.md).
+    For an end-to-end request example, see [REST API guide](2026-06-06/rest-api-guide.md).
 
-
-* [**Transliterate**](preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
+* [**Transliterate**](2026-06-06/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
 
 ### [Latest GA version](#tab/ga)
 
@@ -76,7 +75,7 @@ Add Text translation to your projects and applications using the following resou
 |Development option|Description|
 |---|---|
 |**Foundry portal**|&bull; [**Foundry (classic) portal**](https://ai.azure.com/) is a cloud-based AI platform that supports **hub-based** projects and other resource types.<br><br>&bull; [**Foundry (new) portal**](https://ai.azure.com/) is a cloud-based AI platform that provides streamlined access to Foundry models, agents, and tools through **Foundry projects**.|
-|**REST API**|Integrate translation into your applications by using the [REST API (GA) version](reference/rest-api-guide.md) or [REST API (preview) version](preview/rest-api-guide.md).|
+|**REST API**|Integrate translation into your applications by using the [REST API (GA) version](reference/rest-api-guide.md) or [REST API (preview) version](2026-06-06/rest-api-guide.md).|
 |**Client libraries (SDKs)**|Integrate translation capabilities into your applications by using the available [client libraries (SDKs)](quickstart/client-library-sdk.md) in various programming languages.|
 |**Docker container**|&bull; To use the Translator container, complete and submit the [**Gated Services application**](https://aka.ms/csgate-translator) online request form for approval to access the container.<br>&bull; The [**Translator container image**](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/about) supports limited features compared to cloud offerings.<br>For more information, see [Container: Translate Text](../containers/translate-text-parameters.md).|
 
