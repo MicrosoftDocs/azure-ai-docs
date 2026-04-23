@@ -12,27 +12,28 @@ ms.custom: include
 
 ## Cost benchmarks of language models
 
-Cost calculations are estimates for using an LLM or SLM model endpoint hosted on the Foundry platform. Foundry supports displaying the cost of serverless API deployments and Azure OpenAI models. Because these costs are subject to change, cost calculations are refreshed periodically to reflect the latest pricing.
+Cost benchmarks measure the **actual cost to execute each model on the quality benchmark datasets**, rather than an estimated cost based on token pricing.
 
-The cost of LLMs and SLMs is assessed across the following metrics:
+The benchmark cost is computed using:
 
-| Metric | Description |
-|--------|-------------|
-| Cost per input tokens | Cost for serverless API deployment for 1 million input tokens |
-| Cost per output tokens | Cost for serverless API deployment for 1 million output tokens |
-| Estimated cost | Cost for the sum of cost per input tokens and cost per output tokens, with a ratio of 3:1. |
+- The actual number of input, reasoning, and output tokens consumed during benchmark execution.
+- The model-specific reasoning effort configuration used for evaluation (typically `high` or `xhigh`).
+- The dataset characteristics and complexity, which affect token usage and runtime.
 
-Foundry also displays the cost as follows:
-             
-| Metric | Description |
-|-------|-------------|
-| Cost | Estimated US dollar cost per 1 million tokens. The estimated workload uses the three-to-one ratio between input and output tokens. Lower values are better. |
+Unlike estimates based on a fixed token ratio, this approach reflects the true end-to-end cost of running the benchmark workloads.
+
+How to interpret cost results:
+
+- Cost is reported in **USD per benchmark run** across the standard quality datasets.
+- Values represent real execution cost and enable direct comparison between models.
+- Lower values indicate more cost-efficient performance on the benchmark suite.
+
 
 ## Scenario leaderboard benchmarking
 
-Scenario leaderboards group benchmark datasets by common real-world evaluation goals so you can quickly identify a model's strengths and weaknesses by use case. Each scenario aggregates one or more public benchmark datasets.
+Scenario leaderboards group benchmark datasets by common real-world evaluation goals. You can quickly identify a model's strengths and weaknesses by use case. Each scenario aggregates one or more public benchmark datasets.
 
-Use the following table to find your use case in the **Scenario** column, then review the associated benchmark datasets and what the results indicate. The following table summarizes the available scenario leaderboards and their associated datasets and descriptions:
+Use the following table to find your use case in the **Scenario** column, and then review the associated benchmark datasets and what the results indicate. The following table summarizes the available scenario leaderboards and their associated datasets and descriptions:
 
 | Scenario | Datasets | Description |
 |--|--|--|
