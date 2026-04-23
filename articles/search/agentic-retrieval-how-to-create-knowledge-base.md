@@ -3,14 +3,14 @@ title: Create a Knowledge Base
 description: Learn how to create a knowledge base for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/14/2026
+ms.date: 04/22/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Create a knowledge base in Azure AI Search
 
-[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
+[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 In Azure AI Search, a *knowledge base* is a top-level object that orchestrates [agentic retrieval](agentic-retrieval-overview.md). It defines which knowledge sources to query and the default behavior for retrieval operations. At query time, the [retrieve method](agentic-retrieval-how-to-retrieve.md) targets the knowledge base to run the configured retrieval pipeline.
 
@@ -32,9 +32,9 @@ A knowledge base specifies:
 
 + Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md). If you're using a [managed identity](search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
 
-+ One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). If you're going to create a `2026-04-01` knowledge base, your knowledge sources must be generally available. Otherwise, you can use preview knowledge source types.
++ One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). If you plan to use the 2026-04-01 API to create your knowledge base, your knowledge sources must be generally available. Otherwise, you can use preview knowledge source types.
 
-+ Azure OpenAI with a [supported LLM](#supported-models) deployment.
++ If your knowledge base includes a web knowledge source, an Azure OpenAI [supported LLM](#supported-models) deployment. For the 2025-11-01-preview API, a model is also optional for knowledge bases that use only indexed knowledge sources; it enables features such as answer synthesis and reasoning effort. In the 2026-04-01 API, models aren't used for indexed knowledge sources.
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md). **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries. Alternatively, you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
@@ -42,9 +42,9 @@ A knowledge base specifies:
 
 + Required .NET SDK package:
 
-  + For `2025-11-01-preview` features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
-  + For `2026-04-01` features, the latest stable [`Azure.Search.Documents` package](https://www.nuget.org/packages/Azure.Search.Documents): `dotnet add package Azure.Search.Documents`
+  + For 2026-04-01 features, the latest stable [`Azure.Search.Documents` package](https://www.nuget.org/packages/Azure.Search.Documents): `dotnet add package Azure.Search.Documents`
 
 ::: zone-end
 
@@ -52,9 +52,9 @@ A knowledge base specifies:
 
 + Required Python SDK package:
 
-  + For `2025-11-01-preview` features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
 
-  + For `2026-04-01` features, the latest stable [`azure-search-documents` package](https://pypi.org/project/azure-search-documents/): `pip install azure-search-documents`
+  + For 2026-04-01 features, the latest stable [`azure-search-documents` package](https://pypi.org/project/azure-search-documents/): `pip install azure-search-documents`
 
 ::: zone-end
 
@@ -75,15 +75,20 @@ Use one of the following LLMs from Azure OpenAI in Foundry Models. For deploymen
 + `gpt-4o`
 + `gpt-4o-mini`
 + `gpt-4.1`
-+ `gpt-4.1-nano`
 + `gpt-4.1-mini`
++ `gpt-4.1-nano`
 + `gpt-5`
-+ `gpt-5-nano`
 + `gpt-5-mini`
++ `gpt-5-nano`
++ `gpt-5.1`
++ `gpt-5.2`
++ `gpt-5.4`
++ `gpt-5.4-mini`
++ `gpt-5.4-nano`
 
 ## Configure access
 
-Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsoft Entra ID for authentication and role-based access for authorization. To assign roles, you must be an **Owner or User Access Administrator**. If you can't use roles, use key-based authentication instead.
+Azure AI Search needs access to the LLM from Azure OpenAI in Foundry Models. We recommend Microsoft Entra ID for authentication and role-based access for authorization. To assign roles, you must be an **Owner or User Access Administrator**. If you can't use roles, use key-based authentication instead.
 
 ### [**Use roles**](#tab/rbac)
 
@@ -91,11 +96,12 @@ Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsof
 
 1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
 
-1. On your model provider, such as Foundry Models, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
+1. On your model provider, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
 
 1. For local testing, follow the steps in [Quickstart: Connect without keys](search-get-started-rbac.md) to sign in to a specific subscription and tenant. Use `DefaultAzureCredential` instead of `AzureKeyCredential` in each request, which should look similar to the following example:
 
     ```csharp
+    // Authenticate using roles
     using Azure.Search.Documents.Indexes;
     using Azure.Identity;
     
@@ -108,7 +114,7 @@ Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsof
 
 1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
 
-1. On your model provider, such as Foundry Models, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
+1. On your model provider, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
 
 1. For local testing, follow the steps in [Quickstart: Connect without keys](search-get-started-rbac.md) to sign in to a specific subscription and tenant. Use `DefaultAzureCredential` instead of `AzureKeyCredential` in each request, which should look similar to the following example:
 
@@ -124,7 +130,7 @@ Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsof
 
 1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
 
-1. On your model provider, such as Foundry Models, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
+1. On your model provider, assign **Cognitive Services User** to the managed identity of your search service. If you're testing locally, assign the same role to your user account.
 
 1. For local testing, follow the steps in [Quickstart: Connect without keys](search-get-started-rbac.md) to get a personal access token for a specific subscription and tenant. Specify your access token in each request, which should look similar to the following example:
 
@@ -143,9 +149,10 @@ Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsof
 
 1. [Copy an Azure AI Search admin API key](search-security-api-keys.md#find-existing-keys) from the Azure portal.
 
-1. Use `AzureKeyCredential` to specify the API key in each request. Your code should look similar to the following example:
+1. Use `AzureKeyCredential` to specify the API key in each request, which should look similar to the following example:
 
     ```csharp
+    // Authenticate using keys
     using Azure.Search.Documents.Indexes;
     using Azure;
     
@@ -158,7 +165,7 @@ Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsof
 
 1. [Copy an Azure AI Search admin API key](search-security-api-keys.md#find-existing-keys) from the Azure portal.
 
-1. Use `AzureKeyCredential` to specify the API key in each request. Your code should look similar to the following example:
+1. Use `AzureKeyCredential` to specify the API key in each request, which should look similar to the following example:
 
     ```python
     # Authenticate using keys
@@ -172,7 +179,7 @@ Azure AI Search needs access to the LLM from Azure OpenAI. We recommend Microsof
 
 1. [Copy an Azure AI Search admin API key](search-security-api-keys.md#find-existing-keys) from the Azure portal.
 
-1. Specify the API key in each request. The key should look similar to the following example:
+1. Specify the API key in each request, which should look similar to the following example:
 
    ```http
    # List indexes using keys
@@ -232,7 +239,7 @@ for kb in index_client.list_knowledge_bases():
 
 ::: zone pivot="rest"
 
-Use [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list?view=rest-searchservice-2026-04-01&preserve-view=true) to list knowledge bases by name and type. The list includes all knowledge bases on your search service, regardless of which API version you used to create them.
+Use [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to list knowledge bases by name and type. The list includes all knowledge bases on your search service, regardless of which API version you used to create them.
 
 ```http
 # List knowledge bases
@@ -319,11 +326,18 @@ The following JSON is an example response for a knowledge base.
 ```
 
 > [!NOTE]
-> The response schema reflects the API version you used to create the knowledge base. A knowledge base created with the generally available `2026-04-01` API returns a narrower definition that omits `answerInstructions`, `outputMode`, and `retrievalReasoningEffort`. For more information about which properties each version supports, see [Create a knowledge base](#create-a-knowledge-base).
+> The response schema reflects the API version you used to create the knowledge base. A knowledge base created with the generally available 2026-04-01 API returns a narrower definition than 2025-11-01-preview. For more information about which properties each version supports, see [Create a knowledge base](#create-a-knowledge-base).
 
 ## Create a knowledge base
 
-A knowledge base connects knowledge sources (searchable content) to an LLM deployment from Azure OpenAI. Properties on the LLM establish the connection, while properties on the knowledge source establish defaults that inform query execution and the response.
+A knowledge base drives the agentic retrieval pipeline. In application code, other agents or chatbots call it.
+
+A knowledge base connects one or more knowledge sources (searchable content) to an optional LLM deployment from Azure OpenAI in Foundry Models. Model requirements depend on the API version and knowledge source type:
+
+- **2026-04-01**: A model is required for web knowledge sources only. Indexed knowledge sources (searchIndex, azureBlob, indexedOneLake) don't use a model in this version.
+- **2025-11-01-preview**: A model is required for web knowledge sources. For indexed knowledge sources, a model is optional and enables features such as answer synthesis and reasoning effort.
+
+Properties on the knowledge source establish defaults that inform query execution and the response.
 
 After you create a knowledge base, you can update its properties at any time. If the knowledge base is in use, updates take effect on the next retrieval.
 
@@ -548,7 +562,7 @@ api-key: {{search-api-key}}
 ::: zone-end
 
 > [!IMPORTANT]
-> The `2026-04-01` API only accepts generally available knowledge source types and doesn't support `answerInstructions`, `outputMode`, `retrievalInstructions`, or `retrievalReasoningEffort`. For full functionality, use the `2025-11-01-preview` API.
+> The 2026-04-01 API only accepts generally available knowledge source types and doesn't support `answerInstructions`, `outputMode`, `retrievalInstructions`, or `retrievalReasoningEffort`. For full functionality, use the 2025-11-01-preview API.
 
 ### Knowledge base properties
 

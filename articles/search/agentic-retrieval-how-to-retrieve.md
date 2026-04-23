@@ -3,14 +3,14 @@ title: Query Knowledge Base via APIs or MCP
 description: Learn how to Query a knowledge base using the retrieve action or MCP endpoint in Azure AI Search using REST APIs, Azure SDKs, or any MCP-compatible client.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/15/2026
+ms.date: 04/22/2026
 ai-usage: ai-assisted
 zone_pivot_groups: search-csharp-python-rest
 ---
 
 # Query a knowledge base using the retrieve action or MCP endpoint
 
-[!INCLUDE [GA announcement](./includes/previews/agentic-retrieval-ga-announcement.md)]
+[!INCLUDE [GA feature](./includes/previews/agentic-retrieval-ga-feature.md)]
 
 In an agentic retrieval pipeline, the [retrieve action](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) invokes parallel query processing from a knowledge base. You can call the retrieve action directly using the Search Service REST APIs or an Azure SDK. Each knowledge base also exposes a Model Context Protocol (MCP) endpoint for consumption by MCP-compatible agents.
 
@@ -28,9 +28,9 @@ This article explains how to call both retrieval methods with optional permissio
 
 + Required .NET SDK package:
 
-  + For `2025-11-01-preview` features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
 
-  + For `2026-04-01` features, the latest stable [`Azure.Search.Documents` package](https://www.nuget.org/packages/Azure.Search.Documents): `dotnet add package Azure.Search.Documents`
+  + For 2026-04-01 features, the latest stable [`Azure.Search.Documents` package](https://www.nuget.org/packages/Azure.Search.Documents): `dotnet add package Azure.Search.Documents`
 
 ::: zone-end
 
@@ -38,9 +38,9 @@ This article explains how to call both retrieval methods with optional permissio
 
 + Required Python SDK package:
 
-  + For `2025-11-01-preview` features, the latest preview package: `pip install azure-search-documents --pre`
+  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
 
-  + For `2026-04-01` features, the latest stable [`azure-search-documents` package](https://pypi.org/project/azure-search-documents/): `pip install azure-search-documents`
+  + For 2026-04-01 features, the latest stable [`azure-search-documents` package](https://pypi.org/project/azure-search-documents/): `pip install azure-search-documents`
 
 ::: zone-end
 
@@ -331,7 +331,7 @@ Pass the following parameters to call the retrieve action.
 |--|--|--|--|--|
 | [`messages`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true#knowledgebasemessage) | Articulates the messages sent to an LLM. The message format is similar to Azure OpenAI APIs. | Object | Yes | No |
 | `messages.role` | Defines where the message came from, such as `assistant` or `user`. The model you use determines which roles are valid. | String | Yes | No |
-| `messages.content` | The message or prompt sent to the LLM. In this preview, it must be text. | String | Yes | No |
+| `messages.content` | The message or prompt sent to the LLM. Must be text. | String | Yes | No |
 | [`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true#knowledgebaseretrievalrequest) | Overrides default retrieval settings per knowledge source. Useful for customizing the query or response at query time. | Object | Yes | No |
 
 # [2026-04-01](#tab/2026-04-01)
@@ -682,7 +682,7 @@ The retrieve action returns three main components:
 
 The extracted response is a single unified string that you typically pass to an LLM. The LLM consumes it as grounding data and uses it to formulate a response. Your API call to the LLM includes the unified string and instructions for the model, such as whether to use the grounding exclusively or as a supplement.
 
-The body of the response is also structured in the chat message style format. In this preview, the content is serialized JSON.
+The body of the response is also structured in the chat message style format, and the content is serialized JSON.
 
 ```json
 "response": [
@@ -706,7 +706,7 @@ Key points:
 
   The string starts with the reference ID of the chunk (used for citation purposes), and any fields specified in the semantic configuration of the target index. In this example, assume the semantic configuration in the target index has a "title" field, a "terms" field, and a "content" field.
 
-+ In this preview, `content.type` has one valid value: `text`.
++ `content.type` has one valid value: `text`.
 
 # [2025-11-01-preview](#tab/2025-11-01-preview)
 
@@ -718,8 +718,8 @@ Key points:
 
 ---
 
-    > [!IMPORTANT]
-    > A document that exceeds the output budget can be silently omitted from the response without a warning. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
+> [!IMPORTANT]
+> A document that exceeds the output budget can be silently omitted from the response without a warning. For more information, see [Troubleshoot empty responses](#troubleshoot-empty-responses).
 
 ### Activity array
 
@@ -893,7 +893,7 @@ The following examples illustrate different ways to call the retrieve action:
 
 ### Override default reasoning effort and set request limits
 
-This example specifies [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) and a custom reasoning effort, so it applies to `2025-11-01-preview` only. The `2026-04-01` GA version shows equivalent request limits without the preview-only parameters.
+This example specifies [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) and a custom reasoning effort, so it applies to the 2025-11-01-preview API only. The 2026-04-01 API tab shows equivalent request limits without the preview-only parameters.
 
 :::zone pivot="csharp"
 
@@ -1420,7 +1420,7 @@ Content-Type: application/json
 
 ## Troubleshoot empty responses
 
-A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in `2025-11-01-preview`) output budget. When this happens, the activity array shows that matches were found, but the references array and grounded response content are empty for that document. No truncation warning or explicit error is returned.
+A document can be found during the search step but still be omitted from the final response if its grounded content exceeds the `maxOutputSizeInTokens` (`maxOutputSize` in 2025-11-01-preview) output budget. When this happens, the activity array shows that matches were found, but the references array and grounded response content are empty for that document. No truncation warning or explicit error is returned.
 
 To avoid this behavior, index large source documents as smaller chunks with stable identifiers and source metadata. This applies especially to long manuals, policies, or knowledge base articles.
 
