@@ -221,7 +221,8 @@ items:
         href: containers/translate-document-parameters.md
   - name: Translator container FAQ
     href: containers/faq.yml
-- name: Custom translations (Microsoft Foundry)
+
+- name: Foundry Tools custom translations 
   items:
   - name: What are Foundry Tools custom translations?
     href: custom-translator/azure-ai-foundry/overview.md
@@ -230,7 +231,7 @@ items:
   - name: Foundry Tools for beginners
     displayName: use case,usage,train,training,bleu,tuning,tune
     href: custom-translator/azure-ai-foundry/beginners-guide.md
-  - name: Foundry Tools adaptive custom translation (preview)
+  - name: Adaptive custom translation (preview)
     displayName: foundry, gpt, api
     href: custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md
   - name: FAQ

@@ -1,7 +1,7 @@
 ---
-title: Migrate from Azure Translator Text API v3 to Azure Translator Text API (2026-06-06).
+title: Migrate to Translator Text API 2026-06-06
 titleSuffix: Microsoft Foundry
-description: This article provides the steps to help you migrate from Azure Translator Text API v3 to Azure Translator Text API 2026-06-06.
+description: Learn how to migrate your applications from Translator Text API v3.0 to the latest generally available release, API version 2026-06-06.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -9,32 +9,32 @@ ms.topic: concept-article
 ms.date: 04/21/2026
 ms.author: lajanuar
 ---
+<!-- markdownlint-disable MD025 -->
+# Migrate to Translator Text API 2026-06-06
 
-# Migrate from Azure Translator Text API v3 to Azure Translator Text API (2026-06-06)
+Azure Translator Text API **2026-06-06** is the latest generally available (GA) release, available through Microsoft Foundry. If you're currently using Translator Text API v3.0, this guide walks you through what changed and how to update your integration.
 
-Azure Translator Text API **2026-06-06** (GA), available through Microsoft Foundry, is the latest cloud-based, multilingual neural machine translation service. This release reflects the continued evolution of Azure Translator, with a focus on modern usage patterns, improved customization, and more flexible translation workflows.
-
-As Translator matures, Microsoft is standardizing best practices to help customers adopt newer capabilities while maintaining quality, reliability, and cost control.
+The new version introduces expanded model options, new translation controls, and a revised request and response schema. It is **not backward compatible** with v3.0—you need to update your API version, payload structure, and any code that depends on v3.0-specific methods.
 
 >[!IMPORTANT]
 >
-> * Translator REST API `2026-06-06` is the **generally available (GA)** version and **introduces breaking changes**.
-> * Thoroughly test your applications against this version before migrating any production workloads from Translator Text API v3.0.
-> * Review your application code and internal workflows to ensure they follow current best practices, and restrict production usage to API versions you have fully validated.
+> * API version `2026-06-06` **is not a drop-in replacement** for v3.0. Changes to request structure, response schema, and supported methods are required.
+> * Test your application thoroughly in a non-production environment before migrating any production workloads.
+> * Validate your code and internal workflows, and restrict production deployments to API versions you have fully tested.
 
 ## What's new in API version 2026-06-06
 
-The latest version of Azure Translator introduces the following enhancements:
+These are the key capabilities added in `2026-06-06`. Review each one to understand whether it applies to your integration and whether it requires code changes or opens up new scenarios for your application.
 
-* **Large language model (LLM) selection**: Choose the translation model that best fits your requirements for quality, cost, and performance without the overhead of prompt engineering or manual quality evaluation.
+* **Large language model (LLM) selection**. You can now choose between standard Neural Machine Translation (NMT) and a supported Large Language Model (LLM), such as GPT-5.1, for each translation request. This lets you balance quality, cost, and performance without managing prompt engineering or manual quality pipelines. Note that LLM-based translation requires a Microsoft Foundry resource.
 
-* **Adaptive custom translation**: Support for adaptive custom translation enables you to refine output using datasets or reference pairs, improving accuracy, terminology consistency, and contextual relevance.
+* **Adaptive custom translation**. You can supply up to five reference translation pairs or an adaptive dataset index ID to guide LLM output toward your preferred style and terminology. This is useful for domain-specific content or applications with established glossaries.
 
-* **Expanded translation parameters**: Translation requests now support additional parameters such as text type, language codes, and controls for tone and gender, allowing for more nuanced and purpose-specific translations.
+* **Tone and gender controls**. Translation requests now accept tone (formal, informal, neutral) and gender (male, female, neutral) parameters when using LLM-based translation. These parameters are optional but allow you to produce more targeted output for audience-specific scenarios.
 
 ## Method changes
 
-The following section compares available methods in Translator Text API `2026-06-06` with those in Translator Text API v3.0.
+The `2026-06-06` API changes several required parameters and removes methods that v3.0 supported. Review the tables below to identify what you need to update in your code.
 
 >[!WARNING]
 >
@@ -42,6 +42,8 @@ The following section compares available methods in Translator Text API `2026-06
 > * To migrate from `2025-10-01-preview` to GA, set `api-version=2026-06-06`.
 
 ### Required parameters
+
+The most important structural change is the replacement of the v3.0 `to` parameter with a `targets` array. Update all translation requests to use the new schema.
 
 | API version: 2026-06-06 | API version: v3.0 |
 | --- | --- |
@@ -54,19 +56,24 @@ For details about supported **`targets` array** values, see [Translate text](../
 
 ## API compatibility
 
-The following table summarizes method-level changes between Translator Text API v3.0 and API version 2026-06-06:
+Several v3.0 methods are no longer available in `2026-06-06`. If your application uses any of the removed methods, plan a replacement before migrating.
 
 | Azure Translator v3.0 | Azure Translator 2026-06-06 |
 | --- | --- |
 | [Translate text](../reference/v3/translate.md) | [Translate text](../2026-06-06/translate-api.md) |
 | [Transliterate](../reference/v3/transliterate.md) | [Transliterate](../2026-06-06/transliterate-api.md) |
 | [Languages](../reference/v3/languages.md) | [Languages](../2026-06-06/get-languages.md) |
-| [BreakSentence](../reference/v3/break-sentence.md) | No longer supported.<br>Use a sentence delimiter or an NLP library compatible with your programming language. |
-| [Detect](../reference/v3/detect.md) | No longer supported.<br>Use the [Language detection API](../../../language-service/language-detection/how-to/call-api.md). |
-| [Dictionary Lookup](../reference/v3/dictionary-lookup.md) | No longer supported. |
+| [BreakSentence](../reference/v3/break-sentence.md) | No longer supported. Replace with a sentence delimiter function or an NLP library compatible with your programming language. |
+| [Detect](../reference/v3/detect.md) | No longer supported. Replace with the [Azure AI Language detection API](../../../language-service/language-detection/how-to/call-api.md). |
+| [Dictionary Lookup](../reference/v3/dictionary-lookup.md) | No longer supported. Consider using [adaptive custom translation](../../custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md) for domain-specific term handling. |
 | [Dictionary Examples](../reference/v3/dictionary-examples.md) | No longer supported. |
 
-## Next Steps
+## Next steps
 
 > [!div class="nextstepaction"]
-> [View 2026-06-06 Translate method](../2026-06-06/translate-api.md)
+> [Translate text (2026-06-06)](../2026-06-06/translate-api.md)
+
+* [Text translation overview](../overview.md)
+* [REST API guide (2026-06-06)](../2026-06-06/rest-api-guide.md)
+* [Adaptive custom translation](../../custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md)
+* [Supported languages](../../language-support.md)
