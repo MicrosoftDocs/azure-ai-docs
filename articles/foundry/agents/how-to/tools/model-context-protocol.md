@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 04/23/2026
 author: alvinashcraft
 ms.author: aashcraft
 ai-usage: ai-assisted
@@ -16,7 +16,8 @@ ms.custom: dev-focus, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ---
 
 # Connect agents to Model Context Protocol servers
-Connect your Foundry agents to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers by using the MCP tool. This extends agent capabilities with external tools and data sources. By connecting to remote MCP server endpoints, your agents can access tools hosted by developers and organizations that MCP-compatible clients like Foundry Agent Service can use.
+
+Connect your Foundry agents to [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers by using the MCP tool. This connection extends agent capabilities with external tools and data sources. By connecting to remote MCP server endpoints, your agents can access tools hosted by developers and organizations that MCP-compatible clients like Foundry Agent Service can use.
 
 MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
 
@@ -31,7 +32,7 @@ For conceptual details about how MCP integration works, see [How it works](#how-
 
 ### Usage support
 
-The following table shows SDK and setup support for MCP connections. The following table shows SDK and setup support.
+The following table shows SDK and setup support for MCP connections.
 
 | Microsoft Foundry support | Python SDK | C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -39,11 +40,11 @@ The following table shows SDK and setup support for MCP connections. The followi
 
 ## Prerequisites
 
-Before you begin, ensure you have:
+Before you begin, make sure you have:
 
 - An Azure subscription with an active Microsoft Foundry project.
 - Azure role-based access control (RBAC): Contributor or Owner role on the Foundry project.
-- The latest SDK package for your language. The .NET SDK is currently in preview. See the [quickstart](../../../quickstarts/get-started-code.md) for installation details.
+- The latest SDK package for your language. The .NET SDK is currently in preview. For installation details, see the [quickstart](../../../quickstarts/get-started-code.md).
 - Azure credentials configured for authentication (such as `DefaultAzureCredential`).
 - Access to a remote MCP server endpoint (such as GitHub's MCP server at `https://api.githubcopilot.com/mcp`).
 
@@ -58,24 +59,34 @@ For private MCP servers, deploy your MCP server on Azure Container Apps with int
 
 For details about tool support in network-isolated environments, see [Agent tools with network isolation](../../../how-to/configure-private-link.md#agent-tools-with-network-isolation).
 
+## Use Foundry Toolboxes as MCP endpoints
+
+Foundry Toolboxes (preview) let you bundle multiple tools - such as Web Search, Code Interpreter, File Search, Azure AI Search, MCP servers, OpenAPI tools, and Agent-to-Agent connections - into a single MCP-compatible endpoint. Instead of configuring each tool separately on every agent, create a Toolbox in Foundry and point your agent to the Toolbox endpoint by using the standard `mcp` tool configuration (`server_url` and `server_label`).
+
+Because the Toolbox endpoint is MCP-compatible, any runtime that can consume an MCP server can also consume a Toolbox. This compatibility includes Foundry Agent Service, Microsoft Agent Framework, LangGraph, GitHub Copilot SDK, and other MCP-enabled clients. You can add, remove, or reconfigure tools in the Toolbox without changing your agent code.
+
+For setup steps, see [Create and use a Foundry Toolbox](toolbox.md).
+
 ## Authentication
 
 Many MCP servers require authentication.
 
-In Foundry Agent Service, use a project connection to store authentication details (for example, API keys or bearer tokens) instead of hard-coding credentials in your app.
+In Foundry Agent Service, use a project connection to store authentication details, such as API keys or bearer tokens, instead of hard-coding credentials in your app.
 
-To learn about supported authentication options (key-based, Microsoft Entra identities, and OAuth identity passthrough), see [MCP server authentication](../mcp-authentication.md).
+To learn about supported authentication options, including key-based, Microsoft Entra identities, and OAuth identity passthrough, see [MCP server authentication](../mcp-authentication.md).
 
 > [!NOTE]
 > Set `project_connection_id` to the ID of your project connection.
 
 > [!TIP]
-> When you add the Azure DevOps MCP Server (preview) through the **Add Tools** catalog, authentication to Azure DevOps is established during the organization connection step and stored as a project connection. Use least-privilege access and review scopes when connecting the organization.
+> When you add the Azure DevOps MCP Server (preview) through the **Add Tools** catalog, you authenticate to Azure DevOps during the organization connection step and store the authentication as a project connection. Use least-privilege access and review scopes when connecting the organization.
+
+When you use a Foundry Toolbox MCP endpoint, the Toolbox centrally manages authentication. The Toolbox handles credential injection, token refresh, and policy enforcement at runtime for all tools in the bundle. Agents authenticate to the Toolbox endpoint itself by using Microsoft Entra credentials, such as `DefaultAzureCredential`, and individual tool credentials don't need to be passed by each agent. For Toolbox auth configuration, see [Toolbox prerequisites](toolbox.md#prerequisites).
 
 <!-- The verbiage in the following section is required. Do not remove or modify. -->
 ## Considerations for using non-Microsoft services and servers
 
-You're subject to the terms between you and the service provider when you use connected non-Microsoft services. When you connect to a non-Microsoft service, you pass some of your data (such as prompt content) to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
+You're subject to the terms between you and the service provider when you use connected non-Microsoft services. When you connect to a non-Microsoft service, you pass some of your data, such as prompt content, to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
 
 Third parties, not Microsoft, create the remote MCP servers that you decide to use with the MCP tool described in this article. Microsoft doesn't test or verify these servers. Microsoft has no responsibility to you or others in relation to your use of any remote MCP servers.
 
@@ -83,14 +94,17 @@ Carefully review and track what MCP servers you add to Foundry Agent Service. Re
 
 The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. Review all data that you share with remote MCP servers and log the data for auditing purposes. Be aware of non-Microsoft practices for retention and location of data.
 
+> [!NOTE]
+> Foundry Toolboxes are different from third-party MCP servers. Toolboxes are organization-governed resources that you create and manage within your Microsoft Foundry project. However, you're still responsible for tool selection, data handling, and compliance when curating Toolbox contents.
+
 ## Best practices
 
 For general guidance on tool usage, see [Best practices for using tools in Microsoft Foundry Agent Service](../../concepts/tool-best-practice.md).
 
 When you use MCP servers, follow these practices:
 
-- Prefer an allow-list of tools by using `allowed_tools`.
-- Require approval for high-risk operations (especially tools that write data or change resources).
+- Use an allow list of tools by using `allowed_tools`.
+- Require approval for high-risk operations, especially tools that write data or change resources.
 - Review the requested tool name and arguments before you approve.
 - Log approvals and tool calls for auditing and troubleshooting.
 
@@ -297,7 +311,7 @@ Response: The Azure REST API specifications repository contains the OpenAPI spec
 organized by service and includes guidelines for contributing new specifications. The repository is intended for use by developers building tools and services that interact with Azure APIs.
 ```
 
-## Create an agent with the MCP tool using project connection authentication
+## Create an agent by using the MCP tool with project connection authentication
 
 In this example, you learn how to authenticate to the GitHub MCP server and use it as a tool for an agent. The example uses synchronous methods to create an agent. For asynchronous methods, see the [sample code](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Extensions.OpenAI/samples/Sample20_MCP_Connection.md) in the Azure SDK for .NET repository on GitHub.
 
@@ -570,7 +584,7 @@ Agent deleted
 MCP sample completed!
 ```
 
-## Create an agent with the MCP tool using project connection authentication
+## Create an agent by using the MCP tool with project connection authentication
 
 The following TypeScript sample demonstrates how to create an agent with MCP tool capabilities using project connection authentication, send requests that trigger MCP approval workflows, handle approval requests, and clean up resources. For a JavaScript version, see the [sample code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-projects/samples/v2-beta/javascript/agents/tools/agentMcpConnectionAuth.js) on the Azure SDK for JavaScript repository on GitHub.
 
@@ -945,19 +959,22 @@ Azure DevOps MCP Server (preview) is available as a catalog entry in Foundry. To
 
 This catalog-based setup creates the MCP tool for use by agents without requiring code changes. You can validate connectivity and tool behavior in the Foundry chat testing experience before integrating the tool into production code.
 
+> [!TIP]
+> **Toolbox versioning**: Foundry Toolboxes support versioning, so you can iterate on a new version without affecting production agents. Use the **consumer endpoint** (`{project_endpoint}/toolboxes/{name}/mcp?api-version=v1`) for production agents - it always serves the promoted default version. Use the **version-specific endpoint** (`{project_endpoint}/toolboxes/{name}/versions/{version}/mcp?api-version=v1`) to test before promoting. Keep `server_label` unique per agent, even when switching Toolbox versions. For details, see [Promote a version to default](toolbox.md#promote-a-version-to-default).
+
 ## Known limitations
 
 - **Non-streaming MCP tool call timeout**: Non-streaming MCP tool calls have a timeout of 100 seconds. If your MCP server takes longer than 100 seconds to respond, the call fails. To avoid timeouts, ensure that your MCP server responds within this limit. If your use case requires longer processing times, consider optimizing the server-side logic or breaking the operation into smaller steps.
 - **Private MCP requires Standard Agent Setup**: Private MCP server connectivity is only available with [Standard Agent Setup with private networking](../virtual-networks.md) (BYO VNet). Basic agent setup doesn't support private MCP endpoints.
-- **Private MCP hosting**: Azure Container Apps on a dedicated MCP subnet is the tested configuration for private MCP servers. Function Apps or App Services as the private MCP server host might work but haven't been internally validated.
+- **Private MCP hosting**: Azure Container Apps on a dedicated MCP subnet is the tested configuration for private MCP servers. Function Apps or App Services as the private MCP server host might work but aren't internally validated.
 
 ## Common questions and errors
 
-The following are common issues that you might encounter when using MCP tools with Foundry Agent Service:
+The following common issues might occur when you use MCP tools with Foundry Agent Service:
 
 - "Invalid tool schema":
 
-    An invalid tool schema usually happens if you have `anyOf` or `allOf` in your MCP server definition, or if a parameter can take multiple types of values. Update your MCP server definition and try again.
+    This error usually happens if your MCP server definition includes `anyOf` or `allOf`, or if a parameter accepts multiple types of values. Update your MCP server definition and try again.
 
 - "Unauthorized" or "Forbidden" from the MCP server:
 
