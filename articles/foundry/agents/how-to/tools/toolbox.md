@@ -17,7 +17,7 @@ zone_pivot_groups: selection-foundry-toolbox
 # Curate intent-based toolbox in Foundry (preview)
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-A single agent can depend on multiple tools - APIs, Model Context Protcol (MCP) servers, connectors, and flows - each with its own authentication model and owning team. As you scale across an organization, teams re-implement the same tools independently, credentials get duplicated, governance becomes inconsistent, and there's little visibility into what tools exist or who's using them. Developers stall, not because the models aren't capable, but because tool integration becomes the bottleneck.
+A single agent can depend on multiple tools - APIs, Model Context Protocol (MCP) servers, connectors, and flows - each with its own authentication model and owning team. As you scale across an organization, teams re-implement the same tools independently, credentials get duplicated, governance becomes inconsistent, and there's little visibility into what tools exist or who's using them. Developers stall, not because the models aren't capable, but because tool integration becomes the bottleneck.
 
 :::image type="content" source="../../media/tools/toolbox/toolbox-before.png" alt-text="Diagram showing multiple agents each wiring their own tools with different authentication models and duplicated credentials." lightbox="../../media/tools/toolbox/toolbox-before.png":::
 
@@ -356,7 +356,7 @@ In Foundry Toolkit for Visual Studio Code, copy the toolbox consumer endpoint fr
 1. On the **Toolboxes** tab, locate your toolbox.
 1. In the **Endpoint URL** column, copy the endpoint.
 
-The **Endpoint URL** value is the toolbox consumer endpoint. To construct a version-specific endpoint, use the developer pattern shown in the table above.
+The **Endpoint URL** value is the toolbox consumer endpoint. To construct a version-specific endpoint, use the developer pattern shown in the previous table.
 
 :::image type="content" source="../../media/tools/toolbox/toolbox-vscode-list.png" alt-text="Screenshot of Foundry Toolkit in Visual Studio Code showing the Toolboxes view with the toolbox endpoint URL and the Scaffold code template action." lightbox="../../media/tools/toolbox/toolbox-vscode-list.png":::
 
@@ -1619,7 +1619,7 @@ resources:
         project_connection_id: mcp-conn
 ```
 
-**OAuth — managed connector:**
+**OAuth - managed connector:**
 
 Use this pattern for MCP servers that support Foundry's managed OAuth flow. The `connectorName` value must match a managed connector available in the Foundry Tools Catalog.
 
@@ -1640,7 +1640,7 @@ resources:
         project_connection_id: github-oauth-conn
 ```
 
-**OAuth — custom app registration:**
+**OAuth - custom app registration:**
 
 Use this pattern when you bring your own OAuth app registration for the MCP server.
 
@@ -1720,7 +1720,7 @@ resources:
 ```
 
 > [!NOTE]
-> The `audience` field is required for `UserEntraToken` connections. Without it, `tools/list` returns 0 tools.
+> The `audience` field is required for `UserEntraToken` connections. Without it, `tools/list` returns zero tools.
 
 :::zone-end
 
@@ -2051,7 +2051,7 @@ Use this pattern to let the agent write and execute Python code. The pattern doe
 To upload a file for Code Interpreter to use, call `POST {project_endpoint}/openai/v1/files` with `purpose=assistants`. The returned file ID is the value you supply as `<FILE_ID>` in the tool configuration. See [Code Interpreter](code-interpreter.md) for full upload examples.
 
 > [!IMPORTANT]
-> When using Code Interpreter through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share the same container context.
+> When Code Interpreter is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share the same container context.
 
 :::zone pivot="rest-api"
 
@@ -2166,7 +2166,7 @@ To create a file and vector store, use the `{project_endpoint}/openai/v1` API:
 The resulting vector store ID is the value you supply as `<VECTOR_STORE_ID>`. See [File Search](file-search.md) for full examples in each language.
 
 > [!IMPORTANT]
-> When using File Search through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to the same vector store.
+> When File Search is used through a toolbox in a hosted agent, **user isolation isn't supported**. All users in the same project share access to the same vector store.
 
 :::zone pivot="rest-api"
 
@@ -2292,7 +2292,7 @@ azd env set FILE_SEARCH_VECTOR_STORE_ID "vs_xxxxxxxxxxxx"
 Use this pattern to expose any REST API described by an OpenAPI spec. Choose the `auth.type` that matches your API's security model.
 
 > [!IMPORTANT]
-> When using managed identity auth, you must assign the appropriate RBAC role to your **Foundry project's** managed identity on the target service. For example, assign Reader or higher on the target Azure resource. Without this assignment, the agent receives a `401 Unauthorized` response when calling the API. For full setup steps, see [Authenticate by using managed identity](openapi.md#authenticate-by-using-managed-identity-microsoft-entra-id).
+> When managed identity auth is used, you must assign the appropriate RBAC role to your **Foundry project's** managed identity on the target service. For example, assign Reader or higher on the target Azure resource. Without this assignment, the agent receives a `401 Unauthorized` response when calling the API. For full setup steps, see [Authenticate by using managed identity](openapi.md#authenticate-by-using-managed-identity-microsoft-entra-id).
 
 :::zone pivot="rest-api"
 
@@ -2572,10 +2572,10 @@ resources:
 
 | Symptom | Likely cause | Fix |
 | ------- | ------------ | --- |
-| `tools/list` returns 0 tools for MCP or A2A tools | Invalid or missing connection credentials for the remote MCP server or A2A agent. The toolbox can't retrieve tool manifests from the remote endpoint without valid auth. | Verify the `project_connection_id` exists in your Foundry project and the credentials are correct. Try connecting to the MCP server directly to test the auth setup. If using managed identity (PMI, agent identity, or MI), verify the correct RBAC role assignments for the caller on the target resource. |
-| `tools/list` returns 0 tools for OpenAPI tools | Invalid OpenAPI spec. The toolbox constructs the tool manifest from the spec, which fails if the spec is malformed. | Validate your OpenAPI spec content. Check that it conforms to OpenAPI 3.0 or 3.1 and includes valid `paths`, `operationId` values, and parameter schemas. If using managed identity auth, also verify RBAC role assignments on the target service. |
+| `tools/list` returns zero tools for MCP or A2A tools | Invalid or missing connection credentials for the remote MCP server or A2A agent. The toolbox can't retrieve tool manifests from the remote endpoint without valid auth. | Verify the `project_connection_id` exists in your Foundry project and the credentials are correct. Try connecting to the MCP server directly to test the auth setup. If using managed identity (PMI, agent identity, or MI), verify the correct RBAC role assignments for the caller on the target resource. |
+| `tools/list` returns zero tools for OpenAPI tools | Invalid OpenAPI spec. The toolbox constructs the tool manifest from the spec, which fails if the spec is malformed. | Validate your OpenAPI spec content. Check that it conforms to OpenAPI 3.0 or 3.1 and includes valid `paths`, `operationId` values, and parameter schemas. If using managed identity auth, also verify RBAC role assignments on the target service. |
 | `tools/list` returns fewer tools than expected | The `allowed_tools` filter contains incorrect or misspelled tool names. Tool names are case-sensitive and must follow the [MCP specification for tool names](https://modelcontextprotocol.io/specification/2025-03-26/server/tools) (no whitespace or special characters). | Remove `allowed_tools` temporarily and call `tools/list` to get the full tool list. Use the exact names from the response to set values for `allowed_tools`. |
-| `tools/list` returns 0 tools (other tool types) | Toolbox not fully provisioned or tool type unsupported in region. For built-in tools (Web Search, AI Search, Code Interpreter, File Search), tool manifests are constructed server-side and don't require auth — if they return empty, the toolbox version might not be provisioned yet. | Wait 10 seconds and retry. |
+| `tools/list` returns zero tools (other tool types) | Toolbox not fully provisioned or tool type unsupported in region. For built-in tools (Web Search, AI Search, Code Interpreter, File Search), tool manifests are constructed server-side and don't require auth — if they return empty, the toolbox version might not be provisioned yet. | Wait 10 seconds and retry. |
 | `400 Multiple tools without identifiers` | Two unnamed tool types in one toolbox | Keep at most one unnamed type; add `server_label` to all MCP tools. |
 | `CONSENT_REQUIRED` (code `-32006`) | OAuth connection requires user consent | Open the consent URL in a browser and complete the OAuth flow, then retry. |
 | `401` on MCP calls | Expired token or wrong scope | Use scope `https://ai.azure.com/.default` and refresh the token. |
