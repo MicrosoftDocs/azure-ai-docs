@@ -65,20 +65,20 @@ To get started with deployment, see [Deploy Microsoft Foundry Models in the Foun
 Managed compute deployment creates a dedicated endpoint that hosts the model on dedicated compute resources. This option is required for **all non-ADM models**.
 
 > [!IMPORTANT]
-> To deploy models on managed compute, use a hub-based project in the Foundry portal (classic). For more information about the available Foundry portals, see [What is Microsoft Foundry?](../what-is-foundry.md).
+Managed compute deployment creates a dedicated endpoint that hosts the model on dedicated compute resources. This option is required for models that don't belong to the category of [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md), such as custom models and industry models.
 
 ### Which models use managed compute?
 
-Managed compute is the deployment option for models that aren't sold directly by Azure. Model collections that require managed compute include:
+Examples of model collections that require managed compute include:
 
-- Anthropic
 - Hugging Face
+- Some Meta models
+- Some Mistral models
 - NVIDIA inference microservices (NIMs)
 - Industry models (Saifr, Rockwell, Bayer, Cerence, Sight Machine, Page AI, SDAIA)
 - Databricks
 - Custom models
 
-For the full list, see [Foundry Models from partners and community](../foundry-models/concepts/models-from-partners.md).
 
 
 ### Capabilities
