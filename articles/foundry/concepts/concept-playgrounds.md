@@ -236,7 +236,7 @@ The images playground is ideal for developers who build image generation flows. 
 
 You can use the images playground with these models:
 
-- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs) from Azure OpenAI.
+- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs) and gpt-image-2 from Azure OpenAI.
 - [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) from Stability AI.
 - [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
 
@@ -244,11 +244,11 @@ Follow these steps to use the images playground:
 
 1. Select **Build** from the upper-right navigation.
 1. Select **Models** from the left pane.
-1. Select an image generation model, such as **gpt-image-1** from your list of deployed models. If you don't have a deployment already, select **Deploy base model** from the top right side of the page and deploy the `gpt-image-1` model.
+1. Select an image generation model, such as **gpt-image-1** from your list of deployed models. If you don't have a deployment already, select **Deploy base model** from the top right side of the page and deploy the model.
 1. Enter your text prompt. For models that support image-to-image generation, upload an image attachment to the prompt bar.
 1. Adjust generation controls such as number of variations and aspect ratio to understand model responsiveness and constraints.
 1. Visually observe outputs in the grid view across prompt tweaks or parameter changes.
-1. Use inpainting to transform parts of your image. Inpainting with text transformation is available for gpt-image-1. Use text prompts to specify the change.
+1. Use inpainting to transform parts of your image. Inpainting with text transformation is available for gpt-image-1 and gpt-image-2. Use text prompts to specify the change.
 1. Select **View Code** to access multilingual code samples for production integration.
 
 ### What to validate when experimenting in images playground

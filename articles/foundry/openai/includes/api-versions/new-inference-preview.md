@@ -4156,7 +4156,7 @@ This model adds Responsible AI content filter annotations for prompt input.
 | n | integer | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | No | 1 |
 | output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for `gpt-image-1`-series models with the `webp` or `jpeg` output formats, and defaults to 100. | No | 100 |
 | output_format | enum | The format in which the generated images are returned. This parameter is only supported for `gpt-image-1`-series models. Must be one of `png`, `jpeg`, or `webp`.<br>Possible values: `png`, `jpeg`, `webp` | No |  |
-| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for `gpt-image-1`-series models, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`. | Yes |  |
+| prompt | string | A text description of the desired image(s).  | Yes |  |
 | quality | enum | The quality of the image that will be generated.<br><br>- `auto` (default value) will automatically select the best quality for the given model.<br>- `high`, `medium` and `low` are supported for `gpt-image-1`-series models.<br>- `hd` and `standard` are supported for `dall-e-3`.<br>- `standard` is the only option for `dall-e-2`.<br>Possible values: `standard`, `hd`, `low`, `medium`, `high`, `auto` | No |  |
 | response_format | enum | The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for `gpt-image-1`-series models which will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
 | size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`-series models, one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`, and one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3`.<br>Possible values: `auto`, `1024x1024`, `1536x1024`, `1024x1536`, `256x256`, `512x512`, `1792x1024`, `1024x1792` | No |  |
@@ -6560,7 +6560,7 @@ A tool that generates images using a model like `gpt-image-1.5`.
 | input_image_mask | object | Optional mask for inpainting. Contains `image_url` (string, optional) and `file_id` (string, optional). | No |  |
 | └─ file_id | string | File ID for the mask image. | No |  |
 | └─ image_url | string | Base64-encoded mask image. | No |  |
-| model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1`, `gpt-image-1.5` | No |  |
+| model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1`, `gpt-image-1.5`, `gpt-image-2` | No |  |
 | moderation | enum | Moderation level for the generated image. Default: `auto`.<br>Possible values: `auto`, `low` | No |  |
 | output_compression | integer | Compression level for the output image. Default: 100. | No | 100 |
 | output_format | enum | The output format of the generated image. One of `png`, `webp`, or `jpeg`. Default: `png`.<br>Possible values: `png`, `webp`, `jpeg` | No |  |
