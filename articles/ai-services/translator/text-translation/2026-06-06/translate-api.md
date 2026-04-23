@@ -660,4 +660,4 @@ Adaptive custom translation deploys on Translator infrastructure. Charges are ba
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [View 2026-06-06 migration guide](../how-to/migrate-to-preview.md)
+> [View 2026-06-06 migration guide](../how-to/migrate-to-2026-06-06.md)
