@@ -56,7 +56,7 @@ Most scenarios require input data. You can provide data in two ways:
 Every evaluation requires a `data_source_config` that tells the service what fields to expect in your data:
 
 - **`custom`** — You define an `item_schema` with your field names and types. Set `include_sample_schema` to `true` when using a target so evaluators can reference generated responses.
-- **`azure_ai_source`** — The schema is inferred from the service. Set `"scenario"` to `"responses"` for agent response evaluation, `"traces"` for [trace evaluation](#trace-evaluation), `"synthetic_data_gen_preview"` for [synthetic data evaluation (preview)](#synthetic-data-evaluation-preview), or `"red_team"` for [red teaming](run-ai-red-teaming-cloud.md).
+- **`azure_ai_source`** — The schema is inferred from the service. Set `"scenario"` to `"responses"` for agent response evaluation, `"synthetic_data_gen_preview"` for [synthetic data evaluation (preview)](#synthetic-data-evaluation-preview), or `"red_team"` for [red teaming](run-ai-red-teaming-cloud.md).
 
 Each scenario requires evaluators that define your testing criteria. For guidance on selecting evaluators, see [built-in evaluators](../../concepts/observability.md#what-are-evaluators).
 
