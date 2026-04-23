@@ -59,7 +59,7 @@ Use the following table to see the permissions allowed for each key Azure built-
 |**Contributor**|✔|✔|||✔|✔||
 |**Reader**|||||✔|||
 
-To publish agents, you need the **Azure AI Project Manager** role (minimum) on the Foundry resource scope. For more information, see [Publish and share agents in Microsoft Foundry](../agents/how-to/publish-agent.md).
+To publish agents, you need the **Azure AI Project Manager** role (minimum) on the Foundry resource scope. For more information, see [Agent applications in Microsoft Foundry](../agents/how-to/agent-applications.md).
 
 :::image type="content" source="../media/how-to/network/detailed-rbac-diagram.png" alt-text="Diagram of the built-in roles in Foundry." lightbox="../media/how-to/network/detailed-rbac-diagram.png":::
  
