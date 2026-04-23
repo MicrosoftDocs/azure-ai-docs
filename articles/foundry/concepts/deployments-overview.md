@@ -65,7 +65,7 @@ To get started with deployment, see [Deploy Microsoft Foundry Models in the Foun
 Managed compute deployment creates a dedicated endpoint that hosts the model on dedicated compute resources. This option is required for **all non-ADM models**.
 
 > [!IMPORTANT]
-Managed compute deployment creates a dedicated endpoint that hosts the model on dedicated compute resources. This option is required for models that don't belong to the category of [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md), such as custom models and industry models.
+> Managed compute deployment creates a dedicated endpoint that hosts the model on dedicated compute resources. This option is required for models that don't belong to the category of [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md), such as custom models and industry models.
 
 ### Which models use managed compute?
 
