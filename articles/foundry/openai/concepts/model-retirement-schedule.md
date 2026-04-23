@@ -13,6 +13,7 @@ ms.author: mopeakande
 ms.reviewer: josander
 reviewer: johnrsanders
 recommendations: false
+#customer intent: As a developer, I want to see the retirement schedule and find replacement models for retiring Foundry Models so that I can update my applications before support ends.
 ---
 
 # Model retirement schedule

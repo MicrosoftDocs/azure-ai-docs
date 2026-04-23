@@ -12,7 +12,11 @@ ms.date: 04/23/2026
 ms.custom: include, classic-and-new
 ---
 
+This article lists the retirement schedule for Foundry Models — their current lifecycle stage, retirement date, and suggested replacement. Use it to plan migrations before a model is deprecated or retired. For details on what each lifecycle stage means and how notifications work, see [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md).
+
 ## Foundry Models sold directly by Azure
+
+This section lists the retirement lifecycle for Foundry Models sold directly by Azure.
 
 ### Azure OpenAI
 
@@ -159,6 +163,8 @@ ms.custom: include, classic-and-new
 
 ## Foundry Models from partners and community
 
+This section lists the retirement lifecycle for Foundry Models available through the Foundry model catalog from third-party providers.
+
 ### Anthropic
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
@@ -238,5 +244,5 @@ ms.custom: include, classic-and-new
 
 ## Related content
 
-- [Retired Foundry Models](retired-models.md)
-- [Microsoft Foundry Models lifecycle and support policy](model-retirements.md)
+- [Retired Foundry Models](../concepts/retired-models.md)
+- [Microsoft Foundry Models lifecycle and support policy](../concepts/model-retirements.md)

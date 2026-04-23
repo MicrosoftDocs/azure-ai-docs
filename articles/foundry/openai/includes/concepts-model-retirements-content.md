@@ -11,7 +11,7 @@ ms.date: 04/23/2026
 ms.custom: include, classic-and-new
 ---
 
-Microsoft Foundry Models move through a predictable lifecycle — from preview to general availability (GA) to eventual retirement — giving you time to evaluate replacements and migrate workloads. This article explains each lifecycle stage, the overlap commitments Microsoft makes when a model retires, and how you're notified. For specific retirement dates, see [Model Retirement Schedule](concepts/model-retirement-schedule.md).
+Microsoft Foundry Models move through a predictable lifecycle — from preview to general availability (GA) to eventual retirement — giving you time to evaluate replacements and migrate workloads. This article explains each lifecycle stage, the overlap commitments Microsoft makes when a model retires, and how you're notified. For specific retirement dates, see [Model retirement schedule](../concepts/model-retirement-schedule.md).
 
 ## How model lifecycle works
 
