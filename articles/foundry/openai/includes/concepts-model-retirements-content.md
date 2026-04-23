@@ -17,14 +17,18 @@ For the availability of models, see the following information:
 
 - Generally Available (GA) model versions will be available for a minimum of 12 months.
 - After 12 months, existing customers may continue to use older model versions for an additional six months.
-- New customers who have never deployed the older model version will no longer have access after 12 months.
+- New customers who have never deployed the older model version in the same Azure subscription will no longer have access after 12 months.
 - For global deployments, all future model versions starting with `gpt-4o` and `gpt-4 0409` will be available with their (`N`) next succeeding model (`N+1`) for comparison together.
 - Customers have 60 days to try out a new GA model in at least one global or standard region before any upgrades happen to a newer GA model.
 
 ### Terminology
 
-- **Deprecation**: When a model is deprecated, it's no longer available for new customers. It continues to be available for use by customers who have existing deployments until the model is retired.
+- **Deprecation**: When a model is deprecated, it's no longer available for new customers. It continues to be available for use by customers who have existing deployments until the model is retired. For the purposes of this document, "customer" is evaluated at the Azure subscription level,based on whether that subscription has ever deployed the specific model version.
+
 - **Retirement**: When a model is retired, it's no longer available for use. Azure OpenAI deployments of a retired model always return error responses.
+
+Example:
+If a customer has deployed a model version in Subscription A before the deprecation date,and later creates a new Subscription B under the same tenant after the deprecation date,Subscription B is considered a new customer and cannot deploy the deprecated model version.
 
 ## Notifications
 
