@@ -3,7 +3,7 @@ title: Global Standard model availability for priority processing
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for priority processing of Global Standard model deployments.
 manager: nitinme
-ms.date: 04/21/2026
+ms.date: 04/23/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -13,30 +13,30 @@ ms.custom:
 
 | **Region**     | **gpt-5.4-mini**, **2026-03-17**   | **gpt-5.4**, **2026-03-05**   | **gpt-5.2**, **2025-12-11**   | **gpt-5.1**, **2025-11-13**   | **gpt-4.1**, **2025-04-14**   |
 |:-------------------|:--------------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
-| australiaeast      | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| brazilsouth        | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| canadacentral      | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| canadaeast         | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
+| australiaeast      | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| brazilsouth        | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| canadacentral      | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| canadaeast         | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
 | centralus          | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
-| eastus             | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| francecentral      | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| germanywestcentral | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| italynorth         | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| japaneast          | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
+| eastus             | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| francecentral      | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| germanywestcentral | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| italynorth         | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| japaneast          | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
 | koreacentral       | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
-| northcentralus     | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| norwayeast         | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
+| northcentralus     | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| norwayeast         | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
 | polandcentral      | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
-| southafricanorth   | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
+| southafricanorth   | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
 | southcentralus     | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
-| southeastasia      | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| southindia         | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| spaincentral       | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
+| southeastasia      | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| southindia         | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| spaincentral       | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
 | swedencentral      | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
-| switzerlandnorth   | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| switzerlandwest    | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| uaenorth           | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
+| switzerlandnorth   | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| switzerlandwest    | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| uaenorth           | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
 | uksouth            | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
-| westeurope         | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| westus             | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| westus3            | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
+| westeurope         | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| westus             | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| westus3            | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |

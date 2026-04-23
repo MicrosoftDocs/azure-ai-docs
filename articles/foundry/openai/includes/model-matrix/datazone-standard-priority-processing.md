@@ -3,7 +3,7 @@ title: Datazone standard model availability for priority processing
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Regional availability for priority processing of model deployments
 manager: nitinme
-ms.date: 04/21/2026
+ms.date: 04/23/2026
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
@@ -14,8 +14,8 @@ ms.custom:
 | **Region**   | **gpt-5.4-mini**, **2026-03-17**   | **gpt-5.4**, **2026-03-05**   | **gpt-5.2**, **2025-12-11**   | **gpt-5.1**, **2025-11-13**   | **gpt-4.1**, **2025-04-14**   |
 |:-----------------|:--------------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
 | centralus        | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
-| eastus           | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| northcentralus   | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
+| eastus           | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| northcentralus   | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
 | southcentralus   | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
-| westus           | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
-| westus3          | -                            | ✅                        | ✅                        | ✅                        | ✅                        |
+| westus           | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
+| westus3          | ✅                             | ✅                        | ✅                        | ✅                        | ✅                        |
