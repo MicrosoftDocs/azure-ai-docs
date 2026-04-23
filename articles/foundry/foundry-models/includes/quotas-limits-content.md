@@ -12,6 +12,27 @@ ms.custom: include, classic-and-new
 
 This article provides a quick reference and detailed description of the quotas and limits for [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md). For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quotas and limits in Azure OpenAI](../../openai/quotas-limits.md).
 
+## Global quotas and Data Zone quotas 
+
+Microsoft Foundry is introducing Global quotas and Data Zone quotas to simplify and standardize how quota is enforced across deployments. Starting with Mistral Medium 3.5, quota for Global Standard and Data Zone Standard deployments is enforced at the subscription level, rather than independently per resource or per region.
+
+This change consolidates quota into shared pools:
+
+* **Global Standard deployments** of the same model and version share one quota pool across all regions in a subscription.
+* **Data Zone Standard deployments** of the same model and version share one quota pool per data zone (for example, US or EU). Each data zone has its own separate quota pool.
+
+All other deployment types retain their existing per‑deployment, per‑region, per‑subscription quota behavior.
+
+## What’s changing for me?
+
+With Global and Data Zone quotas:
+
+* All Global Standard deployments of the same model under a subscription now draw from a single shared quota pool across all regions.
+* All Data Zone Standard deployments of the same model under a subscription draw from a shared quota pool within each data zone.
+* Previously approved quota increases are retained and applied at the subscription level.
+
+This consolidation enables Microsoft Foundry to offer supported models consistently across all Foundry regions, without regional availability constraints driven by quota mechanics.
+
 ## Quotas and limits reference
 
 The following sections provide a quick guide to the default quotas and limits that apply to Foundry Models:
