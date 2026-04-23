@@ -21,7 +21,7 @@ Microsoft Foundry Models is the hub for discovering and deploying a wide range o
 Foundry provides two deployment options:
 
 - **Standard deployment in Foundry resources** — For Foundry Models, including [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) (also known as Azure Direct Models, or ADM) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md). This option is the preferred and most capable deployment path.
-- **Managed compute deployment** — For all non-ADM models, including some models from partner and community, and custom models.
+- **Managed compute deployment** — Available for all non-ADM models, including some models from partner and community, and custom models.
 
 The Foundry portal automatically selects the appropriate deployment option based on the model you choose. Foundry Models deploy through Foundry resources. All other models deploy on managed compute.
 
@@ -38,7 +38,7 @@ Standard deployment in Foundry resources is **the preferred deployment option** 
 
 ### Which models use standard deployment?
 
-All [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) use standard deployment. These models include all Azure OpenAI models and selected models from top providers that are billed through your Azure subscription, covered by Azure service-level agreements, and supported by Microsoft.
+All Foundry Models, including [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md) use standard deployment. Foundry Models sold directly by Azure include all Azure OpenAI models and selected models from top providers that are billed through your Azure subscription, covered by Azure service-level agreements, and supported by Microsoft. Select Models from partners and community that use standard deployment include Anthropic models, and specific models from partners like Mistral, Cohere, and Meta.
 
 ### Capabilities
 
@@ -56,13 +56,16 @@ Standard deployment supports:
 Standard deployment is available in:
 
 - **Foundry resources** — The primary resource type for new Foundry projects. No AI Hub required.
-- **Azure OpenAI resources** — If you use Azure OpenAI resources, the model catalog shows only Azure OpenAI models for deployment. Upgrade to a Foundry resource for access to the full set of ADM models.
+- **Azure OpenAI resources** — If you use Azure OpenAI resources, the model catalog shows only Azure OpenAI models for deployment. Upgrade to a Foundry resource for access to the full set of Foundry Models.
 
-To get started, see [Deploy Microsoft Foundry Models in the Foundry portal](../foundry-models/how-to/deploy-foundry-models.md) or [Deploy models using Azure CLI and Bicep](../foundry-models/how-to/create-model-deployments.md).
+To get started with deployment, see [Deploy Microsoft Foundry Models in the Foundry portal](../foundry-models/how-to/deploy-foundry-models.md) or [Deploy models using Azure CLI and Bicep](../foundry-models/how-to/create-model-deployments.md).
 
 ## Managed compute deployment
 
 Managed compute deployment creates a dedicated endpoint that hosts the model on dedicated compute resources. This option is required for **all non-ADM models**.
+
+> [!IMPORTANT]
+> To deploy models on managed compute, use a hub-based project in the Foundry portal (classic). For more information about the available Foundry portals, see [What is Microsoft Foundry?](../what-is-foundry.md).
 
 ### Which models use managed compute?
 
@@ -77,8 +80,6 @@ Managed compute is the deployment option for models that aren't sold directly by
 
 For the full list, see [Foundry Models from partners and community](../foundry-models/concepts/models-from-partners.md).
 
-> [!IMPORTANT]
-> To deploy models on managed compute, use a hub-based project in the Foundry portal (classic). For more information about the available Foundry portals, see [What is Microsoft Foundry?](../what-is-foundry.md).
 
 ### Capabilities
 
@@ -106,7 +107,7 @@ Use [Standard deployment in Foundry resources](#standard-deployment-in-foundry-r
 
 | Capability | Standard deployment in Foundry resources | Managed compute |
 |---|---|---|
-| Which models can be deployed? | [ADM models](../foundry-models/concepts/models-sold-directly-by-azure.md) | [Non-ADM models](../foundry-models/concepts/models-from-partners.md) (partner, community, custom) |
+| Which models can be deployed? | All Foundry Models, including [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md) | Custom models, industry models, and some partner models |
 | Deployment resource | Foundry resource | AI project (hub-based, classic portal) |
 | Requires AI Hub | No | Yes |
 | Data processing options | Regional, data zone, global | Regional |
