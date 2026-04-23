@@ -248,7 +248,7 @@ Content-Type: application/json
 api-key: {{search-api-key}}
 ```
 
-**Reference:** [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list?view=rest-searchservice-2026-04-01&preserve-view=true)
+**Reference:** [Knowledge Bases - List](/rest/api/searchservice/knowledge-bases/list)
 
 ::: zone-end
 
@@ -305,7 +305,7 @@ Content-Type: application/json
 api-key: {{search-api-key}}
 ```
 
-**Reference:** [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get?view=rest-searchservice-2026-04-01&preserve-view=true)
+**Reference:** [Knowledge Bases - Get](/rest/api/searchservice/knowledge-bases/get)
 
 ::: zone-end
 

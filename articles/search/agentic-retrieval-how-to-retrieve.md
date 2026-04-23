@@ -314,7 +314,7 @@ Authorization: Bearer {{accessToken}}
 :::zone-end
 
 > [!IMPORTANT]
-> The 2026-04-01 API version only supports the `intents` input and extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2025-11-01-preview.
+> The 2026-04-01 API version only supports the `intents` input and minimal, extractive retrieval. Preview-only capabilities, including the `messages` input, query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2025-11-01-preview.
 
 ### Request parameters
 
@@ -361,7 +361,7 @@ Each knowledge base has an MCP endpoint at the following URL:
 https://<your-service-name>.search.windows.net/knowledgebases/<your-knowledge-base-name>/mcp?api-version=<api-version>
 ```
 
-The API version you specify determines what the connection returns. With the `2025-11-01-preview`, the knowledge base can return synthesized answers when the underlying knowledge base is configured with an LLM and a compatible reasoning effort. With `2026-04-01`, retrieval is always minimal and extractive, and the connection returns grounding data only.
+The API version you specify determines what the connection returns. With `2025-11-01-preview`, the knowledge base can return synthesized answers when the underlying knowledge base is configured with an LLM and a compatible reasoning effort. With `2026-04-01`, retrieval is always minimal and extractive, and the connection returns grounding data only.
 
 ### Authenticate to the MCP endpoint
 
@@ -537,8 +537,6 @@ x-ms-query-source-authorization: {{userAccessToken}}
 }
 ```
 
----
-
 **Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 :::zone-end
@@ -620,10 +618,10 @@ The output includes the following components:
 | source-specific activity | For each knowledge source included in the query, this section reports on elapsed time and which arguments were used in the query, including semantic ranker. Knowledge source types include `searchIndex`, `azureBlob`, and other [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). |
 | agenticReasoning | This section reports on token consumption for agentic reasoning during retrieval. |
 
+---
+
 > [!NOTE]
 > The `modelQueryPlanning` and `modelAnswerSynthesis` sections don't appear in the 2026-04-01 activity array because query planning and answer synthesis are preview-only features. For full activity output, use the 2025-11-01-preview.
-
----
 
 Here's an example of the activity array:
 
@@ -759,7 +757,7 @@ Here's an example of the references array:
 
 ## Examples
 
-The following examples illustrate different ways to call the retrieve action using the 2025-11-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the earlier sections in this article.
+The following examples illustrate different ways to call the retrieve action using the 2025-11-01-preview API version, which supports the full feature set, including answer synthesis and a configurable reasoning effort. For 2026-04-01 usage, see the previous sections.
 
 + [Override default reasoning effort and set request limits](#override-default-reasoning-effort-and-set-request-limits)
 + [Set references for each knowledge source](#set-references-for-each-knowledge-source)
