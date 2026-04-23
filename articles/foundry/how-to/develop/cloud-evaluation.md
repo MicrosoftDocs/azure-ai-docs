@@ -1006,9 +1006,12 @@ Generate synthetic test queries, send them to a deployed model or Foundry agent,
 | `sources` | No | Seed data files (by file ID) to improve relevance of generated queries. Currently only one file is supported. |
 
 ### Set up evaluators and data mappings
+
 The synthetic data generator produces queries in the `{{item.query}}` field. The target generates responses available in `{{sample.output_text}}`. Map these fields to your evaluators:
+
 ```python
 data_source_config = {"type": "azure_ai_source", "scenario": "synthetic_data_gen_preview"}
+
 testing_criteria = [
     {
         "type": "azure_ai_evaluator",
@@ -1033,18 +1036,22 @@ testing_criteria = [
     },
 ]
 ```
+
 ### Create evaluation and run
 
 # [Python](#tab/python)
 
 #### Model target
+
 Generate synthetic queries and evaluate a model:
+
 ```python
 eval_object = client.evals.create(
     name="Synthetic Data Evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
+
 data_source = {
     "type": "azure_ai_synthetic_data_gen_preview",
     "item_generation_params": {
@@ -1059,13 +1066,16 @@ data_source = {
         "model": model_deployment_name,
     },
 }
+
 eval_run = client.evals.runs.create(
     eval_id=eval_object.id,
     name="synthetic-data-evaluation",
     data_source=data_source,
 )
 ```
+
 You can optionally add a system prompt to shape the target model's behavior. When you use `input_messages` with synthetic data generation, include only `system` role messages — the service provides the generated queries as user messages automatically.
+
 ```python
 data_source = {
     "type": "azure_ai_synthetic_data_gen_preview",
@@ -1097,6 +1107,7 @@ data_source = {
 #### Agent target
 
 Generate synthetic queries and evaluate a Foundry agent:
+
 ```python
 data_source = {
     "type": "azure_ai_synthetic_data_gen_preview",
@@ -1112,12 +1123,14 @@ data_source = {
         "version": agent_version,
     },
 }
+
 eval_run = client.evals.runs.create(
     eval_id=eval_object.id,
     name="synthetic-agent-evaluation",
     data_source=data_source,
 )
 ```
+
 # [cURL](#tab/curl)
 
 ```bash
@@ -1156,6 +1169,7 @@ curl --request POST \
       }
     ]
   }'
+
 # Step 2: Create a run with synthetic data generation
 curl --request POST \
   --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
@@ -1179,10 +1193,10 @@ curl --request POST \
     }
   }'
 ```
+
 ---
 
 To poll for completion and interpret results, see [Get results](#get-results). The response includes an `output_dataset_id` property that contains the ID of the generated dataset, which you can use to retrieve or reuse the synthetic data.
-
 
 ## Get results
 
