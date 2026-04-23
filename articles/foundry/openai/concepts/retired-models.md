@@ -4,7 +4,7 @@ description: "Retired Foundry Models: Find out which Microsoft Foundry Models ar
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: concept-article
-ms.date: 02/12/2026
+ms.date: 04/23/2026
 ms.custom:
   - references_regions, build-2023, build-2023-dataai
   - classic-and-new

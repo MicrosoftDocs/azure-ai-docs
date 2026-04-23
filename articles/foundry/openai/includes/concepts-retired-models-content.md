@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: mrbullwinkle
-ms.author: mbullwin
+author: msakande
+ms.author: mopeakande
 ms.reviewer: josander
 reviewer: johnrsanders
 ms.service: microsoft-foundry

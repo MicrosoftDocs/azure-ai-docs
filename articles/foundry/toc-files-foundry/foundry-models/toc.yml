@@ -50,14 +50,11 @@ items:
     - name: Upgrade or switch models with Ask AI
       displayName: Upgrade or switch models with Ask AI (preview)
       href: ../../observability/how-to/optimization-model-upgrade.md
-    - name: Model lifecycle and retirement for Foundry Models
-      displayName: Model deprecation and retirement for Microsoft Foundry Models
-      href: ../../concepts/model-lifecycle-retirement.md
-    - name: Azure OpenAI model retirement
-      displayName: Azure OpenAI model retirement in Microsoft Foundry Models
+    - name: Foundry Models lifecycle and support policy
+      displayName: Foundry Models lifecycle and support policy
       href: ../../openai/concepts/model-retirements.md
-    - name: Model retirement schedule
-      displayName: Model retirement schedule for Microsoft Foundry
+    - name: Model retirement schedule for Foundry Models
+      displayName: Model retirement schedule for Microsoft Foundry Models
       href: ../../openai/concepts/model-retirement-schedule.md
     - name: Retired Foundry Models
       displayName: Retired Azure OpenAI models in Microsoft Foundry
