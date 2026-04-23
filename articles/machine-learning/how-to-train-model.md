@@ -320,7 +320,13 @@ ENVIRONMENT=$(curl --location --request GET "https://management.azure.com/subscr
     ```
 
 ---
-
+    > [!IMPORTANT]
+    > Azure Machine Learning training and command jobs currently do not support Azure Container Registries (ACR) that use customized domain name labels (for example, registries created with secure or customized Domain Name Label scope).
+    > When running Azure ML jobs that pull container images from ACR:
+      > The ACR must use the default login server format (<registry-name>.azurecr.io)
+      > When creating the registry, ensure Domain name label scope is set to Unsecure
+    > Jobs that reference an ACR with customized domain labels may fail during job startup due to image pull or environment resolution errors.
+    > Support for customized ACR domain labels in Azure ML jobs will be added in a future release.
 
 ## Register the trained model
 
