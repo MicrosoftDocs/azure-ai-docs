@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search indexers for ingesting Acces
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/26/2026
+ms.date: 04/23/2026
 ---
 
 # Use a SharePoint indexer to ingest permission metadata and filter search results based on user access rights
@@ -192,7 +192,7 @@ POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-versi
 
 ### Resync ACLs across the full data source
 
-You can [resync the full data set ACL content](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-11-01-preview&preserve-view=true) after initial ingestion.
+You can [resync the full data set ACL content](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-11-01-preview&preserve-view=true) after initial ingestion. To fully succeed, this operation requires an [indexer run](search-howto-run-reset-indexers.md) after completion. 
 
 ```
 POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2025-11-01-preview

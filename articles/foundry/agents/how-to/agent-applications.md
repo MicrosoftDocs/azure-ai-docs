@@ -1,6 +1,6 @@
 ---
-title: "Publish agents in Microsoft Foundry"
-description: "Learn how to publish agents in Microsoft Foundry, configure authentication and permissions, and use a stable endpoint to invoke your agent."
+title: "Agent applications in Microsoft Foundry"
+description: "Learn about agent applications in Microsoft Foundry, configure authentication and permissions, and use a stable endpoint to invoke your agent."
 #customer intent: As a developer, I want to publish an agent in Microsoft Foundry so that I can provide a stable endpoint for external consumption.
 author: sdgilley
 ms.author: sgilley
