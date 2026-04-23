@@ -192,7 +192,7 @@ To create an agent from a manifest:
     > [!NOTE]
     > Agent manifests are for [educational and experimentation purposes only](#agent-manifests-for-foundry-agent-service). Resulting agents are not production ready. 
 1. Test your agent in the [agents playground](../../concepts/concept-playgrounds.md).
-1. When you're satisfied with the results, [publish your agent](../how-to/publish-agent.md).
+1. When you're satisfied with the results, [publish your agent](../how-to/agent-applications.md).
 
 > [!TIP]
 > Start by running a manifest with its default instructions before customizing. This helps you understand the agent's workflow and identify which parts to adjust for your scenario.

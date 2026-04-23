@@ -35,6 +35,8 @@ items:
     href: ../../agents/how-to/migrate-hosted-agent-preview.md
   - name: Create a workflow
     href: ../../agents/concepts/workflow.md
+  - name: Agent applications
+    href: ../../agents/how-to/agent-applications.md
   - name: Retrieval Augmented Generation (RAG) overview
     href: ../../concepts/retrieval-augmented-generation.md
   - name: Vector stores for file search
@@ -150,8 +152,6 @@ items:
   items:
   - name: Deploy a hosted agent
     href: ../../agents/how-to/deploy-hosted-agent.md
-  - name: Publish and share agents
-    href: ../../agents/how-to/publish-agent.md
   - name: Publish to Microsoft 365 Copilot and Teams
     href: ../../agents/how-to/publish-copilot.md
   - name: Agent 365

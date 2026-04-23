@@ -608,7 +608,7 @@ Use the Azure CLI directly to verify role assignments as shown in the REST tab.
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Publish and share agents](publish-agent.md)
+> [Agent applications](agent-applications.md)
 
 ## Related content
 
