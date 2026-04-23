@@ -20,10 +20,10 @@ Microsoft Foundry Models is the hub for discovering and deploying a wide range o
 
 Foundry provides two deployment options:
 
-- **Standard deployment in Foundry resources** — For [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) (Azure Direct Models, or ADM). This option is the preferred and most capable deployment path.
-- **Managed compute deployment** — For all non-ADM models, including partner, community, and custom models.
+- **Standard deployment in Foundry resources** — For Foundry Models, including [Foundry Models sold directly by Azure](../foundry-models/concepts/models-sold-directly-by-azure.md) (also known as Azure Direct Models, or ADM) and [select Models from partners and community](../foundry-models/concepts/models-from-partners.md). This option is the preferred and most capable deployment path.
+- **Managed compute deployment** — For all non-ADM models, including some models from partner and community, and custom models.
 
-The Foundry portal automatically selects the appropriate deployment option based on the model you choose. ADM models deploy through Foundry resources. All other models deploy on managed compute.
+The Foundry portal automatically selects the appropriate deployment option based on the model you choose. Foundry Models deploy through Foundry resources. All other models deploy on managed compute.
 
 | | Standard deployment in Foundry resources | Managed compute |
 |---|---|---|
