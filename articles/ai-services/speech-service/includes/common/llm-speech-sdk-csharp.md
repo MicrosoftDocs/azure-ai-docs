@@ -170,7 +170,7 @@ Replace `<path-to-your-audio-file.wav>` with the path to your audio file.
 
 For more information, see the following reference: [`EnhancedModeProperties`](/dotnet/api/azure.ai.speech.transcription.enhancedmodeproperties).
 
-## Tune a prompt
+## Use prompt-tuning
 
 You can provide an optional prompt to guide the output style for transcription or translation tasks:
 

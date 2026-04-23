@@ -341,7 +341,7 @@ To run the translation example, update the `pom.xml` main class configuration, o
 mvn exec:java -Dexec.mainClass="LlmSpeechTranslate"
 ```
 
-## Tune a prompt
+## Use prompt-tuning
 
 You can provide an optional prompt to guide the output style for transcription or translation tasks.
 

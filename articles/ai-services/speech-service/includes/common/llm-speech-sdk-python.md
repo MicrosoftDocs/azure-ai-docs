@@ -277,7 +277,7 @@ You can also use LLM Speech to translate audio into a target language. Set the `
     python llm_speech_translate.py
     ```
 
-## Tune a prompt
+## Use prompt-tuning
 
 You can provide an optional prompt to guide the output style for transcription or translation tasks. Replace the `prompt` value in the `EnhancedModeProperties` object.
 
