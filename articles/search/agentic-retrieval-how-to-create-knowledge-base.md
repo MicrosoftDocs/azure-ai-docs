@@ -24,7 +24,7 @@ A knowledge base specifies:
 
 ### Usage support
 
-| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-bases?view=rest-searchservice-2026-04-01&preserve-view=true) |
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-bases) |
 |--|--|--|--|--|--|--|
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
@@ -60,11 +60,11 @@ A knowledge base specifies:
 
 ::: zone pivot="rest"
 
-+ Supported Search Service REST API version:
++ Required REST API version:
 
-  + For preview features: [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
-  + For generally available features: [2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
+  + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
 ::: zone-end
 
@@ -218,7 +218,7 @@ await foreach (var kb in knowledgeBases)
 }
 ```
 
-**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
 
 ::: zone-end
 
@@ -243,7 +243,6 @@ for kb in index_client.list_knowledge_bases():
 
 ```http
 # List knowledge bases
-# Set api-version to 2025-11-01-preview or 2026-04-01
 GET {{search-url}}/knowledgebases?api-version={{api-version}}&$select=name
 Content-Type: application/json
 api-key: {{search-api-key}}
@@ -275,7 +274,7 @@ string json = JsonSerializer.Serialize(kb, new JsonSerializerOptions { WriteInde
 Console.WriteLine(json);
 ```
 
-**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true)
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient)
 
 ::: zone-end
 
@@ -301,7 +300,6 @@ print(json.dumps(kb.as_dict(), indent = 2))
 
 ```http
 # Get knowledge base
-# Set api-version to 2025-11-01-preview or 2026-04-01
 GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-version}}
 Content-Type: application/json
 api-key: {{search-api-key}}
@@ -561,7 +559,7 @@ api-key: {{search-api-key}}
 ::: zone-end
 
 > [!IMPORTANT]
-> The 2026-04-01 API version only accepts generally available knowledge source types and doesn't support `answerInstructions`, `outputMode`, `retrievalInstructions`, or `retrievalReasoningEffort`. For full functionality, use the 2025-11-01-preview.
+> The 2026-04-01 API version only accepts generally available knowledge source types and supports minimal, extractive retrieval. Preview-only capabilities, such as query planning, answer synthesis, and configurable reasoning effort, aren't supported. For full functionality, use the 2025-11-01-preview.
 
 ### Knowledge base properties
 
@@ -590,6 +588,7 @@ Pass the following properties to create a knowledge base.
 | `KnowledgeSources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). You must specify generally available knowledge source types. | Array | Yes |
 | `Description` | A description of the knowledge base. | String | No |
 | `Models` | Required for web knowledge sources. Specifies a [supported LLM](#supported-models) used to summarize and preprocess web content before it can be included in retrieval results. Get connection details from the Microsoft Foundry portal or a command-line request, and then provide them by using the [KnowledgeBaseAzureOpenAIModel class](/dotnet/api/azure.search.documents.indexes.models.knowledgebaseazureopenaimodel?view=azure-dotnet&preserve-view=true). You can use role-based access control instead of API keys for the Azure AI Search connection to the model. | Array | No |
+| `EncryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge base and the generated objects. | Object | No |
 
 ---
 
@@ -698,7 +697,6 @@ print(f"Knowledge base deleted successfully.")
 
 ```http
 # Delete a knowledge base
-# Set api-version to 2025-11-01-preview or 2026-04-01
 DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version={{api-version}}
 api-key: {{search-api-key}}
 ```

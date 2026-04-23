@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".dockit", ".dockit", "{60F71AAF-6BC0-3DB4-B667-1FF619FFB130}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "snippet-test", "snippet-test", "{56D14A8D-6A51-2E7E-00F4-2EC02BA0DC95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryTest", ".dockit\snippet-test\MemoryTest\MemoryTest.csproj", "{46030298-C580-636B-9148-8588D3A968F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46030298-C580-636B-9148-8588D3A968F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46030298-C580-636B-9148-8588D3A968F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46030298-C580-636B-9148-8588D3A968F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46030298-C580-636B-9148-8588D3A968F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56D14A8D-6A51-2E7E-00F4-2EC02BA0DC95} = {60F71AAF-6BC0-3DB4-B667-1FF619FFB130}
+		{46030298-C580-636B-9148-8588D3A968F9} = {56D14A8D-6A51-2E7E-00F4-2EC02BA0DC95}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07595B31-6457-4E80-AAA4-2943151E1ED7}
+	EndGlobalSection
+EndGlobal
