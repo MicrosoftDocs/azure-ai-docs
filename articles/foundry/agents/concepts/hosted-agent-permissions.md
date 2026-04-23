@@ -190,6 +190,9 @@ A similar role assignment is needed for the agent identity over the project. For
 
 Creating an Azure Container Registry requires the `Microsoft.ContainerRegistry/registries/write` permission at the scope of the resource group.
 
+> [!NOTE]
+> For hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
+
 | Built-in role | Scope | Can assignee create a container registry? |
 | --- | --- | --- |
 | Owner | Resource group | ✔ Yes |
