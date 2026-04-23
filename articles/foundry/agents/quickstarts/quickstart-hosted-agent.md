@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-deploy-method
 
 # Quickstart: Deploy your first hosted agent
 
-In this quickstart, you deploy a containerized AI agent with Foundry tools to Foundry Agent Service. The sample agent uses web search and optionally MCP tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
+In this quickstart, you deploy a containerized AI agent with Foundry tools to Foundry Agent Service. The sample agent uses web search and optionally Model Context Protocol (MCP) tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
 
 **In this quickstart, you:**
 
@@ -53,7 +53,7 @@ You need Azure AI Project Manager at project scope to create and deploy hosted a
 
 If you use azd or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
 
-Ensure that the Foundry Project's managed identity has ACR pull role on the Azure Container Registry you use. if you prefer and have Owner or "User Access Administrator" access then the tooling azd/vscode can also do this assignment for you.
+Ensure that the Foundry Project's managed identity has ACR pull role on the Azure Container Registry you use. If you prefer and have Owner or "User Access Administrator" access then the tooling azd/vscode can also do this assignment for you.
 Azure AI User for the platform-created agent identity (runtime model and tool access)
 
 
@@ -85,7 +85,7 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
 
     The interactive flow guides you through the following configuration:
 
-    - **Langugage** — Select which programming language you want sample code for, either C# or Python.
+    - **Language** — Select which programming language you want sample code for, either C# or Python.
     - **Agent Template** - Select a sample to start with.
     - **Model Configuration** - Select to deploy a new model in Foundry or use an existing one from an existing Foundry Project.
     - **Azure subscription** — select the subscription where you want the Foundry resources to be created.
@@ -161,7 +161,7 @@ Before deploying, verify the agent works locally.
     azd ai agent invoke --local "What is Microsoft Foundry?"
     ```
 
-    For agents using the Invocations API, check the `README.md` for the expected payload. The samples typically requie a JSON payload, but review what is in the `README.md` for that sample for a specific example:
+    For agents using the Invocations API, check the `README.md` for the expected payload. The samples typically require a JSON payload, but review what is in the `README.md` for that sample for a specific example:
     
     You should see a response from the agent.
 
