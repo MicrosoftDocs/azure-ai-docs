@@ -43,7 +43,6 @@ Cloud evaluation supports the following scenarios:
 | **[Model target evaluation](#model-target-evaluation)** | Provide queries and generate responses from a model at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_model` |
 | **[Agent target evaluation](#agent-target-evaluation)** | Provide queries and generate responses from a Foundry agent (prompt or hosted) at runtime for evaluation. | `azure_ai_target_completions` | `azure_ai_agent` |
 | **[Agent response evaluation](#agent-response-evaluation)** | Retrieve and evaluate Foundry agent responses by response IDs. | `azure_ai_responses` | — |
-| **[Trace evaluation](#trace-evaluation)** | Evaluate agent interactions already captured in Application Insights by trace ID. Use this approach for non-Foundry agents (LangChain and custom frameworks that adhere to OpenTelemetry based logging). | `azure_ai_traces` | — |
 | **[Synthetic data evaluation (preview)](#synthetic-data-evaluation-preview)** | Generate synthetic test queries, send them to a model or agent, and evaluate the responses. | `azure_ai_synthetic_data_gen_preview` | `azure_ai_model` or `azure_ai_agent` |
 | **[Red team evaluation](run-ai-red-teaming-cloud.md)** | Run automated adversarial testing against a model or agent. | `azure_ai_red_team` | `azure_ai_model` or `azure_ai_agent` |
 
@@ -982,249 +981,9 @@ curl --request POST \
 
 For a complete runnable example, see [sample_agent_response_evaluation.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_agent_response_evaluation.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
 
-## Trace evaluation
-
-Evaluate agent interactions that were already captured in [Application Insights](/azure/azure-monitor/app/app-insights-overview). Use the `azure_ai_traces` data source type. This scenario is useful for post-deployment evaluation of real production traffic — you select traces from your monitoring pipeline and run evaluators against them without replaying any requests.
-
-> [!IMPORTANT]
-> Trace evaluation is the recommended approach for evaluating **agents not built with the Microsoft Foundry Agent Service** — including LangChain and custom frameworks. As long as your agent emits [OpenTelemetry spans following the GenAI semantic conventions](#trace-data-requirements) to Application Insights, trace evaluation can assess its interactions using the same evaluators available for Foundry agents.
-
-Trace evaluation supports two modes:
-
-- **By trace IDs** — Evaluate specific agent interactions by providing their `operation_Id` values from Application Insights.
-- **By agent filter** — Automatically discover and evaluate recent traces for a given agent, without manually collecting trace IDs.
-
-> [!TIP]
-> Before you begin, complete [Get started](#get-started). This scenario also requires an [Application Insights resource connected to your Foundry project](../../observability/how-to/trace-agent-setup.md).
-
-### Trace data requirements
-
-Trace evaluation requires your agent to emit spans following the [OpenTelemetry semantic conventions for generative AI](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/). Specifically, the evaluation service reads **`invoke_agent` spans** from Application Insights and extracts conversation data from their attributes.
-
-The following span attributes are used:
-
-| Attribute | Required | Description |
-|-----------|----------|-------------|
-| `gen_ai.operation.name` | **Yes** | Must equal `"invoke_agent"`. The service ignores all other spans. |
-| `gen_ai.agent.id` | For agent filter mode | Unique agent identifier (format: `agent-name:version`). |
-| `gen_ai.agent.name` | For agent filter mode | Human-readable agent name. |
-| `gen_ai.input.messages` | For evaluators query inputs | JSON array of input messages following the [GenAI semantic conventions message format](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/#invoke-agent-span). Messages with role `user` or `system` map to `query`; messages with role `assistant` or `tool` map to `response`. |
-| `gen_ai.output.messages` | For evaluators query inputs | JSON array of model-generated output messages. All output messages map to `response`. If output also contains type: tool_call or type: tool_result, it maps to `tool_calls` |
-| `gen_ai.tool.definitions` | Optional | JSON array of tool schemas available to the agent. If absent, the service attempts to infer tool definitions from tool call messages, but inferred schemas may be incomplete. |
-| `gen_ai.conversation.id` | Optional | Conversation identifier, passed through to evaluation results for correlation. |
-
-> [!NOTE]
-> If `gen_ai.input.messages` and `gen_ai.output.messages` are empty or missing, quality evaluators (coherence, fluency, relevance, intent resolution) will return `score=None`. Safety evaluators (violence, self-harm, sexual, hate/unfairness) can still produce scores with partial data but they may not produce meaningful results.
-
-For Python agents built with the Azure AI Agent Server SDK, add the `[tracing]` extra to enable automatic span emission:
-
-```bash
-pip install "azure-ai-agentserver-core[tracing]"
-```
-
-### Prerequisites for trace evaluation
-
-In addition to the general [prerequisites](#prerequisites), trace evaluation requires:
-
-- An [Application Insights resource](/azure/azure-monitor/app/app-insights-overview) connected to your Foundry project. See [Set up tracing in Microsoft Foundry](../../observability/how-to/trace-agent-setup.md).
-- The project's managed identity must have the **Log Analytics Reader** role on both the Application Insights resource and its linked Log Analytics workspace.
-- The `azure-monitor-query` Python package (only needed if you collect trace IDs manually).
-
-```bash
-pip install "azure-ai-projects>=2.0.0" azure-monitor-query
-```
-
-Set these environment variables:
-
-- `APPINSIGHTS_RESOURCE_ID` — The Application Insights resource ID (for example, `/subscriptions/<subscription_id>/resourceGroups/<rg_name>/providers/Microsoft.Insights/components/<resource_name>`).
-- `AGENT_ID` — The agent identifier emitted by the tracing integration (`gen_ai.agent.id` attribute), used to filter traces. Format: `agent-name:version`.
-- `TRACE_LOOKBACK_HOURS` — (Optional) Number of hours to look back when querying traces. Defaults to `1`.
-
-### Option A: Evaluate by agent filter
-
-The simplest approach — let the service automatically discover and evaluate recent traces for a specific agent. No manual trace ID collection needed.
-
-```python
-import os
-
-agent_id = os.environ["AGENT_ID"]  # e.g., "my-weather-agent:1"
-trace_lookback_hours = int(os.environ.get("TRACE_LOOKBACK_HOURS", "1"))
-
-# Create the evaluation
-data_source_config = {
-    "type": "azure_ai_source",
-    "scenario": "traces",
-}
-
-eval_object = client.evals.create(
-    name="Agent Trace Evaluation (by agent)",
-    data_source_config=data_source_config,
-    testing_criteria=testing_criteria,  # See "Set up evaluators" below
-)
-
-# Create a run — the service queries App Insights for matching traces
-data_source = {
-    "type": "azure_ai_traces",
-    "agent_id": agent_id,
-    "max_traces": 50,           # Maximum number of traces to evaluate
-    "lookback_hours": trace_lookback_hours,
-}
-
-eval_run = client.evals.runs.create(
-    eval_id=eval_object.id,
-    name="agent-trace-eval-run",
-    data_source=data_source,
-)
-
-print(f"Evaluation run started: {eval_run.id}")
-```
-
-The service filters `invoke_agent` spans by the `gen_ai.agent.id` attribute, samples up to `max_traces` unique trace IDs, and evaluates all spans from those traces.
-
-### Option B: Evaluate by trace IDs
-
-For more control, collect specific trace IDs from Application Insights and evaluate them. This is useful when you want to evaluate a curated set of interactions (for example, traces flagged by alerts or sampled for quality review).
-
-#### Collect trace IDs from Application Insights
-
-Query Application Insights for `operation_Id` values from your agent's traces. Each `operation_Id` represents a complete agent interaction:
-
-```python
-import os
-from datetime import datetime, timedelta, timezone
-from azure.identity import DefaultAzureCredential
-from azure.monitor.query import LogsQueryClient, LogsQueryStatus
-
-appinsights_resource_id = os.environ["APPINSIGHTS_RESOURCE_ID"]
-agent_id = os.environ["AGENT_ID"]
-trace_query_hours = int(os.environ.get("TRACE_LOOKBACK_HOURS", "1"))
-
-end_time = datetime.now(timezone.utc)
-start_time = end_time - timedelta(hours=trace_query_hours)
-
-query = f"""dependencies
-| where timestamp between (datetime({start_time.isoformat()}) .. datetime({end_time.isoformat()}))
-| extend agent_id = tostring(customDimensions["gen_ai.agent.id"])
-| where agent_id == "{agent_id}"
-| distinct operation_Id"""
-
-credential = DefaultAzureCredential()
-logs_client = LogsQueryClient(credential)
-response = logs_client.query_resource(
-    appinsights_resource_id,
-    query=query,
-    timespan=None,  # Time range is specified in the query itself
-)
-
-trace_ids = []
-if response.status == LogsQueryStatus.SUCCESS:
-    for table in response.tables:
-        for row in table.rows:
-            trace_ids.append(row[0])
-
-print(f"Found {len(trace_ids)} trace IDs")
-```
-
-#### Create evaluation and run with trace IDs
-
-```python
-# Create the evaluation
-data_source_config = {
-    "type": "azure_ai_source",
-    "scenario": "traces",
-}
-
-eval_object = client.evals.create(
-    name="Agent Trace Evaluation (by trace IDs)",
-    data_source_config=data_source_config,
-    testing_criteria=testing_criteria,  # See "Set up evaluators" below
-)
-
-# Create a run using the collected trace IDs
-data_source = {
-    "type": "azure_ai_traces",
-    "trace_ids": trace_ids,
-    "lookback_hours": trace_query_hours,
-}
-
-eval_run = client.evals.runs.create(
-    eval_id=eval_object.id,
-    name="agent-trace-eval-run",
-    metadata={
-        "agent_id": agent_id,
-        "start_time": start_time.isoformat(),
-        "end_time": end_time.isoformat(),
-    },
-    data_source=data_source,
-)
-
-print(f"Evaluation run started: {eval_run.id}")
-```
-
-### Set up evaluators and data mappings
-
-When evaluating traces, the service automatically extracts conversation data from the OpenTelemetry span attributes. Use these field names directly in `data_mapping` (without the `item.` or `sample.` prefixes used in other scenarios):
-
-| Variable | Source attribute | Description |
-|----------|----------------|-------------|
-| `{{item.query}}` | `gen_ai.input.messages` (user/system roles) | The user query extracted from the trace. |
-| `{{item.response}}` | `gen_ai.input.messages` (assistant/tool roles) + `gen_ai.output.messages` | The agent's response extracted from the trace. |
-| `{{item.tool_definitions}}` | `gen_ai.tool.definitions` | Tool schemas available to the agent. Only required for tool-related evaluators |
-| `{{item.tool_calls}}` | Extracted from assistant messages in `gen_ai.input.messages` / `gen_ai.output.messages` | Tool calls made by the agent during the interaction. Used by tool evaluators. Only required for tool-related evaluators |
-
-```python
-testing_criteria = [
-    # Quality evaluators — require query and response from trace data
-    {
-        "type": "azure_ai_evaluator",
-        "name": "intent_resolution",
-        "evaluator_name": "builtin.intent_resolution",
-        "data_mapping": {
-            "query": "{{item.query}}",
-            "response": "{{item.response}}",
-            "tool_definitions": "{{item.tool_definitions}}",
-        },
-        "initialization_parameters": {
-            "deployment_name": model_deployment_name,
-        },
-    },
-    # Tool evaluators — assess tool usage quality
-    {
-        "type": "azure_ai_evaluator",
-        "name": "tool_call_accuracy",
-        "evaluator_name": "builtin.tool_call_accuracy",
-        "data_mapping": {
-            "query": "{{item.query}}",
-            "response": "{{item.response}}",
-            "tool_calls": "{{item.tool_calls}}",
-            "tool_definitions": "{{item.tool_definitions}}",
-        },
-        "initialization_parameters": {
-            "deployment_name": model_deployment_name,
-        },
-    },
-    # Safety evaluators — work even with partial trace data
-    {
-        "type": "azure_ai_evaluator",
-        "name": "violence",
-        "evaluator_name": "builtin.violence",
-        "data_mapping": {
-            "query": "{{item.query}}",
-            "response": "{{item.response}}",
-        },
-        "initialization_parameters": {
-            "threshold": 4,
-        },
-    },
-]
-```
-
-For a complete runnable example, see [sample_evaluations_builtin_with_traces.py](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_traces.py) on GitHub. To poll for completion and interpret results, see [Get results](#get-results).
-
 ## Synthetic data evaluation (preview)
 
 Generate synthetic test queries, send them to a deployed model or Foundry agent, and evaluate the responses using the `azure_ai_synthetic_data_gen_preview` data source type. Use this scenario when you don't have a test dataset — the service generates queries based on a prompt you provide (and/or from the agent's instructions), runs them against your target, and evaluates the responses.
-
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
 
@@ -1244,14 +1003,10 @@ Generate synthetic test queries, send them to a deployed model or Foundry agent,
 | `prompt` | No | Instructions describing the type of queries to generate. Optional when the agent target has instructions configured. |
 | `output_dataset_name` | No | Name for the output dataset where generated queries are stored. If not provided, the service generates a name automatically. |
 | `sources` | No | Seed data files (by file ID) to improve relevance of generated queries. Currently only one file is supported. |
-
 ### Set up evaluators and data mappings
-
 The synthetic data generator produces queries in the `{{item.query}}` field. The target generates responses available in `{{sample.output_text}}`. Map these fields to your evaluators:
-
 ```python
 data_source_config = {"type": "azure_ai_source", "scenario": "synthetic_data_gen_preview"}
-
 testing_criteria = [
     {
         "type": "azure_ai_evaluator",
@@ -1276,22 +1031,17 @@ testing_criteria = [
     },
 ]
 ```
-
 ### Create evaluation and run
 
 # [Python](#tab/python)
-
 #### Model target
-
 Generate synthetic queries and evaluate a model:
-
 ```python
 eval_object = client.evals.create(
     name="Synthetic Data Evaluation",
     data_source_config=data_source_config,
     testing_criteria=testing_criteria,
 )
-
 data_source = {
     "type": "azure_ai_synthetic_data_gen_preview",
     "item_generation_params": {
@@ -1306,16 +1056,13 @@ data_source = {
         "model": model_deployment_name,
     },
 }
-
 eval_run = client.evals.runs.create(
     eval_id=eval_object.id,
     name="synthetic-data-evaluation",
     data_source=data_source,
 )
 ```
-
 You can optionally add a system prompt to shape the target model's behavior. When you use `input_messages` with synthetic data generation, include only `system` role messages — the service provides the generated queries as user messages automatically.
-
 ```python
 data_source = {
     "type": "azure_ai_synthetic_data_gen_preview",
@@ -1344,11 +1091,8 @@ data_source = {
     },
 }
 ```
-
 #### Agent target
-
 Generate synthetic queries and evaluate a Foundry agent:
-
 ```python
 data_source = {
     "type": "azure_ai_synthetic_data_gen_preview",
@@ -1364,16 +1108,13 @@ data_source = {
         "version": agent_version,
     },
 }
-
 eval_run = client.evals.runs.create(
     eval_id=eval_object.id,
     name="synthetic-agent-evaluation",
     data_source=data_source,
 )
 ```
-
 # [cURL](#tab/curl)
-
 ```bash
 # Step 1: Create the evaluation
 curl --request POST \
@@ -1410,7 +1151,6 @@ curl --request POST \
       }
     ]
   }'
-
 # Step 2: Create a run with synthetic data generation
 curl --request POST \
   --url "https://${ACCOUNT}.services.ai.azure.com/api/projects/${PROJECT}/openai/evals/${EVAL_ID}/runs?api-version=v1" \
@@ -1434,10 +1174,9 @@ curl --request POST \
     }
   }'
 ```
-
 ---
-
 To poll for completion and interpret results, see [Get results](#get-results). The response includes an `output_dataset_id` property that contains the ID of the generated dataset, which you can use to retrieve or reuse the synthetic data.
+
 
 ## Get results
 
@@ -1577,7 +1316,6 @@ If an agent evaluator returns an error for unsupported tools:
 ## Related content
 
 - [Complete working samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-projects/samples/evaluations)
-- [Trace-based evaluation sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/evaluations/sample_evaluations_builtin_with_traces.py)
 - [Set up tracing in Microsoft Foundry](../../observability/how-to/trace-agent-setup.md)
 - [Evaluate your AI agents continuously](../../../foundry-classic/how-to/continuous-evaluation-agents.md)
 - [See evaluation results in the Foundry portal](../../how-to/evaluate-results.md)
