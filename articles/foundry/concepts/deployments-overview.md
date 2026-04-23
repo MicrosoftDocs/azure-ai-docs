@@ -27,7 +27,7 @@ The Foundry portal automatically selects the appropriate deployment option based
 
 | | Standard deployment in Foundry resources | Managed compute |
 |---|---|---|
-| **Models** | [ADM models](../foundry-models/concepts/models-sold-directly-by-azure.md) (Azure OpenAI + selected partner models billed through Azure) | [Non-ADM models](../foundry-models/concepts/models-from-partners.md) (Anthropic, Hugging Face, NVIDIA NIMs, industry models, Databricks, custom models) |
+| **Models** | [ADM models](../foundry-models/concepts/models-sold-directly-by-azure.md) (Azure OpenAI + partner models billed through Azure) and select Models from partners and community(../foundry-models/concepts/models-from-partners.md)| Other models in the model catalog from partners and custom models.  For example, models from Hugging Face, NVIDIA NIMs, industry models, and Databricks. |
 | **Billing** | Token usage or [provisioned throughput units (PTU)](../openai/concepts/provisioned-throughput.md) | Compute core hours (per-minute, per-instance) |
 | **Data processing** | Regional, data zone, or global | Regional only |
 | **Content filtering** | Built-in and customizable | Via Azure AI Content Safety APIs |
