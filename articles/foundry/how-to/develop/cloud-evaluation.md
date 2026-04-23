@@ -984,6 +984,7 @@ For a complete runnable example, see [sample_agent_response_evaluation.py](https
 ## Synthetic data evaluation (preview)
 
 Generate synthetic test queries, send them to a deployed model or Foundry agent, and evaluate the responses using the `azure_ai_synthetic_data_gen_preview` data source type. Use this scenario when you don't have a test dataset — the service generates queries based on a prompt you provide (and/or from the agent's instructions), runs them against your target, and evaluates the responses.
+
 > [!TIP]
 > Before you begin, complete [Get started](#get-started).
 
@@ -1003,6 +1004,7 @@ Generate synthetic test queries, send them to a deployed model or Foundry agent,
 | `prompt` | No | Instructions describing the type of queries to generate. Optional when the agent target has instructions configured. |
 | `output_dataset_name` | No | Name for the output dataset where generated queries are stored. If not provided, the service generates a name automatically. |
 | `sources` | No | Seed data files (by file ID) to improve relevance of generated queries. Currently only one file is supported. |
+
 ### Set up evaluators and data mappings
 The synthetic data generator produces queries in the `{{item.query}}` field. The target generates responses available in `{{sample.output_text}}`. Map these fields to your evaluators:
 ```python
@@ -1034,6 +1036,7 @@ testing_criteria = [
 ### Create evaluation and run
 
 # [Python](#tab/python)
+
 #### Model target
 Generate synthetic queries and evaluate a model:
 ```python
@@ -1092,6 +1095,7 @@ data_source = {
 }
 ```
 #### Agent target
+
 Generate synthetic queries and evaluate a Foundry agent:
 ```python
 data_source = {
@@ -1115,6 +1119,7 @@ eval_run = client.evals.runs.create(
 )
 ```
 # [cURL](#tab/curl)
+
 ```bash
 # Step 1: Create the evaluation
 curl --request POST \
@@ -1175,6 +1180,7 @@ curl --request POST \
   }'
 ```
 ---
+
 To poll for completion and interpret results, see [Get results](#get-results). The response includes an `output_dataset_id` property that contains the ID of the generated dataset, which you can use to retrieve or reuse the synthetic data.
 
 
