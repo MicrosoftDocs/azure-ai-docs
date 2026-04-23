@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/foundry/agents/how-to/publish-agent.md",
+      "redirect_url": "/azure/foundry/agents/how-to/agent-applications",
+      "redirect_document_id": true
+    },
+    {
       "source_path": "articles/foundry-classic/agents/how-to/tools-classic/logic-apps.md",
       "redirect_url": "/azure/logic-apps/add-agent-action-create-run-workflow",
       "redirect_document_id": false

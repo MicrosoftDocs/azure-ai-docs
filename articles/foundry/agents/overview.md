@@ -131,7 +131,7 @@ Agent Service supports the full build-test-deploy-monitor workflow:
 1. **Test** — Chat with your agent in the [agents playground](../concepts/concept-playgrounds.md) or run locally. MCP server integrations, including custom MCP servers hosted on Azure Functions, can be exercised directly in the playground via chat prompts to validate tool connectivity, permissions, and behavior before publishing.
 1. **Trace** — Inspect every model call, tool invocation, and decision with [agent tracing](../observability/concepts/trace-agent-concept.md).
 1. **Evaluate** — Run evaluations to measure quality and catch regressions.
-1. **Publish** — [Promote your agent](how-to/publish-agent.md) to a managed resource with a stable endpoint.
+1. **Publish** — [Promote your agent](how-to/agent-applications.md) to a managed resource with a stable endpoint.
 1. **Monitor** — Track performance and reliability with [service metrics](../observability/how-to/how-to-monitor-agents-dashboard.md) and dashboards.
 
 For a detailed walkthrough, see [Agent development lifecycle](concepts/development-lifecycle.md).
@@ -152,7 +152,7 @@ For environment setup instructions, see [Set up your environment](environment-se
 Agent Service provides built-in versioning and publishing so your agents can move from development to production with confidence.
 
 - **Versioning** — As you iterate on your agent, versions are automatically snapshotted. Roll back to any previous version or compare changes between versions.
-- **[Publishing](how-to/publish-agent.md)** — Promote an agent to a managed resource with a stable endpoint. Published agents inherit the [enterprise identity and access controls](#enterprise-capabilities) configured for your project and can be invoked programmatically.
+- **[Publishing](how-to/agent-applications.md)** — Promote an agent to a managed resource with a stable endpoint. Published agents inherit the [enterprise identity and access controls](#enterprise-capabilities) configured for your project and can be invoked programmatically.
 - **Distribution** — Share published agents through [Microsoft 365 Copilot and Teams](how-to/publish-copilot.md) and the Entra Agent Registry, putting your agents where your users already work.
 
 ## Security, privacy, and compliance

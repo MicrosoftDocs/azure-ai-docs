@@ -128,7 +128,7 @@ This list doesn't include networking resources. However, the user or service pri
 
 ### Agent applications
 
-If you use [agent applications](../how-to/publish-agent.md), the list also includes:
+If you use [agent applications](../how-to/agent-applications.md), the list also includes:
 
 - **An agent application (in the project)**
     - The agent application automatically gets an agent blueprint and agent identity. Repeat any role assignments for the hosted agent's agent identity with the agent application's agent identity.
@@ -189,6 +189,9 @@ A similar role assignment is needed for the agent identity over the project. For
 ### Azure Container Registry setup
 
 Creating an Azure Container Registry requires the `Microsoft.ContainerRegistry/registries/write` permission at the scope of the resource group.
+
+> [!NOTE]
+> For hosted agents, the container registry must currently be reachable over its public endpoint. Placing ACR behind a private network (private endpoint with public network access disabled) isn't currently supported. For the full list of network constraints, see [Limitations](../how-to/virtual-networks.md#limitations).
 
 | Built-in role | Scope | Can assignee create a container registry? |
 | --- | --- | --- |

@@ -163,7 +163,7 @@ Hosted agent sandboxes support CPU and memory allocations ranging from 0.25 vCPU
 
 ### Private networking
 
-Hosted agents support deployment within network-isolated Foundry resources. For more information, see [Configure virtual networks](../../agents/how-to/virtual-networks.md).
+Hosted agents support deployment within network-isolated Foundry resources. For more information, see [Configure virtual networks](../../agents/how-to/virtual-networks.md). Note that the Azure Container Registry holding your agent image must currently remain reachable over its public endpoint; private-network-secured ACR isn't currently supported.
 
 ## Limits, pricing, and availability (preview)
 
@@ -200,7 +200,7 @@ Hosted agents are currently available in the following regions:
 | Update, delete, invoke, or stream logs | [Manage hosted agents](../../agents/how-to/manage-hosted-agent.md) |
 | Set up tracing and monitoring | [Enable tracing in your project](../../observability/concepts/trace-agent-concept.md) |
 | Evaluate agent performance | [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md) |
-| Publish to Teams, M365, or custom apps | [Publish and share agents](../how-to/publish-agent.md) |
+| Publish to Teams, M365, or custom apps | [Agent applications](../how-to/agent-applications.md) |
 | Browse code samples | [Python samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/python/hosted-agents) · [C# samples](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/hosted-agents) |
 
 ## Related content
