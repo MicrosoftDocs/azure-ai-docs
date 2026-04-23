@@ -4,12 +4,12 @@ description: "Manage skills in Microsoft Foundry using the Skills REST API. Auth
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: zhuoqunli
-ms.date: 04/16/2026
+ms.date: 04/23/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
-ms.custom: dev-focus
+ms.custom: dev-focus, doc-kit-assisted
 zone_pivot_groups: selection-foundry-skills
 ai-usage: ai-assisted
 ---
@@ -118,19 +118,20 @@ Accept: application/json
 :::zone pivot="python"
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Create Foundry project client
+endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
 
 with (
     DefaultAzureCredential() as credential,
     AIProjectClient(
         endpoint=endpoint, credential=credential, allow_preview=True
-    ) as project_client,
+    ) as project,
 ):
-    created = project_client.beta.skills.create(
+    # Create skill from JSON
+    created = project.beta.skills.create(
         name="greeting",
         description="Generate a personalized greeting for the user.",
         instructions="You are a friendly greeting assistant. Include the user's name and keep greetings concise.",
@@ -151,7 +152,8 @@ using Azure.AI.Projects.Agents;
 using Azure.Core.Pipeline;
 using Azure.Identity;
 
-var projectEndpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT");
+// Create Foundry project client
+var projectEndpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>";
 AgentAdministrationClientOptions options = new();
 options.AddPolicy(new FeaturePolicy("Skills=V1Preview"), PipelinePosition.PerCall);
 AgentAdministrationClient adminClient = new(new Uri(projectEndpoint), new DefaultAzureCredential(), options);
@@ -187,7 +189,8 @@ internal class FeaturePolicy(string feature) : PipelinePolicy
 import { DefaultAzureCredential } from "@azure/identity";
 import { AIProjectClient } from "@azure/ai-projects";
 
-const projectEndpoint = process.env["FOUNDRY_PROJECT_ENDPOINT"] || "<project endpoint>";
+// Create Foundry project client
+const projectEndpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>";
 const project = new AIProjectClient(projectEndpoint, new DefaultAzureCredential());
 
 const skill = await project.beta.skills.create("greeting", {
@@ -233,20 +236,21 @@ Foundry-Features: Skills=V1Preview
 :::zone pivot="python"
 
 ```python
-import os
 from pathlib import Path
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Create Foundry project client
+endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
 
 with (
     DefaultAzureCredential() as credential,
     AIProjectClient(
         endpoint=endpoint, credential=credential, allow_preview=True
-    ) as project_client,
+    ) as project,
 ):
-    imported = project_client.beta.skills.create_from_package(
+    # Import skill from ZIP package
+    imported = project.beta.skills.create_from_package(
         Path("greeting.zip").read_bytes()
     )
     print(
@@ -316,19 +320,20 @@ Foundry-Features: Skills=V1Preview
 :::zone pivot="python"
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Create Foundry project client
+endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
 
 with (
     DefaultAzureCredential() as credential,
     AIProjectClient(
         endpoint=endpoint, credential=credential, allow_preview=True
-    ) as project_client,
+    ) as project,
 ):
-    skills = list(project_client.beta.skills.list())
+    # List all skills in the project
+    skills = list(project.beta.skills.list())
     print(f"Found {len(skills)} skill(s)")
     for skill in skills:
         print(f"  {skill.name} (has_blob: {skill.has_blob})")
@@ -401,19 +406,20 @@ Foundry-Features: Skills=V1Preview
 :::zone pivot="python"
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Create Foundry project client
+endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
 
 with (
     DefaultAzureCredential() as credential,
     AIProjectClient(
         endpoint=endpoint, credential=credential, allow_preview=True
-    ) as project_client,
+    ) as project,
 ):
-    skill = project_client.beta.skills.get("greeting")
+    # Get skill by name
+    skill = project.beta.skills.get("greeting")
     print(f"{skill.name}: {skill.description}")
 ```
 
@@ -460,26 +466,27 @@ Foundry-Features: Skills=V1Preview
 :::zone pivot="python"
 
 ```python
-import os
 import tempfile
 from datetime import datetime
 from pathlib import Path
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Create Foundry project client
+endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
 download_folder = Path(tempfile.gettempdir()).resolve()
 
 with (
     DefaultAzureCredential() as credential,
     AIProjectClient(
         endpoint=endpoint, credential=credential, allow_preview=True
-    ) as project_client,
+    ) as project,
 ):
+    # Download skill package
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     download_path = download_folder / f"greeting_{timestamp}.zip"
     download_path.write_bytes(
-        b"".join(project_client.beta.skills.download("greeting"))
+        b"".join(project.beta.skills.download("greeting"))
     )
     print(f"Downloaded skill package to: {download_path}")
 ```
@@ -521,19 +528,20 @@ Foundry-Features: Skills=V1Preview
 :::zone pivot="python"
 
 ```python
-import os
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
+# Create Foundry project client
+endpoint = "https://<your-foundry-account>.services.ai.azure.com/api/projects/<your-project>"
 
 with (
     DefaultAzureCredential() as credential,
     AIProjectClient(
         endpoint=endpoint, credential=credential, allow_preview=True
-    ) as project_client,
+    ) as project,
 ):
-    deleted = project_client.beta.skills.delete("greeting")
+    # Delete skill
+    deleted = project.beta.skills.delete("greeting")
     print(f"Deleted skill: {deleted}")
 ```
 
@@ -579,7 +587,7 @@ After importing skills to Foundry, download them and bundle them into your hoste
 
 Download each skill into its own subdirectory under the agent root. Use the download operation from [Download a skill](#download-a-skill).
 
-When the downloads are complete, the agent directory looks like this:
+When the downloads finish, the agent directory looks like this:
 
 ```
 my-agent/
