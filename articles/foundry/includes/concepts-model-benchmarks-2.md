@@ -16,13 +16,13 @@ Cost benchmarks measure the **actual cost to execute each model on the quality b
 
 The benchmark cost is computed using:
 
-- The actual number of input, reasoning, and output tokens consumed during benchmark execution.
-- The model-specific reasoning effort configuration used for evaluation (typically `high` or `xhigh`).
-- The dataset characteristics and complexity, which affect token usage and runtime.
+- Actual number of input, reasoning, and output tokens consumed during benchmark execution.
+- Model-specific reasoning effort configuration used for evaluation (typically `high` or `xhigh`).
+- Dataset characteristics and complexity, which affect token usage and runtime.
 
 Unlike estimates based on a fixed token ratio, this approach reflects the true end-to-end cost of running the benchmark workloads.
 
-How to interpret cost results:
+### How to interpret cost results
 
 - Cost is reported in **USD per benchmark run** across the standard quality datasets.
 - Values represent real execution cost and enable direct comparison between models.
