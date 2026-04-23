@@ -14,7 +14,7 @@ ms.custom: include
 
 Choosing between model router and a direct model deployment depends on your workload characteristics, compliance requirements, and operational preferences.
 
-### Use model router when
+### When to use model router
 
 - **Your workload is diverse.** A mix of simple and complex prompts benefits most from intelligent routing. The router matches each prompt to the best-suited model, delivering quality comparable to — or exceeding — a single general-purpose model.
 - **Cost optimization matters.** Smaller, cheaper models handle simple prompts while frontier models are reserved for complex tasks. The savings are validated on both in-domain and out-of-domain benchmarks.
@@ -24,7 +24,7 @@ Choosing between model router and a direct model deployment depends on your work
 - **You want automatic failover.** Built-in resilience with no extra configuration.
 - **You want to simplify model lifecycle management.** Each router version maintains a curated set of underlying models. Deprecated models are replaced transparently. With auto-update enabled, your endpoint and application code don't change as models evolve.
 
-### Use direct deployment when
+### When to use direct deployment
 
 - **You need the same model on every request.** Model router always reveals which model handled a request (via the `model` response field), but it might select different models for different prompts. If your workflow requires identical model behavior across all requests — for reproducibility, regression testing, or contractual reasons — pin to a specific model.
 - **Your application depends on model-specific capabilities.** Different models support different parameters (for example, reasoning models don't support `temperature` or `top_p`) and different context windows. If your logic depends on specific parameter behavior or you consistently send prompts that exceed the context window of the smallest model in the router's pool, deploy a specific model.

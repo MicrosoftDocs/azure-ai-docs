@@ -14,7 +14,7 @@ ms.custom: include
 
 Follow these recommendations to get the most from model router.
 
-**Start with Balanced mode, then tune.** Don't over-optimize on day one. Let traffic flow through Balanced mode, observe the routing distribution in Azure Monitor for two weeks, and then adjust. Switch latency-insensitive batch pipelines to Cost mode and promote critical-path reasoning tasks to Quality mode.
+**Start with Balanced mode, then tune.** Let traffic flow through Balanced mode, observe the routing distribution in Azure Monitor for a few weeks, and then adjust. Switch latency-insensitive batch pipelines to Cost mode and promote critical-path reasoning tasks to Quality mode.
 
 **Use model subset as your compliance gate.** Get model approval from your security team, encode it in the subset, and know that new models won't appear without explicit opt-in.
 

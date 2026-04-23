@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 # How model router works in Microsoft Foundry
 
-Model router is a purpose-built, trained machine-learning model that analyzes each prompt in real time and routes it to the most suitable large language model (LLM). It isn't a set of rules, a keyword matcher, or an LLM itself — it's a compact classifier designed for one job: predicting which model performs best for a given prompt at minimal latency.
+Model router is a purpose-built, trained machine-learning model that analyzes each prompt in real time and routes it to the most suitable large language model (LLM). It isn't a set of rules, a keyword matcher, or an LLM itself. It's a compact classifier designed to predict which model performs best for a given prompt at minimal latency.
 
 This article explains the architecture, routing logic, and decision factors that power model router. For supported models and version information, see the [model router overview](model-router.md). For deployment and usage steps, see [Use model router](../how-to/model-router.md).
 
@@ -29,7 +29,7 @@ This article explains the architecture, routing logic, and decision factors that
 
 ## Why a learned router
 
-The industry has explored several approaches to automated LLM routing. Each makes a different tradeoff.
+There are several possible approaches to automated LLM routing. Each makes a different tradeoff.
 
 - **Rule-based routing** maps keywords or query traits to models. It's simple and fast, but brittle, doesn't generalize, and never improves on its own.
 - **LLM-based routing** uses a smaller LLM to pick the best model per query. It's flexible, but adds hundreds of milliseconds of latency, produces inconsistent decisions, and exposes every prompt to the router LLM.
@@ -38,7 +38,7 @@ The industry has explored several approaches to automated LLM routing. Each make
 - **Mixture-of-Experts (MoE)** embeds routing inside the model via learned gating. It's efficient, but models can't be swapped without retraining, and cost or latency budgets can't be encoded at runtime.
 - **ML classifier-based routing** uses a lightweight model to predict the best LLM per query. It's adaptive and fast, but historically requires expensive training data, produces opaque decisions, and carries misrouting risk.
 
-Model router takes the ML classifier approach and addresses its known weaknesses:
+Model router in Microsoft Foundry takes the ML classifier approach and addresses its known weaknesses:
 
 | Concern | Traditional approaches | Model router |
 |---|---|---|
@@ -90,7 +90,7 @@ Agentic and tool-calling workloads receive dedicated training data that covers s
 
 ### Compact architecture
 
-The router is a lightweight classification model, not a large language model. This is a deliberate design choice that keeps inference overhead to milliseconds. Standard ML techniques, including transfer learning and parameter-efficient fine-tuning, ensure accuracy and robustness without requiring the parameter count of a generative model. The training process accounts for class imbalance, ensuring the router performs well even on less common prompt types.
+Model router is a lightweight classification model, not a large language model. This is a deliberate design choice that keeps inference overhead latency to milliseconds. Standard ML techniques, including transfer learning and parameter-efficient fine-tuning, ensure accuracy and robustness without requiring the parameter count of a generative model. The training process accounts for class imbalance, ensuring the router performs well even on less common prompt types.
 
 ## Prompt complexity and difficulty awareness
 
@@ -100,7 +100,7 @@ One of the router's key capabilities is assessing prompt difficulty. Not all cod
 - **Moderate tasks** requiring multi-step reasoning or domain expertise — where mid-tier models excel.
 - **High-complexity requests** demanding deep reasoning, nuanced judgment, or sophisticated tool orchestration — where frontier models justify their higher cost.
 
-This difficulty-aware routing is what allows model router to save costs without sacrificing quality. It only pays for frontier-level capability when the prompt genuinely needs it.
+This difficulty-aware routing is what allows model router to save costs without sacrificing quality. It only pays for frontier-level capability when the prompt needs it.
 
 ### Handling real-world complexity
 
@@ -134,7 +134,7 @@ The quality-band mechanics translate into measurably different routing distribut
 
 :::image type="content" source="../media/model-router-how-it-works/routing-distribution.png" alt-text="Bar chart that shows routing distribution across model tiers for Cost, Balanced, and Quality modes, with Cost mode heavily favoring nano-class models and Quality mode favoring frontier models.":::
 
-The key insight: even in Quality mode, the router doesn't blindly send everything to the most expensive model. Simple prompts still route to cheaper models because the router knows they produce equivalent results. And even in Cost mode, the router escalates when it matters. This is what distinguishes a learned router from a static rule.
+The key insight: even in Quality mode, the router doesn't automatically send everything to the most expensive model. Simple prompts still route to cheaper models because the router knows they produce equivalent results. And even in Cost mode, the router escalates when it matters. This is what distinguishes a learned router from a static rule-based router.
 
 > [!TIP]
 > The [ModelRouter-Distribution repository](https://github.com/guygregory/ModelRouter-Distribution) includes a batch runner, plotting scripts, and full methodology. Run it against your own prompt corpus to build a baseline distribution for your workload before choosing a mode.
