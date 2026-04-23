@@ -235,4 +235,4 @@ Refer to this guide to resolve errors during or after a Standard Agent deploymen
 
 You've now successfully configured a network-secure account and project. Use the [quickstart](../quickstarts/quickstart-hosted-agent.md) to create your first agent.
 
-For more on network isolation configuration and options, see [Configure network isolation](https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link).
+For more on network isolation configuration and options, see [Configure network isolation](/azure/foundry/how-to/configure-private-link).
