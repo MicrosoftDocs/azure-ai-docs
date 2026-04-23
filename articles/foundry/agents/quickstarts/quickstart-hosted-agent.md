@@ -15,7 +15,7 @@ zone_pivot_groups: hosted-agent-deploy-method
 
 # Quickstart: Deploy your first hosted agent
 
-In this quickstart, you deploy a containerized AI agent with Foundry tools to Foundry Agent Service. The sample agent uses web search and optionally MCP tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
+In this quickstart, you deploy a containerized AI agent with Foundry tools to Foundry Agent Service. The sample agent uses web search and optionally Model Context Protocol (MCP) tools to answer questions. By the end, you have a running hosted agent that you can interact with through the Foundry playground. Choose your preferred deployment method to get started.
 
 **In this quickstart, you:**
 
@@ -53,14 +53,14 @@ You need Azure AI Project Manager at project scope to create and deploy hosted a
 
 If you use azd or the VS Code extension, the tooling handles most RBAC assignments automatically, including:
 
-Ensure that the Foundry Project's managed identity has ACR pull role on the Azure Container Registry you use. if you prefer and have Owner or "User Access Administrator" access then the tooling azd/vscode can also do this assignment for you.
+Ensure that the Foundry Project's managed identity has ACR pull role on the Azure Container Registry you use. If you prefer and have Owner or "User Access Administrator" access then the tooling azd/vscode can also do this assignment for you.
 Azure AI User for the platform-created agent identity (runtime model and tool access)
 
 
 ## Step 1: Set up the sample project
 
 > [!WARNING]
-> This document is for Hosted Agents on the new backend and requires azd ai agent version 0.1.26-preview or later.
+> This document is for Hosted Agents on the new backend and requires azd ai agent version 0.1.27-preview or later.
 > For the legacy experience that uses Azure Container Apps, please continue using 0.1.25-preview.
 
 Install the Azure Developer CLI agent extension and initialize a new hosted agent project.
@@ -77,52 +77,30 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
     azd ext list
     ```
 
-1. Initialize a new hosted agent project:
+1. Initialize a new hosted agent project in an empty directory:
 
     ```bash
     azd ai agent init
     ```
 
-    When prompted, select **Start new from a template**. The interactive flow guides you through the following configuration:
+    The interactive flow guides you through the following configuration:
 
-    - **Environment name** — determines your resource group name (for example, `my-hosted-agent` creates `rg-my-hosted-agent`).
+    - **Language** — Select which programming language you want sample code for, either C# or Python.
+    - **Agent Template** - Select a sample to start with.
+    - **Model Configuration** - Select to deploy a new model in Foundry or use an existing one from an existing Foundry Project.
     - **Azure subscription** — select the subscription where you want the Foundry resources to be created.
     - **Location** — select a region for the resources.
     - **Model SKU** — select the SKU available for your region and subscription.
     - **Deployment name** — enter a name for the model deployment.
     - **Container size** — select the CPU and memory allocation or accept the defaults.
 
-    > [!NOTE]
-    > If a resource group with the same name already exists, `azd provision` uses the existing group. To avoid conflicts, choose a unique environment name or delete the existing resource group first.
-
     > [!IMPORTANT]
-    > If you aren't using an MCP server, comment out or remove the following lines in the `agent.yaml` file:
+    > If you selected a sample with tools and you aren't using an MCP server, comment out or remove the following lines in the `agent.yaml` file:
     >
     > ```yaml
     > - name: AZURE_AI_PROJECT_TOOL_CONNECTION_ID
     >   value: <CONNECTION_ID_PLACEHOLDER>
     > ```
-
-    Alternatively you can also use this cmd:
-
-    ```bash
-    azd init -t Azure-Samples/azd-ai-starter-basic
-    ```
-
-    The -t flag means template.
-
-    You're telling azd to use this specific template:
-
-    Azure-Samples/azd-ai-starter-basic - a starter project from Microsoft’s sample repository
-
-    The AI starter basic template sets up a minimal AI-powered app using Azure services. Typically it includes:
-
-    * A simple backend (often Python or Node.js)
-    * Integration with Azure OpenAI Service
-    * Infrastructure to deploy:
-       * Web app (Azure App Service)
-       * AI resources
-    * Preconfigured environment for quick deployment
     
     > [!TIP]
     > If you're running in a non-interactive environment such as a CI/CD pipeline or an SSH session, use the `--no-prompt` flag with `azd ai agent init`. You must also supply all required values as command-line flags rather than responding to interactive prompts.
@@ -136,7 +114,7 @@ Install the Azure Developer CLI agent extension and initialize a new hosted agen
     azd provision
     ```
 
-    This command takes about 5 minutes and creates the following resources:
+    This command takes a few minutes and creates the following resources:
 
     | Resource | Purpose | Cost |
     | -------- | ------- | ---- |
@@ -170,18 +148,22 @@ Before deploying, verify the agent works locally.
 
     | Error | Solution |
     | ----- | -------- |
-    | `AuthenticationError` or `DefaultAzureCredential` failure | Run `azd auth login` again to refresh your session. |
+    | `AuthenticationError` or `DefaultAzureCredential` failure | Run `azd auth logout` and then `azd auth login` to refresh your session. |
     | `ResourceNotFound` | Verify your endpoint URLs match the values in the Foundry portal. |
     | `DeploymentNotFound` | Check the deployment name in **Build** > **Deployments**. |
     | `Connection refused` | Ensure no other process is using port 8088. |
 
-1. In a separate terminal, send a test message to the local agent:
+1. In a separate terminal, send a test message to the local agent.
+
+    For agents using the Responses API, you can send a string as the payload:
 
     ```bash
     azd ai agent invoke --local "What is Microsoft Foundry?"
     ```
 
-    You should see a response with web search results about Microsoft Foundry.
+    For agents using the Invocations API, check the `README.md` for the expected payload. The samples typically require a JSON payload, but review what is in the `README.md` for that sample for a specific example:
+    
+    You should see a response from the agent.
 
 ## Step 3: Deploy to Foundry Agent Service
 
@@ -407,13 +389,15 @@ azd ai agent show <agent-name>
 
 ### Test the deployed agent
 
-Send a test message to your deployed agent:
+Send a test message to your deployed agent using the same `invoke` command used earlier, but without the `--local` flag:
+
+For agents using the Responses API, you can send a string as the payload:
 
 ```bash
-azd ai agent invoke "What is Microsoft Foundry?"
+azd ai agent invoke <payload>
 ```
 
-You should see a response with web search results about Microsoft Foundry. The response might take a few seconds as the agent queries external sources.
+You should see a response from the agent after a few seconds.
 
 ### View agent logs
 
@@ -471,17 +455,13 @@ To avoid charges, delete the resources when you're finished.
 > [!WARNING]
 > This command permanently deletes all Azure resources in the resource group, including the Foundry project, model deployments, Container Registry, Application Insights, and your hosted agent. This action can't be undone. If you're using an existing resource group that contains other resources, use caution — `azd down` removes everything in the group, not just resources created by this quickstart.
 
-To preview what will be deleted before confirming:
-
-```bash
-azd down --preview
-```
-
-When you're ready to delete, run:
+To preview what will be deleted run the `down` command:
 
 ```bash
 azd down
 ```
+
+When complete, `azd` shows you all of the resources that will be deleted and prompts you to confirm. Select `yes` to continue or `no` to cancel.
 
 The cleanup process takes approximately 2-5 minutes.
 
@@ -517,8 +497,7 @@ For comprehensive details about all permissions and role assignments involved in
 
 | Issue | Solution |
 | ----- | -------- |
-| `azd ai agent init` fails | Run `azd version` to verify version 1.23.0+. Update with `winget upgrade Microsoft.Azd` (Windows) or `brew upgrade azd` (macOS). Verify the agent extension is installed with `azd ext list`. |
-| Model not found in catalog | Fork the sample agent.yaml and change the model deployment to one available in your subscription like `gpt-4.1`. Then remove the `AZURE_LOCATION` value in the `.azure/<environment name>/.env` file. Re-run the `azd ai agent init` command with your forked `agent.yaml` file. |
+| `azd ai agent init` fails | Run `azd version` to verify version 1.24.0+. Update with `winget upgrade Microsoft.Azd` (Windows) or `brew upgrade azd` (macOS). Verify the agent extension is installed with `azd ext list`. Make sure to have the latest version of the extension with `azd ext upgrade azure.ai.agents`, version 0.1.27-preview or newer. |
 
 :::zone-end
 
