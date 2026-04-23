@@ -190,6 +190,8 @@ To access your Foundry resource that has public network access disabled and is b
 * [ExpressRoute](/azure/expressroute/) - Connect on-premises networks to Azure over a private connection through a connectivity provider.
 * [Azure Bastion VM](/azure/bastion/bastion-overview) - Create an Azure virtual machine (a jump box) in the virtual network, then connect to it through Azure Bastion using RDP or SSH from your browser. Use the VM as your development environment. Because it's in the virtual network, it can access the resource directly.
 
+To access non-Azure resources in another virtual network or on-premises from your managed virtual network, see [Access on-premises resources](/azure/foundry-classic/how-to/access-on-premises-resources).
+
 
 ## Set up walkthrough for outbound network isolation
 

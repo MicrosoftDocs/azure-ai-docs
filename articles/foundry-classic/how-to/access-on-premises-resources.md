@@ -1,10 +1,10 @@
 ---
-title: "How to access on-premises resources (classic)"
-description: "Learn how to configure a Microsoft Foundry managed network to securely allow access to your on-premises resources. (classic)"
+title: "How to access on-premises resources"
+description: "Learn how to configure a Microsoft Foundry managed network to securely allow access to your on-premises resources."
 manager: mcleans
 ms.service: microsoft-foundry
 ms.custom:
-  - hub-only
+  - classic-and-new
   - dev-focus
 ms.topic: how-to
 ms.date: 01/06/2026
@@ -15,11 +15,10 @@ ai-usage: ai-assisted
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Microsoft Foundry.
 ---
 
-# Access on-premises resources from your Microsoft Foundry managed network (classic)
+# Access on-premises resources from your Microsoft Foundry managed network
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
-
-[!INCLUDE [hub-only](../includes/uses-hub-only.md)]
+> [!NOTE]
+> This networking feature works for both new Foundry projects and classic (hub-based) projects. The procedural examples and CLI/SDK commands in this article currently use the classic hub-based workflow. The same Application Gateway approach applies when your Foundry project uses a managed virtual network, regardless of project type.
 
 You can configure an Azure Application Gateway to let your managed virtual network in [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) reach non-Azure resources in another virtual network or on-premises. The gateway provides a secure, private end-to-end path to those resources.
 
