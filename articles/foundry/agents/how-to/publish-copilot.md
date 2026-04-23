@@ -20,11 +20,11 @@ After you build and test an agent, the next step is often sharing it with others
 > If you're migrating from a previous publishing model, see [Migrate from Agent Applications to the new agent model](./migrate-hosted-agent-preview.md).
 
 > [!IMPORTANT]
-> This Publish agents to Microsoft 365 Copilot and Microsoft Teams feature is an "Early Access Preview" and is licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" and "Early Access Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA").
+> Publishing agents to Microsoft 365 Copilot and Microsoft Teams is an "Early Access Preview" and is licensed to you as part of your Azure subscription and subject to terms applicable to "Previews" and "Early Access Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) ("DPA").
 >
 > Use of Azure AI Foundry Agent Service to host agents that operate with third-party servers or agents, is at your own risk. We recommend reviewing all data being shared with third-party servers or agents and being cognizant of third-party practices for retention and location of data.
 >
-> External tools or services (including Microsoft tools and services external to Azure AI Foundry) with which Azure AI Foundry Agent Service interacts are subject to their own data processing terms. Agents published to Copilot or Teams are also subject to [supplemental terms](https://learn.microsoft.com/en-us/legal/microsoft-365/supplemental-terms).
+> External tools or services (including Microsoft tools and services external to Azure AI Foundry) with which Azure AI Foundry Agent Service interacts are subject to their own data processing terms. Agents published to Copilot or Teams are also subject to [supplemental terms](/legal/microsoft-365/supplemental-terms).
 >
 > It is your responsibility to manage whether your data will flow outside of your organization's Azure compliance and geographic boundaries and any related implications.
 
