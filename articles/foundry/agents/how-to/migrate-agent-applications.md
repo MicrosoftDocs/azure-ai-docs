@@ -151,6 +151,6 @@ With the new model, the agent has a unique identity from creation—so there's n
 
 ## Related content
 
-- [Publish and share agents in Microsoft Foundry](./publish-agent.md)
+- [Agent applications in Microsoft Foundry](./agent-applications.md)
 - [Publish agents to Microsoft 365 Copilot and Teams](./publish-copilot.md)
 - [Agent identity concepts in Foundry](../concepts/agent-identity.md)

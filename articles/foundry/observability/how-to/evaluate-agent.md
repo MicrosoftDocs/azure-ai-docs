@@ -194,9 +194,6 @@ print(f"Evaluation run started: {eval_run.id}")
 > [!TIP]
 > This sample works for both prompt agents and hosted agents that use the responses protocol. For hosted agents that use the invocations protocol, the `input_messages` format is different — provide a freeform JSON object instead of the structured template. For details and code samples, see [Hosted agent invocations protocol](../../how-to/develop/cloud-evaluation.md#hosted-agent-invocations-protocol) in the cloud evaluation guide.
 
-> [!TIP]
-> To evaluate agent interactions that already occurred using traces from Application Insights, see [Trace evaluation](../../how-to/develop/cloud-evaluation.md#trace-evaluation) in the cloud evaluation guide.
-
 ## Interpret results
 
 Evaluations typically complete in a few minutes, depending on the number of queries. Poll for completion and retrieve the report URL to view the results in the Microsoft Foundry portal under the **Evaluations** tab:
@@ -311,5 +308,4 @@ Use evaluation to iterate and improve your agent:
 - [Agent Monitoring Dashboard](how-to-monitor-agents-dashboard.md)
 - [Agent evaluators reference](../../concepts/evaluation-evaluators/agent-evaluators.md)
 - [REST API reference](../../reference/foundry-project-rest-preview.md#openai-evals---list-evals)
-- [Trace evaluation in the cloud](../../how-to/develop/cloud-evaluation.md#trace-evaluation)
 - [Set up tracing in Microsoft Foundry](trace-agent-setup.md)

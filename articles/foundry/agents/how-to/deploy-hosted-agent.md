@@ -478,5 +478,5 @@ For detailed RBAC requirements and permission troubleshooting, see [Hosted agent
 
 - [What are hosted agents?](../concepts/hosted-agents.md)
 - [Agent identity concepts](../concepts/agent-identity.md)
-- [Publish and share agents](publish-agent.md)
+- [Agent applications](agent-applications.md)
 - [Azure Container Registry documentation](/azure/container-registry/)

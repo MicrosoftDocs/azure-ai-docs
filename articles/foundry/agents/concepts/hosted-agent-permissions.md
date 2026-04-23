@@ -128,7 +128,7 @@ This list doesn't include networking resources. However, the user or service pri
 
 ### Agent applications
 
-If you use [agent applications](../how-to/publish-agent.md), the list also includes:
+If you use [agent applications](../how-to/agent-applications.md), the list also includes:
 
 - **An agent application (in the project)**
     - The agent application automatically gets an agent blueprint and agent identity. Repeat any role assignments for the hosted agent's agent identity with the agent application's agent identity.

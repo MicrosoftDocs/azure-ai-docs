@@ -3,7 +3,7 @@ title: "Bring Your Own Model to Foundry Agent Service"
 description: "Connect and bring your own models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
-ms.date: 04/14/2026
+ms.date: 04/23/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -12,8 +12,8 @@ ms.custom: doc-kit-assisted
 zone_pivot_groups: foundry-portal-and-cli
 ---
 
-# Bring your own model to Foundry Agent Service (preview)
-Foundry Agent Service allows you to connect and use models hosted behind your AI gateways such as **Azure API Management** or other **non-Azure managed AI model gateways**. This capability, called *bring your own model* (preview), allows you to maintain control over your model endpoints while using Foundry agent capabilities.
+# Bring your own model to Foundry Agent Service
+Foundry Agent Service allows you to connect and use models hosted behind your AI gateways such as **Azure API Management** or other **non-Azure managed AI model gateways**. This capability, called *bring your own model*, allows you to maintain control over your model endpoints while using Foundry agent capabilities.
 
 > [!IMPORTANT]
 > For purposes of this documentation, *BYOM models* refers to third-party models that you bring to Foundry and does not include Azure Direct Models. Foundry Agent Service supports the ability to bring your own model (BYOM). If you use Foundry Agent Service to interact with BYOM models, you do so at your own risk. BYOM models are deemed to be Non-Microsoft Products under the Microsoft Product Terms and are governed by their own license terms.

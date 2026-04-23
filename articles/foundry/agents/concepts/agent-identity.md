@@ -198,7 +198,7 @@ Agents access remote resources and tools by using agent identities for authentic
 * **Unpublished agents**: Authenticate by using the shared project's agent identity.
 * **Published agents**: Authenticate by using the unique agent identity that's associated with the agent application.
 
-When you [publish an agent](../how-to/publish-agent.md), you must reassign RBAC permissions to the new agent identity for any resources that the agent needs to access. This reassignment ensures that the published agent maintains appropriate access while operating under its distinct identity.
+When you [publish an agent](../how-to/agent-applications.md), you must reassign RBAC permissions to the new agent identity for any resources that the agent needs to access. This reassignment ensures that the published agent maintains appropriate access while operating under its distinct identity.
 
 ### Assign permissions to the agent identity
 
@@ -306,7 +306,7 @@ For more information about Microsoft Entra Agent ID features, see [Microsoft Ent
 
 ## Related content
 
-* [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
+* [Agent applications in Microsoft Foundry](../how-to/agent-applications.md)
 * [Azure role-based access control in Foundry](../../concepts/rbac-foundry.md)
 * [MCP server authentication](../how-to/mcp-authentication.md)
 * [Agent2Agent (A2A) authentication](./agent-to-agent-authentication.md)

@@ -41,7 +41,7 @@ The following information appears:
 | **Project** | The Foundry project associated with the agent. For custom agents, it's the project where the agent was registered. | Foundry<br><br>Custom |
 | **Status** | Refers to a broad range of conditions, including operational, health, or lifecycle status of the agent. Agents transition to different values, depending on the platform and [lifecycle operations](#lifecycle-operations). Possible values are: <ul><li>[Running](#start-and-stop-agents)</li><li>[Stopped](#start-and-stop-agents)</li><li>[Blocked](#block-and-unblock-agents)</li><li>[Unblocked](#block-and-unblock-agents)</li><li>[Unknown](#handle-unknown-states)</li></ul> | All |
 | **Version** | The version of the agent asset. | Foundry |
-| **Published as** | Indicates if the agent was [published as an agent application](../agents/how-to/publish-agent.md). Published agents in Foundry have their own endpoint for invocation. | Foundry |
+| **Published as** | Indicates if the agent was [published as an agent application](../agents/how-to/agent-applications.md). Published agents in Foundry have their own endpoint for invocation. | Foundry |
 | **Error rate** | The proportion of failed runs compared to successful ones in the last month. This column requires [observability configured](#observability-of-agents). | All |
 | **Estimated cost** | The estimated cost of the agent executions in the last month, based on the number of tokens consumed. This column requires [observability configured](#observability-of-agents). | Foundry |
 | **Token usage** | The estimated tokens consumed by the runs in the last month. This column requires [observability configured](#observability-of-agents). | Foundry |
@@ -82,7 +82,7 @@ Foundry Control Plane helps you manage agents across all your Foundry projects. 
 For each agent, the information includes:
 
 * The latest version of the agent.
-* Versions [published as agent applications](../agents/how-to/publish-agent.md).
+* Versions [published as agent applications](../agents/how-to/agent-applications.md).
 
 You can monitor versions consumed by your users and new versions under development. The following example shows multiple Foundry agents listed. Version 6 of the `format-agent` agent was published, but version 7 (latest) is still under development.
 

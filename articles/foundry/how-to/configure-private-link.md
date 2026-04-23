@@ -285,7 +285,6 @@ The following features in Foundry do not yet support network isolation.
 
 | Feature | Network Isolation Status | Notes |
 |---------|--------------------------|-------|
-| Publish Agent to Teams/M365 | Not supported | Requires public endpoints for Teams/M365 integration. |
 | Synthetic Data Gen for Evaluations | Not supported | Bring your own data to run evaluations. |
 | Traces | Not supported | Traces don't have virtual network support with a private Application Insights yet. |
 | Workflow Agents | Partially supported | Inbound access is supported in the UI, SDK, and CLI. Outbound with virtual network injection isn't currently supported for Workflow Agents. |
@@ -297,6 +296,7 @@ For more Agent Service network isolation limitations, see [How to use a virtual 
 ### Other limitations 
 
 - **Private AI Search with private Foundry agent tool**: If you are using your public network access disabled AI Search as an Agent tool with a network isolated Foundry resource, ensure you are using the new Foundry Portal to build your new agents. This scenario is not supported with the older version of the Agent service in the classic Foundry portal.
+- **Publishing Agents to Teams/M365**: You can publish your agent to Teams and M365 when your Foundry resource has public network access disabled. There are additional set-up requirements for this experience. For more information, please follow [this blog post on building custom engine agents when your Foundry resource is private](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-agents-and-custom-engine-agents-through-the-corporate-firewall/4502218).
 
 ### Private endpoint limitations
 

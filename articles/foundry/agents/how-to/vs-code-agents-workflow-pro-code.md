@@ -319,4 +319,4 @@ After testing your hosted agent locally, deploy it to your Foundry workspace so 
 
 - [Hosted agent concepts](../concepts/hosted-agents.md)
 - [Build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents)
-- [Publish and share agents in Microsoft Foundry](./publish-agent.md)
+- [Agent applications in Microsoft Foundry](./agent-applications.md)

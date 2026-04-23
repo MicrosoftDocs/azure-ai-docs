@@ -233,4 +233,4 @@ az rest --method delete \
 - [Manage agents in Foundry Control Plane](how-to-manage-agents.md)
 - [What is Microsoft Foundry Control Plane?](overview.md)
 - [Agent identity concepts in Microsoft Foundry](../agents/concepts/agent-identity.md)
-- [Publish and share agents in Microsoft Foundry](../agents/how-to/publish-agent.md)
+- [Agent applications in Microsoft Foundry](../agents/how-to/agent-applications.md)
