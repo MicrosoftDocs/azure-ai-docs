@@ -16,7 +16,7 @@ Follow these recommendations to get the most from model router.
 
 - **Start with Balanced mode, then tune.** Let traffic flow through Balanced mode, observe the routing distribution in Azure Monitor for a few weeks, and then adjust. Switch latency-insensitive batch pipelines to Cost mode and promote critical-path reasoning tasks to Quality mode.
 - **Use model subset as your compliance gate.** Get model approval from your security team, encode it in the subset, and know that new models won't appear without explicit opt-in.
-- **Monitor routing distribution.** In the Azure portal, go to Monitoring > Metrics for your resource, filter by your model router deployment, and split by underlying model. This view shows exactly where your tokens go.
+- **Monitor routing distribution.** In the Azure portal, go to **Monitoring > Metrics** for your resource, filter by your model router deployment, and split by underlying model. This view shows exactly where your tokens go.
 - **Design for the smallest context window — or raise the floor.** If your prompts consistently exceed the context window of the smallest model in the pool, use model subset to include only models that support your required context length.
 - **Select at least two models for failover.** A single-model subset defeats the purpose of routing and disables automatic failover.
 
