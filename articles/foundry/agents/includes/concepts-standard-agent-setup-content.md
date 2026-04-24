@@ -32,7 +32,9 @@ In this setup:
 
 ## Resource overview
 
-Standard setup requires you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant:
+> [!IMPORTANT]
+> **Standard setups requires you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant:** 
+>
 
 | Resource | What it stores |
 |----------|---------------|
