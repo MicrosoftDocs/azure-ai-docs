@@ -38,8 +38,6 @@ By the end of this article, you can execute hybrid queries that combine keyword 
   + Python: `pip install azure-search-documents`
   + C#: `dotnet add package Azure.Search.Documents`
 
-+ (Optional) Semantic ranker is available on the free plan by default. For usage beyond the free monthly quota, [switch to the standard plan](semantic-how-to-enable-disable.md).
-
 + (Optional) If you want built-in text-to-vector conversion of a query string, [create and assign a vectorizer](vector-search-how-to-configure-vectorizer.md) to vector fields in the search index.
 
 ## Choose an API, tool, and workable pattern

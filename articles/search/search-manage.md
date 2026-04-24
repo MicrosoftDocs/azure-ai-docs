@@ -74,7 +74,7 @@ To learn about inbound and outbound calls in Azure AI Search, see [Understand ne
 
 By default, a search service is created with one replica and one partition. You can [add capacity](search-capacity-planning.md) by adding replicas and partitions, but we recommend waiting until volumes require it. Many customers run production workloads on the minimum configuration.
 
-Semantic ranker and agentic retrieval are premium features that default to the free plan. If you need paid usage beyond the free allowance, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md) or [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
+Semantic ranker and agentic retrieval are premium features that default to the free plan. If you need paid usage beyond the free allowance, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md) and [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
 To learn about other features that affect billing, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-the-base-service).
 

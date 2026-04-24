@@ -8,7 +8,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 11/10/2025
 ---
 
 # Plan and manage costs of an Azure AI Search service

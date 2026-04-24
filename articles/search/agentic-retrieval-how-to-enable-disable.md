@@ -10,26 +10,21 @@ ai-usage: ai-assisted
 
 # Enable or disable agentic retrieval billing
 
-Agentic retrieval is a premium feature billed by usage. By default, all search services are enrolled in the free plan, which provides a monthly request allowance at no charge. For continued access after the free quota is consumed, you can switch to the standard plan. For pricing by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search).
+Agentic retrieval is a premium feature billed by usage. By default, all search services are enrolled in the free plan, which provides a monthly allowance at no charge. To enable continued access after the free quota is consumed, you can switch to the standard plan.
 
 Starting with Search Service REST API version 2026-04-01, billing consent for semantic ranker and agentic retrieval is separate. Use `knowledgeRetrieval` to control paid agentic retrieval usage independently of `semanticSearch`.
 
 ## Prerequisites
 
-- An Azure AI Search service in a [region that provides agentic retrieval](search-region-support.md). The free plan is available on all pricing tiers. The standard plan requires a billable tier (Basic or higher).
+- An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md).
 
 - **Owner** or **Contributor** permissions on the search service.
 
 - [Search Management REST API](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true) version `2026-03-01-preview` or later to set the `knowledgeRetrieval` property.
 
-## Version compatibility and portal behavior
+## Billing split and portal behavior
 
-You set billing consent using the Search Management REST API. The following table shows which property takes effect based on the Search Service REST API version your application uses.
-
-| Search Service REST API version | Agentic retrieval billing | Semantic ranker billing |
-|---|---|---|
-| [2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) or later | Controlled by `knowledgeRetrieval` | Controlled by `semanticSearch` |
-| [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) and earlier | Controlled by `semanticSearch` | Controlled by `semanticSearch` |
+[!INCLUDE [billing-split-version-compatibility](includes/billing-split-version-compatibility.md)]
 
 For Search Service REST API version 2026-04-01 and later, `knowledgeRetrieval` controls agentic retrieval billing independently of `semanticSearch`. To control semantic ranker billing, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md).
 
@@ -39,9 +34,18 @@ For Search Service REST API version 2025-11-01-preview and earlier, `semanticSea
 
 The Azure portal uses Search Service REST API version 2025-11-01-preview, which doesn't support separate billing controls for agentic retrieval and semantic ranker. To change agentic retrieval billing consent through the portal, use the **Settings** > **Premium features** toggle. This toggle also affects semantic ranker billing.
 
+## Billing plans
+
+Agentic retrieval has two billing plans. For pricing by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search).
+
+| Plan | Description |
+|------|-------------|
+| Free (default) | Provides 50 million agentic reasoning tokens per month at no charge. After the free allowance is consumed, requests that would incur paid usage return a payment-required error. Available on all pricing tiers. |
+| Standard | Pay-as-you-go pricing after the monthly free allowance is consumed. Rather than removing the free allowance, the standard plan enables continued usage beyond the 50 million tokens. Requires Basic tier or higher. |
+
 ## Enable agentic retrieval billing
 
-Follow these steps to allow paid agentic retrieval usage beyond the free monthly quota. The free plan includes 50 million agentic reasoning tokens per month. After the free quota is consumed, requests that would incur paid usage return a payment-required error until you switch to the standard plan.
+Follow these steps to switch agentic retrieval to the standard billing plan.
 
 ### [**Azure portal**](#tab/portal)
 
@@ -49,7 +53,7 @@ Currently, the portal doesn't expose a dedicated billing control for agentic ret
 
 ### [**REST**](#tab/rest)
 
-To allow paid agentic retrieval usage after the free monthly quota is consumed, use [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true#knowledgeretrieval) (Search Management REST API) to set `knowledgeRetrieval` to `standard`:
+Use [Services - Create Or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true#knowledgeretrieval) (Search Management REST API) to set `knowledgeRetrieval` to `standard`:
 
 ```http
 PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
@@ -68,9 +72,11 @@ Management REST API calls are authenticated through Microsoft Entra ID. For inst
 > [!IMPORTANT]
 > If you previously relied on `semanticSearch` to enable paid agentic retrieval usage, you must explicitly set `knowledgeRetrieval` to `standard` before you migrate agentic retrieval workloads to Search Service REST API version 2026-04-01 or later. Existing `semanticSearch=standard` consent doesn't carry over to `knowledgeRetrieval`.
 
-## Disable paid agentic retrieval billing
+---
 
-Follow these steps to disable paid agentic retrieval usage. With paid usage disabled, agentic retrieval continues to work within the monthly free quota. After the free quota is consumed, requests that would incur paid usage return a payment-required error until you switch back to the standard plan.
+## Disable agentic retrieval billing
+
+Follow these steps to switch agentic retrieval back to the free billing plan.
 
 ### [**Azure portal**](#tab/portal)
 
@@ -78,7 +84,7 @@ Currently, the portal doesn't expose a dedicated billing control for agentic ret
 
 ### [**REST**](#tab/rest)
 
-To stop paid agentic retrieval usage, use [Services - Create or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true#knowledgeretrieval) (Search Management REST API) to set `knowledgeRetrieval` to `free`:
+Use [Services - Create or Update](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2026-03-01-preview&preserve-view=true#knowledgeretrieval) (Search Management REST API) to set `knowledgeRetrieval` to `free`:
 
 ```http
 PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2026-03-01-preview
@@ -93,6 +99,8 @@ Authorization: Bearer {{token}}
 ```
 
 Management REST API calls are authenticated through Microsoft Entra ID. For instructions on how to authenticate, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
+
+---
 
 ## Related content
 
