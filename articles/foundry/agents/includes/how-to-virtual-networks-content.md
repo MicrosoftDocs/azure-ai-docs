@@ -54,6 +54,12 @@ If you don't have an existing virtual network, the Standard Setup with private n
        # only to use Grounding with Bing Search tool
        az provider register --namespace 'Microsoft.Bing'
     ```
+> [!IMPORTANT]
+> **Standard setups require you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant.**
+>
+> BYO resources include: Azure Storage, Azure AI Search, and Azure Cosmos DB.
+>
+> All data processed by Foundry Agent Service is automatically stored at rest in these resources, helping you meet compliance requirements and enterprise security standards.
 
 ## Configure a network-secured environment
 
