@@ -86,7 +86,7 @@ Balanced (default): Optimizes for the best combination of quality and cost. Most
 Cost: Aggressively favors cheaper models, accepting slightly lower quality on complex prompts.
 Quality: Always selects the highest-quality model for each prompt, regardless of cost.
 
-## Observing routing behavior
+## Observe routing behavior
 
 Each routing mode produces a different distribution of traffic across underlying models. You can observe your routing distribution using Azure Monitor:
 
