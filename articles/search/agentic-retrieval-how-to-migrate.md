@@ -62,7 +62,7 @@ If you're migrating from [2025-11-01-preview](#2025-11-01-preview-1), you can mi
 
    - For `azureBlob` and `indexedOneLake`, carry forward all property values, but omit `ingestionPermissionOptions` from `ingestionParameters`. This property isn't supported in 2026-04-01.
 
-1. Use [Knowledge Sources - Create Or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge source with a unique name, the `2026-04-01` API version, and the property values from the previous step.
+1. Use [Knowledge Sources - Create Or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge source with a unique name, the 2026-04-01 API version, and the property values from the previous step.
 
    The following example shows a `searchIndex` knowledge source. Use a similar pattern for `azureBlob`, `indexedOneLake`, and `web` knowledge sources.
 
@@ -102,11 +102,11 @@ The 2026-04-01 knowledge base has a simpler schema than the 2025-11-01-preview v
 
    - Note the `knowledgeSources` references. Carry these forward into the new knowledge base.
 
-   - Remove `outputMode`, `answerInstructions`, and `retrievalInstructions`. These properties aren't supported in 2026-04-01.
+   - If present, remove `outputMode`, `answerInstructions`, and `retrievalInstructions`. These properties aren't supported in 2026-04-01.
 
    - If your knowledge base uses a `web` knowledge source, keep `models`. Web retrieval requires model-backed summarization. For all other knowledge source types, remove `models`.
 
-1. Use [Knowledge Bases - Create Or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge base with a unique name, the `2026-04-01` API version, and only the supported properties.
+1. Use [Knowledge Bases - Create Or Update](/rest/api/searchservice/knowledge-bases/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true) (REST API) to create a new knowledge base with a unique name, the 2026-04-01 API version, and only the supported properties.
 
    ```http
    PUT {{search-endpoint}}/knowledgebases/{{new-knowledge-base-name}}?api-version=2026-04-01
@@ -184,14 +184,15 @@ Authorization: Bearer {{token}}
 
 For valid values and billing details, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
-> [!NOTE]
-> The Azure portal doesn't yet expose the `knowledgeRetrieval` setting. Portal-based agentic retrieval still uses the 2025-11-01-preview Search Service REST API version and follows `semanticSearch` consent during this period. If you previously set `semanticSearch` to `disabled`, that value is treated as `free`.
-
 #### Update code and clients for 2026-04-01
 
 To complete your migration:
 
-1. Update client calls to use the `2026-04-01` API version.
+1. Update client calls to use the 2026-04-01 API version.
+
+1. Update any hardcoded knowledge base or knowledge source names in your code to reference the new objects created during migration.
+
+1. If you migrated `azureBlob` or `indexedOneLake` knowledge sources, update any code or scripts that reference the associated index, indexer, data source, or skillset by name to point to the new objects.
 
 1. Update code that processes retrieve responses. Responses return extractive grounding content with `activity` and `references`, not synthesized answers.
 
