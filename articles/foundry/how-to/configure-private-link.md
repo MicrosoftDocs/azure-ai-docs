@@ -59,6 +59,13 @@ Before getting started, ensure you have the following prerequisites set-up.
     - On the Foundry project resource: **Contributor** (or **Owner**) to create private endpoint connections. If you don't have approval permissions, the private endpoint connection stays in a **Pending** state until the resource owner approves it.
     - If you manage private DNS zones: **Private DNS Zone Contributor** (or equivalent) for the private DNS zone that you link to the virtual network.
 
+> [!IMPORTANT]
+> **Standard setups require you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant.**
+>
+> BYO resources include: Azure Storage, Azure AI Search, and Azure Cosmos DB.
+>
+> All data processed by Foundry Agent Service is automatically stored at rest in these resources, helping you meet compliance requirements and enterprise security standards.
+
 ## Set up walkthrough for inbound network isolation
 
 This section guides you through creating a new Foundry resource with inbound network isolation enabled. The public network access can be set to **Disabled** with a private endpoint (private link) enabled, or set to **Selected networks** to grant specific IP addresses and virtual networks the ability to access Foundry securely. 
