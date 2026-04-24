@@ -4,7 +4,7 @@ description: Learn how to configure Azure AI Search knowledge sources and indexe
 ms.reviewer: vaishalishah
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 04/24/2026
 ms.custom:
   - dev-focus
 ai-usage: ai-assisted
