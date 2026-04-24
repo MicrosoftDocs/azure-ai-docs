@@ -34,7 +34,7 @@ For Search Service REST API version 2025-11-01-preview and earlier, `semanticSea
 
 ### Portal behavior
 
-The Azure portal uses Search Service REST API version 2025-11-01-preview, which doesn't support separate billing controls for semantic ranker and agentic retrieval. The billing toggle in **Settings** > **Premium features** controls both features.
+The Azure portal uses Search Service REST API version 2025-11-01-preview, which sets the `semanticSearch` property. On this version, `semanticSearch` controls billing consent for both semantic ranker and agentic retrieval, so the **Settings** > **Premium features** toggle affects both features.
 
 ## Billing plans
 

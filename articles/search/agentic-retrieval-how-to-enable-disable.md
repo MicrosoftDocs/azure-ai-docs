@@ -32,7 +32,7 @@ For Search Service REST API version 2025-11-01-preview and earlier, `semanticSea
 
 ### Portal behavior
 
-The Azure portal uses Search Service REST API version 2025-11-01-preview, which doesn't support separate billing controls for agentic retrieval and semantic ranker. To change agentic retrieval billing consent through the portal, use the **Settings** > **Premium features** toggle. This toggle also affects semantic ranker billing.
+The Azure portal uses Search Service REST API version 2025-11-01-preview, which sets the `semanticSearch` property, not `knowledgeRetrieval`. On this version, `semanticSearch` controls billing consent for both features, so the **Settings** > **Premium features** toggle also affects semantic ranker billing. To manage agentic retrieval billing independently, use the REST API.
 
 ## Billing plans
 
@@ -49,7 +49,7 @@ Follow these steps to switch agentic retrieval to the standard billing plan.
 
 ### [**Azure portal**](#tab/portal)
 
-Currently, the portal doesn't expose a dedicated billing control for agentic retrieval. You must use REST to manage billing consent. For more information, see [Portal behavior](#portal-behavior).
+Currently, the portal doesn't expose a dedicated billing control for agentic retrieval. You must use the REST API to manage billing consent. For more information, see [Portal behavior](#portal-behavior).
 
 ### [**REST**](#tab/rest)
 
@@ -80,7 +80,7 @@ Follow these steps to switch agentic retrieval back to the free billing plan.
 
 ### [**Azure portal**](#tab/portal)
 
-Currently, the portal doesn't expose a dedicated billing control for agentic retrieval. You must use REST to manage billing consent. For more information, see [Portal behavior](#portal-behavior).
+Currently, the portal doesn't expose a dedicated billing control for agentic retrieval. You must use the REST API to manage billing consent. For more information, see [Portal behavior](#portal-behavior).
 
 ### [**REST**](#tab/rest)
 
