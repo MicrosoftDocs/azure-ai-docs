@@ -45,9 +45,9 @@ When a prompt arrives, model router processes it through three steps:
 
 ## Key design deliverables
 
-• Efficiency. The router is optimized for fast inference, keeping overhead minimal regardless of prompt complexity.
-• Adaptability. The router adjusts automatically as the set of supported models evolves, without requiring changes to your application.
-• Transparency. The selected model is always disclosed in the API response via the model field, so you can see exactly which model handled each request.
+- **Efficiency.** The router is optimized for fast inference, keeping overhead minimal regardless of prompt complexity.
+- **Adaptability.** The router adjusts automatically as the set of supported models evolves, without requiring changes to your application.
+- **Transparency.** The selected model is always disclosed in the API response via the model field, so you can see exactly which model handled each request.
 
 Model router analyzes prompts to make routing decisions but does not store them. It honors data-zone boundaries, routing only to models approved within your deployment’s geographic and compliance constraints.
 
