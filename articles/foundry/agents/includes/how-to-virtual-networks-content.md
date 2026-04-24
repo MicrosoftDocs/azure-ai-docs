@@ -131,6 +131,7 @@ After deployment finishes, verify that all resources are configured correctly:
 - **Grounding with Bing Search**: Only the following regions are supported: West Europe, Canada East, Switzerland North, Spain Central, UAE North, Korea Central, Poland Central, Southeast Asia, West US, West US 2, West US 3, East US, East US 2, Central US, South India, Japan East, UK South, France Central, Norway East, Australia East, Canada Central, Sweden Central, South Africa North, Italy North, Brazil South
 - **Delete network injection**: If you want to delete your Foundry resource and Standard Agent with secured network setup, delete your Foundry resource and virtual network last. Before deleting the virtual network, delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your Foundry resource.
 - **Hosted agent virtual network injection**: For hosted agents, the virtual network configuration (network injection) must be included when you first create the Foundry account. Adding network injection to an existing Foundry account after creation isn't supported for hosted agents. 
+- **Hosted agent container registry behind a private network**: For hosted agents, the Azure Container Registry (ACR) that stores the agent's container image can't currently be placed behind a private network (private endpoint with public network access disabled). The ACR must be reachable over its public endpoint for the platform to pull the image.
 
 
 ## Architecture diagram
