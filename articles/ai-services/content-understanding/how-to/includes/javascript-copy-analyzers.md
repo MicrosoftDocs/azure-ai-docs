@@ -69,6 +69,8 @@ export CONTENTUNDERSTANDING_KEY="your-key"
 ```javascript
 const { AzureKeyCredential } =
     require("@azure/core-auth");
+const { DefaultAzureCredential } =
+    require("@azure/identity");
 const {
     ContentUnderstandingClient,
 } = require("@azure/ai-content-understanding");
@@ -78,9 +80,13 @@ const endpoint =
 const key =
     process.env["CONTENTUNDERSTANDING_KEY"];
 
+const credential = key
+    ? new AzureKeyCredential(key)
+    : new DefaultAzureCredential();
+
 const client = new ContentUnderstandingClient(
     endpoint,
-    new AzureKeyCredential(key)
+    credential
 );
 ```
 
@@ -125,6 +131,8 @@ Example resource ID format:
 `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{name}`
 
 ```javascript
+const { DefaultAzureCredential } = require("@azure/identity");
+
 const sourceEndpoint =
     process.env["CONTENTUNDERSTANDING_ENDPOINT"];
 const sourceKey =
@@ -157,13 +165,20 @@ const sourceAnalyzerId = "my-source-analyzer";
 const targetAnalyzerId = "my-target-analyzer";
 
 // Create clients for source and target resources
+const sourceCredential = sourceKey
+    ? new AzureKeyCredential(sourceKey)
+    : new DefaultAzureCredential();
+const targetCredential = targetKey
+    ? new AzureKeyCredential(targetKey)
+    : new DefaultAzureCredential();
+
 const sourceClient = new ContentUnderstandingClient(
     sourceEndpoint,
-    new AzureKeyCredential(sourceKey)
+    sourceCredential
 );
 const targetClient = new ContentUnderstandingClient(
     targetEndpoint,
-    new AzureKeyCredential(targetKey)
+    targetCredential
 );
 
 // Step 1: Grant copy authorization on the source

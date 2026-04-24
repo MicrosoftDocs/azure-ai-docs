@@ -88,7 +88,7 @@ poller = client.begin_copy_analyzer(
 )
 poller.result()
 
-print(f"Analyzer copied successfully!")
+print("Analyzer copied successfully!")
 ```
 
 > [!TIP]
@@ -152,7 +152,7 @@ copy_auth = source_client.grant_copy_authorization(
     target_region=target_region,
 )
 
-print(f"Authorization granted successfully!")
+print("Authorization granted successfully!")
 print(f"  Target Azure Resource ID: {copy_auth.target_azure_resource_id}")
 print(f"  Expires at: {copy_auth.expires_at}")
 
@@ -165,7 +165,7 @@ copy_poller = target_client.begin_copy_analyzer(
 )
 copy_poller.result()
 
-print(f"Analyzer copied successfully to target resource!")
+print("Analyzer copied successfully to target resource!")
 ```
 
 > [!TIP]

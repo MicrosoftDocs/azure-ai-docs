@@ -69,6 +69,8 @@ export CONTENTUNDERSTANDING_KEY="your-key"
 
 ```typescript
 import { AzureKeyCredential } from "@azure/core-auth";
+import { DefaultAzureCredential } from
+    "@azure/identity";
 import {
     ContentUnderstandingClient,
 } from "@azure/ai-content-understanding";
@@ -79,11 +81,15 @@ import type {
 const endpoint =
     process.env["CONTENTUNDERSTANDING_ENDPOINT"]!;
 const key =
-    process.env["CONTENTUNDERSTANDING_KEY"]!;
+    process.env["CONTENTUNDERSTANDING_KEY"];
+
+const credential = key
+    ? new AzureKeyCredential(key)
+    : new DefaultAzureCredential();
 
 const client = new ContentUnderstandingClient(
     endpoint,
-    new AzureKeyCredential(key)
+    credential
 );
 ```
 

@@ -26,7 +26,7 @@ This guide shows you how to use the [Content Understanding REST API](/rest/api/c
 The copy operation within a Foundry resource is a single-step operation. Specify the target analyzer ID in the request URL and provide the source analyzer ID in the request body.
 
 ```http
-POST https://{resource}.ai.azure.com/contentunderstanding/analyzers/{targetAnalyzer}:copy?api-version=2025-11-01
+POST https://{resource}.services.ai.azure.com/contentunderstanding/analyzers/{targetAnalyzer}:copy?api-version=2025-11-01
 Content-Type: application/json
 Ocp-Apim-Subscription-Key: {Auth key}
 
@@ -41,8 +41,7 @@ Ocp-Apim-Subscription-Key: {Auth key}
 Copying an analyzer across Foundry resources is a multi-step process because a service principal might not have permissions on both resources:
 
 1. Call the [Grant Copy Authorization](/rest/api/contentunderstanding/content-analyzers/grant-copy-authorization?view=rest-contentunderstanding-2025-11-01) API on the source analyzer, providing the fully qualified resource ID of the copy target and the target region. The response contains a copy authorization token with an expiration time (`expiresAt`).
-1. Copy the resulting response body and use it as the body of the copy request in the next step.
-1. Call the copy API on the target resource, providing the fully qualified source resource ID, the source analyzer ID, and the source region.
+2. Call the copy API on the target resource, providing the fully qualified source resource ID, the source analyzer ID, and the source region.
 
 > [!IMPORTANT]
 > Both the source and target resources require the **Cognitive Services User** role to be granted to the credential used to run the code. This role is required for cross-resource copying operations.

@@ -70,11 +70,18 @@ using Azure;
 using Azure.AI.ContentUnderstanding;
 using Azure.Identity;
 
-string endpoint = "<endpoint>";
-string apiKey = "<apiKey>";
-var client = new ContentUnderstandingClient(
-    new Uri(endpoint),
-    new AzureKeyCredential(apiKey));
+string endpoint = Environment.GetEnvironmentVariable(
+    "CONTENTUNDERSTANDING_ENDPOINT");
+string apiKey = Environment.GetEnvironmentVariable(
+    "CONTENTUNDERSTANDING_KEY");
+
+var client = !string.IsNullOrEmpty(apiKey)
+    ? new ContentUnderstandingClient(
+        new Uri(endpoint),
+        new AzureKeyCredential(apiKey))
+    : new ContentUnderstandingClient(
+        new Uri(endpoint),
+        new DefaultAzureCredential());
 ```
 
 ## Copy within a Foundry resource
