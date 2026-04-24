@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 02/25/2026
 ms.service: azure-ai-speech
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - build-2025
 ai-usage: ai-assisted

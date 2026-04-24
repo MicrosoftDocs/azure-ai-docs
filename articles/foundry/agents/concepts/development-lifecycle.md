@@ -3,13 +3,13 @@ title: "Agent development lifecycle"
 description: "Learn the agent development lifecycle in Microsoft Foundry, from creating and versioning to tracing, evaluation, publishing, and monitoring."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 02/02/2026
 author: aahill
 ms.author: aahi
-ms.custom: pilot-ai-workflow-jan-2026
+ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
@@ -34,8 +34,8 @@ Use this lifecycle as a practical checklist while you build and ship an agent.
 1. **Save changes as versions**: Capture meaningful milestones and compare versions.
 1. **Debug with tracing**: Use tracing to confirm tool calls, latency, and end-to-end behavior. For details, see [Agent tracing overview](../../observability/concepts/trace-agent-concept.md).
 1. **Evaluate quality and safety**: Run repeatable evaluations to catch regressions before publishing. For conceptual guidance, see [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
-1. **Publish and integrate**: Publish a stable endpoint and integrate it into your application. For steps, see [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md).
-1. **Monitor and iterate**: Monitor performance and quality in production, then update and republish as needed. For guidance, see [Monitor quality and safety](../../../foundry-classic/how-to/monitor-quality-safety.md).
+1. **Publish and integrate**: Publish a stable endpoint and integrate it into your application. For steps, see [Agent applications in Microsoft Foundry](../how-to/agent-applications.md).
+1. **Monitor and iterate**: Monitor performance and quality in production, then update and republish as needed. For guidance, see [Monitor agents](../../observability/how-to/how-to-monitor-agents-dashboard.md).
 
 ## Agent types in Microsoft Foundry
 
@@ -104,7 +104,7 @@ For more information, see [Agent tracing overview](../../observability/concepts/
 Before you publish your agent (and after any meaningful change), run evaluations to catch regressions and measure quality consistently across versions.
 
 - For the key evaluation dimensions for agents, see [Agent evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md).
-- For a code-first workflow you can automate, see [Evaluate your AI agents locally](../../../foundry-classic/how-to/develop/agent-evaluate-sdk.md).
+- For a code-first workflow you can automate, see [Evaluate your AI agents](../../observability/concepts/trace-agent-concept.md).
 
 ### Monitor after publishing
 
@@ -114,7 +114,7 @@ After you publish an agent application, treat it like production software:
 - Review traces when behavior changes.
 - Update and republish when you fix issues or make improvements.
 
-For guidance, see [Monitor quality and safety](../../../foundry-classic/how-to/monitor-quality-safety.md).
+For guidance, see [Trace agents](../../observability/concepts/trace-agent-concept.md).
 
 ### Plan for identity and permissions
 
@@ -132,7 +132,7 @@ Treat your agent configuration like application code. Protect secrets and permis
 
 ### Publish your agent or workflow
 
-After you create an agent or workflow version that you're happy with, [publish it as an agent application](../how-to/publish-agent.md). You get a stable endpoint that you can open and test in the browser, share with others, or embed in your existing applications. You and your collaborators can validate performance and identify what needs refinement. Make any necessary updates and republish a new version at any time.
+After you create an agent or workflow version that you're happy with, [publish it as an agent application](../how-to/agent-applications.md). You get a stable endpoint that you can open and test in the browser, share with others, or embed in your existing applications. You and your collaborators can validate performance and identify what needs refinement. Make any necessary updates and republish a new version at any time.
 
 > [!IMPORTANT]
 > Permissions assigned to the project identity don't automatically transfer to the published agent. After publishing, reassign the necessary privileges to the agent application's identity.
@@ -157,8 +157,8 @@ After you create an agent or workflow version that you're happy with, [publish i
 
 **Publish and monitor agents:**
 
-- [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
-- [Monitor quality and safety](../../../foundry-classic/how-to/monitor-quality-safety.md)
+- [Agent applications in Microsoft Foundry](../how-to/agent-applications.md)
+- [Monitor agents](../../observability/how-to/how-to-monitor-agents-dashboard.md)
 
 **Debug and evaluate:**
 

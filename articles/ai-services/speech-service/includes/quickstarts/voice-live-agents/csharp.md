@@ -44,7 +44,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a **.csproj** file with the following project configuration:
 
-    :::code language="xml" source="~/cognitive-services-quickstart-code/dotnet/Speech/VoiceLiveWithAgent.csproj":::
+    :::code language="xml" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgent.csproj":::
 
 1. Restore NuGet packages:
 
@@ -79,7 +79,7 @@ The agent creation script is a separate utility. Create a temporary console proj
 
 1. Replace the contents of **Program.cs** with the following code:
 
-    :::code language="csharp" source="~/cognitive-services-quickstart-code/dotnet/Speech/CreateAgentWithVoiceLive.cs":::
+    :::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/CreateAgentWithVoiceLive.cs":::
 
 1. Sign in to Azure with the following command:
 
@@ -117,7 +117,7 @@ The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to 
 
 1. Create the **VoiceLiveWithAgentV2.cs** file with the following code:
 
-    :::code language="csharp" source="~/cognitive-services-quickstart-code/dotnet/Speech/VoiceLiveWithAgentV2.cs":::
+    :::code language="csharp" source="~/voice-live-samples-code/csharp/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.cs":::
 
 1. Sign in to Azure with the following command:
 

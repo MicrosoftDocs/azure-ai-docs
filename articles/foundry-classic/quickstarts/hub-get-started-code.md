@@ -5,7 +5,7 @@ author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
 ms.date: 09/22/2025 
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.custom:
   - build-2025
@@ -46,6 +46,9 @@ pip install azure-ai-inference azure-identity azure-ai-projects==1.0.0b10
 ## Build your chat app
 
 Create chat.py with sample code:
+
+> [!TIP]
+> Code uses **Azure AI Projects 1.x SDK** and is incompatible with Azure AI Projects 2.x. Make sure you install the correct version `azure-ai-projects==1.0.0b10` to use with the code in this article.
 
 ```python
 from azure.ai.projects import AIProjectClient

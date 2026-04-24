@@ -2,8 +2,8 @@
 title: How to generate image embeddings with Microsoft Foundry Models
 titleSuffix: Microsoft Foundry
 description: Learn how to generate embeddings with Microsoft Foundry Models
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 08/27/2025
 ms.author: mopeakande
@@ -39,7 +39,7 @@ Content-Type: application/json
 api-key: <key>
 ```
 
-If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
+If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://ai.azure.com/.default`. 
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/images/embeddings?api-version=2024-05-01-preview

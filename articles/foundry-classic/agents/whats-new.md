@@ -4,8 +4,8 @@ description: "Learn about new feature updates and additions for your AI Agents. 
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: overview
 ms.date: 10/08/2025
 ms.custom: azure-ai-agents
@@ -13,7 +13,7 @@ ms.custom: azure-ai-agents
 
 # What's new in Foundry Agent Service (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../includes/agents-classic.md)]
 
 This article provides a summary of the latest releases and major documentation updates for Foundry Agent Service.
 

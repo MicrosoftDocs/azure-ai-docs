@@ -5,7 +5,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
 ms.date: 02/12/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: article
 ms.custom:
   - classic-and-new
@@ -14,7 +14,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Built-in evaluators reference (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/built-in-evaluators.md)
 
 [!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 

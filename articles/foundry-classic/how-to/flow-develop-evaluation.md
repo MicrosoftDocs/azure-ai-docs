@@ -1,8 +1,8 @@
 ---
 title: "Develop an evaluation flow (classic)"
 description: "Learn how to customize or create your own evaluation flow tailored to your tasks and objectives, and then use in a batch run as an evaluation method in prompt flow with Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
@@ -13,14 +13,13 @@ ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 ---
 
 # Develop an evaluation flow in Microsoft Foundry portal (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
 Evaluation flows are special types of flows that assess how well the outputs of a run align with specific criteria and goals.
 

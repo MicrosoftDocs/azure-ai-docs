@@ -20,6 +20,9 @@ ai-usage: ai-assisted
 > [!IMPORTANT]
 > This classic integration uses Agent Service (classic) and will be deprecated 8/31/2026. We recommend the [new agent quickstart](voice-live-agents-quickstart.md).
 
+> [!NOTE]
+> Foundry agent integration currently only supports agents available on public endpoints. Foundry agents deployed in private VNet aren't supported.
+
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 ::: zone pivot="ai-foundry-portal"

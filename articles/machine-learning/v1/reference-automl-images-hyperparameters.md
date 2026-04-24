@@ -9,7 +9,9 @@ ms.topic: reference
 ms.reviewer: sooryar
 author: swatig007
 ms.author: scottpolly
-ms.date: 01/18/2022
+ms.date: 03/05/2026
+ms.custom: dev-focus
+ai-usage: ai-assisted
 ---
 
 # Hyperparameters for computer vision tasks in automated machine learning (v1)
@@ -20,7 +22,7 @@ ms.date: 01/18/2022
 
 Learn which hyperparameters are available specifically for computer vision tasks in automated ML experiments.
 
-With support for computer vision tasks, you can control the model algorithm and sweep hyperparameters. These model algorithms and hyperparameters are passed in as the parameter space for the sweep. While many of the hyperparameters exposed are model-agnostic, there are instances where hyperparameters are model-specific or task-specific.
+With support for computer vision tasks, you can control the model architecture and sweep hyperparameters. These model architectures and hyperparameters are passed in as the parameter space for the sweep. While many of the hyperparameters exposed are model-agnostic, there are instances where hyperparameters are model-specific or task-specific.
 
 ## Model-specific hyperparameters
 
@@ -83,7 +85,7 @@ The following table describes the hyperparameters that are model agnostic.
 
 ## Image classification (multi-class and multi-label) specific hyperparameters
 
-The following table summarizes hyperparmeters for image classification (multi-class and multi-label) tasks.
+The following table summarizes hyperparameters for image classification (multi-class and multi-label) tasks.
 
 | Parameter name       | Description           | Default  |
 | ------------- |-------------|-----|
@@ -97,7 +99,7 @@ The following table summarizes hyperparmeters for image classification (multi-cl
 The following hyperparameters are for object detection and instance segmentation tasks.
 
 > [!WARNING]
-> These parameters are not supported with the `yolov5` algorithm. See the [model specific hyperparameters](#model-specific-hyperparameters) section for `yolov5` supported hyperparmeters.
+> These parameters are not supported with the `yolov5` algorithm. See the [model specific hyperparameters](#model-specific-hyperparameters) section for `yolov5` supported hyperparameters.
 
 | Parameter name       | Description           | Default  |
 | ------------- |-------------|-----|
@@ -114,6 +116,6 @@ The following hyperparameters are for object detection and instance segmentation
 
 ## Next steps
 
-* Learn how to [Set up AutoML to train computer vision models with Python (preview)](how-to-auto-train-image-models.md).
+* Learn how to [Set up AutoML to train computer vision models with Python](how-to-auto-train-image-models.md).
 
-* [Tutorial: Train an object detection model (preview) with AutoML and Python](tutorial-auto-train-image-models.md).
+* [Tutorial: Train an object detection model with AutoML and Python](tutorial-auto-train-image-models.md).

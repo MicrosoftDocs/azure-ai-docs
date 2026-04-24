@@ -4,10 +4,11 @@ description: "Learn about Foundry IQ, a managed knowledge layer that turns enter
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.date: 02/12/2026
 ai-usage: ai-assisted
+ms.custom: doc-kit-assisted
 ---
 
 # Foundry IQ (preview)
@@ -51,8 +52,7 @@ You can set up Foundry IQ through a portal or programmatically. The following st
 
 ### [Portal](#tab/portal)
 
-1. Sign in to the [Microsoft Foundry (new) portal](../../what-is-foundry.md#microsoft-foundry-portals).
-
+1. [!INCLUDE [foundry-sign-in](../../includes/foundry-sign-in.md)]
 1. Create a project or select an existing project.
 
 1. From the top menu, select **Build**.

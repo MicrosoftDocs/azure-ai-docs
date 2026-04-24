@@ -164,8 +164,6 @@ Monitoring helps you understand what data is sent to your model and the predicti
 
 This information helps you understand how users interact with your model. The collected input data can also be useful in training future versions of the model.
 
-For more information, see [Collect data from models in production](how-to-enable-data-collection.md).
-
 ## Retrain your model on new data
 
 Often, you want to validate your model, update it, or even retrain it from scratch as you receive new information. Sometimes, receiving new data is an expected part of the domain. Other times, model performance degrades due to changes to a particular sensor, natural data changes such as seasonal effects, or features shifting in their relation to other features. For more information, see [Detect data drift (preview) on datasets](how-to-monitor-datasets.md).

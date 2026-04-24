@@ -3,8 +3,8 @@ title: Python file for model inference SDK to OpenAI SDK migration
 description: Include file
 author: msakande
 ms.author: mopeakande
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 11/05/2025
 ms.custom: include
@@ -65,7 +65,7 @@ from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), 
-    "https://cognitiveservices.azure.com/.default"
+    "https://ai.azure.com/.default"
 )
 
 client = OpenAI(
@@ -172,7 +172,7 @@ from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(DefaultAzureCredential(), 
-"https://cognitiveservices.azure.com/.default")
+"https://ai.azure.com/.default")
 
 client = OpenAI(
     base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",

@@ -1,10 +1,6 @@
 ---
-title: Training modules
-titleSuffix: Azure AI Search
+title: Training Modules
 description: Get hands-on training on Azure AI Search from Microsoft and other third-party training providers.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 04/07/2025

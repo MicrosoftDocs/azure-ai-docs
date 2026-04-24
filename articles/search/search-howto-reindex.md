@@ -1,10 +1,6 @@
 ---
-title: Update or rebuild an index
-titleSuffix: Azure AI Search
+title: Update or Rebuild an Index
 description: Update or rebuild an index to update the schema or clean out obsolete documents. You can fully rebuild or do partial indexing.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
@@ -357,7 +353,7 @@ Support for an index description is provided in the preview REST API, the Azure 
 
 The Azure portal supports the latest preview API.
 
-1. Sign in to the Azure portal and find your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Search management** > **Indexes**, select an index.
 

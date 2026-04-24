@@ -8,13 +8,15 @@ ms.author: scottpolly
 ms.reviewer: jturuk
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 10/21/2021
+ms.date: 03/05/2026
 ms.topic: how-to
 ms.custom:
   - UpdateFrequency5
   - mlflow
   - sdkv1
   - sfi-image-nochange
+  - dev-focus
+ai-usage: ai-assisted
 ---
 
 # Track ML models with MLflow and Azure Machine Learning 
@@ -23,22 +25,25 @@ ms.custom:
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-In this article, learn how to enable [MLflow Tracking](https://mlflow.org/docs/latest/quickstart.html#using-the-tracking-api) to connect Azure Machine Learning as the backend of your MLflow experiments.
+> [!NOTE]
+> This article uses Azure Machine Learning SDK v1. For the current approach using SDK v2 and MLflow, see [Track experiments and models with MLflow](../how-to-use-mlflow-cli-runs.md) and [Configure MLflow for Azure Machine Learning](../how-to-use-mlflow-configure-tracking.md).
 
-[MLflow](https://www.mlflow.org) is an open-source library for managing the lifecycle of your machine learning experiments. MLflow Tracking is a component of MLflow that logs and tracks your training run metrics and model artifacts, no matter your experiment's environment--locally on your computer, on a remote compute target, a virtual machine, or an [Azure Databricks cluster](../how-to-use-mlflow-azure-databricks.md).
+In this article, learn how to enable [MLflow](https://mlflow.org/docs/latest/api_reference/python_api/mlflow.html?highlight=mlflow%20tracking) tracking to connect Azure Machine Learning as the backend of your MLflow experiments.
+
+[MLflow](https://www.mlflow.org) is an open-source library for managing the lifecycle of your machine learning experiments. MLflow Tracking is a component of MLflow that logs and tracks your training run metrics and model artifacts, no matter your experiment's environment - locally on your computer, on a remote compute target, a virtual machine, or an [Azure Databricks cluster](../how-to-use-mlflow-azure-databricks.md).
 
 See [MLflow and Azure Machine Learning](../concept-mlflow.md) for all supported MLflow and Azure Machine Learning functionality including MLflow Project support (preview) and model deployment.
  
-> [!Tip] 
-> If you want to track experiments running on Azure Databricks or Azure Synapse Analytics, see the dedicated articles [Track Azure Databricks ML experiments with MLflow and Azure Machine Learning](../how-to-use-mlflow-azure-databricks.md) or [Track Azure Synapse Analytics ML experiments with MLflow and Azure Machine Learning](../how-to-use-mlflow-azure-synapse.md).
+> [!TIP] 
+> To track experiments running on Azure Databricks or Azure Synapse Analytics, see the dedicated articles [Track Azure Databricks ML experiments with MLflow and Azure Machine Learning](../how-to-use-mlflow-azure-databricks.md) or [Track Azure Synapse Analytics ML experiments with MLflow and Azure Machine Learning](../how-to-use-mlflow-azure-synapse.md).
 
 > [!NOTE]
-> The information in this document is primarily for data scientists and developers who want to monitor the model training process. If you are an administrator interested in monitoring resource usage and events from Azure Machine Learning, such as quotas, completed training jobs, or completed model deployments, see [Monitoring Azure Machine Learning](../monitor-azure-machine-learning.md).
+> The information in this document is primarily for data scientists and developers who want to monitor the model training process. If you're an administrator interested in monitoring resource usage and events from Azure Machine Learning, such as quotas, completed training jobs, or completed model deployments, see [Monitoring Azure Machine Learning](../monitor-azure-machine-learning.md).
 
 ## Prerequisites
 
 * Install the `mlflow` package. 
-    * You can use the [MLflow Skinny](https://github.com/mlflow/mlflow/blob/master/libs/skinny/README_SKINNY.md) which is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. This is recommended for users who primarily need the tracking and logging capabilities without importing the full suite of MLflow features including deployments.
+    * Use the [MLflow Skinny](https://github.com/mlflow/mlflow/blob/master/libs/skinny/README_SKINNY.md), a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. Use this package if you primarily need the tracking and logging capabilities without importing the full suite of MLflow features including deployments.
 
 * Install the `azureml-mlflow` package. 
 * [Create an Azure Machine Learning Workspace](../quickstart-create-resources.md).
@@ -52,22 +57,22 @@ See [MLflow and Azure Machine Learning](../concept-mlflow.md) for all supported 
 
 ## Track runs from your local machine or remote compute
 
-Tracking using MLflow with Azure Machine Learning lets you store the logged metrics and artifacts runs that were executed on your local machine into your Azure Machine Learning workspace.
+By using MLflow with Azure Machine Learning, you can store the logged metrics and artifacts for runs that you execute on your local machine in your Azure Machine Learning workspace.
 
 ### Set up tracking environment
 
-To track a run that is not running on Azure Machine Learning compute (from now on referred to as *"local compute"*), you need to point your local compute to the Azure Machine Learning MLflow Tracking URI. 
+To track a run that isn't running on Azure Machine Learning compute (referred to as *local compute*), you need to point your local compute to the Azure Machine Learning MLflow Tracking URI. 
 
 > [!NOTE]
-> When running on Azure Compute (Azure Notebooks, Jupyter Notebooks hosted on Azure Compute Instances or Compute Clusters) you don't have to configure the tracking URI. It's automatically configured for you.
+> When running on Azure Compute (Azure Notebooks, Jupyter Notebooks hosted on Azure Compute Instances or Compute Clusters), you don't have to configure the tracking URI. It's automatically configured for you.
 
 # [Using the Azure Machine Learning SDK](#tab/azuremlsdk)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
-You can get the Azure Machine Learning MLflow tracking URI using the [Azure Machine Learning SDK v1 for Python](introduction.md#sdk-v1). Ensure you have the library `azureml-sdk` installed in the cluster you are using. The following sample gets the unique MLFLow tracking URI associated with your workspace. Then the method [`set_tracking_uri()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.set_tracking_uri) points the MLflow tracking URI to that URI.
+You can get the Azure Machine Learning MLflow tracking URI by using the [Azure Machine Learning SDK v1 for Python](introduction.md#sdk-v1). Make sure you install the `azureml-sdk` library in the cluster you're using. The following sample gets the unique MLflow tracking URI associated with your workspace. Then the method [`set_tracking_uri()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.set_tracking_uri) points the MLflow tracking URI to that URI.
 
-1. Using the workspace configuration file:
+1. Use the workspace configuration file:
 
     ```Python
     from azureml.core import Workspace
@@ -79,11 +84,11 @@ You can get the Azure Machine Learning MLflow tracking URI using the [Azure Mach
 
     > [!TIP]
     > You can download the workspace configuration file by:
-    > 1. Navigate to [Azure Machine Learning studio](https://ml.azure.com)
-    > 2. Click on the uper-right corner of the page -> Download config file.
-    > 3. Save the file `config.json` in the same directory where you are working on.
+    > 1. Navigating to [Azure Machine Learning studio](https://ml.azure.com)
+    > 2. Selecting the upper-right corner of the page -> **Download config file**.
+    > 3. Saving the file `config.json` in the same directory where you're working.
 
-1. Using the subscription ID, resource group name and workspace name:
+1. Use the subscription ID, resource group name, and workspace name:
 
     ```Python
     from azureml.core import Workspace
@@ -112,11 +117,11 @@ export MLFLOW_TRACKING_URI=$(az ml workspace show --query mlflow_tracking_uri | 
 ```
 
 >[!IMPORTANT]
-> Make sure you are logged in to your Azure account on your local machine, otherwise the tracking URI returns an empty string. If you are using any Azure Machine Learning compute the tracking environment and experiment name is already configured.
+> Make sure you're signed in to your Azure account on your local machine. Otherwise, the tracking URI returns an empty string. If you use any Azure Machine Learning compute, the tracking environment and experiment name is already configured.
 
 # [Building the MLflow tracking URI](#tab/build)
 
-The Azure Machine Learning Tracking URI can be constructed using the subscription ID, region of where the resource is deployed, resource group name and workspace name. The following code sample shows how:
+You can build the Azure Machine Learning Tracking URI by using the subscription ID, region where you deploy the resource, resource group name, and workspace name. The following code sample shows how to build the URI:
 
 ```python
 import mlflow
@@ -132,15 +137,15 @@ mlflow.set_tracking_uri(azureml_mlflow_uri)
 
 > [!NOTE]
 > You can also get this URL by: 
-> 1. Navigate to [Azure Machine Learning studio](https://ml.azure.com)
-> 2. Click on the uper-right corner of the page -> View all properties in Azure portal -> MLflow tracking URI.
-> 3. Copy the URI and use it with the method `mlflow.set_tracking_uri`.
+> 1. Navigating to [Azure Machine Learning studio](https://ml.azure.com)
+> 2. Selecting the upper-right corner of the page -> **View all properties in Azure portal** -> **MLflow tracking URI**.
+> 3. Copying the URI and using it with the method `mlflow.set_tracking_uri`.
 
 ---
 
 ### Set experiment name
 
-All MLflow runs are logged to the active experiment. By default, runs are logged to an experiment named `Default` that is automatically created for you. To configure the experiment you want to work on use MLflow command [`mlflow.set_experiment()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.set_experiment).
+All MLflow runs log to the active experiment. By default, runs log to an experiment named `Default` that Azure Machine Learning automatically creates for you. To configure the experiment you want to work on, use the MLflow command [`mlflow.set_experiment()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.set_experiment).
     
 ```Python
 experiment_name = 'experiment_with_mlflow'
@@ -148,11 +153,11 @@ mlflow.set_experiment(experiment_name)
 ```
 
 > [!TIP]
-> When submitting jobs using Azure Machine Learning SDK, you can set the experiment name using the property `experiment_name` when you submit it. You don't have to configure it on your training script.
+> When you submit jobs by using Azure Machine Learning SDK, set the experiment name by using the property `experiment_name` when you submit it. You don't have to configure it on your training script.
 
 ### Start training run
 
-After you set the MLflow experiment name, you can start your training run with `start_run()`. Then use `log_metric()` to activate the MLflow logging API and begin logging your training run metrics.
+After you set the MLflow experiment name, start your training run by using `start_run()`. Then use `log_metric()` to activate the MLflow logging API and begin logging your training run metrics.
 
 ```Python
 import os
@@ -165,24 +170,24 @@ with mlflow.start_run() as mlflow_run:
     mlflow.log_artifact("helloworld.txt")
 ```
 
-For details about how to log metrics, parameters and artifacts in a run using MLflow view [How to log and view metrics](how-to-log-view-metrics.md).
+For details about how to log metrics, parameters, and artifacts in a run by using MLflow, see [How to log and view metrics](how-to-log-view-metrics.md).
 
 ## Track runs running on Azure Machine Learning
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
-Remote runs (jobs) let you train your models in a more robust and repetitive way. They can also leverage more powerful computes, such as Machine Learning Compute clusters. See [Use compute targets for model training](how-to-set-up-training-targets.md) to learn about different compute options.
+Remote runs (jobs) let you train your models in a more robust and repeatable way. They can also leverage more powerful compute resources, such as Machine Learning Compute clusters. To learn about different compute options, see [Use compute targets for model training](how-to-set-up-training-targets.md).
 
-When submitting runs, Azure Machine Learning automatically configures MLflow to work with the workspace the run is running in. This means that there is no need to configure the MLflow tracking URI. On top of that, experiments are automatically named based on the details of the experiment submission.
+When you submit runs, Azure Machine Learning automatically configures MLflow to work with the workspace the run is running in. This configuration means you don't need to set up the MLflow tracking URI. Also, Azure Machine Learning automatically names experiments based on the details of the experiment submission.
 
 > [!IMPORTANT]
-> When submitting training jobs to Azure Machine Learning, you don't have to configure the MLflow tracking URI on your training logic as it is already configured for you. You don't need to configure the experiment name in your training routine neither.
+> When you submit training jobs to Azure Machine Learning, you don't need to configure the MLflow tracking URI or the experiment name in your training logic. Azure Machine Learning handles these configurations for you.
 
 ### Creating a training routine
 
-First, you should create a `src` subdirectory and create a file with your training code in a `train.py` file in the `src` subdirectory. All your training code will go into the `src` subdirectory, including `train.py`.
+First, create a `src` subdirectory and add a `train.py` file with your training code. All your training code goes into the `src` subdirectory, including `train.py`.
 
-The training code is taken from this [MLflow example](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/basics/src/hello-mlflow.py) in the Azure Machine Learning example repo. 
+The training code comes from this [MLflow example](https://github.com/Azure/azureml-examples/blob/main/cli/jobs/basics/src/hello-mlflow.py) in the Azure Machine Learning example repo. 
 
 Copy this code into the file:
 
@@ -209,7 +214,7 @@ if __name__ == "__main__":
 
 ### Configuring the experiment
 
-You will need to use Python to submit the experiment to Azure Machine Learning. In a notebook or Python file, configure your compute and training run environment with the [`Environment`](/python/api/azureml-core/azureml.core.environment.environment) class. 
+Use Python to submit the experiment to Azure Machine Learning. In a notebook or Python file, configure your compute and training run environment by using the [`Environment`](/python/api/azureml-core/azureml.core.environment.environment) class. 
 
 ```Python
 from azureml.core import Environment
@@ -226,7 +231,7 @@ cd = CondaDependencies.create(
 env.python.conda_dependencies = cd
 ```
 
-Then, construct  [`ScriptRunConfig`](/python/api/azureml-core/azureml.core.script_run_config.scriptrunconfig) with your remote compute as the compute target.
+Then, create a [`ScriptRunConfig`](/python/api/azureml-core/azureml.core.script_run_config.scriptrunconfig) with your remote compute as the compute target.
 
 ```Python
 from azureml.core import ScriptRunConfig
@@ -237,7 +242,7 @@ src = ScriptRunConfig(source_directory="src",
                       environment=env)
 ```
 
-With this compute and training run configuration, use the `Experiment.submit()` method to submit a run. This method automatically sets the MLflow tracking URI and directs the logging from MLflow to your Workspace.
+By using this compute and training run configuration, call the `Experiment.submit()` method to submit a run. This method automatically sets the MLflow tracking URI and directs the logging from MLflow to your workspace.
 
 ```Python
 from azureml.core import Experiment
@@ -252,9 +257,9 @@ run = exp.submit(src)
 
 ## View metrics and artifacts in your workspace
 
-The metrics and artifacts from MLflow logging are tracked in your workspace. To view them anytime, navigate to your workspace and find the experiment by name in your workspace in [Azure Machine Learning studio](https://ml.azure.com).  Or run the below code. 
+Your workspace tracks the metrics and artifacts from MLflow logging. To view them anytime, go to your workspace and find the experiment by name in [Azure Machine Learning studio](https://ml.azure.com). Or run the following code. 
 
-Retrieve run metric using MLflow [get_run()](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.get_run).
+Retrieve run metrics by using MLflow [get_run()](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.get_run).
 
 ```Python
 from mlflow.tracking import MlflowClient
@@ -271,24 +276,27 @@ params = finished_mlflow_run.data.params
 print(metrics,tags,params)
 ```
 
-To view the artifacts of a run, you can use [MlFlowClient.list_artifacts()](https://mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient.list_artifacts)
+To view the artifacts of a run, use `MlFlowClient.list_artifacts()`.
 
 ```Python
 client.list_artifacts(run_id)
 ```
 
-To download an artifact to the current directory, you can use [MLFlowClient.download_artifacts()](https://www.mlflow.org/docs/latest/python_api/mlflow.tracking.html#mlflow.tracking.MlflowClient.download_artifacts)
+To download an artifact to the current directory, use [mlflow.artifacts.download_artifacts()](https://mlflow.org/docs/latest/python_api/mlflow.artifacts.html#mlflow.artifacts.download_artifacts).
 
 ```Python
-client.download_artifacts(run_id, "helloworld.txt", ".")
+file_path = mlflow.artifacts.download_artifacts(run_id=run_id, artifact_path="helloworld.txt")
 ```
 
-For more details about how to retrieve information from experiments and runs in Azure Machine Learning using MLflow view [Manage experiments and runs with MLflow](../how-to-track-experiments-mlflow.md).
+> [!NOTE]
+> In legacy versions of MLflow (< 2.0), use `MlflowClient.download_artifacts()` instead.
 
-## Compare and query
+For more details about how to retrieve information from experiments and runs in Azure Machine Learning by using MLflow, see [Manage experiments and runs with MLflow](../how-to-track-experiments-mlflow.md).
 
-Compare and query all MLflow runs in your Azure Machine Learning workspace with the following code. 
-[Learn more about how to query runs with MLflow](https://mlflow.org/docs/latest/search-syntax.html#programmatically-searching-runs). 
+## Compare and query runs
+
+Use the following code to compare and query all MLflow runs in your Azure Machine Learning workspace. 
+To learn more about how to query runs with MLflow, see [mlflow](https://mlflow.org/docs/latest/api_reference/python_api/mlflow.html).
 
 ```Python
 from mlflow.entities import ViewType
@@ -301,9 +309,9 @@ runs.head(10)
 ```
 
 ## Automatic logging
-With Azure Machine Learning and MLFlow, users can log metrics, model parameters and model artifacts automatically when training a model.  A [variety of popular machine learning libraries](https://mlflow.org/docs/latest/tracking.html#automatic-logging) are supported. 
+By using Azure Machine Learning and MLflow, you can automatically log metrics, model parameters, and model artifacts when you train a model. [A variety of popular machine learning libraries](https://mlflow.org/docs/latest/tracking.html#automatic-logging) are supported. 
 
-To enable [automatic logging](https://mlflow.org/docs/latest/tracking.html#automatic-logging) insert the following code before your training code:
+To enable [automatic logging](https://mlflow.org/docs/latest/tracking.html#automatic-logging), insert the following code before your training code:
 
 ```Python
 mlflow.autolog()
@@ -313,13 +321,13 @@ mlflow.autolog()
 
 ## Manage models
 
-Register and track your models with the [Azure Machine Learning model registry](concept-model-management-and-deployment.md#register-package-and-deploy-models-from-anywhere), which supports the MLflow model registry. Azure Machine Learning models are aligned with the MLflow model schema making it easy to export and import these models across different workflows. The MLflow-related metadata, such as run ID, is also tracked with the registered model for traceability. Users can submit training runs, register, and deploy models produced from MLflow runs.
+Register and track your models by using the [Azure Machine Learning model registry](concept-model-management-and-deployment.md#register-package-and-deploy-models-from-anywhere), which supports the MLflow model registry. Azure Machine Learning models align with the MLflow model schema, so you can easily export and import these models across different workflows. The registered model also tracks MLflow-related metadata, such as run ID, for traceability. You can submit training runs, register models, and deploy models produced from MLflow runs.
 
-If you want to deploy and register your production ready model in one step, see [Deploy and register MLflow models](how-to-deploy-mlflow-models.md).
+To deploy and register your production ready model in one step, see [Deploy and register MLflow models](how-to-deploy-mlflow-models.md).
 
 To register and view a model from a run, use the following steps:
 
-1. Once a run is complete, call the [`register_model()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.register_model) method.
+1. When a run finishes, call the [`register_model()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.register_model) method.
 
     ```Python
     # the model folder produced from a run is registered. This includes the MLmodel file, model.pkl and the conda.yaml.
@@ -328,9 +336,9 @@ To register and view a model from a run, use the following steps:
     mlflow.register_model(model_uri,"registered_model_name")
     ```
 
-1. View the registered model in your workspace with [Azure Machine Learning studio](https://ml.azure.com).
+1. View the registered model in your workspace by using [Azure Machine Learning studio](https://ml.azure.com).
 
-    In the following example the registered model, `my-model` has MLflow tracking metadata tagged. 
+    In the following example, the registered model `my-model` has MLflow tracking metadata tagged. 
 
     ![register-mlflow-model](../media/how-to-use-mlflow-cli-runs/registered-mlflow-model.png)
 
@@ -338,14 +346,14 @@ To register and view a model from a run, use the following steps:
 
     ![model-schema](../media/how-to-use-mlflow-cli-runs/mlflow-model-schema.png)
 
-1. Select MLmodel to see the MLmodel file generated by the run.
+1. Select **MLmodel** to see the MLmodel file generated by the run.
 
     ![MLmodel-schema](../media/how-to-use-mlflow-cli-runs/mlmodel-view.png)
 
 
 ## Clean up resources
 
-If you don't plan to use the logged metrics and artifacts in your workspace, the ability to delete them individually is currently unavailable. Instead, delete the resource group that contains the storage account and workspace, so you don't incur any charges:
+If you don't plan to use the logged metrics and artifacts in your workspace, you can't currently delete them individually. Instead, delete the resource group that contains the storage account and workspace so you don't incur any charges:
 
 1. In the Azure portal, select **Resource groups** on the far left.
 
@@ -364,6 +372,5 @@ The [MLflow with Azure Machine Learning notebooks](https://github.com/Azure/Mach
 ## Next steps
 
 * [Deploy models with MLflow](how-to-deploy-mlflow-models.md).
-* Monitor your production models for [data drift](how-to-enable-data-collection.md).
 * [Track Azure Databricks runs with MLflow](../how-to-use-mlflow-azure-databricks.md).
 * [Manage your models](concept-model-management-and-deployment.md).

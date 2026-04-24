@@ -1,13 +1,11 @@
 ---
 title: Multi-Vector Field Support
-titleSuffix: Azure AI Search
 description: Learn how Azure AI Search enables multi-vector field support for better search experiences with long-form or multimodal content.
-author: gmndrg
-ms.author: gimondra
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: concept-article
-ms.date: 08/27/2025
+ms.date: 03/25/2026
 ---
 
 # Multi-vector field support in Azure AI Search

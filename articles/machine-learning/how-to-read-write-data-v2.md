@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: soumyapatro
-ms.date: 08/06/2025
+ms.date: 04/02/2026
 ms.custom:
   - devplatv2
   - sdkv2
@@ -43,7 +43,13 @@ In this article you learn:
 
 - The [Azure Machine Learning SDK for Python v2](https://aka.ms/sdk-v2-install).
 
-- An Azure Machine Learning workspace
+- The [azure-identity](/python/api/azure-identity) Python package (`pip install azure-identity`).
+
+- The [Azure CLI](/cli/azure/install-azure-cli) with the [ml extension v2](/cli/azure/ml) (`az extension add -n ml`).
+
+- An Azure Machine Learning workspace.
+
+- An [Azure Machine Learning compute target](how-to-create-attach-compute-cluster.md) (for example, a compute cluster named `cpu-cluster`).
 
 ## Quickstart
 
@@ -63,8 +69,8 @@ In this example, you submit an Azure Machine Learning job that accesses data fro
 # [Python SDK](#tab/python)
 
 ```python
-from azure.ai.ml import command, Input, MLClient, UserIdentityConfiguration, ManagedIdentityConfiguration
-from azure.ai.ml.entities import Data
+from azure.ai.ml import command, Input, MLClient
+from azure.ai.ml.entities import Data, UserIdentityConfiguration, ManagedIdentityConfiguration
 from azure.ai.ml.constants import AssetTypes, InputOutputModes
 from azure.identity import DefaultAzureCredential
 
@@ -339,7 +345,7 @@ outputs:
 Next, submit the job using the CLI:
 
 ```azurecli
-az ml job create --file <file-name>.yml
+az ml job create -f <file-name>.yml
 ```
 
 ---
@@ -1133,6 +1139,18 @@ az ml job create -f <file-name>.yml
 ```
 
 ---
+
+## Cleanup
+
+If you created Azure resources for this tutorial that you no longer need, remove them to avoid incurring costs:
+
+- Scale your compute cluster down to zero nodes, or delete it if you no longer need it:
+
+  ```azurecli
+  az ml compute update --name cpu-cluster --resource-group <RESOURCE_GROUP> --workspace-name <AML_WORKSPACE_NAME> --min-instances 0
+  ```
+
+- Delete any output data assets or storage containers that you created during testing.
 
 ## Next steps
 

@@ -2,7 +2,7 @@
   "redirections": [
     {
       "source_path_from_root": "/articles/ai-foundry/openai/concepts/gov-provisioned.md",
-      "redirect_url": "/azure/ai-foundry/openai/azure-government",
+      "redirect_url": "/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov",
       "redirect_document_id": false
     },
     {
@@ -537,12 +537,12 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/use-your-data-quickstart.md",
-      "redirect_url": "/azure/ai-foundry/quickstarts/get-started-code?view=foundry",
+      "redirect_url": "/azure/foundry/quickstarts/get-started-code",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/how-to/azure-developer-cli.md",
-      "redirect_url": "/azure/ai-foundry/quickstarts/get-started-code?view=foundry",
+      "redirect_url": "/azure/foundry/quickstarts/get-started-code",
       "redirect_document_id": false
     },
     {
@@ -582,7 +582,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-studio/how-to/develop/langchain.md",
-      "redirect_url": "/azure/ai-foundry/how-to/develop/langchain",
+      "redirect_url": "/azure/foundry/how-to/develop/langchain",
       "redirect_document_id": true
     },
     {
@@ -1842,7 +1842,12 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/concepts/disable-preview-features-with-rbac.md",
-      "redirect_url": "/azure/foundry/concepts/disable-preview-features-with-rbac",
+      "redirect_url": "/azure/foundry/how-to/disable-preview-features",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/foundry/concepts/disable-preview-features-with-rbac.md",
+      "redirect_url": "/azure/foundry/how-to/disable-preview-features",
       "redirect_document_id": true
     },
     {
@@ -2097,7 +2102,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/agents/how-to/publish-agent.md",
-      "redirect_url": "/azure/foundry/agents/how-to/publish-agent",
+      "redirect_url": "/azure/foundry/agents/how-to/agent-applications",
       "redirect_document_id": true
     },
     {
@@ -2270,6 +2275,21 @@
       "redirect_url": "/azure/foundry/guardrails/guardrails-overview",
       "redirect_document_id": true
     },
+       {
+      "source_path_from_root": "/articles/foundry-classic/reference/foundry-project.md",
+      "redirect_url": "/rest/api/aifoundry/aiproject",
+      "redirect_document_id": false
+    },
+       {
+      "source_path_from_root": "/articles/foundry/reference/foundry-project-rest-preview.md",
+      "redirect_url": "/rest/api/aifoundry/aiproject",
+      "redirect_document_id": false
+    },
+      {
+      "source_path_from_root": "/articles/foundry/reference/foundry-project.md",
+      "redirect_url": "/rest/api/aifoundry/aiproject",
+      "redirect_document_id": false
+    },
     {
       "source_path_from_root": "/articles/ai-foundry/guardrails/how-to-create-guardrails.md",
       "redirect_url": "/azure/foundry/guardrails/how-to-create-guardrails",
@@ -2437,7 +2457,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/foundry-local/reference/reference-sdk.md",
-      "redirect_url": "/azure/foundry-local/reference/reference-sdk",
+      "redirect_url": "/azure/foundry-local/reference/reference-sdk-current",
       "redirect_document_id": true
     },
     {
@@ -2812,7 +2832,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/how-to/develop/langchain.md",
-      "redirect_url": "/azure/foundry-classic/how-to/develop/langchain",
+      "redirect_url": "/azure/foundry/how-to/develop/langchain",
       "redirect_document_id": true
     },
     {
@@ -3142,7 +3162,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/azure-government.md",
-      "redirect_url": "/azure/foundry-classic/openai/azure-government",
+      "redirect_url": "/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov",
       "redirect_document_id": true
     },
     {
@@ -3347,7 +3367,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/how-to/business-continuity-disaster-recovery.md",
-      "redirect_url": "/azure/foundry-classic/openai/how-to/business-continuity-disaster-recovery",
+      "redirect_url": "/azure/foundry-classic/how-to/high-availability-resiliency",
       "redirect_document_id": true
     },
     {

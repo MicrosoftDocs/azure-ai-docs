@@ -2,8 +2,8 @@
 title: How to use image and audio in chat completions with Microsoft Foundry Models
 titleSuffix: Microsoft Foundry
 description: Learn how to process audio and images with chat completions models with Microsoft Foundry Models
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 08/27/2025
 ms.author: mopeakande
@@ -38,7 +38,7 @@ Content-Type: application/json
 api-key: <key>
 ```
 
-If you've configured the resource with **Microsoft Entra ID** support, pass your token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
+If you've configured the resource with **Microsoft Entra ID** support, pass your token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://ai.azure.com/.default`. 
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview

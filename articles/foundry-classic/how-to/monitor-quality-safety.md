@@ -1,7 +1,7 @@
 ---
 title: "Monitor Quality and Token Usage of Deployed Prompt Flow Applications (Preview) (classic)"
 description: "Learn how to monitor quality and token usage of deployed prompt flow applications with Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023
   - build-2024
@@ -13,7 +13,6 @@ ms.reviewer: alehughes
 reviewer: ahughes-msft
 ms.author: lagayhar  
 author: lgayhardt
-ms.update-cycle: 180-days
 ---
 
 # Monitor quality and token usage of deployed prompt flow applications (classic)

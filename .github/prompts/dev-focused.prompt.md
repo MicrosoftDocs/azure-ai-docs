@@ -13,6 +13,16 @@ Reference the instruction files below for detailed guidance. Make sure your reco
 - .github/instructions/dev-focused.instructions.md
 - .github/instructions/foundry-branding.instructions.md
 
+## Recommended Skills
+
+Load the following skills when the article's subject matter overlaps their domain. Use each skill's Category Index to navigate to relevant sections efficiently.
+
+| Skill | When to Load |
+|-------|-------------|
+| `azure-machine-learning` | Article covers Azure ML pipelines, endpoints, AutoML, compute, prompt flow, or model training/deployment |
+| `azure-networking` | Article covers VNets, private endpoints, network isolation, NVAs, or Zero Trust networking |
+| `azure-rbac` | Article references Azure role assignments, ABAC conditions, custom roles, PIM, or RBAC prerequisites |
+
 ## Goals
 
 ### Core goals

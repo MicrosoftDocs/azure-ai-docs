@@ -1,8 +1,6 @@
 ---
 title: Include File
 description: Include file for Azure AI Search authentication to Microsoft Foundry.
-author: haileytap 
-ms.author: haileytapia 
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/11/2026

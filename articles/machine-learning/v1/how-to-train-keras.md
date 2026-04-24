@@ -8,9 +8,10 @@ ms.subservice: training
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: sooryar
-ms.date: 11/04/2022
+ms.date: 03/06/2026
 ms.topic: how-to
-ms.custom: UpdateFrequency5, sdkv1
+ms.custom: UpdateFrequency5, sdkv1, dev-focus
+ai-usage: ai-assisted
 #Customer intent: As a Python Keras developer, I need to combine open-source with a cloud platform to train, evaluate, and deploy my deep learning models at scale.
 ---
 
@@ -86,10 +87,10 @@ A `FileDataset` object references one or multiple files in your workspace datast
 from azureml.core.dataset import Dataset
 
 web_paths = [
-            'http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz',
-            'http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz',
-            'http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz',
-            'http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz'
+            'https://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz',
+            'https://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz',
+            'https://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz',
+            'https://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz'
             ]
 dataset = Dataset.File.from_files(path=web_paths)
 ```
@@ -108,6 +109,9 @@ dataset = dataset.register(workspace=ws,
 Create a compute target for your training job to run on. In this example, create a GPU-enabled Azure Machine Learning compute cluster.
 
 [!INCLUDE [gpu quota](../includes/machine-learning-gpu-quota.md)]
+
+> [!WARNING]
+> The `STANDARD_NC6` VM size (NC-series) retired on August 31, 2023, and is no longer available for new compute clusters. Use a supported GPU VM size such as `STANDARD_NC4AS_T4_V3` instead. For more information, see [NC-series retirement](/azure/virtual-machines/nc-series-retirement).
 
 ```Python
 cluster_name = "gpu-cluster"
@@ -133,6 +137,9 @@ Define the Azure Machine Learning [Environment](../concept-environments.md) that
 
 First, define your conda dependencies in a YAML file; in this example the file is named `conda_dependencies.yml`.
 
+> [!WARNING]
+> Python 3.7 reached end-of-life on June 27, 2023, and no longer receives security updates. If you're creating a new environment, use Python 3.10 or later.
+
 ```yaml
 channels:
 - conda-forge
@@ -148,6 +155,9 @@ dependencies:
 Create an Azure Machine Learning environment from this conda environment specification. The environment will be packaged into a Docker container at runtime.
 
 By default if no base image is specified, Azure Machine Learning will use a CPU image `azureml.core.environment.DEFAULT_CPU_IMAGE` as the base image. Since this example runs training on a GPU cluster, you will need to specify a GPU base image that has the necessary GPU drivers and dependencies. Azure Machine Learning maintains a set of base images published on Microsoft Container Registry (MCR) that you can use, see the [Azure/AzureML-Containers](https://github.com/Azure/AzureML-Containers) GitHub repo for more information.
+
+> [!WARNING]
+> The `docker.enabled` property is deprecated. Use the `DockerConfiguration` class instead. The base image `openmpi3.1.2-cuda10.0-cudnn7-ubuntu18.04` is also deprecated because Ubuntu 18.04 reached end-of-life. For current base images, see the [AzureML-Containers](https://github.com/Azure/AzureML-Containers) repo.
 
 ```python
 keras_env = Environment.from_conda_specification(name='keras-env', file_path='conda_dependencies.yml')
@@ -210,7 +220,7 @@ As the run is executed, it goes through the following stages:
 
 - **Preparing**: A docker image is created according to the environment defined. The image is uploaded to the workspace's container registry and cached for later runs. Logs are also streamed to the run history and can be viewed to monitor progress. If a curated environment is specified instead, the cached image backing that curated environment will be used.
 
-- **Scaling**: The cluster attempts to scale up if the Batch AI cluster requires more nodes to execute the run than are currently available.
+- **Scaling**: The cluster attempts to scale up if it requires more nodes to execute the run than are currently available.
 
 - **Running**: All scripts in the script folder are uploaded to the compute target, data stores are mounted or copied, and the `script` is executed. Outputs from stdout and the **./logs** folder are streamed to the run history and can be used to monitor the run.
 

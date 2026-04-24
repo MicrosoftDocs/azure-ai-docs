@@ -1,10 +1,6 @@
 ---
-title: Security filter pattern
-titleSuffix: Azure AI Search
+title: Security Filter Pattern
 description: Learn how to implement security privileges at the document level for Azure AI Search search results, using security filters and user identities.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

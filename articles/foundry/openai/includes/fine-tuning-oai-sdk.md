@@ -2,15 +2,15 @@
 title: "Customize a Microsoft Foundry Model with the OpenAI Python SDK"
 titleSuffix: Microsoft Foundry
 description: Learn how to create your own customized model with Microsoft Foundry by using the OpenAI Python SDK.
-author: mrbullwinkle
-ms.author: mbullwin
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 ms.date: 09/01/2025
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom:
-  - build-2025
+  - build-2025, classic-and-new
 ---
 
 ## Prerequisites
@@ -20,14 +20,13 @@ ms.custom:
 - You need an Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 - You need the following Python libraries: `os`, `json`, `requests`, `openai`.
 - You need the OpenAI Python library.
-- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them.
+- Fine-tuning requires the **Azure AI Owner** role. While Azure AI Users may train (fine-tune) models, only AI Owners may deploy them. You may also create a [custom role](../../../foundry-classic/concepts/rbac-foundry.md#create-custom-roles-for-projects) that combines required actions into a single role.
 - If you don't already have access to view quotas and deploy models in the Foundry portal, you need [more permissions](../../../foundry-classic/openai/how-to/role-based-access-control.md).  
 
 ### Supported models
 
-To check which regions currently support fine-tuning, consult the [article about models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai#fine-tuning-models).
 
-Or you can fine-tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
+[!INCLUDE [fine-tune-supported-models](../../../foundry/includes/fine-tune-supported-models.md)]
 
 ## Review the workflow for the Python SDK
 
@@ -382,7 +381,7 @@ print(response.model_dump_json(indent=2))
 
 We also recommend that you include the `suffix` parameter to more easily distinguish between iterations of your fine-tuned model. The `suffix` parameter takes a string and is set to identify the fine-tuned model. With the OpenAI Python API, you can add a string of up to 18 characters to the name of your fine-tuned model.
 
-If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Microsoft Foundry. Or you can generate a [list of models](/rest/api/azureopenai/models/list?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP) for an Azure OpenAI resource by using the REST API.
+If you're unsure of the ID of your existing fine-tuned model, you can find this information on the **Models** page of Microsoft Foundry. Or you can generate a [list of models](/rest/api/azureopenai/models/list) for an Azure OpenAI resource by using the REST API.
 
 ## Clean up your deployments, customized models, and training files
 
@@ -395,7 +394,7 @@ When you no longer need your customized model, you can delete the deployment and
 You can use either of these methods to delete the deployment for your customized model:
 
 - [Foundry](../how-to/fine-tuning.md?pivots=ai-foundry-portal#delete-your-model-deployment)</a>
-- [Azure CLI](/cli/azure/cognitiveservices/account/deployment?preserve-view=true#az-cognitiveservices-account-deployment-delete)
+- [Azure CLI](/cli/azure/cognitiveservices/account/deployment)
 
 ### Delete your customized model
 

@@ -1,9 +1,7 @@
 ---
-title: Best practices - GenAI Prompt skill
-titleSuffix: Azure AI Search
+title: GenAI Prompt Skill Best Practices
 description: Tips and guidance to ensure responsible use of AI when utilizing the GenAI Prompt skill.
-author: arv100kri
-ms.author: arjagann
+ms.reviewer: arjagann
 ms.service: azure-ai-search
 ms.custom:
   - build-2025
@@ -12,7 +10,7 @@ ms.date: 02/27/2026
 ms.update-cycle: 180-days
 ---
 
-# Best practices - GenAI Prompt skill
+# Best practices for GenAI Prompt skill
 
 Incorporating the GenAI Prompt custom skill as part of an indexer's ingestion flow allows developers to harness the content generation capabilities of language models to enrich the content from the data source. This document outlines some recommendations and best practices that can be incorporated when utilizing this capability to ensure good system performance and behavior.
 

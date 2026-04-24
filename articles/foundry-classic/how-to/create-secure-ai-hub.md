@@ -2,7 +2,7 @@
 
 title: "Create a secure hub (classic)"
 description: "Create a Microsoft Foundry hub inside a managed virtual network. The managed virtual network secures access to managed resources such as computes. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - build-2024
   - hub-only

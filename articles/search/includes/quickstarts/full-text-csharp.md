@@ -1,7 +1,4 @@
 ---
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/02/2026
@@ -21,8 +18,6 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 - An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
 - [.NET 8](https://dotnet.microsoft.com/download) or later.
-
-- [Visual Studio Code](https://code.visualstudio.com/download).
 
 - [Git](https://git-scm.com/downloads) to clone the sample repository.
 
@@ -44,11 +39,10 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
     git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
     ```bash
     cd azure-search-dotnet-samples/quickstart-keyword-search/AzureSearchQuickstart
-    code .
     ```
 
 1. In `Program.cs`, replace the placeholder value for `serviceEndpoint` with the URL you obtained in [Get endpoint](#get-endpoint).

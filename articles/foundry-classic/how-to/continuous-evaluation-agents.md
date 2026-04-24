@@ -1,7 +1,7 @@
 ---
 title: "Continuously Evaluate your AI agents (classic)"
 description: "This article provides instructions on how to continuously evaluate AI agents. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 01/08/2026
 ms.reviewer: sonalimalik
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
 > [!NOTE]
-> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Setup continuous evaluation](../../foundry/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation-python-sdk).
+> This document refers to the Microsoft Foundry (classic) portal. To continuously evaluate using the Microsoft Foundry (new) portal, see [Setup continuous evaluation](../../foundry/observability/how-to/how-to-monitor-agents-dashboard.md#set-up-continuous-evaluation).
 
 [!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 

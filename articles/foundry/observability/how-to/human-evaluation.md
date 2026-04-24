@@ -1,12 +1,13 @@
 ---
 title: "Human Evaluation for Microsoft Foundry Agents"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 02/25/2026
 description: "Learn how to set up human evaluation for your Microsoft Foundry agents, create templates, and analyze results to improve agent performance."
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: peichengshi
+ai-usage: ai-assisted
 ---
 # Set up human evaluation for your agents (preview)
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]

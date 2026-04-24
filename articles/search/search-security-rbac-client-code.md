@@ -1,12 +1,10 @@
 ---
-title: Configure apps for role-based security
+title: Configure Apps for Role-Based Security
 description: Use keyless connections with an Azure Identity library for Microsoft Entra ID authentication and authorization with Azure AI Search.
 ms.topic: how-to
 ms.date: 01/20/2026
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-author: HeidiSteen
-ms.author: heidist
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, Keyless-dotnet, Keyless-java, Keyless-js, Keyless-python, build-2024-intelligent-apps, dev-focus
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to use keyless connections so that I don't leak secrets.
@@ -276,8 +274,6 @@ The default authority is Azure public cloud. Custom `audience` values for sovere
 * `https://search.azure.cn` for Azure operated by 21Vianet
 * `https://search.microsoftazure.de` for Azure Germany
 
----
-
 ## Local development
 
 Local development using roles includes these steps:
@@ -291,7 +287,7 @@ Local development using roles includes these steps:
 As a local developer, your Azure identity needs full control over data plane operations. These are the suggested roles:
 
 - Search Service Contributor, create and manage objects
-- Search Index Data Contributor, load and query an index
+- Search Index Data Contributor, load and query an index and retrieve from a knowledge base
 
 Find your personal identity with one of the following tools. Use that identity as the `<identity-id>` value.
 

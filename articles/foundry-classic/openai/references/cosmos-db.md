@@ -2,8 +2,8 @@
 title: "Azure OpenAI on your Azure Cosmos DB data Python & REST API reference (classic)"
 description: "Learn how to use Azure OpenAI on your Azure Cosmos DB data Python & REST API. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: reference
 ms.date: 02/06/2026
 author: aahill
@@ -129,7 +129,7 @@ index = os.environ.get("Index")
 embedding_deployment_name = os.environ.get("EmbeddingDeploymentName")
 
 token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
+    DefaultAzureCredential(), "https://ai.azure.com/.default")
 
 client = AzureOpenAI(
     azure_endpoint=endpoint,

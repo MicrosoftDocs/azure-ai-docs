@@ -4,8 +4,8 @@ description: "Use this guide to start using Foundry Agent Service. (classic)"
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: quickstart
 ms.date: 12/03/2025
 ms.custom:
@@ -16,7 +16,7 @@ zone_pivot_groups: agents-quickstart
 
 # Quickstart: Create a new agent (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../includes/agents-classic.md)]
 
 > [!NOTE]
 > This quickstart is for the previous version of agents. See the [**quickstart for Microsoft Foundry**](../quickstarts/get-started-code.md) to use the new version of the API.

@@ -1,18 +1,16 @@
----  
-title: 'Tutorial: Index ADLS Gen2 permission metadata'
-titleSuffix: Azure AI Search  
+---
+title: 'Tutorial: Index ADLS Gen2 Permission Metadata'
 description: Learn how to index Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scope from ADLS Gen2 and query with permission-filtered results in Azure AI Search.
-ms.service: azure-ai-search  
+ms.reviewer: wli
+ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.topic: tutorial  
-ms.date: 08/27/2025
-author: wlifuture
-ms.author: haileytapia
----  
+ms.topic: tutorial
+ms.date: 03/25/2026
+---
 
 # Tutorial: Index permission metadata from ADLS Gen2 and query with permission-filtered results
 
-This tutorial demonstrates how to index Azure Data Lake Storage (ADLS) Gen2 [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [role-based access control (RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) scope into a search index using an indexer.
+This tutorial demonstrates how to index Azure Data Lake Storage (ADLS) Gen2 [access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [role-based access control (RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac) scope into a search index using an indexer.
 
 It also shows you how to structure a query that respects user access permissions. A successful query outcome confirms the permission transfer that occurred during index.
 
@@ -105,8 +103,7 @@ For demo purposes, the permission field has `retrievable` enabled so that you ca
     },
     {
       "name": "AzureSearch_DocumentKey", "type": "Edm.String",
-      "searchable": true, "filterable": false, "retrievable": true
-      "stored": true,
+      "searchable": true, "filterable": false, "retrievable": true, "stored": true,
       "key": true
     },
     { 

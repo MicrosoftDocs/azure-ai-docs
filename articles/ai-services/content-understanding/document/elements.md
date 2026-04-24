@@ -41,7 +41,7 @@ The Content Understanding API returns analysis results in a structured JSON form
   "status": "Succeeded",
   "result": {
     "analyzerId": "my-analyzer",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2025-06-18T22:50:34Z",
     "warnings": [],
     "contents": [
@@ -540,7 +540,7 @@ The following example shows the complete JSON response structure from analyzing 
   "status": "Succeeded",
   "result": {
     "analyzerId": "auto-labeling-model-1750287025291-104",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "2025-06-18T22:50:34Z",
     "warnings": [],
     "contents": [

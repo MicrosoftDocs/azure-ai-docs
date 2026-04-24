@@ -2,8 +2,8 @@
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 01/29/2026
 ai-usage: ai-assisted
@@ -118,7 +118,7 @@ Sora supports three input modes:
     
     # Keyless authentication
     credential = DefaultAzureCredential()
-    token = credential.get_token("https://cognitiveservices.azure.com/.default")
+    token = credential.get_token("https://ai.azure.com/.default")
 
     # Video generation uses 'preview' as the API version during the preview period
     api_version = 'preview'

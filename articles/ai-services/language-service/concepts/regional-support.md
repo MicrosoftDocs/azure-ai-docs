@@ -6,13 +6,14 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 03/27/2026
 ms.author: lajanuar
 ms.custom: references_regions
 ---
-# Language supported regions
+<!-- markdownlint-disable MD025 -->
+# Azure Language region support
 
-The Language is available for use in several Azure regions. Use this article to learn about the regional support and limitations.
+The Azure Language features are available for use in several Azure regions. Use this article to learn about the regional support and limitations.
 
 ## Region support overview
 
@@ -161,6 +162,8 @@ Custom text classification is only available in some Azure regions. Some regions
 
 ## Summarization
 
+[!INCLUDE [availability](../summarization/includes/regional-availability.md)]
+
 |Region                |Text abstractive summarization|Conversation summarization               |
 |----------------------|------------------------------|-----------------------------------------|
 |AustraliaEast|✓|✓|
@@ -188,6 +191,47 @@ Custom text classification is only available in some Azure regions. Some regions
 |WestEurope|✓|✓|
 |WestUS|✓|✓|
 |WestUS2|✓|✓|
+
+## Custom question and answering
+
+| Region | Authoring | Prediction |
+| --- | --- | --- |
+| AustraliaEast | ✓ | ✓ |
+| BrazilSouth | ✓ | ✓ |
+| CanadaCentral | ✓ | ✓ |
+| CentralIndia | ✓ | ✓ |
+| CentralUS | ✓ | ✓ |
+| ChinaEast2 | ✓ | ✓ |
+| ChinaNorth2 | ✓ | ✓ |
+| ChinaNorth3 | ✓ | ✓ |
+| EastAsia | ✓ | ✓ |
+| EastUS | ✓ | ✓ |
+| EastUS2 | ✓ | ✓ |
+| FranceCentral | ✓ | ✓ |
+| GermanyWestCentral | ✓ | ✓ |
+| JapanEast | ✓ | ✓ |
+| JapanWest | ✓ | ✓ |
+| JioIndiaWest | ✓ | ✓ |
+| KoreaCentral | ✓ | ✓ |
+| NorthCentralUS | ✓ | ✓ |
+| NorthEurope | ✓ | ✓ |
+| NorwayEast | ✓ | ✓ |
+| QatarCentral | ✓ | ✓ |
+| SouthAfricaNorth | ✓ | ✓ |
+| SouthCentralUS | ✓ | ✓ |
+| SouthEastAsia | ✓ | ✓ |
+| SwedenCentral | ✓ | ✓ |
+| SwitzerlandNorth | ✓ | ✓ |
+| SwitzerlandWest | ✓ | ✓ |
+| UaeNorth | ✓ | ✓ |
+| UKSouth | ✓ | ✓ |
+| USGovArizona | ✓ | ✓ |
+| USGovVirginia | ✓ | ✓ |
+| WestCentralUS | ✓ | ✓ |
+| WestEurope | ✓ | ✓ |
+| WestUS | ✓ | ✓ |
+| WestUS2 | ✓ | ✓ |
+| WestUS3 | ✓ | ✓ |
 
 ### Next steps
 

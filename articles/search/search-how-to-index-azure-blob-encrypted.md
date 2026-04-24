@@ -1,11 +1,8 @@
 ---
 title: 'Tutorial: Index Encrypted Blobs'
-titleSuffix: Azure AI Search
 description: Learn how to index and extract text from encrypted documents in Azure Blob Storage with Azure AI Search.
-manager: nitinme
-author: gmndrg
-ms.author: gimondra
 ms.devlang: rest-api
+ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 03/28/2025
@@ -98,7 +95,7 @@ You should have an Azure Function app that contains the decryption logic and an 
 
 ## Get an admin key and URL for Azure AI Search
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On your search service **Overview** page, get the name of your search service. You can confirm your service name by reviewing the endpoint URL. For example, if your endpoint URL is `https://mydemo.search.windows.net`, your service name is `mydemo`.
 

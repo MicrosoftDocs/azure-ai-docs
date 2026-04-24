@@ -4,10 +4,8 @@ items:
   # Access Control
   - name: Authentication and authorization
     href: ../../concepts/authentication-authorization-foundry.md
-  - name: Hide preview features with Azure tags
+  - name: Disable preview features
     href: ../../how-to/disable-preview-features.md
-  - name: Disable preview features with role-based access control
-    href: ../../concepts/disable-preview-features-with-rbac.md
   - name: Role-based access control
     displayName: RBAC, roles, permissions
     href: ../../concepts/rbac-foundry.md
@@ -45,6 +43,12 @@ items:
     href: ../../how-to/model-deployment-policy.md
   - name: Create custom policy definitions
     href: ../../how-to/custom-policy-definition.md
+
+# Monitor
+- name: Monitor
+  items:
+  - name: Diagnostic logging
+    href: ../../../ai-services/diagnostic-logging.md?context=/azure/foundry/context/context
 
 # Reliability and Recovery
 - name: High availability and disaster recovery

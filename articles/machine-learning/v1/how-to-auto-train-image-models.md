@@ -9,8 +9,9 @@ ms.reviewer: sooryar
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
-ms.date: 01/18/2022
-ms.custom: UpdateFrequency5, sdkv1, devx-track-python
+ms.date: 03/05/2026
+ms.custom: UpdateFrequency5, sdkv1, devx-track-python, dev-focus
+ai-usage: ai-assisted
 #Customer intent: I'm a data scientist with ML knowledge in the computer vision space, looking to build ML models using image data in Azure Machine Learning with full control of the model algorithm, hyperparameters, and training and deployment environments.
 ---
 
@@ -23,9 +24,8 @@ ms.custom: UpdateFrequency5, sdkv1, devx-track-python
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-
-> [!IMPORTANT]
-> This feature is currently in public preview. This preview version is provided without a service-level agreement. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> [!TIP]
+> **Looking for the current version?** This article covers SDK v1, which is deprecated. See [Set up AutoML to train computer vision models (v2)](/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2&preserve-view=true) for the current approach using SDK v2.
 
 In this article, you learn how to train computer vision models on image data with automated ML in the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/).
 
@@ -45,7 +45,7 @@ Automated ML supports model training for computer vision tasks like image classi
     * [Install the `automl` package yourself](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/README.md#setup-using-a-local-conda-environment), which includes the [default installation](/python/api/overview/azure/ml/install#default-install) of the SDK.
     
     > [!NOTE]
-    > Only Python 3.7 and 3.8 are compatible with automated ML support for computer vision tasks. 
+    > The SDK v1 AutoML computer vision support requires Python 3.7 or 3.8, both of which are past end-of-life and no longer receive security patches. For supported Python versions, use [SDK v2](/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2&preserve-view=true).
 
 ## Select your task type
 Automated ML for images supports the following task types:
@@ -213,6 +213,8 @@ Image classification<br> (multi-class and multi-label)| **MobileNet**: Light-wei
 Object detection | **YOLOv5**: One stage object detection model   <br>  **Faster RCNN ResNet FPN**: Two stage object detection models  <br> **RetinaNet ResNet FPN**: address class imbalance with Focal Loss <br> <br>*Note: Refer to [`model_size` hyperparameter](../reference-automl-images-hyperparameters.md#model-specific-hyperparameters) for YOLOv5 model sizes.*| ***`yolov5`\**** <br> `fasterrcnn_resnet18_fpn` <br> `fasterrcnn_resnet34_fpn` <br> `fasterrcnn_resnet50_fpn` <br> `fasterrcnn_resnet101_fpn` <br> `fasterrcnn_resnet152_fpn` <br> `retinanet_resnet50_fpn` 
 Instance segmentation | **MaskRCNN ResNet FPN**| `maskrcnn_resnet18_fpn` <br> `maskrcnn_resnet34_fpn` <br> ***`maskrcnn_resnet50_fpn`\****  <br> `maskrcnn_resnet101_fpn` <br> `maskrcnn_resnet152_fpn` <br>`maskrcnn_resnet50_fpn`
 
+> [!NOTE]
+> Additional model architectures (HuggingFace, MMDetection) are available in SDK v2. See the [v2 model architecture list](/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2#configure-experiments&preserve-view=true).
 
 In addition to controlling the model algorithm, you can also tune hyperparameters used for model training. While many of the hyperparameters exposed are model-agnostic, there are instances where hyperparameters are task-specific or model-specific. [Learn more about the available hyperparameters for these instances](../reference-automl-images-hyperparameters.md). 
 
@@ -429,7 +431,7 @@ try:
 except ComputeTargetException:
     print('Creating a new compute target...')
     # Provision AKS cluster with GPU machine
-    prov_config = AksCompute.provisioning_configuration(vm_size="STANDARD_NC6", 
+    prov_config = AksCompute.provisioning_configuration(vm_size="STANDARD_NC4AS_T4_V3", 
                                                         location="eastus2")
     # Create the cluster
     aks_target = ComputeTarget.create(workspace=ws, 
@@ -515,7 +517,11 @@ For a detailed description on task specific hyperparameters, please refer to [Hy
 If you want to use tiling, and want to control tiling behavior, the following parameters are available: `tile_grid_size`, `tile_overlap_ratio` and `tile_predictions_nms_thresh`. For more details on these parameters please check [Train a small object detection model using AutoML](../how-to-use-automl-small-object-detect.md).
 
 ## Example notebooks
-Review detailed code examples and use cases in the [GitHub notebook repository for automated machine learning samples](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/tutorials/automl-with-azureml). Please check the folders with 'image-' prefix for samples specific to building computer vision models.
+
+> [!NOTE]
+> These SDK v1 samples are in the [v1-archive branch](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/tutorials/automl-with-azureml) and are no longer actively maintained. For current samples, see the [SDK v2 examples](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs).
+
+Review detailed code examples and use cases in the [GitHub notebook repository for automated machine learning samples](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/tutorials/automl-with-azureml). Check the folders with 'image-' prefix for samples specific to building computer vision models.
 
 
 ## Next steps

@@ -1941,11 +1941,6 @@
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "/articles/machine-learning/v-fake/how-to-enable-data-collection.md",
-      "redirect_url": "/azure/machine-learning/how-to-enable-data-collection",
-      "redirect_document_id": true
-    },
-    {
       "source_path_from_root": "/articles/machine-learning/how-to-enable-app-insights.md",
       "redirect_url": "/azure/machine-learning/how-to-monitor-online-endpoints",
       "redirect_document_id": false
@@ -4483,6 +4478,11 @@
     {
       "source_path_from_root": "/articles/machine-learning/how-to-responsible-ai-vision-insights.md",
       "redirect_url": "/azure/machine-learning/concept-responsible-ai-dashboard",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/v1/how-to-enable-data-collection.md",
+      "redirect_url": "/azure/machine-learning/how-to-monitor-datasets",
       "redirect_document_id": false
     }
   ]

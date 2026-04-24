@@ -2,17 +2,18 @@
 title: "Create hosted agent workflows in Visual Studio Code"
 description: "Create, test, and deploy hosted agent workflows in Foundry Agent Service by using the Microsoft Foundry for Visual Studio Code extension."
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 02/18/2026
 ms.reviewer: erichen
-ms.author: johalexander
-author: ms-johnalex
+ms.author: rotabor
+author: bobtabor-msft
 zone_pivot_groups: ai-foundry-vsc-extension-languages
 #CustomerIntent: As a developer, I want to create and deploy hosted agent workflows in VS Code so that I can build multi-agent solutions without leaving my IDE.
+ms.custom: doc-kit-assisted
 ---
 
 # Create hosted agent workflows in Visual Studio Code (preview)
@@ -30,7 +31,7 @@ This article covers creating a workflow project, running it locally, visualizing
 - A [supported region](../concepts/hosted-agents.md#region-availability) for hosted agents.
 
 ::: zone pivot="python"
-- Python 3.10 or higher.
+- Python 3.12 or higher.
 ::: zone-end
 
 ::: zone pivot="csharp"
@@ -45,13 +46,17 @@ You can use the Foundry for Visual Studio Code extension to create hosted agent 
 
 1. Run this command: `>Microsoft Foundry: Create a New Hosted Agent`.
 
+1. Choose a framework, either Microsoft Agent Framework or LangGraph.
+
+1. Choose a template, either the Single Agent Hotel Assistant or the Writer-Reviewer Agent Workflow (multi-agent).
+
 1. Select a programming language.
+
+1. Choose a model, either one you've already deployed in your project, or browse the model catalog.
 
 1. Select a folder where you want to save your new workflow.
 
-1. Enter a name for your workflow project.
-
-A new folder is created with the necessary files for your hosted agent project, including a sample code file to get you started.
+The files for your hosted agent project are generated in your selected folder based on the framework, template and language you selected to get you started. You can remove or modify that code as needed.
 
 ### Install dependencies
 
@@ -100,9 +105,9 @@ Install the required dependencies for your hosted agent project. The dependencie
 The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Foundry credentials:
 
 ```
-AZURE_AI_PROJECT_ENDPOINT=https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>
+PROJECT_ENDPOINT=https://<your-resource-name>.services.ai.azure.com/api/projects/<your-project-name>
 
-AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 ```
 
 > [!IMPORTANT]
@@ -110,7 +115,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 
 ### Authenticate your hosted agent
 
-The hosted agent sample authenticates using [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python). Configure your development environment to provide credentials via one of the supported sources, for example:
+The hosted agent sample authenticates using [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential). Configure your development environment to provide credentials via one of the supported sources, for example:
 
 - Azure CLI (`az login`)
 - Visual Studio Code account sign-in
@@ -121,30 +126,17 @@ Confirm authentication locally by running either the Azure CLI `az account show`
 
 You can run the hosted agent in interactive mode or container mode.
 
-### Run your hosted agent in interactive mode
+### Run your hosted agent in the Agent Inspector
 
-Press **F5** in VS Code to start debugging. Alternatively, you can use the VS Code debug menu:
-
-1. Open the **Run and Debug** view (Ctrl+Shift+D / Cmd+Shift+D)
-2. Select **"Debug Local Workflow HTTP Server"** from the dropdown
-3. Select the green **Start Debugging** button (or press F5)
+To run your hosted agent locally in Visual Studio Code, select the **F5** key. This opens the Agent Inspector and executes your application.
 
 This will:
 
-1. Start the HTTP server with debugging enabled
-2. Open the AI Toolkit Agent Inspector for interactive testing
-3. Allow you to set breakpoints and inspect the workflow execution in real time.
-
-### Run your hosted agent in container mode
-
-> [!TIP]
-> Open the local playground before starting the container agent to ensure the visualization functions correctly.
-
-To run the hosted agent in container mode:
-1. Open the Visual Studio Code Command Palette and execute the `Microsoft Foundry: Open Container Agent Playground Locally` command.
-1. Execute `main.py` to initialize the containerized hosted agent.
-1. Submit a request to the agent through the playground interface. For example, enter a prompt such as: "Create a slogan for a new electric SUV that's affordable and fun to drive."
-1. Review the agent's response in the playground interface.
+1. **Start the agent server:** The `agentdev` CLI wraps your agent as an HTTP server on port 8087, with debugpy attached on port 5679.
+1. **Discover agents:** The UI fetches available agents/workflows from `/agentdev/entities`.
+1. **Stream execution:** Chat inputs go to `/v1/responses`, which streams back events via SSE for real-time visualization.
+1. **Enable code navigation:** Double-click workflow nodes to open the corresponding source file in the editor.
+1. **Enable chatting with the local agent** and viewing responses, hitting breakpoints for debugging, and so on.
 
 ::: zone-end
 
@@ -217,22 +209,10 @@ To run the agent in container mode:
 3. Submit a request to the agent through the playground interface. For example, enter a prompt such as: "Create a slogan for a new electric SUV that's affordable and fun to drive."
 4. Review the agent's response in the playground interface.
 
-::: zone-end
-
 ## Visualize hosted agent workflow execution
 
 The Foundry for Visual Studio Code extension provides a real-time execution graph that shows how agents in your workflow interact and collaborate. Enable observability in your project to use this visualization.
 
-::: zone pivot="python"
-Enable visualization in your workflows by adding the following code snippet:
-
-```python
-from agent_framework.observability import setup_observability
-setup_observability(vs_code_extension_port=4319) # Default port is 4319
-```
-::: zone-end
-
-::: zone pivot="csharp"
 Add the following reference to your csproj file:
 
 ```xml
@@ -273,7 +253,6 @@ var s_tracerProvider = OpenTelemetry
     })
     .Build();
 ```
-::: zone-end
 
 ### Monitor and visualize your hosted agent workflow
 
@@ -294,28 +273,7 @@ For port conflicts, you can change the visualization port by setting it in the F
 1. Locate the `Hosted Agent Visualization Port` setting and change it to an available port number.
 1. Restart VS Code to apply the changes.
 
-#### Change port in code 
-
-::: zone pivot="python"
-Change the visualization port by setting the `FOUNDRY_OTLP_PORT` environment variable. Update the observability port in the `workflow.py` file accordingly.
-
-For example, to change the port to 4318, use this command:
-
-```bash
-  export FOUNDRY_OTLP_PORT=4318
-```
-
-In `workflow.py`, update the port number in the observability configuration:
-
-```python
-  setup_observability(vs_code_extension_port=4318)
-```
-> [!TIP]
-> To enable more debugging information, add the `enable_sensitive_data=True` parameter to the `setup_observability` function.
-
-::: zone-end
-
-::: zone pivot="csharp"
+#### Change port in code
 
 For any port conflicts, change the visualization port by setting the `FOUNDRY_OTLP_PORT` environment variable. Update the OTLP endpoint in your program accordingly.
 
@@ -330,6 +288,7 @@ In your program, update the OTLP endpoint to use the new port number:
 var otlpEndpoint =
     Environment.GetEnvironmentVariable("OTLP_ENDPOINT") ?? "http://localhost:4318";
 ```
+
 ::: zone-end
 
 ## Deploy the hosted agent
@@ -337,9 +296,10 @@ var otlpEndpoint =
 After testing your hosted agent locally, deploy it to your Foundry workspace so other team members and applications can use it.
 
 >[!IMPORTANT]
-> Make sure you give the necessary permissions to deploy hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to get the required role assignments. 
+> Make sure you give the necessary permissions to deploy hosted agents in your Foundry workspace, as stated in the [Prerequisites](#prerequisites). You might need to work with your Azure administrator to get the required role assignments.
 
 ::: zone pivot="python"
+
 1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
 1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`container.py`), and defining any other deployment parameters as needed.
 1. Upon successful deployment, the hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
@@ -347,14 +307,16 @@ After testing your hosted agent locally, deploy it to your Foundry workspace so 
 ::: zone-end
 
 ::: zone pivot="csharp"
+
 1. Open the Visual Studio Code Command Palette and run the `Microsoft Foundry: Deploy Hosted Agent` command.
 1. Configure the deployment settings by selecting your target workspace, specifying the container agent file (`<your-project-name>.csproj`), and defining any other deployment parameters as needed.
 1. Upon successful deployment, the hosted agent appears in the `Hosted Agents (Preview)` section of the Microsoft Foundry extension tree view.
 1. Select the deployed agent to access detailed information and test functionality using the integrated playground interface.
+
 ::: zone-end
 
 ## Related content
 
 - [Hosted agent concepts](../concepts/hosted-agents.md)
 - [Build an agent in Foundry Agent Service](/azure/ai-foundry/how-to/develop/vs-code-agents)
-- [Publish and share agents in Microsoft Foundry](./publish-agent.md)
+- [Agent applications in Microsoft Foundry](./agent-applications.md)

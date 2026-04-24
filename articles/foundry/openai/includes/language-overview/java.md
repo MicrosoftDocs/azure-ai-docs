@@ -3,8 +3,8 @@ title: Azure OpenAI Java support
 titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Azure OpenAI Java support
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.date: 10/02/2025
 ---
@@ -58,7 +58,7 @@ Authorization is easiest using `DefaultAzureCredential`. It finds the best crede
 Credential tokenCredential = BearerTokenCredential.create(
         AuthenticationUtil.getBearerTokenSupplier(
                 new DefaultAzureCredentialBuilder().build(),
-                "https://cognitiveservices.azure.com/.default"));
+                "https://ai.azure.com/.default"));
 OpenAIClient client = OpenAIOkHttpClient.builder()
         .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
         .credential(tokenCredential)

@@ -2,8 +2,9 @@
 author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/16/2025
+ms.date: 1/29/2026
 ms.author: pafarley
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Header](../../common/go.md)]
@@ -12,29 +13,32 @@ ms.author: pafarley
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
+[!INCLUDE [Prerequisites](../../common/azure-prerequisites-resourcekey-endpoint.md)]
 
 ## Set up the environment
 
-Install the Speech SDK for Go. For requirements and instructions, see [Install the Speech SDK](../../../quickstarts/setup-platform.md?pivots=programming-language-go).
+The Speech SDK is available as a Go package. You install the Speech SDK later in this guide. For any other requirements, see [Install the Speech SDK](../../../quickstarts/setup-platform.md?pivots=programming-language-go).
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables-resourcekey-endpoint.md)]
 
 ## Recognize speech from a microphone
 
-Follow these steps to create a GO module.
+Follow these steps to create a Go application and install the Speech SDK.
 
-1. Open a command prompt window in the folder where you want the new project. Create a new file named  *speech-recognition.go*.
+1. Open a command prompt window in the folder where you want the new project. Run this command to create a new Go file.
 
-1. Copy the following code into *speech-recognition.go*:
+   ```bash
+   touch main.go
+   ```
+
+1. Replace the contents of *main.go* with the following code:
 
    ```go
    package main
 
    import (
-       "bufio"
        "fmt"
        "os"
 
@@ -42,36 +46,17 @@ Follow these steps to create a GO module.
        "github.com/Microsoft/cognitive-services-speech-sdk-go/speech"
    )
 
-   func sessionStartedHandler(event speech.SessionEventArgs) {
-       defer event.Close()
-       fmt.Println("Session Started (ID=", event.SessionID, ")")
-   }
-
-   func sessionStoppedHandler(event speech.SessionEventArgs) {
-       defer event.Close()
-       fmt.Println("Session Stopped (ID=", event.SessionID, ")")
-   }
-
-   func recognizingHandler(event speech.SpeechRecognitionEventArgs) {
-       defer event.Close()
-       fmt.Println("Recognizing:", event.Result.Text)
-   }
-
-   func recognizedHandler(event speech.SpeechRecognitionEventArgs) {
-       defer event.Close()
-       fmt.Println("Recognized:", event.Result.Text)
-   }
-
-   func cancelledHandler(event speech.SpeechRecognitionCanceledEventArgs) {
-       defer event.Close()
-       fmt.Println("Received a cancellation: ", event.ErrorDetails)
-       fmt.Println("Did you set the speech resource key and region values?")
-   }
-
    func main() {
-       // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-       speechKey :=  os.Getenv("SPEECH_KEY")
-       speechRegion := os.Getenv("SPEECH_REGION")
+       // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
+       speechKey := os.Getenv("SPEECH_KEY")
+       endpoint := os.Getenv("ENDPOINT")
+
+       speechConfig, err := speech.NewSpeechConfigFromEndpointWithSubscription(endpoint, speechKey)
+       if err != nil {
+           fmt.Println("Got an error: ", err)
+           return
+       }
+       defer speechConfig.Close()
 
        audioConfig, err := audio.NewAudioConfigFromDefaultMicrophoneInput()
        if err != nil {
@@ -79,46 +64,72 @@ Follow these steps to create a GO module.
            return
        }
        defer audioConfig.Close()
-       speechConfig, err := speech.NewSpeechConfigFromSubscription(speechKey, speechRegion)
-       if err != nil {
-           fmt.Println("Got an error: ", err)
-           return
-       }
-       defer speechConfig.Close()
+
        speechRecognizer, err := speech.NewSpeechRecognizerFromConfig(speechConfig, audioConfig)
        if err != nil {
            fmt.Println("Got an error: ", err)
            return
        }
        defer speechRecognizer.Close()
-       speechRecognizer.SessionStarted(sessionStartedHandler)
-       speechRecognizer.SessionStopped(sessionStoppedHandler)
-       speechRecognizer.Recognizing(recognizingHandler)
-       speechRecognizer.Recognized(recognizedHandler)
-       speechRecognizer.Canceled(cancelledHandler)
-       speechRecognizer.StartContinuousRecognitionAsync()
-       defer speechRecognizer.StopContinuousRecognitionAsync()
-       bufio.NewReader(os.Stdin).ReadBytes('\n')
+
+       fmt.Println("Speak into your microphone.")
+       outcome := <-speechRecognizer.RecognizeOnceAsync()
+       defer outcome.Close()
+       if outcome.Error != nil {
+           fmt.Println("Got an error: ", outcome.Error)
+           return
+       }
+
+       fmt.Println("RECOGNIZED: Text=", outcome.Result.Text)
    }
    ```
 
-1. Run the following commands to create a *go.mod* file that links to components hosted on GitHub:
+1. To change the speech recognition language, replace `en-US` with another [supported language](~/articles/ai-services/speech-service/language-support.md). For example, use `es-ES` for Spanish (Spain). If you don't specify a language, the default is `en-US`. For details about how to identify one of multiple languages that might be spoken, see [Language identification](~/articles/ai-services/speech-service/language-identification.md).
 
-   ```cmd
-   go mod init speech-recognition
-   go get github.com/Microsoft/cognitive-services-speech-sdk-go
+1. Run the following commands to create a `go.mod` file that links to the Speech SDK components hosted on GitHub:
+    ```console
+    go mod init captioning
+    go get github.com/Microsoft/cognitive-services-speech-sdk-go
+    ```
+    
+1. Build the GO module.
+    ```console
+    go build
+    ```
+    
+1. Run your new console application to start speech synthesis to the default speaker.
+   ```console
+   go run main.go
    ```
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
-1. Build and run the code:
+1. Speak into your microphone when prompted. What you speak should appear as text:
 
-   ```cmd
-   go build
-   go run speech-recognition
+   ```output
+   Speak into your microphone.
+   RECOGNIZED: Text=I'm excited to try speech to text.
    ```
+
+## Remarks
+
+Here are some other considerations:
+
+- This example uses the `RecognizeOnceAsync` operation to transcribe utterances of up to 30 seconds, or until silence is detected. For information about continuous recognition for longer audio, including multi-lingual conversations, see [How to recognize speech](~/articles/ai-services/speech-service/how-to-recognize-speech.md).
+- To recognize speech from an audio file, use `NewAudioConfigFromWavFileInput` instead of `NewAudioConfigFromDefaultMicrophoneInput`:
+
+   ```go
+   audioConfig, err := audio.NewAudioConfigFromWavFileInput("YourAudioFile.wav")
+   if err != nil {
+       fmt.Println("Got an error: ", err)
+       return
+   }
+   defer audioConfig.Close()
+   ```
+
+- For compressed audio files such as MP4, install GStreamer and use `PullAudioInputStream` or `PushAudioInputStream`. For more information, see [How to use compressed input audio](~/articles/ai-services/speech-service/how-to-use-codec-compressed-audio-input-streams.md).
 
 ## Clean up resources
 
-[!INCLUDE [Delete resource](../../common/delete-resource.md)]
+[!INCLUDE [Delete resource](../../common/delete-resource.md)]  

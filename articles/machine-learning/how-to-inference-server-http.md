@@ -9,15 +9,16 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-ms.custom: inference server, local development, local debugging, devplatv2
-ms.date: 03/03/2025
+ms.custom: inference server, local development, local debugging, devplatv2, dev-focus
+ms.date: 03/12/2026
+ai-usage: ai-assisted
 
 #customer intent: As a developer, I want to work with the Azure Machine Learning inference HTTP server so I can debug scoring scripts or endpoints before deployment.
 ---
 
 # Debug scoring scripts by using the Azure Machine Learning inference HTTP server
 
-The Azure Machine Learning inference HTTP server is a Python package that exposes your scoring function as an HTTP endpoint and wraps the Flask server code and dependencies into a singular package. The inference server is included in the [prebuilt Docker images for inference](concept-prebuilt-docker-images-inference.md) that are used when you deploy a model in Azure Machine Learning. When you use the package alone, you can deploy the model locally for production. You can also easily validate your scoring (entry) script in a local development environment. If there's a problem with the scoring script, the inference server returns an error and the location of the error.
+The Azure Machine Learning inference HTTP server is a Python package that exposes your scoring function as an HTTP endpoint. It wraps the Flask server code and dependencies into a singular package. The inference server is included in the [prebuilt Docker images for inference](concept-prebuilt-docker-images-inference.md) that are used when you deploy a model in Azure Machine Learning. When you use the package alone, you can deploy the model locally for production. You can also easily validate your scoring (entry) script in a local development environment. If there's a problem with the scoring script, the inference server returns an error and the location of the error.
 
 You can also use the inference server to create validation gates in a continuous integration and deployment pipeline. For example, you can start the inference server with the candidate script and run the test suite against the local endpoint.
 
@@ -62,7 +63,7 @@ The following sections provide information about each option.
 
 ### Use a dummy scoring script to test inference server behavior
 
-1. Create a directory named server\_quickstart to hold your files:
+1. Create a directory named `server_quickstart` to hold your files:
 
    ```bash
    mkdir server_quickstart
@@ -72,13 +73,13 @@ The following sections provide information about each option.
 1. To avoid package conflicts, create a virtual environment, such as `myenv`, and activate it:
 
    ```bash
-   python -m virtualenv myenv
+   python -m venv myenv
    ```
 
    > [!NOTE]
    > On Linux, run the `source myenv/bin/activate` command to activate the virtual environment.
 
-   After you test the inference server, you can run the `deactivate` command to deactivate the Python virtual environment.
+   After you test the inference server, run the `deactivate` command to deactivate the Python virtual environment.
 
 1. Install the `azureml-inference-server-http` package from the [Python Package Index (PyPI)](https://pypi.org/project/azureml-inference-server-http/) feed:
 
@@ -86,20 +87,20 @@ The following sections provide information about each option.
    python -m pip install azureml-inference-server-http
    ```
 
-1. Create your entry script. The following example creates a basic entry script and saves it to a file named score.py:
+1. Create your entry script. The following example creates a basic entry script and saves it to a file named `score.py`:
 
    ```bash
    echo -e 'import time\ndef init(): \n\ttime.sleep(1) \n\ndef run(input_data): \n\treturn {"message":"Hello, World!"}' > score.py
    ```
 
-1. Use the `azmlinfsrv` command to start the inference server and set the score.py file as the entry script:
+1. Use the `azmlinfsrv` command to start the inference server and set the `score.py` file as the entry script:
 
    ```bash
    azmlinfsrv --entry_script score.py
    ```
 
    > [!NOTE]
-   > The inference server is hosted on 0.0.0.0, which means it listens to all IP addresses of the hosting machine.
+   > The inference server is hosted on `0.0.0.0`, which means it listens to all IP addresses of the hosting machine.
 
 1. Use the `curl` utility to send a scoring request to the inference server:
 
@@ -115,7 +116,7 @@ The following sections provide information about each option.
 
 1. When you finish testing, select **Ctrl**+**C** to stop the inference server.
 
-You can modify the score.py scoring script file. Then you can test your changes by using the `azmlinfsrv --entry_script score.py` command to run the inference server again.
+You can modify the `score.py` scoring script file. Then you can test your changes by using the `azmlinfsrv --entry_script score.py` command to run the inference server again.
 
 ### Integrate with VS Code
 
@@ -128,15 +129,15 @@ python -m pip install azureml-inference-server-http
 ```
 
 > [!NOTE]
-> To avoid package conflicts, install the inference server in a virtual environment. You can use the `pip install virtualenv` command to turn on virtual environments for your configuration.
+> To avoid package conflicts, install the inference server in a virtual environment. You can use the built-in `python -m venv` command to create a virtual environment.
 
 #### Launch mode
 
-For launch mode, take the following steps to set up the VS Code launch.json configuration file and start the inference server within VS Code:
+For launch mode, set up the VS Code `launch.json` configuration file and start the inference server within VS Code:
 
-1. Start VS Code and open the folder that contains the score.py script.
+1. Start VS Code and open the folder that contains the `score.py` script.
 
-1. For that workspace in VS Code, add the following configuration to the launch.json file:
+1. For that workspace in VS Code, add the following configuration to the `launch.json` file:
 
    ```json
    {
@@ -160,14 +161,14 @@ For launch mode, take the following steps to set up the VS Code launch.json conf
 
 #### Attach mode
 
-For attach mode, take the following steps to use VS Code with the Python extension to attach to the inference server process:
+For attach mode, use VS Code with the Python extension to attach to the inference server process:
 
 > [!NOTE]
 > For Linux, first install the `gdb` package by running the `sudo apt-get install -y gdb` command.
 
-1. Start VS Code and open the folder that contains the score.py script.
+1. Start VS Code and open the folder that contains the `score.py` script.
 
-1. For that workspace in VS Code, add the following configuration to the launch.json file:
+1. For that workspace in VS Code, add the following configuration to the `launch.json` file:
 
    ```json
    {
@@ -198,7 +199,7 @@ For attach mode, take the following steps to use VS Code with the Python extensi
 
    1. In the VS Code debugger, enter the ID of the `azmlinfsrv` process.
       
-      If you don't see the VS Code process picker, manually enter the process ID in the `processId` field of the launch.json file for the workspace.
+      If you don't see the VS Code process picker, manually enter the process ID in the `processId` field of the `launch.json` file for the workspace.
 
 For launch and attach modes, you can set [breakpoints](https://code.visualstudio.com/docs/editor/debugging#_breakpoints) and debug the script step by step.
 
@@ -216,6 +217,9 @@ The following procedure runs the inference server locally with [sample files](ht
 1. Use [conda](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html) to create and activate a virtual environment:
 
    In this example, the `azureml-inference-server-http` package is automatically installed. The package is included as a dependent library of the `azureml-defaults` package, which is listed in the conda.yaml file.
+
+   > [!IMPORTANT]
+   > The `azureml-defaults` package is part of the Azure Machine Learning SDK v1, which is deprecated. For new projects, install the `azureml-inference-server-http` package directly instead of using `azureml-defaults`.
 
    ```bash
    # Create the environment from the YAML file.

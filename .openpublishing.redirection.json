@@ -1,6 +1,16 @@
 {
   "redirections": [
     {
+      "source_path": "articles/foundry/agents/how-to/publish-agent.md",
+      "redirect_url": "/azure/foundry/agents/how-to/agent-applications",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/foundry-classic/agents/how-to/tools-classic/logic-apps.md",
+      "redirect_url": "/azure/logic-apps/add-agent-action-create-run-workflow",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-services/luis/context/context.yml",
       "redirect_url": "/previous-versions/azure/ai-services/luis",
       "redirect_document_id": false
@@ -20,6 +30,12 @@
       "redirect_url": "/previous-versions/azure/ai-services/luis/app-schema-definition",
       "redirect_document_id": false
     },
+    {
+      "source_path": "articles/foundry/guardrails/how-to-task-adherence.md",
+      "redirect_url": "/‎articles/foundry/guardrails/task-adherence",
+      "redirect_document_id": false
+    },
+    
     {
       "source_path": "articles/ai-services/luis/choose-natural-language-processing-service.md",
       "redirect_url": "/previous-versions/azure/ai-services/luis/choose-natural-language-processing-service",
@@ -676,6 +692,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/foundry/agents/how-to/metrics.md",
+      "redirect_url": "/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/how-to/develop/connections-add-sdk.md",
       "redirect_url": "/azure/ai-foundry/how-to/connections-add",
       "redirect_document_id": false
@@ -1181,6 +1202,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/foundry-classic/openai/concepts/model-versions.md",
+      "redirect_url": "/azure/foundry-classic/foundry-models/concepts/model-versions",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/machine-learning/concept-package-models.md",
       "redirect_url": "/azure/machine-learning/concept-endpoints",
       "redirect_document_id": false
@@ -1259,6 +1285,81 @@
       "source_path": "articles/ai-foundry/default/agents/how-to/tools/knowledge-retrieval.md",
       "redirect_url": "/azure/ai-foundry/agents/how-to/foundry-iq-connect",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/foundry/foundry-models/how-to/configure-marketplace.md",
+      "redirect_url": "/azure/foundry/foundry-models/concepts/models-from-partners",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/foundry-models/how-to/configure-marketplace.md",
+      "redirect_url": "/azure/foundry-classic/foundry-models/concepts/models-from-partners",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/whats-new-foundry.md",
+      "redirect_url": "/azure/foundry/whats-new-foundry",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/concepts/model-lifecycle-retirement.md",
+      "redirect_url": "/azure/foundry-classic/concepts/model-retirement-managed-compute",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/concepts/model-lifecycle-retirement.md",
+      "redirect_url": "/azure/foundry/openai/concepts/model-retirement-schedule",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/concepts/legacy-models.md",
+      "redirect_url": "/azure/foundry-classic/openai/concepts/retired-models",
+      "redirect_document_id": false
+    }, 
+    {
+      "source_path": "articles/foundry/openai/concepts/legacy-models.md",
+      "redirect_url": "/azure/foundry/openai/concepts/retired-models",
+      "redirect_document_id": false
+    },       
+    {
+      "source_path": "articles/ai-services/create-account-resource-manager-template.md",
+      "redirect_url": "/azure/foundry-classic/how-to/create-resource-template",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/responsible-use-of-ai-overview.md",
+      "redirect_url": "/azure/foundry/responsible-use-of-ai-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/whats-new-ai-services.md",
+      "redirect_url": "/azure/foundry/whats-new-foundry",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/language-support.md",
+      "redirect_url": "/azure/ai-services/language-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/reference/sdk-package-resources.md",
+      "redirect_url": "/azure/foundry/how-to/develop/sdk-overview",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/ai-services/reference/rest-api-resources.md",
+      "redirect_url": "/azure/foundry/reference/foundry-project",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/foundry-classic/openai/how-to/business-continuity-disaster-recovery.md",
+      "redirect_url": "/azure/foundry-classic/how-to/high-availability-resiliency",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/foundry/agents/how-to/publish-responses.md",
+      "redirect_url": "/azure/foundry/agents/how-to/publish-agent",
+      "redirect_document_id": false
     }
   ]
 }

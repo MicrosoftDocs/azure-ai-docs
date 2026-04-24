@@ -2,9 +2,9 @@
 title: "Audio events reference GA (classic)"
 description: "Learn how to use events with the Realtime API and Voice Live API (GA version). (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
-ms.topic: article
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
+ms.topic: reference
 ms.date: 01/26/2026
 author: PatrickFarley
 ms.author: pafarley

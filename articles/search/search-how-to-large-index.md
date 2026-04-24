@@ -1,10 +1,6 @@
 ---
-title: Index large data sets for full text search
-titleSuffix: Azure AI Search
+title: Index Large Data Sets for Full-Text Search
 description: Learn about strategies for large data indexing or computationally intensive indexing through batch mode, resourcing, and scheduled, parallel, and distributed indexing.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -112,7 +108,9 @@ The number of indexing jobs that can run simultaneously varies for text-based an
 
 If your data source is an [Azure Blob Storage container](/azure/storage/blobs/storage-blobs-introduction#containers) or [Azure Data Lake Storage Gen 2](/azure/storage/blobs/storage-blobs-introduction#about-azure-data-lake-storage-gen2), enumerating a large number of blobs can take a long time (even hours) until this operation is completed. As a result, your indexer's *documents succeeded* count doesn't appear to increase during that time and it might seem it's not making any progress, when it is. If you would like document processing to go faster for a large number of blobs, consider partitioning your data into multiple containers and create parallel indexers pointing to a single index.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and check the number of search units used by your search service. Select **Settings** > **Scale** to view the number at the top of the page. The number of indexers that run in parallel is approximately equal to the number of search units. 
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
+
+1. Check the number of search units used by your search service. Select **Settings** > **Scale** to view the number at the top of the page. The number of indexers that run in parallel is approximately equal to the number of search units. 
 
 1. Partition source data among multiple containers or multiple virtual folders inside the same container.
 

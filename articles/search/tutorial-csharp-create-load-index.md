@@ -1,10 +1,7 @@
 ---
-title: "Load an index (.NET tutorial)"
-titleSuffix: Azure AI Search
+title: Load an Index (.NET Tutorial)
 description: Create index and import CSV data into Search index with .NET.
-manager: nitinme
-author: diberry
-ms.author: heidist
+ms.reviewer: diberry
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
@@ -72,7 +69,7 @@ Before you start, make sure you have room on your search service for a new index
 
 Once the upload completes, the search index is ready to use. Review your new index in Azure portal.
 
-1. In Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).  
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. On the left, select **Search Management > Indexes**, and then select the good-books index.
 

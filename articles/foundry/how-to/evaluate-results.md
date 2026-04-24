@@ -1,21 +1,22 @@
 ---
 title: "See Evaluation Results in Microsoft Foundry portal"
 description: "See and analyze AI model evaluation results in Microsoft Foundry portal. Learn to view performance metrics, compare results, and interpret evaluation data for model optimization."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - classic-and-new
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 12/22/2025
+ms.date: 04/22/2026
 ms.reviewer: dlozier
 ms.author: lagayhar
 author: lgayhardt
 ai-usage: ai-assisted
 ---
 
-# See evaluation results in the Microsoft Foundry portal
+# View evaluation results in the Microsoft Foundry portal
+
 In this article, you learn to:
 
 - Locate and open evaluation runs.
@@ -33,13 +34,21 @@ In this article, you learn to:
 
 ## See your evaluation results
 
-After submitting an evaluation, you can track its progress on the Evaluation details page. When the evaluation completes, the page displays key information such as:
+After you submit an evaluation, track its progress on the **Evaluation** details page. When the evaluation completes, the page displays key information such as:
 
--The evaluation creator
--Evaluation token usage
--Scores for each evaluator, broken down by run
+- Name of the run
+- Target
+- Dataset (downloadable)
+- Status
+- Evaluation tokens (tokens used in the evaluation)
+- Target tokens (new)
+- Scores for each evaluator used
 
 :::image type="content" source="../media/observability/evaluation-runs.png" alt-text="Screenshot of the evaluation details page showing evaluation runs." lightbox="../media/observability/evaluation-runs.png":::
+
+Hover over results to see more details.
+
+:::image type="content" source="../media/observability/evaluation-runs-hover.png" alt-text="Screenshot of the evaluation details page showing evaluation runs hovered over token usage." lightbox="../media/observability/evaluation-runs-hover.png":::
 
 Select a specific run to drill into row‑level results.
 
@@ -48,6 +57,7 @@ Select **Learn more about metrics** for definitions and formulas.
 ### Evaluation run details
 
 To view the row level data for individual runs, select the name of the run. This provides a view that allows you to see evaluation results at the individual query level against each evaluator used. Here, you can view details like query, response, ground truth, and the evaluator score and explanation.
+
 ## Compare the evaluation results
 
 To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process.
@@ -92,10 +102,6 @@ To learn more, see [Built in evaluators](../concepts/built-in-evaluators.md).
 
 ## Related content
 
-- Improve low metrics with prompt iteration or [fine-tuning](../../foundry-classic/concepts/fine-tuning-overview.md).
-- [Run evaluations in the cloud with the Microsoft Foundry SDK](./develop/cloud-evaluation.md).
-
-Learn how to evaluate your generative AI applications:
-
-- [Evaluate your generative AI apps with the Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md).
-- [Create evaluations with OpenAI evaluation graders in Azure OpenAI Hub](../../foundry-classic/openai/how-to/evaluations.md).
+- [Run evaluations from the Microsoft Foundry portal](./evaluate-generative-ai-app.md)
+- [Run batch evaluations from the SDK](./develop/cloud-evaluation.md)
+- [Improve model performance with fine-tuning](../openai/how-to/fine-tuning.md)

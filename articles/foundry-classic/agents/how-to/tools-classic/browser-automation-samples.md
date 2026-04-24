@@ -3,10 +3,10 @@ title: "Use the Browser Automation Tool in Foundry Agent Service (classic)"
 description: "Learn how to use the Browser Automation tool in Foundry Agent Service to automate website tasks with AI agents. Follow the steps and run the sample. (classic)"
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 02/02/2026
+ms.date: 03/06/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: azure-ai-agents
@@ -16,9 +16,10 @@ ai-usage: ai-assisted
 # How to use the Browser Automation tool (preview) (classic)
 
 > [!NOTE]
-> This article refers to the classic version of the agents API. 
+> This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new Browser Automation documentation](../../../../foundry/agents/how-to/tools/browser-automation.md).
+> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Foundry Agent Service. Note that Browser Automation is currently a preview feature.
 

@@ -4,8 +4,8 @@ description: "Learn the quotas and limits for Foundry Agent Service, including f
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 02/02/2026
 ms.custom: azure-ai-agents, pilot-ai-workflow-jan-2026
@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Foundry Agent Service quotas and limits (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+[!INCLUDE [classic-banner](../includes/agents-classic.md)]
 
 This article describes the quotas and limits for Foundry Agent Service. Understanding these limits helps you design agents that scale reliably and avoid runtime errors in production.
 

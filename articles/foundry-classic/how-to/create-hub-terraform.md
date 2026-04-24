@@ -3,7 +3,7 @@ title: "Use Terraform to create a Microsoft Foundry hub (classic)"
 description: "In this article, you create a Microsoft Foundry hub, a Microsoft Foundry project, an AI services resource, and more resources. (classic)"
 ms.topic: how-to
 ms.date: 12/22/2025
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.reviewer: andyaviles 
 ms.author: sgilley
 author: sdgilley

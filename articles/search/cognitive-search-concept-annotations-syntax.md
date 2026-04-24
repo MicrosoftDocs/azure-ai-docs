@@ -1,9 +1,6 @@
 ---
-title: Reference enriched nodes during skillset execution
-titleSuffix: Azure AI Search
+title: Reference Enriched Nodes During Skillset Execution
 description: Explains the annotation syntax and how to reference inputs and outputs of a skillset in an AI enrichment pipeline in Azure AI Search.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -146,7 +143,7 @@ Notice that the cardinality of `"/document/people/*/lastname"` is larger than th
 
 If you're having trouble with specifying skill inputs, these tips might help you move forward:
 
-+ [Run the Import data wizard](search-import-data-portal.md) over your data to review the skillset definitions and field mappings that the wizard generates.
++ [Run the **Import data** wizard](search-import-data-portal.md) over your data to review the skillset definitions and field mappings that the wizard generates.
 
 + [Start a debug session](cognitive-search-how-to-debug-skillset.md) on a skillset to view the structure of an enriched document. You can edit the paths and other parts of the skill definition, and then run the skill to validate your changes.
 

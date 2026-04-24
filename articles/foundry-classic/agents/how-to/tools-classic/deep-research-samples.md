@@ -3,10 +3,10 @@ title: "How to use the deep research tool (classic)"
 description: "Find code samples and instructions for using deep research in the Foundry Agent Service. (classic)"
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
-ms.date: 11/20/2025
+ms.date: 03/27/2026
 author: alvinashcraft
 ms.author: aashcraft
 ms.custom: references_regions
@@ -14,6 +14,9 @@ zone_pivot_groups: selection-deep-research
 ---
 
 # How to use the Deep Research tool (classic)
+
+> [!IMPORTANT]
+> The Deep Research tool is deprecated. We recommend that you use the `o3-deep-research` model with [web search](../../../../foundry/agents/how-to/tools/web-search.md) or an MCP tool instead. For migration guidance, see the [web search tool documentation](../../../../foundry/agents/how-to/tools/web-search.md).
 
 > [!NOTE]
 > * The **parent** Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
@@ -418,7 +421,7 @@ main().catch((err) => {
 
 ## Create an agent with the Deep Research tool
 
-The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
+The Deep Research tool requires version `1.1.0b3` or later (but earlier than `2.0.0`) of the `azure-ai-projects` library, which targets the `2025-05-15-preview` API. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
 
 ```console
 python -m venv env
@@ -429,7 +432,7 @@ python -m venv env
 You can install the package with the following command:
 
 ```console
-pip install --pre azure-ai-projects
+pip install --pre "azure-ai-projects>=1.1.0b3,<2.0.0"
 ```
 
 ```python

@@ -3,8 +3,8 @@ title: "Get started with provisioned deployments in Microsoft Foundry (classic)"
 description: "Learn how to create and configure provisioned throughput deployments, verify quota, handle high utilization, and run benchmarks in Microsoft Foundry. (classic)"
 ai-usage: ai-assisted
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom:
   - openai, pilot-ai-workflow-jan-2026
   - classic-and-new
@@ -21,7 +21,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # Get started with provisioned deployments in Microsoft Foundry (classic)
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../../foundry/openai/how-to/provisioned-get-started.md)
 
 The following guide walks you through key steps in creating a provisioned deployment with your Microsoft Foundry resource. For more details on the concepts discussed here, see:
 * [Foundry Provisioned Throughput Onboarding Guide](./provisioned-throughput-onboarding.md)
@@ -271,6 +271,6 @@ We recommend the following workflow:
 * For more information on retry logic within each SDK, check out:
     * [Python reference documentation](https://github.com/openai/openai-python?tab=readme-ov-file#retries)
     * [.NET reference documentation](/dotnet/api/overview/azure/ai.openai-readme)
-    * [Java reference documentation](/java/api/com.azure.ai.openai.openaiclientbuilder?view=azure-java-preview#com-azure-ai-openai-openaiclientbuilder-retryoptions(com-azure-core-http-policy-retryoptions))
+    * [Java reference documentation](/java/api/com.azure.ai.openai.openaiclientbuilder?view=azure-java-preview&preserve-view=true#com-azure-ai-openai-openaiclientbuilder-retryoptions(com-azure-core-http-policy-retryoptions))
     * [JavaScript reference documentation](/azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript)
     * [GO reference documentation](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai#ChatCompletionsOptions)

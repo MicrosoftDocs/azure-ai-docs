@@ -219,6 +219,11 @@
         "source_path_from_root": "/articles/machine-learning/v-fake/how-to-auto-train-models-v1.md",
         "redirect_url": "/azure/machine-learning/how-to-auto-train-models-v1",
         "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/machine-learning/v1/how-to-enable-data-collection.md",
+      "redirect_url": "/azure/machine-learning/how-to-enable-app-insights",
+      "redirect_document_id": false
     }
     ]
 }

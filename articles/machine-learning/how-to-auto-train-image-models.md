@@ -11,6 +11,7 @@ ms.subservice: automl
 ms.custom: devx-track-azurecli, update-code, devx-track-python
 ms.topic: how-to
 ms.date: 01/28/2026
+ai-usage: ai-assisted
 #Customer intent: I'm a data scientist with ML knowledge in the computer vision space, looking to build ML models using image data in Azure Machine Learning with full control of the model architecture, hyperparameters, and training and deployment environments.
 ---
 
@@ -382,8 +383,14 @@ In addition to supporting any model from HuggingFace Transformers and MMDetectio
 | Instance Segmentation | **Mask R-CNN** | [`mmd-3x-mask-rcnn_swin-t-p4-w7_fpn_1x_coco`](https://ml.azure.com/registries/azureml/models/mmd-3x-mask-rcnn_swin-t-p4-w7_fpn_1x_coco/version/8) |
 
 The list of curated models is constantly updated. You can get the most up-to-date list of curated models for a given task by using the Python SDK.
-```
-credential = DefaultAzureCredential()
+```python
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
+
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 ml_client = MLClient(credential, registry_name="azureml")
 
 models = ml_client.models.list()

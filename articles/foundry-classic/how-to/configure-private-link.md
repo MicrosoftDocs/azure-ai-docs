@@ -3,7 +3,7 @@
 title: "How to configure a private link for Microsoft Foundry projects (classic)"
 description: "Learn how to configure a private link for Microsoft Foundry projects. A private link is used to secure communication with the Microsoft Foundry. (classic)"
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023, devx-track-azurecli, build-2024, ignite-2024, dev-focus
   - classic-and-new
@@ -19,7 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # How to configure a private link for Microsoft Foundry (Foundry projects) (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/configure-private-link.md)
 
 > [!TIP]
 > An alternate hub-focused version of this article is available: [How to configure a private link for a Microsoft Foundry hub](hub-configure-private-link.md).

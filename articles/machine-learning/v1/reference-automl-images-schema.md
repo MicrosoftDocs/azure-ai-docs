@@ -9,7 +9,7 @@ ms.topic: reference
 ms.reviewer: sooryar
 ms.author: scottpolly
 author: s-polly
-ms.date: 10/13/2021
+ms.date: 03/05/2026
 ---
 
 # Data schemas to train computer vision models with automated machine learning (v1)

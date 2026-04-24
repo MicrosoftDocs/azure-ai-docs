@@ -1,10 +1,6 @@
 ---
-title: Add semantic ranking
-titleSuffix: Azure AI Search
+title: Add Semantic Ranking
 description: Set a semantic query type to attach the deep learning models of semantic ranker.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -71,7 +67,7 @@ Regardless of the parameter chosen, the index should contain text fields with ri
 
 [Search explorer](search-explorer.md) includes options for semantic ranking. Recall that you can't set the `semanticQuery` parameter in the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Open a search index and select **Search explorer**.
 

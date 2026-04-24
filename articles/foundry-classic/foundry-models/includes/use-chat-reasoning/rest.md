@@ -1,7 +1,7 @@
 ---
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: include
 ms.date: 08/27/2025
 ms.author: mopeakande
@@ -47,7 +47,7 @@ api-key: <key>
 ```
 ---
 
-If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://cognitiveservices.azure.com/.default`. 
+If you have configured the resource with **Microsoft Entra ID** support, pass you token in the `Authorization` header with the format `Bearer <token>`. Use scope `https://ai.azure.com/.default`. 
 
 # [OpenAI API](#tab/openai)
 

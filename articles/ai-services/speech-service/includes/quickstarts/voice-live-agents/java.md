@@ -45,7 +45,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file named **pom.xml** with the following Maven configuration:
 
-    :::code language="xml" source="~/cognitive-services-quickstart-code/java/Speech/pom-agent.xml":::
+    :::code language="xml" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/pom-agent.xml":::
 
 1. Create the Java source directory structure:
 
@@ -83,7 +83,7 @@ Follow the quickstart below or get a fully working web app with browser-based vo
 
 1. Create a file **src/main/java/CreateAgentWithVoiceLive.java** with the following code:
 
-    :::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/CreateAgentWithVoiceLive.java":::
+    :::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/CreateAgentWithVoiceLive.java":::
 
 1. Sign in to Azure with the following command:
 
@@ -115,7 +115,7 @@ The sample connects to Foundry Agent Service by passing `AgentSessionConfig` to 
 
 1. Create the **src/main/java/VoiceLiveWithAgent.java** file with the following code:
 
-    :::code language="java" source="~/cognitive-services-quickstart-code/java/Speech/VoiceLiveWithAgentV2.java":::
+    :::code language="java" source="~/voice-live-samples-code/java/voice-live-quickstarts/AgentsNewQuickstart/VoiceLiveWithAgentV2.java":::
 
 1. Sign in to Azure with the following command:
 

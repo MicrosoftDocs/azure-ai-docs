@@ -1,9 +1,6 @@
 ---
-title: Data sources gallery
-titleSuffix: Azure AI Search
+title: Data Sources Gallery
 description: Lists data source connectors for importing into an Azure AI Search index.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

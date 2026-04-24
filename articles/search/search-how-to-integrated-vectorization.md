@@ -1,10 +1,6 @@
 ---
 title: Integrated Vectorization Using REST APIs
-titleSuffix: Azure AI Search
-description: Learn how to use skills to automate data chunking and vectorization during indexing and query execution.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+description: Learn how to use the REST APIs to define an indexer pipeline that includes chunking and vectorization.
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/16/2026
@@ -80,7 +76,7 @@ In this section, you retrieve the endpoint and Microsoft Entra token for your Az
 > [!TIP]
 > The following steps assume that you're using [role-based access](#role-based-access) for proof-of-concept testing. If you want to use integrated vectorization for app development, see [Connect your app to Azure AI Search using identities](search-security-rbac-client-code.md).
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. To obtain your search endpoint, copy the URL on the **Overview** page. An example search endpoint is `https://my-service.search.windows.net`.
 
@@ -96,7 +92,7 @@ In this section, you prepare your data for integrated vectorization by uploading
 
 ### [Azure Blob Storage](#tab/prepare-data-storage)
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
+1. Go to your Azure Storage account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Data storage** > **Containers**.
 
@@ -128,7 +124,7 @@ In this section, you prepare your data for integrated vectorization by uploading
 
 ### [ADLS Gen2](#tab/prepare-data-adlsgen2)
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
+1. Go to your Azure Storage account in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Data storage** > **Containers**.
 
@@ -202,7 +198,7 @@ In this section, you prepare your Azure AI resource for integrated vectorization
 
 Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and text-embedding-3-large. Internally, Azure AI Search calls the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) to connect to Azure OpenAI.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure OpenAI resource.
+1. Go to your Azure OpenAI resource in the [Azure portal](https://portal.azure.com).
 
 1. To assign roles:
 
@@ -234,7 +230,7 @@ Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and tex
 
 Azure AI Search supports Azure Vision image retrieval through multimodal embeddings (version 4.0). Internally, Azure AI Search calls the [multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to connect to Azure Vision.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Microsoft Foundry resource.
+1. Go to your Microsoft Foundry resource in the [Azure portal](https://portal.azure.com).
 
 1. To assign roles:
 
@@ -263,7 +259,7 @@ Azure AI Search supports Azure, Cohere, and Facebook embedding models in the [Mi
 
 For the model catalog, you should have a [Foundry project](/azure/ai-foundry/how-to/create-projects) with a [hub that's connected to an Azure OpenAI resource and an Azure AI Search service](/azure/ai-foundry/how-to/create-projects#create-a-project).
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure OpenAI resource.
+1. Go to your Azure OpenAI resource in the [Azure portal](https://portal.azure.com).
 
 1. To assign roles:
 

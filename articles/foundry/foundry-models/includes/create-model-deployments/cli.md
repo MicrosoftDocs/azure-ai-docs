@@ -2,8 +2,8 @@
 manager: nitinme
 author: santiagxf
 ms.author: fasantia 
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.date: 09/29/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
@@ -17,7 +17,7 @@ In this article, you learn how to add a new model to a Foundry Models endpoint.
 
 To complete this article, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](../../how-to/quickstart-github-models.md) if that's your case.
+* An Azure subscription. If you're using GitHub Models, you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](../../how-to/quickstart-github-models.md) if that's your case.
 
 * A Foundry project. This kind of project is managed under a Foundry resource (formerly known as Azure AI Services resource). If you don't have a Foundry project, see [Create a project for Microsoft Foundry](../../../how-to/create-projects.md).
 

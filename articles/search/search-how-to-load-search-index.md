@@ -1,10 +1,6 @@
 ---
-title: Load an index
-titleSuffix: Azure AI Search
+title: Load an Index
 description: Import and refresh data in a search index using the Azure portal, REST APIs, or an Azure SDK.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
@@ -18,13 +14,13 @@ ai-usage: ai-assisted
 This article explains how to import documents into a predefined search index using REST APIs, Azure SDKs, or the Azure portal.
 
 > [!TIP]
-> For the fastest path to loading data, use the [Import data wizard](search-import-data-portal.md) in the Azure portal, which creates an index and loads it in one workflow.
+> For the fastest path to loading data, use the [**Import data** wizard](search-import-data-portal.md) in the Azure portal, which creates an index and loads it in one workflow.
 
 ## Prerequisites
 
 + An Azure AI Search service (any tier). [Create a service](search-create-service-portal.md) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-+ An existing search index. This article assumes you already [created an index](search-how-to-create-search-index.md). If you need to create and load in one step, use an [Import wizard](search-import-data-portal.md) or [indexer](search-indexer-overview.md).
++ An existing search index. This article assumes you already [created an index](search-how-to-create-search-index.md). If you need to create and load in one step, use the [import wizard](search-import-data-portal.md) or an [indexer](search-indexer-overview.md).
 
 + Permissions to load documents:
   + **Key-based authentication**: An [admin API key](search-security-api-keys.md) for your search service.
@@ -38,20 +34,20 @@ This article explains how to import documents into a predefined search index usi
 
 ## Use the Azure portal
 
-In the Azure portal, use an [import wizard](search-import-data-portal.md) to create and load indexes in a seamless workflow. If you want to load an existing index, choose an alternative approach.
+In the Azure portal, use the [import wizard](search-import-data-portal.md) to create and load indexes in a seamless workflow. If you want to load an existing index, choose an alternative approach.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
-1. On the **Overview** page, select **Import data** or **Import data (new)** on the command bar to create and populate a search index.
+1. On the **Overview** page, select **Import data** on the command bar to create and populate a search index.
 
-   :::image type="content" source="media/search-import-data-portal/import-wizards.png" alt-text="Screenshot of the Import data command." border="true":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot of the Import data command." border="true":::
 
     You can follow these links to review the workflow: [Quickstart: Create an Azure AI Search index](search-get-started-portal.md) and [Quickstart: Integrated vectorization](search-get-started-portal-import-vectors.md).
 
 1. After the wizard is finished, use [Search Explorer](search-explorer.md) to check for results.
 
 > [!TIP]
-> The import wizards create and run indexers. If indexers are already defined, you can [reset and run an indexer](search-howto-run-reset-indexers.md) from the Azure portal, which is useful if you're adding fields incrementally. Reset forces the indexer to start over, picking up all fields from all source documents.
+> The import wizard creates and runs indexers. If indexers are already defined, you can [reset and run an indexer](search-howto-run-reset-indexers.md) from the Azure portal, which is useful if you're adding fields incrementally. Reset forces the indexer to start over, picking up all fields from all source documents.
 
 ## Use the REST APIs
 
@@ -297,7 +293,7 @@ A search service accepts JSON documents that conform to the index schema. A sear
 
 + Vector content is retrieved from a data source that provides it, or it's created by a skillset that implements [integrated vectorization](vector-search-integrated-vectorization.md) in an Azure AI Search indexer workload.
 
-You can prepare these documents yourself, but if content resides in a [supported data source](search-indexer-overview.md#supported-data-sources), running an [indexer](search-indexer-overview.md) or using an Import wizard can automate document retrieval, JSON serialization, and indexing.
+You can prepare these documents yourself, but if content resides in a [supported data source](search-indexer-overview.md#supported-data-sources), running an [indexer](search-indexer-overview.md) or using the import wizard can automate document retrieval, JSON serialization, and indexing.
 
 Once data is indexed, the physical data structures of the index are locked in. For guidance on what can and can't be changed, see [Update and rebuild an index](search-howto-reindex.md).
 

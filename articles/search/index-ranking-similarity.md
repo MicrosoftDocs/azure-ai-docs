@@ -1,14 +1,11 @@
 ---
-title: Configure BM25 relevance scoring
-titleSuffix: Azure AI Search
+title: Configure BM25 Relevance Scoring
 description: Enable Okapi BM25 ranking to upgrade the search ranking and relevance behavior on older Azure Search services.
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 02/24/2025
+ms.date: 03/25/2026
 ms.update-cycle: 365-days
 ---
 
@@ -68,7 +65,7 @@ BM25 ranking provides two parameters for tuning the relevance score calculation.
 
 If you're running a search service that was created from March 2014 through July 15, 2020, you can enable BM25 by setting a "similarity" property on new indexes. The property is only exposed on new indexes, so if you want BM25 on an existing index, you must drop and [rebuild the index](search-howto-reindex.md) with a "similarity" property set to `Microsoft.Azure.Search.BM25Similarity`.
 
-Once an index exists with a "similarity" property, you can switch between `BM25Similarity` or `ClassicSimilarity`. 
+After an index exists with a "similarity" property, you can switch between `BM25Similarity` or `ClassicSimilarity`. 
 
 The following links describe the Similarity property in the Azure SDKs. 
 

@@ -1,23 +1,23 @@
 ---
-title: What is the Personally Identifying Information (PII) detection feature in Azure Language in Foundry Tools?
+title: What is the Personally Identifiable Information (PII) detection feature in Azure Language?
 titleSuffix: Foundry Tools
 description: An overview of the PII detection feature in Azure Language, which helps you extract entities and sensitive information (PII) in text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 01/18/2026
+ms.date: 04/16/2026
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
 <!-- markdownlint-disable MD025 -->
-# What is Azure Language PII detection?
+# What is PII detection in Azure Language?
 
-Azure Language in Foundry Tools Personally Identifiable Information (PII) detection is a feature offered by [Azure Language](../overview.md). The PII detection service is a cloud-based API that utilizes machine learning and AI algorithms to help you develop intelligent applications with advanced natural language understanding. Azure Language PII detection uses Named Entity Recognition (NER) to **identify and redact** sensitive information from input data. The service classifies sensitive personal data into predefined categories. These categories include phone numbers, email addresses, and identification documents. This classification helps to efficiently detect and eliminate such information.
+Personally Identifiable Information (PII) detection is an Azure Language [core capability](../overview.md#core-capabilities) that helps you identify, classify, and redact sensitive data across text, conversations, and native documents. Submit input text to the service and receive structured output with entity categories, confidence scores, and redacted results based on your API configuration. You can use this capability to implement privacy controls, reduce sensitive data exposure, and support compliance requirements in application and data-processing workflows.
 
 > [!TIP]
-> Try PII detection [in Microsoft Foundry portal](https://ai.azure.com/). There you can [utilize a currently existing Language Studio resource or create a new Foundry resource](../../../ai-services/connect-services-foundry-portal.md).
+> Try PII detection in [Microsoft Foundry](https://ai.azure.com/) and choose the feature type that matches your input data.
 
 ## Video demonstration
 
@@ -31,105 +31,120 @@ In this video, we introduce the PII detection service and show you how it detect
 
 Closed captions are available for this video.
 
-## Capabilities
+## PII documentation by feature type
 
- Currently, PII support is available for the following capabilities:
+PII capabilities are grouped by feature type. Each feature type maps to a specific input format and processing model.
 
-* [General text PII detection](how-to/redact-text-pii.md) for processing sensitive information (PII) and health information (PHI) in unstructured text across several [predefined categories](concepts/entity-categories.md).
-* [Conversation PII detection](how-to/redact-conversation-pii.md), a specialized model designed to handle speech transcriptions and the informal, conversational tone found in meeting and call transcripts.
-* [Native Document PII detection](how-to/redact-document-pii.md) for processing structured document files.
+:::image type="content" source="media/feature-types.png" alt-text="Screenshot of PII feature types diagram.":::
 
-### [Text PII](#tab/text-pii)
+Choose the feature type that matches your data shape and runtime requirements.
 
-Language is a cloud-based service that applies Natural Language Processing (NLP) features to detect categories of personal information (PII) in text-based data. This documentation contains the following types:
+### Text PII
 
-* **[Quickstarts](quickstart.md)** are getting-started instructions to guide you through making requests to the service.
-* **[How-to guides](how-to/redact-text-pii.md)** contain instructions for using the service in more specific or customized ways.
+[**Text PII**](text-pii-overview.md) processes string-based payloads and returns synchronous detection and redaction results. Use this feature when your system handles request-time processing for messages, prompts, logs, and other text fields.
 
-[!INCLUDE [Typical workflow for pre-configured language features](../includes/overview-typical-workflow.md)]
+Use the following documentation to implement and tune Text PII workloads:
 
-### Key features for text PII
+* [Quickstart: Detect personally identifiable information (PII)](quickstart.md)
+* [Detect and redact Personally Identifiable Information in text](how-to/redact-text-pii.md)
+* [Text PII recognized entity categories (extended format)](concepts/entity-categories.md)
+* [Text PII recognized entity categories (list format)](concepts/entity-categories-list.md)
 
-Language offers named entity recognition to identify and categorize information within your text. The feature detects PII categories including names, organizations, addresses, phone numbers, financial account numbers or codes, and government identification numbers. A subset of this PII is protected health information (PHI). By specifying domain=phi in your request, only PHI entities are returned.
+### Conversation PII
 
-### [Conversation PII](#tab/conversation-pii)
+[**Conversation PII**](conversation-pii-overview.md) processes multi-turn exchanges and transcript-oriented payloads where turn boundaries and conversation context affect detection and masking behavior. Use this feature for asynchronous workloads that analyze chat and transcript structures.
 
-The Language conversation PII API processes audio conversations to detect and remove sensitive information (PII) based on a set of predefined categories. This documentation contains the following types:
+Use the following documentation to implement Conversation PII job-based processing:
 
-* **[Quickstarts](quickstart.md)** are getting-started instructions to guide you through making requests to the service.
-* **[How-to guides](how-to/redact-conversation-pii.md)** contain instructions for using the service in more specific or customized ways.
+* [Conversation PII overview](conversation-pii-overview.md)
+* [Detect and redact Personally Identifiable Information in conversations](how-to/redact-conversation-pii.md)
+* [Conversation PII recognized entity categories (extended format)](concepts/conversations-entity-categories.md)
+* [Conversation PII recognized entity categories (list format)](concepts/conversations-entities-list.md)
 
-### Key features for conversation PII
+### Document-based PII
 
-Conversation PII uses natural language processing techniques to identify and categorize information within conversations. This feature supports both natural chat transcripts and transcribed transcripts from phone calls. For a chat or call, there are different kinds of important information, scattered over long text or transcripts.
+[**Document-based PII**](document-based-pii-overview.md) processes native files and returns redaction output that preserves document structure while also producing machine-readable metadata. Use this feature for asynchronous, storage-based pipelines that handle `.pdf`, `.docx`, and `.txt` inputs.
 
-### [Native document PII](#tab/native-document-pii)
+Use the following documentation to implement Document-based PII in native-file pipelines:
 
-The native document support feature allows you to send API requests asynchronously. You can use an HTTP POST request body to transmit your data and an HTTP GET request query string to check the status of your requests. Your processed documents are stored in your designated Azure Blob Storage container. This documentation contains the following types:
-
-* **[Quickstarts](quickstart.md)** are getting-started instructions to guide you through making requests to the service.
-* **[How-to guides](how-to/redact-document-pii.md)** contain instructions for using the service in more specific or customized ways.
-
-### Key features for native document PII
-
-Document PII uses natural language processing techniques to identify and categorize information within documents.
+* [Document-based PII overview](document-based-pii-overview.md)
+* [Detect and redact Personally Identifiable Information in native documents](how-to/redact-document-pii.md)
 
 ---
 
-## Get started with PII detection
+## Choose the right PII feature
+
+Use the following table to select the right experience before you start implementation:
+
+| Feature type | Input | Best for | Key strength |
+| --- | --- | --- | --- |
+| [Text PII](text-pii-overview.md) | Raw text strings | Apps, prompts, logs, tickets | Broad language coverage and flexible redaction options |
+| [Conversation PII](conversation-pii-overview.md) | Turn-based chat or transcript data | Contact centers, meetings, voice transcripts | Conversational context and transcript-aware output |
+| [Document-based PII](document-based-pii-overview.md) | Native files (`.pdf`, `.docx`, `.txt`) | Compliance workflows and document sharing | Redacted files with document fidelity and JSON metadata |
+
+## Get started
 
 [!INCLUDE [development options](./includes/development-options.md)]
 
-[!INCLUDE [Developer reference](../includes/reference-samples-text-analytics.md)]
+[!INCLUDE [Typical workflow for pre-configured language features](../includes/overview-typical-workflow.md)]
+
+## What differs across feature types?
+
+All feature types use predefined entity categories and return confidence-scored detections. They differ mainly by input format and processing model:
+
+* **Text PII** is optimized for synchronous string-based input.
+* **Conversation PII** is optimized for turn-based transcript and chat structures.
+* **Document-based PII** is asynchronous and optimized for processing native files while preserving document structure.
+
+> [!NOTE]
+> **Document-based PII** focuses on native-file redaction workflows. Some text-only options are not available in every document API version.
+
+## GA and preview guidance
+
+To avoid integration issues, use API versions and features that match your deployment target:
+
+* Use generally available (GA) API versions for production workloads.
+* Use preview API versions only when you need preview-only features.
+* Avoid combining request payload examples from different API versions.
+
+Each feature-specific how-to article identifies preview-only sections where applicable.
 
 ## Input requirements and service limits
 
-### [Text PII](#tab/text-pii)
+Use the following references to verify language coverage, service limits, and model-version behavior:
 
-* Text PII takes text for analysis. For more information, see [Data and service limits](../concepts/data-limits.md) in the how-to guide.
-* PII works with various written languages. For more information, see [language support](language-support.md?tabs=text-summarization). You can specify in which [supported languages](../concepts/language-support.md) your source text is written. If you don't specify a language, the extraction defaults to English. The API may return offsets in the response to support different [multilingual and emoji encodings](../concepts/multilingual-emoji-support.md).
+* [Language support for text, document, and conversation PII](language-support.md)
+* [Quotas and limits](../concepts/data-limits.md)
+* [Model lifecycle and API version guidance](../concepts/model-lifecycle.md)
 
-### [Conversation PII](#tab/conversation-pii)
-
-* Conversation PII takes structured text for analysis. For more information, see [data and service limits](../concepts/data-limits.md).
-* Conversation summarization works with various spoken languages. For more information, see [language support](language-support.md?tabs=conversation-summarization).
-* [!INCLUDE [service limits article](../includes/service-limits-link.md)]
-
-### [Native document PII](#tab/native-document-pii)
-
-* Native document PII takes text for analysis. For more information, see [Data and service limits](../concepts/data-limits.md) in the how-to guide.
-* Native document PII works with various written languages. For more information, see [language support](language-support.md?tabs=document-summarization).
-
-A native document refers to the file format used to create the original document such as Microsoft Word (docx) or a portable document file (pdf). Native document support eliminates the need for text preprocessing before using Language resource capabilities. Currently, native document support is available for the [**PiiEntityRecognition**](../personally-identifiable-information/concepts/entity-categories.md) capability.
-
- Currently **PII** supports the following native document formats:
-
-|File type|File extension|Description|
-|---------|--------------|-----------|
-|Text| `.txt`|An unformatted text document.|
-|Adobe PDF| `.pdf`       |A portable document file formatted document.|
-|Microsoft Word|`.docx`|A Microsoft Word document file.|
-
----
+[!INCLUDE [Developer reference](../includes/reference-samples-text-analytics.md)]
 
 ## Responsible AI
 
-An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the [transparency note for PII](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information) to learn about responsible AI use and deployment in your systems. For more information, see the following articles:
+You should design responsible solutions by considering the model behavior, the users who operate the system, and the people affected by the output. Read the [transparency note for PII](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information) to understand responsible deployment guidance. For more information, see the following articles:
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 
-## Example scenarios
+## Common use cases
 
-* **Apply sensitivity labels** - For example, based on the results from the PII service, a public sensitivity label might be applied to documents where no PII entities are detected. For documents where US addresses and phone numbers are recognized, a confidential label might be applied. A highly confidential label might be used for documents where bank routing numbers are recognized.
-* **Redact some categories of personal information from documents that get wider circulation** - For example, if customer contact records are accessible to frontline support representatives, the company can redact the customer's personal information besides their name from the version of the customer history to preserve the customer's privacy.
-* **Redact personal information in order to reduce unconscious bias** - For example, during a company's resume review process, they can block name, address, and phone number to help reduce unconscious gender or other biases.
-* **Replace personal information in source data for machine learning to reduce unfairness** – For example, if you want to remove names that might reveal gender when training a machine learning model, you could use the service to identify them and you could replace them with generic placeholders for model training.
-* **Remove personal information from call center transcription** – For example, if you want to remove names or other PII data that happen between the agent and the customer in a call center scenario. You could use the service to identify and remove them.
-* **Data cleaning for data science** - PII can be used to make the data ready for data scientists and engineers to be able to use these data to train their machine learning models. Redacting the data to make sure that customer data isn't exposed.
+PII detection is useful when you need to apply privacy controls before storage, analytics, sharing, or downstream AI processing.
+
+Typical examples include:
+
+* Applying sensitivity labels based on detected PII categories.
+* Redacting personal information in documents that are distributed more broadly.
+* Masking personal identifiers in resume screening workflows to reduce bias risk.
+* Replacing sensitive values with placeholders in machine learning training datasets.
+* Redacting names and contact details in call center transcription workflows.
+* Preparing datasets for analytics and data science without exposing customer data.
 
 ## Next steps
 
-There are two ways to get started using the entity linking feature:
+Use the following references to continue implementation:
 
-* [Foundry](../../../ai-foundry/what-is-foundry.md) is a web-based platform that lets you use several Language features without needing to write code.
-* The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.
+* [Quickstart: Detect personally identifiable information (PII)](quickstart.md)
+* [Detect and redact Personally Identifiable Information in text](how-to/redact-text-pii.md)
+* [Detect and redact Personally Identifiable Information in conversations](how-to/redact-conversation-pii.md)
+* [Detect and redact Personally Identifiable Information in native documents](how-to/redact-document-pii.md)
+* [Language support for text, document, and conversation PII](language-support.md)
+* [Quotas and limits](../concepts/data-limits.md)

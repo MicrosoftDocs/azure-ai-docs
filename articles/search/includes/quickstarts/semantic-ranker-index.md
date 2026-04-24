@@ -1,7 +1,4 @@
 ---
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 03/04/2026
@@ -13,7 +10,7 @@ To use a different index, replace the index name, field names in the semantic co
 
 To review and query the hotels-sample index before semantic ranking:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. From the left pane, select **Search management** > **Indexes**.
 

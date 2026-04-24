@@ -8,7 +8,7 @@ ms.subservice: mlops
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jturuk
-ms.date: 08/15/2022
+ms.date: 03/06/2026
 ms.topic: troubleshooting
 ms.custom: UpdateFrequency5, deploy, sdkv1
 #Customer intent: As a data scientist, I want to try a local deployment so that I can troubleshoot my model deployment problems.
@@ -35,7 +35,7 @@ Try a local model deployment as a first step in troubleshooting deployment to Az
    * To verify your Docker installation, use the command `docker run hello-world` from a terminal or command prompt. For information on installing Docker, or troubleshooting Docker errors, see the [Docker Documentation](https://docs.docker.com/).
 * Option C - Enable local debugging with Azure Machine Learning inference HTTP server.
     * The Azure Machine Learning inference HTTP server is a Python package that allows you to easily validate your entry script (`score.py`) in a local development environment. If there's a problem with the scoring script, the server will return an error. It will also return the location where the error occurred.
-    * The server can also be used when creating validation gates in a continuous integration and deployment pipeline. For example, start the server with thee candidate script and run the test suite against the local endpoint.
+    * The server can also be used when creating validation gates in a continuous integration and deployment pipeline. For example, start the server with the candidate script and run the test suite against the local endpoint.
 
 ## Azure Machine Learning inference HTTP server
 
@@ -59,7 +59,7 @@ The local inference server allows you to quickly debug your entry script (`score
     curl -p 127.0.0.1:5001/score
     ```
 > [!NOTE]
-> [**Learn frequently asked questions**](../how-to-inference-server-http.md#frequently-asked-questions) about Azure machine learning Inference HTTP server.
+> [**Learn frequently asked questions**](../how-to-inference-server-http.md#frequently-asked-questions) about Azure Machine Learning inference HTTP server.
 
 ## Debug locally
 

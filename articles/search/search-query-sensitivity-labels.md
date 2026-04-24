@@ -1,15 +1,13 @@
 ---
-title: Query-Time Microsoft Purview Sensitivity Label Enforcement in Azure AI Search  
-titleSuffix: Azure AI Search  
-description: Learn how query-time enforcement of Microsoft Purview sensitivity labels ensures secure document retrieval in Azure AI Search for indexes containing label metadata.  
-ms.service: azure-ai-search  
-ms.topic: concept-article  
-ms.date: 01/28/2026
-author: gmndrg  
-ms.author: gimondra  
+title: Query-Time Microsoft Purview Sensitivity Label Enforcement
+description: Learn how query-time enforcement of Microsoft Purview sensitivity labels ensures secure document retrieval in Azure AI Search for indexes containing label metadata.
+ms.reviewer: gimondra
+ms.service: azure-ai-search
+ms.topic: concept-article
+ms.date: 03/05/2026
 ---
 
-# Query-Time Microsoft Purview Sensitivity Label Enforcement in Azure AI Search  
+# Query-time enforcement of Microsoft Purview sensitivity labels in Azure AI Search  
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -21,27 +19,25 @@ When Purview sensitivity label indexing is enabled, Azure AI Search checks each 
 
 This article explains how query-time sensitivity label enforcement works and how to issue secure search queries.
 
-
 ## Prerequisites
 
-Before you can query a sensitivity-label-enabled index, the following conditions must be met:
+- Complete all steps in [Use Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
 
-- You must follow all steps for [Azure AI Search indexers to ingest Microsoft Purview sensitivity labels](search-indexer-sensitivity-labels.md).
+- Both the Azure AI Search service and the user issuing the query must be in the same Microsoft Entra tenant.
 
-- Both the Azure AI Search service and the user issuing the query must belong to the same Microsoft Entra tenant.
+- REST API version 2025-11-01-preview or an equivalent preview SDK package to query the index.
 
-- The latest [preview API version 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or a compatible beta SDK must be used to query the index.  
-
-- Queries must be authenticated using [Azure role-based access control (RBAC)](search-security-rbac.md), not API keys.  API key access is restricted to index schema retrieval only when Purview sensitivity labels functionality is enabled.
-
+- Authenticate queries using [Azure role-based access control](search-security-rbac.md) (RBAC), not API keys. When Purview sensitivity labels are enabled, API key access is restricted to index schema retrieval.
 
 ## Limitations
 
-- [Microsoft Entra Guest users](/entra/external-id/b2b-quickstart-add-guest-users-portal) and cross-tenant queries aren't supported.  
-- [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs are unsupported for Purview-enabled indexes.  
-- If label evaluation fails (for example, Purview APIs are temporarily unavailable), the service returns **5xx** and does **not** return a partial or unfiltered result set.  
-- The system evaluates labels only as they existed at the time of the last indexer run; recent label changes may not be reflected until the next scheduled reindex.
+- [Guest accounts](/entra/external-id/b2b-quickstart-add-guest-users-portal) and cross-tenant queries aren't supported.
 
+- [Autocomplete](/rest/api/searchservice/documents/autocomplete-post) and [Suggest](/rest/api/searchservice/documents/suggest-post) APIs aren't supported for Purview-enabled indexes.
+
+- If label evaluation fails (for example, Purview APIs are temporarily unavailable), the service returns **5xx** and doesn't return a partial or unfiltered result set.
+
+- The system evaluates labels only as they existed at the time of the last indexer run. Recent label changes might not be reflected until the next scheduled reindex.
 
 ## How query-time sensitivity label enforcement works
 

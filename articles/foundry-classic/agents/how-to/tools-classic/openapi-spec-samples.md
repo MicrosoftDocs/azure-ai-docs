@@ -4,9 +4,9 @@ description: "Find code samples to use OpenAPI tools with agents. (classic)"
 author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
-ms.date: 01/14/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.date: 03/06/2026
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - azure-ai-agents-code
@@ -17,9 +17,10 @@ zone_pivot_groups: selection-openapi-function
 # How to use the OpenAPI spec tool (classic)
 
 > [!NOTE]
-> This article refers to the classic version of the agents API. 
+> This document refers to the Microsoft Foundry (classic) agents.
 >
 > 🔍 [View the new OpenAPI tool documentation](../../../../foundry/agents/how-to/tools/openapi.md).
+> Agents (classic) are now deprecated and will be retired on March 31, 2027. Use the new agents in the generally available [Microsoft Foundry Agents Service](../../../../foundry/agents/overview.md). Follow the [migration guide](../../../../foundry/agents/how-to/migrate.md) to update your workloads.
 
 Use this article to find step-by-step instructions and code samples for using OpenAPI based tools.
 
@@ -76,7 +77,7 @@ with AIProjectClient(
 ```
 
 ## Tool setup
-Load the OpenAPI specification from `weather.json`. Create an anonymous authentication object (`OpenApiAnonymousAuthDetails`), as this specific API doesn't require authentication in this example. You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
+Load the OpenAPI specification from `weather.json`. Create an anonymous authentication object (`OpenApiAnonymousAuthDetails`), as this specific API doesn't require authentication in this example. You can find an example OpenAPI spec on [GitHub](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
 
 ```python
     # Load the OpenAPI specification for the weather service from a local JSON file
@@ -194,7 +195,7 @@ const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 
 ## Read in the OpenAPI spec
 
-You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
+You can find an example OpenAPI spec on [GitHub](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
 
 ```javascript
 // Read in OpenApi spec
@@ -278,7 +279,7 @@ console.log(`Deleted agent, agent ID: ${agent.id}`);
 :::zone pivot="csharp"
 
 ## Configure client and OpenAPI tool
-First, retrieve configuration details and create a `PersistentAgentsClient`, then define the `OpenApiToolDefinition` using the OpenAPI specification. You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
+First, retrieve configuration details and create a `PersistentAgentsClient`, then define the `OpenApiToolDefinition` using the OpenAPI specification. You can find an example OpenAPI spec on [GitHub](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
 
 ```csharp
 using Azure;
@@ -387,7 +388,7 @@ Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the
 
 ## Create the OpenAPI Spec tool definition, agent, and thread
  
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. The following examples show how to use `anonymous` and `connection` (API key) authentication types. You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
+You might want to store the OpenAPI specification in another file and import the content to initialize the tool. The following examples show how to use `anonymous` and `connection` (API key) authentication types. You can find an example OpenAPI spec on [GitHub](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json).
 
 ### Anonymous authentication
 
@@ -611,7 +612,7 @@ curl --request GET \
 
 ## Example code
 
-The following example code uses an example OpenAPI function in a file named `weather_openapi.json`. You can find the function definition on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json). 
+The following example code uses an example OpenAPI function in a file named `weather_openapi.json`. You can find the function definition on [GitHub](https://github.com/microsoft-foundry/foundry-samples/blob/main/samples-classic/python/getting-started-agents/openapi/weather_openapi.json). 
 
 ```java
 package com.example.agents;

@@ -45,8 +45,8 @@ The following table summarizes the quotas and limits for large language model (L
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum audio input file size | Not applicable | < 300 MB |
-| Maximum audio length | Not applicable | < 120 minutes per file |
+| Maximum audio input file size | Not applicable | < 500 MB |
+| Maximum audio length | Not applicable | < 5hrs per file (<2hrs per file with diarization enabled)|
 | Maximum requests per minute | Not applicable | 600 |
 
 ### Speech-to-text quotas and limits per resource
@@ -63,14 +63,14 @@ These limits apply to concurrent real-time speech-to-text requests and speech tr
 | ----- | --------- | ------------- |
 | Concurrent request limit for base model endpoint | 1 <br/><br/>This limit isn't adjustable. | 100 (default value)<br/><br/>The rate is adjustable for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#speech-to-text-increase-the-real-time-speech-to-text-concurrent-request-limit) later in this article. |
 | Concurrent request limit for custom endpoint | 1 <br/><br/>This limit isn't adjustable. | 100 (default value)<br/><br/>The rate is adjustable for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#speech-to-text-increase-the-real-time-speech-to-text-concurrent-request-limit) later in this article. |
-| Maximum audio length for [real-time diarization](./get-started-stt-diarization.md) | Not applicable | 240 minutes per file |
+| Maximum audio length for [real-time diarization](./get-started-stt-diarization.md) | Not applicable | 240 minutes per session |
 
 #### Fast transcription
 
 | Quota | Free (F0) | Standard (S0) |
 | ----- | --------- | ------------- |
-| Maximum audio input file size | Not applicable | < 300 MB |
-| Maximum audio length | Not applicable | < 120 minutes per file |
+| Maximum audio input file size | Not applicable | < 500 MB |
+| Maximum audio length | Not applicable | < 5hrs per file (<2hrs per file with diarization enabled) |
 | Maximum requests per minute | Not applicable | 600 |
 
 #### Batch transcription

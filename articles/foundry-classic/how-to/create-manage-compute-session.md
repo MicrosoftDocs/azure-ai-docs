@@ -1,8 +1,8 @@
 ---
 title: "Create and manage prompt flow compute sessions (classic)"
 description: "In this article, learn how to create and manage compute sessions to run prompt flows in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
@@ -14,7 +14,6 @@ ms.reviewer: lochen
 ms.author: sgilley
 author: sdgilley
 ms.collection: ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 # customer intent: Learn how to create and manage prompt flow compute sessions in Microsoft Foundry portal.
 
 ---
@@ -23,7 +22,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
 You need a compute session to run [prompt flows](../concepts/prompt-flow.md). Use [Microsoft Foundry](https://ai.azure.com/?cid=learnDocs) to create and manage prompt flow compute sessions.
 
@@ -114,7 +113,7 @@ If you want to use a private feed in Azure DevOps, follow these steps:
 
 1. [Add or update user-assigned identities to your project](/azure/machine-learning/how-to-identity-based-service-authentication#to-create-a-workspace-with-multiple-user-assigned-identities-use-one-of-the-following-methods).
 
-1. Add `{private}` to your private feed URL. For example, if you want to install `test_package` from `test_feed` in Azure devops, add `-i https://{private}@{test_feed_url_in_azure_devops}` in `requirements.txt`:
+1. Add `{private}` to your private feed URL. For example, if you want to install `test_package` from `test_feed` in Azure DevOps, add `-i https://{private}@{test_feed_url_in_azure_devops}` in `requirements.txt`:
 
     ```txt
     -i https://{private}@{test_feed_url_in_azure_devops}

@@ -1,10 +1,6 @@
 ---
-title: Azure SQL indexer
-titleSuffix: Azure AI Search
+title: Azure SQL Indexer
 description: Set up a search indexer to index tables in Azure SQL Database for vector and full text search in Azure AI Search.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 11/21/2025
@@ -136,9 +132,9 @@ In this step, specify the data source, index, and indexer.
 
    :::image type="content" source="media/search-how-to-index-sql-database/search-data-source.png" alt-text="Screenshot of the data source creation page in the Azure portal.":::
 
-1. Use an [import wizard](search-import-data-portal.md) to create the index and indexer.
+1. Use the [import wizard](search-import-data-portal.md) to create the index and indexer.
 
-   1. On the **Overview** page, select **Import data** or **Import data (new)**.
+   1. On the **Overview** page, select **Import data**.
 
    1. Select the data source you just created.
 

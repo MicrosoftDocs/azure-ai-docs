@@ -1,10 +1,6 @@
 ---
-title: Add scoring profiles
-titleSuffix: Azure AI Search
+title: Add Scoring Profiles
 description: Boost search relevance scores for Azure AI Search results by adding scoring profiles to a search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -33,7 +29,7 @@ By the end of this article, you can create and apply scoring profiles to boost s
 
 ## Prerequisites
 
-+ An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
++ An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 

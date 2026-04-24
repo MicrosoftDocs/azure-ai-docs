@@ -10,6 +10,7 @@ ms.reviewer: None
 author: s-polly
 ms.author: scottpolly
 ms.date: 08/05/2025
+ai-usage: ai-assisted
 #Customer intent: As a data scientist, I want to know how to prototype and develop machine learning models on a cloud workstation.
 ---
 
@@ -82,12 +83,16 @@ In the next cell, enter your Subscription ID, Resource Group name, and Workspace
 
 ```python
 from azure.ai.ml import MLClient
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 from azure.ai.ml.entities import Data
 from azure.ai.ml.constants import AssetTypes
 
 # authenticate
-credential = DefaultAzureCredential()
+try:
+    credential = DefaultAzureCredential()
+    credential.get_token("https://management.azure.com/.default")
+except Exception:
+    credential = InteractiveBrowserCredential()
 
 # Get a handle to the workspace
 ml_client = MLClient(

@@ -1,7 +1,7 @@
 ---
 title: "How to run an evaluation in Azure DevOps (classic)"
 description: "How to run evaluation in Azure DevOps, which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. (classic)" 
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: how-to
 ms.date: 01/16/2026
 ms.reviewer: hanch
@@ -15,7 +15,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 
 # How to run an evaluation in Azure DevOps (preview) (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/how-to/evaluation-azure-devops.md)
 
 [!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
 

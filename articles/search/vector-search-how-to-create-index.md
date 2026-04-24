@@ -1,9 +1,6 @@
 ---
 title: Create a Vector Index
-titleSuffix: Azure AI Search
-description: Learn how to create or update a search index to include vector fields.
-author: haileytap
-ms.author: haileytapia
+description: Learn how to create or update a vector index in Azure AI Search by defining vector fields, configuring search algorithms, and setting vector profiles.
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

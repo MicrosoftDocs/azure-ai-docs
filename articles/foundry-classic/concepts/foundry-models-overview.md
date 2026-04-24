@@ -1,14 +1,14 @@
 ---
 title: "Microsoft Foundry Models overview (classic)"
 description: "This article introduces Microsoft Foundry Models and the model catalog in Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.custom:
   - build-2025
   - ai-learning-hub
   - classic-and-new
 ms.topic: concept-article
-ms.date: 03/04/2026
+ms.date: 04/20/2026
 ms.reviewer: rasavage
 reviewer: rsavage2
 ms.author: mopeakande
@@ -19,7 +19,7 @@ manager: nitinme
 
 # Microsoft Foundry Models overview (classic)
 
-[!INCLUDE [classic-banner](../includes/classic-banner.md)]
+**Currently viewing:** :::image type="icon" source="../../foundry/media/yes-icon.svg" border="false"::: **Foundry (classic) portal version** - [Switch to version for the new Foundry portal](../../foundry/concepts/foundry-models-overview.md)
 
 Microsoft Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models—whether you're building a custom copilot, an agent, enhancing an existing application, or exploring new AI capabilities.
 
@@ -67,7 +67,7 @@ Some of these models also offer fungible provisioned throughput, meaning you can
 
 These models constitute the vast majority of the Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations. Examples of models from Partners and community are the family of large language models developed by **Anthropic** and **Open models from the Hugging Face hub**. 
 
-Anthropic includes the Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Microsoft Support](https://aka.ms/anthropic-maas-support). To learn more about privacy, see [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../responsible-ai/claude-models/data-privacy.md) and [Anthropic privacy policy](https://aka.ms/anthropic_privacy). For terms of service, see [Commercial Terms of Service](https://aka.ms/anthropic_tandc). To learn how to work with Anthropic models, see [Deploy and use Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
+Anthropic includes the Claude family of state-of-the-art large language models that support text and image input, text output, multilingual capabilities, and vision. For help with Anthropic models, use [Microsoft Support](https://aka.ms/anthropic-maas-support). To learn more about privacy, see [Data, privacy, and security for Claude models in Microsoft Foundry (preview)](../responsible-ai/claude-models/data-privacy.md). For terms that govern data processing, see [Anthropic's Data processing Addendum](https://www.anthropic.com/legal/data-processing-addendum) and [Anthropic's Commercial Terms of Service](https://aka.ms/anthropic_tandc). To learn how to work with Anthropic models, see [Deploy and use Claude models in Microsoft Foundry](../foundry-models/how-to/use-foundry-models-claude.md).
 
 Hugging Face hub includes hundreds of models for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [How to deploy and infer with a managed compute deployment (classic)](../how-to/deploy-models-managed.md).
 
@@ -123,7 +123,6 @@ Some of the details available in the **model card** are:
 ## Model deployment options: managed compute and serverless deployments 
 
 The model catalog offers two distinct options to deploy models for your use: managed compute and serverless deployments. To learn about data processing with the deployment options, see [Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)](../how-to/concept-data-privacy.md). To learn how Foundry handles the data you provide to Foundry Models sold directly by Azure, see [Data, privacy, and security for Azure Direct Models in Microsoft Foundry (classic)](../responsible-ai/openai/data-privacy.md).
-
 
 ### Capabilities of model deployment options
 

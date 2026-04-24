@@ -1,8 +1,8 @@
 ---
 title: "Submit batch run and evaluate a flow (classic)"
 description: "Learn how to submit batch run and use built-in evaluation methods in prompt flow to evaluate how well your flow performs with a large dataset with Microsoft Foundry. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-prompt-flow
+ms.service: microsoft-foundry
+ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
@@ -13,14 +13,13 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
-ms.update-cycle: 180-days
 ---
 
 # Submit a batch run and evaluate a flow (classic)
 
 [!INCLUDE [classic-banner](../includes/classic-banner.md)]
 
-[!INCLUDE [feature-preview](../../foundry/includes/feature-preview.md)]
+[!INCLUDE [prompt-flow-retirement](../includes/prompt-flow-retirement.md)]
 
 To evaluate how well your flow performs with a large dataset, you can submit batch run and use an evaluation method in prompt flow.
 
@@ -71,7 +70,7 @@ In the  next step **input mapping**  section, you need to specify the sources of
 :::image type="content" source="../media/prompt-flow/batch-run-evaluate/input-mapping.png" alt-text="This screenshot shows how to configure evaluation settings, including input mapping and connection." lightbox="../media/prompt-flow/batch-run-evaluate/input-mapping.png":::
 
 > [!NOTE]
-> If your evaluation doesn't require data from the dataset, you do not need to reference any dataset columns in the input mapping section, indicating the dataset selection is an optional configuration. Dataset selection won't affect evaluation result.
+> If your evaluation doesn't require data from the dataset, you don't need to reference any dataset columns in the input mapping section, indicating the dataset selection is an optional configuration. Dataset selection won't affect evaluation result.
 
 If an evaluation method uses Large Language Models (LLMs) to measure the performance of the flow response, you're also required to set connections for the LLM nodes in the evaluation methods.
 
@@ -114,11 +113,11 @@ You can see the **latest evaluation metrics** in the left **Overview** panel.
 
 On the right side, the Overview offers overall information about the run, such as the number of per data point execution, total tokens, and duration of the run.
 
-The latest evaluation run aggregated metrics are shown here by default, you can select View evaluation run to jump to view the evaluation run itself.
+The latest evaluation run aggregated metrics are shown here by default. You can select View evaluation run to jump to view the evaluation run itself.
 
 :::image type="content" source="../media/prompt-flow/batch-run-evaluate/batch-run-output-overview.png" alt-text="Screenshot of batch run overview information in output page. " lightbox="../media/prompt-flow/batch-run-evaluate/batch-run-output-overview.png":::
 
-The overview can be expanded and collapsed here, and you can select View full information which will direct you to the [Overview tab](#overview) beside the Output tab, where is containing more detailed information of this run.
+You can expand or collapse the overview here. To see more detailed information about this run, select **View full information** to go to the [Overview tab](#overview) beside the Output tab.
 
 #### Start a new round of evaluation
 
@@ -158,7 +157,7 @@ To check the batch run history of your flow, you can select the **View batch run
 
 :::image type="content" source="../media/prompt-flow/batch-run-evaluate/visualize-outputs.png" alt-text="This screenshot shows the visualize output button in run list page." lightbox="../media/prompt-flow/batch-run-evaluate/visualize-outputs.png":::
 
-You can select on each batch run to check the detail. You can also select multiple batch runs and select on the **Visualize outputs** to compare the metrics and the outputs of the batch runs.
+You can select each batch run to check the detail. You can also select multiple batch runs and select on the **Visualize outputs** to compare the metrics and the outputs of the batch runs.
 
 In the "Visualize output" panel the **Runs & metrics** table shows the information of the selected runs with highlight. Other runs that take the outputs of the selected runs as input are also listed.
 

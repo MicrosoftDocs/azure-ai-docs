@@ -2,7 +2,7 @@
 title: "How to access on-premises resources (classic)"
 description: "Learn how to configure a Microsoft Foundry managed network to securely allow access to your on-premises resources. (classic)"
 manager: mcleans
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - hub-only
   - dev-focus
@@ -67,7 +67,7 @@ This command creates or updates a managed outbound rule and starts creating the 
 
 ### References
 
-* [az ml workspace outbound-rule set](/cli/azure/ml/workspace/outbound-rule?view=azure-cli-latest#az-ml-workspace-outbound-rule-set)
+* [az ml workspace outbound-rule set](/cli/azure/ml/workspace/outbound-rule#az-ml-workspace-outbound-rule-set)
 
 ### Python
 

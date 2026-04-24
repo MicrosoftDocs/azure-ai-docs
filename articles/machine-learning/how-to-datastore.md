@@ -27,9 +27,21 @@ In this article, you learn how to connect to Azure data storage services by usin
 - The [Azure Machine Learning SDK for Python](https://aka.ms/sdk-v2-install).
 - A Machine Learning workspace.
 
+> [!TIP]
+> The Python SDK code samples in this article use `MLClient.from_config()`, which requires a `config.json` file in your current directory or a parent directory. Download this file from the Azure portal: go to your workspace, then select **Overview** > **Download config.json**. Alternatively, you can create the `MLClient` manually:
+>
+> ```python
+> ml_client = MLClient(
+>     credential=DefaultAzureCredential(),
+>     subscription_id="<your-subscription-id>",
+>     resource_group_name="<your-resource-group>",
+>     workspace_name="<your-workspace-name>",
+> )
+> ```
+
 > [!NOTE]
 > Machine Learning datastores don't create the underlying storage account resources. Instead, they link an existing storage account for Machine Learning use.
-> Each datastore type (Azure Blob, ADLS Gen2, Azure Files, OneLake) is created independently. The order of sections in this article doesn’t represent a required sequence of steps.
+> Each datastore type (Azure Blob, ADLS Gen2, Azure Files, OneLake) is created independently. The order of sections in this article doesn't represent a required sequence of steps.
 
 ## Create an Azure Blob datastore
 

@@ -1,10 +1,8 @@
 ---
-title: Configure logging
-titleSuffix: Azure AI Search
+title: Configure Logging
 description: Set up diagnostic logging to collect information about indexing and query processing in Azure AI Search resource logs.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 08/08/2025
@@ -26,7 +24,7 @@ This article explains how to enable diagnostic logging and find information abou
 
 ## Enable diagnostic logging
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
 1. Under **Monitoring** > **Diagnostic settings**, select **Add diagnostic setting**.
 

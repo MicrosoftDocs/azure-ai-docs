@@ -1,7 +1,4 @@
 ---
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 02/02/2026
@@ -21,8 +18,6 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
 - An [Azure AI Search service](../../search-create-service-portal.md). You can use a free service for this quickstart.
 
 - [Java 21 (LTS)](/java/openjdk/install) and [Maven](https://maven.apache.org/download.cgi).
-
-- [Visual Studio Code](https://code.visualstudio.com/download).
 
 - [Git](https://git-scm.com/downloads) to clone the sample repository.
 
@@ -44,11 +39,10 @@ Full-text search uses Apache Lucene for indexing and queries and the BM25 rankin
     git clone https://github.com/Azure-Samples/azure-search-java-samples
     ```
 
-1. Navigate to the quickstart folder and open it in Visual Studio Code.
+1. Navigate to the quickstart folder.
 
     ```bash
     cd azure-search-java-samples/quickstart-keyword-search
-    code .
     ```
 
 1. In `src/main/java/azure/search/sample/App.java`, replace the placeholder value for `searchServiceEndpoint` with the URL you obtained in [Get endpoint](#get-endpoint).

@@ -1,10 +1,6 @@
 ---
-title: Enable or disable semantic ranker
-titleSuffix: Azure AI Search
+title: Enable or Disable Semantic Ranker
 description: Learn how to turn semantic ranker on or off in Azure AI Search, and how to prevent others from enabling it.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
@@ -27,9 +23,9 @@ Semantic ranker might not be enabled on older services. Follow these steps to en
 
 ### [**Azure portal**](#tab/enable-portal)
 
-1. Open the [Azure portal](https://portal.azure.com).
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
 
-1. Navigate to your search service. On the **Overview** page, make sure the pricing tier is set to **Basic** or higher.
+1. On the **Overview** page, make sure the pricing tier is set to **Basic** or higher.
 
 1. On the left-navigation pane, select **Settings** > **Premium features**.
 

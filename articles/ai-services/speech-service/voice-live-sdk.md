@@ -31,10 +31,10 @@ The Voice Live SDK supports the following languages and platforms:
 
 | Programming language | Reference | Platform support |
 |----------------------|-----------|------------------|
-| C# | [C#](/dotnet/api/overview/azure/ai.voicelive-readme?view=foundry) | Windows, Linux, macOS |
-| Python | [Python](/python/api/overview/azure/ai-voicelive-readme?view=foundry) | Windows, Linux, macOS|
-| Java (preview) | [Java](/java/api/overview/azure/ai-voicelive-readme?view=foundry) | Android, Windows, Linux, macOS |
-| JavaScript/TypeScript (preview) | [JavaScript/TypeScript](/javascript/api/overview/azure/ai-voicelive-readme?view=foundry) | Windows, Linux, macOS |
+| C# | [C#](/dotnet/api/overview/azure/ai.voicelive-readme) | Windows, Linux, macOS |
+| Python | [Python](/python/api/overview/azure/ai-voicelive-readme) | Windows, Linux, macOS|
+| Java (preview) | [Java](/java/api/overview/azure/ai-voicelive-readme) | Android, Windows, Linux, macOS |
+| JavaScript/TypeScript (preview) | [JavaScript/TypeScript](/javascript/api/overview/azure/ai-voicelive-readme) | Windows, Linux, macOS |
 
 ## Code samples
 
@@ -70,5 +70,5 @@ See also [Foundry Tools support and help options](../cognitive-services-support-
 
 ## Next steps
 
-- [Voice Live overview](/azure/ai-services/speech-service/voice-live?view=foundry)
+- [Voice Live overview](/azure/ai-services/speech-service/voice-live)
 - [Try the Voice Live API quickstart](./voice-live-quickstart.md)

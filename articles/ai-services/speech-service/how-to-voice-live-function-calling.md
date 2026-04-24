@@ -5,12 +5,11 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 11/06/2025
+ms.date: 04/06/2026
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Use function calling in a Voice Live session
-
-[!INCLUDE [Header](./includes/common/voice-live-python.md)]
 
 The Voice Live API supports function calling in voice conversations. This allows you to create voice assistants that can call external functions to get real-time information and include that information in their spoken responses.
 
@@ -18,23 +17,23 @@ The Voice Live API supports function calling in voice conversations. This allows
 
 The code sample below does these basic steps to set up function calling.
 
-1. **Write backend functions**: Define Python callables that fulfill business tasks (time lookup, weather, database queries) and serialize outputs to JSON-friendly dictionaries.
+1. **Write backend functions**: Define callables that fulfill business tasks (time lookup, weather, database queries) and serialize outputs to JSON-friendly dictionaries.
 
-1. **Describe tools for Voice Live**: Create **FunctionTool** definitions with names, parameter schemas, and text descriptions, and bundle them into the session configuration so the model understands the available actions.
+1. **Describe tools for Voice Live**: Create function tool definitions with names, parameter schemas, and text descriptions, and bundle them into the session configuration so the model understands available actions.
 
-1. **Initialize the session**: Connect using `azure.ai.voicelive.aio.connect`, provide credentials, pass in the defined **FunctionTool**, choose your target model/voice, and enable audio modalities, transcription, and turn detection.
+1. **Initialize the session**: Connect to the Voice Live endpoint, provide credentials, pass in the defined function tools, choose your target model and voice, and enable audio modalities, transcription, and turn detection.
 
-1. **Start audio processing**: Spin up **AudioProcessor** to capture microphone input, encode it (PCM16, 24 kHz), and stream it to the Voice Live connection; simultaneously prepare playback for assistant audio responses.
+1. **Start audio processing**: Capture microphone input, encode it (PCM16, 24 kHz), and stream it to the Voice Live connection; simultaneously prepare playback for assistant audio responses.
 
-1. **Run the event loop**: Await Voice Live events, updating session state, reacting to user speech boundaries, and streaming the assistant's audio/text back to the user interface. When a **ResponseFunctionCallItem** arrives, the application locates the callable, executes it with parsed arguments, packages the result into a **FunctionCallOutputItem**, and sends it back so the assistant can finalize its reply.
+1. **Run the event loop**: Handle Voice Live events, react to user speech boundaries, and stream the assistant's audio back to the user. When a function call event arrives, locate the callable, execute it with parsed arguments, send the result back to the session, and trigger a new response so the assistant can incorporate the result in its reply.
 
 ## Sample code
 
-The following examples show async function calling with the Voice Live API. Before running either sample, complete the setup steps in the [Quickstart](/azure/ai-services/speech-service/voice-live-quickstart).
+The following examples show async function calling with the Voice Live API. Before running any sample, complete the setup steps in the [Quickstart](/azure/ai-services/speech-service/voice-live-quickstart).
 
 #### [Python](#tab/python)
 
-For more information, see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-voicelive/samples/async_function_calling_sample.py).
+- For more information, see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/voicelive/azure-ai-voicelive/samples/async_function_calling_sample.py).
 
 ```python
 # -------------------------------------------------------------------------
@@ -1251,10 +1250,1190 @@ public sealed class FunctionCallingClient
 }
 ```
 
+#### [JavaScript](#tab/javascript)
+
+Install the required packages:
+
+```shell
+npm install @azure/ai-voicelive @azure/core-auth @azure/identity dotenv speaker
+```
+
+> [!IMPORTANT]
+> The `speaker` package is a native Node.js addon that requires C++ build tools to compile. On Windows, install [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022) with the **Desktop development with C++** workload and `node-gyp` (`npm install --global node-gyp`) before running `npm install`. On macOS, Xcode Command Line Tools (`xcode-select --install`) are sufficient.
+
+> [!IMPORTANT]
+> This sample requires [SoX](https://sox.sourceforge.io/) for microphone capture. Install it before running the sample — on Windows via `winget install SoX.SoX` or [Chocolatey](https://chocolatey.org/) (`choco install sox.portable`), on macOS via [Homebrew](https://brew.sh/) (`brew install sox`).
+
+> [!NOTE]
+> The `gpt-realtime` model isn't available in all regions. If you get a connection error, verify that your resource is in a [supported region](/azure/ai-services/speech-service/regions?tabs=voice-live). The `gpt-4o` and `gpt-4.1` models have broader regional availability.
+
+```javascript
+// -------------------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+// -------------------------------------------------------------------------
+import "dotenv/config";
+import { VoiceLiveClient } from "@azure/ai-voicelive";
+import { AzureKeyCredential } from "@azure/core-auth";
+import { DefaultAzureCredential } from "@azure/identity";
+import { spawn } from "node:child_process";
+
+// ---------------------------------------------------------------------------
+// Backend functions
+// ---------------------------------------------------------------------------
+
+function getCurrentTime(args) {
+  const timezone = args?.timezone ?? "local";
+  const now = new Date();
+  const timezoneName =
+    timezone.toLowerCase() === "utc" ? "UTC" : "local";
+  const options = timezone.toLowerCase() === "utc"
+    ? { timeZone: "UTC" }
+    : {};
+
+  return {
+    time: now.toLocaleTimeString("en-US", {
+      hour12: true,
+      ...options,
+    }),
+    date: now.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      ...options,
+    }),
+    timezone: timezoneName,
+  };
+}
+
+function getCurrentWeather(args) {
+  const location = args?.location ?? "Unknown";
+  const unit = args?.unit ?? "celsius";
+
+  // Simulated weather response
+  return {
+    location,
+    temperature: unit === "celsius" ? 22 : 72,
+    unit,
+    condition: "Partly Cloudy",
+    humidity: 65,
+    wind_speed: 10,
+  };
+}
+
+const availableFunctions = {
+  get_current_time: getCurrentTime,
+  get_current_weather: getCurrentWeather,
+};
+
+// ---------------------------------------------------------------------------
+// Audio processor - microphone capture and speaker playback
+// ---------------------------------------------------------------------------
+
+class AudioProcessor {
+  constructor() {
+    this._soxProcess = null;
+    this._speaker = null;
+    this._speakerCtor = null;
+    this._skipSeq = 0;
+    this._nextSeq = 0;
+  }
+
+  async startCapture(session) {
+    if (this._soxProcess) return;
+
+    const soxArgs = [
+      "-q", "-d",
+      "-r", "24000", "-c", "1",
+      "-e", "signed-integer", "-b", "16",
+      "-t", "raw", "-",
+    ];
+
+    this._soxProcess = spawn("sox", soxArgs, {
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+
+    this._soxProcess.stdout.on("data", (chunk) => {
+      if (session.isConnected) {
+        session.sendAudio(new Uint8Array(chunk)).catch(() => {});
+      }
+    });
+
+    this._soxProcess.stderr.on("data", () => {});
+
+    this._soxProcess.on("error", (err) => {
+      console.error(`SoX process error: ${err.message}`);
+    });
+
+    console.log("[audio] Microphone capture started");
+  }
+
+  async startPlayback() {
+    if (this._speaker) return;
+    const speakerModule = await import("speaker");
+    this._speakerCtor = speakerModule.default;
+    await this._resetSpeaker();
+    console.log("[audio] Playback ready");
+  }
+
+  queueAudio(base64Delta) {
+    const seq = this._nextSeq++;
+    if (seq < this._skipSeq) return;
+    const chunk = Buffer.from(base64Delta, "base64");
+    if (this._speaker && !this._speaker.destroyed) {
+      this._speaker.write(chunk);
+    }
+  }
+
+  skipPendingAudio() {
+    this._skipSeq = this._nextSeq++;
+    this._resetSpeaker().catch(() => {});
+  }
+
+  shutdown() {
+    if (this._soxProcess) {
+      try { this._soxProcess.kill(); } catch { /* no-op */ }
+      this._soxProcess = null;
+    }
+    if (this._speaker) {
+      this._speaker.end();
+      this._speaker = null;
+    }
+    console.log("[audio] Audio processor shut down");
+  }
+
+  async _resetSpeaker() {
+    if (this._speaker && !this._speaker.destroyed) {
+      try { this._speaker.end(); } catch { /* no-op */ }
+    }
+    this._speaker = new this._speakerCtor({
+      channels: 1,
+      bitDepth: 16,
+      sampleRate: 24000,
+      signed: true,
+    });
+    this._speaker.on("error", () => {});
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Voice assistant with function calling
+// ---------------------------------------------------------------------------
+
+function resolveVoiceConfig(voiceName) {
+  const looksLikeAzure =
+    voiceName.includes("-") || voiceName.includes(":");
+  return looksLikeAzure
+    ? { type: "azure-standard", name: voiceName }
+    : { type: "openai", name: voiceName };
+}
+
+class FunctionCallingAssistant {
+  constructor(options) {
+    this.endpoint = options.endpoint;
+    this.credential = options.credential;
+    this.model = options.model;
+    this.voice = options.voice;
+    this.instructions = options.instructions;
+    this._session = null;
+    this._subscription = null;
+    this._audio = new AudioProcessor();
+    this._activeResponse = false;
+    this._responseApiDone = false;
+    this._pendingFunctionCall = null;
+  }
+
+  async start() {
+    const client = new VoiceLiveClient(
+      this.endpoint,
+      this.credential,
+    );
+    const session = client.createSession({
+      model: this.model,
+    });
+    this._session = session;
+
+    this._subscription = session.subscribe({
+      onSessionUpdated: async () => {
+        console.log("[session] Session ready");
+        await this._audio.startCapture(session);
+      },
+
+      onInputAudioBufferSpeechStarted: async () => {
+        console.log("Listening...");
+        this._audio.skipPendingAudio();
+        if (this._activeResponse && !this._responseApiDone) {
+          try {
+            await session.sendEvent({
+              type: "response.cancel",
+            });
+          } catch (err) {
+            const msg = err?.message ?? "";
+            if (
+              !msg
+                .toLowerCase()
+                .includes("no active response")
+            ) {
+              console.warn("Cancel failed:", msg);
+            }
+          }
+        }
+      },
+
+      onInputAudioBufferSpeechStopped: async () => {
+        console.log("Processing...");
+      },
+
+      onResponseCreated: async () => {
+        this._activeResponse = true;
+        this._responseApiDone = false;
+      },
+
+      onResponseAudioDelta: async (event) => {
+        if (event.delta) {
+          this._audio.queueAudio(event.delta);
+        }
+      },
+
+      onResponseAudioDone: async () => {
+        console.log("Ready for next input...");
+      },
+
+      onResponseDone: async () => {
+        console.log("Response complete");
+        this._activeResponse = false;
+        this._responseApiDone = true;
+
+        if (this._pendingFunctionCall?.arguments) {
+          await this._executeFunctionCall(
+            this._pendingFunctionCall,
+          );
+          this._pendingFunctionCall = null;
+        }
+      },
+
+      onConversationItemCreated: async (event) => {
+        if (event.item?.type === "function_call") {
+          this._pendingFunctionCall = {
+            name: event.item.name,
+            callId: event.item.call_id,
+            previousItemId: event.item.id,
+          };
+          console.log(
+            `Calling function: ${event.item.name}`,
+          );
+        }
+      },
+
+      onResponseFunctionCallArgumentsDone: async (
+        event,
+      ) => {
+        if (
+          this._pendingFunctionCall &&
+          event.call_id ===
+            this._pendingFunctionCall.callId
+        ) {
+          this._pendingFunctionCall.arguments =
+            event.arguments;
+        }
+      },
+
+      onServerError: async (event) => {
+        const msg = event.error?.message ?? "";
+        if (!msg.includes("no active response")) {
+          console.error(`VoiceLive error: ${msg}`);
+        }
+      },
+    });
+
+    await session.connect();
+    await this._setupSession();
+    await this._audio.startPlayback();
+
+    // Proactive greeting
+    await session.sendEvent({ type: "response.create" });
+
+    console.log("\n" + "=".repeat(60));
+    console.log(
+      "VOICE ASSISTANT WITH FUNCTION CALLING READY",
+    );
+    console.log("Try saying:");
+    console.log("  - 'What's the current time?'");
+    console.log("  - 'What's the weather in Seattle?'");
+    console.log("Press Ctrl+C to exit");
+    console.log("=".repeat(60) + "\n");
+
+    await new Promise((resolve) => {
+      process.once("SIGINT", resolve);
+      process.once("SIGTERM", resolve);
+    });
+
+    await this.shutdown();
+  }
+
+  async _setupSession() {
+    await this._session.updateSession({
+      modalities: ["text", "audio"],
+      instructions: this.instructions,
+      voice: resolveVoiceConfig(this.voice),
+      inputAudioFormat: "pcm16",
+      outputAudioFormat: "pcm16",
+      turnDetection: {
+        type: "server_vad",
+        threshold: 0.5,
+        prefixPaddingInMs: 300,
+        silenceDurationInMs: 500,
+      },
+      inputAudioEchoCancellation: {
+        type: "server_echo_cancellation",
+      },
+      inputAudioNoiseReduction: {
+        type: "azure_deep_noise_suppression",
+      },
+      inputAudioTranscription: { model: "whisper-1" },
+      tools: [
+        {
+          type: "function",
+          name: "get_current_time",
+          description: "Get the current time",
+          parameters: {
+            type: "object",
+            properties: {
+              timezone: {
+                type: "string",
+                description:
+                  "The timezone, e.g., 'UTC', 'local'",
+              },
+            },
+            required: [],
+          },
+        },
+        {
+          type: "function",
+          name: "get_current_weather",
+          description:
+            "Get the current weather in a given location",
+          parameters: {
+            type: "object",
+            properties: {
+              location: {
+                type: "string",
+                description:
+                  "The city and state, " +
+                  "e.g., 'San Francisco, CA'",
+              },
+              unit: {
+                type: "string",
+                enum: ["celsius", "fahrenheit"],
+                description:
+                  "The unit of temperature " +
+                  "(celsius or fahrenheit)",
+              },
+            },
+            required: ["location"],
+          },
+        },
+      ],
+      toolChoice: "auto",
+    });
+
+    console.log(
+      "[session] Session configured with function tools",
+    );
+  }
+
+  async _executeFunctionCall(callInfo) {
+    const { name, callId, arguments: argsStr } = callInfo;
+    const func = availableFunctions[name];
+    if (!func) {
+      console.error(`Unknown function: ${name}`);
+      return;
+    }
+
+    try {
+      const args = JSON.parse(argsStr);
+      const result = func(args);
+
+      await this._session.addConversationItem({
+        type: "function_call_output",
+        call_id: callId,
+        output: JSON.stringify(result),
+      });
+      console.log(`Function ${name} completed`);
+
+      // Request a new response that incorporates
+      // the function result
+      await this._session.sendEvent({
+        type: "response.create",
+      });
+    } catch (err) {
+      console.error(
+        `Error executing function ${name}: ` +
+          err.message,
+      );
+    }
+  }
+
+  async shutdown() {
+    if (this._subscription) {
+      await this._subscription.close();
+      this._subscription = null;
+    }
+    if (this._session) {
+      try {
+        await this._session.disconnect();
+      } catch { /* no-op */ }
+      this._audio.shutdown();
+      try {
+        await this._session.dispose();
+      } catch { /* no-op */ }
+      this._session = null;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
+const args = {
+  apiKey: process.env.AZURE_VOICELIVE_API_KEY,
+  endpoint: process.env.AZURE_VOICELIVE_ENDPOINT,
+  model:
+    process.env.AZURE_VOICELIVE_MODEL ?? "gpt-realtime",
+  voice:
+    process.env.AZURE_VOICELIVE_VOICE ??
+    "en-US-Ava:DragonHDLatestNeural",
+  instructions:
+    process.env.AZURE_VOICELIVE_INSTRUCTIONS ??
+    "You are a helpful AI assistant with access to " +
+      "functions. Use the functions when appropriate " +
+      "to provide accurate, real-time information. " +
+      "Always start the conversation in English.",
+  useTokenCredential: process.argv.includes(
+    "--use-token-credential",
+  ),
+};
+
+if (!args.endpoint) {
+  console.error(
+    "Missing endpoint. Set AZURE_VOICELIVE_ENDPOINT.",
+  );
+  process.exit(1);
+}
+
+if (!args.apiKey && !args.useTokenCredential) {
+  console.error(
+    "No auth. Provide AZURE_VOICELIVE_API_KEY " +
+      "or --use-token-credential.",
+  );
+  process.exit(1);
+}
+
+const credential = args.useTokenCredential
+  ? new DefaultAzureCredential()
+  : new AzureKeyCredential(args.apiKey);
+
+const assistant = new FunctionCallingAssistant({
+  endpoint: args.endpoint,
+  credential,
+  model: args.model,
+  voice: args.voice,
+  instructions: args.instructions,
+});
+
+assistant.start().then(
+  () => console.log("\nVoice assistant shut down."),
+  (err) => {
+    if (err?.code === "ERR_USE_AFTER_CLOSE") return;
+    console.error("Fatal error:", err);
+    process.exit(1);
+  },
+);
+```
+
+#### [Java](#tab/java)
+
+Add the following dependencies to your `pom.xml`:
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-ai-voicelive</artifactId>
+        <version>1.0.0-beta.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-core</artifactId>
+        <version>1.53.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-identity</artifactId>
+        <version>1.11.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.projectreactor</groupId>
+        <artifactId>reactor-core</artifactId>
+        <version>3.5.11</version>
+    </dependency>
+</dependencies>
+```
+
+```java
+// -------------------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+// -------------------------------------------------------------------------
+
+import com.azure.ai.voicelive.VoiceLiveAsyncClient;
+import com.azure.ai.voicelive.VoiceLiveClientBuilder;
+import com.azure.ai.voicelive.VoiceLiveServiceVersion;
+import com.azure.ai.voicelive.VoiceLiveSessionAsyncClient;
+import com.azure.ai.voicelive.models.AudioEchoCancellation;
+import com.azure.ai.voicelive.models.AudioInputTranscriptionOptions;
+import com.azure.ai.voicelive.models.AudioInputTranscriptionOptionsModel;
+import com.azure.ai.voicelive.models.AudioNoiseReduction;
+import com.azure.ai.voicelive.models.AudioNoiseReductionType;
+import com.azure.ai.voicelive.models.AzureStandardVoice;
+import com.azure.ai.voicelive.models.ClientEventConversationItemCreate;
+import com.azure.ai.voicelive.models.ClientEventResponseCreate;
+import com.azure.ai.voicelive.models.ClientEventSessionUpdate;
+import com.azure.ai.voicelive.models.FunctionCallOutputItem;
+import com.azure.ai.voicelive.models.InputAudioFormat;
+import com.azure.ai.voicelive.models.InteractionModality;
+import com.azure.ai.voicelive.models.OutputAudioFormat;
+import com.azure.ai.voicelive.models.ServerEventType;
+import com.azure.ai.voicelive.models.ServerVadTurnDetection;
+import com.azure.ai.voicelive.models.SessionUpdate;
+import com.azure.ai.voicelive.models.ResponseFunctionCallItem;
+import com.azure.ai.voicelive.models.SessionUpdateConversationItemCreated;
+import com.azure.ai.voicelive.models.SessionUpdateError;
+import com.azure.ai.voicelive.models.SessionUpdateResponseAudioDelta;
+import com.azure.ai.voicelive.models.SessionUpdateResponseFunctionCallArgumentsDone;
+import com.azure.ai.voicelive.models.SessionUpdateSessionUpdated;
+import com.azure.ai.voicelive.models.ToolChoiceLiteral;
+import com.azure.ai.voicelive.models.VoiceLiveFunctionDefinition;
+import com.azure.ai.voicelive.models.VoiceLiveSessionOptions;
+import com.azure.core.credential.KeyCredential;
+import com.azure.core.credential.TokenCredential;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.AzureCliCredentialBuilder;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.TargetDataLine;
+
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Function;
+
+/**
+ * Voice assistant with function calling using
+ * VoiceLive SDK for Java.
+ */
+public final class FunctionCallingQuickstart {
+
+    private static final int SAMPLE_RATE = 24000;
+    private static final int CHANNELS = 1;
+    private static final int SAMPLE_SIZE_BITS = 16;
+    private static final int CHUNK_SIZE = 1200;
+
+    // Available backend functions
+    private static final
+        Map<String, Function<Map<String, String>,
+            Map<String, Object>>> FUNCTIONS =
+                new HashMap<>();
+
+    static {
+        FUNCTIONS.put(
+            "get_current_time",
+            FunctionCallingQuickstart::getCurrentTime);
+        FUNCTIONS.put(
+            "get_current_weather",
+            FunctionCallingQuickstart::getCurrentWeather);
+    }
+
+    // Pending function call state
+    private static volatile String pendingName;
+    private static volatile String pendingCallId;
+    private static volatile String pendingItemId;
+    private static volatile String pendingArguments;
+
+    private FunctionCallingQuickstart() { }
+
+    // ---------------------------------------------------------------
+    // Audio processor
+    // ---------------------------------------------------------------
+
+    private static class AudioProcessor {
+        private final VoiceLiveSessionAsyncClient session;
+        private final AudioFormat audioFormat;
+
+        private TargetDataLine microphone;
+        private SourceDataLine speaker;
+        private final AtomicBoolean isCapturing =
+            new AtomicBoolean(false);
+        private final AtomicBoolean isPlaying =
+            new AtomicBoolean(false);
+        private final BlockingQueue<byte[]>
+            playbackQueue = new LinkedBlockingQueue<>();
+        private final AtomicInteger nextSeq =
+            new AtomicInteger(0);
+        private final AtomicInteger playbackBase =
+            new AtomicInteger(0);
+
+        AudioProcessor(
+            VoiceLiveSessionAsyncClient session) {
+            this.session = session;
+            this.audioFormat = new AudioFormat(
+                AudioFormat.Encoding.PCM_SIGNED,
+                SAMPLE_RATE, SAMPLE_SIZE_BITS,
+                CHANNELS, CHANNELS * SAMPLE_SIZE_BITS / 8,
+                SAMPLE_RATE, false);
+        }
+
+        void startCapture() {
+            if (isCapturing.get()) return;
+            try {
+                DataLine.Info info = new DataLine.Info(
+                    TargetDataLine.class, audioFormat);
+                microphone =
+                    (TargetDataLine)
+                        AudioSystem.getLine(info);
+                microphone.open(audioFormat,
+                    CHUNK_SIZE * 4);
+                microphone.start();
+                isCapturing.set(true);
+
+                Thread t = new Thread(() -> {
+                    byte[] buf =
+                        new byte[CHUNK_SIZE * 2];
+                    while (isCapturing.get()) {
+                        int n = microphone.read(
+                            buf, 0, buf.length);
+                        if (n > 0) {
+                            byte[] chunk =
+                                Arrays.copyOf(buf, n);
+                            session.sendInputAudio(
+                                BinaryData.fromBytes(
+                                    chunk))
+                                .subscribeOn(
+                                    Schedulers
+                                        .boundedElastic())
+                                .subscribe();
+                        }
+                    }
+                }, "AudioCapture");
+                t.setDaemon(true);
+                t.start();
+                System.out.println(
+                    "Microphone capture started");
+            } catch (Exception e) {
+                throw new RuntimeException(
+                    "Failed to start microphone", e);
+            }
+        }
+
+        void startPlayback() {
+            if (isPlaying.get()) return;
+            try {
+                DataLine.Info info = new DataLine.Info(
+                    SourceDataLine.class, audioFormat);
+                speaker =
+                    (SourceDataLine)
+                        AudioSystem.getLine(info);
+                speaker.open(audioFormat, CHUNK_SIZE * 4);
+                speaker.start();
+                isPlaying.set(true);
+
+                Thread t = new Thread(() -> {
+                    while (isPlaying.get()) {
+                        try {
+                            byte[] data =
+                                playbackQueue.take();
+                            if (data.length == 0) break;
+                            if (speaker != null
+                                && speaker.isOpen()) {
+                                speaker.write(
+                                    data, 0,
+                                    data.length);
+                            }
+                        } catch (InterruptedException e) {
+                            Thread.currentThread()
+                                .interrupt();
+                            break;
+                        }
+                    }
+                }, "AudioPlayback");
+                t.setDaemon(true);
+                t.start();
+                System.out.println(
+                    "Audio playback started");
+            } catch (Exception e) {
+                throw new RuntimeException(
+                    "Failed to start speaker", e);
+            }
+        }
+
+        void queueAudio(byte[] data) {
+            if (data != null && data.length > 0) {
+                playbackQueue.offer(data);
+            }
+        }
+
+        void skipPendingAudio() {
+            playbackQueue.clear();
+            if (speaker != null && speaker.isOpen()) {
+                speaker.flush();
+            }
+        }
+
+        void shutdown() {
+            isCapturing.set(false);
+            if (microphone != null) {
+                microphone.stop();
+                microphone.close();
+            }
+            isPlaying.set(false);
+            playbackQueue.offer(new byte[0]);
+            if (speaker != null) {
+                speaker.stop();
+                speaker.close();
+            }
+            System.out.println(
+                "Audio processor cleaned up");
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Session setup with function tools
+    // ---------------------------------------------------------------
+
+    private static VoiceLiveSessionOptions
+        createSessionOptions(
+            String voice, String instructions) {
+
+        ServerVadTurnDetection vad =
+            new ServerVadTurnDetection()
+                .setThreshold(0.5)
+                .setPrefixPaddingMs(300)
+                .setSilenceDurationMs(500)
+                .setInterruptResponse(true)
+                .setAutoTruncate(true)
+                .setCreateResponse(true);
+
+        VoiceLiveFunctionDefinition getTime =
+            new VoiceLiveFunctionDefinition(
+                "get_current_time")
+                .setDescription("Get the current time")
+                .setParameters(BinaryData.fromObject(
+                    Map.of(
+                        "type", "object",
+                        "properties", Map.of(
+                            "timezone", Map.of(
+                                "type", "string",
+                                "description",
+                                "The timezone, e.g., "
+                                    + "'UTC', 'local'"
+                            )),
+                        "required", new String[] {}
+                    )));
+
+        VoiceLiveFunctionDefinition getWeather =
+            new VoiceLiveFunctionDefinition(
+                "get_current_weather")
+                .setDescription(
+                    "Get the current weather "
+                        + "in a given location")
+                .setParameters(BinaryData.fromObject(
+                    Map.of(
+                        "type", "object",
+                        "properties", Map.of(
+                            "location", Map.of(
+                                "type", "string",
+                                "description",
+                                "The city and state, "
+                                    + "e.g., "
+                                    + "'San Francisco, CA'"
+                            ),
+                            "unit", Map.of(
+                                "type", "string",
+                                "enum", new String[] {
+                                    "celsius",
+                                    "fahrenheit"},
+                                "description",
+                                "The unit of temperature"
+                            )),
+                        "required",
+                            new String[] {"location"}
+                    )));
+
+        VoiceLiveSessionOptions options =
+            new VoiceLiveSessionOptions()
+                .setInstructions(instructions)
+                .setVoice(BinaryData.fromObject(
+                    new AzureStandardVoice(voice)))
+                .setModalities(Arrays.asList(
+                    InteractionModality.TEXT,
+                    InteractionModality.AUDIO))
+                .setInputAudioFormat(InputAudioFormat.PCM16)
+                .setOutputAudioFormat(
+                    OutputAudioFormat.PCM16)
+                .setInputAudioSamplingRate(SAMPLE_RATE)
+                .setInputAudioNoiseReduction(
+                    new AudioNoiseReduction(
+                        AudioNoiseReductionType
+                            .NEAR_FIELD))
+                .setInputAudioEchoCancellation(
+                    new AudioEchoCancellation())
+                .setInputAudioTranscription(
+                    new AudioInputTranscriptionOptions(
+                        AudioInputTranscriptionOptionsModel
+                            .WHISPER_1))
+                .setTurnDetection(vad)
+                .setToolChoice(BinaryData.fromObject(
+                    ToolChoiceLiteral.AUTO));
+
+        options.getTools().add(getTime);
+        options.getTools().add(getWeather);
+
+        return options;
+    }
+
+    // ---------------------------------------------------------------
+    // Event handling
+    // ---------------------------------------------------------------
+
+    private static void handleEvent(
+        SessionUpdate event,
+        AudioProcessor audio,
+        VoiceLiveSessionAsyncClient session,
+        AtomicBoolean conversationStarted) {
+
+        ServerEventType type = event.getType();
+
+        if (type ==
+            ServerEventType.SESSION_UPDATED) {
+            System.out.println("Session ready");
+            if (!conversationStarted.getAndSet(true)) {
+                session.sendEvent(
+                    new ClientEventResponseCreate())
+                    .subscribe();
+            }
+            audio.startCapture();
+
+        } else if (type == ServerEventType
+            .INPUT_AUDIO_BUFFER_SPEECH_STARTED) {
+            System.out.println("Listening...");
+            audio.skipPendingAudio();
+
+        } else if (type == ServerEventType
+            .INPUT_AUDIO_BUFFER_SPEECH_STOPPED) {
+            System.out.println("Processing...");
+
+        } else if (type ==
+            ServerEventType.RESPONSE_AUDIO_DELTA) {
+            if (event instanceof
+                SessionUpdateResponseAudioDelta) {
+                byte[] data =
+                    ((SessionUpdateResponseAudioDelta)
+                        event).getDelta();
+                audio.queueAudio(data);
+            }
+
+        } else if (type ==
+            ServerEventType.RESPONSE_AUDIO_DONE) {
+            System.out.println("Ready for next input...");
+
+        } else if (type ==
+            ServerEventType.RESPONSE_DONE) {
+            System.out.println("Response complete");
+
+            if (pendingArguments != null) {
+                executeFunctionCall(session);
+            }
+
+        } else if (type == ServerEventType
+            .CONVERSATION_ITEM_CREATED) {
+            if (event instanceof
+                SessionUpdateConversationItemCreated) {
+                SessionUpdateConversationItemCreated
+                    created =
+                        (SessionUpdateConversationItemCreated)
+                            event;
+                if (created.getItem() instanceof
+                    ResponseFunctionCallItem) {
+                    ResponseFunctionCallItem funcItem =
+                        (ResponseFunctionCallItem)
+                            created.getItem();
+                    pendingName = funcItem.getName();
+                    pendingCallId = funcItem.getCallId();
+                    pendingItemId = funcItem.getId();
+                    pendingArguments = null;
+                    System.out.println(
+                        "Calling function: "
+                            + pendingName);
+                }
+            }
+
+        } else if (type == ServerEventType
+            .RESPONSE_FUNCTION_CALL_ARGUMENTS_DONE) {
+            if (event instanceof
+                SessionUpdateResponseFunctionCallArgumentsDone) {
+                pendingArguments =
+                    ((SessionUpdateResponseFunctionCallArgumentsDone)
+                        event).getArguments();
+            }
+
+        } else if (type ==
+            ServerEventType.ERROR) {
+            if (event instanceof SessionUpdateError) {
+                System.err.println("VoiceLive error: "
+                    + ((SessionUpdateError) event)
+                        .getError().getMessage());
+            }
+        }
+    }
+
+    private static void executeFunctionCall(
+        VoiceLiveSessionAsyncClient session) {
+
+        String name = pendingName;
+        String callId = pendingCallId;
+        String args = pendingArguments;
+
+        // Reset state
+        pendingName = null;
+        pendingCallId = null;
+        pendingItemId = null;
+        pendingArguments = null;
+
+        Function<Map<String, String>,
+            Map<String, Object>> func =
+                FUNCTIONS.get(name);
+        if (func == null) {
+            System.err.println(
+                "Unknown function: " + name);
+            return;
+        }
+
+        try {
+            // Parse arguments from JSON string
+            @SuppressWarnings("unchecked")
+            Map<String, String> parsed =
+                BinaryData.fromString(args)
+                    .toObject(Map.class);
+            Map<String, Object> result = func.apply(parsed);
+            String resultJson =
+                BinaryData.fromObject(result).toString();
+
+            FunctionCallOutputItem output =
+                new FunctionCallOutputItem(
+                    callId, resultJson);
+            session.sendEvent(
+                new ClientEventConversationItemCreate()
+                    .setItem(output))
+                .then(session.sendEvent(
+                    new ClientEventResponseCreate()))
+                .subscribe();
+
+            System.out.println(
+                "Function " + name + " completed");
+        } catch (Exception e) {
+            System.err.println(
+                "Error executing " + name + ": "
+                    + e.getMessage());
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Backend functions
+    // ---------------------------------------------------------------
+
+    private static Map<String, Object> getCurrentTime(
+        Map<String, String> args) {
+        String tz = args != null
+            ? args.getOrDefault("timezone", "local")
+            : "local";
+
+        LocalDateTime now;
+        String tzName;
+        if ("utc".equalsIgnoreCase(tz)) {
+            now = LocalDateTime.now(ZoneOffset.UTC);
+            tzName = "UTC";
+        } else {
+            now = LocalDateTime.now();
+            tzName = "local";
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("time", now.format(
+            DateTimeFormatter.ofPattern("hh:mm:ss a")));
+        result.put("date", now.format(
+            DateTimeFormatter.ofPattern(
+                "EEEE, MMMM dd, yyyy")));
+        result.put("timezone", tzName);
+        return result;
+    }
+
+    private static Map<String, Object> getCurrentWeather(
+        Map<String, String> args) {
+        String location = args != null
+            ? args.getOrDefault("location", "Unknown")
+            : "Unknown";
+        String unit = args != null
+            ? args.getOrDefault("unit", "celsius")
+            : "celsius";
+
+        // Simulated weather response
+        Map<String, Object> result = new HashMap<>();
+        result.put("location", location);
+        result.put("temperature",
+            "celsius".equals(unit) ? 22 : 72);
+        result.put("unit", unit);
+        result.put("condition", "Partly Cloudy");
+        result.put("humidity", 65);
+        result.put("wind_speed", 10);
+        return result;
+    }
+
+    // ---------------------------------------------------------------
+    // Main
+    // ---------------------------------------------------------------
+
+    public static void main(String[] cliArgs) {
+        String endpoint = System.getenv(
+            "AZURE_VOICELIVE_ENDPOINT");
+        String apiKey = System.getenv(
+            "AZURE_VOICELIVE_API_KEY");
+        String model = System.getenv(
+            "AZURE_VOICELIVE_MODEL") != null
+                ? System.getenv("AZURE_VOICELIVE_MODEL")
+                : "gpt-realtime";
+        String voice = System.getenv(
+            "AZURE_VOICELIVE_VOICE") != null
+                ? System.getenv("AZURE_VOICELIVE_VOICE")
+                : "en-US-Ava:DragonHDLatestNeural";
+        String instructions = "You are a helpful AI "
+            + "assistant with access to functions. "
+            + "Use the functions when appropriate to "
+            + "provide accurate, real-time information. "
+            + "Always start the conversation in English.";
+        boolean useToken =
+            Arrays.asList(cliArgs)
+                .contains("--use-token-credential");
+
+        if (endpoint == null) {
+            System.err.println(
+                "Set AZURE_VOICELIVE_ENDPOINT");
+            return;
+        }
+        if (apiKey == null && !useToken) {
+            System.err.println(
+                "Set AZURE_VOICELIVE_API_KEY "
+                    + "or use --use-token-credential");
+            return;
+        }
+
+        VoiceLiveAsyncClient client;
+        if (useToken) {
+            TokenCredential credential =
+                new AzureCliCredentialBuilder().build();
+            client = new VoiceLiveClientBuilder()
+                .endpoint(endpoint)
+                .credential(credential)
+                .serviceVersion(
+                    VoiceLiveServiceVersion.V2025_10_01)
+                .buildAsyncClient();
+        } else {
+            client = new VoiceLiveClientBuilder()
+                .endpoint(endpoint)
+                .credential(new KeyCredential(apiKey))
+                .serviceVersion(
+                    VoiceLiveServiceVersion.V2025_10_01)
+                .buildAsyncClient();
+        }
+
+        VoiceLiveSessionOptions sessionOptions =
+            createSessionOptions(voice, instructions);
+        AtomicReference<AudioProcessor> audioRef =
+            new AtomicReference<>();
+        AtomicBoolean started = new AtomicBoolean(false);
+
+        client.startSession(model)
+            .flatMap(session -> {
+                AudioProcessor audio =
+                    new AudioProcessor(session);
+                audioRef.set(audio);
+
+                session.receiveEvents()
+                    .subscribe(
+                        event -> handleEvent(
+                            event, audio,
+                            session, started),
+                        err -> System.err.println(
+                            "Event error: "
+                                + err.getMessage()));
+
+                session.sendEvent(
+                    new ClientEventSessionUpdate(
+                        sessionOptions))
+                    .subscribe();
+
+                audio.startPlayback();
+
+                System.out.println("=".repeat(60));
+                System.out.println(
+                    "VOICE ASSISTANT WITH "
+                        + "FUNCTION CALLING READY");
+                System.out.println("Try saying:");
+                System.out.println(
+                    "  - 'What's the current time?'");
+                System.out.println(
+                    "  - 'What's the weather "
+                        + "in Seattle?'");
+                System.out.println(
+                    "Press Ctrl+C to exit");
+                System.out.println("=".repeat(60));
+
+                Runtime.getRuntime().addShutdownHook(
+                    new Thread(() -> {
+                        System.out.println(
+                            "Shutting down...");
+                        audio.shutdown();
+                    }));
+
+                return Mono.never();
+            })
+            .doFinally(sig -> {
+                AudioProcessor audio = audioRef.get();
+                if (audio != null) audio.shutdown();
+            })
+            .block();
+    }
+}
+```
+
 ---
 
 ## Related content
 
 - Try the [Voice Live agents quickstart](./voice-live-agents-quickstart.md)
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
-- See the [Voice Live API reference](./voice-live-api-reference.md)
+- See the [Voice Live API reference](./voice-live-api-reference-2025-10-01.md)

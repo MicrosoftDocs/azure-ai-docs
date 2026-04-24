@@ -1,10 +1,8 @@
 ---
 title: Plan and Manage Costs
-titleSuffix: Azure AI Search
 description: Learn about billable events, the billing model, and tips for cost control when running an Azure AI Search service.
-manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: mattwojo
+ms.author: mattwoj
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:

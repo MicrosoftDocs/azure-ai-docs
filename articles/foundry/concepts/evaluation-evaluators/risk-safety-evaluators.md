@@ -5,8 +5,8 @@ ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
-ms.date: 02/25/2026
-ms.service: azure-ai-foundry
+ms.date: 04/02/2026
+ms.service: microsoft-foundry
 ms.topic: reference
 ms.custom:
   - classic-and-new
@@ -15,7 +15,6 @@ ms.custom:
 ---
 
 # Risk and safety evaluators
-[!INCLUDE [evaluation-preview](../../includes/evaluation-preview.md)]
 
 Risk and safety evaluators draw on insights gained from our previous large language model (LLM) projects such as GitHub Copilot and Bing. This approach ensures a comprehensive approach to evaluating generated responses for risk and safety severity scores.
 
@@ -31,24 +30,16 @@ These evaluators are generated through the Microsoft Foundry Evaluation service,
 | Code vulnerability | Model and agents | Measures whether AI generates code with security vulnerabilities, such as code injection, tar-slip, SQL injections, stack trace exposure and other risks across Python, Java, C++, C#, Go, JavaScript, and SQL. |
 | Ungrounded attributes | Model and agents | Measures an AI system's generation of text responses that contain ungrounded inferences about personal attributes, such as their demographics or emotional state. |
 | Indirect Attack (XPIA) | Model only |Measures to what extent the response fell for the indirect jailbreak attempt. Indirect attacks occur when jailbreak attacks are injected into the context of a document or source that might result in altered, unexpected behavior on the part of the language model. Indirect attacks are also known as *cross-domain prompt injected attacks* (XPIA).|
-| Prohibited actions | Agents only | Measures an AI agent's ability to engage in behaviors that violate explicitly disallowed actions or tool uses based on user verified policy of prohibited actions. |
-| Sensitive data leakage | Agents only | Measures an AI agent's vulnerability to exposing sensitive information (financial data, personal identifiers, health data, etc.) |
+| Prohibited actions (preview) | Agents only | Measures an AI agent's ability to engage in behaviors that violate explicitly disallowed actions or tool uses based on user verified policy of prohibited actions. |
+| Sensitive data leakage (preview) | Agents only | Measures an AI agent's vulnerability to exposing sensitive information (financial data, personal identifiers, health data, etc.) |
 
 Evaluation calculates an aggregate *defect rate* based on the percentage of undesired content detected in the response from your AI system. You can use the safety evaluators on your own dataset or use the [AI Red Teaming Agent](../ai-red-teaming-agent.md), which uses the safety evaluators in its automated red teaming scans.
 
 ## Foundry project configuration and region support
 
-The risk and safety evaluators use hosted evaluation language models in the Foundry evaluation service. They require your Foundry project information to be instantiated. The Foundry project must be in a supported region:
+The risk and safety evaluators use hosted evaluation language models in the Foundry evaluation service. They require your Foundry project information to be instantiated. For supported regions, see [Region support for evaluation](../evaluation-regions-limits-virtual-network.md).
 
-| Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes | Protected material |
-|--|--|--|
-| East US 2 | Supported  | Supported |
-| Sweden Central | Supported | N/A |
-| US North Central | Supported | N/A |
-| France Central | Supported | N/A |
-| Switzerland West | Supported  | N/A |
-
-## Using risk and safety evaluators
+## Configure and run evaluators
 
 Risk and safety evaluators assess whether AI responses contain harmful or inappropriate content:
 
@@ -83,6 +74,9 @@ Your test dataset should contain the fields referenced in your data mappings:
 
 ### Configuration example for evaluating model responses
 
+> [!NOTE]
+> Risk and safety evaluators use the hosted Foundry Evaluation service and don't require a `deployment_name` initialization parameter. Unlike LLM-as-judge evaluators such as coherence and fluency, these evaluators run against Microsoft's hosted safety models.
+
 **Data mapping syntax:**
 
 - `{{item.field_name}}` references fields from your test dataset (for example, `{{item.query}}`).
@@ -114,6 +108,9 @@ testing_criteria = [
 
 ### Configuration example for evaluating agents
 
+> [!IMPORTANT]
+> `builtin.prohibited_actions` and `builtin.sensitive_data_leakage` are in preview. They're supported for agent targets only and aren't available for dataset or model evaluations.
+
 Agent-specific safety evaluators like `prohibited_actions` and `sensitive_data_leakage` require tool calls:
 
 ```python
@@ -141,7 +138,7 @@ testing_criteria = [
 ]
 ```
 
-See [Run evaluations in the cloud](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
+See [Run evaluations from the SDK](../../how-to/develop/cloud-evaluation.md) for details on running evaluations and configuring data sources.
 
 ### Example output
 
@@ -260,4 +257,4 @@ The label field returns a boolean true or false based on whether or not either o
 ## Related content
 
 - [How to run agent evaluation](../../observability/how-to/evaluate-agent.md)
-- [How to run cloud evaluation](../../how-to/develop/cloud-evaluation.md)
+- [How to run batch evaluation](../../how-to/develop/cloud-evaluation.md)

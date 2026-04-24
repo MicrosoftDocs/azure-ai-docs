@@ -1,10 +1,6 @@
 ---
 title: 'C# Tutorial: Index Azure SQL Data'
-titleSuffix: Azure AI Search
 description: In this C# tutorial, you connect to Azure SQL Database, extract searchable data, and load it into an Azure AI Search index.
-manager: nitinme
-author: HeidiSteen
-ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 02/27/2026
@@ -98,7 +94,9 @@ The next component is Azure AI Search, which you can [create in the Azure portal
 
 API calls require the service URL and an access key. A search service is created with both, so if you added Azure AI Search to your subscription, follow these steps to get the necessary information:
 
-1. Sign in to the [Azure portal](https://portal.azure.com). On your service **Overview** page, copy the endpoint URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
+
+1. On the **Overview** page, copy the endpoint URL. An example endpoint might look like `https://mydemo.search.windows.net`.
 
 1. On **Settings** > **Keys**, get an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either key on requests to add, modify, or delete objects.
 
@@ -233,7 +231,9 @@ Your code runs locally in Visual Studio, connecting to your search service on Az
 
 Use the Azure portal to verify object creation, and then use **Search explorer** to query the index.
 
-1. Sign in to the [Azure portal](https://portal.azure.com) and go to your search service. From the left pane, open each page to verify the objects are created. **Indexes**, **Indexers**, and **Data Sources** should have **hotels-sql-idx**, **hotels-sql-idxr**, and **hotels-sql-ds**, respectively.
+1. Go to your search service in the [Azure portal](https://portal.azure.com).
+
+1. From the left pane, open each page to verify the objects are created. **Indexes**, **Indexers**, and **Data Sources** should have **hotels-sql-idx**, **hotels-sql-idxr**, and **hotels-sql-ds**, respectively.
 
 1. On the **Indexes** tab, select the **hotels-sql-idx** index. On the hotels page, **Search explorer** is the first tab.
 
