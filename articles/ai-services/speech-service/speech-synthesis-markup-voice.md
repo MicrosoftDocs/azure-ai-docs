@@ -219,7 +219,7 @@ The following table has descriptions of each supported `role` attribute:
 
 ### mstts express-as examples
 
-For information about the supported values for attributes of the `mstts:express-as` element, see [Use speaking styles and roles](#use-speaking-styles-and-roles).
+For information about the supported values for attributes of the `mstts:express-as` element, see [Use speaking styles and roles](#use-speaking-styles-paralinguistics-and-roles).
 
 #### Style and degree example
 
