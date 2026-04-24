@@ -132,7 +132,19 @@ The quality-band mechanics translate into measurably different routing distribut
 - **Balanced mode** spread traffic more broadly — the cheapest model still handled about half, but mid-tier models picked up significant share for harder prompts.
 - **Quality mode** flipped the distribution — the full frontier model handled roughly half of traffic, with reasoning and high-capability models appearing for prompts that needed them.
 
-:::image type="content" source="../media/model-router-how-it-works/routing-distribution.png" alt-text="Bar chart that shows routing distribution across model tiers for Cost, Balanced, and Quality modes, with Cost mode heavily favoring nano-class models and Quality mode favoring frontier models.":::
+:::image type="content" source="../media/model-router-how-it-works/routing-distribution-colors.png" alt-text="Bar chart that shows routing distribution across model tiers for Cost, Balanced, and Quality modes, with Cost mode heavily favoring nano-class models and Quality mode favoring frontier models.":::
+
+<div align="center">
+
+| | Mode | Description |
+|---|---|---|
+| 🟥 | **Cost mode** | First bar — routes to cheapest models by default |
+| 🟦 | **Balanced mode** | Second bar — spreads across cheap and mid-tier |
+| 🟠 | **Quality mode** | Third bar — favors frontier and reasoning models |
+
+*Based on a point-in-time experiment; actual models and distribution will vary. Source: [ModelRouter-Distribution](https://github.com/guygregory/ModelRouter-Distribution).*
+
+</div>
 
 The key insight: even in Quality mode, the router doesn't automatically send everything to the most expensive model. Simple prompts still route to cheaper models because the router knows they produce equivalent results. And even in Cost mode, the router escalates when it matters. This is what distinguishes a learned router from a static rule-based router.
 
