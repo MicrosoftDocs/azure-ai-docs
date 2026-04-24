@@ -453,8 +453,6 @@ var text = (result.Value.Response[0].Content[0] as KnowledgeBaseMessageTextConte
 Console.WriteLine(text);
 ```
 
----
-
 **Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
 
 :::zone-end
@@ -501,8 +499,6 @@ result = kb_client.retrieve(
     retrieval_request=request, x_ms_query_source_authorization=user_token)
 print(result.response[0].content[0].text)
 ```
-
----
 
 **Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient), [KnowledgeBaseRetrievalRequest](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest)
 

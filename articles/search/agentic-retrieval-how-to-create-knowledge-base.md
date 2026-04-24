@@ -703,8 +703,6 @@ api-key: {{search-api-key}}
 
 **Reference:** [Knowledge Bases - Delete](/rest/api/searchservice/knowledge-bases/delete?view=rest-searchservice-2026-04-01&preserve-view=true)
 
----
-
 ::: zone-end
 
 ## Related content
