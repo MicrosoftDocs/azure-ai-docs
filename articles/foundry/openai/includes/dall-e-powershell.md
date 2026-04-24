@@ -73,7 +73,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         n      = 1
         quality = 'high'
         output_format = 'png'
-        # background = 'transparent'  # 'auto' or 'transparent' (requires PNG output)
+        # background = 'transparent'  # 'auto' or 'transparent' (GPT-image-1 only; requires PNG output)
         # output_compression = 100    # 0-100 compression level (JPEG output only)
     } | ConvertTo-Json
     
