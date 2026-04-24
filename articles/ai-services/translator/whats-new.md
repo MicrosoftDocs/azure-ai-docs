@@ -60,7 +60,6 @@ Azure Translator `2025-05-01-preview` is our latest cloud-based, multilingual, n
 
 [**Microsoft Translator Pro**](translator-pro/overview.md) is a mobile app that delivers accurate real-time speech-to-speech translations. It now offers expanded multilingual support on-device (doesn't require internet connectivity). For more information, *see* our [Translator Pro Language support](solutions/translator-pro/language-support.md).
 
-
 ## June 2025
 
 ### Document Translation new feature update
