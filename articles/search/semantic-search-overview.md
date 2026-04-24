@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 In Azure AI Search, *semantic ranker* is a feature that measurably improves search relevance by using Microsoft's language understanding models to rerank search results. Semantic ranker is also built into [agentic retrieval](agentic-retrieval-overview.md). This article is a high-level introduction to help you understand the behaviors and benefits of semantic ranker.
 
-Semantic ranker is a premium feature that's billed by usage, but you can use it for free subject to [service limits](/azure/search/search-limits-quotas-capacity#index-limits) for the free tier. We recommend this article for background, but if you'd rather get started, [follow these steps](#how-to-get-started-with-semantic-ranker).
+Semantic ranker is a premium feature that's billed by usage, but you can use it for free subject to [service limits](/azure/search/search-limits-quotas-capacity#index-limits) for the free tier. We recommend this article for background, but if you'd rather get started, [follow these steps](#how-to-get-started).
 
 ## What is semantic ranking?
 
