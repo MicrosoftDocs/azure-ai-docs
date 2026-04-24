@@ -60,7 +60,7 @@ Agent Service offers three environment configuration modes to suit different nee
    Includes everything in the Standard Setup, with the added ability to operate entirely within your own virtual network. This setup supports Bring Your Own Virtual Network (BYO virtual network), allowing for strict control over data movement and helping prevent data exfiltration by keeping traffic confined to your network environment.
 
 > [!IMPORTANT]
-> **Standard setups requires you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant.** 
+> **Standard setups require you to Bring Your Own (BYO) resources so that all agent data stays in your Azure tenant.** 
 >
 > BYO resources include: Azure Storage, Azure AI Search, and Azure Cosmos DB.
 > 
