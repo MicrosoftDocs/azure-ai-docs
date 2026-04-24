@@ -85,7 +85,7 @@ For more information about how to use multi-talker voices via Speech Synthesis M
 
 In some cases, you can adjust the speaking style to express emotions like cheerfulness, empathy, and calm. All standard voices with speaking styles and multi-style custom voices support adjustment of style degree. You can optimize the voice for scenarios like customer service, newscast, and voice assistant. With roles, the same voice can act as a different age and gender.
 
-To learn how you can configure and adjust voice styles and roles, see [Use speaking styles and roles](speech-synthesis-markup-voice.md#use-speaking-styles-and-roles).
+To learn how you can configure and adjust voice styles and roles, see [Use speaking styles and roles](speech-synthesis-markup-voice.md#use-speaking-styles-paralinguistics-and-roles).
 
 Use the following table to determine supported styles and roles for each voice.
 
