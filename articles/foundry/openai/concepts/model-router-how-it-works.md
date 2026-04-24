@@ -136,7 +136,7 @@ The quality-band mechanics translate into measurably different routing distribut
 
 <div align="center">
 
-| | Mode | Description |
+| Color | Mode | Description |
 |---|---|---|
 | 🟥 | **Cost mode** | First bar — routes to cheapest models by default |
 | 🟦 | **Balanced mode** | Second bar — spreads across cheap and mid-tier |
