@@ -90,11 +90,11 @@ Quality: Always selects the highest-quality model for each prompt, regardless of
 
 Each routing mode produces a different distribution of traffic across underlying models. You can observe your routing distribution using Azure Monitor:
 
-• In **Balanced mode**, traffic is distributed more broadly across the model pool based on prompt complexity.
-• In **Cost mode**, the majority of traffic routes to smaller, cheaper models, escalating to larger models only when the prompt requires it.
-• In **Quality mode**, frontier and high-capability models handle the majority of traffic.
+- In **Balanced mode**, traffic is distributed more broadly across the model pool based on prompt complexity.
+- In **Cost mode**, the majority of traffic routes to smaller, cheaper models, escalating to larger models only when the prompt requires it.
+- In **Quality mode**, frontier and high-capability models handle the majority of traffic.
 
-## Illustrative example
+## Example
 
 The [ModelRouter-Distribution repository](https://github.com/guygregory/ModelRouter-Distribution) lets you run routing experiments against your own prompt corpus to preview how each mode distributes your workload before choosing.
 
