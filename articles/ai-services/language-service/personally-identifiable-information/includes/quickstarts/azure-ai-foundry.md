@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 03/18/2026
+ms.date: 04/27/2026
 ms.author: lajanuar
 ms.custom: doc-kit-assisted
 ---
