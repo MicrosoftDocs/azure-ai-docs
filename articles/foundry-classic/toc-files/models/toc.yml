@@ -32,6 +32,8 @@ items:
     href: ../../foundry-models/whats-new-model-router.md
   - name: Get started with model router
     href: ../../openai/how-to/model-router.md
+  - name: How model router works
+    href: ../../../foundry/openai/concepts/model-router-how-it-works.md
 - name: Deploy Foundry Models
   items:
   - name: Deployment options in Microsoft Foundry portal
