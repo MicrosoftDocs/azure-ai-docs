@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 04/14/2026
+ms.date: 04/24/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -32,7 +32,7 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 ## Prerequisites
 
-+ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md).
 
 + Completion of the [OneLake indexer prerequisites](search-how-to-index-onelake-files.md#prerequisites).
 

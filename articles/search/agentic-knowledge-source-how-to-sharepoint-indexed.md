@@ -3,7 +3,7 @@ title: Create a SharePoint (Indexed) Knowledge Source
 description: Learn how to create an indexed SharePoint knowledge source, which ingests content from SharePoint sites into a searchable index on Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/14/2026
+ms.date: 04/24/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -28,7 +28,7 @@ When you create an indexed SharePoint knowledge source, you specify a SharePoint
 
 ## Prerequisites
 
-+ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md).
 
 + Completion of the [SharePoint indexer prerequisites](search-how-to-index-sharepoint-online.md#prerequisites).
 

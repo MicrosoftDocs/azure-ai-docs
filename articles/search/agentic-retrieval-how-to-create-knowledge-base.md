@@ -3,7 +3,7 @@ title: Create a Knowledge Base
 description: Learn how to create a knowledge base for agentic retrieval workloads in Azure AI Search.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/14/2026
+ms.date: 04/24/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -35,7 +35,7 @@ After you create a knowledge base, you can update its properties at any time. If
 
 ## Prerequisites
 
-+ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md). If you're using a [managed identity](search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
++ Azure AI Search in any [region that provides agentic retrieval](search-region-support.md). If you're using a [managed identity](search-how-to-managed-identities.md) for role-based access to deployed models, your search service must be on the Basic pricing tier or higher.
 
 + One or more [knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources) on your search service.
 

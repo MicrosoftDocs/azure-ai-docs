@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 04/14/2026
+ms.date: 04/24/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -44,7 +44,7 @@ When you use Web Knowledge Source, keep the following in mind:
 
 + An Azure subscription with [access to Web Knowledge Source](agentic-knowledge-source-how-to-web-manage.md). By default, access is enabled. Contact your admin if access is disabled.
 
-+ An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md). You must have [semantic ranker enabled](semantic-how-to-enable-disable.md). The service must also be in an [Azure public region](search-region-support.md#azure-public-regions), as Web Knowledge Source isn't supported in private or sovereign clouds.
++ An Azure AI Search service in any [region that provides agentic retrieval](search-region-support.md). The service must also be in an [Azure public region](search-region-support.md#azure-public-regions), as Web Knowledge Source isn't supported in private or sovereign clouds.
 
 + Permission to create and use objects on Azure AI Search. We recommend [role-based access](search-security-rbac.md), but you can use [API keys](search-security-api-keys.md) if a role assignment isn't feasible. For more information, see [Connect to a search service](search-get-started-rbac.md).
 
