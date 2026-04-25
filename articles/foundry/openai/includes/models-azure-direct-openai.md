@@ -37,7 +37,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Model | Region |
 |---|---|
-| `gpt-5.5` |  **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> br> Sweden Central<br> South Central US <br> Poland Central  |
+| `gpt-5.5` |  **Global Standard**:<br> East US2<br> Sweden Central<br> South Central US<br> Poland Central <br><br> **Datazone Standard**:<br> East US2<br> <br> Sweden Central<br> South Central US <br> Poland Central  |
 
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
