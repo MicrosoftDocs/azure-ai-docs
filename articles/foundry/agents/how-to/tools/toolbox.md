@@ -584,6 +584,7 @@ Tool-specific `tools/call` argument examples:
 ```
 FOUNDRY_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
 FOUNDRY_AGENT_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1
+TOOLBOX_NAME=agent-tools
 FOUNDRY_AGENT_TOOLBOX_FEATURES=Toolboxes=V1Preview
 AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
 ```
@@ -591,32 +592,16 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
 **`main.py`** (key pattern):
 
 ```python
-# Toolbox MCP endpoint (platform-injected at runtime via FOUNDRY_AGENT_TOOLBOX_ENDPOINT)
-TOOLBOX_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1"
+from langchain_azure_ai.tools import AzureAIProjectToolbox
 
-# Auth: httpx.Auth subclass injects a Bearer token on every request
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._get_token = token_provider
-    def auth_flow(self, request):
-        request.headers["Authorization"] = f"Bearer {self._get_token()}"
-        yield request
-
-# Connect LangGraph to the toolbox MCP endpoint
-credential = DefaultAzureCredential()
-token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-client = MultiServerMCPClient({
-    "toolbox": {
-        "url": TOOLBOX_ENDPOINT,
-        "transport": "streamable_http",
-        "headers": {"Foundry-Features": "Toolboxes=V1Preview"},
-        "auth": _ToolboxAuth(token_provider),
-    }
-})
-tools = await client.get_tools()
+toolbox = AzureAIProjectToolbox(toolbox_name=TOOLBOX_NAME)
+tools = await toolbox.get_tools()
 ```
 
 See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
+
+> [!IMPORTANT]
+> Class `langchain_azure_ai.tools.AzureAIProjectToolbox` requires `langchain-azure-ai[tools]>1.2.3`.
 
 ### Microsoft Agent Framework
 
