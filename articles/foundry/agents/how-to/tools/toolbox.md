@@ -4,7 +4,7 @@ description: "Use toolbox in Microsoft Foundry to add MCP servers, web search, A
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: zhuoqunli
-ms.date: 04/23/2026
+ms.date: 04/25/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -72,7 +72,7 @@ For tool configuration syntax and authentication options for each tool type, see
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions). Individual tool types within a toolbox are further limited by region and model – not all tool types are available in every region or with every model. See [Region and model compatibility](#region-and-model-compatibility).
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/).
-- [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) and the pre-release **Foundry** extension. Toolbox support in Foundry Toolkit is currently in preview and is only available in pre-release versions.
+- Install the [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk) (formerly AI Toolkit for VS Code) from the Visual Studio Code Marketplace. Toolbox support in Foundry Toolkit is currently in preview.
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
 - **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
