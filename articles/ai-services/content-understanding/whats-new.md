@@ -21,11 +21,14 @@ The Azure Content Understanding service in Foundry Tools is updated on an ongoin
 > [!NOTE]
 > Content Understanding is now a Generally Available (GA) service with the release of the `2025-11-01` API version.
 
+> [!IMPORTANT]
+> Preview API versions `2025-05-01-preview` and `2024-12-01-preview` will be retired by July 15, 2026. If you're still using a preview API, update your code to target the latest API version `2025-11-01 (GA)`. </br>
+
 ## March 2026
 
 ### Content Understanding SDK client libraries are now Generally Available
 
-Native SDK client libraries for Content Understanding are now available for Python, .NET, Java, and JavaScript/TypeScript — all targeting the `2025-11-01` GA API version. The SDKs provide strongly-typed models, built-in long-running operation polling, Azure authentication integration, automatic retries, and full consistency with the [Azure SDK design guidelines](https://azure.github.io/azure-sdk/). For production applications, we recommend using the official SDKs over raw REST calls.
+Native SDK client libraries for Content Understanding are now available for Python, .NET, Java, and JavaScript/TypeScript — all targeting the `2025-11-01` GA API version. The SDKs provide strongly typed models, built-in long-running operation polling, Azure authentication integration, automatic retries, and full consistency with the [Azure SDK design guidelines](https://azure.github.io/azure-sdk/). For production applications, we recommend using the official SDKs over raw REST calls.
 
 | Language | Package | SDK Samples | Install | SDK Repo |
 |----------|---------|-------------|---------|----------|
