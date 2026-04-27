@@ -4,20 +4,19 @@ description: Learn how to index and search Markdown in Azure blobs using Azure A
 ms.reviewer: mdonovan
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 11/21/2025
+ms.date: 04/27/2026
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
   - sfi-ropc-nochange
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Index nested Markdown blobs from Azure Storage using REST
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
 Azure AI Search can index Markdown documents and arrays in Azure Blob Storage using an [indexer](search-indexer-overview.md) that knows how to read Markdown data.
 
-This tutorial shows you how to index Markdown files indexed using the `oneToMany` Markdown parsing mode and the [Search Service REST APIs](/rest/api/searchservice/).
+This tutorial shows you how to index Markdown files using the `oneToMany` Markdown parsing mode and the [Search Service REST APIs](/rest/api/searchservice/).
 
 In this tutorial, you:
 
@@ -32,6 +31,7 @@ In this tutorial, you:
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An [Azure Storage account](/azure/storage/common/storage-account-create).
+
 + An [Azure AI Search service](search-create-service-portal.md).
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client Extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
@@ -43,7 +43,7 @@ In this tutorial, you:
 
 ### Create a Markdown file
 
-Copy and paste the following Markdown into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the Free tier.
+Copy and paste the following Markdown into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. This sample uses a single file to stay within the storage limits of the Free tier.
 
 ````md
 # Project Documentation
@@ -231,11 +231,11 @@ For help with the REST client, see [Quickstart: Full-text search using REST](sea
 
 ## Create a data source
 
-[Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
+[Data Sources - Create](/rest/api/searchservice/data-sources/create) (REST API) creates a data source connection that specifies what data to index.
 
 ```http
 ### Create a data source
-POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/datasources?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -263,7 +263,7 @@ HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
 ETag: "0x8DCF52E926A3C76"
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('sample-markdown-ds')?api-version=2025-09-01
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net:443/datasources('sample-markdown-ds')?api-version=2026-04-01
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -296,7 +296,7 @@ Connection: close
 
 ## Create an index
 
-[Create Index (REST)](/rest/api/searchservice/indexes/create) creates a search index on your search service. An index specifies all the fields and their attributes.
+[Indexes - Create](/rest/api/searchservice/indexes/create) (REST API) creates a search index on your search service. An index specifies all the fields and their attributes.
 
 In one-to-many parsing, the search document defines the 'many' side of the relationship. The fields you specify in the index determine the structure of the search document.
 
@@ -304,7 +304,7 @@ You only need fields for the Markdown elements that the parser supports. These f
 
 - `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
-- `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are indexed by mirroring this structure in the index, or through field mappings in the format `/sections/h1`, `sections/h2`, etc. For in-context examples, see the index and indexer configurations in the following samples. The subfields contained are:
+- `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are indexed by mirroring this structure in the index, or through field mappings in the format `/sections/h1`, `/sections/h2`, and so on. For in-context examples, see the index and indexer configurations in the following samples. The subfields contained are:
   - `h1` - A string containing the h1 header value. Empty string if not set at this point in the document.
   - (Optional) `h2`- A string containing the h2 header value. Empty string if not set at this point in the document.
   - (Optional) `h3`- A string containing the h3 header value. Empty string if not set at this point in the document.
@@ -316,11 +316,11 @@ You only need fields for the Markdown elements that the parser supports. These f
 
 This implementation uses [field mappings](search-indexer-field-mappings.md) in the indexer to map from the enriched content to the index. For more information about the parsed one-to-many document structure, see [Index Markdown blobs](search-how-to-index-azure-blob-markdown.md).
 
-This example provides samples of how to index data both with and without field mappings. In this case, we know that `h1` contains the title of the document, so we can map it to a field named `title`. We'll also be mapping the `h2` and `h3` fields to `h2_subheader` and `h3_subheader`, respectively. The `content` and `ordinal_position` fields require no mapping because they're extracted from the Markdown directly into fields using those names. For an example of a full index schema that doesn't require field mappings, see the end of this section.
+This example provides samples of how to index data both with and without field mappings. In this case, `h1` contains the title of the document and maps to a field named `title`. The `h2` and `h3` fields map to `h2_subheader` and `h3_subheader`, respectively. The `content` and `ordinal_position` fields require no mapping because they're extracted from the Markdown directly into fields using those names. For an example of a full index schema that doesn't require field mappings, see the end of this section.
 
 ```http
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -362,15 +362,15 @@ Field mappings allow you to manipulate and filter enriched content to fit into y
 
 To reiterate, we have subfields up to `h3` in the sections object because `markdownHeaderDepth` is set to `h3`.
 
-If you use this schema, be sure to adjust later requests accordingly. This will require removing the field mappings from the indexer configuration and updating search queries to use the corresponding field names.
+If you use this schema, be sure to adjust later requests accordingly. Doing so requires removing the field mappings from the indexer configuration and updating search queries to use the corresponding field names.
 
 ## Create and run an indexer
 
-[Create Indexer](/rest/api/searchservice/indexers/create) creates an indexer on your search service. An indexer connects to the data source, loads and indexes data, and optionally provides a schedule to automate the data refresh.
+[Indexers - Create](/rest/api/searchservice/indexers/create) (REST API) creates an indexer on your search service. An indexer connects to the data source, loads and indexes data, and optionally provides a schedule to automate the data refresh.
 
 ```http
 ### Create and run an indexer
-POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexers?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}}
 
@@ -397,7 +397,7 @@ api-key: {{apiKey}}
 
 Key points:
 
-+ The indexer will only parse headers up to `h3`. Any lower-level headers (`h4`,`h5`,`h6`) are treated as plain text and show up in the `content` field. This is why the index and field mappings only exist up to a depth of `h3`.
++ The indexer parses only headers up to `h3`. Any lower-level headers (`h4`,`h5`,`h6`) are treated as plain text and show up in the `content` field. This is why the index and field mappings only exist up to a depth of `h3`.
 
 + The `content` and `ordinal_position` fields require no field mapping because they exist with those names in the enriched content.
 
@@ -407,7 +407,7 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}}
   
@@ -417,7 +417,7 @@ api-key: {{apiKey}}
 }
 ```
 
-Send the request. This is an unspecified full-text search query that returns all of the fields marked as retrievable in the index, along with a document count. The response should look like:
+Send the request. This is an unspecified full-text search query that returns all the fields marked as retrievable in the index, along with a document count. The response should look like:
 
 ```json
 HTTP/1.1 200 OK
@@ -444,11 +444,11 @@ Connection: close
 
 ```
 
-Add a `search` parameter to search on a string.
+Add a `search` parameter to search for a string.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}}
   
@@ -501,7 +501,7 @@ Key points:
 Add a `select` parameter to limit the results to fewer fields. Add a `filter` to further narrow the search.
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexes/sample-markdown-index/docs/search?api-version=2026-04-01  HTTP/1.1
 Content-Type: application/json
 api-key: {{apiKey}}
   
@@ -542,26 +542,26 @@ Connection: close
 }
 ```
 
-For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case sensitive. For more information and examples, see [Create a query](search-query-simple-examples.md).
+For filters, you can also use logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case sensitive. For more information and examples, see [Create a query](search-query-simple-examples.md).
 
 > [!NOTE]
 > The `$filter` parameter only works on fields that were marked filterable at the creation of your index.
 
 ## Reset and rerun
 
-Indexers can be reset to clear execution history, which allows a full rerun. The following GET requests are for reset, followed by rerun.
+Indexers can be reset to clear execution history, which allows a full rerun. The following requests reset and rerun the indexer.
 
 ```http
 ### Reset the indexer
-POST {{baseUrl}}/indexers/sample-markdown-indexer/reset?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexers/sample-markdown-indexer/reset?api-version=2026-04-01  HTTP/1.1
 api-key: {{apiKey}}
 
 ### Run the indexer
-POST {{baseUrl}}/indexers/sample-markdown-indexer/run?api-version=2025-09-01  HTTP/1.1
+POST {{baseUrl}}/indexers/sample-markdown-indexer/run?api-version=2026-04-01  HTTP/1.1
 api-key: {{apiKey}}
 
 ### Check indexer status 
-GET {{baseUrl}}/indexers/sample-markdown-indexer/status?api-version=2025-09-01  HTTP/1.1
+GET {{baseUrl}}/indexers/sample-markdown-indexer/status?api-version=2026-04-01  HTTP/1.1
 api-key: {{apiKey}}
 ```
 
