@@ -40,6 +40,64 @@ items:
       href: personally-identifiable-information/quickstart.md
     - name: Language support
       href: personally-identifiable-information/language-support.md
+
+    - name: Text PII
+      items:
+      - name: Overview
+        href: personally-identifiable-information/text-pii-overview.md
+      - name: How-to guides
+        items:
+        - name: Detect and redact PII in text
+          href: personally-identifiable-information/how-to/redact-text-pii.md
+        - name: Adapt PII to your domain
+          href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
+        - name: Use Docker containers
+          items:
+          - name: Install and run containers
+            href: personally-identifiable-information/how-to/use-containers.md
+          - name: Configure containers
+            href: concepts/configure-containers.md
+          - name: Use container instances
+            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+          - name: Use containers in disconnected environments
+            href: ../containers/disconnected-containers.md
+          - name: Azure AI containers overview
+            href: ../cognitive-services-container-support.md
+      - name: Recognized entity categories
+        items:
+        - name: Extended format
+          href: personally-identifiable-information/concepts/entity-categories.md
+        - name: List format
+          href: personally-identifiable-information/concepts/entity-categories-list.md
+
+    - name: Conversation PII
+      items:
+      - name: Overview
+        href: personally-identifiable-information/conversation-pii-overview.md
+      - name: How-to guides
+        items:
+        - name: Detect and redact PII in conversations
+          href: personally-identifiable-information/how-to/redact-conversation-pii.md
+      - name: Recognized entity categories
+        items:
+        - name: Extended format
+          href: personally-identifiable-information/concepts/conversations-entity-categories.md
+        - name: List format
+          href: personally-identifiable-information/concepts/conversations-entities-list.md
+
+    - name: Document-based PII
+      items:
+      - name: Overview
+        href: personally-identifiable-information/document-based-pii-overview.md
+      - name: How-to guides
+        items:
+        - name: Detect and redact PII in native documents
+          href: personally-identifiable-information/how-to/redact-document-pii.md
+        - name: Create SAS tokens for storage containers
+          href: native-document-support/shared-access-signatures.md
+        - name: Create a managed identity for storage containers
+          href: native-document-support/managed-identities.md
+
     - name: Responsible use of AI
       items:
       - name: Transparency note for PII
@@ -51,42 +109,6 @@ items:
       - name: Data, privacy, and security
         href: ../../ai-foundry/responsible-ai/language-service/data-privacy.md
         displayName: Data privacy, logging, data retention
-    - name: How-to guides
-      items:
-      - name: Redact PII from text
-        href: personally-identifiable-information/how-to/redact-text-pii.md
-      - name: Redact PII from conversations
-        href: personally-identifiable-information/how-to/redact-conversation-pii.md
-      - name: Redact PII from native documents
-        href: personally-identifiable-information/how-to/redact-document-pii.md
-      - name:  Adapt PII to your domain
-        href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
-      - name: Use Docker containers
-        items:
-          - name: Install and run containers
-            href: personally-identifiable-information/how-to/use-containers.md
-          - name: Configure containers
-            href: concepts/configure-containers.md
-          - name: Use container instances
-            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-          - name: Use containers in disconnected environments
-            href: ../containers/disconnected-containers.md
-          - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
-    - name: Recognized entity categories
-      items:
-      - name: PII in text
-        items:
-        - name: Extended format
-          href: personally-identifiable-information/concepts/entity-categories.md
-        - name: List format
-          href: personally-identifiable-information/concepts/entity-categories-list.md
-      - name: PII in conversations
-        items:
-        - name: Extended format
-          href: personally-identifiable-information/concepts/conversations-entity-categories.md
-        - name: List format
-          href: personally-identifiable-information/concepts/conversations-entities-list.md
 
   - name: Language detection
     items:
@@ -807,14 +829,6 @@ items:
     href: tutorials/use-kubernetes-service.md
   - name: Use language in Power Automate flows
     href: tutorials/power-automate.md
-  - name: Native document support
-    items:
-    - name: Native documents for language processing
-      href: native-document-support/overview.md
-    - name: Create SAS tokens for storage containers
-      href: native-document-support/shared-access-signatures.md
-    - name: Create a managed identity for storage containers
-      href: native-document-support/managed-identities.md
   - name: Scenario deep-dives
     items:
       - name: Call Center

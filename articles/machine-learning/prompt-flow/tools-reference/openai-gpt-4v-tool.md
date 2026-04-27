@@ -15,6 +15,8 @@ ms.update-cycle: 365-days
 
 # OpenAI GPT-4V (preview)
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 OpenAI GPT-4V tool enables you to use OpenAI's GPT-4 with vision, also referred to as GPT-4V or gpt-4-vision-preview in the API, to take images as input and answer questions about them.
 
 > [!IMPORTANT]

@@ -58,6 +58,73 @@ curl -X PATCH \
 
 Yes, using the [quota request form](https://aka.ms/oai/stuquotarequest) you can always request more quota. If the request is approved, the current tier will remain the same, but with more quota assigned.  
 
+### How do I check my subscription's quota tier?
+
+You can currently check you quota tier with the [control plane API](/rest/api/aifoundry/accountmanagement/quota-tiers/get?view=rest-aifoundry-accountmanagement-2025-10-01-preview&tabs=HTTP&preserve-view=true):
+
+# [Bash](#tab/bash)
+
+```bash
+curl -X GET \
+  "https://management.azure.com/subscriptions/9d295860-44e3-44bb-ade9-235cc45c68ba/providers/Microsoft.CognitiveServices/quotaTiers?api-version=2025-10-01-preview" \
+  -H "Authorization: Bearer $(az account get-access-token --resource https://management.azure.com --query accessToken -o tsv)" \
+  -H "Content-Type: application/json"
+```
+
+
+# [Python](#tab/python)
+
+
+```python
+import requests
+import json
+from azure.identity import DefaultAzureCredential
+
+
+subscriptionId = "{YOUR-SUBSCRIPTION-ID}"
+api_version = "2025-10-01-preview" 
+base_url = "https://management.azure.com"
+
+token_credential = DefaultAzureCredential()
+token = token_credential.get_token('https://management.azure.com/.default')
+headers = {
+    'Authorization': 'Bearer ' + token.token,
+    'Content-Type': 'application/json'
+}
+
+
+list_url = (
+    f"{base_url}/subscriptions/{subscriptionId}"
+    f"/providers/Microsoft.CognitiveServices/quotaTiers"
+    f"?api-version={api_version}"
+)
+
+response = requests.get(list_url, headers=headers)
+print(json.dumps(response.json(), indent=2))
+
+```
+
+# [Output](#tab/output)
+
+```json
+{
+  "value": [
+    {
+      "properties": {
+        "currentTierName": "Tier 1",
+        "assignmentDate": "2025-10-18T05:09:05.6334222Z",
+        "tierUpgradePolicy": "OnceUpgradeIsAvailable"
+      },
+      "id": "/subscriptions/aaaaa-bbbbb-ccccc-dddd-eeeeeee/providers/Microsoft.CognitiveServices/quotaTiers/default",
+      "name": "default",
+      "type": "Microsoft.CognitiveServices/quotaTiers"
+    }
+  ]
+}
+```
+
+---
+
 ### Quota tier reference
 
 # [Tier 1](#tab/tier1)
@@ -101,6 +168,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Default GPT-image-1 quota limits | 9 requests per minute |
 | Default GPT-image-1-mini quota limits | 12 requests per minute |
 | Default GPT-image-1.5 quota limits | 9 requests per minute |
+| Default GPT-image-2 quota limits | 9 requests per minute  |
 | Default Sora quota limits | 60 requests per minute. |
 | Default Sora 2 quota limits | 2 job requests<sup>1</sup> per minute| 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |

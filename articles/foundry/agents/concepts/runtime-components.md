@@ -1939,7 +1939,7 @@ Limits can depend on the model, region, and the tools you attach (for example, s
 - [Agent development lifecycle](./development-lifecycle.md)
 - [Discover tools in the Foundry Tools](./tool-catalog.md)
 - [Best practices for using tools in Microsoft Foundry Agent Service](./tool-best-practice.md)
-- [Publish and share agents in Microsoft Foundry](../how-to/publish-agent.md)
+- [Agent applications in Microsoft Foundry](../how-to/agent-applications.md)
 - [Agent tracing overview](../../observability/concepts/trace-agent-concept.md)
 - [Migrate to the new agents developer experience](../how-to/migrate.md)
 - [Create and use memory in Foundry Agent Service](../how-to/memory-usage.md)
