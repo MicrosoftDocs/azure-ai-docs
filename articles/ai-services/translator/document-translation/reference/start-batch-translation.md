@@ -7,17 +7,15 @@ ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 04/23/2026
 ---
-
-# Start batch translation
-
+<!-- markdownlint-disable MD025 -->
 <!-- markdownlint-disable MD036 -->
+# Start batch translation
 
 **Reference**</br>
 Feature: **Azure Translator → Document translation**</br>
 API Version (GA): **2024-05-01** </br>
-API Version (preview): **2025-12-01-preview**—adds support for [image file translation](#translate-image-files).</br>
 HTTP method: **POST**
 
 * Use the `Start Translation` method to execute an asynchronous batch translation request.
@@ -156,7 +154,7 @@ The following are examples of batch requests.
 > [!NOTE]
 > In the following examples, limited access is granted to the contents of an Azure Storage container [using a shared access signature(SAS)](/azure/storage/common/storage-sas-overview) token.
 
-### Translate all documents in a container
+### Translate all documents in blob storage container
 
 ```json
 {
@@ -176,7 +174,7 @@ The following are examples of batch requests.
 }
 ```
 
-### Translate a specific document in a container
+### Translate a specific document in blob storage container
 
 * Specify "storageType": `File`.
 * Create source URL & SAS token for the specific blob/document.
@@ -218,7 +216,7 @@ This sample request shows a single document translated into two target languages
 
 * You can also use a [get-translations-status](../reference/get-translations-status.md) request to retrieve a list of translation jobs and their `id`s.
 
-### Translate all documents in a container applying glossaries
+### Translate all documents in blob storage container applying glossaries
 
 ```json
 {
@@ -246,7 +244,7 @@ This sample request shows a single document translated into two target languages
 }
 ```
 
-### Translate a specific folder in a container
+### Translate a specific folder in blob storage container
 
 Make sure you specify the folder name (case sensitive) as prefix in filter.
 
@@ -270,16 +268,17 @@ Make sure you specify the folder name (case sensitive) as prefix in filter.
     ]
 }
 ```
+
 ## Translate image files
 
- > [!IMPORTANT]
- > The Document Translation image translation feature is a "preview" licensed to you as part of your Azure subscription. This release is subject to terms applicable to "Previews" in the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms) and the [Microsoft Products and Services Data Protection Addendum (DPA)](https://www.microsoft.com/licensing/docs/view/microsoft-products-and-services-data-protection-addendum-dpa).
+Document translation now supports image file translation, which allows you to translate text within images. 
 
 ### Request configuration (image files)
 
-For image files translation, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-a-container), specifying API version **2025-12-01-preview**. No further configuration is required.
+For image files translation, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-blob-storage-container). No further configuration is required.
 
 ### Supported formats (image files)
+
 |File Extension|Description|
 |--|--|
 |`.bmp `|A bitmap image file format used to store digital images in an uncompressed form, preserving high-quality visual details.|

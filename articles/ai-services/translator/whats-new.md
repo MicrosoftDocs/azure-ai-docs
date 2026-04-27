@@ -60,15 +60,14 @@ Azure Translator `2025-05-01-preview` is our latest cloud-based, multilingual, n
 
 [**Microsoft Translator Pro**](translator-pro/overview.md) is a mobile app that delivers accurate real-time speech-to-speech translations. It now offers expanded multilingual support on-device (doesn't require internet connectivity). For more information, *see* our [Translator Pro Language support](solutions/translator-pro/language-support.md).
 
-
 ## June 2025
 
 ### Document Translation new feature update
 
-Azure Translator [Document translation feature](document-translation/overview.md#key-features) now supports [translating text embedded in images detected in Word documents](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-document-files-docx) within documents.
+Azure Translator [Document translation feature](document-translation/overview.md#key-features) now supports [translating text embedded in images detected in Word documents](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx) within documents.
 
 * This feature is optional and must be enabled for each translation request.
-* Currently, the feature is available only with the [batch document translation](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-document-files-docx) API for `.docx` file format.
+* Currently, the feature is available only with the [batch document translation](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-images-in-word-documents-docx-and-powerpoint-files-pptx) API for `.docx` file format.
 * A [Foundry resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesAIFoundry) (not the standalone Translator resource) is required to use this feature.
 
 ## May 2025
