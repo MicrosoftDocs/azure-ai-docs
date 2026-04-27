@@ -43,7 +43,7 @@ In this tutorial, you:
 
 ### Create a Markdown file
 
-Copy and paste the following Markdown into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. This sample uses a single file to stay within the storage limits of the Free tier.
+Copy and paste the following Markdown into a file named `sample_markdown.md`. The sample data is a single Markdown file containing various Markdown elements. We chose one Markdown file to stay under the storage limits of the Free tier.
 
 ````md
 # Project Documentation
@@ -305,6 +305,7 @@ You only need fields for the Markdown elements that the parser supports. These f
 - `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
 - `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are indexed by mirroring this structure in the index, or through field mappings in the format `/sections/h1`, `/sections/h2`, and so on. For in-context examples, see the index and indexer configurations in the following samples. The subfields contained are:
+
   - `h1` - A string containing the h1 header value. Empty string if not set at this point in the document.
   - (Optional) `h2`- A string containing the h2 header value. Empty string if not set at this point in the document.
   - (Optional) `h3`- A string containing the h3 header value. Empty string if not set at this point in the document.

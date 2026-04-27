@@ -74,7 +74,7 @@ This setting can be changed after the indexer is created. However, the structure
 
 ## Supported Markdown elements
 
-Markdown parsing only splits content based on headers. All other Markdown elements, such as lists, code blocks, and tables, are treated as plain text and passed into a content field.
+Markdown parsing only splits content based on headers. All other elements, such as lists, code blocks, and tables, are treated as plain text and passed into a content field.
 
 <a name="parsing-markdown-one-to-many"></a>
 
@@ -100,6 +100,7 @@ The one-to-many parsing mode parses Markdown files into multiple search document
 - `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
 - `sections`: An object that contains subfields for the header metadata up to the desired header level. For example, when `markdownHeaderDepth` is set to `h3`, contains string fields `h1`, `h2`, and `h3`. These fields are indexed by mirroring this structure in the index, or through field mappings in the format `/sections/h1`, `/sections/h2`, and so on. See the index and indexer configurations in the following samples for in-context examples. The subfields contained are:
+
   - `h1` - A string containing the h1 header value. Empty string if not set at this point in the document.
   - (Optional) `h2`- A string containing the h2 header value. Empty string if not set at this point in the document.
   - (Optional) `h3`- A string containing the h3 header value. Empty string if not set at this point in the document.
@@ -112,6 +113,7 @@ The one-to-many parsing mode parses Markdown files into multiple search document
 ### Index schema for one-to-many parsing
 
 An example index configuration might look something like this:
+
 ```http
 {
   "name": "my-markdown-index",
@@ -243,7 +245,7 @@ The resulting search document in the index would look as follows:
 
 In the one-to-one parsing mode, the entire Markdown document is indexed as a single search document, preserving the hierarchy and structure of the original content. This mode is most useful when the files to be indexed share a common structure, so that you can use this common structure in the index to make the relevant fields searchable.
 
-Within the indexer definition, set the `parsingMode` to `"markdown"` and use the optional `markdownHeaderDepth` parameter to define the maximum heading depth for parsing. If not specified, it defaults to `h6`, capturing all possible header depths.
+Within the indexer definition, set the `parsingMode` to `"markdown"` and use the optional `markdownHeaderDepth` parameter to define the maximum heading depth for chunking. If not specified, it defaults to `h6`, capturing all possible header depths.
 
 The Markdown is parsed based on headers into search documents, which contain the following content: 
 
@@ -261,7 +263,7 @@ The Markdown is parsed based on headers into search documents, which contain the
 
   - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes `header_level`, `header_name`, `content`, and `ordinal_position` properties, enabling a recursive structure that represents the hierarchy of the Markdown content.
 
-The following sample Markdown is used to explain the index schemas designed around each parsing mode.
+Here's the sample Markdown that we're using to explain the index schemas designed around each parsing mode.
 
 ```md
 # Section 1
@@ -277,6 +279,7 @@ Content for section 2.
 ### Index schema for one-to-one parsing
 
 If you don't use field mappings, the shape of the index should reflect the shape of the Markdown content. Given the structure of the sample Markdown with its two sections and single subsection, the index should look similar to the following example:
+
 ```http
 {
   "name": "my-markdown-index",
@@ -385,13 +388,13 @@ Because the Markdown we want to index only goes to a depth of `h2` ("##"), we ne
   }
 ```
 
-The ordinal position increments based on the location of the content within the document.
+As you can see, the ordinal position increments based on the location of the content within the document.
 
 If header levels are skipped in the content, the structure of the resulting document reflects the headers present in the Markdown content and doesn't necessarily contain consecutive nested sections from `h1` through `h6`. For example, when the document begins at `h2`, the first element in the top-level sections array is `h2`.
 
 ### Map one-to-one fields in a search index
 
-To extract fields with custom names from the document, use field mappings. Using the same Markdown sample as before, consider the following index configuration:
+To extract fields with custom names from the document, you can use field mappings. Using the same Markdown sample as before, consider the following index configuration:
 
 ```http
 {
