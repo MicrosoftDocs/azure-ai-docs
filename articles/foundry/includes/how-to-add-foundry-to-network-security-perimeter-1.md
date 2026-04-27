@@ -6,7 +6,7 @@ ms.reviewer: meerakurup
 ms.author: jburchel
 ms.service: microsoft-foundry
 ms.topic: include
-ms.date: 03/20/2026
+ms.date: 04/27/2026
 ms.custom: include
 ---
 
@@ -94,6 +94,9 @@ Reference: [az network perimeter association update](/cli/azure/network/perimete
 Configure diagnostic settings on the NSP resource to send `allLogs` to Log Analytics, Storage, or Event Hubs.
 
 For detailed steps, see [Diagnostic logs for Network Security Perimeter](/azure/private-link/network-security-perimeter-diagnostic-logs).
+
+> [!IMPORTANT]
+> When your Foundry resource is inside a network security perimeter in **Enforced** mode, diagnostic logs to customer-owned destinations (Log Analytics workspace, Storage account, or Event Hub) are only filtered by NSP rules when the request uses **Microsoft Entra ID (AAD) authentication**. Requests authenticated with API keys don't carry the NSP perimeter claim, so log traffic to those destinations isn't blocked by NSP. To ensure full NSP compliance for diagnostic logging, use Entra ID authentication.
 
 ## Interpret logs
 
