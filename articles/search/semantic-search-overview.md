@@ -132,7 +132,7 @@ If you enable support for [synonym maps associated to a field](search-synonyms.m
 
 Semantic ranker is available in [select regions](search-region-support.md). It can be used as a standalone feature or as a built-in component of [agentic retrieval](agentic-retrieval-overview.md). Each feature is billed independently.
 
-Semantic ranker offers a free plan (default) with 1,000 free requests per month and a standard plan for pay-as-you-go pricing after the free allowance is consumed. For more information, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md).
+Semantic ranker offers a free plan (default) with a monthly free request allowance and a standard plan for pay-as-you-go pricing after the free allowance is consumed. For more information, see [Enable or disable semantic ranker billing](semantic-how-to-enable-disable.md).
 
 Charges for semantic ranker occur when query requests include `queryType=semantic` and the search string isn't empty (for example, `search=pet friendly hotels in New York`). If your search string is empty (`search=*`), you aren't charged, even if the queryType is set to semantic.
 

@@ -42,8 +42,8 @@ Semantic ranker has two billing plans. For pricing by currency, see the [Azure A
 
 | Plan | Description |
 |------|-------------|
-| Free (default) | Provides 1,000 free semantic ranker requests per month. After the free allowance is consumed, semantic ranker requests return a billing error. Available on all pricing tiers. |
-| Standard | Pay-as-you-go pricing after the monthly free allowance is consumed. Rather than removing the free allowance, the standard plan enables continued usage beyond the 1,000 requests. Requires Basic tier or higher. |
+| Free (default) | Provides a monthly free request allowance. After the free allowance is consumed, semantic ranker requests return a billing error. Available on all pricing tiers. |
+| Standard | Pay-as-you-go pricing after the monthly free allowance is consumed. Requires Basic tier or higher. |
 
 ## Enable semantic ranker billing
 

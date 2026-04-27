@@ -40,8 +40,8 @@ Agentic retrieval has two billing plans. For pricing by currency, see the [Azure
 
 | Plan | Description |
 |------|-------------|
-| Free (default) | Provides 50 million agentic reasoning tokens per month at no charge. After the free allowance is consumed, requests that would incur paid usage return a payment-required error. Available on all pricing tiers. |
-| Standard | Pay-as-you-go pricing after the monthly free allowance is consumed. Rather than removing the free allowance, the standard plan enables continued usage beyond the 50 million tokens. Requires Basic tier or higher. |
+| Free (default) | Provides a monthly token allowance at no charge. After the free allowance is consumed, requests that would incur paid usage return a payment-required error. Available on all pricing tiers. |
+| Standard | Pay-as-you-go pricing after the monthly free allowance is consumed. Requires Basic tier or higher. |
 
 ## Enable agentic retrieval billing
 

@@ -102,7 +102,7 @@ Agentic retrieval is available in [select regions](search-region-support.md). Kn
 
 Agentic retrieval incurs charges from two services:
 
-+ **Azure AI Search** bills for retrieval tokens consumed during subquery execution and semantic ranking. The free plan (default) provides 50 million tokens per month. The standard plan enables pay-as-you-go pricing after the free allowance is consumed. For more information, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
++ **Azure AI Search** bills for retrieval tokens consumed during subquery execution and semantic ranking. The free plan (default) provides a monthly token allowance. The standard plan enables pay-as-you-go pricing after the free allowance is consumed. For more information, see [Enable or disable agentic retrieval billing](agentic-retrieval-how-to-enable-disable.md).
 
 + **Azure OpenAI** bills for input and output tokens used in LLM-based query planning and [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md). Pricing is always pay-as-you-go and based on the model you assign to the knowledge base. Charges appear on your Azure OpenAI bill. For rates, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
 
@@ -113,7 +113,7 @@ The following table compares billing between the classic single-query pipeline a
 | Unit | Query based (1,000 queries per unit) | Token based (1 million tokens per unit) |
 | Cost per unit | Uniform cost per query | Variable cost per token (depends on reasoning effort) |
 | Cost estimation | Estimate query count | Estimate token usage |
-| Free allowance | 1,000 free queries per month | 50 million tokens per month per reasoning effort level |
+| Free allowance | 1,000 free queries per month | See the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search) |
 ### Example: Estimate costs
 
 This example helps illustrate the cost estimation process for query planning and query execution, but not answer synthesis. Your costs could be lower. For current rates, see [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search) and [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
