@@ -38,12 +38,12 @@ The Azure portal uses Search Service REST API version 2025-11-01-preview, which 
 
 ## Billing plans
 
-Semantic ranker has two billing plans. For pricing by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search).
+Semantic ranker has two billing plans. For pricing by currency, see [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search).
 
 | Plan | Description |
 |------|-------------|
 | Free (default) | Provides a monthly free request allowance. After the free allowance is consumed, semantic ranker requests return a billing error. Available on all pricing tiers. |
-| Standard | Pay-as-you-go pricing after the monthly free allowance is consumed. Requires Basic tier or higher. |
+| Standard | Pay-as-you-go pricing after the monthly free allowance is consumed. Requires the Basic tier or higher. |
 
 ## Enable semantic ranker billing
 

@@ -110,13 +110,15 @@ The following table compares billing between the classic single-query pipeline a
 
 | Aspect | Classic pipeline | Agentic retrieval |
 |--|--|--|
-| Unit | Query based (1,000 queries per unit) | Token based (1 million tokens per unit) |
+| Unit | Query based | Token based |
 | Cost per unit | Uniform cost per query | Variable cost per token (depends on reasoning effort) |
 | Cost estimation | Estimate query count | Estimate token usage |
-| Free allowance | 1,000 free queries per month | See the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search) |
+| Free allowance | Monthly free query allowance | Monthly free token allowance |
+
 ### Example: Estimate costs
 
 This example helps illustrate the cost estimation process for query planning and query execution, but not answer synthesis. Your costs could be lower. For current rates, see [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search) and [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
+
 To estimate the query plan costs as pay-as-you-go in Azure OpenAI, let's assume gpt-4o-mini:
 
 + 15 cents for 1 million input tokens.
@@ -204,31 +206,6 @@ To create an agentic retrieval solution, you can use the Azure portal, the lates
 + [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo) has been updated to use agentic retrieval.
 
 ---
-
-<!-- 
-•Query Pipeline Recap: The query pipeline includes stages: Query Preprocessing (Query Rewriting, Vectorization, Text analysis), Ranking (Vector Search, Keyword Search, Fusion, Semantic Ranking), and Synthesis (Results for LLM, Extractive Answers, Contextualized Captions).
-
-•RAG Query Challenges: RAG queries fail due to difficulties in retrieving relevant results, exact match searches, chatbot clarifications, and filter conditions. Examples and reasons for failures are discussed.
-
-Agentic Retrieval Engine: The Agentic Retrieval Engine uses an AOAI model for query planning, producing sub-queries, and merging results. It supports explainability and debugging, and includes all existing search functionalities.
-
-•Query Planning: Query planning involves processing conversation history with an AOAI Model (gpt-4o-mini) to classify queries into categories like 'Xbox sign-in troubleshooting' and 'Xbox PIN rejection troubleshooting'.
-
-•Query Activity: Query activity involves planning and executing queries using the AOAI Model, producing sub-queries, and processing them through a pipeline for ranking and extracting references.
-
-•Extracted Response for LLM: The process of extracting responses for troubleshooting guides involves a query pipeline, reference extraction, and merging results. A table lists extracted documents with reference IDs.
-
-Extracted Response Example: Troubleshooting steps for Xbox sign-in issues include verifying email/password, checking internet, and updating software. For PIN issues, check sequence and reset if needed. Sources are cited.
-
-•Agentic Retrieval vs Query Pipeline: Comparison of Agentic Retrieval and Query Pipeline: Agentic Retrieval supports multi-turn input, plans subqueries, and provides document references and activity logs, while Query Pipeline uses a single query and lists results.
-
-•Cost Comparison: Cost comparison between Query Pipeline and Agentic Retrieval Engine: Query Pipeline has a uniform cost per query with a free tier of 1,000 queries, while Agentic Retrieval Engine has a uniform cost per token with a free tier of 50 million tokens.
-
-Token Usage: Token usage in query planning and ranking involves AOAI input tokens generating subqueries, and ranking input tokens used in a query pipeline for document retrieval and semantic ranking.
-
-•Roadmap: Potential features include Multiple Index Search, Iterative Search, Filtered Search, Query Planning Customization, Federation, Answer Generation, and Authority Checking.
-
-•Features under each model: Comparison of features under traditional search model: BYOM Query planning and Reranking are listed, with a section for answers left blank -->
 
 ## Next step
 

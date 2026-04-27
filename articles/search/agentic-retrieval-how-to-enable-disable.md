@@ -36,12 +36,12 @@ The Azure portal uses Search Service REST API version 2025-11-01-preview, which 
 
 ## Billing plans
 
-Agentic retrieval has two billing plans. For pricing by currency, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search).
+Agentic retrieval has two billing plans. For pricing by currency, see [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search).
 
 | Plan | Description |
 |------|-------------|
 | Free (default) | Provides a monthly token allowance at no charge. After the free allowance is consumed, requests that would incur paid usage return a payment-required error. Available on all pricing tiers. |
-| Standard | Pay-as-you-go pricing after the monthly free allowance is consumed. Requires Basic tier or higher. |
+| Standard | Pay-as-you-go pricing after the monthly free allowance is consumed. Requires the Basic tier or higher. |
 
 ## Enable agentic retrieval billing
 
