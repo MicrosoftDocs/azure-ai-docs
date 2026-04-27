@@ -5,8 +5,9 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 03/28/2025
+ms.date: 04/27/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Index nested JSON blobs from Azure Storage using REST

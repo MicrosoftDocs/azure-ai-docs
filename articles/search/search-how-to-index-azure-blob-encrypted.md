@@ -5,11 +5,12 @@ ms.devlang: rest-api
 ms.reviewer: gimondra
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 03/28/2025
+ms.date: 04/27/2026
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Index and enrich encrypted blobs for full-text search in Azure AI Search

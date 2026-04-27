@@ -81,7 +81,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
       "size": "1024x1024",
       "quality": "medium",
       "output_format": "png",
-      # "background": "transparent",  # "auto" or "transparent" (requires PNG output)
+      # "background": "transparent",  # "auto" or "transparent" (GPT-image-1 only; requires PNG output)
       # "output_compression": 100,  # 0-100 compression level (JPEG output only)
     }
     generation_response = requests.post(

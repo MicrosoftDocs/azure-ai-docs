@@ -8,7 +8,8 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: upgrade-and-migration-article
-ms.date: 03/30/2026
+ms.date: 04/27/2026
+ai-usage: ai-assisted
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
