@@ -4,7 +4,7 @@ description: "Use toolbox in Microsoft Foundry to add MCP servers, web search, A
 author: alvinashcraft
 ms.author: aashcraft
 ms.reviewer: zhuoqunli
-ms.date: 04/23/2026
+ms.date: 04/25/2026
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
@@ -72,7 +72,7 @@ For tool configuration syntax and authentication options for each tool type, see
   - **End user** (required only for OAuth flows) — any user whose identity is proxied through OAuth or UserEntraToken connections (for example, OAuth-based MCP or 1P OBO flows).
 - Your Foundry project needs to be at one of the supported [regions](../../concepts/limits-quotas-regions.md#supported-regions). Individual tool types within a toolbox are further limited by region and model – not all tool types are available in every region or with every model. See [Region and model compatibility](#region-and-model-compatibility).
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/).
-- [Microsoft Foundry Toolkit for Visual Studio Code extension](https://aka.ms/foundrytk) and the pre-release **Foundry** extension. Toolbox support in Foundry Toolkit is currently in preview and is only available in pre-release versions.
+- Install the [Microsoft Foundry Toolkit for Visual Studio Code](https://aka.ms/foundrytk) (formerly AI Toolkit for VS Code) from the Visual Studio Code Marketplace. Toolbox support in Foundry Toolkit is currently in preview.
 - **Python SDK**: `pip install azure-ai-projects azure-identity`
 - **.NET SDK**: `dotnet add package Azure.AI.Projects --prerelease` and `dotnet add package Azure.Identity`
 - **JavaScript SDK**: `npm install @azure/ai-projects @azure/identity`
@@ -584,6 +584,7 @@ Tool-specific `tools/call` argument examples:
 ```
 FOUNDRY_PROJECT_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>
 FOUNDRY_AGENT_TOOLBOX_ENDPOINT=https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1
+TOOLBOX_NAME=agent-tools
 FOUNDRY_AGENT_TOOLBOX_FEATURES=Toolboxes=V1Preview
 AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
 ```
@@ -591,32 +592,16 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
 **`main.py`** (key pattern):
 
 ```python
-# Toolbox MCP endpoint (platform-injected at runtime via FOUNDRY_AGENT_TOOLBOX_ENDPOINT)
-TOOLBOX_ENDPOINT = "https://<account>.services.ai.azure.com/api/projects/<project>/toolboxes/<toolbox-name>/versions/<version>/mcp?api-version=v1"
+from langchain_azure_ai.tools import AzureAIProjectToolbox
 
-# Auth: httpx.Auth subclass injects a Bearer token on every request
-class _ToolboxAuth(httpx.Auth):
-    def __init__(self, token_provider):
-        self._get_token = token_provider
-    def auth_flow(self, request):
-        request.headers["Authorization"] = f"Bearer {self._get_token()}"
-        yield request
-
-# Connect LangGraph to the toolbox MCP endpoint
-credential = DefaultAzureCredential()
-token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")
-client = MultiServerMCPClient({
-    "toolbox": {
-        "url": TOOLBOX_ENDPOINT,
-        "transport": "streamable_http",
-        "headers": {"Foundry-Features": "Toolboxes=V1Preview"},
-        "auth": _ToolboxAuth(token_provider),
-    }
-})
-tools = await client.get_tools()
+toolbox = AzureAIProjectToolbox(toolbox_name=TOOLBOX_NAME)
+tools = await toolbox.get_tools()
 ```
 
 See the [full sample](https://aka.ms/foundry-toolbox-langgraph) for the complete implementation.
+
+> [!IMPORTANT]
+> Class `langchain_azure_ai.tools.AzureAIProjectToolbox` requires `langchain-azure-ai[tools]>1.2.3`.
 
 ### Microsoft Agent Framework
 
