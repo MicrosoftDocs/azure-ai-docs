@@ -3,7 +3,7 @@ title: "Bring Your Own Model to Foundry Agent Service"
 description: "Connect and bring your own models hosted behind enterprise AI gateways like Azure API Management with Foundry Agent Service."
 author: aahil
 ms.author: aahi
-ms.date: 04/23/2026
+ms.date: 04/27/2026
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
@@ -81,7 +81,7 @@ To add a model connection in the Foundry portal:
 
    * **API key**: Enter the key value in the provided field. Optionally specify an **API key header name** to use when passing the API key if your gateway requires a custom header.
     
-   * **Managed Identity**: In **Audience**, enter the target service for the managed identity token, such as `https://cognitiveservices.azure.com/`.
+   * **Managed Identity**: In **Audience**, enter the target service for the managed identity token, such as `https://cognitiveservices.azure.com/`. For required API Management setup, see [Configure managed identity authentication for API Management](#configure-managed-identity-authentication-for-api-management).
 1. On the **Model configuration** page, configure at least one model deployment that will appear in Foundry for use with agents.
 
     1. Select **+ Add model**.
@@ -135,6 +135,46 @@ To add a model connection in the Foundry portal:
 --- 
 
 The connection is created and appears in the list on the **Admin-connected models** tab.
+
+### Configure managed identity authentication for API Management
+
+This section applies only to the **API Management** connection type.
+
+When you select **Managed Identity** as the authentication method, complete the following setup in Azure:
+
+1. Enable managed identity on the Foundry project resource.
+
+    1. In the [Azure portal](https://portal.azure.com/), go to your Foundry resource.
+    1. Go to **Projects** > select your project > **Identity**. 
+    1. Enable either:
+
+        - **System assigned** managed identity, or
+        - **User assigned** managed identity.
+       
+    1. For token validation in API Management, get the application (client) ID of the managed identity.
+        1. First get the first get the managed identity object ID from the managed identity configuration in your project. 
+        1. Search that object ID in Microsoft Entra ID to locate the corresponding application (client) ID.
+
+1. Validate the managed identity token in API Management.
+
+    In your API Management inbound policy, use the `validate-azure-ad-token` policy to enforce token validation for requests from Foundry.
+
+    - Set the `audience` element to the same value you configure in the Foundry connection **Audience** field.
+    - Validate the managed identity app ID in `client-application-ids`.
+
+    Example:
+
+    ```xml
+    <validate-azure-ad-token tenant-id="{{your-tenant-id}}" header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized">
+       <client-application-ids>
+          <application-id>{{managed-identity-client-id}}</application-id>
+       </client-application-ids>
+       <audiences>
+          <audience>{{audience-configured-in-foundry-connection}}</audience>
+       </audiences>
+    </validate-azure-ad-token>
+    ```
+
 
 ### Admin-connected model deployments
 
