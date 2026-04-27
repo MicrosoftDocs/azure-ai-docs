@@ -2102,7 +2102,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/agents/how-to/publish-agent.md",
-      "redirect_url": "/azure/foundry/agents/how-to/publish-agent",
+      "redirect_url": "/azure/foundry/agents/how-to/agent-applications",
       "redirect_document_id": true
     },
     {
@@ -3367,7 +3367,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/how-to/business-continuity-disaster-recovery.md",
-      "redirect_url": "/azure/foundry-classic/openai/how-to/business-continuity-disaster-recovery",
+      "redirect_url": "/azure/foundry-classic/how-to/high-availability-resiliency",
       "redirect_document_id": true
     },
     {
