@@ -29,7 +29,7 @@ This article explains the capabilities, routing modes, and best practices that p
 
 ## Why Model router
 
-Choosing the right model for every prompt is hard to do manually. Model router is a purpose-built ML model trained on hundreds of thousands of examples across diverse scenarios — from simple Q&A to complex agentic workflows. It automatically matches each prompt to the best-suited model, optimizing for quality, cost, and latency.
+Choosing the right model for every prompt is hard to do manually. Model router is a purpose-built ML model trained on hundreds of thousands of examples across diverse scenarios — from simple prompts to complex agentic workflows. It automatically matches each prompt to the best-suited model, optimizing for quality, cost, and latency.
 
 Rather than relying on static rules or manual selection, model router learns from data and adapts as models evolve.
 
@@ -39,7 +39,7 @@ When a prompt arrives, model router processes it through three steps:
 
 1. Understand the prompt. The router analyzes the full request — including system message, user message, tool definitions, and conversation history — to determine what the prompt is asking for and how challenging it is.
 
-2. Select the best model. Based on the analysis, the router estimates which model in the pool will deliver the best result for this specific prompt, factoring in the routing mode you have configured (Balanced, Cost, or Quality).
+2. Select the best model. Based on the analysis, the router estimates which model in the pool delivers the best result for this specific prompt. It also factors in any routing mode configured. These can be Balanced, Cost, or Quality modes.
 
 3. Route and respond. The prompt is forwarded to the selected model. The entire routing decision adds minimal overhead — a negligible fraction of the LLM inference time.
 
@@ -55,9 +55,9 @@ Model router analyzes prompts to make routing decisions but does not store them.
 
 Model router is a purpose-built ML model optimized for fast inference. It is not an LLM itself — it is designed to make routing decisions with minimal latency overhead.
 
-The router is trained on a large, diverse dataset spanning hundreds of thousands of examples across many domains, including question answering, code generation, mathematical reasoning, summarization, conversational AI, and agentic workflows. Training data is continuously expanded as new models and capabilities are added.
+We train the router on a large, diverse dataset spanning hundreds of thousands of examples across many domains. These include question answering, code generation, mathematical reasoning. Summarization, conversations, and agentic workflows are also covered. We continuously expand the training data to keep pace with new models and capabilities.
 
-The router is specifically trained to handle production-level complexity, including agentic and tool-calling workloads that require structured invocations and multi-step workflows.
+We train model router to handle production-level complexity, including agentic and tool-calling workloads that require structured invocations and multi-step workflows.
 
 ## Intelligent prompt routing
 
@@ -72,7 +72,7 @@ This difficulty-aware routing is what allows model router to save costs without 
 Production prompts are rarely tidy single-sentence questions. The router handles:
 - Long contexts spanning thousands of tokens, where the routing signal might be distributed across the entire input.
 - Multi-turn conversations, where earlier turns provide context but the latest user message carries the most routing-relevant signal.
-- Agentic and tool-calling scenarios, where the model must produce structured tool invocations, a capability the router is specifically optimized for.
+- Agentic and tool-calling scenarios, where the model must produce structured tool invocations, a capability the router is optimized for.
 
 ### Adapting to model subsets
 
@@ -91,8 +91,8 @@ Model router exposes three routing modes that control the cost-quality tradeoff.
 Each routing mode produces a different distribution of traffic across underlying models. You can observe your routing distribution using Azure Monitor:
 
 - In **Balanced mode**, traffic is distributed more broadly across the model pool based on prompt complexity.
-- In **Cost mode**, the majority of traffic routes to smaller, cheaper models, escalating to larger models only when the prompt requires it.
-- In **Quality mode**, frontier and high-capability models handle the majority of traffic.
+- In **Cost mode**, most traffic routes to smaller, cheaper models, escalating to larger models only when the prompt requires it.
+- In **Quality mode**, frontier and high-capability models handle most traffic.
 
 ## Example
 
