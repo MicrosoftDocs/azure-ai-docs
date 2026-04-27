@@ -165,7 +165,7 @@ This section lists the retirement lifecycle for Foundry Models sold directly by 
 
 ## Foundry Models from partners and community
 
-This section lists the retirement lifecycle for Foundry Models available through the Foundry model catalog from third-party providers.
+This section lists the retirement lifecycle for Foundry Models sold by partners via Azure Marketplace.
 
 ### Anthropic
 
