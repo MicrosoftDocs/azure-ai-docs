@@ -14,24 +14,22 @@ This article provides a quick reference and detailed description of the quotas a
 
 ## Global quotas and Data Zone quotas 
 
-Microsoft Foundry is introducing Global quotas and Data Zone quotas to simplify and standardize how quota is enforced across deployments. Starting with Mistral Medium 3.5, quota for Global Standard and Data Zone Standard deployments is enforced at the subscription level, rather than independently per resource or per region.
+Microsoft Foundry is introducing Global quotas and Data Zone quotas to bring consistency and predictability to how quota is managed across deployments. Starting with Mistral Medium 3.5, quota for Global Standard and Data Zone Standard deployments is tracked at the subscription level — shared across all resources and regions — rather than being allocated separately per resource or per region.
 
 This change consolidates quota into shared pools:
 
-* **Global Standard deployments** of the same model and version share one quota pool across all regions in a subscription.
-* **Data Zone Standard deployments** of the same model and version share one quota pool per data zone (for example, US or EU). Each data zone has its own separate quota pool.
-
-All other deployment types retain their existing per‑deployment, per‑region, per‑subscription quota behavior.
+* **Global Standard deployments**: Deployments of the same model and version share one quota pool across all regions in a subscription.
+* **Data Zone Standard deployments**: Deployments of the same model and version share one quota pool per data zone (for example, US or EU).
 
 ## What’s changing for me?
 
-With Global and Data Zone quotas:
+For the models that are onboarded to Global and Data Zone quotas:
 
-* All Global Standard deployments of the same model under a subscription now draw from a single shared quota pool across all regions.
-* All Data Zone Standard deployments of the same model under a subscription draw from a shared quota pool within each data zone.
-* Previously approved quota increases are retained and applied at the subscription level.
+* All Global Standard deployments of the same model and version under a subscription now draw from a single shared quota pool across all regions.
+* All Data Zone Standard deployments of the same model and version under a subscription now draw from a shared quota pool within each data zone.
+* Existing approved quota is retained and automatically applies at the subscription level — no action required.
 
-This consolidation enables Microsoft Foundry to offer supported models consistently across all Foundry regions, without regional availability constraints driven by quota mechanics.
+This consolidation allows Microsoft Foundry to offer supported models consistently across all Foundry regions, regardless of how quota is distributed across resources or regions.
 
 ## Quotas and limits reference
 
