@@ -1,13 +1,14 @@
 ---
 title: Full-Text Search
-description: Describes concepts and architecture of query processing and document retrieval for full text search, as implemented Azure AI Search.
+description: Describes concepts and architecture of query processing and document retrieval for full text search, as implemented in Azure AI Search.
 ms.reviewer: jlembicz
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 03/07/2025
+ms.date: 04/27/2026
 ms.update-cycle: 365-days
+ai-usage: ai-assisted
 ---
 
 # Full-text search in Azure AI Search
@@ -373,7 +374,7 @@ There are two ways to tune relevance scores in Azure AI Search:
 
 All indexes in Azure AI Search are automatically split into multiple shards, allowing us to quickly distribute the index among multiple nodes during service scale up or scale down. When a search request is issued, it's issued against each shard independently. The results from each shard are then merged and ordered by score (if no other ordering is defined). It's important to know that the scoring function weights query term frequency against its inverse document frequency in all documents within the shard, not across all shards!
 
-This means a relevance score *could* be different for identical documents if they reside on different shards. Fortunately, such differences tend to disappear as the number of documents in the index grows due to more even term distribution. It's not possible to assume on which shard any given document will be placed. However, assuming a document key doesn't change, it will always be assigned to the same shard.
+This means a relevance score *could* be different for identical documents if they reside on different shards. Fortunately, such differences tend to disappear as the number of documents in the index grows due to more even term distribution. It's not possible to assume on which shard any given document will be placed. However, assuming a document key doesn't change, it's always assigned to the same shard.
 
 In general, document score isn't the best attribute for ordering documents if order stability is important. For example, given two documents with an identical score, there's no guarantee that one appears first in subsequent runs of the same query. Document score should only give a general sense of document relevance relative to other documents in the results set.
 
