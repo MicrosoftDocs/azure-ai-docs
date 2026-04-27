@@ -7,7 +7,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/06/2025
+ms.date: 04/24/2026
 ---
 
 # Add semantic ranking to queries in Azure AI Search
@@ -18,7 +18,7 @@ This article explains how to invoke the semantic ranker on queries. It assumes y
 
 ## Prerequisites
 
-+ [Azure AI Search](search-create-service-portal.md) in any [region that provides semantic ranking](search-region-support.md), with [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ [Azure AI Search](search-create-service-portal.md) in any [region that provides semantic ranking](search-region-support.md).
 
 + An existing search index with a [semantic configuration](semantic-how-to-configure.md) and rich text content.
 
