@@ -171,20 +171,13 @@ This section lists the retirement lifecycle for Foundry Models available through
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| claude-haiku-4-5 | — | Preview | — | — |
-| claude-mythos-preview (gated research preview) | — | Preview | — | — |
-| claude-opus-4-1 | — | Preview | — | — |
-| claude-opus-4-5 | — | Preview | — | — |
-| claude-opus-4-6 | — | Preview | — | — |
-| claude-opus-4-7  | — | Preview | — | — |
-| claude-sonnet-4-5 | — | Preview | — | — |
-| claude-sonnet-4-6 | — | Preview | — | — |
-
-### Alibaba
-
-| Model | Version | Lifecycle | Retirement date | Replacement |
-|-------|---------|-----------|-----------------|-------------|
-| qwen3-32b | 1 | GA | — | — |
+| claude-haiku-4-5 | — | Preview | 2026-10-19 | — |
+| claude-mythos-preview (gated research preview) | — | Preview | 2027-04-02 | — |
+| claude-opus-4-1 | — | Preview | 2026-10-19 | — |
+| claude-opus-4-5 | — | Preview | 2026-10-19 | — |
+| claude-opus-4-6 | — | Preview | 2027-02-02 | — |
+| claude-sonnet-4-5 | — | Preview | 2026-10-19 | — |
+| claude-sonnet-4-6 | — | Preview | 2027-02-10 | — |
 
 ### Cohere
 
@@ -195,12 +188,6 @@ This section lists the retirement lifecycle for Foundry Models available through
 | Cohere-rerank-v3.5 | 1 | Deprecated | 2026-05-14 | Cohere-rerank-v4.0-pro, Cohere-rerank-v4.0-fast |
 | Cohere-embed-v3-english | 1 | GA | — | — |
 | Cohere-embed-v3-multilingual | 1 | GA | — | — |
-
-### Deci AI
-
-| Model | Version | Lifecycle | Retirement date | Replacement |
-|-------|---------|-----------|-----------------|-------------|
-| deci-decidiffusion-v1-0 | — | Deprecated | 2026-07-31 | — |
 
 ### Meta
 
@@ -217,10 +204,6 @@ This section lists the retirement lifecycle for Foundry Models available through
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| financial-reports-analysis | — | Deprecated | 2026-07-31 | — |
-| financial-reports-analysis-v2 | — | Deprecated | 2026-07-31 | — |
-| supply-chain-trade-regulations | — | Deprecated | 2026-07-31 | — |
-| supply-chain-trade-regulations-v2 | — | Deprecated | 2026-07-31 | — |
 | Phi-4 | — | GA | — | — |
 | Phi-4-mini-instruct | — | GA | — | — |
 | Phi-4-mini-reasoning | — | GA | — | — |
@@ -237,11 +220,11 @@ This section lists the retirement lifecycle for Foundry Models available through
 | mistral-medium-2505 | 1 | GA | — | — |
 | mistral-small-2503 | 1 | GA | — | — |
 
-### OpenAI-OSS
+### MoonshotAI
 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
-| gpt-oss-20b | 11 | GA | — | — |
+| Kimi-K2.6 | 2026-04-20 | Preview | 2027-04-16 | — |
 
 
 ## Related content
