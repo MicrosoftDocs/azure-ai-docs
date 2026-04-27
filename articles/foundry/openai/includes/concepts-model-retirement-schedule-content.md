@@ -8,7 +8,7 @@ reviewer: johnrsanders
 ms.service: microsoft-foundry
 ms.subservice: foundry-openai
 ms.topic: include
-ms.date: 04/23/2026
+ms.date: 04/27/2026
 ms.custom: include, classic-and-new
 ---
 
@@ -23,13 +23,13 @@ This section lists the retirement lifecycle for Foundry Models sold directly by 
 | Model | Version | Lifecycle | Retirement date | Replacement |
 |-------|---------|-----------|-----------------|-------------|
 | codex-mini | 2025-05-16 | GA | 2026-11-15 | — |
-| gpt-4.1 | 2025-04-14 | GA | 2027-10-14 | — |
-| gpt-4.1-mini | 2025-04-14 | GA | 2027-10-14 | — |
-| gpt-4.1-nano | 2025-04-14 | GA | 2027-10-14 | — |
-| gpt-4o | 2024-05-13 | Deprecated | 2027-03-31 | gpt-5.1 |
-| gpt-4o | 2024-08-06 | Deprecated | 2027-10-01 | gpt-5.1 |
+| gpt-4.1 | 2025-04-14 | GA | 2026-10-14 | — |
+| gpt-4.1-mini | 2025-04-14 | GA | 2026-10-14 | — |
+| gpt-4.1-nano | 2025-04-14 | GA | 2026-10-14 | — |
+| gpt-4o | 2024-05-13 | Deprecated | 2026-10-01 | gpt-5.1 |
+| gpt-4o | 2024-08-06 | Deprecated | 2026-10-01 | gpt-5.1 |
 | gpt-4o | 2024-11-20 | GA | 2026-10-01 | gpt-4.1 |
-| gpt-4o-mini | 2024-07-18 | GA | 2027-10-01 | gpt-4.1-mini |
+| gpt-4o-mini | 2024-07-18 | GA | 2026-10-01 | gpt-4.1-mini |
 | gpt-4o-mini-transcribe | 2025-03-20 | GA | 2026-06-01 | — |
 | gpt-4o-mini-transcribe | 2025-12-15 | GA | 2026-12-15 | — |
 | gpt-4o-mini-tts | 2025-03-20 | Preview | 2026-06-01 | — |
@@ -58,7 +58,7 @@ This section lists the retirement lifecycle for Foundry Models sold directly by 
 | gpt-5.4-mini | 2026-03-17 | GA | 2027-03-18 | — |
 | gpt-5.4-nano | 2026-03-17 | GA | 2027-03-18 | — |
 | gpt-5.4-pro | 2026-03-05 | GA | 2027-03-06 | — |
-| gpt-5.5| 2026-04-24 | GA | 2027-04-24 | |
+| gpt-5.5 | 2026-04-24 | GA | 2027-04-23 | — |
 | gpt-audio | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-audio-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
 | gpt-audio-mini | 2025-10-06 | GA | 2027-04-07 | — |
@@ -66,6 +66,7 @@ This section lists the retirement lifecycle for Foundry Models sold directly by 
 | gpt-image-1 | 2025-04-15 | Preview | 2026-05-15 | — |
 | gpt-image-1-mini | 2025-10-06 | GA | 2027-04-07 | — |
 | gpt-image-1.5 | 2025-12-16 | GA | 2026-12-16 | — |
+| gpt-image-2 | 2026-04-21 | GA | 2027-04-21 | — |
 | gpt-realtime | 2025-08-28 | GA | 2027-02-28 | — |
 | gpt-realtime-1.5 | 2026-02-23 | GA | 2027-02-23 | — |
 | gpt-realtime-mini | 2025-10-06 | GA | 2027-04-07 | — |
@@ -75,7 +76,7 @@ This section lists the retirement lifecycle for Foundry Models sold directly by 
 | o3-deep-research | 2025-06-26 | GA | 2026-12-26 | — |
 | o3-mini | 2025-01-31 | Deprecated | 2026-08-02 | o4-mini |
 | o3-pro | 2025-06-10 | GA | 2026-12-10 | — |
-| o4-mini | 2025-04-16 | GA | 2027-10-16 | — |
+| o4-mini | 2025-04-16 | GA | 2026-10-16 | — |
 | sora-2 | 2025-10-06 | Preview | 2026-06-03 | — |
 | text-embedding-3-large | 1 | GA | 2027-04-15 | — |
 | text-embedding-3-small | 1 | GA | 2027-04-15 | — |
