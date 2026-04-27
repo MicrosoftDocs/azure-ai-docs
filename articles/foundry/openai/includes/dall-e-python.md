@@ -84,7 +84,7 @@ result = client.images.generate(
     size="1024x1024",
     quality="high",
     output_format="png",
-    # background="transparent",  # Set to "transparent" for transparent backgrounds (requires PNG)
+    # background="transparent",  # Set to "transparent" for transparent backgrounds (GPT-image-1 only; requires PNG)
     # output_compression=100,  # 0-100 compression level (JPEG output only)
 )
 

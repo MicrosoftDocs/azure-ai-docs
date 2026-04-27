@@ -91,7 +91,7 @@ Use the *stream* parameter to enable streaming responses. When set to `true`, th
 
 #### Transparency
 
-Set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
+GPT-image-1 only: set the *background* parameter to `transparent` and *output_format* to `PNG` on an image generate request to get an image with a transparent background.
 
 ## Write effective text-to-image prompts
 
