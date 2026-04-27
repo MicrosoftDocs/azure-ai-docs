@@ -43,7 +43,7 @@ This approach simplifies application configuration. Instead of managing multiple
 
 Run this command to install the packages for Foundry projects.
 ```bash
-pip install azure-ai-projects >=2.0.0
+pip install "azure-ai-projects>=2.0.0"
 ```
 ::: zone-end
 
