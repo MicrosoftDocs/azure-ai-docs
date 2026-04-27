@@ -31,9 +31,12 @@ For the models that are onboarded to Global and Data Zone quotas:
 
 This consolidation allows Microsoft Foundry to offer supported models consistently across all Foundry regions, regardless of how quota is distributed across resources or regions.
 
+[!IMPORTANT]
+> Cross-endpoint quotas currently apply only to Mistral Medium 3.5. For all other Foundry Models covered in this article, quotas and limits are managed per region, per subscription, and per model or deployment type. In the future, cross-endpoint quotas will also apply to some existing models and to new Foundry Model launches.
+
 ## Quotas and limits reference
 
-The following sections provide a quick guide to the default quotas and limits that apply to Foundry Models:
+The following sections provide a quick guide to the default quotas and limits that apply to Foundry Models. Quotas and limits aren't enforced at the tenant level. Instead, the highest level of quota restrictions is scoped at the Azure subscription level. Tokens per minute (TPM) and requests per minute (RPM) limits are defined per region, per subscription, and per model or deployment type.
 
 ### Resource limits (per Azure subscription, per region)
 
