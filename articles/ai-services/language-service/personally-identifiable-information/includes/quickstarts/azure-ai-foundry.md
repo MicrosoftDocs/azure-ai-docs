@@ -42,7 +42,7 @@ The active project appears in the upper-left corner. To create a new project:
 1. Enter a project name or select an existing one.
 1. Select **Create project**.
 
-   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the Foundry (new) homepage":::
+   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the Foundry (new) homepage.":::
 
 There are two ways to access the personally identifiable information (PII) interface:
 
@@ -78,7 +78,7 @@ The **Azure-Language-Text-PII redaction** model is used to identify and redact p
 
 1. After you make your selections, choose the **Detect** button. Detected entities are highlighted in the text and you can review the accompanying details in formatted text or as a JSON response.
 
-    :::image type="content" source="../../media/quickstarts/azure-ai-foundry/new-foundry-text-detection.png" alt-text="Screenshot of PII text detection output in the Foundry playground" lightbox="../../media/quickstarts/azure-ai-foundry/new-foundry-text-detection.png":::
+    :::image type="content" source="../../media/quickstarts/azure-ai-foundry/new-foundry-text-detection.png" alt-text="Screenshot of PII text detection output in the Foundry playground." lightbox="../../media/quickstarts/azure-ai-foundry/new-foundry-text-detection.png":::
 
     | Field | Description |
     | --- | --- |
@@ -117,7 +117,7 @@ The **extract PII from conversations** feature detects and masks personally iden
 
 1. After you make your selections, choose the **Detect** button. Detected entities are highlighted in the text and you can review the accompanying details in formatted text or as a JSON response.
 
-    :::image type="content" source="../../media/quickstarts/azure-ai-foundry/new-foundry-conversation-detection.png" alt-text="Screenshot of PII conversation detection output in the Foundry playground" lightbox="../../media/quickstarts/azure-ai-foundry/new-foundry-conversation-detection.png":::
+    :::image type="content" source="../../media/quickstarts/azure-ai-foundry/new-foundry-conversation-detection.png" alt-text="Screenshot of PII conversation detection output in the Foundry playground." lightbox="../../media/quickstarts/azure-ai-foundry/new-foundry-conversation-detection.png":::
 
     | Field | Description |
     | --- | --- |
