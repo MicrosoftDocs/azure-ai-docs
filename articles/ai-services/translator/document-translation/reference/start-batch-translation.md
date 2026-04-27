@@ -154,7 +154,7 @@ The following are examples of batch requests.
 > [!NOTE]
 > In the following examples, limited access is granted to the contents of an Azure Storage container [using a shared access signature(SAS)](/azure/storage/common/storage-sas-overview) token.
 
-### Translate all documents in a container
+### Translate all documents in blob storage container
 
 ```json
 {
@@ -174,7 +174,7 @@ The following are examples of batch requests.
 }
 ```
 
-### Translate a specific document in a container
+### Translate a specific document in blob storage container
 
 * Specify "storageType": `File`.
 * Create source URL & SAS token for the specific blob/document.
@@ -216,7 +216,7 @@ This sample request shows a single document translated into two target languages
 
 * You can also use a [get-translations-status](../reference/get-translations-status.md) request to retrieve a list of translation jobs and their `id`s.
 
-### Translate all documents in a container applying glossaries
+### Translate all documents in blob storage container applying glossaries
 
 ```json
 {
@@ -244,7 +244,7 @@ This sample request shows a single document translated into two target languages
 }
 ```
 
-### Translate a specific folder in a container
+### Translate a specific folder in blob storage container
 
 Make sure you specify the folder name (case sensitive) as prefix in filter.
 
@@ -275,9 +275,10 @@ Document translation now supports image file translation, which allows you to tr
 
 ### Request configuration (image files)
 
-For image files translation, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-a-container), specifying API version **2025-12-01-preview**. No further configuration is required.
+For image files translation, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-blob-storage-container). No further configuration is required.
 
 ### Supported formats (image files)
+
 |File Extension|Description|
 |--|--|
 |`.bmp `|A bitmap image file format used to store digital images in an uncompressed form, preserving high-quality visual details.|
