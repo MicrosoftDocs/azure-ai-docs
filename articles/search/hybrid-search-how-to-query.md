@@ -7,7 +7,7 @@ ms.custom:
   - dev-focus
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 04/24/2026
 ---
 
 # Create a hybrid query in Azure AI Search
@@ -33,12 +33,10 @@ By the end of this article, you can execute hybrid queries that combine keyword 
 
 + **Permissions**: You need **Search Index Data Reader** to query an index. To create or update an index, you need **Search Index Data Contributor**. For more information, see [Connect using roles](search-security-rbac.md).
 
-+ **SDK installation (optional)**:
++ **(Optional) SDK installation**:
 
   + Python: `pip install azure-search-documents`
   + C#: `dotnet add package Azure.Search.Documents`
-
-+ (Optional) If you want the [semantic ranker](semantic-search-overview.md), your search service must have the [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
 + (Optional) If you want built-in text-to-vector conversion of a query string, [create and assign a vectorizer](vector-search-how-to-configure-vectorizer.md) to vector fields in the search index.
 
@@ -461,7 +459,7 @@ POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/d
 
 ### Example: Semantic hybrid search
 
-Assuming that you [have semantic ranker](semantic-how-to-enable-disable.md) and your index definition includes a [semantic configuration](semantic-how-to-query-request.md), you can formulate a query that includes vector search and keyword search, with semantic ranking over the merged result set. Optionally, you can add captions and answers. 
+Assuming your index definition includes a [semantic configuration](semantic-how-to-query-request.md), you can formulate a query that includes vector search and keyword search, with semantic ranking over the merged result set. Optionally, you can add captions and answers. 
 
 Whenever you use semantic ranking with vectors, make sure `k` is set to 50. Semantic ranker uses up to 50 matches as input. Specifying less than 50 deprives the semantic ranking models of necessary inputs.
 

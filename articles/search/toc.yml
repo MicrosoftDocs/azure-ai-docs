@@ -446,7 +446,7 @@ items:
       items:
       - name: What is semantic ranking?
         href: semantic-search-overview.md
-      - name: Enable or disable semantic ranker
+      - name: Enable or disable semantic ranker billing
         href: semantic-how-to-enable-disable.md
       - name: Configure semantic ranker
         href: semantic-how-to-configure.md
@@ -465,6 +465,8 @@ items:
     href: agentic-retrieval-overview.md
   - name: What is retrieval-augmented generation (RAG)?
     href: retrieval-augmented-generation-overview.md
+  - name: Enable or disable agentic retrieval billing
+    href: agentic-retrieval-how-to-enable-disable.md
   - name: Knowledge sources
     items:
     - name: What is a knowledge source?
