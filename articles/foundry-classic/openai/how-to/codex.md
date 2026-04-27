@@ -2,8 +2,8 @@
 title: "Codex with Azure OpenAI in Microsoft Foundry Models (classic)"
 description: "Learn how to use the Codex CLI and the Codex extension for Visual Studio Code with Azure OpenAI in Microsoft Foundry Models. (classic)"
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: how-to
 ms.date: 12/04/2025
 author: mrbullwinkle    

@@ -3,8 +3,8 @@ title: "How to migrate to OpenAI JavaScript v4.x (classic)"
 description: "Learn about migrating to the latest release of the OpenAI JavaScript library with Azure OpenAI. (classic)"
 author: mrbullwinkle 
 ms.author: mbullwin 
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
 ms.date: 11/26/2025

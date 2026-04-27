@@ -2102,7 +2102,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/agents/how-to/publish-agent.md",
-      "redirect_url": "/azure/foundry/agents/how-to/publish-agent",
+      "redirect_url": "/azure/foundry/agents/how-to/agent-applications",
       "redirect_document_id": true
     },
     {
@@ -2274,6 +2274,21 @@
       "source_path_from_root": "/articles/ai-foundry/guardrails/guardrails-overview.md",
       "redirect_url": "/azure/foundry/guardrails/guardrails-overview",
       "redirect_document_id": true
+    },
+       {
+      "source_path_from_root": "/articles/foundry-classic/reference/foundry-project.md",
+      "redirect_url": "/rest/api/aifoundry/aiproject",
+      "redirect_document_id": false
+    },
+       {
+      "source_path_from_root": "/articles/foundry/reference/foundry-project-rest-preview.md",
+      "redirect_url": "/rest/api/aifoundry/aiproject",
+      "redirect_document_id": false
+    },
+      {
+      "source_path_from_root": "/articles/foundry/reference/foundry-project.md",
+      "redirect_url": "/rest/api/aifoundry/aiproject",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-foundry/guardrails/how-to-create-guardrails.md",
@@ -3352,7 +3367,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-foundry/openai/how-to/business-continuity-disaster-recovery.md",
-      "redirect_url": "/azure/foundry-classic/openai/how-to/business-continuity-disaster-recovery",
+      "redirect_url": "/azure/foundry-classic/how-to/high-availability-resiliency",
       "redirect_document_id": true
     },
     {

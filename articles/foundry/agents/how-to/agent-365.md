@@ -1,46 +1,45 @@
 ---
-title: "Publish a Microsoft Foundry agent to Agent 365"
-description: "Publish a Microsoft Foundry hosted agent to Agent 365 by using the FoundryA365 sample, approve it, and optionally connect it to Microsoft Teams."
+title: "Microsoft Agent 365 and Microsoft Foundry"
+description: "Learn how Microsoft Agent 365 provides governance, security, and lifecycle management for AI agents built in Microsoft Foundry."
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
-ms.date: 02/13/2026
-ms.topic: how-to
+ms.date: 04/14/2026
+ms.topic: concept-article
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.custom: pilot-ai-workflow-jan-2026, doc-kit-assisted
 ai-usage: ai-assisted
 ---
 
-# Publish an agent as a digital worker in Agent 365
-Use this article to publish a Microsoft Foundry hosted agent as a digital worker in Microsoft Agent 365 (A365).
+# Foundry agents in Microsoft Agent 365 
 
-The sample uses the Azure Developer CLI to create the required Azure resources and publish an agent application. It also guides you through admin approval, configuration, and creating instances of your digital worker.
+This article describes how Foundry agents can be managed and governed in Microsoft Agent 365. Additionally, it describes how AI teammates can be created, approved, and hired in Agent 365. 
 
 ## What is Microsoft Agent 365?
-[Microsoft Agent 365 (A365)](/microsoft-agent-365/overview) is Microsoft’s IT admin control plane for AI agents.
 
-It helps you:
-
-- Apply identity, security, governance, and lifecycle management controls to AI agents.
-- Manage AI agents at scale, regardless of where they’re built or acquired.
+[Microsoft Agent 365 (A365)](/microsoft-agent-365/overview) is Microsoft's IT admin control plane for AI agents. It helps you apply identity, security, governance, and lifecycle management controls to AI agents and manage them at scale, regardless of where they're built or acquired.
 
 ### Agent 365 core capabilities
-Agent 365 is built on five core capabilities:
-- **Registry**: Provides a complete inventory of agents all in the organization, including agents built in Microsoft Foundry and Copilot Studio, agents registered by administrators, and shadow agents discovered in the tenant.
+
+- **Registry**: A complete inventory of agents in the organization, including agents built in Microsoft Foundry and Copilot Studio, agents registered by administrators, and shadow agents discovered in the tenant.
 - **Access control**: Brings agents under management and limits access to only the resources they need by using Microsoft Entra–based controls and risk-based Conditional Access policies.
 - **Visualization**: Enables organizations to explore connections between agents, people, and data, and to monitor agent behavior and performance in real time.
 - **Interoperability**: Equips agents with access to Microsoft 365 apps and organizational data so they can participate in real workflows. Agents can also be connected to Work IQ to apply organizational context and knowledge.
-- **Security**: Protects agents from threats and vulnerabilities by integrating with Microsoft’s security stack. It also helps protect data agents create or use from oversharing, leaks, and risky behavior.
+- **Security**: Protects agents from threats and vulnerabilities by integrating with Microsoft's security stack. It also helps protect data agents create or use from oversharing, leaks, and risky behavior.
 
 ## How does Foundry integrate with Agent 365?
-The long-term goal is for all published Foundry agents and agents registered in the Foundry control plane to automatically appear in the Agent 365 registry. This capability isn't available today, but the integration is in progress. Previously published Foundry agents are also planned for backfill into Agent 365.
 
-There's also a specific use case in which Foundry hosted agents can be published as digital workers to Agent 365. This experience currently has no UI and must be completed by using a code sample.
+**All Foundry agents automatically appear in the Agent 365 agent registry on creation.** In A365, admins can see critical agent metadata such as the name, description, tools, agent identity, agent blueprint, and more associated with an agent. 
+
+## Create AI teammates
+
+There's also a specific use case in which Foundry hosted agents can be pushed as AI teammates to Agent 365. Once approved in the Microsoft admin center, these agents can then be hired by others in your organization. This experience currently has no UI and must be completed by using a code sample.
+
 
 The rest of this article walks through that process.
 
-## Prerequisites 
+### Prerequisites 
 
 - Enrollment in the [Frontier preview program](https://adoption.microsoft.com/en-us/copilot/frontier-program/).
 - An Azure subscription where you can create resources.
@@ -54,15 +53,15 @@ The rest of this article walks through that process.
 - [Docker](https://www.docker.com/)
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download)
 
-## What the sample creates
+### What the sample creates
 
 The sample provisions Azure resources and publishes a hosted agent end-to-end. Specifically: 
 
 - Creates or updates Azure resources required to run the sample.
-- Creates an agent version and publishes it as an agent application.
-- Submits a digital worker request that requires admin approval in the Microsoft 365 admin center.
+- Creates an agent version and configures endpoint traffic to always route to that version
+- Submits an AI teammate request that requires admin approval in the Microsoft 365 admin center.
 
-## Run the code sample
+### Run the code sample
 Follow the steps in the [FoundryA365 sample README on GitHub](https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/csharp/FoundryA365).
 
 At a high level, you typically:
@@ -86,10 +85,10 @@ azd env get-values
 
 When the sample completes successfully (for example, the `azd` commands finish without errors), you have a published agent application and a digital worker request ready for approval in the Microsoft 365 admin center. Once approved by an admin, you should see the agent in the Agent 365 registry. You might not see anything to approve yet until you complete the approval steps in the README.
 
-## Validate
+### Validate
 
-1. Approve the agent blueprint request in the Microsoft 365 admin center. 
-  You can review approval requests at: https://admin.cloud.microsoft/?#/agents/all/requested
+1. Approve the agent blueprint request in the Microsoft 365 admin center.
+  You can review approval requests at <https://admin.cloud.microsoft/?#/agents/all/requested>.
   :::image type="content" source="../media/approve-agent.png" alt-text="Screenshot of an agent awaiting or showing approval in the Microsoft 365 admin center agent registry." lightbox="../media/approve-agent.png":::
 1. Once approved, verify your agent shows up in the Agent 365 agent registry.
   :::image type="content" source="../media/agent-in-registry.png" alt-text="Screenshot of an approved agent in A365 registry." lightbox="../media/agent-in-registry.png":::
@@ -103,7 +102,7 @@ When the sample completes successfully (for example, the `azd` commands finish w
     
   :::image type="content" source="../media/create-instance.png" alt-text="Screenshot of creating an agent instance of a digital worker in Microsoft Teams." lightbox="../media/create-instance.png":::
 
-## Troubleshooting
+### Troubleshooting
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
@@ -113,12 +112,9 @@ When the sample completes successfully (for example, the `azd` commands finish w
 | You can't find the agent to approve | Approval step not completed or you don't have the required tenant permissions | Verify tenant admin permissions and confirm the deployment completed successfully. |
 | You can't find your blueprint in the Teams Developer Portal list | Portal only shows the first 100 blueprints | Open any blueprint and replace the blueprint ID in the URL with your blueprint ID from `azd env get-values`. |
 
-For more information about agent applications, identity, and publishing behavior in Foundry, see [Publish and share agents in Microsoft Foundry](publish-agent.md).
 
-## Next steps
+## Related content
 
-- [Publish and share agents in Microsoft Foundry](publish-agent.md)
-- [Publish agents to Microsoft 365 Copilot and Microsoft Teams](publish-copilot.md)
-- [Agent identity concepts in Microsoft Foundry](../concepts/agent-identity.md)
-- [Hosted agents in Microsoft Foundry](../concepts/hosted-agents.md)
-- [Model Context Protocol (MCP) server authentication](mcp-authentication.md)
+- [Configure and share your agent](./configure-agent.md)
+- [Publish agents to Microsoft 365 Copilot and Microsoft Teams](./publish-copilot.md)
+- [Migrate from Agent Applications to the new agent model](./migrate-agent-applications.md)

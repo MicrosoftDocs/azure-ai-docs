@@ -1,7 +1,7 @@
 ---
 title: "Create and manage compute instances (classic)"
 description: "Learn how to create and manage compute instances in Foundry portal to use prompt flow, create indexes, and access Visual Studio Code. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2023
   - build-2024

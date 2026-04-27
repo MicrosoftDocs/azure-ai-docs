@@ -3,8 +3,8 @@ title: "Get started with provisioned deployments in Microsoft Foundry"
 description: "Learn how to create provisioned deployments, estimate PTU requirements, benchmark your workload, and monitor utilization in Microsoft Foundry."
 ai-usage: ai-assisted
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom:
   - openai, pilot-ai-workflow-jan-2026
   - classic-and-new

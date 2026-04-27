@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI
 description: Use this article to get started using Microsoft Foundry to deploy and use an image-capable model.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom: references_regions, ignite-2024
 ms.date: 01/29/2026

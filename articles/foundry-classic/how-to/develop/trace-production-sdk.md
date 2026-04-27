@@ -1,7 +1,7 @@
 ---
 title: "Enable Tracing and Collect Feedback for a Flow Deployment (classic)"
 description: "This article provides instructions on how to enable tracing and collect feedback for a flow deployment in the Microsoft Foundry portal. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - build-2024
   - hub-only

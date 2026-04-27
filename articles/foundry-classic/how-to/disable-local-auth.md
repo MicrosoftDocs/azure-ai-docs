@@ -4,7 +4,7 @@ description: "Disable shared-key access to the default storage account used by y
 ai-usage: ai-assisted
 ms.author: jburchel 
 author: jonburchel 
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - ignite-2024
   - dev-focus

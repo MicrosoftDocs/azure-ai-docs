@@ -4,7 +4,7 @@ description: Important box about the limitations of using Foundry Agent Service 
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 01/27/2026
 ms.custom: include file

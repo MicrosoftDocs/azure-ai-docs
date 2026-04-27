@@ -1,9 +1,9 @@
 ---
 title: "Feature availability across cloud regions"
 description: "This article lists Microsoft Foundry feature availability across cloud regions."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
-ms.date: 04/03/2026
+ms.date: 04/13/2026
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -28,45 +28,7 @@ This article doesn't include a single real-time matrix for every model and featu
 
 Foundry is currently available in the following Azure regions. 
 
-<!-- Government regions for foundry-classic only at this time -->
-:::row:::
-    :::column:::
-- Australia East
-- Brazil South
-- Canada Central
-- Canada East
-- Central India
-- Central US
-- East Asia
-- East US
-- East US 2
-- France Central
-- Germany West Central
-- Italy North
-    :::column-end:::
-    :::column:::
-- Japan East
-- Korea Central
-- North Central US
-- North Europe
-- Norway East
-- Qatar Central
-- South Africa North
-- South Central US
-- South India
-- Southeast Asia
-    :::column-end:::
-    :::column:::
-- Spain Central
-- Sweden Central
-- Switzerland North
-- UAE North
-- UK South
-- West Europe
-- West US
-- West US 3
-:::column-end:::
-:::row-end:::
+[!INCLUDE [reference-region-support-regions](../includes/reference-region-support-regions.md)]
 
 ## Foundry features
 
@@ -89,6 +51,8 @@ Use this process before you create resources:
 1. Verify feature-specific support in the **Foundry features** list links.
 1. Check available quota for a specific model and region. In the Foundry portal, go to **Operate** > **Quota** and turn on the **Show all** toggle to see all models and regions, including models you haven't deployed yet. For more information, see [Quota in Foundry Control Plane](../control-plane/overview.md#quota).
 1. Confirm the final service list in [Azure global infrastructure products by region](https://azure.microsoft.com/global-infrastructure/services/).
+
+[!INCLUDE [reference-region-support-gov](../includes/reference-region-support-gov.md)]
 
 [!INCLUDE [region-support 1](../includes/reference-region-support-1.md)]
 

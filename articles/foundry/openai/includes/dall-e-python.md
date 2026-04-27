@@ -3,8 +3,8 @@ title: 'Quickstart: Generate images with the Python SDK for Azure OpenAI in Micr
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI by using the Python SDK and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom:
   - ignite-2023, classic-and-new
 ms.topic: include
@@ -24,8 +24,7 @@ Use this guide to get started generating images with the Azure OpenAI SDK for Py
 - An Azure OpenAI resource created in a compatible region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
     - Access the Azure OpenAI resource endpoint and keys in the Azure portal.
 - A deployed image generation model:
-    - **GPT-image-1 series**: Deploy a `gpt-image-1`-series model. Available in limited access.
-    - **GPT-image-1 series**: Deploy a `gpt-image-1` model. Requires [limited access registration](https://aka.ms/oai/access).
+    - **GPT-image-1 series**: Deploy a `gpt-image-1`-series model. Requires [limited access registration](https://aka.ms/oai/access).
 
 For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 
@@ -79,7 +78,7 @@ client = AzureOpenAI(
 )
 
 result = client.images.generate(
-    model="gpt-image-1", # the name of your GPT-image-1 series deployment
+    model="gpt-image-1", # the name of your GPT-image series deployment
     prompt="a close-up of a bear walking through the forest",
     n=1,
     size="1024x1024",
@@ -112,7 +111,7 @@ image.show()
 
 1. Make sure the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables are set.
 1. Change the value of `prompt` to your preferred text.
-1. Change the value of `model` to the name of your deployed GPT-image-1 series model.
+1. Change the value of `model` to the name of your deployed GPT-image series model.
 
 > [!IMPORTANT]
 > Remember to remove the key from your code when you're done, and never post your key publicly. For production, use a secure way of storing and accessing your credentials. For more information, see [Azure Key Vault](/azure/key-vault/general/overview).

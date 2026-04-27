@@ -1,8 +1,8 @@
 ---
 title: "Tutorial: Get started with DeepSeek-R1 in Foundry Models (classic)"
 description: "Learn how to deploy and use DeepSeek-R1 reasoning model in Microsoft Foundry Models. Get step-by-step guidance, code examples, and best practices for AI reasoning. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: tutorial
 ms.date: 02/17/2026
 ms.author: mopeakande

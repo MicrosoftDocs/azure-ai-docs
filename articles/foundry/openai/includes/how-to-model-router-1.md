@@ -4,10 +4,10 @@ description: Include file
 author: PatrickFarley
 ms.reviewer: sgilley
 ms.author: pafarley
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 04/10/2026
-ms.custom: include
+ms.custom: include, update-code1
 ---
 
 ## Test model router with the Completions API

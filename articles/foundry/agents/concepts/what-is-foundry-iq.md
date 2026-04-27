@@ -4,7 +4,7 @@ description: "Learn about Foundry IQ, a managed knowledge layer that turns enter
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.date: 02/12/2026
 ai-usage: ai-assisted

@@ -7,8 +7,8 @@ ms.date: 03/09/2026
 ms.custom: references_regions, pilot-ai-workflow-jan-2026, doc-kit-assisted
 ms.manager: nitinme
 ms.topic: concept-article
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ai-usage: ai-assisted
 #CustomerIntent: As a developer building agents, I want to understand tool best practices so that I can configure reliable and secure tool usage.
 ---
@@ -83,14 +83,14 @@ The following table shows tool availability by [region](../../openai/how-to/resp
 | francecentral       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | germanywestcentral  | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | italynorth          | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| japaneast           | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| japaneast           | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | koreacentral        | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | northcentralus      | yes | yes             | yes                 | yes               | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | norwayeast          | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | polandcentral       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | southafricanorth    | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | southcentralus      | yes | yes             | yes                 | no                | no           | yes                | yes         | no      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
-| southeastasia       | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
+| southeastasia       | yes | yes             | yes                 | yes               | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | southindia          | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | spaincentral        | yes | yes             | yes                 | no                | no           | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |
 | swedencentral       | yes | yes             | yes                 | yes               | yes          | yes                | yes         | yes      | yes                                | yes                         | yes               | yes | yes     | yes        | yes        |

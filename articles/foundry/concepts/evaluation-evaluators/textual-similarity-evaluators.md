@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: dlozier
 ms.date: 04/01/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: reference
 ms.custom:
   - classic-and-new

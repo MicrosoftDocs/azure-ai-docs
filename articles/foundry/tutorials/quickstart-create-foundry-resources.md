@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Set up Microsoft Foundry resources"
 description: "Learn how to create a Microsoft Foundry project, deploy a model, and grant access to team members so they can build AI applications."
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom:
   - build-2025
   - dev-focus
@@ -139,9 +139,9 @@ If you're administering a team, assign the **Azure AI User** role to team member
 
 ### Verify team member access
 
-Ask a team member to verify their access by signing in to [Microsoft Foundry](https://ai.azure.com), selecting the project from the project list, and confirming the deployed model appears by selecting **Build** in the upper-right navigation, then **Models** in the left pane.
+[!INCLUDE [verify-team-access](../includes/verify-team-access.md)]
 
-If the team member can't access the project, verify that the role assignment completed successfully. Check that you used the correct email address or security group ID. Make sure the team member's Azure account is in the same Microsoft Entra tenant.
+To confirm the deployed model is available, ask the team member to select **Build** in the upper-right navigation, then **Models** in the left pane.
 
 ## Clean up resources
 

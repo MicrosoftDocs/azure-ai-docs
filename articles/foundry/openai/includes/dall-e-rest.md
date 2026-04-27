@@ -3,8 +3,8 @@ title: 'Quickstart: Generate images with the REST APIs for Azure OpenAI in Micro
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI by using the REST APIs and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.custom:
   - ignite-2023, classic-and-new
 ms.topic: include
@@ -20,7 +20,7 @@ Use this guide to get started calling the Azure OpenAI in Microsoft Foundry Mode
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - The following Python libraries installed: `os`, `requests`, `json`.
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
-- Then, you need to deploy a `gpt-image-1`-series model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
+- Then, you need to deploy a gpt-image series model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../../../foundry-classic/openai/how-to/create-resource.md).
 
 ### Setup 
 
@@ -43,7 +43,7 @@ Go to your resource in the Azure portal. On the navigation pane, select **Keys a
 
 Create a new Python file named _quickstart.py_. Open the new file in your preferred editor or IDE.
 
-1. Replace the contents of _quickstart.py_ with the following code. Change the value of `prompt` to your preferred text. Also set `deployment` to the deployment name you chose when you deployed the GPT-image-1 series model.
+1. Replace the contents of _quickstart.py_ with the following code. Change the value of `prompt` to your preferred text. Also set `deployment` to the deployment name you chose when you deployed the image generation model.
     
     ```python
     import os
@@ -56,7 +56,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
     endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
     
-    deployment = "gpt-image-1.5" # the name of your GPT-image-1 series deployment
+    deployment = "gpt-image-1.5" # the name of your GPT-image series deployment
     api_version = "2025-04-01-preview" # or later version
     
     def decode_and_save_image(b64_data, output_filename):

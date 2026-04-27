@@ -18,6 +18,8 @@ ms.update-cycle: 365-days
 
 # LLM tool
 
+[!INCLUDE [prompt-flow-retirement](../../includes/prompt-flow-retirement.md)]
+
 The large language model (LLM) tool in prompt flow enables you to use widely used large language models like [OpenAI](https://platform.openai.com/), [Azure OpenAI in Microsoft Foundry Models](../../../ai-foundry/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
 
 Prompt flow provides several large language model APIs:

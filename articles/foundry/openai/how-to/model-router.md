@@ -5,8 +5,8 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.date: 03/18/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.custom:
   - classic-and-new
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 # Use model router for Microsoft Foundry
 
-Model router for Microsoft Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md).
+Model router for Microsoft Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save on compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md). To understand the architecture and routing logic, see [How model router works](../concepts/model-router-how-it-works.md).
 
 Use model router through the Chat Completions API like you'd use a single base model such as GPT-5. Follow the same steps as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 

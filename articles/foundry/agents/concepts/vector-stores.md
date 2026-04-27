@@ -3,8 +3,8 @@ title: "Vector stores for file search in Microsoft Foundry Agent Service"
 description: "Learn how vector stores enable file search for agents, including ingestion (chunking and embeddings), readiness, limits, and expiration policies."
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: concept-article
 ms.date: 02/04/2026
 author: aahill

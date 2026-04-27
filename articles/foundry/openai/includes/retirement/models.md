@@ -4,8 +4,8 @@ titleSuffix: Azure OpenAI in Microsoft Foundry Models
 description: Model retirement table for Azure OpenAI in Microsoft Foundry Models.
 manager: nitinme
 ms.date: 12/16/2025
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: include
 ms.custom: references_regions, build-2025
 ---
@@ -94,6 +94,7 @@ ms.custom: references_regions, build-2025
 | `gpt-image-1-mini` | 2025-10-06 | `Generally Available` | 2026-10-06 | 2027-04-07 |  |
 | `gpt-image-1.5`    | 2025-12-16   | `Generally Available`    | n/a | No earlier than 2026-12-16 |  |
 | `sora-2` | 2025-10-15 | `Preview` | n/a | No earlier than 2026-09-15 |  |
+| `gpt-image-2` | 2026-04-21 | `Preview` | n/a | No earlier than 2027-04-21 |  |
 
 
 # [Embedding](#tab/embedding)

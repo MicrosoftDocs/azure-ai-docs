@@ -1,7 +1,7 @@
 ---
 title: "How to configure a managed network for a hub (classic)"
 description: "Learn how to configure a managed network for Microsoft Foundry hubs. A managed network secures your computing resources. (classic)"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: 
   - ignite-2023
   - build-2024

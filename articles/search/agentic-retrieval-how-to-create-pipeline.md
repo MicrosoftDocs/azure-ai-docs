@@ -1,11 +1,12 @@
 ---
 title: 'Tutorial: Build an Agentic Retrieval Solution'
 description: Build an agentic retrieval solution that connects Azure AI Search to Foundry Agent Service via MCP. Follow this tutorial to create a knowledge base and agent.
-ms.date: 04/01/2026
+ms.date: 04/15/2026
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom:
   - build-2025
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Build an end-to-end agentic retrieval solution using Azure AI Search
@@ -594,6 +595,8 @@ To optimize performance and reduce latency, consider the following strategies:
 + Use `gpt-4.1-mini` or a smaller model that performs faster.
 
 + Set `maxOutputSize` on the [retrieve action](agentic-retrieval-how-to-retrieve.md) to govern the size of the response or `maxRuntimeInSeconds` for time-bound processing.
+
++ Chunk large documents into smaller pieces before indexing. Documents that exceed the output budget can be [silently omitted from grounded results](agentic-retrieval-how-to-retrieve.md#troubleshoot-empty-responses).
 
 ## Related content
 

@@ -1,6 +1,6 @@
 ---
 title: "What is Microsoft Foundry Control Plane?"
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: concept-article
 ms.date: 02/19/2026
 ms.reviewer: mesameki

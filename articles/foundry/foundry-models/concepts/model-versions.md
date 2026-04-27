@@ -1,8 +1,8 @@
 ---
 title: "Model versioning in Microsoft Foundry Models"
 description: Learn how model versions work in Microsoft Foundry Models. Understand update policies, deployment options, and how to manage version upgrades effectively.
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: concept-article
 ms.custom:
   - ignite-2024, github-universe-2024, pilot-ai-workflow-jan-2026

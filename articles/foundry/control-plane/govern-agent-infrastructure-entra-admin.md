@@ -1,19 +1,19 @@
 ---
-title: Govern agent infrastructure as a Microsoft Entra global administrator
-description: Learn how to elevate access, assign the right roles, and take infrastructure-level actions on Foundry agents as a Microsoft Entra global administrator.
+title: Govern agent infrastructure as a Microsoft Entra administrator
+description: Learn how to elevate access, assign the right roles, and take infrastructure-level actions on Foundry agents as a Microsoft Entra administrator.
 ms.topic: how-to
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.date: 02/27/2026
 ms.author: mahender
 author: mattchenderson
 ms.custom: dev-focus
 ai-usage: ai-assisted
-#customer intent: As an Entra Global Administrator, I want to understand how to govern Foundry agent infrastructure so that I can manage agents responsibly without disrupting shared resources.
+#customer intent: As a Microsoft Entra administrator, I want to understand how to govern Foundry agent infrastructure so that I can manage agents responsibly without disrupting shared resources.
 ---
 
-# Govern agent infrastructure as a Microsoft Entra global administrator
+# Govern agent infrastructure as a Microsoft Entra administrator
 
-As a Microsoft Entra global administrator, you might need to take action on Microsoft Foundry agents running in your tenant. Before you do, it's important to understand that the actions available to you in Foundry are **infrastructure actions**, not just runtime governance. When you stop or delete an agent, you're operating on Azure resources that might serve multiple tenants or teams.
+As a Microsoft Entra administrator, you might need to take action on Microsoft Foundry agents running in your tenant. Before you do, it's important to understand that the actions available to you in Foundry are **infrastructure actions**, not just runtime governance. When you stop or delete an agent, you're operating on Azure resources that might serve multiple tenants or teams.
 
 This article helps you get the access you need, understand how admin center actions map to Azure resource operations, and make informed decisions about when and how to intervene. The guidance here focuses on infrastructure-level governance of agents built with [Foundry Agent Service](../agents/overview.md) as a fallback for situations that require direct administrative action.
 
@@ -22,7 +22,17 @@ This article helps you get the access you need, understand how admin center acti
 
 ## Prerequisites
 
-- A [Microsoft Entra Global Administrator](/entra/identity/role-based-access-control/permissions-reference#global-administrator) role assignment. If your organization uses [Privileged Identity Management (PIM)](/entra/id-governance/privileged-identity-management/pim-configure), activate your Global Administrator role assignment before proceeding.
+- One of the following Microsoft Entra role assignments:
+  - [Microsoft Entra Global Administrator](/entra/identity/role-based-access-control/permissions-reference#global-administrator)
+  - [Microsoft Entra AI Administrator](/entra/identity/role-based-access-control/permissions-reference#ai-administrator)
+- If your organization uses [Privileged Identity Management (PIM)](/entra/id-governance/privileged-identity-management/pim-configure), activate your role assignment before proceeding.
+
+> [!IMPORTANT]
+> **AI Administrators**: You cannot perform the [access elevation procedure](#elevate-access-to-manage-azure-subscriptions) yourself. You should coordinate with the agent owner first, who can either:
+> - Take the infrastructure actions on your behalf
+> - Grant you necessary Azure role assignments on the specific resources
+> 
+> If you cannot identify or reach the agent owner, coordinate with a Global Administrator as an alternative.
 
 > [!NOTE]
 > You don't need existing access to Azure subscriptions. This article walks you through how to [elevate your access](#elevate-access-to-manage-azure-subscriptions) to get visibility into the Azure resources that back Foundry agents.
@@ -43,23 +53,78 @@ For a full description of agent lifecycle operations, see [Manage agents in Foun
 
 ### Infrastructure actions vs. admin center actions
 
-The actions available in the Foundry Control Plane are **infrastructure operations** on Azure resources. They're not the same as the **Block** and **Unblock** actions you might be familiar with in Microsoft 365 Admin Center. If an agent application serves a multitenant scenario, infrastructure actions affect **all consumers** of that agent, not just your tenant's users.
+The actions available in the Foundry Control Plane are **infrastructure operations** on Azure resources. They're different from the **Block** and **Unblock** actions you might be familiar with in Microsoft 365 Admin Center.
 
-- [**Stop** and **Start**](how-to-manage-agents.md#start-and-stop-agents) operate on individual deployments by deallocating or provisioning compute. They affect the underlying Azure infrastructure, not just how an agent is used in your organization.
+**Block actions** in Microsoft 365 Admin Center and Teams Admin Center affect agent visibility to users:
+- **Scope**: Only affects agent projection in Teams and Microsoft 365 Copilot
+- **Impact**: Users cannot access the agent through these specific channels
+- **Foundry Access**: The agent remains fully functional in Foundry portal and other integration points
+- **Infrastructure**: No impact on underlying Azure resources or compute
+
+**Infrastructure actions** in Foundry Control Plane affect the agent's underlying resources:
+- [**Stop** and **Start**](how-to-manage-agents.md#start-and-stop-agents) operate on individual deployments by deallocating or provisioning compute. They affect the underlying Azure infrastructure and make the agent unavailable across all channels (Teams, Microsoft 365 Copilot, Foundry, APIs).
 - **Delete** permanently removes Azure resources. For published agents, this includes the Agent Application and its deployments. This action can't be undone.
+
+If an agent application serves a multitenant scenario, infrastructure actions affect **all consumers** of that agent, not just your tenant's users.
 
 Always prefer **Stop** over **Delete**. Stopping preserves the option to restart later. Delete should be a last resort, used only after you've coordinated with resource owners and confirmed the agent should never run again.
 
 ## Elevate access to manage Azure subscriptions
 
-Microsoft Entra ID and Azure use independent access control systems. Your Global Administrator role doesn't automatically grant you access to Azure subscriptions. To see and manage the Azure resources that back Foundry agents, you need to elevate your access.
+Microsoft Entra ID and Azure use independent access control systems. Your administrator role doesn't automatically grant you access to Azure subscriptions. To see and manage the Azure resources that back Foundry agents, you need to elevate your access.
+
+> [!IMPORTANT]
+> **AI Administrators**: You cannot perform this elevation procedure. Contact the agent owner first, who can either:
+> - Take the required infrastructure actions on your behalf
+> - Assign you necessary Azure roles on the specific resources
+> 
+> If you cannot identify or reach the agent owner, contact a Global Administrator as an alternative to perform the elevation and assign you necessary Azure roles.
 
 Elevation assigns you the **User Access Administrator** role at root scope (`/`), which gives you visibility into all subscriptions and management groups in your tenant.
 
 For the full procedure, see [Elevate access to manage all Azure subscriptions and management groups](/azure/role-based-access-control/elevate-access-global-admin).
 
 > [!IMPORTANT]
-> Remove your elevated access as soon as you finish. Elevation at root scope is a powerful permission, and the principle of least privilege applies. If your organization uses PIM, deactivate your Global Administrator role assignment after you remove the elevation toggle.
+> Remove your elevated access as soon as you finish. Elevation at root scope is a powerful permission, and the principle of least privilege applies. Follow the [de-elevation procedure](#remove-elevated-access) when you complete your tasks. If your organization uses PIM, deactivate your Global Administrator role assignment after you remove the elevation toggle.
+
+## Remove elevated access
+
+When you finish your administrative tasks, remove your elevated permissions in reverse order:
+
+1. **Remove Azure role assignments**: Remove any Azure AI roles you assigned to yourself (such as Azure AI Owner) from the specific Foundry projects or resource groups.
+
+   **Azure portal**:
+   1. In the Azure portal, navigate to the resource where you assigned yourself roles.
+   1. Select **Access control (IAM)** > **Role assignments**.
+   1. Find your user account in the role assignments list.
+   1. Select the assignment and choose **Remove**.
+
+   **Azure CLI**:
+   ```azurecli
+   # List current role assignments to find the assignment ID
+   az role assignment list --assignee <your-email> --scope <resource-scope>
+   
+   # Remove the specific role assignment
+   az role assignment delete --ids <assignment-id>
+   ```
+
+1. **Remove User Access Administrator role**: Remove the root-level User Access Administrator role from the elevation procedure.
+
+   **Azure portal**:
+   1. In the Azure portal, go to **Microsoft Entra ID** > **Properties**.
+   1. Under **Access management for Azure resources**, set the toggle to **No**.
+   1. Select **Save**.
+
+   **Azure CLI**:
+   ```azurecli
+   # Remove the User Access Administrator role at root scope
+   az role assignment delete \
+     --assignee <your-email> \
+     --role "User Access Administrator" \
+     --scope "/"
+   ```
+
+This two-step process ensures you remove both the specific permissions you granted yourself and the broad elevation that enabled those grants.
 
 ## Coordinate with resource owners
 
@@ -168,4 +233,4 @@ az rest --method delete \
 - [Manage agents in Foundry Control Plane](how-to-manage-agents.md)
 - [What is Microsoft Foundry Control Plane?](overview.md)
 - [Agent identity concepts in Microsoft Foundry](../agents/concepts/agent-identity.md)
-- [Publish and share agents in Microsoft Foundry](../agents/how-to/publish-agent.md)
+- [Agent applications in Microsoft Foundry](../agents/how-to/agent-applications.md)

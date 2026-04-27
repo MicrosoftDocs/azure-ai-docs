@@ -1,8 +1,8 @@
 ---
 title: "Data, privacy, and security for use of models through the model catalog in Microsoft Foundry portal (classic)"
 description: "Get details about how data that customers provide is processed, used, and stored when a user deploys a model from the model catalog. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.custom: references_regions, build-2024
 ms.topic: concept-article
 ms.date: 01/26/2026

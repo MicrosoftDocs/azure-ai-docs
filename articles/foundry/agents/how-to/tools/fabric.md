@@ -5,8 +5,8 @@ author: alvinashcraft
 ms.author: aashcraft
 manager: nitinme
 ms.date: 03/30/2026
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-agent-service
+ms.service: microsoft-foundry
+ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - build-2025

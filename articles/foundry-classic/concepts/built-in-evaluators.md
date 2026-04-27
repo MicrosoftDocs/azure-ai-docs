@@ -5,7 +5,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: skohlmeier
 ms.date: 02/12/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: article
 ms.custom:
   - classic-and-new

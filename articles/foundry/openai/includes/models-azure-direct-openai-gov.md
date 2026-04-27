@@ -3,7 +3,7 @@ title: Azure OpenAI in Microsoft Foundry Models in Azure Government
 author: challenp
 ms.author: challenp
 ms.date: 04/03/2026
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.custom: classic-and-new
 ---

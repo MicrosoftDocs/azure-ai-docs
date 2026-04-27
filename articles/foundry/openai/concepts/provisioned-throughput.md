@@ -2,8 +2,8 @@
 title: "What is provisioned throughput for Foundry Models?"
 description: "Learn how provisioned throughput gives you dedicated AI model capacity with predictable latency, how PTUs and quota relate, and when to use provisioned throughput over standard deployments."
 ai-usage: ai-assisted
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai
+ms.service: microsoft-foundry
+ms.subservice: foundry-openai
 ms.topic: concept-article
 ms.date: 04/06/2026
 ms.custom:

@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 04/09/2026
+ms.date: 04/16/2026
 author: PatrickFarley
 ms.author: pafarley
 reviewer: PatrickFarley
@@ -9,7 +9,15 @@ ms.reviewer: pafarley
 ---
 
 > [!IMPORTANT]
+> Speech SDK 1.48.2 and newer releases include a critical fix for Certificate Revocation List (CRL) partitioning on Linux and Android. If you use either platform with CRL checking enabled, upgrade to 1.48.2 or newer before July 1, 2026. For details, see [CRL compatibility update](../../migrate-to-sdk-1-48-2.md).
+
+> [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK was retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.49.1: 2026-April release
+
+#### Bug fixes:
+  * Fixed a crash in embedded speech telemetry handling.
 
 ### Speech SDK 1.49: 2026-April release
 

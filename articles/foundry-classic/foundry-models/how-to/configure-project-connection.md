@@ -1,8 +1,8 @@
 ---
 title: "Configure a connection to use Microsoft Foundry Models in your AI project (classic)"
 description: "Learn how to configure a connection to use Microsoft Foundry Models in your project. (classic)"
-ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.service: microsoft-foundry
+ms.subservice: foundry-model-inference
 ms.topic: how-to
 ms.date: 03/31/2026
 ms.custom: ignite-2024, github-universe-2024

@@ -2,7 +2,7 @@
 title: "Tutorial: Build an AI assistant with tool calling"
 titleSuffix: Foundry Local
 description: Build an AI assistant that uses tool calling to perform actions like looking up information and doing calculations, all running locally with the Foundry Local SDK.
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.custom: build-2025, dev-focus
 ms.topic: tutorial
 ms.author: jburchel

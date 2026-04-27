@@ -3,7 +3,7 @@ title: include file
 description: include file
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-foundry
+ms.service: microsoft-foundry
 ms.topic: include
 ms.date: 03/19/2026
 ms.custom: include, classic-and-new
@@ -134,7 +134,7 @@ Azure AI Agent Service is **flexible and use-case agnostic.** This presents mult
 * **Computer Use**:  The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../openai/transparency-note.md?tabs=image). 
 * **Image Generation Tool**: The Image Generation tool is empowered by the gpt-image-1 model. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?branch=main&tabs=image).
 
-Agent samples have specific intended uses that are configurable by developers to carefully build upon, implement, and deploy agents. See [list of Agent samples](/azure/ai-foundry/agents/overview#agent-catalog).
+Agent samples have specific intended uses that are configurable by developers to carefully build upon, implement, and deploy agents. See the [agent manifests](/azure/ai-foundry/agents/concepts/agent-catalog).
 
 #### Considerations when choosing a use case
 
