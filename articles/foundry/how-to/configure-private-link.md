@@ -244,10 +244,10 @@ Code samples for how to run these Agent tools within a network secured set-up ca
 | Websearch | ✅ Supported | Public endpoint |
 | SharePoint Grounding | ✅ Supported | Public endpoint |
 | Foundry IQ (preview) | ✅ Supported | Via MCP |
-| Fabric Data Agent | ✅ Supported | Through private endpoint |
 | OpenAPI tool | ✅ Supported | Through your VNET |
 | Azure Functions | ✅ Supported | Through your VNET |
 | Agent-to-Agent (A2A) | ✅ Supported | Through your VNET |
+| Fabric Data Agent | ❌ Not supported | Under development |
 | Logic Apps | ❌ Not supported | Under development |
 | File Search | ❌ Not supported | Under development |
 | Browser Automation | ❌ Not supported | Under development |
@@ -300,10 +300,11 @@ The following features in Foundry do not yet support network isolation.
 
 For more Agent Service network isolation limitations, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks).
 
-### Other limitations 
+### Details on other limitations 
 
 - **Private AI Search with private Foundry agent tool**: If you are using your public network access disabled AI Search as an Agent tool with a network isolated Foundry resource, ensure you are using the new Foundry Portal to build your new agents. This scenario is not supported with the older version of the Agent service in the classic Foundry portal.
 - **Publishing Agents to Teams/M365**: You can publish your agent to Teams and M365 when your Foundry resource has public network access disabled. There are additional set-up requirements for this experience. For more information, please follow [this blog post on building custom engine agents when your Foundry resource is private](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/foundry-agents-and-custom-engine-agents-through-the-corporate-firewall/4502218).
+- **Hosted Agents with private Azure Container Registry**: If you would like to deploy hosted agents on Foundry, ensure your Azure Container Registry has public network access enabled. Public network access disabled with private endpoint Azure Container Registry is not yet supported with a private Foundry set-up. Hosted agents can be deployed on a private Foundry that was set-up using the existing networking templates. You do not need to redeploy your private and VNET injected Foundry. 
 
 ### Private endpoint limitations
 
