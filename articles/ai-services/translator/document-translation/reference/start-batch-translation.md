@@ -271,7 +271,7 @@ Make sure you specify the folder name (case sensitive) as prefix in filter.
 
 ## Translate image files
 
-Document translation now supports image file translation, which allows you to translate text within images. 
+Document translation now supports image file translation, which allows you to translate text within images.
 
 ### Request configuration (image files)
 
@@ -279,12 +279,12 @@ For image files translation, submit your image via a standard batch [Document Tr
 
 ### Supported formats (image files)
 
-|File Extension|Description|
-|--|--|
-|`.bmp `|A bitmap image file format used to store digital images in an uncompressed form, preserving high-quality visual details.|
-|`.jpeg` |A Joint Photographic Experts Group image file that uses a lossy compression method to reduce file size. This format doesn't support transparent backgrounds.|
-|`.png`| A Portable Network Graphics file that uses lossless compression, supports transparency, and can display up to 16 million color.|
-|`.webp`|A Web Picture image format that uses both lossy and lossless image compression methods to minimize file size while preserving high image quality.|
+| File Extension | Description |
+| --- | --- |
+| `.bmp` | A bitmap image file format used to store digital images in an uncompressed form, preserving high-quality visual details. |
+| `.jpeg` | A Joint Photographic Experts Group image file that uses a lossy compression method to reduce file size. This format doesn't support transparent backgrounds. |
+| `.png` | A Portable Network Graphics file that uses lossless compression, supports transparency, and can display up to 16 million color. |
+| `.webp` | A Web Picture image format that uses both lossy and lossless image compression methods to minimize file size while preserving high image quality. |
 
 ### Supported languages (image files)
 
@@ -294,26 +294,26 @@ For details on supported languages, *see* [Document Translation language support
 
 The following are the possible HTTP status codes that a request returns.
 
-|Status Code|Description|
-|--- |--- |
-|202|Accepted. Successful request and the batch request created. The header Operation-Location indicates a status url with the operation ID.HeadersOperation-Location: string|
-|400|Bad Request. Invalid request. Check input parameters.|
-|401|Unauthorized. Check your credentials.|
-|429|Request rate is too high.|
-|500|Internal Server Error.|
-|503|Service is currently unavailable. Try again later.|
-|Other Status Codes|&bullet; Too many requests. The server is temporary unavailable|
+| Status Code | Description |
+| --- | --- |
+| 202 | Accepted. Successful request and the batch request created. The header Operation-Location indicates a status url with the operation ID.HeadersOperation-Location: string |
+| 400 | Bad Request. Invalid request. Check input parameters. |
+| 401 | Unauthorized. Check your credentials. |
+| 429 | Request rate is too high. |
+| 500 | Internal Server Error. |
+| 503 | Service is currently unavailable. Try again later. |
+| Other Status Codes | &bullet; Too many requests. The server is temporary unavailable |
 
 ## Error response
 
-|Key parameter|Type|Description|
-|--- |--- |--- |
-|code|`string`|Enums containing high-level error codes. Accepted values:</br/>&bullet; InternalServerError</br>&bullet; InvalidArgument</br>&bullet; InvalidRequest</br>&bullet; RequestRateTooHigh</br>&bullet; ResourceNotFound</br>&bullet; ServiceUnavailable</br>&bullet; Unauthorized|
-|message|`string`|Gets high-level error message.|
-|innerError|InnerTranslationError|New Inner Error format that conforms to Foundry Tools API Guidelines. This error message contains required properties: ErrorCode, message, and optional properties target, details(key value pair), and inner error(it can be nested).|
-|inner.Errorcode|`string`|Gets code error string.|
-|innerError.message|`string`|Gets high-level error message.|
-|innerError.target|`string`|Gets the source of the error. For example, it would be `documents` or `document id` if the document is invalid.|
+| Key parameter | Type | Description |
+| --- | --- | --- |
+| code | `string` | Enums containing high-level error codes. Accepted values:</br/>&bullet; InternalServerError</br>&bullet; InvalidArgument</br>&bullet; InvalidRequest</br>&bullet; RequestRateTooHigh</br>&bullet; ResourceNotFound</br>&bullet; ServiceUnavailable</br>&bullet; Unauthorized |
+| message | `string` | Gets high-level error message. |
+| innerError | InnerTranslationError | New Inner Error format that conforms to Foundry Tools API Guidelines. This error message contains required properties: ErrorCode, message, and optional properties target, details(key value pair), and inner error(it can be nested). |
+| inner.Errorcode | `string` | Gets code error string. |
+| innerError.message | `string` | Gets high-level error message. |
+| innerError.target | `string` | Gets the source of the error. For example, it would be `documents` or `document id` if the document is invalid. |
 
 ### Example error response
 

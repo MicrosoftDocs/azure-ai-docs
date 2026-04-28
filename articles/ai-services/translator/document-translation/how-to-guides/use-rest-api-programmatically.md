@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 11/18/2025
+ms.date: 05/01/2026
 ms.author: lajanuar
 recommendations: false
 ms.devlang: csharp
@@ -153,7 +153,7 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-## Translate a specific document in a container
+## Translate a specific document in blob storage container
 
 * Specify `"storageType": "File"`.
 * If you aren't using a [**system-assigned managed identity**](create-use-managed-identities.md) for authentication, make sure you created source URL & SAS tokens for the specific blob/document (not for the container).
@@ -220,9 +220,9 @@ Document translation supports text translation within images in Word documents a
 
 * **Response Details**. When the feature is enabled, added image processing information is included with the response:
 
-   * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
+  * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
 
-   * **`totalImageScansFailed`**. The number of image scans that failed processing.
+  * **`totalImageScansFailed`**. The number of image scans that failed processing.
 
 * Here's a sample JSON response:
 
