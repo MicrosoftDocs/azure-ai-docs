@@ -91,8 +91,8 @@ To add a model connection in the Foundry portal:
     Repeat the preceding steps to add more models to the connection if needed.
 1. On the **Advanced** page, optionally do the following steps:
     1. Enter an **API version** if required by your model deployments.
-    1. Enable the **Include deployment name in URL path** setting if your gateway exposes the chat completions API on an OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
-       Leave the setting disabled if your gateway uses an Azure OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
+    1. Enable the **Include deployment name in URL path** setting if your gateway exposes the chat completions API on an Azure OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
+       Leave the setting disabled if your gateway uses an OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
     1. Select **+ Add header** to add a static header that should be included in requests to the gateway. Repeat to add multiple headers if needed.
 1. Select **Add**.
 
@@ -165,8 +165,8 @@ To configure **Managed Identity** authentication to API Management, complete the
 
 1. On the **Advanced** page, optionally do the following steps:
     1. Enter an **API version** if required by your model deployments.
-    1. Enable the **Include deployment name in URL path** setting if your gateway exposes the chat completions API on an OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
-       Leave the setting disabled if your gateway uses an Azure OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
+    1. Enable the **Include deployment name in URL path** setting if your gateway exposes the chat completions API on an Azure OpenAI-style path that includes the deployment name (for example, `/deployments/{deploymentName}/chat/completions`). 
+       Leave the setting disabled if your gateway uses an OpenAI-style path without the deployment name (for example, `/chat/completions`) and relies on other routing mechanisms to direct requests to the correct model deployment.
     1. Select **+ Add header** to add a static header that should be included in requests to the gateway. Repeat to add multiple headers if needed.
 1. Select **Add**.
 
