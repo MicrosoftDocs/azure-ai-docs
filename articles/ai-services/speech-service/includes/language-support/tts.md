@@ -1,4 +1,4 @@
-﻿∩╗┐---
+﻿---
 author: PatrickFarley
 reviewer: patrickfarley
 ms.service: azure-ai-speech
