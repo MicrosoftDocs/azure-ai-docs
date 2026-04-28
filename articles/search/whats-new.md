@@ -1,7 +1,7 @@
 ---
 title: What's New
 description: Stay up to date with the latest Azure AI Search features, updates, and announcements. Discover new capabilities for search, vector, and AI-powered retrieval.
-ms.date: 04/24/2026
+ms.date: 04/28/2026
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -23,6 +23,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Item | Description |
 |--|--|
 | [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | New stable REST API version providing programmatic access to the data plane operations described in this table. |
+| [Knowledge bases](agentic-retrieval-how-to-create-knowledge-base.md) | Now generally available. REST API version 2026-04-01 supports extractive retrieval from generally available knowledge source types. Preview-only capabilities, including query planning, answer synthesis, and configurable reasoning effort, require the 2025-11-01-preview. |
+| [Search index knowledge sources](agentic-knowledge-source-how-to-search-index.md) | Now generally available. |
+| [Blob knowledge sources](agentic-knowledge-source-how-to-blob.md) | Now generally available. However, support for document-level permissions via `ingestionPermissionOptions` remains in preview and requires the 2025-11-01-preview. |
+| [OneLake knowledge sources](agentic-knowledge-source-how-to-onelake.md) | Now generally available. However, support for document-level permissions via `ingestionPermissionOptions` remains in preview and requires the 2025-11-01-preview. |
+| [Web knowledge sources](agentic-knowledge-source-how-to-web.md) | Now generally available. For REST API version 2026-04-01, the knowledge base must include a model reference to provide the LLM for web content summarization. |
+| [Knowledge source status API](agentic-knowledge-source-how-to-blob.md#check-ingestion-status) | Now generally available. The `kind` field and per-document error arrays are new in REST API version 2026-04-01. |
 | [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) | Now generally available. |
 | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) | Now generally available. |
 | [GenAI Prompt skill property removals](cognitive-search-skill-genai-prompt.md) | Starting with REST API version 2026-04-01, the following properties are removed from the GenAI Prompt skill definition: `httpMethod`, `timeout`, `batchSize`, `degreeOfParallelism`, `httpHeaders`, and `authResourceId`. The request timeout is fixed at 30 seconds and can't be overridden. If your skill definitions include any of these properties, remove them to avoid validation errors. |

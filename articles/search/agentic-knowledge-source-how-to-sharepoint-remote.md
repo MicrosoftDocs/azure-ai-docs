@@ -73,23 +73,7 @@ The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/
 
 ## Check for existing knowledge sources
 
-::: zone pivot="csharp"
-
-[!INCLUDE [Check for existing knowledge sources using C#](includes/how-tos/knowledge-source-check-csharp.md)]
-
-::: zone-end
-
-::: zone pivot="python"
-
-[!INCLUDE [Check for existing knowledge sources using Python](includes/how-tos/knowledge-source-check-python.md)]
-
-::: zone-end
-
-::: zone pivot="rest"
-
-[!INCLUDE [Check for existing knowledge sources using REST](includes/how-tos/knowledge-source-check-rest.md)]
-
-::: zone-end
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for a remote SharePoint knowledge source.
 
@@ -112,9 +96,9 @@ The following JSON is an example response for a remote SharePoint knowledge sour
 
 ## Create a knowledge source
 
-::: zone pivot="csharp"
-
 Run the following code to create a remote SharePoint knowledge source.
+
+::: zone pivot="csharp"
 
 ```csharp
 // Create a remote SharePoint knowledge source
@@ -139,11 +123,11 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(knowledgeSource);
 Console.WriteLine($"Knowledge source '{knowledgeSource.Name}' created or updated successfully.");
 ```
 
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true), [RemoteSharePointKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.remotesharepointknowledgesource?view=azure-dotnet-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="python"
-
-Run the following code to create a remote SharePoint knowledge source.
 
 ```python
 # Create a remote SharePoint knowledge source
@@ -168,13 +152,14 @@ index_client.create_or_update_knowledge_source(knowledge_source)
 print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
 ```
 
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
+
 ::: zone-end
 
 ::: zone pivot="rest"
 
-Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create a remote SharePoint knowledge source.
-
 ```http
+### Create a remote SharePoint knowledge source
 PUT {{search-url}}/knowledgesources/my-remote-sharepoint-ks?api-version=2025-11-01-preview
 api-key: {{api-key}}
 Content-Type: application/json
@@ -191,6 +176,8 @@ Content-Type: application/json
     }
 }
 ```
+
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -291,6 +278,8 @@ var result = await kbClient.RetrieveAsync(
 );
 ```
 
+**Reference:** [KnowledgeBaseRetrievalClient](/dotnet/api/azure.search.documents.knowledgebases.knowledgebaseretrievalclient?view=azure-dotnet-preview&preserve-view=true), [KnowledgeBaseRetrievalRequest](/dotnet/api/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest?view=azure-dotnet-preview&preserve-view=true)
+
 ::: zone-end
 
 ::: zone pivot="python"
@@ -330,6 +319,8 @@ result = kb_client.retrieve(
 )
 ```
 
+**Reference:** [KnowledgeBaseRetrievalClient](/python/api/azure-search-documents/azure.search.documents.knowledgebases.knowledgebaseretrievalclient), [KnowledgeBaseRetrievalRequest](/python/api/azure-search-documents/azure.search.documents.knowledgebases.models.knowledgebaseretrievalrequest)
+
 ::: zone-end
 
 ::: zone pivot="rest"
@@ -337,6 +328,7 @@ result = kb_client.retrieve(
 You can pass a `filterExpressionAddOn` in the `knowledgeSourceParams` on the retrieve request to apply a KQL filter at query time. If you specify `filterExpressionAddOn` on the retrieve request and a `filterExpression` on the knowledge source definition, the filters are AND'd together.
 
 ```http
+### Retrieve knowledge base content
 POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
@@ -360,6 +352,8 @@ x-ms-query-source-authorization: {{user-access-token}}
     ]
 }
 ```
+
+**Reference:** [Knowledge Retrieval - Retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 
 ::: zone-end
 
@@ -418,23 +412,7 @@ For instructions on passing the token, see [Enforce permissions at query time](a
 
 ## Delete a knowledge source
 
-::: zone pivot="csharp"
-
-[!INCLUDE [Delete knowledge source using C#](includes/how-tos/knowledge-source-delete-csharp.md)]
-
-::: zone-end
-
-::: zone pivot="python"
-
-[!INCLUDE [Delete knowledge source using Python](includes/how-tos/knowledge-source-delete-python.md)]
-
-::: zone-end
-
-::: zone pivot="rest"
-
-[!INCLUDE [Delete knowledge source using REST](includes/how-tos/knowledge-source-delete-rest.md)]
-
-::: zone-end
+[!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Related content
 

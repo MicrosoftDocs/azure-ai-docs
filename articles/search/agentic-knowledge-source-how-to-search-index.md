@@ -3,7 +3,7 @@ title: Create a Search Index Knowledge Source
 description: Learn how to create a search index knowledge source, which specifies an index used by a knowledge base for agentic retrieval workloads.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 04/28/2026
 zone_pivot_groups: search-csharp-python-rest
 ---
 
@@ -15,7 +15,7 @@ A *search index knowledge source* specifies a connection to an Azure AI Search i
 
 ### Usage support
 
-| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true) |
+| [Azure portal](get-started-portal-agentic-retrieval.md) | [Microsoft Foundry portal](/azure/ai-foundry/agents/concepts/what-is-foundry-iq#workflow) | [.NET SDK](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md) | [Python SDK](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [Java SDK](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) | [JavaScript SDK](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md) | [REST API](/rest/api/searchservice/knowledge-sources) |
 |--|--|--|--|--|--|--|
 | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
@@ -29,41 +29,37 @@ A *search index knowledge source* specifies a connection to an Azure AI Search i
 
 ::: zone pivot="csharp"
 
-+ The latest [`Azure.Search.Documents` preview package](https://www.nuget.org/packages/Azure.Search.Documents/11.8.0-beta.1): `dotnet add package Azure.Search.Documents --prerelease`
++ Required [Azure.Search.Documents](https://www.nuget.org/packages/Azure.Search.Documents) package:
+
+  + For 2025-11-01-preview features, the latest preview package: `dotnet add package Azure.Search.Documents --prerelease`
+
+  + For 2026-04-01 features, the latest stable package: `dotnet add package Azure.Search.Documents`
 
 ::: zone-end
 
 ::: zone pivot="python"
 
-+ The latest [`azure-search-documents` preview package](https://pypi.org/project/azure-search-documents/11.7.0b2/): `pip install --pre azure-search-documents`
++ Required [azure-search-documents](https://pypi.org/project/azure-search-documents/) package:
+
+  + For 2025-11-01-preview features, the latest preview package: `pip install azure-search-documents --pre`
+
+  + For 2026-04-01 features, the latest stable package: `pip install azure-search-documents`
 
 ::: zone-end
 
 ::: zone pivot="rest"
 
-+ The [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) version of the Search Service REST APIs.
++ Required REST API version:
+
+  + For preview features: [Search Service 2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+
+  + For generally available features: [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true)
 
 ::: zone-end
 
 ## Check for existing knowledge sources
 
-::: zone pivot="csharp"
-
-[!INCLUDE [Check for existing knowledge sources using C#](includes/how-tos/knowledge-source-check-csharp.md)]
-
-::: zone-end
-
-::: zone pivot="python"
-
-[!INCLUDE [Check for existing knowledge sources using Python](includes/how-tos/knowledge-source-check-python.md)]
-
-::: zone-end
-
-::: zone pivot="rest"
-
-[!INCLUDE [Check for existing knowledge sources using REST](includes/how-tos/knowledge-source-check-rest.md)]
-
-::: zone-end
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check.md)]
 
 The following JSON is an example response for a search index knowledge source. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
 
@@ -84,9 +80,11 @@ The following JSON is an example response for a search index knowledge source. N
 
 ## Create a knowledge source
 
+Run the following code to create a search index knowledge source.
+
 ::: zone pivot="csharp"
 
-Run the following code to create a search index knowledge source.
+# [2025-11-01-preview](#tab/2025-11-01-preview)
 
 ```csharp
 // Create a search index knowledge source
@@ -108,11 +106,39 @@ await indexClient.CreateOrUpdateKnowledgeSourceAsync(indexKnowledgeSource);
 Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated successfully.");
 ```
 
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet-preview&preserve-view=true), [SearchIndexKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.searchindexknowledgesource?view=azure-dotnet-preview&preserve-view=true)
+
+# [2026-04-01](#tab/2026-04-01)
+
+```csharp
+// Create a search index knowledge source
+using Azure.Search.Documents.Indexes;
+using Azure.Search.Documents.Indexes.Models;
+using Azure;
+
+var indexClient = new SearchIndexClient(new Uri(searchEndpoint), new AzureKeyCredential(apiKey));
+
+var indexKnowledgeSource = new SearchIndexKnowledgeSource(
+    name: knowledgeSourceName,
+    searchIndexParameters: new SearchIndexKnowledgeSourceParameters(searchIndexName: indexName)
+    {
+        SourceDataFields = { new SearchIndexFieldReference(name: "id"), new SearchIndexFieldReference(name: "page_chunk"), new SearchIndexFieldReference(name: "page_number") }
+    }
+);
+
+await indexClient.CreateOrUpdateKnowledgeSourceAsync(indexKnowledgeSource);
+Console.WriteLine($"Knowledge source '{knowledgeSourceName}' created or updated successfully.");
+```
+
+**Reference:** [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient?view=azure-dotnet&preserve-view=true), [SearchIndexKnowledgeSource](/dotnet/api/azure.search.documents.indexes.models.searchindexknowledgesource?view=azure-dotnet&preserve-view=true)
+
+---
+
 ::: zone-end
 
 ::: zone pivot="python"
 
-Run the following code to create a search index knowledge source.
+# [2025-11-01-preview](#tab/2025-11-01-preview)
 
 ```python
 # Create a search index knowledge source
@@ -143,13 +169,51 @@ index_client.create_or_update_knowledge_source(knowledge_source)
 print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
 ```
 
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
+
+# [2026-04-01](#tab/2026-04-01)
+
+```python
+# Create a search index knowledge source
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents.indexes import SearchIndexClient
+from azure.search.documents.indexes.models import SearchIndexKnowledgeSource, SearchIndexKnowledgeSourceParameters, SearchIndexFieldReference
+
+index_client = SearchIndexClient(endpoint = "search_url", credential = AzureKeyCredential("api_key"))
+
+knowledge_source = SearchIndexKnowledgeSource(
+    name = "my-search-index-ks",
+    description= "This knowledge source pulls from an existing index designed for agentic retrieval.",
+    encryption_key = None,
+    search_index_parameters = SearchIndexKnowledgeSourceParameters(
+        search_index_name = "search_index_name",
+        semantic_configuration_name = "semantic_configuration_name",
+        source_data_fields = [
+            SearchIndexFieldReference(name="description"),
+            SearchIndexFieldReference(name="category"),
+        ],
+        search_fields = [
+            SearchIndexFieldReference(name="id")
+        ],
+    )
+)
+
+index_client.create_or_update_knowledge_source(knowledge_source)
+print(f"Knowledge source '{knowledge_source.name}' created or updated successfully.")
+```
+
+**Reference:** [SearchIndexClient](/python/api/azure-search-documents/azure.search.documents.indexes.searchindexclient)
+
+---
+
 ::: zone-end
 
 ::: zone pivot="rest"
 
-Use [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) to create a search index knowledge source.
+# [2025-11-01-preview](#tab/2025-11-01-preview)
 
 ```http
+### Create a search index knowledge source
 PUT {{search-url}}/knowledgesources/my-search-index-ks?api-version=2025-11-01-preview
 api-key: {{api-key}}
 Content-Type: application/json
@@ -170,11 +234,41 @@ Content-Type: application/json
 }
 ```
 
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+
+# [2026-04-01](#tab/2026-04-01)
+
+```http
+### Create a search index knowledge source
+PUT {{search-url}}/knowledgesources/my-search-index-ks?api-version=2026-04-01
+api-key: {{api-key}}
+Content-Type: application/json
+
+{
+    "name": "my-search-index-ks",
+    "kind": "searchIndex",
+    "description": "This knowledge source pulls from an existing index designed for agentic retrieval.",
+    "encryptionKey": null,
+    "searchIndexParameters": {
+        "searchIndexName": "<YOUR INDEX NAME>",
+        "semanticConfigurationName": "my-semantic-config",
+        "sourceDataFields": [
+          { "name": "description" },
+          { "name": "category" }
+        ]
+    }
+}
+```
+
+**Reference:** [Knowledge Sources - Create or Update](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2026-04-01&preserve-view=true)
+
+---
+
 ::: zone-end
 
 ### Source-specific properties
 
-You can pass the following properties to create a search index knowledge source.
+For both the 2025-11-01-preview and 2026-04-01 API versions, you can pass the following properties to create a search index knowledge source.
 
 ::: zone pivot="csharp"
 
@@ -230,23 +324,7 @@ After the knowledge base is configured, use the [retrieve action](agentic-retrie
 
 ## Delete a knowledge source
 
-::: zone pivot="csharp"
-
-[!INCLUDE [Delete knowledge source using C#](includes/how-tos/knowledge-source-delete-csharp.md)]
-
-::: zone-end
-
-::: zone pivot="python"
-
-[!INCLUDE [Delete knowledge source using Python](includes/how-tos/knowledge-source-delete-python.md)]
-
-::: zone-end
-
-::: zone pivot="rest"
-
-[!INCLUDE [Delete knowledge source using REST](includes/how-tos/knowledge-source-delete-rest.md)]
-
-::: zone-end
+[!INCLUDE [Delete a knowledge source](includes/how-tos/knowledge-source-delete.md)]
 
 ## Related content
 
