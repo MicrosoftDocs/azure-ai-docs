@@ -7,8 +7,9 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: 
     - azure-ai-agents
     - dev-focus

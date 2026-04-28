@@ -1,8 +1,9 @@
 ---
 title: "OpenAPI spec code samples (classic)"
 description: "Find code samples to use OpenAPI tools with agents. (classic)"
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 manager: nitinme
 ms.date: 03/06/2026
 ms.service: microsoft-foundry

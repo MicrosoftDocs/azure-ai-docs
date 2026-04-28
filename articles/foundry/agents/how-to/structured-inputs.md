@@ -7,8 +7,9 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/31/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, dev-focus, doc-kit-assisted
 zone_pivot_groups: selection-structured-inputs
 ai-usage: ai-assisted
