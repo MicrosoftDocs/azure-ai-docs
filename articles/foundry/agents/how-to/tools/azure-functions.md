@@ -8,8 +8,10 @@ ms.service: microsoft-foundry
 ms.subservice: foundry-agent-service
 ms.topic: how-to
 ms.date: 03/30/2026
-author: alvinashcraft
-ms.author: aashcraft
+author: jonburchel
+reviewer: lindazqli
+ms.author: jburchel
+ms.reviewer: zhuoqunli
 ms.custom: azure-ai-agents, doc-kit-assisted
 zone_pivot_groups: selection-azure-function-tool
 ai-usage: ai-assisted
@@ -17,7 +19,7 @@ ai-usage: ai-assisted
 
 # Use Azure Functions with Foundry Agent Service
 
-Learn how to integrate [Azure Functions](/azure/azure-functions/functions-overview) with Microsoft Foundry agents by using a queue-based tool approach. This article shows you how to build custom serverless tools that agents can call asynchronously through Azure Queue storage. By using this approach, your agents can access enterprise systems and complex business logic with scale-to-zero pricing.
+Learn how to integrate [Azure Functions](/azure/azure-functions/functions-overview) with Microsoft Foundry agents by using a queue-based tool approach. This article shows you how to build custom serverless tools that an agent's Foundry model can call asynchronously through Azure Queue storage. By using this approach, your agents can access enterprise systems and complex business logic with scale-to-zero pricing.
 
 Foundry agents connect directly to the input queue monitored by Azure Functions by using a tool definition provided by `AzureFunctionsTool`. When an agent needs to use this Azure Functions hosted tool, it uses the tool definition to place a message in an input queue that's monitored by the function app in Azure Functions. An Azure Storage queue trigger invokes the function code to process the message and return a result through an output queue binding. The agent reads the message from the output queue to continue the conversation. 
 
