@@ -17,7 +17,7 @@ zone_pivot_groups: selection-function-calling-new
 ---
 
 # Use function calling with Microsoft Foundry agents
-Microsoft Foundry agents support function calling, which lets you extend agents with custom capabilities. Define a function with its name, parameters, and description, and the agent can request your app to call it. Your app executes the function and returns the output. The agent then uses the result to continue the conversation with accurate, real-time data from your systems.
+Microsoft Foundry agents support function calling, which lets you extend agents with custom capabilities. Define a function with its name, parameters, and description, and the agent's Foundry model can request your app to call it. Your app executes the function and returns the output. The agent then uses the result to continue the conversation with accurate, real-time data from your systems.
 
 > [!IMPORTANT]
 > Runs expire 10 minutes after creation. Submit your tool outputs before they expire.

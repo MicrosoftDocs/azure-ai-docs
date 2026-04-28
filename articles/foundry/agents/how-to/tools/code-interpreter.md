@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 # Code Interpreter tool for Microsoft Foundry agents
 
-Code Interpreter enables a Microsoft Foundry agent to run Python code in a sandboxed execution environment. Use this tool for data analysis, chart generation, and iterative problem-solving tasks that benefit from code execution.
+Code Interpreter enables a Microsoft Foundry agent to run Python code in a sandboxed execution environment. The agent's Foundry model writes and executes code for data analysis, chart generation, and iterative problem-solving tasks.
 
 In this article, you create an agent that uses Code Interpreter, upload a CSV file for analysis, and download a generated chart.
 
