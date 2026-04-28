@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 > [!NOTE]
 > Agent Manifests are for educational and experimentation purposes. Resulting agents are not production ready. Review all provided resources and carefully test agent behavior in the context of your use case. Agents you create may be subject to legal and regulatory requirements, may require licenses, or may not be suitable for all industries, scenarios, or use cases. By using any template, you are acknowledging that resulting agents and other output are solely your responsibility, and that you will comply with all applicable laws, regulations, and relevant safety standards, terms of service, and codes of conduct. See the [Transparency note for Azure Agent Service](../../responsible-ai/agents/transparency-note.md) for more information.
 
-Microsoft Foundry Agent Service provides a collection of pre-built agent manifests that help you easily jumpstart building and deploying agents with just a few clicks. Each manifest bundles a Foundry model configuration, prompt instructions, and tool definitions into a ready-to-use agent template. Browse manifests to find one that matches your scenario, select **Create Agent**, and start running it in minutes.
+Microsoft Foundry Agent Service provides a collection of pre-built agent manifests that help you easily jumpstart building and deploying agents with just a few clicks. Each manifest is an educational sample of a business automation agent and a prompt engineering learning resource. Browse manifests to find one that matches your scenario, select **Create Agent**, and start running it in minutes.
 
 Manifests serve two purposes:
 
