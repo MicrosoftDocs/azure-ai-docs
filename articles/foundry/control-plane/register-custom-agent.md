@@ -106,7 +106,7 @@ Your project is configured for observability and tracing.
     | **Agent URL** | The endpoint (URL) where your agent runs and receives requests. In general, but depending on your protocol, you indicate the base URL that your clients use. For example, if your agent uses the OpenAI Chat Completions API, you indicate `https://<host>/v1/` without `/chat/completions` because clients generally add it. | Yes |
     | **Protocol** | The communication protocol that your agent supports. Use HTTP in general. Or if your agent supports A2A more specifically, indicate that one. | Yes |
     | **A2A agent card URL** | The path to the agent card's JSON specification. If you don't specify it, the system uses the default `/.well-known/agent-card.json`. | No |
-    | **OpenTelemetry Agent ID** | The agent ID that your agent uses to emit traces according to OpenTelemetry semantic conventions for generative AI. Traces indicate it in the `gen_ai.agents.id` attribute for spans with the operation name `create_agent`. If you don't specify this value, the system uses the **Agent name** value to find traces and logs that this new agent reports. | No |
+    | **OpenTelemetry Agent ID** | The agent ID that your agent uses to emit traces according to OpenTelemetry semantic conventions for generative AI. Traces indicate it in the `gen_ai.agent.id` attribute for spans with the operation name `create_agent`. If you don't specify this value, the system uses the **Agent name** value to find traces and logs that this new agent reports. | No |
     | **Admin portal URL** | The administration portal URL where you can perform further administration operations for this agent. Foundry can store this value for convenience. Foundry doesn't have any access to perform operations directly to this portal. | No |
 
 1. Configure how you want the agent to appear in Foundry Control Plane:
@@ -142,16 +142,19 @@ To distribute the new URL so that your clients can call the agent:
 In this example, you deploy a LangGraph agent. Clients use the LangGraph SDK to consume it. The client uses the *new agent URL* value. This code creates a thread, sends a message asking about the weather, and streams the response back.
 
 ```python
+import asyncio
 from langgraph_sdk import get_client
 
-client = get_client(url="https://apim-my-foundry-resource.azure-api.net/my-custom-agent/") 
+client = get_client(url="https://apim-my-foundry-resource.azure-api.net/my-custom-agent/")
 
 async def stream_run():
-   thread = await client.threads.create()
-   input_data = {"messages": [{"role": "human", "content": "What's the weather in LA?"}]}
-   
-   async for chunk in client.runs.stream(thread['thread_id'], assistant_id="your_assistant_id", input=input_data):
-       print(chunk)
+    thread = await client.threads.create()
+    input_data = {"messages": [{"role": "human", "content": "What's the weather in LA?"}]}
+
+    async for chunk in client.runs.stream(thread['thread_id'], assistant_id="your_assistant_id", input=input_data):
+        print(chunk)
+
+asyncio.run(stream_run())
 ```
 
 **Expected output**: The agent processes the message and streams back responses as chunks. Each chunk contains partial results from the agent's execution. These results might include tool calls to the weather function and the final response about Los Angeles weather.
@@ -234,7 +237,7 @@ Then, instrument your agent:
 from langchain.agents import create_agent
 from langchain_azure_ai.callbacks.tracers import AzureAIOpenTelemetryTracer
 
-application_insights_connection_string = 'InstrumentationKey="12345678...'
+application_insights_connection_string = "InstrumentationKey=12345678-..."
 
 tracer = AzureAIOpenTelemetryTracer(
     connection_string=application_insights_connection_string,
@@ -272,7 +275,7 @@ If you don't see traces, check the following items:
 > - The project where you register your agent has Application Insights configured. If you configured Application Insights after you registered the custom agent, you need to unregister the agent and register it again. Application Insights configuration isn't automatically updated after registration if you changed it.
 > - You configured the agent (running on its infrastructure) to send traces to Application Insights, and you're using the same Application Insights resource that your project uses.
 > - Instrumentation complies with OpenTelemetry semantic conventions for generative AI.
-> - Traces include spans with attributes `operation="create_agent"` and `gen_ai.agents.id="<agent-id>"` (or `gen_ai.agents.name="<agent-id>"`). In the latter attribute, `"<agent-id>"` is the **OpenTelemetry Agent ID** value that you configured during registration.
+> - Traces include spans with attribute `gen_ai.operation.name="create_agent"` and `gen_ai.agent.id="<agent-id>"` (or `gen_ai.agent.name="<agent-id>"`). In the latter attribute, `"<agent-id>"` is the **OpenTelemetry Agent ID** value that you configured during registration.
 
 ## Related content
 
