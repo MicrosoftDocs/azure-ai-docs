@@ -166,9 +166,32 @@ Use this checklist to quickly verify your evaluation setup:
 
 1. **Propagation delay**: If you recently made RBAC or network changes, wait at least 10 minutes before retrying.
 
+## Human evaluation
+
+This section covers common issues with the human evaluation feature for Foundry agents.
+
+### Feedback button doesn't appear after the agent responds
+
+**Cause:** No evaluation template is set as active for the agent.
+
+**Resolution:** In the **Human Evaluation** tab, select **Set as active** for the desired template. Only one template can be active at a time. For more information, see [Set up human evaluation for your agents](human-evaluation.md#manage-your-evaluation-templates).
+
+### No results visible in the Evaluation Results section
+
+**Cause:** Application Insights isn't configured for the project, or there's a data ingestion delay (up to 5 minutes after an evaluation is submitted).
+
+**Resolution:** Verify that Application Insights is connected to your project. For setup instructions, see [Configure Application Insights for agent tracing](trace-agent-setup.md). If Application Insights is already configured, wait a few minutes and refresh the page.
+
+### Reviewer can't access the preview web app
+
+**Cause:** The reviewer doesn't have the required role on the Foundry project.
+
+**Resolution:** Assign the **Azure AI User** role to the reviewer on the Foundry project. For instructions, see [Role-based access control in Microsoft Foundry](../../concepts/rbac-foundry.md).
+
 ## Related content
 
 - [Add a new connection to your project](../../how-to/connections-add.md)
 - [Connect to your own storage](../../how-to/bring-your-own-azure-storage-foundry.md)
 - [Rate limits, region support, and enterprise features for evaluation](../../concepts/evaluation-regions-limits-virtual-network.md)
 - [Evaluate your AI agents](evaluate-agent.md)
+- [Set up human evaluation for your agents](human-evaluation.md)

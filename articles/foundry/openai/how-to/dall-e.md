@@ -109,7 +109,6 @@ token_provider = get_bearer_token_provider(
 client = OpenAI(  
   base_url = "https://RESOURCE-NAME-HERE/openai/v1/",  
   api_key=token_provider,
-  default_headers={"api_version":"preview"}
 )
 
 stream = client.images.generate(
