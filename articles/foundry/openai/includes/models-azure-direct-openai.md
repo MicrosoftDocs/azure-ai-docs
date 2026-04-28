@@ -424,7 +424,8 @@ All deployments can perform the exact same inference operations, but the billing
 
 ### Global Standard model availability
 
-[!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
+<!-- [!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)] -->
+[!INCLUDE [standard-global-by-capability](model-matrix/standard-global-by-capability.md)]
 
 > [!NOTE]
 > `o3-deep-research` is currently only available with Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
