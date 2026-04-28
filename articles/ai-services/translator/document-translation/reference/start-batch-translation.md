@@ -275,7 +275,7 @@ Document translation now supports image file translation, which allows you to tr
 
 ### Request configuration (image files)
 
-For image files translation, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-blob-storage-container). No further configuration is required.
+For image files translation, submit your image via a standard batch [Document Translation REST API call](#translate-all-documents-in-blob-storage-container).
 
 ### Supported formats (image files)
 
