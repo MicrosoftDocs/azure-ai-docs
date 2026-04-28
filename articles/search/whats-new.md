@@ -23,6 +23,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Item | Description |
 |--|--|
 | [Search Service 2026-04-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2026-04-01&preserve-view=true) | New stable REST API version providing programmatic access to the data plane operations described in this table. |
+| [Keyless billing for Foundry Tools processing](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) | Now generally available. |
 | [Azure Content Understanding skill](cognitive-search-skill-content-understanding.md) | Now generally available. |
 | [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) | Now generally available. |
 | [GenAI Prompt skill property removals](cognitive-search-skill-genai-prompt.md) | Starting with REST API version 2026-04-01, the following properties are removed from the GenAI Prompt skill definition: `httpMethod`, `timeout`, `batchSize`, `degreeOfParallelism`, `httpHeaders`, and `authResourceId`. The request timeout is fixed at 30 seconds and can't be overridden. If your skill definitions include any of these properties, remove them to avoid validation errors. |
