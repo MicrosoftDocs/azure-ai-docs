@@ -312,7 +312,11 @@ Agents are created through a data plane operation. Creating an agent requires th
 | Azure AI Account Owner | Foundry project | ✗ No |
 | Azure AI Owner | Foundry project | ✔ Yes |
 
-Because the agent identity might only be available after the agent is created, some role assignments can't be created until after this point. To perform model inferencing with the project endpoint, the agent identity requires the `Microsoft.CognitiveServices/accounts/AIServices/responses/*` permission at the scope of the Foundry project.
+Because the agent identity might only be available after the agent is created, some role assignments can't be created until after this point. To perform model inferencing with the project endpoint, the agent identity requires the following permissions at the scope of the Foundry project:
+
+- `Microsoft.CognitiveServices/accounts/AIServices/responses/*`
+- `Microsoft.CognitiveServices/accounts/AIServices/agents/storage/read` (for custom definitions, use `Microsoft.CognitiveServices/accounts/AIServices/agents/*/read`)
+- `Microsoft.CognitiveServices/accounts/AIServices/agents/storage/write` (for custom definitions, use `Microsoft.CognitiveServices/accounts/AIServices/agents/*/write`)
 
 | Built-in role | Scope | Can assigned agent perform model inferencing? |
 | --- | --- | --- |
@@ -324,7 +328,7 @@ Because the agent identity might only be available after the agent is created, s
 | Azure AI Owner | Foundry project | ✔ Yes |
 
 > [!TIP]
-> `Azure AI User` is the least-privilege built-in role that can perform model inferencing with the project endpoint. However, it includes a broader set of permissions than strictly necessary for this operation. To lower the privilege given to your agent, consider creating a custom role with only `Microsoft.CognitiveServices/accounts/AIServices/responses/*`.
+> `Azure AI User` is the least-privilege built-in role that can perform model inferencing with the project endpoint. However, it includes a broader set of permissions than strictly necessary for this operation. To lower the privilege given to your agent, consider creating a custom role with only `Microsoft.CognitiveServices/accounts/AIServices/responses/*`, `Microsoft.CognitiveServices/accounts/AIServices/agents/*/read`, and `Microsoft.CognitiveServices/accounts/AIServices/agents/*/write`.
 
 Creating that role assignment requires the `Microsoft.Authorization/roleAssignments/write` permission at the scope of the Foundry project.
 
@@ -473,6 +477,40 @@ Interacting with the agent requires the calling user or service principal to hav
 | Azure AI Project Manager | Foundry project | ✔ Yes |
 | Azure AI Account Owner | Foundry project | ✗ No |
 | Azure AI Owner | Foundry project | ✔ Yes |
+
+## Agent observability
+
+### Viewing telemetry data
+
+Accessing agent telemetry data requires read permissions on the Application Insights resource. This includes viewing traces, logs, and metrics through the Azure portal, Foundry portal, APIs, and monitoring tools.
+
+Assign [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) at the Application Insights resource scope. The `*/read` permissions in this role access the underlying Log Analytics workspace data without requiring a separate workspace-scoped assignment.
+
+If you need to work against the Log Analytics workspace directly, also assign [Log Analytics Reader](/azure/role-based-access-control/built-in-roles#log-analytics-reader) at the workspace scope.
+
+| Built-in role | Scope | Can assignee access agent telemetry data? |
+| --- | --- | --- |
+| Owner | Application Insights | ✔ Yes |
+| Contributor | Application Insights | ✔ Yes |
+| Azure AI User | Application Insights | ✗ No (sees metrics, but not traces) |
+| Azure AI Project Manager | Application Insights | ✗ No |
+| Azure AI Account Owner | Application Insights | ✗ No (sees metrics, but not traces) |
+| Azure AI Owner | Application Insights | ✗ No |
+| Monitoring Reader | Application Insights | ✔ Yes |
+| Log Analytics Reader | Log Analytics Workspace | ✔ Yes (from workspace directly) |
+
+#### Cost display in billing currency
+
+Viewing costs in billing currency in the Foundry portal requires the `Microsoft.Billing/billingProperty/read` permission. This permission requires a subscription or billing-account-scoped assignment. Resource group scope doesn't cover this permission.
+
+This permission is for portal display convenience and isn't required for hosted agent functionality. You can safely omit this permission for most users.
+
+| Built-in role | Scope | Can assignee view costs in billing currency? |
+| --- | --- | --- |
+| Owner | Subscription | ✔ Yes |
+| Contributor | Subscription | ✔ Yes |
+| [Cost Management Reader](/azure/role-based-access-control/built-in-roles#cost-management-reader) | Subscription | ✔ Yes |
+| Azure AI User | Subscription | ✗ No |
 
 ## Related content
 
