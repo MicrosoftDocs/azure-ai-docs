@@ -561,6 +561,9 @@ while keep_going:
 
 ## Streaming
 
+> [!NOTE]
+> During streaming, the Responses API might return an error event ( `500`, `429`, and similar errors) if the service encounters an error, such as token limits or parsing problems. Applications should detect this event and gracefully stop or restart streaming. You aren't charged for tokens generated during failed streaming responses.
+
 ```python
 import os
 from openai import OpenAI
